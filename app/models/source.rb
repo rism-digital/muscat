@@ -93,14 +93,14 @@ class Source < ApplicationRecord
 
   scope :in_folder, ->(folder_id) { joins(:folder_items).where("folder_items.folder_id = ?", folder_id) }
 
-  # FIXME id generation
   before_destroy :check_dependencies, :check_parent, prepend: true
+  before_destroy :update_links_for_destroy, :cleanup_comments
 
   before_save :set_object_fields, :save_updated_at
   after_create :fix_ids
   after_initialize :after_initialize
   after_save :update_links, :reindex
-  before_destroy :update_links_for_destroy, :cleanup_comments
+  
 
   attr_accessor :suppress_reindex_trigger
   attr_accessor :suppress_recreate_trigger
