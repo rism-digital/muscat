@@ -6,12 +6,18 @@ ActiveAdmin.register_page "gnd_works" do
     autocomplete :gnd_works, "instrument", :gnd => true, :display_value => :label
     autocomplete :gnd_works, "form", :gnd => true, :display_value => :label
 
+    MAX_SAVED_IDS_SIZE = 20
+
     def index
 
       if session.include?(:gnd_message)
         flash[:notice] = session[:gnd_message]
         session.delete(:gnd_message)
       end
+
+      @saved_ids = nil
+      @saved_ids = JSON.parse(cookies.permanent[:gnd_ids]) if cookies.permanent[:gnd_ids]
+      ap @saved_ids
 
       render 'index', layout: "active_admin" 
     end
@@ -87,6 +93,19 @@ ActiveAdmin.register_page "gnd_works" do
       path = admin_gnd_works_path
 
       session[:gnd_message] = "GND Response: " + messages
+
+      # Do we have the last saved ids cookie?
+      ids = []
+      if cookies.permanent[:gnd_ids]
+        ids = JSON.parse(cookies.permanent[:gnd_ids]) rescue ids = []
+      end
+
+      # Use the array as a fixed-length FIFO
+      ids.pop if ids.count > MAX_SAVED_IDS_SIZE
+      # and save the new id
+      ids << {id: result.gsub("ppn:",""), date: DateTime.now()}
+
+      cookies.permanent[:gnd_ids] = JSON.generate(ids)
 
       if result == nil
         render json: {gnd_message: messages, gnd_error: true }, status: 500
