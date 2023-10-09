@@ -19,7 +19,7 @@ class CleanIndexOrphansJob < ApplicationJob
 
             puts "Purged orphans for: #{model_name} (#{end_time - begin_time} seconds run time)"
         end
-        
+        Sunspot.commit
     end
-
+    
 end
