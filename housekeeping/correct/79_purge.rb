@@ -4,39 +4,43 @@
 @model = Source
 @model = ARGV[0].constantize if ARGV.count >= 1
 
+def find_orphans(hits)
+    to_purge = []
 
-def purge_set(hits)
-    tot = 0
     hits.each do |hit|
         begin
             Source.find(hit.primary_key)
-        rescue
-            Sunspot.remove(Source) {with(:id, hit.primary_key)}
-            #puts "Removed #{hit.primary_key} from index"
-            tot += 1
+        rescue ActiveRecord::RecordNotFound
+            to_purge << hit.primary_key
         end
     end
-    return tot
+
+    return to_purge
 end
 
-puts
-puts "---------------------------------".yellow
-puts " Purging #{@model} index".yellow
-puts "---------------------------------".yellow
-puts
+def delete_all(ids)
+    ids.each_slice(500) do |slice|
+        Sunspot.remove(@model) {with(:id, slice)}
+    end
+end
 
-total = 0
+total_ids = []
+
+begin_time = Time.now
 
 results, hits = @model.search_as_ransack(@params)
-total += purge_set(hits)
-Sunspot.commit
+total_ids += find_orphans(hits)
 
 # insert the next ones
 for page in 2..results.total_pages
   @params[:page] = page
   r, h = @model.search_as_ransack(@params)
-  total += purge_set(h)
-  Sunspot.commit
+  total_ids += find_orphans(h)
 end
 
-puts "Removed #{total} stale #{@model} SOLR index items"
+delete_all(total_ids)
+Sunspot.commit
+
+end_time = Time.now
+
+puts "Removed #{total_ids.count} stale #{@model} SOLR index items (#{end_time - begin_time} seconds run time)"
