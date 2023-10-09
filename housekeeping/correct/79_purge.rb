@@ -9,7 +9,7 @@ def find_orphans(hits)
 
     hits.each do |hit|
         begin
-            Source.find(hit.primary_key)
+            @model.find(hit.primary_key)
         rescue ActiveRecord::RecordNotFound
             to_purge << hit.primary_key
         end
@@ -43,4 +43,4 @@ Sunspot.commit
 
 end_time = Time.now
 
-puts "Removed #{total_ids.count} stale #{@model} SOLR index items (#{end_time - begin_time} seconds run time)"
+puts "#{@model}: removed #{total_ids.count} stale SOLR index items (#{end_time - begin_time} seconds run time)"
