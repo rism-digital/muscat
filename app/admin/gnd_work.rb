@@ -88,7 +88,7 @@ ActiveAdmin.register_page "gnd_works" do
     def marc_editor_save
       marc_hash = JSON.parse params[:marc]
 
-      result, messages = GND::Interface.push(marc_hash)
+      result, messages, author, title = GND::Interface.push(marc_hash)
       path = admin_gnd_works_path
 
       session[:gnd_message] = "GND Response: " + messages
@@ -106,7 +106,10 @@ ActiveAdmin.register_page "gnd_works" do
         new_id = result.gsub("ppn:","")
         # and no dups
         ids.reject! {|i| i["id"] == new_id}
-        ids << {id: new_id, date: DateTime.now()}
+        ids << {id: new_id, date: DateTime.now()} #, author: author, title: title}
+
+        # Should we zip it?
+        #zipped =Base64.encode64(ActiveSupport::Gzip.compress(JSON.generate(ids)))
 
         cookies.permanent[:gnd_ids] = JSON.generate(ids)
       end

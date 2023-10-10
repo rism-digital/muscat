@@ -49,6 +49,8 @@ module GND
         request_body = make_gnd_envelope(action, xml.to_s, id)
         call_result = nil
         diagnostic_messages = ""
+        author = ""
+        title = ""
 
         uri = URI.parse(server)
         post = Net::HTTP::Post.new(uri.path, 'Content-Type' => 'text/xml')
@@ -57,6 +59,7 @@ module GND
         server.start {|http|
             http.request(post, request_body) {|response|
                 if response.code == "200"
+                    puts response.body
                     response_body = Nokogiri::XML(response.body)
 
                     # Get all the messages if any
@@ -72,12 +75,16 @@ module GND
                     # if all was ok, we return the ID from GND
                     if status == "success"
                         call_result = id
+
+                        # one more! get the title and author
+                        title = response_body.xpath("//srw:recordData/record/datafield[@tag='130']/subfield[@code='a']", NAMESPACE).first.content rescue title = ""
+                        author = response_body.xpath("//srw:recordData/record/datafield[@tag='400']/subfield[@code='a']", NAMESPACE).first.content rescue author = ""
                     end
                 end
             }
         }
 
-        return call_result, diagnostic_messages
+        return call_result, diagnostic_messages, author, title
     end
 
     # Private method to wrap the xml into the envelope
