@@ -17,7 +17,6 @@ ActiveAdmin.register_page "gnd_works" do
 
       @saved_ids = nil
       @saved_ids = JSON.parse(cookies.permanent[:gnd_ids]) if cookies.permanent[:gnd_ids]
-      ap @saved_ids
 
       render 'index', layout: "active_admin" 
     end
@@ -94,18 +93,23 @@ ActiveAdmin.register_page "gnd_works" do
 
       session[:gnd_message] = "GND Response: " + messages
 
-      # Do we have the last saved ids cookie?
-      ids = []
-      if cookies.permanent[:gnd_ids]
-        ids = JSON.parse(cookies.permanent[:gnd_ids]) rescue ids = []
+      if result
+        # Do we have the last saved ids cookie?
+        ids = []
+        if cookies.permanent[:gnd_ids]
+          ids = JSON.parse(cookies.permanent[:gnd_ids]) rescue ids = []
+        end
+
+        # Use the array as a fixed-length FIFO
+        ids.pop if ids.count > MAX_SAVED_IDS_SIZE
+        # Make sure we have only the id
+        new_id = result.gsub("ppn:","")
+        # and no dups
+        ids.reject! {|i| i["id"] == new_id}
+        ids << {id: new_id, date: DateTime.now()}
+
+        cookies.permanent[:gnd_ids] = JSON.generate(ids)
       end
-
-      # Use the array as a fixed-length FIFO
-      ids.pop if ids.count > MAX_SAVED_IDS_SIZE
-      # and save the new id
-      ids << {id: result.gsub("ppn:",""), date: DateTime.now()}
-
-      cookies.permanent[:gnd_ids] = JSON.generate(ids)
 
       if result == nil
         render json: {gnd_message: messages, gnd_error: true }, status: 500
