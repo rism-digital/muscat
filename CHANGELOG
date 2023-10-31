@@ -1,6 +1,24 @@
 Muscat Changelog
 ================
 
+v 9.4.2
+* Updated rspecs with task
+* Add DEL acronym for deleted records, unify translation files.
+* Fix #1436, implement missing leaders, fix existing ones.
+* Test implementation of MEI for works
+* Add description for work digital obj link
+* Test: Noto Sans Display
+* Clean up a bit the destroy callbacks
+* Fix division by 0 in SRU @ahankinson
+* Small script to fix the "disappearing" list view on test systems
+* Make better job for purging orphan items, put it in crontab
+* Purging stuff does not really work perfectly yet
+* Better purger implementation
+* Add Catalan locale to the list of js languages
+* Merge pull request #1442 from fjorba/unify-status-codes-translations
+* Merge pull request #1450 from fjorba/add-catalan-to-js-i18n
+* Merge pull request #1435 from rism-digital/develop-rspec
+
 v 9.4.1
 * Fix wrong relation in Work to composer
 * Fix sru sigla search
