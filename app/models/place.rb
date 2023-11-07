@@ -11,6 +11,7 @@
 
 class Place < ApplicationRecord
   include ForeignLinks
+  include CommentsCleanup
 
   has_and_belongs_to_many(:referring_sources, class_name: "Source", join_table: "sources_to_places")
   
@@ -24,6 +25,7 @@ class Place < ApplicationRecord
   
   has_and_belongs_to_many(:referring_publications, class_name: "Publication", join_table: "publications_to_places")
   has_and_belongs_to_many(:referring_holdings, class_name: "Holding", join_table: "holdings_to_places")
+  has_and_belongs_to_many(:referring_works, class_name: "Work", join_table: "works_to_places")
   has_many :folder_items, as: :item, dependent: :destroy
   has_many :delayed_jobs, -> { where parent_type: "Place" }, class_name: 'Delayed::Backend::ActiveRecord::Job', foreign_key: "parent_id"
   belongs_to :user, :foreign_key => "wf_owner"
@@ -34,7 +36,7 @@ class Place < ApplicationRecord
 
   #include NewIds
 
-  before_destroy :check_dependencies
+  before_destroy :check_dependencies, :cleanup_comments
 
   #before_create :generate_new_id
   after_save :reindex

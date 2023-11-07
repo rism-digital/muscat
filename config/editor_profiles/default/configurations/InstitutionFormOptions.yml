@@ -295,8 +295,7 @@
   layout: 
     fields: 
     - - a
-      - cols: 4
-    columns: 4
+      - growfield: true
 "700":
   allow_new: true
   new_window: people

@@ -299,6 +299,7 @@ de:
     baptismal_name: Taufname
     basic_functions: Grundsätzliche Funktionen
     basso_continuo: Basso continuo
+    beginning_or_single_date: Anfangs- oder Einzeldatum
     bf_major: B-Dur
     bf_minor: b-Moll
     bibliography: Bibliographie
@@ -436,6 +437,7 @@ de:
     ef_major: Es-Dur
     ef_minor: es-Moll
     encyclopedia: Enzyklopädie
+    end: Ende
     end_period: Periode beenden
     engraver: Stecher
     engraving: Stich
@@ -523,7 +525,7 @@ de:
     incipit_number: Incipitnummer
     incipits: Incipits
     index_terms: Deskriptoren
-    information_found: Fundstelle
+    information_found: Vorhandene Informationen
     initial: Initiale
     initial_entry: Ersteintrag
     initials: Initiale
@@ -696,7 +698,7 @@ de:
     partial_autograph: Teilautograph
     parts_held: Vorhandene Stimmen
     parts_held_extent: Stimmenmaterial
-    patron: Mäzen/Auftraggeber
+    patron: Auftraggeber
     people: Personen
     people_institutions: Personen und Körperschaften
     percussion: Schlaginstrumente
@@ -716,6 +718,7 @@ de:
     place_activity: Wirkungsort
     place_birth: Geburtsort
     place_death: Sterbeort
+    place_of_creation: Ort der Erschaffung
     place_of_residence: Wohnort/Hauptsitz
     place_origin: Herkunftsangabe
     place_publication: Verlagsort
@@ -771,7 +774,7 @@ de:
     relationship_designation: Beziehungsbezeichnung in $i oder $4
     relationship_information: Informationen zur Beziehung
     religious_name: Ordensname
-    religious_order: Orden/Titel
+    religious_order: "Orden/Titel"
     reproduction: Reproduktion
     research_institute: Forschungsinstitut
     retrospective_conversion: Retroeinspielung
@@ -882,9 +885,9 @@ de:
     work: Werktitel
     work_number: Werknummer
     work_tag: Markierung der Werk-Revision
-    work_tag_incipit_needs_revision: incipit-needs-revision
-    work_tag_incipit_replace: incipit-replace
-    work_tag_needs_revision: needs-revision
+    work_tag_incipit_needs_revision: Incipit muss überarbeitet werden
+    work_tag_incipit_replace: Incipit ersetzen
+    work_tag_needs_revision: Überarbeitung notwendig
     work_tag_note: Markierungshinweis
     work_tag_type: Markierungstyp
     year: Jahr

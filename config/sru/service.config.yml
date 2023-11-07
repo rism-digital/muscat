@@ -48,9 +48,10 @@ index:
   dc.creator:
     solr: composer_order
     type: s
+# changed to new index
   dc.author:
-    solr: 100a
-    type: text
+    solr: composer
+    type: texts
   dc.publisher:
     solr: 260b
     type: text
@@ -106,6 +107,9 @@ index:
   rism.librarySiglum:
     solr: siglum_order
     type: s
+  rism.libSiglum:
+    solr: lib_siglum_order
+    type: s
   rism.libraryCountry:
     solr: 043c_filter
     type: text
@@ -130,6 +134,9 @@ index:
   rism.place:
     solr: 110c
     type: text
+  rism.scoringSummary:
+    solr: 240m_filter
+    type: sm
   #bath.genreForm:
     #title: genreForm
     #solr: 001

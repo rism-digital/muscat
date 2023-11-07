@@ -130,6 +130,8 @@
       label: records.institution
     b:
       label: records.department
+    c:
+      label: records.place
     g:
       label: records.attribution_qualifier
   label: records.additional_institution

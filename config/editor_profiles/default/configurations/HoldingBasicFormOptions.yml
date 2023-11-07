@@ -15,6 +15,7 @@
     - - a
       - growfield: true
     - - b
+      - growfield: true
     - - c
 "500": 
   layout: 
@@ -25,17 +26,14 @@
   layout: 
     fields: 
     - - a
-      - values: 
-        - "Composition date: "
-        - "First performance date: "
-        - "Performance date: "
-        editor_partial: subfield_autocomplete
+      - growfield: true
 "541": 
   layout: 
     fields: 
     - - c
       - growfield: true
     - - a
+      - growfield: true
     - - d
     - - e
 "563": 
@@ -47,6 +45,7 @@
   layout: 
     fields: 
     - - a
+      - growfield: true
 "593": 
   layout: 
     fields: 
@@ -142,6 +141,10 @@
         editor_partial: subfield_secondary
         allow_new: true
     - - b
+    - - c
+      - type: place
+        editor_partial: subfield_autocomplete
+        autocomplete_extra: place
     - - g
       - editor_partial: subfield_select_codes
         codes_reference: "codes"
@@ -178,6 +181,7 @@
     - - b
     - - z
     - - q
+      - growfield: true
     - - c
       - growfield: true
     - - d

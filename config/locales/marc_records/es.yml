@@ -299,6 +299,7 @@ es:
     baptismal_name: Nombre bautismal
     basic_functions: Funciones básicas
     basso_continuo: Bajo continuo
+    beginning_or_single_date: Inicio o fecha única
     bf_major: Si bemol Mayor
     bf_minor: Si bemol menor
     bibliography: Bibliografía
@@ -436,6 +437,7 @@ es:
     ef_major: Mi bemol Mayor
     ef_minor: Mi bemol menor
     encyclopedia: Enciclopedia
+    end: Fin
     end_period: Periodo final
     engraver: Grabador
     engraving: Grabado
@@ -716,6 +718,7 @@ es:
     place_activity: Lugar de actividad
     place_birth: Lugar de nacimiento
     place_death: Lugar de fallecimiento
+    place_of_creation: Sitio de creación
     place_of_residence: Lugar de residencia/sede
     place_origin: Lugar de origen
     place_publication: Lugar de publicación
@@ -771,7 +774,7 @@ es:
     relationship_designation: Designación de la relación en $i o $4
     relationship_information: Información de la relación
     religious_name: Nombre religioso
-    religious_order: Orden religiosa
+    religious_order: "Orden religiosa/Título"
     reproduction: Reproducción
     research_institute: Institución
     retrospective_conversion: Conversión retrospectiva
@@ -881,12 +884,12 @@ es:
     woodwinds: Vientos-madera
     work: Obra
     work_number: Número de obra
-    work_tag: Work revision tag
+    work_tag: Etiqueta de revisión de trabajo
     work_tag_incipit_needs_revision: incipit-needs-revision
     work_tag_incipit_replace: incipit-replace
     work_tag_needs_revision: needs-revision
-    work_tag_note: Tag note
-    work_tag_type: Tag type
+    work_tag_note: Nota de etiqueta
+    work_tag_type: Tipo de etiqueta
     year: Año
     years_birth_death: Años de nacimiento y muerte
   relations:

@@ -299,6 +299,7 @@ it:
     baptismal_name: Nome di battesimo
     basic_functions: Funzioni base
     basso_continuo: Basso continuo
+    beginning_or_single_date: Inizio o data singola
     bf_major: Si♭ maggiore
     bf_minor: Si♭ minore
     bibliography: Bibliografia
@@ -436,6 +437,7 @@ it:
     ef_major: Mi♭ maggiore
     ef_minor: Mi♭ minore
     encyclopedia: Enciclopedia
+    end: Fine
     end_period: Fine del periodo
     engraver: Incisore
     engraving: Incisione
@@ -716,6 +718,7 @@ it:
     place_activity: Luogo di attività
     place_birth: Luogo di nascita
     place_death: Luogo di morte
+    place_of_creation: Luogo di creazione
     place_of_residence: Luogo di residenza/sede centrale
     place_origin: Luogo di origine
     place_publication: Luogo
@@ -771,7 +774,7 @@ it:
     relationship_designation: Designazione della relazione in $i o $4
     relationship_information: Informazioni sul rapporto
     religious_name: Nome di religione
-    religious_order: Ordine religioso
+    religious_order: "Ordine religioso/titolo"
     reproduction: Riproduzione
     research_institute: Istituto di ricerca
     retrospective_conversion: Conversione retrospettiva
@@ -881,12 +884,12 @@ it:
     woodwinds: Legni
     work: Opera
     work_number: Numero dell'opera
-    work_tag: Opera da rivedere
-    work_tag_incipit_needs_revision: Incipit da rivedere
-    work_tag_incipit_replace: Incipit da sostituire
-    work_tag_needs_revision: Da rivedere
-    work_tag_note: Nota alla marcatura
-    work_tag_type: Tipo di marcatura
+    work_tag: Tag per il Work
+    work_tag_incipit_needs_revision: incipit-needs-revision
+    work_tag_incipit_replace: incipit-replace
+    work_tag_needs_revision: needs-revision
+    work_tag_note: Nota al Tag
+    work_tag_type: Tipo di Tag
     year: Anno
     years_birth_death: Data di nascita e di morte
   relations:

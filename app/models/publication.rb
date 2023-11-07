@@ -29,12 +29,14 @@ class Publication < ApplicationRecord
   include ForeignLinks
   include MarcIndex
   include AuthorityMerge
+  include CommentsCleanup
   resourcify
 
   has_and_belongs_to_many(:referring_sources, class_name: "Source", join_table: "sources_to_publications")
   has_and_belongs_to_many(:referring_institutions, class_name: "Institution", join_table: "institutions_to_publications")
   has_and_belongs_to_many(:referring_people, class_name: "Person", join_table: "people_to_publications")
   has_and_belongs_to_many(:referring_holdings, class_name: "Holding", join_table: "holdings_to_publications")
+  has_and_belongs_to_many(:referring_works, class_name: "Work", join_table: "works_to_publications")
   has_and_belongs_to_many :people, join_table: "publications_to_people"
   has_and_belongs_to_many :institutions, join_table: "publications_to_institutions"
   has_and_belongs_to_many :places, join_table: "publications_to_places"
@@ -60,7 +62,7 @@ class Publication < ApplicationRecord
   composed_of :marc, :class_name => "MarcPublication", :mapping => %w(marc_source to_marc)
 
   ##include NewIds
-  before_destroy :check_dependencies
+  before_destroy :check_dependencies, :cleanup_comments
 
   before_save :set_object_fields
   after_create :scaffold_marc, :fix_ids

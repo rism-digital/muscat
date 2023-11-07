@@ -64,6 +64,9 @@ end
 
 def process_one_file(file_name)
 
+    created_at = Date.today
+    referring_source = nil
+
     new_marc = MarcWork.new("=001 __TEMP__\n")
     doc = REXML::Document.new(File.open(file_name))
 
@@ -88,13 +91,23 @@ def process_one_file(file_name)
 
     XPath.each(doc, "/mei/meiHead/workList/work/title") do |data|
         if data["type"] == "subordinate" || data["type"] == "alternative" || data["type"] == "original"
-            add_tag(new_marc, "430", {t: data.text})
+            add_tag(new_marc, "430", {a: data.text})
         else
 
             add_tag(new_marc, "130", {a: data.text}) if data["lang"] == "en"
         end
     end
 
+    # did we add a 130?
+    if !new_marc.first_occurance("130")
+        # no, do it again and try to get the italian title
+        XPath.each(doc, "/mei/meiHead/workList/work/title") do |data|
+            if data["type"] == "subordinate" || data["type"] == "alternative" || data["type"] == "original"
+            else
+                add_tag(new_marc, "130", {a: data.text}) if data["lang"] == "it"
+            end
+        end
+    end
 
     XPath.each(doc, "/mei/meiHead/workList/work/identifier") do |data|
         add_tag(new_marc, "383", {b: data.text}) if data["label"] == "Opus"
@@ -110,7 +123,6 @@ def process_one_file(file_name)
         #add_tag(new_marc, "680", {a: data.text})
     end
 
-
     XPath.each(doc, "/mei/meiHead/workList/work/notesStmt/annot/p") do |data|
         alltext = ""
         data.texts.each do |t|
@@ -119,18 +131,17 @@ def process_one_file(file_name)
         add_tag(new_marc, "680", {a: alltext}) if !alltext.empty?    
     end
 
-    ## These are relationships, FIXME how to translate?
-    XPath.each(doc, "/mei/meiHead/workList/work/relationList") do |data|
+    ## These are relationships, set them to a note
+    XPath.each(doc, "/mei/meiHead/workList/work/relationList/relation") do |data|
+        add_tag(new_marc, "667", {a: "relationList entry: " + data["label"]}) if data["label"]
     end
 
-    ## FIXME! there is no tag 370 in Muscat Work
     XPath.each(doc, "/mei/meiHead/workList/work/creation/geogName") do |data|
-        #add_tag(new_marc, "370", {a: data.text})
+        #add_tag(new_marc, "370", {g: data.text})
     end
 
-    ## FIXME! there is no tag 388 in Muscat Work
     XPath.each(doc, "/mei/meiHead/workList/work/creation/date") do |data|
-        #add_tag(new_marc, "388", {a: data.text})
+        #add_tag(new_marc, "046", {k: data.text})
     end
 
     XPath.each(doc, "/mei/meiHead/workList/work/history/p") do |data|
@@ -157,11 +168,14 @@ def process_one_file(file_name)
     # BEGIN INCIPIT STUFF
     ################################################################################################
 
+=begin
     incipits = []
 
     XPath.each(doc, "/mei/meiHead/workList/work/expressionList/expression/incip/incipCode") do |data|
         incipits << add_tag(new_marc, "031", {p: data.text}) if data.text && !data.text.empty?
     end
+
+ap incipits.count if incipits.count > 0
 
     def fill_incipit(paths, doc, new_marc, incipits)
         paths.each do |path, subtag|
@@ -185,6 +199,49 @@ def process_one_file(file_name)
     }
 
     fill_incipit(map, doc, new_marc, incipits)
+=end
+
+    ### NEW INCIPIT STUFF, since there is always only one incipit
+
+    # There is always only one tag here
+    XPath.each(doc, "/mei/meiHead/workList/work/expressionList/expression/incip/incipCode") do |data|
+        add_tag(new_marc, "031", {p: data.text}) if data.text && !data.text.empty?
+        append_to_tag(new_marc, "031", {a: "1"})
+        append_to_tag(new_marc, "031", {b: "1"})
+        append_to_tag(new_marc, "031", {c: "1"})
+    end
+
+    XPath.each(doc, "/mei/meiHead/workList/work/expressionList/expression/tempo") do |data|
+        append_to_tag(new_marc, "031", {d: data.text.strip}) if data.text && !data.text.strip.empty?
+    end    
+
+    XPath.each(doc, "/mei/meiHead/workList/work/expressionList/expression/meter") do |data|
+        next if !data["count"] || !data["unit"]
+        next if data["count"].empty? || data["unit"].empty?
+        meter = "#{data['count']}/#{data['unit']}"
+        append_to_tag(new_marc, "031", {o: meter})
+    end   
+
+    ## KEY DOES NOT MATCH!
+    #XPath.each(doc, "/mei/meiHead/workList/work/expressionList/expression/incip/key") do |data|
+    #    append_to_tag(new_marc, "031", {n: => data.text.strip})
+    #end 
+
+    #XPath.each(doc, "/mei/meiHead/workList/work/expressionList/expression/perfMedium/perfResList/perfRes") do |data|
+    #    append_to_tag(new_marc, "031", {d: => data.text.strip}) if data.text && !data.text.strip.empty?
+    #end  
+
+    {"/mei/meiHead/workList/work/expressionList/expression/perfMedium/perfResList/perfRes" => "m",
+        "/mei/meiHead/workList/work/expressionList/expression/perfMedium/castList/castItem/role/name" => "e",
+        "/mei/meiHead/workList/work/expressionList/expression/incip/incipText/p" => "t",
+        "/mei/meiHead/workList/work/expressionList/expression/componentList" => "q"
+    }.each do |string, subtag|
+        XPath.each(doc, string) do |data|
+            append_to_tag(new_marc, "031", {subtag => data.text.strip}) if data.text && !data.text.strip.empty?
+        end 
+    end
+
+  
 
 =begin
     XPath.each(doc, "/mei/meiHead/workList/work/expressionList/expression/perfMedium/perfResList") do |data|
@@ -227,22 +284,28 @@ def process_one_file(file_name)
 
     ## FIXME database field?
     XPath.each(doc, "/mei/meiHead/manifestationList/manifestation/identifier") do |data|
-        #ap data.text
+
+        referring_source = data.text
     end
 
     ## FIXME This seems empty?
     XPath.each(doc, "/mei/meiHead/workList/work/biblList/bibl") do |data|
-        #ap data.text
+        all_lines = []
+        all_lines << data.elements["author"].text.strip if data.elements["author"] && data.elements["author"].text
+        all_lines << data.elements["editor"].text.strip if data.elements["editor"] && data.elements["editor"].text
+        all_lines << data.elements["title"].map {|t| t.to_s.strip} if data.elements["title"]
+
+        add_tag(new_marc, "667", {a: "biblList entry: " + all_lines.join(", ")})     
     end
 
     # FIXME set created-at?
     XPath.each(doc, "/mei/meiHead/revisionDesc/change") do |data|
-        #ap data
+        created_at = Date.parse(data["isodate"])
     end
 
     ## FIXME This seems empty?
     XPath.each(doc, "/mei/meiHead/fileDesc/notesStmt") do |data|
-        #ap data.texts
+        # data.texts
     end
 
     ## FIXME I don't think we have a DB entry for this
@@ -278,29 +341,28 @@ def process_one_file(file_name)
         #ap data
     end
 
-    ## Duplicate, see above
-    #XPath.each(doc, "/mei/meiHead/workList/work/classification") do |data|
-    #    #ap data
-    #end
-
-    return new_marc
+    return new_marc, created_at, referring_source
 end
 
 DIR = ARGV[0]
 
 Dir.glob("#{DIR}/*.xml").each do |file|
     #puts "Process #{file}".green
-    marc = process_one_file(file)
+    marc, created_at, referring_source = process_one_file(file)
     #ap marc
+
+    rs = Source.find(referring_source) if referring_source rescue rs = nil
 
     marc.import
 
     work = Work.new
     work.marc = marc
 
-    work.person = work.marc.get_composer
-    work.save
+    work.referring_sources << rs if rs
 
+    work.created_at = created_at
+    work.composer = work.marc.get_composer
+    work.save
 end
 
 Sunspot.commit

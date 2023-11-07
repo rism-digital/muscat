@@ -53,6 +53,7 @@ pt:
       sections: "Seções e Ações"
       actions: "Ações"
       toc: "Tabela de Conteúdo"
+      help: "Ajuda"
     pagination:
       empty: "Nenhum(a) %{model} encontrado(a)"
       one: "Exibindo <b>1</b> %{model}"
@@ -377,6 +378,7 @@ pt:
   unarchive: "Desarquivar"
   export_folder: "Exportar a pasta em MARCXML"
   export_folder_csv: "Exportar a pasta em CSV"
+  export_folder_raw: "Exportar a pasta em Muscat MARC"
   validate_folder: "Validar pasta"
   
   # Editor sidebar
@@ -450,7 +452,7 @@ pt:
   filter_author_or_editor: "Autor/Editor"
   filter_autograph_of: "Autógrafo de"
   filter_birth_place: "Local de nascimento"
-  filter_catalog: "Catálogo"
+  filter_publications: "Publicaçaões"
   filter_category_type: "Categoria"
   filter_collection: "Coletânea"
   filter_comment: "Comentário"
@@ -852,25 +854,3 @@ pt:
     application_name: 'Muscat'
     header_links:
       logout: 'Logout'
-      
- 
-######################################################################################################
-# Record types, English only
-      
-  record_types_codes:
-    "0": "UNK"
-    "1": "COL"
-    "2": "MSR"
-    "3": "SUB"
-    "4": "LSR"
-    "5": "LEC"
-    "6": "TSR"
-    "7": "TEC"
-    "8": "EDT"
-    "11": "CMP"
-    
-  status_codes:
-    published: "PUB"
-    inprogress: "UNP"
-    deprecated: "DEP"
-

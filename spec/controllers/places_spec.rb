@@ -8,7 +8,7 @@ RSpec.describe Admin::PlacesController, :type => :controller do
     sign_in @user
   end
 
-  context "GET index" do
+  context "GET index", :web do
     it do
       get :index
       expect(response.body).to have_css ("#titlebar_left")

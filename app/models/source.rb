@@ -47,6 +47,7 @@ class Source < ApplicationRecord
   include ForeignLinks
   include MarcIndex
   include Template
+  include CommentsCleanup
   resourcify
 
   belongs_to :parent_source, {class_name: "Source", foreign_key: "source_id"}
@@ -92,14 +93,14 @@ class Source < ApplicationRecord
 
   scope :in_folder, ->(folder_id) { joins(:folder_items).where("folder_items.folder_id = ?", folder_id) }
 
-  # FIXME id generation
   before_destroy :check_dependencies, :check_parent, prepend: true
+  before_destroy :update_links_for_destroy, :cleanup_comments
 
   before_save :set_object_fields, :save_updated_at
   after_create :fix_ids
   after_initialize :after_initialize
   after_save :update_links, :reindex
-  before_destroy :update_links_for_destroy
+  
 
   attr_accessor :suppress_reindex_trigger
   attr_accessor :suppress_recreate_trigger
@@ -555,28 +556,6 @@ class Source < ApplicationRecord
       return self.parent_source.holdings.each.collect {|h| h.get_shelfmark}
     end
     return [self.shelf_mark]
-  end
-
-  def self.incipits_for(id)
-    s = Source.find(id)
-
-    incipits = {}
-
-    s.marc.each_by_tag("031") do |t|
-      subtags = [:a, :b, :c, :t]
-      vals = {}
-
-      subtags.each do |st|
-        v = t.fetch_first_by_tag(st)
-        vals[st] = v && v.content ? v.content : "x"
-      end
-
-      pae_nr = "#{vals[:a]}.#{vals[:b]}.#{vals[:c]}"
-      text = vals[:t] == "x" ? "" : " #{vals[:t]}"
-      incipits["#{pae_nr}#{text}"] = "#{s.id}:#{pae_nr}"
-    end
-
-    incipits
   end
 
   def manuscript_to_print(tags)

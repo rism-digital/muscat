@@ -2,6 +2,7 @@ FactoryBot.define do
   factory :edition, :parent => :source do
     id { 111 }
     record_type { 8 }
+    initialize_with { Source.where(id: id).where.not(marc_source: nil).first_or_initialize(attributes) }
     std_title { "Variations - cemb" }
     composer { "Bach, Johann Sebastian" }
     title { "Goldberg" }

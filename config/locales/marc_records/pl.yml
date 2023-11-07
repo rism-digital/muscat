@@ -299,6 +299,7 @@ pl:
     baptismal_name: Imię z chrztu
     basic_functions: Podstawowe funkcje
     basso_continuo: Basso continuo
+    beginning_or_single_date: Data "od" lub pojedyncza data
     bf_major: B-dur
     bf_minor: b-moll
     bibliography: Bibliografia
@@ -436,6 +437,7 @@ pl:
     ef_major: Es-dur
     ef_minor: es-moll
     encyclopedia: Encyklopedia
+    end: Data "do"
     end_period: Okres końcowy
     engraver: Rytownik
     engraving: Sztych
@@ -716,6 +718,7 @@ pl:
     place_activity: Miejsce aktywności artystycznej
     place_birth: Miejsce urodzenia
     place_death: Miejsce śmierci
+    place_of_creation: Miejsce utworzenia
     place_of_residence: Miejsce zamieszkania/siedziba
     place_origin: Miejsce pochodzenia
     place_publication: Miejsce publikacji
@@ -771,7 +774,7 @@ pl:
     relationship_designation: Oznaczenie relacji w $i lub $4
     relationship_information: Informacje o relacjach
     religious_name: Imię z wyznania
-    religious_order: Zgromadzenie zakonne
+    religious_order: "Zgromadzenie zakonne/Nazwa"
     reproduction: Reprodukcja
     research_institute: Instytut badawczy
     retrospective_conversion: Konwersja retrospektywna
@@ -869,7 +872,7 @@ pl:
     uncategorized: Bez kategorii
     unknown: Nieznane
     unparsed_fingerprint: Nieprzeanalizowany odcisk palca
-    variant_ms_title: Alternatywny tytuł w rękopisie
+    variant_ms_title: Alternatywny tytuł w źródle
     variant_source_title: Alternatywny tytuł w źródle
     variations: Wariacje
     verified: Zweryfikowane
@@ -881,12 +884,12 @@ pl:
     woodwinds: Instrumenty dęte drewniane
     work: Dzieło
     work_number: Numer dzieła
-    work_tag: Work revision tag
-    work_tag_incipit_needs_revision: incipit-needs-revision
-    work_tag_incipit_replace: incipit-replace
-    work_tag_needs_revision: needs-revision
-    work_tag_note: Tag note
-    work_tag_type: Tag type
+    work_tag: tag edycji Dzieła
+    work_tag_incipit_needs_revision: incipit wymaga ponownego sprawdzenia
+    work_tag_incipit_replace: zamiana incipitu
+    work_tag_needs_revision: wymaga ponownego sprawdzenia
+    work_tag_note: Tag uwag
+    work_tag_type: Typ tagu
     year: Rok
     years_birth_death: Rok urodzenia i śmierci
   relations:

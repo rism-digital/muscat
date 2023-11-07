@@ -299,6 +299,7 @@ fr:
     baptismal_name: Nom baptismale
     basic_functions: Fonctions de base
     basso_continuo: Basso continuo
+    beginning_or_single_date: Date de début ou date single
     bf_major: Si♭ majeur
     bf_minor: Si♭ mineur
     bibliography: Bibliographie
@@ -436,6 +437,7 @@ fr:
     ef_major: Mi♭ majeur
     ef_minor: Mi♭ mineur
     encyclopedia: Encyclopédie
+    end: Termine
     end_period: Fin de la période
     engraver: Graveur
     engraving: Gravure
@@ -716,6 +718,7 @@ fr:
     place_activity: Lieu d'activité
     place_birth: Lieu de naissance
     place_death: Lieu de décès
+    place_of_creation: Lieu de création
     place_of_residence: Lieu de résidence/siège
     place_origin: Lieu d'origine
     place_publication: Endroit
@@ -771,7 +774,7 @@ fr:
     relationship_designation: Désignation de la relation en $i ou 4
     relationship_information: Informations sur les relations
     religious_name: Nom d'ordre
-    religious_order: Ordre/titre
+    religious_order: "Ordre religieux/Titre"
     reproduction: Reproduction
     research_institute: Institution de recherche
     retrospective_conversion: Conversion retrospective
@@ -881,12 +884,12 @@ fr:
     woodwinds: Bois
     work: Oeuvre
     work_number: Numéro de l'œuvre
-    work_tag: Work revision tag
+    work_tag: Étiquette de révision
     work_tag_incipit_needs_revision: incipit-needs-revision
     work_tag_incipit_replace: incipit-replace
     work_tag_needs_revision: needs-revision
-    work_tag_note: Tag note
-    work_tag_type: Tag type
+    work_tag_note: Étiquette de note
+    work_tag_type: Type de tag
     year: Année
     years_birth_death: Dates de naissance et de mort
   relations:

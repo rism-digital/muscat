@@ -171,6 +171,20 @@ ActiveAdmin.register StandardTerm do
       end
     end
 
+    active_admin_embedded_link_list(self, standard_term, Work) do |context|
+      context.table_for(context.collection) do |cr|
+        column (I18n.t :filter_id), :id  
+        column (I18n.t :filter_title), :title
+        column "Opus", :opus
+        column "Catalogue", :catalogue
+        if !is_selection_mode?
+          context.column "" do |work|
+            link_to "View", controller: :works, action: :show, id: work.id
+          end
+        end
+      end
+    end
+
     active_admin_user_wf( self, standard_term )
     active_admin_navigation_bar( self )
     active_admin_comments if !is_selection_mode?

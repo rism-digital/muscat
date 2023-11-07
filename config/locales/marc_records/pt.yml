@@ -299,6 +299,7 @@ pt:
     baptismal_name: Nome baptismal
     basic_functions: Funções básicas
     basso_continuo: Contínuo
+    beginning_or_single_date: Data inicial ou única
     bf_major: Si bemol maior
     bf_minor: Si bemol menor
     bibliography: Bibliografia
@@ -436,6 +437,7 @@ pt:
     ef_major: Mi bemol maior
     ef_minor: Mi bemol menor
     encyclopedia: Enciclopédia
+    end: Fim
     end_period: Período final
     engraver: Gravador
     engraving: Gravação
@@ -703,7 +705,7 @@ pt:
     performance: Executores
     performances: Realizações
     performer: Intérprete
-    performer_note: Nota sobre a execução
+    performer_note: Nota sobre performance
     person: Pessoa
     person_name: Nome da pessoa
     personal_name: Nomes de pessoas
@@ -716,6 +718,7 @@ pt:
     place_activity: Campo de atividade
     place_birth: Local de nascimento
     place_death: Local de morte
+    place_of_creation: Local de criação
     place_of_residence: Local de residência/sede
     place_origin: Local de origem
     place_publication: Local
@@ -771,7 +774,7 @@ pt:
     relationship_designation: Designação da relação em $i ou $4
     relationship_information: Informação sobre a relação
     religious_name: Nome religioso
-    religious_order: Ordem religiosa
+    religious_order: "Ordem religiosa/Título"
     reproduction: Reprodução
     research_institute: Institutos de investigação
     retrospective_conversion: Conversão restropectiva
@@ -869,7 +872,7 @@ pt:
     uncategorized: Sem categoria
     unknown: Desconhecido
     unparsed_fingerprint: Identificador de impressão não analisado
-    variant_ms_title: Variante de título na fonte
+    variant_ms_title: Título variante na fonte
     variant_source_title: Título variante na fonte
     variations: Variações
     verified: Verificada
@@ -881,12 +884,12 @@ pt:
     woodwinds: Madeiras
     work: Obra
     work_number: Número de obra
-    work_tag: Work revision tag
+    work_tag: Etiqueta de revisão de trabalho
     work_tag_incipit_needs_revision: incipit-needs-revision
     work_tag_incipit_replace: incipit-replace
     work_tag_needs_revision: needs-revision
-    work_tag_note: Tag note
-    work_tag_type: Tag type
+    work_tag_note: Etiqueta de nota
+    work_tag_type: Tipo de etiqueta
     year: Ano
     years_birth_death: Anos de nascimento e morte
   relations:

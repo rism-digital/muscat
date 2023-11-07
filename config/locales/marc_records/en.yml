@@ -299,6 +299,7 @@ en:
     baptismal_name: Baptismal name
     basic_functions: Basic functions
     basso_continuo: Basso continuo
+    beginning_or_single_date: Beginning or single date
     bf_major: B♭ major
     bf_minor: B♭ minor
     bibliography: Bibliography
@@ -436,6 +437,7 @@ en:
     ef_major: E♭ major
     ef_minor: E♭ minor
     encyclopedia: Encyclopedia
+    end: End
     end_period: End period
     engraver: Engraver
     engraving: Engraving
@@ -706,7 +708,7 @@ en:
     performance: Performance
     performances: Performances
     performer: Performer
-    performer_note: Performer note
+    performer_note: Note on performance
     person: Person
     person_name: Person name
     personal_name: Personal name
@@ -719,6 +721,7 @@ en:
     place_activity: Place of activity
     place_birth: Place of birth
     place_death: Place of death
+    place_of_creation: Place of creation
     place_of_residence: Place of residence/headquarters
     place_origin: Place of origin
     place_publication: Place of publication
@@ -774,7 +777,7 @@ en:
     relationship_designation: Relationship designation in $i or $4
     relationship_information: Relationship information
     religious_name: Religious name
-    religious_order: Religious order
+    religious_order: "Religious order/Title"
     reproduction: Reproduction
     research_institute: Research institute
     retrospective_conversion: Retrospective conversion
@@ -872,7 +875,7 @@ en:
     uncategorized: Uncategorized
     unknown: Unknown
     unparsed_fingerprint: Unparsed fingerprint
-    variant_ms_title: Variant title on manuscript
+    variant_ms_title: Variant title on source
     variant_source_title: Variant title on source
     variations: Variations
     verified: Verified

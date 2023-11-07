@@ -28,13 +28,25 @@ ActiveAdmin.register DigitalObject do
       @attachment_type = params.include?(:attachment_type) && params[:attachment_type] == "incipit" ? :incipit : :image
 
       if @attachment_type == :incipit
-        begin
-          @incipits = Source.incipits_for(params[:digital_object][:new_object_link_id])
-        rescue ActiveRecord::RecordNotFound
-          flash[:error] = "Object does not exist"
-          redirect_to collection_path
+        # @incipits = Source.incipits_for(params[:digital_object][:new_object_link_id])
+        # We support only works and sources
+
+        if params[:digital_object][:new_object_link_type] != "Source" && params[:digital_object][:new_object_link_type] != "Work"
+          raise ArgumentError, "Unsupported model #{params[:digital_object][:new_object_link_type]}"
         end
 
+        model = Source if params[:digital_object][:new_object_link_type] == "Source"
+        model = Work if params[:digital_object][:new_object_link_type] == "Work"
+
+        #begin
+          @incipits = DigitalObject.incipits_for(model, params[:digital_object][:new_object_link_id])
+          ap @incipits
+        #rescue ActiveRecord::RecordNotFound
+        #  flash[:error] = "Object does not exist"
+        #  redirect_to collection_path
+        #end
+
+        ap @incipits
         if @incipits.empty?
           flash[:error] = "Object contains no incipits"
           redirect_to collection_path
@@ -54,10 +66,13 @@ ActiveAdmin.register DigitalObject do
       # We get the incipit popup only if for the FIRST source
       # But we also prevent incipits to have more than one link to a source, so it should
       # never happen to find more.
-      if @digital_object.incipits? && @digital_object.digital_object_links.count > 0 && @digital_object.digital_object_links.first.object_link_type == "Source"
+      if @digital_object.incipits? && @digital_object.digital_object_links.count > 0 &&
+         (@digital_object.digital_object_links.first.object_link_type == "Source" ||
+            @digital_object.digital_object_links.first.object_link_type == "Work")
 
         begin
-          @incipits = Source.incipits_for(@digital_object.digital_object_links.first.object_link_id)
+          model = @digital_object.digital_object_links.first.object_link_type.constantize
+          @incipits = model.incipits_for(@digital_object.digital_object_links.first.object_link_id)
         rescue ActiveRecord::RecordNotFound
           flash[:error] = "Object does not exist"
           redirect_to collection_path
@@ -172,6 +187,10 @@ ActiveAdmin.register DigitalObject do
     render :partial => "activeadmin/section_sidebar_index"
   end
   
+  sidebar :help, :only => [:index] do
+    render :partial => "digital_objects_help_show"
+  end
+
   ##########
   ## Show ##
   ##########
@@ -235,7 +254,7 @@ ActiveAdmin.register DigitalObject do
       render :partial => "activeadmin/section_sidebar_do_links", :locals => { :item => digital_object }
     end
   end
-  
+
   ##########
   ## Edit ##
   ##########
