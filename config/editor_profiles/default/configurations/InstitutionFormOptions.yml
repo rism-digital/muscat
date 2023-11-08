@@ -304,6 +304,8 @@
     - - a
       - type: person
         editor_partial: subfield_secondary
+    - - d
+      - autocomplete_extra: life_dates
     - - "4"
       - editor_partial: subfield_select_codes
         select_label: "Function"

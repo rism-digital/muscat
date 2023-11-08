@@ -192,3 +192,6 @@ gem 'tty-spinner'
 
 # Uncomment this if you want to test emails in development
 #gem 'mailcatcher'
+
+#gem "string-similarity"
+#gem "rest-client"

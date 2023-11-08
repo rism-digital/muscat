@@ -856,23 +856,3 @@ es:
     application_name: 'Muscat'
     header_links:
       logout: 'Cerrar sesión'
-      
- 
-######################################################################################################
-# Record types, English only
-      
-  record_types_codes:
-    "0": "UNK"
-    "1": "COL"
-    "2": "MMS"
-    "3": "MPR"
-    "4": "LMS"
-    "5": "LPR"
-    "6": "TMS"
-    "7": "TPR"
-    "8": "CVT"
-    
-  status_codes:
-    published: "PUB"
-    inprogress: "INP"
-

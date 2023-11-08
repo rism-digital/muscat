@@ -852,25 +852,3 @@ pt:
     application_name: 'Muscat'
     header_links:
       logout: 'Logout'
-      
- 
-######################################################################################################
-# Record types, English only
-      
-  record_types_codes:
-    "0": "UNK"
-    "1": "COL"
-    "2": "MSR"
-    "3": "SUB"
-    "4": "LSR"
-    "5": "LEC"
-    "6": "TSR"
-    "7": "TEC"
-    "8": "EDT"
-    "11": "CMP"
-    
-  status_codes:
-    published: "PUB"
-    inprogress: "UNP"
-    deprecated: "DEP"
-

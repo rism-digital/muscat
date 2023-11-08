@@ -183,6 +183,10 @@
   fields:
     a:
       label: records.person
+    d:
+      label: records.life_dates
+    '4':
+      label: records.function
   label: records.person
 '710':
   fields:

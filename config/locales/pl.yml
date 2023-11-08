@@ -867,27 +867,3 @@ pl:
   blacklight_advanced_search:
     form:
       start_over: Zacznij od nowa
-      
- 
-######################################################################################################
-# Record types, English only
-      
-  record_types_codes:
-    "0": UNK
-    "1": COL
-    "2": MSR
-    "3": SUB
-    "4": LSR
-    "5": LED
-    "6": TSR
-    "7": TED
-    "8": EDT
-    "9": LEC
-    "10": TEC
-    "11": CMP
-    
-  status_codes:
-    published: PUB
-    inprogress: UNP
-    deprecated: DEP
-

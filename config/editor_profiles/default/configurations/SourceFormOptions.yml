@@ -1082,6 +1082,13 @@
     codes_theoretica_edition_content:
       - "IIIF manifest (other)"
       - "Other"
+"910":
+  layout:
+    fields:
+    - - a
+      - read_only: true
+    - - "0"
+      - hidden: true
 "930":
   new_window: work_nodes
   new_window_field: title_equals

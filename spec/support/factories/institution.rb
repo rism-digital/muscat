@@ -4,7 +4,7 @@ FactoryBot.define do
     siglum       { "D-B" }
     initialize_with { Institution.where(id: id).where.not(marc_source: nil).first_or_initialize(attributes) }
     #initialize_with { Institution.find_or_create_by(id: id)  } 
-    name         { "Staatsbibliothek zu Berlin - Preußischer Kulturbesitz, Musikabteilung" }
+    full_name         { "Staatsbibliothek zu Berlin - Preußischer Kulturbesitz, Musikabteilung" }
     address      { "Staatsbibliothek zu Berlin - Preußischer,  Kulturbesitz, Musikabteilung, Unter den Linden 8, 10117 Berlin, Germany" }
     url          { "http://staatsbiblioth..." }
     phone        { nil }

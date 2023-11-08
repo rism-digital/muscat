@@ -328,6 +328,7 @@ en:
     c_plus_4: C+4
     c_plus_5: C+5
     catalog: Catalog
+    catalog_contribution: Catalog contribution
     catalog_opus_number: Catalog number/Opus number
     catalog_works: Catalog of works
     cataloging_agency: Cataloging agency
@@ -444,6 +445,7 @@ en:
     event_organizer: Event organizer
     event_place: Event place
     excerpts: Excerpts
+    exemplar: Exemplar
     exemplars: Exemplars
     extent: Extent
     extent_parts: Extent (parts)
@@ -596,8 +598,10 @@ en:
     married_with: Married with
     material_description: Material description
     material_examined: Material examined
+    material_group: Material group
     material_held: Material held
     material_not_examined: Material not examined
+    material_type: Material type
     media_type: Media type
     mensural_clefs: Mensural clefs
     method_of_acquisition: Method of acquisition
@@ -791,7 +795,6 @@ en:
     series: Series
     series_added_entry: Series added entry fields
     series_statement: Series statement fields
-    material_group: Material group
     shelfmark: Shelfmark
     shelfmark_olim: Former shelfmark (olim)
     short_title: Short title
@@ -978,6 +981,9 @@ en:
     manuscript: "Manuscript"
     printed: "Printed"
     composite: "Composite Volume"
+    collection: "Collection"
+    item: "Item"
+    single_item: "Single item"
     apply_filters: "Apply filters"
     error_loading_results: "Error loading results"
     global_collection: "Global Collection"

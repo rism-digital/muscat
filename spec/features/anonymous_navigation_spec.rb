@@ -1,4 +1,6 @@
 require 'rails_helper'
+Kernel::silence_warnings { RISM::ANONYMOUS_NAVIGATION = false }
+$VERBOSE = nil
 
 RSpec.describe Admin::CatalogController, type: :feature do
 

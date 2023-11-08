@@ -897,3 +897,4 @@ en:
     published: "PUB"
     inprogress: "UNP"
     deprecated: "DEP"
+    deleted: "DEL"
