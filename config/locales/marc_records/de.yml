@@ -444,6 +444,7 @@ de:
     event_organizer: Veranstalter
     event_place: Veranstaltungsort
     excerpts: Ausschnitte
+    exemplar: Exemplar
     exemplars: Exemplars
     extent: Umfang
     extent_parts: Umfang Stimmenmaterial
@@ -596,8 +597,10 @@ de:
     married_with: Verheiratet mit
     material_description: Materialbeschreibung
     material_examined: Autopsie
+    material_group: Materialgruppe
     material_held: Erhaltenes Material
     material_not_examined: Keine Autopsie
+    material_type: Materialart
     media_type: Physisches Medium
     mensural_clefs: Mensural-Notenschlüssel
     method_of_acquisition: Beschaffungsart
@@ -788,7 +791,6 @@ de:
     series: Serie
     series_added_entry: Nebeneintragungen Gesamttitel
     series_statement: Gesamttitelangaben
-    material_group: Materialgruppe
     shelfmark: Signatur
     shelfmark_olim: Alte Signatur (olim)
     short_title: Kurztitel
@@ -826,7 +828,7 @@ de:
     subheading_general: Allgemeine Unterteilung
     subject_access_fields: Schlagworteintragungen
     subject_heading: Schlagworteintragung
-    subject_headings: Schlagworte
+    subject_headings: Schlagwörter
     subordinate_unit: Untergeordnete Körperschaft
     succeeding_entry: Folgeeintrag
     summary: Zusammenfassung
@@ -975,6 +977,9 @@ de:
     manuscript: "Handschrift"
     printed: "Gedruckt"
     composite: "Konvolut"
+    collection: "Collection"
+    item: "Item"
+    single_item: "Single item"
     apply_filters: "Filter anwenden"
     error_loading_results: "Fehler beim Laden der Ergebnisse"
     global_collection: "Globale Sammlung"

@@ -444,6 +444,7 @@ pt:
     event_organizer: Organizador de eventos
     event_place: Local do evento
     excerpts: Excertos
+    exemplar: Exemplar
     exemplars: Materiais
     extent: Extensão
     extent_parts: Extensão das partes
@@ -596,8 +597,10 @@ pt:
     married_with: Casado/a
     material_description: Descrição de material
     material_examined: Material examinado
+    material_group: Grupo de materiais
     material_held: Material existente
     material_not_examined: Material não examinado
+    material_type: Tipo de Material
     media_type: Tipo de mídia
     mensural_clefs: Claves mensurais
     method_of_acquisition: Método de aquisição
@@ -788,7 +791,6 @@ pt:
     series: Séries
     series_added_entry: Informação secundária sobre título superordenado
     series_statement: Campos de declaração da série
-    material_group: Grupo de materiais
     shelfmark: Código
     shelfmark_olim: Código antiguo (olim)
     short_title: Título abreviado
@@ -975,6 +977,9 @@ pt:
     manuscript: "Manuscrito"
     printed: "Impresso"
     composite: "Volume composto"
+    collection: "Collection"
+    item: "Item"
+    single_item: "Single item"
     apply_filters: "Aplicar filtros"
     error_loading_results: "Erro ao carregar os resultados"
     global_collection: "Coleção global"

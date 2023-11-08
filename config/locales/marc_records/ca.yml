@@ -444,6 +444,7 @@ ca:
     event_organizer: Organitzador
     event_place: Lloc de l'esdeveniment
     excerpts: Extractes
+    exemplar: Exemplar
     exemplars: Exemplars
     extent: Extensió
     extent_parts: Extensió (particel·les)
@@ -596,8 +597,10 @@ ca:
     married_with: Casat/da amb
     material_description: Descripció del material
     material_examined: Material examinat
+    material_group: Grup de material
     material_held: Material conservat
     material_not_examined: Material no examinat
+    material_type: Material type
     media_type: Tipus de suport
     mensural_clefs: Claus mensurals
     method_of_acquisition: Mètode d'adquisició
@@ -788,7 +791,6 @@ ca:
     series: Sèries
     series_added_entry: Entrades secundàries de col·lecció
     series_statement: Menció de col·lecció
-    material_group: Grup de material
     shelfmark: Signatura
     shelfmark_olim: Signatura anterior (olim)
     short_title: Títol abreujat
@@ -975,6 +977,9 @@ ca:
     manuscript: "Manuscrit"
     printed: "Imprès"
     composite: "Volum compost"
+    collection: "Collection"
+    item: "Item"
+    single_item: "Single item"
     apply_filters: "Aplicar els filtres"
     error_loading_results: "Error en carregar els resultats"
     global_collection: "Col·lecció global"
