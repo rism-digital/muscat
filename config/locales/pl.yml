@@ -5,6 +5,7 @@ pl:
 #
 #
     compare_versions: Porównaj wersje
+    gnd_works: GND redaktor prac
     dashboard: Strona główna
     dashboard_welcome:
       welcome: Witamy w części produkcyjnej. Domyślna strona panelu użytkownika.
@@ -428,13 +429,13 @@ pl:
     validation_started: "Na adres %{e-mail} zostanie wysłana wiadomość z informacją o zatwierdzeniu (Validation job id: %{job})."
     folder_not_source: Można zatwierdzać tylko foldery zawierające źródła.
     expires: "Wygasa"
-    resetted: "Data wygaśnięcia folderu teraz to %{data}"
+    resetted: "Data wygaśnięcia folderu teraz to %{date}"
     reset_expiration: "Resetuj datę wygaśnięcia"
     delete_now: "Następujące foldery zostały usunięte:"
-    tomorrow: "Następujące foldery zostaną usunięte jutro %{data}"
-    one_week: "Następujące foldery zostaną usunięte za tydzień w dniu %{data}"
-    two_weeks: "Następujące foldery zostaną usunięte za dwa tygodnie w dniu %{data}"
-    one_month: "Następujące foldery zostaną usunięte w ciągu jednego miesiąca w dniu %{data}"
+    tomorrow: "Następujące foldery zostaną usunięte jutro %{date}"
+    one_week: "Następujące foldery zostaną usunięte za tydzień w dniu %{date}"
+    two_weeks: "Następujące foldery zostaną usunięte za dwa tygodnie w dniu %{date}"
+    one_month: "Następujące foldery zostaną usunięte w ciągu jednego miesiąca w dniu %{date}"
     make_catalogue: "Oznacz pozycje jako katalogi robocze"
     
   ### Digital objects
@@ -454,7 +455,7 @@ pl:
   filter_author_or_editor: Autor / Edytor
   filter_autograph_of: Autograf autorstwa
   filter_birth_place: Miejsce urodzenia
-  filter_publications: Publikacje
+  filter_catalog: Katalog
   filter_category_type: Kategoria
   filter_collection: Kolekcja
   filter_comment: Komentarz
@@ -866,27 +867,3 @@ pl:
   blacklight_advanced_search:
     form:
       start_over: Zacznij od nowa
-      
- 
-######################################################################################################
-# Record types, English only
-      
-  record_types_codes:
-    "0": UNK
-    "1": COL
-    "2": MSR
-    "3": SUB
-    "4": LSR
-    "5": LED
-    "6": TSR
-    "7": TED
-    "8": EDT
-    "9": LEC
-    "10": TEC
-    "11": CMP
-    
-  status_codes:
-    published: PUB
-    inprogress: UNP
-    deprecated: DEP
-

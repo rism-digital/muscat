@@ -105,6 +105,9 @@ index:
     solr: 700a
     type: text
   rism.librarySiglum:
+    solr: siglum_order
+    type: s
+  rism.libSiglum:
     solr: lib_siglum_order
     type: s
   rism.libraryCountry:
@@ -131,9 +134,6 @@ index:
   rism.place:
     solr: 110c
     type: text
-  rism.scoringSummary:
-    solr: 240m_filter
-    type: sm
   #bath.genreForm:
     #title: genreForm
     #solr: 001

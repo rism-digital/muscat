@@ -12,6 +12,8 @@
 class StandardTerm < ApplicationRecord
   include ForeignLinks
   include AuthorityMerge
+  include CommentsCleanup
+
   has_and_belongs_to_many(:referring_sources, class_name: "Source", join_table: "sources_to_standard_terms")
   has_and_belongs_to_many(:referring_institutions, class_name: "Institution", join_table: "institutions_to_standard_terms")
   has_and_belongs_to_many(:referring_publications, class_name: "Publication", join_table: "publications_to_standard_terms")
@@ -24,7 +26,7 @@ class StandardTerm < ApplicationRecord
   alias_attribute :name, :term
   #include NewIds
   
-  before_destroy :check_dependencies
+  before_destroy :check_dependencies, :cleanup_comments
   
   #before_create :generate_new_id
   after_save :reindex

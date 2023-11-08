@@ -1,13 +1,18 @@
-@import url('https://fonts.googleapis.com/css?family=Noto+Sans:400,700,400italic,700italic');
+@import url('https://fonts.googleapis.com/css?family=Noto+Sans+Display:400,500,700,400italic,500italic,700italic');
+//@import url('https://fonts.googleapis.com/css?family=Noto+Sans:400,500,700,400italic,500italic,700italic');
 
 body {
   font-size: 12px !important;
-  font-family: "Noto Sans" !important;
+  font-family: "Noto Sans Display", Helvetica, Arial, sans-serif !important;
+  font-weight: 400 !important;
+  color: #000000 !important;
+  letter-spacing: 0.028em;
   //Helvetica, Arial, sans-serif !important;
 }
 
 form input, form textarea, form select {
-  font-family: "Noto Sans" !important;
+  font-family: "Noto Sans Display", Helvetica, Arial, sans-serif !important;
+  letter-spacing: 0.028em;
 }
 
 .muscat_panel {

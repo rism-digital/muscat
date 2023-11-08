@@ -5,6 +5,7 @@ it:
       headline: "Ambito"
       current_filters: "Filtri in uso"
     compare_versions: Compara le versioni
+    gnd_works: Editor per le opere GND
     dashboard: "Dashboard"
     dashboard_welcome:
       welcome: "Benvenuti in Active Admin. Questa è la pagina dashboard di default."
@@ -459,7 +460,7 @@ it:
   filter_author_or_editor: "Autore/Editore"
   filter_autograph_of: "Autografo di"
   filter_birth_place: "Luogo di nascita"
-  filter_publications: "Pubblicazioni"
+  filter_catalog: "Catalogo"
   filter_category_type: "Categoria"
   filter_collection: "Collezione"
   filter_comment: "Commento"

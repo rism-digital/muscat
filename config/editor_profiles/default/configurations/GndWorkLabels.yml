@@ -1,0 +1,248 @@
+--- !map:ActiveSupport::HashWithIndifferentAccess
+_default_unknown_labels: true
+main_work:
+  label: gnd.main_work
+variants:
+  label: gnd.variants
+references:
+  label: gnd.references
+codes:
+  label: gnd.codes
+relations:
+  label: gnd.relations
+control:
+  label: gnd.control
+unmatched:
+  label: gnd.ungrouped
+'001':
+  label: gnd.rism_id_number
+'003':
+  label: gnd.control_number_identifier
+'005':
+  label: gnd.date_time_last_transaction
+'024':
+  fields:
+    '2':
+      label: gnd.source_number_code
+    a:
+      label: gnd.standard_number_code
+  label: gnd.other_standard_identifier
+'100':
+  fields:
+    a:
+      label: gnd.name
+    d:
+      label: gnd.years_birth_death
+    m:
+      label: gnd.scoring_summary
+    n:
+      label: gnd.opus_thematic_index_number
+    r:
+      label: gnd.key_or_mode
+    t:
+      label: gnd.title_of_work
+  label: gnd.heading
+'382':
+  fields:
+    a:
+      label: gnd.instrument
+  label: gnd.instrument
+
+10t:
+  label: records.mode_10t
+10tt:
+  label: records.mode_10tt
+11t:
+  label: records.mode_11t
+11tt:
+  label: records.mode_11tt
+12t:
+  label: records.mode_12t
+12tt:
+  label: records.mode_12tt
+1byz:
+  label: records.octoechos1
+1t:
+  label: records.mode_1t
+1tt:
+  label: records.mode_1tt
+2byz:
+  label: records.octoechos2
+2t:
+  label: records.mode_2t
+2tt:
+  label: records.mode_2tt
+3byz:
+  label: records.octoechos3
+3t:
+  label: records.mode_3t
+3tt:
+  label: records.mode_3tt
+4byz:
+  label: records.octoechos4
+4t:
+  label: records.mode_4t
+4tt:
+  label: records.mode_4tt
+5byz:
+  label: records.octoechos5
+5t:
+  label: records.mode_5t
+5tt:
+  label: records.mode_5tt
+6byz:
+  label: records.octoechos6
+6t:
+  label: records.mode_6t
+6tt:
+  label: records.mode_6tt
+7byz:
+  label: records.octoechos7
+7t:
+  label: records.mode_7t
+7tt:
+  label: records.mode_7tt
+8byz:
+  label: records.octoechos8
+8t:
+  label: records.mode_8t
+8tt:
+  label: records.mode_8tt
+9t:
+  label: records.mode_9t
+9tt:
+  label: records.mode_9tt
+A:
+  label: records.a_major
+A|b:
+  label: records.af_major
+A|x:
+  label: records.as_major
+B:
+  label: records.b_major
+B|b:
+  label: records.bf_major
+C:
+  label: records.c_major
+C+1:
+  label: records.c_plus_1
+C+2:
+  label: records.c_plus_2
+C+3:
+  label: records.c_plus_3
+C+4:
+  label: records.c_plus_4
+C+5:
+  label: records.c_plus_5
+C-1:
+  label: records.c_minus_1
+C-2:
+  label: records.c_minus_2
+C-3:
+  label: records.c_minus_3
+C-4:
+  label: records.c_minus_4
+C-5:
+  label: records.c_minus_5
+C|b:
+  label: records.cf_major
+C|x:
+  label: records.cs_major
+D:
+  label: records.d_major
+D|b:
+  label: records.df_major
+D|x:
+  label: records.ds_major
+E:
+  label: records.e_major
+E|b:
+  label: records.ef_major
+F:
+  label: records.f_major
+F+1:
+  label: records.f_plus_1
+F+2:
+  label: records.f_plus_2
+F+3:
+  label: records.f_plus_3
+F+4:
+  label: records.f_plus_4
+F+5:
+  label: records.f_plus_5
+F-1:
+  label: records.f_minus_1
+F-2:
+  label: records.f_minus_2
+F-3:
+  label: records.f_minus_3
+F-4:
+  label: records.f_minus_4_bass
+F-5:
+  label: records.f_minus_5
+F|x:
+  label: records.fs_major
+G:
+  label: records.g_major
+G+1:
+  label: records.g_plus_1
+G+2:
+  label: records.g_plus_2
+G+3:
+  label: records.g_plus_3
+G+4:
+  label: records.g_plus_4
+G+5:
+  label: records.g_plus_5
+G-1:
+  label: records.g_minus_1
+G-2:
+  label: records.g_minus_2_treble
+G-3:
+  label: records.g_minus_3
+G-4:
+  label: records.g_minus_4
+G-5:
+  label: records.g_minus_5
+G|b:
+  label: records.gf_major
+G|x:
+  label: records.gs_major
+a:
+  label: records.a_minor
+a|b:
+  label: records.af_minor
+a|x:
+  label: records.as_minor
+b:
+  label: records.b_minor
+b|b:
+  label: records.bf_minor
+c:
+  label: records.c_minor
+c|b:
+  label: records.cf_minor
+c|x:
+  label: records.cs_minor
+d:
+  label: records.d_minor
+d|b:
+  label: records.df_minor
+d|x:
+  label: records.ds_minor
+e:
+  label: records.e_minor
+e|b:
+  label: records.ef_minor
+f:
+  label: records.f_minor
+f|x:
+  label: records.fs_minor
+g:
+  label: records.g_minor
+g-2:
+  label: records.g_minus_2_octave
+g|b:
+  label: records.gf_minor
+g|x:
+  label: records.gs_minor

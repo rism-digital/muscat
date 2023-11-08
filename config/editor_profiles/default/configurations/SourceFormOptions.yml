@@ -445,6 +445,7 @@
     - - a
       - growfield: true
     - - b
+      - growfield: true
     - - c
 "340":
   layout:
@@ -544,17 +545,14 @@
   layout:
     fields:
     - - a
-      - values:
-        - "Composition date: "
-        - "First performance date: "
-        - "Performance date: "
-        editor_partial: subfield_autocomplete
+      - growfield: true
 "541":
   layout:
     fields:
     - - c
       - growfield: true
     - - a
+      - growfield: true
     - - d
     - - e
 "563":
@@ -577,6 +575,7 @@
   layout:
     fields:
     - - a
+      - growfield: true
 "593":
   layout:
     fields:
@@ -688,6 +687,7 @@
   layout:
     fields:
     - - a
+      - growfield: true
 "598":
   layout:
     fields:
@@ -812,6 +812,7 @@
       - oth
       - fmo
       - chr
+      - pat
     relator_codes_edition:
       remove:
         - fmo
@@ -877,6 +878,7 @@
       - oth
       - fmo
       - dpt
+      - pat
     relator_codes_edition:
       remove:
         - fmo
@@ -1080,6 +1082,13 @@
     codes_theoretica_edition_content:
       - "IIIF manifest (other)"
       - "Other"
+"910":
+  layout:
+    fields:
+    - - a
+      - read_only: true
+    - - "0"
+      - hidden: true
 "930":
   new_window: work_nodes
   new_window_field: title_equals

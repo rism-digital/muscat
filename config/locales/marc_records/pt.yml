@@ -444,6 +444,7 @@ pt:
     event_organizer: Organizador de eventos
     event_place: Local do evento
     excerpts: Excertos
+    exemplar: Exemplar
     exemplars: Materiais
     extent: Extensão
     extent_parts: Extensão das partes
@@ -596,8 +597,10 @@ pt:
     married_with: Casado/a
     material_description: Descrição de material
     material_examined: Material examinado
+    material_group: Grupo de materiais
     material_held: Material existente
     material_not_examined: Material não examinado
+    material_type: Tipo de Material
     media_type: Tipo de mídia
     mensural_clefs: Claves mensurais
     method_of_acquisition: Método de aquisição
@@ -705,7 +708,7 @@ pt:
     performance: Executores
     performances: Realizações
     performer: Intérprete
-    performer_note: Nota sobre a execução
+    performer_note: Nota sobre performance
     person: Pessoa
     person_name: Nome da pessoa
     personal_name: Nomes de pessoas
@@ -788,7 +791,6 @@ pt:
     series: Séries
     series_added_entry: Informação secundária sobre título superordenado
     series_statement: Campos de declaração da série
-    material_group: Grupo de materiais
     shelfmark: Código
     shelfmark_olim: Código antiguo (olim)
     short_title: Título abreviado
@@ -872,7 +874,7 @@ pt:
     uncategorized: Sem categoria
     unknown: Desconhecido
     unparsed_fingerprint: Identificador de impressão não analisado
-    variant_ms_title: Variante de título na fonte
+    variant_ms_title: Título variante na fonte
     variant_source_title: Título variante na fonte
     variations: Variações
     verified: Verificada
@@ -884,12 +886,12 @@ pt:
     woodwinds: Madeiras
     work: Obra
     work_number: Número de obra
-    work_tag: Work revision tag
+    work_tag: Etiqueta de revisão de trabalho
     work_tag_incipit_needs_revision: incipit-needs-revision
     work_tag_incipit_replace: incipit-replace
     work_tag_needs_revision: needs-revision
-    work_tag_note: Tag note
-    work_tag_type: Tag type
+    work_tag_note: Etiqueta de nota
+    work_tag_type: Tipo de etiqueta
     year: Ano
     years_birth_death: Anos de nascimento e morte
   relations:
@@ -975,6 +977,9 @@ pt:
     manuscript: "Manuscrito"
     printed: "Impresso"
     composite: "Volume composto"
+    collection: "Collection"
+    item: "Item"
+    single_item: "Single item"
     apply_filters: "Aplicar filtros"
     error_loading_results: "Erro ao carregar os resultados"
     global_collection: "Coleção global"

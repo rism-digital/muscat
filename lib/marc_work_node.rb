@@ -24,7 +24,14 @@ class MarcWorkNode < Marc
         key = node.content.blank? ? "" : " (#{node.content})"
     end
 
-    return "#{title}#{scoring}#{number}#{key}"
+    if node = tag100.fetch_first_by_tag("p")
+      tag_p = node.content.blank? ? "" : " [#{node.content}] "
+    end
+    if node = tag100.fetch_first_by_tag("n")
+        tag_n = node.content.blank? ? "" : " #{node.content}"
+    end
+
+    return "#{tag_p}#{tag_n}#{title}#{scoring}#{number}#{key}"
   end
 
   def get_composer_name

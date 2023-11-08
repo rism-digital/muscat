@@ -5,6 +5,7 @@ en:
 #
 #
     compare_versions: Compare versions
+    gnd_works: GND Work Editor
     dashboard: "Dashboard"
     dashboard_welcome:
       welcome: "Welcome to Active Admin. This is the default dashboard page."
@@ -454,7 +455,7 @@ en:
   filter_author_or_editor: "Author/Editor"
   filter_autograph_of: "Autograph of"
   filter_birth_place: "Birth place"
-  filter_publications: "Publications"
+  filter_catalog: "Catalogue"
   filter_category_type: "Category"
   filter_collection: "Collection"
   filter_comment: "Comment"
@@ -896,3 +897,4 @@ en:
     published: "PUB"
     inprogress: "UNP"
     deprecated: "DEP"
+    deleted: "DEL"

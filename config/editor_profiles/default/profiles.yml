@@ -182,7 +182,7 @@
   :model: work_node
   # For now re-use the work labels
   :labels: 
-  - WorkLabels
+  - WorkNodeLabels
   :options: 
   - WorkNodeFormOptions
   :layout: 
@@ -193,9 +193,8 @@
 - :id: ShowWorkNode
   :name: WorkNode
   :model: work_node
-  # For now re-use the work labels
   :labels: 
-  - WorkLabels
+  - WorkNodeLabels
   :options: 
   - WorkNodeFormOptions
   :layout: 
@@ -204,3 +203,30 @@
     show_all: false
     show: true
   :validation: "WorkNodeValidation"
+
+# Configuration for gnd work
+- :id: DefaultGndWork
+  :name: GndWork
+  :model: gnd_work
+  :labels: 
+  - GndWorkLabels
+  :options: 
+  - GndWorkFormOptions
+  :layout: 
+  - GndWorkLayoutDefault
+  :filter:
+    default: true
+    ###
+- :id: ShowGndWork
+  :name: GndWork
+  :model: gnd_work
+  :labels: 
+  - GndWorkLabels
+  :options: 
+  - GndWorkFormOptions
+  :layout: 
+  - GndWorkLayoutShow
+  :filter:
+    show_all: false
+    show: true
+  :validation: "GndWorkValidation"

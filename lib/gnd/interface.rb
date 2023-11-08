@@ -4,63 +4,183 @@ module GND
 
   # This class provides the main search functionality
   class Interface
-    NAMESPACE={'marc' => "http://www.loc.gov/MARC21/slim", 'srw' => "http://www.loc.gov/zing/srw/" }
+    NAMESPACE={'marc' => "http://www.loc.gov/MARC21/slim", 'srw' => "http://www.loc.gov/zing/srw/", 'diag' => "http://www.loc.gov/zing/srw/diagnostic/", 'ucp' => "http://www.loc.gov/zing/srw/update/"}
     require 'open-uri'
     require 'net/http'
 
-    def self.search(term, model)
-        result = []
-        begin
-            query = URI.open(self.build_query(term, model))
-        rescue 
-            return "ERROR connecting GND AutoSuggest"
-        end
+    SRU_PUSH_URL = "https://devel.dnb.de/sru_ru/"
+    SRU_READ_URL_AUTH = "https://services.dnb.de/sru/authorities"
+    SRU_READ_URL = "https://services.dnb.de/sru/cbs-appr"
 
-        # Load the XSLT to transform the MarcXML into Marc
-        xslt  = Nokogiri::XSLT(File.read('config/gnd/' + 'work_node_dnb.xsl'))
-        # Load the results
-        xml = Nokogiri::XML(query)
+
+    def self.search(params, limit = 10)
+        result = []
+        xml = self.person_and_title_query(params, limit)
 
         # Loop on each record in the result list
         xml.xpath("//marc:record", NAMESPACE).each do |record|
-
-            #record_xml = Nokogiri.parse(record.to_s)
-            # Transform MarcXML to Marc
-            #doc = xslt.transform(record_xml)
-            # Some normalization
-            #doc = doc.to_s.gsub(/'/, "&apos;").unicode_normalize
-            #doc = doc.gsub(/\u0098/, "").gsub(/\u009C/, "")
             marc = MarcWorkNode.new(nil, "work_node_gnd")
             marc.load_from_xml(record)
-
             # Some items do not have a 100 tag
             next if !marc.first_occurance("100", "a")
             
             # Perform some conversion to the marc data - can return a message indicating why the record cannot be selected
             noSelectMsg = convert(marc)
-            puts marc
+            #puts marc
             id = get_id(marc)
-            item = {marc: marc.to_json, description: get_description(marc), link: "https://d-nb.info/gnd/#{id}", label: "GND | #{id}", noSelectMsg: noSelectMsg }
+            item = {marc: marc.to_json, description: get_description(marc), link: "https://d-nb.info/gnd/#{id}", label: "GND | #{id}", noSelectMsg: noSelectMsg, id: id} 
             result << item
-        end
-        if result.empty?
-            return "Sorry, no work results were found in GND!"
         end
         return result
     end
 
-    def self.build_query(term, model, numRecords = 30)
-        query = "https://services.dnb.de/sru/authorities?version=1.1&operation=searchRetrieve&recordSchema=MARC21-xml&maximumRecords=#{numRecords}&query="
-        # Code for musical works
-        query += "COD=wim"
-        term.split.each do |word|
-            query += " and WOE=" + ERB::Util.url_encode(word)
-        end
-        
-        # Work index
-        query += " and BBG=Tu*"
-        return query
+    def self.push(marc_hash)
+        m = MarcGndWork.new
+        m.load_from_hash(marc_hash)
+
+        action = m.get_id == "__TEMP__" ? :create : :replace
+
+        return send_to_gnd(action, m.to_xml_record(nil, nil, nil), m.get_id)
     end
+
+    # post xml to gnd
+    def self.send_to_gnd(action, xml, id=nil)
+        server = SRU_PUSH_URL
+        request_body = make_gnd_envelope(action, xml.to_s, id)
+        call_result = nil
+        diagnostic_messages = ""
+        author = ""
+        title = ""
+
+        uri = URI.parse(server)
+        post = Net::HTTP::Post.new(uri.path, 'Content-Type' => 'text/xml')
+        server = Net::HTTP.new(uri.host, uri.port)
+        server.use_ssl = true
+        server.start {|http|
+            http.request(post, request_body) {|response|
+                if response.code == "200"
+                    puts response.body
+                    response_body = Nokogiri::XML(response.body)
+
+                    # Get all the messages if any
+                    # Skip the TRACE message and collapse identical ones
+                    diagnostic_messages = response_body.xpath("//diag:message", NAMESPACE).map{|e| e.content}.reject{|e| e.include?("TRACE")}.sort.uniq.join("; ")
+
+                    # <ucp:operationStatus>success</ucp:operationStatus>
+                    # should be "success" or "fail"
+                    status = response_body.xpath("//ucp:operationStatus", NAMESPACE).first.content
+                    # <ucp:recordIdentifier>ppn:XXX</ucp:recordIdentifier>
+                    id = response_body.xpath("//ucp:recordIdentifier", NAMESPACE).first.content
+
+                    # if all was ok, we return the ID from GND
+                    if status == "success"
+                        call_result = id
+
+                        # one more! get the title and author
+                        title = response_body.xpath("//srw:recordData/record/datafield[@tag='130']/subfield[@code='a']", NAMESPACE).first.content rescue title = ""
+                        author = response_body.xpath("//srw:recordData/record/datafield[@tag='400']/subfield[@code='a']", NAMESPACE).first.content rescue author = ""
+                    end
+                end
+            }
+        }
+
+        return call_result, diagnostic_messages, author, title
+    end
+
+    # Private method to wrap the xml into the envelope
+    def self.make_gnd_envelope(action, data, id=nil)
+        login = "#{Rails.application.credentials.gnd[:user]}/#{Rails.application.credentials.gnd[:password]}"
+        recordId = id ? "<ucp:recordIdentifier>gnd:gnd#{id}</ucp:recordIdentifier>" : ""
+        xml = <<-TEXT
+    <soap:Envelope xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/">
+        <soap:Body>
+        <ucp:updateRequest xmlns:ucp="http://www.loc.gov/zing/srw/update/" xmlns:srw="http://www.loc.gov/zing/srw/"  xmlns:diag="http://www.loc.gov/zing/srw/diagnostic/">
+            <srw:version>1.0</srw:version>
+            #{recordId}
+            <ucp:action>info:srw/action/1/#{action}</ucp:action>
+            <srw:record>
+            <srw:recordPacking>xml</srw:recordPacking>
+            <srw:recordSchema>MARC21-xml</srw:recordSchema>
+            <srw:recordData>
+            #{data}
+            </srw:recordData>
+            </srw:record>
+            <srw:extraRequestData>
+            <authenticationToken>#{login}</authenticationToken>
+            </srw:extraRequestData>
+        </ucp:updateRequest>
+        </soap:Body>
+    </soap:Envelope> 
+        TEXT
+        doc = Nokogiri::XML(xml,nil, 'UTF-8')
+        return doc.to_xml
+    end
+
+    # Retrieve a single GND record using the GND Id
+    def self.retrieve(id)
+        result = nil
+        query = SRU_READ_URL + "?version=1.1&operation=searchRetrieve&recordSchema=MARC21-xml&query=idn%3D#{id}"
+        query_result = URI.open(query) rescue nil
+        # Load the results
+        xml = Nokogiri::XML(query_result)
+       
+        # Loop on each record in the result list
+        xml.xpath("//marc:record", NAMESPACE).each do |record|
+            marc = GndWork.new(nil, "gnd_work")
+            marc.load_from_xml(record)
+            result = marc
+        end
+        return result
+    end
+
+    # Query the GND with the query parameters and return an XML document with the results
+    def self.query(term, index, auth, code = "", limit = 10)
+        query = SRU_READ_URL_AUTH + "?version=1.1&operation=searchRetrieve&recordSchema=MARC21-xml&maximumRecords=#{limit}&query="
+        # Code
+        query += "BBG=#{auth}*"
+        term.split.each do |word|
+            query += " and #{index}=" + ERB::Util.url_encode(word + "*")
+        end
+        # Code - See https://wiki.dnb.de/download/attachments/90411323/entitaetenCodes.pdf
+        query += " and COD=#{code}" if !code.empty?
+        
+        query_result = URI.open(query) rescue nil
+        # Load the results
+        xml = Nokogiri::XML(query_result)
+    end
+
+    # Query the GND with the query parameters and return an XML document with the results
+    def self.person_and_title_query(params, limit = 30)
+        query = SRU_READ_URL_AUTH + "?version=1.1&operation=searchRetrieve&recordSchema=MARC21-xml&maximumRecords=#{limit}&query="
+        # We are searching the Work index
+        query += "BBG=Tu*"
+
+        # Add each token for the Person field
+        if params[:composer]
+            params[:composer].split.each do |word|
+                query += " and PER=" + ERB::Util.url_encode(word)
+            end
+        end
+
+        # And then each token for the Work title field
+        if params[:title]
+            params[:title].split.each do |word|
+                query += " and WOE=" + ERB::Util.url_encode(word)
+            end
+        end
+
+        # Code - See https://wiki.dnb.de/download/attachments/90411323/entitaetenCodes.pdf
+        # We are searching the works
+        query += " and COD=wim"
+        
+        query_result = URI.open(query) rescue nil
+        # Load the results
+        xml = Nokogiri::XML(query_result)
+    end
+
+    #####################################################
+    ## Methods for converting a GND work to a WorkNode ##
+    #####################################################
 
     def self.migrate_marc(marc)
         gnd_person_id = nil
@@ -153,12 +273,86 @@ module GND
 
     # returns the Muscat person with the given DNB id
     def self.find_person(gnd_id)
+        return nil if !gnd_id
         # make a solr search through field 024a
         query = Person.solr_search do 
             with("024a", gnd_id) if gnd_id
             paginate :page => 1, :per_page => Person.all.count
         end
         return (query.results and !query.results.empty?) ? query.results[0] : nil
+    end
+    
+    ##########################
+    ## Autocomplete queries ##
+    ##########################
+    
+    def self.autocomplete(term, method, limit, options)
+        if method == "person" 
+            return autocomplete_person(term, limit, options)
+        elsif method == "instrument" 
+            return autocomplete_instrument(term, limit, options)
+        elsif method == "form" 
+            return autocomplete_form(term, limit, options)
+        end
+        {}
+    end
+
+    def self.autocomplete_person(term, limit, options)
+        result = []
+        xml = self.query(term, "PER", "Tp", "piz", limit)
+        # Loop on each record in the result list
+        xml.xpath("//marc:record", NAMESPACE).each do |record|
+            item = {}
+            node_001 = record.xpath("./marc:controlfield[@tag='001']", NAMESPACE).first
+            next if !node_001
+            item[:id] = node_001.text
+            node_100a_val = record.xpath("./marc:datafield[@tag='100']/marc:subfield[@code='a']", NAMESPACE).first.text rescue "[missing]"
+            item["person"] = node_100a_val
+            node_100d_val = record.xpath("./marc:datafield[@tag='100']/marc:subfield[@code='d']", NAMESPACE).first.text rescue ""
+            item["life_dates"] = node_100d_val
+            item[:label] = "#{node_100a_val}"
+            item[:label] += " (#{node_100d_val})" if !node_100d_val.empty?
+            item[:label] += " – #{item[:id]}"
+            result << item
+        end
+        result
+    end
+
+    def self.autocomplete_instrument(term, limit, options)
+        result = []
+        xml = self.query(term, "WOE", "Ts", "sab", limit)
+        # Loop on each record in the result list
+        xml.xpath("//marc:record", NAMESPACE).each do |record|
+            item = {}
+            node_001 = record.xpath("./marc:controlfield[@tag='001']", NAMESPACE).first
+            next if !node_001
+            item[:id] = node_001.text
+            node_150a_val = record.xpath("./marc:datafield[@tag='150']/marc:subfield[@code='a']", NAMESPACE).first.text rescue "[missing]"
+            item["instrument"] = node_150a_val
+            item[:label] = "#{node_150a_val}"
+            item[:label] += " – #{item[:id]}"
+            result << item
+        end
+        result
+    end
+
+    def self.autocomplete_form(term, limit, options)
+        result = []
+        xml = self.query(term, "WOE", "Ts", "saz", limit)
+        
+        # Loop on each record in the result list
+        xml.xpath("//marc:record", NAMESPACE).each do |record|
+            item = {}
+            node_001 = record.xpath("./marc:controlfield[@tag='001']", NAMESPACE).first
+            next if !node_001
+            item[:id] = node_001.text
+            node_150a_val = record.xpath("./marc:datafield[@tag='150']/marc:subfield[@code='a']", NAMESPACE).first.text rescue "[missing]"
+            item["form"] = node_150a_val
+            item[:label] = "#{node_150a_val}"
+            item[:label] += " – #{item[:id]}"
+            result << item
+        end
+        result
     end
 
   end

@@ -20,6 +20,7 @@ class Person < ApplicationRecord
   include ForeignLinks
   include MarcIndex
   include AuthorityMerge
+  include CommentsCleanup
 
   # class variables for storing the user name and the event from the controller
   @last_user_save
@@ -77,7 +78,7 @@ class Person < ApplicationRecord
   
   #include NewIds
   
-  before_destroy :check_dependencies
+  before_destroy :check_dependencies, :cleanup_comments
   
   before_save :set_object_fields
   after_create :scaffold_marc, :fix_ids

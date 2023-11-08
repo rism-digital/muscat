@@ -444,6 +444,7 @@ pl:
     event_organizer: Organizator wydarzenia
     event_place: Miejsce wydarzenia
     excerpts: Wyjątki
+    exemplar: Egzemplarz
     exemplars: Egzemplarzu
     extent: Zakres
     extent_parts: Objętność
@@ -596,8 +597,10 @@ pl:
     married_with: W małżeństwie z …
     material_description: Opis materiału
     material_examined: Zbadany materiał
+    material_group: Grupa materiałów
     material_held: Posiadany materiał
     material_not_examined: Materiał nie zbadany
+    material_type: Material type
     media_type: Rodzaj nośnika
     mensural_clefs: Klucze menzuralne
     method_of_acquisition: Sposób nabycia
@@ -788,7 +791,6 @@ pl:
     series: Seria
     series_added_entry: Dodatkowe wpisy tytułów
     series_statement: Pola uwag do serii
-    material_group: Grupa materiałów
     shelfmark: Sygnatura
     shelfmark_olim: Poprzednia sygnatura (olim)
     short_title: Skrócony tytuł
@@ -872,7 +874,7 @@ pl:
     uncategorized: Bez kategorii
     unknown: Nieznane
     unparsed_fingerprint: Nieprzeanalizowany odcisk palca
-    variant_ms_title: Alternatywny tytuł w rękopisie
+    variant_ms_title: Alternatywny tytuł w źródle
     variant_source_title: Alternatywny tytuł w źródle
     variations: Wariacje
     verified: Zweryfikowane
@@ -975,6 +977,9 @@ pl:
     manuscript: "Rękopis"
     printed: "Druk"
     composite: "Klocek introligatorski"
+    collection: "Collection"
+    item: "Item"
+    single_item: "Single item"
     apply_filters: "Zastosuj filtry"
     error_loading_results: "Błąd podczas ładowania wyników"
     global_collection: "Źródła z całego świata"

@@ -444,6 +444,7 @@ fr:
     event_organizer: Organisateur
     event_place: Lieu de l'événement
     excerpts: Extraits
+    exemplar: Exemplar
     exemplars: Exemplaires
     extent: Extension
     extent_parts: Extension (parties)
@@ -596,8 +597,10 @@ fr:
     married_with: Marié/e avec
     material_description: Description du matériel
     material_examined: Matériaux examinés
+    material_group: Groupe de matériaux
     material_held: Matériaux préservées
     material_not_examined: Matériaux non examinés
+    material_type: Material type
     media_type: Moyen physique
     mensural_clefs: Clés anciennes
     method_of_acquisition: Méthode d'acquisition
@@ -774,7 +777,7 @@ fr:
     relationship_designation: Désignation de la relation en $i ou 4
     relationship_information: Informations sur les relations
     religious_name: Nom d'ordre
-    religious_order: "Religious order/Title"
+    religious_order: "Ordre religieux/Titre"
     reproduction: Reproduction
     research_institute: Institution de recherche
     retrospective_conversion: Conversion retrospective
@@ -788,7 +791,6 @@ fr:
     series: Série
     series_added_entry: Champs de collection
     series_statement: Mentions de collection
-    material_group: Groupe de matériaux
     shelfmark: Cote
     shelfmark_olim: Ancienne cote (olim)
     short_title: Titre abrégé
@@ -975,6 +977,9 @@ fr:
     manuscript: "Manuscrit"
     printed: "Imprimé"
     composite: "Volume composite"
+    collection: "Collection"
+    item: "Item"
+    single_item: "Single item"
     apply_filters: "Appliquer les filtres"
     error_loading_results: "Erreur lors du chargement des résultats"
     global_collection: "Collection globale"

@@ -5,6 +5,7 @@ ca:
       headline: "Abast de la cerca"
       current_filters: "Filtres actius"
     compare_versions: "Compara versions"
+    gnd_works: Editor d'obres GND
     dashboard: "Tauler d'activitat"
     dashboard_welcome:
       welcome: "Benvinguts a l'Active Admin. Aquesta és el tauler d'activitat per defecte."
@@ -453,7 +454,7 @@ ca:
   filter_author_or_editor: "Autor/editor"
   filter_autograph_of: "Autògraf de"
   filter_birth_place: "Lloc de naixement"
-  filter_publications: "Publicacions"
+  filter_catalog: "Catàleg"
   filter_category_type: "Categoria"
   filter_collection: "Col·lecció"
   filter_comment: "Comentari"
@@ -868,26 +869,3 @@ ca:
   blacklight_advanced_search:
     form:
       start_over: "Torna a l'inici"
-
-
-######################################################################################################
-# Record types, English only
-
-  record_types_codes:
-    "0": "UNK"
-    "1": "COL"
-    "2": "MSR"
-    "3": "SUB"
-    "4": "LSR"
-    "5": "LED"
-    "6": "TSR"
-    "7": "TED"
-    "8": "EDT"
-    "9": "LEC"
-    "10": "TEC"
-    "11": "CMP"
-
-  status_codes:
-    published: "PUB"
-    inprogress: "UNP"
-    deprecated: "DEP"

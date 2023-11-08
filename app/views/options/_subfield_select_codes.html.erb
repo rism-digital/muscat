@@ -23,15 +23,17 @@ end
   # The set can be positive (add a new list) or negative (remove from
   # the existing list). It cannot be both at the same time. This is
   # handy if the difference is a couple items less than the default list.
-  template_codes = "#{codes_reference}_#{@item.get_record_type.to_s}"
-  if @item.respond_to?(:get_record_type) && tag_params.include?(template_codes)
-	# if there is an array parameter "removed", subtract the items in this
-	# array from the "default" items. This is the negative set
-  	if tag_params[template_codes].include?("remove")
-		code_values = code_values - tag_params[template_codes]["remove"]
-	else
-		# otherwise just substitute the list with the elements specified
-		code_values = tag_params[template_codes]
+  if @item.respond_to? :get_record_type
+	template_codes = "#{codes_reference}_#{@item.get_record_type.to_s}"
+	if @item.respond_to?(:get_record_type) && tag_params.include?(template_codes)
+		# if there is an array parameter "removed", subtract the items in this
+		# array from the "default" items. This is the negative set
+		if tag_params[template_codes].include?("remove")
+			code_values = code_values - tag_params[template_codes]["remove"]
+		else
+			# otherwise just substitute the list with the elements specified
+			code_values = tag_params[template_codes]
+		end
 	end
   end
 

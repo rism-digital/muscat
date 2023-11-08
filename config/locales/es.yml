@@ -6,6 +6,7 @@ es:
 #  
 #
     compare_versions: Comparar versiones
+    gnd_works: Editor de obras GND
     dashboard: "Panel de actividad"
     dashboard_welcome:
       welcome: "¡Bienvenidos a Active Admin! Este es el panel de actividad."
@@ -453,7 +454,7 @@ es:
   filter_author_or_editor: "Autor/Editor"
   filter_autograph_of: "Autógrafo de"
   filter_birth_place: "Lugar de nacimiento"
-  filter_publications: "Publicaciones"
+  filter_catalog: "Catálogo"
   filter_category_type: "Categoría"
   filter_collection: "Colección"
   filter_comment: "Comentario"
@@ -855,23 +856,3 @@ es:
     application_name: 'Muscat'
     header_links:
       logout: 'Cerrar sesión'
-      
- 
-######################################################################################################
-# Record types, English only
-      
-  record_types_codes:
-    "0": "UNK"
-    "1": "COL"
-    "2": "MMS"
-    "3": "MPR"
-    "4": "LMS"
-    "5": "LPR"
-    "6": "TMS"
-    "7": "TPR"
-    "8": "CVT"
-    
-  status_codes:
-    published: "PUB"
-    inprogress: "INP"
-
