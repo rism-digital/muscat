@@ -360,3 +360,11 @@ a.button-link {
   color: white;
   text-decoration: none;
 }
+
+body.index #sidebar {
+    display: flex;
+    flex-direction: column;
+    #search_status_sidebar_section { order: 1; }
+    #filters_sidebar_section { order: 2; }
+    #actions_sidebar_section { order: 3; }
+}
