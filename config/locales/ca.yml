@@ -289,12 +289,12 @@ ca:
 
   ### VARIOUS ELEMENTS
   recent_changes: "Modifications recents"
-  any_field_contains: "Conté a qualsevol camp"
-  title_contains: "Conté al títol diplomàtic"
-  std_title_contains: "Conté al títol uniforme"
-  composer_contains: "Conté com a compositor"
-  library_sigla_contains: "Conté a la sigla"
-  internal_note_contains: "Conté en una nota interna"
+  any_field_contains: "Qualsevol camp"
+  title_contains: "Títol diplomàtic"
+  std_title_contains: "Títol uniforme"
+  composer_contains: "Compositor"
+  library_sigla_contains: "Sigla"
+  internal_note_contains: "Nota interna"
   is_in_folder: "És a la carpeta"
   workgroups: "Grups de treball"
   roles: "Rols"

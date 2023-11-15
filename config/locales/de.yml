@@ -289,12 +289,12 @@ de:
   
   ### VARIOUS ELEMENTS
   recent_changes: "Letzte Änderungen"
-  any_field_contains: "Irgendein Feld enthält"
-  title_contains: "Dipl. Titel enthält"
-  std_title_contains: "Einordnungstitel enthält"
-  composer_contains: "Komponist enthält"
-  library_sigla_contains: "Sigel enthält"
-  internal_note_contains: "Interner Hinweis enthält"
+  any_field_contains: "Irgendein Feld"
+  title_contains: "Dipl. Titel"
+  std_title_contains: "Einordnungstitel"
+  composer_contains: "Komponist"
+  library_sigla_contains: "Sigel"
+  internal_note_contains: "Interner Hinweis"
   is_in_folder: "Ist im Ordner"
   workgroups: "Benutzergruppen"
   roles: "Rollen"
