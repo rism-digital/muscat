@@ -164,9 +164,6 @@ GEM
       warden (~> 1.2.3)
     devise-i18n (1.11.0)
       devise (>= 4.9.0)
-    devise_saml_authenticatable (1.9.1)
-      devise (> 2.0.0)
-      ruby-saml (~> 1.7)
     diff-lcs (1.5.0)
     differ (0.1.2)
     domain_name (0.5.20190701)
@@ -405,10 +402,6 @@ GEM
     rspec-support (3.9.4)
     ruby-prof (1.6.3)
     ruby-progressbar (1.13.0)
-    ruby-saml (1.15.0)
-      nokogiri (>= 1.13.10)
-      rexml
-    ruby-saml-idp (0.3.5)
     ruby2_keywords (0.0.5)
     rubyzip (2.3.2)
     sassc (2.4.0)
@@ -499,7 +492,6 @@ DEPENDENCIES
   delayed_job_active_record
   devise
   devise-i18n
-  devise_saml_authenticatable
   differ
   exception_notification
   factory_bot_rails
@@ -525,7 +517,7 @@ DEPENDENCIES
   puma
   rails (~> 7.0)
   rails-i18n
-  rails3-jquery-autocomplete (~> 1.0.21)!
+  rails3-jquery-autocomplete (~> 1.0.26)!
   recaptcha
   redcarpet
   reverse_markdown
@@ -536,7 +528,6 @@ DEPENDENCIES
   rspec
   rspec-rails (~> 3.5)
   ruby-prof
-  ruby-saml-idp
   rubyzip
   sassc-rails
   sdoc
