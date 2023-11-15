@@ -285,12 +285,12 @@ pt:
   
   ### VARIOUS ELEMENTS
   recent_changes: "Últimas modificações"
-  any_field_contains: "Qualquer campo contém"
-  title_contains: "Título diplomático contém"
-  std_title_contains: "Título uniforme contém"
-  composer_contains: "Compositor contém"
-  library_sigla_contains: "Sigla contém"
-  internal_note_contains: "Nota interna contém"
+  any_field_contains: "Qualquer campo"
+  title_contains: "Título diplomático"
+  std_title_contains: "Título uniforme"
+  composer_contains: "Compositor"
+  library_sigla_contains: "Sigla"
+  internal_note_contains: "Nota interna"
   is_in_folder: "Está na pasta"
   workgroups: "Grupos de trabalho"
   roles: "Papéis"

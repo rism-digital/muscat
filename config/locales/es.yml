@@ -289,12 +289,12 @@ es:
   
   ### VARIOUS ELEMENTS
   recent_changes: "Modificaciones recientes"
-  any_field_contains: "Cualquier campo contiene"
-  title_contains: "Título diplomático contiene"
-  std_title_contains: "Título uniforme contiene"
-  composer_contains: "Compositor contiene"
-  library_sigla_contains: "Sigla contiene"
-  internal_note_contains: "La nota interna contiene"
+  any_field_contains: "Cualquier campo"
+  title_contains: "Título diplomático"
+  std_title_contains: "Título uniforme"
+  composer_contains: "Compositor"
+  library_sigla_contains: "Sigla"
+  internal_note_contains: "Nota interna"
   is_in_folder: "Está en la carpeta"
   workgroups: "Grupos de trabajo"
   roles: "Roles"

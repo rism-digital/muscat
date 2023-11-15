@@ -288,12 +288,12 @@ en:
   
   ### VARIOUS ELEMENTS
   recent_changes: "Lastest modifications"
-  any_field_contains: "Any field contains"
-  title_contains: "Diplomatic title contains"
-  std_title_contains: "Standardized title contains"
-  composer_contains: "Composer contains"
-  library_sigla_contains: "Siglum contains"
-  internal_note_contains: "Internal note contains"
+  any_field_contains: "Any field"
+  title_contains: "Diplomatic title"
+  std_title_contains: "Standardized title"
+  composer_contains: "Composer"
+  library_sigla_contains: "Siglum"
+  internal_note_contains: "Internal note"
   is_in_folder: "Is in folder"
   workgroups: "Workgroups"
   roles: "Roles"
