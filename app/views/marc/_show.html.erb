@@ -33,11 +33,7 @@
 <%- end -%>
 
 <% if @item.class == Source && @item.holdings.count > 0 %>
-	<%if opac_resolved %>
-		<%= render :partial => "holdings/show_opac_holdings" %>
-	<%else%>
   	<%= render :partial => "holdings/show_holdings", :locals => {opac: opac_resolved } %> 
-	<%end%>
 <% end %>
 
 <%if !opac_resolved%>

@@ -351,8 +351,8 @@ function _marc_editor_version_view( version_id, destination, rails_model ) {
 	});
 }
 
-function _marc_editor_embedded_holding(destination, rails_model, id, opac ) {	
-	url = "/catalog/holding";
+function _marc_editor_embedded_holding(destination, rails_model, id ) {	
+	url = "/admin/holdings/render_embedded";
 	
 	$.ajax({
 		success: function(data) {
@@ -360,7 +360,6 @@ function _marc_editor_embedded_holding(destination, rails_model, id, opac ) {
 		data: {
 			marc_editor_dest: destination,
 			object_id: id,
-			opac: opac
 		},
 		dataType: 'script',
 		timeout: 20000,

@@ -158,9 +158,26 @@ ActiveAdmin.register Holding do
       #To transmit correctly @item we need to have @source initialized
       @item = @holding
     end
-    
+  
   end
   
+  collection_action :render_embedded, method: :post do
+    opac = false
+    
+    @item = Holding.find(params[:object_id] )#params[:object_id] )
+    
+    begin
+      @item.marc.load_source(true)
+    rescue ActiveRecord::RecordNotFound
+      puts "Could not properly load MarcHolding #{@item.id}"
+    end
+    
+    @editor_profile = EditorConfiguration.get_show_layout @item
+    
+    render :template => 'marc_show/show_preview', :locals => { :opac => opac, :holdings => true }
+  
+  end
+
   # Include the folder actions
   include FolderControllerActions
   
