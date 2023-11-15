@@ -35,6 +35,20 @@ Rails.application.routes.draw do
   get 'sru/publications' => 'sru#service'
   get 'sru/catalogues' => 'sru#service'
   get 'sru/works' => 'sru#service'
+
+  ##############################
+  ### Routes for the GND editor implemented in the /admin/gnd_works page
+  get 'admin/gnd_works/new' => 'admin/gnd_works#new'
+  get 'admin/gnd_works/edit' => 'admin/gnd_works#edit'
+  get 'admin/gnd_works/search' => 'admin/gnd_works#search'
+  post 'admin/gnd_works/marc_editor_validate' => 'admin/gnd_works#marc_editor_validate'
+  post 'admin/gnd_works/marc_editor_save' => 'admin/gnd_works#marc_editor_save'
+  get 'admin/gnd_works/autocomplete_gnd_works_person' => 'admin/gnd_works#autocomplete_gnd_works_person'
+  get 'admin/gnd_works/autocomplete_gnd_works_instrument' => 'admin/gnd_works#autocomplete_gnd_works_instrument'
+  get 'admin/gnd_works/autocomplete_gnd_works_form' => 'admin/gnd_works#autocomplete_gnd_works_form'
+
+
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
