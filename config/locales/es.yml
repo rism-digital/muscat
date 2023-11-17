@@ -382,7 +382,10 @@ es:
   export_folder_csv: "Exportar la carpeta en formato CSV"
   export_folder_raw: "Exportar la carpeta en formato Muscat MARC"
   validate_folder: "Validar la carpeta"
-  
+  choose_folder: "(Escoja una)"
+  add_item_to_folder: "Añadir a la carpeta"
+  remove_item_from_folder: "Quitar de la carpeta"
+
   # Editor sidebar
   show_all_groups: "Mostrar todas las secciones"
   show_preview: "Mostrar vista preliminar"

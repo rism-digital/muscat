@@ -381,7 +381,9 @@ ca:
   export_folder_csv: "Exporta la carpeta en format CSV"
   export_folder_raw: "Exporta la carpeta en format Muscat MARC"
   validate_folder: "Valida els elements"
-
+  choose_folder: "(Trieu-ne una)"
+  add_item_to_folder: "Afegiu-lo a la carpeta"
+  remove_item_from_folder: "Elimineu-lo de la carpeta"
 
   # Editor sidebar
   show_all_groups: "Mostra totes les seccions"
