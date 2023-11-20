@@ -9,9 +9,11 @@ module GND
     require 'net/http'
 
     SRU_PUSH_URL = "https://devel.dnb.de/sru_ru/"
-    SRU_READ_URL_AUTH = "https://services.dnb.de/sru/authorities"
-    SRU_READ_URL = "https://services.dnb.de/sru/cbs-appr"
+    #SRU_READ_URL_AUTH = "https://services.dnb.de/sru/authorities"
+    #SRU_READ_URL = "https://services.dnb.de/sru/cbs-appr"
 
+    SRU_READ_URL_AUTH = "https://devel.dnb.de/sru/cbs-appr"
+    SRU_READ_URL = "https://devel.dnb.de/sru/cbs-appr"
 
     def self.search(params, limit = 10)
         result = []
