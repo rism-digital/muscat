@@ -182,8 +182,8 @@ module Muscat
     config.autoload_paths << "#{Rails.root}/lib"
     config.eager_load_paths << Rails.root.join("lib")
     config.active_job.queue_adapter = :delayed_job
-    # For 5.2: permit the loading of ActiveSupport::HashWithIndifferentAccess
-    config.active_record.yaml_column_permitted_classes = [ActiveSupport::HashWithIndifferentAccess]
+    
+    config.active_record.yaml_column_permitted_classes = [ActiveSupport::HashWithIndifferentAccess, Time, Date, ActiveSupport::TimeWithZone, ActiveSupport::TimeZone]
   end
 end
 
