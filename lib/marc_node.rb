@@ -450,6 +450,9 @@ class MarcNode
       if @tag.to_i == 0
         #control tag
         out += "\t\t<marc:leader>#{content.gsub(/#/," ")}</marc:leader>\n"
+      elsif @tag.to_i == 1
+        # id tag - prefix approriately # problem: we are missing the _ when multiple words
+        out += "\t\t<marc:controlfield tag=\"#{@tag}\">#{@model.to_s.pluralize.downcase}/#{content}</marc:controlfield>\n"
       elsif @tag.to_i < 10
         #control tag
         out += "\t\t<marc:controlfield tag=\"#{@tag}\">#{content}</marc:controlfield>\n"
@@ -470,7 +473,14 @@ class MarcNode
     else
       #subfield
       cont_sanit = ERB::Util.html_escape(content)
-      out += "\t\t\t<marc:subfield code=\"#{@tag}\">#{cont_sanit}</marc:subfield>\n"
+      # prefix ids appropriately
+      # since we cannot look at the tag configuration, it has to be hard-coded?
+      if (@tag == "0" && @foreign_object) || (@tag == "x" && @foreign_object.class == Institution) || (@tag == "w" && @foreign_object.class == Source) || (@tag == "w" && @foreign_object.class == Publication)
+        # problem: we are missing the _ when multiple words
+        out += "\t\t\t<marc:subfield code=\"#{@tag}\">#{@foreign_object.class.to_s.pluralize.downcase}/#{cont_sanit}</marc:subfield>\n"
+      else
+        out += "\t\t\t<marc:subfield code=\"#{@tag}\">#{cont_sanit}</marc:subfield>\n"
+      end
     end
 
     return out
