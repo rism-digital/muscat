@@ -95,6 +95,7 @@ ca:
     norwegian: Noruec
     occitan: Occità
     oirat: Oirat
+    ojibwa: Ojibwa
     old_church_slavonic: Eslau eclesiàstic antic
     persian: Persa
     polish: Polonès
@@ -328,6 +329,7 @@ ca:
     c_plus_4: C+4
     c_plus_5: C+5
     catalog: Catàleg
+    catalog_contribution: Catalog contribution
     catalog_opus_number: Número de catàleg/Número d'opus
     catalog_works: Catàleg d'obres
     cataloging_agency: Agència catalogadora
@@ -600,7 +602,7 @@ ca:
     material_group: Grup de material
     material_held: Material conservat
     material_not_examined: Material no examinat
-    material_type: Material type
+    material_type: Tipus de material
     media_type: Tipus de suport
     mensural_clefs: Claus mensurals
     method_of_acquisition: Mètode d'adquisició
@@ -977,7 +979,7 @@ ca:
     manuscript: "Manuscrit"
     printed: "Imprès"
     composite: "Volum compost"
-    collection: "Collection"
+    collection: "Col·lecció"
     item: "Item"
     single_item: "Single item"
     apply_filters: "Aplicar els filtres"
