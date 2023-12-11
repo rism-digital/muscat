@@ -1,5 +1,64 @@
 = Installation instructions
 
+== New! Installation on Ubuntu 22.04 LTS or Mint 21
+
+sudo apt-get update
+sudo apt-get install mysql-server
+sudo apt-get install git gcc curl zlib1g-dev libxml2-dev imagemagick libmagickcore-6.q16-dev libmagickwand-6.q16-dev openjdk-11-jdk-headless make libsqlite3-dev g++ nodejs
+
+# This is important! do NOT install the mysql client
+sudo apt remove libmysqlclient-dev
+sudo apt install libmariadbd-dev
+
+gpg --keyserver keyserver.ubuntu.com --recv-keys 409B6B1796C275462A1703113804BB82D39DC0E3 7D2BAF1CF37B13E2069D6956105BD0E739499BDB
+\curl -sSL https://get.rvm.io | bash
+
+source ~/.rvm/scripts/rvm
+#rvm pkg install openssl
+#rvm install 2.7.5 --with-openssl-dir=$HOME/.rvm/usr
+
+#rvm use 2.7.5
+#rvm gemset create rails
+#rvm use 2.7.5@rails
+
+rvm install 3.0
+rvm gemset create rails7
+rvm use 3.0.6@rails7
+
+git clone https://github.com/rism-digital/muscat
+cd muscat
+git checkout develop-rails-7
+cd config
+cp sample_database.yml database.yml
+cp sample_application.rb application.rb
+cp muscat-custom-sample.scss ../vendor/assets/stylesheets/muscat-custom.scss
+
+cd .. #back to muscat root
+bundle install
+EDITOR=nano rails credentials:edit #copy the empty credential block
+
+# Create db
+
+sudo mysql # Or log in with a user that has user creation privileges
+ 
+# Create the user, substitute with an appropriate user and password!
+ 
+# CREATE DATABASE muscat_development CHARACTER SET utf8 COLLATE utf8_general_ci;
+# CREATE USER 'rism'@'localhost';
+# ALTER USER 'rism'@'localhost' IDENTIFIED WITH mysql_native_password BY 'password';
+# GRANT ALL ON muscat_development.* TO 'rism'@'localhost';
+
+# edit config/database.yml to match
+# NOTE socket is /var/run/mysqld/mysqld.sock
+
+#sudo apt remove libmysqlclient-dev
+#sudo apt remove libmariadbd-dev
+#sudo apt install libmariadbd-dev
+#gem install mysql2 -v '0.5.3'
+#gem uninstall mysql2
+#bundle install
+rake db:migrate
+
 This document describes how to bootstrap into the webapplication. The documentation is updated for Ubuntu 18.04 LTS and Debian 10 (Buster).
 
 == Requirements
