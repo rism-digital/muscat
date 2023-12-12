@@ -442,7 +442,7 @@ class MarcNode
 
   # Export to MarcXML - return a REXML::Element
   def to_xml_element
-    element = REXML::Element.new
+    element = XML::Node.new('leader')
 
     # skip the $_ (db_id)
     #return "" if tag == "_"
@@ -451,23 +451,23 @@ class MarcNode
     if @tag =~ /^[\d]{3,3}$/
       if @tag.to_i == 0
         #control tag
-        element.name = "marc:leader"
-        element.text = content.gsub(/#/," ")
+        element.name = "leader"
+        element << content.gsub(/#/," ")
       elsif @tag.to_i == 1
-        element.name = "marc:controlfield"
+        element.name = "controlfield"
         # id tag - prefix approriately # problem: we are missing the _ when multiple words
-        element.add_attribute("tag", @tag)
-        element.text = "#{@model.to_s.pluralize.downcase}/#{content}"
+        element["tag"] = @tag
+        element << "#{@model.to_s.pluralize.downcase}/#{content}"
       elsif @tag.to_i < 10
         #control tag
-        element.name = "marc:controlfield"
+        element.name = "controlfield"
         # id tag - prefix approriately # problem: we are missing the _ when multiple words
-        element.add_attribute("tag", @tag)
-        element.text = content
+        element["tag"] = @tag
+        element << content
       else
         #data tag
-        element.name = "marc:datafield"
-        element.add_attribute("tag", @tag)
+        element.name = "datafield"
+        element["tag"] = @tag
         ind0 = " "
         ind1 = " "
         if indicator
@@ -476,22 +476,22 @@ class MarcNode
         end
         ind0 = " " if !ind0
         ind1 = " " if !ind1
-        element.add_attribute("ind1", ind0.gsub(/[#\\]/," "))
-        element.add_attribute("ind2", ind1.gsub(/[#\\]/," "))
-        for_every_child_sorted { |child| element.add_element(child.to_xml_element) }
+        element["ind1"] = ind0.gsub(/[#\\]/," ")
+        element["ind2"] = ind1.gsub(/[#\\]/," ")
+        for_every_child_sorted { |child| element << child.to_xml_element }
       end
     else
       #subfield
-      element.name = "marc:subfield"
-      element.add_attribute("code", @tag)
+      element.name = "subfield"
+      element["code"] = @tag
       cont_sanit = content.to_s.encode(:xml => :text)
       # prefix ids appropriately
       # since we cannot look at the tag configuration, it has to be hard-coded?
       if (@tag == "0" && @foreign_object) || (@tag == "x" && @foreign_object.class == Institution) || (@tag == "w" && @foreign_object.class == Source) || (@tag == "w" && @foreign_object.class == Publication)
         # problem: we are missing the _ when multiple words
-        element.text = "#{@foreign_object.class.to_s.pluralize.downcase}/#{cont_sanit}"
+        element << "#{@foreign_object.class.to_s.pluralize.downcase}/#{cont_sanit}"
       else
-        element.text = cont_sanit
+        element << cont_sanit
       end
     end
 

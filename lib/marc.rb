@@ -4,7 +4,6 @@
 # TODO: Add String.intern to convert all tags to symbols
 
 class Marc
-  require 'rexml/document'
   require 'xml'
 
   include ApplicationHelper
@@ -479,26 +478,30 @@ class Marc
     return marc_json
   end
 
-  def to_xml(updated_at = nil, versions = nil, holdings = true, decl = false)
+  def to_xml(updated_at = nil, versions = nil, holdings = true, collection = false)
     document = to_xml_record(updated_at, versions, holdings)
-    string_io = StringIO.new
-    if (decl)
-      #document.add_namespace('marc', 'http://bar.org/')
-      #xml_declaration = REXML::XMLDecl.new('1.0', 'UTF-8')
-      #document.add(xml_declaration)
-
+    # default namespace name
+    ns_name = nil
+    if (collection)
+      # wrap the record (document root) into a collection element and make the namespace not default
+      record = document.root
+      collection = XML::Node.new("collection")
+      document.root = collection
+      document.root << record
+      ns_name = 'marc'
+    else
+      # add the schema for validation
+      LibXML::XML::Namespace.new(document.root, 'xsi', 'http://www.w3.org/2001/XMLSchema-instance')
+      document.root["xsi:schemaLocation"] = "http://www.loc.gov/MARC21/slim http://www.loc.gov/standards/marcxml/schema/MARC21slim.xsd"
     end
-    document.write(string_io, 2)  # The second argument (2) is the indentation level
-    #puts string_io.string
-    return string_io.string
+    ns = LibXML::XML::Namespace.new(document.root, ns_name, 'http://www.loc.gov/MARC21/slim')
+    document.root.namespaces.namespace = ns
+    # Recursively set the namespace for all child elements
+    document.find('//*').each do |element|
+      element.namespaces.namespace = ns
+    end
 
-    out = Array.new
-    out << "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n"
-    out << "<!-- Exported from RISM Digital (https://rism.digital/) Date: #{Time.now.utc} -->\n"
-    out << "<marc:collection xmlns:marc=\"http://www.loc.gov/MARC21/slim\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xsi:schemaLocation=\"http://www.loc.gov/MARC21/slim http://www.loc.gov/standards/marcxml/schema/MARC21slim.xsd\">\n"
-    out << to_xml_record(updated_at, versions, holdings)
-    out << "</marc:collection>" 
-    return out.join('')
+    return (collection) ? document.root.to_s(indent: true): document.to_s(indent: true)
   end
   
   def to_xml_record(updated_at, versions, holdings)
@@ -508,23 +511,14 @@ class Marc
     safe_marc.root = @root.deep_copy
     safe_marc.to_external(updated_at, versions, holdings)
     
-    doc = XML::Document.new()
-
-    out = REXML::Document.new
-
-
-    xml_declaration = REXML::XMLDecl.new('1.0', 'UTF-8')
-    out.add(xml_declaration)
-    out.add_namespace('marc', 'http://bar.org/')
-
-    root = out.add_element("marc:record")
+    document = XML::Document.new()
+    document.root = XML::Node.new("record")
 
     for child in safe_marc.root.children
-      root.add_element(child.to_xml_element)
+      document.root << child.to_xml_element
     end
     
-    #out.expanded_name()
-    return out
+    return document
   end
 
   # Export a dump of the contents
