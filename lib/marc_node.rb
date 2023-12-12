@@ -440,8 +440,10 @@ class MarcNode
     return out
   end
 
-  # Export to MarcXML
-  def to_xml
+  # Export to MarcXML - return a REXML::Element
+  def to_xml_element
+    element = REXML::Element.new
+
     # skip the $_ (db_id)
     #return "" if tag == "_"
     out = String.new
@@ -449,15 +451,23 @@ class MarcNode
     if @tag =~ /^[\d]{3,3}$/
       if @tag.to_i == 0
         #control tag
-        out += "\t\t<marc:leader>#{content.gsub(/#/," ")}</marc:leader>\n"
+        element.name = "marc:leader"
+        element.text = content.gsub(/#/," ")
       elsif @tag.to_i == 1
+        element.name = "marc:controlfield"
         # id tag - prefix approriately # problem: we are missing the _ when multiple words
-        out += "\t\t<marc:controlfield tag=\"#{@tag}\">#{@model.to_s.pluralize.downcase}/#{content}</marc:controlfield>\n"
+        element.add_attribute("tag", @tag)
+        element.text = "#{@model.to_s.pluralize.downcase}/#{content}"
       elsif @tag.to_i < 10
         #control tag
-        out += "\t\t<marc:controlfield tag=\"#{@tag}\">#{content}</marc:controlfield>\n"
+        element.name = "marc:controlfield"
+        # id tag - prefix approriately # problem: we are missing the _ when multiple words
+        element.add_attribute("tag", @tag)
+        element.text = content
       else
         #data tag
+        element.name = "marc:datafield"
+        element.add_attribute("tag", @tag)
         ind0 = " "
         ind1 = " "
         if indicator
@@ -466,24 +476,26 @@ class MarcNode
         end
         ind0 = " " if !ind0
         ind1 = " " if !ind1
-    		out += "\t\t<marc:datafield tag=\"#{@tag}\" ind1=\"#{ind0.gsub(/[#\\]/," ")}\" ind2=\"#{ind1.gsub(/[#\\]/," ")}\">\n"
-        for_every_child_sorted { |child| out += child.to_xml }
-    		out += "\t\t</marc:datafield>\n"
+        element.add_attribute("ind1", ind0.gsub(/[#\\]/," "))
+        element.add_attribute("ind2", ind1.gsub(/[#\\]/," "))
+        for_every_child_sorted { |child| element.add_element(child.to_xml_element) }
       end
     else
       #subfield
-      cont_sanit = ERB::Util.html_escape(content)
+      element.name = "marc:subfield"
+      element.add_attribute("code", @tag)
+      cont_sanit = content.to_s.encode(:xml => :text)
       # prefix ids appropriately
       # since we cannot look at the tag configuration, it has to be hard-coded?
       if (@tag == "0" && @foreign_object) || (@tag == "x" && @foreign_object.class == Institution) || (@tag == "w" && @foreign_object.class == Source) || (@tag == "w" && @foreign_object.class == Publication)
         # problem: we are missing the _ when multiple words
-        out += "\t\t\t<marc:subfield code=\"#{@tag}\">#{@foreign_object.class.to_s.pluralize.downcase}/#{cont_sanit}</marc:subfield>\n"
+        element.text = "#{@foreign_object.class.to_s.pluralize.downcase}/#{cont_sanit}"
       else
-        out += "\t\t\t<marc:subfield code=\"#{@tag}\">#{cont_sanit}</marc:subfield>\n"
+        element.text = cont_sanit
       end
     end
 
-    return out
+    return element
   end
   
   # Export to JSON

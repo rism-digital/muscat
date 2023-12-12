@@ -4,6 +4,9 @@
 # TODO: Add String.intern to convert all tags to symbols
 
 class Marc
+  require 'rexml/document'
+  require 'xml'
+
   include ApplicationHelper
   include Comparable
   
@@ -476,7 +479,19 @@ class Marc
     return marc_json
   end
 
-  def to_xml(updated_at = nil, versions = nil, holdings = true)
+  def to_xml(updated_at = nil, versions = nil, holdings = true, decl = false)
+    document = to_xml_record(updated_at, versions, holdings)
+    string_io = StringIO.new
+    if (decl)
+      #document.add_namespace('marc', 'http://bar.org/')
+      #xml_declaration = REXML::XMLDecl.new('1.0', 'UTF-8')
+      #document.add(xml_declaration)
+
+    end
+    document.write(string_io, 2)  # The second argument (2) is the indentation level
+    #puts string_io.string
+    return string_io.string
+
     out = Array.new
     out << "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n"
     out << "<!-- Exported from RISM Digital (https://rism.digital/) Date: #{Time.now.utc} -->\n"
@@ -493,15 +508,22 @@ class Marc
     safe_marc.root = @root.deep_copy
     safe_marc.to_external(updated_at, versions, holdings)
     
-    out = String.new
-    
-    out += "\t<marc:record>\n"
-    for child in safe_marc.root.children
-      out += child.to_xml
-    end
+    doc = XML::Document.new()
 
-    out += "\t</marc:record>\n"
+    out = REXML::Document.new
+
+
+    xml_declaration = REXML::XMLDecl.new('1.0', 'UTF-8')
+    out.add(xml_declaration)
+    out.add_namespace('marc', 'http://bar.org/')
+
+    root = out.add_element("marc:record")
+
+    for child in safe_marc.root.children
+      root.add_element(child.to_xml_element)
+    end
     
+    #out.expanded_name()
     return out
   end
 
