@@ -574,7 +574,7 @@ class MarcSource < Marc
       end
       parent_object.holdings.order(:lib_siglum).each do |holding|
         holding.marc.by_tags("599").each {|t| t.destroy_yourself} 
-        id = holding.id
+        id = "holdings/#{holding.id}"
         holding.marc.all_tags.each do |tag|
           tag.add_at(MarcNode.new(@model, "3", id, nil), 0)
           @root.add_at(tag, get_insert_position(tag.tag)) if tag.tag != "001"
