@@ -478,10 +478,8 @@ class Marc
     return marc_json
   end
 
-  def to_xml(updated_at = nil, versions = nil, holdings = true, collection = false)
+  def to_xml(updated_at = nil, versions = nil, holdings = true, collection = false, ns_name = nil)
     document = to_xml_record(updated_at, versions, holdings)
-    # default namespace name
-    ns_name = nil
     if (collection)
       # wrap the record (document root) into a collection element and make the namespace not default
       record = document.root
@@ -489,7 +487,8 @@ class Marc
       document.root = collection
       document.root << record
       ns_name = 'marc'
-    else
+    end
+    if ns_name == nil
       # add the schema for validation
       LibXML::XML::Namespace.new(document.root, 'xsi', 'http://www.w3.org/2001/XMLSchema-instance')
       document.root["xsi:schemaLocation"] = "http://www.loc.gov/MARC21/slim http://www.loc.gov/standards/marcxml/schema/MARC21slim.xsd"
@@ -500,8 +499,8 @@ class Marc
     document.find('//*').each do |element|
       element.namespaces.namespace = ns
     end
-
-    return (collection) ? document.root.to_s(indent: true): document.to_s(indent: true)
+    # do not output the xml declaration if we do not use the default namespace
+    return (ns_name == nil) ? document.to_s(indent: true): document.root.to_s(indent: true)
   end
   
   def to_xml_record(updated_at, versions, holdings)

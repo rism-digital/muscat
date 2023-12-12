@@ -9,7 +9,7 @@
           <zs:recordData>
             <% if hit.result %>
               <% if @sru.schema == 'marc' %>
-                <%= hit.result.marc.to_xml(hit.result.updated_at, nil, true, true).html_safe %>
+                <%= hit.result.marc.to_xml(hit.result.updated_at, nil, true, false, 'marc').html_safe %>
               <% elsif @sru.schema == 'mods'%>
                 <% xml = Nokogiri::XML(hit.result.marc.to_xml(hit.result.updated_at, nil, true, true)) %>
                 <% template =  Nokogiri::XSLT(File.read('public/xml/MARC21slim2MODS3-6.xsl')) %>
