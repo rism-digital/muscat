@@ -189,6 +189,7 @@ pl:
     israel: Izrael
     italy: Włochy
     italy_trentino_alto_adige: 'Włochy: Trentino-Alto Adige'
+    jamaica: Jamajka
     japan: Japonia
     korea: Korea, Republika
     latvia: Łotwa
@@ -329,7 +330,7 @@ pl:
     c_plus_4: C+4
     c_plus_5: C+5
     catalog: Katalog
-    catalog_contribution: Catalog contribution
+    catalog_contribution: Wkład do katalogu
     catalog_opus_number: Numer katalogu / numer opus
     catalog_works: Katalog utworów
     cataloging_agency: Jednostka katalogująca
