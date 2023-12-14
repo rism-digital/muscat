@@ -253,8 +253,8 @@ pl:
     individual_entry_threatise_printed: Indywidualny wpis w kolekcji traktatów drukowanych
     single_threatise_printed: Pojedynczy traktat drukowany 
         
-    legacy_templates: "LEGACY TEMPLATES"
-    legacy_publication: "SECONDARY LITERATURE UNIFIED TEMPLATE"
+    generic_publication_templates: "GENERIC TEMPLATES"
+    generic_publication_template: "SECONDARY LITERATURE GENERIC TEMPLATE"
 
   #################### MENUS
   menu_home: Strona główna

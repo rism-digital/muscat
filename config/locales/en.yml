@@ -253,8 +253,8 @@ en:
     individual_entry_threatise_printed: "Individual entry in a printed treatise collection"
     single_threatise_printed: "Single printed treatise"
 
-    legacy_templates: "Legacy templates for compatibility"
-    legacy_publication: "Secondary literature unified template"
+    generic_publication_templates: "Generic templates"
+    generic_publication_template: "Secondary literature generic template"
 
   #################### MENUS
   menu_home: "Home page"

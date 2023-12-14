@@ -249,8 +249,8 @@ pt:
     individual_entry_threatise_printed: "Tratado impresso, registro individual em coletânea"
     single_threatise_printed: "Tratado impresso único"
         
-    legacy_templates: "LEGACY TEMPLATES"
-    legacy_publication: "SECONDARY LITERATURE UNIFIED TEMPLATE"
+    generic_publication_templates: "GENERIC TEMPLATES"
+    generic_publication_template: "SECONDARY LITERATURE GENERIC TEMPLATE"
 
   #################### MENUS
   menu_home: "Início"

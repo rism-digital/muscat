@@ -252,8 +252,8 @@ de:
     individual_entry_threatise_printed: "Theoreticum, gedruckt - Teileintrag der Sammlung"
     single_threatise_printed: "Theoreticum, gedruckt - Individualeintrag"
   
-    legacy_templates: "LEGACY TEMPLATES"
-    legacy_publication: "SECONDARY LITERATURE UNIFIED TEMPLATE"
+    generic_publication_templates: "GENERIC TEMPLATES"
+    generic_publication_template: "SECONDARY LITERATURE GENERIC TEMPLATE"
 
   #################### MENUS
   menu_home: "Home"
