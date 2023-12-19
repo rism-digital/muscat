@@ -381,7 +381,9 @@ pl:
   export_folder_csv: Wyeksportuj folder jako CSV
   export_folder_raw: Wyeksportuj folder jako Muscat MARC
   validate_folder: Zatwierdź pozycje
-
+  choose_folder: "(PLEASE CHOOSE ONE)"
+  add_item_to_folder: "ADD TO FOLDER"
+  remove_item_from_folder: "DELETE FROM FOLDER"
   
   # Editor sidebar
   show_all_groups: Pokaż wszystkie sekcje

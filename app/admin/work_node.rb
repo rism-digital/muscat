@@ -173,7 +173,10 @@ ActiveAdmin.register WorkNode do
     render :partial => "activeadmin/section_sidebar_show", :locals => { :item => work_node }
   end
   
-  
+  sidebar :folders, :only => :show do
+    render :partial => "activeadmin/section_sidebar_folder_actions", :locals => { :item => work_node }
+  end
+
   ##########
   ## Edit ##
   ##########
