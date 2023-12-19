@@ -48,7 +48,7 @@ class Institution < ApplicationRecord
   has_and_belongs_to_many :workgroups
   belongs_to :user, :foreign_key => "wf_owner"
   
-  composed_of :marc, :class_name => "MarcInstitution", :mapping => %w(marc_source to_marc)
+  #composed_of :marc, :class_name => "MarcInstitution", :mapping => %w(marc_source to_marc)
   
   # Institutions also can link to themselves
   # This is the forward link
@@ -91,6 +91,14 @@ class Institution < ApplicationRecord
   enum wf_stage: [ :inprogress, :published, :deleted, :deprecated ]
   enum wf_audit: [ :full, :abbreviated, :retro, :imported ]
   
+  def marc
+    @marc ||= MarcInstitution.new(self.marc_source)
+  end
+
+  def marc=(marc)
+    self.marc_source = marc.to_marc    
+    @marc = marc
+  end
 
   def after_initialize
     @last_user_save = nil

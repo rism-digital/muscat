@@ -59,7 +59,7 @@ class Publication < ApplicationRecord
     :association_foreign_key => "publication_a_id",
     join_table: "publications_to_publications")
 
-  composed_of :marc, :class_name => "MarcPublication", :mapping => %w(marc_source to_marc)
+  #composed_of :marc, :class_name => "MarcPublication", :mapping => %w(marc_source to_marc)
 
   ##include NewIds
   before_destroy :check_dependencies, :cleanup_comments
@@ -78,6 +78,15 @@ class Publication < ApplicationRecord
 
   enum wf_stage: [ :inprogress, :published, :deleted, :deprecated ]
   enum wf_audit: [ :full, :abbreviated, :retro, :imported ]
+
+  def marc
+    @marc ||= MarcPublication.new(self.marc_source)
+  end
+
+  def marc=(marc)
+    self.marc_source = marc.to_marc    
+    @marc = marc
+  end
 
   def after_initialize
     @last_user_save = nil

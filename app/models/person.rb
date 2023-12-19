@@ -71,7 +71,7 @@ class Person < ApplicationRecord
     :association_foreign_key => "person_a_id",
     join_table: "people_to_people")
   
-  composed_of :marc, :class_name => "MarcPerson", :mapping => %w(marc_source to_marc)
+  #composed_of :marc, :class_name => "MarcPerson", :mapping => %w(marc_source to_marc)
   
 #  validates_presence_of :full_name  
   validate :field_length
@@ -93,6 +93,15 @@ class Person < ApplicationRecord
 
   enum wf_stage: [ :inprogress, :published, :deleted, :deprecated ]
   enum wf_audit: [ :full, :abbreviated, :retro, :imported ]
+
+  def marc
+    @marc ||= MarcPerson.new(self.marc_source)
+  end
+
+  def marc=(marc)
+    self.marc_source = marc.to_marc    
+    @marc = marc
+  end
 
   def after_initialize
     @last_user_save = nil

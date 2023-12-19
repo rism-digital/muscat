@@ -88,7 +88,7 @@ class Source < ApplicationRecord
   has_many :referring_source_relations, class_name: "SourceRelation", foreign_key: "source_b_id"
   has_many :referring_sources, through: :referring_source_relations, source: :source_a
 
-  composed_of :marc, :class_name => "MarcSource", :mapping => [%w(marc_source to_marc), %w(record_type record_type)]
+  #composed_of :marc, :class_name => "MarcSource", :mapping => [%w(marc_source to_marc), %w(record_type record_type)]
   alias_attribute :id_for_fulltext, :id
 
   scope :in_folder, ->(folder_id) { joins(:folder_items).where("folder_items.folder_id = ?", folder_id) }
@@ -109,6 +109,17 @@ class Source < ApplicationRecord
 
   enum wf_stage: [ :inprogress, :published, :deleted, :deprecated ]
   enum wf_audit: [ :full, :abbreviated, :retro, :imported ]
+
+  def marc
+    @marc ||= MarcSource.new(self.marc_source, self.record_type)
+  end
+
+  def marc=(marc)
+    self.marc_source = marc.to_marc
+    self.record_type = marc.record_type
+    
+    @marc = marc
+  end
 
   def after_initialize
     @old_parent = nil

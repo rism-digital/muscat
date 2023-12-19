@@ -21,7 +21,7 @@ class Holding < ApplicationRecord
   has_and_belongs_to_many :publications, join_table: "holdings_to_publications"
   has_and_belongs_to_many :places, join_table: "holdings_to_places"
 	
-  composed_of :marc, :class_name => "MarcHolding", :mapping => %w(marc_source to_marc)
+  #composed_of :marc, :class_name => "MarcHolding", :mapping => %w(marc_source to_marc)
   
   before_destroy :check_collection_id, prepend: true
 
@@ -41,6 +41,15 @@ class Holding < ApplicationRecord
   # Keep both inprogress and unpublished for compatibility with older versions
   enum wf_stage: { unpublished: 0, inprogress: 0, published: 1, deleted: 2, deprecated: 3 }
   enum wf_audit: [ :unapproved, :full, :abbreviated, :retro, :imported ]
+
+  def marc
+    @marc ||= MarcHolding.new(self.marc_source)
+  end
+
+  def marc=(marc)
+    self.marc_source = marc.to_marc    
+    @marc = marc
+  end
 
   def after_initialize
     @old_collection = nil

@@ -44,7 +44,7 @@ class Work < ApplicationRecord
     :association_foreign_key => "work_a_id",
     join_table: "works_to_works")
  
-  composed_of :marc, :class_name => "MarcWork", :mapping => %w(marc_source to_marc)
+  #composed_of :marc, :class_name => "MarcWork", :mapping => %w(marc_source to_marc)
 
   before_destroy :check_dependencies, :cleanup_comments
   
@@ -62,6 +62,15 @@ class Work < ApplicationRecord
 
   alias_attribute :name, :title
   alias_attribute :id_for_fulltext, :id
+
+  def marc
+    @marc ||= MarcWork.new(self.marc_source)
+  end
+
+  def marc=(marc)
+    self.marc_source = marc.to_marc    
+    @marc = marc
+  end
 
   def after_initialize
     @last_user_save = nil

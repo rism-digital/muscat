@@ -26,7 +26,7 @@ class WorkNode < ApplicationRecord
   has_many :delayed_jobs, -> { where parent_type: "WorkNode" }, class_name: 'Delayed::Backend::ActiveRecord::Job', foreign_key: "parent_id"
   belongs_to :user, :foreign_key => "wf_owner"
  
-  composed_of :marc, :class_name => "MarcWorkNode", :mapping => %w(marc_source to_marc)
+  #composed_of :marc, :class_name => "MarcWorkNode", :mapping => %w(marc_source to_marc)
 
   before_destroy :check_dependencies, :cleanup_comments
   
@@ -44,6 +44,15 @@ class WorkNode < ApplicationRecord
 
   alias_attribute :name, :title
   alias_attribute :id_for_fulltext, :id
+
+  def marc
+    @marc ||= MarcWorkNode.new(self.marc_source)
+  end
+
+  def marc=(marc)
+    self.marc_source = marc.to_marc    
+    @marc = marc
+  end
 
   def after_initialize
     @last_user_save = nil
