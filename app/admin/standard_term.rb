@@ -194,6 +194,10 @@ ActiveAdmin.register StandardTerm do
     render :partial => "activeadmin/section_sidebar_show", :locals => { :item => standard_term }
   end
   
+  sidebar :folders, :only => :show do
+    render :partial => "activeadmin/section_sidebar_folder_actions", :locals => { :item => standard_term }
+  end
+
   ##########
   ## Edit ##
   ##########

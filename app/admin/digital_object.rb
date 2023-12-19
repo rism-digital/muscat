@@ -253,6 +253,7 @@ ActiveAdmin.register DigitalObject do
     if digital_object.images?
       render :partial => "activeadmin/section_sidebar_do_links", :locals => { :item => digital_object }
     end
+    render :partial => "activeadmin/section_sidebar_folder_actions", :locals => { :item => digital_object }
   end
 
   ##########

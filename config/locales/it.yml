@@ -385,8 +385,9 @@ it:
   export_folder_csv: "Esporta la cartella in CSV"
   export_folder_raw: "Esporta la cartella come Muscat MARC"
   validate_folder: "Valida cartella"
-
-
+  choose_folder: "(PLEASE CHOOSE ONE)"
+  add_item_to_folder: "ADD TO FOLDER"
+  remove_item_from_folder: "DELETE FROM FOLDER"
   
   # Editor sidebar
   show_all_groups: "Mostra tutti i gruppi"

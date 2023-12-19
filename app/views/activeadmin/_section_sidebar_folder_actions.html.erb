@@ -1,0 +1,29 @@
+<% define_attributes_for_section_sidebar_folder_actions(item) %>
+
+<% if @folders_with_this_item.any? %>
+    <ul class="dropdown_menu_list">
+	<li class="muscat_icon_separator">
+            <% select_options = @folders_with_this_item.sort_by{ |f| f.name.downcase }.map{ |f| [f.name, f.id] } %>
+            <%= form_tag send("remove_item_from_folder_admin_#{@model_underscore_downcase}_path", item.id), method: 'delete' do %>
+		<%= select_tag :folder_id, options_for_select(select_options), {include_blank: I18n.t(:choose_folder), required: true} %>
+		<%= hidden_field_tag "batch_action", "remove_single_from_folder" %>
+		<%= submit_tag I18n.t :remove_item_from_folder %>
+            <% end %>
+	</li>
+    </ul>
+<% end %>
+
+<% if @folders_without_this_item.any? %>
+    <ul class="dropdown_menu_list">
+        <li class="muscat_icon_separator">
+            <% select_options = @folders_without_this_item.sort_by{ |f| f.name.downcase }.map{ |f| [f.name, f.id] } %>
+            <%= form_tag send("add_item_to_folder_admin_#{@model_underscore_downcase}_path"), method: 'post' do %>
+                <%= select_tag :folder_id, options_for_select(select_options), {include_blank: I18n.t(:choose_folder), required: true} %>
+                <%= hidden_field_tag :model, item.class.to_s %>
+                <%= hidden_field_tag :item_id, item.id %>
+                <%= submit_tag I18n.t :add_item_to_folder %>
+            <% end %>
+        </li>
+    </ul>
+<% end %>
+
