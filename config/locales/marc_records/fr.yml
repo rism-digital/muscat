@@ -95,6 +95,7 @@ fr:
     norwegian: Norvégien
     occitan: Occitan
     oirat: Oïrate
+    ojibwa: Ojibwa
     old_church_slavonic: Slave ancien ecclésiastique
     persian: Persan
     polish: Polonais
@@ -188,6 +189,7 @@ fr:
     israel: Israël
     italy: Italie
     italy_trentino_alto_adige: 'Italie: Trentin-Haut-Adige'
+    jamaica: Jamaïque
     japan: Japon
     korea: Corée, République de
     latvia: Lettonie
@@ -328,6 +330,7 @@ fr:
     c_plus_4: C+4
     c_plus_5: C+5
     catalog: Catalogue
+    catalog_contribution: Contribution au catalogue
     catalog_opus_number: No. de catalogue thématique/Opus
     catalog_works: Catalogue des oeuvres
     cataloging_agency: Agence de catalogation
@@ -444,7 +447,7 @@ fr:
     event_organizer: Organisateur
     event_place: Lieu de l'événement
     excerpts: Extraits
-    exemplar: Exemplar
+    exemplar: Exemplaire
     exemplars: Exemplaires
     extent: Extension
     extent_parts: Extension (parties)
@@ -600,7 +603,7 @@ fr:
     material_group: Groupe de matériaux
     material_held: Matériaux préservées
     material_not_examined: Matériaux non examinés
-    material_type: Material type
+    material_type: Type de matériel
     media_type: Moyen physique
     mensural_clefs: Clés anciennes
     method_of_acquisition: Méthode d'acquisition
@@ -978,8 +981,8 @@ fr:
     printed: "Imprimé"
     composite: "Volume composite"
     collection: "Collection"
-    item: "Item"
-    single_item: "Single item"
+    item: "Elément"
+    single_item: "Élément unique"
     apply_filters: "Appliquer les filtres"
     error_loading_results: "Erreur lors du chargement des résultats"
     global_collection: "Collection globale"

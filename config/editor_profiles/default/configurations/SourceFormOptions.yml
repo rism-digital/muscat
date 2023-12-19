@@ -275,6 +275,7 @@
       - "nds"
       - "nor"
       - "oci"
+      - "oji"
       - "per"
       - "pol"
       - "por"
@@ -1122,6 +1123,13 @@
     980c:
       - "examined"
       - "not_examined"
+"981":
+  layout:
+    fields:
+    - - "0"
+      - read_only: true
+    - - "d"
+      - read_only: true
 
 triggers:
   - notify_changes

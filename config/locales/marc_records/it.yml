@@ -95,6 +95,7 @@ it:
     norwegian: Norvegese
     occitan: Occitano
     oirat: Oirato
+    ojibwa: Ojibwa
     old_church_slavonic: Slavo ecclesiastico antico
     persian: Persiano
     polish: Polacco
@@ -188,6 +189,7 @@ it:
     israel: Israele
     italy: Italia
     italy_trentino_alto_adige: 'Italia: Trentino-Alto Adige'
+    jamaica: Giamaica
     japan: Giappone
     korea: Corea, Repubblica di
     latvia: Lettonia
@@ -328,6 +330,7 @@ it:
     c_plus_4: C+4
     c_plus_5: C+5
     catalog: Catalogo
+    catalog_contribution: Contributo alla catalogazione
     catalog_opus_number: Catalogo/Numero d'opera
     catalog_works: Catalogo delle opere
     cataloging_agency: Agenzia di catalogazione
@@ -977,9 +980,9 @@ it:
     manuscript: "Manoscritto"
     printed: "A stampa"
     composite: "Volume composito"
-    collection: "Collection"
-    item: "Item"
-    single_item: "Single item"
+    collection: "Collezione"
+    item: "Elemento"
+    single_item: "Singolo elemento"
     apply_filters: "Applica i filtri"
     error_loading_results: "Errore nel caricamento dei risultati"
     global_collection: "Collezione mondiale"

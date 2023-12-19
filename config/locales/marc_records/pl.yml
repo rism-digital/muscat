@@ -95,6 +95,7 @@ pl:
     norwegian: Norweski
     occitan: Prowansalski
     oirat: Ojracki
+    ojibwa: odżibwe
     old_church_slavonic: Starocerkiewny
     persian: Perski
     polish: Polski
@@ -188,6 +189,7 @@ pl:
     israel: Izrael
     italy: Włochy
     italy_trentino_alto_adige: 'Włochy: Trentino-Alto Adige'
+    jamaica: Jamajka
     japan: Japonia
     korea: Korea, Republika
     latvia: Łotwa
@@ -328,6 +330,7 @@ pl:
     c_plus_4: C+4
     c_plus_5: C+5
     catalog: Katalog
+    catalog_contribution: Wkład do katalogu
     catalog_opus_number: Numer katalogu / numer opus
     catalog_works: Katalog utworów
     cataloging_agency: Jednostka katalogująca
@@ -600,7 +603,7 @@ pl:
     material_group: Grupa materiałów
     material_held: Posiadany materiał
     material_not_examined: Materiał nie zbadany
-    material_type: Material type
+    material_type: Typ materiału
     media_type: Rodzaj nośnika
     mensural_clefs: Klucze menzuralne
     method_of_acquisition: Sposób nabycia
@@ -977,9 +980,9 @@ pl:
     manuscript: "Rękopis"
     printed: "Druk"
     composite: "Klocek introligatorski"
-    collection: "Collection"
-    item: "Item"
-    single_item: "Single item"
+    collection: "Kolekcja"
+    item: "Pozycja"
+    single_item: "Pojedynczy rękopis"
     apply_filters: "Zastosuj filtry"
     error_loading_results: "Błąd podczas ładowania wyników"
     global_collection: "Źródła z całego świata"
