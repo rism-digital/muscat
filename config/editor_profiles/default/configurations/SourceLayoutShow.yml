@@ -137,6 +137,7 @@ groups:
     - "040"
     - "599"
     - "980"
+    - "981"
     - "510"
     all_tag_templates: 
       "510": marc_show/show_subfield_concat

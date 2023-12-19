@@ -563,6 +563,13 @@
     c:
       label: records.material_examined
   label: records.record_origin
+'981':
+  fields:
+    "0":
+      label: records.origin
+    b:
+      label: records.date
+  label: records.record_duplicated_from
 9t:
   label: records.mode_9t
 9tt:
