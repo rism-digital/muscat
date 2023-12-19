@@ -654,6 +654,24 @@ class Source < ApplicationRecord
     true
   end
 
+  #def self.ransackable_attributes(auth_object = nil)
+  #  ["593a_filter", "593b_filter", "599a", "852a_facet", "852c", "856x", "composer", "composer_d", "created_at", "date_from", "date_to", "id", "id_for_fulltext", "id_value", "language", "lib_siglum", "lock_version", "marc_source", "record_type", "record_type_select", "shelf_mark", "source_id", "std_title", "std_title_d", "title", "title_d", "updated_at", "wf_audit", "wf_owner", "wf_stage",
+  #  "child_sources", "collection_holdings", "digital_object_links", "digital_objects", "folder_items", "folders", "holdings", "institutions", "liturgical_feasts", "parent_source", "people", "places", "publications", "referring_source_relations", "referring_sources", "roles", "source_institution_relations", "source_person_relations", "source_relations", "source_work_relations", "sources", "standard_terms", "standard_titles", "user", "versions", "work_nodes", "works",
+  #  "child_sources", "collection_holdings", "digital_object_links", "digital_objects", "folder_items", "folders", "holdings", "institutions", "liturgical_feasts", "parent_source", "people", "places", "publications", "referring_source_relations", "referring_sources", "roles", "source_institution_relations", "source_person_relations", "source_relations", "source_work_relations", "sources", "standard_terms", "standard_titles", "user", "versions", "work_nodes", "works"]
+  #end
+
+  def self.ransackable_attributes(auth_object = nil)
+    column_names + _ransackers.keys
+  end
+
+  # `ransackable_associations` by default returns the names
+  # of all associations as an array of strings.
+  # For overriding with a whitelist array of strings.
+  #
+  def self.ransackable_associations(auth_object = nil)
+    reflect_on_all_associations.map { |a| a.name.to_s }
+  end
+
   ransacker :"852a_facet", proc{ |v| } do |parent| parent.table[:id] end
   ransacker :"852c", proc{ |v| } do |parent| parent.table[:id] end
   ransacker :"593a_filter", proc{ |v| } do |parent| parent.table[:id] end
