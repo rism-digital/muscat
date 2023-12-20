@@ -429,6 +429,7 @@ en:
     ds_major: D♯ major
     ds_minor: D♯ minor
     dubious: Dubious
+    duplicated_from: Duplicated from
     e_major: E major
     e_minor: E minor
     earlier_heading: Earlier heading
@@ -687,6 +688,7 @@ en:
     order_name: Order Name
     origin: Origin
     original_cataloging_agency: Original cataloging agency
+    original_record: Original record
     other: Other
     other_associated_place: Other associated place
     other_designation: Other designation

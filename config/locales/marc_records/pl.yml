@@ -429,6 +429,7 @@ pl:
     ds_major: Dis-dur
     ds_minor: dis-moll
     dubious: Wątpliwe
+    duplicated_from: Powiel
     e_major: E-dur
     e_minor: e-moll
     earlier_heading: Wcześniejsza pozycja
@@ -684,6 +685,7 @@ pl:
     order_name: Imię zakonne
     origin: Pochodzenie
     original_cataloging_agency: Jednostka katalogująca pierwotny rekord
+    original_record: Oryginalny wpis
     other: Pozostałe
     other_associated_place: Inne powiązane miejsce
     other_designation: Inne oznaczenie

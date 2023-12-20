@@ -429,6 +429,7 @@ de:
     ds_major: Dis-Dur
     ds_minor: dis-Moll
     dubious: Zweifelhaft
+    duplicated_from: Dupliziert von
     e_major: E-Dur
     e_minor: e-Moll
     earlier_heading: Frühere Überschrift
@@ -684,6 +685,7 @@ de:
     order_name: Ordensname
     origin: Herkunft
     original_cataloging_agency: Original-Katalogisierungsstelle
+    original_record: Originaleintrag
     other: Sonstige Funktion
     other_associated_place: Anderer zugehöriger Ort
     other_designation: Andere Bezeichnung

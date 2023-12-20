@@ -429,6 +429,7 @@ it:
     ds_major: Re♯ maggiore
     ds_minor: Re♯ minore
     dubious: Dubbio
+    duplicated_from: Duplicato di
     e_major: Mi maggiore
     e_minor: Mi minore
     earlier_heading: Intestazione precedente
@@ -684,6 +685,7 @@ it:
     order_name: Nome dell'ordine religioso
     origin: Origine
     original_cataloging_agency: Agenzia catalografica originale
+    original_record: Scheda originaria
     other: Altro
     other_associated_place: Altro luogo associato
     other_designation: Altra designazione
