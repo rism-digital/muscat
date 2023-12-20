@@ -1,0 +1,13 @@
+<%
+    tag0 = tag.fetch_first_by_tag("0").content rescue tag0 = "not set"
+    tagd = tag.fetch_first_by_tag("d").content rescue tagd = "not set"
+	
+-%>
+<tr class="row">
+	<th valign="top">
+		<%= @editor_profile.get_label(tag.tag) %>
+	</th>
+	<td valign="top">
+		<%= link_to( tag0, admin_source_path(tag0)) %>, <%=tagd%>
+	</td>
+</tr>
