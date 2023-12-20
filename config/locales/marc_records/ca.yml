@@ -429,6 +429,7 @@ ca:
     ds_major: Re♯ major
     ds_minor: Re♯ menor
     dubious: Dubtós
+    duplicated_from: Duplicated from
     e_major: Mi major
     e_minor: Mi menor
     earlier_heading: Encapçalament anterior
@@ -684,6 +685,7 @@ ca:
     order_name: Orde religiós
     origin: Origen
     original_cataloging_agency: Organisme de catalogació original
+    original_record: Original record
     other: Altres
     other_associated_place: Altre lloc associat
     other_designation: Altra designació

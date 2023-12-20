@@ -98,7 +98,7 @@ pt:
     ojibwa: Ojibwa
     old_church_slavonic: Antigo eslavo eclesiástico
     persian: Persa
-    polish: Polaco
+    polish: Polonês
     portugese: Português
     romani: Romani
     romanian: Romeno
@@ -429,6 +429,7 @@ pt:
     ds_major: Ré sustenido maior
     ds_minor: Ré sustenido menor
     dubious: Duvidoso
+    duplicated_from: Duplicado de
     e_major: Mi maior
     e_minor: Mi menor
     earlier_heading: Título anterior
@@ -684,6 +685,7 @@ pt:
     order_name: Nome da Ordem
     origin: Origem
     original_cataloging_agency: Agência original de catálogo
+    original_record: Registo original
     other: Outro(a) [oth]
     other_associated_place: Outro local associado
     other_designation: Outra designação

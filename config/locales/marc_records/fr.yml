@@ -429,6 +429,7 @@ fr:
     ds_major: Ré♯ majeur
     ds_minor: Ré♯ mineur
     dubious: Douteux
+    duplicated_from: Dupliqué de
     e_major: Mi majeur
     e_minor: Mi mineur
     earlier_heading: Rubrique précédente
@@ -684,6 +685,7 @@ fr:
     order_name: Nom d'ordre
     origin: Origine
     original_cataloging_agency: Organisme du catalogage original
+    original_record: Dossier original
     other: Autre function
     other_associated_place: Autre lieu associé
     other_designation: Autre désignation

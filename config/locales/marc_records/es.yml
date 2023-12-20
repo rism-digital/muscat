@@ -429,6 +429,7 @@ es:
     ds_major: Re sostenido Mayor
     ds_minor: Re sostenido menor
     dubious: Dudoso
+    duplicated_from: Duplicado de
     e_major: Mi Mayor
     e_minor: Mi menor
     earlier_heading: El encabezamiento anterior
@@ -684,6 +685,7 @@ es:
     order_name: Nombre religioso
     origin: Origen
     original_cataloging_agency: Agencia de catalogación original
+    original_record: Registro original
     other: Otra función
     other_associated_place: Otro lugar asociado
     other_designation: Otra designación

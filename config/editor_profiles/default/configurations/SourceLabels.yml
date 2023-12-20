@@ -566,10 +566,10 @@
 '981':
   fields:
     "0":
-      label: records.origin
-    b:
+      label: records.original_record
+    d:
       label: records.date
-  label: records.record_duplicated_from
+  label: records.duplicated_from
 9t:
   label: records.mode_9t
 9tt:
