@@ -1124,6 +1124,9 @@
       - "examined"
       - "not_examined"
 "981":
+  tag_params:
+    read_only: true
+    no_delete: true
   layout:
     fields:
     - - "0"
