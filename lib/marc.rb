@@ -376,6 +376,15 @@ class Marc
     return rism_id.to_s # make sure it is ALWAYS a string!
   end
   
+  def insert_duplicated_from(tag, id)
+    # Add a reminder of the original ID
+    ntag = MarcNode.new(@model, tag, "", '##')
+    ntag.add_at(MarcNode.new(@model, "0", id.to_s, nil), 0 )
+    ntag.add_at(MarcNode.new(@model, "d", Time.now.strftime('%Y-%m-%d %H:%M:%S'), nil), 0 )
+    ntag.sort_alphabetically
+    root.add_at(ntag, get_insert_position("981") )
+  end
+
   # Return the parent of a manuscript. This need to be improved
   # Currently handles holding records, item in collection and previous edition
   # More than one case should not (cannot ?) happen in one manuscript

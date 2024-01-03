@@ -180,6 +180,13 @@
     z:
       label: records.note_external_resource
   label: records.external_resource
+'981':
+  fields:
+    "0":
+      label: records.original_record
+    d:
+      label: records.date
+  label: records.duplicated_from
 H:
   label: records.editor
 XA-AD:

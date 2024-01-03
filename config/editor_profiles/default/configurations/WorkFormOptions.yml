@@ -523,3 +523,13 @@
     - - "a"
       - type: liturgical_feast
         editor_partial: subfield_secondary
+"981":
+  tag_params:
+    read_only: true
+    no_delete: true
+  layout:
+    fields:
+    - - "0"
+      - read_only: true
+    - - "d"
+      - read_only: true

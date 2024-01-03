@@ -164,13 +164,7 @@ ActiveAdmin.register Source do
         new_marc = MarcSource.new(base_item.marc.marc_source, base_item.record_type)
         # Reset the basic fields to default values
         new_marc.reset_to_new
-
-        # Add a reminder of the original ID
-        ntag = MarcNode.new("source", "981", "", '##')
-        ntag.add_at(MarcNode.new("source", "0", base_item.id.to_s, nil), 0 )
-        ntag.add_at(MarcNode.new("source", "d", Time.now.strftime('%Y-%m-%d %H:%M:%S'), nil), 0 )
-        ntag.sort_alphabetically
-        new_marc.root.add_at(ntag, new_marc.get_insert_position("981") )
+        new_marc.insert_duplicated_from("981", base_item.id.to_s)
 
         # copy the record type
         @source.marc = new_marc

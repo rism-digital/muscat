@@ -105,6 +105,7 @@ ActiveAdmin.register Publication do
         
         new_marc = MarcPublication.new(base_item.marc.marc_source)
         new_marc.reset_to_new
+        new_marc.insert_duplicated_from("981", base_item.id.to_s)
         @publication.marc = new_marc
       else
         new_marc = MarcPublication.new(File.read(ConfigFilePath.get_marc_editor_profile_path("#{Rails.root}/config/marc/#{RISM::MARC}/publication/default.marc")))
