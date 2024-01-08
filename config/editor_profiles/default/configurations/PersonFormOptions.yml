@@ -281,6 +281,7 @@
   layout: 
     fields: 
     - - a
+      - growfield: true
 "670": 
   allow_new: true
   new_window: publications
