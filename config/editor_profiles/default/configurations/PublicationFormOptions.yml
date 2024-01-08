@@ -166,6 +166,7 @@
 "100": 
   allow_new: true
   new_window: people
+  new_window_field: full_name_or_400a_contains
   layout: 
     fields: 
     - - a
@@ -282,6 +283,7 @@
 "700":
   allow_new: true
   new_window: people
+  new_window_field: full_name_or_400a_contains
   layout:
     fields: 
     - - a
