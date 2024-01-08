@@ -194,21 +194,13 @@
   layout:
     fields:
     - - a
-      - cols: 2
-        editor_partial: subfield_select_codes
-        select_label: "Language"
-        codes_reference: "codes"
-    - - e
-      - cols: 2
-        editor_partial: subfield_select_codes
+      - editor_partial: subfield_select_codes
         select_label: "Language"
         codes_reference: "codes"
     - - h
-      - cols: 2
-        editor_partial: subfield_select_codes
+      - editor_partial: subfield_select_codes
         select_label: "Language"
         codes_reference: "codes"
-    columns: 2
   tag_params:
     codes:
       - "afr"
