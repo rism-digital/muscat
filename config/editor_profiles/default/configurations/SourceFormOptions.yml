@@ -177,11 +177,9 @@
     - - d
       - hidden: true
     - - b
-      - cols: 2
-        editor_partial: subfield_select_codes
+      - editor_partial: subfield_select_codes
         select_label: "Language"
         codes_reference: "codes"
-    columns: 2
   tag_params:
     codes:
       - "eng"
@@ -313,10 +311,8 @@
     - - d
       - autocomplete_extra: life_dates
     - - j
-      - cols: 2
-        editor_partial: subfield_select_codes
+      - editor_partial: subfield_select_codes
         codes_reference: "codes"
-    columns: 2
   tag_params:
     codes:
       - "Ascertained"
