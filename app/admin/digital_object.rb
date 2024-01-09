@@ -210,7 +210,9 @@ ActiveAdmin.register DigitalObject do
             end	
             column "ID" do |dol|
               if dol.object_link_id
-                link_to dol.object_link_id, controller: dol.object_link_type.pluralize.underscore.downcase.to_sym, action: :show, id: dol.object_link_id
+                # Holdings have no "show" page so the DOs are shown in the "edit" page
+                action = dol.object_link_type == "Holding" ? :edit : :show
+                link_to dol.object_link_id, controller: dol.object_link_type.pluralize.underscore.downcase.to_sym, action: action, id: dol.object_link_id
               else
                 "Object unattached"
               end
