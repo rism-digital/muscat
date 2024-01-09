@@ -185,8 +185,6 @@
     :fields:
     - - a
       - :occurrences: "*"
-    - - e
-      - :occurrences: "*"
     - - h
       - :occurrences: "*"
   "100":

@@ -177,11 +177,9 @@
     - - d
       - hidden: true
     - - b
-      - cols: 2
-        editor_partial: subfield_select_codes
+      - editor_partial: subfield_select_codes
         select_label: "Language"
         codes_reference: "codes"
-    columns: 2
   tag_params:
     codes:
       - "eng"
@@ -194,21 +192,13 @@
   layout:
     fields:
     - - a
-      - cols: 2
-        editor_partial: subfield_select_codes
-        select_label: "Language"
-        codes_reference: "codes"
-    - - e
-      - cols: 2
-        editor_partial: subfield_select_codes
+      - editor_partial: subfield_select_codes
         select_label: "Language"
         codes_reference: "codes"
     - - h
-      - cols: 2
-        editor_partial: subfield_select_codes
+      - editor_partial: subfield_select_codes
         select_label: "Language"
         codes_reference: "codes"
-    columns: 2
   tag_params:
     codes:
       - "afr"
@@ -321,10 +311,8 @@
     - - d
       - autocomplete_extra: life_dates
     - - j
-      - cols: 2
-        editor_partial: subfield_select_codes
+      - editor_partial: subfield_select_codes
         codes_reference: "codes"
-    columns: 2
   tag_params:
     codes:
       - "Ascertained"
@@ -478,6 +466,7 @@
         - "obl. 2°"
         - "obl. 4°"
         - "obl. 8°"
+        - "obl. 12°"
         editor_partial: subfield_select
 "383":
   layout:

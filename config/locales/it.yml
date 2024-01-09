@@ -217,11 +217,11 @@ it:
     edition_content: "Edizione a stampa, in una collezione"
     libretto_source: "Libretto manoscritto"
 
-    libretto_edition: "Elemento di un libretto stampato"
+    libretto_edition: "Libretto stampato"
     libretto_edition_content: "Libretto a stampa, in una collezione"
 
     theoretica_source: "Manoscritto di teoria musicale"
-    theoretica_edition: "Elemento di un edizione di teoria musicale"
+    theoretica_edition: "Edizione di teoria musicale"
     theoretica_edition_content: "Edizione di teoria musicale, in una collezione"
     edition: "Edizione musicale, scheda madre della collezione o scheda individuale"
     

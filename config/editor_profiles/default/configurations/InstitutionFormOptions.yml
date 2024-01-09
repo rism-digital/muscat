@@ -31,19 +31,12 @@
   layout: 
     fields: 
     - - a
-      - cols: 2
     - - c
-      - cols: 2
     - - d
-      - cols: 2
     - - q
-      - cols: 2
     - - z
-      - cols: 2
     - - "0"
-      - cols: 2
     - - "1"
-      - cols: 2
     - - "2"
       - values:
         - "ISIL" 
@@ -61,34 +54,24 @@
         - "MOC"
         default: "VIAF"
         editor_partial: subfield_select
-      - cols: 2
     - - "6"
-      - cols: 2
     - - "8"
-      - cols: 2
-    columns: 4
 "034": 
   layout: 
     fields: 
     - - f
-      - cols: 2
     - - d
-      - cols: 2
-    columns: 4
 "040": 
   layout: 
     fields: 
     - - a
-      - cols: 2
-        read_only: true
+      - read_only: true
 "043": 
   layout: 
     fields: 
     - - c
-      - cols: 2 
-        editor_partial: subfield_select_codes
+      - editor_partial: subfield_select_codes
         select_label: "Country"
-    columns: 2
   tag_params:
     codes:
       - "XC-DZ"
@@ -177,36 +160,26 @@
   layout: 
     fields: 
     - - a
-      - cols: 2
-        trigger:
+      - trigger:
         - save:
           - referring_sources
           - holdings
     - - b
-      - cols: 2
     - - c
-      - cols: 2
     - - g
-      - cols: 2
-        trigger:
+      - trigger:
         - save:
           - referring_sources
           - holdings
-    columns: 4
 "368": 
   layout: 
     fields: 
     - - a
-      - cols: 2
-        editor_partial: subfield_select_codes
+      - editor_partial: subfield_select_codes
         select_label: "Type"
     - - b
-      - cols: 2
     - - c
-      - cols: 2
     - - "2"
-      - cols: 2
-    columns: 2
   tag_params:
     codes:
       - "Archive" 
@@ -227,20 +200,14 @@
   layout: 
     fields: 
     - - a
-      - cols: 4
-    columns: 4
 "510": 
   layout: 
     fields:
     - - a
-      - cols: 2
     - - w
-      - cols: 2
-        editor_partial: subfield_select_codes
+      - editor_partial: subfield_select_codes
         select_label: "Term"
     - - i
-      - cols: 2
-    columns: 2
   tag_params:
     codes:
       - "a" 
@@ -260,8 +227,6 @@
     - - "a"
       - type: place
         editor_partial: subfield_secondary
-      - cols: 4
-    columns: 4
 "580": 
   new_window: institutions
   layout: 
@@ -269,14 +234,11 @@
     - - "x"
       - type: institution
         editor_partial: subfield_secondary
-      - cols: 4
-    columns: 4
 "667": 
   layout: 
     fields: 
     - - a
-      - cols: 4
-    columns: 4
+      - growfield: true
 "670": 
   new_window: publications
   layout: 
@@ -284,14 +246,9 @@
     - - "a"
       - type: publication
         editor_partial: subfield_secondary
-      - cols: 4
     - - "9"
-      - cols: 2
     - - "b"
-      - cols: 2
     - - "u"
-      - cols: 2
-    columns: 4
 "680": 
   layout: 
     fields: 
@@ -346,7 +303,5 @@
     - - "a"
       - type: institution
         editor_partial: subfield_secondary
-      - cols: 4
-    columns: 4
 
 

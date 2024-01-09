@@ -39,6 +39,7 @@ groups:
     - "700"
     all_tag_templates:
       "856": marc_show/show_link
+      "700": marc_show/show_person
   control: 
     all_tags: 
     - "000"
