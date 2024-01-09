@@ -12,7 +12,27 @@ function marc_editor_set_dirty() {
 	//$("<span>*</span>").insertAfter($("#page_title"));
 	$("#page_title").append("*");
 }
-	
+
+function marc_editor_update_group_toolbar(event, ui) {
+	// We only care about material groups here
+	if (!ui.item.hasClass("inner_group_dt"))
+		return;
+
+	var parent = ui.item.parents(".toplevel_group_dl");
+	var group_list = parent.children(".inner_group_dt")
+
+
+	group_list.each( (index, element) => {
+		var button = $(element).find('[data-group-button="remove"]')
+
+		if (index == 0) {
+			button.hide();
+		} else {
+			button.show();
+		}
+	});
+}
+
 function marc_editor_init_tags( id ) {
 
   marc_editor_show_last_tab();
@@ -24,7 +44,8 @@ function marc_editor_init_tags( id ) {
 	window.onunload = marc_editor_cleanp;
 	
 	$(".sortable").sortable({
-		handle: ".sortable-button"
+		handle: ".sortable-button",
+		update: function( event, ui ) {marc_editor_update_group_toolbar(event, ui)}
 	});
 
 	marc_editor_form_changed = false;
