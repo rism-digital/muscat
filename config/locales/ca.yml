@@ -373,6 +373,7 @@ ca:
   add_institution: "Vincula-hi una institució"
   add_source: "Vincula-hi una font"
   add_person: "Vincula-hi una persona"
+  add_holding: "Vincula-hi una Holding"
   archive_unarchive: "Arxiva / Desarxiva"
   archive: "Arxiva"
   unarchive: "Desarxiva"

@@ -370,6 +370,7 @@ pt:
   add_institution: "Vincular instituição"
   add_source: "Vincular fonte"
   add_person: "Vincular Pessoa"
+  add_holding: "Vincular Holding"
   archive_unarchive: "Arquivar / desarquivar"
   archive: "Arquivar"
   unarchive: "Desarquivar"

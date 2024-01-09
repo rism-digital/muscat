@@ -378,6 +378,7 @@ it:
   add_person: "Collega istituzione"
   add_source: "Collega fonte"
   add_person: "Collega persona"
+  add_holding: "Collega Esemplare"
   archive_unarchive: "Archivia / disarchivia"
   archive: "Archivia"
   unarchive: "Disarchivia"
