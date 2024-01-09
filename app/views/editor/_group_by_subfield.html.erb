@@ -9,9 +9,8 @@
 	<dt class="inner_group_dt">
 		<div class="panel">
 			<div style="float:right; padding-top:1.5px" class="abuttonset abuttonset-multi">
-				<% if index > 0 %>
-					<a class="abutton ui-state-default marc_editor_button_left abutton-icon-solo ui-corner-all" href="#" data-group-button="remove" title="Remove"><span class="ui-icon ui-icon-trash"></span>_</a>
-				<% end %>
+				<% btn_show = index == 0 ? 'style="display: none;"'.html_safe : '' %>
+				<a <%=btn_show%> class="abutton ui-state-default marc_editor_button_left abutton-icon-solo ui-corner-all" href="#" data-group-button="remove" title="Remove"><span class="ui-icon ui-icon-trash"></span>_</a>
 				<a style="margin-left: 4px !important;" class="abutton ui-state-default marc_editor_button_left abutton-icon-solo ui-corner-all sortable-button" href="#" title="Move"><span class="ui-icon ui-icon-arrow-4-diag"></span>_</a>
 			</div>
 
