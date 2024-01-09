@@ -10,15 +10,7 @@ ActiveAdmin.register Holding do
   breadcrumb do
     active_admin_muscat_breadcrumb
   end
-    
-  action_item :view, only: :show, if: proc{ is_selection_mode? } do
-    active_admin_muscat_select_link( person )
-  end
-
-  action_item :view, only: [:index, :show], if: proc{ is_selection_mode? } do
-    active_admin_muscat_cancel_link
-  end
-
+  
   # See permitted parameters documentation:
   # https://github.com/gregbell/active_admin/blob/master/docs/2-resource-customization.md#setting-up-strong-parameters
   #
@@ -196,8 +188,8 @@ ActiveAdmin.register Holding do
   index :download_links => false do
     selectable_column if !is_selection_mode?
     column (I18n.t :filter_id), :id    
-    column (I18n.t :filter_lib_siglum), :lib_siglum
-    active_admin_muscat_actions( self )
+    column (I18n.t :name) {|h| h.formatted_title}
+    active_admin_muscat_actions( self, false ) # Hide the "view" button
   end
   
   ##########
