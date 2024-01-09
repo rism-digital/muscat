@@ -374,6 +374,7 @@ en:
   add_institution: "Link Institution"
   add_source: "Link Source"
   add_person: "Link Person"
+  add_holding: "Link Holding"
   archive_unarchive: "Archive / un-archive"
   archive: "Archive"
   unarchive: "Un-archive"

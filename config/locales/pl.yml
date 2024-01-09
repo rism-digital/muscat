@@ -375,6 +375,7 @@ pl:
   add_institution: Powiąż instytucję
   add_source: Powiąż źródło
   add_person: Powiąż osobę
+  add_holding: "Powiąż holding"
   archive_unarchive: Zarchiwizuj / cofnij archiwizację
   archive: Zarchiwizuj
   unarchive: Cofnij archiwizację

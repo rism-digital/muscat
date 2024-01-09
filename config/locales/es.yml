@@ -375,6 +375,7 @@ es:
   add_institution: "Vincular institución"
   add_source: "Vincular fuente"
   add_person: "Vincular persona"
+  add_holding: "Vincular Holding"
   archive_unarchive: "Archivar / desarchivar"
   archive: "Archivar"
   unarchive: "Desarchivar"
