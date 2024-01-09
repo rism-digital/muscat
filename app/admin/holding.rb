@@ -23,15 +23,7 @@ ActiveAdmin.register Holding do
   # https://github.com/gregbell/active_admin/blob/master/docs/2-resource-customization.md#setting-up-strong-parameters
   #
   # temporarily allow all parameters
-  controller do
-        
-    def format_holding( holding )
-      return "#{I18n.t(:edit)} #{holding.lib_siglum} [#{holding.id}]" if !holding.source
-      return "#{I18n.t(:edit)} #{holding.lib_siglum} [#{holding.id}] in (#{holding.source.std_title} [#{holding.source.id}])"if !holding.source.composer || holding.source.composer.empty?
-      return "#{I18n.t(:edit)} #{holding.lib_siglum} [#{holding.id}] in (#{holding.source.composer} [#{holding.source.id}])" if !holding.source.std_title || holding.source.std_title.empty?
-      return "#{I18n.t(:edit)} #{holding.lib_siglum} [#{holding.id}] in (#{holding.source.composer} - #{holding.source.std_title} [#{holding.source.id}])"
-    end
-        
+  controller do        
     after_destroy :check_model_errors
     before_create do |item|
       item.user = current_user
@@ -59,7 +51,7 @@ ActiveAdmin.register Holding do
       @show_history = true if params[:show_history]
       @editor_profile = EditorConfiguration.get_show_layout @item
       @editor_validation = EditorValidation.get_default_validation(@item)
-      @page_title = format_holding(@item)
+      @page_title = "#{I18n.t(:edit)} #{@item.formatted_title}"
       
       if cannot?(:edit, @item)
         redirect_to admin_holding_path(@item), :flash => { :error => I18n.t(:"active_admin.access_denied.message") }
