@@ -1,0 +1,8 @@
+<tr class="row row-description">
+    <th><%= I18n.t :filter_description%> </th>
+    <td><%= obj.description%> </td>
+</tr>
+<tr class="row row-image">
+    <th><%=I18n.t :filter_image%></th>
+    <td><%=link_to(image_tag(obj.attachment.url(:medium)), admin_digital_object_path(obj))%></td>
+</tr>

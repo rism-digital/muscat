@@ -32,6 +32,11 @@
 				
 <%- end -%>
 
+<!-- if we are rendering the holdings box via ajax, we can render the DOs in the same box -->
+<% if holdings_resolved && @item.digital_objects.images.size > 0 %>
+	<%= render "admin/digital_objects/digital_objects_embedded_panel" %>
+<% end %>
+
 <% if @item.class == Source && @item.holdings.count > 0 %>
 	<%if opac_resolved %>
 		<%= render :partial => "holdings/show_opac_holdings" %>
