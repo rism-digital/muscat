@@ -530,6 +530,7 @@ en:
   filter_series_items: "Series items"
   filter_siglum: "Siglum"
   filter_source: "Source"
+  filter_source_id: "Source id"
   filter_sources: "Sources"
   filter_source_type: "Source type"
   filter_source_content_type: "Content type"

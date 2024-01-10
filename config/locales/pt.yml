@@ -525,6 +525,7 @@ pt:
   filter_series_items: "Series items"
   filter_siglum: "Sigla"
   filter_source: "Fonte"
+  filter_source_id: "Id de la fonte"
   filter_sources: "Fontes"
   filter_source_type: "Tipo de fonte"
   filter_source_content_type: "Tipo de conteúdo"

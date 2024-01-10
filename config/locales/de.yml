@@ -527,6 +527,7 @@ de:
   filter_series_items: "Zugehörige Einträge"
   filter_siglum: "Sigel"
   filter_source: "Quelle"
+  filter_source_id: "Quelle id"
   filter_sources: "Quellen"
   filter_source_type: "Quellentyp"
   filter_source_content_type: "Inhaltstyp"

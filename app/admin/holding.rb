@@ -161,6 +161,8 @@ ActiveAdmin.register Holding do
   
   # Solr search all fields: "_equal"
   filter :lib_siglum_equals, :label => proc {I18n.t(:any_field_contains)}, :as => :string
+  filter :source_id_contains, :label => proc{I18n.t(:filter_source_id)}, :as => :string
+
   
   # This filter passes the value to the with() function in seach
   # see config/initializers/ransack.rb
