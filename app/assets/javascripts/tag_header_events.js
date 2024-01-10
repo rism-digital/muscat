@@ -23,8 +23,18 @@ used for _tag_header partial
 	
 	function tag_header_toggle(elem) {
 		var tag_container = elem.parents(".tag_container");
+		// It could be a group. We use the group_container class there
+		// to avoid clashes with the tag containter, but is works in the same way
+		if (tag_container.length < 1) {
+			tag_container = elem.parents(".group_container_collapsable");
+		}
 		var collapsable = tag_container.children(".tag_content_collapsable");
 		
+		// The same as above, try to get the group tag
+		if (collapsable.length < 1) {
+			collapsable = tag_container.children(".group_content_collapsable");
+		}
+
 		// toggle
 		collapsable.slideToggle(0);
 	

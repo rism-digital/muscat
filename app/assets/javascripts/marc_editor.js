@@ -26,9 +26,9 @@ function marc_editor_update_group_toolbar(event, ui) {
 		var button = $(element).find('[data-group-button="remove"]')
 
 		if (index == 0) {
-			button.hide();
+			button.fadeOut();
 		} else {
-			button.show();
+			button.fadeIn();
 		}
 	});
 }
