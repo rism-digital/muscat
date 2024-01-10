@@ -529,6 +529,7 @@ fr:
   filter_series_items: "Eléments de la série"
   filter_siglum: "Sigle"
   filter_source: "Source"
+  filter_source_id: "Id de la source"
   filter_sources: "Sources"
   filter_source_type: "Type de source"
   filter_source_content_type: "Type de contenu"

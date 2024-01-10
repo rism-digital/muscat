@@ -529,6 +529,7 @@ pl:
   filter_series_items: Pozycje seryjne
   filter_siglum: Siglum
   filter_source: Źródło
+  filter_source_id: "Id źródła"
   filter_sources: Źródła
   filter_source_type: Rodzaj źródła
   filter_source_content_type: "typ zawartości"

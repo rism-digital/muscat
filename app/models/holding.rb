@@ -228,7 +228,7 @@ class Holding < ApplicationRecord
 
   searchable :auto_index => false do |sunspot_dsl|
     sunspot_dsl.integer :id
-    sunspot_dsl.integer :source_id do
+    sunspot_dsl.text :source_id do
       source.id
     end
     sunspot_dsl.string :lib_siglum_order do

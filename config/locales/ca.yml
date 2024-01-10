@@ -530,6 +530,7 @@ ca:
   filter_series_items: "Element de la sèrie"
   filter_siglum: "Sigla"
   filter_source: "Font"
+  filter_source_id: "Id de la font"
   filter_sources: "Fonts"
   filter_source_type: "Tipus de font"
   filter_source_content_type: "Tipus de contingut"

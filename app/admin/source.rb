@@ -274,7 +274,7 @@ ActiveAdmin.register Source do
   
   filter :"852a_facet_contains", :label => proc{I18n.t(:library_sigla_contains)}, :as => :string, if: proc { !is_selection_mode? }
   # see See lib/active_admin_record_type_filter.rb
-  # The same as above, but when the lib siglum is forced and cannot be changes
+  # The same as above, but when the lib siglum is forced and cannot be changed
   filter :lib_siglum_with_integer,
     if: proc { is_selection_mode? == true && params.include?(:q) && params[:q].include?(:lib_siglum_with_integer)}, :as => :lib_siglum
   
