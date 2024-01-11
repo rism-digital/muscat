@@ -1,5 +1,5 @@
 ActiveAdmin.register User do
-  menu :parent => "admin_menu", :label => proc {I18n.t(:menu_users)}, :if => proc{ (can? :manage, User) || current_user.has_role?(:editor)}
+  menu :parent => "admin_menu", :label => proc {I18n.t(:menu_users)}, :if => proc{ (can? :read, User) || current_user.has_role?(:editor)}
   
   permit_params :preference_wf_stage, :email, :password, :password_confirmation, 
                 :username, :name, :notifications, :notification_type, :notification_email, 
@@ -152,7 +152,7 @@ ActiveAdmin.register User do
   end
 =end
 
-  sidebar :actions, :only => [:edit, :new, :update] do
+  sidebar :actions, :only => [:edit, :new, :update, :create] do
     render :partial => "activeadmin/section_sidebar_edit", :locals => { :item => user }
   end
 

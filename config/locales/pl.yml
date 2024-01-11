@@ -53,6 +53,7 @@ pl:
       sections: Sekcje i działania
       actions: Działania
       toc: Spis zawartości
+      help: Pomoc
     pagination:
       empty: Nie znaleziono %{model}
       one: Wyświetlany <b>1</b> %{model}
@@ -288,12 +289,12 @@ pl:
   
   ### VARIOUS ELEMENTS
   recent_changes: Ostatnie modyfikacje
-  any_field_contains: Dowolne pole zawiera …
-  title_contains: Tytuł dyplomatyczny zawiera …
-  std_title_contains: Znormalizowany tytuł zawiera …
-  composer_contains: Kryterium kompozytora zawiera …
-  library_sigla_contains: Siglum zawiera …
-  internal_note_contains: Notatka wewnętrzna zawiera …
+  any_field_contains: Dowolne pole
+  title_contains: Tytuł dyplomatyczny
+  std_title_contains: Znormalizowany tytuł
+  composer_contains: Kryterium kompozytora
+  library_sigla_contains: Siglum
+  internal_note_contains: Notatka wewnętrzna
   is_in_folder: Jest w folderze …
   workgroups: Grupy robocze
   roles: Role
@@ -373,13 +374,17 @@ pl:
   add_institution: Powiąż instytucję
   add_source: Powiąż źródło
   add_person: Powiąż osobę
+  add_holding: "Powiąż holding"
   archive_unarchive: Zarchiwizuj / cofnij archiwizację
   archive: Zarchiwizuj
   unarchive: Cofnij archiwizację
   export_folder: Wyeksportuj folder jako MARCXML
   export_folder_csv: Wyeksportuj folder jako CSV
+  export_folder_raw: Wyeksportuj folder jako Muscat MARC
   validate_folder: Zatwierdź pozycje
-
+  choose_folder: "(PLEASE CHOOSE ONE)"
+  add_item_to_folder: "ADD TO FOLDER"
+  remove_item_from_folder: "DELETE FROM FOLDER"
   
   # Editor sidebar
   show_all_groups: Pokaż wszystkie sekcje
@@ -426,13 +431,13 @@ pl:
     validation_started: "Na adres %{e-mail} zostanie wysłana wiadomość z informacją o zatwierdzeniu (Validation job id: %{job})."
     folder_not_source: Można zatwierdzać tylko foldery zawierające źródła.
     expires: "Wygasa"
-    resetted: "Data wygaśnięcia folderu teraz to %{data}"
+    resetted: "Data wygaśnięcia folderu teraz to %{date}"
     reset_expiration: "Resetuj datę wygaśnięcia"
     delete_now: "Następujące foldery zostały usunięte:"
-    tomorrow: "Następujące foldery zostaną usunięte jutro %{data}"
-    one_week: "Następujące foldery zostaną usunięte za tydzień w dniu %{data}"
-    two_weeks: "Następujące foldery zostaną usunięte za dwa tygodnie w dniu %{data}"
-    one_month: "Następujące foldery zostaną usunięte w ciągu jednego miesiąca w dniu %{data}"
+    tomorrow: "Następujące foldery zostaną usunięte jutro %{date}"
+    one_week: "Następujące foldery zostaną usunięte za tydzień w dniu %{date}"
+    two_weeks: "Następujące foldery zostaną usunięte za dwa tygodnie w dniu %{date}"
+    one_month: "Następujące foldery zostaną usunięte w ciągu jednego miesiąca w dniu %{date}"
     make_catalogue: "Oznacz pozycje jako katalogi robocze"
     
   ### Digital objects
@@ -523,6 +528,7 @@ pl:
   filter_series_items: Pozycje seryjne
   filter_siglum: Siglum
   filter_source: Źródło
+  filter_source_id: "Id źródła"
   filter_sources: Źródła
   filter_source_type: Rodzaj źródła
   filter_source_content_type: "typ zawartości"
@@ -864,27 +870,3 @@ pl:
   blacklight_advanced_search:
     form:
       start_over: Zacznij od nowa
-      
- 
-######################################################################################################
-# Record types, English only
-      
-  record_types_codes:
-    "0": UNK
-    "1": COL
-    "2": MSR
-    "3": SUB
-    "4": LSR
-    "5": LED
-    "6": TSR
-    "7": TED
-    "8": EDT
-    "9": LEC
-    "10": TEC
-    "11": CMP
-    
-  status_codes:
-    published: PUB
-    inprogress: UNP
-    deprecated: DEP
-

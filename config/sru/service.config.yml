@@ -107,6 +107,9 @@ index:
   rism.librarySiglum:
     solr: siglum_order
     type: s
+  rism.libSiglum:
+    solr: lib_siglum_order
+    type: s
   rism.libraryCountry:
     solr: 043c_filter
     type: text

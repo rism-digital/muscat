@@ -1,5 +1,7 @@
 require 'rails_helper'
 
+Kernel::silence_warnings { RISM::ANONYMOUS_METHODS = :database_authenticatable }
+
 RSpec.describe "Sign in", type: :feature do
 
   describe "whith only database_authenticatable" do
@@ -15,7 +17,7 @@ RSpec.describe "Sign in", type: :feature do
       expect(page).to have_content("Muscat Login")
 
       within ".inputs" do
-        fill_in "user[email]", with: editor.email
+        fill_in "user[login]", with: editor.email
         fill_in "user[password]", with: password
       end
       within ".actions" do

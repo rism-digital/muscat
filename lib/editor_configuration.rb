@@ -139,7 +139,7 @@ class EditorConfiguration
       return label
     end
     # if nothing found
-    return "[#{id} sublabel: #{sub_id} unspecified]" 
+    return "[#{id} sublabel: #{sub_id} label_unspecified]" 
   end
   
   # Returns if this label has a sublabel
@@ -184,7 +184,7 @@ class EditorConfiguration
     else
       # This is the case when a key is not found int he
       # map file, and no translation lookup is possible
-      return "[#{id} unspecified]"
+      return "[#{id} label_unspecified]"
     end
   end
   

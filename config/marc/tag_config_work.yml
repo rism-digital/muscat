@@ -423,4 +423,12 @@
         :browse_helper: application_helper_link_http
     - - z
       - :occurrences: "*"
-
+  "981":
+    :master: ""
+    :indicator: "##"
+    :occurrences: "*"
+    :fields:
+    - - "0"
+      - :occurrences: "1"
+    - - d
+      - :occurrences: "1"

@@ -53,6 +53,7 @@ pt:
       sections: "Seções e Ações"
       actions: "Ações"
       toc: "Tabela de Conteúdo"
+      help: "Ajuda"
     pagination:
       empty: "Nenhum(a) %{model} encontrado(a)"
       one: "Exibindo <b>1</b> %{model}"
@@ -284,12 +285,12 @@ pt:
   
   ### VARIOUS ELEMENTS
   recent_changes: "Últimas modificações"
-  any_field_contains: "Qualquer campo contém"
-  title_contains: "Título diplomático contém"
-  std_title_contains: "Título uniforme contém"
-  composer_contains: "Compositor contém"
-  library_sigla_contains: "Sigla contém"
-  internal_note_contains: "Nota interna contém"
+  any_field_contains: "Qualquer campo"
+  title_contains: "Título diplomático"
+  std_title_contains: "Título uniforme"
+  composer_contains: "Compositor"
+  library_sigla_contains: "Sigla"
+  internal_note_contains: "Nota interna"
   is_in_folder: "Está na pasta"
   workgroups: "Grupos de trabalho"
   roles: "Papéis"
@@ -369,13 +370,18 @@ pt:
   add_institution: "Vincular instituição"
   add_source: "Vincular fonte"
   add_person: "Vincular Pessoa"
+  add_holding: "Vincular Holding"
   archive_unarchive: "Arquivar / desarquivar"
   archive: "Arquivar"
   unarchive: "Desarquivar"
   export_folder: "Exportar a pasta em MARCXML"
   export_folder_csv: "Exportar a pasta em CSV"
+  export_folder_raw: "Exportar a pasta em Muscat MARC"
   validate_folder: "Validar pasta"
-  
+  choose_folder: "(PLEASE CHOOSE ONE)"
+  add_item_to_folder: "ADD TO FOLDER"
+  remove_item_from_folder: "DELETE FROM FOLDER"
+
   # Editor sidebar
   show_all_groups: "Mostrar todas as seções"
   show_preview: "Mostrar previsualização"
@@ -421,14 +427,15 @@ pt:
     validação_iniciada: "Um e-mail será enviado para %{email} com a validação terminada (Validação id do trabalho: %{job})"
     folder_not_source: "Apenas as pastas contendo Fontes podem ser validadas"
     expires: "Expira em"
-    resetted: "Data de expiração da pasta agora é %{data}"
+    resetted: "Data de expiração da pasta agora é %{date}"
     reset_expiration: "Repor data de expiração"
     delete_now: "As seguintes pastas foram eliminadas:"
-    tomorrow: "As seguintes pastas serão eliminadas amanhã %{data}"
-    one_week: "As seguintes pastas serão apagadas dentro de uma semana em %{data}"
-    two_weeks: "As seguintes pastas serão apagadas dentro de duas semanas em %{data}"
-    one_month: "As seguintes pastas serão apagadas dentro de um mês em %{data}"
+    tomorrow: "As seguintes pastas serão eliminadas amanhã %{date}"
+    one_week: "As seguintes pastas serão apagadas dentro de uma semana em %{date}"
+    two_weeks: "As seguintes pastas serão apagadas dentro de duas semanas em %{date}"
+    one_month: "As seguintes pastas serão apagadas dentro de um mês em %{date}"
     make_catalogue: "Marcar artigos como catálogos de obras"
+    expiring_folders: "Your Muscat folders will expire soon"
 
   ### Digital objects
   digital_objects: "Objetos Digitais"
@@ -518,6 +525,7 @@ pt:
   filter_series_items: "Series items"
   filter_siglum: "Sigla"
   filter_source: "Fonte"
+  filter_source_id: "Id de la fonte"
   filter_sources: "Fontes"
   filter_source_type: "Tipo de fonte"
   filter_source_content_type: "Tipo de conteúdo"
@@ -849,25 +857,3 @@ pt:
     application_name: 'Muscat'
     header_links:
       logout: 'Logout'
-      
- 
-######################################################################################################
-# Record types, English only
-      
-  record_types_codes:
-    "0": "UNK"
-    "1": "COL"
-    "2": "MSR"
-    "3": "SUB"
-    "4": "LSR"
-    "5": "LEC"
-    "6": "TSR"
-    "7": "TEC"
-    "8": "EDT"
-    "11": "CMP"
-    
-  status_codes:
-    published: "PUB"
-    inprogress: "UNP"
-    deprecated: "DEP"
-

@@ -53,6 +53,7 @@ ca:
       sections: "Seccions i accions"
       actions: "Accions"
       toc: "Taula de continguts"
+      help: "Ajuda"
     pagination:
       empty: "No se n'ha trobat cap"
       one: "Mostra <b>1</b> %{model}"
@@ -287,12 +288,12 @@ ca:
 
   ### VARIOUS ELEMENTS
   recent_changes: "Modifications recents"
-  any_field_contains: "Conté a qualsevol camp"
-  title_contains: "Conté al títol diplomàtic"
-  std_title_contains: "Conté al títol uniforme"
-  composer_contains: "Conté com a compositor"
-  library_sigla_contains: "Conté a la sigla"
-  internal_note_contains: "Conté en una nota interna"
+  any_field_contains: "Qualsevol camp"
+  title_contains: "Títol diplomàtic"
+  std_title_contains: "Títol uniforme"
+  composer_contains: "Compositor"
+  library_sigla_contains: "Sigla"
+  internal_note_contains: "Nota interna"
   is_in_folder: "És a la carpeta"
   workgroups: "Grups de treball"
   roles: "Rols"
@@ -372,13 +373,17 @@ ca:
   add_institution: "Vincula-hi una institució"
   add_source: "Vincula-hi una font"
   add_person: "Vincula-hi una persona"
+  add_holding: "Vincula-hi una Holding"
   archive_unarchive: "Arxiva / Desarxiva"
   archive: "Arxiva"
   unarchive: "Desarxiva"
   export_folder: "Exporta la carpeta en format MARCXML"
   export_folder_csv: "Exporta la carpeta en format CSV"
+  export_folder_raw: "Exporta la carpeta en format Muscat MARC"
   validate_folder: "Valida els elements"
-
+  choose_folder: "(Trieu-ne una)"
+  add_item_to_folder: "Afegiu-lo a la carpeta"
+  remove_item_from_folder: "Elimineu-lo de la carpeta"
 
   # Editor sidebar
   show_all_groups: "Mostra totes les seccions"
@@ -524,6 +529,7 @@ ca:
   filter_series_items: "Element de la sèrie"
   filter_siglum: "Sigla"
   filter_source: "Font"
+  filter_source_id: "Id de la font"
   filter_sources: "Fonts"
   filter_source_type: "Tipus de font"
   filter_source_content_type: "Tipus de contingut"
@@ -866,26 +872,3 @@ ca:
   blacklight_advanced_search:
     form:
       start_over: "Torna a l'inici"
-
-
-######################################################################################################
-# Record types, English only
-
-  record_types_codes:
-    "0": "UNK"
-    "1": "COL"
-    "2": "MSR"
-    "3": "SUB"
-    "4": "LSR"
-    "5": "LED"
-    "6": "TSR"
-    "7": "TED"
-    "8": "EDT"
-    "9": "LEC"
-    "10": "TEC"
-    "11": "CMP"
-
-  status_codes:
-    published: "PUB"
-    inprogress: "UNP"
-    deprecated: "DEP"

@@ -457,12 +457,9 @@
   layout: 
     fields:
     - - a
-      - cols: 2
-        editor_partial: subfield_select_codes
+      - editor_partial: subfield_select_codes
         select_label: "Type"
     - - b
-      - cols: 2
-    columns: 2
   tag_params:
     codes:
       - "needs-revision" 
@@ -523,3 +520,13 @@
     - - "a"
       - type: liturgical_feast
         editor_partial: subfield_secondary
+"981":
+  tag_params:
+    read_only: true
+    no_delete: true
+  layout:
+    fields:
+    - - "0"
+      - read_only: true
+    - - "d"
+      - read_only: true

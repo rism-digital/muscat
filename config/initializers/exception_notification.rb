@@ -20,7 +20,7 @@ ExceptionNotification.configure do |config|
   # Email notifier sends notifications by email.
 #  config.add_notifier :email, {
 #    :email_prefix         => "[ERROR] ",
-#    :sender_address       => "Notifier <norely@muscat.rism.info>",
+#    :sender_address       => "Notifier <noreply@muscat.rism.info>",
 #    :exception_recipients => [RISM::NOTIFICATION_EMAILS]
 #  }
 

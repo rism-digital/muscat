@@ -47,7 +47,8 @@ class Ability
       can :read, ActiveAdmin::Page, :name => "Statistics"
       can :read, ActiveAdmin::Page, :name => "Compare Versions"
 
-      can [:read, :update], User, :id => user.id
+      can [:read], User
+      can [:update], User, :id => user.id
     
     ##############
     # Cataloguer #

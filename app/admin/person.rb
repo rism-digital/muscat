@@ -322,6 +322,10 @@ ActiveAdmin.register Person do
     render :partial => "people/library_pie"
   end
 
+  sidebar :folders, :only => :show do
+    render :partial => "activeadmin/section_sidebar_folder_actions", :locals => { :item => person }
+  end
+
   ##########
   ## Edit ##
   ##########

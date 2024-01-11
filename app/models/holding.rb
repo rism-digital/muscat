@@ -1,5 +1,6 @@
 class Holding < ApplicationRecord
   include ForeignLinks
+  include CommentsCleanup
   resourcify
 
   # class variables for storing the user name and the event from the controller
@@ -9,6 +10,9 @@ class Holding < ApplicationRecord
   attr_accessor :last_event_save
   
   has_paper_trail :on => [:update, :destroy], :only => [:marc_source], :if => Proc.new { |t| VersionChecker.save_version?(t) }
+
+  has_many :digital_object_links, :as => :object_link, :dependent => :delete_all
+  has_many :digital_objects, through: :digital_object_links, foreign_key: "object_link_id"
 
   has_and_belongs_to_many :institutions, join_table: "holdings_to_institutions"
   belongs_to :source
@@ -28,7 +32,7 @@ class Holding < ApplicationRecord
   after_create :scaffold_marc, :fix_ids
   after_save :update_links, :update_774, :reindex
   after_initialize :after_initialize
-  before_destroy :update_links
+  before_destroy :update_links, :cleanup_comments
   
   
   attr_accessor :suppress_reindex_trigger
@@ -224,6 +228,9 @@ class Holding < ApplicationRecord
 
   searchable :auto_index => false do |sunspot_dsl|
     sunspot_dsl.integer :id
+    sunspot_dsl.text :source_id do
+      source.id
+    end
     sunspot_dsl.string :lib_siglum_order do
       lib_siglum
     end
@@ -255,6 +262,13 @@ class Holding < ApplicationRecord
 
   def get_shelfmark
     self.marc.get_shelf_mark
+  end
+
+  def formatted_title
+    return "#{lib_siglum} [#{id}]" if !source
+    return "#{lib_siglum} [#{id}] in (#{source.std_title} [#{source.id}])"if !source.composer || source.composer.empty?
+    return "#{lib_siglum} [#{id}] in (#{source.composer} [#{source.id}])" if !source.std_title || source.std_title.empty?
+    return "#{lib_siglum} [#{id}] in (#{source.composer} - #{source.std_title} [#{source.id}])"
   end
 
 end

@@ -332,6 +332,13 @@
     i:
       label: records.type_relationship
   label: records.related_work
+'981':
+  fields:
+    "0":
+      label: records.original_record
+    d:
+      label: records.date
+  label: records.duplicated_from
 9t:
   label: records.mode_9t
 9tt:

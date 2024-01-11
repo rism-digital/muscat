@@ -53,6 +53,7 @@ de:
       sections: "Blöcke und Aktionen"
       actions: "Aktionen"
       toc: "Inhalt"
+      help: "Hilfe"
     pagination:
       empty: "Keine %{model} gefunden"
       one: "Zeige <b>1</b> %{model}"
@@ -287,12 +288,12 @@ de:
   
   ### VARIOUS ELEMENTS
   recent_changes: "Letzte Änderungen"
-  any_field_contains: "Irgendein Feld enthält"
-  title_contains: "Dipl. Titel enthält"
-  std_title_contains: "Einordnungstitel enthält"
-  composer_contains: "Komponist enthält"
-  library_sigla_contains: "Sigel enthält"
-  internal_note_contains: "Interner Hinweis enthält"
+  any_field_contains: "Irgendein Feld"
+  title_contains: "Dipl. Titel"
+  std_title_contains: "Einordnungstitel"
+  composer_contains: "Komponist"
+  library_sigla_contains: "Sigel"
+  internal_note_contains: "Interner Hinweis"
   is_in_folder: "Ist im Ordner"
   workgroups: "Benutzergruppen"
   roles: "Rollen"
@@ -372,13 +373,17 @@ de:
   add_institution: "Institution verlinken"
   add_source: "Quelle verlinken"
   add_person: "Person verlinken"
+  add_holding: "Holding verlinken"
   archive_unarchive: "Archivieren / Dearchivieren"
   archive: "Archivieren"
   unarchive: "Dearchivieren"
   export_folder: "Ordner als MARCXML exportieren"
   export_folder_csv: "Ordner als CSV exportieren"
+  export_folder_raw: "Ordner als Muscat MARC exportieren"
   validate_folder: "Ordner validieren"
-
+  choose_folder: "(PLEASE CHOOSE ONE)"
+  add_item_to_folder: "ADD TO FOLDER"
+  remove_item_from_folder: "DELETE FROM FOLDER"
   
   # Editor sidebar
   show_all_groups: "Alle Blöcke anzeigen"
@@ -522,6 +527,7 @@ de:
   filter_series_items: "Zugehörige Einträge"
   filter_siglum: "Sigel"
   filter_source: "Quelle"
+  filter_source_id: "Quelle id"
   filter_sources: "Quellen"
   filter_source_type: "Quellentyp"
   filter_source_content_type: "Inhaltstyp"

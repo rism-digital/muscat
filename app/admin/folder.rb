@@ -126,6 +126,8 @@ ActiveAdmin.register Folder do
       return
     end
 
+    model = f.folder_type.constantize
+
     if !f.folder_items || f.folder_items.empty?
       redirect_to resource_path(params[:id]), :flash => {error:I18n.t(:folder_empty, scope: :folders)}
       return
@@ -136,9 +138,14 @@ ActiveAdmin.register Folder do
       return
     end
 
-    format = params.include?(:csv) ? :csv : :xml
+    format = :xml 
+    if params.include?(:type)
+      format = :xml if params[:type] == "xml"
+      format = :csv if params[:type] == "csv"
+      format = :raw if params[:type] == "raw"
+    end
 
-    job = Delayed::Job.enqueue(ExportRecordsJob.new(:folder, {id: params[:id], email: current_user.email, format: format}))
+    job = Delayed::Job.enqueue(ExportRecordsJob.new(:folder, {id: params[:id], email: current_user.email, format: format, model: model}))
     redirect_to resource_path(params[:id]), notice: I18n.t(:export_started, scope: :folders, email: current_user.email, job: job.id)
   end 
 
@@ -238,7 +245,13 @@ ActiveAdmin.register Folder do
       
       paginated_collection(fitems.page(params[:src_list_page]).per(10), param_name: 'src_list_page',  download_links: false) do
         table_for(collection) do |cr|
-          column ("Name") {|fitem| fitem.item ? fitem.item.name : "Item Deleted"}
+          column ("Name") do |fitem| 
+            name = "Unconfigured name for this model"
+            name = "Item Deleted" if !fitem.item
+            name = fitem.item.full_name if fitem.item.respond_to? :full_name
+            name = fitem.item.name if fitem.item.respond_to? :name
+            name
+          end
           column ("Created at") {|fitem| fitem.item ? fitem.item.created_at : "n.a."}
           column ("Updated at") {|fitem| fitem.item ? fitem.item.updated_at : "n.a."}
           column ("Id") {|fitem| fitem.item ? fitem.item.id : "n/a, was #{fitem.item_id}"}

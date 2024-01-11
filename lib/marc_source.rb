@@ -378,24 +378,38 @@ class MarcSource < Marc
       leader = base_leader.gsub("XX", "dc")
       generate_subentry_title # Add $a to 774s
     elsif (@record_type == RECORD_TYPES[:edition])
-      leader = base_leader.gsub("XX", "cc")
+      type = "cm"
+      type = "cc" if by_tags("774").count > 0
+      leader = base_leader.gsub("XX", type)
       generate_subentry_title
     elsif @record_type == RECORD_TYPES[:composite_volume]
       leader = base_leader.gsub("XX", 'pc')
     elsif @record_type == RECORD_TYPES[:source]
       type = "dm"
-      type = "dd" if by_tags("773").count > 0
+      type = "da" if by_tags("773").count > 0
       leader = base_leader.gsub("XX", type)
     elsif @record_type == RECORD_TYPES[:edition_content]
-      type = "cm"
-      type = "cd" if by_tags("773").count > 0
-      leader = base_leader.gsub("XX", type)
+      leader = base_leader.gsub("XX", "ca")
     elsif @record_type == RECORD_TYPES[:libretto_source]
-      leader = base_leader.gsub("XX", "tm")
+      type = "tm"
+      type = "ta" if by_tags("773").count > 0
+      leader = base_leader.gsub("XX", type)
     elsif @record_type == RECORD_TYPES[:libretto_edition]
-      leader = base_leader.gsub("XX", "am")
-    elsif @record_type == RECORD_TYPES[:theoretica_source] # we cannot make the distinction between ms and print
-      leader = base_leader.gsub("XX", "pm")
+      type = "am"
+      type = "ac" if by_tags("774").count > 0
+      leader = base_leader.gsub("XX", type)
+    elsif @record_type == RECORD_TYPES[:theoretica_source]
+      type = "tm"
+      type = "ta" if by_tags("773").count > 0
+      leader = base_leader.gsub("XX", type)
+    elsif @record_type == RECORD_TYPES[:theoretica_edition]
+      type = "am"
+      type = "ac" if by_tags("774").count > 0
+      leader = base_leader.gsub("XX", type)
+    elsif @record_type == RECORD_TYPES[:libretto_edition_content]
+      leader = base_leader.gsub("XX", "aa")
+    elsif @record_type == RECORD_TYPES[:theoretica_edition_content]
+      leader = base_leader.gsub("XX", "aa")
     else
       puts "Unknown record type #{@record_type}"
       leader = ""

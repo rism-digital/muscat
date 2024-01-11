@@ -16,6 +16,7 @@ class Institution < ApplicationRecord
   include ForeignLinks
   include MarcIndex
   include AuthorityMerge
+  include CommentsCleanup
   resourcify
   
   # class variables for storing the user name and the event from the controller
@@ -42,7 +43,7 @@ class Institution < ApplicationRecord
   has_and_belongs_to_many :standard_terms, join_table: "institutions_to_standard_terms"
   
   has_and_belongs_to_many :referring_holdings, class_name: "Holding", join_table: "holdings_to_institutions"
-  #has_many :folder_items, as: :item, dependent: :destroy
+  has_many :folder_items, as: :item, dependent: :destroy
   has_many :delayed_jobs, -> { where parent_type: "Institution" }, class_name: 'Delayed::Backend::ActiveRecord::Job', foreign_key: "parent_id"
   has_and_belongs_to_many :workgroups
   belongs_to :user, :foreign_key => "wf_owner"
@@ -70,7 +71,7 @@ class Institution < ApplicationRecord
   
   #include NewIds
   
-  before_destroy :check_dependencies
+  before_destroy :check_dependencies, :cleanup_comments
   
   #before_create :generate_new_id
   after_save :update_links, :reindex
@@ -85,6 +86,7 @@ class Institution < ApplicationRecord
   attr_accessor :suppress_update_workgroups_trigger
 
   alias_attribute :id_for_fulltext, :id
+  alias_attribute :name, :full_name # activeadmin needs the name attribute
 
   enum wf_stage: [ :inprogress, :published, :deleted, :deprecated ]
   enum wf_audit: [ :full, :abbreviated, :retro, :imported ]
@@ -296,5 +298,4 @@ class Institution < ApplicationRecord
     ActiveSupport::Deprecation.warn('Please use referring_holdings from institution')
     referring_holdings
   end
-
 end

@@ -11,6 +11,7 @@
 class LiturgicalFeast < ApplicationRecord
   include ForeignLinks
   include AuthorityMerge
+  include CommentsCleanup
   
   has_and_belongs_to_many(:referring_sources, class_name: "Source", join_table: "sources_to_liturgical_feasts")
   has_and_belongs_to_many(:referring_works, class_name: "Work", join_table: "works_to_liturgical_feasts")
@@ -24,7 +25,7 @@ class LiturgicalFeast < ApplicationRecord
   
   #include NewIds
   
-  before_destroy :check_dependencies
+  before_destroy :check_dependencies, :cleanup_comments
   
   #before_create :generate_new_id
   after_save :reindex
