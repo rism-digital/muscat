@@ -487,9 +487,9 @@ class MarcNode
       cont_sanit = content.to_s.encode(:xml => :text)
       # prefix ids appropriately
       # since we cannot look at the tag configuration, it has to be hard-coded?
-      if (@tag == "0" && @foreign_object) || (@tag == "x" && @foreign_object.class == Institution) || (@tag == "w" && @foreign_object.class == Source) || (@tag == "w" && @foreign_object.class == Publication)
-        # problem: we are missing the _ when multiple words
-        element << "#{@foreign_object.class.to_s.pluralize.downcase}/#{cont_sanit}"
+      #if (@tag == "0" && @foreign_object) || (@tag == "x" && @foreign_object.class == Institution) || (@tag == "w" && @foreign_object.class == Source) || (@tag == "w" && @foreign_object.class == Publication)
+      if @tag == @marc_configuration.get_master(@parent.tag) && @foreign_object
+        element << "#{@foreign_object.class.to_s.pluralize.underscore.downcase}/#{cont_sanit}"
       else
         element << cont_sanit
       end
