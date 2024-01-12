@@ -9,7 +9,10 @@
 	<%= render :partial => "marc/show_diff_wf_stage" %>
 <% end %>
 
-<% layout_config["group_order"].each do |group_name|
+<% if params[:view] == "marc21" %>
+    <pre><%= @item.marc_source.gsub(/=([0-9][0-9][0-9])  /, '\1 ').gsub(/(\$.)/, ' \1 ') %></pre>
+<%else%>
+    <% layout_config["group_order"].each do |group_name|
 	group_config = layout_config["groups"][group_name]
 	group = { 
 		:title => @editor_profile.get_label(group_name), 
@@ -30,7 +33,8 @@
 			:opac => opac_resolved,
 			:holdings => holdings_resolved } %>
 				
-<%- end -%>
+    <%- end -%>
+<%end%>
 
 <% if @item.class == Source && @item.holdings.count > 0 %>
 	<%if opac_resolved %>
