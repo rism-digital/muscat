@@ -136,6 +136,7 @@ class EditorConfiguration
         label = I18n.t(labels_config[id][:fields][sub_id][:label], :locale => :en)  + " [translation missing]"
       end
 
+      label = "#{label} ($#{sub_id})" if edit
       return label
     end
     # if nothing found
