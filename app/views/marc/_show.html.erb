@@ -9,7 +9,7 @@
 	<%= render :partial => "marc/show_diff_wf_stage" %>
 <% end %>
 
-<% if params[:view] == "marc21" %>
+<% if params[:view] == "MARC21" %>
     <pre><%= @item.marc_source.gsub(/=([0-9][0-9][0-9])  /, '\1 ').gsub(/(\$.)/, ' \1 ') %></pre>
 <%else%>
     <% layout_config["group_order"].each do |group_name|

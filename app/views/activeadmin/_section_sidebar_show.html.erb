@@ -150,10 +150,10 @@
 		<%= link_to("Default", send("admin_#{model}_path", item),
 		    :class => "muscat_icon_link muscat_icon_link_preview") %>
 	    <li class="muscat_icon_link">
-		<%= link_to("Marc21", send("admin_#{model}_path", item, {view: "marc21"}),
+		<%= link_to("MARC21", send("admin_#{model}_path", item, {view: "MARC21"}),
 		    :class => "muscat_icon_link muscat_icon_link_marc21") %>
 	    <li class="muscat_icon_link">
-		<%= link_to("MarcXML", send("admin_#{model}_path", "#{@item.id}.xml"),
+		<%= link_to("MARCXML", send("admin_#{model}_path", "#{@item.id}.xml"),
 		    :class => "muscat_icon_link muscat_icon_link_marcxml") %>
 	<%- end %>
 </ul>
