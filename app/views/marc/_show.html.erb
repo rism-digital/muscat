@@ -10,7 +10,9 @@
 <% end %>
 
 <% if params[:view] == "MARC21" %>
-    <pre><%= @item.marc_source.gsub(/=([0-9][0-9][0-9])  /, '\1 ').gsub(/(\$.)/, ' \1 ') %></pre>
+    <div class="marc21">
+	<%= @item.marc_source.gsub(/(=[0-9][0-9][0-9])  /, '<br><span class="marc_tag">\1</span> ').gsub(/(\$.)/, '<span class="marc_subfield">\1</span>').html_safe %>
+    </div>
 <%else%>
     <% layout_config["group_order"].each do |group_name|
 	group_config = layout_config["groups"][group_name]

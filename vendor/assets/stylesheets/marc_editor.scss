@@ -547,6 +547,20 @@ a.warning {
     background: image-url("/images/marc-icons/search_composite.png") no-repeat
   }
 
-  .sortable-button {
+.sortable-button {
     cursor: move;
-  }
+}
+
+.marc21 {
+    font-family: monospace;
+}
+
+.marc_tag {
+    font-weight: bold;
+    color: saddlebrown;
+}
+
+.marc_subfield {
+    font-weight: bold;
+    color: darkgoldenrod;
+}
