@@ -264,6 +264,7 @@ GEM
       mime-types
       mimemagic (~> 0.3.0)
       terrapin (~> 0.6.0)
+    libxml-ruby (5.0.2)
     loofah (2.21.3)
       crass (~> 1.0.2)
       nokogiri (>= 1.12.0)
@@ -503,6 +504,7 @@ DEPENDENCIES
   js_cookie_rails (~> 2.2.0)
   kramdown
   kt-paperclip (~> 6.2.0)
+  libxml-ruby
   mysql2
   needleman_wunsch_aligner (= 1.0.4)
   non-stupid-digest-assets (~> 1.0.9)
@@ -542,4 +544,4 @@ DEPENDENCIES
   whatlanguage
 
 BUNDLED WITH
-   2.2.29
+   2.4.22
