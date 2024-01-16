@@ -14,7 +14,10 @@ class StandardTerm < ApplicationRecord
   include AuthorityMerge
   include CommentsCleanup
 
-  has_and_belongs_to_many(:referring_sources, class_name: "Source", join_table: "sources_to_standard_terms")
+  #has_and_belongs_to_many(:referring_sources, class_name: "Source", join_table: "sources_to_standard_terms")
+  has_many :source_standard_term_relations, class_name: "SourceStandardTermRelation"
+  has_many :referring_sources, through: :source_standard_term_relations, source: :source
+
   has_and_belongs_to_many(:referring_institutions, class_name: "Institution", join_table: "institutions_to_standard_terms")
   has_and_belongs_to_many(:referring_publications, class_name: "Publication", join_table: "publications_to_standard_terms")
   has_and_belongs_to_many(:referring_works, class_name: "Work", join_table: "works_to_standard_terms")

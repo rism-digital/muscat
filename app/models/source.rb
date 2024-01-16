@@ -67,7 +67,11 @@ class Source < ApplicationRecord
   has_many :source_standard_title_relations
   has_many :standard_titles, through: :source_standard_title_relations
 
-  has_and_belongs_to_many :standard_terms, join_table: "sources_to_standard_terms"
+  #has_and_belongs_to_many :standard_terms, join_table: "sources_to_standard_terms"
+  has_many :source_standard_term_relations
+  has_many :standard_terms, through: :source_standard_term_relations
+
+
   has_and_belongs_to_many :publications, join_table: "sources_to_publications"
   has_and_belongs_to_many :liturgical_feasts, join_table: "sources_to_liturgical_feasts"
   has_and_belongs_to_many :places, join_table: "sources_to_places"
