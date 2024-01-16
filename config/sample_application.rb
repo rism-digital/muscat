@@ -160,30 +160,34 @@ end
 
 module Muscat
   class Application < Rails::Application
-    # Settings in config/environments/* take precedence over those
-    # specified here.  Application configuration should go into files
-    # in config/initializers -- all .rb files in that directory are
-    # automatically loaded.
+    # Settings in config/environments/* take precedence over those specified here.
+    # Application configuration should go into files in config/initializers
+    # -- all .rb files in that directory are automatically loaded.
 
-    # Set Time.zone default to the specified zone and make Active
-    # Record auto-convert to this zone.  Run "rake -D time" for a list
-    # of tasks for finding time zone names. Default is UTC.
+    # Set Time.zone default to the specified zone and make Active Record auto-convert to this zone.
+    # Run "rake -D time" for a list of tasks for finding time zone names. Default is UTC.
     # config.time_zone = 'Central Time (US & Canada)'
 
     # Force validation of locales, this also silences the deprecation warning
     config.i18n.enforce_available_locales = true
-
-    # Force a default locale, other than :en
-    # config.i18n.default_locale = :de
-    # The default locale is :en and all translations from
-    # config/locales/*.rb,yml are auto loaded.
+    # The default locale is :en and all translations from config/locales/*.rb,yml are auto loaded.
     # config.i18n.load_path += Dir[Rails.root.join('my', 'locales', '*.{rb,yml}').to_s]
-    config.i18n.load_path += Dir[ (File.join(Rails.root, "config", "locales", 'marc_records', '*.{rb,yml}'))]
-    config.autoload_paths << "#{Rails.root}/lib"
-    config.eager_load_paths << Rails.root.join("lib")
-    config.active_job.queue_adapter = :delayed_job
+    # config.i18n.default_locale = :de
+    config.i18n.load_path += Dir[ (File.join(Rails.root, "config", "locales", 'marc_records', '*.{yml}'))]
+    config.i18n.load_path += Dir[ (File.join(Rails.root, "config", "locales", 'gnd', '*.{yml}'))]
     
+    config.autoload_paths << "#{Rails.root}/lib"
+    config.eager_load_paths << Rails.root.join('lib')
+    config.eager_load_paths << "#{Rails.root}/app/models/relations"
+    
+    #config.autoload_lib(ignore: %w(assets tasks generators))
+
+    config.active_job.queue_adapter = :delayed_job
+
     config.active_record.yaml_column_permitted_classes = [ActiveSupport::HashWithIndifferentAccess, Time, Date, ActiveSupport::TimeWithZone, ActiveSupport::TimeZone]
+    
+    # See what was loaded
+    #Rails.autoloaders.log!
   end
 end
 
