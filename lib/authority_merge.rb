@@ -52,7 +52,7 @@ module AuthorityMerge
       refs << self.send(s)
     end
 
-    refs.flatten.sort.uniq.each do |s|
+    refs.flatten.uniq.each do |s|
       record_type = s.has_attribute?(:record_type) ? s.record_type : nil
       klass = s.marc.class
       affected_tags = s.marc.change_authority_links(self, new_model)
