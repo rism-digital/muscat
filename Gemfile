@@ -179,11 +179,14 @@ gem 'rodf' # write ODS
 gem "roo" # read ODS
 
 gem 'tty-spinner'
+gem 'libxml-ruby'
+
+# For stand-alone installations
+#gem 'passenger'
 
 gem 'listen'
 
 # Uncomment this if you want to test emails in development
 #gem 'mailcatcher'
-
 #gem "string-similarity"
 #gem "rest-client"

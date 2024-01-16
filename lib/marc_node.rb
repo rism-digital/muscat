@@ -440,8 +440,10 @@ class MarcNode
     return out
   end
 
-  # Export to MarcXML
-  def to_xml
+  # Export to MarcXML - return a REXML::Element
+  def to_xml_element
+    element = XML::Node.new('leader')
+
     # skip the $_ (db_id)
     #return "" if tag == "_"
     out = String.new
@@ -449,12 +451,23 @@ class MarcNode
     if @tag =~ /^[\d]{3,3}$/
       if @tag.to_i == 0
         #control tag
-        out += "\t\t<marc:leader>#{content.gsub(/#/," ")}</marc:leader>\n"
+        element.name = "leader"
+        element << content.gsub(/#/," ")
+      elsif @tag.to_i == 1
+        element.name = "controlfield"
+        # id tag - prefix approriately # problem: we are missing the _ when multiple words
+        element["tag"] = @tag
+        element << "#{@model.to_s.pluralize.downcase}/#{content}"
       elsif @tag.to_i < 10
         #control tag
-        out += "\t\t<marc:controlfield tag=\"#{@tag}\">#{content}</marc:controlfield>\n"
+        element.name = "controlfield"
+        # id tag - prefix approriately # problem: we are missing the _ when multiple words
+        element["tag"] = @tag
+        element << content
       else
         #data tag
+        element.name = "datafield"
+        element["tag"] = @tag
         ind0 = " "
         ind1 = " "
         if indicator
@@ -463,17 +476,26 @@ class MarcNode
         end
         ind0 = " " if !ind0
         ind1 = " " if !ind1
-    		out += "\t\t<marc:datafield tag=\"#{@tag}\" ind1=\"#{ind0.gsub(/[#\\]/," ")}\" ind2=\"#{ind1.gsub(/[#\\]/," ")}\">\n"
-        for_every_child_sorted { |child| out += child.to_xml }
-    		out += "\t\t</marc:datafield>\n"
+        element["ind1"] = ind0.gsub(/[#\\]/," ")
+        element["ind2"] = ind1.gsub(/[#\\]/," ")
+        for_every_child_sorted { |child| element << child.to_xml_element }
       end
     else
       #subfield
-      cont_sanit = ERB::Util.html_escape(content)
-      out += "\t\t\t<marc:subfield code=\"#{@tag}\">#{cont_sanit}</marc:subfield>\n"
+      element.name = "subfield"
+      element["code"] = @tag
+      cont_sanit = content.to_s.encode(:xml => :text)
+      # prefix ids appropriately
+      # since we cannot look at the tag configuration, it has to be hard-coded?
+      #if (@tag == "0" && @foreign_object) || (@tag == "x" && @foreign_object.class == Institution) || (@tag == "w" && @foreign_object.class == Source) || (@tag == "w" && @foreign_object.class == Publication)
+      if @tag == @marc_configuration.get_master(@parent.tag) && @foreign_object
+        element << "#{@foreign_object.class.to_s.pluralize.underscore.downcase}/#{cont_sanit}"
+      else
+        element << cont_sanit
+      end
     end
 
-    return out
+    return element
   end
   
   # Export to JSON
