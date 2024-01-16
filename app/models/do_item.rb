@@ -1,2 +1,0 @@
-class DoItem < ApplicationRecord
-end
