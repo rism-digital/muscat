@@ -183,6 +183,10 @@
   fields:
     a:
       label: records.person
+    d:
+      label: records.life_dates
+    '4':
+      label: records.function
   label: records.person
 '710':
   fields:
@@ -336,6 +340,8 @@ XB-IN:
   label: places.india
 XB-IR:
   label: places.iran
+XD-JM:
+  label: places.jamaica
 XB-JP:
   label: places.japan
 XB-KH:

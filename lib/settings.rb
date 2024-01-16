@@ -7,7 +7,7 @@ class Settings < Hash
     if source.is_a? Hash
       update source
     elsif !source.nil?
-      update YAML::load(source)
+      update YAML::load(source, permitted_classes: [ActiveSupport::HashWithIndifferentAccess, Settings])
     end
   end
   

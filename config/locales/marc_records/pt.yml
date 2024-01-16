@@ -95,9 +95,10 @@ pt:
     norwegian: Norueguês
     occitan: Occitano
     oirat: Oirato
+    ojibwa: Ojibwa
     old_church_slavonic: Antigo eslavo eclesiástico
     persian: Persa
-    polish: Polaco
+    polish: Polonês
     portugese: Português
     romani: Romani
     romanian: Romeno
@@ -188,6 +189,7 @@ pt:
     israel: Israel
     italy: Itália
     italy_trentino_alto_adige: 'Itália: Trentino-Alto Adige'
+    jamaica: Jamaica
     japan: Japão
     korea: Coreia, República da
     latvia: Letónia
@@ -328,6 +330,7 @@ pt:
     c_plus_4: C+4
     c_plus_5: C+5
     catalog: Catálogo
+    catalog_contribution: Contribuição do catálogo
     catalog_opus_number: Número de catalogo/Número de Opus
     catalog_works: Catálogo de obras
     cataloging_agency: Agência catalogadora
@@ -426,6 +429,7 @@ pt:
     ds_major: Ré sustenido maior
     ds_minor: Ré sustenido menor
     dubious: Duvidoso
+    duplicated_from: Duplicado de
     e_major: Mi maior
     e_minor: Mi menor
     earlier_heading: Título anterior
@@ -444,6 +448,7 @@ pt:
     event_organizer: Organizador de eventos
     event_place: Local do evento
     excerpts: Excertos
+    exemplar: Exemplar
     exemplars: Materiais
     extent: Extensão
     extent_parts: Extensão das partes
@@ -596,8 +601,10 @@ pt:
     married_with: Casado/a
     material_description: Descrição de material
     material_examined: Material examinado
+    material_group: Grupo de materiais
     material_held: Material existente
     material_not_examined: Material não examinado
+    material_type: Tipo de Material
     media_type: Tipo de mídia
     mensural_clefs: Claves mensurais
     method_of_acquisition: Método de aquisição
@@ -678,6 +685,7 @@ pt:
     order_name: Nome da Ordem
     origin: Origem
     original_cataloging_agency: Agência original de catálogo
+    original_record: Registo original
     other: Outro(a) [oth]
     other_associated_place: Outro local associado
     other_designation: Outra designação
@@ -788,7 +796,6 @@ pt:
     series: Séries
     series_added_entry: Informação secundária sobre título superordenado
     series_statement: Campos de declaração da série
-    material_group: Grupo de materiais
     shelfmark: Código
     shelfmark_olim: Código antiguo (olim)
     short_title: Título abreviado
@@ -975,6 +982,9 @@ pt:
     manuscript: "Manuscrito"
     printed: "Impresso"
     composite: "Volume composto"
+    collection: "Coleção"
+    item: "Item"
+    single_item: "Item individual"
     apply_filters: "Aplicar filtros"
     error_loading_results: "Erro ao carregar os resultados"
     global_collection: "Coleção global"

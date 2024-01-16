@@ -5,6 +5,7 @@ it:
       headline: "Ambito"
       current_filters: "Filtri in uso"
     compare_versions: Compara le versioni
+    gnd_works: Editor per le opere GND
     dashboard: "Dashboard"
     dashboard_welcome:
       welcome: "Benvenuti in Active Admin. Questa è la pagina dashboard di default."
@@ -216,11 +217,11 @@ it:
     edition_content: "Edizione a stampa, in una collezione"
     libretto_source: "Libretto manoscritto"
 
-    libretto_edition: "Elemento di un libretto stampato"
+    libretto_edition: "Libretto stampato"
     libretto_edition_content: "Libretto a stampa, in una collezione"
 
     theoretica_source: "Manoscritto di teoria musicale"
-    theoretica_edition: "Elemento di un edizione di teoria musicale"
+    theoretica_edition: "Edizione di teoria musicale"
     theoretica_edition_content: "Edizione di teoria musicale, in una collezione"
     edition: "Edizione musicale, scheda madre della collezione o scheda individuale"
     
@@ -293,12 +294,12 @@ it:
   
   ### VARIOUS ELEMENTS
   recent_changes: "Ultime modifiche"
-  any_field_contains: "Qualsiasi campo contiene"
-  title_contains: "Titolo diplomatico contiene"
-  std_title_contains: "Titolo standard contiene"
-  composer_contains: "Compositore contiene"
-  library_sigla_contains: "La sigla contiene"
-  internal_note_contains: "La nota interna contiene"
+  any_field_contains: "Qualsiasi campo"
+  title_contains: "Titolo diplomatico"
+  std_title_contains: "Titolo standard"
+  composer_contains: "Compositore"
+  library_sigla_contains: "Sigla della biblioteca"
+  internal_note_contains: "Nota interna"
   is_in_folder: "È nella cartella"
   workgroups: "Gruppi"
   roles: "Ruoli"
@@ -378,6 +379,7 @@ it:
   add_person: "Collega istituzione"
   add_source: "Collega fonte"
   add_person: "Collega persona"
+  add_holding: "Collega Esemplare"
   archive_unarchive: "Archivia / disarchivia"
   archive: "Archivia"
   unarchive: "Disarchivia"
@@ -385,8 +387,9 @@ it:
   export_folder_csv: "Esporta la cartella in CSV"
   export_folder_raw: "Esporta la cartella come Muscat MARC"
   validate_folder: "Valida cartella"
-
-
+  choose_folder: "(PLEASE CHOOSE ONE)"
+  add_item_to_folder: "ADD TO FOLDER"
+  remove_item_from_folder: "DELETE FROM FOLDER"
   
   # Editor sidebar
   show_all_groups: "Mostra tutti i gruppi"
@@ -459,7 +462,7 @@ it:
   filter_author_or_editor: "Autore/Editore"
   filter_autograph_of: "Autografo di"
   filter_birth_place: "Luogo di nascita"
-  filter_publications: "Pubblicazioni"
+  filter_catalog: "Catalogo"
   filter_category_type: "Categoria"
   filter_collection: "Collezione"
   filter_comment: "Commento"
@@ -530,6 +533,7 @@ it:
   filter_series_items: "Elemento nella serie"
   filter_siglum: "Sigla"
   filter_source: "Fonte"
+  filter_source_id: "Id fonte"
   filter_sources: "Fonti"
   filter_source_type: "Tipo di fonte"
   filter_source_content_type: "Tipo di contenuto"

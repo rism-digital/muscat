@@ -11,9 +11,12 @@ class Holding < ApplicationRecord
   
   has_paper_trail :on => [:update, :destroy], :only => [:marc_source], :if => Proc.new { |t| VersionChecker.save_version?(t) }
 
+  has_many :digital_object_links, :as => :object_link, :dependent => :delete_all
+  has_many :digital_objects, through: :digital_object_links, foreign_key: "object_link_id"
+
   has_and_belongs_to_many :institutions, join_table: "holdings_to_institutions"
   belongs_to :source
-	belongs_to :collection, {class_name: "Source", foreign_key: "collection_id"}
+	belongs_to :collection, class_name: "Source", foreign_key: "collection_id"
   has_many :folder_items, as: :item, dependent: :destroy
   belongs_to :user, :foreign_key => "wf_owner"
   
@@ -225,6 +228,9 @@ class Holding < ApplicationRecord
 
   searchable :auto_index => false do |sunspot_dsl|
     sunspot_dsl.integer :id
+    sunspot_dsl.text :source_id do
+      source.id
+    end
     sunspot_dsl.string :lib_siglum_order do
       lib_siglum
     end
@@ -256,6 +262,13 @@ class Holding < ApplicationRecord
 
   def get_shelfmark
     self.marc.get_shelf_mark
+  end
+
+  def formatted_title
+    return "#{lib_siglum} [#{id}]" if !source
+    return "#{lib_siglum} [#{id}] in (#{source.std_title} [#{source.id}])"if !source.composer || source.composer.empty?
+    return "#{lib_siglum} [#{id}] in (#{source.composer} [#{source.id}])" if !source.std_title || source.std_title.empty?
+    return "#{lib_siglum} [#{id}] in (#{source.composer} - #{source.std_title} [#{source.id}])"
   end
 
 end

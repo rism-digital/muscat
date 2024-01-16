@@ -1,5 +1,10 @@
 require 'zip'
 
+# This can be called from the rails console
+# by passing a list of ids:
+# ids = [1001135576, ...]
+# ExportRecordsJob.new(:list, {id_list: ids}).perform
+
 class ExportRecordsJob < ProgressJob::Base
     
   MAX_PROCESSES = 10
@@ -26,7 +31,7 @@ class ExportRecordsJob < ProgressJob::Base
     end
 
     @controller = @job_options.include?(:controller) && @job_options[:controller]
-
+    @enquequed = false
   end
 
   def enqueue(job)
@@ -49,15 +54,22 @@ class ExportRecordsJob < ProgressJob::Base
 
   end
   
+  def before(job)
+    super
+    @enquequed = true
+  end
+
   def perform
-    update_stage("Starting export")
+    update_stage("Starting export") if @enquequed
 
     if @type == :folder
       # Note: a deleted folder will crash the job
       # We don't trap it so we have a log in the jobs
       @getter = FolderGetter.new(@job_options[:id])
+    elsif @type == :list
+      @getter = ListGetter.new(@job_options[:id_list])
     else
-      update_stage("Running query")
+      update_stage("Running query") if @enquequed
       @getter = CatalogGetter.new(@job_options[:search_params], @controller)
     end
 
@@ -95,7 +107,7 @@ private
 
   def export_parallel
     max = @getter.get_item_count
-    update_progress_max(max)
+    update_progress_max(max) if @enquequed
 
     # Let's make enough tempfiles
     tempfiles = []
@@ -117,7 +129,7 @@ private
             # We approximante the progress by having only one process write to it
             if jobid == 0
                 count += 1
-                update_stage_progress("Exported #{count * MAX_PROCESSES}/#{max}", step: 200) if count % 20 == 0 && jobid == 0
+                update_stage_progress("Exported #{count * MAX_PROCESSES}/#{max}", step: 200) if count % 20 == 0 && jobid == 0 && @enquequed
             end
             # Force a cleanup
             source = nil
@@ -136,7 +148,7 @@ private
               csv << marc2csv(source)
               if jobid == 0
                 count += 1
-                update_stage_progress("Exported #{count * MAX_PROCESSES}/#{max}", step: 200) if count % 20 == 0 && jobid == 0
+                update_stage_progress("Exported #{count * MAX_PROCESSES}/#{max}", step: 200) if count % 20 == 0 && jobid == 0 && @enquequed
               end
               source = nil
             end
@@ -154,7 +166,7 @@ private
               file.write(source.marc.to_marc)
               if jobid == 0
                 count += 1
-                update_stage_progress("Exported #{count}/#{@getter.get_item_count} [s]", step: 20) if count % 20 == 0
+                update_stage_progress("Exported #{count}/#{@getter.get_item_count} [s]", step: 20) if count % 20 == 0 && @enquequed
               end
               source = nil
             end
@@ -166,7 +178,7 @@ private
     end
     ActiveRecord::Base.connection.reconnect!
 
-    update_stage("Finalizing export")
+    update_stage("Finalizing export") if @enquequed
 
     # Now concatenate the files together
     filename = create_filename
@@ -187,7 +199,7 @@ private
     count = 0
     filename = create_filename
 
-    update_progress_max(@getter.get_item_count)
+    update_progress_max(@getter.get_item_count) if @enquequed
 
     if @format == :xml
       File.open(EXPORT_PATH.join(filename + @extension), "w") do |file|
@@ -197,7 +209,7 @@ private
           source = @model.find(source_id)
           file.write(source.marc.to_xml_record(nil, nil, true))
           count += 1
-          update_stage_progress("Exported #{count}/#{@getter.get_item_count} [s]", step: 20) if count % 20 == 0
+          update_stage_progress("Exported #{count}/#{@getter.get_item_count} [s]", step: 20) if count % 20 == 0 && @enquequed
         end
 
         file.write(xml_conclusion)
@@ -210,7 +222,7 @@ private
           source = @model.find(source_id)
             csv << marc2csv(source)
             count += 1
-            update_stage_progress("Exported #{count}/#{@getter.get_item_count} [s]", step: 20) if count % 20 == 0
+            update_stage_progress("Exported #{count}/#{@getter.get_item_count} [s]", step: 20) if count % 20 == 0 && @enquequed
         end
       end
     elsif @format == :raw
@@ -219,7 +231,7 @@ private
           source = @model.find(source_id)
           file.write(source.marc.to_marc)
           count += 1
-          update_stage_progress("Exported #{count}/#{@getter.get_item_count} [s]", step: 20) if count % 20 == 0
+          update_stage_progress("Exported #{count}/#{@getter.get_item_count} [s]", step: 20) if count % 20 == 0 && @enquequed
         end
       end
     end
@@ -401,6 +413,28 @@ private
 
     def get_name
       return "Untitled Search"
+    end
+  end
+
+  class ListGetter
+    def initialize(list)
+      @items = list
+    end
+
+    def get_item_count
+      @items.count
+    end
+
+    def get_items_in_range(slice, max_slices)
+      @items.in_groups(max_slices, false)[slice]
+    end
+
+    def get_items
+      return @items
+    end
+
+    def get_name
+      return "Source List"
     end
   end
 

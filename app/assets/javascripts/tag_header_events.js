@@ -23,8 +23,18 @@ used for _tag_header partial
 	
 	function tag_header_toggle(elem) {
 		var tag_container = elem.parents(".tag_container");
+		// It could be a group. We use the group_container class there
+		// to avoid clashes with the tag containter, but is works in the same way
+		if (tag_container.length < 1) {
+			tag_container = elem.parents(".group_container_collapsable");
+		}
 		var collapsable = tag_container.children(".tag_content_collapsable");
 		
+		// The same as above, try to get the group tag
+		if (collapsable.length < 1) {
+			collapsable = tag_container.children(".group_content_collapsable");
+		}
+
 		// toggle
 		collapsable.slideToggle(0);
 	
@@ -211,6 +221,28 @@ used for _tag_header partial
 		dt.fadeIn('fast');
 	}
 
+	function tag_header_remove_group(elem) {
+		// FIXME dialog should not be hardcoded for the second time
+		$('#dialog').html('<p>' + I18n.t("marc_editor.delete_group_confirm") + '</p>');
+		$("#dialog").dialog();
+		$("#dialog").dialog( 'option', 'title', I18n.t("marc_editor.delete_msg") );
+		$("#dialog").dialog( 'option', 'width', 300);
+		$("#dialog").dialog( 'option', 'buttons', {
+			OK: function() {
+				marc_editor_set_dirty();
+				var this_group = elem.parents(".inner_group_dt");
+				
+				this_group.fadeOut('fast', function() {
+					this_group.remove();
+				});
+				
+				$(this).dialog('close');
+			},
+			Cancel: function() { $(this).dialog('close');	}
+			});
+		$("#dialog").dialog('open');
+	}
+
 (function(jQuery) {
 	var self = null;
 	jQuery.fn.tagHeaderButtons = function() {
@@ -258,6 +290,8 @@ used for _tag_header partial
 					tag_header_help($(this));
 				}else if ($(this).data("group-button") == "add") {
 					tag_header_new_group($(this));
+				}else if ($(this).data("group-button") == "remove") {
+					tag_header_remove_group($(this));
 				}
 			});
 		}

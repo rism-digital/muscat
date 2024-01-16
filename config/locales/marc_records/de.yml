@@ -95,6 +95,7 @@ de:
     norwegian: Norwegisch
     occitan: Okzitanisch
     oirat: Oiratisch
+    ojibwa: Ojibwe
     old_church_slavonic: Altkirchenslawisch
     persian: Persisch
     polish: Polnisch
@@ -188,6 +189,7 @@ de:
     israel: Israel
     italy: Italien
     italy_trentino_alto_adige: 'Italien: Trentino-Alto Adige'
+    jamaica: Jamaika
     japan: Japan
     korea: Korea, Republik
     latvia: Lettland
@@ -328,6 +330,7 @@ de:
     c_plus_4: C+4
     c_plus_5: C+5
     catalog: Katalog
+    catalog_contribution: Katalogbeitrag
     catalog_opus_number: Werkverzeichnis/Opus
     catalog_works: Werkverzeichnis
     cataloging_agency: Katalogisierungsagentur
@@ -426,6 +429,7 @@ de:
     ds_major: Dis-Dur
     ds_minor: dis-Moll
     dubious: Zweifelhaft
+    duplicated_from: Dupliziert von
     e_major: E-Dur
     e_minor: e-Moll
     earlier_heading: Frühere Überschrift
@@ -444,6 +448,7 @@ de:
     event_organizer: Veranstalter
     event_place: Veranstaltungsort
     excerpts: Ausschnitte
+    exemplar: Exemplar
     exemplars: Exemplars
     extent: Umfang
     extent_parts: Umfang Stimmenmaterial
@@ -596,8 +601,10 @@ de:
     married_with: Verheiratet mit
     material_description: Materialbeschreibung
     material_examined: Autopsie
+    material_group: Materialgruppe
     material_held: Erhaltenes Material
     material_not_examined: Keine Autopsie
+    material_type: Materialart
     media_type: Physisches Medium
     mensural_clefs: Mensural-Notenschlüssel
     method_of_acquisition: Beschaffungsart
@@ -678,6 +685,7 @@ de:
     order_name: Ordensname
     origin: Herkunft
     original_cataloging_agency: Original-Katalogisierungsstelle
+    original_record: Originaleintrag
     other: Sonstige Funktion
     other_associated_place: Anderer zugehöriger Ort
     other_designation: Andere Bezeichnung
@@ -788,7 +796,6 @@ de:
     series: Serie
     series_added_entry: Nebeneintragungen Gesamttitel
     series_statement: Gesamttitelangaben
-    material_group: Materialgruppe
     shelfmark: Signatur
     shelfmark_olim: Alte Signatur (olim)
     short_title: Kurztitel
@@ -826,7 +833,7 @@ de:
     subheading_general: Allgemeine Unterteilung
     subject_access_fields: Schlagworteintragungen
     subject_heading: Schlagworteintragung
-    subject_headings: Schlagworte
+    subject_headings: Schlagwörter
     subordinate_unit: Untergeordnete Körperschaft
     succeeding_entry: Folgeeintrag
     summary: Zusammenfassung
@@ -975,6 +982,9 @@ de:
     manuscript: "Handschrift"
     printed: "Gedruckt"
     composite: "Konvolut"
+    collection: "Sammlung"
+    item: "Eintrag"
+    single_item: "Einzelnes Element"
     apply_filters: "Filter anwenden"
     error_loading_results: "Fehler beim Laden der Ergebnisse"
     global_collection: "Globale Sammlung"

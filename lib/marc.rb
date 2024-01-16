@@ -4,6 +4,8 @@
 # TODO: Add String.intern to convert all tags to symbols
 
 class Marc
+  require 'xml'
+
   include ApplicationHelper
   include Comparable
   
@@ -376,6 +378,15 @@ class Marc
     return rism_id.to_s # make sure it is ALWAYS a string!
   end
   
+  def insert_duplicated_from(tag, id)
+    # Add a reminder of the original ID
+    ntag = MarcNode.new(@model, tag, "", '##')
+    ntag.add_at(MarcNode.new(@model, "0", id.to_s, nil), 0 )
+    ntag.add_at(MarcNode.new(@model, "d", Time.now.strftime('%Y-%m-%d %H:%M:%S'), nil), 0 )
+    ntag.sort_alphabetically
+    root.add_at(ntag, get_insert_position("981") )
+  end
+
   # Return the parent of a manuscript. This need to be improved
   # Currently handles holding records, item in collection and previous edition
   # More than one case should not (cannot ?) happen in one manuscript
@@ -476,14 +487,29 @@ class Marc
     return marc_json
   end
 
-  def to_xml(updated_at = nil, versions = nil, holdings = true)
-    out = Array.new
-    out << "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n"
-    out << "<!-- Exported from RISM Digital (https://rism.digital/) Date: #{Time.now.utc} -->\n"
-    out << "<marc:collection xmlns:marc=\"http://www.loc.gov/MARC21/slim\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xsi:schemaLocation=\"http://www.loc.gov/MARC21/slim http://www.loc.gov/standards/marcxml/schema/MARC21slim.xsd\">\n"
-    out << to_xml_record(updated_at, versions, holdings)
-    out << "</marc:collection>" 
-    return out.join('')
+  def to_xml(updated_at = nil, versions = nil, holdings = true, collection = false, ns_name = nil)
+    document = to_xml_record(updated_at, versions, holdings)
+    if (collection)
+      # wrap the record (document root) into a collection element and make the namespace not default
+      record = document.root
+      collection = XML::Node.new("collection")
+      document.root = collection
+      document.root << record
+      ns_name = 'marc'
+    end
+    if ns_name == nil
+      # add the schema for validation
+      LibXML::XML::Namespace.new(document.root, 'xsi', 'http://www.w3.org/2001/XMLSchema-instance')
+      document.root["xsi:schemaLocation"] = "http://www.loc.gov/MARC21/slim http://www.loc.gov/standards/marcxml/schema/MARC21slim.xsd"
+    end
+    ns = LibXML::XML::Namespace.new(document.root, ns_name, 'http://www.loc.gov/MARC21/slim')
+    document.root.namespaces.namespace = ns
+    # Recursively set the namespace for all child elements
+    document.find('//*').each do |element|
+      element.namespaces.namespace = ns
+    end
+    # do not output the xml declaration if we do not use the default namespace
+    return (ns_name == nil) ? document.to_s(indent: true): document.root.to_s(indent: true)
   end
   
   def to_xml_record(updated_at, versions, holdings)
@@ -493,16 +519,14 @@ class Marc
     safe_marc.root = @root.deep_copy
     safe_marc.to_external(updated_at, versions, holdings)
     
-    out = String.new
-    
-    out += "\t<marc:record>\n"
-    for child in safe_marc.root.children
-      out += child.to_xml
-    end
+    document = XML::Document.new()
+    document.root = XML::Node.new("record")
 
-    out += "\t</marc:record>\n"
+    for child in safe_marc.root.children
+      document.root << child.to_xml_element
+    end
     
-    return out
+    return document
   end
 
   # Export a dump of the contents

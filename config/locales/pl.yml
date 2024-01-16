@@ -5,6 +5,7 @@ pl:
 #
 #
     compare_versions: Porównaj wersje
+    gnd_works: GND redaktor prac
     dashboard: Strona główna
     dashboard_welcome:
       welcome: Witamy w części produkcyjnej. Domyślna strona panelu użytkownika.
@@ -289,12 +290,12 @@ pl:
   
   ### VARIOUS ELEMENTS
   recent_changes: Ostatnie modyfikacje
-  any_field_contains: Dowolne pole zawiera …
-  title_contains: Tytuł dyplomatyczny zawiera …
-  std_title_contains: Znormalizowany tytuł zawiera …
-  composer_contains: Kryterium kompozytora zawiera …
-  library_sigla_contains: Siglum zawiera …
-  internal_note_contains: Notatka wewnętrzna zawiera …
+  any_field_contains: Dowolne pole
+  title_contains: Tytuł dyplomatyczny
+  std_title_contains: Znormalizowany tytuł
+  composer_contains: Kryterium kompozytora
+  library_sigla_contains: Siglum
+  internal_note_contains: Notatka wewnętrzna
   is_in_folder: Jest w folderze …
   workgroups: Grupy robocze
   roles: Role
@@ -374,6 +375,7 @@ pl:
   add_institution: Powiąż instytucję
   add_source: Powiąż źródło
   add_person: Powiąż osobę
+  add_holding: "Powiąż holding"
   archive_unarchive: Zarchiwizuj / cofnij archiwizację
   archive: Zarchiwizuj
   unarchive: Cofnij archiwizację
@@ -381,7 +383,9 @@ pl:
   export_folder_csv: Wyeksportuj folder jako CSV
   export_folder_raw: Wyeksportuj folder jako Muscat MARC
   validate_folder: Zatwierdź pozycje
-
+  choose_folder: "(PLEASE CHOOSE ONE)"
+  add_item_to_folder: "ADD TO FOLDER"
+  remove_item_from_folder: "DELETE FROM FOLDER"
   
   # Editor sidebar
   show_all_groups: Pokaż wszystkie sekcje
@@ -454,7 +458,7 @@ pl:
   filter_author_or_editor: Autor / Edytor
   filter_autograph_of: Autograf autorstwa
   filter_birth_place: Miejsce urodzenia
-  filter_publications: Publikacje
+  filter_catalog: Katalog
   filter_category_type: Kategoria
   filter_collection: Kolekcja
   filter_comment: Komentarz
@@ -525,6 +529,7 @@ pl:
   filter_series_items: Pozycje seryjne
   filter_siglum: Siglum
   filter_source: Źródło
+  filter_source_id: "Id źródła"
   filter_sources: Źródła
   filter_source_type: Rodzaj źródła
   filter_source_content_type: "typ zawartości"
@@ -866,27 +871,3 @@ pl:
   blacklight_advanced_search:
     form:
       start_over: Zacznij od nowa
-      
- 
-######################################################################################################
-# Record types, English only
-      
-  record_types_codes:
-    "0": UNK
-    "1": COL
-    "2": MSR
-    "3": SUB
-    "4": LSR
-    "5": LED
-    "6": TSR
-    "7": TED
-    "8": EDT
-    "9": LEC
-    "10": TEC
-    "11": CMP
-    
-  status_codes:
-    published: PUB
-    inprogress: UNP
-    deprecated: DEP
-

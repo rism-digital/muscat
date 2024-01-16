@@ -20,8 +20,8 @@ class MuscatAdminHeader < ActiveAdmin::Views::Header
   end
 end
 
-require 'active_admin_record_type_filter'
-require 'active_admin_lib_siglum_filter'
+require 'patches/active_admin/inputs/filters/record_type_input.rb'
+require 'patches/active_admin/inputs/filters/lib_siglum_input.rb'
 
 ActiveAdmin.setup do |config|
 
@@ -260,7 +260,6 @@ ActiveAdmin.setup do |config|
       end
       # Add the menu by hand because otherwise it is not getting translated
       menu.add :label => proc {I18n.t(:menu_comments)}, id: 'comments_menu', :priority => 4, :url => "/admin/comments"
-      menu.add :label => proc {I18n.t(:menu_catalog)}, id: 'catalog_menu', :priority => 8, :url => "/catalog"
       menu.add :label => proc {I18n.t(:menu_indexes)}, id: 'indexes_menu', :priority => 20
     end
     
@@ -314,17 +313,15 @@ ActiveAdmin.setup do |config|
 end
 
 # LP - added for caching filters, pagination and order
-require 'active_admin/filter_saver/controller'
+require 'patches/active_admin/filter_saver/controller_ext.rb'
 # LP - added for forcing kaminari to always include page param (necessary for FilterSaver)
-require "kaminari/helpers/tag"
+require "patches/kaminari/helpers/tag"
  
 ## RZ This monkey patch enables some filter labels to be translated in the Search Status
 ## sidebar.
-require 'active_admin/filter_label'
-## RZ Let the download links disappear BUT have the .xml download for a single item
-require 'active_admin/download_links'
+require 'patches/active_admin/filters/active_filter.rb'
 ## RZ Add some text to the comments box, for help
-require 'active_admin/active_admin_comments'
+require 'patches/active_admin/comments/views/comments_ext.rb'
 
 ActiveAdmin.before_load do |app|
   # Add our Extensions

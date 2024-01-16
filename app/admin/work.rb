@@ -111,6 +111,7 @@ ActiveAdmin.register Work do
         new_marc = MarcWork.new(base_item.marc.marc_source)
         # Reset the basic fields to default values
         new_marc.reset_to_new
+        new_marc.insert_duplicated_from("981", base_item.id.to_s)
         # copy the record type
         @work.marc = new_marc
       else         
@@ -235,7 +236,10 @@ ActiveAdmin.register Work do
     render :partial => "activeadmin/section_sidebar_show", :locals => { :item => work }
   end
   
-  
+  sidebar :folders, :only => :show do
+    render :partial => "activeadmin/section_sidebar_folder_actions", :locals => { :item => work }
+  end
+
   ##########
   ## Edit ##
   ##########

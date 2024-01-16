@@ -57,3 +57,6 @@ groups:
     - "040"
     - "000"
     - "001"
+    - "981"
+    all_tag_templates: 
+      "981": marc_show/show_duplicated_from

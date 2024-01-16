@@ -185,8 +185,6 @@
     :fields:
     - - a
       - :occurrences: "*"
-    - - e
-      - :occurrences: "*"
     - - h
       - :occurrences: "*"
   "100":
@@ -785,6 +783,21 @@
     - - "8"
       - :occurrences: "?"
         :no_browse: true
+  "910":
+    :master: "0"
+    :indicator: "2#"
+    :relator_code: "4"
+    :occurrences: "*"
+    :fields:
+    - - "0"
+      - :occurrences: "?"
+        :foreign_class: Institution
+        :foreign_field: id
+        :no_show: true
+    - - a
+      - :occurrences: "?"
+        :foreign_class: ^0
+        :foreign_field: corporate_name
   "930":
     :master: "0"
     :indicator: "1#"
@@ -810,4 +823,12 @@
       - :occurrences: "*"
     - - c
       - :occurrences: "*"
- 
+  "981":
+    :master: ""
+    :indicator: "##"
+    :occurrences: "*"
+    :fields:
+    - - "0"
+      - :occurrences: "1"
+    - - d
+      - :occurrences: "1"

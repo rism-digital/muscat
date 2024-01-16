@@ -95,6 +95,7 @@ en:
     norwegian: Norwegian
     occitan: Occitan
     oirat: Oirat
+    ojibwa: Ojibwa
     old_church_slavonic: Old Church Slavonic
     persian: Persian
     polish: Polish
@@ -188,6 +189,7 @@ en:
     israel: Israel
     italy: Italy
     italy_trentino_alto_adige: 'Italy: Trentino-Alto Adige'
+    jamaica: Jamaica
     japan: Japan
     korea: Korea, Republic of
     latvia: Latvia
@@ -328,6 +330,7 @@ en:
     c_plus_4: C+4
     c_plus_5: C+5
     catalog: Catalog
+    catalog_contribution: Catalog contribution
     catalog_opus_number: Catalog number/Opus number
     catalog_works: Catalog of works
     cataloging_agency: Cataloging agency
@@ -426,6 +429,7 @@ en:
     ds_major: D♯ major
     ds_minor: D♯ minor
     dubious: Dubious
+    duplicated_from: Duplicated from
     e_major: E major
     e_minor: E minor
     earlier_heading: Earlier heading
@@ -444,6 +448,7 @@ en:
     event_organizer: Event organizer
     event_place: Event place
     excerpts: Excerpts
+    exemplar: Exemplar
     exemplars: Exemplars
     extent: Extent
     extent_parts: Extent (parts)
@@ -596,8 +601,10 @@ en:
     married_with: Married with
     material_description: Material description
     material_examined: Material examined
+    material_group: Material group
     material_held: Material held
     material_not_examined: Material not examined
+    material_type: Material type
     media_type: Media type
     mensural_clefs: Mensural clefs
     method_of_acquisition: Method of acquisition
@@ -681,6 +688,7 @@ en:
     order_name: Order Name
     origin: Origin
     original_cataloging_agency: Original cataloging agency
+    original_record: Original record
     other: Other
     other_associated_place: Other associated place
     other_designation: Other designation
@@ -713,7 +721,7 @@ en:
     person_name: Person name
     personal_name: Personal name
     personal_names: Personal names
-    photoreproductive_process: Photoreproductive process (bluprint)
+    photoreproductive_process: Photoreproductive process (blueprint)
     physical_description: Physical description
     physical_description_fields: Physical description, etc. fields
     place: Place
@@ -791,7 +799,6 @@ en:
     series: Series
     series_added_entry: Series added entry fields
     series_statement: Series statement fields
-    material_group: Material group
     shelfmark: Shelfmark
     shelfmark_olim: Former shelfmark (olim)
     short_title: Short title
@@ -978,6 +985,9 @@ en:
     manuscript: "Manuscript"
     printed: "Printed"
     composite: "Composite Volume"
+    collection: "Collection"
+    item: "Item"
+    single_item: "Single item"
     apply_filters: "Apply filters"
     error_loading_results: "Error loading results"
     global_collection: "Global Collection"

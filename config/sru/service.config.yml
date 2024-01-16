@@ -134,9 +134,6 @@ index:
   rism.place:
     solr: 110c
     type: text
-  rism.scoringSummary:
-    solr: 240m_filter
-    type: sm
   #bath.genreForm:
     #title: genreForm
     #solr: 001

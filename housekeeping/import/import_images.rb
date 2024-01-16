@@ -25,7 +25,7 @@ doc.xpath('/images/image').each do |i|
 
 		path = "/root/inages/#{f.content}"
 		puts "Processing #{path} for #{sources.to_s} and #{people.to_s}"
-		if !File.exists?(path)
+		if !File.exist?(path)
 			puts "Could not find #{path}"
 			next
 		end

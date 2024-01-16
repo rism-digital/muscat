@@ -7,6 +7,11 @@
     if item != nil && item.id != nil
       cancel_path = send("admin_#{model}_path", item)
       save_form = "edit_#{model}"
+    elsif controller.action_name == "create" && controller.controller_name == "users"
+    # This is a special case when a new users is created
+    # To make sure the sidebar is shown if validation fails
+      cancel_path = send("admin_#{models}_path")
+      save_form = "edit_#{model}"
     else
       cancel_path = send("admin_#{models}_path")
       save_form = "new_#{model}"

@@ -11,8 +11,6 @@
 // about supported directives.
 //
 //= require jquery3
-//= require 'blacklight_advanced_search'
-
 
 //= require jquery-ui
 //= require jquery-ui/widgets/autocomplete
@@ -76,12 +74,11 @@
 //= require jquery-ui/widgets/tooltip
 
 //= require i18n
+
 // This is a must
-//= require i18n/translations
+// require i18n/translations
 
 //
-// Required by Blacklight
-//= require blacklight/blacklight
 //= require autocomplete_events
 //= require marc_json
 //= require jquery.blockUI
@@ -114,15 +111,8 @@
 //= require merge_authority.js
 //= require compare_versions_actions.js
 
-// For blacklight_range_limit built-in JS, if you don't want it you don't need
-// this:
-// require 'blacklight_range_limit'
 //= require 'ekko-lightbox.min'
 
-
-// For blacklight_range_limit built-in JS, if you don't want it you don't need
-// this:
-//= require 'blacklight_range_limit'
 
 //= require tribute.min
 //= require tribute_load

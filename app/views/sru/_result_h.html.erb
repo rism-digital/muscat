@@ -17,7 +17,7 @@
   <th>Shelfmark</th>
   </tr>
   <% @result.hits.each do |hit| %>
-    <% xml = Nokogiri::XML(hit.result.marc.to_xml(nil, nil, true)) %>
+    <% xml = Nokogiri::XML(hit.result.marc.to_xml(nil, nil, true, true)) %>
     <% template =  Nokogiri::XSLT(File.read('public/xml/sources2html.xsl')) %>
     <% html_record = template.transform(xml) %>
     <%= html_record.to_s.html_safe %>
@@ -32,7 +32,7 @@
   <th>VIAF</th>
 </tr>
   <% @result.hits.each do |hit| %>
-    <% xml = Nokogiri::XML(hit.result.marc.to_xml(nil, nil, true)) %>
+    <% xml = Nokogiri::XML(hit.result.marc.to_xml(nil, nil, true, true)) %>
     <% template =  Nokogiri::XSLT(File.read('public/xml/people2html.xsl')) %>
     <% html_record = template.transform(xml) %>
     <%= html_record.to_s.html_safe %>
@@ -46,7 +46,7 @@
   <th>-</th>
 </tr>
   <% @result.hits.each do |hit| %>
-    <% xml = Nokogiri::XML(hit.result.marc.to_xml(nil, nil, true)) %>
+    <% xml = Nokogiri::XML(hit.result.marc.to_xml(nil, nil, true, true)) %>
     <% template =  Nokogiri::XSLT(File.read('public/xml/marc2html.xsl')) %>
     <% html_record = template.transform(xml) %>
     <%= html_record.to_s.html_safe %>

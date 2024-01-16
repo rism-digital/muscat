@@ -15,23 +15,26 @@ var show_gnd_actions = function () {
     $gnd_table.html("");
     var term = $("#gnd_input").val();
     var model = $("#marc_editor_panel").attr("data-editor-model");
-      $.ajax({
-        type: "GET",
-        url: "/admin/"+model+"/gnd.json?gnd_input="+term,
-        beforeSend: function() { 
-          $('#loader').show();
-        },
-        complete: function(){
-          $('#loader').hide();
-        },
-        error: function(jqXHR, textStatus, errorThrown) {
-          alert(jqXHR.responseText);
-        },
-        success: function(data){
-          var result = (JSON.stringify(data));
-          draw_table_gnd(data);
+    $.ajax({
+      type: "GET",
+      url: "/admin/"+model+"/gnd.json?gnd_input="+term,
+      beforeSend: function() { 
+        $('#loader').show();
+      },
+      complete: function() {
+        $('#loader').hide();
+      },
+      error: function(jqXHR, textStatus, errorThrown) {
+        alert(errorThrown);
+      },
+      success: function(data) {
+        if (data.length == 0) {
+          alert("Nothing found in the GND.");
+        } else {
+          draw_table_gnd(data); 
         }
-      });
+      }
+    });
   }
 
   $("#gnd_button").click(function(){ 

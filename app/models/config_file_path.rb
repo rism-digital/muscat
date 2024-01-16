@@ -5,7 +5,7 @@ module ConfigFilePath
   # if not, fallback to default, without further checking, as if the
   # default file is also missing it would require admin intervention.
   def self.get_marc_editor_profile_path(file)
-    if File.exists? file
+    if File.exist? file
       file
     elsif file.include? "/#{RISM::MARC}/"
       file.sub "/#{RISM::MARC}/", "/default/"

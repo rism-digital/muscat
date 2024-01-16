@@ -4,7 +4,11 @@ CSV::foreach("fixed_650.csv") do |line|
 
     pb.increment!
 
-    s = Source.find(line[0])
+    begin
+        s = Source.find(line[0])
+    rescue ActiveRecord::RecordNotFoundActiveRecord::RecordNotFound
+        puts "Source #{line[0]} was deleted"
+    end
     s.marc.load_source
 
     if s.marc.root.fetch_all_by_tag("650").size > 0

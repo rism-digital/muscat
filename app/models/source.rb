@@ -43,15 +43,15 @@ class Source < ApplicationRecord
   has_paper_trail :on => [:update, :destroy], :only => [:marc_source, :wf_stage], :if => Proc.new { |t| VersionChecker.save_version?(t) }
 
   # include the override for group_values
-  require 'solr_search.rb'
+  require 'muscat/adapters/active_record/base.rb'
   include ForeignLinks
   include MarcIndex
   include Template
   include CommentsCleanup
   resourcify
 
-  belongs_to :parent_source, {class_name: "Source", foreign_key: "source_id"}
-  has_many :child_sources, {class_name: "Source"}
+  belongs_to :parent_source, class_name: "Source", foreign_key: "source_id"
+  has_many :child_sources, class_name: "Source"
   has_many :digital_object_links, :as => :object_link, :dependent => :delete_all
   has_many :digital_objects, through: :digital_object_links, foreign_key: "object_link_id"
   #has_and_belongs_to_many :institutions, join_table: "sources_to_institutions"
@@ -68,7 +68,7 @@ class Source < ApplicationRecord
   has_and_belongs_to_many :liturgical_feasts, join_table: "sources_to_liturgical_feasts"
   has_and_belongs_to_many :places, join_table: "sources_to_places"
   has_many :holdings
-	has_many :collection_holdings, {class_name: "Holding", foreign_key: "collection_id"}
+	has_many :collection_holdings, class_name: "Holding", foreign_key: "collection_id"
   
   #has_and_belongs_to_many :works, join_table: "sources_to_works"
   has_many :source_work_relations

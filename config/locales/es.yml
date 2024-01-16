@@ -6,6 +6,7 @@ es:
 #  
 #
     compare_versions: Comparar versiones
+    gnd_works: Editor de obras GND
     dashboard: "Panel de actividad"
     dashboard_welcome:
       welcome: "¡Bienvenidos a Active Admin! Este es el panel de actividad."
@@ -289,12 +290,12 @@ es:
   
   ### VARIOUS ELEMENTS
   recent_changes: "Modificaciones recientes"
-  any_field_contains: "Cualquier campo contiene"
-  title_contains: "Título diplomático contiene"
-  std_title_contains: "Título uniforme contiene"
-  composer_contains: "Compositor contiene"
-  library_sigla_contains: "Sigla contiene"
-  internal_note_contains: "La nota interna contiene"
+  any_field_contains: "Cualquier campo"
+  title_contains: "Título diplomático"
+  std_title_contains: "Título uniforme"
+  composer_contains: "Compositor"
+  library_sigla_contains: "Sigla"
+  internal_note_contains: "Nota interna"
   is_in_folder: "Está en la carpeta"
   workgroups: "Grupos de trabajo"
   roles: "Roles"
@@ -374,6 +375,7 @@ es:
   add_institution: "Vincular institución"
   add_source: "Vincular fuente"
   add_person: "Vincular persona"
+  add_holding: "Vincular Holding"
   archive_unarchive: "Archivar / desarchivar"
   archive: "Archivar"
   unarchive: "Desarchivar"
@@ -381,7 +383,10 @@ es:
   export_folder_csv: "Exportar la carpeta en formato CSV"
   export_folder_raw: "Exportar la carpeta en formato Muscat MARC"
   validate_folder: "Validar la carpeta"
-  
+  choose_folder: "(Escoja una)"
+  add_item_to_folder: "Añadir a la carpeta"
+  remove_item_from_folder: "Quitar de la carpeta"
+
   # Editor sidebar
   show_all_groups: "Mostrar todas las secciones"
   show_preview: "Mostrar vista preliminar"
@@ -453,7 +458,7 @@ es:
   filter_author_or_editor: "Autor/Editor"
   filter_autograph_of: "Autógrafo de"
   filter_birth_place: "Lugar de nacimiento"
-  filter_publications: "Publicaciones"
+  filter_catalog: "Catálogo"
   filter_category_type: "Categoría"
   filter_collection: "Colección"
   filter_comment: "Comentario"
@@ -524,6 +529,7 @@ es:
   filter_series_items: "Ítems de la serie"
   filter_siglum: "Sigla"
   filter_source: "Fuente"
+  filter_source_id: "Id de la fuente"
   filter_sources: "Fuentes"
   filter_source_type: "Tipo de fuente"
   filter_source_content_type: "Tipo de contenido"
@@ -855,23 +861,3 @@ es:
     application_name: 'Muscat'
     header_links:
       logout: 'Cerrar sesión'
-      
- 
-######################################################################################################
-# Record types, English only
-      
-  record_types_codes:
-    "0": "UNK"
-    "1": "COL"
-    "2": "MMS"
-    "3": "MPR"
-    "4": "LMS"
-    "5": "LPR"
-    "6": "TMS"
-    "7": "TPR"
-    "8": "CVT"
-    
-  status_codes:
-    published: "PUB"
-    inprogress: "INP"
-

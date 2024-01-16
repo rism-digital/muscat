@@ -1,4 +1,7 @@
 # coding: utf-8
+
+#TODO: Add =700  1\#$aBach, Johann Sebastian$d1685-1750$02539$4cmp
+
 FactoryBot.define do
   factory :publication do
     id { 1536 }
@@ -11,7 +14,7 @@ FactoryBot.define do
     date { "1954-" }
     wf_audit { "full" }
     wf_stage { "published" }
-    people { [FactoryBot.create(:person)] }
+    #people { [FactoryBot.create(:person)] }
     #people { [association(:person)]  }
     #referring_sources { [association(:manuscript_source)]  }
     marc_source {  <<STRING
@@ -25,7 +28,6 @@ FactoryBot.define do
 =500  #\#$aser.X, vol.X (Kritischer Bericht), p.X
 =500  #\#$aser.1, vol.23, p.161
 =500  #\#$aser.2, vol.5 (Kritischer Bericht), p.94-96
-=700  1\#$aBach, Johann Sebastian$d1685-1750$02539$4cmp
 STRING
     }
   end
