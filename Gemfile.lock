@@ -302,7 +302,7 @@ GEM
       activerecord (>= 6.0)
       request_store (~> 1.4)
     parallel (1.23.0)
-    pkg-config (1.5.1)
+    pkg-config (1.5.6)
     pr_geohash (1.0.0)
     pry (0.14.2)
       coderay (~> 1.1)
@@ -368,7 +368,7 @@ GEM
     reverse_markdown (2.1.1)
       nokogiri
     rexml (3.2.5)
-    rmagick (5.2.0)
+    rmagick (5.3.0)
       pkg-config (~> 1.4)
     rodf (1.2.0)
       builder (>= 3.0)
