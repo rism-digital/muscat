@@ -9,7 +9,12 @@
 	<%= render :partial => "marc/show_diff_wf_stage" %>
 <% end %>
 
-<% layout_config["group_order"].each do |group_name|
+<% if params[:view] == "MARC21" %>
+    <div class="marc21">
+	<%= @item.marc_source.gsub(/(=\d{3})  /, '<br><span class="marc_tag">\1</span> ').gsub(/(\$.)/, '<span class="marc_subfield">\1</span>').html_safe %>
+    </div>
+<%else%>
+    <% layout_config["group_order"].each do |group_name|
 	group_config = layout_config["groups"][group_name]
 	group = { 
 		:title => @editor_profile.get_label(group_name), 
@@ -30,7 +35,8 @@
 			:opac => opac_resolved,
 			:holdings => holdings_resolved } %>
 				
-<%- end -%>
+    <%- end -%>
+<%end%>
 
 <!-- if we are rendering the holdings box via ajax, we can render the DOs in the same box -->
 <% if holdings_resolved && @item.digital_objects.images.size > 0 %>
