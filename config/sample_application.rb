@@ -69,9 +69,8 @@ module RISM
   # if the installation was previously in Muscat 2 with page)
   LEGACY_PAGES_URL = "/"
 
-  # Redirection from home site root url.  By default, the public
-  # search pages (served by Blacklight, that is, /catalog)
-  ROOT_REDIRECT = "/catalog"
+  # Redirection from home site root url. 
+  ROOT_REDIRECT = "/admin"
 
   # Record ids for each records type
   BASE_NEW_IDS = {

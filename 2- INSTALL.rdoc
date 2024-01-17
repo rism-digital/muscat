@@ -297,7 +297,6 @@ to the list of lib directories at the top. This will tell Solr to load the jar f
 By default Solr listens on port 8983 with a core named +muscat+. To change this edit the files
 
   config/sunspot.yml
-  config/blacklight.yml
 
 To change the core name or port
 

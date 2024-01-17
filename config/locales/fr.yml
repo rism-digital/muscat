@@ -851,34 +851,3 @@ fr:
   
 ######################################################################################################
 # End of translation in all languages - make sure all the file have the same line number for this line
- 
-######################################################################################################
-# Blacklights overriden translations - the list can vary from one language to another
-
-  blacklight:
-    application_name: 'Muscat'
-    header_links:
-      logout: 'Déconnexion'
-    search:
-      start_over: 'Nouvelle recherche'
-      form:
-        q: 'Rechercher...'
-        search:
-          placeholder: 'Rechercher...'
-    range_limit:
-      range_begin: "%{field_label} de début"
-      range_end: "%{field_label} de fin"
-      submit_limit: 'Limiter'
-      remove_limit: 'supprimer'
-  blacklight_advanced_search:
-    all: tous les
-    any: au moins un des
-    form:
-      title: "Recherche avancée"
-      search_context: "Dans la recherche"
-      limit_criteria_heading_html: "<strong>et</strong> ont cet attribut"
-      query_criteria_heading_html: "Rechercher les titres correspondant à %{select_menu} critères"
-      sort_label: "Trier par"
-      start_over: "Nouvelle recherche"
-      search_btn: 'Chercher'
-
