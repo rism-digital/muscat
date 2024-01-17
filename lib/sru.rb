@@ -14,9 +14,9 @@ module Sru
   class Query
     NAMESPACE={'marc' => "http://www.loc.gov/MARC21/slim"}
     PARAMS = ["query", :query, "maximumRecords", "operation", :operation, "version", "startRecord", 
-            "maximumTerms", "responsePosition", "scanClause", "controller", "action", "recordSchema", "x-action"]
+            "maximumTerms", "responsePosition", "scanClause", "controller", "action", "recordSchema", "x-action", "deprecatedIds"]
     
-    attr_accessor :operation, :query, :maximumRecords, :offset, :model, :result, :error_code, :schema, :scan, :version
+    attr_accessor :operation, :query, :maximumRecords, :offset, :model, :result, :error_code, :schema, :scan, :version, :deprecatedIds
 
     def initialize(model, params = {})
 
@@ -53,6 +53,7 @@ module Sru
       @offset = params.fetch("startRecord", 1).to_i rescue 1
       @error_code = self._check if !@error_code
       @schema = params.fetch(:recordSchema, "marc")
+      @deprecatedIds = params.fetch(:deprecatedIds, false)
       if !sru_config['schemas'].include?(@schema)
         @error_code =  {:code => 67, :message => "Record not available in this schema"}
       end

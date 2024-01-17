@@ -532,7 +532,7 @@ class Marc
     document.root = XML::Node.new("record")
 
     for child in safe_marc.root.children
-      document.root << child.to_xml_element
+      document.root << child.to_xml_element(options)
     end
     
     return document
