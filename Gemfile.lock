@@ -121,7 +121,7 @@ GEM
     awesome_print (1.9.2)
     bcrypt (3.1.18)
     builder (3.2.4)
-    cancan (1.6.10)
+    cancancan (3.5.0)
     capybara (3.39.2)
       addressable
       matrix
@@ -481,7 +481,7 @@ DEPENDENCIES
   activerecord-import
   anchored
   awesome_print
-  cancan
+  cancancan
   capybara
   chart-js-rails
   coffee-rails (~> 5.0)
