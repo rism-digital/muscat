@@ -124,7 +124,7 @@ private
               next
             end
 
-            tempfiles[jobid].write(source.marc.to_xml_record(nil, nil, true))
+            tempfiles[jobid].write(source.marc.to_xml_record({ holdings: true }))
 
             # We approximante the progress by having only one process write to it
             if jobid == 0
@@ -207,7 +207,7 @@ private
 
         @getter.get_items.each do |source_id|
           source = @model.find(source_id)
-          file.write(source.marc.to_xml_record(nil, nil, true))
+          file.write(source.marc.to_xml_record({ holdings: true }))
           count += 1
           update_stage_progress("Exported #{count}/#{@getter.get_item_count} [s]", step: 20) if count % 20 == 0 && @enquequed
         end

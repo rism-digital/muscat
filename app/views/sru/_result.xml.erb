@@ -9,22 +9,22 @@
           <zs:recordData>
             <% if hit.result %>
               <% if @sru.schema == 'marc' %>
-                <%= hit.result.marc.to_xml(hit.result.updated_at, nil, true, false, 'marc').html_safe %>
+                <%= hit.result.marc.to_xml({updated_at: hit.result.updated_at, holdings: true, collection: true, ns_name: 'marc' }).html_safe %>
               <% elsif @sru.schema == 'mods'%>
-                <% xml = Nokogiri::XML(hit.result.marc.to_xml(hit.result.updated_at, nil, true, true)) %>
+                <% xml = Nokogiri::XML(hit.result.marc.to_xml({ updated_at: hit.result.updated_at, holdings: true, collection: true })) %>
                 <% template =  Nokogiri::XSLT(File.read('public/xml/MARC21slim2MODS3-6.xsl')) %>
                 <% mods_record = template.transform(xml) %>
                 <% mods_record.xpath("//ns:modsCollection", "ns" => "http://www.loc.gov/mods/v3").children.first["xmlns:mods"] = "http://www.loc.gov/mods/v3" %>
                 <%= mods_record.xpath("//mods:modsCollection", "mods" => "http://www.loc.gov/mods/v3").children.to_s.html_safe %>
               <% elsif @sru.schema == 'dc'%>
-                <% xml = Nokogiri::XML(hit.result.marc.to_xml(nil, nil, true, true)) %>
+                <% xml = Nokogiri::XML(hit.result.marc.to_xml({ holdings: true, collection: true })) %>
                 <% template =  Nokogiri::XSLT(File.read('public/xml/MARC21slim2SRWDC.xsl')) %>
                 <% mods_record = template.transform(xml) %>
                 <% mods_record.remove_namespaces! %>
                 <% mods_record.xpath("//dcCollection").children.first["xmlns"] = "http://purl.org/dc/elements/1.1/" %>
                 <%= mods_record.xpath("//dcCollection").children.to_s.html_safe %>
               <% elsif @sru.schema == 'bibframe'%>
-                <% xml = Nokogiri::XML(hit.result.marc.to_xml(nil, nil, true, true)) %>
+                <% xml = Nokogiri::XML(hit.result.marc.to_xml({ holdings: true, collection: true })) %>
                 <% template =  Nokogiri::XSLT(File.read('public/xml/marc2bibframe2/marc2bibframe2.xsl')) %>
                 <% mods_record = template.transform(xml) %>
                 <%= mods_record.children.to_s.html_safe %>

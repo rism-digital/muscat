@@ -487,8 +487,12 @@ class Marc
     return marc_json
   end
 
-  def to_xml(updated_at = nil, versions = nil, holdings = true, collection = false, ns_name = nil)
-    document = to_xml_record(updated_at, versions, holdings)
+  def to_xml(options = {})
+    # parse available options
+    collection = options.has_key?(:collection) ? true : false
+    ns_name = options.has_key?(:ns_name) ? options[:ns_name] : nil
+
+    document = to_xml_record(options)
     if (collection)
       # wrap the record (document root) into a collection element and make the namespace not default
       record = document.root
@@ -512,7 +516,12 @@ class Marc
     return (ns_name == nil) ? document.to_s(indent: true): document.root.to_s(indent: true)
   end
   
-  def to_xml_record(updated_at, versions, holdings)
+  def to_xml_record(options = {})
+    # parse available options
+    updated_at = options.has_key?(:updated_at) ? options[:updated_at] : nil
+    versions = options.has_key?(:versions) ? options[:versions] : nil
+    holdings = options.has_key?(:holdings) ? options[:holdings] : true
+
     load_source unless @loaded
     
     safe_marc = self.deep_copy
