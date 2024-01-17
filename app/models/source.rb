@@ -75,7 +75,10 @@ class Source < ApplicationRecord
   has_many :source_publication_relations
   has_many :publications, through: :source_publication_relations
 
-  has_and_belongs_to_many :liturgical_feasts, join_table: "sources_to_liturgical_feasts"
+  #has_and_belongs_to_many :liturgical_feasts, join_table: "sources_to_liturgical_feasts"
+  has_many :source_liturgical_feast_relations
+  has_many :liturgical_feasts, through: :source_liturgical_feast_relations
+
   has_and_belongs_to_many :places, join_table: "sources_to_places"
   has_many :holdings
 	has_many :collection_holdings, class_name: "Holding", foreign_key: "collection_id"
