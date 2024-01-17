@@ -330,7 +330,6 @@ pl:
     c_plus_4: C+4
     c_plus_5: C+5
     catalog: Katalog
-    catalog_contribution: Wkład do katalogu
     catalog_opus_number: Numer katalogu / numer opus
     catalog_works: Katalog utworów
     cataloging_agency: Jednostka katalogująca
@@ -358,6 +357,7 @@ pl:
     collaborator: Współtwórca
     collective_catalog: Katalog zbiorczy
     colophon: Kolofon
+    contributing_project: Contributing project
     common_clefs: Klucze współczesne
     compiler: Kompilator
     composer: Kompozytor
