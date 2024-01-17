@@ -52,10 +52,10 @@ class SruController < ActionController::Base
             IO.write(filename, res.join("\n"))
             send_data File.open(filename).read, filename: "rism_sru_result.xml"
           else
-            render 'response.xml.erb', layout: false
+            render template: 'sru/response', layout: false, :content_type => "application/xml", formats: [:xml]
           end
         else
-          render 'response.xml.erb', layout: false, :content_type => "application/xml"
+          render template: 'sru/response', layout: false, :content_type => "application/xml", formats: [:xml]
         end
       end
     end
