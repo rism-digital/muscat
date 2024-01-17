@@ -32,7 +32,10 @@ class Publication < ApplicationRecord
   include CommentsCleanup
   resourcify
 
-  has_and_belongs_to_many(:referring_sources, class_name: "Source", join_table: "sources_to_publications")
+  #has_and_belongs_to_many(:referring_sources, class_name: "Source", join_table: "sources_to_publications")
+  has_many :source_publication_relations, class_name: "SourcePublicationRelation"
+  has_many :referring_sources, through: :source_publication_relations, source: :source
+
   has_and_belongs_to_many(:referring_institutions, class_name: "Institution", join_table: "institutions_to_publications")
   has_and_belongs_to_many(:referring_people, class_name: "Person", join_table: "people_to_publications")
   has_and_belongs_to_many(:referring_holdings, class_name: "Holding", join_table: "holdings_to_publications")

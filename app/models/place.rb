@@ -13,8 +13,10 @@ class Place < ApplicationRecord
   include ForeignLinks
   include CommentsCleanup
 
-  has_and_belongs_to_many(:referring_sources, class_name: "Source", join_table: "sources_to_places")
-  
+  #has_and_belongs_to_many(:referring_sources, class_name: "Source", join_table: "sources_to_places")
+  has_many :source_place_relations, class_name: "SourcePlaceRelation"
+  has_many :referring_sources, through: :source_place_relations, source: :source
+
   #has_and_belongs_to_many(:referring_people, class_name: "Person", join_table: "people_to_places")
   has_many :person_place_relations, class_name: "PersonPlaceRelation"
   has_many :referring_people, through: :person_place_relations, source: :person

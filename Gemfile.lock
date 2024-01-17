@@ -121,7 +121,7 @@ GEM
     awesome_print (1.9.2)
     bcrypt (3.1.18)
     builder (3.2.4)
-    cancan (1.6.10)
+    cancancan (3.5.0)
     capybara (3.39.2)
       addressable
       matrix
@@ -292,7 +292,7 @@ GEM
       timeout
     net-smtp (0.3.3)
       net-protocol
-    nio4r (2.5.9)
+    nio4r (2.7.0)
     nokogiri (1.15.2)
       mini_portile2 (~> 2.8.2)
       racc (~> 1.4)
@@ -310,7 +310,7 @@ GEM
     psych (5.1.0)
       stringio
     public_suffix (5.0.1)
-    puma (6.3.0)
+    puma (6.4.2)
       nio4r (~> 2.0)
     racc (1.7.0)
     rack (2.2.7)
@@ -481,7 +481,7 @@ DEPENDENCIES
   activerecord-import
   anchored
   awesome_print
-  cancan
+  cancancan
   capybara
   chart-js-rails
   coffee-rails (~> 5.0)

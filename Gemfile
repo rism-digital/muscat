@@ -73,8 +73,8 @@ gem 'awesome_print'
 gem 'progress_bar', '1.0.6', git: 'https://github.com/rism-ch/progress_bar'
 
 gem "rails3-jquery-autocomplete", '~> 1.0.26', git: 'https://github.com/rism-ch/rails3-jquery-autocomplete'
-gem "cancan"#, '~> 1.6.10'
-gem "rolify"#, '~> 5.2.0'
+gem "cancancan"
+gem "rolify"
 
 group :development do
     gem 'puma'

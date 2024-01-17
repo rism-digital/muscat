@@ -330,7 +330,6 @@ pt:
     c_plus_4: C+4
     c_plus_5: C+5
     catalog: Catálogo
-    catalog_contribution: Contribuição do catálogo
     catalog_opus_number: Número de catalogo/Número de Opus
     catalog_works: Catálogo de obras
     cataloging_agency: Agência catalogadora
@@ -358,6 +357,7 @@ pt:
     collaborator: Colaborador
     collective_catalog: Catálogo Coletivo
     colophon: Colofão
+    contributing_project: Contributing project
     common_clefs: Claves comuns
     compiler: Compilador
     composer: Compositor

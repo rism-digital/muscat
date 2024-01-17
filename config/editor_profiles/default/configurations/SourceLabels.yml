@@ -548,7 +548,7 @@
   fields:
     a:
       label: records.institution
-  label: records.catalog_contribution
+  label: records.contributing_project
 '930':
   fields:
     a:

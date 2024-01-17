@@ -330,7 +330,6 @@ en:
     c_plus_4: C+4
     c_plus_5: C+5
     catalog: Catalog
-    catalog_contribution: Catalog contribution
     catalog_opus_number: Catalog number/Opus number
     catalog_works: Catalog of works
     cataloging_agency: Cataloging agency
@@ -358,6 +357,7 @@ en:
     collaborator: Collaborator
     collective_catalog: Collective catalog
     colophon: Colophon
+    contributing_project: Contributing project
     common_clefs: Common clefs
     compiler: Compiler
     composer: Composer
@@ -721,7 +721,7 @@ en:
     person_name: Person name
     personal_name: Personal name
     personal_names: Personal names
-    photoreproductive_process: Photoreproductive process (blueprint)
+    photoreproductive_process: Photoreproductive process (bluprint)
     physical_description: Physical description
     physical_description_fields: Physical description, etc. fields
     place: Place
