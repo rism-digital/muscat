@@ -42,7 +42,7 @@ module GND
 
         action = m.get_id == "__TEMP__" ? :create : :replace
 
-        return send_to_gnd(action, m.to_xml_record(nil, nil, nil), m.get_id)
+        return send_to_gnd(action, m.to_xml_record({}), m.get_id)
     end
 
     # post xml to gnd

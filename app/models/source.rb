@@ -512,7 +512,7 @@ class Source < ApplicationRecord
   end
 
   def to_marcxml
-	  marc.to_xml(updated_at, versions)
+	  marc.to_xml({ updated_at: updated_at, versions: versions })
   end
 
   def marc_helper_set_anonymous

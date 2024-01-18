@@ -441,7 +441,9 @@ class MarcNode
   end
 
   # Export to MarcXML - return a REXML::Element
-  def to_xml_element
+  def to_xml_element(options = {})
+    # deprecated ids are missing the model prefix and are ambiguous
+    deprecated_ids = options.has_key?(:deprecated_ids) ? (options[:deprecated_ids] == "true") : false
     element = XML::Node.new('leader')
 
     # skip the $_ (db_id)
@@ -455,9 +457,9 @@ class MarcNode
         element << content.gsub(/#/," ")
       elsif @tag.to_i == 1
         element.name = "controlfield"
-        # id tag - prefix approriately # problem: we are missing the _ when multiple words
+        # id tag - prefix approriately except if deprecated ids are requested
         element["tag"] = @tag
-        element << "#{@model.to_s.pluralize.downcase}/#{content}"
+        element << ((deprecated_ids) ? content : "#{@model.to_s.pluralize.downcase}/#{content}")
       elsif @tag.to_i < 10
         #control tag
         element.name = "controlfield"
@@ -478,17 +480,17 @@ class MarcNode
         ind1 = " " if !ind1
         element["ind1"] = ind0.gsub(/[#\\]/," ")
         element["ind2"] = ind1.gsub(/[#\\]/," ")
-        for_every_child_sorted { |child| element << child.to_xml_element }
+        for_every_child_sorted { |child| element << child.to_xml_element(options) }
       end
     else
       #subfield
       element.name = "subfield"
       element["code"] = @tag
       cont_sanit = content.to_s.encode(:xml => :text)
-      # prefix ids appropriately
+      # prefix ids appropriately except if deprecated ids are requested
       # since we cannot look at the tag configuration, it has to be hard-coded?
       #if (@tag == "0" && @foreign_object) || (@tag == "x" && @foreign_object.class == Institution) || (@tag == "w" && @foreign_object.class == Source) || (@tag == "w" && @foreign_object.class == Publication)
-      if @tag == @marc_configuration.get_master(@parent.tag) && @foreign_object
+      if !deprecated_ids && @tag == @marc_configuration.get_master(@parent.tag) && @foreign_object
         element << "#{@foreign_object.class.to_s.pluralize.underscore.downcase}/#{cont_sanit}"
       else
         element << cont_sanit
