@@ -38,7 +38,10 @@ class Institution < ApplicationRecord
   has_many :holding_institution_relations, class_name: "HoldingInstitutionRelation"
   has_many :referring_holdings, through: :holding_institution_relations, source: :holding
 
-  has_and_belongs_to_many(:referring_people, class_name: "Person", join_table: "people_to_institutions")
+  #has_and_belongs_to_many(:referring_people, class_name: "Person", join_table: "people_to_institutions")
+  has_many :person_institution_relations, class_name: "PersonInstitutionRelation"
+  has_many :referring_people, through: :person_institution_relations, source: :person
+
   has_and_belongs_to_many(:referring_publications, class_name: "Publication", join_table: "publications_to_institutions")
   has_and_belongs_to_many(:referring_works, class_name: "Work", join_table: "works_to_institutions")
 
