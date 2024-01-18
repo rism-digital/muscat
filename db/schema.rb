@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2024_01_18_125644) do
+ActiveRecord::Schema[7.0].define(version: 2024_01_18_132430) do
   create_table "active_admin_comments", id: :integer, charset: "utf8mb3", force: :cascade do |t|
     t.string "namespace"
     t.text "body"
@@ -183,11 +183,14 @@ ActiveRecord::Schema[7.0].define(version: 2024_01_18_125644) do
     t.index ["wf_stage"], name: "index_institutions_on_wf_stage"
   end
 
-  create_table "institutions_to_institutions", id: false, charset: "utf8mb3", force: :cascade do |t|
+  create_table "institutions_to_institutions", id: { type: :bigint, unsigned: true }, charset: "utf8mb3", force: :cascade do |t|
     t.integer "institution_a_id"
     t.integer "institution_b_id"
+    t.string "marc_tag"
+    t.string "relator_code"
     t.index ["institution_a_id"], name: "index_institutions_to_institutions_on_institution_a_id"
     t.index ["institution_b_id"], name: "index_institutions_to_institutions_on_institution_b_id"
+    t.index ["marc_tag", "relator_code", "institution_a_id", "institution_b_id"], name: "unique_records", unique: true
   end
 
   create_table "institutions_to_people", id: false, charset: "utf8mb3", force: :cascade do |t|
