@@ -14,7 +14,10 @@ class Holding < ApplicationRecord
   has_many :digital_object_links, :as => :object_link, :dependent => :delete_all
   has_many :digital_objects, through: :digital_object_links, foreign_key: "object_link_id"
 
-  has_and_belongs_to_many :institutions, join_table: "holdings_to_institutions"
+  #has_and_belongs_to_many :institutions, join_table: "holdings_to_institutions"
+  has_many :holding_institution_relations
+  has_many :institutions, through: :holding_institution_relations
+
   belongs_to :source
 	belongs_to :collection, class_name: "Source", foreign_key: "collection_id"
   has_many :folder_items, as: :item, dependent: :destroy
