@@ -38,6 +38,7 @@ class Person < ApplicationRecord
   has_many :works
   has_many :digital_object_links, :as => :object_link, :dependent => :delete_all
   has_many :digital_objects, through: :digital_object_links, foreign_key: "object_link_id"
+
   #has_and_belongs_to_many(:referring_sources, class_name: "Source", join_table: "sources_to_people")
   has_many :source_person_relations, class_name: "SourcePersonRelation"
   has_many :referring_sources, through: :source_person_relations, source: :source
@@ -47,17 +48,19 @@ class Person < ApplicationRecord
   has_many :referring_institutions, through: :institution_person_relations, source: :institution
 
   has_and_belongs_to_many(:referring_publications, class_name: "Publication", join_table: "publications_to_people")
+  has_and_belongs_to_many(:referring_works, class_name: "Work", join_table: "works_to_people")
+
+  has_and_belongs_to_many :institutions, join_table: "people_to_institutions"
+  has_and_belongs_to_many :publications, join_table: "people_to_publications"
+
   #has_and_belongs_to_many(:referring_holdings, class_name: "Holding", join_table: "holdings_to_people")
   has_many :holding_person_relations, class_name: "HoldingPersonRelation"
   has_many :referring_holdings, through: :holding_person_relations, source: :holding
 
-  has_and_belongs_to_many(:referring_works, class_name: "Work", join_table: "works_to_people")
-  has_and_belongs_to_many :institutions, join_table: "people_to_institutions"
   #has_and_belongs_to_many :places, join_table: "people_to_places"
   has_many :person_place_relations
   has_many :places, through: :person_place_relations
 
-  has_and_belongs_to_many :publications, join_table: "people_to_publications"
   has_many :folder_items, as: :item, dependent: :destroy
   has_many :delayed_jobs, -> { where parent_type: "Person" }, class_name: 'Delayed::Backend::ActiveRecord::Job', foreign_key: "parent_id"
   belongs_to :user, :foreign_key => "wf_owner"
