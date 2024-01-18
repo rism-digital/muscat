@@ -26,7 +26,9 @@ class Holding < ApplicationRecord
   has_many :holding_publication_relations
   has_many :publications, through: :holding_publication_relations
 
-  has_and_belongs_to_many :places, join_table: "holdings_to_places"
+  #has_and_belongs_to_many :places, join_table: "holdings_to_places"
+  has_many :holding_place_relations
+  has_many :places, through: :holding_place_relations
 
   belongs_to :source
 	belongs_to :collection, class_name: "Source", foreign_key: "collection_id"

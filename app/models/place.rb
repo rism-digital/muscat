@@ -26,7 +26,11 @@ class Place < ApplicationRecord
   has_many :referring_institutions, through: :institution_place_relations, source: :institution
   
   has_and_belongs_to_many(:referring_publications, class_name: "Publication", join_table: "publications_to_places")
-  has_and_belongs_to_many(:referring_holdings, class_name: "Holding", join_table: "holdings_to_places")
+  
+  #has_and_belongs_to_many(:referring_holdings, class_name: "Holding", join_table: "holdings_to_places")
+  has_many :holding_place_relations, class_name: "HoldingPlaceRelation"
+  has_many :referring_holdings, through: :holding_place_relations, source: :holding
+
   has_and_belongs_to_many(:referring_works, class_name: "Work", join_table: "works_to_places")
   has_many :folder_items, as: :item, dependent: :destroy
   has_many :delayed_jobs, -> { where parent_type: "Place" }, class_name: 'Delayed::Backend::ActiveRecord::Job', foreign_key: "parent_id"
