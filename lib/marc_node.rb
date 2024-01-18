@@ -488,7 +488,8 @@ class MarcNode
       element["code"] = @tag
       cont_sanit = content.to_s.encode(:xml => :text)
       # prefix ids appropriately except if deprecated ids are requested
-      if !deprecated_ids && @marc_configuration.has_tag?(@tag) && @tag == @marc_configuration.get_master(@parent.tag) && @foreign_object
+      puts "Warning tag #{@parent.tag} is not in marc configuration".red if !@marc_configuration.has_tag?(@parent.tag)
+      if !deprecated_ids && @marc_configuration.has_tag?(@parent.tag) && @tag == @marc_configuration.get_master(@parent.tag) && @foreign_object
         element << "#{@foreign_object.class.to_s.pluralize.underscore.downcase}/#{cont_sanit}"
       else
         element << cont_sanit

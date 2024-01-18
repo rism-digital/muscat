@@ -209,6 +209,20 @@
         :foreign_alternates: alternate_dates
     - - j
       - :occurrences: "?"
+  # We do not use the tag 130,
+  # But it has to be configured so the linking
+  # when exporting marcxml works properly, so
+  # it gets the standard_titles/ prefix
+  "130":
+    :master: "0"
+    :indicator: "10"
+    :occurrences: "?"
+    :fields:
+    - - "0"
+      - :occurrences: "?"
+        :foreign_class: StandardTitle
+        :foreign_field: id
+        :no_show: true
   "240":
     :master: "0"
     :indicator: "10"
