@@ -18,15 +18,15 @@ class Holding < ApplicationRecord
   has_many :holding_institution_relations
   has_many :institutions, through: :holding_institution_relations
 
+  has_and_belongs_to_many :people, join_table: "holdings_to_people"
+  has_and_belongs_to_many :publications, join_table: "holdings_to_publications"
+  has_and_belongs_to_many :places, join_table: "holdings_to_places"
+
   belongs_to :source
 	belongs_to :collection, class_name: "Source", foreign_key: "collection_id"
   has_many :folder_items, as: :item, dependent: :destroy
   belongs_to :user, :foreign_key => "wf_owner"
   
-  has_and_belongs_to_many :people, join_table: "holdings_to_people"
-  has_and_belongs_to_many :publications, join_table: "holdings_to_publications"
-  has_and_belongs_to_many :places, join_table: "holdings_to_places"
-	
   composed_of :marc, :class_name => "MarcHolding", :mapping => %w(marc_source to_marc)
   
   before_destroy :check_collection_id, prepend: true
