@@ -46,7 +46,10 @@ class Institution < ApplicationRecord
   has_many :institution_person_relations
   has_many :people, through: :institution_person_relations
 
-  has_and_belongs_to_many :publications, join_table: "institutions_to_publications"
+  #has_and_belongs_to_many :publications, join_table: "institutions_to_publications"
+  has_many :institution_publication_relations
+  has_many :publications, through: :institution_publication_relations
+
   has_and_belongs_to_many :standard_terms, join_table: "institutions_to_standard_terms"
 
   #has_and_belongs_to_many :places, join_table: "institutions_to_places"
