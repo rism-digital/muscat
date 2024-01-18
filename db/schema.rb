@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2024_01_18_140056) do
+ActiveRecord::Schema[7.0].define(version: 2024_01_18_143724) do
   create_table "active_admin_comments", id: :integer, charset: "utf8mb3", force: :cascade do |t|
     t.string "namespace"
     t.text "body"
@@ -221,13 +221,6 @@ ActiveRecord::Schema[7.0].define(version: 2024_01_18_140056) do
     t.index ["institution_id"], name: "index_institutions_to_publications_on_institution_id"
     t.index ["marc_tag", "relator_code", "institution_id", "publication_id"], name: "unique_records", unique: true
     t.index ["publication_id"], name: "index_institutions_to_publications_on_publication_id"
-  end
-
-  create_table "institutions_to_standard_terms", id: false, charset: "utf8mb3", force: :cascade do |t|
-    t.integer "standard_term_id"
-    t.integer "institution_id"
-    t.index ["institution_id"], name: "index_institutions_to_standard_terms_on_institution_id"
-    t.index ["standard_term_id"], name: "index_institutions_to_standard_terms_on_standard_term_id"
   end
 
   create_table "institutions_users", id: false, charset: "utf8mb3", force: :cascade do |t|

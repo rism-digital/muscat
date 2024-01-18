@@ -50,8 +50,6 @@ class Institution < ApplicationRecord
   has_many :institution_publication_relations
   has_many :publications, through: :institution_publication_relations
 
-  has_and_belongs_to_many :standard_terms, join_table: "institutions_to_standard_terms"
-
   #has_and_belongs_to_many :places, join_table: "institutions_to_places"
   has_many :institution_place_relations
   has_many :places, through: :institution_place_relations
