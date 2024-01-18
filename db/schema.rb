@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2024_01_18_151617) do
+ActiveRecord::Schema[7.0].define(version: 2024_01_18_152704) do
   create_table "active_admin_comments", id: :integer, charset: "utf8mb3", force: :cascade do |t|
     t.string "namespace"
     t.text "body"
@@ -23,17 +23,6 @@ ActiveRecord::Schema[7.0].define(version: 2024_01_18_151617) do
     t.index ["author_type", "author_id"], name: "index_active_admin_comments_on_author_type_and_author_id"
     t.index ["namespace"], name: "index_active_admin_comments_on_namespace"
     t.index ["resource_type", "resource_id"], name: "index_active_admin_comments_on_resource_type_and_resource_id"
-  end
-
-  create_table "bookmarks", id: :integer, charset: "utf8mb3", force: :cascade do |t|
-    t.integer "user_id", null: false
-    t.string "user_type"
-    t.string "document_id"
-    t.string "title"
-    t.datetime "created_at", precision: nil
-    t.datetime "updated_at", precision: nil
-    t.string "document_type"
-    t.index ["user_id"], name: "index_bookmarks_on_user_id"
   end
 
   create_table "delayed_jobs", id: :integer, charset: "utf8mb3", force: :cascade do |t|
@@ -223,13 +212,6 @@ ActiveRecord::Schema[7.0].define(version: 2024_01_18_151617) do
     t.index ["publication_id"], name: "index_institutions_to_publications_on_publication_id"
   end
 
-  create_table "institutions_users", id: false, charset: "utf8mb3", force: :cascade do |t|
-    t.integer "user_id"
-    t.integer "institution_id"
-    t.index ["institution_id"], name: "index_institutions_users_on_institution_id"
-    t.index ["user_id"], name: "index_institutions_users_on_user_id"
-  end
-
   create_table "institutions_workgroups", id: false, charset: "utf8mb3", force: :cascade do |t|
     t.integer "workgroup_id"
     t.integer "institution_id"
@@ -402,15 +384,6 @@ ActiveRecord::Schema[7.0].define(version: 2024_01_18_151617) do
     t.datetime "updated_at", precision: nil
     t.index ["name", "resource_type", "resource_id"], name: "index_roles_on_name_and_resource_type_and_resource_id"
     t.index ["name"], name: "index_roles_on_name"
-  end
-
-  create_table "searches", id: :integer, charset: "utf8mb3", force: :cascade do |t|
-    t.text "query_params"
-    t.integer "user_id"
-    t.string "user_type"
-    t.datetime "created_at", precision: nil
-    t.datetime "updated_at", precision: nil
-    t.index ["user_id"], name: "index_searches_on_user_id"
   end
 
   create_table "sources", id: :integer, charset: "utf8mb3", force: :cascade do |t|
