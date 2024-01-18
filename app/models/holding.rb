@@ -22,7 +22,10 @@ class Holding < ApplicationRecord
   has_many :holding_person_relations
   has_many :people, through: :holding_person_relations
 
-  has_and_belongs_to_many :publications, join_table: "holdings_to_publications"
+  #has_and_belongs_to_many :publications, join_table: "holdings_to_publications"
+  has_many :holding_publication_relations
+  has_many :publications, through: :holding_publication_relations
+
   has_and_belongs_to_many :places, join_table: "holdings_to_places"
 
   belongs_to :source
