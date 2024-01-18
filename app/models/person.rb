@@ -58,7 +58,9 @@ class Person < ApplicationRecord
   has_many :person_institution_relations
   has_many :institutions, through: :person_institution_relations
 
-  has_and_belongs_to_many :publications, join_table: "people_to_publications"
+  #has_and_belongs_to_many :publications, join_table: "people_to_publications"
+  has_many :person_publication_relations
+  has_many :publications, through: :person_publication_relations
 
   #has_and_belongs_to_many :places, join_table: "people_to_places"
   has_many :person_place_relations
