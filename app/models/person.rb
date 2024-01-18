@@ -72,19 +72,27 @@ class Person < ApplicationRecord
   
   # People can link to themselves
   # This is the forward link
-  has_and_belongs_to_many(:people,
-    :class_name => "Person",
-    :foreign_key => "person_a_id",
-    :association_foreign_key => "person_b_id",
-    join_table: "people_to_people")
+#  has_and_belongs_to_many(:people,
+#    :class_name => "Person",
+#    :foreign_key => "person_a_id",
+#    :association_foreign_key => "person_b_id",
+#    join_table: "people_to_people")
   
   # This is the backward link
-  has_and_belongs_to_many(:referring_people,
-    :class_name => "Person",
-    :foreign_key => "person_b_id",
-    :association_foreign_key => "person_a_id",
-    join_table: "people_to_people")
+#  has_and_belongs_to_many(:referring_people,
+#    :class_name => "Person",
+#    :foreign_key => "person_b_id",
+#    :association_foreign_key => "person_a_id",
+#    join_table: "people_to_people")
+
+  has_many :person_relations, foreign_key: "person_a_id"
+  has_many :people, through: :person_relations, source: :person_b
+  # And this is the one coming back
+  has_many :referring_person_relations, class_name: "PersonRelation", foreign_key: "person_b_id"
+  has_many :referring_people, through: :referring_person_relations, source: :person_a
   
+
+
   composed_of :marc, :class_name => "MarcPerson", :mapping => %w(marc_source to_marc)
   
 #  validates_presence_of :full_name  
