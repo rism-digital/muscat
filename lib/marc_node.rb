@@ -488,9 +488,7 @@ class MarcNode
       element["code"] = @tag
       cont_sanit = content.to_s.encode(:xml => :text)
       # prefix ids appropriately except if deprecated ids are requested
-      # since we cannot look at the tag configuration, it has to be hard-coded?
-      #if (@tag == "0" && @foreign_object) || (@tag == "x" && @foreign_object.class == Institution) || (@tag == "w" && @foreign_object.class == Source) || (@tag == "w" && @foreign_object.class == Publication)
-      if !deprecated_ids && @tag == @marc_configuration.get_master(@parent.tag) && @foreign_object
+      if !deprecated_ids && @marc_configuration.has_tag?(@tag) && @tag == @marc_configuration.get_master(@parent.tag) && @foreign_object
         element << "#{@foreign_object.class.to_s.pluralize.underscore.downcase}/#{cont_sanit}"
       else
         element << cont_sanit
