@@ -33,22 +33,22 @@ class Institution < ApplicationRecord
   #has_and_belongs_to_many(:referring_sources, class_name: "Source", join_table: "sources_to_institutions")
   has_many :source_institution_relations, class_name: "SourceInstitutionRelation"
   has_many :referring_sources, through: :source_institution_relations, source: :source
-
-  has_and_belongs_to_many(:referring_people, class_name: "Person", join_table: "people_to_institutions")
-  has_and_belongs_to_many(:referring_publications, class_name: "Publication", join_table: "publications_to_institutions")
-  has_and_belongs_to_many(:referring_works, class_name: "Work", join_table: "works_to_institutions")
-  has_and_belongs_to_many :people, join_table: "institutions_to_people"
-  has_and_belongs_to_many :publications, join_table: "institutions_to_publications"
-  
-  #has_and_belongs_to_many :places, join_table: "institutions_to_places"
-  has_many :institution_place_relations
-  has_many :places, through: :institution_place_relations
-
-  has_and_belongs_to_many :standard_terms, join_table: "institutions_to_standard_terms"
   
   #has_and_belongs_to_many :referring_holdings, class_name: "Holding", join_table: "holdings_to_institutions"
   has_many :holding_institution_relations, class_name: "HoldingInstitutionRelation"
   has_many :referring_holdings, through: :holding_institution_relations, source: :holding
+
+  has_and_belongs_to_many(:referring_people, class_name: "Person", join_table: "people_to_institutions")
+  has_and_belongs_to_many(:referring_publications, class_name: "Publication", join_table: "publications_to_institutions")
+  has_and_belongs_to_many(:referring_works, class_name: "Work", join_table: "works_to_institutions")
+
+  has_and_belongs_to_many :people, join_table: "institutions_to_people"
+  has_and_belongs_to_many :publications, join_table: "institutions_to_publications"
+  has_and_belongs_to_many :standard_terms, join_table: "institutions_to_standard_terms"
+
+  #has_and_belongs_to_many :places, join_table: "institutions_to_places"
+  has_many :institution_place_relations
+  has_many :places, through: :institution_place_relations
 
   has_many :folder_items, as: :item, dependent: :destroy
   has_many :delayed_jobs, -> { where parent_type: "Institution" }, class_name: 'Delayed::Backend::ActiveRecord::Job', foreign_key: "parent_id"
