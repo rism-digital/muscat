@@ -17,6 +17,7 @@ class Work < ApplicationRecord
   belongs_to :composer, class_name: "Person", foreign_key: "person_id"
   has_many :digital_object_links, :as => :object_link, :dependent => :delete_all
   has_many :digital_objects, through: :digital_object_links, foreign_key: "object_link_id"
+
   #has_and_belongs_to_many(:referring_sources, class_name: "Source", join_table: "sources_to_works")
   has_many :source_work_relations, class_name: "SourceWorkRelation"
   has_many :referring_sources, through: :source_work_relations, source: :source
@@ -28,9 +29,11 @@ class Work < ApplicationRecord
   has_and_belongs_to_many :institutions, join_table: "works_to_institutions"
   has_and_belongs_to_many :people, join_table: "works_to_people"
   has_and_belongs_to_many :places, join_table: "works_to_places"
+
   has_many :folder_items, as: :item, dependent: :destroy
   has_many :delayed_jobs, -> { where parent_type: "Work" }, class_name: 'Delayed::Backend::ActiveRecord::Job', foreign_key: "parent_id"
   belongs_to :user, :foreign_key => "wf_owner"
+  
   has_and_belongs_to_many(:works,
     :class_name => "Work",
     :foreign_key => "work_a_id",
