@@ -322,6 +322,7 @@
       # default "CH-BeSRO" value must be added during exportation
   "700":
     :master: "0"
+    :relator_code: "4"
     :indicator: "1#"
     :occurrences: "*"
     :fields:
@@ -354,6 +355,7 @@
         :no_browse: true
   "710":
     :master: "0"
+    :relator_code: "4"
     :indicator: "2#"
     :occurrences: "*"
     :fields:

@@ -49,10 +49,18 @@ class Publication < ApplicationRecord
   has_many :referring_holdings, through: :holding_publication_relations, source: :holding
   
   has_and_belongs_to_many(:referring_works, class_name: "Work", join_table: "works_to_publications")
-  has_and_belongs_to_many :people, join_table: "publications_to_people"
-  has_and_belongs_to_many :institutions, join_table: "publications_to_institutions"
+  
+  #has_and_belongs_to_many :people, join_table: "publications_to_people"
+  has_many :publication_person_relations
+  has_many :people, through: :publication_person_relations
+
+  #has_and_belongs_to_many :institutions, join_table: "publications_to_institutions"
+  has_many :publication_institution_relations
+  has_many :institutions, through: :publication_institution_relations
+
   has_and_belongs_to_many :places, join_table: "publications_to_places"
   has_and_belongs_to_many :standard_terms, join_table: "publications_to_standard_terms"
+
   has_many :folder_items, as: :item, dependent: :destroy
   has_many :delayed_jobs, -> { where parent_type: "Publication" }, class_name: 'Delayed::Backend::ActiveRecord::Job', foreign_key: "parent_id"
   belongs_to :user, :foreign_key => "wf_owner"

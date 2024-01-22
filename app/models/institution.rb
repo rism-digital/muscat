@@ -42,7 +42,10 @@ class Institution < ApplicationRecord
   has_many :person_institution_relations, class_name: "PersonInstitutionRelation"
   has_many :referring_people, through: :person_institution_relations, source: :person
 
-  has_and_belongs_to_many(:referring_publications, class_name: "Publication", join_table: "publications_to_institutions")
+  #has_and_belongs_to_many(:referring_publications, class_name: "Publication", join_table: "publications_to_institutions")
+  has_many :publication_institution_relations, class_name: "PublicationInstitutionRelation"
+  has_many :referring_publications, through: :publication_institution_relations, source: :publication
+
   has_and_belongs_to_many(:referring_works, class_name: "Work", join_table: "works_to_institutions")
 
   #has_and_belongs_to_many :people, join_table: "institutions_to_people"
