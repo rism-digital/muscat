@@ -22,7 +22,10 @@ class StandardTerm < ApplicationRecord
   has_many :publication_standard_term_relations, class_name: "PublicationStandardTermRelation"
   has_many :referring_publications, through: :publication_standard_term_relations, source: :publication
 
-  has_and_belongs_to_many(:referring_works, class_name: "Work", join_table: "works_to_standard_terms")
+  #has_and_belongs_to_many(:referring_works, class_name: "Work", join_table: "works_to_standard_terms")
+  has_many :work_standard_term_relations, class_name: "WorkStandardTermRelation"
+  has_many :referring_works, through: :work_standard_term_relations, source: :work
+
   has_many :folder_items, as: :item, dependent: :destroy
   has_many :delayed_jobs, -> { where parent_type: "StandardTerm" }, class_name: 'Delayed::Backend::ActiveRecord::Job', foreign_key: "parent_id"
   belongs_to :user, :foreign_key => "wf_owner"

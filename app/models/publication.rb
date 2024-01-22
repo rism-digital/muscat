@@ -48,7 +48,9 @@ class Publication < ApplicationRecord
   has_many :holding_publication_relations, class_name: "HoldingPublicationRelation"
   has_many :referring_holdings, through: :holding_publication_relations, source: :holding
   
-  has_and_belongs_to_many(:referring_works, class_name: "Work", join_table: "works_to_publications")
+  #has_and_belongs_to_many(:referring_works, class_name: "Work", join_table: "works_to_publications")
+  has_many :work_publication_relations, class_name: "WorkPublicationRelation"
+  has_many :referring_works, through: :work_publication_relations, source: :work
   
   #has_and_belongs_to_many :people, join_table: "publications_to_people"
   has_many :publication_person_relations

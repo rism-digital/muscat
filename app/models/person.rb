@@ -55,7 +55,9 @@ class Person < ApplicationRecord
   has_many :publication_person_relations, class_name: "PublicationPersonRelation"
   has_many :referring_publications, through: :publication_person_relations, source: :publication
 
-  has_and_belongs_to_many(:referring_works, class_name: "Work", join_table: "works_to_people")
+  #has_and_belongs_to_many(:referring_works, class_name: "Work", join_table: "works_to_people")
+  has_many :work_person_relations, class_name: "WorkPersonRelation"
+  has_many :referring_works, through: :work_person_relations, source: :work
 
   #has_and_belongs_to_many :institutions, join_table: "people_to_institutions"
   has_many :person_institution_relations

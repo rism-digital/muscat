@@ -33,7 +33,10 @@ class Place < ApplicationRecord
   has_many :holding_place_relations, class_name: "HoldingPlaceRelation"
   has_many :referring_holdings, through: :holding_place_relations, source: :holding
 
-  has_and_belongs_to_many(:referring_works, class_name: "Work", join_table: "works_to_places")
+  #has_and_belongs_to_many(:referring_works, class_name: "Work", join_table: "works_to_places")
+  has_many :work_place_relations, class_name: "WorkPlaceRelation"
+  has_many :referring_works, through: :work_place_relations, source: :work
+
   has_many :folder_items, as: :item, dependent: :destroy
   has_many :delayed_jobs, -> { where parent_type: "Place" }, class_name: 'Delayed::Backend::ActiveRecord::Job', foreign_key: "parent_id"
   belongs_to :user, :foreign_key => "wf_owner"

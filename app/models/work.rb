@@ -22,31 +22,56 @@ class Work < ApplicationRecord
   has_many :source_work_relations, class_name: "SourceWorkRelation"
   has_many :referring_sources, through: :source_work_relations, source: :source
   
-  has_and_belongs_to_many :publications, join_table: "works_to_publications"
-  has_and_belongs_to_many :standard_terms, join_table: "works_to_standard_terms"
-  has_and_belongs_to_many :standard_titles, join_table: "works_to_standard_titles"
-  has_and_belongs_to_many :liturgical_feasts, join_table: "works_to_liturgical_feasts"
-  has_and_belongs_to_many :institutions, join_table: "works_to_institutions"
-  has_and_belongs_to_many :people, join_table: "works_to_people"
-  has_and_belongs_to_many :places, join_table: "works_to_places"
+  #has_and_belongs_to_many :publications, join_table: "works_to_publications"
+  has_many :work_publication_relations
+  has_many :publications, through: :work_publication_relations
+
+  #has_and_belongs_to_many :standard_terms, join_table: "works_to_standard_terms"
+  has_many :work_standard_term_relations
+  has_many :standard_terms, through: :work_standard_term_relations
+
+  #has_and_belongs_to_many :standard_titles, join_table: "works_to_standard_titles"
+  has_many :work_standard_title_relations
+  has_many :standard_titles, through: :work_standard_title_relations
+
+  #has_and_belongs_to_many :liturgical_feasts, join_table: "works_to_liturgical_feasts"
+  has_many :work_liturgical_feast_relations
+  has_many :liturgical_feasts, through: :work_liturgical_feast_relations
+
+  #has_and_belongs_to_many :institutions, join_table: "works_to_institutions"
+  has_many :work_institution_relations
+  has_many :institutions, through: :work_institution_relations
+
+  #has_and_belongs_to_many :people, join_table: "works_to_people"
+  has_many :work_person_relations
+  has_many :people, through: :work_person_relations
+
+  #has_and_belongs_to_many :places, join_table: "works_to_places"
+  has_many :work_place_relations
+  has_many :places, through: :work_place_relations
 
   has_many :folder_items, as: :item, dependent: :destroy
   has_many :delayed_jobs, -> { where parent_type: "Work" }, class_name: 'Delayed::Backend::ActiveRecord::Job', foreign_key: "parent_id"
   belongs_to :user, :foreign_key => "wf_owner"
+
+#  has_and_belongs_to_many(:works,
+#    :class_name => "Work",
+#    :foreign_key => "work_a_id",
+#    :association_foreign_key => "work_b_id",
+#    join_table: "works_to_works")
   
-  has_and_belongs_to_many(:works,
-    :class_name => "Work",
-    :foreign_key => "work_a_id",
-    :association_foreign_key => "work_b_id",
-    join_table: "works_to_works")
-  
-  # This is the backward link
-  has_and_belongs_to_many(:referring_works,
-    :class_name => "Work",
-    :foreign_key => "work_b_id",
-    :association_foreign_key => "work_a_id",
-    join_table: "works_to_works")
- 
+#  # This is the backward link
+#  has_and_belongs_to_many(:referring_works,
+#    :class_name => "Work",
+#    :foreign_key => "work_b_id",
+#    :association_foreign_key => "work_a_id",
+#    join_table: "works_to_works")
+
+  has_many :work_relations, foreign_key: "work_a_id"
+  has_many :works, through: :work_relations, source: :work_b
+  has_many :referring_work_relations, class_name: "WorkRelation", foreign_key: "work_b_id"
+  has_many :referring_works, through: :referring_work_relations, source: :work_a
+
   composed_of :marc, :class_name => "MarcWork", :mapping => %w(marc_source to_marc)
 
   before_destroy :check_dependencies, :cleanup_comments
