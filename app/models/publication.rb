@@ -71,18 +71,25 @@ class Publication < ApplicationRecord
   belongs_to :user, :foreign_key => "wf_owner"
 
   # This is the forward link
-  has_and_belongs_to_many(:publications,
-    :class_name => "Publication",
-    :foreign_key => "publication_a_id",
-    :association_foreign_key => "publication_b_id",
-    join_table: "publications_to_publications")
+#  has_and_belongs_to_many(:publications,
+#    :class_name => "Publication",
+#    :foreign_key => "publication_a_id",
+#    :association_foreign_key => "publication_b_id",
+#    join_table: "publications_to_publications")
 
   # This is the backward link
-  has_and_belongs_to_many(:referring_publications,
-    :class_name => "Publication",
-    :foreign_key => "publication_b_id",
-    :association_foreign_key => "publication_a_id",
-    join_table: "publications_to_publications")
+#  has_and_belongs_to_many(:referring_publications,
+#    :class_name => "Publication",
+#    :foreign_key => "publication_b_id",
+#    :association_foreign_key => "publication_a_id",
+#    join_table: "publications_to_publications")
+
+    has_many :publication_relations, foreign_key: "publication_a_id"
+    has_many :publications, through: :publication_relations, source: :publication_b
+    # And this is the one coming back
+    has_many :referring_publication_relations, class_name: "PublicationRelation", foreign_key: "publication_b_id"
+    has_many :referring_publications, through: :referring_publication_relations, source: :publication_a
+
 
   composed_of :marc, :class_name => "MarcPublication", :mapping => %w(marc_source to_marc)
 
