@@ -62,7 +62,9 @@ class Publication < ApplicationRecord
   has_many :publication_place_relations
   has_many :places, through: :publication_place_relations
 
-  has_and_belongs_to_many :standard_terms, join_table: "publications_to_standard_terms"
+  #has_and_belongs_to_many :standard_terms, join_table: "publications_to_standard_terms"
+  has_many :publication_standard_term_relations
+  has_many :standard_terms, through: :publication_standard_term_relations
 
   has_many :folder_items, as: :item, dependent: :destroy
   has_many :delayed_jobs, -> { where parent_type: "Publication" }, class_name: 'Delayed::Backend::ActiveRecord::Job', foreign_key: "parent_id"

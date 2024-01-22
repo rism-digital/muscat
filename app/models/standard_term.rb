@@ -18,7 +18,10 @@ class StandardTerm < ApplicationRecord
   has_many :source_standard_term_relations, class_name: "SourceStandardTermRelation"
   has_many :referring_sources, through: :source_standard_term_relations, source: :source
 
-  has_and_belongs_to_many(:referring_publications, class_name: "Publication", join_table: "publications_to_standard_terms")
+  #has_and_belongs_to_many(:referring_publications, class_name: "Publication", join_table: "publications_to_standard_terms")
+  has_many :publication_standard_term_relations, class_name: "PublicationStandardTermRelation"
+  has_many :referring_publications, through: :publication_standard_term_relations, source: :publication
+
   has_and_belongs_to_many(:referring_works, class_name: "Work", join_table: "works_to_standard_terms")
   has_many :folder_items, as: :item, dependent: :destroy
   has_many :delayed_jobs, -> { where parent_type: "StandardTerm" }, class_name: 'Delayed::Backend::ActiveRecord::Job', foreign_key: "parent_id"
