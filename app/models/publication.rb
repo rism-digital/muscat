@@ -58,7 +58,10 @@ class Publication < ApplicationRecord
   has_many :publication_institution_relations
   has_many :institutions, through: :publication_institution_relations
 
-  has_and_belongs_to_many :places, join_table: "publications_to_places"
+  #has_and_belongs_to_many :places, join_table: "publications_to_places"
+  has_many :publication_place_relations
+  has_many :places, through: :publication_place_relations
+
   has_and_belongs_to_many :standard_terms, join_table: "publications_to_standard_terms"
 
   has_many :folder_items, as: :item, dependent: :destroy
