@@ -12,8 +12,8 @@ MAPPING = {
     "Publication.title":            "Publication.240.a",
     "StandardTerm.term":            "StandardTerm.term.nil", #not marc
     "StandardTitle.title":          "StandardTitle.title.nil", #mot marc
-    "Work.title":                   "Work.100.a", #more than one
-    "WorkNode.title":               "WorkNode.100.t", #there is more than one!
+    "Work.title":                   ["Work.100.a", "Work.130.a", "Work.130.r"], #more than one
+    "WorkNode.title":               ["WorkNode.100.t", "WorkNode.100.m", "WorkNode.100.n", "WorkNode.100.r", "WorkNode.100.p"], #there is more than one!
 }
 
 marc_models = ["source", "holding", "person", "institution", "publication", "work", "work_node"]
@@ -42,35 +42,37 @@ marc_models.each do |mm|
     end
 
     model_foreign_links.each do |mfl|
-        tag = MAPPING[mfl.to_sym]
+        tags = MAPPING[mfl.to_sym]
         referring_link = "referring_#{mm.pluralize}"
 
-        parts = tag.split(".")
-        foreign_model = parts[0]
-        foreign_tag = parts[1]
-        foreign_subtag = parts[2]
+        tags = [tags] if tags.is_a? String
+        tags.each do |tag|
+            parts = tag.split(".")
+            foreign_model = parts[0]
+            foreign_tag = parts[1]
+            foreign_subtag = parts[2]
 
-        if parts[2] != "nil"
+            if parts[2] != "nil"
 
-            # Add a toplevel element for the foreign item
-            model_tag_map[foreign_model] = {} if !model_tag_map.keys.include?(foreign_model)
+                # Add a toplevel element for the foreign item
+                model_tag_map[foreign_model] = {} if !model_tag_map.keys.include?(foreign_model)
 
-            # Add the tag elements
-            model_tag_map[foreign_model][foreign_tag] = {} if !model_tag_map[foreign_model].keys.include?(foreign_tag)
+                # Add the tag elements
+                model_tag_map[foreign_model][foreign_tag] = {} if !model_tag_map[foreign_model].keys.include?(foreign_tag)
 
-            # and for the subtags...
-            model_tag_map[foreign_model][foreign_tag][foreign_subtag] = [] if !model_tag_map[foreign_model][foreign_tag].keys.include?(foreign_subtag)
+                # and for the subtags...
+                model_tag_map[foreign_model][foreign_tag][foreign_subtag] = [] if !model_tag_map[foreign_model][foreign_tag].keys.include?(foreign_subtag)
 
-            # Finally add the link back!
-            model_tag_map[foreign_model][foreign_tag][foreign_subtag] << referring_link if !model_tag_map[foreign_model][foreign_tag][foreign_subtag].include?(referring_link)
-        
-        # these are the non-marc models
-        else
-            model_non_marc[foreign_model] = {} if !model_non_marc.keys.include?(foreign_model)
-            model_non_marc[foreign_model][foreign_tag] = [] if !model_non_marc[foreign_model].keys.include?(foreign_tag)
-            model_non_marc[foreign_model][foreign_tag] << referring_link if !model_non_marc[foreign_model][foreign_tag].include?(referring_link)
+                # Finally add the link back!
+                model_tag_map[foreign_model][foreign_tag][foreign_subtag] << referring_link if !model_tag_map[foreign_model][foreign_tag][foreign_subtag].include?(referring_link)
+            
+            # these are the non-marc models
+            else
+                model_non_marc[foreign_model] = {} if !model_non_marc.keys.include?(foreign_model)
+                model_non_marc[foreign_model][foreign_tag] = [] if !model_non_marc[foreign_model].keys.include?(foreign_tag)
+                model_non_marc[foreign_model][foreign_tag] << referring_link if !model_non_marc[foreign_model][foreign_tag].include?(referring_link)
+            end
         end
-
     end
 
 
