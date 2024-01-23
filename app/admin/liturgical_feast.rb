@@ -1,3 +1,5 @@
+include Triggers
+
 ActiveAdmin.register LiturgicalFeast do
   
   menu :parent => "indexes_menu", :label => proc {I18n.t(:menu_liturgical_feasts)}
@@ -71,6 +73,8 @@ ActiveAdmin.register LiturgicalFeast do
         success.html { redirect_to collection_path }
         failure.html { redirect_back fallback_location: root_path, flash: { :error => "#{I18n.t(:error_saving)}" } }
       end
+      # Run the eventual triggers
+      execute_triggers_from_params(params, @liturgical_feast)
     end
     
     # redirect create failure for preserving sidebars
@@ -172,7 +176,7 @@ ActiveAdmin.register LiturgicalFeast do
   
   form do |f|
     f.inputs do
-      f.input :name, :label => (I18n.t :filter_name)
+      f.input :name, :label => (I18n.t :filter_name), input_html: {data: {trigger: triggers_from_hash({save: ["referring_sources", "referring_works"]}) }}
       f.input :alternate_terms, :label => (I18n.t :filter_alternate_terms)
       f.input :notes, :label => (I18n.t :filter_notes)
       f.input :wf_stage, :label => (I18n.t :filter_wf_stage)

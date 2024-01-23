@@ -48,7 +48,7 @@ class Institution < ApplicationRecord
 
   #has_and_belongs_to_many(:referring_works, class_name: "Work", join_table: "works_to_institutions")
   has_many :work_institution_relations, class_name: "WorkInstitutionRelation"
-  has_many :referring_works, through: :source_work_work_institution_relationsrelations, source: :work
+  has_many :referring_works, through: :work_institution_relations, source: :work
 
   #has_and_belongs_to_many :people, join_table: "institutions_to_people"
   has_many :institution_person_relations
