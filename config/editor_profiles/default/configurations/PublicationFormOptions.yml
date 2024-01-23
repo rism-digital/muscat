@@ -173,14 +173,17 @@
         - save:
           - referring_sources
           - referring_holdings
-          - referring_institutions
           - referring_people
+          - referring_institutions
           - referring_works
 "240": 
   layout: 
     fields: 
     - - a
       - growfield: true
+      - trigger:
+        - save:
+          - referring_publications
     - - g
       - values:
         # http://www.loc.gov/standards/valuelist/marcgt.html

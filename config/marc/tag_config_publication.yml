@@ -423,7 +423,7 @@
         :no_show: true
     - - t
       - :occurrences: "?"
-        :foreign_class: ^w
+        :foreign_class: ^0
         :foreign_field: title
   "785":
     :master: "w"
@@ -437,7 +437,7 @@
         :no_show: true
     - - t
       - :occurrences: "?"
-        :foreign_class: ^w
+        :foreign_class: ^0
         :foreign_field: title
   "856":
     :master: u

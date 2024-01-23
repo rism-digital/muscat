@@ -10,9 +10,9 @@
                 <%end%>
             <%end%>
             </p>
-            <b>Saved <%=@base_model%>: </b><%=@saved_source_count%><br>
+            <b>Saved <%=@base_model.to_s.pluralize%>: </b><%=@saved_source_count%><br>
             <% if @unsavable_sources.count > 0 %>
-            <b>Could not save these <%=@base_model%>: <b><%=@unsavable_sources.join(" ")%><br>
+            <b>Could not save these <%=@base_model.to_s.pluralize%>: <b><%=@unsavable_sources.join(" ")%><br>
                     <%end%>
         </p>
         <h6><%=@message%>

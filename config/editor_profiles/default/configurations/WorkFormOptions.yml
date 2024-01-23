@@ -198,6 +198,9 @@
       - type: person
         editor_partial: subfield_secondary
         allow_new: true
+      - trigger:
+        - save:
+          - referring_works
     - - d
       - autocomplete_extra: life_dates
 "130":
@@ -209,9 +212,15 @@
       - type: standard_title
         editor_partial: subfield_secondary
         allow_new: true
+      - trigger:
+        - save:
+          - referring_works
     - - r
       - editor_partial: subfield_select_codes
         codes_reference: "130r"
+      - trigger:
+        - save:
+          - referring_works
     - - m
   tag_params:
     130r:

@@ -164,10 +164,15 @@
         - save:
           - referring_sources
           - referring_holdings
+          - referring_people
+          - referring_institutions
           - referring_publications
+          - referring_works
     - - b
+      - trigger:
+        - save:
+          - referring_institutions
     - - c
-    - - a
       - trigger:
         - save:
           - referring_sources

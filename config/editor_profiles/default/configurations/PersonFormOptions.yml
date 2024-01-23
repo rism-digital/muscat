@@ -171,8 +171,8 @@
         - save:
           - referring_sources
           - referring_holdings
-          - referring_institutions
           - referring_people
+          - referring_institutions
           - referring_publications
           - referring_works
     - - c
@@ -181,8 +181,8 @@
         - save:
           - referring_sources
           - referring_holdings
-          - referring_institutions
           - referring_people
+          - referring_institutions
           - referring_publications
           - referring_works
     - - w

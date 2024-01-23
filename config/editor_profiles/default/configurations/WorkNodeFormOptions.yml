@@ -204,13 +204,27 @@
     - - d
       - autocomplete_extra: life_dates
     - - m
+      - trigger:
+        - save:
+          - referring_sources
     - - n
+      - trigger:
+        - save:
+          - referring_sources
     - - r
       - editor_partial: subfield_select_codes
         codes_reference: "100r"
+      - trigger:
+        - save:
+          - referring_sources
     - - t
+      - trigger:
+        - save:
+          - referring_sources
     - - p
-    columns: 4
+      - trigger:
+        - save:
+          - referring_sources
   tag_params:
       100r:
       - "A"
