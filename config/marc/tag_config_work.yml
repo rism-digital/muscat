@@ -286,7 +286,7 @@
     - - a
       - :occurrences: "?"
         :foreign_class: ^w
-        :foreign_field: name
+        :foreign_field: short_name
   "680":
     :master: a
     :indicator: "##"
@@ -311,7 +311,7 @@
     - - a
       - :occurrences: "?"
         :foreign_class: ^0
-        :foreign_field: name
+        :foreign_field: short_name
     - - n
       - :occurrences: "?"
   "691":
@@ -327,7 +327,7 @@
     - - a
       - :occurrences: "?"
         :foreign_class: ^0
-        :foreign_field: name
+        :foreign_field: short_name
     - - n
       - :occurrences: "?"
   "699":
