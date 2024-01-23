@@ -170,11 +170,21 @@
       - trigger:
         - save:
           - referring_sources
+          - referring_holdings
+          - referring_institutions
+          - referring_people
+          - referring_publications
+          - referring_works
     - - c
     - - d
       - trigger:
         - save:
           - referring_sources
+          - referring_holdings
+          - referring_institutions
+          - referring_people
+          - referring_publications
+          - referring_works
     - - w
     - - y
 "375": 

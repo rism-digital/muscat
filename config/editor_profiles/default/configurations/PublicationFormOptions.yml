@@ -172,6 +172,10 @@
       - trigger:
         - save:
           - referring_sources
+          - referring_holdings
+          - referring_institutions
+          - referring_people
+          - referring_works
 "240": 
   layout: 
     fields: 

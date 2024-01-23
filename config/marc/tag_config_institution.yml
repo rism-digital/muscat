@@ -267,6 +267,7 @@
     :master: "0"
     :indicator: "1#"
     :occurrences: "*"
+    :relator_code: "4"
     :fields:
     - - "0"
       - :occurrences: "?"
@@ -291,6 +292,7 @@
     :master: "0"
     :indicator: "1#"
     :occurrences: "*"
+    :relator_code: "4"
     :fields: 
     - - "0"
       - :occurrences: "?"

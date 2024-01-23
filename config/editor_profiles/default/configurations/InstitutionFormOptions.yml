@@ -163,14 +163,22 @@
       - trigger:
         - save:
           - referring_sources
-          - holdings
+          - referring_holdings
+          - referring_publications
     - - b
     - - c
+    - - a
+      - trigger:
+        - save:
+          - referring_sources
+          - referring_holdings
+          - referring_publications
     - - g
       - trigger:
         - save:
           - referring_sources
-          - holdings
+          - referring_holdings
+          - referring_publications
 "368": 
   layout: 
     fields: 
