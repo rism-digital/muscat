@@ -26,7 +26,7 @@ models.each do |model|
             all_unsaved += 1
         end
 
-        $stderr.print "#{model.to_s[0, 2]}#{idx} " if DOTIFY && idx % 1000 == 0
+        $stderr.print "#{model.to_s[0, 3].upcase}#{idx} " if DOTIFY && idx % 1000 == 0
 
     end
     end_model_time = Time.now
