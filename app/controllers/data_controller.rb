@@ -38,7 +38,13 @@ class DataController < ActionController::Base
 
     def authenticate
         authenticate_or_request_with_http_token do |token, options|
-        ActiveSupport::SecurityUtils.secure_compare(token, TOKEN)
+            toks = AuthorizationToken.where(active: true)
+            found = false
+            toks.each do |tok|
+                res = ActiveSupport::SecurityUtils.secure_compare(token, tok.token)
+                found = true if res
+            end
+            found
         end
     end
 
