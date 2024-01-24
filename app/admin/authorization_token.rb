@@ -1,5 +1,5 @@
 ActiveAdmin.register AuthorizationToken do
-    menu :parent => "admin_menu", :label => proc {I18n.t(:ugo)}, :if => proc{ can? :manage, AuthorizationToken }
+    menu :parent => "admin_menu", :label => proc {I18n.t(:authorization_tokens)}, :if => proc{ can? :manage, AuthorizationToken }
 
     permit_params [:active, :name, :token, :comment]
     config.clear_action_items!
