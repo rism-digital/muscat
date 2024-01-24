@@ -32,7 +32,12 @@ module ForeignLinks
     # If there are unknown classes purge them
     related_classes = all_foreign_classes - unknown_classes
     if !unknown_classes.empty?
-      $stderr.puts "Tried to relate with the following unknown classes: #{unknown_classes.join(',')} [#{self.id}, #{self.class}]"
+      # Exception for Holding records! Tag 973 points to a source, but it is managed
+      # directly by the holding code. We can just silence this warning here as it is
+      # redundant and that tag should rightfully not processed here
+      unless unknown_classes.count == 1 && unknown_classes[0] == "sources" && self.class == Holding
+        $stderr.puts "Tried to relate with the following unknown classes: #{unknown_classes.join(',')} [#{self.id}, #{self.class}]"
+      end
     end
 
     related_classes.each do |foreign_class|
