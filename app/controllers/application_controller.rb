@@ -128,7 +128,7 @@ class ApplicationController < ActionController::Base
   def _locale_from_http_header 
     return "en" if !request.env || !request.env.include?('HTTP_ACCEPT_LANGUAGE')
     locale = request.env['HTTP_ACCEPT_LANGUAGE'].scan(/^[a-z]{2}/).first 
-    return locale if ["en", "fr", "it", "de", "es", "pt"].include?(locale)
+    return locale if ["en", "fr", "it", "de", "es", "pt", "pl", "ca"].include?(locale)
     "en"
   end 
 
