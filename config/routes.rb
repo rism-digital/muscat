@@ -48,6 +48,7 @@ Rails.application.routes.draw do
   get 'admin/gnd_works/autocomplete_gnd_works_form' => 'admin/gnd_works#autocomplete_gnd_works_form'
 
 
+  get '/data/:model/:id' => "data#show"
   resources :data
 
   # The priority is based upon order of creation: first created -> highest priority.
