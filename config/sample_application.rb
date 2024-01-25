@@ -193,12 +193,3 @@ end
 ##########################################################################
 
 REINDEX_PIDFILE = "#{Rails.root}/tmp/pids/muscat_reindex.pid"
-
-# Mime types for MEI files
-Mime::Type.register "application/xml", :mei
-
-# Mime types for TEI files
-Mime::Type.register "application/xml", :tei
-
-# Mime types for download of MARC records.
-Mime::Type.register "application/marc", :marc
