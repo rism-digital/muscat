@@ -18,9 +18,22 @@ models.each do |model|
     spinner.update(title: "Loading #{model.to_s.pluralize}...")
     spinner.auto_spin
 
+    last_batch = 0
+    last_time = Time.now
+    elapsed = 0
+
     model.find_in_batches do |batch|
         batch.each do |item|
-            spinner.update(title: "#{model.to_s} offset: #{saved_items} ") if saved_items % 1000 == 0
+            if saved_items % 500 == 0
+
+                seconds = Time.now - last_time
+                elapsed += seconds
+                per_sec = 500 / seconds
+                eta = (total_items - saved_items) / per_sec
+
+                spinner.update(title: "#{model.to_s} offset: #{saved_items} appr. #{per_sec.round}/sec (in #{seconds.round}s, tot #{elapsed.round}s ETA #{eta.round}s)") 
+                last_time = Time.now
+            end
 
             begin
                 # Do not make a paper trail snapshot
