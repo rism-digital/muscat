@@ -1,9 +1,6 @@
-# curl -H "Accept: application/xml" -H "Content-Type: application/xml" -X GET http://localhost:3000/data/sources/1
-# curl -H "Authorization: Token TEST" -H "Accept: application/xml" -H "Content-Type: application/xml" -X GET http://localhost:3000/data/sources/1
+# curl -H "Authorization: Token TEST" -H "Accept: application/xml" -H -X GET http://localhost:3000/data/sources/1
 
 class DataController < ActionController::Base
-    TOKEN="TEST"
-
     MODELS=["sources", 
             "holdings",
             "institutions",
