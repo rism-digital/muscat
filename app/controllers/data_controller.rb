@@ -51,6 +51,13 @@ class DataController < ActionController::Base
         end
       end
 
+      def routing_error
+        respond_to do |format|
+          format.xml{  render :xml => 'Method Not Allowed', :status => 405 }
+          format.json{ render :json => 'Method Not Allowed', :status => 405 }
+        end
+      end
+
     private
 
     def authenticate
