@@ -13,25 +13,30 @@ models.each do |model|
     
     puts "Resaving #{total_items} #{model.to_s.pluralize}"
     
-    model.all.each_with_index do |item, idx|
+    model.find_in_batches do |batch|
+        batch.each_with_index do |item, idx|
 
-        begin
-            # Do not make a paper trail snapshot
-            PaperTrail.request(enabled: false) do
-                item.save
+            begin
+                # Do not make a paper trail snapshot
+                PaperTrail.request(enabled: false) do
+                    item.save
+                end
+            rescue
+                puts "Could not save #{model.to_s} #{item.id}"
+                unsavable_items += 1
+                all_unsaved += 1
             end
-        rescue
-            puts "Could not save #{model.to_s} #{item.id}"
-            unsavable_items += 1
-            all_unsaved += 1
+
+            $stderr.print "#{model.to_s[0, 3].upcase}#{idx} " if DOTIFY && idx % 1000 == 0
+
+            item = nil
         end
-
-        $stderr.print "#{model.to_s[0, 3].upcase}#{idx} " if DOTIFY && idx % 1000 == 0
-
     end
+
     end_model_time = Time.now
     all_items += total_items - unsavable_items
     puts "Saved #{total_items - unsavable_items} #{model.to_s.pluralize} in #{end_model_time - begin_model_time}"
+    
 end
 
 end_time = Time.now
