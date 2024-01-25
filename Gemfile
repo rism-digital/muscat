@@ -164,7 +164,7 @@ gem 'tty-spinner'
 gem 'libxml-ruby'
 
 # For stand-alone installations
-#gem 'passenger'
+gem 'passenger'
 
 gem 'listen'
 

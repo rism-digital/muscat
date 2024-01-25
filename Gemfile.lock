@@ -305,6 +305,9 @@ GEM
       activerecord (>= 6.1)
       request_store (~> 1.4)
     parallel (1.24.0)
+    passenger (6.0.20)
+      rack
+      rake (>= 0.8.1)
     pkg-config (1.5.6)
     pr_geohash (1.0.0)
     pry (0.14.2)
@@ -515,6 +518,7 @@ DEPENDENCIES
   needleman_wunsch_aligner (= 1.0.4)
   paper_trail
   parallel
+  passenger
   progress_bar (= 1.0.6)!
   progress_job (= 0.0.4)!
   pry
