@@ -1,4 +1,5 @@
-DOTIFY=true
+FILENAME="unloadable.log"
+File.write($FILENAME, Time.now.to_s, mode: 'w')
 
 models = [Holding, Institution, Person, Publication, Source, Work, WorkNode]
 
@@ -7,6 +8,9 @@ all_items = 0
 all_unsaved = 0
 
 spinner = TTY::Spinner.new("[:spinner] :title", format: :shark)
+
+old_stdout = $stdout
+old_stderr = $stderr
 
 models.each do |model|
     begin_model_time = Time.now
@@ -34,6 +38,10 @@ models.each do |model|
                 spinner.update(title: "#{model.to_s} offset: #{saved_items} appr. #{per_sec.round}/sec (in #{seconds.round}s, tot #{elapsed.round}s ETA #{eta.round}s)") 
                 last_time = Time.now
             end
+            
+            new_stdout = StringIO.new
+            #$stdout = new_stdout
+            #$stderr = new_stdout
 
             begin
                 # Do not make a paper trail snapshot
@@ -42,9 +50,15 @@ models.each do |model|
                     saved_items += 1
                 end
             rescue
-                puts "Could not save #{model.to_s} #{item.id}"
+                #puts "Could not save #{model.to_s} #{item.id}"
+                File.write(FILENAME, "Could not save #{model.to_s} #{item.id}", mode: 'a+')
                 unsavable_items += 1
                 all_unsaved += 1
+            ensure
+                # Set back to original
+                $stdout = old_stdout
+                $stderr = old_stderr
+                new_stdout.rewind
             end
 
             #$stderr.print "#{model.to_s[0, 3].upcase}#{idx} " if DOTIFY && idx % 1000 == 0
