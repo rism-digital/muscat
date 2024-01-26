@@ -60,4 +60,4 @@ models.each do |model|
 end
 
 end_time = Time.now
-puts "Saved #{all_items} (-#{all_unsaved}) items, started at #{begin_time.to_s} finished at #{end_time.tos}, (#{end_time - begin_time} seconds run time) "
+puts "Saved #{all_items} (-#{all_unsaved}) items, started at #{begin_time.to_s} finished at #{end_time.to_s}, (#{end_time - begin_time} seconds run time) "
