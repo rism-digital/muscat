@@ -40,8 +40,8 @@ models.each do |model|
             end
             
             new_stdout = StringIO.new
-            #$stdout = new_stdout
-            #$stderr = new_stdout
+            $stdout = new_stdout
+            $stderr = new_stdout
 
             begin
                 # Do not make a paper trail snapshot
