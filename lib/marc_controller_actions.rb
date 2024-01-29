@@ -153,7 +153,7 @@ module MarcControllerActions
 
       @editor_profile = EditorConfiguration.get_show_layout @item
      
-      render :template => 'marc_show/show_preview', :locals => { :opac => false }
+      render :template => 'marc_show/show_preview'
     end
 
     ###################
@@ -167,7 +167,7 @@ module MarcControllerActions
       @item.marc.load_source(true)
       @editor_profile = EditorConfiguration.get_show_layout @item
       
-      render :template => 'marc_show/show_preview', :locals => { :opac => false }
+      render :template => 'marc_show/show_preview'
     end
   
     ##########
@@ -203,7 +203,7 @@ module MarcControllerActions
       @item.marc.load_source(false)
       @editor_profile = EditorConfiguration.get_show_layout @item
       
-      render :template => 'marc_show/show_preview', :locals => { :opac => false }
+      render :template => 'marc_show/show_preview'
     end
   
     ##################
@@ -235,7 +235,7 @@ module MarcControllerActions
         @wf_stages = false
       end
 
-      render :template => 'marc_show/show_preview', :locals => { :opac => false }
+      render :template => 'marc_show/show_preview'
     end
     
     #####################

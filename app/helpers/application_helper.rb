@@ -73,7 +73,7 @@ module ApplicationHelper
   end
 
   # Create a link for a page in a new window
-  def application_helper_link_http(value, node, opac)
+  def application_helper_link_http(value, node)
     result = []
     links = value.split("\n")
     links.each do |link|
@@ -87,25 +87,17 @@ module ApplicationHelper
   end
   
   # Link a manuscript by its RISM id
-  def application_helper_link_source_id(value, subfield, opac) # This could have never worked
-    if opac
-      link_to(value, solr_document_path(value))
-    else
+  def application_helper_link_source_id(value, subfield) # This could have never worked
       link_to( value, { :action => "show", :controller => "admin/sources", :id => value })
-    end
   end
   
   # Link a manuscript by its RISM id
-  def application_helper_link_to_library(value, subfield, opac)
-		if opac
-			link_to value, search_catalog_path(:search_field => "library_siglum", :q => value)
-		else
+  def application_helper_link_to_library(value, subfield)
 			value
-		end
   end
   
   # Transform the relator code into its label
-  def application_helper_resolve_relator_code(value, subfield, opac)
+  def application_helper_resolve_relator_code(value, subfield)
     return @editor_profile.get_label(value)
   end
 

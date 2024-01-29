@@ -150,9 +150,7 @@ ActiveAdmin.register Holding do
   
   end
   
-  collection_action :render_embedded, method: :post do
-    opac = false
-    
+  collection_action :render_embedded, method: :post do    
     @item = Holding.find(params[:object_id] )#params[:object_id] )
     
     begin
@@ -163,7 +161,7 @@ ActiveAdmin.register Holding do
     
     @editor_profile = EditorConfiguration.get_show_layout @item
     
-    render :template => 'marc_show/show_preview', :locals => { :opac => opac, :holdings => true }
+    render :template => 'marc_show/show_preview', :locals => {:holdings => true }
   
   end
 
