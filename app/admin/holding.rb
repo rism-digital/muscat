@@ -131,7 +131,12 @@ ActiveAdmin.register Holding do
       @parent_object_id = params[:source_id]
       @parent_object_type = "Source" #hardcoded for now
       
-      new_marc = MarcHolding.new(File.read(ConfigFilePath.get_marc_editor_profile_path("#{Rails.root}/config/marc/#{RISM::MARC}/holding/default.marc")))
+      # Apply the right default file
+      default_file = "default.marc"
+      default_file = "libretto_holding_default.marc" if source.get_record_type == :libretto_edition
+      default_file = "treatise_holding_default.marc" if source.get_record_type == :theoretica_edition
+
+      new_marc = MarcHolding.new(File.read(ConfigFilePath.get_marc_editor_profile_path("#{Rails.root}/config/marc/#{RISM::MARC}/holding/#{default_file}")))
       new_marc.load_source false # this will need to be fixed
       @holding.marc = new_marc
 
