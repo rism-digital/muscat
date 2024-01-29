@@ -242,6 +242,10 @@ class Publication < ApplicationRecord
     sunspot_dsl.join(:folder_id, :target => FolderItem, :type => :integer,
               :join => { :from => :item_id, :to => :id })
 
+    sunspot_dsl.text :text do |s|
+      s.marc.to_raw_text
+    end
+
     sunspot_dsl.integer :src_count_order, :stored => true do
       (Publication.count_by_sql("select count(*) from sources_to_publications where publication_id = #{self[:id]}") +
       Publication.count_by_sql("select count(*) from institutions_to_publications where publication_id = #{self[:id]}") +

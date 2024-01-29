@@ -209,6 +209,10 @@ class Work < ApplicationRecord
       end
     end
 
+    sunspot_dsl.text :text do |s|
+      s.marc.to_raw_text
+    end
+
     sunspot_dsl.join(:folder_id, :target => FolderItem, :type => :integer, 
               :join => { :from => :item_id, :to => :id })
 

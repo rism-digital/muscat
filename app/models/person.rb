@@ -270,6 +270,10 @@ class Person < ApplicationRecord
     sunspot_dsl.time :updated_at
     sunspot_dsl.time :created_at
     
+    sunspot_dsl.text :text do |s|
+      s.marc.to_raw_text
+    end
+
     sunspot_dsl.join(:folder_id, :target => FolderItem, :type => :integer, 
               :join => { :from => :item_id, :to => :id })
 
