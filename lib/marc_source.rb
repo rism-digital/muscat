@@ -566,7 +566,7 @@ class MarcSource < Marc
     by_tags("599").each {|t| t.destroy_yourself}
  
     entry = "#{parent_object.wf_audit rescue '[without indication]'}"
-    n599 = MarcNode.new(@model, "599", "", nil)
+    n599 = MarcNode.new(@model, "599", "", "##")
     n599.add_at(MarcNode.new(@model, "b", entry, nil), 0)
     @root.add_at(n599, get_insert_position("599"))
    
@@ -575,7 +575,7 @@ class MarcSource < Marc
       versions.each do |v|
         author = v.whodunnit != nil ? "#{v.whodunnit}, " : ""
         entry = "#{author}#{v.created_at} (#{v.event})"
-        n599 = MarcNode.new(@model, "599", "", nil)
+        n599 = MarcNode.new(@model, "599", "", "##")
         n599.add_at(MarcNode.new(@model, "a", entry, nil), 0)
         @root.add_at(n599, get_insert_position("599"))
       end
