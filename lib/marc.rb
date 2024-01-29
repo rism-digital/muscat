@@ -538,6 +538,19 @@ class Marc
     return document
   end
 
+  # Accept the same parameters as the XML exporter
+  def to_marc_external(options = {})
+    updated_at = options.has_key?(:updated_at) ? options[:updated_at] : nil
+    versions = options.has_key?(:versions) ? options[:versions] : nil
+    holdings = options.has_key?(:holdings) ? options[:holdings] : true
+
+    safe_marc = self.deep_copy
+    safe_marc.root = @root.deep_copy
+    safe_marc.to_external(updated_at, versions, holdings)
+
+    safe_marc.to_marc
+  end
+
   # Export a dump of the contents
   # just the text, as is
   def to_raw_text
