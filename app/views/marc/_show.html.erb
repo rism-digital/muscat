@@ -9,15 +9,7 @@
 <% end %>
 
 <% if params[:view] == "MARC21" %>
-<div class="panel panel_group">
-<h3>MARC21</h3>
-	<%marc = @item.marc.to_marc_external({ updated_at: @item.updated_at, versions: @item.versions }) %>
-	<%css_marc = marc.gsub(/(=\d{3})  /, '<br><span class="marc_tag">\1</span> ').gsub(/(\$.)/, '<span class="marc_subfield">\1</span>').html_safe %>
-    
-	<div class="marc21">
-		<%= css_marc %>
-    </div>
-</div>
+	<%= render partial: "marc/show_raw" %>
 <%else%>
     <% layout_config["group_order"].each do |group_name|
 	group_config = layout_config["groups"][group_name]

@@ -548,7 +548,8 @@ class Marc
     safe_marc.root = @root.deep_copy
     safe_marc.to_external(updated_at, versions, holdings)
 
-    safe_marc.to_marc
+    # Send back a sanitized version for HTML display
+    ERB::Util.html_escape(safe_marc.to_marc.gsub(DOLLAR_STRING, "{dollar}"))
   end
 
   # Export a dump of the contents
