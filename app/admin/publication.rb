@@ -81,7 +81,7 @@ ActiveAdmin.register Publication do
 
     def index
       @results, @hits = Publication.search_as_ransack(params)
-      @categories = Source.get_terms("240g_sm")
+      @categories = Publication.get_terms("240g_sm")
 
       @editor_profile = EditorConfiguration.get_default_layout Publication
 

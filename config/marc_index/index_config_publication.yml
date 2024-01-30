@@ -8,6 +8,7 @@ config:
 fields:
     "240g":
       :type: string
+    "100a":
     "100a_or_700a":
       :index_processor_helper: marc_create_aggregated_text
       :tags:
@@ -15,3 +16,6 @@ fields:
         :700: "a"
       :store: true
       :type: text
+    "240g":
+    "260b":
+    "700a":
