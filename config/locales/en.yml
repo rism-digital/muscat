@@ -345,6 +345,9 @@ en:
   validation_level_warning: "There are warnings, save again to override"
   muscat_reindexing: "Muscat is reindexing, search results may be incomplete"
   work_catalogue: "Is work catalogue"
+  default_view: "Default view"
+  marc21_view: "Marc21 view"
+  marcxml_view: "MarcXML view"
 
   jobs:
     not_set: "[No status set]"

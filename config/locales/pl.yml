@@ -346,6 +346,9 @@ pl:
   validation_level_warning: "Wystąpiły ostrzeżenia. Zapisz ponownie, by je skasować."
   muscat_reindexing: "Muscat reindeksuje, wyniki wyszukiwania mogą być niekompletne"
   work_catalogue: "Katalog dzieł"
+  default_view: "Default view"
+  marc21_view: "Marc21 view"
+  marcxml_view: "MarcXML view"
 
   jobs:
     not_set: [Nie ustawiono statusu.]

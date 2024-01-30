@@ -350,6 +350,9 @@ it:
   validation_level_warning: "Alcuni elementi richiedono attenzione, salvare ancora per procedere"
   muscat_reindexing: "Muscat è in fase di reindicizzazione, i risultati della ricerca potrebbero essere incompleti"
   work_catalogue: "Catalogo di opere"
+  default_view: "Default view"
+  marc21_view: "Marc21 view"
+  marcxml_view: "MarcXML view"
 
   jobs:
     not_set: "[Nessuno stato]"

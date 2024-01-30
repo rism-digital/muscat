@@ -147,13 +147,13 @@
 	<% if @item.respond_to?(:marc_source) %>
 	    <li class="muscat_icon_separator"></li>
 	    <li class="muscat_icon_link">
-		<%= link_to("Default", send("admin_#{model}_path", item),
+		<%= link_to("#{I18n.t :default_view}", send("admin_#{model}_path", item),
 		    :class => "muscat_icon_link muscat_icon_link_preview") %>
 	    <li class="muscat_icon_link">
-		<%= link_to("MARC21", send("admin_#{model}_path", item, {view: "MARC21"}),
+		<%= link_to("#{I18n.t :marc21_view}", send("admin_#{model}_path", item, {view: "MARC21"}),
 		    :class => "muscat_icon_link muscat_icon_link_marc21") %>
 	    <li class="muscat_icon_link">
-		<%= link_to("MARCXML", send("admin_#{model}_path", "#{@item.id}.xml"),
+		<%= link_to("#{I18n.t :marcxml_view}", send("admin_#{model}_path", "#{@item.id}.xml"),
 		    :class => "muscat_icon_link muscat_icon_link_marcxml") %>
 	<%- end %>
 </ul>

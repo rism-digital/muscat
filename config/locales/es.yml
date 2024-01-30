@@ -346,6 +346,9 @@ es:
   validation_level_warning: "El registro presenta advertencias. Si desea ignorarlas, pulse nuevamente en guardar."
   muscat_reindexing: "Muscat está reindexando, los resultados de la búsqueda pueden estar incompletos"
   work_catalogue: "Catálogo de obras"  
+  default_view: "Default view"
+  marc21_view: "Marc21 view"
+  marcxml_view: "MarcXML view"
 
   jobs:
     not_set: "[Estado aún no disponible]"

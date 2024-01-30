@@ -345,6 +345,9 @@ ca:
   validation_level_warning: "Hi ha advertiments. Els podeu ignorar tornant a desar-lo"
   muscat_reindexing: "Muscat està reindexant. Els resultats poden ser incomplets"
   work_catalogue: "Catàleg d'obres"
+  default_view: "Default view"
+  marc21_view: "Marc21 view"
+  marcxml_view: "MarcXML view"
 
   jobs:
     not_set: "[Sense estat]"
