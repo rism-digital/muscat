@@ -346,8 +346,8 @@ en:
   muscat_reindexing: "Muscat is reindexing, search results may be incomplete"
   work_catalogue: "Is work catalogue"
   default_view: "Default view"
-  marc21_view: "Marc21 view"
-  marcxml_view: "MarcXML view"
+  marc21_view: "MARC21 view"
+  marcxml_view: "MARCXML view"
 
   jobs:
     not_set: "[No status set]"

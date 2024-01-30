@@ -347,8 +347,8 @@ fr:
   muscat_reindexing: "Muscat réindexe, les résultats de recherche peuvent être incomplets."
   work_catalogue: "Catalogue d'œuvres"
   default_view: "Default view"
-  marc21_view: "Marc21 view"
-  marcxml_view: "MarcXML view"
+  marc21_view: "MARC21 view"
+  marcxml_view: "MARCXML view"
   
   jobs:
     not_set: "[sans statut]"
