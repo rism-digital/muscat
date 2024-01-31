@@ -315,16 +315,7 @@ class Institution < ApplicationRecord
  
   ransacker :"110g_facet", proc{ |v| } do |parent| parent.table[:id] end
   ransacker :"667a", proc{ |v| } do |parent| parent.table[:id] end
-  
-  def get_deposita
-    #FIXME Search should not test for siglum; intermediate hack to speed up institutions show
-    if self.siglum
-      MarcSearch.select(Institution, '580$x', siglum.to_s).to_a
-    else
-      return []
-    end
-  end
- 
+   
   def holdings
     ActiveSupport::Deprecation.warn('Please use referring_holdings from institution')
     referring_holdings

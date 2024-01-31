@@ -250,19 +250,15 @@ ActiveAdmin.register Publication do
       end
     end
 
-    if !resource.get_items.empty?
-      panel I18n.t :filter_series_items do
-        search=Publication.solr_search do 
-          fulltext(params[:id], :fields=>['7600'])
-          paginate :page => params[:items_list_page], :per_page=>15
-          order_by(:date_order)
-        end
-        paginated_collection(search.results, param_name: 'items_list_page', download_links: false) do
-          table_for(collection, sortable: true) do
-            column :id do |p| link_to p.id, controller: :publications, action: :show, id: p.id end
-            column :author
-            column :title
-            column :date
+    active_admin_embedded_link_list(self, publication, Publication) do |context|
+      context.table_for(context.collection) do |cr|
+        column (I18n.t :filter_id), :id  
+        column (I18n.t :filter_title), :title
+        column "Author", :author
+        column "Date", :date
+        if !is_selection_mode?
+          context.column "" do |work|
+            link_to "View", controller: :works, action: :show, id: work.id
           end
         end
       end

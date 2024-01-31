@@ -318,10 +318,6 @@ class Publication < ApplicationRecord
     "#{self.short_name}: #{infos}"
   end
 
-  def get_items
-    MarcSearch.select(Publication, '760$0', id.to_s).to_a
-  end
-
   ransacker :"240g", proc{ |v| } do |parent| parent.table[:id] end
   ransacker :"260b", proc{ |v| } do |parent| parent.table[:id] end
   ransacker :"100a_or_700a", proc{ |v| } do |parent| parent.table[:id] end
