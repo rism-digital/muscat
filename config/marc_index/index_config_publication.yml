@@ -16,7 +16,6 @@ fields:
         :700: "a"
       :store: true
       :type: text
-    "240g":
     "260b":
     "700a":
     "7600":
