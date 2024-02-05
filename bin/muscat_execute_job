@@ -37,6 +37,9 @@ fi
 
 cd $MUSCAT_ROOT
 
+# change this to the correct RVM setting if using rvm
+#/PATH_TO/.rvm/bin/rvm 2.7.5@rails
+
 DATE=`date`
 start=$SECONDS
 
