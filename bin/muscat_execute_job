@@ -13,7 +13,7 @@ MUSCAT_ROOT=`dirname $BIN_DIR`
 LOGFILE=$MUSCAT_ROOT/log/muscat_execute_job.log
 
 # Set RVM to the right path and version
-#RVM_CMD=/PATH_TO/.rvm/bin/rvm 3.2.2@rails7 do
+#RVM_CMD="/PATH_TO/.rvm/bin/rvm 3.2.2@rails7 do"
 
 if [ $# -eq 0 ]; then
     echo "muscat_execute_job <job> <env> <param>"
