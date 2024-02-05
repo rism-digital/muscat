@@ -345,9 +345,9 @@ ca:
   validation_level_warning: "Hi ha advertiments. Els podeu ignorar tornant a desar-lo"
   muscat_reindexing: "Muscat està reindexant. Els resultats poden ser incomplets"
   work_catalogue: "Catàleg d'obres"
-  default_view: "Default view"
-  marc21_view: "MARC21 view"
-  marcxml_view: "MARCXML view"
+  default_view: "Visualització estàndard"
+  marc21_view: "Visualització MARC21"
+  marcxml_view: "Visualització MARCXML"
 
   jobs:
     not_set: "[Sense estat]"
@@ -377,7 +377,7 @@ ca:
   add_institution: "Vincula-hi una institució"
   add_source: "Vincula-hi una font"
   add_person: "Vincula-hi una persona"
-  add_holding: "Vincula-hi una Holding"
+  add_holding: "Vincula-hi un exemplar"
   archive_unarchive: "Arxiva / Desarxiva"
   archive: "Arxiva"
   unarchive: "Desarxiva"

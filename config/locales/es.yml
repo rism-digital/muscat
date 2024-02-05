@@ -346,9 +346,9 @@ es:
   validation_level_warning: "El registro presenta advertencias. Si desea ignorarlas, pulse nuevamente en guardar."
   muscat_reindexing: "Muscat está reindexando, los resultados de la búsqueda pueden estar incompletos"
   work_catalogue: "Catálogo de obras"  
-  default_view: "Default view"
-  marc21_view: "MARC21 view"
-  marcxml_view: "MARCXML view"
+  default_view: "Visualización estándar"
+  marc21_view: "Visualización MARC21"
+  marcxml_view: "Visualización MARCXML"
 
   jobs:
     not_set: "[Estado aún no disponible]"
@@ -378,7 +378,7 @@ es:
   add_institution: "Vincular institución"
   add_source: "Vincular fuente"
   add_person: "Vincular persona"
-  add_holding: "Vincular Holding"
+  add_holding: "Vincular registro de ejemplar"
   archive_unarchive: "Archivar / desarchivar"
   archive: "Archivar"
   unarchive: "Desarchivar"
