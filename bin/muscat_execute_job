@@ -42,6 +42,7 @@ DATE=`date`
 start=$SECONDS
 
 echo "Running $JOB_NAME in $RAILS_ENV mode at $DATE" >> $LOGFILE 2>&1
+echo "Start $JOB_NAME in $RAILS_ENV mode at $DATE" >> $MUSCAT_ROOT/log/"$JOB_NAME.log"
 
 if [ -z "$3" ]; then
     echo "$JOB_NAME.new.perform" | $RVM_CMD bundle exec rails c >> $MUSCAT_ROOT/log/"$JOB_NAME.log"
