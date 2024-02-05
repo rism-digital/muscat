@@ -69,7 +69,7 @@
         end_time = Time.now
         message = "#{@base_model.to_s} report started at #{begin_time.to_s}, (#{end_time - begin_time} seconds run time)"
         
-        MuscatMaintenanceReport.notify(message, @base_model, saved_source_count, models, unsavable_sources).deliver_now if !silent
+        MuscatMaintenanceReport.notify(message, @base_model, saved_source_count, models, unsavable_sources).deliver_now if !@silent
     end
 
 end
