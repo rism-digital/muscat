@@ -67,6 +67,9 @@ class Institution < ApplicationRecord
   has_and_belongs_to_many :workgroups
   belongs_to :user, :foreign_key => "wf_owner"
   
+  has_and_belongs_to_many(:referring_work_nodes, class_name: "WorkNode", join_table: "work_nodes_to_institutions")
+
+
   composed_of :marc, :class_name => "MarcInstitution", :mapping => %w(marc_source to_marc)
 
 # OLD institutions_to_institutions

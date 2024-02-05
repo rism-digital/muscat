@@ -24,7 +24,10 @@ class LiturgicalFeast < ApplicationRecord
   has_many :folder_items, as: :item, dependent: :destroy
   has_many :delayed_jobs, -> { where parent_type: "LiturgicalFeast" }, class_name: 'Delayed::Backend::ActiveRecord::Job', foreign_key: "parent_id"
   belongs_to :user, :foreign_key => "wf_owner"
-    
+  
+  has_and_belongs_to_many(:referring_work_nodes, class_name: "WorkNode", join_table: "work_nodes_to_liturgical_feasts")
+
+
   validates_presence_of :name
   
   validates_uniqueness_of :name

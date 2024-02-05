@@ -23,10 +23,12 @@ class StandardTitle < ApplicationRecord
   has_many :work_standard_title_relations, class_name: "WorkStandardTitleRelation"
   has_many :referring_works, through: :work_standard_title_relations, source: :work
 
+  has_and_belongs_to_many(:referring_work_nodes, class_name: "WorkNode", join_table: "work_nodes_to_standard_title")
+
   has_many :folder_items, as: :item, dependent: :destroy
   has_many :delayed_jobs, -> { where parent_type: "StandardTitle" }, class_name: 'Delayed::Backend::ActiveRecord::Job', foreign_key: "parent_id"
   belongs_to :user, :foreign_key => "wf_owner"
-    
+  
   validates_presence_of :title
   
   #include NewIds
