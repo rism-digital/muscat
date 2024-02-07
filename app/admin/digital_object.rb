@@ -126,8 +126,8 @@ ActiveAdmin.register DigitalObject do
         dol = DigitalObjectLink.new(object_link_type: params[:object_model], object_link_id: params[:object_id],
                                     user: current_user, digital_object_id: params[:id])
         dol.save!
-    
-        redirect_to resource_path(params[:id]), notice: "Item added successfully, #{params[:object_model]}: #{params[:object_id]}"
+        lash[:notice] = "Item added successfully, #{params[:object_model]}: #{params[:object_id]}"
+        redirect_to resource_path(params[:id])
       #rescue
       #  redirect_to resource_path(params[:id]), error: "Could not add, #{params[:object_model]}: #{params[:object_id]}"
       #end
@@ -142,16 +142,20 @@ ActiveAdmin.register DigitalObject do
     begin
       dol = DigitalObjectLink.find(params[:digital_object_link_id])
     rescue
-      redirect_to resource_path(params[:id]), error: "Could not find Digital Object Link #{params[:digital_object_link_id]}"
+      flash[:error] = "Could not find Digital Object Link #{params[:digital_object_link_id]}"
+      redirect_to resource_path(params[:id])
+      return
     end
     
     if can?(:destroy, dol)
       begin
         dol.delete
       rescue
-        redirect_to resource_path(params[:id]), error: "Could not delete link #{params[:digital_object_link_id]}"
+        flash[:error] = "Could not delete link #{params[:digital_object_link_id]}"
+        redirect_to resource_path(params[:id])
       end
-      redirect_to resource_path(params[:id]), notice: "Link deleted successfully"
+      flash[:notice] = "Link deleted successfully"
+      redirect_to resource_path(params[:id])
     else
       flash[:error] = "Operation not allowed"
       redirect_to collection_path
