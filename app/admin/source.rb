@@ -307,7 +307,7 @@ ActiveAdmin.register Source do
   collection: proc{@source_types_b.sort.collect {|k| [@editor_profile.get_label(k.camelize), "593b_filter:#{k}"]}}
 
   filter :record_type_select_with_integer, as: :select, 
-  collection: proc{MarcSource::RECORD_TYPE_ORDER.collect {|k| [I18n.t("record_types." + k.to_s), "record_type:#{MarcSource::RECORD_TYPES[k]}"]}},
+  collection: proc{MarcSource::RECORD_TYPE_ORDER.collect {|k| ["[#{I18n.t('record_types_codes.' + MarcSource::RECORD_TYPES[k].to_s,  locale: :en)}] " + I18n.t("record_types." + k.to_s), "record_type:#{MarcSource::RECORD_TYPES[k]}"]}},
 	if: proc { !is_selection_mode? }, :label => proc {I18n.t(:filter_record_type)}
 
   # See lib/active_admin_record_type_filter.rb
