@@ -236,6 +236,13 @@ Ecco l'elenco riscritto come lista puntata in Markdown utilizzando un asterisco:
 * Fix "category" menu data not indexed
 * Merge pull request #1479 from fjorba/improve-ca-es-translations
 * Add the landing pages for 10
+* Update crontab
+* Refine cron scripts
+* Add RVM calls
+* Fix global var
+* Add missing work node relations, make Maint script return data
+* Fix messages in digital object actions
+* Last second fixed: localize record_type filter, add abbreviation to record_type filter menu
 
 v 9.4.2
 * Updated rspecs with task
