@@ -53,7 +53,7 @@ module Sru
       @offset = params.fetch("startRecord", 1).to_i rescue 1
       @error_code = self._check if !@error_code
       @schema = params.fetch(:recordSchema, "marc")
-      @deprecatedIds = params.fetch(:deprecatedIds, false)
+      @deprecatedIds = params.fetch(:deprecatedIds, true)
       if !sru_config['schemas'].include?(@schema)
         @error_code =  {:code => 67, :message => "Record not available in this schema"}
       end

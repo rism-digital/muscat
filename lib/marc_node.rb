@@ -443,7 +443,7 @@ class MarcNode
   # Export to MarcXML - return a REXML::Element
   def to_xml_element(options = {})
     # deprecated ids are missing the model prefix and are ambiguous
-    deprecated_ids = options.has_key?(:deprecated_ids) ? (options[:deprecated_ids] == "true") : false
+    deprecated_ids = options.has_key?(:deprecated_ids) ? !(options[:deprecated_ids] == "false") : true
     element = XML::Node.new('leader')
 
     # skip the $_ (db_id)
