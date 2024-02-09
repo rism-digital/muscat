@@ -348,6 +348,7 @@ en:
   default_view: "Default view"
   marc21_view: "MARC21 view"
   marcxml_view: "MARCXML view"
+  authorization_tokens: "Auth tokens"
 
   jobs:
     not_set: "[No status set]"
