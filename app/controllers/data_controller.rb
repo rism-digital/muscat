@@ -23,8 +23,13 @@ class DataController < ActionController::Base
         @model = params[:model].classify.safe_constantize
         @item = @model.find(params[:id])
 
+        @deprecated_ids = params.include?("deprecatedIds") ? params["deprecatedIds"] : "false"
+
+        ap params
+        ap params["deprecatedIds"]
+
         if @item.respond_to?(:marc)
-            @xml = @item.marc.to_xml({ updated_at: @item.updated_at, versions: @item.versions })
+            @xml = @item.marc.to_xml({ updated_at: @item.updated_at, versions: @item.versions, deprecated_ids: @deprecated_ids })
         else
             @xml = @item.to_xml
         end

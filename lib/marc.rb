@@ -521,12 +521,14 @@ class Marc
     updated_at = options.has_key?(:updated_at) ? options[:updated_at] : nil
     versions = options.has_key?(:versions) ? options[:versions] : nil
     holdings = options.has_key?(:holdings) ? options[:holdings] : true
+    # Temp fix to allow deprecated ids
+    deprecated_ids = options.has_key?(:deprecated_ids) ? !(options[:deprecated_ids] == "false") : true
 
     load_source unless @loaded
     
     safe_marc = self.deep_copy
     safe_marc.root = @root.deep_copy
-    safe_marc.to_external(updated_at, versions, holdings)
+    safe_marc.to_external(updated_at, versions, holdings, deprecated_ids)
     
     document = XML::Document.new()
     document.root = XML::Node.new("record")
