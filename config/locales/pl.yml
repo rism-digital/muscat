@@ -209,7 +209,7 @@ pl:
   from_existing_source: Utwórz z istniejącego źródła
   create_from_existing: Utwórz
   record_types:
-    unspecified: [Nieznany szablon]
+    unspecified: "[Nieznany szablon]"
     collection: "Rekopis muzyczny, rekord macierzysty kolekcji"
     source: Rękopis muzyczny
     edition_content: "Druk muzyczny, pozycja w kolekcji"
