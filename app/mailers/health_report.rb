@@ -39,7 +39,7 @@ class HealthReport < ApplicationMailer
     # Generate the error report and see if it is bigger than 100k
     # if so, compress the file and send a zip attached
     # else just render it in the email body
-    File.open(path, "w") { |file| file.write(render(partial: "health_report/validation.html.erb")) }
+    File.open(path, "w") { |file| file.write(render(partial: "health_report/validation")) }
 
     if File.size(path) >= 102400
       attachments["#{file_name}.zip"] = get_zip_data(path, file_name)
