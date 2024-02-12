@@ -17,7 +17,7 @@ module Viaf
         begin 
           query = JSON.load(URI.open(URI("http://viaf.org/viaf/AutoSuggest?query="+CGI.escape(term))))
         rescue 
-          #return "ERROR connecting VIAF AutoSuggest"
+          return "ERROR connecting VIAF AutoSuggest"
         end
       end
 
@@ -74,7 +74,7 @@ module Viaf
           begin
             links = JSON.load(URI.open("http://viaf.org/viaf/#{CGI.escape(record["viafid"])}/justlinks.json"))
           rescue
-            #return "ERROR connecting VIAF Justlinks"
+            return "ERROR connecting VIAF Justlinks"
           end
         
           if !links.is_a?(Hash)
