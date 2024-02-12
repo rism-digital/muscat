@@ -257,8 +257,8 @@ ActiveAdmin.register Publication do
         column "Author", :author
         column "Date", :date
         if !is_selection_mode?
-          context.column "" do |work|
-            link_to "View", controller: :works, action: :show, id: work.id
+          context.column "" do |publication|
+            link_to "View", controller: :publications, action: :show, id: publication.id
           end
         end
       end
