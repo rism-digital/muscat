@@ -126,7 +126,7 @@ ActiveAdmin.register DigitalObject do
         dol = DigitalObjectLink.new(object_link_type: params[:object_model], object_link_id: params[:object_id],
                                     user: current_user, digital_object_id: params[:id])
         dol.save!
-        lash[:notice] = "Item added successfully, #{params[:object_model]}: #{params[:object_id]}"
+        flash[:notice] = "Item added successfully, #{params[:object_model]}: #{params[:object_id]}"
         redirect_to resource_path(params[:id])
       #rescue
       #  redirect_to resource_path(params[:id]), error: "Could not add, #{params[:object_model]}: #{params[:object_id]}"
