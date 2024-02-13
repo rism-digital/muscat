@@ -165,6 +165,22 @@ ActiveAdmin.register Work do
   filter :"699a_with_integer", :label => proc{I18n.t(:"records.work_tag")}, as: :select, 
   collection: proc{@work_tags.sort.collect {|k| [@editor_profile.get_label(k), "699a:#{k}"]}}
 
+  filter :updated_at, :label => proc{I18n.t(:updated_at)}, as: :date_range
+  filter :created_at, :label => proc{I18n.t(:created_at)}, as: :date_range
+
+  filter :wf_stage_with_integer, :label => proc {I18n.t(:filter_wf_stage)}, as: :select, 
+  collection: proc{[:inprogress, :published, :deleted].collect {|v| [I18n.t("wf_stage." + v.to_s), "wf_stage:#{v}"]}}
+  
+  # and for the wf_owner
+  filter :wf_owner_with_integer, :label => proc {I18n.t(:filter_owner)}, as: :select, 
+         collection: proc {
+           if current_user.has_any_role?(:editor, :admin)
+             User.sort_all_by_last_name.map{|u| [u.name, "wf_owner:#{u.id}"]}
+           else
+             [[current_user.name, "wf_owner:#{current_user.id}"]]
+           end
+         }
+
   index :download_links => false do
     selectable_column if !is_selection_mode?
     column (I18n.t :filter_wf_stage) {|work| status_tag(work.wf_stage,
