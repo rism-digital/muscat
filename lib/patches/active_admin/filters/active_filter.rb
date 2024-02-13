@@ -8,7 +8,14 @@ module ActiveAdmin
       def make_muscat_filter(part, value)
         if part == "record_type"
           code = I18n.t("record_types_codes." + value,  locale: :en)
-          "#{code} (#{value})"
+          "#{code} (#{value})"          
+        elsif part == "folder_id"
+          begin
+            f = Folder.find(value)
+            "#{f.name} (#{value})"
+          rescue ActiveRecord::RecordNotFound
+            "Folder not found #{value}"
+          end
         else
           "#{part}:#{value}"
         end
