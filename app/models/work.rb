@@ -222,6 +222,19 @@ class Work < ApplicationRecord
       Work.count_by_sql("select count(*) from sources_to_works where work_id = #{self[:id]}")
     end
     
+    sunspot_dsl.boolean :has_music_incipit do |s|
+      count = 0
+      s.marc.by_tags(["031"]).each do |st|
+        st.fetch_all_by_tag("p").each do |sst|
+          if sst && sst.content && !sst.content.empty?
+            count += 1 
+            break
+          end
+        end
+      end
+      count > 0
+    end
+
     MarcIndex::attach_marc_index(sunspot_dsl, self.to_s.downcase)
   end
  
@@ -247,5 +260,6 @@ class Work < ApplicationRecord
   ransacker :"0242_filter", proc{ |v| } do |parent| parent.table[:id] end
   ransacker :catalogue_name_order, proc{ |v| } do |parent| parent.table[:id] end
   ransacker :"699a", proc{ |v| } do |parent| parent.table[:id] end
+  ransacker :"incipit", proc{ |v| } do |parent| parent.table[:id] end
 
 end

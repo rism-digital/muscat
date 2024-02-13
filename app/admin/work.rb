@@ -165,6 +165,9 @@ ActiveAdmin.register Work do
   filter :"699a_with_integer", :label => proc{I18n.t(:"records.work_tag")}, as: :select, 
   collection: proc{@work_tags.sort.collect {|k| [@editor_profile.get_label(k), "699a:#{k}"]}}
 
+  filter :incipit_with_integer, as: :select, :label => "Has incipit",
+  collection: proc{[["True", "has_music_incipit:true"], ["False", "has_music_incipit:false"]]}
+
   filter :updated_at, :label => proc{I18n.t(:updated_at)}, as: :date_range
   filter :created_at, :label => proc{I18n.t(:created_at)}, as: :date_range
 
