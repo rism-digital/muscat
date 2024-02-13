@@ -32,13 +32,13 @@ groups:
     - "510"
     - "550" 
     - "551"
-    - "667"
     all_tag_templates:
       "500": people/show_related_person
       "510": marc_show/show_institution
       "551": people/show_subfield_concat
   references:
     all_tags:
+    - "667"
     - "670"
     - "678"
     - "680"
