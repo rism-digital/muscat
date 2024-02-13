@@ -318,7 +318,6 @@
       - "Ascertained"
       - "Alleged"
       - "Conjectural"
-      - "Doubtful"
       - "Misattributed"
 "240":
   new_window: standard_titles
@@ -771,7 +770,6 @@
       - "Ascertained"
       - "Alleged"
       - "Conjectural"
-      - "Doubtful"
       - "Misattributed"
     relator_codes:
       - scr
@@ -847,7 +845,6 @@
       - "Ascertained"
       - "Alleged"
       - "Conjectural"
-      - "Doubtful"
       - "Misattributed"
     relator_codes:
       - pbl
