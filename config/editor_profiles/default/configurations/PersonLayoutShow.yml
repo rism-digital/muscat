@@ -38,11 +38,11 @@ groups:
       "551": people/show_subfield_concat
   references:
     all_tags:
-    - "667"
     - "670"
     - "678"
     - "680"
     - "856"
+    - "667"
     all_tag_templates:
       "856": people/show_link
   control: 

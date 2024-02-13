@@ -27,11 +27,11 @@ groups:
     - "551"
   references:
     all_tags:
-    - "667"
     - "670"
     - "678"
     - "680"
     - "856"
+    - "667"
   control: 
     all_tags:
     - "040" 
