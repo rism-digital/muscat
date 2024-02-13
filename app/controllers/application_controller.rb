@@ -34,7 +34,7 @@ class ApplicationController < ActionController::Base
   end
 
   def auth_user
-    redirect_to "/admin/login" unless (user_signed_in? || RISM::ANONYMOUS_NAVIGATION || request.path == "/admin/login" || (defined?(saml_user_signed_in?) && saml_user_signed_in?))
+    redirect_to "/admin/login" unless (user_signed_in? || RISM::ANONYMOUS_NAVIGATION || request.path == "/admin/login" || (defined?(saml_user_signed_in?) && saml_user_signed_in?)) rescue nil
   end
   
   def test_version_warning
@@ -61,7 +61,7 @@ class ApplicationController < ActionController::Base
   end
   	
   def user_for_paper_trail
-   current_user.try :name
+   current_user.try :name rescue nil
   end
   
   def is_selection_mode?
