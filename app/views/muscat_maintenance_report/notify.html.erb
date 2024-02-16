@@ -1,4 +1,4 @@
-<h3>Muscat Maintainance Report</h3>
+<h3>Muscat Maintainance Report for <%=@base_model%></h3>
 <strong>Note</strong> the includes all authority files that had at least one souce with non-matching values, and it triggers a resave of all the sources of the authority.
         <p>
             <h4>Authority files that triggered resave:</h4>
@@ -6,13 +6,13 @@
             <p><b><%=model%></b><br>
                 <% errors.each do |message, ids|%>
                 Error message: <i><%=message%></i><br>
-                Source IDs: <%=ids.join(", ")%><br>
+                <%=@base_model%> IDs: <%=ids.join(", ")%><br>
                 <%end%>
             <%end%>
             </p>
-            <b>Saved sources: </b><%=@saved_source_count%><br>
+            <b>Saved <%=@base_model.to_s.pluralize%>: </b><%=@saved_source_count%><br>
             <% if @unsavable_sources.count > 0 %>
-            <b>Could not save these sources: <b><%=@unsavable_sources.join(" ")%><br>
+            <b>Could not save these <%=@base_model.to_s.pluralize%>: <b><%=@unsavable_sources.join(" ")%><br>
                     <%end%>
         </p>
         <h6><%=@message%>

@@ -1,2 +1,0 @@
-class DoImage < ApplicationRecord
-end

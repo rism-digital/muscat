@@ -1,0 +1,25 @@
+de:
+  gnd:
+    title: Example title
+    main_work: Haupteintragungen
+    variants: Namensvarianten
+    references: Literatur
+    codes: Codes
+    relations: Beziehungen
+    control: Kontrollfelder
+    ungrouped: Andere Felder, die nicht im Standard Muscat MARC-Editor enthalten sind
+    rism_id_number: RISM Dokumentnummer
+    control_number_identifier: Kontrollnummer-Bezeichnung
+    date_time_last_transaction: Datum und Zeit der letzten Transaktion
+    source_number_code: Normdatenagentur
+    standard_number_code: Normdatenverweise
+    other_standard_identifier: Normdatenverweise
+    title: Titel
+    years_birth_death: Geburts- und Todesdaten
+    scoring_summary: Besetzungshinweis
+    opus_thematic_index_number: Opus / WV-Nummer
+    key_or_mode: Tonart, Modus
+    title_of_work: Werktitel
+    heading: Ansetzungsform
+    instrument: Instrumente
+    name: Name

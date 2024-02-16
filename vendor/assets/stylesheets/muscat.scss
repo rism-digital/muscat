@@ -226,6 +226,14 @@ select[name="target_template"] {
   background: image-url("/images/ebook.png");
 }
 
+.holding_do_link {
+  float: right; 
+	width: 16px;
+	height: 16px;
+  margin-right: 8px;
+  background: image-url("/images/paperclip.png");
+}
+
 .diff {
   ins {
     text-decoration: none;
@@ -359,4 +367,12 @@ select[name="target_template"] {
 a.button-link {
   color: white;
   text-decoration: none;
+}
+
+body.index #sidebar {
+    display: flex;
+    flex-direction: column;
+    #search_status_sidebar_section { order: 1; }
+    #filters_sidebar_section { order: 2; }
+    #actions_sidebar_section { order: 3; }
 }

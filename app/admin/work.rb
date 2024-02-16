@@ -77,7 +77,7 @@ ActiveAdmin.register Work do
       
       respond_to do |format|
         format.html
-        format.xml { render :xml => @item.marc.to_xml(@item.updated_at, @item.versions) }
+        format.xml { render :xml => @item.marc.to_xml({ updated_at: @item.updated_at, versions: @item.versions }) }
       end
     end
     
@@ -111,6 +111,7 @@ ActiveAdmin.register Work do
         new_marc = MarcWork.new(base_item.marc.marc_source)
         # Reset the basic fields to default values
         new_marc.reset_to_new
+        new_marc.insert_duplicated_from("981", base_item.id.to_s)
         # copy the record type
         @work.marc = new_marc
       else         
@@ -163,6 +164,25 @@ ActiveAdmin.register Work do
 
   filter :"699a_with_integer", :label => proc{I18n.t(:"records.work_tag")}, as: :select, 
   collection: proc{@work_tags.sort.collect {|k| [@editor_profile.get_label(k), "699a:#{k}"]}}
+
+  filter :incipit_with_integer, as: :select, :label => "Has incipit",
+  collection: proc{[["True", "has_music_incipit:true"], ["False", "has_music_incipit:false"]]}
+
+  filter :updated_at, :label => proc{I18n.t(:updated_at)}, as: :date_range
+  filter :created_at, :label => proc{I18n.t(:created_at)}, as: :date_range
+
+  filter :wf_stage_with_integer, :label => proc {I18n.t(:filter_wf_stage)}, as: :select, 
+  collection: proc{[:inprogress, :published, :deleted].collect {|v| [I18n.t("wf_stage." + v.to_s), "wf_stage:#{v}"]}}
+  
+  # and for the wf_owner
+  filter :wf_owner_with_integer, :label => proc {I18n.t(:filter_owner)}, as: :select, 
+         collection: proc {
+           if current_user.has_any_role?(:editor, :admin)
+             User.sort_all_by_last_name.map{|u| [u.name, "wf_owner:#{u.id}"]}
+           else
+             [[current_user.name, "wf_owner:#{current_user.id}"]]
+           end
+         }
 
   index :download_links => false do
     selectable_column if !is_selection_mode?
@@ -235,7 +255,10 @@ ActiveAdmin.register Work do
     render :partial => "activeadmin/section_sidebar_show", :locals => { :item => work }
   end
   
-  
+  sidebar :folders, :only => :show do
+    render :partial => "activeadmin/section_sidebar_folder_actions", :locals => { :item => work }
+  end
+
   ##########
   ## Edit ##
   ##########

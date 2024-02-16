@@ -10,13 +10,6 @@ config:
     :model: holding
 
 fields:  
-  "001":
-  "852a":
-  "852b":
   "852c":
       :store: true
-  "852d":
-  "852e":
-  "852q":
-  "852z":
 

@@ -29,42 +29,72 @@ class Institution < ApplicationRecord
   
   has_many :digital_object_links, :as => :object_link, :dependent => :delete_all
   has_many :digital_objects, through: :digital_object_links, foreign_key: "object_link_id"
-  has_and_belongs_to_many(:referring_sources, class_name: "Source", join_table: "sources_to_institutions")
-  has_and_belongs_to_many(:referring_people, class_name: "Person", join_table: "people_to_institutions")
-  has_and_belongs_to_many(:referring_publications, class_name: "Publication", join_table: "publications_to_institutions")
-  has_and_belongs_to_many(:referring_works, class_name: "Work", join_table: "works_to_institutions")
-  has_and_belongs_to_many :people, join_table: "institutions_to_people"
-  has_and_belongs_to_many :publications, join_table: "institutions_to_publications"
+
+  #has_and_belongs_to_many(:referring_sources, class_name: "Source", join_table: "sources_to_institutions")
+  has_many :source_institution_relations, class_name: "SourceInstitutionRelation"
+  has_many :referring_sources, through: :source_institution_relations, source: :source
   
+  #has_and_belongs_to_many :referring_holdings, class_name: "Holding", join_table: "holdings_to_institutions"
+  has_many :holding_institution_relations, class_name: "HoldingInstitutionRelation"
+  has_many :referring_holdings, through: :holding_institution_relations, source: :holding
+
+  #has_and_belongs_to_many(:referring_people, class_name: "Person", join_table: "people_to_institutions")
+  has_many :person_institution_relations, class_name: "PersonInstitutionRelation"
+  has_many :referring_people, through: :person_institution_relations, source: :person
+
+  #has_and_belongs_to_many(:referring_publications, class_name: "Publication", join_table: "publications_to_institutions")
+  has_many :publication_institution_relations, class_name: "PublicationInstitutionRelation"
+  has_many :referring_publications, through: :publication_institution_relations, source: :publication
+
+  #has_and_belongs_to_many(:referring_works, class_name: "Work", join_table: "works_to_institutions")
+  has_many :work_institution_relations, class_name: "WorkInstitutionRelation"
+  has_many :referring_works, through: :work_institution_relations, source: :work
+
+  #has_and_belongs_to_many :people, join_table: "institutions_to_people"
+  has_many :institution_person_relations
+  has_many :people, through: :institution_person_relations
+
+  #has_and_belongs_to_many :publications, join_table: "institutions_to_publications"
+  has_many :institution_publication_relations
+  has_many :publications, through: :institution_publication_relations
+
   #has_and_belongs_to_many :places, join_table: "institutions_to_places"
   has_many :institution_place_relations
   has_many :places, through: :institution_place_relations
 
-  has_and_belongs_to_many :standard_terms, join_table: "institutions_to_standard_terms"
-  
-  has_and_belongs_to_many :referring_holdings, class_name: "Holding", join_table: "holdings_to_institutions"
-  #has_many :folder_items, as: :item, dependent: :destroy
+  has_many :folder_items, as: :item, dependent: :destroy
   has_many :delayed_jobs, -> { where parent_type: "Institution" }, class_name: 'Delayed::Backend::ActiveRecord::Job', foreign_key: "parent_id"
   has_and_belongs_to_many :workgroups
   belongs_to :user, :foreign_key => "wf_owner"
   
+  has_and_belongs_to_many(:referring_work_nodes, class_name: "WorkNode", join_table: "work_nodes_to_institutions")
+
+
   composed_of :marc, :class_name => "MarcInstitution", :mapping => %w(marc_source to_marc)
-  
+
+# OLD institutions_to_institutions
   # Institutions also can link to themselves
   # This is the forward link
-  has_and_belongs_to_many(:institutions,
-    :class_name => "Institution",
-    :foreign_key => "institution_a_id",
-    :association_foreign_key => "institution_b_id",
-    join_table: "institutions_to_institutions")
+#  has_and_belongs_to_many(:institutions,
+#    :class_name => "Institution",
+#    :foreign_key => "institution_a_id",
+#    :association_foreign_key => "institution_b_id",
+#    join_table: "institutions_to_institutions")
   
   # This is the backward link
-  has_and_belongs_to_many(:referring_institutions,
-    :class_name => "Institution",
-    :foreign_key => "institution_b_id",
-    :association_foreign_key => "institution_a_id",
-    join_table: "institutions_to_institutions")
-  
+#  has_and_belongs_to_many(:referring_institutions,
+#    :class_name => "Institution",
+#    :foreign_key => "institution_b_id",
+#    :association_foreign_key => "institution_a_id",
+#    join_table: "institutions_to_institutions")
+
+# NEW institutions_to_institutions
+  has_many :institution_relations, foreign_key: "institution_a_id"
+  has_many :institutions, through: :institution_relations, source: :institution_b
+  # And this is the one coming back
+  has_many :referring_institution_relations, class_name: "InstitutionRelation", foreign_key: "institution_b_id"
+  has_many :referring_institutions, through: :referring_institution_relations, source: :institution_a
+
   #validates_presence_of :siglum    
   
   validates_uniqueness_of :siglum, :allow_nil => true
@@ -86,6 +116,7 @@ class Institution < ApplicationRecord
   attr_accessor :suppress_update_workgroups_trigger
 
   alias_attribute :id_for_fulltext, :id
+  alias_attribute :name, :full_name # activeadmin needs the name attribute
 
   enum wf_stage: [ :inprogress, :published, :deleted, :deprecated ]
   enum wf_audit: [ :full, :abbreviated, :retro, :imported ]
@@ -253,6 +284,10 @@ class Institution < ApplicationRecord
     sunspot_dsl.time :updated_at
     sunspot_dsl.time :created_at
 
+    sunspot_dsl.text :text do |s|
+      s.marc.to_raw_text
+    end
+
     MarcIndex::attach_marc_index(sunspot_dsl, self.to_s.downcase)
     
   end
@@ -283,16 +318,7 @@ class Institution < ApplicationRecord
  
   ransacker :"110g_facet", proc{ |v| } do |parent| parent.table[:id] end
   ransacker :"667a", proc{ |v| } do |parent| parent.table[:id] end
-  
-  def get_deposita
-    #FIXME Search should not test for siglum; intermediate hack to speed up institutions show
-    if self.siglum
-      MarcSearch.select(Institution, '580$x', siglum.to_s).to_a
-    else
-      return []
-    end
-  end
- 
+   
   def holdings
     ActiveSupport::Deprecation.warn('Please use referring_holdings from institution')
     referring_holdings

@@ -77,6 +77,9 @@ ActiveAdmin.register User do
     render :partial => "activeadmin/section_sidebar_index"
   end
  
+  # Include the folder actions
+  include FolderControllerActions
+  
   ##########
   ## Show ##
   ##########
@@ -152,7 +155,7 @@ ActiveAdmin.register User do
   end
 =end
 
-  sidebar :actions, :only => [:edit, :new, :update] do
+  sidebar :actions, :only => [:edit, :new, :update, :create] do
     render :partial => "activeadmin/section_sidebar_edit", :locals => { :item => user }
   end
 

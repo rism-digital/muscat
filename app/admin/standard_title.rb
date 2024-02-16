@@ -178,6 +178,10 @@ ActiveAdmin.register StandardTitle do
     render :partial => "activeadmin/section_sidebar_show", :locals => { :item => standard_title }
   end
   
+  sidebar :folders, :only => :show do
+    render :partial => "activeadmin/section_sidebar_folder_actions", :locals => { :item => standard_title }
+  end
+
   ##########
   ## Edit ##
   ##########
@@ -186,7 +190,7 @@ ActiveAdmin.register StandardTitle do
     f.inputs do
       ## Enable the trigger, only for editors
       if current_user.has_any_role?(:editor, :admin)
-        f.input :title, :label => (I18n.t :filter_title), input_html: {data: {trigger: triggers_from_hash({save: ["referring_sources"]}) }}
+        f.input :title, :label => (I18n.t :filter_title), input_html: {data: {trigger: triggers_from_hash({save: ["referring_sources", "referring_works"]}) }}
       else
         f.input :title, :label => (I18n.t :filter_title), :input_html => { :disabled => true }
       end

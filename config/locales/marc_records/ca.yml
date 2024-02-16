@@ -95,6 +95,7 @@ ca:
     norwegian: Noruec
     occitan: Occità
     oirat: Oirat
+    ojibwa: Ojibwa
     old_church_slavonic: Eslau eclesiàstic antic
     persian: Persa
     polish: Polonès
@@ -188,6 +189,7 @@ ca:
     israel: Israel
     italy: Itàlia
     italy_trentino_alto_adige: 'Itàlia: Trentino-Alto Adige'
+    jamaica: Jamaica
     japan: Japó
     korea: Corea del Sud
     latvia: Letònia
@@ -355,6 +357,7 @@ ca:
     collaborator: Col·laborador
     collective_catalog: Catàleg col·lectiu
     colophon: Colofó
+    contributing_project: Contributing project
     common_clefs: Claus comunes
     compiler: Compilador
     composer: Compositor
@@ -426,6 +429,7 @@ ca:
     ds_major: Re♯ major
     ds_minor: Re♯ menor
     dubious: Dubtós
+    duplicated_from: Duplicated from
     e_major: Mi major
     e_minor: Mi menor
     earlier_heading: Encapçalament anterior
@@ -444,6 +448,7 @@ ca:
     event_organizer: Organitzador
     event_place: Lloc de l'esdeveniment
     excerpts: Extractes
+    exemplar: Exemplar
     exemplars: Exemplars
     extent: Extensió
     extent_parts: Extensió (particel·les)
@@ -596,8 +601,10 @@ ca:
     married_with: Casat/da amb
     material_description: Descripció del material
     material_examined: Material examinat
+    material_group: Grup de material
     material_held: Material conservat
     material_not_examined: Material no examinat
+    material_type: Tipus de material
     media_type: Tipus de suport
     mensural_clefs: Claus mensurals
     method_of_acquisition: Mètode d'adquisició
@@ -678,6 +685,7 @@ ca:
     order_name: Orde religiós
     origin: Origen
     original_cataloging_agency: Organisme de catalogació original
+    original_record: Original record
     other: Altres
     other_associated_place: Altre lloc associat
     other_designation: Altra designació
@@ -788,7 +796,6 @@ ca:
     series: Sèries
     series_added_entry: Entrades secundàries de col·lecció
     series_statement: Menció de col·lecció
-    material_group: Grup de material
     shelfmark: Signatura
     shelfmark_olim: Signatura anterior (olim)
     short_title: Títol abreujat
@@ -975,6 +982,9 @@ ca:
     manuscript: "Manuscrit"
     printed: "Imprès"
     composite: "Volum compost"
+    collection: "Col·lecció"
+    item: "Item"
+    single_item: "Single item"
     apply_filters: "Aplicar els filtres"
     error_loading_results: "Error en carregar els resultats"
     global_collection: "Col·lecció global"

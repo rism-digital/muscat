@@ -14,10 +14,6 @@ $link-color: $primary-color !default;
 // Reset it to the active admin default color
 $section-header-text-color: #5E6469 !default;
 
-// BlackLight colors
-$rismBLColor: #1B4E7D; // Links and facets
-$rismBLnavbarColor: $primary-color; // Navbar
-$darkRismBLColor: darken($rismBLColor, 10%);
 // Navbar text
 $rismNavbarTextColor: #ddd;
 

@@ -72,6 +72,10 @@
   fields:
     a:
       label: records.related_personal_name
+    d:
+      label: records.life_dates
+    i:
+      label: records.type_relationship
     y:
       label: records.type_relationship
   label: records.related_personal_name
@@ -237,6 +241,8 @@ XB-IQ:
   label: places.iraq
 XB-IR:
   label: places.iran
+XD-JM:
+  label: places.jamaica
 XB-JP:
   label: places.japan
 XB-KH:

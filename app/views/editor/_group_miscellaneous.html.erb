@@ -10,7 +10,10 @@
 -%>
 
 <div class="panel tab_panel" style="display: none;" name="<%= group_title.gsub(/ /, "_") %>">
-	<div class="editor-flash" data-flash="<%=I18n.t(:unknown_tags)%>" data-type="warning"></div>
+	<% if !@editor_profile.layout_config.include?("show_unknown_group_warning") ||  
+	(@editor_profile.layout_config.include?("show_unknown_group_warning") && @editor_profile.layout_config["show_unknown_group_warning"] == true) %>
+		<div class="editor-flash" data-flash="<%=I18n.t(:unknown_tags)%>" data-type="warning"></div>
+	<% end %>
 	<h3><%= group_title -%></h3>
 	<div class="marc_editor_panel_content">
 		<div class="marc_editor_group_contents">

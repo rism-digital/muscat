@@ -1,0 +1,28 @@
+<div class="panel tabpanel">
+	<h3>Description</h3>
+	<div class="panel_content">
+		This is the GND editor for works
+	</div>
+</div>
+
+<% if @saved_ids && @saved_ids.count > 0 %>
+<div class="panel tabpanel">
+	<h3>Last 20 created Items</h3>
+	<div class="panel_content">
+		<table>
+		<th>ID</th>
+		<th>Date created</td>
+		<th>&nbsp;</th>
+		<%@saved_ids.each do |item|%>
+		<% parsed_date = DateTime.parse(item["date"]).to_formatted_s(:long) rescue parsed_date = item[:date] %>
+			<tr>
+				<td><%= item["id"] %></td>
+				<td><%= parsed_date %></td>
+				<td>
+					<a href="/admin/gnd_works/edit?id=<%=item["id"]%>">Edit</a>
+			</tr>
+		<%end%>
+		</table>
+	</div>
+</div>
+<%end%>

@@ -73,7 +73,7 @@ ActiveAdmin.register Institution do
 
       respond_to do |format|
         format.html
-        format.xml { render :xml => @item.marc.to_xml(@item.updated_at, @item.versions) }
+        format.xml { render :xml => @item.marc.to_xml({ updated_at: @item.updated_at, versions: @item.versions }) }
       end
     end
 
@@ -179,18 +179,7 @@ ActiveAdmin.register Institution do
     else
       render :partial => "marc/show"
     end
-    if !resource.get_deposita.empty?
-      panel I18n.t :filter_series_items do
-        paginated_collection(@item.institutions.page(params[:items_list_page]).per(15), param_name: 'items_list_page', download_links: false) do
-          table_for(collection, sortable: true) do
-            column :id do |p| link_to p.id, controller: :institutions, action: :show, id: p.id end
-            column :siglum
-            column :full_name
-            column :place
-          end
-        end
-      end
-    end
+
     active_admin_embedded_source_list( self, institution, !is_selection_mode? )
 
     # Box for people referring to this institution
@@ -260,6 +249,10 @@ ActiveAdmin.register Institution do
 
   sidebar :actions, :only => :show do
     render :partial => "activeadmin/section_sidebar_show", :locals => { :item => institution }
+  end
+
+  sidebar :folders, :only => :show do
+    render :partial => "activeadmin/section_sidebar_folder_actions", :locals => { :item => institution }
   end
 
   ##########

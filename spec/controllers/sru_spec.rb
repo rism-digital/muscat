@@ -19,7 +19,7 @@ RSpec.describe SruController, :type => :controller, solr: true do
       doc = Nokogiri::XML(response.body)
       namespace="http://explain.z3950.org/dtd/2.0/" 
       hostinfo = doc.xpath("//ns:serverInfo/ns:host", "ns" => namespace).first.content
-      expect(hostinfo).to eq "beta.rism.info"
+      expect(hostinfo).to eq "muscat.rism.info"
     end
   end
 

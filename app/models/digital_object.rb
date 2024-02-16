@@ -103,7 +103,6 @@ class DigitalObject < ApplicationRecord
       text = vals[:t] == "x" ? "" : " #{vals[:t]}"
       incipits["#{pae_nr}#{text}"] = "#{s.id}:#{pae_nr}"
     end
-    ap incipits
     incipits
   end
 

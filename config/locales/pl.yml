@@ -5,6 +5,7 @@ pl:
 #
 #
     compare_versions: Porównaj wersje
+    gnd_works: GND redaktor prac
     dashboard: Strona główna
     dashboard_welcome:
       welcome: Witamy w części produkcyjnej. Domyślna strona panelu użytkownika.
@@ -208,7 +209,7 @@ pl:
   from_existing_source: Utwórz z istniejącego źródła
   create_from_existing: Utwórz
   record_types:
-    unspecified: [Nieznany szablon]
+    unspecified: "[Nieznany szablon]"
     collection: "Rekopis muzyczny, rekord macierzysty kolekcji"
     source: Rękopis muzyczny
     edition_content: "Druk muzyczny, pozycja w kolekcji"
@@ -292,12 +293,12 @@ pl:
   
   ### VARIOUS ELEMENTS
   recent_changes: Ostatnie modyfikacje
-  any_field_contains: Dowolne pole zawiera …
-  title_contains: Tytuł dyplomatyczny zawiera …
-  std_title_contains: Znormalizowany tytuł zawiera …
-  composer_contains: Kryterium kompozytora zawiera …
-  library_sigla_contains: Siglum zawiera …
-  internal_note_contains: Notatka wewnętrzna zawiera …
+  any_field_contains: Dowolne pole
+  title_contains: Tytuł dyplomatyczny
+  std_title_contains: Znormalizowany tytuł
+  composer_contains: Kryterium kompozytora
+  library_sigla_contains: Siglum
+  internal_note_contains: Notatka wewnętrzna
   is_in_folder: Jest w folderze …
   workgroups: Grupy robocze
   roles: Role
@@ -348,6 +349,10 @@ pl:
   validation_level_warning: "Wystąpiły ostrzeżenia. Zapisz ponownie, by je skasować."
   muscat_reindexing: "Muscat reindeksuje, wyniki wyszukiwania mogą być niekompletne"
   work_catalogue: "Katalog dzieł"
+  default_view: "Default view"
+  marc21_view: "MARC21 view"
+  marcxml_view: "MARCXML view"
+  authorization_tokens: "Auth tokens"
 
   jobs:
     not_set: [Nie ustawiono statusu.]
@@ -377,6 +382,7 @@ pl:
   add_institution: Powiąż instytucję
   add_source: Powiąż źródło
   add_person: Powiąż osobę
+  add_holding: "Powiąż holding"
   archive_unarchive: Zarchiwizuj / cofnij archiwizację
   archive: Zarchiwizuj
   unarchive: Cofnij archiwizację
@@ -384,7 +390,9 @@ pl:
   export_folder_csv: Wyeksportuj folder jako CSV
   export_folder_raw: Wyeksportuj folder jako Muscat MARC
   validate_folder: Zatwierdź pozycje
-
+  choose_folder: "(PLEASE CHOOSE ONE)"
+  add_item_to_folder: "ADD TO FOLDER"
+  remove_item_from_folder: "DELETE FROM FOLDER"
   
   # Editor sidebar
   show_all_groups: Pokaż wszystkie sekcje
@@ -457,7 +465,7 @@ pl:
   filter_author_or_editor: Autor / Edytor
   filter_autograph_of: Autograf autorstwa
   filter_birth_place: Miejsce urodzenia
-  filter_publications: Publikacje
+  filter_catalog: Katalog
   filter_category_type: Kategoria
   filter_collection: Kolekcja
   filter_comment: Komentarz
@@ -528,6 +536,7 @@ pl:
   filter_series_items: Pozycje seryjne
   filter_siglum: Siglum
   filter_source: Źródło
+  filter_source_id: "Id źródła"
   filter_sources: Źródła
   filter_source_type: Rodzaj źródła
   filter_source_content_type: "typ zawartości"
@@ -851,21 +860,3 @@ pl:
 
 ######################################################################################################
 # End of translation in all languages - make sure all the file have the same line number for this line
-
- 
-######################################################################################################
-# Blacklights overriden translations - the list can vary from one language to another
-
-  blacklight:
-    application_name: Muscat'
-    header_links:
-      logout: Wyloguj'
-    search:
-      start_over: Zacznij od nowa
-      facets:
-        title: Sprecyzuj wyszukiwanie
-    range_limit:
-      submit_limit: Sprecyzuj
-  blacklight_advanced_search:
-    form:
-      start_over: Zacznij od nowa

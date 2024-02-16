@@ -153,6 +153,10 @@ class WorkNode < ApplicationRecord
       WorkNode.count_by_sql("select count(*) from sources_to_work_nodes where work_node_id = #{self[:id]}")
     end
     
+    sunspot_dsl.text :text do |s|
+      s.marc.to_raw_text
+    end
+
     MarcIndex::attach_marc_index(sunspot_dsl, "work_node")
   end
  
@@ -167,7 +171,7 @@ class WorkNode < ApplicationRecord
  
   def self.get_gnd(str)
     str.gsub!("\"", "")
-    GND::Interface.search(str, self.to_s)
+    GND::Interface.search({title: str}, 20)
   end
  
   ransacker :"031t", proc{ |v| } do |parent| parent.table[:id] end

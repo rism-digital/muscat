@@ -50,7 +50,7 @@ class ExportIncipitsJob < ProgressJob::Base
 
     date = Date.current.to_formatted_s(:db)
 
-    File.unlink(ZIPFILE) if File.exists?(ZIPFILE)
+    File.unlink(ZIPFILE) if File.exist?(ZIPFILE)
 
     Zip::File.open(ZIPFILE, Zip::File::CREATE) do |zipfile|
       zipfile.add("incipits_#{date}.csv", OUTFILE)

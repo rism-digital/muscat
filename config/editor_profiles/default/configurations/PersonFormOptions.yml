@@ -31,7 +31,6 @@
   layout: 
     fields: 
     - - a
-      - cols: 2
     - - "2"
       - values: 
         - "BNE"
@@ -42,45 +41,34 @@
         - "LC"
         - "NLP"
         - "NKC"
+        - "OCLC"
         - "ORCID"
         - "SWNL"
         - "VIAF"
         - "WKP"
         default: "VIAF"
         editor_partial: subfield_select
-      - cols: 2
-    columns: 4
-
 "040": 
   layout: 
     fields: 
     - - a
-      - cols: 2
     - - c
-      - cols: 2
     - - d
-      - cols: 2
     - - b
-      - cols: 2
-    columns: 4
 "042": 
   layout: 
     fields: 
     - - a
-      - cols: 4
-        values:
+      - values:
         - "individualized" 
         - "not individualized"
         editor_partial: subfield_select
-    columns: 4
 "043": 
   layout: 
     fields: 
     - - c
-      - cols: 2 
-        editor_partial: subfield_select_codes
+      - editor_partial: subfield_select_codes
         select_label: "Country"
-    columns: 2
   tag_params:
     codes:
       - "XC-DZ"
@@ -130,6 +118,7 @@
       - "XB-IL"
       - "XA-IT-32"
       - "XA-IT"
+      - "XD-JM"
       - "XB-JP"
       - "XB-KR"
       - "XA-LI"
@@ -179,30 +168,32 @@
   layout: 
     fields: 
     - - a
-      - cols: 2
-        trigger:
+      - trigger:
         - save:
           - referring_sources
+          - referring_holdings
+          - referring_people
+          - referring_institutions
+          - referring_publications
+          - referring_works
     - - c
-      - cols: 2
     - - d
-      - cols: 2
-        trigger:
+      - trigger:
         - save:
           - referring_sources
+          - referring_holdings
+          - referring_people
+          - referring_institutions
+          - referring_publications
+          - referring_works
     - - w
-      - cols: 2
     - - y
-      - cols: 2
-    columns: 4
 "375": 
   layout: 
     fields: 
     - - a
-      - cols: 2 
-        editor_partial: subfield_select_codes
+      - editor_partial: subfield_select_codes
         select_label: "Gender"
-    columns: 2
   tag_params:
     codes:
       - male
@@ -212,14 +203,10 @@
   layout: 
     fields: 
     - - a
-      - cols: 2
     - - d
-      - cols: 2
     - - j
-      - cols: 2
-        editor_partial: subfield_select_codes
+      - editor_partial: subfield_select_codes
         select_label: "Type of Variant"
-    columns: 2
   tag_params:
     codes:
       - "bn"
@@ -232,7 +219,6 @@
       - "ub"
       - "xx"
       - "z"
-    columns: 4
 "500": 
   allow_new: true
   new_window: people
@@ -246,7 +232,6 @@
     - - "i"
       - editor_partial: subfield_select_codes
         select_label: "Relationship"
-    columns: 4
   tag_params:
     codes:
       - brother of
@@ -266,14 +251,10 @@
     - - "a"
       - type: institution
         editor_partial: subfield_secondary
-      - cols: 4
-    columns: 4
 "549": 
   layout: 
     fields: 
     - - a
-      - cols: 2
-    columns: 2
 "550":
   layout: 
     fields: 
@@ -292,10 +273,8 @@
         editor_partial: subfield_secondary
         allow_new: true
     - - i
-      - cols: 2
-        editor_partial: subfield_select_codes
+      - editor_partial: subfield_select_codes
         select_label: "Type"
-    columns: 2
   tag_params:
     codes:
       - go
@@ -308,16 +287,12 @@
   layout: 
     fields: 
     - - a
-      - cols: 2
     - - b
-      - cols: 2
-    columns: 4
 "667": 
   layout: 
     fields: 
     - - a
-      - cols: 2
-    columns: 2
+      - growfield: true
 "670": 
   allow_new: true
   new_window: publications
@@ -326,10 +301,7 @@
     - - "a"
       - type: publication
         editor_partial: subfield_secondary
-      - cols: 4
     - - "b"
-      - cols: 2
-    columns: 4
 "678": 
   layout: 
     fields: 
@@ -344,11 +316,8 @@
   layout: 
     fields: 
     - - u
-      - cols: 2
-        unrestricted:
+      - unrestricted:
           - person_restricted
     - - y
-      - cols: 2
-        unrestricted:
+      - unrestricted:
           - person_restricted
-    columns: 4

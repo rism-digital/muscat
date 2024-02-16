@@ -12,7 +12,27 @@ function marc_editor_set_dirty() {
 	//$("<span>*</span>").insertAfter($("#page_title"));
 	$("#page_title").append("*");
 }
-	
+
+function marc_editor_update_group_toolbar(event, ui) {
+	// We only care about material groups here
+	if (!ui.item.hasClass("inner_group_dt"))
+		return;
+
+	var parent = ui.item.parents(".toplevel_group_dl");
+	var group_list = parent.children(".inner_group_dt")
+
+
+	group_list.each( (index, element) => {
+		var button = $(element).find('[data-group-button="remove"]')
+
+		if (index == 0) {
+			button.fadeOut();
+		} else {
+			button.fadeIn();
+		}
+	});
+}
+
 function marc_editor_init_tags( id ) {
 
   marc_editor_show_last_tab();
@@ -24,7 +44,8 @@ function marc_editor_init_tags( id ) {
 	window.onunload = marc_editor_cleanp;
 	
 	$(".sortable").sortable({
-		handle: ".sortable-button"
+		handle: ".sortable-button",
+		update: function( event, ui ) {marc_editor_update_group_toolbar(event, ui)}
 	});
 
 	marc_editor_form_changed = false;
@@ -174,7 +195,6 @@ function _marc_editor_send_form(form_name, rails_model, redirect) {
 		
 	$.ajax({
 		success: function(data) {
-			
 			window.onbeforeunload = false;
 			// just reload the edit page
 			new_url = data.redirect;
@@ -200,6 +220,23 @@ function _marc_editor_send_form(form_name, rails_model, redirect) {
 		type: 'post',
 		url: url, 
 		error: function (jqXHR, textStatus, errorThrown) {
+				// FIXME clean this code up, it is ok now for testing
+				if (jqXHR.responseJSON) {
+					if (jqXHR.responseJSON.gnd_error) {
+						alert ("There was an error saving to GND (" + jqXHR.responseJSON.gnd_message + ")");
+					
+						$('.flashes').empty();
+						$('<div/>', {
+							"class": 'flash flash_error',
+							text: "GND Response: " + jqXHR.responseJSON.gnd_message
+						}).appendTo('.flashes');
+						
+						$('#main_content').unblock();
+						$('#sections_sidebar_section').unblock();
+						return;
+					}
+				}
+
 				if (errorThrown == "Conflict") {
 					alert ("Error saving page: this is a stale version");
 					
@@ -335,8 +372,8 @@ function _marc_editor_version_view( version_id, destination, rails_model ) {
 	});
 }
 
-function _marc_editor_embedded_holding(destination, rails_model, id, opac ) {	
-	url = "/catalog/holding";
+function _marc_editor_embedded_holding(destination, rails_model, id ) {	
+	url = "/admin/holdings/render_embedded";
 	
 	$.ajax({
 		success: function(data) {
@@ -344,7 +381,6 @@ function _marc_editor_embedded_holding(destination, rails_model, id, opac ) {
 		data: {
 			marc_editor_dest: destination,
 			object_id: id,
-			opac: opac
 		},
 		dataType: 'script',
 		timeout: 20000,

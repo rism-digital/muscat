@@ -15,9 +15,7 @@
 		<%- end %>
 	</th>
 	<td>
-		<% if opac %>
-			<%= link_to institution,  solr_document_path(:search_field => "any_field", :q => institution)%>
-		<% elsif is_selection_mode?%>
+		<% if is_selection_mode?%>
 			<%= institution%>
 		<% else %>
 			<%= link_to institution, admin_institution_path(db_id) -%>

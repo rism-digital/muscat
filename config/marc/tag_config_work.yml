@@ -286,7 +286,7 @@
     - - a
       - :occurrences: "?"
         :foreign_class: ^w
-        :foreign_field: name
+        :foreign_field: short_name
   "680":
     :master: a
     :indicator: "##"
@@ -311,7 +311,7 @@
     - - a
       - :occurrences: "?"
         :foreign_class: ^0
-        :foreign_field: name
+        :foreign_field: short_name
     - - n
       - :occurrences: "?"
   "691":
@@ -327,7 +327,7 @@
     - - a
       - :occurrences: "?"
         :foreign_class: ^0
-        :foreign_field: name
+        :foreign_field: short_name
     - - n
       - :occurrences: "?"
   "699":
@@ -343,6 +343,7 @@
     :master: "0"
     :indicator: "1#"
     :occurrences: "*"
+    :relator_code: "4"
     :fields:
     - - "0"
       - :occurrences: "?"
@@ -375,6 +376,7 @@
     :master: "0"
     :indicator: "2#"
     :occurrences: "*"
+    :relator_code: "4"
     :fields:
     - - "0"
       - :occurrences: "?"
@@ -423,4 +425,12 @@
         :browse_helper: application_helper_link_http
     - - z
       - :occurrences: "*"
-
+  "981":
+    :master: ""
+    :indicator: "##"
+    :occurrences: "*"
+    :fields:
+    - - "0"
+      - :occurrences: "1"
+    - - d
+      - :occurrences: "1"

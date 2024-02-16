@@ -1,0 +1,61 @@
+--- !map:Settings 
+group_order: 
+- main_work
+- codes
+#- people
+- incipits
+- variants
+- references
+- relations
+- control
+groups:   
+  main_work: 
+    all_tags: 
+    - "100"
+    - "548"
+    - "383"
+    - "690"
+  codes: 
+    all_tags: 
+    - "024"
+    - "380"
+    all_tag_templates:
+      "024": marc_show/show_dnb_link
+  incipits:
+    all_tags:
+    - "031"
+    all_tag_templates: 
+      "031": marc_show/show_incipit
+#  people:
+#    all_tags:
+#    - "500"
+  variants:
+    all_tags:
+    - "400"
+    all_tag_templates:
+      "400": works/show_variants
+#    - "440"
+  references:
+    all_tags:
+    - "670"
+    - "675"
+    - "680"
+    - "667"
+  relations:
+    all_tags:
+    - "700"
+    - "710"
+    - "747"
+    - "930"
+    - "856"
+    all_tag_templates:
+      "700": works/show_related_person
+      "710": marc_show/show_institution 
+      "747": works/show_related_feast
+      "930": works/show_work_link
+      "856": marc_show/show_link
+  control: 
+    all_tags: 
+    - "040"
+    - "000"
+    - "001"

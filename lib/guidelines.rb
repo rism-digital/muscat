@@ -5,7 +5,7 @@ class Guidelines
   def initialize(ymlfile, lang)
     @tag_index = Array.new
     @lang = lang
-    @tree = YAML::load(File.read(ymlfile))
+    @tree = YAML.unsafe_load(File.read(ymlfile)) # safe load and permitted_classes does not seem to work
     @coder = HTMLEntities.new
     # check if the language exists in the wanted lang
     if (!@tree[:lang].include?(lang))
