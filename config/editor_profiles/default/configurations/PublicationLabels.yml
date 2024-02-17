@@ -146,6 +146,8 @@
       label: records.institution
     b:
       label: records.department
+    c:
+      label: records.place
     g:
       label: records.attribution_qualifier
   label: records.additional_institution
@@ -178,6 +180,13 @@
     z:
       label: records.note_external_resource
   label: records.external_resource
+'981':
+  fields:
+    "0":
+      label: records.original_record
+    d:
+      label: records.date
+  label: records.duplicated_from
 H:
   label: records.editor
 XA-AD:
@@ -264,6 +273,8 @@ XB-IN:
   label: places.india
 XB-IR:
   label: places.iran
+XD-JM:
+  label: places.jamaica
 XB-JP:
   label: places.japan
 XB-KH:

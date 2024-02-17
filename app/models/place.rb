@@ -11,9 +11,12 @@
 
 class Place < ApplicationRecord
   include ForeignLinks
+  include CommentsCleanup
 
-  has_and_belongs_to_many(:referring_sources, class_name: "Source", join_table: "sources_to_places")
-  
+  #has_and_belongs_to_many(:referring_sources, class_name: "Source", join_table: "sources_to_places")
+  has_many :source_place_relations, class_name: "SourcePlaceRelation"
+  has_many :referring_sources, through: :source_place_relations, source: :source
+
   #has_and_belongs_to_many(:referring_people, class_name: "Person", join_table: "people_to_places")
   has_many :person_place_relations, class_name: "PersonPlaceRelation"
   has_many :referring_people, through: :person_place_relations, source: :person
@@ -22,8 +25,18 @@ class Place < ApplicationRecord
   has_many :institution_place_relations, class_name: "InstitutionPlaceRelation"
   has_many :referring_institutions, through: :institution_place_relations, source: :institution
   
-  has_and_belongs_to_many(:referring_publications, class_name: "Publication", join_table: "publications_to_places")
-  has_and_belongs_to_many(:referring_holdings, class_name: "Holding", join_table: "holdings_to_places")
+  #has_and_belongs_to_many(:referring_publications, class_name: "Publication", join_table: "publications_to_places")
+  has_many :publication_place_relations, class_name: "PublicationPlaceRelation"
+  has_many :referring_publications, through: :publication_place_relations, source: :publication
+
+  #has_and_belongs_to_many(:referring_holdings, class_name: "Holding", join_table: "holdings_to_places")
+  has_many :holding_place_relations, class_name: "HoldingPlaceRelation"
+  has_many :referring_holdings, through: :holding_place_relations, source: :holding
+
+  #has_and_belongs_to_many(:referring_works, class_name: "Work", join_table: "works_to_places")
+  has_many :work_place_relations, class_name: "WorkPlaceRelation"
+  has_many :referring_works, through: :work_place_relations, source: :work
+
   has_many :folder_items, as: :item, dependent: :destroy
   has_many :delayed_jobs, -> { where parent_type: "Place" }, class_name: 'Delayed::Backend::ActiveRecord::Job', foreign_key: "parent_id"
   belongs_to :user, :foreign_key => "wf_owner"
@@ -34,7 +47,7 @@ class Place < ApplicationRecord
 
   #include NewIds
 
-  before_destroy :check_dependencies
+  before_destroy :check_dependencies, :cleanup_comments
 
   #before_create :generate_new_id
   after_save :reindex

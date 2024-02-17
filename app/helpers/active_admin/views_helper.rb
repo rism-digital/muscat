@@ -1,5 +1,6 @@
 # include the override for group_values
-require 'sunspot_extensions.rb'
+# FIXME on rails 7.0, do we still need this?
+#require 'patches/sunspot/search/paginated_collection.rb'
 
 module ActiveAdmin::ViewsHelper
   
@@ -81,14 +82,14 @@ module ActiveAdmin::ViewsHelper
     link_to("Select", "#", :data => { :marc_editor_select => item.id, :marc_editor_label => name })
   end
   
-  def active_admin_muscat_actions( context )
+  def active_admin_muscat_actions( context, show_view = true )
     # Build the dynamic path function, then call it with send
     model = self.resource_class.to_s.underscore.downcase
     view_link_function = "admin_#{model}_path"
     if is_selection_mode?
       context.actions defaults: false do |item|
         item_links = Array.new
-        item_links << link_to("View", "#{send( view_link_function, item )}")
+        item_links << link_to("View", "#{send( view_link_function, item )}") if show_view
         item_links << active_admin_muscat_select_link( item )
         safe_join item_links, ' '
       end
@@ -272,6 +273,17 @@ module ActiveAdmin::ViewsHelper
     else
       model.where((modif_at + "> ?"), days.days.ago).limit(limit).order(modif_at + " DESC") 
     end
+  end
+
+  def dashboard_find_unpublished(model, limit, user)
+    if user != -1
+      src = model.where(wf_stage: :inprogress).where("wf_owner = ?", user).limit(limit).order("id DESC")
+      count = model.where(wf_stage: :inprogress).where("wf_owner = ?", user).count
+    else
+      src = model.where(wf_stage: :inprogress).limit(limit).order("id DESC")
+      count = model.where(wf_stage: :inprogress).count
+    end
+    return src, count
   end
 
   def dashboard_get_model_comments(limit, days = 7)

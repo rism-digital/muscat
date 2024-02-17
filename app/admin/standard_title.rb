@@ -154,6 +154,21 @@ ActiveAdmin.register StandardTitle do
       row (I18n.t :filter_notes) { |r| r.notes }  
     end
     active_admin_embedded_source_list( self, standard_title, !is_selection_mode? )
+
+    active_admin_embedded_link_list(self, standard_title, Work) do |context|
+      context.table_for(context.collection) do |cr|
+        column (I18n.t :filter_id), :id  
+        column (I18n.t :filter_title), :title
+        column "Opus", :opus
+        column "Catalogue", :catalogue
+        if !is_selection_mode?
+          context.column "" do |work|
+            link_to "View", controller: :works, action: :show, id: work.id
+          end
+        end
+      end
+    end
+
     active_admin_user_wf( self, standard_title )
     active_admin_navigation_bar( self )
     active_admin_comments if !is_selection_mode?
@@ -163,6 +178,10 @@ ActiveAdmin.register StandardTitle do
     render :partial => "activeadmin/section_sidebar_show", :locals => { :item => standard_title }
   end
   
+  sidebar :folders, :only => :show do
+    render :partial => "activeadmin/section_sidebar_folder_actions", :locals => { :item => standard_title }
+  end
+
   ##########
   ## Edit ##
   ##########
@@ -171,7 +190,7 @@ ActiveAdmin.register StandardTitle do
     f.inputs do
       ## Enable the trigger, only for editors
       if current_user.has_any_role?(:editor, :admin)
-        f.input :title, :label => (I18n.t :filter_title), input_html: {data: {trigger: triggers_from_hash({save: ["referring_sources"]}) }}
+        f.input :title, :label => (I18n.t :filter_title), input_html: {data: {trigger: triggers_from_hash({save: ["referring_sources", "referring_works"]}) }}
       else
         f.input :title, :label => (I18n.t :filter_title), :input_html => { :disabled => true }
       end

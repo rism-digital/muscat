@@ -95,6 +95,7 @@ en:
     norwegian: Norwegian
     occitan: Occitan
     oirat: Oirat
+    ojibwa: Ojibwa
     old_church_slavonic: Old Church Slavonic
     persian: Persian
     polish: Polish
@@ -188,6 +189,7 @@ en:
     israel: Israel
     italy: Italy
     italy_trentino_alto_adige: 'Italy: Trentino-Alto Adige'
+    jamaica: Jamaica
     japan: Japan
     korea: Korea, Republic of
     latvia: Latvia
@@ -299,6 +301,7 @@ en:
     baptismal_name: Baptismal name
     basic_functions: Basic functions
     basso_continuo: Basso continuo
+    beginning_or_single_date: Beginning or single date
     bf_major: B♭ major
     bf_minor: B♭ minor
     bibliography: Bibliography
@@ -354,6 +357,7 @@ en:
     collaborator: Collaborator
     collective_catalog: Collective catalog
     colophon: Colophon
+    contributing_project: Contributing project
     common_clefs: Common clefs
     compiler: Compiler
     composer: Composer
@@ -425,6 +429,7 @@ en:
     ds_major: D♯ major
     ds_minor: D♯ minor
     dubious: Dubious
+    duplicated_from: Duplicated from
     e_major: E major
     e_minor: E minor
     earlier_heading: Earlier heading
@@ -436,12 +441,14 @@ en:
     ef_major: E♭ major
     ef_minor: E♭ minor
     encyclopedia: Encyclopedia
+    end: End
     end_period: End period
     engraver: Engraver
     engraving: Engraving
     event_organizer: Event organizer
     event_place: Event place
     excerpts: Excerpts
+    exemplar: Exemplar
     exemplars: Exemplars
     extent: Extent
     extent_parts: Extent (parts)
@@ -594,8 +601,10 @@ en:
     married_with: Married with
     material_description: Material description
     material_examined: Material examined
+    material_group: Material group
     material_held: Material held
     material_not_examined: Material not examined
+    material_type: Material type
     media_type: Media type
     mensural_clefs: Mensural clefs
     method_of_acquisition: Method of acquisition
@@ -679,6 +688,7 @@ en:
     order_name: Order Name
     origin: Origin
     original_cataloging_agency: Original cataloging agency
+    original_record: Original record
     other: Other
     other_associated_place: Other associated place
     other_designation: Other designation
@@ -706,7 +716,7 @@ en:
     performance: Performance
     performances: Performances
     performer: Performer
-    performer_note: Performer note
+    performer_note: Note on performance
     person: Person
     person_name: Person name
     personal_name: Personal name
@@ -719,6 +729,7 @@ en:
     place_activity: Place of activity
     place_birth: Place of birth
     place_death: Place of death
+    place_of_creation: Place of creation
     place_of_residence: Place of residence/headquarters
     place_origin: Place of origin
     place_publication: Place of publication
@@ -774,7 +785,7 @@ en:
     relationship_designation: Relationship designation in $i or $4
     relationship_information: Relationship information
     religious_name: Religious name
-    religious_order: Religious order
+    religious_order: "Religious order/Title"
     reproduction: Reproduction
     research_institute: Research institute
     retrospective_conversion: Retrospective conversion
@@ -788,7 +799,6 @@ en:
     series: Series
     series_added_entry: Series added entry fields
     series_statement: Series statement fields
-    material_group: Material group
     shelfmark: Shelfmark
     shelfmark_olim: Former shelfmark (olim)
     short_title: Short title
@@ -872,7 +882,7 @@ en:
     uncategorized: Uncategorized
     unknown: Unknown
     unparsed_fingerprint: Unparsed fingerprint
-    variant_ms_title: Variant title on manuscript
+    variant_ms_title: Variant title on source
     variant_source_title: Variant title on source
     variations: Variations
     verified: Verified
@@ -975,6 +985,9 @@ en:
     manuscript: "Manuscript"
     printed: "Printed"
     composite: "Composite Volume"
+    collection: "Collection"
+    item: "Item"
+    single_item: "Single item"
     apply_filters: "Apply filters"
     error_loading_results: "Error loading results"
     global_collection: "Global Collection"

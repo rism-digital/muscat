@@ -29,8 +29,7 @@ ActiveAdmin.register Folder do
       #      ON folders.id = folder_items.folder_id))
       #  .select("folders.*, COUNT(folder_items.id) AS folder_items_count")
       #  .group("folders.id")
-
-        end_of_association_chain.includes([:user])
+      end_of_association_chain.includes([:user])
     end
 
 
@@ -126,6 +125,8 @@ ActiveAdmin.register Folder do
       return
     end
 
+    model = f.folder_type.constantize
+
     if !f.folder_items || f.folder_items.empty?
       redirect_to resource_path(params[:id]), :flash => {error:I18n.t(:folder_empty, scope: :folders)}
       return
@@ -136,9 +137,14 @@ ActiveAdmin.register Folder do
       return
     end
 
-    format = params.include?(:csv) ? :csv : :xml
+    format = :xml 
+    if params.include?(:type)
+      format = :xml if params[:type] == "xml"
+      format = :csv if params[:type] == "csv"
+      format = :raw if params[:type] == "raw"
+    end
 
-    job = Delayed::Job.enqueue(ExportRecordsJob.new(:folder, {id: params[:id], email: current_user.email, format: format}))
+    job = Delayed::Job.enqueue(ExportRecordsJob.new(:folder, {id: params[:id], email: current_user.email, format: format, model: model}))
     redirect_to resource_path(params[:id]), notice: I18n.t(:export_started, scope: :folders, email: current_user.email, job: job.id)
   end 
 
@@ -173,6 +179,15 @@ ActiveAdmin.register Folder do
   filter :name_equals, :label => proc {I18n.t(:any_field_contains)}, :as => :string
   
 
+  filter :wf_owner, :label => proc {I18n.t(:filter_owner)}, as: :select, 
+         collection: proc {
+           if current_user.has_any_role?(:editor, :admin)
+             User.sort_all_by_last_name.map{|u| [u.name, "#{u.id}"]}
+           else
+             [[current_user.name, "#{current_user.id}"]]
+           end
+         } 
+  
   index :download_links => false do |ad|
     selectable_column
     column (I18n.t :filter_wf_stage) {|folder| status_tag(folder.is_published?,
@@ -184,11 +199,16 @@ ActiveAdmin.register Folder do
       folder.user.name
     end
 
+    column (I18n.t "created_at"), sortable: :created_at do |r| 
+      r.created_at
+    end
+
     column (I18n.t "folders.expires"), sortable: :delete_date do |r| 
       r.delete_date.to_date.to_s
     end
 
     column (I18n.t "folders.items") {|folder| folder.folder_items.count}
+
     actions
   end
   
@@ -224,7 +244,13 @@ ActiveAdmin.register Folder do
       
       paginated_collection(fitems.page(params[:src_list_page]).per(10), param_name: 'src_list_page',  download_links: false) do
         table_for(collection) do |cr|
-          column ("Name") {|fitem| fitem.item ? fitem.item.name : "Item Deleted"}
+          column ("Name") do |fitem| 
+            name = "Unconfigured name for this model"
+            name = "Item Deleted" if !fitem.item
+            name = fitem.item.full_name if fitem.item.respond_to? :full_name
+            name = fitem.item.name if fitem.item.respond_to? :name
+            name
+          end
           column ("Created at") {|fitem| fitem.item ? fitem.item.created_at : "n.a."}
           column ("Updated at") {|fitem| fitem.item ? fitem.item.updated_at : "n.a."}
           column ("Id") {|fitem| fitem.item ? fitem.item.id : "n/a, was #{fitem.item_id}"}

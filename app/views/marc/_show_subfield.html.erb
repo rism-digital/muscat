@@ -10,11 +10,7 @@
 		if @item.marc.config.is_foreign?(tag.tag, subfield.tag)
 			content = subfield.looked_up_content.to_s if subfield && subfield.looked_up_content
 			if subfield.foreign_object
-				if opac
-					content = link_to(content,  search_catalog_path(:search_field => "any_field", :q => content))
-				else
-					content = link_to(content, [:admin, subfield.foreign_object])
-				end
+				content = link_to(content, [:admin, subfield.foreign_object])
 			end
 		else
 			content = subfield.content if subfield && subfield.content
@@ -24,7 +20,7 @@
 		content = Anchored::Linker.auto_link(content).html_safe if content.match("(http|https)://")
 	-%>
 	<% if browse_helper -%>
-	   <%= raw method(browse_helper).call( content, subfield, opac ) %>
+	   <%= raw method(browse_helper).call( content, subfield) %>
 	<% else -%>
 		<% if content.include?("{{brk}}")%>
 			<% content_lines = content.split("{{brk}}")%>

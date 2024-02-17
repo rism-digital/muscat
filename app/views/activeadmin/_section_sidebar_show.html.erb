@@ -88,15 +88,24 @@
 				:class => "muscat_icon_link muscat_icon_link_archive") %>
 			</li>
 		<%- end %>
-		<%- if (self.controller.respond_to? :export_folder) && (can? :edit, item) && item.is_a?(Folder) && item.folder_type == "Source"%>
+		<%- if (self.controller.respond_to? :export_folder) && (can? :edit, item) && item.is_a?(Folder) &&
+			item.folder_type.constantize.new.respond_to?(:marc_source) %>
 			<li class="muscat_icon_link">
 			<%= link_to("#{I18n.t :export_folder}", send("export_folder_admin_#{model}_path", item),
 				:class => "muscat_icon_link muscat_icon_link_download") %>
 			</li>
-			<li class="muscat_icon_link">
-			<%= link_to("#{I18n.t :export_folder_csv}", send("export_folder_admin_#{model}_path", item, csv: true),
-				:class => "muscat_icon_link muscat_icon_link_download") %>
-			</li>
+			<%- if item.folder_type == "Source" %>
+				<li class="muscat_icon_link">
+				<%= link_to("#{I18n.t :export_folder_csv}", send("export_folder_admin_#{model}_path", item, type: :csv),
+					:class => "muscat_icon_link muscat_icon_link_download") %>
+				</li>
+				<%- if current_user.has_any_role?(:editor, :admin) %>
+					<li class="muscat_icon_link">
+					<%= link_to("#{I18n.t :export_folder_raw}", send("export_folder_admin_#{model}_path", item, type: :raw),
+						:class => "muscat_icon_link muscat_icon_link_download") %>
+					</li>
+				<%- end %>
+			<%- end %>
 		<%- end %>
 		<%- if (self.controller.respond_to? :validate_folder) && (can? :edit, item)  && item.is_a?(Folder) && item.folder_type == "Source" %>
 			<li class="muscat_icon_link">
@@ -134,5 +143,17 @@
 		</li>	
 	
 	<%- end %>
-	
+
+	<% if @item.respond_to?(:marc_source) %>
+	    <li class="muscat_icon_separator"></li>
+	    <li class="muscat_icon_link">
+		<%= link_to("#{I18n.t :default_view}", send("admin_#{model}_path", item),
+		    :class => "muscat_icon_link muscat_icon_link_preview") %>
+	    <li class="muscat_icon_link">
+		<%= link_to("#{I18n.t :marc21_view}", send("admin_#{model}_path", item, {view: "MARC21"}),
+		    :class => "muscat_icon_link muscat_icon_link_marc21") %>
+	    <li class="muscat_icon_link">
+		<%= link_to("#{I18n.t :marcxml_view}", send("admin_#{model}_path", "#{@item.id}.xml"),
+		    :class => "muscat_icon_link muscat_icon_link_marcxml") %>
+	<%- end %>
 </ul>

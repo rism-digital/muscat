@@ -1,6 +1,6 @@
 <!-- Easy pager for html view of sru interface -->
 <% start_record = params[:startRecord] ? (params[:startRecord]).to_i : 1 %>
-<% maximum_records = (params[:maximumRecords]).to_i %>
+<% maximum_records = params[:maximumRecords]? (params[:maximumRecords]).to_i : 2000 %>
 <% total = @result.total.to_i %>
 <% to_add = total % maximum_records == 0 ? 0 : 1 %>
 <% pages = (total / maximum_records) + to_add %>

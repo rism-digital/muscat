@@ -1,20 +1,29 @@
-<strong>Muscat Model Health report: <%= @model%></strong><p>
-Message: <%= @message %>
+<h2>Muscat Health report for: <%= @model%></h2><p>
+<%= @message %>
 <p>
 
-<table border="1">
-	<tr>
+<% if @errors.count > 0 %>
+<h3>Marc loading errors, i.e. missing master fields:</h3>
+
+<table border="1" style="border-collapse:collapse;border:1px solid;width:100%" cellpadding="3" cellspacing="3">	<tr>
 		<th>ID</th>
 		<th>Message</th>
 	</tr>
 <% @errors.each do |id, msg| %>
+	<% mod = @model.to_s.pluralize.underscore.downcase %>
 	<tr>
-		<td><a href="https://muscat.rism.info/admin/sources/<%=id%>"><%=id%></a></td>
+		<td><a href="https://muscat.rism.info/admin/<%=mod%>/<%=id%>"><%=id%></a></td>
 		<td><%=msg.gsub("\n", "<br>").html_safe%></td>
 	</tr>
 <% end %>
 </table>
+<% end %>
 
 <p>
 
-<% #render partial: "health_report/validation.html.erb"%>
+<% if @render_partial %>
+<h3>Complete validation report:</h3>
+<%= render partial: "health_report/validation"%>
+<% else %>
+<h3>Complete validation report is in attached email</h3>
+<% end %>

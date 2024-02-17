@@ -24,22 +24,16 @@
   layout: 
     fields: 
     - - a
-      - cols: 4
-    columns: 4
 "022": 
   layout: 
     fields: 
     - - a
-      - cols: 4
-    columns: 4
 "041": 
   layout: 
     fields: 
     - - a
-      - cols: 2 
-        editor_partial: subfield_select_codes
+      - editor_partial: subfield_select_codes
         select_label: "Language"
-    columns: 2
   tag_params:
     codes:
       - "alb"
@@ -86,10 +80,8 @@
   layout: 
     fields: 
     - - a
-      - cols: 2 
-        editor_partial: subfield_select_codes
+      - editor_partial: subfield_select_codes
         select_label: "Country"
-    columns: 2
   tag_params:
     codes:
       - "XC-DZ"
@@ -126,6 +118,7 @@
       - "XA-IE"
       - "XB-IL"
       - "XA-IT"
+      - "XD-JM"
       - "XB-JP"
       - "XB-KR"
       - "XA-LV"
@@ -165,6 +158,7 @@
 "100": 
   allow_new: true
   new_window: people
+  new_window_field: full_name_or_400a_contains
   layout: 
     fields: 
     - - a
@@ -175,19 +169,23 @@
   layout: 
     fields: 
     - - a
-      - cols: 4
-        trigger:
+      - trigger:
         - save:
           - referring_sources
-    columns: 4
+          - referring_holdings
+          - referring_people
+          - referring_institutions
+          - referring_works
 "240": 
   layout: 
     fields: 
     - - a
       - growfield: true
+      - trigger:
+        - save:
+          - referring_publications
     - - g
-      - cols: 1
-        values:
+      - values:
         # http://www.loc.gov/standards/valuelist/marcgt.html
         - "Bibliography"
         - "Catalog"
@@ -199,8 +197,7 @@
         - "Thematic catalog"
         editor_partial: subfield_select
     - - h
-      - cols: 1
-        values:
+      - values:
         - "Article/chapter"
         - "Monograph"
         - "Periodical"
@@ -212,28 +209,21 @@
   layout: 
     fields: 
     - - a
-      - cols: 4
     - - b
-      - cols: 4
     - - c
-      - cols: 4
-    columns: 4
 "264": 
   layout: 
     fields: 
     - - c
-      - cols: 4
 "300": 
   layout: 
     fields: 
     - - a
-      - cols: 4
 "337": 
   layout: 
     fields: 
     - - a
-      - cols: 4
-        values:
+      - values:
         - "CD-ROM"
         - "E-book"
         - "Electronic resource"
@@ -254,7 +244,6 @@
   layout: 
     fields: 
     - - a
-      - cols: 4
 "599": 
   layout: 
     fields: 
@@ -281,6 +270,7 @@
 "700":
   allow_new: true
   new_window: people
+  new_window_field: full_name_or_400a_contains
   layout:
     fields: 
     - - a
@@ -297,14 +287,19 @@
     - asn
     - oth
 "710":
-  allow_new: true
   new_window: institutions
+  new_window_field: corporate_name_equals
   layout: 
-    fields: 
+    fields:
     - - a
       - type: institution
         editor_partial: subfield_secondary
+        allow_new: true
     - - b
+    - - c
+      - type: place
+        editor_partial: subfield_autocomplete
+        autocomplete_extra: place
     - - "4"
       - editor_partial: subfield_select_codes
         select_label: "Function"
@@ -344,3 +339,13 @@
     fields: 
     - - u
     - - z
+"981":
+  tag_params:
+    read_only: true
+    no_delete: true
+  layout:
+    fields:
+    - - "0"
+      - read_only: true
+    - - "d"
+      - read_only: true

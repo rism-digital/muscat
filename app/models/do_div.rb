@@ -1,2 +1,0 @@
-class DoDiv < ApplicationRecord
-end

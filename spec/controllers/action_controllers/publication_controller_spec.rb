@@ -2,7 +2,7 @@ require 'rails_helper'
 model = :publication
 changeable_ar_attribute = :wf_stage
 RSpec.describe Admin::PublicationsController, type: :controller do
-  let!(:person) { create :person }
+  #let!(:person) { create :person }
   let!(:resource) { create model }
   let(:user) { create :admin   }
   render_views
@@ -19,9 +19,9 @@ RSpec.describe Admin::PublicationsController, type: :controller do
 
   describe "CREATE" do
     it "creating #{model}" do
-      pending("results in marc nil ??")
-      fail
-      #expect { post :create, :params => FactoryBot.attributes_for(model)   }.to change(model.to_s.capitalize.constantize, :count).by(1)
+      #pending("results in marc nil ??")
+      #fail
+      expect { post :create, :params => FactoryBot.attributes_for(model)   }.to change(model.to_s.capitalize.constantize, :count).by(1)
     end
   end
 

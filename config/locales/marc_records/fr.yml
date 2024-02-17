@@ -95,6 +95,7 @@ fr:
     norwegian: Norvégien
     occitan: Occitan
     oirat: Oïrate
+    ojibwa: Ojibwa
     old_church_slavonic: Slave ancien ecclésiastique
     persian: Persan
     polish: Polonais
@@ -188,6 +189,7 @@ fr:
     israel: Israël
     italy: Italie
     italy_trentino_alto_adige: 'Italie: Trentin-Haut-Adige'
+    jamaica: Jamaïque
     japan: Japon
     korea: Corée, République de
     latvia: Lettonie
@@ -299,6 +301,7 @@ fr:
     baptismal_name: Nom baptismale
     basic_functions: Fonctions de base
     basso_continuo: Basso continuo
+    beginning_or_single_date: Date de début ou date single
     bf_major: Si♭ majeur
     bf_minor: Si♭ mineur
     bibliography: Bibliographie
@@ -354,6 +357,7 @@ fr:
     collaborator: Collaborateur
     collective_catalog: Catalogue collectif
     colophon: Colophon
+    contributing_project: Contributing project
     common_clefs: Clés communes
     compiler: Compilateur
     composer: Compositeur
@@ -425,6 +429,7 @@ fr:
     ds_major: Ré♯ majeur
     ds_minor: Ré♯ mineur
     dubious: Douteux
+    duplicated_from: Dupliqué de
     e_major: Mi majeur
     e_minor: Mi mineur
     earlier_heading: Rubrique précédente
@@ -436,12 +441,14 @@ fr:
     ef_major: Mi♭ majeur
     ef_minor: Mi♭ mineur
     encyclopedia: Encyclopédie
+    end: Termine
     end_period: Fin de la période
     engraver: Graveur
     engraving: Gravure
     event_organizer: Organisateur
     event_place: Lieu de l'événement
     excerpts: Extraits
+    exemplar: Exemplaire
     exemplars: Exemplaires
     extent: Extension
     extent_parts: Extension (parties)
@@ -594,8 +601,10 @@ fr:
     married_with: Marié/e avec
     material_description: Description du matériel
     material_examined: Matériaux examinés
+    material_group: Groupe de matériaux
     material_held: Matériaux préservées
     material_not_examined: Matériaux non examinés
+    material_type: Type de matériel
     media_type: Moyen physique
     mensural_clefs: Clés anciennes
     method_of_acquisition: Méthode d'acquisition
@@ -676,6 +685,7 @@ fr:
     order_name: Nom d'ordre
     origin: Origine
     original_cataloging_agency: Organisme du catalogage original
+    original_record: Dossier original
     other: Autre function
     other_associated_place: Autre lieu associé
     other_designation: Autre désignation
@@ -716,6 +726,7 @@ fr:
     place_activity: Lieu d'activité
     place_birth: Lieu de naissance
     place_death: Lieu de décès
+    place_of_creation: Lieu de création
     place_of_residence: Lieu de résidence/siège
     place_origin: Lieu d'origine
     place_publication: Endroit
@@ -771,7 +782,7 @@ fr:
     relationship_designation: Désignation de la relation en $i ou 4
     relationship_information: Informations sur les relations
     religious_name: Nom d'ordre
-    religious_order: Ordre/titre
+    religious_order: "Ordre religieux/Titre"
     reproduction: Reproduction
     research_institute: Institution de recherche
     retrospective_conversion: Conversion retrospective
@@ -785,7 +796,6 @@ fr:
     series: Série
     series_added_entry: Champs de collection
     series_statement: Mentions de collection
-    material_group: Groupe de matériaux
     shelfmark: Cote
     shelfmark_olim: Ancienne cote (olim)
     short_title: Titre abrégé
@@ -881,12 +891,12 @@ fr:
     woodwinds: Bois
     work: Oeuvre
     work_number: Numéro de l'œuvre
-    work_tag: Work revision tag
+    work_tag: Étiquette de révision
     work_tag_incipit_needs_revision: incipit-needs-revision
     work_tag_incipit_replace: incipit-replace
     work_tag_needs_revision: needs-revision
-    work_tag_note: Tag note
-    work_tag_type: Tag type
+    work_tag_note: Étiquette de note
+    work_tag_type: Type de tag
     year: Année
     years_birth_death: Dates de naissance et de mort
   relations:
@@ -972,6 +982,9 @@ fr:
     manuscript: "Manuscrit"
     printed: "Imprimé"
     composite: "Volume composite"
+    collection: "Collection"
+    item: "Elément"
+    single_item: "Élément unique"
     apply_filters: "Appliquer les filtres"
     error_loading_results: "Erreur lors du chargement des résultats"
     global_collection: "Collection globale"

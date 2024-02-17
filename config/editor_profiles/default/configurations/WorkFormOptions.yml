@@ -176,7 +176,6 @@
     - - indicator
       - editor_partial: subfield_indicator
     - - a
-
 "040": 
   layout: 
     fields: 
@@ -184,6 +183,12 @@
     - - c
     - - d
     - - b
+"046": 
+  layout: 
+    fields: 
+    - - k
+    - - l
+    - - z
 "100":
   new_window: people
   new_window_field: full_name_equals
@@ -193,6 +198,9 @@
       - type: person
         editor_partial: subfield_secondary
         allow_new: true
+      - trigger:
+        - save:
+          - referring_works
     - - d
       - autocomplete_extra: life_dates
 "130":
@@ -204,9 +212,15 @@
       - type: standard_title
         editor_partial: subfield_secondary
         allow_new: true
+      - trigger:
+        - save:
+          - referring_works
     - - r
       - editor_partial: subfield_select_codes
         codes_reference: "130r"
+      - trigger:
+        - save:
+          - referring_works
     - - m
   tag_params:
     130r:
@@ -278,6 +292,14 @@
       - "6byz"
       - "7byz"
       - "8byz"
+"370": 
+  allow_new: true
+  layout: 
+    fields: 
+    - - "g"
+      - type: place
+        editor_partial: subfield_secondary
+    - - i
 "380": 
   allow_new: true
   new_window: standard_terms
@@ -385,15 +407,15 @@
         editor_partial: subfield_secondary
     - - d
     - - e
-"548": 
+"530": 
+  allow_new: true
+  new_window: works
   layout: 
     fields: 
-    - - a
-      - growfield: true
+    - - "a"
+      - type: work
+        editor_partial: subfield_secondary
     - - i
-      - values:
-        - "Date of origin"  
-        editor_partial: subfield_select
 "667": 
   layout: 
     fields: 
@@ -444,12 +466,9 @@
   layout: 
     fields:
     - - a
-      - cols: 2
-        editor_partial: subfield_select_codes
+      - editor_partial: subfield_select_codes
         select_label: "Type"
     - - b
-      - cols: 2
-    columns: 2
   tag_params:
     codes:
       - "needs-revision" 
@@ -510,21 +529,13 @@
     - - "a"
       - type: liturgical_feast
         editor_partial: subfield_secondary
-"930": 
-  allow_new: true
-  new_window: works
-  layout: 
-    fields: 
-    - - "a"
-      - type: work
-        editor_partial: subfield_secondary
-    - - i
-      - values:
-        - "Adaption of"
-        - "Continuation of"
-        - "Inspired by"
-        - "Other"
-        - "Part of"
-        - "Pharaphrase of"  
-        - "Variation of"  
-        editor_partial: subfield_select
+"981":
+  tag_params:
+    read_only: true
+    no_delete: true
+  layout:
+    fields:
+    - - "0"
+      - read_only: true
+    - - "d"
+      - read_only: true

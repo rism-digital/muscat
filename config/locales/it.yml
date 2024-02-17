@@ -5,6 +5,7 @@ it:
       headline: "Ambito"
       current_filters: "Filtri in uso"
     compare_versions: Compara le versioni
+    gnd_works: Editor per le opere GND
     dashboard: "Dashboard"
     dashboard_welcome:
       welcome: "Benvenuti in Active Admin. Questa è la pagina dashboard di default."
@@ -53,6 +54,7 @@ it:
       sections: "Sezioni e azioni"
       actions: "Azioni"
       toc: "Contenuto"
+      help: "Aiuto"
     pagination:
       empty: "Nessun %{model} trovato"
       one: "Sto mostrando <b>1</b> %{model}"
@@ -215,11 +217,11 @@ it:
     edition_content: "Edizione a stampa, in una collezione"
     libretto_source: "Libretto manoscritto"
 
-    libretto_edition: "Elemento di un libretto stampato"
+    libretto_edition: "Libretto stampato"
     libretto_edition_content: "Libretto a stampa, in una collezione"
 
     theoretica_source: "Manoscritto di teoria musicale"
-    theoretica_edition: "Elemento di un edizione di teoria musicale"
+    theoretica_edition: "Edizione di teoria musicale"
     theoretica_edition_content: "Edizione di teoria musicale, in una collezione"
     edition: "Edizione musicale, scheda madre della collezione o scheda individuale"
     
@@ -292,12 +294,12 @@ it:
   
   ### VARIOUS ELEMENTS
   recent_changes: "Ultime modifiche"
-  any_field_contains: "Qualsiasi campo contiene"
-  title_contains: "Titolo diplomatico contiene"
-  std_title_contains: "Titolo standard contiene"
-  composer_contains: "Compositore contiene"
-  library_sigla_contains: "La sigla contiene"
-  internal_note_contains: "La nota interna contiene"
+  any_field_contains: "Qualsiasi campo"
+  title_contains: "Titolo diplomatico"
+  std_title_contains: "Titolo standard"
+  composer_contains: "Compositore"
+  library_sigla_contains: "Sigla della biblioteca"
+  internal_note_contains: "Nota interna"
   is_in_folder: "È nella cartella"
   workgroups: "Gruppi"
   roles: "Ruoli"
@@ -348,6 +350,10 @@ it:
   validation_level_warning: "Alcuni elementi richiedono attenzione, salvare ancora per procedere"
   muscat_reindexing: "Muscat è in fase di reindicizzazione, i risultati della ricerca potrebbero essere incompleti"
   work_catalogue: "Catalogo di opere"
+  default_view: "Default view"
+  marc21_view: "MARC21 view"
+  marcxml_view: "MARCXML view"
+  authorization_tokens: "Auth tokens"
 
   jobs:
     not_set: "[Nessuno stato]"
@@ -377,14 +383,17 @@ it:
   add_person: "Collega istituzione"
   add_source: "Collega fonte"
   add_person: "Collega persona"
+  add_holding: "Collega Esemplare"
   archive_unarchive: "Archivia / disarchivia"
   archive: "Archivia"
   unarchive: "Disarchivia"
   export_folder: "Esporta la cartella in MARCXML"
   export_folder_csv: "Esporta la cartella in CSV"
+  export_folder_raw: "Esporta la cartella come Muscat MARC"
   validate_folder: "Valida cartella"
-
-
+  choose_folder: "(Selezionare una cartella)"
+  add_item_to_folder: "Aggiungi alla cartella"
+  remove_item_from_folder: "Rimuovi dalla cartella"
   
   # Editor sidebar
   show_all_groups: "Mostra tutti i gruppi"
@@ -528,6 +537,7 @@ it:
   filter_series_items: "Elemento nella serie"
   filter_siglum: "Sigla"
   filter_source: "Fonte"
+  filter_source_id: "Id fonte"
   filter_sources: "Fonti"
   filter_source_type: "Tipo di fonte"
   filter_source_content_type: "Tipo di contenuto"
@@ -849,33 +859,3 @@ it:
 
 ######################################################################################################
 # End of translation in all languages - make sure all the file have the same line number for this line
- 
-######################################################################################################
-# Blacklights overriden translations - the list can vary from one language to another
-
-  blacklight:
-    application_name: 'Muscat'
-    header_links:
-      logout: 'Logout'
-    search:
-      start_over: 'Nuova ricerca'
-      form:
-        q: 'Ricerca in corso...'
-        search:
-          placeholder: 'Ricerca...'
-    range_limit:
-      range_begin: "%{field_label} inizio dell'intervallo"
-      range_end: "%{field_label} fine dell'intervallo"
-      submit_limit: 'Limita'
-      remove_limit: 'rimuovi'
-  blacklight_advanced_search:
-    all: tutti i campi
-    any: qualsiasi campo
-    form:
-      title: Ricerca avanzata
-      search_context: Nella ricerca
-      limit_criteria_heading_html: "<strong>E</strong> hanno questi attributi"
-      query_criteria_heading_html: "Cerca gli elementi che corrispondono a %{select_menu}"
-      sort_label: "Ordina per"
-      start_over: "Ripristina"
-      search_btn: 'Cerca'

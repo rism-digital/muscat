@@ -52,7 +52,7 @@ class EditorConfiguration
 
     configs.each do |config|
       file = ConfigFilePath.get_marc_editor_profile_path("#{Rails.root}/config/editor_profiles/#{RISM::EDITOR_PROFILE}/configurations/#{config}.yml")
-      if File.exists?(file)
+      if File.exist?(file)
         settings.squeeze(read_file(file))
       end
     end
@@ -75,7 +75,7 @@ class EditorConfiguration
   
   def superimpose_shared_file(name)
     file = ConfigFilePath.get_marc_editor_profile_path("#{Rails.root}/config/editor_profiles/#{RISM::EDITOR_PROFILE}/configurations/shared/#{name}")
-    if File.exists?(file)
+    if File.exist?(file)
       @squeezed_labels_config.squeeze(read_file(file))
     end
   end
@@ -108,24 +108,13 @@ class EditorConfiguration
     @squeezed_labels_config
   end
   
+  def default_unknown_labels?
+   return true if labels_config.include?("_default_unknown_labels") && labels_config["_default_unknown_labels"] == true
+   false
+  end
+
   # Get the sublabel. Generally used in Marc records for subrecords. For example, the YAML code
-  # to set the name of $a for marc 028 (with localization):<p>
-  # <tt>
-  # Sublabel example
-  # 028: !map:HashWithIndifferentAccess 
-  #  label: !map:HashWithIndifferentAccess 
-  #    it: Numero dell'editore
-  #    fr: "Numéro d'éditeur"
-  #    de: Verlagsnummer
-  #    en: Publisher Number
-  #  fields: !map:HashWithIndifferentAccess 
-  #    a: !map:HashWithIndifferentAccess 
-  #      label: !map:HashWithIndifferentAccess 
-  #        it: Numero di lastra
-  #        fr: "Numéro de plaque"
-  #        de: Plattennummer
-  #        en: Plate number
-  # </tt>      
+  # to set the name of $a for marc 028 (with localization):<p>    
   def get_sub_label(id, sub_id, edit = false)
     if labels_config[id] && labels_config[id][:fields] && labels_config[id][:fields][sub_id] && labels_config[id][:fields][sub_id][:label]
       label =  I18n.t(labels_config[id][:fields][sub_id][:label])
@@ -136,10 +125,15 @@ class EditorConfiguration
         label = I18n.t(labels_config[id][:fields][sub_id][:label], :locale => :en)  + " [translation missing]"
       end
 
+      label = "#{label} ($#{sub_id})" if edit
       return label
     end
     # if nothing found
-    return "[#{id} sublabel: #{sub_id} unspecified]" 
+    if default_unknown_labels?
+      return "[#{sub_id}]"
+    else
+      return "[#{id} sublabel: #{sub_id} has no label configuration]"
+    end
   end
   
   # Returns if this label has a sublabel
@@ -159,15 +153,6 @@ class EditorConfiguration
   end
   
   # Gets the localized label for the speficied field. Ex:<p>
-  # <tt>
-  # Label example
-  # prt: !map:HashWithIndifferentAccess 
-  #  label: !map:HashWithIndifferentAccess 
-  #    it: Stampatore
-  #    fr: Imprimeur
-  #    de: Drucker
-  #    en: Printer
-  # </tt>
   def get_label(id, edit = false)
     
     # Get the label in the specified locale
@@ -184,7 +169,11 @@ class EditorConfiguration
     else
       # This is the case when a key is not found int he
       # map file, and no translation lookup is possible
-      return "[#{id} unspecified]"
+      if default_unknown_labels?
+        return ""
+      else
+        return "[#{id} has no label configuration]"
+      end
     end
   end
   
@@ -279,6 +268,52 @@ class EditorConfiguration
   
   def get_triggers
     return options_config.include?("triggers") ? options_config["triggers"] : nil
+  end
+
+  # Used to import unknown marc into muscat
+  def add_fake_config(incoming_marc)
+
+    # Make sure the overlays are loaded
+    options_config
+
+    for i in 0..999 do
+      tag_str = "%03d" % i
+      if @squeezed_options_config.include?(tag_str)
+        tag = @squeezed_options_config[tag_str]
+      else
+        tag = {"layout" => {"fields" => []}}
+      end
+    
+      next if tag.keys.include?("tag") && tag["tag"] == "tag_no_subfield"
+
+      range = ("0".."9").to_a + ("a".."z").to_a
+
+      range.each do |subtag|
+        # Is the subtag already configured?
+        found = false
+        has_secondary = false
+        each_subfield_for(tag_str) do |configured_field, configuration|
+          # foreign field, it will automatically add the master field to the editor but it is not configured explicitally!
+          has_secondary = true if configuration && configuration.include?("editor_partial") && configuration["editor_partial"] == "subfield_secondary"
+          # the subtag is on element 0 of the array, elem 1 is the configuration
+          found = true if configured_field[0] == subtag
+        end
+        next if found
+
+        # is this a master field?
+        # In this case we do not need to add it as it is added automatically by subfield_secondary
+        next if has_secondary && subtag == incoming_marc.config.get_master(tag_str)
+
+        # No need to add the tag if it is not there
+        next if !incoming_marc.first_occurance(tag_str, subtag)
+
+        tag["layout"]["fields"] << [subtag, {"read_only" => true}]
+      end
+
+      @squeezed_options_config[tag_str] = tag
+
+    end
+
   end
 
   #################################

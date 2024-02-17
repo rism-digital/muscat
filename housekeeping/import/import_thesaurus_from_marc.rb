@@ -16,7 +16,7 @@ if ARGV.length >= 1
 	total_records = open(source_file) { |f| f.grep(/001">/) }.size
 	cnt = 0
 	start_time = Time.now
-  if File.exists?(source_file)
+  if File.exist?(source_file)
     each_record(source_file) { |record|
       latin = false
       next if record.xpath("//marc:datafield[@tag='750']/marc:subfield[@code='a']", NAMESPACE).first

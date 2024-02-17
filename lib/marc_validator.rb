@@ -3,7 +3,10 @@ include ApplicationHelper
   
   DEBUG = false
 
-  def initialize(object, user = nil, warnings = false, logger = nil)
+  # test example:
+  # MarcValidator.new(Source.first, nil, nil, nil, ValidationExclusion.new(Source)).validate_tags
+
+  def initialize(object, user = nil, warnings = false, logger = nil, exclusions = nil)
     @validation = EditorValidation.get_default_validation(object)
     @rules = @validation.rules
     @user = user
@@ -14,6 +17,8 @@ include ApplicationHelper
     @errors = {}
     @object = object
     
+    @exclusions = exclusions
+
     ## The marc could be already resolved
     ## Make a new safe internal version
     classname = "Marc" + object.class.to_s
@@ -40,7 +45,13 @@ include ApplicationHelper
       # Some tags have to be there for some templates.
       # Extract all the pertinent mandatory tags, exluding the ones
       # not for this template
-      mandatory = tag_rules["tags"].map {|st, v| st if v == "mandatory" && !is_subtag_excluded(tag, st)}.compact
+      mandatory = tag_rules["tags"].map {|st, v| 
+        if @exclusions && @exclusions.exclude_from_tag?(tag, st, @object)
+          puts "Downgrate #{tag} #{st} to non mandatory because of static exclusions" if DEBUG
+          next
+        end
+        st if v == "mandatory" && !is_subtag_excluded(tag, st)
+      }.compact
       
       marc_tags = @marc.by_tags(tag)
       
@@ -56,6 +67,11 @@ include ApplicationHelper
       
       tag_rules["tags"].each do |subtag, rule|
         
+        if @exclusions && @exclusions.exclude_from_tag?(tag, subtag, @object)
+          puts "Skip #{tag} #{subtag} because of static exclusions" if DEBUG
+          next
+        end
+
         # The validation is per subtag basis
         # THis means that a whole tag, i.e. 856
         # can be missing and validation will pass
@@ -76,7 +92,7 @@ include ApplicationHelper
           
           if rule.is_a? String
             
-            if rule == "required" || rule == "required, warning"
+            if rule == "required" || rule == "required, warning" || rule == "mandatory"
               if !marc_subtag || !marc_subtag.content
                 #@errors["#{tag}#{subtag}"] = rule
                 add_error(tag, subtag, rule) if (!@validation.is_warning?(tag, subtag) || @show_warnings)
@@ -239,7 +255,7 @@ include ApplicationHelper
   end
 
   def validate_holdings
-    return if !@object.is_a? Source
+    return if !@object.is_a?(Source)
 
     if @object.record_type == MarcSource::RECORD_TYPES[:edition]
       add_error("record", "holdings", "No holding records", "holding_error") if @object.holdings.empty?
@@ -251,6 +267,26 @@ include ApplicationHelper
     end
   end
 
+  # This works only for sources
+  def validate_parent_institution
+    return if !@object.is_a?(Source)
+    return if !@object.parent_source
+
+    # The two libraries must match, so report if one is missing
+    parent_id = nil
+    source_id = nil
+
+    parent_relations = SourceInstitutionRelation.where(source_id: @object.parent_source, marc_tag: "852")
+    parent_id = parent_relations.first.institution_id if !parent_relations.empty?
+
+    source_relations = SourceInstitutionRelation.where(source_id: @object.id, marc_tag: "852")
+    source_id = source_relations.first.institution_id if !source_relations.empty?
+
+    if parent_id != source_id
+      add_error("record", "institution", "Child institution differes from parent (c=#{source_id} p=#{parent_id})", "parent_institution_error")
+    end
+  end
+
   def validate
     validate_tags
     validate_dates
@@ -258,6 +294,7 @@ include ApplicationHelper
     validate_holdings
     validate_unknown_tags
     validate_dead_774_links
+    validate_parent_institution
     return @errors
   end
 
@@ -326,7 +363,7 @@ include ApplicationHelper
     @errors[tag][subtag] << message
     
     log_tag = "validation_error" if !log_tag
-    @logger.error("#{log_tag} #{@object.id} #{@object.get_record_type.to_s} #{tag} #{subtag} #{message}") if @logger
+    @logger.error("#{log_tag} #{@object.id} #{print_record_type(@object)} #{tag} #{subtag} #{message}") if @logger
   end
   
   def is_subtag_excluded(tag, subtag)
@@ -335,6 +372,7 @@ include ApplicationHelper
     # i.e. collections have different tags
     tag_overrides = @rules[tag]["tag_overrides"]
     if tag_overrides && tag_overrides["exclude"][subtag]
+      # FIXME! This will not work for other models
       if tag_overrides["exclude"][subtag].include?(@object.get_record_type.to_s)
         return true
       end
@@ -375,6 +413,14 @@ include ApplicationHelper
       if @marc.get_id.to_i == val.content.to_i
         add_error(t, "w", I18n.t('validation.cannot_link_to_self', id: @marc.get_id)) 
       end
+    end
+  end
+
+  def print_record_type(item)
+    if item.respond_to?(:get_record_type)
+      return item.get_record_type.to_s
+    else
+      return "none"
     end
   end
 

@@ -20,6 +20,7 @@ class Person < ApplicationRecord
   include ForeignLinks
   include MarcIndex
   include AuthorityMerge
+  include CommentsCleanup
 
   # class variables for storing the user name and the event from the controller
   @last_user_save
@@ -37,39 +38,68 @@ class Person < ApplicationRecord
   has_many :works
   has_many :digital_object_links, :as => :object_link, :dependent => :delete_all
   has_many :digital_objects, through: :digital_object_links, foreign_key: "object_link_id"
+
   #has_and_belongs_to_many(:referring_sources, class_name: "Source", join_table: "sources_to_people")
   has_many :source_person_relations, class_name: "SourcePersonRelation"
   has_many :referring_sources, through: :source_person_relations, source: :source
 
-  has_and_belongs_to_many(:referring_institutions, class_name: "Institution", join_table: "institutions_to_people")
-  has_and_belongs_to_many(:referring_publications, class_name: "Publication", join_table: "publications_to_people")
-  has_and_belongs_to_many(:referring_holdings, class_name: "Holding", join_table: "holdings_to_people")
-  has_and_belongs_to_many(:referring_works, class_name: "Work", join_table: "works_to_people")
-  has_and_belongs_to_many :institutions, join_table: "people_to_institutions"
+  #has_and_belongs_to_many(:referring_institutions, class_name: "Institution", join_table: "institutions_to_people")
+  has_many :institution_person_relations, class_name: "InstitutionPersonRelation"
+  has_many :referring_institutions, through: :institution_person_relations, source: :institution
+
+  #has_and_belongs_to_many(:referring_holdings, class_name: "Holding", join_table: "holdings_to_people")
+  has_many :holding_person_relations, class_name: "HoldingPersonRelation"
+  has_many :referring_holdings, through: :holding_person_relations, source: :holding
+
+  #has_and_belongs_to_many(:referring_publications, class_name: "Publication", join_table: "publications_to_people")
+  has_many :publication_person_relations, class_name: "PublicationPersonRelation"
+  has_many :referring_publications, through: :publication_person_relations, source: :publication
+
+  #has_and_belongs_to_many(:referring_works, class_name: "Work", join_table: "works_to_people")
+  has_many :work_person_relations, class_name: "WorkPersonRelation"
+  has_many :referring_works, through: :work_person_relations, source: :work
+
+  #has_and_belongs_to_many :institutions, join_table: "people_to_institutions"
+  has_many :person_institution_relations
+  has_many :institutions, through: :person_institution_relations
+
+  #has_and_belongs_to_many :publications, join_table: "people_to_publications"
+  has_many :person_publication_relations
+  has_many :publications, through: :person_publication_relations
+
   #has_and_belongs_to_many :places, join_table: "people_to_places"
   has_many :person_place_relations
   has_many :places, through: :person_place_relations
 
-  has_and_belongs_to_many :publications, join_table: "people_to_publications"
+  has_and_belongs_to_many(:referring_work_nodes, class_name: "WorkNode", join_table: "work_nodes_to_people")
+
   has_many :folder_items, as: :item, dependent: :destroy
   has_many :delayed_jobs, -> { where parent_type: "Person" }, class_name: 'Delayed::Backend::ActiveRecord::Job', foreign_key: "parent_id"
   belongs_to :user, :foreign_key => "wf_owner"
   
   # People can link to themselves
   # This is the forward link
-  has_and_belongs_to_many(:people,
-    :class_name => "Person",
-    :foreign_key => "person_a_id",
-    :association_foreign_key => "person_b_id",
-    join_table: "people_to_people")
+#  has_and_belongs_to_many(:people,
+#    :class_name => "Person",
+#    :foreign_key => "person_a_id",
+#    :association_foreign_key => "person_b_id",
+#    join_table: "people_to_people")
   
   # This is the backward link
-  has_and_belongs_to_many(:referring_people,
-    :class_name => "Person",
-    :foreign_key => "person_b_id",
-    :association_foreign_key => "person_a_id",
-    join_table: "people_to_people")
+#  has_and_belongs_to_many(:referring_people,
+#    :class_name => "Person",
+#    :foreign_key => "person_b_id",
+#    :association_foreign_key => "person_a_id",
+#    join_table: "people_to_people")
+
+  has_many :person_relations, foreign_key: "person_a_id"
+  has_many :people, through: :person_relations, source: :person_b
+  # And this is the one coming back
+  has_many :referring_person_relations, class_name: "PersonRelation", foreign_key: "person_b_id"
+  has_many :referring_people, through: :referring_person_relations, source: :person_a
   
+
+
   composed_of :marc, :class_name => "MarcPerson", :mapping => %w(marc_source to_marc)
   
 #  validates_presence_of :full_name  
@@ -77,7 +107,7 @@ class Person < ApplicationRecord
   
   #include NewIds
   
-  before_destroy :check_dependencies
+  before_destroy :check_dependencies, :cleanup_comments
   
   before_save :set_object_fields
   after_create :scaffold_marc, :fix_ids
@@ -242,6 +272,10 @@ class Person < ApplicationRecord
     sunspot_dsl.time :updated_at
     sunspot_dsl.time :created_at
     
+    sunspot_dsl.text :text do |s|
+      s.marc.to_raw_text
+    end
+
     sunspot_dsl.join(:folder_id, :target => FolderItem, :type => :integer, 
               :join => { :from => :item_id, :to => :id })
 

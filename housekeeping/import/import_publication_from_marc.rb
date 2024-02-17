@@ -101,7 +101,7 @@ if ARGV.length >= 1
   source_file = "rism_lit.marc"
   from = 0
 #  from = ARGV[1] if ARGV[1]
-  if File.exists?(source_file)
+  if File.exist?(source_file)
     import = Marc21Import.new(source_file, from.to_i)
     import.import
   else

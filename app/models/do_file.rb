@@ -1,2 +1,0 @@
-class DoFile < ApplicationRecord
-end

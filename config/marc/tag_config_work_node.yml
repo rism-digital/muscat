@@ -260,7 +260,7 @@
     - - a
       - :occurrences: "?"
         :foreign_class: ^w
-        :foreign_field: name
+        :foreign_field: short_name
   "680":
     :master: a
     :indicator: "##"

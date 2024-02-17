@@ -169,7 +169,7 @@ function marc_validate_presence(value, element) {
 	
 	var validate_level = $(element).data("validate-level");
 
-	if (value == "") {
+	if (value.trim() == "") {
 		// There are other values in the form
 		// it is mandatory that this field is filled
 		if (others) {
@@ -238,7 +238,7 @@ function marc_validate_mandatory(value, element) {
 		return true;
 */
 
-	if (value == "") {
+	if (value.trim() == "") {
 			if (validate_level == "warning") {
 				marc_validate_add_warnings(element);
 				return true;
@@ -287,7 +287,7 @@ function marc_validate_required_if(value, element, param) {
 		if ($(this).val() != "") {
 			// The value of the other field is set
 			// it makes the validated field mandatory
-			if (value == "")
+			if (value.trim() == "")
 				valid = false;
 		}
 	});

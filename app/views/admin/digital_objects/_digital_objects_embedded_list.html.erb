@@ -1,0 +1,10 @@
+<div class="panel_contents">
+    <div class="attributes_table digital_object" id="attributes_table_digital_object_22692">
+        <table border="0" cellspacing="0" cellpadding="0">
+            <% @item.digital_objects.images.each do |obj| %>
+                <%= render(partial: "admin/digital_objects/digital_objects_embedded_item",  locals: {obj: obj}) %>
+            <%end%>
+        </table>
+    </div>
+</div>
+

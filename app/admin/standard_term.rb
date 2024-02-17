@@ -156,16 +156,15 @@ ActiveAdmin.register StandardTerm do
       end
     end 
 
-    # Box for institutions referring to this standard_term
-    active_admin_embedded_link_list(self, standard_term, Institution) do |context|
+    active_admin_embedded_link_list(self, standard_term, Work) do |context|
       context.table_for(context.collection) do |cr|
-        context.column "id", :id
-        context.column (I18n.t :filter_siglum), :siglum
-        context.column (I18n.t :filter_name), :name
-        context.column (I18n.t :filter_place), :place
+        column (I18n.t :filter_id), :id  
+        column (I18n.t :filter_title), :title
+        column "Opus", :opus
+        column "Catalogue", :catalogue
         if !is_selection_mode?
-          context.column "" do |ins|
-            link_to "View", controller: :institutions, action: :show, id: ins.id
+          context.column "" do |work|
+            link_to "View", controller: :works, action: :show, id: work.id
           end
         end
       end
@@ -180,13 +179,17 @@ ActiveAdmin.register StandardTerm do
     render :partial => "activeadmin/section_sidebar_show", :locals => { :item => standard_term }
   end
   
+  sidebar :folders, :only => :show do
+    render :partial => "activeadmin/section_sidebar_folder_actions", :locals => { :item => standard_term }
+  end
+
   ##########
   ## Edit ##
   ##########
   
   form do |f|
     f.inputs do
-      f.input :term, :label => (I18n.t :filter_term), input_html: {data: {trigger: triggers_from_hash({save: ["referring_sources"]}) }}
+      f.input :term, :label => (I18n.t :filter_term), input_html: {data: {trigger: triggers_from_hash({save: ["referring_sources", "referring_publications", "referring_works"]}) }}
       f.input :alternate_terms, :label => (I18n.t :filter_alternate_terms), :input_html => { :rows => 8 }
       f.input :notes, :label => (I18n.t :filter_notes)
       f.input :wf_stage, :label => (I18n.t :filter_wf_stage)

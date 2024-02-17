@@ -2,6 +2,7 @@ class WorkNode < ApplicationRecord
   include ForeignLinks
   include MarcIndex
   include AuthorityMerge
+  include CommentsCleanup
 
   # class variables for storing the user name and the event from the controller
   @last_user_save
@@ -27,7 +28,7 @@ class WorkNode < ApplicationRecord
  
   composed_of :marc, :class_name => "MarcWorkNode", :mapping => %w(marc_source to_marc)
 
-  before_destroy :check_dependencies
+  before_destroy :check_dependencies, :cleanup_comments
   
   attr_accessor :suppress_reindex_trigger
   attr_accessor :suppress_scaffold_marc_trigger
@@ -156,6 +157,10 @@ class WorkNode < ApplicationRecord
       WorkNode.count_by_sql("select count(*) from work_nodes_to_publications where work_node_id = #{self[:id]}")
     end
     
+    sunspot_dsl.text :text do |s|
+      s.marc.to_raw_text
+    end
+
     MarcIndex::attach_marc_index(sunspot_dsl, "work_node")
   end
  
@@ -170,7 +175,7 @@ class WorkNode < ApplicationRecord
  
   def self.get_gnd(str)
     str.gsub!("\"", "")
-    GND::Interface.search(str, self.to_s)
+    GND::Interface.search({title: str}, 20)
   end
  
   ransacker :"031t", proc{ |v| } do |parent| parent.table[:id] end

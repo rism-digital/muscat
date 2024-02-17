@@ -1,6 +1,18 @@
+@import url('https://fonts.googleapis.com/css?family=Noto+Sans+Display:400,500,700,400italic,500italic,700italic');
+//@import url('https://fonts.googleapis.com/css?family=Noto+Sans:400,500,700,400italic,500italic,700italic');
+
 body {
   font-size: 12px !important;
-  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif !important;
+  font-family: "Noto Sans Display", Helvetica, Arial, sans-serif !important;
+  font-weight: 400 !important;
+  color: #000000 !important;
+  letter-spacing: 0.028em;
+  //Helvetica, Arial, sans-serif !important;
+}
+
+form input, form textarea, form select {
+  font-family: "Noto Sans Display", Helvetica, Arial, sans-serif !important;
+  letter-spacing: 0.028em;
 }
 
 .muscat_panel {
@@ -214,6 +226,14 @@ select[name="target_template"] {
   background: image-url("/images/ebook.png");
 }
 
+.holding_do_link {
+  float: right; 
+	width: 16px;
+	height: 16px;
+  margin-right: 8px;
+  background: image-url("/images/paperclip.png");
+}
+
 .diff {
   ins {
     text-decoration: none;
@@ -313,7 +333,7 @@ select[name="target_template"] {
 	//font: inherit;
   font-size: 16px !important;
   font-weight: 500 !important;
-  font-family: 'Courier New', monospace;
+  font-family: 'Courier New', monospace !important;
 	overflow-x: hidden !important;
 	overflow-y: auto !important;
   padding-right: 7px !important;
@@ -336,6 +356,10 @@ select[name="target_template"] {
   background-image: linear-gradient(180deg, #b9b7b7, #08010149) !important;
 }
 
+.red_title {
+  color:brown !important;
+}
+
 .ui-tabs .ui-tabs-nav li.ui-tabs-active .ui-tabs-anchor {
 	cursor: pointer !important;
 }
@@ -343,4 +367,12 @@ select[name="target_template"] {
 a.button-link {
   color: white;
   text-decoration: none;
+}
+
+body.index #sidebar {
+    display: flex;
+    flex-direction: column;
+    #search_status_sidebar_section { order: 1; }
+    #filters_sidebar_section { order: 2; }
+    #actions_sidebar_section { order: 3; }
 }

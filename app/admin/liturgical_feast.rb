@@ -1,3 +1,5 @@
+include Triggers
+
 ActiveAdmin.register LiturgicalFeast do
   
   menu :parent => "indexes_menu", :label => proc {I18n.t(:menu_liturgical_feasts)}
@@ -71,6 +73,8 @@ ActiveAdmin.register LiturgicalFeast do
         success.html { redirect_to collection_path }
         failure.html { redirect_back fallback_location: root_path, flash: { :error => "#{I18n.t(:error_saving)}" } }
       end
+      # Run the eventual triggers
+      execute_triggers_from_params(params, @liturgical_feast)
     end
     
     # redirect create failure for preserving sidebars
@@ -138,6 +142,21 @@ ActiveAdmin.register LiturgicalFeast do
       row (I18n.t :filter_notes) { |r| r.notes } 
     end
     active_admin_embedded_source_list( self, liturgical_feast, !is_selection_mode? )
+
+    active_admin_embedded_link_list(self, liturgical_feast, Work) do |context|
+      context.table_for(context.collection) do |cr|
+        column (I18n.t :filter_id), :id  
+        column (I18n.t :filter_title), :title
+        column "Opus", :opus
+        column "Catalogue", :catalogue
+        if !is_selection_mode?
+          context.column "" do |work|
+            link_to "View", controller: :works, action: :show, id: work.id
+          end
+        end
+      end
+    end
+
     active_admin_user_wf( self, liturgical_feast )
     active_admin_navigation_bar( self )
     active_admin_comments if !is_selection_mode?
@@ -147,13 +166,17 @@ ActiveAdmin.register LiturgicalFeast do
     render :partial => "activeadmin/section_sidebar_show", :locals => { :item => liturgical_feast }
   end
   
+  sidebar :folders, :only => :show do
+    render :partial => "activeadmin/section_sidebar_folder_actions", :locals => { :item => liturgical_feast }
+  end
+
   ##########
   ## Edit ##
   ##########
   
   form do |f|
     f.inputs do
-      f.input :name, :label => (I18n.t :filter_name)
+      f.input :name, :label => (I18n.t :filter_name), input_html: {data: {trigger: triggers_from_hash({save: ["referring_sources", "referring_works"]}) }}
       f.input :alternate_terms, :label => (I18n.t :filter_alternate_terms)
       f.input :notes, :label => (I18n.t :filter_notes)
       f.input :wf_stage, :label => (I18n.t :filter_wf_stage)

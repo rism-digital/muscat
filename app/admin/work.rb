@@ -57,6 +57,7 @@ ActiveAdmin.register Work do
       @item = Work.find(params[:id])
       @show_history = true if params[:show_history]
       @editor_profile = EditorConfiguration.get_default_layout @item
+      @editor_validation = EditorValidation.get_default_validation(@item)
       @page_title = "#{I18n.t(:edit)} #{@editor_profile.name} [#{@item.id}]"
 
       @restricted=""
@@ -76,7 +77,7 @@ ActiveAdmin.register Work do
       
       respond_to do |format|
         format.html
-        format.xml { render :xml => @item.marc.to_xml(@item.updated_at, @item.versions) }
+        format.xml { render :xml => @item.marc.to_xml({ updated_at: @item.updated_at, versions: @item.versions }) }
       end
     end
     
@@ -110,6 +111,7 @@ ActiveAdmin.register Work do
         new_marc = MarcWork.new(base_item.marc.marc_source)
         # Reset the basic fields to default values
         new_marc.reset_to_new
+        new_marc.insert_duplicated_from("981", base_item.id.to_s)
         # copy the record type
         @work.marc = new_marc
       else         
@@ -119,6 +121,7 @@ ActiveAdmin.register Work do
       end
       
       @editor_profile = EditorConfiguration.get_default_layout @work
+      @editor_validation = EditorValidation.get_default_validation(@work)
       # Since we have only one default template, no need to change the title
       #@page_title = "#{I18n.t('active_admin.new_model', model: active_admin_config.resource_label)} - #{@editor_profile.name}"
       #To transmit correctly @item we need to have @source initialized
@@ -161,6 +164,25 @@ ActiveAdmin.register Work do
 
   filter :"699a_with_integer", :label => proc{I18n.t(:"records.work_tag")}, as: :select, 
   collection: proc{@work_tags.sort.collect {|k| [@editor_profile.get_label(k), "699a:#{k}"]}}
+
+  filter :incipit_with_integer, as: :select, :label => "Has incipit",
+  collection: proc{[["True", "has_music_incipit:true"], ["False", "has_music_incipit:false"]]}
+
+  filter :updated_at, :label => proc{I18n.t(:updated_at)}, as: :date_range
+  filter :created_at, :label => proc{I18n.t(:created_at)}, as: :date_range
+
+  filter :wf_stage_with_integer, :label => proc {I18n.t(:filter_wf_stage)}, as: :select, 
+  collection: proc{[:inprogress, :published, :deleted].collect {|v| [I18n.t("wf_stage." + v.to_s), "wf_stage:#{v}"]}}
+  
+  # and for the wf_owner
+  filter :wf_owner_with_integer, :label => proc {I18n.t(:filter_owner)}, as: :select, 
+         collection: proc {
+           if current_user.has_any_role?(:editor, :admin)
+             User.sort_all_by_last_name.map{|u| [u.name, "wf_owner:#{u.id}"]}
+           else
+             [[current_user.name, "wf_owner:#{current_user.id}"]]
+           end
+         }
 
   index :download_links => false do
     selectable_column if !is_selection_mode?
@@ -208,6 +230,21 @@ ActiveAdmin.register Work do
       render :partial => "marc/show"
     end
     active_admin_embedded_source_list( self, work, !is_selection_mode? )
+
+    active_admin_embedded_link_list(self, work, Work) do |context|
+      context.table_for(context.collection) do |cr|
+        column (I18n.t :filter_id), :id  
+        column (I18n.t :filter_title), :title
+        column "Opus", :opus
+        column "Catalogue", :catalogue
+        if !is_selection_mode?
+          context.column "" do |work|
+            link_to "View", controller: :works, action: :show, id: work.id
+          end
+        end
+      end
+    end
+
     active_admin_digital_object( self, @item ) if !is_selection_mode?
     active_admin_user_wf( self, work )
     active_admin_navigation_bar( self )
@@ -218,7 +255,10 @@ ActiveAdmin.register Work do
     render :partial => "activeadmin/section_sidebar_show", :locals => { :item => work }
   end
   
-  
+  sidebar :folders, :only => :show do
+    render :partial => "activeadmin/section_sidebar_folder_actions", :locals => { :item => work }
+  end
+
   ##########
   ## Edit ##
   ##########

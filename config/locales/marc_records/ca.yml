@@ -95,6 +95,7 @@ ca:
     norwegian: Noruec
     occitan: Occità
     oirat: Oirat
+    ojibwa: Ojibwa
     old_church_slavonic: Eslau eclesiàstic antic
     persian: Persa
     polish: Polonès
@@ -188,6 +189,7 @@ ca:
     israel: Israel
     italy: Itàlia
     italy_trentino_alto_adige: 'Itàlia: Trentino-Alto Adige'
+    jamaica: Jamaica
     japan: Japó
     korea: Corea del Sud
     latvia: Letònia
@@ -299,6 +301,7 @@ ca:
     baptismal_name: Nom baptismal
     basic_functions: Funcions bàsiques
     basso_continuo: Baix continu
+    beginning_or_single_date: Data única o inicial
     bf_major: Si♭ major
     bf_minor: Si♭ minor
     bibliography: Bibliografia
@@ -354,6 +357,7 @@ ca:
     collaborator: Col·laborador
     collective_catalog: Catàleg col·lectiu
     colophon: Colofó
+    contributing_project: Contributing project
     common_clefs: Claus comunes
     compiler: Compilador
     composer: Compositor
@@ -425,6 +429,7 @@ ca:
     ds_major: Re♯ major
     ds_minor: Re♯ menor
     dubious: Dubtós
+    duplicated_from: Duplicated from
     e_major: Mi major
     e_minor: Mi menor
     earlier_heading: Encapçalament anterior
@@ -436,12 +441,14 @@ ca:
     ef_major: Mi♭ major
     ef_minor: Mi♭ menor
     encyclopedia: Enciclopèdia
+    end: Final
     end_period: Període final
     engraver: Gravador
     engraving: Gravat
     event_organizer: Organitzador
     event_place: Lloc de l'esdeveniment
     excerpts: Extractes
+    exemplar: Exemplar
     exemplars: Exemplars
     extent: Extensió
     extent_parts: Extensió (particel·les)
@@ -594,8 +601,10 @@ ca:
     married_with: Casat/da amb
     material_description: Descripció del material
     material_examined: Material examinat
+    material_group: Grup de material
     material_held: Material conservat
     material_not_examined: Material no examinat
+    material_type: Tipus de material
     media_type: Tipus de suport
     mensural_clefs: Claus mensurals
     method_of_acquisition: Mètode d'adquisició
@@ -676,6 +685,7 @@ ca:
     order_name: Orde religiós
     origin: Origen
     original_cataloging_agency: Organisme de catalogació original
+    original_record: Original record
     other: Altres
     other_associated_place: Altre lloc associat
     other_designation: Altra designació
@@ -703,7 +713,7 @@ ca:
     performance: Interpretació
     performances: Interpretacions
     performer: Intèrpret
-    performer_note: Nota sobre l'intèrpret
+    performer_note: Nota sobre la interpretació
     person: Persona
     person_name: Nom personal
     personal_name: Nom personal
@@ -716,6 +726,7 @@ ca:
     place_activity: Lloc d'activitat
     place_birth: Lloc de naixement
     place_death: Lloc de mort
+    place_of_creation: Lloc de creació
     place_of_residence: Lloc de residència/seu
     place_origin: Lloc d'origen
     place_publication: Lloc de publicació
@@ -771,7 +782,7 @@ ca:
     relationship_designation: Designació de la relació al $i o $4
     relationship_information: Informació de la relació
     religious_name: Nom religiós
-    religious_order: Orde religiosa
+    religious_order: "Orde religiosa/títol"
     reproduction: Reproducció
     research_institute: Institut de recerca
     retrospective_conversion: Conversió retrospectiva
@@ -785,7 +796,6 @@ ca:
     series: Sèries
     series_added_entry: Entrades secundàries de col·lecció
     series_statement: Menció de col·lecció
-    material_group: Grup de material
     shelfmark: Signatura
     shelfmark_olim: Signatura anterior (olim)
     short_title: Títol abreujat
@@ -869,7 +879,7 @@ ca:
     uncategorized: Sense classificar
     unknown: Desconegut
     unparsed_fingerprint: Empremta sense analitzar
-    variant_ms_title: Variant de títol al manuscrit
+    variant_ms_title: Variant de títol a la font
     variant_source_title: Variant de títol a la font
     variations: Variacions
     verified: Verificat
@@ -881,12 +891,12 @@ ca:
     woodwinds: Vent-fusta
     work: Obra
     work_number: Número d'obra
-    work_tag: Work revision tag
-    work_tag_incipit_needs_revision: incipit-needs-revision
-    work_tag_incipit_replace: incipit-replace
-    work_tag_needs_revision: needs-revision
-    work_tag_note: Tag note
-    work_tag_type: Tag type
+    work_tag: Etiqueta de revisió per obra
+    work_tag_incipit_needs_revision: Íncipit a revisar
+    work_tag_incipit_replace: Íncipit a substituir
+    work_tag_needs_revision: Cal revisar-ho
+    work_tag_note: Nota d'etiqueta
+    work_tag_type: Tipus d'etiqueta
     year: Any
     years_birth_death: Anys de naixement i mort
   relations:
@@ -972,6 +982,9 @@ ca:
     manuscript: "Manuscrit"
     printed: "Imprès"
     composite: "Volum compost"
+    collection: "Col·lecció"
+    item: "Item"
+    single_item: "Single item"
     apply_filters: "Aplicar els filtres"
     error_loading_results: "Error en carregar els resultats"
     global_collection: "Col·lecció global"

@@ -185,6 +185,7 @@
     :master: "0"
     :indicator: "1#"
     :occurrences: "*"
+    :relator_code: "4"
     :fields:
     - - "0"
       - :occurrences: "?"
@@ -204,8 +205,7 @@
     - - j
       - :occurrences: "?"
     - - "4"
-      - :occurrences: "*"
-        :browse_inline: true
+      - :occurrences: "?"
     - - "8"
       - :occurrences: "?"
         :no_browse: true
@@ -213,6 +213,7 @@
     :master: "0"
     :indicator: "2#"
     :occurrences: "*"
+    :relator_code: "4"
     :fields:
     - - "0"
       - :occurrences: "?"
@@ -226,11 +227,13 @@
     - - b
       - :occurrences: "*"
     - - c
-      - :occurrences: "*"
+      - :occurrences: "?"
+        :foreign_class: ^0
+        :foreign_field: place
     - - g
       - :occurrences: "?"
     - - "4"
-      - :occurrences: "*"
+      - :occurrences: "?"
     - - "8"
       - :occurrences: "?"
         :no_browse: true

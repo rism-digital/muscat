@@ -1,10 +1,19 @@
 #!/bin/bash
 
-#MUSCAT_ROOT=/var/muscat
-BIN_DIR=`dirname "$(readlink -f "$0")"`
+# Support macOS with homebrew
+READLINK=readlink
+if command -v greadlink; then
+READLINK=greadlink
+else
+READLINK=readlink
+fi
+
+BIN_DIR=`dirname "$($READLINK -f "$0")"`
 MUSCAT_ROOT=`dirname $BIN_DIR`
 LOGFILE=$MUSCAT_ROOT/log/muscat_execute_job.log
 
+# Set RVM to the right path and version
+#RVM_CMD="/PATH_TO/.rvm/bin/rvm 3.2.2@rails7 do"
 
 if [ $# -eq 0 ]; then
     echo "muscat_execute_job <job> <env> <param>"
@@ -33,12 +42,13 @@ DATE=`date`
 start=$SECONDS
 
 echo "Running $JOB_NAME in $RAILS_ENV mode at $DATE" >> $LOGFILE 2>&1
+echo "Start $JOB_NAME in $RAILS_ENV mode at $DATE" >> $MUSCAT_ROOT/log/"$JOB_NAME.log"
 
 if [ -z "$3" ]; then
-    echo "$JOB_NAME.new.perform" | bundle exec rails c >> $MUSCAT_ROOT/log/"$JOB_NAME.log"
+    echo "$JOB_NAME.new.perform" | $RVM_CMD bundle exec rails c >> $MUSCAT_ROOT/log/"$JOB_NAME.log"
 else
     PARAMETER=$3
-    echo "$JOB_NAME.new($PARAMETER).perform" | bundle exec rails c >> $MUSCAT_ROOT/log/"$JOB_NAME.log"
+    echo "$JOB_NAME.new($PARAMETER).perform" | $RVM_CMD bundle exec rails c >> $MUSCAT_ROOT/log/"$JOB_NAME.log"
 fi
 
 end=$SECONDS

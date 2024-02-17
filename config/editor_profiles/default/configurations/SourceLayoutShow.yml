@@ -136,10 +136,12 @@ groups:
     - "040"
     - "599"
     - "980"
+    - "981"
     - "510"
+    - "910"
     all_tag_templates: 
       "510": marc_show/show_subfield_concat
-    admin_only: true
+      "981": marc_show/show_duplicated_from
     
   show_links: 
     all_tags: 

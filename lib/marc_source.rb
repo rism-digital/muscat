@@ -365,7 +365,7 @@ class MarcSource < Marc
     end
   end
   
-  def to_external(updated_at = nil, versions = nil, holdings = true)
+  def to_external(updated_at = nil, versions = nil, holdings = true, deprecated_ids = true)
     super(updated_at, versions)
     parent_object = Source.find(get_id)
     # See #933, supersedes #176
@@ -378,24 +378,38 @@ class MarcSource < Marc
       leader = base_leader.gsub("XX", "dc")
       generate_subentry_title # Add $a to 774s
     elsif (@record_type == RECORD_TYPES[:edition])
-      leader = base_leader.gsub("XX", "cc")
+      type = "cm"
+      type = "cc" if by_tags("774").count > 0
+      leader = base_leader.gsub("XX", type)
       generate_subentry_title
     elsif @record_type == RECORD_TYPES[:composite_volume]
       leader = base_leader.gsub("XX", 'pc')
     elsif @record_type == RECORD_TYPES[:source]
       type = "dm"
-      type = "dd" if by_tags("773").count > 0
+      type = "da" if by_tags("773").count > 0
       leader = base_leader.gsub("XX", type)
     elsif @record_type == RECORD_TYPES[:edition_content]
-      type = "cm"
-      type = "cd" if by_tags("773").count > 0
-      leader = base_leader.gsub("XX", type)
+      leader = base_leader.gsub("XX", "ca")
     elsif @record_type == RECORD_TYPES[:libretto_source]
-      leader = base_leader.gsub("XX", "tm")
+      type = "tm"
+      type = "ta" if by_tags("773").count > 0
+      leader = base_leader.gsub("XX", type)
     elsif @record_type == RECORD_TYPES[:libretto_edition]
-      leader = base_leader.gsub("XX", "am")
-    elsif @record_type == RECORD_TYPES[:theoretica_source] # we cannot make the distinction between ms and print
-      leader = base_leader.gsub("XX", "pm")
+      type = "am"
+      type = "ac" if by_tags("774").count > 0
+      leader = base_leader.gsub("XX", type)
+    elsif @record_type == RECORD_TYPES[:theoretica_source]
+      type = "tm"
+      type = "ta" if by_tags("773").count > 0
+      leader = base_leader.gsub("XX", type)
+    elsif @record_type == RECORD_TYPES[:theoretica_edition]
+      type = "am"
+      type = "ac" if by_tags("774").count > 0
+      leader = base_leader.gsub("XX", type)
+    elsif @record_type == RECORD_TYPES[:libretto_edition_content]
+      leader = base_leader.gsub("XX", "aa")
+    elsif @record_type == RECORD_TYPES[:theoretica_edition_content]
+      leader = base_leader.gsub("XX", "aa")
     else
       puts "Unknown record type #{@record_type}"
       leader = ""
@@ -552,7 +566,7 @@ class MarcSource < Marc
     by_tags("599").each {|t| t.destroy_yourself}
  
     entry = "#{parent_object.wf_audit rescue '[without indication]'}"
-    n599 = MarcNode.new(@model, "599", "", nil)
+    n599 = MarcNode.new(@model, "599", "", "##")
     n599.add_at(MarcNode.new(@model, "b", entry, nil), 0)
     @root.add_at(n599, get_insert_position("599"))
    
@@ -561,7 +575,7 @@ class MarcSource < Marc
       versions.each do |v|
         author = v.whodunnit != nil ? "#{v.whodunnit}, " : ""
         entry = "#{author}#{v.created_at} (#{v.event})"
-        n599 = MarcNode.new(@model, "599", "", nil)
+        n599 = MarcNode.new(@model, "599", "", "##")
         n599.add_at(MarcNode.new(@model, "a", entry, nil), 0)
         @root.add_at(n599, get_insert_position("599"))
       end
@@ -574,7 +588,11 @@ class MarcSource < Marc
       end
       parent_object.holdings.order(:lib_siglum).each do |holding|
         holding.marc.by_tags("599").each {|t| t.destroy_yourself} 
-        id = holding.id
+        if deprecated_ids
+          id = "#{holding.id}"
+        else
+          id = "holdings/#{holding.id}"
+        end
         holding.marc.all_tags.each do |tag|
           tag.add_at(MarcNode.new(@model, "3", id, nil), 0)
           @root.add_at(tag, get_insert_position(tag.tag)) if tag.tag != "001"

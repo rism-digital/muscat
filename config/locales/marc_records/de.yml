@@ -95,6 +95,7 @@ de:
     norwegian: Norwegisch
     occitan: Okzitanisch
     oirat: Oiratisch
+    ojibwa: Ojibwe
     old_church_slavonic: Altkirchenslawisch
     persian: Persisch
     polish: Polnisch
@@ -188,6 +189,7 @@ de:
     israel: Israel
     italy: Italien
     italy_trentino_alto_adige: 'Italien: Trentino-Alto Adige'
+    jamaica: Jamaika
     japan: Japan
     korea: Korea, Republik
     latvia: Lettland
@@ -299,6 +301,7 @@ de:
     baptismal_name: Taufname
     basic_functions: Grundsätzliche Funktionen
     basso_continuo: Basso continuo
+    beginning_or_single_date: Anfangs- oder Einzeldatum
     bf_major: B-Dur
     bf_minor: b-Moll
     bibliography: Bibliographie
@@ -354,6 +357,7 @@ de:
     collaborator: Mitverfasser
     collective_catalog: Sammelkatalog
     colophon: Kolophon
+    contributing_project: Contributing project
     common_clefs: Common clefs
     compiler: Kompilator
     composer: Komponist
@@ -425,6 +429,7 @@ de:
     ds_major: Dis-Dur
     ds_minor: dis-Moll
     dubious: Zweifelhaft
+    duplicated_from: Dupliziert von
     e_major: E-Dur
     e_minor: e-Moll
     earlier_heading: Frühere Überschrift
@@ -436,12 +441,14 @@ de:
     ef_major: Es-Dur
     ef_minor: es-Moll
     encyclopedia: Enzyklopädie
+    end: Ende
     end_period: Periode beenden
     engraver: Stecher
     engraving: Stich
     event_organizer: Veranstalter
     event_place: Veranstaltungsort
     excerpts: Ausschnitte
+    exemplar: Exemplar
     exemplars: Exemplars
     extent: Umfang
     extent_parts: Umfang Stimmenmaterial
@@ -523,7 +530,7 @@ de:
     incipit_number: Incipitnummer
     incipits: Incipits
     index_terms: Deskriptoren
-    information_found: Fundstelle
+    information_found: Vorhandene Informationen
     initial: Initiale
     initial_entry: Ersteintrag
     initials: Initiale
@@ -594,8 +601,10 @@ de:
     married_with: Verheiratet mit
     material_description: Materialbeschreibung
     material_examined: Autopsie
+    material_group: Materialgruppe
     material_held: Erhaltenes Material
     material_not_examined: Keine Autopsie
+    material_type: Materialart
     media_type: Physisches Medium
     mensural_clefs: Mensural-Notenschlüssel
     method_of_acquisition: Beschaffungsart
@@ -676,6 +685,7 @@ de:
     order_name: Ordensname
     origin: Herkunft
     original_cataloging_agency: Original-Katalogisierungsstelle
+    original_record: Originaleintrag
     other: Sonstige Funktion
     other_associated_place: Anderer zugehöriger Ort
     other_designation: Andere Bezeichnung
@@ -696,7 +706,7 @@ de:
     partial_autograph: Teilautograph
     parts_held: Vorhandene Stimmen
     parts_held_extent: Stimmenmaterial
-    patron: Mäzen/Auftraggeber
+    patron: Auftraggeber
     people: Personen
     people_institutions: Personen und Körperschaften
     percussion: Schlaginstrumente
@@ -716,6 +726,7 @@ de:
     place_activity: Wirkungsort
     place_birth: Geburtsort
     place_death: Sterbeort
+    place_of_creation: Ort der Erschaffung
     place_of_residence: Wohnort/Hauptsitz
     place_origin: Herkunftsangabe
     place_publication: Verlagsort
@@ -771,7 +782,7 @@ de:
     relationship_designation: Beziehungsbezeichnung in $i oder $4
     relationship_information: Informationen zur Beziehung
     religious_name: Ordensname
-    religious_order: Orden/Titel
+    religious_order: "Orden/Titel"
     reproduction: Reproduktion
     research_institute: Forschungsinstitut
     retrospective_conversion: Retroeinspielung
@@ -785,7 +796,6 @@ de:
     series: Serie
     series_added_entry: Nebeneintragungen Gesamttitel
     series_statement: Gesamttitelangaben
-    material_group: Materialgruppe
     shelfmark: Signatur
     shelfmark_olim: Alte Signatur (olim)
     short_title: Kurztitel
@@ -823,7 +833,7 @@ de:
     subheading_general: Allgemeine Unterteilung
     subject_access_fields: Schlagworteintragungen
     subject_heading: Schlagworteintragung
-    subject_headings: Schlagworte
+    subject_headings: Schlagwörter
     subordinate_unit: Untergeordnete Körperschaft
     succeeding_entry: Folgeeintrag
     summary: Zusammenfassung
@@ -880,13 +890,13 @@ de:
     watermark_description: Wasserzeichen
     woodwinds: Holzblasinstrumente
     work: Werktitel
-    work_number: Incipitnummer
-    work_tag: Work revision tag
-    work_tag_incipit_needs_revision: incipit-needs-revision
-    work_tag_incipit_replace: incipit-replace
-    work_tag_needs_revision: needs-revision
-    work_tag_note: Tag note
-    work_tag_type: Tag type
+    work_number: Werknummer
+    work_tag: Markierung der Werk-Revision
+    work_tag_incipit_needs_revision: Incipit muss überarbeitet werden
+    work_tag_incipit_replace: Incipit ersetzen
+    work_tag_needs_revision: Überarbeitung notwendig
+    work_tag_note: Markierungshinweis
+    work_tag_type: Markierungstyp
     year: Jahr
     years_birth_death: Geburts- und Todesdaten
   relations:
@@ -972,6 +982,9 @@ de:
     manuscript: "Handschrift"
     printed: "Gedruckt"
     composite: "Konvolut"
+    collection: "Sammlung"
+    item: "Eintrag"
+    single_item: "Einzelnes Element"
     apply_filters: "Filter anwenden"
     error_loading_results: "Fehler beim Laden der Ergebnisse"
     global_collection: "Globale Sammlung"

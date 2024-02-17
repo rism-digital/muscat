@@ -43,16 +43,18 @@ class Source < ApplicationRecord
   has_paper_trail :on => [:update, :destroy], :only => [:marc_source, :wf_stage], :if => Proc.new { |t| VersionChecker.save_version?(t) }
 
   # include the override for group_values
-  require 'solr_search.rb'
+  require 'muscat/adapters/active_record/base.rb'
   include ForeignLinks
   include MarcIndex
   include Template
+  include CommentsCleanup
   resourcify
 
-  belongs_to :parent_source, {class_name: "Source", foreign_key: "source_id"}
-  has_many :child_sources, {class_name: "Source"}
+  belongs_to :parent_source, class_name: "Source", foreign_key: "source_id"
+  has_many :child_sources, class_name: "Source"
   has_many :digital_object_links, :as => :object_link, :dependent => :delete_all
   has_many :digital_objects, through: :digital_object_links, foreign_key: "object_link_id"
+
   #has_and_belongs_to_many :institutions, join_table: "sources_to_institutions"
   has_many :source_institution_relations
   has_many :institutions, through: :source_institution_relations
@@ -61,13 +63,28 @@ class Source < ApplicationRecord
   has_many :source_person_relations
   has_many :people, through: :source_person_relations
 
-  has_and_belongs_to_many :standard_titles, join_table: "sources_to_standard_titles"
-  has_and_belongs_to_many :standard_terms, join_table: "sources_to_standard_terms"
-  has_and_belongs_to_many :publications, join_table: "sources_to_publications"
-  has_and_belongs_to_many :liturgical_feasts, join_table: "sources_to_liturgical_feasts"
-  has_and_belongs_to_many :places, join_table: "sources_to_places"
+  #has_and_belongs_to_many :standard_titles, join_table: "sources_to_standard_titles"
+  has_many :source_standard_title_relations
+  has_many :standard_titles, through: :source_standard_title_relations
+
+  #has_and_belongs_to_many :standard_terms, join_table: "sources_to_standard_terms"
+  has_many :source_standard_term_relations
+  has_many :standard_terms, through: :source_standard_term_relations
+
+  #has_and_belongs_to_many :publications, join_table: "sources_to_publications"
+  has_many :source_publication_relations
+  has_many :publications, through: :source_publication_relations
+
+  #has_and_belongs_to_many :liturgical_feasts, join_table: "sources_to_liturgical_feasts"
+  has_many :source_liturgical_feast_relations
+  has_many :liturgical_feasts, through: :source_liturgical_feast_relations
+
+  #has_and_belongs_to_many :places, join_table: "sources_to_places"
+  has_many :source_place_relations
+  has_many :places, through: :source_place_relations
+
   has_many :holdings
-	has_many :collection_holdings, {class_name: "Holding", foreign_key: "collection_id"}
+	has_many :collection_holdings, class_name: "Holding", foreign_key: "collection_id"
   
   #has_and_belongs_to_many :works, join_table: "sources_to_works"
   has_many :source_work_relations
@@ -92,14 +109,14 @@ class Source < ApplicationRecord
 
   scope :in_folder, ->(folder_id) { joins(:folder_items).where("folder_items.folder_id = ?", folder_id) }
 
-  # FIXME id generation
   before_destroy :check_dependencies, :check_parent, prepend: true
+  before_destroy :update_links_for_destroy, :cleanup_comments
 
   before_save :set_object_fields, :save_updated_at
   after_create :fix_ids
   after_initialize :after_initialize
   after_save :update_links, :reindex
-  before_destroy :update_links_for_destroy
+  
 
   attr_accessor :suppress_reindex_trigger
   attr_accessor :suppress_recreate_trigger
@@ -495,7 +512,7 @@ class Source < ApplicationRecord
   end
 
   def to_marcxml
-	  marc.to_xml(updated_at, versions)
+	  marc.to_xml({ updated_at: updated_at, versions: versions })
   end
 
   def marc_helper_set_anonymous
@@ -555,28 +572,6 @@ class Source < ApplicationRecord
       return self.parent_source.holdings.each.collect {|h| h.get_shelfmark}
     end
     return [self.shelf_mark]
-  end
-
-  def self.incipits_for(id)
-    s = Source.find(id)
-
-    incipits = {}
-
-    s.marc.each_by_tag("031") do |t|
-      subtags = [:a, :b, :c, :t]
-      vals = {}
-
-      subtags.each do |st|
-        v = t.fetch_first_by_tag(st)
-        vals[st] = v && v.content ? v.content : "x"
-      end
-
-      pae_nr = "#{vals[:a]}.#{vals[:b]}.#{vals[:c]}"
-      text = vals[:t] == "x" ? "" : " #{vals[:t]}"
-      incipits["#{pae_nr}#{text}"] = "#{s.id}:#{pae_nr}"
-    end
-
-    incipits
   end
 
   def manuscript_to_print(tags)
