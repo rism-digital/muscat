@@ -254,6 +254,9 @@ es:
     individual_entry_threatise_printed: "Entrada individual en una colección de tratados impresos"
     single_threatise_printed: "Tratado impreso individual"
         
+    generic_publication_templates: "Plantillas genéricas"
+    generic_publication_template: "Plantilla genérica para literatura secundaria"
+
   #################### MENUS
   menu_home: "Página principal"
   menu_sources: "Fuentes"

@@ -258,6 +258,9 @@ it:
     individual_entry_threatise_printed: "Singolo elemento in una collezione di trattati a stampa"
     single_threatise_printed: "Trattato a stampa singolo"
 
+    generic_publication_templates: "GENERIC TEMPLATES"
+    generic_publication_template: "SECONDARY LITERATURE GENERIC TEMPLATE"
+
   #################### MENUS
   menu_home: "Home"
   menu_sources: "Fonti"

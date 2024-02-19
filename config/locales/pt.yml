@@ -250,6 +250,9 @@ pt:
     individual_entry_threatise_printed: "Tratado impresso, registro individual em coletânea"
     single_threatise_printed: "Tratado impresso único"
         
+    generic_publication_templates: "GENERIC TEMPLATES"
+    generic_publication_template: "SECONDARY LITERATURE GENERIC TEMPLATE"
+
   #################### MENUS
   menu_home: "Início"
   menu_sources: "Fontes"

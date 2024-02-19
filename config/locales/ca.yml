@@ -253,6 +253,9 @@ ca:
     individual_entry_threatise_printed: "Entrada individual en una col·lecció de tractats impresos"
     single_threatise_printed: "Tractat imprès individual"
 
+    generic_publication_templates: "Plantilles genèriques"
+    generic_publication_template: "Plantilla genèrica de literatura secundària"
+
   #################### MENUS
   menu_home: "Pagina d'inici"
   menu_sources: "Fonts"
