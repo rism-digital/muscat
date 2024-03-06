@@ -421,21 +421,23 @@
     fields: 
     - - a
 "670": 
-  allow_new: true
   new_window: publications
+  new_window_field: name_equals
   layout: 
     fields: 
     - - "a"
       - type: publication
+        allow_new: true
         editor_partial: subfield_secondary
     - - "b"
 "675": 
-  allow_new: true
   new_window: publications
+  new_window_field: name_equals
   layout: 
     fields: 
     - - "a"
       - type: publication
+        allow_new: true
         editor_partial: subfield_secondary
 "680": 
   layout: 

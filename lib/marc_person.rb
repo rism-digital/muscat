@@ -71,7 +71,7 @@ class MarcPerson < Marc
   end
 
   
-  def to_external(updated_at = nil, versions = nil, holdings = false)
+  def to_external(updated_at = nil, versions = nil, holdings = false, deprecated_ids = true)
     # cataloguing agency
     _003_tag = first_occurance("003")
     if !_003_tag

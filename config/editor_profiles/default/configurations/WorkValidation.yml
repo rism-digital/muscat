@@ -1,8 +1,5 @@
 --- !map:Settings
 client:
-  "046":
-    tags:
-      k: mandatory
   "100":
     tags:
       a: mandatory

@@ -92,7 +92,7 @@ class Marc
     by_tags("008").each {|t| t.destroy_yourself}
   end
   # TODO arguments should use parameters or keywords
-  def to_external(updated_at = nil, versions = nil, holdings = false)
+  def to_external(updated_at = nil, versions = nil, holdings = false, deprecated_ids = true)
     # cataloguing agency
     _003_tag = first_occurance("003")
     if !_003_tag
