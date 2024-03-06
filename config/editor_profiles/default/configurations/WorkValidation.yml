@@ -3,3 +3,6 @@ client:
   "100":
     tags:
       a: mandatory
+  "670":
+    tags:
+      "w": required

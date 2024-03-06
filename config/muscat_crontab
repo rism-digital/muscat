@@ -38,3 +38,4 @@ PATH=/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin
 00  04  *  *  sun muscat PATH_TO/muscat/bin/muscat_execute_job MuscatMaintenanceJob production
 00  07  *  *  sun muscat PATH_TO/muscat/bin/muscat_execute_job MuscatCheckupReportJob production
 00  08  *  *  sun muscat PATH_TO/muscat/bin/muscat_execute_job MuscatCheckupReportJob production Holding
+10  08  *  *  sun muscat PATH_TO/muscat/bin/muscat_execute_job MuscatCheckupReportJob production Work
