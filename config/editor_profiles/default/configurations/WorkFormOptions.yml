@@ -44,11 +44,8 @@
     - - e
     - - t
       - growfield: true
-        type: standard_title
-        field: title
-        editor_partial: subfield_secondary
-        allow_new: true
-        has_links_to: true
+        type: source_031t_solr
+        editor_partial: subfield_autocomplete
     - - r
       - editor_partial: subfield_select_codes
         codes_reference: "031r"
@@ -293,21 +290,21 @@
       - "7byz"
       - "8byz"
 "370": 
-  allow_new: true
   layout: 
     fields: 
     - - "g"
       - type: place
         editor_partial: subfield_secondary
+        allow_new: true
     - - i
 "380": 
-  allow_new: true
   new_window: standard_terms
   layout: 
     fields: 
     - - "a"
       - type: standard_term
         editor_partial: subfield_secondary
+        allow_new: true
 "383": 
   layout: 
     fields: 
@@ -398,23 +395,23 @@
       - "7byz"
       - "8byz"
 "500": 
-  allow_new: true
   new_window: people
   layout: 
     fields: 
     - - "a"
       - type: person
         editor_partial: subfield_secondary
+        allow_new: true
     - - d
     - - e
 "530": 
-  allow_new: true
   new_window: works
   layout: 
     fields: 
     - - "a"
       - type: work
         editor_partial: subfield_secondary
+        allow_new: true
     - - i
 "667": 
   layout: 
@@ -477,13 +474,13 @@
       - "incipit-needs-revision"
       - "incipit-replace"
 "700":
-  allow_new: true
   new_window: people
   layout:
     fields: 
     - - a
       - type: person
         editor_partial: subfield_secondary
+        allow_new: true
     - - "4"
       - editor_partial: subfield_select_codes
         select_label: "Function"
@@ -524,13 +521,13 @@
       - dte
       - oth
 "747": 
-  allow_new: true
   new_window: liturgical_feasts
   layout: 
     fields: 
     - - "a"
       - type: liturgical_feast
         editor_partial: subfield_secondary
+        allow_new: true
 "981":
   tag_params:
     read_only: true
