@@ -573,8 +573,7 @@ class MarcSource < Marc
     # Then add some if we include versions
     if versions
       versions.each do |v|
-        author = v.whodunnit != nil ? "#{v.whodunnit}, " : ""
-        entry = "#{author}#{v.created_at} (#{v.event})"
+        entry = "#{v.created_at} (#{v.event})"
         n599 = MarcNode.new(@model, "599", "", "##")
         n599.add_at(MarcNode.new(@model, "a", entry, nil), 0)
         @root.add_at(n599, get_insert_position("599"))
