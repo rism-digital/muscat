@@ -120,9 +120,6 @@ gem 'parallel'
 
 gem 'rubyzip'
 
-# For the download action
-gem "recaptcha"
-
 # To render markdown
 gem 'redcarpet'
 # For parsing rism

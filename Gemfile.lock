@@ -363,7 +363,6 @@ GEM
       ffi (~> 1.0)
     rdoc (6.6.2)
       psych (>= 4.0.0)
-    recaptcha (5.16.0)
     redcarpet (3.6.0)
     regexp_parser (2.9.0)
     request_store (1.5.1)
@@ -526,7 +525,6 @@ DEPENDENCIES
   rails (~> 7.0)
   rails-i18n
   rails3-jquery-autocomplete (~> 1.0.26)!
-  recaptcha
   redcarpet
   reverse_markdown
   rodf

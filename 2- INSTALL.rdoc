@@ -197,13 +197,8 @@ All the secret keys are now stored in the rails 5.2 credentials file, which is n
 
 This will automatically create credentials.yml.enc and the master key, along with a cookie secret key.  If you are not familiarised with this Rails 5.2 feature, this guide is very didactic: https://youtu.be/BHgvPPr2nLE.
 
-Default configuration for Muscat requires the user to check the recaptcha challenge in order to download bibliographic records.  So you will have to create a (free) Google Recaptcha account for your site (https://www.google.com/recaptcha/about/) in order to get the site_key and the secret_key.
-
 The user and password are needed for background search and export, and should be a muscat user with minimum guest access.  So, to use the other services on Muscat, such as history, add to this file:
 
- recaptcha:
-   site_key: 'xx'
-   secret_key: 'xx'
  export:
    user: "xx"
    password: "xx"
@@ -531,10 +526,6 @@ It is also good to block access to Solr:
 
   sudo iptables -A INPUT -p tcp -s localhost --dport 8983 -j ACCEPT
   sudo iptables -A INPUT -p tcp --dport 8983 -j DROP
-
-Also make sure that if there is a proxy, it is configured in +config/initializers/recaptcha.rb+:
-
- config.proxy = 'http://myproxy.com.au:8080'
 
 === Crontab installation
 
