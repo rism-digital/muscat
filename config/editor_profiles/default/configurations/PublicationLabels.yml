@@ -44,7 +44,7 @@
 '100':
   fields:
     a:
-      label: records.author
+      label: records.name
     d:
       label: records.life_dates
   label: records.author
@@ -104,8 +104,8 @@
 '520':
   fields:
     a:
-      label: records.contents_note
-  label: records.contents_note
+      label: records.dates_of_publication
+  label: records.dates_of_publication
 '599':
   fields:
     a:
@@ -134,7 +134,7 @@
     '4':
       label: records.function
     a:
-      label: records.person
+      label: records.name
   label: records.additional_personal_name_lit
 '710':
   fields:

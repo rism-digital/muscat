@@ -43,7 +43,7 @@
     c:
       label: records.religious_order
     d:
-      label: records.years_birth_death
+      label: records.life_dates
     w:
       label: general.status
     y:
