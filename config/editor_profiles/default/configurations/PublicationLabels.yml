@@ -104,8 +104,8 @@
 '520':
   fields:
     a:
-      label: records.contents_note
-  label: records.contents_note
+      label: records.dates_of_publication
+  label: records.dates_of_publication
 '599':
   fields:
     a:
