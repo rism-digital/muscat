@@ -1,0 +1,1 @@
+Las carpetas expiren después de seis meses, y entonces se eliminan automáticamente. Para renovar una carpeta haga clic en el enlace *Reestablecer la fecha de caducidad*, que prorrogará la fecha de expiración seis meses más. En todo caso, recibirá una notificación per correu antes que se eliminen las carpetas.
