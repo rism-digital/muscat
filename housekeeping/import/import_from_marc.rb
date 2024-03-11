@@ -48,7 +48,7 @@ while ARGV.any? do
   if ["-i", "--input", "--file"].include? arg
     if ARGV.any?
       arg = ARGV.shift
-      if File.exists? arg
+      if File.exist? arg
         source_file = arg
       else
         $stderr.puts "#{arg} is not a file!"
@@ -100,7 +100,7 @@ while ARGV.any? do
   elsif ["-h", "--help"].include? arg
     display_help
   # The following options are for backward compatibility
-  elsif File.exists? arg
+  elsif File.exist? arg
     source_file = arg
   elsif VALID_MODELS.include? arg
     model = arg
