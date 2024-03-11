@@ -478,7 +478,7 @@
     o:
       label: records.arrangement_statement
     r:
-      label: records.key
+      label: records.key_or_mode
   label: records.additional_title
 '773':
   fields:
@@ -488,7 +488,7 @@
 '774':
   fields:
     w:
-      label: records.item_in_collection
+      label: records.items_in_source
   label: records.items_in_source
 '775':
   fields:
