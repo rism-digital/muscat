@@ -111,7 +111,7 @@ class MarcSource < Marc
     desc = [extract, arr, scoring, opus, cat_no].compact.join("; ")
     desc = nil if desc.empty?
     
-    # use join so the "-" is not places if one of the two is missing
+    # use join so the "-" is not placed if one of the two is missing
     std_title = [title, desc].compact.join(" - ")
     std_title_d = DictionaryOrder::normalize(std_title)
 
