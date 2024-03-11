@@ -345,6 +345,10 @@ en:
   validation_level_warning: "There are warnings, save again to override"
   muscat_reindexing: "Muscat is reindexing, search results may be incomplete"
   work_catalogue: "Is work catalogue"
+  default_view: "Default view"
+  marc21_view: "MARC21 view"
+  marcxml_view: "MARCXML view"
+  authorization_tokens: "Auth tokens"
 
   jobs:
     not_set: "[No status set]"
@@ -374,6 +378,7 @@ en:
   add_institution: "Link Institution"
   add_source: "Link Source"
   add_person: "Link Person"
+  add_holding: "Link Holding"
   archive_unarchive: "Archive / un-archive"
   archive: "Archive"
   unarchive: "Un-archive"
@@ -381,8 +386,10 @@ en:
   export_folder_csv: "Export Folder as CSV"
   export_folder_raw: "Export Folder as Muscat MARC"
   validate_folder: "Validate items"
+  choose_folder: "(Please choose one)"
+  add_item_to_folder: "Add to folder"
+  remove_item_from_folder: "Delete from folder"
 
-  
   # Editor sidebar
   show_all_groups: "Show all sections"
   show_preview: "Show preview"
@@ -528,6 +535,7 @@ en:
   filter_series_items: "Series items"
   filter_siglum: "Siglum"
   filter_source: "Source"
+  filter_source_id: "Source id"
   filter_sources: "Sources"
   filter_source_type: "Source type"
   filter_source_content_type: "Content type"
@@ -856,25 +864,6 @@ en:
 
 ######################################################################################################
 # End of translation in all languages - make sure all the file have the same line number for this line
-
- 
-######################################################################################################
-# Blacklights overriden translations - the list can vary from one language to another
-
-  blacklight:
-    application_name: 'Muscat'
-    header_links:
-      logout: 'Logout'
-    search:
-      start_over: Start again
-      facets:
-        title: "Refine your search"
-    range_limit:
-      submit_limit: "Refine"
-  blacklight_advanced_search:
-    form:
-      start_over: "Start again"
-      
  
 ######################################################################################################
 # Record types, English only

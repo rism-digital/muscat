@@ -95,6 +95,7 @@ pl:
     norwegian: Norweski
     occitan: Prowansalski
     oirat: Ojracki
+    ojibwa: odżibwe
     old_church_slavonic: Starocerkiewny
     persian: Perski
     polish: Polski
@@ -188,6 +189,7 @@ pl:
     israel: Izrael
     italy: Włochy
     italy_trentino_alto_adige: 'Włochy: Trentino-Alto Adige'
+    jamaica: Jamajka
     japan: Japonia
     korea: Korea, Republika
     latvia: Łotwa
@@ -355,6 +357,7 @@ pl:
     collaborator: Współtwórca
     collective_catalog: Katalog zbiorczy
     colophon: Kolofon
+    contributing_project: Contributing project
     common_clefs: Klucze współczesne
     compiler: Kompilator
     composer: Kompozytor
@@ -426,6 +429,7 @@ pl:
     ds_major: Dis-dur
     ds_minor: dis-moll
     dubious: Wątpliwe
+    duplicated_from: Powiel
     e_major: E-dur
     e_minor: e-moll
     earlier_heading: Wcześniejsza pozycja
@@ -600,7 +604,7 @@ pl:
     material_group: Grupa materiałów
     material_held: Posiadany materiał
     material_not_examined: Materiał nie zbadany
-    material_type: Material type
+    material_type: Typ materiału
     media_type: Rodzaj nośnika
     mensural_clefs: Klucze menzuralne
     method_of_acquisition: Sposób nabycia
@@ -681,6 +685,7 @@ pl:
     order_name: Imię zakonne
     origin: Pochodzenie
     original_cataloging_agency: Jednostka katalogująca pierwotny rekord
+    original_record: Oryginalny wpis
     other: Pozostałe
     other_associated_place: Inne powiązane miejsce
     other_designation: Inne oznaczenie
@@ -977,9 +982,9 @@ pl:
     manuscript: "Rękopis"
     printed: "Druk"
     composite: "Klocek introligatorski"
-    collection: "Collection"
-    item: "Item"
-    single_item: "Single item"
+    collection: "Kolekcja"
+    item: "Pozycja"
+    single_item: "Pojedynczy rękopis"
     apply_filters: "Zastosuj filtry"
     error_loading_results: "Błąd podczas ładowania wyników"
     global_collection: "Źródła z całego świata"

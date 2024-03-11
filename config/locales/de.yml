@@ -345,6 +345,10 @@ de:
   validation_level_warning: "Erneut speichern, um die Warnung(en) zu ignorieren."
   muscat_reindexing: "Muscat wird neu indiziert, Suchergebnisse können unvollständig sein"
   work_catalogue: "Katalog der Werke"
+  default_view: "Default view"
+  marc21_view: "MARC21 view"
+  marcxml_view: "MARCXML view"
+  authorization_tokens: "Auth tokens"
 
   jobs:
     not_set: "[Kein Status gesetzt]"
@@ -374,6 +378,7 @@ de:
   add_institution: "Institution verlinken"
   add_source: "Quelle verlinken"
   add_person: "Person verlinken"
+  add_holding: "Holding verlinken"
   archive_unarchive: "Archivieren / Dearchivieren"
   archive: "Archivieren"
   unarchive: "Dearchivieren"
@@ -381,7 +386,9 @@ de:
   export_folder_csv: "Ordner als CSV exportieren"
   export_folder_raw: "Ordner als Muscat MARC exportieren"
   validate_folder: "Ordner validieren"
-
+  choose_folder: "(PLEASE CHOOSE ONE)"
+  add_item_to_folder: "ADD TO FOLDER"
+  remove_item_from_folder: "DELETE FROM FOLDER"
   
   # Editor sidebar
   show_all_groups: "Alle Blöcke anzeigen"
@@ -525,6 +532,7 @@ de:
   filter_series_items: "Zugehörige Einträge"
   filter_siglum: "Sigel"
   filter_source: "Quelle"
+  filter_source_id: "Quelle id"
   filter_sources: "Quellen"
   filter_source_type: "Quellentyp"
   filter_source_content_type: "Inhaltstyp"
@@ -846,27 +854,3 @@ de:
  
 ######################################################################################################
 # End of translation in all languages - make sure all the file have the same line number for this line
- 
-######################################################################################################
-# Blacklights overriden translations - the list can vary from one language to another
-
-  blacklight:
-    application_name: 'Muscat'
-    header_links:
-      logout: 'Abmelden'
-    range_limit:
-      range_begin: "%{field_label} Bereichsanfang"
-      range_end: "%{field_label} Bereichsende"
-      submit_limit: 'Beschränken'
-      remove_limit: 'Entfernen'
-  blacklight_advanced_search:
-    all: allen Eigenschaften
-    any: irgendeiner Eigenschaft
-    form:
-      title: "Erweiterte Suche"
-      search_context: "In der Suche"
-      limit_criteria_heading_html: "<strong>und</strong> haben diese Eigenschaften"
-      query_criteria_heading_html: "Elemente mit %{select_menu} suchen"
-      sort_label: "Ordnen nach"
-      start_over: "Zurücksetzen"
-      search_btn: 'Suche'

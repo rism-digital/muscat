@@ -82,7 +82,7 @@ ActiveAdmin.register Source do
 
       respond_to do |format|
         format.html
-        format.xml { render :xml => @item.marc.to_xml(@item.updated_at, @item.versions) }
+        format.xml { render :xml => @item.marc.to_xml({ updated_at: @item.updated_at, versions: @item.versions}) }
       end
     end
 
@@ -164,6 +164,8 @@ ActiveAdmin.register Source do
         new_marc = MarcSource.new(base_item.marc.marc_source, base_item.record_type)
         # Reset the basic fields to default values
         new_marc.reset_to_new
+        new_marc.insert_duplicated_from("981", base_item.id.to_s)
+
         # copy the record type
         @source.marc = new_marc
         @source.record_type = base_item.record_type
@@ -272,7 +274,7 @@ ActiveAdmin.register Source do
   
   filter :"852a_facet_contains", :label => proc{I18n.t(:library_sigla_contains)}, :as => :string, if: proc { !is_selection_mode? }
   # see See lib/active_admin_record_type_filter.rb
-  # The same as above, but when the lib siglum is forced and cannot be changes
+  # The same as above, but when the lib siglum is forced and cannot be changed
   filter :lib_siglum_with_integer,
     if: proc { is_selection_mode? == true && params.include?(:q) && params[:q].include?(:lib_siglum_with_integer)}, :as => :lib_siglum
   
@@ -305,7 +307,7 @@ ActiveAdmin.register Source do
   collection: proc{@source_types_b.sort.collect {|k| [@editor_profile.get_label(k.camelize), "593b_filter:#{k}"]}}
 
   filter :record_type_select_with_integer, as: :select, 
-  collection: proc{MarcSource::RECORD_TYPE_ORDER.collect {|k| [I18n.t("record_types." + k.to_s), "record_type:#{MarcSource::RECORD_TYPES[k]}"]}},
+  collection: proc{MarcSource::RECORD_TYPE_ORDER.collect {|k| ["[#{I18n.t('record_types_codes.' + MarcSource::RECORD_TYPES[k].to_s,  locale: :en)}] ".to_s + I18n.t("record_types." + k.to_s).to_s, "record_type:#{MarcSource::RECORD_TYPES[k]}"]}},
 	if: proc { !is_selection_mode? }, :label => proc {I18n.t(:filter_record_type)}
 
   # See lib/active_admin_record_type_filter.rb
@@ -381,19 +383,21 @@ ActiveAdmin.register Source do
   # 8.0.1 #1190, make the sidebar floating only if there are no holdings
   sidebar :actions, :class => "sidebar_tabs" , :only => :show, if: proc{ resource.holdings.empty? } do
     render :partial => "activeadmin/section_sidebar_show", :locals => { :item => @arbre_context.assigns[:item] }
+    render :partial => "activeadmin/section_sidebar_folder_actions", :locals => { :item => item }
   end
 
   # Same sidebar as above, but when holdings are present. This is quite a kludge since :class cannot
-  # be created conditiolally using a proc{ !resource.holdings.empty? }, so the whole sidebar block
+  # be created conditionally using a proc{ !resource.holdings.empty? }, so the whole sidebar block
   # has to be repeated with a different if: ... do
   sidebar :actions, :only => :show, if: proc{ !resource.holdings.empty? } do
     render :partial => "activeadmin/section_sidebar_show", :locals => { :item => @arbre_context.assigns[:item] }
+    render :partial => "activeadmin/section_sidebar_folder_actions", :locals => { :item => item }
   end
 
   sidebar I18n.t(:holding_records), :only => :show , if: proc{ !resource.holdings.empty? } do
     render :partial => "holdings/holdings_sidebar_show"#, :locals => { :item => @arbre_context.assigns[:item] }
   end
-  
+
   ##########
   ## Edit ##
   ##########

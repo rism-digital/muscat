@@ -177,11 +177,9 @@
     - - d
       - hidden: true
     - - b
-      - cols: 2
-        editor_partial: subfield_select_codes
+      - editor_partial: subfield_select_codes
         select_label: "Language"
         codes_reference: "codes"
-    columns: 2
   tag_params:
     codes:
       - "eng"
@@ -194,21 +192,13 @@
   layout:
     fields:
     - - a
-      - cols: 2
-        editor_partial: subfield_select_codes
-        select_label: "Language"
-        codes_reference: "codes"
-    - - e
-      - cols: 2
-        editor_partial: subfield_select_codes
+      - editor_partial: subfield_select_codes
         select_label: "Language"
         codes_reference: "codes"
     - - h
-      - cols: 2
-        editor_partial: subfield_select_codes
+      - editor_partial: subfield_select_codes
         select_label: "Language"
         codes_reference: "codes"
-    columns: 2
   tag_params:
     codes:
       - "afr"
@@ -275,6 +265,7 @@
       - "nds"
       - "nor"
       - "oci"
+      - "oji"
       - "per"
       - "pol"
       - "por"
@@ -320,16 +311,13 @@
     - - d
       - autocomplete_extra: life_dates
     - - j
-      - cols: 2
-        editor_partial: subfield_select_codes
+      - editor_partial: subfield_select_codes
         codes_reference: "codes"
-    columns: 2
   tag_params:
     codes:
       - "Ascertained"
       - "Alleged"
       - "Conjectural"
-      - "Doubtful"
       - "Misattributed"
 "240":
   new_window: standard_titles
@@ -477,6 +465,7 @@
         - "obl. 2°"
         - "obl. 4°"
         - "obl. 8°"
+        - "obl. 12°"
         editor_partial: subfield_select
 "383":
   layout:
@@ -781,7 +770,6 @@
       - "Ascertained"
       - "Alleged"
       - "Conjectural"
-      - "Doubtful"
       - "Misattributed"
     relator_codes:
       - scr
@@ -857,7 +845,6 @@
       - "Ascertained"
       - "Alleged"
       - "Conjectural"
-      - "Doubtful"
       - "Misattributed"
     relator_codes:
       - pbl
@@ -1122,6 +1109,16 @@
     980c:
       - "examined"
       - "not_examined"
+"981":
+  tag_params:
+    read_only: true
+    no_delete: true
+  layout:
+    fields:
+    - - "0"
+      - read_only: true
+    - - "d"
+      - read_only: true
 
 triggers:
   - notify_changes

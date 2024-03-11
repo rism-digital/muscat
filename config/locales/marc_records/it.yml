@@ -95,6 +95,7 @@ it:
     norwegian: Norvegese
     occitan: Occitano
     oirat: Oirato
+    ojibwa: Ojibwa
     old_church_slavonic: Slavo ecclesiastico antico
     persian: Persiano
     polish: Polacco
@@ -188,6 +189,7 @@ it:
     israel: Israele
     italy: Italia
     italy_trentino_alto_adige: 'Italia: Trentino-Alto Adige'
+    jamaica: Giamaica
     japan: Giappone
     korea: Corea, Repubblica di
     latvia: Lettonia
@@ -355,6 +357,7 @@ it:
     collaborator: Collaboratore
     collective_catalog: Catalogo collettivo
     colophon: Colofone
+    contributing_project: Contributing project
     common_clefs: Chiavi comuni
     compiler: Compilatore
     composer: Compositore
@@ -426,6 +429,7 @@ it:
     ds_major: Re♯ maggiore
     ds_minor: Re♯ minore
     dubious: Dubbio
+    duplicated_from: Duplicato di
     e_major: Mi maggiore
     e_minor: Mi minore
     earlier_heading: Intestazione precedente
@@ -681,6 +685,7 @@ it:
     order_name: Nome dell'ordine religioso
     origin: Origine
     original_cataloging_agency: Agenzia catalografica originale
+    original_record: Scheda originaria
     other: Altro
     other_associated_place: Altro luogo associato
     other_designation: Altra designazione
@@ -977,9 +982,9 @@ it:
     manuscript: "Manoscritto"
     printed: "A stampa"
     composite: "Volume composito"
-    collection: "Collection"
-    item: "Item"
-    single_item: "Single item"
+    collection: "Collezione"
+    item: "Elemento"
+    single_item: "Singolo elemento"
     apply_filters: "Applica i filtri"
     error_loading_results: "Errore nel caricamento dei risultati"
     global_collection: "Collezione mondiale"

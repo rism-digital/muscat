@@ -22,15 +22,19 @@ class ApplicationController < ActionController::Base
   end
 
   def prepare_exception_notifier
-    if current_user
-      request.env["exception_notifier.exception_data"] = {:current_user => current_user } 
-    else
-      request.env["exception_notifier.exception_data"] = {:current_user => "Not Logged In" } 
+    begin 
+      if current_user
+        request.env["exception_notifier.exception_data"] = {:current_user => current_user } 
+      else
+        request.env["exception_notifier.exception_data"] = {:current_user => "Not Logged In" } 
+      end
+    rescue
+      request.env["exception_notifier.exception_data"] = {:current_user => "Exception loading user" } 
     end
   end
 
   def auth_user
-    redirect_to "/admin/login" unless (user_signed_in? || RISM::ANONYMOUS_NAVIGATION || request.path == "/admin/login" || (defined?(saml_user_signed_in?) && saml_user_signed_in?))
+    redirect_to "/admin/login" unless (user_signed_in? || RISM::ANONYMOUS_NAVIGATION || request.path == "/admin/login" || (defined?(saml_user_signed_in?) && saml_user_signed_in?)) rescue nil
   end
   
   def test_version_warning
@@ -57,7 +61,7 @@ class ApplicationController < ActionController::Base
   end
   	
   def user_for_paper_trail
-   current_user.try :name
+   current_user.try :name rescue nil
   end
   
   def is_selection_mode?
@@ -128,7 +132,7 @@ class ApplicationController < ActionController::Base
   def _locale_from_http_header 
     return "en" if !request.env || !request.env.include?('HTTP_ACCEPT_LANGUAGE')
     locale = request.env['HTTP_ACCEPT_LANGUAGE'].scan(/^[a-z]{2}/).first 
-    return locale if ["en", "fr", "it", "de", "es", "pt"].include?(locale)
+    return locale if ["en", "fr", "it", "de", "es", "pt", "pl", "ca"].include?(locale)
     "en"
   end 
 

@@ -345,6 +345,10 @@ ca:
   validation_level_warning: "Hi ha advertiments. Els podeu ignorar tornant a desar-lo"
   muscat_reindexing: "Muscat està reindexant. Els resultats poden ser incomplets"
   work_catalogue: "Catàleg d'obres"
+  default_view: "Visualització estàndard"
+  marc21_view: "Visualització MARC21"
+  marcxml_view: "Visualització MARCXML"
+  authorization_tokens: "Auth tokens"
 
   jobs:
     not_set: "[Sense estat]"
@@ -374,6 +378,7 @@ ca:
   add_institution: "Vincula-hi una institució"
   add_source: "Vincula-hi una font"
   add_person: "Vincula-hi una persona"
+  add_holding: "Vincula-hi un exemplar"
   archive_unarchive: "Arxiva / Desarxiva"
   archive: "Arxiva"
   unarchive: "Desarxiva"
@@ -381,7 +386,9 @@ ca:
   export_folder_csv: "Exporta la carpeta en format CSV"
   export_folder_raw: "Exporta la carpeta en format Muscat MARC"
   validate_folder: "Valida els elements"
-
+  choose_folder: "(Trieu-ne una)"
+  add_item_to_folder: "Afegiu-lo a la carpeta"
+  remove_item_from_folder: "Elimineu-lo de la carpeta"
 
   # Editor sidebar
   show_all_groups: "Mostra totes les seccions"
@@ -527,6 +534,7 @@ ca:
   filter_series_items: "Element de la sèrie"
   filter_siglum: "Sigla"
   filter_source: "Font"
+  filter_source_id: "Id de la font"
   filter_sources: "Fonts"
   filter_source_type: "Tipus de font"
   filter_source_content_type: "Tipus de contingut"
@@ -851,21 +859,3 @@ ca:
 
 ######################################################################################################
 # End of translation in all languages - make sure all the file have the same line number for this line
-
-
-######################################################################################################
-# Blacklights overriden translations - the list can vary from one language to another
-
-  blacklight:
-    application_name: 'Muscat'
-    header_links:
-      logout: 'Tanca la sessió'
-    search:
-      start_over: "Torna a l'inici"
-      facets:
-        title: "Limiteu la vostra cerca"
-    range_limit:
-      submit_limit: "Limita-la"
-  blacklight_advanced_search:
-    form:
-      start_over: "Torna a l'inici"

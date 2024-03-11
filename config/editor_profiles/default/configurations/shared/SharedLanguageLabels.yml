@@ -132,6 +132,8 @@ nor:
   label: languages.norwegian
 oci:
   label: languages.occitan
+oji:
+  label: languages.ojibwa
 per:
   label: languages.persian
 pol:

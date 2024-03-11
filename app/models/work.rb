@@ -17,33 +17,61 @@ class Work < ApplicationRecord
   belongs_to :composer, class_name: "Person", foreign_key: "person_id"
   has_many :digital_object_links, :as => :object_link, :dependent => :delete_all
   has_many :digital_objects, through: :digital_object_links, foreign_key: "object_link_id"
+
   #has_and_belongs_to_many(:referring_sources, class_name: "Source", join_table: "sources_to_works")
   has_many :source_work_relations, class_name: "SourceWorkRelation"
   has_many :referring_sources, through: :source_work_relations, source: :source
   
-  has_and_belongs_to_many :publications, join_table: "works_to_publications"
-  has_and_belongs_to_many :standard_terms, join_table: "works_to_standard_terms"
-  has_and_belongs_to_many :standard_titles, join_table: "works_to_standard_titles"
-  has_and_belongs_to_many :liturgical_feasts, join_table: "works_to_liturgical_feasts"
-  has_and_belongs_to_many :institutions, join_table: "works_to_institutions"
-  has_and_belongs_to_many :people, join_table: "works_to_people"
-  has_and_belongs_to_many :places, join_table: "works_to_places"
+  #has_and_belongs_to_many :publications, join_table: "works_to_publications"
+  has_many :work_publication_relations
+  has_many :publications, through: :work_publication_relations
+
+  #has_and_belongs_to_many :standard_terms, join_table: "works_to_standard_terms"
+  has_many :work_standard_term_relations
+  has_many :standard_terms, through: :work_standard_term_relations
+
+  #has_and_belongs_to_many :standard_titles, join_table: "works_to_standard_titles"
+  has_many :work_standard_title_relations
+  has_many :standard_titles, through: :work_standard_title_relations
+
+  #has_and_belongs_to_many :liturgical_feasts, join_table: "works_to_liturgical_feasts"
+  has_many :work_liturgical_feast_relations
+  has_many :liturgical_feasts, through: :work_liturgical_feast_relations
+
+  #has_and_belongs_to_many :institutions, join_table: "works_to_institutions"
+  has_many :work_institution_relations
+  has_many :institutions, through: :work_institution_relations
+
+  #has_and_belongs_to_many :people, join_table: "works_to_people"
+  has_many :work_person_relations
+  has_many :people, through: :work_person_relations
+
+  #has_and_belongs_to_many :places, join_table: "works_to_places"
+  has_many :work_place_relations
+  has_many :places, through: :work_place_relations
+
   has_many :folder_items, as: :item, dependent: :destroy
   has_many :delayed_jobs, -> { where parent_type: "Work" }, class_name: 'Delayed::Backend::ActiveRecord::Job', foreign_key: "parent_id"
   belongs_to :user, :foreign_key => "wf_owner"
-  has_and_belongs_to_many(:works,
-    :class_name => "Work",
-    :foreign_key => "work_a_id",
-    :association_foreign_key => "work_b_id",
-    join_table: "works_to_works")
+
+#  has_and_belongs_to_many(:works,
+#    :class_name => "Work",
+#    :foreign_key => "work_a_id",
+#    :association_foreign_key => "work_b_id",
+#    join_table: "works_to_works")
   
-  # This is the backward link
-  has_and_belongs_to_many(:referring_works,
-    :class_name => "Work",
-    :foreign_key => "work_b_id",
-    :association_foreign_key => "work_a_id",
-    join_table: "works_to_works")
- 
+#  # This is the backward link
+#  has_and_belongs_to_many(:referring_works,
+#    :class_name => "Work",
+#    :foreign_key => "work_b_id",
+#    :association_foreign_key => "work_a_id",
+#    join_table: "works_to_works")
+
+  has_many :work_relations, foreign_key: "work_a_id"
+  has_many :works, through: :work_relations, source: :work_b
+  has_many :referring_work_relations, class_name: "WorkRelation", foreign_key: "work_b_id"
+  has_many :referring_works, through: :referring_work_relations, source: :work_a
+
   composed_of :marc, :class_name => "MarcWork", :mapping => %w(marc_source to_marc)
 
   before_destroy :check_dependencies, :cleanup_comments
@@ -181,6 +209,10 @@ class Work < ApplicationRecord
       end
     end
 
+    sunspot_dsl.text :text do |s|
+      s.marc.to_raw_text
+    end
+
     sunspot_dsl.join(:folder_id, :target => FolderItem, :type => :integer, 
               :join => { :from => :item_id, :to => :id })
 
@@ -190,6 +222,19 @@ class Work < ApplicationRecord
       Work.count_by_sql("select count(*) from sources_to_works where work_id = #{self[:id]}")
     end
     
+    sunspot_dsl.boolean :has_music_incipit do |s|
+      count = 0
+      s.marc.by_tags(["031"]).each do |st|
+        st.fetch_all_by_tag("p").each do |sst|
+          if sst && sst.content && !sst.content.empty?
+            count += 1 
+            break
+          end
+        end
+      end
+      count > 0
+    end
+
     MarcIndex::attach_marc_index(sunspot_dsl, self.to_s.downcase)
   end
  
@@ -215,5 +260,6 @@ class Work < ApplicationRecord
   ransacker :"0242_filter", proc{ |v| } do |parent| parent.table[:id] end
   ransacker :catalogue_name_order, proc{ |v| } do |parent| parent.table[:id] end
   ransacker :"699a", proc{ |v| } do |parent| parent.table[:id] end
+  ransacker :"incipit", proc{ |v| } do |parent| parent.table[:id] end
 
 end

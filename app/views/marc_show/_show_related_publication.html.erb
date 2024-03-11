@@ -12,9 +12,7 @@
 		<%- end %>
 	</th>
 	<td>
-		<% if opac %>
-			<%= link_to publication, search_catalog_path(:search_field => "any_field", :q => publication)%>
-		<% elsif is_selection_mode?%>
+		<% if is_selection_mode?%>
 			<%= "#{external_title}"%>
 		<% else %>
       <%= link_to "#{external_title}", admin_publication_path(publication) -%>

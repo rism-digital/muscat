@@ -254,6 +254,13 @@ dirs.keys.each do |dir|
         next
       end
 
+      service = IIIF::Presentation::Resource.new(
+        '@context' => 'http://iiif.io/api/image/2/context.json', 
+        'profile' => 'http://iiif.io/api/image/2/level1.json', 
+        '@id' => image_url)
+
+        image_resource.service = service
+
       #print "."
       image.resource = image_resource
       
@@ -266,7 +273,7 @@ dirs.keys.each do |dir|
       # Some obnoxious servers block you after some requests
       # may also be a server/firewall combination
       # comment this if you are positive your server works
-      #sleep 0.1
+      #sleep 0.5
     end
     
     #puts manifest.to_json(pretty: true)

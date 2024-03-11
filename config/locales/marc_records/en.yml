@@ -95,6 +95,7 @@ en:
     norwegian: Norwegian
     occitan: Occitan
     oirat: Oirat
+    ojibwa: Ojibwa
     old_church_slavonic: Old Church Slavonic
     persian: Persian
     polish: Polish
@@ -188,6 +189,7 @@ en:
     israel: Israel
     italy: Italy
     italy_trentino_alto_adige: 'Italy: Trentino-Alto Adige'
+    jamaica: Jamaica
     japan: Japan
     korea: Korea, Republic of
     latvia: Latvia
@@ -328,7 +330,6 @@ en:
     c_plus_4: C+4
     c_plus_5: C+5
     catalog: Catalog
-    catalog_contribution: Catalog contribution
     catalog_opus_number: Catalog number/Opus number
     catalog_works: Catalog of works
     cataloging_agency: Cataloging agency
@@ -356,6 +357,7 @@ en:
     collaborator: Collaborator
     collective_catalog: Collective catalog
     colophon: Colophon
+    contributing_project: Contributing project
     common_clefs: Common clefs
     compiler: Compiler
     composer: Composer
@@ -427,6 +429,7 @@ en:
     ds_major: D♯ major
     ds_minor: D♯ minor
     dubious: Dubious
+    duplicated_from: Duplicated from
     e_major: E major
     e_minor: E minor
     earlier_heading: Earlier heading
@@ -685,6 +688,7 @@ en:
     order_name: Order Name
     origin: Origin
     original_cataloging_agency: Original cataloging agency
+    original_record: Original record
     other: Other
     other_associated_place: Other associated place
     other_designation: Other designation

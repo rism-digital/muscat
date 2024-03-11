@@ -226,6 +226,14 @@ select[name="target_template"] {
   background: image-url("/images/ebook.png");
 }
 
+.holding_do_link {
+  float: right; 
+	width: 16px;
+	height: 16px;
+  margin-right: 8px;
+  background: image-url("/images/paperclip.png");
+}
+
 .diff {
   ins {
     text-decoration: none;

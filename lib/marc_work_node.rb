@@ -24,14 +24,7 @@ class MarcWorkNode < Marc
         key = node.content.blank? ? "" : " (#{node.content})"
     end
 
-    if node = tag100.fetch_first_by_tag("p")
-      tag_p = node.content.blank? ? "" : " [#{node.content}] "
-    end
-    if node = tag100.fetch_first_by_tag("n")
-        tag_n = node.content.blank? ? "" : " #{node.content}"
-    end
-
-    return "#{tag_p}#{tag_n}#{title}#{scoring}#{number}#{key}"
+    return "#{title}#{scoring}#{number}#{key}"
   end
 
   def get_composer_name
@@ -54,7 +47,7 @@ class MarcWorkNode < Marc
     tag100.add_at(MarcNode.new("work_node", "0", person.id, nil), 0)
   end
 
-  def to_external(updated_at = nil, versions = nil, holdings = false)
+  def to_external(updated_at = nil, versions = nil, holdings = false, deprecated_ids = true)
     super(updated_at, nil, holdings)
     # nothing specific to do - this is used ony for deprecating works
   end

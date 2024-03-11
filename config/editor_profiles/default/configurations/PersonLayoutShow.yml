@@ -32,7 +32,6 @@ groups:
     - "510"
     - "550" 
     - "551"
-    - "667"
     all_tag_templates:
       "500": people/show_related_person
       "510": marc_show/show_institution
@@ -43,6 +42,7 @@ groups:
     - "678"
     - "680"
     - "856"
+    - "667"
     all_tag_templates:
       "856": people/show_link
   control: 

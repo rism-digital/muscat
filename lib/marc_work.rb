@@ -74,4 +74,8 @@ class MarcWork < Marc
     first_occurance("001").content = "__TEMP__"
   end
 
+  # Make sure we do not use the default to_external
+  def to_external(updated_at = nil, versions = nil, holdings = false, deprecated_ids = true)
+  end
+
 end

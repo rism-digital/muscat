@@ -30,7 +30,7 @@
 							</table>
 							<%- end %>
 							<%- if !@diff %>
-								<%= render :partial => "marc/show_tags", :locals => { :tags => subfield_group_tags, :templates => group[:tag_templates], :opac => opac } %>
+								<%= render :partial => "marc/show_tags", :locals => { :tags => subfield_group_tags, :templates => group[:tag_templates] } %>
 							<%- else %>
 								<%= render :partial => "marc/show_diff_tags", :locals => { :tags => subfield_group_tags } %>
 							<%- end %>
@@ -38,7 +38,7 @@
 					<%- end %>
 				<%- else %>			
 					<%- if !@diff %>
-						<%= render :partial => "marc/show_tags", :locals => { :tags => tags, :templates => group[:tag_templates], :opac => opac } %>
+						<%= render :partial => "marc/show_tags", :locals => { :tags => tags, :templates => group[:tag_templates] } %>
 					<%- else %>
 						<%= render :partial => "marc/show_diff_tags", :locals => { :tags => tags } %>
 					<%- end %>

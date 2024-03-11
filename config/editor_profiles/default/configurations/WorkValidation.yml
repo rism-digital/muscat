@@ -1,8 +1,50 @@
 --- !map:Settings
 client:
-  "046":
-    tags:
-      k: mandatory
   "100":
     tags:
-      a: mandatory
+      "0": mandatory
+  "130":
+    tags:
+      "0": required
+  "370":
+    tags:
+      "0": required
+  "380":
+    tags:
+      "0": required
+  "430":
+    tags:
+      "0": required
+  "500":
+    tags:
+      "0": required
+  "530":
+    tags:
+      "0": required
+  "670":
+    tags:
+      "w": required
+  "675":
+    tags:
+      "w": required
+  "690":
+    tags:
+      "0": required
+  "691":
+    tags:
+      "0": required
+  "700": 
+    tags:
+      "0": required
+      "4":
+        required_if:
+          "700": "0"
+  "710": 
+    tags:
+      "0": required
+      "4":
+        required_if:
+          "710": "0"
+  "747":
+    tags:
+      "0": required

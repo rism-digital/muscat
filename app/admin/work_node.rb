@@ -77,7 +77,7 @@ ActiveAdmin.register WorkNode do
       
       respond_to do |format|
         format.html
-        format.xml { render :xml => @item.marc.to_xml(@item.updated_at, @item.versions) }
+        format.xml { render :xml => @item.marc.to_xml({ updated_at: @item.updated_at, versions: @item.versions }) }
       end
     end
     
@@ -173,7 +173,10 @@ ActiveAdmin.register WorkNode do
     render :partial => "activeadmin/section_sidebar_show", :locals => { :item => work_node }
   end
   
-  
+  sidebar :folders, :only => :show do
+    render :partial => "activeadmin/section_sidebar_folder_actions", :locals => { :item => work_node }
+  end
+
   ##########
   ## Edit ##
   ##########

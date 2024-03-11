@@ -9,9 +9,11 @@ module GND
     require 'net/http'
 
     SRU_PUSH_URL = "https://devel.dnb.de/sru_ru/"
-    SRU_READ_URL_AUTH = "https://services.dnb.de/sru/authorities"
-    SRU_READ_URL = "https://services.dnb.de/sru/cbs-appr"
+    #SRU_READ_URL_AUTH = "https://services.dnb.de/sru/authorities"
+    #SRU_READ_URL = "https://services.dnb.de/sru/cbs-appr"
 
+    SRU_READ_URL_AUTH = "https://devel.dnb.de/sru/cbs-appr"
+    SRU_READ_URL = "https://devel.dnb.de/sru/cbs-appr"
 
     def self.search(params, limit = 10)
         result = []
@@ -40,7 +42,7 @@ module GND
 
         action = m.get_id == "__TEMP__" ? :create : :replace
 
-        return send_to_gnd(action, m.to_xml_record(nil, nil, nil), m.get_id)
+        return send_to_gnd(action, m.to_xml_record({}), m.get_id)
     end
 
     # post xml to gnd

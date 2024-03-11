@@ -6,18 +6,10 @@ config:
     :model: institution
 
 fields:  
-    "001":
-    "008":
-    "024a":
-    "043c":
     "043c_filter":
       :from_tag: "043"
       :from_subtag: "c"
       :index_helper: marc_helper_get_country
-    "110a":
-    "110b":
-    "110c":
-    "110g":
     "110g_filter":
       :store: true
       :type: string
@@ -27,15 +19,5 @@ fields:
       :from_tag: "110"
       :from_subtag: "g"
       :as: "110g_facet_sm"
-    "368a":
-    "410a":
-    "371a":
-    "371u":
-    "510a":
     "580x":
-    "5800":
     "667a":
-    "670a":
-    "670b":
-    "678a":
-    "680a":

@@ -95,6 +95,7 @@ fr:
     norwegian: Norvégien
     occitan: Occitan
     oirat: Oïrate
+    ojibwa: Ojibwa
     old_church_slavonic: Slave ancien ecclésiastique
     persian: Persan
     polish: Polonais
@@ -188,6 +189,7 @@ fr:
     israel: Israël
     italy: Italie
     italy_trentino_alto_adige: 'Italie: Trentin-Haut-Adige'
+    jamaica: Jamaïque
     japan: Japon
     korea: Corée, République de
     latvia: Lettonie
@@ -355,6 +357,7 @@ fr:
     collaborator: Collaborateur
     collective_catalog: Catalogue collectif
     colophon: Colophon
+    contributing_project: Contributing project
     common_clefs: Clés communes
     compiler: Compilateur
     composer: Compositeur
@@ -426,6 +429,7 @@ fr:
     ds_major: Ré♯ majeur
     ds_minor: Ré♯ mineur
     dubious: Douteux
+    duplicated_from: Dupliqué de
     e_major: Mi majeur
     e_minor: Mi mineur
     earlier_heading: Rubrique précédente
@@ -444,7 +448,7 @@ fr:
     event_organizer: Organisateur
     event_place: Lieu de l'événement
     excerpts: Extraits
-    exemplar: Exemplar
+    exemplar: Exemplaire
     exemplars: Exemplaires
     extent: Extension
     extent_parts: Extension (parties)
@@ -600,7 +604,7 @@ fr:
     material_group: Groupe de matériaux
     material_held: Matériaux préservées
     material_not_examined: Matériaux non examinés
-    material_type: Material type
+    material_type: Type de matériel
     media_type: Moyen physique
     mensural_clefs: Clés anciennes
     method_of_acquisition: Méthode d'acquisition
@@ -681,6 +685,7 @@ fr:
     order_name: Nom d'ordre
     origin: Origine
     original_cataloging_agency: Organisme du catalogage original
+    original_record: Dossier original
     other: Autre function
     other_associated_place: Autre lieu associé
     other_designation: Autre désignation
@@ -978,8 +983,8 @@ fr:
     printed: "Imprimé"
     composite: "Volume composite"
     collection: "Collection"
-    item: "Item"
-    single_item: "Single item"
+    item: "Elément"
+    single_item: "Élément unique"
     apply_filters: "Appliquer les filtres"
     error_loading_results: "Erreur lors du chargement des résultats"
     global_collection: "Collection globale"

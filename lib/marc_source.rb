@@ -111,7 +111,7 @@ class MarcSource < Marc
     desc = [extract, arr, scoring, opus, cat_no].compact.join("; ")
     desc = nil if desc.empty?
     
-    # use join so the "-" is not places if one of the two is missing
+    # use join so the "-" is not placed if one of the two is missing
     std_title = [title, desc].compact.join(" - ")
     std_title_d = DictionaryOrder::normalize(std_title)
 
@@ -365,7 +365,7 @@ class MarcSource < Marc
     end
   end
   
-  def to_external(updated_at = nil, versions = nil, holdings = true)
+  def to_external(updated_at = nil, versions = nil, holdings = true, deprecated_ids = true)
     super(updated_at, versions)
     parent_object = Source.find(get_id)
     # See #933, supersedes #176
@@ -566,16 +566,15 @@ class MarcSource < Marc
     by_tags("599").each {|t| t.destroy_yourself}
  
     entry = "#{parent_object.wf_audit rescue '[without indication]'}"
-    n599 = MarcNode.new(@model, "599", "", nil)
+    n599 = MarcNode.new(@model, "599", "", "##")
     n599.add_at(MarcNode.new(@model, "b", entry, nil), 0)
     @root.add_at(n599, get_insert_position("599"))
    
     # Then add some if we include versions
     if versions
       versions.each do |v|
-        author = v.whodunnit != nil ? "#{v.whodunnit}, " : ""
-        entry = "#{author}#{v.created_at} (#{v.event})"
-        n599 = MarcNode.new(@model, "599", "", nil)
+        entry = "#{v.created_at} (#{v.event})"
+        n599 = MarcNode.new(@model, "599", "", "##")
         n599.add_at(MarcNode.new(@model, "a", entry, nil), 0)
         @root.add_at(n599, get_insert_position("599"))
       end
@@ -588,7 +587,11 @@ class MarcSource < Marc
       end
       parent_object.holdings.order(:lib_siglum).each do |holding|
         holding.marc.by_tags("599").each {|t| t.destroy_yourself} 
-        id = holding.id
+        if deprecated_ids
+          id = "#{holding.id}"
+        else
+          id = "holdings/#{holding.id}"
+        end
         holding.marc.all_tags.each do |tag|
           tag.add_at(MarcNode.new(@model, "3", id, nil), 0)
           @root.add_at(tag, get_insert_position(tag.tag)) if tag.tag != "001"
