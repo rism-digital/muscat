@@ -77,7 +77,7 @@
     a:
       label: records.composer
     d:
-      label: records.years_birth_death
+      label: records.life_dates
     m:
       label: records.scoring_summary
     n:
