@@ -315,10 +315,10 @@
 '856':
   fields:
     u:
-      label: records.external_resource
-    y:
+      label: records.external_resource_url
+    z:
       label: records.note_external_resource
-  label: records.external_resource_uri
+  label: records.external_resource
 8byz:
   label: records.octoechos8
 8t:

@@ -38,6 +38,7 @@ groups:
     - "667"
     - "691"
     - "699"
+    - "856"
     all_tag_templates: 
       "691": marc_show/show_69x_url
   relations:

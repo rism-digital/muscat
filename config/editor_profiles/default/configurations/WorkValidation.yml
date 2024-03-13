@@ -52,3 +52,7 @@ client:
   "747":
     tags:
       "0": required
+  "856":
+    tags:
+      "u": required
+      "z": required

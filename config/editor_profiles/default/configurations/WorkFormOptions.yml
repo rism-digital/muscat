@@ -528,6 +528,11 @@
       - type: liturgical_feast
         editor_partial: subfield_secondary
         allow_new: true
+"856": 
+  layout: 
+    fields: 
+    - - u
+    - - z
 "981":
   tag_params:
     read_only: true
