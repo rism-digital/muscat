@@ -177,13 +177,6 @@
     p:
       label: records.version_information
   label: records.alternative_work_title
-'500':
-  fields:
-    a:
-      label: records.related_personal_name
-    y:
-      label: records.type_relationship
-  label: records.related_personal_name
 '530':
   fields:
     a:
@@ -277,7 +270,7 @@
   label: records.mode_6t
 6tt:
   label: records.mode_6tt
-'700':
+'500':
   fields:
     '4':
       label: records.function
@@ -288,7 +281,7 @@
     j:
       label: records.attribution_qualifier
   label: records.additional_personal_name
-'710':
+'510':
   fields:
     '4':
       label: records.function
@@ -301,7 +294,7 @@
     g:
       label: records.attribution_qualifier
   label: records.additional_institution
-'747':
+'547':
   fields:
     a:
       label: records.liturgical_festival

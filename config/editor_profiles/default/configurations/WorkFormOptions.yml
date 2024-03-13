@@ -387,16 +387,53 @@
       - "6byz"
       - "7byz"
       - "8byz"
-"500": 
+"500":
   new_window: people
-  layout: 
+  layout:
     fields: 
-    - - "a"
+    - - a
       - type: person
         editor_partial: subfield_secondary
         allow_new: true
-    - - d
-    - - e
+    - - "4"
+      - editor_partial: subfield_select_codes
+        select_label: "Function"
+        codes_reference: "relator_codes"
+  tag_params: 
+    relator_codes: 
+    - cmp
+    - dte
+    - asn
+    - lbt
+    - lyr
+    - oth
+"510":
+  new_window: institutions
+  new_window_field: name_equals
+  layout: 
+    fields: 
+    - - a
+      - type: institution
+        editor_partial: subfield_secondary
+        allow_new: true
+    - - b
+    - - g
+      - editor_partial: subfield_select_codes
+        codes_reference: "codes"
+    - - "4"
+      - editor_partial: subfield_select_codes
+        select_label: "Function"
+        codes_reference: "relator_codes"
+  tag_params: 
+    codes:
+      - "Ascertained"
+      - "Alleged"
+      - "Conjectural"
+      - "Doubtful"
+      - "Misattributed"
+    relator_codes: 
+      - dte
+      - oth
 "530": 
   new_window: works
   layout: 
@@ -406,6 +443,14 @@
         editor_partial: subfield_secondary
         allow_new: true
     - - i
+"547": 
+  new_window: liturgical_feasts
+  layout: 
+    fields: 
+    - - "a"
+      - type: liturgical_feast
+        editor_partial: subfield_secondary
+        allow_new: true
 "667": 
   layout: 
     fields: 
@@ -466,61 +511,7 @@
       - "needs-revision" 
       - "incipit-needs-revision"
       - "incipit-replace"
-"700":
-  new_window: people
-  layout:
-    fields: 
-    - - a
-      - type: person
-        editor_partial: subfield_secondary
-        allow_new: true
-    - - "4"
-      - editor_partial: subfield_select_codes
-        select_label: "Function"
-        codes_reference: "relator_codes"
-  tag_params: 
-    relator_codes: 
-    - cmp
-    - dte
-    - asn
-    - lbt
-    - lyr
-    - oth
-"710":
-  new_window: institutions
-  new_window_field: name_equals
-  layout: 
-    fields: 
-    - - a
-      - type: institution
-        editor_partial: subfield_secondary
-        allow_new: true
-    - - b
-    - - g
-      - editor_partial: subfield_select_codes
-        codes_reference: "codes"
-    - - "4"
-      - editor_partial: subfield_select_codes
-        select_label: "Function"
-        codes_reference: "relator_codes"
-  tag_params: 
-    codes:
-      - "Ascertained"
-      - "Alleged"
-      - "Conjectural"
-      - "Doubtful"
-      - "Misattributed"
-    relator_codes: 
-      - dte
-      - oth
-"747": 
-  new_window: liturgical_feasts
-  layout: 
-    fields: 
-    - - "a"
-      - type: liturgical_feast
-        editor_partial: subfield_secondary
-        allow_new: true
+
 "856": 
   layout: 
     fields: 

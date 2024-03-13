@@ -213,6 +213,7 @@
     :master: "0"
     :indicator: "1#"
     :occurrences: "*"
+    :relator_code: "4"
     :fields:
     - - "0"
       - :occurrences: "?"
@@ -223,10 +224,50 @@
       - :occurrences: "?"
         :foreign_class: ^0
         :foreign_field: full_name
-    - - "d"
+    - - d
       - :occurrences: "?"
+        :browse_inline: true
+        :foreign_class: ^0
+        :foreign_field: life_dates
+        :foreign_alternates: alternate_dates
+        #:no_browse: true
     - - "e"
+      - :occurrences: "*"
+    - - "t"
       - :occurrences: "?"
+    - - "4"
+      - :occurrences: "*"
+        :browse_inline: true
+        #:no_browse: true
+    - - "5"
+      - :occurrences: "?"
+        :no_browse: true
+  "510":
+    :master: "0"
+    :indicator: "2#"
+    :occurrences: "*"
+    :relator_code: "4"
+    :fields:
+    - - "0"
+      - :occurrences: "?"
+        :foreign_class: Institution
+        :foreign_field: id
+        :no_show: true
+    - - a
+      - :occurrences: "?"
+        :foreign_class: ^0
+        :foreign_field: corporate_name
+    - - b
+      - :occurrences: "*"
+    - - c
+      - :occurrences: "*"
+    - - g
+      - :occurrences: "?"
+    - - "4"
+      - :occurrences: "*"
+    - - "8"
+      - :occurrences: "?"
+        :no_browse: true
   "530":
     :master: "0"
     :indicator: "##"
@@ -243,6 +284,23 @@
         :foreign_field: title
     - - "i"
       - :occurrences: "?"
+  "547":
+    :master: "0"
+    :indicator: "#7"
+    :occurrences: "*"
+    :fields:
+    - - "0"
+      - :occurrences: "?"
+        :foreign_class: LiturgicalFeast
+        :foreign_field: id
+        :no_show: true
+    - - a
+      - :occurrences: "?"
+        :foreign_class: ^0
+        :foreign_field: name
+    - - "2"
+      - :occurrences: "?"
+        :no_browse: true
   "667":
     :master: a
     :indicator: "##"
@@ -332,82 +390,6 @@
       - :occurrences: "?"
     - - b
       - :occurrences: "?"
-  "700":
-    :master: "0"
-    :indicator: "1#"
-    :occurrences: "*"
-    :relator_code: "4"
-    :fields:
-    - - "0"
-      - :occurrences: "?"
-        :foreign_class: Person
-        :foreign_field: id
-        :no_show: true
-    - - a
-      - :occurrences: "?"
-        :foreign_class: ^0
-        :foreign_field: full_name
-    - - d
-      - :occurrences: "?"
-        :browse_inline: true
-        :foreign_class: ^0
-        :foreign_field: life_dates
-        :foreign_alternates: alternate_dates
-        #:no_browse: true
-    - - "e"
-      - :occurrences: "*"
-    - - "t"
-      - :occurrences: "?"
-    - - "4"
-      - :occurrences: "*"
-        :browse_inline: true
-        #:no_browse: true
-    - - "5"
-      - :occurrences: "?"
-        :no_browse: true
-  "710":
-    :master: "0"
-    :indicator: "2#"
-    :occurrences: "*"
-    :relator_code: "4"
-    :fields:
-    - - "0"
-      - :occurrences: "?"
-        :foreign_class: Institution
-        :foreign_field: id
-        :no_show: true
-    - - a
-      - :occurrences: "?"
-        :foreign_class: ^0
-        :foreign_field: corporate_name
-    - - b
-      - :occurrences: "*"
-    - - c
-      - :occurrences: "*"
-    - - g
-      - :occurrences: "?"
-    - - "4"
-      - :occurrences: "*"
-    - - "8"
-      - :occurrences: "?"
-        :no_browse: true
-  "747":
-    :master: "0"
-    :indicator: "#7"
-    :occurrences: "*"
-    :fields:
-    - - "0"
-      - :occurrences: "?"
-        :foreign_class: LiturgicalFeast
-        :foreign_field: id
-        :no_show: true
-    - - a
-      - :occurrences: "?"
-        :foreign_class: ^0
-        :foreign_field: name
-    - - "2"
-      - :occurrences: "?"
-        :no_browse: true
   "856":
     :master: u
     :indicator: "##"

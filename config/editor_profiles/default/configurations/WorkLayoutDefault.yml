@@ -35,9 +35,9 @@ groups:
     - "031"
   relations:
     all_tags:
-    - "700"
-    - "710"
-    - "747"
+    - "500"
+    - "510"
+    - "547"
   control: 
     all_tags: 
     - "040"

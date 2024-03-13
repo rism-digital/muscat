@@ -19,7 +19,16 @@ client:
   "500":
     tags:
       "0": required
+  "510": 
+    tags:
+      "0": required
+      "4":
+        required_if:
+          "510": "0"
   "530":
+    tags:
+      "0": required
+  "547":
     tags:
       "0": required
   "670":
@@ -32,21 +41,6 @@ client:
     tags:
       "0": required
   "691":
-    tags:
-      "0": required
-  "700": 
-    tags:
-      "0": required
-      "4":
-        required_if:
-          "700": "0"
-  "710": 
-    tags:
-      "0": required
-      "4":
-        required_if:
-          "710": "0"
-  "747":
     tags:
       "0": required
   "856":
