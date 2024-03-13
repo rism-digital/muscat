@@ -63,6 +63,7 @@ ActiveAdmin.register Person do
       @item = Person.find(params[:id])
       @show_history = true if params[:show_history]
       @editor_profile = EditorConfiguration.get_default_layout @item
+      @editor_validation = EditorValidation.get_default_validation(@item)
       @page_title = "#{I18n.t(:edit)} #{@editor_profile.name} [#{@item.id}]"
 
       if cannot?(:edit, @item)
@@ -86,6 +87,7 @@ ActiveAdmin.register Person do
         return
       end
       @editor_profile = EditorConfiguration.get_show_layout @person
+      @editor_validation = EditorValidation.get_default_validation(@person)
       @prev_item, @next_item, @prev_page, @next_page = Person.near_items_as_ransack(params, @person)
 
       @jobs = @person.delayed_jobs
