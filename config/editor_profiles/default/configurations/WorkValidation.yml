@@ -16,9 +16,6 @@ client:
   "380":
     tags:
       "0": required
-  "430":
-    tags:
-      "0": required
   "500":
     tags:
       "0": required

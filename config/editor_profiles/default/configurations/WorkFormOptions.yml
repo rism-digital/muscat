@@ -309,18 +309,11 @@
   layout: 
     fields: 
     - - b
-"430": 
-  new_window: standard_titles
-  new_window_field: title_equals
+"430":
   layout:
     fields:
     - - a
-      - type: standard_title
-        editor_partial: subfield_secondary
-        allow_new: true
     - - r
-      - editor_partial: subfield_select_codes
-        codes_reference: "430r"
     - - m
     - - p
     - - s
