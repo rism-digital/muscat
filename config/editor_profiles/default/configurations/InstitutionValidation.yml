@@ -9,3 +9,7 @@ client:
   "368":
     tags:
       a: mandatory
+  "856":
+    tags:
+      "u": required
+      "z": required
