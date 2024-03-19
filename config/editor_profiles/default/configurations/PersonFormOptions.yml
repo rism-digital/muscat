@@ -220,13 +220,13 @@
       - "xx"
       - "z"
 "500": 
-  allow_new: true
   new_window: people
   layout: 
     fields: 
     - - "a"
       - type: person
         editor_partial: subfield_secondary
+        allow_new: true
     - - d
       - autocomplete_extra: life_dates
     - - "i"
@@ -244,13 +244,13 @@
       - related to
       - other
 "510": 
-  allow_new: true
   new_window: institutions
   layout: 
     fields: 
     - - "a"
       - type: institution
         editor_partial: subfield_secondary
+        allow_new: true
 "549": 
   layout: 
     fields: 
@@ -293,15 +293,18 @@
     fields: 
     - - a
       - growfield: true
-"670": 
-  allow_new: true
+"670":
   new_window: publications
+  new_window_field: name_equals
   layout: 
     fields: 
     - - "a"
       - type: publication
         editor_partial: subfield_secondary
+        allow_new: true
+    - - "9"
     - - "b"
+    - - "u"
 "678": 
   layout: 
     fields: 

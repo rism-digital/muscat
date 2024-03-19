@@ -324,6 +324,10 @@
         :foreign_field: short_name
     - - b
       - :occurrences: "?"
+    - - u
+      - :occurrences: "*"
+    - - "9"
+      - :occurrences: "?"
   "675":
     :master: "w"
     :indicator: "##"

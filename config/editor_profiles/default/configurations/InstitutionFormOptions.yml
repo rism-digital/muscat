@@ -259,6 +259,7 @@
     - - "a"
       - type: publication
         editor_partial: subfield_secondary
+        allow_new: true
     - - "9"
     - - "b"
     - - "u"

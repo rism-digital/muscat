@@ -109,6 +109,10 @@
       label: records.source_data_found
     b:
       label: records.information_found
+    u:
+      label: general.uri
+    "9":
+      label: general.source_citation
   label: records.source_data_found
 '678':
   fields:

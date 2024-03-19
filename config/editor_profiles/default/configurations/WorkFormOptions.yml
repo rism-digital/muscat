@@ -470,9 +470,11 @@
     fields: 
     - - "a"
       - type: publication
-        allow_new: true
         editor_partial: subfield_secondary
+        allow_new: true
+    - - "9"
     - - "b"
+    - - "u"
 "675": 
   new_window: publications
   new_window_field: name_equals
