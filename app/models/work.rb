@@ -201,9 +201,9 @@ class Work < ApplicationRecord
     end
     
     sunspot_dsl.string :catalogue_name_order, :multiple => true, :stored => true do |s|
-      #s.publication.name if s.publication && s.publication.name && !s.publication.name.strip.empty?
       if !s.publications.empty?
-        s.publications.collect {|p| p.name}
+        #1531, show only the ones in 690
+        s.work_publication_relations.collect {|wpr| wpr.publication.name if wpr.marc_tag == "690"}
       else
         []
       end
