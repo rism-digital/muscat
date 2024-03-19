@@ -600,8 +600,12 @@ a:
   label: records.a_minor
 administration:
   label: records.administration
+arr:
+  label: records.arrangement
 asn:
   label: records.associated_name
+aut:
+  label: records.author
 a|b:
   label: records.af_minor
 a|x:
@@ -620,6 +624,10 @@ child of:
   label: records.child_of
 cmp:
   label: records.composer_cross_reference
+ccp:
+  label: records.conceptor
+ctb:
+  label: records.co_composer
 codes:
   label: records.numbers_code_fields
 confused with:
@@ -722,6 +730,8 @@ oth:
   label: records.other_function
 other:
   label: records.other
+pat:
+  label: records.patron
 places:
   label: records.countries_places
 po:
@@ -740,6 +750,8 @@ subject:
   label: records.subject_access_fields
 tn:
   label: records.baptismal_name
+trl:
+  label: records.translator
 ub:
   label: records.translation
 unknown:

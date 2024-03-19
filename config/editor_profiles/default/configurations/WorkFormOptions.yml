@@ -401,12 +401,18 @@
         codes_reference: "relator_codes"
   tag_params: 
     relator_codes: 
-    - cmp
-    - dte
+    - arr
     - asn
+    - aut
+    - ccp
+    - cmp
+    - ctb
+    - dte
     - lbt
     - lyr
     - oth
+    - pat
+    - trl
 "510":
   new_window: institutions
   new_window_field: name_equals
@@ -432,8 +438,10 @@
       - "Doubtful"
       - "Misattributed"
     relator_codes: 
+      - asn
       - dte
       - oth
+      - pat
 "530": 
   new_window: works
   layout: 
