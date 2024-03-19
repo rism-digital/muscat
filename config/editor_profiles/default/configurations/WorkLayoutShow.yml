@@ -16,7 +16,6 @@ groups:
     - "690"
     - "046"
     - "370"
-    - "530"
     all_tag_templates: 
       "690": marc_show/show_69x_url
   codes: 
@@ -45,6 +44,7 @@ groups:
     all_tags:
     - "500"
     - "510"
+    - "530"
     - "547"
     - "930"
     - "856"

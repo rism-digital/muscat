@@ -16,7 +16,6 @@ groups:
     - "690"
     - "046"
     - "370"
-    - "530"
   references:
     all_tags:
     - "670"
@@ -37,6 +36,7 @@ groups:
     all_tags:
     - "500"
     - "510"
+    - "530"
     - "547"
   control: 
     all_tags: 
