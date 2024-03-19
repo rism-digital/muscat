@@ -537,3 +537,6 @@
       - read_only: true
     - - "d"
       - read_only: true
+
+triggers:
+  - notify_changes
