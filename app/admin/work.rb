@@ -175,7 +175,7 @@ ActiveAdmin.register Work do
   collection: proc{[:inprogress, :published, :deleted].collect {|v| [I18n.t("wf_stage." + v.to_s), "wf_stage:#{v}"]}}
   
   filter :wf_audit_with_integer, :label => proc {I18n.t(:record_label)}, as: :select, 
-  collection: proc{[:normal, :obsolete, :dubious].collect {|v| [I18n.t("wf_audit." + v.to_s), "wf_audit:#{v}"]}}
+  collection: proc{[:normal, :obsolete, :dubious].collect {|v| [v.to_s.capitalize, "wf_audit:#{v}"]}}
 
   # and for the wf_owner
   filter :wf_owner_with_integer, :label => proc {I18n.t(:filter_owner)}, as: :select, 
