@@ -1,0 +1,15 @@
+<tr>
+    <td>
+        <div class="grid_cell_header">
+            <%=I18n.t(:record_label)%>
+        </div>
+    </td>
+    <td colspan="3">
+        <div class="grid_cell">
+            <div style="vertical-align: bottom; background-color: transparent">
+                 <%= select_tag "record_audit", options_for_select([["", :normal], ["Obsolete", :obsolete], ["Dubious", :dubious]], @item.wf_audit) %>
+            </div>
+        </div>
+    </td>
+   
+</tr>

@@ -329,6 +329,7 @@ en:
   record_status: "Record Status"
   record_owner: "Record Owner"
   record_audit: "Record Origin"
+  record_label: "Label"
   basic_level: "Basic record"
   full_level: "Full record"
   #full_level: "Full record, material examined"

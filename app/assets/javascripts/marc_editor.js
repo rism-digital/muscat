@@ -192,7 +192,25 @@ function _marc_editor_send_form(form_name, rails_model, redirect) {
 	// block the main editor and sidebar
 	$('#main_content').block({ message: "" });
 	$('#sections_sidebar_section').block({ message: "Saving..." });
-		
+	
+	var req_data = {
+		marc: JSON.stringify(json_marc),
+		id: $('#id').val(), 
+		lock_version: $('#lock_version').val(),
+		record_type: $('#record_type').val(),
+		parent_object_id: $('#parent_object_id').val(),
+		parent_object_type: $('#parent_object_type').val(),
+		record_status: $('#record_status').val(),
+		record_owner: $('#record_owner').val(),
+		triggers: JSON.stringify(triggers),
+		redirect: redirect
+	};
+
+	// Fill up record_audit only if needed
+	if ($('#record_audit') != undefined) {
+		req_data["record_audit"] = $('#record_audit').val()
+	}
+
 	$.ajax({
 		success: function(data) {
 			window.onbeforeunload = false;
@@ -201,20 +219,7 @@ function _marc_editor_send_form(form_name, rails_model, redirect) {
 			window.location.href = new_url;
 		},
 		async: true,
-		data: {
-			marc: JSON.stringify(json_marc),
-			id: $('#id').val(), 
-			lock_version: $('#lock_version').val(),
-			record_type: $('#record_type').val(),
-			parent_object_id: $('#parent_object_id').val(),
-			parent_object_type: $('#parent_object_type').val(),
-			record_status: $('#record_status').val(),
-			record_owner: $('#record_owner').val(),
-			// Record audit is unused and disabled
-			//record_audit: $('#record_audit').val(),
-			triggers: JSON.stringify(triggers),
-			redirect: redirect
-		},
+		data: req_data,
 		dataType: 'json',
 		timeout: 20000,
 		type: 'post',
