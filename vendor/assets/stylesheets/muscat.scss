@@ -84,6 +84,10 @@ body.active_admin {
     .status_tag.edition { background: #808080; }
     .status_tag.composite_volume { background: #87CEFA; }
 
+    // For work Attribution Certainty
+    .status_tag.obsolete { background: #e60606; }
+    .status_tag.dubious { background: #d74501; }
+
 /* These colors were deprecated in AA 2.0 - not realy a problem, I leave them here
  * if we need to reconstruct a color. Only 'published' is used for wf_stage
 
