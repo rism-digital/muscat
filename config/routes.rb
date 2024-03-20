@@ -49,7 +49,7 @@ Rails.application.routes.draw do
 
   # MarcXML endpoint
   get '/data/:model/:id' => "data#show"
-  match '*data', :to => 'data#routing_error', via: :all
+  match '/data', :to => 'data#routing_error', via: :all
 
 
   # The priority is based upon order of creation: first created -> highest priority.
