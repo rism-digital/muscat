@@ -722,6 +722,8 @@
     :fields:
     - - w
       - :occurrences: "1"
+        :foreign_class: Source
+        :foreign_field: id
         :browse_helper: application_helper_link_source_id
     - - "4"
       - :occurrences: "1"
