@@ -128,7 +128,7 @@
   fields:
     u:
       label: records.external_resource_url
-    z:
+    y:
       label: records.note_external_resource
   label: records.external_resource
 XA-AL:
