@@ -334,7 +334,7 @@ it:
   record_status: "Stato di pubblicazione"
   record_owner: "Proprietario"
   record_audit: "Revisione"
-  record_label: "Etichetta"
+  record_label: "Certezza dell'attribuzione"
   basic_level: "Record di base"
   full_level: "Record completo"
   #full_level: "Record completo, materiale esaminato"

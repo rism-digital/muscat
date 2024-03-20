@@ -326,7 +326,7 @@ pt:
   record_status: "Estado do Registro"
   record_owner: "Proprietário do Registro"
   record_audit: "Origem do Registro"
-  record_label: "Etiqueta"
+  record_label: "Certeza de atribuição"
   basic_level: "Registro básico"
   full_level: "Registro completo"
   #full_level: "Registro completo, material examinado"

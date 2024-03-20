@@ -330,7 +330,7 @@ pl:
   record_status: Status rekordu
   record_owner: Właściciel rekordu
   record_audit: Pochodzenie rekordu
-  record_label: "Etykieta"
+  record_label: "Pewność przypisania"
   basic_level: Rekord podstawowy
   full_level: Rekord pełny
   #full_level: "Full record, material examined"

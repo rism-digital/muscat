@@ -190,6 +190,7 @@ class Work < ApplicationRecord
     
     sunspot_dsl.integer :wf_owner
     sunspot_dsl.string :wf_stage
+    sunspot_dsl.string :wf_audit
     sunspot_dsl.time :updated_at
     sunspot_dsl.time :created_at
 

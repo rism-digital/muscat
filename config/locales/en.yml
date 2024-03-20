@@ -329,7 +329,7 @@ en:
   record_status: "Record Status"
   record_owner: "Record Owner"
   record_audit: "Record Origin"
-  record_label: "Label"
+  record_label: "Attribution Certainty"
   basic_level: "Basic record"
   full_level: "Full record"
   #full_level: "Full record, material examined"
@@ -888,3 +888,8 @@ en:
     inprogress: "UNP"
     deprecated: "DEP"
     deleted: "DEL"
+
+  work_label_codes:
+    normal: "NRM"
+    obsolete: "OBS"
+    dubious: "DUB"

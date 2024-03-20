@@ -6,6 +6,7 @@ class TriggerNotifyJob < ProgressJob::Base
   
   def enqueue(job)
     if @object
+      job.progress_stage = "Enquequed" 
       job.parent_id = @object.id
       job.parent_type = @object.class
       job.save!
