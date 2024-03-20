@@ -329,7 +329,7 @@ ca:
   record_status: "Estat del registre"
   record_owner: "Propietari del registre"
   record_audit: "Origen del registre"
-  record_label: "Certeza de la atribución"
+  record_label: "Certesa de l'atribució"
   basic_level: "Registre bàsic"
   full_level: "Registre complet"
   #full_level: "Full record, material examined"
