@@ -605,7 +605,7 @@ a:
 administration:
   label: records.administration
 arr:
-  label: records.arrangement
+  label: records.arranger
 asn:
   label: records.associated_name
 aut:
