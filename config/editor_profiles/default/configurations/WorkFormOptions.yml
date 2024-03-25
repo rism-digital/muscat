@@ -74,6 +74,7 @@
     - - p
       - editor_partial: subfield_pae
     - - q
+      - growfield: true
     - - z
   tag_params:
     031r:
@@ -465,6 +466,7 @@
   layout: 
     fields: 
     - - a
+      - growfield: true
 "670": 
   new_window: publications
   new_window_field: name_equals
@@ -475,8 +477,11 @@
         editor_partial: subfield_secondary
         allow_new: true
     - - "9"
+      - growfield: true
     - - "b"
+      - growfield: true
     - - "u"
+      - growfield: true
 "675": 
   new_window: publications
   new_window_field: name_equals
@@ -518,6 +523,7 @@
       - editor_partial: subfield_select_codes
         select_label: "Type"
     - - b
+      - growfield: true
   tag_params:
     codes:
       - "needs-revision" 
@@ -529,6 +535,7 @@
     fields: 
     - - u
     - - z
+      - growfield: true
 "981":
   tag_params:
     read_only: true
