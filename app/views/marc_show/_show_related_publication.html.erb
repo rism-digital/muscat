@@ -1,8 +1,8 @@
 <%
  	t_tag = tag.fetch_first_by_tag(:t)
 	w_tag = tag.fetch_first_by_tag(:w)
-	publication = (w_tag ? t_tag.looked_up_content : "")
-	external_title = (t_tag.looked_up_content ? t_tag.looked_up_content : t_tag.content)
+	publication = (w_tag ? w_tag.content : "")
+	external_title = (t_tag.looked_up_content ? t_tag.looked_up_content : t_tag.content) rescue external_title = "no title"
 -%>
 
 <tr class="row">
