@@ -825,6 +825,7 @@ pl:
   marc_editor:
     delete_msg: "Usuń"
     delete_field_confirm: "Czy na pewno chcesz usunąć to pole?"
+    delete_group_confirm: "Czy na pewno chcesz usunąć to grupa?"
 
   cookies:
     message: "Strona wykorzystuje ciasteczka dla poprawy funkcjonalności. Korzystając z niej, zgadzasz się na to."

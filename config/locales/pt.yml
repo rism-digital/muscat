@@ -821,6 +821,7 @@ pt:
   marc_editor:
     delete_msg: "Eliminar"
     delete_field_confirm: "Tem a certeza que quer apagar este campo?"
+    delete_group_confirm: "Tem a certeza que quer apagar este grupo?"
 
   cookies:
     message: "osso sítio web usa cookies para tornar sua navegação melhor. Ao utilizá-lo, o usuário está de acordo com o uso de cookies."

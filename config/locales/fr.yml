@@ -825,6 +825,7 @@ fr:
   marc_editor:
     delete_msg: "Supprimer"
     delete_field_confirm: "Êtes-vous sûr de vouloir supprimer ce champ?"
+    delete_group_confirm: "Êtes-vous sûr de vouloir supprimer ce groupe?"
 
   cookies:
     message: "Notre site utilise des cookies pour améliorer votre expérience de navigation. En utilisant notre site, vous acceptez notre utilisation des cookies."

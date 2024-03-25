@@ -827,6 +827,7 @@ ca:
   marc_editor:
     delete_msg: "Eliminar"
     delete_field_confirm: "Esteu segur que voleu eliminar aquest camp?"
+    delete_group_confirm: "Esteu segur que voleu eliminar aquest grupo?"
 
   cookies:
     message: "La nostra web utilitza cookies per a facilitar la navegació. Navegant-hi, accepteu l'ús dels nostres cookies."

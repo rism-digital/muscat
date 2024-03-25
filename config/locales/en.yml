@@ -832,6 +832,7 @@ en:
   marc_editor:
     delete_msg: "Delete"
     delete_field_confirm: "Are you sure you want to delete this field?"
+    delete_group_confirm: "Are you sure you want to delete this group?"
 
   cookies:
     message: "Our website uses cookies to make your browsing experience better. By using our site you agree to our use of cookies."

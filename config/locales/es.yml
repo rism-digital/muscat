@@ -824,6 +824,7 @@ es:
   marc_editor:
     delete_msg: "Borrar"
     delete_field_confirm: "¿Está seguro de que desea eliminar este campo?"
+    delete_group_confirm: "¿Está seguro de que desea eliminar este grupo?"
 
   cookies:
     message: "Nuestro sitio web utiliza cookies para mejorar su experiencia de navegación. Al usar nuestro sitio, Ud. manifiesta su conformidad con el uso de cookies."
