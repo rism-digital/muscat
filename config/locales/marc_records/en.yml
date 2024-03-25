@@ -390,7 +390,7 @@ en:
     country_activity: Country of activity
     country_code: Country code
     country_of_publication: Country of publication
-    county_province: County or province
+    county_province: County, province, state
     creation_production_note: Creation/production note
     cs_major: C♯ major
     cs_minor: C♯ minor
@@ -403,6 +403,7 @@ en:
     date_time_last_transaction: Date and time of last transaction
     date_type: Date type
     dates: Dates
+    dates_of_publication: Dates of publication
     dedicatee: Dedicatee
     department: Department
     depositor: Depositor
@@ -532,7 +533,7 @@ en:
     index_terms: Index terms
     information_found: Information found
     initial: Initial
-    initial_entry: Initial entry
+    initial_entry: Initial entry in A/I
     initials: Initials
     insertions: Insertions
     inserts: Inserts
@@ -721,7 +722,7 @@ en:
     person_name: Person name
     personal_name: Personal name
     personal_names: Personal names
-    photoreproductive_process: Photoreproductive process (bluprint)
+    photoreproductive_process: Photoreproductive process (blueprint)
     physical_description: Physical description
     physical_description_fields: Physical description, etc. fields
     place: Place
@@ -750,7 +751,7 @@ en:
     production_personnel: Production personnel
     profession_or_function: Profession or function
     provenance: Provenance
-    provenance_notes: Provenance notes
+    provenance_notes: Provenance note
     pseudonym: Pseudonym
     public_note: Public note
     publisher: Publisher
@@ -881,7 +882,7 @@ en:
     typography: Typography
     uncategorized: Uncategorized
     unknown: Unknown
-    unparsed_fingerprint: Unparsed fingerprint
+    unparsed_fingerprint: Fingerprint
     variant_ms_title: Variant title on source
     variant_source_title: Variant title on source
     variations: Variations

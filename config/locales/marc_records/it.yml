@@ -357,7 +357,7 @@ it:
     collaborator: Collaboratore
     collective_catalog: Catalogo collettivo
     colophon: Colofone
-    contributing_project: Contributing project
+    contributing_project: Progetto contribuente
     common_clefs: Chiavi comuni
     compiler: Compilatore
     composer: Compositore
@@ -718,7 +718,7 @@ it:
     person_name: Nome di persona
     personal_name: Nome di persona
     personal_names: Nomi di persona
-    photoreproductive_process: Cianografia
+    photoreproductive_process: Processo fotoriproduttivo (cianografia)
     physical_description: Descrizione fisica
     physical_description_fields: Campi per la descrizione fisica
     place: Luogo

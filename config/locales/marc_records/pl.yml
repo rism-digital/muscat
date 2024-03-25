@@ -357,7 +357,7 @@ pl:
     collaborator: Współtwórca
     collective_catalog: Katalog zbiorczy
     colophon: Kolofon
-    contributing_project: Contributing project
+    contributing_project: Współtworzy Projekt
     common_clefs: Klucze współczesne
     compiler: Kompilator
     composer: Kompozytor
@@ -685,7 +685,7 @@ pl:
     order_name: Imię zakonne
     origin: Pochodzenie
     original_cataloging_agency: Jednostka katalogująca pierwotny rekord
-    original_record: Oryginalny wpis
+    original_record: Oryginalny rekord
     other: Pozostałe
     other_associated_place: Inne powiązane miejsce
     other_designation: Inne oznaczenie
@@ -718,7 +718,7 @@ pl:
     person_name: Imię i nazwisko
     personal_name: Imię i nazwisko
     personal_names: Osoby
-    photoreproductive_process: Proces optyczny (światłokopia)
+    photoreproductive_process: Reprodukcja fotograficzna (odbitka)
     physical_description: Opis fizyczny
     physical_description_fields: Opis fizyczny itp. pola
     place: Miejsce

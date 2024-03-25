@@ -357,7 +357,7 @@ ca:
     collaborator: Col·laborador
     collective_catalog: Catàleg col·lectiu
     colophon: Colofó
-    contributing_project: Contributing project
+    contributing_project: Contribueix al projecte
     common_clefs: Claus comunes
     compiler: Compilador
     composer: Compositor
@@ -429,7 +429,7 @@ ca:
     ds_major: Re♯ major
     ds_minor: Re♯ menor
     dubious: Dubtós
-    duplicated_from: Duplicated from
+    duplicated_from: Duplicat de
     e_major: Mi major
     e_minor: Mi menor
     earlier_heading: Encapçalament anterior
@@ -685,7 +685,7 @@ ca:
     order_name: Orde religiós
     origin: Origen
     original_cataloging_agency: Organisme de catalogació original
-    original_record: Original record
+    original_record: Registre original
     other: Altres
     other_associated_place: Altre lloc associat
     other_designation: Altra designació
@@ -718,7 +718,7 @@ ca:
     person_name: Nom personal
     personal_name: Nom personal
     personal_names: Noms personals
-    photoreproductive_process: Procés fotoreproductiu
+    photoreproductive_process: Procés fotoreproductiu (blueprint)
     physical_description: Descripció física
     physical_description_fields: Camps de descripció física
     place: Lloc
@@ -983,8 +983,8 @@ ca:
     printed: "Imprès"
     composite: "Volum compost"
     collection: "Col·lecció"
-    item: "Item"
-    single_item: "Single item"
+    item: "Element"
+    single_item: "Element individual"
     apply_filters: "Aplicar els filtres"
     error_loading_results: "Error en carregar els resultats"
     global_collection: "Col·lecció global"
