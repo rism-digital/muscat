@@ -236,7 +236,7 @@
     - - "t"
       - :occurrences: "?"
     - - "4"
-      - :occurrences: "*"
+      - :occurrences: "?"
         :browse_inline: true
         #:no_browse: true
     - - "5"
@@ -264,7 +264,7 @@
     - - g
       - :occurrences: "?"
     - - "4"
-      - :occurrences: "*"
+      - :occurrences: "?"
     - - "8"
       - :occurrences: "?"
         :no_browse: true
