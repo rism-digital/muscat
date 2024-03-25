@@ -389,6 +389,7 @@
       - "8byz"
 "500":
   new_window: people
+  new_window_field: full_name_equals
   layout:
     fields: 
     - - a
@@ -415,7 +416,7 @@
     - trl
 "510":
   new_window: institutions
-  new_window_field: name_equals
+  new_window_field: corporate_name_equals
   layout: 
     fields: 
     - - a
@@ -444,6 +445,7 @@
       - pat
 "530": 
   new_window: works
+  new_window_field: title_equals
   layout: 
     fields: 
     - - "a"
