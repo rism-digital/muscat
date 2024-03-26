@@ -1,8 +1,107 @@
 Muscat Changelog
 ================
 
-Ecco l'elenco riscritto come lista puntata in Markdown utilizzando un asterisco:
+v 10.2
+* Added work abilities for person_editors
+* Bump nokogiri from 1.16.0 to 1.16.2
+* Delete obsolete script
+* Update PersonLabels.yml
+* Update PublicationLabels.yml
+* Update InstitutionLabels.yml
+* Update SourceLabels.yml
+* Update WorkLabels.yml
+* Bump rails from 7.0.8 to 7.0.8.1
+* Update PublicationLabels.yml
+* Bump rack from 2.2.8 to 2.2.8.1
+* Fix marcxml export across models
+* Add validation for 670 in work and work weekly report
+* Fix all validation for work, fix 031 $t
+* Remove author name from exported versions
+* In Ruby 3, a file no longer exists, but exist
+* Merge pull request #1530 from fjorba/ruby3-file-exist
+* Merge pull request #1520 from rism-digital/dependabot/bundler/rack-2.2.8.1
+* Merge pull request #1519 from rism-digital/jenniferward-patch-6
+* Merge pull request #1518 from rism-digital/dependabot/bundler/rails-7.0.8.1
+* Merge pull request #1516 from rism-digital/jenniferward-patch-5
+* Merge pull request #1480 from rism-digital/dependabot/bundler/nokogiri-1.16.2
+* Merge pull request #1512 from rism-digital/jenniferward-patch-1
+* Merge pull request #1513 from rism-digital/jenniferward-patch-2
+* Merge pull request #1514 from rism-digital/jenniferward-patch-3
+* Merge pull request #1515 from rism-digital/jenniferward-patch-4
+* Merge pull request #1455 from rism-digital/abilities
+* Add missing folder help files for Catalan and Spanish
+* Merge branch 'develop' of https://github.com/rism-digital/muscat into develop
+* Merge pull request #1533 from fjorba/add-folders-help-ca-es
+* Remove unused captcha + configuration
+* Remove unused geo-browser
+* Fix #1517, add valitation to 024 in Work
+* Fix #1521, add 856 to work
+* Fix #1493, add validation for 856
+* Fix #1081, add validation to people, change $y to $z and make script to fix the mess
+* Fix #1529, make 430 non-linked
+* Fix #1522, migrate all 7xx to 5xx and script to fix the data
+* Add missing user help files for Catalan and Spanish
+* Fix #1531, filter by 690
+* Fix #1524, add new functions
+* Fix #1501, add $9 and $u to 670 in work and person
+* Fix #1522, move 530 to relations
+* Fix  #1506, make sure all validations do run (learn to program, young Padawan)
+* Make the mail report a bit nicer
+* Make notifications for works work on each save
+* Initial implementation for #1532
+* #1532 fix de.yml
+* #1532, add label to show
+* Fix folder creation not working
+* Reverse #1081
+* Update Verovio to 4.1.0
+* #1532 Add status tags
+* Fix default error route
+* Fix filter label
+* Add status colors
+* Fix #1528, add the proper class to 774 (773 already was ok)
+* #1532, Switch dubious to doubtful, fix CA translation
+* #1532 fix CSS
+* Update locales
+* Fix #1539, make sure magnifying glass works in Works
+* Fix #1538, add growfields
+* Fix #1537, make relator codes non repeatable.
+* Fix #1524, arranger not arrangement
+* Fix #1540, add $c in 100, EXPERIMENTAL! if it works bad, revert
+* Fix ##1536
+* Merge pull request #1535 from fjorba/users-help-text-ca-es
+* Fix #1510
+* Bump rdoc from 6.6.2 to 6.6.3.1
+* #1528, make sure 774 does not user foreign_links
+* Make 981 duplicated_from only keep the original ID in the chain and the last 4
+* #1528 implement a new fix for this issue
+* Add script to fix the 981
+* Make better titles for Works
+* Hide move and add button for 981
+* Add specific filter for source ids
+* Merge pull request #1541 from rism-digital/dependabot/bundler/rdoc-6.6.3.1
+* Did I forget the changelog for 10.1?
 
+v 10.1
+* Fix some small issues
+* Fix record types crashing everything in PL language
+* Fix partials for reports
+* Fix table name
+* Fix the GND Work Editor permissions
+* Fix #1482
+* Add rescues
+* Fix #1483
+* Properly uncomment returns
+* Fix typo
+* Fix #1484, no doubts in muscat!
+* Add more filters to works, fix #1481
+* Implement "has incipit"
+* Make folder display more nice (is this an overkill?)
+* Fix #1485, move 775 to admin
+* Remove 775 from SUB, Fix #1486
+* Personal names: Move 667 to References and notes, Fix #1487
+* Move arounf 667
+
+v 10.0
 * Allow more options for import_from_marc.rb
 * Remove references to blacklight
 * Update paper_trail
