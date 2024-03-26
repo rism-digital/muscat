@@ -206,6 +206,7 @@ class Source < ApplicationRecord
     sunspot_dsl.text :source_rism_ids do |s|
       all_ids = s.child_sources.pluck(:id)
       all_ids << s.parent_source.id if s.parent_source
+      all_ids << s.id
       all_ids += s.sources.pluck(:id)
       all_ids += s.referring_sources.pluck(:id)
       
