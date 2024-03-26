@@ -719,6 +719,7 @@
     :master: w
     :indicator: "18"
     :occurrences: "*"
+    :foreign_links: false #774 is managed by hand in the Source model
     :fields:
     - - w
       - :occurrences: "1"
