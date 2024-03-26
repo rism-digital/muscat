@@ -489,11 +489,29 @@ class MarcNode
       cont_sanit = content.to_s.encode(:xml => :text)
       # prefix ids appropriately except if deprecated ids are requested
       puts "Warning tag #{@parent.tag} is not in marc configuration".red if !@marc_configuration.has_tag?(@parent.tag)
-      if !deprecated_ids && @marc_configuration.has_tag?(@parent.tag) && @tag == @marc_configuration.get_master(@parent.tag) && @foreign_object
-        element << "#{@foreign_object.class.to_s.pluralize.underscore.downcase}/#{cont_sanit}"
-      else
-        element << cont_sanit
+
+      # By default, add just the id
+      link = cont_sanit
+
+      # Are we adding the model in the id?
+      if !deprecated_ids
+        # 774 is managed separately and need special treatment
+        if @parent.tag == "774" && @tag == "w"
+          code = @parent.fetch_first_by_tag("4")
+          if code && code.content
+            link = "#{code.content.pluralize}/#{cont_sanit}"
+          else
+            link = "sources/#{cont_sanit}"
+          end
+          
+        # All the other ones are "automatic"
+        elsif @marc_configuration.has_tag?(@parent.tag) && @tag == @marc_configuration.get_master(@parent.tag) && @foreign_object
+          link = "#{@foreign_object.class.to_s.pluralize.underscore.downcase}/#{cont_sanit}"
+        end
       end
+
+      element << link
+
     end
 
     return element
