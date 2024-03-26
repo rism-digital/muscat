@@ -200,6 +200,18 @@ class Source < ApplicationRecord
 
     sunspot_dsl.text :source_id
 
+    # This is not the ideal way as a text field
+    # But for current limitations it is the best way now
+    # FIXME use a multiple string
+    sunspot_dsl.text :source_rism_ids do |s|
+      all_ids = s.child_sources.pluck(:id)
+      all_ids << s.parent_source.id if s.parent_source
+      all_ids += s.sources.pluck(:id)
+      all_ids += s.referring_sources.pluck(:id)
+      
+      all_ids.sort.uniq.compact.join(" ")
+    end
+
     # For ordering
     sunspot_dsl.string :std_title_shelforder, :as => "std_title_shelforder_s" do |s|
       s.std_title
@@ -263,12 +275,6 @@ class Source < ApplicationRecord
     # We use it for GIS
     sunspot_dsl.string :lib_siglum, :stored => true
     # Dates now come directly from MARC
-#    sunspot_dsl.integer :date_from do
-#      date_from != nil && date_from > 0 ? date_from : nil
-#    end
-#    sunspot_dsl.integer :date_to do
-#      date_to != nil && date_to > 0 ? date_to : nil
-#    end
 
     sunspot_dsl.integer :wf_owner
 
@@ -666,5 +672,6 @@ class Source < ApplicationRecord
   ransacker :"599a", proc{ |v| } do |parent| parent.table[:id] end
   ransacker :"856x", proc{ |v| } do |parent| parent.table[:id] end
   ransacker :record_type_select, proc{ |v| } do |parent| parent.table[:id] end
-
+  ransacker :source_rism_ids, proc{ |v| } do |parent| parent.table[:id] end
+    
 end
