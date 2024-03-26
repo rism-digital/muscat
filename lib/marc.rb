@@ -379,7 +379,22 @@ class Marc
   end
   
   def insert_duplicated_from(tag, id)
-    # Add a reminder of the original ID
+
+    tgs = by_tags("981")
+    
+    # If we have more than 5 total,
+    # always keep the first one and rotate the last 4
+    if tgs.count > 4
+      new_set = [tgs[0].deep_copy] # Always keep the first
+      # and the last 3
+      for i in 3.downto(1) do new_set << tgs[tgs.length - i].deep_copy end
+      # prune all 981
+      by_tags("981").each {|t| t.destroy_yourself}
+      # and insert back, we do this to maintain the order
+      new_set.each {|ntag| root.add_at(ntag, get_insert_position("981") ) }
+    end
+
+    # Add a reminder of the original ID as the last one
     ntag = MarcNode.new(@model, tag, "", '##')
     ntag.add_at(MarcNode.new(@model, "0", id.to_s, nil), 0 )
     ntag.add_at(MarcNode.new(@model, "d", Time.now.strftime('%Y-%m-%d %H:%M:%S'), nil), 0 )
