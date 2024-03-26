@@ -1113,7 +1113,9 @@
   tag_params:
     read_only: true
     no_delete: true
+    no_move: true
   layout:
+    hide_add_button: true
     fields:
     - - "0"
       - read_only: true
