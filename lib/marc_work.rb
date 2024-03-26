@@ -8,20 +8,18 @@ class MarcWork < Marc
     if node = first_occurance("100", "a")
       composer = node.content.blank? ? "" : "#{node.content}:"
     end
+
     if node = first_occurance("130", "a")
       title = node.content.blank? ? " [without title]" : " #{node.content}"
     end
-    #if node = first_occurance("100", "n")
-    #  number = node.content.blank? ? "" : " #{node.content}"
-    #end
+
     if node = first_occurance("130", "r")
       key = node.content.blank? ? "" : " #{node.content}"
     end
-    #if node = first_occurance("100", "m")
-    #  scoring = node.content.blank? ? "" : "; #{node.content}"
-    #end
 
-    return "#{composer}#{title}#{key}"
+    cat_no = get_catalogue
+
+    return "#{composer}" + [title, key, cat_no].join("; ")
   end
 
   def get_opus

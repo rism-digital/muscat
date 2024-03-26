@@ -1,7 +1,12 @@
 FILENAME="unloadable.log"
-File.write($FILENAME, Time.now.to_s, mode: 'w')
+File.write(FILENAME, Time.now.to_s, mode: 'w')
 
 models = [Holding, Institution, Person, Publication, Source, Work, WorkNode]
+
+if !ARGV.empty?
+    puts "Resaving only #{ARGV[0]}"
+    models = [ARGV[0].constantize]
+end
 
 begin_time = Time.now
 all_items = 0
