@@ -66,6 +66,7 @@
 # This is a must
 #= require i18n/translations
 
+#= require tab_saver
 #= require autocomplete_events
 #= require marc_editor
 #= require marc_editor_validation

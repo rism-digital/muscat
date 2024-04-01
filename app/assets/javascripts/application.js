@@ -79,6 +79,7 @@
 // require i18n/translations
 
 //
+//= require tab_saver
 //= require autocomplete_events
 //= require marc_json
 //= require jquery.blockUI

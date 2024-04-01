@@ -11,11 +11,14 @@ module ActiveAdmin
       private
  
       def restore_search_filters
+        # we like nice things! show it in the footer
+        @tab_id_for_footer = cookies["tab-id"]
+
         filter_storage = session[:last_search_filter]
         pagination_storage = session[:last_search_page]
         order_storage = session[:last_order_page]
         scope_storage = session[:last_scope]
-        # Do not restor filters opening the select mode
+        # Do not restore filters opening the select mode
         if params.include?(:select)
           return
         end
@@ -60,7 +63,7 @@ module ActiveAdmin
           end
         else
           restore_page = true
-          # we also restor filter in :show for updating the navigation values (in preparation)
+          # we also restore filter in :show for updating the navigation values (in preparation)
           if params[:action].to_sym == :index || params[:action].to_sym == :show || params[:action].to_sym == :batch_action
             # we have stored filters
             if filter_storage 
