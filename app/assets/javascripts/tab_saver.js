@@ -13,6 +13,10 @@ function tab_saver_select() {
 document.addEventListener("visibilitychange", function() {
     if (!document.hidden) {
         tab_saver_select();
+    } else {
+        // When focus is gone, make sure
+        // that new tabs start from an empty state
+        Cookies.remove("tab-id");
     }
 });
 
