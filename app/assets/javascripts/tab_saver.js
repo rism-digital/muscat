@@ -8,6 +8,7 @@ function tab_saver_select() {
 
     let tab_id = sessionStorage.getItem("tab-id");
     Cookies.set("tab-id", tab_id);
+    console.log("Set tab to " + tab_id)
 }
 
 document.addEventListener("visibilitychange", function() {
@@ -16,7 +17,7 @@ document.addEventListener("visibilitychange", function() {
     } else {
         // When focus is gone, make sure
         // that new tabs start from an empty state
-        Cookies.remove("tab-id");
+        //Cookies.remove("tab-id");
     }
 });
 
