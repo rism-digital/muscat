@@ -11,7 +11,10 @@ module ActiveAdmin
       private
  
       def get_saved_filters_for(tag)
-        return session["filters"][tag] if tag && !tag.empty? && session.include?("filters") && session["filters"].include?(tag)
+        # store in the session - only for testing!
+        #return session["filters"][tag] if tag && !tag.empty? && session.include?("filters") && session["filters"].include?(tag)
+        
+        return cookies.signed["tab-store"] if cookies.signed["tab-store"] && cookies.signed["tab-store"].is_a?(Hash)
         return session
       end
 
@@ -23,6 +26,8 @@ module ActiveAdmin
 
         saved_filters = get_saved_filters_for(@tab_id_for_footer)
         puts "Using saved filters for #{@tab_id_for_footer}"
+
+        ap saved_filters
 
         filter_storage = saved_filters["last_search_filter"]
         pagination_storage = saved_filters["last_search_page"]
@@ -122,6 +127,9 @@ module ActiveAdmin
       end
 
       def create_saved_filters_for(tag)
+        # For testing right now, get an empty hash
+        return cookies.signed["tab-store"] if cookies.signed["tab-store"] && cookies.signed["tab-store"].is_a?(Hash)
+        return {}
         # Does it exist?
         return session["filters"][tag] if tag && !tag.empty? && session.include?("filters") && session["filters"].include?(tag)
         session["filters"] ||= Hash.new
@@ -163,6 +171,7 @@ module ActiveAdmin
         purge_params(saved_filters)
 
         puts "Saved filters for #{@tab_id_for_footer}"
+        cookies.signed["tab-store"] = {value: saved_filters}
 
       end
  
