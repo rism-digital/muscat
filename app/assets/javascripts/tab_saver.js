@@ -39,8 +39,8 @@ $(document).on('visibilitychange', function() {
         // when the tab is actually hidden
         if (!tab_saver_unload) {
             console.log("Unset tab from " + get_or_create_tab_id())
-            Cookies.remove("tab-id");
-            Cookies.remove("tab-store");
+            //Cookies.remove("tab-id");
+            //Cookies.remove("tab-store");
         }
         tab_saver_unload = false;
     }
