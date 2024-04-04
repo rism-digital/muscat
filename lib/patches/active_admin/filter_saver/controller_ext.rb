@@ -170,6 +170,9 @@ module ActiveAdmin
 
         purge_params(saved_filters)
 
+        saved_filters["tab-id"] ||= Hash.new
+        saved_filters["tab-id"] = @tab_id_for_footer
+
         puts "Saved filters for #{@tab_id_for_footer}"
         cookies.signed["tab-store"] = {value: saved_filters}
 

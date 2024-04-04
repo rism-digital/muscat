@@ -573,13 +573,11 @@ class Marc
   # just the text, as is
   def to_raw_text
     words = []
-    
     all_tags.each do |tag|
       tag.each do |st|
         words << st.content if st && st.content
       end
     end
-
     return words.join(" ")
   end
 
