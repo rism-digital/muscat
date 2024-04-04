@@ -572,26 +572,15 @@ class Marc
   # Export a dump of the contents
   # just the text, as is
   def to_raw_text
-    lines = []
+    words = []
     
-    @source.each_line do |data|
-      line = []
-      if data =~ /^[\s]*([^$]*)([$].*)$/
-        indicator = $1
-        record = $2
+    all_tags.each do |tag|
+      tag.each do |st|
+        words << st.content if st && st.content
       end
-            
-      while record =~ /^[$]([\d\w]{1,1})([^$]*)(.*)$/
-        content = $2
-        record  = $3
-        
-        line << content.gsub(DOLLAR_STRING, "$")
-      end
-      
-      lines << line.join(" ")
     end
-    
-    lines.join("\n")
+
+    return words.join(" ")
   end
 
   # Return all tags
