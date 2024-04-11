@@ -1,8 +1,41 @@
 
 var tab_saver_unload = false;
 
+// When a tab is loaded, it broadcasts its UUID in the
+// muscat-tabs BroadcastChannel. If this UUID is unique,
+// nothing will happen, but if there is a duplicate, i.e.
+// the user duplicated a tab, it will receive an "exist" event,
+// like 37fce78a-exists. In this case it generates a new UUID.
+// This function also listens on muscat-tabs, in case
+// a duplicate is made of this current tab
+function setup_deduplication(tab_id) {
+    const broadcast = new BroadcastChannel('muscat-tabs')
+
+    broadcast.postMessage(tab_id);
+
+    broadcast.onmessage = (event) => {
+        if (event.data === tab_id) {
+            broadcast.postMessage(tab_id + "-exists");
+            console.log("Received poke from possible duplicate " + tab_id);
+        }
+        if (event.data === tab_id + "-exists") {
+            // We are a dup tag, regenerate the UUID
+            sessionStorage.removeItem("tab-id")
+            let new_tab_id = get_or_create_tab_id();
+            console.log("Duplicate id " + tab_id + ", new id: " + new_tab_id);
+            // "select" the tab to apply changes
+            tab_saver_select();
+            $('#tab-debug').text("New id: " + new_tab_id)
+            
+        }
+    };
+    
+    console.log("Installed muscat-tabs channel")
+}
+
 function unpack_tab_cookie(cookie) {
     let cookie_value = decodeURI(cookie.split("--")[0])
+    console.log(atob(cookie_value))
     let cookie_payload = JSON.parse(atob(cookie_value))
 
     return cookie_payload
@@ -63,6 +96,11 @@ $(window).on('load', function() {
     }
 
     tab_saver_select();
+
+    // This installs the deduplicator. If we are a duplicate
+    // it will take care of fixing all the relevant parts
+    // Run it for last since it can call tab_saver_select();
+    setup_deduplication(tab_id)
 });
 
 // Set a flag to know if we
