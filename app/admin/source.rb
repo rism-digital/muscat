@@ -72,7 +72,7 @@ ActiveAdmin.register Source do
       end
       
       @editor_profile = EditorConfiguration.get_show_layout @item
-      @prev_item, @next_item, @prev_page, @next_page = Source.near_items_as_ransack(params, @item)
+      @prev_item, @next_item, @prev_page, @next_page, @nav_positions = Source.near_items_as_ransack(params, @item)
       
       if @item.get_record_type == :edition || @item.get_record_type == :libretto_edition || @item.get_record_type == :theoretica_edition
         if @item.holdings.empty?

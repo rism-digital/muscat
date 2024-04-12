@@ -71,7 +71,7 @@ ActiveAdmin.register Work do
         return
       end
       @editor_profile = EditorConfiguration.get_show_layout @work
-      @prev_item, @next_item, @prev_page, @next_page = Work.near_items_as_ransack(params, @work)
+      @prev_item, @next_item, @prev_page, @next_page, @nav_positions = Work.near_items_as_ransack(params, @work)
       
       @jobs = @work.delayed_jobs
       

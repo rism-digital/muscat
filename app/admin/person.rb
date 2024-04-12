@@ -88,7 +88,7 @@ ActiveAdmin.register Person do
       end
       @editor_profile = EditorConfiguration.get_show_layout @person
       @editor_validation = EditorValidation.get_default_validation(@person)
-      @prev_item, @next_item, @prev_page, @next_page = Person.near_items_as_ransack(params, @person)
+      @prev_item, @next_item, @prev_page, @next_page, @nav_positions = Person.near_items_as_ransack(params, @person)
 
       @jobs = @person.delayed_jobs
 

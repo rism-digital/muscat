@@ -71,7 +71,7 @@ ActiveAdmin.register WorkNode do
         return
       end
       @editor_profile = EditorConfiguration.get_show_layout @work_node
-      @prev_item, @next_item, @prev_page, @next_page = WorkNode.near_items_as_ransack(params, @work_node)
+      @prev_item, @next_item, @prev_page, @next_page, @nav_positions = WorkNode.near_items_as_ransack(params, @work_node)
       
       @jobs = @work_node.delayed_jobs
       

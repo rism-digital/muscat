@@ -117,8 +117,15 @@ module ActiveAdmin::ViewsHelper
     # Build the back to index path function
     model = self.resource_class.to_s.pluralize.underscore.downcase
     index_link_function = "admin_#{model}_path"
-    
+
     context.div class: :table_tools do
+
+      context.ul class: :table_tools_segmented_control do
+        context.li class: :scope do
+          context.a class: "table_tools_button" do context.text_node "#{@nav_positions[:position]}/#{@nav_positions[:total]}" end
+        end
+      end
+
       context.ul class: :table_tools_segmented_control do
         context.li class: :scope do
           if @prev_item != nil
@@ -130,6 +137,7 @@ module ActiveAdmin::ViewsHelper
         context.li class: :scope do
           context.a href: "#{send(index_link_function)}", class: :table_tools_button do  context.text_node "Back to the list"  end
         end
+
         context.li class: :scope do
           if @next_item != nil
             context.a href: next_id, class: :table_tools_button do  context.text_node "Next"  end

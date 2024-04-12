@@ -53,7 +53,7 @@ ActiveAdmin.register StandardTitle do
         redirect_to admin_root_path, :flash => { :error => "#{I18n.t(:error_not_found)} (StandardTitle #{params[:id]})" }
         return
       end
-      @prev_item, @next_item, @prev_page, @next_page = StandardTitle.near_items_as_ransack(params, @standard_title)
+      @prev_item, @next_item, @prev_page, @next_page, @nav_positions = StandardTitle.near_items_as_ransack(params, @standard_title)
       
       @jobs = @standard_title.delayed_jobs
     end
