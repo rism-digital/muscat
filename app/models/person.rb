@@ -282,7 +282,11 @@ class Person < ApplicationRecord
     sunspot_dsl.integer :src_count_order, :stored => true do
       referring_sources.size + referring_holdings.size
     end
-    
+
+    sunspot_dsl.integer :publications_count_order, :stored => true do
+      referring_publications.size
+    end
+
     MarcIndex::attach_marc_index(sunspot_dsl, self.to_s.downcase)
     
   end

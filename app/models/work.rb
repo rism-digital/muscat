@@ -223,6 +223,10 @@ class Work < ApplicationRecord
       Work.count_by_sql("select count(*) from sources_to_works where work_id = #{self[:id]}")
     end
     
+    sunspot_dsl.integer :publications_count_order, :stored => true do 
+      Work.count_by_sql("select count(*) from works_to_publications where work_id = #{self[:id]}")
+    end
+    
     sunspot_dsl.boolean :has_music_incipit do |s|
       count = 0
       s.marc.by_tags(["031"]).each do |st|
