@@ -55,7 +55,7 @@ ActiveAdmin.register Publication do
       end
 
       @editor_profile = EditorConfiguration.get_show_layout @publication
-      @prev_item, @next_item, @prev_page, @next_page = Publication.near_items_as_ransack(params, @publication)
+      @prev_item, @next_item, @prev_page, @next_page, @nav_positions = Publication.near_items_as_ransack(params, @publication)
       
       @jobs = @publication.delayed_jobs
       

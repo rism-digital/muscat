@@ -53,7 +53,7 @@ ActiveAdmin.register LiturgicalFeast do
         redirect_to admin_root_path, :flash => { :error => "#{I18n.t(:error_not_found)} (LiturgicalFeast #{params[:id]})" }
         return
       end
-      @prev_item, @next_item, @prev_page, @next_page = LiturgicalFeast.near_items_as_ransack(params, @liturgical_feast)
+      @prev_item, @next_item, @prev_page, @next_page, @nav_positions = LiturgicalFeast.near_items_as_ransack(params, @liturgical_feast)
       
       @jobs = @liturgical_feast.delayed_jobs
     end

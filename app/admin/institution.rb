@@ -67,7 +67,7 @@ ActiveAdmin.register Institution do
         return
       end
       @editor_profile = EditorConfiguration.get_show_layout @institution
-      @prev_item, @next_item, @prev_page, @next_page = Institution.near_items_as_ransack(params, @institution)
+      @prev_item, @next_item, @prev_page, @next_page, @nav_positions = Institution.near_items_as_ransack(params, @institution)
 
       @jobs = @institution.delayed_jobs
 

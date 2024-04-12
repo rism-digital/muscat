@@ -53,7 +53,7 @@ ActiveAdmin.register StandardTerm do
         redirect_to admin_root_path, :flash => { :error => "#{I18n.t(:error_not_found)} (StandardTerm #{params[:id]})" }
         return
       end
-      @prev_item, @next_item, @prev_page, @next_page = StandardTerm.near_items_as_ransack(params, @standard_term)
+      @prev_item, @next_item, @prev_page, @next_page, @nav_positions = StandardTerm.near_items_as_ransack(params, @standard_term)
       
       @jobs = @standard_term.delayed_jobs
     end

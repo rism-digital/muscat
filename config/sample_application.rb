@@ -187,6 +187,15 @@ module Muscat
     
     # See what was loaded
     #Rails.autoloaders.log!
+
+    overrides = "#{Rails.root}/app/overrides"
+    Rails.autoloaders.main.ignore(overrides)
+
+    config.to_prepare do
+      Dir.glob("#{overrides}/**/*_override.rb").sort.each do |override|
+        load override
+      end
+    end
   end
 end
 

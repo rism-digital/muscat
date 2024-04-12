@@ -43,12 +43,14 @@ class MarcHolding < Marc
   end
 
   def digital_object?
-    node = first_occurance("856", "x")
-
-    return false if !node || !node.content
-    return true if node.content.start_with?("IIIF") || node.content.start_with?("Digitized")
+    each_by_tag("856") do |t|
+      tgs = t.fetch_all_by_tag("x")
+      tgs.each do |node|
+        next if !node || !node.content
+        return true if node.content.start_with?("IIIF") || node.content.start_with?("Digitized")
+      end
+    end
     false
-
   end
 
 end
