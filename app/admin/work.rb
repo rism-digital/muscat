@@ -192,8 +192,14 @@ ActiveAdmin.register Work do
     column (I18n.t :filter_wf_stage) {|work| status_tag(work.wf_stage,
       label: I18n.t('status_codes.' + (work.wf_stage != nil ? work.wf_stage : ""), locale: :en))} 
 
-    column (I18n.t :"general.validity") {|work| status_tag(work.wf_audit,
-      label: I18n.t('work_label_codes.' + (work.wf_audit != nil ? work.wf_audit : ""), locale: :en))} 
+    column (I18n.t :"general.validity") do |work| 
+      if work.wf_audit != nil && !work.wf_audit.empty? && work.wf_audit != "normal"
+        label = I18n.t('work_label_codes.' + (work.wf_audit != nil ? work.wf_audit : ""), locale: :en)
+        status_tag(work.wf_audit, label: label)
+      else
+        ""
+      end
+    end
 
     column ("Links") {|work| status_tag(:work_links, 
       label: active_admin_work_status_tag_label(work.link_status) , class: active_admin_work_status_tag_class(work.link_status) )}
