@@ -196,10 +196,10 @@
 '856':
   fields:
     u:
-      label: records.online_finding_aids
+      label: records.external_resource_url
     z:
       label: records.note_external_resource
-  label: records.online_finding_aids
+  label: records.external_resource
 Archive:
   label: records.archive
 Bookseller:
