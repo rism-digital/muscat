@@ -174,7 +174,7 @@ ActiveAdmin.register Work do
   filter :wf_stage_with_integer, :label => proc {I18n.t(:filter_wf_stage)}, as: :select, 
   collection: proc{[:inprogress, :published, :deleted].collect {|v| [I18n.t("wf_stage." + v.to_s), "wf_stage:#{v}"]}}
   
-  filter :wf_audit_with_integer, :label => proc {I18n.t(:record_label)}, as: :select, 
+  filter :wf_audit_with_integer, :label => proc {I18n.t(:"general.validity")}, as: :select, 
   collection: proc{[:normal, :obsolete, :doubtful].collect {|v| [v.to_s.capitalize, "wf_audit:#{v}"]}}
 
   # and for the wf_owner
@@ -192,7 +192,7 @@ ActiveAdmin.register Work do
     column (I18n.t :filter_wf_stage) {|work| status_tag(work.wf_stage,
       label: I18n.t('status_codes.' + (work.wf_stage != nil ? work.wf_stage : ""), locale: :en))} 
 
-    column (I18n.t :record_label) {|work| status_tag(work.wf_audit,
+    column (I18n.t :"general.validity") {|work| status_tag(work.wf_audit,
       label: I18n.t('work_label_codes.' + (work.wf_audit != nil ? work.wf_audit : ""), locale: :en))} 
 
     column ("Links") {|work| status_tag(:work_links, 
