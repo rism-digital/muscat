@@ -44,8 +44,6 @@
       label: records.religious_order
     d:
       label: records.life_dates
-    w:
-      label: general.status
     y:
       label: records.other_life_dates
   label: records.heading_personal_name
