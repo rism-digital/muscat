@@ -25,17 +25,16 @@ function setup_deduplication(tab_id) {
             console.log("Duplicate id " + tab_id + ", new id: " + new_tab_id);
             // "select" the tab to apply changes
             tab_saver_select();
-            $('#tab-debug').text("New id: " + new_tab_id)
+            $('#tab-debug').text("Dup, new id: " + new_tab_id)
             
         }
     };
     
-    console.log("Installed muscat-tabs channel")
+    //console.log("Installed muscat-tabs channel")
 }
 
 function unpack_tab_cookie(cookie) {
     let cookie_value = decodeURI(cookie.split("--")[0])
-    console.log(atob(cookie_value))
     let cookie_payload = JSON.parse(atob(cookie_value))
 
     return cookie_payload
@@ -72,8 +71,6 @@ $(document).on('visibilitychange', function() {
         // when the tab is actually hidden
         if (!tab_saver_unload) {
             console.log("Unset tab from " + get_or_create_tab_id())
-            //Cookies.remove("tab-id");
-            //Cookies.remove("tab-store");
         }
         tab_saver_unload = false;
     }
@@ -81,6 +78,7 @@ $(document).on('visibilitychange', function() {
 
 
 $(window).on('load', function() {
+    let new_tab = sessionStorage.getItem("tab-id") === null ? true : false
     let tab_id = get_or_create_tab_id();
 
     // Copy the cookie with our data in our storage
@@ -88,11 +86,19 @@ $(window).on('load', function() {
         let cookie = unpack_tab_cookie(Cookies.get("tab-store"));
         console.log("Received cookie for " + cookie["tab-id"] + " actual id: " + tab_id)
 
-        if (cookie["tab-id"] == tab_id) {
+        // If the cookie is for us or if this is a freshly opened tab
+        // save the searches. If we receive data for another tab, it
+        // means both were loaded at the same time and the tab-id cookie
+        // got overwritten. In this case we do not mix the two requests
+        if (cookie["tab-id"] == tab_id || new_tab) {
             sessionStorage.setItem("tab-store", Cookies.get("tab-store"));
         } else {
             console.log("Tab id mismatch, possible race condition? Do not update tab store")
         }
+    }
+
+    if (new_tab) {
+        $('#tab-debug').text("New tab: " + tab_id)
     }
 
     tab_saver_select();
@@ -106,5 +112,5 @@ $(window).on('load', function() {
 // Set a flag to know if we
 $(window).on('beforeunload', function() {
     tab_saver_unload = true;
-    //window.closed 
+    //window.closed if we need more cleanup?
 });
