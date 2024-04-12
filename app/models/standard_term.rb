@@ -81,6 +81,10 @@ class StandardTerm < ApplicationRecord
     integer :src_count_order, :stored => true do 
       StandardTerm.count_by_sql("select count(*) from sources_to_standard_terms where standard_term_id = #{self[:id]}")
     end
+
+    integer :publications_count_order, :stored => true do
+      StandardTerm.count_by_sql("select count(*) from publications_to_standard_terms where standard_term_id = #{self[:id]}")
+    end
   end
    
   def name
