@@ -27,8 +27,6 @@ module ActiveAdmin
         saved_filters = get_saved_filters_for(@tab_id_for_footer)
         puts "Using saved filters for #{@tab_id_for_footer}"
 
-        ap saved_filters
-
         filter_storage = saved_filters["last_search_filter"]
         pagination_storage = saved_filters["last_search_page"]
         order_storage = saved_filters["last_order_page"]
@@ -76,6 +74,8 @@ module ActiveAdmin
               params[:order] = saved_order
             end
           end
+          puts "Cleared filters for #{@tab_id_for_footer}"
+          cookies.signed["tab-store"] = {value: saved_filters}
         else
           restore_page = true
           # we also restore filter in :show for updating the navigation values (in preparation)
