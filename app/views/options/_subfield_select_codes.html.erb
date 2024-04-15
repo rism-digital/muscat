@@ -2,6 +2,8 @@
 <% label = params.has_key?("select_label") ? params['select_label'] : "Select" %>
 <% codes_reference = params.include?("codes_reference") ? params["codes_reference"] : "codes"%>
 <% show_error = (!tag_params[codes_reference].include?(marc_subfield.content) && marc_subfield.content) ? "" : "" %>
+<% no_sort = params.include?("no_sort") ? params["no_sort"] : false %>
+
 
 <%
 if @editor_validation && @editor_validation.validate_subtag?(tag_name, subfield, @item)
@@ -37,6 +39,10 @@ end
 	end
   end
 
+  # Values are sorted by default, but habe an option not to sort them
+  sorted_values = code_values
+  sorted_values = local_sorting(code_values, @editor_profile) if no_sort == false 
+
 %>
 
 <% if params["unrestricted"] && !(params["unrestricted"] & current_user.roles.pluck(:name)).empty?
@@ -47,10 +53,10 @@ end
 
 <select class="serialize_marc marc_editor_hotkey <%=validate_class%> <%=validate_marker%> <%=show_error%>" <%=name_tag%> data-tag="<%=tag_name%>" data-subfield="<%=subfield%>" width="100" <%=restricted %>>
 	<option value="">--- <%= label %> ---</option>
-	<% if !code_values.include?(marc_subfield.content) && marc_subfield.content %>
+	<% if !sorted_values.include?(marc_subfield.content) && marc_subfield.content %>
 	<option value="<%= marc_subfield.content %>" selected><%= marc_subfield.content%></option>
 	<% end %>
-	<%- local_sorting(code_values, @editor_profile).each do |code| %>
+	<%- sorted_values.each do |code| %>
     	<option value="<%= code -%>" <%= "selected" if marc_subfield.content == code %>><%= @editor_profile.get_label(code) -%></option>
 	<%- end %>
 </select>

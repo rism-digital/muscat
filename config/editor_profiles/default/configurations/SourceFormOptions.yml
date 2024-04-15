@@ -39,6 +39,7 @@
     - - r
       - editor_partial: subfield_select_codes
         codes_reference: "031r"
+        no_sort: true
     - - n
       - values:
         - "xF"
@@ -337,6 +338,7 @@
     - - r
       - editor_partial: subfield_select_codes
         codes_reference: "240r"
+        no_sort: true
     - - m
   tag_params:
     240k:
