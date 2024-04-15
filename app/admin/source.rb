@@ -293,8 +293,17 @@ ActiveAdmin.register Source do
   filter :id_with_integer, :label => proc {I18n.t(:is_in_folder)}, as: :select, 
          collection: proc{Folder.for_type("Source").collect {|c| [c.name, "folder_id:#{c.id}"]}}
   # and for the wf_owner
-  filter :wf_owner_with_integer, :label => proc {I18n.t(:filter_owner)}, as: :select, 
-         collection: proc {
+  #filter :wf_owner_with_integer, :label => proc {I18n.t(:filter_owner)}, as: :select, 
+  #       collection: proc {
+  #         if current_user.has_any_role?(:editor, :admin)
+  #           User.all.map{|u| [u.name, "wf_owner:#{u.id}"]}.sort
+  #         else
+  #           [[current_user.name, "wf_owner:#{current_user.id}"]]
+  #         end
+  #       }
+
+  filter :wf_owner_with_integer, :label => proc {I18n.t(:filter_owner)}, :as => :datalist,
+  collection: proc {
            if current_user.has_any_role?(:editor, :admin)
              User.sort_all_by_last_name.map{|u| [u.name, "wf_owner:#{u.id}"]}
            else

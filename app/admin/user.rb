@@ -33,6 +33,13 @@ ActiveAdmin.register User do
     end
   end
 
+  collection_action :list_for_filter, method: :get do
+    users = User.all.map {|u| {name: u.name, id: "wf_owner:#{u.id}"} }
+    respond_to do |format|
+        format.json { render json: users  }
+    end
+  end
+
   ###########
   ## Index ##
   ###########
