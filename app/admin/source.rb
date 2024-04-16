@@ -292,6 +292,7 @@ ActiveAdmin.register Source do
   # Use it to filter sources by folder
   filter :id_with_integer, :label => proc {I18n.t(:is_in_folder)}, as: :select, 
          collection: proc{Folder.for_type("Source").collect {|c| [c.name, "folder_id:#{c.id}"]}}
+         
   # and for the wf_owner
   #filter :wf_owner_with_integer, :label => proc {I18n.t(:filter_owner)}, as: :select, 
   #       collection: proc {

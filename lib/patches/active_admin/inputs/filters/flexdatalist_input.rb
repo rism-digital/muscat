@@ -22,7 +22,7 @@ module ActiveAdmin
             end
 
             super.merge(:class => "flexdatalist", 
-              :placeholder => "name", 
+              :placeholder => options.include?(:placeholder) ? options[:placeholder] : "Name", 
               :"data-data" => data_path,
               :"data-search-in" => 'name',
               :"data-value-property" => "id",

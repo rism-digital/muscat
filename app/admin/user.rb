@@ -35,7 +35,11 @@ ActiveAdmin.register User do
   end
 
   collection_action :list_for_filter, method: :get do
-    users = User.all.map {|u| {name: u.name, id: "wf_owner:#{u.id}"} }
+    if current_user.has_any_role?(:editor, :admin)
+      users = User.all.map {|u| {name: u.name, id: "wf_owner:#{u.id}"} }
+    else
+      users = [{name: current_user.name, id: "wf_owner:#{current_user.id}"}]
+    end
     respond_to do |format|
         format.json { render json: users  }
     end

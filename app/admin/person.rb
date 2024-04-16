@@ -173,14 +173,15 @@ ActiveAdmin.register Person do
   filter :updated_at, :label => proc {I18n.t(:updated_at)}, :as => :date_range
   filter :created_at, :label => proc{I18n.t(:created_at)}, as: :date_range
 
-  filter :wf_owner_with_integer, :label => proc {I18n.t(:filter_owner)}, as: :select,
-         collection: proc {
-           if current_user.has_any_role?(:editor, :admin)
-             User.all.collect {|c| [c.name, "wf_owner:#{c.id}"]}
-           else
-             [[current_user.name, "wf_owner:#{current_user.id}"]]
-           end
-         }
+  #filter :wf_owner_with_integer, :label => proc {I18n.t(:filter_owner)}, as: :select,
+  #       collection: proc {
+  #         if current_user.has_any_role?(:editor, :admin)
+  #           User.all.collect {|c| [c.name, "wf_owner:#{c.id}"]}
+  #         else
+  #           [[current_user.name, "wf_owner:#{current_user.id}"]]
+  #         end
+  #       }
+  filter :wf_owner_with_integer, :label => proc {I18n.t(:filter_owner)}, :as => :flexdatalist, data_path: proc{list_for_filter_admin_users_path()}
 
   # This filter passes the value to the with() function in seach
   # see config/initializers/ransack.rb
