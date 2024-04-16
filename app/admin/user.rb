@@ -21,6 +21,7 @@ ActiveAdmin.register User do
 
 	end
 
+  # this is used by tribute_load.js
   collection_action :list, method: :post do
     params.permit!
     if params.include?(:q)
