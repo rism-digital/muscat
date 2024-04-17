@@ -36,9 +36,9 @@ ActiveAdmin.register User do
 
   collection_action :list_for_filter, method: :get do
     if current_user.has_any_role?(:editor, :admin)
-      users = User.all.map {|u| {name: u.name, id: "wf_owner:#{u.id}"} }
+      users = User.all.map {|u| {name: u.name, id: "wf_owner:#{u.id}", shortid: u.id} }
     else
-      users = [{name: current_user.name, id: "wf_owner:#{current_user.id}"}]
+      users = [{name: current_user.name, id: "wf_owner:#{current_user.id}", shortid: current_user.id}]
     end
     respond_to do |format|
         format.json { render json: users  }

@@ -69,14 +69,16 @@ ActiveAdmin.register ActiveAdmin::Comment, :as => "Comment" do
   
   filter :body, :label => proc {I18n.t(:filter_comment)}, :as => :string
   filter :resource_type, :default => 'Source'
-  filter :author_id, :label => proc {I18n.t(:filter_author)}, as: :select, 
-         collection: proc {
-           if current_user.has_any_role?(:editor, :admin)
-             User.sort_all_by_last_name.map{|u| [u.name, "#{u.id}"]}
-           else
-             [[current_user.name, "#{current_user.id}"]]
-           end
-         }
+  filter :author_id, :label => proc {I18n.t(:filter_owner)}, as: :flexdatalist, data_path: proc{list_for_filter_admin_users_path()}
+
+  #filter :author_id, :label => proc {I18n.t(:filter_author)}, as: :select, 
+  #       collection: proc {
+  #         if current_user.has_any_role?(:editor, :admin)
+  #           User.sort_all_by_last_name.map{|u| [u.name, "#{u.id}"]}
+  #         else
+  #           [[current_user.name, "#{current_user.id}"]]
+  #         end
+  #       }
          
 end
 
