@@ -34,6 +34,7 @@ ActiveAdmin.register User do
     end
   end
 
+  # And this is used by thle flexdatalist for the user selection
   collection_action :list_for_filter, method: :get do
     if current_user.has_any_role?(:editor, :admin)
       users = User.all.map {|u| {name: u.name, id: "wf_owner:#{u.id}", shortid: u.id} }

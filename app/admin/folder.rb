@@ -188,9 +188,7 @@ ActiveAdmin.register Folder do
            end
          } 
 =end
- filter :wf_owner, :label => proc {I18n.t(:filter_owner)}, as: :flexdatalist, 
-        data_path: proc{list_for_filter_admin_users_path()}, value_property: :shortid
-
+ filter :wf_owner, :label => proc {I18n.t(:filter_owner)}, as: :flexdatalist, data_path: proc{list_for_filter_admin_users_path()}
 
   index :download_links => false do |ad|
     selectable_column
