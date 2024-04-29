@@ -486,7 +486,7 @@ class MarcNode
       #subfield
       element.name = "subfield"
       element["code"] = @tag
-      cont_sanit = content.to_s.encode(:xml => :text)
+      cont_sanit = content.to_s
       # prefix ids appropriately except if deprecated ids are requested
       puts "Warning tag #{@parent.tag} is not in marc configuration".red if !@marc_configuration.has_tag?(@parent.tag)
 
