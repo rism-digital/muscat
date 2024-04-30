@@ -21,12 +21,25 @@ ActiveAdmin.register User do
 
 	end
 
+  # this is used by tribute_load.js
   collection_action :list, method: :post do
     params.permit!
     if params.include?(:q)
       users = User.where("name REGEXP ?", "\\b#{params[:q]}").collect {|u| {name: u.name, id: u.name.gsub(" ", "_")}}
     else
       users = []
+    end
+    respond_to do |format|
+        format.json { render json: users  }
+    end
+  end
+
+  # And this is used by thle flexdatalist for the user selection
+  collection_action :list_for_filter, method: :get do
+    if current_user.has_any_role?(:editor, :admin)
+      users = User.all.map {|u| {name: u.name, id: "wf_owner:#{u.id}", shortid: u.id} }
+    else
+      users = [{name: current_user.name, id: "wf_owner:#{current_user.id}", shortid: current_user.id}]
     end
     respond_to do |format|
         format.json { render json: users  }

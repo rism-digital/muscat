@@ -178,14 +178,15 @@ ActiveAdmin.register Work do
   collection: proc{[:normal, :obsolete, :doubtful].collect {|v| [v.to_s.capitalize, "wf_audit:#{v}"]}}
 
   # and for the wf_owner
-  filter :wf_owner_with_integer, :label => proc {I18n.t(:filter_owner)}, as: :select, 
-         collection: proc {
-           if current_user.has_any_role?(:editor, :admin)
-             User.sort_all_by_last_name.map{|u| [u.name, "wf_owner:#{u.id}"]}
-           else
-             [[current_user.name, "wf_owner:#{current_user.id}"]]
-           end
-         }
+  #filter :wf_owner_with_integer, :label => proc {I18n.t(:filter_owner)}, as: :select, 
+  #       collection: proc {
+  #         if current_user.has_any_role?(:editor, :admin)
+  #           User.sort_all_by_last_name.map{|u| [u.name, "wf_owner:#{u.id}"]}
+  #         else
+  #           [[current_user.name, "wf_owner:#{current_user.id}"]]
+  #         end
+  #       }
+  filter :wf_owner_with_integer, :label => proc {I18n.t(:filter_owner)}, :as => :flexdatalist, data_path: proc{list_for_filter_admin_users_path()}
 
   index :download_links => false do
     selectable_column if !is_selection_mode?

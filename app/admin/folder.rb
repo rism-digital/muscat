@@ -178,7 +178,7 @@ ActiveAdmin.register Folder do
   # Solr search all fields: "_equal"
   filter :name_equals, :label => proc {I18n.t(:any_field_contains)}, :as => :string
   
-
+=begin
   filter :wf_owner, :label => proc {I18n.t(:filter_owner)}, as: :select, 
          collection: proc {
            if current_user.has_any_role?(:editor, :admin)
@@ -187,7 +187,9 @@ ActiveAdmin.register Folder do
              [[current_user.name, "#{current_user.id}"]]
            end
          } 
-  
+=end
+ filter :wf_owner, :label => proc {I18n.t(:filter_owner)}, as: :flexdatalist, data_path: proc{list_for_filter_admin_users_path()}
+
   index :download_links => false do |ad|
     selectable_column
     column (I18n.t :filter_wf_stage) {|folder| status_tag(folder.is_published?,
