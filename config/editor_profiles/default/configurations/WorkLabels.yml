@@ -127,6 +127,11 @@
     i:
       label: records.relationship_information
   label: records.place_of_creation
+'377':
+  fields:
+    a:
+      label: records.language_code
+  label: records.language_code
 '380':
   fields:
     a:
@@ -177,18 +182,18 @@
     p:
       label: records.version_information
   label: records.alternative_work_title
-'530':
-  fields:
-    a:
-      label: records.related_work
-    i:
-      label: records.relationship_information
-  label: records.related_work
 '510':
   fields:
     a:
       label: records.associated_institution
   label: records.associated_institution
+'530':
+  fields:
+    a:
+      label: records.work
+    i:
+      label: records.relationship_information
+  label: records.related_work
 '548':
   fields:
     a:
