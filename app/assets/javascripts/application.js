@@ -88,6 +88,7 @@
 //= require jquery.maskedinput
 //= require jquery.validate
 //= require jquery.autosize.min
+//= require jquery.flexdatalist
 //= require jquery.hotkeys
 //= require jquery.scrollTo.js
 //= require js.cookie

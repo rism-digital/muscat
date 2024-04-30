@@ -69,7 +69,7 @@
 '500':
   fields:
     a:
-      label: records.related_personal_name
+      label: records.name
     d:
       label: records.life_dates
     i:
@@ -80,8 +80,8 @@
 '510':
   fields:
     a:
-      label: records.associated_institution
-  label: records.associated_institution
+      label: records.institution
+  label: records.related_institution
 '550':
   fields:
     a:
@@ -92,10 +92,10 @@
 '551':
   fields:
     a:
-      label: records.geographic_name
+      label: records.place
     i:
       label: records.type
-  label: records.geographic_name
+  label: records.related_place
 '667':
   fields:
     a:

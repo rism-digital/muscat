@@ -397,11 +397,19 @@
       - type: person
         editor_partial: subfield_secondary
         allow_new: true
+    - - "j"
+      - editor_partial: subfield_select_codes
+        codes_reference: "codes"
     - - "4"
       - editor_partial: subfield_select_codes
         select_label: "Function"
         codes_reference: "relator_codes"
   tag_params: 
+    codes:
+      - "Ascertained"
+      - "Alleged"
+      - "Conjectural"
+      - "Misattributed"
     relator_codes: 
     - arr
     - asn
@@ -437,7 +445,6 @@
       - "Ascertained"
       - "Alleged"
       - "Conjectural"
-      - "Doubtful"
       - "Misattributed"
     relator_codes: 
       - asn

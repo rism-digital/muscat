@@ -9,7 +9,7 @@ client:
       "0": mandatory
   "130":
     tags:
-      "0": required
+      "0": mandatory
   "370":
     tags:
       "0": required
@@ -39,7 +39,8 @@ client:
       "w": required
   "690":
     tags:
-      "0": required
+      "0": mandatory
+      "n": mandatory
   "691":
     tags:
       "0": required

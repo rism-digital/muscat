@@ -22,6 +22,7 @@ end
 
 require 'patches/active_admin/inputs/filters/record_type_input.rb'
 require 'patches/active_admin/inputs/filters/lib_siglum_input.rb'
+require 'patches/active_admin/inputs/filters/flexdatalist_input.rb'
 
 ActiveAdmin.setup do |config|
 
@@ -211,6 +212,7 @@ ActiveAdmin.setup do |config|
 
   config.register_stylesheet 'muscat-print.css', :media => :print
   config.register_stylesheet 'diva.min.css'
+  config.register_stylesheet 'jquery.flexdatalist.css'
 
   # == CSV options
   #
