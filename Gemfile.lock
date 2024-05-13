@@ -28,9 +28,9 @@ GIT
 
 GIT
   remote: https://github.com/rism-ch/rails3-jquery-autocomplete
-  revision: d7bd5684ab0e7bf9e537b05abdec4cddcf4cd44a
+  revision: ace4383317300fdc84f28ee3e5e199fdb88e736c
   specs:
-    rails3-jquery-autocomplete (1.0.31)
+    rails3-jquery-autocomplete (1.0.32)
       rails (>= 5.1)
 
 GEM
@@ -296,7 +296,7 @@ GEM
     net-smtp (0.5.0)
       net-protocol
     nio4r (2.7.3)
-    nokogiri (1.16.4)
+    nokogiri (1.16.5)
       mini_portile2 (~> 2.8.2)
       racc (~> 1.4)
     options (2.3.2)
