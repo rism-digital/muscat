@@ -87,6 +87,13 @@ class StandardTerm < ApplicationRecord
     end
   end
    
+  # This function has to be implemented to use
+  # the getter_function autocomplete
+  # It receives a row of results from the SQL query
+  def getter_function_autocomplete_label(query_row)    
+    "#{term} (#{query_row[:count]})"
+  end
+
   def name
     return term
   end

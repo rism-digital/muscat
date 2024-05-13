@@ -24,8 +24,24 @@ ActiveAdmin.register StandardTitle do
   # temporarily allow all parameters
   controller do
     
-    autocomplete :standard_title, :title, :extra_data => [:title], :string_boundary => true
+    autocomplete :standard_title, :title, :string_boundary => true, :display_value => :label, :getter_function => :get_autocomplete_title_with_count
  
+    # Note: the method (title) and other elements
+    # should match in the getter_function_autocomplete_label
+    def get_autocomplete_title_with_count(token)
+
+      sanit = ActiveRecord::Base.send(:sanitize_sql_like, token)
+
+      query = "SELECT `standard_titles`.`id`, `standard_titles`.`title`, count(standard_titles.id) AS count \
+      FROM `standard_titles` 
+      JOIN sources_to_standard_titles AS sst on standard_titles.id = sst.standard_title_id \
+      WHERE ((LOWER(standard_titles.title) LIKE ('#{sanit}%') )) \
+      GROUP BY standard_titles.id \
+      ORDER BY COUNT(standard_titles.id) DESC LIMIT 20"
+      
+      return StandardTitle.find_by_sql(query)
+    end
+
     after_destroy :check_model_errors
     before_create do |item|
       item.user = current_user
