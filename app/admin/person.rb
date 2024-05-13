@@ -37,7 +37,7 @@ ActiveAdmin.register Person do
   controller do
 
     autocomplete :person, :full_name, :display_value => :autocomplete_label , :extra_data => [:life_dates]
-    autocomplete :person, "550a_sms", :solr => true
+    autocomplete :person, "550a_sms", :solr => true, :display_value => :label
 
     after_destroy :check_model_errors
     before_create do |item|
