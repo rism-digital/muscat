@@ -326,7 +326,7 @@
   layout:
     fields:
     - - a
-      - type: standard_title
+      - type: standard_title_no_730
         editor_partial: subfield_secondary
         allow_new: true
     - - o

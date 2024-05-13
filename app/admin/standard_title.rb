@@ -13,6 +13,7 @@ ActiveAdmin.register StandardTitle do
   config.per_page = [10, 30, 50, 100]
 
   collection_action :autocomplete_standard_title_title, :method => :get
+  collection_action :autocomplete_standard_title_title_no_730, :method => :get
 
   breadcrumb do
     active_admin_muscat_breadcrumb
@@ -25,17 +26,22 @@ ActiveAdmin.register StandardTitle do
   controller do
     
     autocomplete :standard_title, :title, :string_boundary => true, :display_value => :label, :getter_function => :get_autocomplete_title_with_count
- 
+    autocomplete :standard_title, :"title_no_730", :record_field => :title, :string_boundary => true, :display_value => :label, 
+                  :getter_function => :get_autocomplete_title_with_count, :getter_options => {skip_730: true}
+
+
     # Note: the method (title) and other elements
     # should match in the getter_function_autocomplete_label
-    def get_autocomplete_title_with_count(token)
+    def get_autocomplete_title_with_count(token,  options = {})
 
       sanit = ActiveRecord::Base.send(:sanitize_sql_like, token)
+      skip_730 = options.include?(:skip_730) && options[:skip_730] == true ? "AND sst.marc_tag != 730" : ""
 
       query = "SELECT `standard_titles`.`id`, `standard_titles`.`title`, count(standard_titles.id) AS count \
       FROM `standard_titles` 
       JOIN sources_to_standard_titles AS sst on standard_titles.id = sst.standard_title_id \
       WHERE ((LOWER(standard_titles.title) LIKE ('#{sanit}%') )) \
+      #{skip_730} \
       GROUP BY standard_titles.id \
       ORDER BY COUNT(standard_titles.id) DESC LIMIT 20"
       
