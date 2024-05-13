@@ -35,11 +35,7 @@ module ApplicationHelper
   def standard_title_default_autocomplete
     autocomplete_standard_title_title_admin_standard_titles_path
   end
-  
-  def source_solr_default_autocomplete
-    autocomplete_source_740_autocomplete_sms_admin_sources_path
-  end
-  
+    
   def source_594b_solr_default_autocomplete
     autocomplete_source_594b_sms_admin_sources_path
   end
