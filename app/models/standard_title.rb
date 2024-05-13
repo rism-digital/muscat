@@ -133,6 +133,13 @@ class StandardTitle < ApplicationRecord
     return title
   end
 
+  # This function has to be implemented to use
+  # the getter_function autocomplete
+  # It receives a row of results from the SQL query
+  def getter_function_autocomplete_label(query_row)    
+    "#{title} (#{query_row[:count]})"
+  end
+
   ransacker :"is_text", proc{ |v| } do |parent| parent.table[:id] end
   ransacker :"is_standard", proc{ |v| } do |parent| parent.table[:id] end
   ransacker :"is_additional", proc{ |v| } do |parent| parent.table[:id] end  
