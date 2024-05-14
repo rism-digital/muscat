@@ -130,12 +130,6 @@ module ActiveAdmin
         # For testing right now, get an empty hash
         return cookies.signed["tab-store"] if cookies.signed["tab-store"] && cookies.signed["tab-store"].is_a?(Hash)
         return {}
-        # Does it exist?
-        return session["filters"][tag] if tag && !tag.empty? && session.include?("filters") && session["filters"].include?(tag)
-        session["filters"] ||= Hash.new
-        session["filters"][tag] ||= Hash.new
-
-        session["filters"][tag]
       end
 
       def save_search_filters

@@ -34,7 +34,15 @@ function setup_deduplication(tab_id) {
 }
 
 function unpack_tab_cookie(cookie) {
-    let cookie_value = decodeURI(cookie.split("--")[0])
+    let parts = cookie.split("--")
+
+    if (parts.length < 2) {
+        return null;
+    }
+
+    // Even if there is nothing to split,
+    // there is always the first.
+    let cookie_value = decodeURI(parts[0])
     let cookie_payload = JSON.parse(atob(cookie_value))
 
     return cookie_payload
@@ -84,16 +92,19 @@ $(window).on('load', function() {
     // Copy the cookie with our data in our storage
     if (Cookies.get("tab-store")) {
         let cookie = unpack_tab_cookie(Cookies.get("tab-store"));
-        console.log("Received cookie for " + cookie["tab-id"] + " actual id: " + tab_id)
+        // Could we parse the cookie?
+        if (cookie) {
+            console.log("Received cookie for " + cookie["tab-id"] + " actual id: " + tab_id)
 
-        // If the cookie is for us or if this is a freshly opened tab
-        // save the searches. If we receive data for another tab, it
-        // means both were loaded at the same time and the tab-id cookie
-        // got overwritten. In this case we do not mix the two requests
-        if (cookie["tab-id"] == tab_id || new_tab) {
-            sessionStorage.setItem("tab-store", Cookies.get("tab-store"));
-        } else {
-            console.log("Tab id mismatch, possible race condition? Do not update tab store")
+            // If the cookie is for us or if this is a freshly opened tab
+            // save the searches. If we receive data for another tab, it
+            // means both were loaded at the same time and the tab-id cookie
+            // got overwritten. In this case we do not mix the two requests
+            if (cookie["tab-id"] == tab_id || new_tab) {
+                sessionStorage.setItem("tab-store", Cookies.get("tab-store"));
+            } else {
+                console.log("Tab id mismatch, possible race condition? Do not update tab store")
+            }
         }
     }
 
