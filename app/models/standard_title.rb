@@ -36,7 +36,6 @@ class StandardTitle < ApplicationRecord
   before_destroy :check_dependencies, :cleanup_comments
   
   #before_create :generate_new_id
-  before_save :set_object_fields
   after_save :reindex
   
   attr_accessor :suppress_reindex_trigger
@@ -115,10 +114,6 @@ class StandardTitle < ApplicationRecord
     end
   end
   
-  def set_object_fields
-    self.title_d = self.title.downcase.strip.truncate(128)
-  end
-
   def get_typus
     res = Array.new(3)
     if (Source.solr_search do with("240a_filter", title) end).total > 0 || self.referring_sources.size > 0

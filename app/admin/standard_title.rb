@@ -40,7 +40,7 @@ ActiveAdmin.register StandardTitle do
       query = "SELECT `standard_titles`.`id`, `standard_titles`.`title`, count(standard_titles.id) AS count \
       FROM `standard_titles` 
       JOIN sources_to_standard_titles AS sst on standard_titles.id = sst.standard_title_id \
-      WHERE ((LOWER(standard_titles.title) LIKE ('#{sanit}%') )) \
+      WHERE standard_titles.title LIKE ('#{sanit}%') \
       #{skip_730} \
       GROUP BY standard_titles.id \
       ORDER BY COUNT(standard_titles.id) DESC LIMIT 20"
