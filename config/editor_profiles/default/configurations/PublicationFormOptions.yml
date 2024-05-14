@@ -244,6 +244,11 @@
   layout: 
     fields: 
     - - a
+"590": 
+  layout: 
+    fields: 
+    - - a
+      - growfield: true
 "599": 
   layout: 
     fields: 

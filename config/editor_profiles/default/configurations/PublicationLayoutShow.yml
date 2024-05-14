@@ -49,6 +49,7 @@ groups:
     - "856"
     - "520"
     - "981"
+    - "590"
     all_tag_templates: 
       "856": marc_show/show_link
       "981": marc_show/show_duplicated_from

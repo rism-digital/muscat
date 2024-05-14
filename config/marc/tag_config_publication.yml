@@ -266,6 +266,13 @@
     :fields:
     - - a
       - :occurrences: "?"
+  "590":
+    :master: a
+    :indicator: "##"
+    :occurrences: "*"
+    :fields:
+    - - a
+      - :occurrences: "?"
   "599":
     :master: a
     :indicator: "##"

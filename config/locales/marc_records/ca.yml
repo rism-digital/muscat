@@ -390,7 +390,7 @@ ca:
     country_activity: País d'activitat
     country_code: Codi de país
     country_of_publication: País de publicació
-    county_province: Estat o província
+    county_province: County, province, state
     creation_production_note: Nota sobre la creació/produció
     cs_major: Do♯ major
     cs_minor: Do♯ menor
@@ -403,6 +403,7 @@ ca:
     date_time_last_transaction: Data i hora de l'última transacció
     date_type: Tipus de data
     dates: Dates
+    dates_of_publication: Dates of publication
     dedicatee: Dedicatari
     department: Departament
     depositor: Dipositant
@@ -529,10 +530,11 @@ ca:
     incipit: Íncipit musical
     incipit_number: Número d'íncipit
     incipits: Íncipits
+    includes_holdings_from: Includes holdings from
     index_terms: Termes d'indexació
     information_found: Informació trobada
     initial: Inicial
-    initial_entry: Entrada inicial
+    initial_entry: Initial entry in A/I
     initials: Inicials
     insertions: Insercions
     inserts: Insercions
@@ -747,7 +749,7 @@ ca:
     production_personnel: Personal de producció
     profession_or_function: Professió o funció
     provenance: Custòdia
-    provenance_notes: Història de la propietat i de la custòdia
+    provenance_notes: Provenance note
     pseudonym: Pseudònim
     public_note: Nota pública
     publisher: Editor
@@ -878,7 +880,7 @@ ca:
     typography: Tipografia
     uncategorized: Sense classificar
     unknown: Desconegut
-    unparsed_fingerprint: Empremta sense analitzar
+    unparsed_fingerprint: Empremta
     variant_ms_title: Variant de títol a la font
     variant_source_title: Variant de títol a la font
     variations: Variacions

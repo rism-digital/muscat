@@ -390,7 +390,7 @@ pl:
     country_activity: Kraj aktywności artystycznej
     country_code: Kod kraju
     country_of_publication: Kraj publikacji
-    county_province: Stan, hrabstwo, prowincja...
+    county_province: Hrabstwo, prowincja, stan
     creation_production_note: Uwagi do wytworzenia / produkcji
     cs_major: Cis-dur
     cs_minor: cis-moll
@@ -403,6 +403,7 @@ pl:
     date_time_last_transaction: Data i godzina ostatniej operacji
     date_type: Rodzaj daty
     dates: Daty
+    dates_of_publication: Daty publikacji
     dedicatee: Adresat dedykacji
     department: Wydział
     depositor: Deponent
@@ -529,10 +530,11 @@ pl:
     incipit: Incipit
     incipit_number: Numer incipitu
     incipits: Incipity
+    includes_holdings_from: Zawiera egzemplarze z
     index_terms: Pojęcia indeksowane
     information_found: Odnaleziona informacja
     initial: Inicjały
-    initial_entry: Początkowy wpis
+    initial_entry: Początkowy wpis w serii A/I
     initials: Inicjały
     insertions: Wstawienia
     inserts: Wstawienia
@@ -747,7 +749,7 @@ pl:
     production_personnel: Personel produkcyjny
     profession_or_function: Zawód lub funkcja
     provenance: Pochodzenie
-    provenance_notes: Uwagi o pochodzeniu
+    provenance_notes: Uwaga o proweniencji
     pseudonym: Pseudonim
     public_note: Inne informacje kontaktowe
     publisher: Wydawca
@@ -878,7 +880,7 @@ pl:
     typography: Typografia
     uncategorized: Bez kategorii
     unknown: Nieznane
-    unparsed_fingerprint: Nieprzeanalizowany odcisk palca
+    unparsed_fingerprint: Odcisk palca
     variant_ms_title: Alternatywny tytuł w źródle
     variant_source_title: Alternatywny tytuł w źródle
     variations: Wariacje

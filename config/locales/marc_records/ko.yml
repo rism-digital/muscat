@@ -1,4 +1,4 @@
-en:
+ko:
   general:
     created_at: "Created on"
     e_mail: Email
@@ -236,7 +236,7 @@ en:
     uruguay: Uruguay
     usa: United States of America
     uzbekistan: Uzbekistan
-    # holy_see provided for backwards compatibility
+    #holy_see provided for backwards compatibility
     holy_see: Vatican City
     vatican: Vatican City
     venezuela: Venezuela, Bolivarian Republic of
@@ -676,13 +676,10 @@ en:
     octoechos2: 'Octoechos 2: Ēchos deuteros (Second mode of Byzantine music)'
     octoechos3: 'Octoechos 3: Ēchos tritos (Third mode of Byzantine music)'
     octoechos4: 'Octoechos 4: Ēchos tetartos (Fourth mode of Byzantine music)'
-    octoechos5: 'Octoechos 5: Ēchos plagios prōtos (First plagal mode of Byzantine
-      music)'
-    octoechos6: 'Octoechos 6: Ēchos plagios deuteros (Second plagal mode of Byzantine
-      music)'
+    octoechos5: 'Octoechos 5: Ēchos plagios prōtos (First plagal mode of Byzantine music)'
+    octoechos6: 'Octoechos 6: Ēchos plagios deuteros (Second plagal mode of Byzantine music)'
     octoechos7: 'Octoechos 7: Ēchos barys (Third plagal mode of Byzantine music)'
-    octoechos8: 'Octoechos 8: Ēchos plagios tetartos (Fourth plagal mode of Byzantine
-      music)'
+    octoechos8: 'Octoechos 8: Ēchos plagios tetartos (Fourth plagal mode of Byzantine music)'
     online_finding_aids: Online finding aids
     opera_houses_concert_halls: Opera houses and concert halls
     opus_number: Opus number
@@ -895,7 +892,6 @@ en:
     watermark_description: Watermark description
     woodwinds: Woodwinds
     work: Work
-    work_catalog_note: Work catalog note
     work_number: Work number
     work_tag: Work revision tag
     work_tag_incipit_needs_revision: incipit-needs-revision

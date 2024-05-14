@@ -390,7 +390,7 @@ de:
     country_activity: Wirkungsland
     country_code: Länder-Code
     country_of_publication: Land
-    county_province: Bezirk oder Staat
+    county_province: Landkreis, Provinz, Bundesland
     creation_production_note: Bemerkung zur Person / Körperschaft
     cs_major: Cis-Dur
     cs_minor: cis-Moll
@@ -403,6 +403,7 @@ de:
     date_time_last_transaction: Datum und Zeit der letzten Transaktion
     date_type: Datierungtypus
     dates: Datierungen
+    dates_of_publication: Veröffentlichungsdatum
     dedicatee: Widmungsträger
     department: Abteilung
     depositor: Depositor
@@ -529,10 +530,11 @@ de:
     incipit: Musikincipit
     incipit_number: Incipitnummer
     incipits: Incipits
+    includes_holdings_from: Enthält Bestände aus
     index_terms: Deskriptoren
     information_found: Vorhandene Informationen
     initial: Initiale
-    initial_entry: Ersteintrag
+    initial_entry: Ersteintrag in A/I
     initials: Initiale
     insertions: Einlagen
     inserts: Einlagen
@@ -747,7 +749,7 @@ de:
     production_personnel: Produktionspersonal
     profession_or_function: Beruf oder Funktion
     provenance: Bestandsname
-    provenance_notes: Provenienzvermerke
+    provenance_notes: Provenienzvermerk
     pseudonym: Pseudonym
     public_note: Bemerkungen
     publisher: Verleger
@@ -878,7 +880,7 @@ de:
     typography: Typendruck
     uncategorized: Nicht kategorisiert
     unknown: Unbekannt
-    unparsed_fingerprint: Zusammenhängender Fingerprint
+    unparsed_fingerprint: Fingerprint
     variant_ms_title: Weiterer diplomatischer Titel
     variant_source_title: Weiterer diplomatischer Titel
     variations: Variationen

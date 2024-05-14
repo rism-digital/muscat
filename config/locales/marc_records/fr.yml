@@ -390,7 +390,7 @@ fr:
     country_activity: Pays d'activité
     country_code: Code Pays
     country_of_publication: Pays
-    county_province: Canton ou province
+    county_province: County, province, state
     creation_production_note: Note sur la création/production
     cs_major: Do♯ majeur
     cs_minor: Do♯ mineur
@@ -403,6 +403,7 @@ fr:
     date_time_last_transaction: Date/heure de la dernière transaction
     date_type: Type de date
     dates: Dates
+    dates_of_publication: Dates of publication
     dedicatee: Dédicataire
     department: Section
     depositor: Dépositeur
@@ -529,10 +530,11 @@ fr:
     incipit: Incipit musical
     incipit_number: No. d'incipit
     incipits: Incipits
+    includes_holdings_from: Includes holdings from
     index_terms: Termes
     information_found: Référence pour l'information
     initial: Initiale
-    initial_entry: Première notice
+    initial_entry: Initial entry in A/I
     initials: Initiale
     insertions: Insertions
     inserts: Insertions
@@ -747,7 +749,7 @@ fr:
     production_personnel: Personnel de réalisation
     profession_or_function: Profession ou fonction
     provenance: Provenance
-    provenance_notes: Note de provenance
+    provenance_notes: Provenance note
     pseudonym: Pseudonyme
     public_note: Note publique
     publisher: Editeur
@@ -878,7 +880,7 @@ fr:
     typography: Typographie
     uncategorized: Non classé
     unknown: Inconnu
-    unparsed_fingerprint: Empreinte non analysée
+    unparsed_fingerprint: Fingerprint
     variant_ms_title: Variante du titre diplomatique
     variant_source_title: Variante du titre diplomatique
     variations: Variations
