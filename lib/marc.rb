@@ -660,23 +660,6 @@ class Marc
     @root.each_by_tag(tag, node, &block)
   end
 
-  # Get the value of a tag, from the foreign object if necessary
-  def get_real_value(parent, child)
-    if @marc_configuration.is_foreign?(parent.tag, child.tag)
-      child.set_foreign_object unless child.foreign_object
-      #allfields[child.tag + grandchild.tag] = grandchild.looked_up_content
-      value = child.looked_up_content
-    else
-      #allfields[child.tag + grandchild.tag] = grandchild.content
-      value = child.content
-    end
-    if value
-      return DictionaryOrder::normalize(value)
-    else
-      return nil
-    end
-  end
-
   def change_authority_links(old_auth, new_auth)
     return [] if old_auth.class != new_auth.class
     

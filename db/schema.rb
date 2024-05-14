@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2024_05_14_123254) do
+ActiveRecord::Schema[7.0].define(version: 2024_05_14_123649) do
   create_table "active_admin_comments", id: :integer, charset: "utf8mb3", force: :cascade do |t|
     t.string "namespace"
     t.text "body"
@@ -247,7 +247,6 @@ ActiveRecord::Schema[7.0].define(version: 2024_05_14_123254) do
 
   create_table "people", id: :integer, charset: "utf8mb3", force: :cascade do |t|
     t.string "full_name"
-    t.string "full_name_d", limit: 128
     t.string "life_dates", limit: 24
     t.string "birth_place", limit: 128
     t.integer "gender", limit: 1, default: 0

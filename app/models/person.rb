@@ -3,7 +3,6 @@
 #
 # === Fields
 # * <tt>full_name</tt> - Full name of the person: Second name, Name
-# * <tt>full_name_d</tt> - Downcase with UTF chars stripped 
 # * <tt>life_dates</tt> - Dates in the form xxxx-xxxx
 # * <tt>birth_place</tt>
 # * <tt>gender</tt> - 0 = male, 1 = female
@@ -255,7 +254,6 @@ class Person < ApplicationRecord
     end
 
     sunspot_dsl.text :full_name
-    sunspot_dsl.text :full_name_d
     
     sunspot_dsl.string :life_dates_order do
       life_dates
@@ -306,7 +304,7 @@ class Person < ApplicationRecord
     self.id = marc_source_id if marc_source_id and marc_source_id != "__TEMP__"
 
     # std_title
-    self.full_name, self.full_name_d, self.life_dates = marc.get_full_name_and_dates
+    self.full_name, self.life_dates = marc.get_full_name_and_dates
     
     # alternate
     self.alternate_names, self.alternate_dates = marc.get_alternate_names_and_dates

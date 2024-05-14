@@ -5,13 +5,11 @@ class MarcPerson < Marc
 
   def get_full_name_and_dates
     full_name = ""
-    full_name_d = ""
     dates = nil
 
     if node = first_occurance("100", "a")
       if node.content
         full_name = node.content.truncate(128)
-        full_name_d = node.content.downcase.truncate(128)
       end
     end
     
@@ -21,7 +19,7 @@ class MarcPerson < Marc
       end
     end
     
-    [full_name, full_name_d, dates]
+    [full_name, dates]
   end
   
   def get_alternate_names_and_dates
