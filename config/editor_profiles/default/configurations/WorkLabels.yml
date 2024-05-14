@@ -191,6 +191,8 @@
   fields:
     a:
       label: records.work
+    g:
+      label: records.note
     i:
       label: records.relationship_information
   label: records.related_work
@@ -451,6 +453,22 @@ G|x:
   label: records.gs_major
 Misattributed:
   label: records.misattributed
+"rdau:P60250":
+  label: relations_works.P60250
+"rdau:P60305":
+  label: relations_works.P60305
+"rdau:P60216":
+  label: relations_works.P60216
+"rdau:P60294":
+  label: relations_works.P60294
+"rdau:P60274":
+  label: relations_works.P60274
+"rdau:P60242":
+  label: relations_works.P60242
+"rdau:P60198":
+  label: relations_works.P60198
+"rdau:P60313":
+  label: relations_works.P60313
 Verified:
   label: general.verified
 XA-AT:

@@ -566,7 +566,20 @@
       - type: work
         editor_partial: subfield_secondary
         allow_new: true
+    - - g
     - - i
+      - editor_partial: subfield_select_codes
+        codes_reference: "codes"
+  tag_params:
+      codes:
+      - "rdau:P60250"
+      - "rdau:P60305"
+      - "rdau:P60216"
+      - "rdau:P60294"
+      - "rdau:P60274"
+      - "rdau:P60242"
+      - "rdau:P60198"
+      - "rdau:P60313"
 "547": 
   new_window: liturgical_feasts
   layout: 
