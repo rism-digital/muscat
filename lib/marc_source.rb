@@ -56,10 +56,9 @@ class MarcSource < Marc
     @record_type
   end
   
-  # Get the std_title and std_title_d values  
+  # Get the std_title  
   def get_std_title  
     std_title = ""
-    std_title_d = ""
     standard_title = nil
     scoring = nil
     extract = nil
@@ -113,21 +112,18 @@ class MarcSource < Marc
     
     # use join so the "-" is not placed if one of the two is missing
     std_title = [title, desc].compact.join(" - ")
-    std_title_d = DictionaryOrder::normalize(std_title)
 
-    [std_title, std_title_d]
+    std_title
   end
   
-  # Get the composer and composer_d values
+  # Get the composer value
   def get_composer
     composer = ""
-    composer_d = ""
     if node = first_occurance("100", "a")
       person = node.foreign_object
       composer = person.full_name
-      composer_d = person.full_name_d
     end
-    [composer, composer_d]
+    composer
   end
 
   def get_siglum
@@ -173,7 +169,7 @@ class MarcSource < Marc
   end
 
   
-  # For bibliographic records, set the ms_title and ms_title_d field fromMARC 245 or 246
+  # For bibliographic records, set the ms_title field fromMARC 245 or 246
   def get_source_title
     ms_title = "[unset]"  
     ms_title_field = (RISM::SITE_ID == "in") ? "246" : "245" # one day the ms_title field (and std_title field) should be put in the environmnent.rb file
@@ -183,10 +179,8 @@ class MarcSource < Marc
     if node = first_occurance(ms_title_field, "b")
       ms_title += " #{node.content}" if node.content
     end
-
-    ms_title_d = DictionaryOrder::normalize(ms_title)
    
-    return [ms_title.truncate(255), ms_title_d.truncate(255)]
+    ms_title.truncate(255)
   end
   
   # Set miscallaneous values

@@ -3,7 +3,6 @@
 #
 # === Fields
 # * <tt>title</tt> - the standardized title
-# * <tt>title_d</tt> - downcase and stripped title
 # * <tt>notes</tt>
 # * <tt>src_count</tt> - keeps track of the Source models tied to this element
 #
@@ -65,7 +64,6 @@ class StandardTitle < ApplicationRecord
       title
     end
     text :title
-    text :title_d
     
     boolean :latin_order do
       latin

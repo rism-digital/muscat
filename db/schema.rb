@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2024_01_24_133559) do
+ActiveRecord::Schema[7.0].define(version: 2024_05_14_123254) do
   create_table "active_admin_comments", id: :integer, charset: "utf8mb3", force: :cascade do |t|
     t.string "namespace"
     t.text "body"
@@ -414,11 +414,8 @@ ActiveRecord::Schema[7.0].define(version: 2024_01_24_133559) do
     t.integer "source_id"
     t.integer "record_type", limit: 1, default: 0
     t.string "std_title", limit: 512
-    t.string "std_title_d", limit: 512
     t.string "composer"
-    t.string "composer_d"
     t.string "title", limit: 256
-    t.string "title_d", limit: 256
     t.string "shelf_mark"
     t.string "language", limit: 16
     t.integer "date_from"
@@ -436,7 +433,6 @@ ActiveRecord::Schema[7.0].define(version: 2024_01_24_133559) do
     t.index ["record_type"], name: "index_sources_on_record_type"
     t.index ["source_id"], name: "index_sources_on_source_id"
     t.index ["std_title"], name: "index_sources_on_std_title", length: 255
-    t.index ["std_title_d"], name: "index_sources_on_std_title_d", length: 255
     t.index ["updated_at"], name: "index_sources_on_updated_at"
     t.index ["wf_stage"], name: "index_sources_on_wf_stage"
   end
@@ -516,7 +512,9 @@ ActiveRecord::Schema[7.0].define(version: 2024_01_24_133559) do
     t.integer "source_id"
     t.string "marc_tag"
     t.string "relator_code"
+    t.index ["id"], name: "id"
     t.index ["marc_tag", "relator_code", "standard_title_id", "source_id"], name: "unique_records", unique: true
+    t.index ["marc_tag"], name: "marc_tag"
     t.index ["source_id"], name: "index_sources_to_standard_titles_on_source_id"
     t.index ["standard_title_id"], name: "index_sources_to_standard_titles_on_standard_title_id"
   end
@@ -557,7 +555,6 @@ ActiveRecord::Schema[7.0].define(version: 2024_01_24_133559) do
 
   create_table "standard_titles", id: :integer, charset: "utf8mb3", force: :cascade do |t|
     t.string "title", null: false
-    t.string "title_d", limit: 128
     t.text "notes"
     t.integer "wf_audit", default: 0
     t.integer "wf_stage", default: 0

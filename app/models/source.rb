@@ -12,11 +12,8 @@
 # * <tt>ms_lib_siglums</tt> - List of the library siglums, Library_id is nost stored anymore here, we use LibrariesSource for many-to-many
 # * <tt>record_type</tt> - set to 1 id the ms. is anonymous, set to 2 if the ms. is a holding record
 # * <tt>std_title</tt> - Standard Title
-# * <tt>std_title_d</tt> - Standard title, downcase, with all UTF chars stripped (and substituted by ASCII chars)
 # * <tt>composer</tt> - Composer name
-# * <tt>composer_d</tt> - Composer, downcase, as standard title
 # * <tt>title</tt> - Title on manuscript (non standardized)
-# * <tt>title_d</tt> - Title on ms, downcase, chars stripped as in std_title_d and composer_d
 # * <tt>shelf_mark</tt> - source shelfmark
 # * <tt>language</tt> - Language of the text (if present) in the ms.
 # * <tt>date_from</tt> - First date on ms.
@@ -223,7 +220,6 @@ class Source < ApplicationRecord
     end
     # For fulltext search
     sunspot_dsl.text :std_title, :stored => true
-    sunspot_dsl.text :std_title_d
 
     sunspot_dsl.string :composer_order do |s|
       s.composer == "" ? nil : s.composer
@@ -245,14 +241,11 @@ class Source < ApplicationRecord
       end
     end
 
-    sunspot_dsl.text :composer_d
-
     sunspot_dsl. string :title_order do |s|
       s.title
     end
 
     sunspot_dsl.text :title, :stored => true
-    sunspot_dsl.text :title_d
 
     sunspot_dsl.string :shelf_mark_order do |s|
       s.shelf_mark
@@ -337,11 +330,8 @@ class Source < ApplicationRecord
   #
   # Fields are:
   #  std_title
-  #  std_title_d
   #  composer
-  #  composer_d
   #  ms_title
-  #  ms_title_d
   #
   # the _d variant fields store a normalized lower case version with accents removed
   # the _d columns are used for western dictionary sorting in list forms
@@ -367,10 +357,10 @@ class Source < ApplicationRecord
     self.source_id = parent ? parent.id : nil
 
     # std_title
-    self.std_title, self.std_title_d = marc.get_std_title
+    self.std_title = marc.get_std_title
 
     # composer
-    self.composer, self.composer_d = marc.get_composer
+    self.composer = marc.get_composer
 
     # NOTE we now decided to leave composer empty in all cases
     # when 100 is not set
@@ -382,7 +372,7 @@ class Source < ApplicationRecord
     self.lib_siglum, self.shelf_mark = marc.get_siglum_and_shelf_mark
 
     # ms_title for bibliographic records
-    self.title, self.title_d = marc.get_source_title
+    self.title = marc.get_source_title
 
     # miscallaneous
     self.language, self.date_from, self.date_to = marc.get_miscellaneous_values
