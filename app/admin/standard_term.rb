@@ -28,14 +28,14 @@ ActiveAdmin.register StandardTerm do
     
     autocomplete :standard_term, :term, :display_value => :label, :getter_function => :get_autocomplete_title_with_count
 
-    def get_autocomplete_title_with_count(token)
+    def get_autocomplete_title_with_count(token, options = {})
 
       sanit = ActiveRecord::Base.send(:sanitize_sql_like, token)
 
       query = "SELECT `standard_terms`.`id`, `standard_terms`.`term`, count(standard_terms.id) AS count \
       FROM `standard_terms` 
       JOIN sources_to_standard_terms AS sst on standard_terms.id = sst.standard_term_id \
-      WHERE ((LOWER(standard_terms.term) LIKE ('#{sanit}%') )) \
+      WHERE standard_terms.term LIKE ('#{sanit}%') \
       GROUP BY standard_terms.id \
       ORDER BY COUNT(standard_terms.id) DESC LIMIT 20"
       
