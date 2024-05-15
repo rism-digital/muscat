@@ -265,6 +265,7 @@ class Work < ApplicationRecord
   ransacker :"0242_filter", proc{ |v| } do |parent| parent.table[:id] end
   ransacker :catalogue_name_order, proc{ |v| } do |parent| parent.table[:id] end
   ransacker :"699a", proc{ |v| } do |parent| parent.table[:id] end
+  ransacker :"690a", proc{ |v| } do |parent| parent.table[:id] end
   ransacker :"incipit", proc{ |v| } do |parent| parent.table[:id] end
   ransacker :"has_music_incipit", proc{ |v| } do |parent| parent.table[:id] end
 

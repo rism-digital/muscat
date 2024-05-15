@@ -84,7 +84,7 @@ ActiveAdmin.register Work do
     def index
       # Get the terms for 0242_filter, the "link type"
       @link_types = Source.get_terms("0242_filter_sm")
-      @catalogues = Work.get_terms("catalogue_name_order_sms")
+      @catalogues = Work.get_terms("690a_sm") #catalogue_name_order_sms
       @work_tags = Source.get_terms("699a_sm")
 
       @editor_profile = EditorConfiguration.get_default_layout Work
@@ -159,8 +159,9 @@ ActiveAdmin.register Work do
   filter :id_with_integer, :label => proc {I18n.t(:is_in_folder)}, as: :select, 
          collection: proc{Folder.where(folder_type: "Work").collect {|c| [c.name, "folder_id:#{c.id}"]}}
   
-  filter :"catalogue_name_order_with_integer", :label => "Catalogue", as: :select, 
-  collection: proc{@catalogues.sort.collect {|k| [k.camelize, "catalogue_name_order:#{k}"]}}
+         #catalogue_name_order_with_integer
+  filter :"690a_with_integer", :label => "Catalogue", as: :select, 
+  collection: proc{@catalogues.sort.collect {|k| [k.camelize, "690a:#{k}"]}} #catalogue_name_order
 
   filter :"699a_with_integer", :label => proc{I18n.t(:"records.work_tag")}, as: :select, 
   collection: proc{@work_tags.sort.collect {|k| [@editor_profile.get_label(k), "699a:#{k}"]}}
