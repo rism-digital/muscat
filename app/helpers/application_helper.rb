@@ -4,6 +4,10 @@ module ApplicationHelper
     autocomplete_publication_short_name_admin_publications_path
   end
   
+  def publication_only_short_name_default_autocomplete
+    autocomplete_publication_only_short_name_admin_publications_path
+  end
+
   def institution_default_autocomplete
     autocomplete_institution_corporate_name_admin_institutions_path
   end

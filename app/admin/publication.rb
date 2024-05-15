@@ -3,6 +3,7 @@ ActiveAdmin.register Publication do
   include MergeControllerActions
   
   collection_action :autocomplete_publication_short_name, :method => :get
+  collection_action :autocomplete_publication_only_short_name, :method => :get
 
   menu :parent => "indexes_menu", :label => proc {I18n.t(:menu_publications)}
 
@@ -30,6 +31,25 @@ ActiveAdmin.register Publication do
     end
     autocomplete :publication, [:short_name, :author, :title], :display_value => :autocomplete_label , :extra_data => [:author, :date, :title]
 
+    autocomplete :publication, :only_short_name, :record_field => :short_name, :string_boundary => true, :display_value => :label, :getter_function => :get_autocomplete_title_with_count
+
+    def get_autocomplete_title_with_count(token,  options = {})
+
+      sanit = ActiveRecord::Base.send(:sanitize_sql_like, token)
+
+      query = "SELECT `publications`.`id`, `publications`.`short_name`, `publications`.`author`, `publications`.`date`, `publications`.`title`,
+      COUNT(publications.id) as count \
+      FROM `publications` \
+      JOIN sources_to_publications AS stp on publications.id = stp.publication_id \
+      WHERE (publications.short_name REGEXP ('\\\\b#{sanit}.*\\\\b') \
+      or publications.author REGEXP ('\\\\b#{sanit}.*\\\\b') \
+      or publications.title REGEXP ('\\\\b#{sanit}.*\\\\b') ) \
+      and (publications.short_name != '') \
+      GROUP BY publications.id \
+      ORDER BY COUNT(publications.id) DESC LIMIT 20"
+      
+      return Publication.find_by_sql(query)
+    end
 
     def check_model_errors(object)
       return unless object.errors.any?

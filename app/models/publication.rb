@@ -309,14 +309,19 @@ class Publication < ApplicationRecord
     end
   end
 
-  def autocomplete_label
+  def autocomplete_label(query_row = nil) 
     aut = (author and !author.empty? ? author : nil)
-    tit = (title and !title.empty? ? title.truncate(45) : nil)
+    tit = (title and !title.empty? ? title.truncate(90) : nil)
     dat = (date and !date.empty? ? date : nil)
 
-    infos = [aut, dat, tit].join(", ")
+    infos = [aut, dat, tit].compact.join(", ")
 
-    "#{self.short_name}: #{infos}"
+    return "#{self.short_name} (#{query_row[:count]}): #{infos}" if query_row
+    return "#{self.short_name}: #{infos}"
+  end
+
+  def getter_function_autocomplete_label(query_row)    
+    autocomplete_label(query_row)
   end
 
   ransacker :"240g", proc{ |v| } do |parent| parent.table[:id] end
