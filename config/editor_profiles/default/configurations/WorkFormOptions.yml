@@ -628,7 +628,7 @@
   layout: 
     fields: 
     - - a
-      - type: publication
+      - type: publication_only_short_name
         editor_partial: subfield_secondary
         allow_new: false
     - - n
@@ -638,7 +638,7 @@
   layout: 
     fields: 
     - - a
-      - type: publication
+      - type: publication_only_short_name
         editor_partial: subfield_secondary
         allow_new: false
     - - n
