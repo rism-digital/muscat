@@ -24,8 +24,10 @@ fields:
       :type: string
     "690a":
       :type: string
+      :stored: true
     "690n":
       :type: string
+      :stored: true
     "699a":
       :type: string
       :stored: true
