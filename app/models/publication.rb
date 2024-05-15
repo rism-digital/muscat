@@ -311,13 +311,13 @@ class Publication < ApplicationRecord
 
   def autocomplete_label(query_row = nil) 
     aut = (author and !author.empty? ? author : nil)
-    tit = (title and !title.empty? ? title.truncate(90) : nil)
+    tit = (title and !title.empty? ? title : nil)
     dat = (date and !date.empty? ? date : nil)
 
     infos = [aut, dat, tit].compact.join(", ")
 
-    return "#{self.short_name} (#{query_row[:count]}): #{infos}" if query_row
-    return "#{self.short_name}: #{infos}"
+    return "#{self.short_name} (#{query_row[:count]}): #{infos}".truncate(100)  if query_row
+    return "#{self.short_name}: #{infos}".truncate(110)
   end
 
   def getter_function_autocomplete_label(query_row)    
