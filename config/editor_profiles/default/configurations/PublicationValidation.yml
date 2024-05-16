@@ -5,12 +5,18 @@ client:
   "041":
     tags:
       a: required, warning
+  "100":
+    tags:
+      "0": required
   "240":
     tags:
       a: required, warning
   "337":
     tags:
       a: required, warning
+  "760":
+    tags:
+      "0": required
   #"856": 
   #  tags:
   #    u:

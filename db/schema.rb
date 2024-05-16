@@ -511,9 +511,7 @@ ActiveRecord::Schema[7.0].define(version: 2024_05_14_123649) do
     t.integer "source_id"
     t.string "marc_tag"
     t.string "relator_code"
-    t.index ["id"], name: "id"
     t.index ["marc_tag", "relator_code", "standard_title_id", "source_id"], name: "unique_records", unique: true
-    t.index ["marc_tag"], name: "marc_tag"
     t.index ["source_id"], name: "index_sources_to_standard_titles_on_source_id"
     t.index ["standard_title_id"], name: "index_sources_to_standard_titles_on_standard_title_id"
   end
