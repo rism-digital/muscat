@@ -146,7 +146,7 @@ ActiveAdmin.register Work do
 #
 
     # This action adds to an existing folder, from the menu
-    batch_action :permissions, 
+    batch_action :change_owner, 
     if: proc{ can? :update, Work },
     form: -> {
       {user: User.filter_by_work_roles}
