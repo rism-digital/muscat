@@ -601,7 +601,7 @@
     - - "a"
       - type: publication
         editor_partial: subfield_secondary
-        allow_new: true
+        allow_new: false
     - - "9"
       - growfield: true
     - - "b"
