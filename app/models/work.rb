@@ -86,7 +86,7 @@ class Work < ApplicationRecord
   after_initialize :after_initialize
 
   enum wf_stage: [ :inprogress, :published, :deleted, :deprecated ]
-  enum wf_audit: [ :normal, :obsolete, :doubtful ]
+  enum wf_audit: [ :normal, :obsolete, :doubtful, :fragment ]
 
   alias_attribute :name, :title
   alias_attribute :id_for_fulltext, :id
