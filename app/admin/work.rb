@@ -10,7 +10,7 @@ ActiveAdmin.register Work do
   
   # Remove all action items
   config.clear_action_items!
-  config.per_page = [10, 30, 50, 100]
+  config.per_page = [10, 30, 50, 100, 1000]
   
   collection_action :autocomplete_work_title, :method => :get
 
@@ -143,6 +143,24 @@ ActiveAdmin.register Work do
     redirect_to resource_path(params[:id]), notice: "Reindex Job started #{job.id}"
   end
   
+#
+
+    # This action adds to an existing folder, from the menu
+    batch_action :permissions, 
+    if: proc{ can? :update, Work },
+    form: -> {
+      {user: User.filter_by_work_roles}
+      #User.sort_all_by_last_name.map{|u| [u.name, u.id] if [u.name, u.id] if (u.has_role?(:admin) || u.has_role?(:editor) || u.has_role?(:work_editor))}.compact}
+    } do |ids, inputs|
+      id = inputs[:user].to_s
+      user = User.find(id)
+      Work.find(ids).each do |w|
+        w.wf_owner = id
+        w.save
+      end
+      redirect_to collection_path, alert: "User was changed to #{user.name}."
+    end
+
   ###########
   ## Index ##
   ###########
@@ -176,7 +194,7 @@ ActiveAdmin.register Work do
   collection: proc{[:inprogress, :published, :deleted].collect {|v| [I18n.t("wf_stage." + v.to_s), "wf_stage:#{v}"]}}
   
   filter :wf_audit_with_integer, :label => proc {I18n.t(:"general.validity")}, as: :select, 
-  collection: proc{[:normal, :obsolete, :doubtful].collect {|v| [v.to_s.capitalize, "wf_audit:#{v}"]}}
+  collection: proc{[:normal, :obsolete, :doubtful, :fragment].collect {|v| [v.to_s.capitalize, "wf_audit:#{v}"]}}
 
   # and for the wf_owner
   #filter :wf_owner_with_integer, :label => proc {I18n.t(:filter_owner)}, as: :select, 
