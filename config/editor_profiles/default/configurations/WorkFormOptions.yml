@@ -615,7 +615,7 @@
     fields: 
     - - "a"
       - type: publication
-        allow_new: true
+        allow_new: false
         editor_partial: subfield_secondary
 "680": 
   layout: 
