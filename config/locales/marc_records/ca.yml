@@ -174,6 +174,7 @@ ca:
     germany: Alemanya
     germany_bavaria: 'Alemanya: Baviera'
     germany_saxony: 'Alemanya: Saxònia'
+    ghana: Ghana
     greece: Grècia
     guatemala: Guatemala
     guinea: Guinea
@@ -193,6 +194,7 @@ ca:
     japan: Japó
     korea: Corea del Sud
     latvia: Letònia
+    liechtenstein: Liechtenstein
     lithuania: Lituània
     lebanon: Líban
     luxembourg: Luxemburg
@@ -223,6 +225,7 @@ ca:
     slovenia: Eslovènia
     south_africa: Sud-àfrica
     spain: Espanya
+    suriname: Suriname
     sweden: Suècia
     switzerland: Suïssa
     switzerland_vaud: 'Suïssa: cantó de Vaud'
@@ -231,6 +234,7 @@ ca:
     tajikistan: Tadjikistan
     trinidad_tobego: Trinitat i Tobago
     turkey: Turquia
+    uganda: Uganda
     uk: Regne Unit
     ukraine: Ucraïna
     uruguay: Uruguai
@@ -390,7 +394,7 @@ ca:
     country_activity: País d'activitat
     country_code: Codi de país
     country_of_publication: País de publicació
-    county_province: County, province, state
+    county_province: País, província, comarca
     creation_production_note: Nota sobre la creació/produció
     cs_major: Do♯ major
     cs_minor: Do♯ menor
@@ -403,7 +407,7 @@ ca:
     date_time_last_transaction: Data i hora de l'última transacció
     date_type: Tipus de data
     dates: Dates
-    dates_of_publication: Dates of publication
+    dates_of_publication: Dates de publicació
     dedicatee: Dedicatari
     department: Departament
     depositor: Dipositant
@@ -530,11 +534,11 @@ ca:
     incipit: Íncipit musical
     incipit_number: Número d'íncipit
     incipits: Íncipits
-    includes_holdings_from: Includes holdings from
+    includes_holdings_from: Inclou fons de
     index_terms: Termes d'indexació
     information_found: Informació trobada
     initial: Inicial
-    initial_entry: Initial entry in A/I
+    initial_entry: Primer registre a A/I
     initials: Inicials
     insertions: Insercions
     inserts: Insercions
@@ -749,7 +753,7 @@ ca:
     production_personnel: Personal de producció
     profession_or_function: Professió o funció
     provenance: Custòdia
-    provenance_notes: Provenance note
+    provenance_notes: Nota sobre la procedència
     pseudonym: Pseudònim
     public_note: Nota pública
     publisher: Editor
@@ -892,6 +896,7 @@ ca:
     watermark_description: Descripció de la filigrana
     woodwinds: Vent-fusta
     work: Obra
+    work_catalog_note: Nota sobre el catàleg de l'obra
     work_number: Número d'obra
     work_tag: Etiqueta de revisió per obra
     work_tag_incipit_needs_revision: Íncipit a revisar
@@ -911,6 +916,15 @@ ca:
     P60274: "Arranjat com a"
     P60194: "Insertat en"
     P60183: "Insert"
+  relations_works:
+    P60250: "Has derivative"
+    P60305: "Has source"
+    P60216: "Is expanded as"
+    P60294: "Is expanded version of"
+    P60274: "Is arranged as"
+    P60242: "Is arragement of"
+    P60198: "Is complemented by"
+    P60313: "Undefined"
   verovio:
     position: "Posició"
     warning: "Avís"
@@ -980,6 +994,7 @@ ca:
     ERR_063_LIGATURE_PITCH: Una lligadura no pot tenir dues notes consecutives del mateix to.
     ERR_064_LIGATURE_DURATION: La duració en una lligadura no pot ser més curta que una rodona.
     ERR_065_MREST_INVALID_MEASURE: Un compàs de silenci no pot incloure res més.
+    ERR_066_EMPTY_CONTAINER: A grace group or a beam cannot be empty.
   rism_online:
     manuscript: "Manuscrit"
     printed: "Imprès"

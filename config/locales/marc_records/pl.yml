@@ -174,6 +174,7 @@ pl:
     germany: Niemcy
     germany_bavaria: 'Niemcy: Bawaria'
     germany_saxony: 'Niemcy: Saksonia'
+    ghana: Ghana
     greece: Grecja
     guatemala: Gwatemala
     guinea: Gwinea
@@ -193,6 +194,7 @@ pl:
     japan: Japonia
     korea: Korea, Republika
     latvia: Łotwa
+    liechtenstein: Liechtenstein
     lithuania: Litwa
     lebanon: Liban
     luxembourg: Luksemburg
@@ -223,6 +225,7 @@ pl:
     slovenia: Słowenia
     south_africa: Republika Południowej Afryki
     spain: Hiszpania
+    suriname: Surinam
     sweden: Szwecja
     switzerland: Szwajcaria
     switzerland_vaud: 'Szwajcaria: kanton Vaud'
@@ -231,6 +234,7 @@ pl:
     tajikistan: Tadżykistan
     trinidad_tobego: Trynidad i Tobago
     turkey: Turcja
+    uganda: Uganda
     uk: Zjednoczone Królestwo
     ukraine: Ukraina
     uruguay: Urugwaj
@@ -892,6 +896,7 @@ pl:
     watermark_description: Opis znaku wodnego
     woodwinds: Instrumenty dęte drewniane
     work: Dzieło
+    work_catalog_note: Notatka do katalogu utworów
     work_number: Numer dzieła
     work_tag: tag edycji Dzieła
     work_tag_incipit_needs_revision: incipit wymaga ponownego sprawdzenia
@@ -911,6 +916,15 @@ pl:
     P60274: "Ułożone jako"
     P60194: "Wstawić do"
     P60183: "Wstawić"
+  relations_works:
+    P60250: "Posiada derywatywę"
+    P60305: "Posiada źródło"
+    P60216: "Jest rozszerzony jako"
+    P60294: "Jest rozszerzoną wersją"
+    P60274: "Jest zaaranżowane jako"
+    P60242: "Jest aranżacją"
+    P60198: "Jest uzupełnione o"
+    P60313: "Nieokreślony"
   verovio:
     position: "Pozycja"
     warning: "Uwaga"
@@ -980,6 +994,7 @@ pl:
     ERR_063_LIGATURE_PITCH: Ligatura nie może składać się z dwóch następujących po sobie nut o takiej samej wysokości.
     ERR_064_LIGATURE_DURATION: Czas trwania ligatury nie może być krótszy niż semibrevis.
     ERR_065_MREST_INVALID_MEASURE: Miara taktu pustego nie może zawierać innych znaków.
+    ERR_066_EMPTY_CONTAINER: Grupa ozdobników lub belkowanie nie mogą być puste.
   rism_online:
     manuscript: "Rękopis"
     printed: "Druk"

@@ -174,6 +174,7 @@ fr:
     germany: Allemagne
     germany_bavaria: 'Allemagne: Bavière'
     germany_saxony: 'Allemagne: Saxe'
+    ghana: Ghana
     greece: Grèce
     guatemala: Guatémala
     guinea: Guinée
@@ -193,6 +194,7 @@ fr:
     japan: Japon
     korea: Corée, République de
     latvia: Lettonie
+    liechtenstein: Liechtenstein
     lithuania: Lituanie
     lebanon: Liban
     luxembourg: Luxembourg
@@ -223,6 +225,7 @@ fr:
     slovenia: Slovénie
     south_africa: Afrique du Sud
     spain: Espagne
+    suriname: Suriname
     sweden: Suède
     switzerland: Suisse
     switzerland_vaud: 'Suisse: Vaud'
@@ -231,6 +234,7 @@ fr:
     tajikistan: Tadjikistan
     trinidad_tobego: Trinité-et-Tobago
     turkey: Turquie
+    uganda: Uganda
     uk: Royaume-Uni
     ukraine: Ukraine
     uruguay: Uruguay
@@ -892,6 +896,7 @@ fr:
     watermark_description: Filigrane
     woodwinds: Bois
     work: Oeuvre
+    work_catalog_note: Work catalog note
     work_number: Numéro de l'œuvre
     work_tag: Étiquette de révision
     work_tag_incipit_needs_revision: incipit-needs-revision
@@ -911,6 +916,15 @@ fr:
     P60274: "Arrangement comme"
     P60194: "Insertion dans"
     P60183: "Insertion"
+  relations_works:
+    P60250: "Has derivative"
+    P60305: "Has source"
+    P60216: "Is expanded as"
+    P60294: "Is expanded version of"
+    P60274: "Is arranged as"
+    P60242: "Is arragement of"
+    P60198: "Is complemented by"
+    P60313: "Undefined"
   verovio:
     position: "Position"
     warning: "Avertissement"
@@ -980,6 +994,7 @@ fr:
     ERR_063_LIGATURE_PITCH: Une ligature ne peut pas avoir deux notes consécutives avec la même hauteur.
     ERR_064_LIGATURE_DURATION: La durée dans une ligature ne peut pas être plus courte qu'une semi-brève.
     ERR_065_MREST_INVALID_MEASURE: Une mesure avec une pause ne peut pas inclure autre chose.
+    ERR_066_EMPTY_CONTAINER: A grace group or a beam cannot be empty.
   rism_online:
     manuscript: "Manuscrit"
     printed: "Imprimé"

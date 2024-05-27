@@ -174,6 +174,7 @@ pt:
     germany: Alemanha
     germany_bavaria: 'Alemanha: Baviera'
     germany_saxony: 'Alemanha: Saxônia'
+    ghana: Gana
     greece: Grécia
     guatemala: Guatemala
     guinea: Guinea
@@ -193,6 +194,7 @@ pt:
     japan: Japão
     korea: Coreia, República da
     latvia: Letónia
+    liechtenstein: Liechtenstein
     lithuania: Lituânia
     lebanon: Líbano
     luxembourg: Luxemburgo
@@ -223,6 +225,7 @@ pt:
     slovenia: Eslovénia
     south_africa: África do Sul
     spain: Espanha
+    suriname: Suriname
     sweden: Suécia
     switzerland: Suíça
     switzerland_vaud: 'Suíça: Vaud'
@@ -231,6 +234,7 @@ pt:
     tajikistan: Tajiquistão
     trinidad_tobego: Trinidad e Tobago
     turkey: Turquia
+    uganda: Uganda
     uk: Reino Unido
     ukraine: Ucrânia
     uruguay: Uruguai
@@ -892,6 +896,7 @@ pt:
     watermark_description: Descrição de Marca de água
     woodwinds: Madeiras
     work: Obra
+    work_catalog_note: Nota no catálogo da obra
     work_number: Número de obra
     work_tag: Etiqueta de revisão de trabalho
     work_tag_incipit_needs_revision: incipit-needs-revision
@@ -911,6 +916,15 @@ pt:
     P60274: "Arranjado como"
     P60194: "Inserir em"
     P60183: "Inserir"
+  relations_works:
+    P60250: "Has derivative"
+    P60305: "Has source"
+    P60216: "Is expanded as"
+    P60294: "Is expanded version of"
+    P60274: "Is arranged as"
+    P60242: "Is arragement of"
+    P60198: "Is complemented by"
+    P60313: "Undefined"
   verovio:
     position: "Posição"
     warning: "Aviso"
@@ -980,6 +994,7 @@ pt:
     ERR_063_LIGATURE_PITCH: Uma ligadura não pode ter duas notas consecutivas com o mesmo tom.
     ERR_064_LIGATURE_DURATION: A duração de uma ligatura não pode ser menor que um ponto e meio.
     ERR_065_MREST_INVALID_MEASURE: Uma medida com um repouso não pode incluir mais nada.
+    ERR_066_EMPTY_CONTAINER: Uma apogiatura ou uma ligadura não podem ser eliminados.
   rism_online:
     manuscript: "Manuscrito"
     printed: "Impresso"
