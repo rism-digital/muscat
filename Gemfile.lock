@@ -373,7 +373,8 @@ GEM
     retriable (3.1.2)
     reverse_markdown (2.1.1)
       nokogiri
-    rexml (3.2.6)
+    rexml (3.2.8)
+      strscan (>= 3.0.9)
     rmagick (5.3.0)
       pkg-config (~> 1.4)
     rodf (1.2.0)
@@ -442,6 +443,7 @@ GEM
     sqlite3 (1.7.0)
       mini_portile2 (~> 2.8.0)
     stringio (3.1.0)
+    strscan (3.1.0)
     sunspot (2.6.0)
       pr_geohash (~> 1.0)
       rsolr (>= 1.1.1, < 3)
