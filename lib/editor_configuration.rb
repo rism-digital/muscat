@@ -70,6 +70,7 @@ class EditorConfiguration
     @squeezed_layout_config = squeeze(conf[:layout])
 
     superimpose_shared_file("SharedLanguageLabels.yml")
+    superimpose_shared_file("SharedISO3166Codes.yml")
     superimpose_shared_file("SharedContentLabels.yml")
   end
   
