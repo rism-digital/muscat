@@ -57,7 +57,7 @@ module ApplicationHelper
   end
 
   def work_node_default_autocomplete
-    autocomplete_work_title_admin_work_nodes_path
+    autocomplete_work_node_title_admin_work_nodes_path
   end
 
   def gnd_work_person_default_autocomplete

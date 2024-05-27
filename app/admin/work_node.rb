@@ -12,7 +12,7 @@ ActiveAdmin.register WorkNode do
   config.clear_action_items!
   config.per_page = [10, 30, 50, 100]
   
-  collection_action :autocomplete_work_title, :method => :get
+  collection_action :autocomplete_work_node_title, :method => :get
 
   collection_action :gnd, method: :get do
     respond_to do |format|
