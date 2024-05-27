@@ -1098,7 +1098,7 @@
     - - a
       - type: work_node
         editor_partial: subfield_secondary
-        allow_new: true
+        allow_new: false
 "980":
   layout:
     fields:
