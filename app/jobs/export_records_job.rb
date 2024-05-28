@@ -164,6 +164,7 @@ private
 
               source = @model.find(source_id)
               file.write(source.marc.to_marc)
+              file.write("\n")
               if jobid == 0
                 count += 1
                 update_stage_progress("Exported #{count}/#{@getter.get_item_count} [s]", step: 20) if count % 20 == 0 && @enquequed
@@ -230,6 +231,7 @@ private
         @getter.get_items.each do |source_id|
           source = @model.find(source_id)
           file.write(source.marc.to_marc)
+          file.write("\n")
           count += 1
           update_stage_progress("Exported #{count}/#{@getter.get_item_count} [s]", step: 20) if count % 20 == 0 && @enquequed
         end
