@@ -124,7 +124,7 @@ private
               next
             end
 
-            tempfiles[jobid].write(source.marc.to_xml_record({ holdings: true }))
+            tempfiles[jobid].write(source.marc.to_xml_record({ holdings: true }).root.to_s)
 
             # We approximante the progress by having only one process write to it
             if jobid == 0
