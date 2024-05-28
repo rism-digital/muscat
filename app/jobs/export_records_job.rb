@@ -124,7 +124,7 @@ private
               next
             end
 
-            tempfiles[jobid].write(source.marc.to_xml_record({ holdings: true }))
+            tempfiles[jobid].write(source.marc.to_xml_record({ holdings: true }).root.to_s)
 
             # We approximante the progress by having only one process write to it
             if jobid == 0
@@ -248,12 +248,12 @@ private
   def xml_preamble
     out = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n"
     out += "<!-- Exported from RISM Muscat (#{@type}) Date: #{Time.now.utc} -->\n"
-    out += "<marc:collection xmlns:marc=\"http://www.loc.gov/MARC21/slim\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xsi:schemaLocation=\"http://www.loc.gov/MARC21/slim http://www.loc.gov/standards/marcxml/schema/MARC21slim.xsd\">\n"
+    out += "<collection xmlns=\"http://www.loc.gov/MARC21/slim\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xsi:schemaLocation=\"http://www.loc.gov/MARC21/slim http://www.loc.gov/standards/marcxml/schema/MARC21slim.xsd\">\n"
     return out
   end
 
   def xml_conclusion
-    "</marc:collection>" 
+    "</collection>" 
   end
 
   # Few things are as asinine as the headers in CSV
