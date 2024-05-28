@@ -208,7 +208,7 @@ private
 
         @getter.get_items.each do |source_id|
           source = @model.find(source_id)
-          file.write(source.marc.to_xml_record({ holdings: true }))
+          file.write(source.marc.to_xml_record({ holdings: true }).root.to_s)
           count += 1
           update_stage_progress("Exported #{count}/#{@getter.get_item_count} [s]", step: 20) if count % 20 == 0 && @enquequed
         end
