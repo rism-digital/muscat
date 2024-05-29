@@ -840,7 +840,7 @@ en:
     link: 'Learn more'
 
   logout:
-    confirm: "There are open Muscat windows with unsaved changes. Logging out will cause the changes to be lost. Do you want to continue?"
+    confirm: "There are open Muscat windows. If you log out, any unsaved changes will be lost. Do you want to continue?"
     warning: "You have logged out from Muscat. Any unsaved work will be lost."
     validation_fail: "Validation failed"
     save_fail: "Saving failed"
