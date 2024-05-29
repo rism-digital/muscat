@@ -162,7 +162,7 @@ function setup_logout_watcher() {
         }
 
         if (evt_parts[0] == "muscat_logged_out") {
-            alert("You logged out from Muscat, stuff will happen")
+            alert("You have logged out from Muscat. Any unsaved work will be lost.")
             return;
         }
 
@@ -173,7 +173,7 @@ function setup_logout_watcher() {
             
             $.unblockUI()
 
-            var do_logout = confirm("There are open Muscat windows, logging out will cause them to close, do you want to continue?")
+            var do_logout = confirm("There are open Muscat windows with unsaved changes. Logging out will cause the changes to be lost. Do you want to continue?")
             if (do_logout) {
                 probe_channel.postMessage("muscat_logged_out")
                 window.location.href = "/admin/logout"
