@@ -59,7 +59,13 @@ class ApplicationController < ActionController::Base
        format.json { head :conflict }
     end
   end
-  	
+  
+  rescue_from ActionController::InvalidAuthenticityToken do |exception|
+    respond_to do |format|
+      format.json { render :json => 'Unauthorized',  :status => 401 }
+    end
+  end
+
   def user_for_paper_trail
    current_user.try :name rescue nil
   end
