@@ -120,6 +120,87 @@ $(window).on('load', function() {
     setup_deduplication(tab_id)
 });
 
+var logout_originator = false;
+var open_windows = 0;
+var logout_timeout;
+
+function setup_logout_timeout() {
+    logout_timeout = setTimeout(function() {
+        $.unblockUI
+        window.location.href = "/admin/logout"
+    }, 1000)
+}
+
+function setup_logout_watcher() {
+    const id = this.crypto.randomUUID();
+    //const logout_channel = new BroadcastChannel('muscat-logout')
+    let probe_channel = new BroadcastChannel('muscat-probe-open')
+
+    //logout_channel.onmessage = (event) => {
+    //    alert(logout_channel.event);
+    //}
+
+    probe_channel.onmessage = (event) => {
+
+        let evt_parts = event.data.split(":") // 0 index is always filled
+        console.log(evt_parts)
+        console.log(id)
+
+        if (evt_parts.lenght < 2) {
+            console.log("Malformed message")
+            return
+        }
+
+        if (evt_parts[1] == id) {
+            console.log("Ignore message for myself")
+            return
+        }
+
+        if (evt_parts[0] == "muscat_window_logout") {
+            probe_channel.postMessage("muscat_window_open:" + id)
+            return;
+        }
+
+        if (evt_parts[0] == "muscat_logged_out") {
+            alert("You logged out from Muscat, stuff will happen")
+            return;
+        }
+
+        if (evt_parts[0] === "muscat_window_open" && logout_originator && open_windows == 0) {
+            if (logout_timeout)
+                clearTimeout(logout_timeout);
+            open_windows++;
+            
+            $.unblockUI()
+
+            var do_logout = confirm("There are open Muscat windows, logging out will cause them to close, do you want to continue?")
+            if (do_logout) {
+                probe_channel.postMessage("muscat_logged_out")
+                window.location.href = "/admin/logout"
+            } else {
+                logout_originator = false
+            }
+        }
+
+    }
+
+    $('[data-logout-link]').on('click', function(e) {
+        e.preventDefault();
+
+        $.blockUI({message: "Logging you out"});
+        setup_logout_timeout();
+
+        probe_channel.postMessage("muscat_window_logout:" + id);
+        logout_originator = true;
+        open_windows = 0;
+        return false;
+    });
+}
+
+$(document).ready(function() {
+    setup_logout_watcher();
+});
+
 // Set a flag to know if we
 $(window).on('beforeunload', function() {
     tab_saver_unload = true;

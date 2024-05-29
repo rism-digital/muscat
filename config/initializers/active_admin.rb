@@ -267,7 +267,7 @@ ActiveAdmin.setup do |config|
     
     admin.build_menu :utility_navigation do |menu|
       admin.add_current_user_to_menu menu
-      admin.add_logout_button_to_menu menu
+      admin.add_logout_button_to_menu menu, 20, {"data-logout-link": "true"}
     end
     
   end
