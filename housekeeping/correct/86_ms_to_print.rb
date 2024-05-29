@@ -8,6 +8,9 @@ def migrate_print(id, migrate_500)
         return
     end
 
+    next if s.record_type == 8 # edition
+    next if s.record_type == 3 # edition content
+
     default_tags = ["035", "506", "541", "561", "591", "592", "599", "691", "852", "856"]
     default_relator_codes = {"700": ["fmo", "scr", "oth"], "710": ["fmo", "scr", "dpt", "oth"]}
     default_tags << "500" if migrate_500
