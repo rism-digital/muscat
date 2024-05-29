@@ -102,6 +102,16 @@ function marc_editor_get_triggers() {
 // Pseudo-private functions called from within the marc editor
 ////////////////////////////////////////////////////////////////////
 
+// Throw a pseudo formatted error
+// or the logged out message
+function _generic_editor_alert(text, status, textStatus, errorThrown) {
+	if (status == 401) {
+		alert(I18n.t("logout.generic_error"))
+	} else {
+		alert(I18n.t(text, {"a": status, "b": textStatus, "c": errorThrown}))
+	}
+}
+
 // Serialize marc to JSON and do an ajax call to save it
 // Ajax sends back and URL to redirect to or an error
 var savedNr = 0;
@@ -153,7 +163,7 @@ function _marc_editor_send_form(form_name, rails_model, redirect) {
 	// Run the validation on the server side
 	var backend_validation = marc_editor_validate();
 
-	if (!form_valid || !backend_validation.responseJSON["status"].endsWith("[200]")) {
+	if (!form_valid || !backend_validation) {
 		var superuser = ($('#user_skip_validation').val() == "True");
 		var skip = false;
 
@@ -225,6 +235,7 @@ function _marc_editor_send_form(form_name, rails_model, redirect) {
 		type: 'post',
 		url: url, 
 		error: function (jqXHR, textStatus, errorThrown) {
+			console.log(jqXHR);
 				// FIXME clean this code up, it is ok now for testing
 				if (jqXHR.responseJSON) {
 					if (jqXHR.responseJSON.gnd_error) {
@@ -254,9 +265,7 @@ function _marc_editor_send_form(form_name, rails_model, redirect) {
 					$('#main_content').unblock();
 					$('#sections_sidebar_section').unblock();
 				} else {
-					alert ("Error saving page! Please try again. (" 
-							+ textStatus + " " 
-							+ errorThrown + ")");
+					_generic_editor_alert("marc_editor.error_save", jqXHR.status, textStatus, errorThrown)
 
 					$('#main_content').unblock();
 					$('#sections_sidebar_section').unblock();
@@ -285,9 +294,7 @@ function _marc_editor_preview( source_form, destination, rails_model ) {
 		type: 'post',
 		url: url, 
 		error: function (jqXHR, textStatus, errorThrown) {
-			alert ("Error loading preview. (" 
-					+ textStatus + " " 
-					+ errorThrown);
+			_generic_editor_alert("marc_editor.error_preview", jqXHR.status, textStatus, errorThrown)
 		}
 	});
 }
@@ -296,7 +303,7 @@ function _marc_editor_validate(source_form, destination, rails_model) {
     var form = $('form', "#" + source_form);
     var json_marc = serialize_marc_editor_form(form);
     var url = "/admin/" + rails_model + "/marc_editor_validate";
-    return $.ajax({
+    var result = $.ajax({
         success: function(data) {
             var message_box = $("#marc_errors");
             var message = data["status"];
@@ -320,11 +327,15 @@ function _marc_editor_validate(source_form, destination, rails_model) {
         // FIXME make this async
         'async': false,
         error: function(jqXHR, textStatus, errorThrown) {
-            alert("Error in validation process. (" +
-                textStatus + " " +
-                errorThrown);
+			_generic_editor_alert("marc_editor.error_validation", jqXHR.status, textStatus, errorThrown)
         }
     });
+
+	// This is not the status of the request, but the status of the validation call
+	if (result.responseJSON && backend_validation.responseJSON["status"].endsWith("[200]"))
+		return true
+	else
+		return false
 }
 
 function _marc_editor_help( destination, help, title, rails_model ) {
@@ -345,9 +356,7 @@ function _marc_editor_help( destination, help, title, rails_model ) {
 		type: 'post',
 		url: url, 
 		error: function (jqXHR, textStatus, errorThrown) {
-			alert ("Error loading preview. (" 
-					+ textStatus + " " 
-					+ errorThrown);
+			_generic_editor_alert("marc_editor.error_help", jqXHR.status, textStatus, errorThrown)
 		}
 	});
 }
@@ -370,9 +379,7 @@ function _marc_editor_version_view( version_id, destination, rails_model ) {
 		type: 'post',
 		url: url, 
 		error: function (jqXHR, textStatus, errorThrown) {
-			alert ("Error loading version. (" 
-					+ textStatus + " " 
-					+ errorThrown + ")");
+			_generic_editor_alert("marc_editor.error_version", jqXHR.status, textStatus, errorThrown)
 		}
 	});
 }
@@ -392,9 +399,7 @@ function _marc_editor_embedded_holding(destination, rails_model, id ) {
 		type: 'post',
 		url: url, 
 		error: function (jqXHR, textStatus, errorThrown) {
-			alert ("Error loading holding information. " +
-					"(" + textStatus + " " 
-					+ errorThrown + ")");
+			_generic_editor_alert("marc_editor.error_holding", jqXHR.status, textStatus, errorThrown)
 		}
 	});
 }
@@ -414,9 +419,7 @@ function _marc_editor_summary_view(destination, rails_model, id ) {
 		type: 'post',
 		url: url, 
 		error: function (jqXHR, textStatus, errorThrown) {
-			alert ("Error loading summary. (" 
-					+ textStatus + " " 
-					+ errorThrown + ")");
+			_generic_editor_alert("marc_editor.error_summary", jqXHR.status, textStatus, errorThrown)
 		}
 	});
 }
@@ -449,9 +452,7 @@ function _marc_editor_version_diff( version_id, destination, rails_model ) {
 		type: 'post',
 		url: url, 
 		error: function (jqXHR, textStatus, errorThrown) {
-			alert ("Error loading diff. (" 
-					+ textStatus + " " 
-					+ errorThrown);
+			_generic_editor_alert("marc_editor.error_diff", jqXHR.status, textStatus, errorThrown)
 		}
 	});
 }

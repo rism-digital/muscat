@@ -833,6 +833,15 @@ en:
     delete_msg: "Delete"
     delete_field_confirm: "Are you sure you want to delete this field?"
     delete_group_confirm: "Are you sure you want to delete this group?"
+    error_save: "An error occurred saving this record: %{a} %{b} %{c}"
+    error_validation: "An error occurred validating this record: %{a} %{b} %{c}"
+    error_preview: "An error occurred while loading the record preview: %{a} %{b} %{c}"
+    error_version: "An error occurred while loading the selected version: %{a} %{b} %{c}"
+    error_holding: "An error occurred while loading the holding record information: %{a} %{b} %{c}"
+    error_summary: "An error occurred while loading the summary: %{a} %{b} %{c}"
+    error_diff: "An error occurred while loading the diff between versions: %{a} %{b} %{c}"
+    error_help: "An error occurred while loading the help for this items: %{a} %{b} %{c}"
+
 
   cookies:
     message: "Our website uses cookies to make your browsing experience better. By using our site you agree to our use of cookies."
@@ -842,9 +851,7 @@ en:
   logout:
     confirm: "There are open Muscat windows. If you log out, any unsaved changes will be lost. Do you want to continue?"
     warning: "You have logged out from Muscat. Any unsaved work will be lost."
-    validation_fail: "Validation failed"
-    save_fail: "Saving failed"
-    generic_error: "The operation could not be completed because you are logged out"
+    generic_error: "You have logged out of Muscat. Please refresh the page to return to the login screen."
 
   # date:
   # Empty lines for matching line numbers with other translation files  
