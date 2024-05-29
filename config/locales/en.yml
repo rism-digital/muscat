@@ -839,6 +839,13 @@ en:
     dimiss: "Accept and Close"
     link: 'Learn more'
 
+  logout:
+    confirm: "There are open Muscat windows with unsaved changes. Logging out will cause the changes to be lost. Do you want to continue?"
+    warning: "You have logged out from Muscat. Any unsaved work will be lost."
+    validation_fail: "Validation failed"
+    save_fail: "Saving failed"
+    generic_error: "The operation could not be completed because you are logged out"
+
   # date:
   # Empty lines for matching line numbers with other translation files  
   #

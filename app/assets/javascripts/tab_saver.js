@@ -143,8 +143,8 @@ function setup_logout_watcher() {
     probe_channel.onmessage = (event) => {
 
         let evt_parts = event.data.split(":") // 0 index is always filled
-        console.log(evt_parts)
-        console.log(id)
+        //console.log(evt_parts)
+        //console.log(id)
 
         if (evt_parts.lenght < 2) {
             console.log("Malformed message")
@@ -157,23 +157,25 @@ function setup_logout_watcher() {
         }
 
         if (evt_parts[0] == "muscat_window_logout") {
+            //var wait = Math.floor(Math.random() * 150);
+            //setTimeout(() => console.log(""), wait)
             probe_channel.postMessage("muscat_window_open:" + id)
             return;
         }
 
         if (evt_parts[0] == "muscat_logged_out") {
-            alert("You have logged out from Muscat. Any unsaved work will be lost.")
+            alert(I18n.t("logout.warning"))
             return;
         }
 
         if (evt_parts[0] === "muscat_window_open" && logout_originator && open_windows == 0) {
+            open_windows++;
             if (logout_timeout)
                 clearTimeout(logout_timeout);
-            open_windows++;
             
             $.unblockUI()
-
-            var do_logout = confirm("There are open Muscat windows with unsaved changes. Logging out will cause the changes to be lost. Do you want to continue?")
+            var do_logout = confirm(I18n.t("logout.confirm"))
+            //var do_logout = confirm("There are open Muscat windows with unsaved changes. Logging out will cause the changes to be lost. Do you want to continue?")
             if (do_logout) {
                 probe_channel.postMessage("muscat_logged_out")
                 window.location.href = "/admin/logout"

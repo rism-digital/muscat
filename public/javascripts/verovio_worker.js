@@ -13,7 +13,6 @@
 
  self.verovio.module.onRuntimeInitialized = function() {
      self.vrvToolkit = new verovio.toolkit();
-     console.log(self.vrvToolkit);
      console.log(`Verovio (WASM) ${self.vrvToolkit.getVersion()}`); // works!
      self.postMessage(["loaded", false, {}]);
  }
