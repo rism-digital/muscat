@@ -7,7 +7,6 @@ v 11
 * Merge branch 'develop' into add-new-counters-for-secondary-literature
 * Update Muscat saml SSO authentication to Rails 7
 * Update gems
-* Some initial experiments
 * Test for global session
 * Experimental: implement tab based saving
 * New experimental version with only one cookie
@@ -22,13 +21,10 @@ v 11
 * Merge pull request #1534 from fjorba/single-sign-on-update-patch-for-rails-7
 * Merge pull request #1397 from fjorba/add-new-counters-for-secondary-literature
 * Fix #1553, missing label
-* Merge branch 'develop' of https://github.com/rism-digital/muscat into develop
 * Fix #1554, show "e" for each 856
 * Fix #1545, remove scr in 700 and 710
 * Fix #1500, remove unused and not shown field
 * Fix #1532, rename to "validity"
-* Change all other labels...
-* Hida validity for :normal
 * Fix #596, include all counters!
 * Merge branch 'develop' into develop-multitab
 * #1527, make filter clearing work
@@ -37,7 +33,6 @@ v 11
 * Better implementation using flexdatalist
 * Migrate to new user selection
 * Implement user selection for folder and comments
-* Clean up
 * Fix double escaping of & in xml export
 * Fix #1567, add missing mandatory fields
 * Fix #1552, add attribution qualifiers
@@ -47,7 +42,6 @@ v 11
 * Merge branch 'develop' into develop-multitab
 * Fix #1089 normalise all labels
 * #1550 add 377 language code in Works
-* Merge branch 'develop' into develop-multitab
 * Create 99 users
 * Ms to print test script
 * Add script to replace random strings in tags
@@ -56,19 +50,12 @@ v 11
 * #1571 Implement label for solr_terms
 * #1571 update Gemfile
 * #1571 Add counters for person 550
-* Merge branch 'develop' into develop-multitab
 * #1571 exclude 730 from 240
 * Update Gemfile
-* Merge branch 'develop' into develop-multitab
 * Use the unused title_d field in StandardTitle
-* Merge branch 'develop' into develop-multitab
-* This was dumb
 * SQL queries are already case insensitive...
 * Fix StandardTerm ac
-* Merge branch 'develop' into develop-multitab
 * Update app/assets/javascripts/tab_saver.js
-* Fixes from PR
-* Merge branch 'develop-multitab' of https://github.com/rism-digital/muscat into develop-multitab
 * Experimental: remove _d items from sources
 * Remove full_name_d from People and remove stale code
 * Fix #1551, add 590 work catalog note
@@ -92,13 +79,8 @@ v 11
 * Merge pull request #1580 from rism-digital/dependabot/bundler/rexml-3.2.8
 * Merge pull request #1578 from rism-digital/jenniferward-patch-5
 * Merge pull request #1581 from fjorba/add-display-name-to-people
-* Update gemfile
-* Merge branch 'develop' of https://github.com/rism-digital/muscat into develop
-* Merge branch 'master' into develop
 * Disallow creation of works from 930 in source
 * Make 675 in Works not create new records
-* Update labels
-* Update more labels
 * Move ISO country codes to a shared file
 * #1579 remove Benin
 * #1579 add tus in Publications
@@ -116,7 +98,6 @@ v 11
 * #1586 make all the editor error I18n with proper messages
 * #1586 properly trap ActionController::InvalidAuthenticityToken errors to generate 401s
 * Update Ms to Print script
-
 
 v 10.2
 * Added work abilities for person_editors
