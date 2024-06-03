@@ -332,7 +332,7 @@ function _marc_editor_validate(source_form, destination, rails_model) {
     });
 
 	// This is not the status of the request, but the status of the validation call
-	if (result.responseJSON && backend_validation.responseJSON["status"].endsWith("[200]"))
+	if (result.responseJSON && result.responseJSON["status"].endsWith("[200]"))
 		return true
 	else
 		return false
