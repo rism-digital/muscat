@@ -2,7 +2,6 @@ Muscat Changelog
 ================
 
 v 11
-
 * Add authority reference counters to secondary literature records
 * Merge branch 'develop' into add-new-counters-for-secondary-literature
 * Update Muscat saml SSO authentication to Rails 7
