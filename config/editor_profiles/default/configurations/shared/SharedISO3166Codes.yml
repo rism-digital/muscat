@@ -158,6 +158,8 @@ XC-ZA:
   label: places.south_africa
 XD-AR:
   label: places.argentina
+XD-BO:
+  label: places.bolivia
 XD-BR:
   label: places.brazil
 XD-CA:
