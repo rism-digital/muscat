@@ -16,7 +16,7 @@ module ActiveAdmin
             @name = input_html_options[:id].gsub(/_id$/, "")
 
             input_wrapping do
-              #label_html <<
+              label_html <<
               builder.text_field(input_name, input_html_options)
             end
           end
