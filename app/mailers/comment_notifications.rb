@@ -2,14 +2,18 @@ class CommentNotifications < ApplicationMailer
 
   def parse_comment(comment)
     matches = comment.scan(/@[^{ \n@}]*/)
+
     [] if matches.empty?
     
     user_ids = matches.each.map do |name|
-
-      sanitized_name = name.gsub("@", "").gsub("_", " ").strip.downcase
+      # Stip all punctuation except for the _
+      sanitized_name = name.gsub("_", " ").gsub(/[^\w\p{L}\s]/, "").strip.downcase
+      ap sanitized_name
       User.where('lower(name) = ?', sanitized_name).first.id rescue next
 
     end
+    ap user_ids
+
     user_ids.compact
   end
 
