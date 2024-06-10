@@ -8,11 +8,8 @@ class CommentNotifications < ApplicationMailer
     user_ids = matches.each.map do |name|
       # Stip all punctuation except for the _
       sanitized_name = name.gsub("_", " ").gsub(/[^\w\p{L}\s]/, "").strip.downcase
-      ap sanitized_name
       User.where('lower(name) = ?', sanitized_name).first.id rescue next
-
     end
-    ap user_ids
 
     user_ids.compact
   end
