@@ -50,7 +50,8 @@ def fix_marc_record(model, model_id, foreign_class, old_foreign, new_foreign)
     end
 
     #ap record.marc
-    #record.save if save
+    record.paper_trail_event = "#{foreign_class} #{old_foreign} -> #{new_foreign}"
+    record.save if save
     puts "Saved #{record.id}" if save
 end
 
@@ -69,8 +70,6 @@ def nuke_ids(old_id, new_id)
             fix_marc_record(m.singularize, ri.id, "StandardTitle", old_id, new_id)
         end
     end
-
-    return
 
     tables.each do |t|
         StandardTitle.find_by_sql("UPDATE #{t} set standard_title_id = #{new_id} where standard_title_id = #{old_id}")
