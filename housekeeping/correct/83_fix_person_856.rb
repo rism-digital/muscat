@@ -15,6 +15,7 @@ Person.find_in_batches do |batch|
             end
         end
 
+        s.paper_trail_event = "Migrate 856 $y to $z" if mod
         s.save if mod
         count +=1 if mod
     end
