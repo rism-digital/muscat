@@ -106,6 +106,7 @@ v 11
 * #1575 Initial script
 * All the landing pages!
 * Update translations
+* Fix #1596 make 370 work repeatable
 
 v 10.2
 * Added work abilities for person_editors

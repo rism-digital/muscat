@@ -181,7 +181,7 @@
   "370":
     :master: "0"
     :indicator: "##"
-    :occurrences: "?"
+    :occurrences: "*"
     :fields:
     - - "0"
       - :occurrences: "?"
