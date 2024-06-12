@@ -234,7 +234,7 @@ fr:
     tajikistan: Tadjikistan
     trinidad_tobego: Trinité-et-Tobago
     turkey: Turquie
-    uganda: Uganda
+    uganda: Ouganda
     uk: Royaume-Uni
     ukraine: Ukraine
     uruguay: Uruguay
@@ -361,7 +361,7 @@ fr:
     collaborator: Collaborateur
     collective_catalog: Catalogue collectif
     colophon: Colophon
-    contributing_project: Contributing project
+    contributing_project: Projet contributif
     common_clefs: Clés communes
     compiler: Compilateur
     composer: Compositeur
@@ -394,7 +394,7 @@ fr:
     country_activity: Pays d'activité
     country_code: Code Pays
     country_of_publication: Pays
-    county_province: County, province, state
+    county_province: Comté, province, état
     creation_production_note: Note sur la création/production
     cs_major: Do♯ majeur
     cs_minor: Do♯ mineur
@@ -407,7 +407,7 @@ fr:
     date_time_last_transaction: Date/heure de la dernière transaction
     date_type: Type de date
     dates: Dates
-    dates_of_publication: Dates of publication
+    dates_of_publication: Date de publication
     dedicatee: Dédicataire
     department: Section
     depositor: Dépositeur
@@ -534,11 +534,11 @@ fr:
     incipit: Incipit musical
     incipit_number: No. d'incipit
     incipits: Incipits
-    includes_holdings_from: Includes holdings from
+    includes_holdings_from: Inclut les fonds de
     index_terms: Termes
     information_found: Référence pour l'information
     initial: Initiale
-    initial_entry: Initial entry in A/I
+    initial_entry: Entrée initiale en A/I
     initials: Initiale
     insertions: Insertions
     inserts: Insertions
@@ -724,7 +724,7 @@ fr:
     person_name: Nom de la personne
     personal_name: Nom de la personne
     personal_names: Noms de personne
-    photoreproductive_process: Photoreproductive process (blueprint)
+    photoreproductive_process: Processus photoreproductif (cyanotype)
     physical_description: Description matérielle
     physical_description_fields: Champs pour la description matérielle
     place: Lieu
@@ -753,7 +753,7 @@ fr:
     production_personnel: Personnel de réalisation
     profession_or_function: Profession ou fonction
     provenance: Provenance
-    provenance_notes: Provenance note
+    provenance_notes: Note de provenance
     pseudonym: Pseudonyme
     public_note: Note publique
     publisher: Editeur
@@ -884,7 +884,7 @@ fr:
     typography: Typographie
     uncategorized: Non classé
     unknown: Inconnu
-    unparsed_fingerprint: Fingerprint
+    unparsed_fingerprint: Empreinte
     variant_ms_title: Variante du titre diplomatique
     variant_source_title: Variante du titre diplomatique
     variations: Variations
@@ -896,7 +896,7 @@ fr:
     watermark_description: Filigrane
     woodwinds: Bois
     work: Oeuvre
-    work_catalog_note: Work catalog note
+    work_catalog_note: Note sur le catalogue des œuvres
     work_number: Numéro de l'œuvre
     work_tag: Étiquette de révision
     work_tag_incipit_needs_revision: incipit-needs-revision
@@ -917,14 +917,14 @@ fr:
     P60194: "Insertion dans"
     P60183: "Insertion"
   relations_works:
-    P60250: "Has derivative"
-    P60305: "Has source"
-    P60216: "Is expanded as"
-    P60294: "Is expanded version of"
-    P60274: "Is arranged as"
-    P60242: "Is arragement of"
-    P60198: "Is complemented by"
-    P60313: "Undefined"
+    P60250: "A dérivé"
+    P60305: "A la source"
+    P60216: "Est élargi comme"
+    P60294: "Est la version étendue de"
+    P60274: "Est arrangé comme"
+    P60242: "Est un arragement de"
+    P60198: "Est complété par"
+    P60313: "Indéfini"
   verovio:
     position: "Position"
     warning: "Avertissement"
@@ -994,7 +994,7 @@ fr:
     ERR_063_LIGATURE_PITCH: Une ligature ne peut pas avoir deux notes consécutives avec la même hauteur.
     ERR_064_LIGATURE_DURATION: La durée dans une ligature ne peut pas être plus courte qu'une semi-brève.
     ERR_065_MREST_INVALID_MEASURE: Une mesure avec une pause ne peut pas inclure autre chose.
-    ERR_066_EMPTY_CONTAINER: A grace group or a beam cannot be empty.
+    ERR_066_EMPTY_CONTAINER: Un groupe d'appoggiatures ou une liaison ne peut pas être vide.
   rism_online:
     manuscript: "Manuscrit"
     printed: "Imprimé"
