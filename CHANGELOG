@@ -97,6 +97,15 @@ v 11
 * #1586 make all the editor error I18n with proper messages
 * #1586 properly trap ActionController::InvalidAuthenticityToken errors to generate 401s
 * Update Ms to Print script
+* Fix missing label to owner autocomplete
+* Fix #1593, 690 view
+* Fix #1592 add Bolivia to SecLit
+* Fix #1595, ignore punctuation in names
+* Fix #1595 no need to print the names
+* Fix #1081, migrate 856 y to z
+* #1575 Initial script
+* All the landing pages!
+* Update translations
 
 v 10.2
 * Added work abilities for person_editors
