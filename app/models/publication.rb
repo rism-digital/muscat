@@ -333,6 +333,15 @@ class Publication < ApplicationRecord
     autocomplete_label(query_row)
   end
 
+  # If we define our own ransacker, we need this
+  def self.ransackable_attributes(auth_object = nil)
+    column_names + _ransackers.keys
+  end
+
+  def self.ransackable_associations(auth_object = nil)
+    reflect_on_all_associations.map { |a| a.name.to_s }
+  end
+
   ransacker :"240g", proc{ |v| } do |parent| parent.table[:id] end
   ransacker :"260b", proc{ |v| } do |parent| parent.table[:id] end
   ransacker :"100a_or_700a", proc{ |v| } do |parent| parent.table[:id] end

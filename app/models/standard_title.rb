@@ -138,6 +138,15 @@ class StandardTitle < ApplicationRecord
     "#{title} (#{query_row[:count]})"
   end
 
+  # If we define our own ransacker, we need this
+  def self.ransackable_attributes(auth_object = nil)
+    column_names + _ransackers.keys
+  end
+
+  def self.ransackable_associations(auth_object = nil)
+    reflect_on_all_associations.map { |a| a.name.to_s }
+  end
+
   ransacker :"is_text", proc{ |v| } do |parent| parent.table[:id] end
   ransacker :"is_standard", proc{ |v| } do |parent| parent.table[:id] end
   ransacker :"is_additional", proc{ |v| } do |parent| parent.table[:id] end  

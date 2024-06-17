@@ -176,7 +176,7 @@ ActiveAdmin.register Folder do
   ###########
   
   # Solr search all fields: "_equal"
-  filter :name_equals, :label => proc {I18n.t(:any_field_contains)}, :as => :string
+  filter :name_eq, :label => proc {I18n.t(:any_field_contains)}, :as => :string
   
 =begin
   filter :wf_owner, :label => proc {I18n.t(:filter_owner)}, as: :select, 

@@ -115,5 +115,10 @@ class Place < ApplicationRecord
 
   end
 
+  # https://github.com/activeadmin/activeadmin/issues/7809
+  # In Non-marc models we can use the default
+  def self.ransackable_associations(_) = reflections.keys
+  def self.ransackable_attributes(_) = attribute_names - %w[token]
+    
 end
 

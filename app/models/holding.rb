@@ -295,4 +295,13 @@ class Holding < ApplicationRecord
     return "#{lib_siglum} [#{id}] in (#{source.composer} - #{source.std_title} [#{source.id}])"
   end
 
+  # If we define our own ransacker, we need this
+  def self.ransackable_attributes(auth_object = nil)
+    column_names + _ransackers.keys
+  end
+
+  def self.ransackable_associations(auth_object = nil)
+    reflect_on_all_associations.map { |a| a.name.to_s }
+  end
+
 end

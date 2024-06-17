@@ -151,25 +151,25 @@ ActiveAdmin.register Person do
   # temporary, to be replaced by Solr
   #filter :id_eq, :label => proc {I18n.t(:filter_id)}
   #filter :full_name_contains, :label => proc {I18n.t(:filter_full_name)}, :as => :string
-	filter :full_name_or_400a_contains, :label => proc {I18n.t(:filter_full_name)}, :as => :string
-  filter :"100d_contains", :label => proc {I18n.t(:filter_person_100d)}, :as => :string
-  filter :"375a_contains", :label => proc {I18n.t(:filter_person_375a)}, :as => :select,
+	filter :full_name_or_400a_cont, :label => proc {I18n.t(:filter_full_name)}, :as => :string
+  filter :"100d_cont", :label => proc {I18n.t(:filter_person_100d)}, :as => :string
+  filter :"375a_cont", :label => proc {I18n.t(:filter_person_375a)}, :as => :select,
   # FIXME locale not read
     :collection => [[I18n.t(:filter_male), 'male'], [ I18n.t(:filter_female), 'female'], [I18n.t(:filter_unknown), 'unknown']]
-  #filter :"550a_contains", :label => proc {I18n.t(:filter_person_550a)}, :as => :string
+  #filter :"550a_cont", :label => proc {I18n.t(:filter_person_550a)}, :as => :string
 
   filter :"550a_with_integer", :label => proc{I18n.t(:filter_person_550a)}, as: :select,
   collection: proc{@profession_types.sort.collect {|k| [k.camelize, "550a:#{k}"]}}
 
-  filter :"043c_contains", :label => proc {I18n.t(:filter_person_043c)}, as: :select,
+  filter :"043c_cont", :label => proc {I18n.t(:filter_person_043c)}, as: :select,
     collection: proc {
       @editor_profile.options_config["043"]["tag_params"]["codes"].map{|e| [@editor_profile.get_label(e), e]}.sort_by{|k,v| k}
     }
-  filter :"551a_contains", :label => proc {I18n.t(:filter_person_551a)}, :as => :string
-  filter :"100d_birthdate_contains", :label => proc {I18n.t(:filter_person_100d_birthdate)}, :as => :string
-  filter :"100d_deathdate_contains", :label => proc {I18n.t(:filter_person_100d_deathdate)}, :as => :string
-  filter :"667a_contains", :label => proc{I18n.t(:internal_note_contains)}, :as => :string
-  filter :full_name_equals, :label => proc {I18n.t(:any_field_contains)}, :as => :string
+  filter :"551a_cont", :label => proc {I18n.t(:filter_person_551a)}, :as => :string
+  filter :"100d_birthdate_cont", :label => proc {I18n.t(:filter_person_100d_birthdate)}, :as => :string
+  filter :"100d_deathdate_cont", :label => proc {I18n.t(:filter_person_100d_deathdate)}, :as => :string
+  filter :"667a_cont", :label => proc{I18n.t(:internal_note_contains)}, :as => :string
+  filter :full_name_eq, :label => proc {I18n.t(:any_field_contains)}, :as => :string
   filter :updated_at, :label => proc {I18n.t(:updated_at)}, :as => :date_range
   filter :created_at, :label => proc{I18n.t(:created_at)}, as: :date_range
 

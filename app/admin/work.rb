@@ -166,9 +166,9 @@ ActiveAdmin.register Work do
   ###########
   
   # Solr search all fields: "_equal"
-  filter :title_equals, :label => proc {I18n.t(:any_field_contains)}, :as => :string
-  filter :opus_contains, :label => "Opus", :as => :string
-  filter :catalogue_contains, :label => "Catalogue", :as => :string
+  filter :title_eq, :label => proc {I18n.t(:any_field_contains)}, :as => :string
+  filter :opus_cont, :label => "Opus", :as => :string
+  filter :catalogue_cont, :label => "Catalogue", :as => :string
   filter :"0242_filter_with_integer", :label => "Link", as: :select, 
   collection: proc{@link_types.sort.collect {|k| [k.camelize, "0242_filter:#{k}"]}}
   # This filter passes the value to the with() function in seach
