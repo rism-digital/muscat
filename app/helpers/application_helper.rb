@@ -4,6 +4,10 @@ module ApplicationHelper
     autocomplete_publication_short_name_admin_publications_path
   end
   
+  def publication_only_short_name_default_autocomplete
+    autocomplete_publication_only_short_name_admin_publications_path
+  end
+
   def institution_default_autocomplete
     autocomplete_institution_corporate_name_admin_institutions_path
   end
@@ -35,11 +39,11 @@ module ApplicationHelper
   def standard_title_default_autocomplete
     autocomplete_standard_title_title_admin_standard_titles_path
   end
-  
-  def source_solr_default_autocomplete
-    autocomplete_source_740_autocomplete_sms_admin_sources_path
+    
+  def standard_title_no_730_default_autocomplete
+    autocomplete_standard_title_title_no_730_admin_standard_titles_path
   end
-  
+
   def source_594b_solr_default_autocomplete
     autocomplete_source_594b_sms_admin_sources_path
   end
@@ -53,7 +57,7 @@ module ApplicationHelper
   end
 
   def work_node_default_autocomplete
-    autocomplete_work_title_admin_work_nodes_path
+    autocomplete_work_node_title_admin_work_nodes_path
   end
 
   def gnd_work_person_default_autocomplete
@@ -73,7 +77,7 @@ module ApplicationHelper
   end
 
   # Create a link for a page in a new window
-  def application_helper_link_http(value, node, opac)
+  def application_helper_link_http(value, node)
     result = []
     links = value.split("\n")
     links.each do |link|
@@ -87,25 +91,17 @@ module ApplicationHelper
   end
   
   # Link a manuscript by its RISM id
-  def application_helper_link_source_id(value, subfield, opac) # This could have never worked
-    if opac
-      link_to(value, solr_document_path(value))
-    else
+  def application_helper_link_source_id(value, subfield) # This could have never worked
       link_to( value, { :action => "show", :controller => "admin/sources", :id => value })
-    end
   end
   
   # Link a manuscript by its RISM id
-  def application_helper_link_to_library(value, subfield, opac)
-		if opac
-			link_to value, search_catalog_path(:search_field => "library_siglum", :q => value)
-		else
+  def application_helper_link_to_library(value, subfield)
 			value
-		end
   end
   
   # Transform the relator code into its label
-  def application_helper_resolve_relator_code(value, subfield, opac)
+  def application_helper_resolve_relator_code(value, subfield)
     return @editor_profile.get_label(value)
   end
 

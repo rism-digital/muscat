@@ -12,11 +12,8 @@
 # * <tt>ms_lib_siglums</tt> - List of the library siglums, Library_id is nost stored anymore here, we use LibrariesSource for many-to-many
 # * <tt>record_type</tt> - set to 1 id the ms. is anonymous, set to 2 if the ms. is a holding record
 # * <tt>std_title</tt> - Standard Title
-# * <tt>std_title_d</tt> - Standard title, downcase, with all UTF chars stripped (and substituted by ASCII chars)
 # * <tt>composer</tt> - Composer name
-# * <tt>composer_d</tt> - Composer, downcase, as standard title
 # * <tt>title</tt> - Title on manuscript (non standardized)
-# * <tt>title_d</tt> - Title on ms, downcase, chars stripped as in std_title_d and composer_d
 # * <tt>shelf_mark</tt> - source shelfmark
 # * <tt>language</tt> - Language of the text (if present) in the ms.
 # * <tt>date_from</tt> - First date on ms.
@@ -54,6 +51,7 @@ class Source < ApplicationRecord
   has_many :child_sources, class_name: "Source"
   has_many :digital_object_links, :as => :object_link, :dependent => :delete_all
   has_many :digital_objects, through: :digital_object_links, foreign_key: "object_link_id"
+
   #has_and_belongs_to_many :institutions, join_table: "sources_to_institutions"
   has_many :source_institution_relations
   has_many :institutions, through: :source_institution_relations
@@ -62,11 +60,26 @@ class Source < ApplicationRecord
   has_many :source_person_relations
   has_many :people, through: :source_person_relations
 
-  has_and_belongs_to_many :standard_titles, join_table: "sources_to_standard_titles"
-  has_and_belongs_to_many :standard_terms, join_table: "sources_to_standard_terms"
-  has_and_belongs_to_many :publications, join_table: "sources_to_publications"
-  has_and_belongs_to_many :liturgical_feasts, join_table: "sources_to_liturgical_feasts"
-  has_and_belongs_to_many :places, join_table: "sources_to_places"
+  #has_and_belongs_to_many :standard_titles, join_table: "sources_to_standard_titles"
+  has_many :source_standard_title_relations
+  has_many :standard_titles, through: :source_standard_title_relations
+
+  #has_and_belongs_to_many :standard_terms, join_table: "sources_to_standard_terms"
+  has_many :source_standard_term_relations
+  has_many :standard_terms, through: :source_standard_term_relations
+
+  #has_and_belongs_to_many :publications, join_table: "sources_to_publications"
+  has_many :source_publication_relations
+  has_many :publications, through: :source_publication_relations
+
+  #has_and_belongs_to_many :liturgical_feasts, join_table: "sources_to_liturgical_feasts"
+  has_many :source_liturgical_feast_relations
+  has_many :liturgical_feasts, through: :source_liturgical_feast_relations
+
+  #has_and_belongs_to_many :places, join_table: "sources_to_places"
+  has_many :source_place_relations
+  has_many :places, through: :source_place_relations
+
   has_many :holdings
 	has_many :collection_holdings, class_name: "Holding", foreign_key: "collection_id"
   
@@ -195,6 +208,19 @@ class Source < ApplicationRecord
 
     sunspot_dsl.text :source_id
 
+    # This is not the ideal way as a text field
+    # But for current limitations it is the best way now
+    # FIXME use a multiple string
+    sunspot_dsl.text :source_rism_ids do |s|
+      all_ids = s.child_sources.pluck(:id)
+      all_ids << s.parent_source.id if s.parent_source
+      all_ids << s.id
+      all_ids += s.sources.pluck(:id)
+      all_ids += s.referring_sources.pluck(:id)
+      
+      all_ids.sort.uniq.compact.join(" ")
+    end
+
     # For ordering
     sunspot_dsl.string :std_title_shelforder, :as => "std_title_shelforder_s" do |s|
       s.std_title
@@ -205,7 +231,6 @@ class Source < ApplicationRecord
     end
     # For fulltext search
     sunspot_dsl.text :std_title, :stored => true
-    sunspot_dsl.text :std_title_d
 
     sunspot_dsl.string :composer_order do |s|
       s.composer == "" ? nil : s.composer
@@ -227,14 +252,11 @@ class Source < ApplicationRecord
       end
     end
 
-    sunspot_dsl.text :composer_d
-
     sunspot_dsl. string :title_order do |s|
       s.title
     end
 
     sunspot_dsl.text :title, :stored => true
-    sunspot_dsl.text :title_d
 
     sunspot_dsl.string :shelf_mark_order do |s|
       s.shelf_mark
@@ -258,12 +280,6 @@ class Source < ApplicationRecord
     # We use it for GIS
     sunspot_dsl.string :lib_siglum, :stored => true
     # Dates now come directly from MARC
-#    sunspot_dsl.integer :date_from do
-#      date_from != nil && date_from > 0 ? date_from : nil
-#    end
-#    sunspot_dsl.integer :date_to do
-#      date_to != nil && date_to > 0 ? date_to : nil
-#    end
 
     sunspot_dsl.integer :wf_owner
 
@@ -325,11 +341,8 @@ class Source < ApplicationRecord
   #
   # Fields are:
   #  std_title
-  #  std_title_d
   #  composer
-  #  composer_d
   #  ms_title
-  #  ms_title_d
   #
   # the _d variant fields store a normalized lower case version with accents removed
   # the _d columns are used for western dictionary sorting in list forms
@@ -355,10 +368,10 @@ class Source < ApplicationRecord
     self.source_id = parent ? parent.id : nil
 
     # std_title
-    self.std_title, self.std_title_d = marc.get_std_title
+    self.std_title = marc.get_std_title
 
     # composer
-    self.composer, self.composer_d = marc.get_composer
+    self.composer = marc.get_composer
 
     # NOTE we now decided to leave composer empty in all cases
     # when 100 is not set
@@ -370,7 +383,7 @@ class Source < ApplicationRecord
     self.lib_siglum, self.shelf_mark = marc.get_siglum_and_shelf_mark
 
     # ms_title for bibliographic records
-    self.title, self.title_d = marc.get_source_title
+    self.title = marc.get_source_title
 
     # miscallaneous
     self.language, self.date_from, self.date_to = marc.get_miscellaneous_values
@@ -507,7 +520,7 @@ class Source < ApplicationRecord
   end
 
   def to_marcxml
-	  marc.to_xml(updated_at, versions)
+	  marc.to_xml({ updated_at: updated_at, versions: versions })
   end
 
   def marc_helper_set_anonymous
@@ -679,5 +692,6 @@ class Source < ApplicationRecord
   ransacker :"599a", proc{ |v| } do |parent| parent.table[:id] end
   ransacker :"856x", proc{ |v| } do |parent| parent.table[:id] end
   ransacker :record_type_select, proc{ |v| } do |parent| parent.table[:id] end
-
+  ransacker :source_rism_ids, proc{ |v| } do |parent| parent.table[:id] end
+    
 end

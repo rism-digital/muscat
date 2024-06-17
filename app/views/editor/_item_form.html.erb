@@ -26,6 +26,10 @@
 
 
 		<% if @item.is_a? Holding %>
+			<% if @item.digital_objects.images.size > 0 %>
+				<%= render "admin/digital_objects/digital_objects_embedded_panel" %>
+			<% end %>
+
 			<div id="source_preview_for_holding"></div>
 			<script>
 				_marc_editor_summary_view("source_preview_for_holding", "sources", <%= @item.source.id %>)

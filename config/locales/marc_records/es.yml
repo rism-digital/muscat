@@ -95,6 +95,7 @@ es:
     norwegian: Noruego
     occitan: Occitano
     oirat: Oirato
+    ojibwa: Ojibwa
     old_church_slavonic: Antiguo eslavo eclesiástico
     persian: Persa
     polish: Polaco
@@ -173,6 +174,7 @@ es:
     germany: Alemania
     germany_bavaria: 'Alemania: Bavaria'
     germany_saxony: 'Alemania: Sajonia'
+    ghana:
     greece: Grecia
     guatemala: Guatemala
     guinea: Guinea
@@ -188,9 +190,11 @@ es:
     israel: Israel
     italy: Italia
     italy_trentino_alto_adige: 'Italia: Trentino-Alto Adigio'
+    jamaica: Jamaica
     japan: Japón
     korea: Corea, República de
     latvia: Letonia
+    liechtenstein: Liechtenstein
     lithuania: Lituania
     lebanon: Líbano
     luxembourg: Luxemburgo
@@ -221,6 +225,7 @@ es:
     slovenia: Eslovenia
     south_africa: Sudáfrica
     spain: España
+    suriname: Suriname
     sweden: Suecia
     switzerland: Suiza
     switzerland_vaud: 'Suiza: cantón de Vaud'
@@ -229,6 +234,7 @@ es:
     tajikistan: Tayikistán
     trinidad_tobego: Trinidad y Tobago
     turkey: Turquía
+    uganda: Uganda
     uk: Reino Unido
     ukraine: Ucrania
     uruguay: Uruguay
@@ -355,6 +361,7 @@ es:
     collaborator: Colaborador
     collective_catalog: Catálogo colectivo
     colophon: Colofón
+    contributing_project: Contributing project
     common_clefs: Claves comunes
     compiler: Compilador
     composer: Compositor
@@ -387,7 +394,7 @@ es:
     country_activity: País de actividad
     country_code: Código de país
     country_of_publication: País de publicación
-    county_province: País o provincia
+    county_province: País, provincia, estado
     creation_production_note: Nota de producción/creación
     cs_major: Do sostenido Mayor
     cs_minor: Do sostenido menor
@@ -400,6 +407,7 @@ es:
     date_time_last_transaction: Fecha y hora de la última transacción
     date_type: Tipo de fecha
     dates: Fechas
+    dates_of_publication: Fecha de publicación
     dedicatee: Dedicatario(a)
     department: Departamento
     depositor: Depositante
@@ -426,6 +434,7 @@ es:
     ds_major: Re sostenido Mayor
     ds_minor: Re sostenido menor
     dubious: Dudoso
+    duplicated_from: Duplicado de
     e_major: Mi Mayor
     e_minor: Mi menor
     earlier_heading: El encabezamiento anterior
@@ -444,7 +453,7 @@ es:
     event_organizer: Organizador del evento
     event_place: Lugar del evento
     excerpts: Extractos
-    exemplar: Exemplar
+    exemplar: Ejemplar
     exemplars: Ejemplares
     extent: Extensión
     extent_parts: Extensión (particellas)
@@ -525,10 +534,11 @@ es:
     incipit: Íncipit
     incipit_number: Número de íncipit
     incipits: Íncipits
+    includes_holdings_from: Incluye existencias de
     index_terms: Términos de indexación
     information_found: Información encontrada
     initial: Iniciales
-    initial_entry: Entrada inicial
+    initial_entry: Entrada inicial A/I
     initials: Iniciales
     insertions: Inserciones
     inserts: Inserciones
@@ -600,7 +610,7 @@ es:
     material_group: Grupo de material
     material_held: Material conservado
     material_not_examined: Material no examinado
-    material_type: Material type
+    material_type: Tipo de material
     media_type: Tipo de medio físico
     mensural_clefs: Claves mensurales
     method_of_acquisition: Método de adquisición
@@ -681,6 +691,7 @@ es:
     order_name: Nombre religioso
     origin: Origen
     original_cataloging_agency: Agencia de catalogación original
+    original_record: Registro original
     other: Otra función
     other_associated_place: Otro lugar asociado
     other_designation: Otra designación
@@ -713,7 +724,7 @@ es:
     person_name: Nombre personal
     personal_name: Nombre de pila
     personal_names: Nombres personales
-    photoreproductive_process: Proceso fotoreproductivo
+    photoreproductive_process: Proceso foto reproductivo
     physical_description: Descripción física
     physical_description_fields: Campos para la descripción Material
     place: Lugar
@@ -742,7 +753,7 @@ es:
     production_personnel: Personal de producción
     profession_or_function: Profesión o función
     provenance: Procedencia
-    provenance_notes: Nota de procedencia
+    provenance_notes: Nota sobre procedencia
     pseudonym: Seudónimo
     public_note: Nota pública
     publisher: Editor (publicador)/Editorial (publicadora)
@@ -873,7 +884,7 @@ es:
     typography: Tipografía
     uncategorized: Sin categorizar
     unknown: Desconcido
-    unparsed_fingerprint: Identificador tipográfico no disgregado
+    unparsed_fingerprint: Huella
     variant_ms_title: Variante de título en fuente
     variant_source_title: Variante de título en fuente
     variations: Variaciones
@@ -885,6 +896,7 @@ es:
     watermark_description: Descripción de las filigranas
     woodwinds: Vientos-madera
     work: Obra
+    work_catalog_note: Work catalog note
     work_number: Número de obra
     work_tag: Etiqueta de revisión de trabajo
     work_tag_incipit_needs_revision: incipit-needs-revision
@@ -904,6 +916,15 @@ es:
     P60274: "Arreglo como"
     P60194: "Inserción en"
     P60183: "Insertar"
+  relations_works:
+    P60250: "Has derivative"
+    P60305: "Has source"
+    P60216: "Is expanded as"
+    P60294: "Is expanded version of"
+    P60274: "Is arranged as"
+    P60242: "Is arragement of"
+    P60198: "Is complemented by"
+    P60313: "Undefined"
   verovio:
     position: "Posición"
     warning: "Advertencia"
@@ -973,13 +994,14 @@ es:
     ERR_063_LIGATURE_PITCH: Una ligadura no puede tener dos notas consecutivas en el mismo tono.
     ERR_064_LIGATURE_DURATION: La duración de una ligadura no puede ser mas corta que una semibreve.
     ERR_065_MREST_INVALID_MEASURE: Un compás con un compás de silencio no puede incluir algo más.
+    ERR_066_EMPTY_CONTAINER: A grace group or a beam cannot be empty.
   rism_online:
     manuscript: "Manuscrito"
     printed: "Impreso"
     composite: "Volumen compuesto"
-    collection: "Collection"
-    item: "Item"
-    single_item: "Single item"
+    collection: "Colección"
+    item: "Elemento"
+    single_item: "Elemento único"
     apply_filters: "Aplicar filtros"
     error_loading_results: "Error al cargar resultados"
     global_collection: "Colección global"

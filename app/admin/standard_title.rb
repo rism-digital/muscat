@@ -13,6 +13,7 @@ ActiveAdmin.register StandardTitle do
   config.per_page = [10, 30, 50, 100]
 
   collection_action :autocomplete_standard_title_title, :method => :get
+  collection_action :autocomplete_standard_title_title_no_730, :method => :get
 
   breadcrumb do
     active_admin_muscat_breadcrumb
@@ -24,8 +25,29 @@ ActiveAdmin.register StandardTitle do
   # temporarily allow all parameters
   controller do
     
-    autocomplete :standard_title, :title, :extra_data => [:title], :string_boundary => true
- 
+    autocomplete :standard_title, :title, :string_boundary => true, :display_value => :label, :getter_function => :get_autocomplete_title_with_count
+    autocomplete :standard_title, :"title_no_730", :record_field => :title, :string_boundary => true, :display_value => :label, 
+                  :getter_function => :get_autocomplete_title_with_count, :getter_options => {skip_730: true}
+
+
+    # Note: the method (title) and other elements
+    # should match in the getter_function_autocomplete_label
+    def get_autocomplete_title_with_count(token,  options = {})
+
+      sanit = ActiveRecord::Base.send(:sanitize_sql_like, token)
+      skip_730 = options.include?(:skip_730) && options[:skip_730] == true ? "AND sst.marc_tag != 730" : ""
+
+      query = "SELECT `standard_titles`.`id`, `standard_titles`.`title`, count(standard_titles.id) AS count \
+      FROM `standard_titles` 
+      JOIN sources_to_standard_titles AS sst on standard_titles.id = sst.standard_title_id \
+      WHERE standard_titles.title LIKE ('#{sanit}%') \
+      #{skip_730} \
+      GROUP BY standard_titles.id \
+      ORDER BY COUNT(standard_titles.id) DESC LIMIT 20"
+      
+      return StandardTitle.find_by_sql(query)
+    end
+
     after_destroy :check_model_errors
     before_create do |item|
       item.user = current_user
@@ -53,7 +75,7 @@ ActiveAdmin.register StandardTitle do
         redirect_to admin_root_path, :flash => { :error => "#{I18n.t(:error_not_found)} (StandardTitle #{params[:id]})" }
         return
       end
-      @prev_item, @next_item, @prev_page, @next_page = StandardTitle.near_items_as_ransack(params, @standard_title)
+      @prev_item, @next_item, @prev_page, @next_page, @nav_positions = StandardTitle.near_items_as_ransack(params, @standard_title)
       
       @jobs = @standard_title.delayed_jobs
     end
@@ -190,7 +212,7 @@ ActiveAdmin.register StandardTitle do
     f.inputs do
       ## Enable the trigger, only for editors
       if current_user.has_any_role?(:editor, :admin)
-        f.input :title, :label => (I18n.t :filter_title), input_html: {data: {trigger: triggers_from_hash({save: ["referring_sources"]}) }}
+        f.input :title, :label => (I18n.t :filter_title), input_html: {data: {trigger: triggers_from_hash({save: ["referring_sources", "referring_works"]}) }}
       else
         f.input :title, :label => (I18n.t :filter_title), :input_html => { :disabled => true }
       end

@@ -217,11 +217,11 @@ it:
     edition_content: "Edizione a stampa, in una collezione"
     libretto_source: "Libretto manoscritto"
 
-    libretto_edition: "Elemento di un libretto stampato"
+    libretto_edition: "Libretto stampato"
     libretto_edition_content: "Libretto a stampa, in una collezione"
 
     theoretica_source: "Manoscritto di teoria musicale"
-    theoretica_edition: "Elemento di un edizione di teoria musicale"
+    theoretica_edition: "Edizione di teoria musicale"
     theoretica_edition_content: "Edizione di teoria musicale, in una collezione"
     edition: "Edizione musicale, scheda madre della collezione o scheda individuale"
     
@@ -334,6 +334,7 @@ it:
   record_status: "Stato di pubblicazione"
   record_owner: "Proprietario"
   record_audit: "Revisione"
+  record_label: "Certezza dell'attribuzione"
   basic_level: "Record di base"
   full_level: "Record completo"
   #full_level: "Record completo, materiale esaminato"
@@ -350,6 +351,10 @@ it:
   validation_level_warning: "Alcuni elementi richiedono attenzione, salvare ancora per procedere"
   muscat_reindexing: "Muscat è in fase di reindicizzazione, i risultati della ricerca potrebbero essere incompleti"
   work_catalogue: "Catalogo di opere"
+  default_view: "Default view"
+  marc21_view: "MARC21 view"
+  marcxml_view: "MARCXML view"
+  authorization_tokens: "Auth tokens"
 
   jobs:
     not_set: "[Nessuno stato]"
@@ -379,6 +384,7 @@ it:
   add_person: "Collega istituzione"
   add_source: "Collega fonte"
   add_person: "Collega persona"
+  add_holding: "Collega Esemplare"
   archive_unarchive: "Archivia / disarchivia"
   archive: "Archivia"
   unarchive: "Disarchivia"
@@ -386,9 +392,9 @@ it:
   export_folder_csv: "Esporta la cartella in CSV"
   export_folder_raw: "Esporta la cartella come Muscat MARC"
   validate_folder: "Valida cartella"
-  choose_folder: "(PLEASE CHOOSE ONE)"
-  add_item_to_folder: "ADD TO FOLDER"
-  remove_item_from_folder: "DELETE FROM FOLDER"
+  choose_folder: "(Selezionare una cartella)"
+  add_item_to_folder: "Aggiungi alla cartella"
+  remove_item_from_folder: "Rimuovi dalla cartella"
   
   # Editor sidebar
   show_all_groups: "Mostra tutti i gruppi"
@@ -532,6 +538,7 @@ it:
   filter_series_items: "Elemento nella serie"
   filter_siglum: "Sigla"
   filter_source: "Fonte"
+  filter_source_id: "Id fonte"
   filter_sources: "Fonti"
   filter_source_type: "Tipo di fonte"
   filter_source_content_type: "Tipo di contenuto"
@@ -821,6 +828,8 @@ it:
   marc_editor:
     delete_msg: "Elimina"
     delete_field_confirm: "Sei sicuro di voler eliminare questo campo?"
+    delete_group_confirm: "Sei sicuro di voler eliminare questo gruppo?"
+
 
   cookies:
     message: "Il nostro sito web utilizza cookie per funzionare. Se utilizzate il nostro sito accettata il nostro utilizzo dei cookie."
@@ -853,33 +862,3 @@ it:
 
 ######################################################################################################
 # End of translation in all languages - make sure all the file have the same line number for this line
- 
-######################################################################################################
-# Blacklights overriden translations - the list can vary from one language to another
-
-  blacklight:
-    application_name: 'Muscat'
-    header_links:
-      logout: 'Logout'
-    search:
-      start_over: 'Nuova ricerca'
-      form:
-        q: 'Ricerca in corso...'
-        search:
-          placeholder: 'Ricerca...'
-    range_limit:
-      range_begin: "%{field_label} inizio dell'intervallo"
-      range_end: "%{field_label} fine dell'intervallo"
-      submit_limit: 'Limita'
-      remove_limit: 'rimuovi'
-  blacklight_advanced_search:
-    all: tutti i campi
-    any: qualsiasi campo
-    form:
-      title: Ricerca avanzata
-      search_context: Nella ricerca
-      limit_criteria_heading_html: "<strong>E</strong> hanno questi attributi"
-      query_criteria_heading_html: "Cerca gli elementi che corrispondono a %{select_menu}"
-      sort_label: "Ordina per"
-      start_over: "Ripristina"
-      search_btn: 'Cerca'

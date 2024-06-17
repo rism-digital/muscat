@@ -6,14 +6,10 @@ config:
     :model: work
 
 fields:  
-    "001":
-    "008":
     "0242_filter":
       :type: string
       :from_tag: "024"
       :from_subtag: "2"
-    "031t":
-    "100a":
     "100d":
       :type: text 
     "100d_birthdate":
@@ -24,16 +20,14 @@ fields:
       :from_tag: "100"
       :from_subtag: "d"
       :index_helper: :marc_helper_get_deathdate
-    "130a": 
     "383b":
       :type: string
-    "400a":
-    "430a":
-    "670a":
     "690a":
       :type: string
+      :stored: true
     "690n":
       :type: string
+      :stored: true
     "699a":
       :type: string
       :stored: true

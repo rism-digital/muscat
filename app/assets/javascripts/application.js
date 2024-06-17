@@ -79,6 +79,7 @@
 // require i18n/translations
 
 //
+//= require tab_saver
 //= require autocomplete_events
 //= require marc_json
 //= require jquery.blockUI
@@ -87,6 +88,7 @@
 //= require jquery.maskedinput
 //= require jquery.validate
 //= require jquery.autosize.min
+//= require jquery.flexdatalist
 //= require jquery.hotkeys
 //= require jquery.scrollTo.js
 //= require js.cookie

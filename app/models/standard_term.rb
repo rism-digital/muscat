@@ -14,10 +14,20 @@ class StandardTerm < ApplicationRecord
   include AuthorityMerge
   include CommentsCleanup
 
-  has_and_belongs_to_many(:referring_sources, class_name: "Source", join_table: "sources_to_standard_terms")
-  has_and_belongs_to_many(:referring_institutions, class_name: "Institution", join_table: "institutions_to_standard_terms")
-  has_and_belongs_to_many(:referring_publications, class_name: "Publication", join_table: "publications_to_standard_terms")
-  has_and_belongs_to_many(:referring_works, class_name: "Work", join_table: "works_to_standard_terms")
+  #has_and_belongs_to_many(:referring_sources, class_name: "Source", join_table: "sources_to_standard_terms")
+  has_many :source_standard_term_relations, class_name: "SourceStandardTermRelation"
+  has_many :referring_sources, through: :source_standard_term_relations, source: :source
+
+  #has_and_belongs_to_many(:referring_publications, class_name: "Publication", join_table: "publications_to_standard_terms")
+  has_many :publication_standard_term_relations, class_name: "PublicationStandardTermRelation"
+  has_many :referring_publications, through: :publication_standard_term_relations, source: :publication
+
+  #has_and_belongs_to_many(:referring_works, class_name: "Work", join_table: "works_to_standard_terms")
+  has_many :work_standard_term_relations, class_name: "WorkStandardTermRelation"
+  has_many :referring_works, through: :work_standard_term_relations, source: :work
+
+  has_and_belongs_to_many(:referring_work_nodes, class_name: "WorkNode", join_table: "work_nodes_to_standard_terms")
+
   has_many :folder_items, as: :item, dependent: :destroy
   has_many :delayed_jobs, -> { where parent_type: "StandardTerm" }, class_name: 'Delayed::Backend::ActiveRecord::Job', foreign_key: "parent_id"
   belongs_to :user, :foreign_key => "wf_owner"
@@ -71,8 +81,19 @@ class StandardTerm < ApplicationRecord
     integer :src_count_order, :stored => true do 
       StandardTerm.count_by_sql("select count(*) from sources_to_standard_terms where standard_term_id = #{self[:id]}")
     end
+
+    integer :publications_count_order, :stored => true do
+      StandardTerm.count_by_sql("select count(*) from publications_to_standard_terms where standard_term_id = #{self[:id]}")
+    end
   end
    
+  # This function has to be implemented to use
+  # the getter_function autocomplete
+  # It receives a row of results from the SQL query
+  def getter_function_autocomplete_label(query_row)    
+    "#{term} (#{query_row[:count]})"
+  end
+
   def name
     return term
   end

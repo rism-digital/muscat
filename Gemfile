@@ -23,7 +23,7 @@ gem 'coffee-rails', '~> 5.0'
 
 # Use jquery as the JavaScript library
 gem 'jquery-rails', "~> 4.5"
-gem 'jquery-ui-rails', '~> 6.0'
+gem 'jquery-ui-rails', '~> 7.0'
 gem 'js_cookie_rails', '~> 2.2.0'
 
 # Turbolinks makes following links in your web application faster. Read more: https://github.com/rails/turbolinks
@@ -37,28 +37,15 @@ group :doc do
   gem 'sdoc', require: false
 end
 
-#group :development do
-#  gem 'web-console', '~> 2.0'
-	#gem 'rb-readline'
-#end
 
 # Papertrail for old version support
-gem 'paper_trail'#, '~> 11'
+gem 'paper_trail'
 
 # for aligning marc
 gem 'needleman_wunsch_aligner', "1.0.4"
 
 # for the documentation
 gem 'htmlentities', '~> 4.3.4'
-
-# Use ActiveModel has_secure_password
-# gem 'bcrypt-ruby', '~> 3.0.0'
-
-# Use unicorn as the app server
-# gem 'unicorn'
-
-# Use Capistrano for deployment
-# gem 'capistrano', group: :development
 
 # Use debugger
 # gem 'debugger', group: [:development, :test
@@ -67,14 +54,14 @@ gem 'activeadmin'
 # Disabled - left to find it again
 #gem 'active_admin_scoped_collection_actions', git: 'https://github.com/activeadmin-plugins/active_admin_scoped_collection_actions'
 
-gem 'sunspot_rails'#, git: 'https://github.com/rism-ch/sunspot', branch: "java9-stack"
-gem 'sunspot_solr'#, git: 'https://github.com/rism-ch/sunspot', branch: "java9-stack"
+gem 'sunspot_rails'
+gem 'sunspot_solr'
 gem 'awesome_print'
 gem 'progress_bar', '1.0.6', git: 'https://github.com/rism-ch/progress_bar'
 
 gem "rails3-jquery-autocomplete", '~> 1.0.26', git: 'https://github.com/rism-ch/rails3-jquery-autocomplete'
-gem "cancan"#, '~> 1.6.10'
-gem "rolify"#, '~> 5.2.0'
+gem "cancancan"
+gem "rolify"
 
 group :development do
     gem 'puma'
@@ -89,7 +76,7 @@ gem "kt-paperclip"#, "~> 6.2.0"
 
 # https://github.com/zdennis/activerecord-import/wiki
 # For bulk import SQL data
-gem 'activerecord-import'#, ">= 0.4.0"
+gem 'activerecord-import'
 
 # Uncomment this to test the webpage saving
 # in housekeeping/selenium_webdriver
@@ -106,8 +93,7 @@ gem 'delayed_job', '~> 4.1', git: 'https://github.com/rism-ch/delayed_job'
 gem 'delayed_job_active_record'#, '4.1.4'
 gem 'progress_job', '0.0.4', git: "https://github.com/rism-ch/progress_job"
 
-# Scheduled tasks cron style
-#gem 'crono', '1.1.2', git: 'https://github.com/plashchynski/crono'
+# used to run delayed_job in bg
 gem 'daemons'
 
 # Add I18n in js
@@ -118,10 +104,10 @@ gem 'exception_notification'
 gem 'cql-ruby', '0.9.1', :git => 'https://github.com/jrochkind/cql-ruby'
 gem 'chart-js-rails'
 
-gem 'iiif-presentation'#, :git => 'https://github.com/iiif-prezi/osullivan', branch: "development"
+gem 'iiif-presentation'
 
 ## Add translations for activerecord and co
-gem 'rails-i18n'#, github: 'svenfuchs/rails-i18n', branch: 'rails-4-x' # For 4.x
+gem 'rails-i18n'
 
 gem 'gruff'
 
@@ -136,9 +122,6 @@ gem 'parallel'
 
 gem 'rubyzip'
 
-# For the download action
-gem "recaptcha"
-
 # To render markdown
 gem 'redcarpet'
 # For parsing rism
@@ -151,7 +134,7 @@ gem "anchored"
 
 # Avoid TypeError: superclass mismatch for class Command
 # See https://github.com/erikhuda/thor/issues/721
-gem 'thor'#, '~> 0.20.3'
+gem 'thor'
 
 group :test do
   gem "rspec"
@@ -171,19 +154,20 @@ end
 # in local_sort()
 gem 'sort_alphabetical'
 
-#gem 'i18n-tasks', '~> 0.9.31'
-
 gem 'differ'
 
 gem 'rodf' # write ODS
 gem "roo" # read ODS
 
 gem 'tty-spinner'
+gem 'libxml-ruby'
+
+# For stand-alone installations
+gem 'passenger'
 
 gem 'listen'
 
 # Uncomment this if you want to test emails in development
 #gem 'mailcatcher'
-
 #gem "string-similarity"
 #gem "rest-client"

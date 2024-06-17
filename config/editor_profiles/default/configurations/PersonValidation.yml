@@ -2,5 +2,11 @@
 client:
   "100":
     tags:
-      a: mandatory
-
+      "a": mandatory
+  "670":
+    tags:
+      "w": required
+  "856":
+    tags:
+      "u": required
+      "z": required

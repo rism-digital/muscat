@@ -47,6 +47,9 @@ Rails.application.routes.draw do
   get 'admin/gnd_works/autocomplete_gnd_works_instrument' => 'admin/gnd_works#autocomplete_gnd_works_instrument'
   get 'admin/gnd_works/autocomplete_gnd_works_form' => 'admin/gnd_works#autocomplete_gnd_works_form'
 
+  # MarcXML endpoint
+  get '/data/:model/:id' => "data#show"
+  match '/data', :to => 'data#routing_error', via: :all
 
 
   # The priority is based upon order of creation: first created -> highest priority.

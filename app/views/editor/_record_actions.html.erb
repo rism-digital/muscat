@@ -36,24 +36,12 @@
 	    			</div>
 	    		</td>
         </tr>
-<!-- Record audit is unused and removed for now on
-	        <tr>
-	    		<td>
-	    			<div class="grid_cell_header">
-						<%=I18n.t(:record_audit)%>
-	                </div>
-	            </td>
-	    		<td colspan="3">
-	    			<div class="grid_cell">
-	    				<div style="vertical-align: bottom; background-color: transparent">
-                <select id="record_audit" width="100" disabled>
-                  <option value="full" <%="selected='true'"%> ><%=I18n.t(:full_level)%></option>
-							</select>
-	    				</div>
-	    			</div>
-	    		</td>
-        </tr>
--->
+
+	<!-- Record audit is used on a per-model basis -->
+	<% if @item.is_a? Work %>
+		<%= render "editor/wf_audit_work" %>
+	<% end %>
+
 			<tr>
 	    		<td>
 	    			<div class="grid_cell_header">

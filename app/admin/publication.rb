@@ -3,6 +3,7 @@ ActiveAdmin.register Publication do
   include MergeControllerActions
   
   collection_action :autocomplete_publication_short_name, :method => :get
+  collection_action :autocomplete_publication_only_short_name, :method => :get
 
   menu :parent => "indexes_menu", :label => proc {I18n.t(:menu_publications)}
 
@@ -30,6 +31,25 @@ ActiveAdmin.register Publication do
     end
     autocomplete :publication, [:short_name, :author, :title], :display_value => :autocomplete_label , :extra_data => [:author, :date, :title]
 
+    autocomplete :publication, :only_short_name, :record_field => :short_name, :string_boundary => true, :display_value => :label, :getter_function => :get_autocomplete_title_with_count
+
+    def get_autocomplete_title_with_count(token,  options = {})
+
+      sanit = ActiveRecord::Base.send(:sanitize_sql_like, token)
+
+      query = "SELECT `publications`.`id`, `publications`.`short_name`, `publications`.`author`, `publications`.`date`, `publications`.`title`,
+      COUNT(publications.id) as count \
+      FROM `publications` \
+      JOIN sources_to_publications AS stp on publications.id = stp.publication_id \
+      WHERE (publications.short_name REGEXP ('\\\\b#{sanit}.*\\\\b') \
+      or publications.author REGEXP ('\\\\b#{sanit}.*\\\\b') \
+      or publications.title REGEXP ('\\\\b#{sanit}.*\\\\b') ) \
+      and (publications.short_name != '') \
+      GROUP BY publications.id \
+      ORDER BY COUNT(publications.id) DESC LIMIT 20"
+      
+      return Publication.find_by_sql(query)
+    end
 
     def check_model_errors(object)
       return unless object.errors.any?
@@ -55,13 +75,13 @@ ActiveAdmin.register Publication do
       end
 
       @editor_profile = EditorConfiguration.get_show_layout @publication
-      @prev_item, @next_item, @prev_page, @next_page = Publication.near_items_as_ransack(params, @publication)
+      @prev_item, @next_item, @prev_page, @next_page, @nav_positions = Publication.near_items_as_ransack(params, @publication)
       
       @jobs = @publication.delayed_jobs
       
       respond_to do |format|
         format.html
-        format.xml { render :xml => @item.marc.to_xml(@item.updated_at, @item.versions) }
+        format.xml { render :xml => @item.marc.to_xml({ updated_at: @item.updated_at, versions: @item.versions }) }
       end
     end
 
@@ -81,7 +101,7 @@ ActiveAdmin.register Publication do
 
     def index
       @results, @hits = Publication.search_as_ransack(params)
-      @categories = Source.get_terms("240g_sm")
+      @categories = Publication.get_terms("240g_sm")
 
       @editor_profile = EditorConfiguration.get_default_layout Publication
 
@@ -105,6 +125,7 @@ ActiveAdmin.register Publication do
         
         new_marc = MarcPublication.new(base_item.marc.marc_source)
         new_marc.reset_to_new
+        new_marc.insert_duplicated_from("981", base_item.id.to_s)
         @publication.marc = new_marc
       else
         new_marc = MarcPublication.new(File.read(ConfigFilePath.get_marc_editor_profile_path("#{Rails.root}/config/marc/#{RISM::MARC}/publication/default.marc")))
@@ -249,19 +270,15 @@ ActiveAdmin.register Publication do
       end
     end
 
-    if !resource.get_items.empty?
-      panel I18n.t :filter_series_items do
-        search=Publication.solr_search do 
-          fulltext(params[:id], :fields=>['7600'])
-          paginate :page => params[:items_list_page], :per_page=>15
-          order_by(:date_order)
-        end
-        paginated_collection(search.results, param_name: 'items_list_page', download_links: false) do
-          table_for(collection, sortable: true) do
-            column :id do |p| link_to p.id, controller: :publications, action: :show, id: p.id end
-            column :author
-            column :title
-            column :date
+    active_admin_embedded_link_list(self, publication, Publication) do |context|
+      context.table_for(context.collection) do |cr|
+        column (I18n.t :filter_id), :id  
+        column (I18n.t :filter_title), :title
+        column "Author", :author
+        column "Date", :date
+        if !is_selection_mode?
+          context.column "" do |publication|
+            link_to "View", controller: :publications, action: :show, id: publication.id
           end
         end
       end

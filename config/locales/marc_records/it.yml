@@ -95,6 +95,7 @@ it:
     norwegian: Norvegese
     occitan: Occitano
     oirat: Oirato
+    ojibwa: Ojibwa
     old_church_slavonic: Slavo ecclesiastico antico
     persian: Persiano
     polish: Polacco
@@ -173,6 +174,7 @@ it:
     germany: Germania
     germany_bavaria: 'Germania: Baviera'
     germany_saxony: 'Germania: Sassonia'
+    ghana: Ghana
     greece: Grecia
     guatemala: Guatemala
     guinea: Guinea
@@ -188,9 +190,11 @@ it:
     israel: Israele
     italy: Italia
     italy_trentino_alto_adige: 'Italia: Trentino-Alto Adige'
+    jamaica: Giamaica
     japan: Giappone
     korea: Corea, Repubblica di
     latvia: Lettonia
+    liechtenstein: Principato del Liechtenstein
     lithuania: Lituania
     lebanon: Lebano
     luxembourg: Lussemburgo
@@ -221,6 +225,7 @@ it:
     slovenia: Slovenia
     south_africa: Sudafrica
     spain: Spagna
+    suriname: Repubblica del Suriname
     sweden: Svezia
     switzerland: Svizzera
     switzerland_vaud: 'Svizzera: Vaud'
@@ -229,6 +234,7 @@ it:
     tajikistan: Tagikistan
     trinidad_tobego: Trinidad e Tobago
     turkey: Turchia
+    uganda: Uganda
     uk: Regno Unito
     ukraine: Ucraina
     uruguay: Uruguay
@@ -355,6 +361,7 @@ it:
     collaborator: Collaboratore
     collective_catalog: Catalogo collettivo
     colophon: Colofone
+    contributing_project: Progetto contribuente
     common_clefs: Chiavi comuni
     compiler: Compilatore
     composer: Compositore
@@ -387,7 +394,7 @@ it:
     country_activity: Paese di attività
     country_code: Codice del Paese
     country_of_publication: Paese
-    county_province: Contea o provincia
+    county_province: Contea, provincia, stato
     creation_production_note: Nota sulle responsabilità di creazione/produzione
     cs_major: Do♯ maggiore
     cs_minor: Do♯ minore
@@ -400,6 +407,7 @@ it:
     date_time_last_transaction: Data e ora dell'ultima transazione
     date_type: Tipo di datazione
     dates: Date
+    dates_of_publication: Date della pubblicazione
     dedicatee: Dedicatario
     department: Dipartimento
     depositor: Depositante
@@ -426,6 +434,7 @@ it:
     ds_major: Re♯ maggiore
     ds_minor: Re♯ minore
     dubious: Dubbio
+    duplicated_from: Duplicato di
     e_major: Mi maggiore
     e_minor: Mi minore
     earlier_heading: Intestazione precedente
@@ -525,10 +534,11 @@ it:
     incipit: Incipit musicale
     incipit_number: N.o dell'incipit
     incipits: Incipit
+    includes_holdings_from: Comprende le copie possedute da
     index_terms: Descrittori
     information_found: Riferimento dell'informazione
     initial: Iniziali
-    initial_entry: Prima notizia
+    initial_entry: Prima voce in A/I
     initials: Iniziali
     insertions: Inserimenti
     inserts: Inserimenti
@@ -681,6 +691,7 @@ it:
     order_name: Nome dell'ordine religioso
     origin: Origine
     original_cataloging_agency: Agenzia catalografica originale
+    original_record: Scheda originaria
     other: Altro
     other_associated_place: Altro luogo associato
     other_designation: Altra designazione
@@ -713,7 +724,7 @@ it:
     person_name: Nome di persona
     personal_name: Nome di persona
     personal_names: Nomi di persona
-    photoreproductive_process: Cianografia
+    photoreproductive_process: Processo fotoriproduttivo (cianografia)
     physical_description: Descrizione fisica
     physical_description_fields: Campi per la descrizione fisica
     place: Luogo
@@ -742,7 +753,7 @@ it:
     production_personnel: Personale alla produzione
     profession_or_function: Professione o funzione
     provenance: Provenienza
-    provenance_notes: Nota di provenienza
+    provenance_notes: Nota sulla provenienza
     pseudonym: Pseudonimo
     public_note: Nota pubblica
     publisher: Editore
@@ -873,7 +884,7 @@ it:
     typography: Stampa tipografica
     uncategorized: Non categorizzato
     unknown: Sconosciuto
-    unparsed_fingerprint: Impronta non analizzata
+    unparsed_fingerprint: Impronta
     variant_ms_title: Varianti del titolo diplomatico
     variant_source_title: Varianti del titolo diplomatico
     variations: Variazioni
@@ -885,6 +896,7 @@ it:
     watermark_description: Filigrana
     woodwinds: Legni
     work: Opera
+    work_catalog_note: Nota sul catalogo delle opere
     work_number: Numero dell'opera
     work_tag: Tag per il Work
     work_tag_incipit_needs_revision: incipit-needs-revision
@@ -904,6 +916,15 @@ it:
     P60274: "Arrangiato come"
     P60194: "Inserto in"
     P60183: "Inserto"
+  relations_works:
+    P60250: "Opera derivata"
+    P60305: "Basata su"
+    P60216: "Estesa come"
+    P60294: "Versione estesa di"
+    P60274: "Arrangiata come"
+    P60242: "Arrangiamento di"
+    P60198: "Complementare a"
+    P60313: "Relazione indefinita"
   verovio:
     position: "Posizione"
     warning: "Attenzione"
@@ -973,13 +994,14 @@ it:
     ERR_063_LIGATURE_PITCH: Una legatura non può avere due note consecutive con la stessa altezza.
     ERR_064_LIGATURE_DURATION: La durata di una legatura non può essere inferiore a una semibreve.
     ERR_065_MREST_INVALID_MEASURE: Una battuta con una pausa per l'intera battuta non può includere altro.
+    ERR_066_EMPTY_CONTAINER: Un gruppetto o una travatura non possono essere vuoti.
   rism_online:
     manuscript: "Manoscritto"
     printed: "A stampa"
     composite: "Volume composito"
-    collection: "Collection"
-    item: "Item"
-    single_item: "Single item"
+    collection: "Collezione"
+    item: "Elemento"
+    single_item: "Singolo elemento"
     apply_filters: "Applica i filtri"
     error_loading_results: "Errore nel caricamento dei risultati"
     global_collection: "Collezione mondiale"

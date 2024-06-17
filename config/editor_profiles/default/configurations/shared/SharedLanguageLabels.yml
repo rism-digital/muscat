@@ -132,6 +132,8 @@ nor:
   label: languages.norwegian
 oci:
   label: languages.occitan
+oji:
+  label: languages.ojibwa
 per:
   label: languages.persian
 pol:
@@ -200,3 +202,5 @@ zho:
   label: languages.chinese
 zxx:
   label: records.no_linguistic_content
+XD-PE:
+  label: places.peru

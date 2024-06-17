@@ -95,6 +95,7 @@ en:
     norwegian: Norwegian
     occitan: Occitan
     oirat: Oirat
+    ojibwa: Ojibwa
     old_church_slavonic: Old Church Slavonic
     persian: Persian
     polish: Polish
@@ -173,6 +174,7 @@ en:
     germany: Germany
     germany_bavaria: 'Germany: Bavaria'
     germany_saxony: 'Germany: Saxony'
+    ghana: Ghana
     greece: Greece
     guatemala: Guatemala
     guinea: Guinea
@@ -188,9 +190,11 @@ en:
     israel: Israel
     italy: Italy
     italy_trentino_alto_adige: 'Italy: Trentino-Alto Adige'
+    jamaica: Jamaica
     japan: Japan
     korea: Korea, Republic of
     latvia: Latvia
+    liechtenstein: Liechtenstein
     lithuania: Lithuania
     lebanon: Lebanon
     luxembourg: Luxembourg
@@ -221,6 +225,7 @@ en:
     slovenia: Slovenia
     south_africa: South Africa
     spain: Spain
+    suriname: Suriname
     sweden: Sweden
     switzerland: Switzerland
     switzerland_vaud: 'Switzerland: Vaud'
@@ -229,6 +234,7 @@ en:
     tajikistan: Tajikistan
     trinidad_tobego: Trinidad and Tobago
     turkey: Turkey
+    uganda: Uganda
     uk: United Kingdom
     ukraine: Ukraine
     uruguay: Uruguay
@@ -328,7 +334,6 @@ en:
     c_plus_4: C+4
     c_plus_5: C+5
     catalog: Catalog
-    catalog_contribution: Catalog contribution
     catalog_opus_number: Catalog number/Opus number
     catalog_works: Catalog of works
     cataloging_agency: Cataloging agency
@@ -356,6 +361,7 @@ en:
     collaborator: Collaborator
     collective_catalog: Collective catalog
     colophon: Colophon
+    contributing_project: Contributing project
     common_clefs: Common clefs
     compiler: Compiler
     composer: Composer
@@ -388,7 +394,7 @@ en:
     country_activity: Country of activity
     country_code: Country code
     country_of_publication: Country of publication
-    county_province: County or province
+    county_province: County, province, state
     creation_production_note: Creation/production note
     cs_major: C♯ major
     cs_minor: C♯ minor
@@ -401,6 +407,7 @@ en:
     date_time_last_transaction: Date and time of last transaction
     date_type: Date type
     dates: Dates
+    dates_of_publication: Dates of publication
     dedicatee: Dedicatee
     department: Department
     depositor: Depositor
@@ -427,6 +434,7 @@ en:
     ds_major: D♯ major
     ds_minor: D♯ minor
     dubious: Dubious
+    duplicated_from: Duplicated from
     e_major: E major
     e_minor: E minor
     earlier_heading: Earlier heading
@@ -526,10 +534,11 @@ en:
     incipit: Incipit
     incipit_number: Incipit number
     incipits: Incipits
+    includes_holdings_from: Includes holdings from
     index_terms: Index terms
     information_found: Information found
     initial: Initial
-    initial_entry: Initial entry
+    initial_entry: Initial entry in A/I
     initials: Initials
     insertions: Insertions
     inserts: Inserts
@@ -685,6 +694,7 @@ en:
     order_name: Order Name
     origin: Origin
     original_cataloging_agency: Original cataloging agency
+    original_record: Original record
     other: Other
     other_associated_place: Other associated place
     other_designation: Other designation
@@ -717,7 +727,7 @@ en:
     person_name: Person name
     personal_name: Personal name
     personal_names: Personal names
-    photoreproductive_process: Photoreproductive process (bluprint)
+    photoreproductive_process: Photoreproductive process (blueprint)
     physical_description: Physical description
     physical_description_fields: Physical description, etc. fields
     place: Place
@@ -746,7 +756,7 @@ en:
     production_personnel: Production personnel
     profession_or_function: Profession or function
     provenance: Provenance
-    provenance_notes: Provenance notes
+    provenance_notes: Provenance note
     pseudonym: Pseudonym
     public_note: Public note
     publisher: Publisher
@@ -877,7 +887,7 @@ en:
     typography: Typography
     uncategorized: Uncategorized
     unknown: Unknown
-    unparsed_fingerprint: Unparsed fingerprint
+    unparsed_fingerprint: Fingerprint
     variant_ms_title: Variant title on source
     variant_source_title: Variant title on source
     variations: Variations
@@ -889,6 +899,7 @@ en:
     watermark_description: Watermark description
     woodwinds: Woodwinds
     work: Work
+    work_catalog_note: Work catalog note
     work_number: Work number
     work_tag: Work revision tag
     work_tag_incipit_needs_revision: incipit-needs-revision
@@ -908,6 +919,15 @@ en:
     P60274: "Arranged as"
     P60194: "Insert in"
     P60183: "Insert"
+  relations_works:
+    P60250: "Has derivative"
+    P60305: "Has source"
+    P60216: "Is expanded as"
+    P60294: "Is expanded version of"
+    P60274: "Is arranged as"
+    P60242: "Is arragement of"
+    P60198: "Is complemented by"
+    P60313: "Undefined"
   verovio:
     position: "Position"
     warning: "Warning"
@@ -977,6 +997,7 @@ en:
     ERR_063_LIGATURE_PITCH: A ligature cannot have two consecutive notes with the same pitch.
     ERR_064_LIGATURE_DURATION: The duration in a ligature cannot be shorter than a semibreve.
     ERR_065_MREST_INVALID_MEASURE: A measure with a measure rest cannot include anything else.
+    ERR_066_EMPTY_CONTAINER: A grace group or a beam cannot be empty.
   rism_online:
     manuscript: "Manuscript"
     printed: "Printed"

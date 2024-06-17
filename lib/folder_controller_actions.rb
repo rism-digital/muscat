@@ -237,7 +237,7 @@ module FolderControllerActions
         begin
           f = Folder.find(folder_id)
           if cannot?(:manage, f)
-            redirect_to resource_path(item_id), alert: "You are not authorized to remove items from #{f.name} #{f.id}"
+            redirect_to resource_path(item_id), alert: "You are not authorized to add items to #{f.name} #{f.id}"
           else
             f.add_items([item])
             f.reload

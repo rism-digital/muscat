@@ -329,6 +329,7 @@ ca:
   record_status: "Estat del registre"
   record_owner: "Propietari del registre"
   record_audit: "Origen del registre"
+  record_label: "Certesa de l'atribució"
   basic_level: "Registre bàsic"
   full_level: "Registre complet"
   #full_level: "Full record, material examined"
@@ -345,6 +346,10 @@ ca:
   validation_level_warning: "Hi ha advertiments. Els podeu ignorar tornant a desar-lo"
   muscat_reindexing: "Muscat està reindexant. Els resultats poden ser incomplets"
   work_catalogue: "Catàleg d'obres"
+  default_view: "Visualització estàndard"
+  marc21_view: "Visualització MARC21"
+  marcxml_view: "Visualització MARCXML"
+  authorization_tokens: "Auth tokens"
 
   jobs:
     not_set: "[Sense estat]"
@@ -374,6 +379,7 @@ ca:
   add_institution: "Vincula-hi una institució"
   add_source: "Vincula-hi una font"
   add_person: "Vincula-hi una persona"
+  add_holding: "Vincula-hi un exemplar"
   archive_unarchive: "Arxiva / Desarxiva"
   archive: "Arxiva"
   unarchive: "Desarxiva"
@@ -529,6 +535,7 @@ ca:
   filter_series_items: "Element de la sèrie"
   filter_siglum: "Sigla"
   filter_source: "Font"
+  filter_source_id: "Id de la font"
   filter_sources: "Fonts"
   filter_source_type: "Tipus de font"
   filter_source_content_type: "Tipus de contingut"
@@ -820,6 +827,7 @@ ca:
   marc_editor:
     delete_msg: "Eliminar"
     delete_field_confirm: "Esteu segur que voleu eliminar aquest camp?"
+    delete_group_confirm: "Esteu segur que voleu eliminar aquest grupo?"
 
   cookies:
     message: "La nostra web utilitza cookies per a facilitar la navegació. Navegant-hi, accepteu l'ús dels nostres cookies."
@@ -853,21 +861,3 @@ ca:
 
 ######################################################################################################
 # End of translation in all languages - make sure all the file have the same line number for this line
-
-
-######################################################################################################
-# Blacklights overriden translations - the list can vary from one language to another
-
-  blacklight:
-    application_name: 'Muscat'
-    header_links:
-      logout: 'Tanca la sessió'
-    search:
-      start_over: "Torna a l'inici"
-      facets:
-        title: "Limiteu la vostra cerca"
-    range_limit:
-      submit_limit: "Limita-la"
-  blacklight_advanced_search:
-    form:
-      start_over: "Torna a l'inici"

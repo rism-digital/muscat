@@ -6,24 +6,41 @@ sudo apt-get update
 sudo apt-get install mysql-server
 sudo apt-get install git gcc curl zlib1g-dev libxml2-dev imagemagick libmagickcore-6.q16-dev libmagickwand-6.q16-dev openjdk-11-jdk-headless make libsqlite3-dev g++ nodejs
 
+# For debian: openjdk-17-jre-headless
+
 # This is important! do NOT install the mysql client
 sudo apt remove libmysqlclient-dev
 sudo apt install libmariadbd-dev
 
+# How to go around a proxy...
+# On your local machine, connect to iself...
+ssh -N -D 54321 localhost
+
+# On the remote machine, forward the remote port to the local one...
+ssh -R9080:localhost:54321 remote-machine
+
+# Then in the remote machine...
+export http_proxy=socks5://localhost:9080
+export https_proxy=socks5://localhost:9080
+# For culr edit ~/.curlrc
+proxy = socks5://localhost:9080
+
+# From the muscat user
 gpg --keyserver keyserver.ubuntu.com --recv-keys 409B6B1796C275462A1703113804BB82D39DC0E3 7D2BAF1CF37B13E2069D6956105BD0E739499BDB
 \curl -sSL https://get.rvm.io | bash
 
 source ~/.rvm/scripts/rvm
+
+# For rails 5
 #rvm pkg install openssl
 #rvm install 2.7.5 --with-openssl-dir=$HOME/.rvm/usr
-
 #rvm use 2.7.5
 #rvm gemset create rails
 #rvm use 2.7.5@rails
 
-rvm install 3.0
+rvm install 3.2
 rvm gemset create rails7
-rvm use 3.0.6@rails7
+rvm use 3.2.2@rails7
 
 git clone https://github.com/rism-digital/muscat
 cd muscat
@@ -180,13 +197,8 @@ All the secret keys are now stored in the rails 5.2 credentials file, which is n
 
 This will automatically create credentials.yml.enc and the master key, along with a cookie secret key.  If you are not familiarised with this Rails 5.2 feature, this guide is very didactic: https://youtu.be/BHgvPPr2nLE.
 
-Default configuration for Muscat requires the user to check the recaptcha challenge in order to download bibliographic records.  So you will have to create a (free) Google Recaptcha account for your site (https://www.google.com/recaptcha/about/) in order to get the site_key and the secret_key.
-
 The user and password are needed for background search and export, and should be a muscat user with minimum guest access.  So, to use the other services on Muscat, such as history, add to this file:
 
- recaptcha:
-   site_key: 'xx'
-   secret_key: 'xx'
  export:
    user: "xx"
    password: "xx"
@@ -280,7 +292,6 @@ to the list of lib directories at the top. This will tell Solr to load the jar f
 By default Solr listens on port 8983 with a core named +muscat+. To change this edit the files
 
   config/sunspot.yml
-  config/blacklight.yml
 
 To change the core name or port
 
@@ -354,10 +365,10 @@ Install rvm following the instructions here: https://rvm.io/rvm/install. If you 
 
 Then proceed with the installation and add the needed ruby version (here 2.7.5)
 
-  rvm install 2.7.5
-  rvm gemset create rails
-  rvm use 2.7.5
-  rvm --default use 2.7.5@rails
+  rvm install 3.2.2
+  rvm gemset create rails7
+  rvm use 3.2.2
+  rvm --default use 3.2.2@rails7
 
 You can disable muscat from sudoers after this step.
 Make sure the gem form passenger is in the Gemfile:
@@ -377,7 +388,7 @@ Edit `/etc/systemd/system/muscat.service` for the application startup
   User=muscat
   Group=muscat
   WorkingDirectory=/INSTALLATION/DIR/muscat
-  ExecStart=/home/muscat/.rvm/bin/rvm 2.7.5@rails do bundle exec passenger start
+  ExecStart=/home/muscat/.rvm/bin/rvm 3.2.2@rails do bundle exec passenger start
 
   [Install]
   WantedBy=multi-user.target
@@ -515,10 +526,6 @@ It is also good to block access to Solr:
 
   sudo iptables -A INPUT -p tcp -s localhost --dport 8983 -j ACCEPT
   sudo iptables -A INPUT -p tcp --dport 8983 -j DROP
-
-Also make sure that if there is a proxy, it is configured in +config/initializers/recaptcha.rb+:
-
- config.proxy = 'http://myproxy.com.au:8080'
 
 === Crontab installation
 

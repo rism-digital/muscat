@@ -95,6 +95,7 @@ de:
     norwegian: Norwegisch
     occitan: Okzitanisch
     oirat: Oiratisch
+    ojibwa: Ojibwe
     old_church_slavonic: Altkirchenslawisch
     persian: Persisch
     polish: Polnisch
@@ -173,6 +174,7 @@ de:
     germany: Deutschland
     germany_bavaria: 'Deutschland: Bayern'
     germany_saxony: 'Deutschland: Sachsen'
+    ghana: Ghana
     greece: Griechenland
     guatemala: Guatemala
     guinea: Guinea
@@ -188,9 +190,11 @@ de:
     israel: Israel
     italy: Italien
     italy_trentino_alto_adige: 'Italien: Trentino-Alto Adige'
+    jamaica: Jamaika
     japan: Japan
     korea: Korea, Republik
     latvia: Lettland
+    liechtenstein: Liechtenstein
     lithuania: Litauen
     lebanon: Libanon
     luxembourg: Luxemburg
@@ -221,6 +225,7 @@ de:
     slovenia: Slowenien
     south_africa: Südafrika
     spain: Spanien
+    suriname: Suriname
     sweden: Schweden
     switzerland: Schweiz
     switzerland_vaud: 'Schweiz: Vaud'
@@ -229,6 +234,7 @@ de:
     tajikistan: Tadschikistan
     trinidad_tobego: Trinidad und Tobago
     turkey: Türkei
+    uganda: Uganda
     uk: Vereinigtes Königreich
     ukraine: Ukraine
     uruguay: Uruguay
@@ -355,6 +361,7 @@ de:
     collaborator: Mitverfasser
     collective_catalog: Sammelkatalog
     colophon: Kolophon
+    contributing_project: Beitrag zum Projekt
     common_clefs: Common clefs
     compiler: Kompilator
     composer: Komponist
@@ -387,7 +394,7 @@ de:
     country_activity: Wirkungsland
     country_code: Länder-Code
     country_of_publication: Land
-    county_province: Bezirk oder Staat
+    county_province: Landkreis, Provinz, Bundesland
     creation_production_note: Bemerkung zur Person / Körperschaft
     cs_major: Cis-Dur
     cs_minor: cis-Moll
@@ -400,6 +407,7 @@ de:
     date_time_last_transaction: Datum und Zeit der letzten Transaktion
     date_type: Datierungtypus
     dates: Datierungen
+    dates_of_publication: Veröffentlichungsdatum
     dedicatee: Widmungsträger
     department: Abteilung
     depositor: Depositor
@@ -426,6 +434,7 @@ de:
     ds_major: Dis-Dur
     ds_minor: dis-Moll
     dubious: Zweifelhaft
+    duplicated_from: Dupliziert von
     e_major: E-Dur
     e_minor: e-Moll
     earlier_heading: Frühere Überschrift
@@ -525,10 +534,11 @@ de:
     incipit: Musikincipit
     incipit_number: Incipitnummer
     incipits: Incipits
+    includes_holdings_from: Enthält Bestände aus
     index_terms: Deskriptoren
     information_found: Vorhandene Informationen
     initial: Initiale
-    initial_entry: Ersteintrag
+    initial_entry: Ersteintrag in A/I
     initials: Initiale
     insertions: Einlagen
     inserts: Einlagen
@@ -681,6 +691,7 @@ de:
     order_name: Ordensname
     origin: Herkunft
     original_cataloging_agency: Original-Katalogisierungsstelle
+    original_record: Originaleintrag
     other: Sonstige Funktion
     other_associated_place: Anderer zugehöriger Ort
     other_designation: Andere Bezeichnung
@@ -742,7 +753,7 @@ de:
     production_personnel: Produktionspersonal
     profession_or_function: Beruf oder Funktion
     provenance: Bestandsname
-    provenance_notes: Provenienzvermerke
+    provenance_notes: Provenienzvermerk
     pseudonym: Pseudonym
     public_note: Bemerkungen
     publisher: Verleger
@@ -873,7 +884,7 @@ de:
     typography: Typendruck
     uncategorized: Nicht kategorisiert
     unknown: Unbekannt
-    unparsed_fingerprint: Zusammenhängender Fingerprint
+    unparsed_fingerprint: Fingerprint
     variant_ms_title: Weiterer diplomatischer Titel
     variant_source_title: Weiterer diplomatischer Titel
     variations: Variationen
@@ -885,6 +896,7 @@ de:
     watermark_description: Wasserzeichen
     woodwinds: Holzblasinstrumente
     work: Werktitel
+    work_catalog_note: Bemerkung Werkverzeichnis
     work_number: Werknummer
     work_tag: Markierung der Werk-Revision
     work_tag_incipit_needs_revision: Incipit muss überarbeitet werden
@@ -904,6 +916,15 @@ de:
     P60274: "Bearbeitung als"
     P60194: "Einfügen in"
     P60183: "Einfügen"
+  relations_works:
+    P60250: "Has derivative"
+    P60305: "Has source"
+    P60216: "Is expanded as"
+    P60294: "Is expanded version of"
+    P60274: "Is arranged as"
+    P60242: "Is arragement of"
+    P60198: "Is complemented by"
+    P60313: "Undefined"
   verovio:
     position: "Standort"
     warning: "Warnung"
@@ -973,13 +994,14 @@ de:
     ERR_063_LIGATURE_PITCH: Eine Ligatur kann nicht zwei aufeinander folgende Noten mit derselben Tonhöhe haben.
     ERR_064_LIGATURE_DURATION: Die Dauer einer Ligatur kann nicht kürzer als eine Semibrevis sein.
     ERR_065_MREST_INVALID_MEASURE: Ein Takt Pause kann nichts anderes enthalten.
+    ERR_066_EMPTY_CONTAINER: Zwischen den Sonderzeichen für Gruppen von Vorschlagsnoten oder Balken müssen Noten stehen.
   rism_online:
     manuscript: "Handschrift"
     printed: "Gedruckt"
     composite: "Konvolut"
-    collection: "Collection"
-    item: "Item"
-    single_item: "Single item"
+    collection: "Sammlung"
+    item: "Eintrag"
+    single_item: "Einzelnes Element"
     apply_filters: "Filter anwenden"
     error_loading_results: "Fehler beim Laden der Ergebnisse"
     global_collection: "Globale Sammlung"

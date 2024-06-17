@@ -37,7 +37,7 @@ ActiveAdmin.register Person do
   controller do
 
     autocomplete :person, :full_name, :display_value => :autocomplete_label , :extra_data => [:life_dates]
-    autocomplete :person, "550a_sms", :solr => true
+    autocomplete :person, "550a_sms", :solr => true, :display_value => :label
 
     after_destroy :check_model_errors
     before_create do |item|
@@ -63,6 +63,7 @@ ActiveAdmin.register Person do
       @item = Person.find(params[:id])
       @show_history = true if params[:show_history]
       @editor_profile = EditorConfiguration.get_default_layout @item
+      @editor_validation = EditorValidation.get_default_validation(@item)
       @page_title = "#{I18n.t(:edit)} #{@editor_profile.name} [#{@item.id}]"
 
       if cannot?(:edit, @item)
@@ -86,13 +87,14 @@ ActiveAdmin.register Person do
         return
       end
       @editor_profile = EditorConfiguration.get_show_layout @person
-      @prev_item, @next_item, @prev_page, @next_page = Person.near_items_as_ransack(params, @person)
+      @editor_validation = EditorValidation.get_default_validation(@person)
+      @prev_item, @next_item, @prev_page, @next_page, @nav_positions = Person.near_items_as_ransack(params, @person)
 
       @jobs = @person.delayed_jobs
 
       respond_to do |format|
         format.html
-        format.xml { render :xml => @item.marc.to_xml(@item.updated_at, @item.versions) }
+        format.xml { render :xml => @item.marc.to_xml({ updated_at: @item.updated_at, versions: @item.versions }) }
       end
     end
 
@@ -171,14 +173,15 @@ ActiveAdmin.register Person do
   filter :updated_at, :label => proc {I18n.t(:updated_at)}, :as => :date_range
   filter :created_at, :label => proc{I18n.t(:created_at)}, as: :date_range
 
-  filter :wf_owner_with_integer, :label => proc {I18n.t(:filter_owner)}, as: :select,
-         collection: proc {
-           if current_user.has_any_role?(:editor, :admin)
-             User.all.collect {|c| [c.name, "wf_owner:#{c.id}"]}
-           else
-             [[current_user.name, "wf_owner:#{current_user.id}"]]
-           end
-         }
+  #filter :wf_owner_with_integer, :label => proc {I18n.t(:filter_owner)}, as: :select,
+  #       collection: proc {
+  #         if current_user.has_any_role?(:editor, :admin)
+  #           User.all.collect {|c| [c.name, "wf_owner:#{c.id}"]}
+  #         else
+  #           [[current_user.name, "wf_owner:#{current_user.id}"]]
+  #         end
+  #       }
+  filter :wf_owner_with_integer, :label => proc {I18n.t(:filter_owner)}, :as => :flexdatalist, data_path: proc{list_for_filter_admin_users_path()}
 
   # This filter passes the value to the with() function in seach
   # see config/initializers/ransack.rb

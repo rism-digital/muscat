@@ -12,7 +12,7 @@ ActiveAdmin.register WorkNode do
   config.clear_action_items!
   config.per_page = [10, 30, 50, 100]
   
-  collection_action :autocomplete_work_title, :method => :get
+  collection_action :autocomplete_work_node_title, :method => :get
 
   collection_action :gnd, method: :get do
     respond_to do |format|
@@ -71,13 +71,13 @@ ActiveAdmin.register WorkNode do
         return
       end
       @editor_profile = EditorConfiguration.get_show_layout @work_node
-      @prev_item, @next_item, @prev_page, @next_page = WorkNode.near_items_as_ransack(params, @work_node)
+      @prev_item, @next_item, @prev_page, @next_page, @nav_positions = WorkNode.near_items_as_ransack(params, @work_node)
       
       @jobs = @work_node.delayed_jobs
       
       respond_to do |format|
         format.html
-        format.xml { render :xml => @item.marc.to_xml(@item.updated_at, @item.versions) }
+        format.xml { render :xml => @item.marc.to_xml({ updated_at: @item.updated_at, versions: @item.versions }) }
       end
     end
     

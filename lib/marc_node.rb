@@ -440,8 +440,12 @@ class MarcNode
     return out
   end
 
-  # Export to MarcXML
-  def to_xml
+  # Export to MarcXML - return a REXML::Element
+  def to_xml_element(options = {})
+    # deprecated ids are missing the model prefix and are ambiguous
+    deprecated_ids = options.has_key?(:deprecated_ids) ? !(options[:deprecated_ids] == "false") : true
+    element = XML::Node.new('leader')
+
     # skip the $_ (db_id)
     #return "" if tag == "_"
     out = String.new
@@ -449,12 +453,23 @@ class MarcNode
     if @tag =~ /^[\d]{3,3}$/
       if @tag.to_i == 0
         #control tag
-        out += "\t\t<marc:leader>#{content.gsub(/#/," ")}</marc:leader>\n"
+        element.name = "leader"
+        element << content.gsub(/#/," ")
+      elsif @tag.to_i == 1
+        element.name = "controlfield"
+        # id tag - prefix approriately except if deprecated ids are requested
+        element["tag"] = @tag
+        element << ((deprecated_ids) ? content : "#{@model.to_s.pluralize.downcase}/#{content}")
       elsif @tag.to_i < 10
         #control tag
-        out += "\t\t<marc:controlfield tag=\"#{@tag}\">#{content}</marc:controlfield>\n"
+        element.name = "controlfield"
+        # id tag - prefix approriately # problem: we are missing the _ when multiple words
+        element["tag"] = @tag
+        element << content
       else
         #data tag
+        element.name = "datafield"
+        element["tag"] = @tag
         ind0 = " "
         ind1 = " "
         if indicator
@@ -463,17 +478,43 @@ class MarcNode
         end
         ind0 = " " if !ind0
         ind1 = " " if !ind1
-    		out += "\t\t<marc:datafield tag=\"#{@tag}\" ind1=\"#{ind0.gsub(/[#\\]/," ")}\" ind2=\"#{ind1.gsub(/[#\\]/," ")}\">\n"
-        for_every_child_sorted { |child| out += child.to_xml }
-    		out += "\t\t</marc:datafield>\n"
+        element["ind1"] = ind0.gsub(/[#\\]/," ")
+        element["ind2"] = ind1.gsub(/[#\\]/," ")
+        for_every_child_sorted { |child| element << child.to_xml_element(options) }
       end
     else
       #subfield
-      cont_sanit = ERB::Util.html_escape(content)
-      out += "\t\t\t<marc:subfield code=\"#{@tag}\">#{cont_sanit}</marc:subfield>\n"
+      element.name = "subfield"
+      element["code"] = @tag
+      cont_sanit = content.to_s
+      # prefix ids appropriately except if deprecated ids are requested
+      puts "Warning tag #{@parent.tag} is not in marc configuration".red if !@marc_configuration.has_tag?(@parent.tag)
+
+      # By default, add just the id
+      link = cont_sanit
+
+      # Are we adding the model in the id?
+      if !deprecated_ids
+        # 774 is managed separately and need special treatment
+        if @parent.tag == "774" && @tag == "w"
+          code = @parent.fetch_first_by_tag("4")
+          if code && code.content
+            link = "#{code.content.pluralize}/#{cont_sanit}"
+          else
+            link = "sources/#{cont_sanit}"
+          end
+          
+        # All the other ones are "automatic"
+        elsif @marc_configuration.has_tag?(@parent.tag) && @tag == @marc_configuration.get_master(@parent.tag) && @foreign_object
+          link = "#{@foreign_object.class.to_s.pluralize.underscore.downcase}/#{cont_sanit}"
+        end
+      end
+
+      element << link
+
     end
 
-    return out
+    return element
   end
   
   # Export to JSON

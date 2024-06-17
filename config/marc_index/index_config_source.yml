@@ -79,6 +79,7 @@ fields:
       :store: true
       :type: string
   "599a":
+      :holding_record: true
   "651a":
       :holding_record: true
   "650a_filter":

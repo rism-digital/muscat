@@ -22,6 +22,7 @@ end
 
 require 'patches/active_admin/inputs/filters/record_type_input.rb'
 require 'patches/active_admin/inputs/filters/lib_siglum_input.rb'
+require 'patches/active_admin/inputs/filters/flexdatalist_input.rb'
 
 ActiveAdmin.setup do |config|
 
@@ -211,6 +212,7 @@ ActiveAdmin.setup do |config|
 
   config.register_stylesheet 'muscat-print.css', :media => :print
   config.register_stylesheet 'diva.min.css'
+  config.register_stylesheet 'jquery.flexdatalist.css'
 
   # == CSV options
   #
@@ -265,7 +267,7 @@ ActiveAdmin.setup do |config|
     
     admin.build_menu :utility_navigation do |menu|
       admin.add_current_user_to_menu menu
-      admin.add_logout_button_to_menu menu
+      admin.add_logout_button_to_menu menu, 20, {"data-logout-link": "true"}
     end
     
   end

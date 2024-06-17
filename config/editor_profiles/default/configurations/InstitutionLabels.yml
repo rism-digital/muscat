@@ -19,7 +19,7 @@
     '1':
       label: records.real_world_object_uri
     '2':
-      label: records.authority_agency
+      label: records.source_number_code
     '6':
       label: records.linkage
     '8':
@@ -84,7 +84,7 @@
     c:
       label: records.other_designation
     "2":
-      label: records.source
+      label: records.source_of_term
   label: records.type_institution
 '370':
   fields:
@@ -147,7 +147,7 @@
   fields:
     a:
       label: records.place
-  label: records.places
+  label: records.related_place
 '580':
   fields:
     x:
@@ -182,24 +182,24 @@
 '700':
   fields:
     a:
-      label: records.person
+      label: records.name
     d:
       label: records.life_dates
     '4':
       label: records.function
-  label: records.person
+  label: records.related_personal_name
 '710':
   fields:
     a:
-      label: records.related_institution
+      label: records.institution
   label: records.related_institution
 '856':
   fields:
     u:
-      label: records.online_finding_aids
+      label: records.external_resource_url
     z:
       label: records.note_external_resource
-  label: records.online_finding_aids
+  label: records.external_resource
 Archive:
   label: records.archive
 Bookseller:
@@ -228,182 +228,6 @@ Publisher:
   label: records.publisher
 Research institute:
   label: records.research_institute
-XA-AT:
-  label: places.austria
-XA-AT-2:
-  label: places.austria_carinthia
-XA-AT-3:
-  label: places.austria_lower_austria
-XA-AT-4:
-  label: places.austria_upper_austria
-XA-AT-5:
-  label: places.austria_salzburg
-XA-AT-6:
-  label: places.austria_styria
-XA-AT-7:
-  label: places.austria_tyrol
-XA-AT-9:
-  label: places.austria_vienna
-XA-BE:
-  label: places.belgium
-XA-BG:
-  label: places.bulgaria
-XA-BY:
-  label: places.belarus
-XA-CH:
-  label: places.switzerland
-XA-CH-VD:
-  label: places.switzerland_vaud
-XA-CZ:
-  label: places.czech_republic
-XA-DE:
-  label: places.germany
-XA-DE-BY:
-  label: places.germany_bavaria
-XA-DE-SN:
-  label: places.germany_saxony
-XA-DK:
-  label: places.denmark
-XA-EE:
-  label: places.estonia
-XA-ES:
-  label: places.spain
-XA-FI:
-  label: places.finland
-XA-FR:
-  label: places.france
-XA-GB:
-  label: places.uk
-XA-GB-NIR:
-  label: places.northern_ireland
-XA-GR:
-  label: places.greece
-XA-HR:
-  label: places.croatia
-XA-HU:
-  label: places.hungary
-XA-IE:
-  label: places.ireland
-XA-IS:
-  label: places.iceland
-XA-IT:
-  label: places.italy
-XA-IT-32:
-  label: places.italy_trentino_alto_adige
-XA-LT:
-  label: places.lithuania
-XA-LU:
-  label: places.luxembourg
-XA-LV:
-  label: places.latvia
-XA-MC:
-  label: places.monaco
-XA-ME:
-  label: places.montenegro
-XA-MT:
-  label: places.malta
-XA-NL:
-  label: places.netherlands
-XA-NO:
-  label: places.norway
-XA-PL:
-  label: places.poland
-XA-PT:
-  label: places.portugal
-XA-RO:
-  label: places.romania
-XA-RS:
-  label: places.serbia
-XA-RU:
-  label: places.russian_federation
-XA-SE:
-  label: places.sweden
-XA-SI:
-  label: places.slovenia
-XA-SK:
-  label: places.slovakia
-XA-UA:
-  label: places.ukraine
-XA-VA:
-  label: places.holy_see
-XB-AM:
-  label: places.armenia
-XB-CN:
-  label: places.china
-XB-HK:
-  label: places.hong_kong
-XB-ID:
-  label: places.indonesia
-XB-IL:
-  label: places.israel
-XB-IN:
-  label: places.india
-XB-IR:
-  label: places.iran
-XB-JP:
-  label: places.japan
-XB-KH:
-  label: places.cambodia
-XB-KR:
-  label: places.korea
-XB-PH:
-  label: places.philippines
-XB-SA:
-  label: places.saudi_arabia
-XB-SY:
-  label: places.syrian_arab_republic
-XB-TR:
-  label: places.turkey
-XB-TW:
-  label: places.taiwan
-XB-VN:
-  label: places.vietnam
-XC-BJ:
-  label: places.benin
-XC-DZ:
-  label: places.algeria
-XC-EG:
-  label: places.egypt
-XC-ZA:
-  label: places.south_africa
-XD-AR:
-  label: places.argentina
-XD-BR:
-  label: places.brazil
-XD-CA:
-  label: places.canada
-XD-CL:
-  label: places.chile
-XD-CO:
-  label: places.colombia
-XD-CU:
-  label: places.cuba
-XD-EC:
-  label: places.ecuador
-XD-GT:
-  label: places.guatemala
-XD-HN:
-  label: places.honduras
-XD-MX:
-  label: places.mexico
-XD-PR:
-  label: places.puerto_rico
-XD-PY:
-  label: places.paraguay
-XD-TT:
-  label: places.trinidad_tobego
-XD-US:
-  label: places.usa
-XD-UY:
-  label: places.uruguay
-XD-VE:
-  label: places.venezuela
-XE-AU:
-  label: places.australia
-XE-NZ:
-  label: places.new_zealand
-XE-PG:
-  label: places.papua_new_guinea
 administration:
   label: records.administration
 arr:

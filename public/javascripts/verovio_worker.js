@@ -3,7 +3,7 @@
  * It uses the Webassembly (WASM) version
  */
 
- const verovioServer = 'https://www.verovio.org/javascript/3.15.0';
+ const verovioServer = 'https://www.verovio.org/javascript/4.1.0';
 
  /////////////////////////////
  // WASM
@@ -13,7 +13,6 @@
 
  self.verovio.module.onRuntimeInitialized = function() {
      self.vrvToolkit = new verovio.toolkit();
-     console.log(self.vrvToolkit);
      console.log(`Verovio (WASM) ${self.vrvToolkit.getVersion()}`); // works!
      self.postMessage(["loaded", false, {}]);
  }

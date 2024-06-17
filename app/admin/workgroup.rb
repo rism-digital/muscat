@@ -29,7 +29,6 @@ ActiveAdmin.register Workgroup do
     
     def show
       @workgroup = Workgroup.find(params[:id])
-      #@prev_item, @next_item, @prev_page, @next_page = Workgroup.near_items_as_ransack(params, @workgroup)
     end
     
     def index

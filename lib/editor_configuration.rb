@@ -70,6 +70,7 @@ class EditorConfiguration
     @squeezed_layout_config = squeeze(conf[:layout])
 
     superimpose_shared_file("SharedLanguageLabels.yml")
+    superimpose_shared_file("SharedISO3166Codes.yml")
     superimpose_shared_file("SharedContentLabels.yml")
   end
   
@@ -125,6 +126,7 @@ class EditorConfiguration
         label = I18n.t(labels_config[id][:fields][sub_id][:label], :locale => :en)  + " [translation missing]"
       end
 
+      label = "#{label} ($#{sub_id})" if edit
       return label
     end
     # if nothing found

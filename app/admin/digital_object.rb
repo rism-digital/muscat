@@ -126,8 +126,8 @@ ActiveAdmin.register DigitalObject do
         dol = DigitalObjectLink.new(object_link_type: params[:object_model], object_link_id: params[:object_id],
                                     user: current_user, digital_object_id: params[:id])
         dol.save!
-    
-        redirect_to resource_path(params[:id]), notice: "Item added successfully, #{params[:object_model]}: #{params[:object_id]}"
+        flash[:notice] = "Item added successfully, #{params[:object_model]}: #{params[:object_id]}"
+        redirect_to resource_path(params[:id])
       #rescue
       #  redirect_to resource_path(params[:id]), error: "Could not add, #{params[:object_model]}: #{params[:object_id]}"
       #end
@@ -142,16 +142,20 @@ ActiveAdmin.register DigitalObject do
     begin
       dol = DigitalObjectLink.find(params[:digital_object_link_id])
     rescue
-      redirect_to resource_path(params[:id]), error: "Could not find Digital Object Link #{params[:digital_object_link_id]}"
+      flash[:error] = "Could not find Digital Object Link #{params[:digital_object_link_id]}"
+      redirect_to resource_path(params[:id])
+      return
     end
     
     if can?(:destroy, dol)
       begin
         dol.delete
       rescue
-        redirect_to resource_path(params[:id]), error: "Could not delete link #{params[:digital_object_link_id]}"
+        flash[:error] = "Could not delete link #{params[:digital_object_link_id]}"
+        redirect_to resource_path(params[:id])
       end
-      redirect_to resource_path(params[:id]), notice: "Link deleted successfully"
+      flash[:notice] = "Link deleted successfully"
+      redirect_to resource_path(params[:id])
     else
       flash[:error] = "Operation not allowed"
       redirect_to collection_path
@@ -210,7 +214,9 @@ ActiveAdmin.register DigitalObject do
             end	
             column "ID" do |dol|
               if dol.object_link_id
-                link_to dol.object_link_id, controller: dol.object_link_type.pluralize.underscore.downcase.to_sym, action: :show, id: dol.object_link_id
+                # Holdings have no "show" page so the DOs are shown in the "edit" page
+                action = dol.object_link_type == "Holding" ? :edit : :show
+                link_to dol.object_link_id, controller: dol.object_link_type.pluralize.underscore.downcase.to_sym, action: action, id: dol.object_link_id
               else
                 "Object unattached"
               end

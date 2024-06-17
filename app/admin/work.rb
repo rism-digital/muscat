@@ -10,7 +10,7 @@ ActiveAdmin.register Work do
   
   # Remove all action items
   config.clear_action_items!
-  config.per_page = [10, 30, 50, 100]
+  config.per_page = [10, 30, 50, 100, 1000]
   
   collection_action :autocomplete_work_title, :method => :get
 
@@ -71,20 +71,20 @@ ActiveAdmin.register Work do
         return
       end
       @editor_profile = EditorConfiguration.get_show_layout @work
-      @prev_item, @next_item, @prev_page, @next_page = Work.near_items_as_ransack(params, @work)
+      @prev_item, @next_item, @prev_page, @next_page, @nav_positions = Work.near_items_as_ransack(params, @work)
       
       @jobs = @work.delayed_jobs
       
       respond_to do |format|
         format.html
-        format.xml { render :xml => @item.marc.to_xml(@item.updated_at, @item.versions) }
+        format.xml { render :xml => @item.marc.to_xml({ updated_at: @item.updated_at, versions: @item.versions }) }
       end
     end
     
     def index
       # Get the terms for 0242_filter, the "link type"
       @link_types = Source.get_terms("0242_filter_sm")
-      @catalogues = Work.get_terms("catalogue_name_order_sms")
+      @catalogues = Work.get_terms("690a_sm") #catalogue_name_order_sms
       @work_tags = Source.get_terms("699a_sm")
 
       @editor_profile = EditorConfiguration.get_default_layout Work
@@ -111,6 +111,7 @@ ActiveAdmin.register Work do
         new_marc = MarcWork.new(base_item.marc.marc_source)
         # Reset the basic fields to default values
         new_marc.reset_to_new
+        new_marc.insert_duplicated_from("981", base_item.id.to_s)
         # copy the record type
         @work.marc = new_marc
       else         
@@ -142,6 +143,24 @@ ActiveAdmin.register Work do
     redirect_to resource_path(params[:id]), notice: "Reindex Job started #{job.id}"
   end
   
+#
+
+    # This action adds to an existing folder, from the menu
+    batch_action :change_owner, 
+    if: proc{ can? :update, Work },
+    form: -> {
+      {user: User.filter_by_work_roles}
+      #User.sort_all_by_last_name.map{|u| [u.name, u.id] if [u.name, u.id] if (u.has_role?(:admin) || u.has_role?(:editor) || u.has_role?(:work_editor))}.compact}
+    } do |ids, inputs|
+      id = inputs[:user].to_s
+      user = User.find(id)
+      Work.find(ids).each do |w|
+        w.wf_owner = id
+        w.save
+      end
+      redirect_to collection_path, alert: "User was changed to #{user.name}."
+    end
+
   ###########
   ## Index ##
   ###########
@@ -158,16 +177,50 @@ ActiveAdmin.register Work do
   filter :id_with_integer, :label => proc {I18n.t(:is_in_folder)}, as: :select, 
          collection: proc{Folder.where(folder_type: "Work").collect {|c| [c.name, "folder_id:#{c.id}"]}}
   
-  filter :"catalogue_name_order_with_integer", :label => "Catalogue", as: :select, 
-  collection: proc{@catalogues.sort.collect {|k| [k.camelize, "catalogue_name_order:#{k}"]}}
+         #catalogue_name_order_with_integer
+  filter :"690a_with_integer", :label => "Catalogue", as: :select, 
+  collection: proc{@catalogues.sort.collect {|k| [k.camelize, "690a:#{k}"]}} #catalogue_name_order
 
   filter :"699a_with_integer", :label => proc{I18n.t(:"records.work_tag")}, as: :select, 
   collection: proc{@work_tags.sort.collect {|k| [@editor_profile.get_label(k), "699a:#{k}"]}}
+
+  filter :incipit_with_integer, as: :select, :label => "Has incipit",
+  collection: proc{[["True", "has_music_incipit:true"], ["False", "has_music_incipit:false"]]}
+
+  filter :updated_at, :label => proc{I18n.t(:updated_at)}, as: :date_range
+  filter :created_at, :label => proc{I18n.t(:created_at)}, as: :date_range
+
+  filter :wf_stage_with_integer, :label => proc {I18n.t(:filter_wf_stage)}, as: :select, 
+  collection: proc{[:inprogress, :published, :deleted].collect {|v| [I18n.t("wf_stage." + v.to_s), "wf_stage:#{v}"]}}
+  
+  filter :wf_audit_with_integer, :label => proc {I18n.t(:"general.validity")}, as: :select, 
+  collection: proc{[:normal, :obsolete, :doubtful, :fragment].collect {|v| [v.to_s.capitalize, "wf_audit:#{v}"]}}
+
+  # and for the wf_owner
+  #filter :wf_owner_with_integer, :label => proc {I18n.t(:filter_owner)}, as: :select, 
+  #       collection: proc {
+  #         if current_user.has_any_role?(:editor, :admin)
+  #           User.sort_all_by_last_name.map{|u| [u.name, "wf_owner:#{u.id}"]}
+  #         else
+  #           [[current_user.name, "wf_owner:#{current_user.id}"]]
+  #         end
+  #       }
+  filter :wf_owner_with_integer, :label => proc {I18n.t(:filter_owner)}, :as => :flexdatalist, data_path: proc{list_for_filter_admin_users_path()}
 
   index :download_links => false do
     selectable_column if !is_selection_mode?
     column (I18n.t :filter_wf_stage) {|work| status_tag(work.wf_stage,
       label: I18n.t('status_codes.' + (work.wf_stage != nil ? work.wf_stage : ""), locale: :en))} 
+
+    column (I18n.t :"general.validity") do |work| 
+      if work.wf_audit != nil && !work.wf_audit.empty? && work.wf_audit != "normal"
+        label = I18n.t('work_label_codes.' + (work.wf_audit != nil ? work.wf_audit : ""), locale: :en)
+        status_tag(work.wf_audit, label: label)
+      else
+        ""
+      end
+    end
+
     column ("Links") {|work| status_tag(:work_links, 
       label: active_admin_work_status_tag_label(work.link_status) , class: active_admin_work_status_tag_class(work.link_status) )}
     column (I18n.t :filter_id), :id  

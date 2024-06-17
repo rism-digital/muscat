@@ -3,7 +3,6 @@
 #
 # === Fields
 # * <tt>title</tt> - the standardized title
-# * <tt>title_d</tt> - downcase and stripped title
 # * <tt>notes</tt>
 # * <tt>src_count</tt> - keeps track of the Source models tied to this element
 #
@@ -15,12 +14,20 @@ class StandardTitle < ApplicationRecord
   include AuthorityMerge
   include CommentsCleanup
 
-  has_and_belongs_to_many(:referring_sources, class_name: "Source", join_table: "sources_to_standard_titles")
-  has_and_belongs_to_many(:referring_works, class_name: "Work", join_table: "works_to_standard_titles")
+  #has_and_belongs_to_many(:referring_sources, class_name: "Source", join_table: "sources_to_standard_titles")
+  has_many :source_standard_title_relations, class_name: "SourceStandardTitleRelation"
+  has_many :referring_sources, through: :source_standard_title_relations, source: :source
+
+  #has_and_belongs_to_many(:referring_works, class_name: "Work", join_table: "works_to_standard_titles")
+  has_many :work_standard_title_relations, class_name: "WorkStandardTitleRelation"
+  has_many :referring_works, through: :work_standard_title_relations, source: :work
+
+  has_and_belongs_to_many(:referring_work_nodes, class_name: "WorkNode", join_table: "work_nodes_to_standard_titles")
+
   has_many :folder_items, as: :item, dependent: :destroy
   has_many :delayed_jobs, -> { where parent_type: "StandardTitle" }, class_name: 'Delayed::Backend::ActiveRecord::Job', foreign_key: "parent_id"
   belongs_to :user, :foreign_key => "wf_owner"
-    
+  
   validates_presence_of :title
   
   #include NewIds
@@ -57,7 +64,6 @@ class StandardTitle < ApplicationRecord
       title
     end
     text :title
-    text :title_d
     
     boolean :latin_order do
       latin
@@ -123,6 +129,13 @@ class StandardTitle < ApplicationRecord
 	 
   def name
     return title
+  end
+
+  # This function has to be implemented to use
+  # the getter_function autocomplete
+  # It receives a row of results from the SQL query
+  def getter_function_autocomplete_label(query_row)    
+    "#{title} (#{query_row[:count]})"
   end
 
   ransacker :"is_text", proc{ |v| } do |parent| parent.table[:id] end

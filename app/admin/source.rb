@@ -1,7 +1,6 @@
 ActiveAdmin.register Source do
   
   collection_action :autocomplete_source_id, :method => :get
-  collection_action :autocomplete_source_740_autocomplete_sms, :method => :get
   collection_action :autocomplete_source_594b_sms, :method => :get
   collection_action :autocomplete_source_031t_filter_sms, :method => :get
 
@@ -32,9 +31,8 @@ ActiveAdmin.register Source do
         end
     end
     autocomplete :source, :id, {:display_value => :autocomplete_label , :extra_data => [:std_title, :composer], :exact_match => true, :solr => false}
-    autocomplete :source, "740_autocomplete_sms", :solr => true
-    autocomplete :source, "594b_sms", :solr => true
-    autocomplete :source, "031t_filter_sms", :solr => true
+    autocomplete :source, "594b_sms", :solr => true, :display_value => :label
+    autocomplete :source, "031t_filter_sms", :solr => true, :display_value => :label
 
     def check_model_errors(object)
       return unless object.errors.any?
@@ -72,7 +70,7 @@ ActiveAdmin.register Source do
       end
       
       @editor_profile = EditorConfiguration.get_show_layout @item
-      @prev_item, @next_item, @prev_page, @next_page = Source.near_items_as_ransack(params, @item)
+      @prev_item, @next_item, @prev_page, @next_page, @nav_positions = Source.near_items_as_ransack(params, @item)
       
       if @item.get_record_type == :edition || @item.get_record_type == :libretto_edition || @item.get_record_type == :theoretica_edition
         if @item.holdings.empty?
@@ -82,7 +80,7 @@ ActiveAdmin.register Source do
 
       respond_to do |format|
         format.html
-        format.xml { render :xml => @item.marc.to_xml(@item.updated_at, @item.versions) }
+        format.xml { render :xml => @item.marc.to_xml({ updated_at: @item.updated_at, versions: @item.versions}) }
       end
     end
 
@@ -164,6 +162,8 @@ ActiveAdmin.register Source do
         new_marc = MarcSource.new(base_item.marc.marc_source, base_item.record_type)
         # Reset the basic fields to default values
         new_marc.reset_to_new
+        new_marc.insert_duplicated_from("981", base_item.id.to_s)
+
         # copy the record type
         @source.marc = new_marc
         @source.record_type = base_item.record_type
@@ -269,10 +269,12 @@ ActiveAdmin.register Source do
   filter :title_contains, :label => proc{I18n.t(:title_contains)}, :as => :string
   filter :std_title_contains, :label => proc{I18n.t(:std_title_contains)}, :as => :string
   filter :composer_contains, :label => proc{I18n.t(:composer_contains)}, :as => :string
+
+  filter :"source_rism_ids_contains", :label => proc{I18n.t(:filter_id)}, :as => :string
   
   filter :"852a_facet_contains", :label => proc{I18n.t(:library_sigla_contains)}, :as => :string, if: proc { !is_selection_mode? }
   # see See lib/active_admin_record_type_filter.rb
-  # The same as above, but when the lib siglum is forced and cannot be changes
+  # The same as above, but when the lib siglum is forced and cannot be changed
   filter :lib_siglum_with_integer,
     if: proc { is_selection_mode? == true && params.include?(:q) && params[:q].include?(:lib_siglum_with_integer)}, :as => :lib_siglum
   
@@ -288,15 +290,18 @@ ActiveAdmin.register Source do
   # Use it to filter sources by folder
   filter :id_with_integer, :label => proc {I18n.t(:is_in_folder)}, as: :select, 
          collection: proc{Folder.for_type("Source").collect {|c| [c.name, "folder_id:#{c.id}"]}}
+         
   # and for the wf_owner
-  filter :wf_owner_with_integer, :label => proc {I18n.t(:filter_owner)}, as: :select, 
-         collection: proc {
-           if current_user.has_any_role?(:editor, :admin)
-             User.sort_all_by_last_name.map{|u| [u.name, "wf_owner:#{u.id}"]}
-           else
-             [[current_user.name, "wf_owner:#{current_user.id}"]]
-           end
-         }
+  #filter :wf_owner_with_integer, :label => proc {I18n.t(:filter_owner)}, as: :select, 
+  #       collection: proc {
+  #         if current_user.has_any_role?(:editor, :admin)
+  #           User.all.map{|u| [u.name, "wf_owner:#{u.id}"]}.sort
+  #         else
+  #           [[current_user.name, "wf_owner:#{current_user.id}"]]
+  #         end
+  #       }
+
+  filter :wf_owner_with_integer, :label => proc {I18n.t(:filter_owner)}, :as => :flexdatalist, data_path: proc{list_for_filter_admin_users_path()}
 
   filter :"593a_filter_with_integer", :label => proc{I18n.t(:filter_source_type)}, as: :select, 
   collection: proc{@source_types.sort.collect {|k| [@editor_profile.get_label(k.camelize), "593a_filter:#{k}"]}}
@@ -305,7 +310,7 @@ ActiveAdmin.register Source do
   collection: proc{@source_types_b.sort.collect {|k| [@editor_profile.get_label(k.camelize), "593b_filter:#{k}"]}}
 
   filter :record_type_select_with_integer, as: :select, 
-  collection: proc{MarcSource::RECORD_TYPE_ORDER.collect {|k| [I18n.t("record_types." + k.to_s), "record_type:#{MarcSource::RECORD_TYPES[k]}"]}},
+  collection: proc{MarcSource::RECORD_TYPE_ORDER.collect {|k| ["[#{I18n.t('record_types_codes.' + MarcSource::RECORD_TYPES[k].to_s,  locale: :en)}] ".to_s + I18n.t("record_types." + k.to_s).to_s, "record_type:#{MarcSource::RECORD_TYPES[k]}"]}},
 	if: proc { !is_selection_mode? }, :label => proc {I18n.t(:filter_record_type)}
 
   # See lib/active_admin_record_type_filter.rb

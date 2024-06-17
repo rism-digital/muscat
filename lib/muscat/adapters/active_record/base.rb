@@ -82,7 +82,7 @@ module Muscat
             next_item = results[position + 1]
           end
 
-          return prev_item, next_item, prev_page, next_page
+          return prev_item, next_item, prev_page, next_page, {position: position + 1, total: results.total_entries}
         end
 
         private

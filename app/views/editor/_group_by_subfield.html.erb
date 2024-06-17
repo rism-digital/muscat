@@ -2,17 +2,21 @@
 <%- subfield_group_values << "NEW" if subfield_group_values.empty? %>
 <dl class="sortable tag_group_container toplevel_group_dl" data-subfield="<%=subfield%>">
 
-<%- subfield_group_values.each do |subfield_group| %>
+<%- subfield_group_values.each_with_index do |subfield_group, index| %>
 
 	<%- subfield_group_tags = @item.marc.by_tags_with_subtag(tag_names, subfield, subfield_group) %>
 	<%- group_title = subfield_group_values.size > 1 ? "Group #{subfield_group}" : group_title %>
 	<dt class="inner_group_dt">
-		<div class="panel">
-		<div style="float:right; padding-top:1.5px" class="abuttonset abuttonset-multi">
-		    <a class="abutton ui-state-default abutton-icon-solo ui-corner-all sortable-button" href="#" title="Move"><span class="ui-icon ui-icon-arrow-4-diag"></span>_</a>
-		</div>
+		<div class="panel group_container_collapsable">
+			<div style="float:right; padding-top:1.5px" class="abuttonset abuttonset-multi">
+				<% btn_show = index == 0 ? 'style="display: none;"'.html_safe : '' %>
+				<a <%=btn_show%> class="abutton ui-state-default marc_editor_button_left abutton-icon-solo ui-corner-all" href="#" data-group-button="remove" title="Remove"><span class="ui-icon ui-icon-trash"></span>_</a>
+				<a style="margin-left: 4px !important;" class="abutton ui-state-default marc_editor_button_left abutton-icon-solo ui-corner-all sortable-button" href="#" title="Move"><span class="ui-icon ui-icon-arrow-4-diag"></span>_</a>
+				<a style="margin-left: 4px !important;" class="abutton ui-state-default marc_editor_button_left abutton-icon-solo ui-corner-all" href="#" data-header-button="toggle" title="Show/Hide"><span class="ui-icon ui-icon-triangle-1-s"></span>_</a>
+			</div>
+
 			<h3><%= group_title -%></h3>
-			<div class="marc_editor_panel_content">
+			<div class="marc_editor_panel_content group_content_collapsable">
 				<div class="marc_editor_group_contents">
 					<%- tag_names.each do |tag_name| -%>
 						<div class="tag_group" data-tag="<%= tag_name %>">

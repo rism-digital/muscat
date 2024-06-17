@@ -1,6 +1,7 @@
 # Override collection_action so it is public
 # from activeadmin lib/active_admin/resource_dsl.rb
 require 'patches/active_admin/resource_dsl.rb'
+require 'patches/active_admin/resource_controller.rb'
 include Triggers
 
 # Extension module, see
@@ -152,7 +153,7 @@ module MarcControllerActions
 
       @editor_profile = EditorConfiguration.get_show_layout @item
      
-      render :template => 'marc_show/show_preview', :locals => { :opac => false }
+      render :template => 'marc_show/show_preview'
     end
 
     ###################
@@ -166,7 +167,7 @@ module MarcControllerActions
       @item.marc.load_source(true)
       @editor_profile = EditorConfiguration.get_show_layout @item
       
-      render :template => 'marc_show/show_preview', :locals => { :opac => false }
+      render :template => 'marc_show/show_preview'
     end
   
     ##########
@@ -202,7 +203,7 @@ module MarcControllerActions
       @item.marc.load_source(false)
       @editor_profile = EditorConfiguration.get_show_layout @item
       
-      render :template => 'marc_show/show_preview', :locals => { :opac => false }
+      render :template => 'marc_show/show_preview'
     end
   
     ##################
@@ -234,7 +235,7 @@ module MarcControllerActions
         @wf_stages = false
       end
 
-      render :template => 'marc_show/show_preview', :locals => { :opac => false }
+      render :template => 'marc_show/show_preview'
     end
     
     #####################

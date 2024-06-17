@@ -26,9 +26,9 @@ class MuscatCheckup
       @debug_logger = options.include?(:logger) ? options[:logger] : nil
 
       # These are relevant only for Sources
-      @skip_holdings = true if !@model.is_a?(Source)
-      @skip_dead_774 = true if !@model.is_a?(Source)
-      @skip_parent_institution = true if !@model.is_a?(Source)
+      @skip_holdings = true if @model != Source
+      @skip_dead_774 = true if @model != Source
+      @skip_parent_institution = true if @model != Source
 
       # Generate the exclusion matcher
       @validation_exclusions = (options.include?(:process_exclusions) && options[:process_exclusions] == true) ? ValidationExclusion.new(@model) : nil

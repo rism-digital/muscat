@@ -93,9 +93,6 @@
     - - d
       - :occurrences: "?"
         :browse_inline: true
-    - - w
-      - :occurrences: "?"
-        :no_show: true
     - - y
       - :occurrences: "?"
   "375":
@@ -232,7 +229,10 @@
         :foreign_field: short_name
     - - b
       - :occurrences: "?"
-
+    - - u
+      - :occurrences: "*"
+    - - "9"
+      - :occurrences: "?"
   "678":
     :master: a
     :indicator: "##"
@@ -279,5 +279,5 @@
     :fields:
     - - u
       - :occurrences: "?"
-    - - y
+    - - z
       - :occurrences: "?"

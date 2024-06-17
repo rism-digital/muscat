@@ -64,7 +64,7 @@ module ActiveAdmin::ViewsHelper
       context.attributes_table_for item  do
         context.row (I18n.t :filter_owner) { |r| r.user.name } if ( item.user )
         context.row (I18n.t :filter_wf_stage) { |r| I18n.t("wf_stage.#{r.wf_stage}") } if ( item.wf_stage )
-        #context.row (I18n.t :record_audit) { |r| I18n.t("#{r.wf_audit}_level") } if ( item.user )
+        context.row (I18n.t :"general.validity") { |r| r.wf_audit.to_s.capitalize } if ( item.is_a?(Work) && item.wf_audit != "normal" ) # I know I know will be translated if needed, #1532
         context.row (I18n.t :created_at) { |r| I18n.localize(r.created_at ? r.created_at.localtime : "", :format => '%A %e %B %Y - %H:%M') }
         context.row (I18n.t :updated_at) { |r| I18n.localize(r.updated_at ? r.updated_at.localtime : "", :format => '%A %e %B %Y - %H:%M') }
       end
@@ -82,14 +82,14 @@ module ActiveAdmin::ViewsHelper
     link_to("Select", "#", :data => { :marc_editor_select => item.id, :marc_editor_label => name })
   end
   
-  def active_admin_muscat_actions( context )
+  def active_admin_muscat_actions( context, show_view = true )
     # Build the dynamic path function, then call it with send
     model = self.resource_class.to_s.underscore.downcase
     view_link_function = "admin_#{model}_path"
     if is_selection_mode?
       context.actions defaults: false do |item|
         item_links = Array.new
-        item_links << link_to("View", "#{send( view_link_function, item )}")
+        item_links << link_to("View", "#{send( view_link_function, item )}") if show_view
         item_links << active_admin_muscat_select_link( item )
         safe_join item_links, ' '
       end
@@ -117,8 +117,15 @@ module ActiveAdmin::ViewsHelper
     # Build the back to index path function
     model = self.resource_class.to_s.pluralize.underscore.downcase
     index_link_function = "admin_#{model}_path"
-    
+
     context.div class: :table_tools do
+
+      context.ul class: :table_tools_segmented_control do
+        context.li class: :scope do
+          context.a class: "table_tools_button" do context.text_node "#{@nav_positions[:position]}/#{@nav_positions[:total]}" end
+        end
+      end
+
       context.ul class: :table_tools_segmented_control do
         context.li class: :scope do
           if @prev_item != nil
@@ -130,6 +137,7 @@ module ActiveAdmin::ViewsHelper
         context.li class: :scope do
           context.a href: "#{send(index_link_function)}", class: :table_tools_button do  context.text_node "Back to the list"  end
         end
+
         context.li class: :scope do
           if @next_item != nil
             context.a href: next_id, class: :table_tools_button do  context.text_node "Next"  end

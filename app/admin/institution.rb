@@ -67,13 +67,13 @@ ActiveAdmin.register Institution do
         return
       end
       @editor_profile = EditorConfiguration.get_show_layout @institution
-      @prev_item, @next_item, @prev_page, @next_page = Institution.near_items_as_ransack(params, @institution)
+      @prev_item, @next_item, @prev_page, @next_page, @nav_positions = Institution.near_items_as_ransack(params, @institution)
 
       @jobs = @institution.delayed_jobs
 
       respond_to do |format|
         format.html
-        format.xml { render :xml => @item.marc.to_xml(@item.updated_at, @item.versions) }
+        format.xml { render :xml => @item.marc.to_xml({ updated_at: @item.updated_at, versions: @item.versions }) }
       end
     end
 
@@ -127,14 +127,16 @@ ActiveAdmin.register Institution do
   # Use it to filter sources by folder
   filter :id_with_integer, :label => proc {I18n.t(:is_in_folder)}, as: :select,
          collection: proc{Folder.where(folder_type: "Institution").collect {|c| [c.name, "folder_id:#{c.id}"]}}
-  filter :wf_owner_with_integer, :label => proc {I18n.t(:filter_owner)}, as: :select,
-         collection: proc {
-           if current_user.has_any_role?(:editor, :admin)
-             User.sort_all_by_last_name.map{|u| [u.name, "wf_owner:#{u.id}"]}
-           else
-             [[current_user.name, "wf_owner:#{current_user.id}"]]
-           end
-         }
+  #filter :wf_owner_with_integer, :label => proc {I18n.t(:filter_owner)}, as: :select,
+  #       collection: proc {
+  #         if current_user.has_any_role?(:editor, :admin)
+  #           User.sort_all_by_last_name.map{|u| [u.name, "wf_owner:#{u.id}"]}
+  #         else
+  #           [[current_user.name, "wf_owner:#{current_user.id}"]]
+  #         end
+  #       }
+  filter :wf_owner_with_integer, :label => proc {I18n.t(:filter_owner)}, :as => :flexdatalist, data_path: proc{list_for_filter_admin_users_path()}
+
   filter :wf_stage_with_integer, :label => proc {I18n.t(:filter_wf_stage)}, as: :select,
   collection: proc{[:inprogress, :published, :deleted].collect {|v| [I18n.t("wf_stage." + v.to_s), "wf_stage:#{v}"]}}
 
@@ -179,18 +181,7 @@ ActiveAdmin.register Institution do
     else
       render :partial => "marc/show"
     end
-    if !resource.get_deposita.empty?
-      panel I18n.t :filter_series_items do
-        paginated_collection(@item.institutions.page(params[:items_list_page]).per(15), param_name: 'items_list_page', download_links: false) do
-          table_for(collection, sortable: true) do
-            column :id do |p| link_to p.id, controller: :institutions, action: :show, id: p.id end
-            column :siglum
-            column :full_name
-            column :place
-          end
-        end
-      end
-    end
+
     active_admin_embedded_source_list( self, institution, !is_selection_mode? )
 
     # Box for people referring to this institution

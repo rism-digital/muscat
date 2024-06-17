@@ -209,7 +209,7 @@ pl:
   from_existing_source: Utwórz z istniejącego źródła
   create_from_existing: Utwórz
   record_types:
-    unspecified: [Nieznany szablon]
+    unspecified: "[Nieznany szablon]"
     collection: "Rekopis muzyczny, rekord macierzysty kolekcji"
     source: Rękopis muzyczny
     edition_content: "Druk muzyczny, pozycja w kolekcji"
@@ -330,6 +330,7 @@ pl:
   record_status: Status rekordu
   record_owner: Właściciel rekordu
   record_audit: Pochodzenie rekordu
+  record_label: "Pewność przypisania"
   basic_level: Rekord podstawowy
   full_level: Rekord pełny
   #full_level: "Full record, material examined"
@@ -346,6 +347,10 @@ pl:
   validation_level_warning: "Wystąpiły ostrzeżenia. Zapisz ponownie, by je skasować."
   muscat_reindexing: "Muscat reindeksuje, wyniki wyszukiwania mogą być niekompletne"
   work_catalogue: "Katalog dzieł"
+  default_view: "Default view"
+  marc21_view: "MARC21 view"
+  marcxml_view: "MARCXML view"
+  authorization_tokens: "Auth tokens"
 
   jobs:
     not_set: [Nie ustawiono statusu.]
@@ -375,6 +380,7 @@ pl:
   add_institution: Powiąż instytucję
   add_source: Powiąż źródło
   add_person: Powiąż osobę
+  add_holding: "Powiąż holding"
   archive_unarchive: Zarchiwizuj / cofnij archiwizację
   archive: Zarchiwizuj
   unarchive: Cofnij archiwizację
@@ -528,6 +534,7 @@ pl:
   filter_series_items: Pozycje seryjne
   filter_siglum: Siglum
   filter_source: Źródło
+  filter_source_id: "Id źródła"
   filter_sources: Źródła
   filter_source_type: Rodzaj źródła
   filter_source_content_type: "typ zawartości"
@@ -818,6 +825,7 @@ pl:
   marc_editor:
     delete_msg: "Usuń"
     delete_field_confirm: "Czy na pewno chcesz usunąć to pole?"
+    delete_group_confirm: "Czy na pewno chcesz usunąć to grupa?"
 
   cookies:
     message: "Strona wykorzystuje ciasteczka dla poprawy funkcjonalności. Korzystając z niej, zgadzasz się na to."
@@ -851,21 +859,3 @@ pl:
 
 ######################################################################################################
 # End of translation in all languages - make sure all the file have the same line number for this line
-
- 
-######################################################################################################
-# Blacklights overriden translations - the list can vary from one language to another
-
-  blacklight:
-    application_name: Muscat'
-    header_links:
-      logout: Wyloguj'
-    search:
-      start_over: Zacznij od nowa
-      facets:
-        title: Sprecyzuj wyszukiwanie
-    range_limit:
-      submit_limit: Sprecyzuj
-  blacklight_advanced_search:
-    form:
-      start_over: Zacznij od nowa

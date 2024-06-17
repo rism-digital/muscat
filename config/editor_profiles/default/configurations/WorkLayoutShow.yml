@@ -16,7 +16,7 @@ groups:
     - "690"
     - "046"
     - "370"
-    - "530"
+    - "377"
     all_tag_templates: 
       "690": marc_show/show_69x_url
   codes: 
@@ -38,22 +38,27 @@ groups:
     - "667"
     - "691"
     - "699"
+    - "856"
     all_tag_templates: 
       "691": marc_show/show_69x_url
   relations:
     all_tags:
-    - "700"
-    - "710"
-    - "747"
+    - "500"
+    - "510"
+    - "530"
+    - "547"
     - "930"
     - "856"
     all_tag_templates:
-      "700": works/show_related_person
-      "710": marc_show/show_institution 
-      "747": works/show_related_feast
+      "500": works/show_related_person
+      "510": marc_show/show_institution 
+      "547": works/show_related_feast
       "856": marc_show/show_link
   control: 
     all_tags: 
     - "040"
     - "000"
     - "001"
+    - "981"
+    all_tag_templates: 
+      "981": marc_show/show_duplicated_from

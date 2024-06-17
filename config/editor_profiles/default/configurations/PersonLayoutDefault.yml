@@ -25,13 +25,13 @@ groups:
     - "510"
     - "550" 
     - "551"
-    - "667"
   references:
     all_tags:
     - "670"
     - "678"
     - "680"
     - "856"
+    - "667"
   control: 
     all_tags:
     - "040" 

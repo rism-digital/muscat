@@ -330,6 +330,7 @@ es:
   record_status: "Estado del registro"
   record_owner: "Propietario del registro"
   record_audit: "Origen del registro"
+  record_label: "Certeza de la atribución"
   basic_level: "Registro básico"
   full_level: "Registro completo"
   #full_level: "Full record, material examined"
@@ -346,6 +347,10 @@ es:
   validation_level_warning: "El registro presenta advertencias. Si desea ignorarlas, pulse nuevamente en guardar."
   muscat_reindexing: "Muscat está reindexando, los resultados de la búsqueda pueden estar incompletos"
   work_catalogue: "Catálogo de obras"  
+  default_view: "Visualización estándar"
+  marc21_view: "Visualización MARC21"
+  marcxml_view: "Visualización MARCXML"
+  authorization_tokens: "Auth tokens"
 
   jobs:
     not_set: "[Estado aún no disponible]"
@@ -375,6 +380,7 @@ es:
   add_institution: "Vincular institución"
   add_source: "Vincular fuente"
   add_person: "Vincular persona"
+  add_holding: "Vincular registro de ejemplar"
   archive_unarchive: "Archivar / desarchivar"
   archive: "Archivar"
   unarchive: "Desarchivar"
@@ -528,6 +534,7 @@ es:
   filter_series_items: "Ítems de la serie"
   filter_siglum: "Sigla"
   filter_source: "Fuente"
+  filter_source_id: "Id de la fuente"
   filter_sources: "Fuentes"
   filter_source_type: "Tipo de fuente"
   filter_source_content_type: "Tipo de contenido"
@@ -817,6 +824,7 @@ es:
   marc_editor:
     delete_msg: "Borrar"
     delete_field_confirm: "¿Está seguro de que desea eliminar este campo?"
+    delete_group_confirm: "¿Está seguro de que desea eliminar este grupo?"
 
   cookies:
     message: "Nuestro sitio web utiliza cookies para mejorar su experiencia de navegación. Al usar nuestro sitio, Ud. manifiesta su conformidad con el uso de cookies."
@@ -850,12 +858,3 @@ es:
 
 ######################################################################################################
 # End of translation in all languages - make sure all the file have the same line number for this line
-
- 
-######################################################################################################
-# Blacklights overriden translations - the list can vary from one language to another
-
-  blacklight:
-    application_name: 'Muscat'
-    header_links:
-      logout: 'Cerrar sesión'

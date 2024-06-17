@@ -330,6 +330,7 @@ fr:
   record_status: "Status"
   record_owner: "Propriétaire"
   record_audit: "Origine du dossier"
+  record_label: "Certitude d'attribution"
   basic_level: "Notice de base"
   full_level: "Notice complète"
   #full_level: "Notice complète, matériel examiné"
@@ -346,6 +347,11 @@ fr:
   validation_level_warning: "Il y a des avertissements. Enregistrer à nouveau pour ignorer."
   muscat_reindexing: "Muscat réindexe, les résultats de recherche peuvent être incomplets."
   work_catalogue: "Catalogue d'œuvres"
+  default_view: "Default view"
+  marc21_view: "MARC21 view"
+  marcxml_view: "MARCXML view"
+  authorization_tokens: "Auth tokens"
+
 
   jobs:
     not_set: "[sans statut]"
@@ -372,9 +378,10 @@ fr:
   select: "Sélectionner"
   create_folder: "Ajouter à un nouveau dossier"
   append_folder: "Ajouter à un dossier existant"
-  add_person: "Attacher une institution"
+  add_institution: "Attacher une institution"
   add_source: "Attacher une source"
   add_person: "Attacher une personne"
+  add_holding: "Attacher une Holding"
   archive_unarchive: "Archiver / désarchiver"
   archive: "Archiver"
   unarchive: "Désarchiver"
@@ -528,6 +535,7 @@ fr:
   filter_series_items: "Eléments de la série"
   filter_siglum: "Sigle"
   filter_source: "Source"
+  filter_source_id: "Id de la source"
   filter_sources: "Sources"
   filter_source_type: "Type de source"
   filter_source_content_type: "Type de contenu"
@@ -817,6 +825,7 @@ fr:
   marc_editor:
     delete_msg: "Supprimer"
     delete_field_confirm: "Êtes-vous sûr de vouloir supprimer ce champ?"
+    delete_group_confirm: "Êtes-vous sûr de vouloir supprimer ce groupe?"
 
   cookies:
     message: "Notre site utilise des cookies pour améliorer votre expérience de navigation. En utilisant notre site, vous acceptez notre utilisation des cookies."
@@ -849,34 +858,3 @@ fr:
   
 ######################################################################################################
 # End of translation in all languages - make sure all the file have the same line number for this line
- 
-######################################################################################################
-# Blacklights overriden translations - the list can vary from one language to another
-
-  blacklight:
-    application_name: 'Muscat'
-    header_links:
-      logout: 'Déconnexion'
-    search:
-      start_over: 'Nouvelle recherche'
-      form:
-        q: 'Rechercher...'
-        search:
-          placeholder: 'Rechercher...'
-    range_limit:
-      range_begin: "%{field_label} de début"
-      range_end: "%{field_label} de fin"
-      submit_limit: 'Limiter'
-      remove_limit: 'supprimer'
-  blacklight_advanced_search:
-    all: tous les
-    any: au moins un des
-    form:
-      title: "Recherche avancée"
-      search_context: "Dans la recherche"
-      limit_criteria_heading_html: "<strong>et</strong> ont cet attribut"
-      query_criteria_heading_html: "Rechercher les titres correspondant à %{select_menu} critères"
-      sort_label: "Trier par"
-      start_over: "Nouvelle recherche"
-      search_btn: 'Chercher'
-

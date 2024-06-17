@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2023_12_12_142951) do
+ActiveRecord::Schema[7.0].define(version: 2024_05_21_090418) do
   create_table "active_admin_comments", id: :integer, charset: "utf8mb3", force: :cascade do |t|
     t.string "namespace"
     t.text "body"
@@ -25,15 +25,13 @@ ActiveRecord::Schema[7.1].define(version: 2023_12_12_142951) do
     t.index ["resource_type", "resource_id"], name: "index_active_admin_comments_on_resource_type_and_resource_id"
   end
 
-  create_table "bookmarks", id: :integer, charset: "utf8mb3", force: :cascade do |t|
-    t.integer "user_id", null: false
-    t.string "user_type"
-    t.string "document_id"
-    t.string "title"
-    t.datetime "created_at", precision: nil
-    t.datetime "updated_at", precision: nil
-    t.string "document_type"
-    t.index ["user_id"], name: "index_bookmarks_on_user_id"
+  create_table "authorization_tokens", charset: "utf8mb3", force: :cascade do |t|
+    t.string "name"
+    t.string "token"
+    t.string "comment"
+    t.boolean "active"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "delayed_jobs", id: :integer, charset: "utf8mb3", force: :cascade do |t|
@@ -119,31 +117,43 @@ ActiveRecord::Schema[7.1].define(version: 2023_12_12_142951) do
     t.index ["wf_stage"], name: "index_holdings_on_wf_stage"
   end
 
-  create_table "holdings_to_institutions", id: false, charset: "utf8mb3", force: :cascade do |t|
+  create_table "holdings_to_institutions", id: { type: :bigint, unsigned: true }, charset: "utf8mb3", force: :cascade do |t|
     t.integer "holding_id"
     t.integer "institution_id"
+    t.string "marc_tag"
+    t.string "relator_code"
     t.index ["holding_id"], name: "index_holdings_to_institutions_on_holding_id"
     t.index ["institution_id"], name: "index_holdings_to_institutions_on_institution_id"
+    t.index ["marc_tag", "relator_code", "holding_id", "institution_id"], name: "unique_records", unique: true
   end
 
-  create_table "holdings_to_people", id: false, charset: "utf8mb3", force: :cascade do |t|
+  create_table "holdings_to_people", id: { type: :bigint, unsigned: true }, charset: "utf8mb3", force: :cascade do |t|
     t.integer "person_id"
     t.integer "holding_id"
+    t.string "marc_tag"
+    t.string "relator_code"
     t.index ["holding_id"], name: "index_holdings_to_people_on_holding_id"
+    t.index ["marc_tag", "relator_code", "holding_id", "person_id"], name: "unique_records", unique: true
     t.index ["person_id"], name: "index_holdings_to_people_on_person_id"
   end
 
-  create_table "holdings_to_places", id: false, charset: "utf8mb3", force: :cascade do |t|
+  create_table "holdings_to_places", id: { type: :bigint, unsigned: true }, charset: "utf8mb3", force: :cascade do |t|
     t.integer "place_id"
     t.integer "holding_id"
+    t.string "marc_tag"
+    t.string "relator_code"
     t.index ["holding_id"], name: "index_holdings_to_places_on_holding_id"
+    t.index ["marc_tag", "relator_code", "holding_id", "place_id"], name: "unique_records", unique: true
     t.index ["place_id"], name: "index_holdings_to_places_on_place_id"
   end
 
-  create_table "holdings_to_publications", id: false, charset: "utf8mb3", force: :cascade do |t|
+  create_table "holdings_to_publications", id: { type: :bigint, unsigned: true }, charset: "utf8mb3", force: :cascade do |t|
     t.integer "publication_id"
     t.integer "holding_id"
+    t.string "marc_tag"
+    t.string "relator_code"
     t.index ["holding_id"], name: "index_holdings_to_publications_on_holding_id"
+    t.index ["marc_tag", "relator_code", "holding_id", "publication_id"], name: "unique_records", unique: true
     t.index ["publication_id"], name: "index_holdings_to_publications_on_publication_id"
   end
 
@@ -171,17 +181,23 @@ ActiveRecord::Schema[7.1].define(version: 2023_12_12_142951) do
     t.index ["wf_stage"], name: "index_institutions_on_wf_stage"
   end
 
-  create_table "institutions_to_institutions", id: false, charset: "utf8mb3", force: :cascade do |t|
+  create_table "institutions_to_institutions", id: { type: :bigint, unsigned: true }, charset: "utf8mb3", force: :cascade do |t|
     t.integer "institution_a_id"
     t.integer "institution_b_id"
+    t.string "marc_tag"
+    t.string "relator_code"
     t.index ["institution_a_id"], name: "index_institutions_to_institutions_on_institution_a_id"
     t.index ["institution_b_id"], name: "index_institutions_to_institutions_on_institution_b_id"
+    t.index ["marc_tag", "relator_code", "institution_a_id", "institution_b_id"], name: "unique_records", unique: true
   end
 
-  create_table "institutions_to_people", id: false, charset: "utf8mb3", force: :cascade do |t|
+  create_table "institutions_to_people", id: { type: :bigint, unsigned: true }, charset: "utf8mb3", force: :cascade do |t|
     t.integer "institution_id"
     t.integer "person_id"
+    t.string "marc_tag"
+    t.string "relator_code"
     t.index ["institution_id"], name: "index_institutions_to_people_on_institution_id"
+    t.index ["marc_tag", "relator_code", "institution_id", "person_id"], name: "unique_records", unique: true
     t.index ["person_id"], name: "index_institutions_to_people_on_person_id"
   end
 
@@ -195,25 +211,14 @@ ActiveRecord::Schema[7.1].define(version: 2023_12_12_142951) do
     t.index ["place_id"], name: "index_institutions_to_places_on_place_id"
   end
 
-  create_table "institutions_to_publications", id: false, charset: "utf8mb3", force: :cascade do |t|
+  create_table "institutions_to_publications", id: { type: :bigint, unsigned: true }, charset: "utf8mb3", force: :cascade do |t|
     t.integer "publication_id"
     t.integer "institution_id"
+    t.string "marc_tag"
+    t.string "relator_code"
     t.index ["institution_id"], name: "index_institutions_to_publications_on_institution_id"
+    t.index ["marc_tag", "relator_code", "institution_id", "publication_id"], name: "unique_records", unique: true
     t.index ["publication_id"], name: "index_institutions_to_publications_on_publication_id"
-  end
-
-  create_table "institutions_to_standard_terms", id: false, charset: "utf8mb3", force: :cascade do |t|
-    t.integer "standard_term_id"
-    t.integer "institution_id"
-    t.index ["institution_id"], name: "index_institutions_to_standard_terms_on_institution_id"
-    t.index ["standard_term_id"], name: "index_institutions_to_standard_terms_on_standard_term_id"
-  end
-
-  create_table "institutions_users", id: false, charset: "utf8mb3", force: :cascade do |t|
-    t.integer "user_id"
-    t.integer "institution_id"
-    t.index ["institution_id"], name: "index_institutions_users_on_institution_id"
-    t.index ["user_id"], name: "index_institutions_users_on_user_id"
   end
 
   create_table "institutions_workgroups", id: false, charset: "utf8mb3", force: :cascade do |t|
@@ -242,7 +247,6 @@ ActiveRecord::Schema[7.1].define(version: 2023_12_12_142951) do
 
   create_table "people", id: :integer, charset: "utf8mb3", force: :cascade do |t|
     t.string "full_name"
-    t.string "full_name_d", limit: 128
     t.string "life_dates", limit: 24
     t.string "birth_place", limit: 128
     t.integer "gender", limit: 1, default: 0
@@ -257,20 +261,27 @@ ActiveRecord::Schema[7.1].define(version: 2023_12_12_142951) do
     t.datetime "created_at", precision: nil
     t.datetime "updated_at", precision: nil
     t.integer "lock_version", default: 0, null: false
+    t.string "display_name"
     t.index ["full_name"], name: "index_people_on_full_name"
     t.index ["wf_stage"], name: "index_people_on_wf_stage"
   end
 
-  create_table "people_to_institutions", id: false, charset: "utf8mb3", force: :cascade do |t|
+  create_table "people_to_institutions", id: { type: :bigint, unsigned: true }, charset: "utf8mb3", force: :cascade do |t|
     t.integer "institution_id"
     t.integer "person_id"
+    t.string "marc_tag"
+    t.string "relator_code"
     t.index ["institution_id"], name: "index_people_to_institutions_on_institution_id"
+    t.index ["marc_tag", "relator_code", "person_id", "institution_id"], name: "unique_records", unique: true
     t.index ["person_id"], name: "index_people_to_institutions_on_person_id"
   end
 
-  create_table "people_to_people", id: false, charset: "utf8mb3", force: :cascade do |t|
+  create_table "people_to_people", id: { type: :bigint, unsigned: true }, charset: "utf8mb3", force: :cascade do |t|
     t.integer "person_a_id"
     t.integer "person_b_id"
+    t.string "marc_tag"
+    t.string "relator_code"
+    t.index ["marc_tag", "relator_code", "person_a_id", "person_b_id"], name: "unique_records", unique: true
     t.index ["person_a_id"], name: "index_people_to_people_on_person_a_id"
     t.index ["person_b_id"], name: "index_people_to_people_on_person_b_id"
   end
@@ -285,9 +296,12 @@ ActiveRecord::Schema[7.1].define(version: 2023_12_12_142951) do
     t.index ["place_id"], name: "index_people_to_places_on_place_id"
   end
 
-  create_table "people_to_publications", id: false, charset: "utf8mb3", force: :cascade do |t|
+  create_table "people_to_publications", id: { type: :bigint, unsigned: true }, charset: "utf8mb3", force: :cascade do |t|
     t.integer "person_id"
     t.integer "publication_id"
+    t.string "marc_tag"
+    t.string "relator_code"
+    t.index ["marc_tag", "relator_code", "person_id", "publication_id"], name: "unique_records", unique: true
     t.index ["person_id"], name: "index_people_to_publications_on_person_id"
     t.index ["publication_id"], name: "index_people_to_publications_on_publication_id"
   end
@@ -336,37 +350,52 @@ ActiveRecord::Schema[7.1].define(version: 2023_12_12_142951) do
     t.index ["wf_stage"], name: "index_publications_on_wf_stage"
   end
 
-  create_table "publications_to_institutions", id: false, charset: "utf8mb3", force: :cascade do |t|
+  create_table "publications_to_institutions", id: { type: :bigint, unsigned: true }, charset: "utf8mb3", force: :cascade do |t|
     t.integer "publication_id"
     t.integer "institution_id"
+    t.string "marc_tag"
+    t.string "relator_code"
     t.index ["institution_id"], name: "index_publications_to_institutions_on_institution_id"
+    t.index ["marc_tag", "relator_code", "publication_id", "institution_id"], name: "unique_records", unique: true
     t.index ["publication_id"], name: "index_publications_to_institutions_on_publication_id"
   end
 
-  create_table "publications_to_people", id: false, charset: "utf8mb3", force: :cascade do |t|
+  create_table "publications_to_people", id: { type: :bigint, unsigned: true }, charset: "utf8mb3", force: :cascade do |t|
     t.integer "publication_id"
     t.integer "person_id"
+    t.string "marc_tag"
+    t.string "relator_code"
+    t.index ["marc_tag", "relator_code", "publication_id", "person_id"], name: "unique_records", unique: true
     t.index ["person_id"], name: "index_publications_to_people_on_person_id"
     t.index ["publication_id"], name: "index_publications_to_people_on_publication_id"
   end
 
-  create_table "publications_to_places", id: false, charset: "utf8mb3", force: :cascade do |t|
+  create_table "publications_to_places", id: { type: :bigint, unsigned: true }, charset: "utf8mb3", force: :cascade do |t|
     t.integer "place_id"
     t.integer "publication_id"
+    t.string "marc_tag"
+    t.string "relator_code"
+    t.index ["marc_tag", "relator_code", "publication_id", "place_id"], name: "unique_records", unique: true
     t.index ["place_id"], name: "index_publications_to_places_on_place_id"
     t.index ["publication_id"], name: "index_publications_to_places_on_publication_id"
   end
 
-  create_table "publications_to_publications", id: false, charset: "utf8mb3", force: :cascade do |t|
+  create_table "publications_to_publications", id: { type: :bigint, unsigned: true }, charset: "utf8mb3", force: :cascade do |t|
     t.integer "publication_a_id"
     t.integer "publication_b_id"
+    t.string "marc_tag"
+    t.string "relator_code"
+    t.index ["marc_tag", "relator_code", "publication_a_id", "publication_b_id"], name: "unique_records", unique: true
     t.index ["publication_a_id"], name: "index_publications_to_publications_on_publication_a_id"
     t.index ["publication_b_id"], name: "index_publications_to_publications_on_publication_b_id"
   end
 
-  create_table "publications_to_standard_terms", id: false, charset: "utf8mb3", force: :cascade do |t|
+  create_table "publications_to_standard_terms", id: { type: :bigint, unsigned: true }, charset: "utf8mb3", force: :cascade do |t|
     t.integer "standard_term_id"
     t.integer "publication_id"
+    t.string "marc_tag"
+    t.string "relator_code"
+    t.index ["marc_tag", "relator_code", "publication_id", "standard_term_id"], name: "unique_records", unique: true
     t.index ["publication_id"], name: "index_publications_to_standard_terms_on_publication_id"
     t.index ["standard_term_id"], name: "index_publications_to_standard_terms_on_standard_term_id"
   end
@@ -381,24 +410,12 @@ ActiveRecord::Schema[7.1].define(version: 2023_12_12_142951) do
     t.index ["name"], name: "index_roles_on_name"
   end
 
-  create_table "searches", id: :integer, charset: "utf8mb3", force: :cascade do |t|
-    t.text "query_params"
-    t.integer "user_id"
-    t.string "user_type"
-    t.datetime "created_at", precision: nil
-    t.datetime "updated_at", precision: nil
-    t.index ["user_id"], name: "index_searches_on_user_id"
-  end
-
   create_table "sources", id: :integer, charset: "utf8mb3", force: :cascade do |t|
     t.integer "source_id"
     t.integer "record_type", limit: 1, default: 0
     t.string "std_title", limit: 512
-    t.string "std_title_d", limit: 512
     t.string "composer"
-    t.string "composer_d"
     t.string "title", limit: 256
-    t.string "title_d", limit: 256
     t.string "shelf_mark"
     t.string "language", limit: 16
     t.integer "date_from"
@@ -416,7 +433,6 @@ ActiveRecord::Schema[7.1].define(version: 2023_12_12_142951) do
     t.index ["record_type"], name: "index_sources_on_record_type"
     t.index ["source_id"], name: "index_sources_on_source_id"
     t.index ["std_title"], name: "index_sources_on_std_title", length: 255
-    t.index ["std_title_d"], name: "index_sources_on_std_title_d", length: 255
     t.index ["updated_at"], name: "index_sources_on_updated_at"
     t.index ["wf_stage"], name: "index_sources_on_wf_stage"
   end
@@ -431,10 +447,13 @@ ActiveRecord::Schema[7.1].define(version: 2023_12_12_142951) do
     t.index ["source_id"], name: "index_sources_to_institutions_on_source_id"
   end
 
-  create_table "sources_to_liturgical_feasts", id: false, charset: "utf8mb3", force: :cascade do |t|
+  create_table "sources_to_liturgical_feasts", id: { type: :bigint, unsigned: true }, charset: "utf8mb3", force: :cascade do |t|
     t.integer "liturgical_feast_id"
     t.integer "source_id"
+    t.string "marc_tag"
+    t.string "relator_code"
     t.index ["liturgical_feast_id"], name: "index_sources_to_liturgical_feasts_on_liturgical_feast_id"
+    t.index ["marc_tag", "relator_code", "liturgical_feast_id", "source_id"], name: "unique_records", unique: true
     t.index ["source_id"], name: "index_sources_to_liturgical_feasts_on_source_id"
   end
 
@@ -448,16 +467,22 @@ ActiveRecord::Schema[7.1].define(version: 2023_12_12_142951) do
     t.index ["source_id"], name: "index_sources_to_people_on_source_id"
   end
 
-  create_table "sources_to_places", id: false, charset: "utf8mb3", force: :cascade do |t|
+  create_table "sources_to_places", id: { type: :bigint, unsigned: true }, charset: "utf8mb3", force: :cascade do |t|
     t.integer "place_id"
     t.integer "source_id"
+    t.string "marc_tag"
+    t.string "relator_code"
+    t.index ["marc_tag", "relator_code", "place_id", "source_id"], name: "unique_records", unique: true
     t.index ["place_id"], name: "index_sources_to_places_on_place_id"
     t.index ["source_id"], name: "index_sources_to_places_on_source_id"
   end
 
-  create_table "sources_to_publications", id: false, charset: "utf8mb3", force: :cascade do |t|
+  create_table "sources_to_publications", id: { type: :bigint, unsigned: true }, charset: "utf8mb3", force: :cascade do |t|
     t.integer "publication_id"
     t.integer "source_id"
+    t.string "marc_tag"
+    t.string "relator_code"
+    t.index ["marc_tag", "relator_code", "publication_id", "source_id"], name: "unique_records", unique: true
     t.index ["publication_id"], name: "index_sources_to_publications_on_publication_id"
     t.index ["source_id"], name: "index_sources_to_publications_on_source_id"
   end
@@ -472,16 +497,22 @@ ActiveRecord::Schema[7.1].define(version: 2023_12_12_142951) do
     t.index ["source_b_id"], name: "index_sources_to_sources_on_source_b_id"
   end
 
-  create_table "sources_to_standard_terms", id: false, charset: "utf8mb3", force: :cascade do |t|
+  create_table "sources_to_standard_terms", id: { type: :bigint, unsigned: true }, charset: "utf8mb3", force: :cascade do |t|
     t.integer "standard_term_id"
     t.integer "source_id"
+    t.string "marc_tag"
+    t.string "relator_code"
+    t.index ["marc_tag", "relator_code", "standard_term_id", "source_id"], name: "unique_records", unique: true
     t.index ["source_id"], name: "index_sources_to_standard_terms_on_source_id"
     t.index ["standard_term_id"], name: "index_sources_to_standard_terms_on_standard_term_id"
   end
 
-  create_table "sources_to_standard_titles", id: false, charset: "utf8mb3", force: :cascade do |t|
+  create_table "sources_to_standard_titles", id: { type: :bigint, unsigned: true }, charset: "utf8mb3", force: :cascade do |t|
     t.integer "standard_title_id"
     t.integer "source_id"
+    t.string "marc_tag"
+    t.string "relator_code"
+    t.index ["marc_tag", "relator_code", "standard_title_id", "source_id"], name: "unique_records", unique: true
     t.index ["source_id"], name: "index_sources_to_standard_titles_on_source_id"
     t.index ["standard_title_id"], name: "index_sources_to_standard_titles_on_standard_title_id"
   end
@@ -522,7 +553,6 @@ ActiveRecord::Schema[7.1].define(version: 2023_12_12_142951) do
 
   create_table "standard_titles", id: :integer, charset: "utf8mb3", force: :cascade do |t|
     t.string "title", null: false
-    t.string "title_d", limit: 128
     t.text "notes"
     t.integer "wf_audit", default: 0
     t.integer "wf_stage", default: 0
@@ -705,58 +735,82 @@ ActiveRecord::Schema[7.1].define(version: 2023_12_12_142951) do
     t.index ["wf_stage"], name: "index_works_on_wf_stage"
   end
 
-  create_table "works_to_institutions", id: false, charset: "utf8mb3", force: :cascade do |t|
+  create_table "works_to_institutions", id: { type: :bigint, unsigned: true }, charset: "utf8mb3", force: :cascade do |t|
     t.integer "work_id"
     t.integer "institution_id"
+    t.string "marc_tag"
+    t.string "relator_code"
     t.index ["institution_id"], name: "index_works_to_institutions_on_institution_id"
+    t.index ["marc_tag", "relator_code", "work_id", "institution_id"], name: "unique_records", unique: true
     t.index ["work_id"], name: "index_works_to_institutions_on_work_id"
   end
 
-  create_table "works_to_liturgical_feasts", id: false, charset: "utf8mb3", force: :cascade do |t|
+  create_table "works_to_liturgical_feasts", id: { type: :bigint, unsigned: true }, charset: "utf8mb3", force: :cascade do |t|
     t.integer "work_id"
     t.integer "liturgical_feast_id"
+    t.string "marc_tag"
+    t.string "relator_code"
     t.index ["liturgical_feast_id"], name: "index_works_to_liturgical_feasts_on_liturgical_feast_id"
+    t.index ["marc_tag", "relator_code", "work_id", "liturgical_feast_id"], name: "unique_records", unique: true
     t.index ["work_id"], name: "index_works_to_liturgical_feasts_on_work_id"
   end
 
-  create_table "works_to_people", id: false, charset: "utf8mb3", force: :cascade do |t|
+  create_table "works_to_people", id: { type: :bigint, unsigned: true }, charset: "utf8mb3", force: :cascade do |t|
     t.integer "work_id"
     t.integer "person_id"
+    t.string "marc_tag"
+    t.string "relator_code"
+    t.index ["marc_tag", "relator_code", "work_id", "person_id"], name: "unique_records", unique: true
     t.index ["person_id"], name: "index_works_to_people_on_person_id"
     t.index ["work_id"], name: "index_works_to_people_on_work_id"
   end
 
-  create_table "works_to_places", id: false, charset: "utf8mb3", force: :cascade do |t|
+  create_table "works_to_places", id: { type: :bigint, unsigned: true }, charset: "utf8mb3", force: :cascade do |t|
     t.integer "work_id"
     t.integer "place_id"
+    t.string "marc_tag"
+    t.string "relator_code"
+    t.index ["marc_tag", "relator_code", "work_id", "place_id"], name: "unique_records", unique: true
     t.index ["place_id"], name: "index_works_to_places_on_place_id"
     t.index ["work_id"], name: "index_works_to_places_on_work_id"
   end
 
-  create_table "works_to_publications", charset: "utf8mb3", force: :cascade do |t|
+  create_table "works_to_publications", id: { type: :bigint, unsigned: true }, charset: "utf8mb3", force: :cascade do |t|
     t.integer "work_id"
     t.integer "publication_id"
+    t.string "marc_tag"
+    t.string "relator_code"
+    t.index ["marc_tag", "relator_code", "work_id", "publication_id"], name: "unique_records", unique: true
     t.index ["publication_id"], name: "index_works_to_publications_on_publication_id"
     t.index ["work_id"], name: "index_works_to_publications_on_work_id"
   end
 
-  create_table "works_to_standard_terms", charset: "utf8mb3", force: :cascade do |t|
+  create_table "works_to_standard_terms", id: { type: :bigint, unsigned: true }, charset: "utf8mb3", force: :cascade do |t|
     t.integer "work_id"
     t.integer "standard_term_id"
+    t.string "marc_tag"
+    t.string "relator_code"
+    t.index ["marc_tag", "relator_code", "work_id", "standard_term_id"], name: "unique_records", unique: true
     t.index ["standard_term_id"], name: "index_works_to_standard_terms_on_standard_term_id"
     t.index ["work_id"], name: "index_works_to_standard_terms_on_work_id"
   end
 
-  create_table "works_to_standard_titles", charset: "utf8mb3", force: :cascade do |t|
+  create_table "works_to_standard_titles", id: { type: :bigint, unsigned: true }, charset: "utf8mb3", force: :cascade do |t|
     t.integer "work_id"
     t.integer "standard_title_id"
+    t.string "marc_tag"
+    t.string "relator_code"
+    t.index ["marc_tag", "relator_code", "work_id", "standard_title_id"], name: "unique_records", unique: true
     t.index ["standard_title_id"], name: "index_works_to_standard_titles_on_standard_title_id"
     t.index ["work_id"], name: "index_works_to_standard_titles_on_work_id"
   end
 
-  create_table "works_to_works", id: false, charset: "utf8mb3", force: :cascade do |t|
+  create_table "works_to_works", id: { type: :bigint, unsigned: true }, charset: "utf8mb3", force: :cascade do |t|
     t.integer "work_a_id"
     t.integer "work_b_id"
+    t.string "marc_tag"
+    t.string "relator_code"
+    t.index ["marc_tag", "relator_code", "work_a_id", "work_b_id"], name: "unique_records", unique: true
     t.index ["work_a_id"], name: "index_works_to_works_on_work_a_id"
     t.index ["work_b_id"], name: "index_works_to_works_on_work_b_id"
   end
