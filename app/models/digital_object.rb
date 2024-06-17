@@ -108,7 +108,12 @@ class DigitalObject < ApplicationRecord
 
   # https://github.com/activeadmin/activeadmin/issues/7809
   # In Non-marc models we can use the default
-  def self.ransackable_associations(_) = reflections.keys
-  def self.ransackable_attributes(_) = attribute_names - %w[token]
+  # If we define our own ransacker, we need this
+  def self.ransackable_attributes(auth_object = nil)
+    column_names + _ransackers.keys
+  end
 
+  def self.ransackable_associations(auth_object = nil)
+    reflect_on_all_associations.map { |a| a.name.to_s }
+  end
 end
