@@ -266,23 +266,23 @@ ActiveAdmin.register Source do
   ###########  
 
   # filers
-  filter :title_contains, :label => proc{I18n.t(:title_contains)}, :as => :string
-  filter :std_title_contains, :label => proc{I18n.t(:std_title_contains)}, :as => :string
-  filter :composer_contains, :label => proc{I18n.t(:composer_contains)}, :as => :string
+  filter :title_cont, :label => proc{I18n.t(:title_contains)}, :as => :string
+  filter :std_title_cont, :label => proc{I18n.t(:std_title_contains)}, :as => :string
+  filter :composer_cont, :label => proc{I18n.t(:composer_contains)}, :as => :string
 
-  filter :"source_rism_ids_contains", :label => proc{I18n.t(:filter_id)}, :as => :string
+  filter :"source_rism_ids_cont", :label => proc{I18n.t(:filter_id)}, :as => :string
   
-  filter :"852a_facet_contains", :label => proc{I18n.t(:library_sigla_contains)}, :as => :string, if: proc { !is_selection_mode? }
+  filter :"852a_facet_cont", :label => proc{I18n.t(:library_sigla_contains)}, :as => :string, if: proc { !is_selection_mode? }
   # see See lib/active_admin_record_type_filter.rb
   # The same as above, but when the lib siglum is forced and cannot be changed
   filter :lib_siglum_with_integer,
     if: proc { is_selection_mode? == true && params.include?(:q) && params[:q].include?(:lib_siglum_with_integer)}, :as => :lib_siglum
   
-  filter :"852c_contains", :label => proc{I18n.t(:filter_shelf_mark)}, :as => :string
-  filter :"599a_contains", :label => proc{I18n.t(:internal_note_contains)}, :as => :string
+  filter :"852c_cont", :label => proc{I18n.t(:filter_shelf_mark)}, :as => :string
+  filter :"599a_cont", :label => proc{I18n.t(:internal_note_contains)}, :as => :string
 
   # This filter is the "any field" one
-  filter :title_equals, :label => proc {I18n.t(:any_field_contains)}, :as => :string
+  filter :title_eq, :label => proc {I18n.t(:any_field_contains)}, :as => :string
   filter :updated_at, :label => proc{I18n.t(:updated_at)}, as: :date_range
   filter :created_at, :label => proc{I18n.t(:created_at)}, as: :date_range
   # This filter passes the value to the with() function in seach
