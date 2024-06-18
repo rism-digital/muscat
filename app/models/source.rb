@@ -45,6 +45,8 @@ class Source < ApplicationRecord
   include MarcIndex
   include Template
   include CommentsCleanup
+  include ComposedOfReimplementation
+
   resourcify
 
   belongs_to :parent_source, class_name: "Source", foreign_key: "source_id"
@@ -102,6 +104,8 @@ class Source < ApplicationRecord
   has_many :referring_sources, through: :referring_source_relations, source: :source_a
 
   #composed_of :marc, :class_name => "MarcSource", :mapping => [%w(marc_source to_marc), %w(record_type record_type)]
+  composed_of_reimplementation :marc, class_name: "MarcSource", mapping: [%w(marc_source to_marc), %w(record_type record_type)]
+
   alias_attribute :id_for_fulltext, :id
 
   scope :in_folder, ->(folder_id) { joins(:folder_items).where("folder_items.folder_id = ?", folder_id) }
@@ -123,9 +127,11 @@ class Source < ApplicationRecord
   enum wf_stage: [ :inprogress, :published, :deleted, :deprecated ]
   enum wf_audit: [ :full, :abbreviated, :retro, :imported ]
 
+=begin
   def marc
     @marc ||= MarcSource.new(self.marc_source, self.record_type)
   end
+
 
   def marc=(marc)
     self.marc_source = marc.to_marc
@@ -133,12 +139,13 @@ class Source < ApplicationRecord
     
     @marc = marc
   end
-
+=end
   def after_initialize
     @old_parent = nil
     @last_user_save = nil
     @last_event_save = "update"
   end
+
 
   # Suppresses the recreation of the links with foreign MARC elements
   # (es libs, people, ...) on saving
