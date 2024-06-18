@@ -10,10 +10,10 @@ gem 'mysql2'
 gem 'sassc-rails'#, '~> 6.0'
 
 # Use Uglifier as compressor for JavaScript assets
-gem 'uglifier', '~> 4.2'
+gem 'uglifier'#, '~> 4.2'
 
 # Use CoffeeScript for .js.coffee assets and views
-gem 'coffee-rails', '~> 5.0'
+gem 'coffee-rails'#, '~> 5.0'
 
 # NOTE HERE: since execjs 2.8, the therubyracer is deprecated
 # Mini racer 0.4 appears to be broken.
@@ -30,7 +30,7 @@ gem 'js_cookie_rails', '~> 2.2.0'
 gem 'turbolinks', '~> 5.2.1'
 
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
-gem 'jbuilder', '~> 2.10'
+gem 'jbuilder', '~> 2.12'
 
 group :doc do
   # bundle exec rake doc:rails generates the API under doc/api.
@@ -97,7 +97,7 @@ gem 'progress_job', '0.0.4', git: "https://github.com/rism-ch/progress_job"
 gem 'daemons'
 
 # Add I18n in js
-gem "i18n-js", '~> 3.9.2'
+gem "i18n-js", '~> 4.2'
 gem 'colorize'
 
 gem 'exception_notification'
