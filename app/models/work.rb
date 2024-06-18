@@ -3,6 +3,7 @@ class Work < ApplicationRecord
   include MarcIndex
   include AuthorityMerge
   include CommentsCleanup
+  include ComposedOfReimplementation
 
   # class variables for storing the user name and the event from the controller
   @last_user_save
@@ -72,7 +73,7 @@ class Work < ApplicationRecord
   has_many :referring_work_relations, class_name: "WorkRelation", foreign_key: "work_b_id"
   has_many :referring_works, through: :referring_work_relations, source: :work_a
 
-  #composed_of :marc, :class_name => "MarcWork", :mapping => %w(marc_source to_marc)
+  composed_of_reimplementation :marc, :class_name => "MarcWork", :mapping => %w(marc_source to_marc)
 
   before_destroy :check_dependencies, :cleanup_comments
   
@@ -90,15 +91,6 @@ class Work < ApplicationRecord
 
   alias_attribute :name, :title
   alias_attribute :id_for_fulltext, :id
-
-  def marc
-    @marc ||= MarcWork.new(self.marc_source)
-  end
-
-  def marc=(marc)
-    self.marc_source = marc.to_marc    
-    @marc = marc
-  end
 
   def after_initialize
     @last_user_save = nil

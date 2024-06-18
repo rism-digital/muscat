@@ -30,6 +30,7 @@ class Publication < ApplicationRecord
   include MarcIndex
   include AuthorityMerge
   include CommentsCleanup
+  include ComposedOfReimplementation
   resourcify
 
   #has_and_belongs_to_many(:referring_sources, class_name: "Source", join_table: "sources_to_publications")
@@ -94,7 +95,7 @@ class Publication < ApplicationRecord
 
   has_and_belongs_to_many(:referring_work_nodes, class_name: "WorkNode", join_table: "work_nodes_to_publications")
 
-  #composed_of :marc, :class_name => "MarcPublication", :mapping => %w(marc_source to_marc)
+  composed_of_reimplementation :marc, :class_name => "MarcPublication", :mapping => %w(marc_source to_marc)
 
   ##include NewIds
   before_destroy :check_dependencies, :cleanup_comments
@@ -113,15 +114,6 @@ class Publication < ApplicationRecord
 
   enum wf_stage: [ :inprogress, :published, :deleted, :deprecated ]
   enum wf_audit: [ :full, :abbreviated, :retro, :imported ]
-
-  def marc
-    @marc ||= MarcPublication.new(self.marc_source)
-  end
-
-  def marc=(marc)
-    self.marc_source = marc.to_marc    
-    @marc = marc
-  end
 
   def after_initialize
     @last_user_save = nil

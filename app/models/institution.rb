@@ -17,6 +17,7 @@ class Institution < ApplicationRecord
   include MarcIndex
   include AuthorityMerge
   include CommentsCleanup
+  include ComposedOfReimplementation
   resourcify
   
   # class variables for storing the user name and the event from the controller
@@ -70,7 +71,7 @@ class Institution < ApplicationRecord
   has_and_belongs_to_many(:referring_work_nodes, class_name: "WorkNode", join_table: "work_nodes_to_institutions")
 
 
-  #composed_of :marc, :class_name => "MarcInstitution", :mapping => %w(marc_source to_marc)
+  composed_of_reimplementation :marc, :class_name => "MarcInstitution", :mapping => %w(marc_source to_marc)
 
 # OLD institutions_to_institutions
   # Institutions also can link to themselves
@@ -121,15 +122,6 @@ class Institution < ApplicationRecord
   enum wf_stage: [ :inprogress, :published, :deleted, :deprecated ]
   enum wf_audit: [ :full, :abbreviated, :retro, :imported ]
   
-  def marc
-    @marc ||= MarcInstitution.new(self.marc_source)
-  end
-
-  def marc=(marc)
-    self.marc_source = marc.to_marc    
-    @marc = marc
-  end
-
   def after_initialize
     @last_user_save = nil
     @last_event_save = "update"

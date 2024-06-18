@@ -20,6 +20,7 @@ class Person < ApplicationRecord
   include MarcIndex
   include AuthorityMerge
   include CommentsCleanup
+  include ComposedOfReimplementation
 
   # class variables for storing the user name and the event from the controller
   @last_user_save
@@ -98,7 +99,7 @@ class Person < ApplicationRecord
   has_many :referring_people, through: :referring_person_relations, source: :person_a
   
 
-  #composed_of :marc, :class_name => "MarcPerson", :mapping => %w(marc_source to_marc)
+  composed_of_reimplementation :marc, :class_name => "MarcPerson", :mapping => %w(marc_source to_marc)
   
 #  validates_presence_of :full_name  
   validate :field_length
@@ -120,15 +121,6 @@ class Person < ApplicationRecord
 
   enum wf_stage: [ :inprogress, :published, :deleted, :deprecated ]
   enum wf_audit: [ :full, :abbreviated, :retro, :imported ]
-
-  def marc
-    @marc ||= MarcPerson.new(self.marc_source)
-  end
-
-  def marc=(marc)
-    self.marc_source = marc.to_marc    
-    @marc = marc
-  end
 
   def after_initialize
     @last_user_save = nil
