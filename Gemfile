@@ -54,8 +54,8 @@ gem 'activeadmin'
 # Disabled - left to find it again
 #gem 'active_admin_scoped_collection_actions', git: 'https://github.com/activeadmin-plugins/active_admin_scoped_collection_actions'
 
-gem 'sunspot_rails'
-gem 'sunspot_solr'
+gem 'sunspot_rails', '~> 2.7'
+#gem 'sunspot_solr'
 gem 'awesome_print'
 gem 'progress_bar', '1.0.6', git: 'https://github.com/rism-ch/progress_bar'
 
