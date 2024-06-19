@@ -34,7 +34,15 @@ module ComposedOfReimplementation
         define_method(attribute_name) do
           instance_variable_get("@#{attribute_name}") || begin
 
-            mapped_values = mapping.map {|model_attr, class_attr| send(model_attr)}
+            # If we have multiple values, we expect an array of arrays
+            # [[property1, method1], [property2, method2]]
+            if mapping.first.is_a? Array
+              mapped_values = mapping.map {|model_attr, class_attr| send(model_attr)}
+            else
+            # When we only have one value it is just a top-level array;
+            # [property1, method1]
+              mapped_values = send(mapping.first)
+            end
     
             instance_variable_set("@#{attribute_name}", class_name.constantize.new(*mapped_values))
           end
@@ -42,9 +50,13 @@ module ComposedOfReimplementation
   
         define_method("#{attribute_name}=") do |value|
           if value.is_a?(class_name.constantize)
-            mapping.each do |model_attr, class_attr|
-              send("#{model_attr}=", value.send(class_attr))
+
+            if mapping.first.is_a? Array
+              mapping.each {|model_attr, class_attr| send("#{model_attr}=", value.send(class_attr))}
+            else
+              send("#{mapping.first}=", value.send(mapping.second))
             end
+            
             instance_variable_set("@#{attribute_name}", value)
           else
             raise ArgumentError, "Expected a #{class_name} object"
