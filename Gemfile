@@ -50,7 +50,7 @@ gem 'htmlentities', '~> 4.3.4'
 # Use debugger
 # gem 'debugger', group: [:development, :test
 
-gem 'activeadmin', '2.13.1'
+gem 'activeadmin', '3.2.2'
 
 gem 'sunspot_rails'
 gem 'sunspot_solr'

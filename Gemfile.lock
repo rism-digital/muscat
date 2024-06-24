@@ -81,15 +81,16 @@ GEM
       erubi (~> 1.4)
       rails-dom-testing (~> 2.0)
       rails-html-sanitizer (~> 1.1, >= 1.2.0)
-    activeadmin (2.13.1)
+    activeadmin (3.2.2)
       arbre (~> 1.2, >= 1.2.1)
-      formtastic (>= 3.1, < 5.0)
-      formtastic_i18n (~> 0.4)
+      csv
+      formtastic (>= 3.1)
+      formtastic_i18n (>= 0.4)
       inherited_resources (~> 1.7)
-      jquery-rails (~> 4.2)
-      kaminari (~> 1.0, >= 1.2.1)
-      railties (>= 6.1, < 7.1)
-      ransack (>= 2.1.1, < 4)
+      jquery-rails (>= 4.2)
+      kaminari (>= 1.2.1)
+      railties (>= 6.1)
+      ransack (>= 4.0)
     activejob (7.0.8.4)
       activesupport (= 7.0.8.4)
       globalid (>= 0.3.6)
@@ -120,7 +121,7 @@ GEM
       ruby2_keywords (>= 0.0.2)
     awesome_print (1.9.2)
     bcrypt (3.1.20)
-    builder (3.2.4)
+    builder (3.3.0)
     cancancan (3.5.0)
     capybara (3.39.2)
       addressable
@@ -143,8 +144,9 @@ GEM
       execjs
     coffee-script-source (1.12.2)
     colorize (1.1.0)
-    concurrent-ruby (1.3.1)
+    concurrent-ruby (1.3.3)
     crass (1.0.6)
+    csv (3.3.0)
     daemons (1.4.1)
     database_cleaner (2.0.2)
       database_cleaner-active_record (>= 2, < 3)
@@ -185,8 +187,8 @@ GEM
     ffi-compiler (1.0.1)
       ffi (>= 1.0.0)
       rake
-    formtastic (4.0.0)
-      actionpack (>= 5.2.0)
+    formtastic (5.0.0)
+      actionpack (>= 6.0.0)
     formtastic_i18n (0.7.0)
     generator_spec (0.9.4)
       activesupport (>= 3.0.0)
@@ -354,7 +356,7 @@ GEM
       thor (~> 1.0)
       zeitwerk (~> 2.5)
     rake (13.2.1)
-    ransack (3.2.1)
+    ransack (4.1.1)
       activerecord (>= 6.1.5)
       activesupport (>= 6.1.5)
       i18n
@@ -477,13 +479,13 @@ GEM
     whatlanguage (1.0.6)
     xpath (3.2.0)
       nokogiri (~> 1.8)
-    zeitwerk (2.6.13)
+    zeitwerk (2.6.15)
 
 PLATFORMS
   ruby
 
 DEPENDENCIES
-  activeadmin (= 2.13.1)
+  activeadmin (= 3.2.2)
   activerecord-import
   anchored
   awesome_print
