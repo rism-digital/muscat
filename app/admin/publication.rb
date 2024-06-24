@@ -35,20 +35,23 @@ ActiveAdmin.register Publication do
 
     def get_autocomplete_title_with_count(token,  options = {})
 
-      sanit = ActiveRecord::Base.send(:sanitize_sql_like, token)
+      #sanit = ActiveRecord::Base.send(:sanitize_sql_like, token)
+
+      term_escaped = Regexp.escape(token)
+      search_term = "\\b#{term_escaped}.*\\b"
 
       query = "SELECT `publications`.`id`, `publications`.`short_name`, `publications`.`author`, `publications`.`date`, `publications`.`title`,
       COUNT(publications.id) as count \
       FROM `publications` \
       JOIN sources_to_publications AS stp on publications.id = stp.publication_id \
-      WHERE (publications.short_name REGEXP ('\\\\b#{sanit}.*\\\\b') \
-      or publications.author REGEXP ('\\\\b#{sanit}.*\\\\b') \
-      or publications.title REGEXP ('\\\\b#{sanit}.*\\\\b') ) \
+      WHERE (publications.short_name REGEXP (?) \
+      or publications.author REGEXP (?) \
+      or publications.title REGEXP (?) ) \
       and (publications.short_name != '') \
       GROUP BY publications.id \
       ORDER BY COUNT(publications.id) DESC LIMIT 20"
       
-      return Publication.find_by_sql(query)
+      return Publication.find_by_sql([query, search_term, search_term, search_term])
     end
 
     def check_model_errors(object)

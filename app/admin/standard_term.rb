@@ -30,16 +30,16 @@ ActiveAdmin.register StandardTerm do
 
     def get_autocomplete_title_with_count(token, options = {})
 
-      sanit = ActiveRecord::Base.send(:sanitize_sql_like, token)
+      sanit = ActiveRecord::Base.send(:sanitize_sql_like, token) + "%"
 
       query = "SELECT `standard_terms`.`id`, `standard_terms`.`term`, count(standard_terms.id) AS count \
       FROM `standard_terms` 
       JOIN sources_to_standard_terms AS sst on standard_terms.id = sst.standard_term_id \
-      WHERE standard_terms.term LIKE ('#{sanit}%') \
+      WHERE standard_terms.term LIKE (?) \
       GROUP BY standard_terms.id \
       ORDER BY COUNT(standard_terms.id) DESC LIMIT 20"
       
-      return StandardTerm.find_by_sql(query)
+      return StandardTerm.find_by_sql([query, sanit])
     end
 
     after_destroy :check_model_errors

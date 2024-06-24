@@ -34,18 +34,18 @@ ActiveAdmin.register StandardTitle do
     # should match in the getter_function_autocomplete_label
     def get_autocomplete_title_with_count(token,  options = {})
 
-      sanit = ActiveRecord::Base.send(:sanitize_sql_like, token)
+      sanit = ActiveRecord::Base.send(:sanitize_sql_like, token) + "%"
       skip_730 = options.include?(:skip_730) && options[:skip_730] == true ? "AND sst.marc_tag != 730" : ""
 
       query = "SELECT `standard_titles`.`id`, `standard_titles`.`title`, count(standard_titles.id) AS count \
       FROM `standard_titles` 
       JOIN sources_to_standard_titles AS sst on standard_titles.id = sst.standard_title_id \
-      WHERE standard_titles.title LIKE ('#{sanit}%') \
+      WHERE standard_titles.title LIKE (?) \
       #{skip_730} \
       GROUP BY standard_titles.id \
       ORDER BY COUNT(standard_titles.id) DESC LIMIT 20"
       
-      return StandardTitle.find_by_sql(query)
+      return StandardTitle.find_by_sql([query, sanit])
     end
 
     after_destroy :check_model_errors
