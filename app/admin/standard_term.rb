@@ -10,7 +10,7 @@ ActiveAdmin.register StandardTerm do
   
   # Remove all action items
   config.clear_action_items!
-  config.per_page = [10, 30, 50, 100]
+  config.per_page = [10, 30, 50, 100, 1000]
   
   collection_action :autocomplete_standard_term_term, :method => :get
 

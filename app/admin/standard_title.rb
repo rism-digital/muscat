@@ -10,7 +10,7 @@ ActiveAdmin.register StandardTitle do
   include MergeControllerActions
   # Remove all action items
   config.clear_action_items!
-  config.per_page = [10, 30, 50, 100]
+  config.per_page = [10, 30, 50, 100, 1000]
 
   collection_action :autocomplete_standard_title_title, :method => :get
   collection_action :autocomplete_standard_title_title_no_730, :method => :get
