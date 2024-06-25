@@ -201,6 +201,47 @@ function setup_logout_watcher() {
 
 $(document).ready(function() {
     setup_logout_watcher();
+    // Add the Clipboard functions
+    var clipboard = new ClipboardJS('.copy_to_clipboard', {
+        text: function(trigger) {
+            let table_class = $(trigger).data("clipboard-target")
+            if ($(table_class).length < 1)
+                return;
+
+            let table = $(table_class)[0]
+            let rows = table.getElementsByTagName('tr');
+            let dataToCopy = '';
+        
+            for (let i = 0; i < rows.length; i++) {
+                let cells = rows[i].getElementsByTagName('td');
+                if (cells.length == 0)
+                    cells = rows[i].getElementsByTagName('th');
+                let rowData = [];
+        
+              for (let j = 1; j < cells.length - 1; j++) {
+                rowData.push(cells[j].innerText);
+              }
+        
+              dataToCopy += rowData.join('\t') + '\n'; // Use tab-delimited format or change as needed
+            }
+            
+            //console.log(dataToCopy)
+            return dataToCopy;
+        }
+    });
+
+    clipboard.on('success', function(e) {
+//console.info('Action:', e.action);
+//console.info('Text:', e.text);
+//console.info('Trigger:', e.trigger);
+
+//e.clearSelection();
+});
+
+clipboard.on('error', function(e) {
+console.error('Action:', e.action);
+console.error('Trigger:', e.trigger);
+});
 });
 
 // Set a flag to know if we

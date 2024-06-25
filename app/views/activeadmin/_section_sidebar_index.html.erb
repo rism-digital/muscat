@@ -42,25 +42,4 @@
 		</li>
 		
 	<%- end %>
-
-		<li class="muscat_icon_link">
-			<%= link_to("Copy", "#", :class => "muscat_icon_link muscat_icon_link_cancel copy_to_clipboard", 
-				:data => {"clipboard-target": "#index_table_sources"}) %>
-		</li>
-
-	<script>
-		var clipboard = new ClipboardJS('.copy_to_clipboard');
-		clipboard.on('success', function(e) {
-  console.info('Action:', e.action);
-  console.info('Text:', e.text);
-  console.info('Trigger:', e.trigger);
-
-  e.clearSelection();
-});
-
-clipboard.on('error', function(e) {
-  console.error('Action:', e.action);
-  console.error('Trigger:', e.trigger);
-});
-	</script>
 </ul>
