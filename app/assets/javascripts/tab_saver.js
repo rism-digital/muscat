@@ -201,6 +201,7 @@ function setup_logout_watcher() {
 
 $(document).ready(function() {
     setup_logout_watcher();
+
     // Add the Clipboard functions
     var clipboard = new ClipboardJS('.copy_to_clipboard', {
         text: function(trigger) {
@@ -231,17 +232,15 @@ $(document).ready(function() {
     });
 
     clipboard.on('success', function(e) {
-//console.info('Action:', e.action);
-//console.info('Text:', e.text);
-//console.info('Trigger:', e.trigger);
+        Toastify({
+            text: "Data copied to clipboard",
+            duration: 5000
+        }).showToast();
+    
+        e.clearSelection();
+    });
 
-//e.clearSelection();
-});
 
-clipboard.on('error', function(e) {
-console.error('Action:', e.action);
-console.error('Trigger:', e.trigger);
-});
 });
 
 // Set a flag to know if we

@@ -381,3 +381,15 @@ body.index #sidebar {
     #filters_sidebar_section { order: 2; }
     #actions_sidebar_section { order: 3; }
 }
+
+table.muscat_index_header {
+  margin-bottom: 0em;
+}
+
+.icon-button span.icon-copy {
+  //background: url(public/marc-icons/copy.png) no-repeat;
+  background: image-url("/images/marc-icons/copy16x19.png") no-repeat;
+  float: right;
+  width: 16px;
+  height: 19px;
+}

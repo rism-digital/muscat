@@ -111,5 +111,6 @@
 #=require tribute.min
 #=require tribute_load
 #=require clipboard.min
+#= require toastify
 
 #= require jquery.highlight-within-textarea
