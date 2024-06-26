@@ -209,6 +209,18 @@ function show_clipboard_toast() {
     }, 2000);
 }
 
+// is this really the only way to do this??
+function get_origin() {
+    var protocol = window.location.protocol;
+    var hostname = window.location.hostname;
+    var port = window.location.port;
+    var fullHost = protocol + '//' + hostname;
+    if (port) {
+        fullHost += ':' + port;
+    }
+    return fullHost;
+}
+
 function setup_clipboard() {
     // Add the Clipboard functions
     var clipboard = new ClipboardJS('.copy_to_clipboard', {
@@ -228,9 +240,14 @@ function setup_clipboard() {
                 let rowData = [];
         
                 for (let j = 1; j < cells.length - 1; j++) {
-                rowData.push(cells[j].innerText);
+                    rowData.push(cells[j].innerText);
                 }
         
+                // the last cell is the Show/Edit/Delete buttons
+                var edit_link = $(cells[cells.length - 1]).find("a.edit_link")
+                if (edit_link.length > 0)
+                    rowData.push(get_origin() + $(edit_link[0]).attr("href"))
+
                 dataToCopy += rowData.join('\t') + '\n'; // Use tab-delimited format or change as needed
             }
             
