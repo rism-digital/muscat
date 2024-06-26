@@ -9,8 +9,12 @@ gem 'mysql2'
 # Use SCSS for stylesheets
 gem 'sassc-rails'#, '~> 6.0'
 
+# NOTE not used anymore since rail 7.1
 # Use Uglifier as compressor for JavaScript assets
-gem 'uglifier'#, '~> 4.2'
+#gem 'uglifier'#, '~> 4.2'
+
+# Use this instead of Uglifier
+gem 'terser'
 
 # Use CoffeeScript for .js.coffee assets and views
 gem 'coffee-rails'#, '~> 5.0'

@@ -483,6 +483,8 @@ GEM
       sunspot (= 2.7.0)
     terrapin (1.0.1)
       climate_control
+    terser (1.2.3)
+      execjs (>= 0.3.0, < 3)
     thor (1.3.1)
     tilt (2.3.0)
     timeout (0.4.1)
@@ -494,8 +496,6 @@ GEM
     turbolinks-source (5.2.0)
     tzinfo (2.0.6)
       concurrent-ruby (~> 1.0)
-    uglifier (4.2.0)
-      execjs (>= 0.3.0, < 3)
     unicode_utils (1.4.0)
     uri (0.13.0)
     warden (1.2.9)
@@ -575,10 +575,10 @@ DEPENDENCIES
   sort_alphabetical
   sqlite3
   sunspot_rails (~> 2.7)
+  terser
   thor
   tty-spinner
   turbolinks (~> 5.2.1)
-  uglifier
   whatlanguage
 
 BUNDLED WITH
