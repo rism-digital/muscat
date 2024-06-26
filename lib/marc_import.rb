@@ -52,6 +52,7 @@ class MarcImport
       end
     end
     puts @import_results
+    Sunspot.commit if @options[:index]
   end
 
   def create_record(buffer)
