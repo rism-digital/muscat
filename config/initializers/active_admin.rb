@@ -214,7 +214,6 @@ ActiveAdmin.setup do |config|
   config.register_stylesheet 'muscat-print.css', :media => :print
   config.register_stylesheet 'diva.min.css'
   config.register_stylesheet 'jquery.flexdatalist.css'
-  config.register_stylesheet 'toastify.css'
 
   # == CSV options
   #

@@ -199,9 +199,17 @@ function setup_logout_watcher() {
     });
 }
 
-$(document).ready(function() {
-    setup_logout_watcher();
+function show_clipboard_toast() {
+    var toast = $('#clipboard-message');
 
+    toast.fadeIn("fast");
+
+    setTimeout(function() {
+        toast.fadeOut("slow");
+    }, 2000);
+}
+
+function setup_clipboard() {
     // Add the Clipboard functions
     var clipboard = new ClipboardJS('.copy_to_clipboard', {
         text: function(trigger) {
@@ -219,11 +227,11 @@ $(document).ready(function() {
                     cells = rows[i].getElementsByTagName('th');
                 let rowData = [];
         
-              for (let j = 1; j < cells.length - 1; j++) {
+                for (let j = 1; j < cells.length - 1; j++) {
                 rowData.push(cells[j].innerText);
-              }
+                }
         
-              dataToCopy += rowData.join('\t') + '\n'; // Use tab-delimited format or change as needed
+                dataToCopy += rowData.join('\t') + '\n'; // Use tab-delimited format or change as needed
             }
             
             //console.log(dataToCopy)
@@ -232,14 +240,14 @@ $(document).ready(function() {
     });
 
     clipboard.on('success', function(e) {
-        Toastify({
-            text: "Data copied to clipboard",
-            duration: 5000
-        }).showToast();
-    
+        show_clipboard_toast();
         e.clearSelection();
     });
+}
 
+$(document).ready(function() {
+    setup_logout_watcher();
+    setup_clipboard();
 
 });
 

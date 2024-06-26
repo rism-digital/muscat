@@ -8,9 +8,8 @@ module ActiveAdmin
                 def _muscat_copy_to_clipboard
                     ul do
                         div class: "icon-button" do
-                            span :class => "icon-copy copy_to_clipboard", :data => {"clipboard-target": ".index_table"} do
-                            end
-                            #link_to("Copy table to clipboard", "#", :class => "muscat_icon_link muscat_icon_link_cancel copy_to_clipboard", :data => {"clipboard-target": ".index_table"})
+                            span :class => "icon-copy copy_to_clipboard", :data => {"clipboard-target": ".index_table"}
+                            span :id => "clipboard-message", :class => "clipboard-message status_tag ok" do "Results copied to clipboard " end
                         end
                     end
                 end

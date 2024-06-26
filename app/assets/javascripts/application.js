@@ -113,7 +113,6 @@
 //= require merge_authority.js
 //= require compare_versions_actions.js
 //= require clipboard.min.js
-//= require toastify.js
 
 //= require 'ekko-lightbox.min'
 
