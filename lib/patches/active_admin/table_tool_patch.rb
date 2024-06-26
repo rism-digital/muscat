@@ -9,7 +9,7 @@ module ActiveAdmin
                     ul do
                         div class: "icon-button" do
                             span :class => "icon-copy copy_to_clipboard", :data => {"clipboard-target": ".index_table"}
-                            span :id => "clipboard-message", :class => "clipboard-message status_tag ok" do "Results copied to clipboard " end
+                            span :id => "clipboard-message", :class => "clipboard-message status_tag ok" do I18n.t :"clipboard.copied" end
                         end
                     end
                 end

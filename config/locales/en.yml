@@ -853,6 +853,9 @@ en:
     warning: "You have logged out from Muscat. Any unsaved work will be lost."
     generic_error: "You have logged out of Muscat. Please refresh the page to return to the login screen."
 
+  clipboard:
+    copied: Results copied to clipboard
+
   # date:
   # Empty lines for matching line numbers with other translation files  
   #
