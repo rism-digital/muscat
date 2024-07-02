@@ -179,7 +179,8 @@ class MarcImport
 
       # step 4. insert model into database
 #     begin
-      model.save! #
+      model.save!
+      model.index if @options[:index]
 #       @log.info(@model+" record "+marc.get_id.to_s+" "+status)
 #       rescue ActiveRecord::RecordNotUnique
 #       @log.error(@model+" record "+marc.get_id.to_s+" import failed because record not unique")
