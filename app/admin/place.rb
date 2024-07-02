@@ -69,7 +69,7 @@ ActiveAdmin.register Place do
     # redirect update failure for preserving sidebars
     def update
       update! do |success,failure|
-        success.html { redirect_to collection_path }
+        success.html { redirect_to resource_path(params[:id]) }
         failure.html { redirect_back fallback_location: root_path, flash: { :error => "#{I18n.t(:error_saving)}" } }
       end
       # Run the eventual triggers
@@ -159,6 +159,7 @@ ActiveAdmin.register Place do
       row (I18n.t :filter_country) { |r| r.country }
       row (I18n.t :filter_district) { |r| r.district }    
       row (I18n.t :filter_notes) { |r| r.notes }    
+      row (I18n.t :filter_owner) { |r| User.find_by(id: r.wf_owner).name rescue r.wf_owner }
     end
 
     active_admin_embedded_source_list( self, place, !is_selection_mode? )
@@ -264,6 +265,8 @@ ActiveAdmin.register Place do
       f.input :country, :label => (I18n.t :filter_country), :as => :string # otherwise country-select assumed
       f.input :district, :label => (I18n.t :filter_district)
       f.input :notes, :label => (I18n.t :filter_notes)
+      f.input :wf_stage, :label => (I18n.t :filter_wf_stage)
+      f.input :wf_owner, :input_html => { :value => current_user.id }, :as => :hidden
       f.input :lock_version, :as => :hidden
     end
   end

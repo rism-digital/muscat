@@ -86,7 +86,7 @@ ActiveAdmin.register StandardTerm do
     # redirect update failure for preserving sidebars
     def update
       update! do |success,failure|
-        success.html { redirect_to collection_path }
+        success.html { redirect_to resource_path(params[:id]) }
         failure.html { redirect_back fallback_location: root_path, flash: { :error => "#{I18n.t(:error_saving)}" } }
       end
 
@@ -154,6 +154,7 @@ ActiveAdmin.register StandardTerm do
       row (I18n.t :filter_term) { |r| r.term }
       row (I18n.t :filter_alternate_terms) { |r| r.alternate_terms }
       row (I18n.t :filter_notes) { |r| r.notes }    
+      row (I18n.t :filter_owner) { |r| User.find_by(id: r.wf_owner).name rescue r.wf_owner }
     end
     active_admin_embedded_source_list( self, standard_term, !is_selection_mode? )
     
@@ -209,6 +210,7 @@ ActiveAdmin.register StandardTerm do
       f.input :alternate_terms, :label => (I18n.t :filter_alternate_terms), :input_html => { :rows => 8 }
       f.input :notes, :label => (I18n.t :filter_notes)
       f.input :wf_stage, :label => (I18n.t :filter_wf_stage)
+      f.input :wf_owner, :input_html => { :value => current_user.id }, :as => :hidden
       f.input :lock_version, :as => :hidden
     end
   end
