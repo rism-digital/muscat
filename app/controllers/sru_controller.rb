@@ -36,7 +36,7 @@ class SruController < ActionController::Base
             result.hits.each_with_index do |hit, idx|
               res << "<zs:recordPacking>xml</zs:recordPacking>
                 <zs:recordData>
-              #{Nokogiri::HTML.fragment(hit.result.marc.to_xml_record({ updated_at: hit.result.updated_at, holdings: true }).to_s.html_safe).to_s}
+              #{Nokogiri::HTML.fragment(hit.result.marc.to_xml_record({ created_at: hit.result.created_at, updated_at: hit.result.updated_at, holdings: true }).to_s.html_safe).to_s}
                 </zs:recordData>
                 <zs:recordPosition>#{idx + 1}</zs:recordPosition>
                 </zs:record>"
