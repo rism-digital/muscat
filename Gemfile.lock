@@ -491,9 +491,6 @@ GEM
     tty-cursor (0.7.1)
     tty-spinner (0.9.3)
       tty-cursor (~> 0.7)
-    turbolinks (5.2.1)
-      turbolinks-source (~> 5.2)
-    turbolinks-source (5.2.0)
     tzinfo (2.0.6)
       concurrent-ruby (~> 1.0)
     unicode_utils (1.4.0)
@@ -578,7 +575,6 @@ DEPENDENCIES
   terser
   thor
   tty-spinner
-  turbolinks (~> 5.2.1)
   whatlanguage
 
 BUNDLED WITH
