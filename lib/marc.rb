@@ -92,14 +92,22 @@ class Marc
     by_tags("008").each {|t| t.destroy_yourself}
   end
   # TODO arguments should use parameters or keywords
-  def to_external(updated_at = nil, versions = nil, holdings = false, deprecated_ids = true)
+  def to_external(created_at = nil, updated_at = nil, versions = nil, holdings = false, deprecated_ids = true)
     # cataloguing agency
     _003_tag = first_occurance("003")
     if !_003_tag
       agency = MarcNode.new(@model, "003", RISM::AGENCY, "")
       @root.children.insert(get_insert_position("003"), agency)
     end
-  
+
+    # adding created at 008
+    if created_at 
+      created = created_at.strftime("%y%m%d")
+      _008_content = "#{created}##################################"
+      tag_008 = MarcNode.new(@model, "008", _008_content, nil)
+      @root.children.insert(get_insert_position("008"), tag_008)
+    end
+
     if updated_at
       last_transcation = updated_at.strftime("%Y%m%d%H%M%S") + ".0"
       # 005 should not be there, if it is avoid duplicates
@@ -109,6 +117,7 @@ class Marc
             MarcNode.new(@model, "005", last_transcation, nil))
       end
     end
+
     by_tags("599").each {|t| t.destroy_yourself}
   end
   
@@ -533,6 +542,7 @@ class Marc
   
   def to_xml_record(options = {})
     # parse available options
+    created_at = options.has_key?(:created_at) ? options[:created_at] : nil
     updated_at = options.has_key?(:updated_at) ? options[:updated_at] : nil
     versions = options.has_key?(:versions) ? options[:versions] : nil
     holdings = options.has_key?(:holdings) ? options[:holdings] : true
@@ -543,7 +553,7 @@ class Marc
     
     safe_marc = self.deep_copy
     safe_marc.root = @root.deep_copy
-    safe_marc.to_external(updated_at, versions, holdings, deprecated_ids)
+    safe_marc.to_external(created_at, updated_at, versions, holdings, deprecated_ids)
     
     document = XML::Document.new()
     document.root = XML::Node.new("record")
@@ -557,13 +567,14 @@ class Marc
 
   # Accept the same parameters as the XML exporter
   def to_marc_external(options = {})
+    created_at = options.has_key?(:created_at) ? options[:created_at] : nil
     updated_at = options.has_key?(:updated_at) ? options[:updated_at] : nil
     versions = options.has_key?(:versions) ? options[:versions] : nil
     holdings = options.has_key?(:holdings) ? options[:holdings] : true
 
     safe_marc = self.deep_copy
     safe_marc.root = @root.deep_copy
-    safe_marc.to_external(updated_at, versions, holdings)
+    safe_marc.to_external(created_at, updated_at, versions, holdings)
 
     # Send back a sanitized version for HTML display
     ERB::Util.html_escape(safe_marc.to_marc.gsub(DOLLAR_STRING, "{dollar}"))

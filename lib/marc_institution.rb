@@ -65,7 +65,7 @@ class MarcInstitution < Marc
       end
     end
   end
-  def to_external(updated_at = nil, versions = nil, holdings = false, deprecated_ids = true)
+  def to_external(created_at = nil, updated_at = nil, versions = nil, holdings = false, deprecated_ids = true)
     parent_object = Institution.find(get_id)
     # cataloguing agency
     _003_tag = first_occurance("003")

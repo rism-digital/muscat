@@ -47,8 +47,8 @@ class MarcWorkNode < Marc
     tag100.add_at(MarcNode.new("work_node", "0", person.id, nil), 0)
   end
 
-  def to_external(updated_at = nil, versions = nil, holdings = false, deprecated_ids = true)
-    super(updated_at, nil, holdings)
+  def to_external(created_at = nil, updated_at = nil, versions = nil, holdings = false, deprecated_ids = true)
+    super(created_at, updated_at, nil, holdings)
     # nothing specific to do - this is used ony for deprecating works
   end
   

@@ -359,8 +359,8 @@ class MarcSource < Marc
     end
   end
   
-  def to_external(updated_at = nil, versions = nil, holdings = true, deprecated_ids = true)
-    super(updated_at, versions)
+  def to_external(created_at = nil, updated_at = nil, versions = nil, holdings = true, deprecated_ids = true)
+    super(created_at, updated_at, versions)
     parent_object = Source.find(get_id)
     # See #933, supersedes #176
     # Step 1, make leader
