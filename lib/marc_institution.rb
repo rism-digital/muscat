@@ -66,24 +66,9 @@ class MarcInstitution < Marc
     end
   end
   def to_external(created_at = nil, updated_at = nil, versions = nil, holdings = false, deprecated_ids = true)
+    super(created_at, updated_at, versions)
     parent_object = Institution.find(get_id)
-    # cataloguing agency
-    _003_tag = first_occurance("003")
-    if !_003_tag
-      agency = MarcNode.new(@model, "003", RISM::AGENCY, "")
-      @root.children.insert(get_insert_position("003"), agency)
-    end
-
-    if updated_at
-      last_transcation = updated_at.strftime("%Y%m%d%H%M%S") + ".0"
-      # 005 should not be there, if it is avoid duplicates
-      _005_tag = first_occurance("005")
-      if !_005_tag
-        @root.children.insert(get_insert_position("003"),
-            MarcNode.new(@model, "005", last_transcation, nil))
-      end
-    end
-
+    
     by_tags("667").each {|t| t.destroy_yourself}
 
     source_size = parent_object.referring_sources.where(wf_stage: 1).size + parent_object.holdings.size rescue 0
