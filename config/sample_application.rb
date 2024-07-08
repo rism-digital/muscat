@@ -169,6 +169,8 @@ module Muscat
 
     config.load_defaults 7.1
     config.active_support.cache_format_version = 7.1
+    # Make sure belongs_to is optional by default
+    config.active_record.belongs_to_required_by_default = false
 
     # Force validation of locales, this also silences the deprecation warning
     config.i18n.enforce_available_locales = true
