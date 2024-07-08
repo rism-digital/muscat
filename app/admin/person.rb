@@ -94,7 +94,7 @@ ActiveAdmin.register Person do
 
       respond_to do |format|
         format.html
-        format.xml { render :xml => @item.marc.to_xml({ updated_at: @item.updated_at, versions: @item.versions }) }
+        format.xml { render :xml => @item.marc.to_xml({ created_at: @item.created_at, updated_at: @item.updated_at, versions: @item.versions }) }
       end
     end
 
