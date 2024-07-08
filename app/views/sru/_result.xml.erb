@@ -9,9 +9,9 @@
           <zs:recordData>
             <% if hit.result %>
               <% if @sru.schema == 'marc' %>
-                <%= hit.result.marc.to_xml({updated_at: hit.result.updated_at, holdings: true, collection: true, ns_name: 'marc', deprecated_ids: @sru.deprecatedIds }).html_safe %>
+                <%= hit.result.marc.to_xml({ created_at: hit.result.created_at, updated_at: hit.result.updated_at, holdings: true, collection: true, ns_name: 'marc', deprecated_ids: @sru.deprecatedIds }).html_safe %>
               <% elsif @sru.schema == 'mods'%>
-                <% xml = Nokogiri::XML(hit.result.marc.to_xml({ updated_at: hit.result.updated_at, holdings: true, collection: true })) %>
+                <% xml = Nokogiri::XML(hit.result.marc.to_xml({ created_at: hit.result.created_at, updated_at: hit.result.updated_at, holdings: true, collection: true })) %>
                 <% template =  Nokogiri::XSLT(File.read('public/xml/MARC21slim2MODS3-6.xsl')) %>
                 <% mods_record = template.transform(xml) %>
                 <% mods_record.xpath("//ns:modsCollection", "ns" => "http://www.loc.gov/mods/v3").children.first["xmlns:mods"] = "http://www.loc.gov/mods/v3" %>

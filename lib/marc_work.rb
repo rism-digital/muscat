@@ -73,7 +73,7 @@ class MarcWork < Marc
   end
 
   # Make sure we do not use the default to_external
-  def to_external(updated_at = nil, versions = nil, holdings = false, deprecated_ids = true)
+  def to_external(created_at = nil, updated_at = nil, versions = nil, holdings = false, deprecated_ids = true)
   end
 
 end

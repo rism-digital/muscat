@@ -540,7 +540,7 @@ DEPENDENCIES
   iiif-presentation
   jbuilder (~> 2.12)
   jquery-rails (~> 4.5)
-  jquery-ui-rails (~> 6.0)
+  jquery-ui-rails (~> 6.0.1)
   js_cookie_rails (~> 2.2.0)
   kramdown
   kt-paperclip
