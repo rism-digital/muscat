@@ -72,7 +72,7 @@ ActiveAdmin.register Source do
       @editor_profile = EditorConfiguration.get_show_layout @item
       @prev_item, @next_item, @prev_page, @next_page, @nav_positions = Source.near_items_as_ransack(params, @item)
       
-      if @item.get_record_type == :edition || @item.get_record_type == :libretto_edition || @item.get_record_type == :theoretica_edition
+      if @item.get_record_type == :edition || @item.get_record_type == :libretto_edition || @item.get_record_type == :theoretica_edition || @item.get_record_type == :inventory_edition
         if @item.holdings.empty?
           flash.now[:error] = I18n.t(:holding_missing_show, new_holding: I18n.t(:new_holding))
         end
@@ -98,7 +98,7 @@ ActiveAdmin.register Source do
       
       template = EditorConfiguration.get_source_default_file(@item.get_record_type) + ".marc"
 
-      if @item.get_record_type == :edition || @item.get_record_type == :libretto_edition || @item.get_record_type == :theoretica_edition
+      if @item.get_record_type == :edition || @item.get_record_type == :libretto_edition || @item.get_record_type == :theoretica_edition || @item.get_record_type == :inventory_edition
         if @item.holdings.empty?
           flash.now[:error] = I18n.t(:holding_missing, new_holding: I18n.t(:new_holding))
         end

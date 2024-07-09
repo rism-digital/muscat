@@ -14,6 +14,8 @@ class MarcSource < Marc
     libretto_edition_content: 9,
     theoretica_edition_content: 10,
     composite_volume: 11,
+    inventory: 12,
+    inventory_edition: 13
   }
   
   RECORD_TYPE_ORDER = [
@@ -28,6 +30,8 @@ class MarcSource < Marc
     :libretto_edition_content,
     :theoretica_edition_content,
     :composite_volume,
+    :inventory,
+    :inventory_edition,
     :unspecified
   ]
 
@@ -44,7 +48,8 @@ class MarcSource < Marc
     MarcSource::RECORD_TYPES[:libretto_edition],
     MarcSource::RECORD_TYPES[:theoretica_edition],
     MarcSource::RECORD_TYPES[:libretto_edition_content],
-    MarcSource::RECORD_TYPES[:theoretica_edition_content]].include? record_type
+    MarcSource::RECORD_TYPES[:theoretica_edition_content],
+    MarcSource::RECORD_TYPES[:inventory_edition]].include? record_type
   end
 
   def initialize(source = nil, rt = 0)

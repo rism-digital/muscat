@@ -57,6 +57,12 @@ display:
     composite_volume:
       record_type: composite_volume
 
+  inventories:
+    inventory:
+      record_type: inventory
+    inventory_edition:
+      record_type: inventory_edition
+
 default_mapping:
   collection: "000_collection"
   source: "002_source"
@@ -70,3 +76,5 @@ default_mapping:
   libretto_edition_content: "016_libretto_edition_content"
   theoretica_edition_content: "018_theoretica_edition_content"
   composite_volume: "019_composite"
+  inventory: "020_inventory"
+  inventory_edition: "021_inventory_edition"
