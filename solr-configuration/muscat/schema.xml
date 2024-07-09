@@ -191,7 +191,7 @@
         <fieldType name="location" class="solr.LatLonType" subFieldSuffix="_coordinate"/>
 
         <!-- ADDED BY RZ FOR MUSCAT -->
-        <fieldType name="text_alphanumeric_sort" class="solr.ICUCollationField" locale="" numeric="true" strength="secondary" alternate="shifted" sortMissingLast="true" />       
+        <fieldType name="text_alphanumeric_sort" class="solr.ICUCollationField" locale="" numeric="true" strength="secondary" alternate="shifted" sortMissingLast="false" />       
         <!-- END ADDED BY RZ FOR MUSCAT -->
 
     </types>
