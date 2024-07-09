@@ -1,0 +1,8 @@
+config:
+    :version: 2.0
+    :model: inventory_item
+
+fields:  
+  "852c":
+      :store: true
+

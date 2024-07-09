@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_06_18_134519) do
+ActiveRecord::Schema[7.1].define(version: 2024_07_09_110127) do
   create_table "active_admin_comments", id: :integer, charset: "utf8mb3", force: :cascade do |t|
     t.string "namespace"
     t.text "body"
@@ -226,6 +226,19 @@ ActiveRecord::Schema[7.1].define(version: 2024_06_18_134519) do
     t.integer "institution_id"
     t.index ["institution_id"], name: "index_workgroups_institutions_on_institution_id"
     t.index ["workgroup_id"], name: "index_workgroups_institutions_on_workgroup_id"
+  end
+
+  create_table "inventory_items", charset: "utf8mb3", force: :cascade do |t|
+    t.integer "source_id"
+    t.string "title"
+    t.string "composer"
+    t.text "marc_source"
+    t.integer "lock_version"
+    t.integer "wf_audit"
+    t.integer "wf_owner"
+    t.integer "wf_stage"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "liturgical_feasts", id: :integer, charset: "utf8mb3", force: :cascade do |t|
