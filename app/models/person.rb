@@ -311,6 +311,7 @@ class Person < ApplicationRecord
     
     # varia
     self.gender, self.birth_place, self.source = marc.get_gender_birth_place_and_source
+    self.display_name = marc.get_display_name
 
     self.marc_source = self.marc.to_marc
   end
@@ -325,15 +326,7 @@ class Person < ApplicationRecord
   end
   
   def autocomplete_label
-    #1540, does this slow things up too much?
-    #Since the autocomplete only gets the minimum fields
-    pp = Person.find(id)
-    pp.marc.load_source false
-    person_function = pp.marc.first_occurance("100", "c")
-
-    "#{full_name}" + 
-      (person_function && person_function.content && !person_function.content.empty? ? " (#{person_function.content})" : "") + 
-      (life_dates && !life_dates.empty? ? "  - #{life_dates}" : "")
+    display_name
   end
 
   ransacker :"100d", proc{ |v| } do |parent| parent.table[:id] end
