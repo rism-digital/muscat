@@ -189,6 +189,10 @@ module ActiveAdmin::ViewsHelper
     return "#{description.truncate(60)} - [#{id}]"
   end
   
+  def active_admin_inventory_item_show_title (ii)
+    ii.title
+  end
+
   def digital_object_form_url
     parts = []
     parts << active_admin_namespace.name unless active_admin_namespace.root?

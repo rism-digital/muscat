@@ -4,7 +4,7 @@
   :current: 2.0
   :authors: ["Rodolfo Zitellini"]
 
-:model: holding
+:model: inventory_item
 :tags:
   "000":
     :master: ""
@@ -28,23 +28,56 @@
     :fields:
     - - ""
       - :no_browse: true
-  "035":
+  "100":
+    :master: "0"
+    :indicator: "1#"
+    :occurrences: "?"
+    :fields:
+    - - "0"
+      - :occurrences: "?"
+        :foreign_class: Person
+        :foreign_field: id
+        :no_show: true
+    - - a
+      - :occurrences: "?"
+        :foreign_class: ^0
+        :foreign_field: full_name
+    - - d
+      - :occurrences: "?"
+        :browse_inline: true
+        :foreign_class: ^0
+        :foreign_field: life_dates
+        :foreign_alternates: alternate_dates
+    - - j
+      - :occurrences: "?"
+  "245":
     :master: a
-    :indicator: "##"
+    :indicator: "10"
+    :occurrences: "1"
+    :fields:
+    - - a
+      - :occurrences: "1"
+  "246":
+    :master: a
+    :indicator: "2#"
     :occurrences: "*"
     :fields:
     - - a
       - :occurrences: "?"
-  "300":
+  "260":
     :master: a
     :indicator: "##"
-    :occurrences: "*"
+    :occurrences: "+"
     :fields:
     - - a
       - :occurrences: "*"
     - - b
-      - :occurrences: "*"
+      - :occurrences: "1"
     - - c
+      - :occurrences: "1"
+    - - e
+      - :occurrences: "?"
+    - - f
       - :occurrences: "?"
     - - "8"
       - :occurrences: "?"
@@ -60,71 +93,13 @@
     - - "8"
       - :occurrences: "?"
         :no_browse: true
-  "506":
+  "560":
     :master: a
     :indicator: "##"
     :occurrences: "*"
     :fields:
     - - a
       - :occurrences: "?"
-  "518":
-    :master: a
-    :indicator: "##"
-    :occurrences: "*"
-    :fields:
-    - - a
-      - :occurrences: "?"
-  "525":
-    :master: a
-    :indicator: "##"
-    :occurrences: "*"
-    :fields:
-    - - a
-      - :occurrences: "?"
-  "541":
-    :master: a
-    :indicator: "1#"
-    :occurrences: "?"
-    :fields:
-    - - a
-      - :occurrences: "?"
-    - - c
-      - :occurrences: "?"
-    - - d
-      - :occurrences: "?"
-    - - e
-      - :occurrences: "?"
-  "561":
-    :master: a
-    :indicator: "##"
-    :occurrences: "*"
-    :fields:
-    - - a
-      - :occurrences: "?"
-  "563":
-    :master: u
-    :indicator: "##"
-    :occurrences: "*"
-    :fields:
-    - - a
-      - :occurrences: "?"
-  "591":
-    :master: a
-    :indicator: "##"
-    :occurrences: "*"
-    :fields:
-    - - a
-      - :occurrences: "?"
-  "592":
-    :master: a
-    :indicator: "##"
-    :occurrences: "*"
-    :fields:
-    - - a
-      - :occurrences: "?"
-    - - "8"
-      - :occurrences: "?"
-        :no_browse: true
   "593":
     :master: a
     :indicator: "##"
@@ -145,42 +120,7 @@
     - - a
       - :occurrences: "?"
     - - b
-      - :occurrences: "?"
-  "651":
-    :master: "0"
-    :indicator: "#7"
-    :occurrences: "*"
-    :fields:
-    - - "0"
-      - :occurrences: "?"
-        :foreign_class: Place
-        :foreign_field: id
-        :no_show: true
-    - - a
-      - :occurrences: "?"
-        :foreign_class: ^0
-        :foreign_field: name
-    - - "2"
-      - :occurrences: "?"
-        :no_browse: true
-        # value must be added during exportation
-  "691":
-    :master: "0"
-    :indicator: "#7"
-    :occurrences: "*"
-    :fields:
-    - - "0"
-      - :occurrences: "?"
-        :foreign_class: Publication
-        :foreign_field: id
-        :no_show: true
-    - - a
-      - :occurrences: "?"
-        :foreign_class: ^0
-        :foreign_field: short_name
-    - - n
-      - :occurrences: "?"
- 
+      - :occurrences: "?" 
   "700":
     :master: "0"
     :indicator: "1#"
@@ -237,38 +177,15 @@
     - - "8"
       - :occurrences: "?"
         :no_browse: true
- 
-  "852":
-    :master: "x"
+  "773":
+    :master: "u"
     :indicator: "##"
     :occurrences: "?"
     :fields:
-    - - "x"
+    - - "u"
       - :occurrences: "?"
-        :foreign_class: Institution
+        :foreign_class: Source
         :foreign_field: id
-        :no_show: true
-    - - a
-      - :occurrences: "1"
-        :foreign_class: ^x
-        :foreign_field: siglum
-#        :browse_helper: application_helper_link_to_library
-        :no_browse: true
-    - - b
-      - :occurrences: "?"
-    - - c
-      - :occurrences: "?"
-    - - d
-      - :occurrences: "*"
-    - - e
-      - :occurrences: "?"
-        :foreign_class: ^x
-        :foreign_field: corporate_name
-        :disable_create_lookup: true
-    - - q
-      - :occurrences: "*"
-    - - z
-      - :occurrences: "*"
   "856":
     :master: u
     :indicator: "##"
@@ -284,12 +201,4 @@
     - - "8"
       - :occurrences: "?"
         :no_browse: true
-  "973":
-    :master: "u"
-    :indicator: "##"
-    :occurrences: "?"
-    :fields:
-    - - "u"
-      - :occurrences: "?"
-        :foreign_class: Source
-        :foreign_field: id
+

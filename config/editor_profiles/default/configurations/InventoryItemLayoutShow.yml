@@ -1,0 +1,32 @@
+--- !map:Settings 
+group_order: 
+- edit_library
+- edit_names
+- edit_material
+
+groups: 
+  edit_administration: 
+    all_tags: 
+    - "001"
+
+  edit_library: 
+    all_tags: 
+    - '773'
+    - "100"
+    - '245'
+    - '246'
+    - '260'
+    - '856'
+    all_tag_templates: 
+      "856": marc_show/show_link
+  edit_names:
+    all_tags: 
+    - '700'
+    - '710'
+
+  edit_material:
+    all_tags:
+    - "500"
+    - "599"
+    - '593' 
+    - '560'

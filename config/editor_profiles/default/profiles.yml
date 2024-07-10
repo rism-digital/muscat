@@ -230,3 +230,33 @@
     show_all: false
     show: true
   :validation: "GndWorkValidation"
+
+  ## Inventory Item
+- :id: DefaultInventoryItem
+  :name: InventoryItem
+  :model: inventory_item
+  :labels: 
+  - InventoryItemLabels
+  :rules: 
+  - BasicCataloguingRules
+  :options: 
+  - InventoryItemFormOptions
+  :layout: 
+  - InventoryItemLayoutDefault
+  :filter:
+    default: true 
+- :id: ShowInventoryItem
+  :name: InventoryItem
+  :model: inventory_item
+  :labels: 
+  - InventoryItemLabels
+  :rules: 
+  - BasicCataloguingRules
+  :options: 
+  - InventoryItemFormOptions
+  :layout: 
+  - InventoryItemLayoutShow
+  :filter:
+    show_all: false
+    show: true
+  :validation: "InventoryItemValidation"

@@ -1,0 +1,187 @@
+--- !map:Settings 
+"001": 
+  tag: tag_no_subfield
+  tag_params: 
+    read_only: true
+    no_delete: true
+  tag_header: none
+"100":
+  new_window: people
+  new_window_field: full_name_equals
+  layout:
+    fields:
+    - - a
+      - type: person
+        editor_partial: subfield_secondary
+        allow_new: true
+    - - d
+      - autocomplete_extra: life_dates
+    - - j
+      - editor_partial: subfield_select_codes
+        codes_reference: "codes"
+  tag_params:
+    codes:
+      - "Ascertained"
+      - "Alleged"
+      - "Conjectural"
+      - "Misattributed"
+"245":
+  layout:
+    fields:
+    - - a
+      - growfield: true
+"246":
+  layout:
+    fields:
+    - - a
+      - growfield: true
+"260":
+  layout:
+    fields:
+    - - a
+    - - b
+    - - c
+    - - e
+    - - f
+"500": 
+  layout: 
+    fields: 
+    - - a
+      - growfield: true
+"560": 
+  layout: 
+    fields: 
+    - - a
+      - growfield: true
+"593": 
+  layout: 
+    fields: 
+    - - a
+      - values:
+        - Print
+        - Print with autograph annotations
+        - Print with non-autograph annotations
+        - Additional manuscript material
+        editor_partial: subfield_select
+    - - b
+      - values:
+        - "Notated music"
+        - "Libretto"
+        - "Treatise"
+        - "Other"
+        editor_partial: subfield_select
+"599": 
+  layout: 
+    fields: 
+    - - a
+      - growfield: true
+    - - b
+      - hidden: true
+"700":
+  new_window: people
+  new_window_field: full_name_equals
+  layout:
+    fields: 
+    - - a
+      - type: person
+        editor_partial: subfield_secondary
+        allow_new: true
+    - - d
+      - autocomplete_extra: life_dates
+    - - j
+      - editor_partial: subfield_select_codes
+        codes_reference: "codes"
+    - - "4"
+      - editor_partial: subfield_select_codes
+        select_label: "Function"
+        codes_reference: "relator_codes"
+  tag_params: 
+    codes:
+      - "Ascertained"
+      - "Alleged"
+      - "Conjectural"
+      - "Doubtful"
+      - "Misattributed"
+    relator_codes: 
+      - fmo
+      - scr
+      - cmp
+      - prf
+      - dte
+      - trl
+      - edt
+      - ltg
+      - egr
+      - ill
+      - prt
+      - ppm
+      - oth
+      - asn
+      - arr
+"710":
+  new_window: institutions
+  new_window_field: name_equals
+  layout: 
+    fields: 
+    - - a
+      - type: institution
+        editor_partial: subfield_secondary
+        allow_new: true
+    - - b
+    - - c
+      - type: place
+        editor_partial: subfield_autocomplete
+        autocomplete_extra: place
+    - - g
+      - editor_partial: subfield_select_codes
+        codes_reference: "codes"
+    - - "4"
+      - editor_partial: subfield_select_codes
+        select_label: "Function"
+        codes_reference: "relator_codes"
+  tag_params: 
+    codes:
+      - "Ascertained"
+      - "Alleged"
+      - "Conjectural"
+      - "Doubtful"
+      - "Misattributed"
+    relator_codes: 
+      - fmo
+      - dpt
+      - dte
+      - prf
+      - bsl
+      - evp
+      - oth
+      - ppm
+      - prt
+      - asn
+"773":
+  new_window: sources
+  record_type_helper: get_allowed_record_type_holding
+  lib_siglum_helper: get_allowed_lib_siglum_holding
+  layout: 
+    fields: 
+    - - u
+      - type: source
+        editor_partial: subfield_secondary
+        only_new_window: true
+"856": 
+  layout: 
+    fields: 
+    - - u
+    - - z
+    - - x
+      - editor_partial: subfield_select_codes
+        codes_reference: "codes"
+  tag_params: 
+    codes:
+      - "IIIF manifest (digitized source)"
+      - "IIIF manifest (other)"
+      - "Digitized"
+      - "Other"
+ui: 
+  hide_marc_identifiers: true
+triggers:
+  - reindex_source

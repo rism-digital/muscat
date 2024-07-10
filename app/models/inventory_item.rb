@@ -57,7 +57,6 @@ class InventoryItem < ApplicationRecord
   enum wf_audit: [ :unapproved, :full, :abbreviated, :retro, :imported ]
 
   def after_initialize
-    @old_collection = nil
     @last_user_save = nil
     @last_event_save = "update"
   end
@@ -115,7 +114,7 @@ class InventoryItem < ApplicationRecord
     return if self.marc_source != nil  
     return if self.suppress_scaffold_marc_trigger == true
  
-    new_marc = MarcHolding.new(File.read(ConfigFilePath.get_marc_editor_profile_path("#{Rails.root}/config/marc/#{RISM::MARC}/inventory_item/default.marc")))
+    new_marc = MarcInventoryItem.new(File.read(ConfigFilePath.get_marc_editor_profile_path("#{Rails.root}/config/marc/#{RISM::MARC}/inventory_item/default.marc")))
     new_marc.load_source true
     
     node = MarcNode.new("inventory_item", "852", "", "##")
@@ -138,14 +137,6 @@ class InventoryItem < ApplicationRecord
     # will be nil
     return if marc_source == nil
     
-    # parent collection source
-    collection = marc.get_parent
-    # If the 973 link is removed, clear the source_id
-    # But before save it so we can update the parent
-    # source.
-    @old_collection = collection_id if !collection || collection.id != collection_id
-    self.collection_id = collection ? collection.id : nil
-
     # If the source id is present in the MARC field, set it into the
     # db record
     # if the record is NEW this has to be done after the record is created
@@ -153,9 +144,6 @@ class InventoryItem < ApplicationRecord
     # If 001 is empty or new (__TEMP__) let the DB generate an id for us
     # this is done in create(), and we can read it from after_create callback
     self.id = marc_source_id if marc_source_id and marc_source_id != "__TEMP__"
-
-    # "Tell fields"
-    self.lib_siglum = marc.get_lib_siglum
     
     self.marc_source = self.marc.to_marc
   end
@@ -187,15 +175,6 @@ class InventoryItem < ApplicationRecord
 
     MarcIndex::attach_marc_index(sunspot_dsl, self.to_s.underscore.downcase)
     
-  end
-
-
-  def check_collection_id
-    if collection_id
-      throw :abort
-      false
-    end 
-    true
   end
 
   def display_name
