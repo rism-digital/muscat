@@ -59,30 +59,31 @@ ActiveAdmin.register User do
 
   index :download_links => false do
     selectable_column
-    id_column
+    column "Id", sortable: :id do |user|
+      if can?(:edit, user)
+        link_to user.id, edit_admin_user_path(user)
+      else
+        user.id
+      end
+    end
     column :username
-    column :name
+    column :name do |user|
+      link_to user.name, admin_user_path(user)
+    end
     column :email
     column I18n.t(:workgroups) do |user|
-         user.get_workgroups.join(", ")
+      user.get_workgroups.join(", ")
     end
     column I18n.t(:roles) do |user|
-         user.get_roles.join(", ")
+      user.get_roles.join(", ")
     end
-    column :created_at
-    #column (I18n.t :filter_sources) do |user|
-    #  user.sources_size_per_month(Time.now - 1.month, Time.now)
-    #end
-
+    column :created_at, sortable: :created_at
     column :active do |user|
       user.active?
     end
-
     column :disabled do |user|
       user.disabled?
     end
-
-    actions
   end
   
   sidebar :actions, :only => :index do
