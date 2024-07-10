@@ -15,23 +15,27 @@ class InventoryItem < ApplicationRecord
   has_many :digital_object_links, :as => :object_link, :dependent => :delete_all
   has_many :digital_objects, through: :digital_object_links, foreign_key: "object_link_id"
 
-=begin
   #has_and_belongs_to_many :institutions, join_table: "holdings_to_institutions"
-  has_many :holding_institution_relations
-  has_many :institutions, through: :holding_institution_relations
+  has_many :inventory_item_institution_relations
+  has_many :institutions, through: :inventory_item_institution_relations
 
   #has_and_belongs_to_many :people, join_table: "holdings_to_people"
-  has_many :holding_person_relations
-  has_many :people, through: :holding_person_relations
+  has_many :inventory_item_person_relations
+  has_many :people, through: :inventory_item_person_relations
 
   #has_and_belongs_to_many :publications, join_table: "holdings_to_publications"
-  has_many :holding_publication_relations
-  has_many :publications, through: :holding_publication_relations
+  has_many :inventory_item_publication_relations
+  has_many :publications, through: :inventory_item_publication_relations
 
   #has_and_belongs_to_many :places, join_table: "holdings_to_places"
-  has_many :holding_place_relations
-  has_many :places, through: :holding_place_relations
-=end
+  has_many :inventory_item_source_relations
+  has_many :sources, through: :inventory_item_source_relations
+
+  has_many :inventory_item_holding_relations
+  has_many :holdings, through: :inventory_item_holding_relations
+
+  has_many :inventory_item_work_relations
+  has_many :works, through: :inventory_item_work_relations
 
   belongs_to :source
   has_many :folder_items, as: :item, dependent: :destroy
@@ -117,11 +121,6 @@ class InventoryItem < ApplicationRecord
     new_marc = MarcInventoryItem.new(File.read(ConfigFilePath.get_marc_editor_profile_path("#{Rails.root}/config/marc/#{RISM::MARC}/inventory_item/default.marc")))
     new_marc.load_source true
     
-    node = MarcNode.new("inventory_item", "852", "", "##")
-    node.add_at(MarcNode.new("inventory_item", "a", self.lib_siglum, nil), 0)
-    
-    new_marc.root.children.insert(new_marc.get_insert_position("852"), node)
-
     if self.id != nil
       new_marc.set_id self.id
     end
@@ -158,7 +157,7 @@ class InventoryItem < ApplicationRecord
   searchable :auto_index => false do |sunspot_dsl|
     sunspot_dsl.integer :id
     sunspot_dsl.text :source_id do
-      source.id
+      source_id
     end
     
     sunspot_dsl.join(:folder_id, :target => FolderItem, :type => :integer, 
