@@ -3,6 +3,7 @@ group_order:
 - edit_library
 - edit_names
 - edit_material
+- edit_links
 
 groups: 
   edit_administration: 
@@ -30,3 +31,9 @@ groups:
     - "599"
     - '593' 
     - '560'
+
+  edit_links:
+    all_tags:
+    - "930"
+    - "931"
+    - "932"

@@ -178,11 +178,11 @@
       - :occurrences: "?"
         :no_browse: true
   "773":
-    :master: "u"
+    :master: "w"
     :indicator: "##"
     :occurrences: "?"
     :fields:
-    - - "u"
+    - - "w"
       - :occurrences: "?"
         :foreign_class: Source
         :foreign_field: id
@@ -201,4 +201,30 @@
     - - "8"
       - :occurrences: "?"
         :no_browse: true
-
+  "930":
+    :master: "w"
+    :indicator: "##"
+    :occurrences: "?"
+    :fields:
+    - - "w"
+      - :occurrences: "?"
+        :foreign_class: Source
+        :foreign_field: id
+  "931":
+    :master: "w"
+    :indicator: "##"
+    :occurrences: "?"
+    :fields:
+    - - "w"
+      - :occurrences: "?"
+        :foreign_class: Holding
+        :foreign_field: id
+  "932":
+    :master: "w"
+    :indicator: "##"
+    :occurrences: "?"
+    :fields:
+    - - "w"
+      - :occurrences: "?"
+        :foreign_class: Work
+        :foreign_field: id

@@ -181,6 +181,33 @@
       - "IIIF manifest (other)"
       - "Digitized"
       - "Other"
+"930":
+  new_window: sources
+  layout:
+    fields:
+    - - a
+      - type: source
+        editor_partial: subfield_secondary
+        allow_new: false
+        only_new_window: true
+"931":
+  new_window: holdings
+  layout:
+    fields:
+    - - a
+      - type: holding
+        editor_partial: subfield_secondary
+        allow_new: false
+        only_new_window: true
+"932":
+  new_window: works
+  layout:
+    fields:
+    - - a
+      - type: work
+        editor_partial: subfield_secondary
+        allow_new: false
+        only_new_window: true
 ui: 
   hide_marc_identifiers: true
 triggers:

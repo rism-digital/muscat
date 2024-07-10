@@ -12,11 +12,6 @@ client:
       "4":
         required_if:
           "710": "0"
-  "852":
-    tags:
-      a: required
-      c: required
-      x: mandatory
   "856": 
     tags:
       u:
