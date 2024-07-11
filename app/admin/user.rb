@@ -61,14 +61,14 @@ ActiveAdmin.register User do
     selectable_column
     column "Id", sortable: :id do |user|
       if can?(:edit, user)
-        link_to user.id, edit_admin_user_path(user)
+        link_to user.id, edit_admin_user_path(user), { title: I18n.t(:edit) }
       else
         user.id
       end
     end
     column :username
     column :name do |user|
-      link_to user.name, admin_user_path(user)
+      link_to user.name, admin_user_path(user), { title: I18n.t(:full_level) }
     end
     column :email
     column I18n.t(:workgroups) do |user|
