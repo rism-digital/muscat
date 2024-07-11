@@ -177,7 +177,7 @@ class InventoryItem < ApplicationRecord
   end
 
   def display_name
-    "#{lib_siglum} [#{id}]"
+    title
   end
 
   def get_shelfmark
@@ -185,10 +185,7 @@ class InventoryItem < ApplicationRecord
   end
 
   def formatted_title
-    return "#{lib_siglum} [#{id}]" if !source
-    return "#{lib_siglum} [#{id}] in (#{source.std_title} [#{source.id}])"if !source.composer || source.composer.empty?
-    return "#{lib_siglum} [#{id}] in (#{source.composer} [#{source.id}])" if !source.std_title || source.std_title.empty?
-    return "#{lib_siglum} [#{id}] in (#{source.composer} - #{source.std_title} [#{source.id}])"
+    return title
   end
 
   # If we define our own ransacker, we need this

@@ -82,6 +82,12 @@
 <%end%>	
 	
 	<li class="muscat_icon_separator"></li>
+	<li class="muscat_icon_link">
+		<%= link_to("#{I18n.t :new_inventory_item}", new_admin_inventory_item_path(source_id: @item.id),
+			:class => "muscat_icon_link muscat_icon_link_new") %>
+	</li>
+
+	<li class="muscat_icon_separator"></li>
 	<li class="muscat_icon_link" id="validation_override_container" hidden>
 		<input class="creation_checkbox" type="checkbox" id="validation_override_checkbox"/>
 		<span id="validation_override_label" style="color:red">Override Validation and Save</span>

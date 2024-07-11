@@ -114,23 +114,23 @@ ActiveAdmin.register InventoryItem do
     end
     
     def new
-      #if !params.include?(:source_id) || !params[:source_id]
-      #  redirect_to admin_root_path, :flash => { :error => "PLEASE INCLUDE A SOURCE ID" }
-      #  return
-      #end
+      if !params.include?(:source_id) || !params[:source_id]
+        redirect_to admin_root_path, :flash => { :error => "PLEASE INCLUDE A SOURCE ID" }
+        return
+      end
       
-      #begin
-      #  source = Source.find(params[:source_id])
-      #rescue ActiveRecord::RecordNotFound
-      #  redirect_to admin_root_path, :flash => { :error => "Could not find source #{params[:source_id]}" }
-      #  return
-      #end
+      begin
+        source = Source.find(params[:source_id])
+      rescue ActiveRecord::RecordNotFound
+        redirect_to admin_root_path, :flash => { :error => "Could not find source #{params[:source_id]}" }
+        return
+      end
       
       @inventory_item = InventoryItem.new
-      #source = Source.find(params[:source_id])
-      #@inventory_item.source = source
-      #@parent_object_id = params[:source_id]
-      #@parent_object_type = "Source" #hardcoded for now
+      source = Source.find(params[:source_id])
+      @inventory_item.source = source
+      @parent_object_id = params[:source_id]
+      @parent_object_type = "Source" #hardcoded for now
       
       # Apply the right default file
       default_file = "default.marc"
