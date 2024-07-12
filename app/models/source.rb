@@ -491,7 +491,8 @@ class Source < ApplicationRecord
   def allow_holding?
     if  (self.record_type == MarcSource::RECORD_TYPES[:edition] ||
          self.record_type == MarcSource::RECORD_TYPES[:libretto_edition] ||
-         self.record_type == MarcSource::RECORD_TYPES[:theoretica_edition])
+         self.record_type == MarcSource::RECORD_TYPES[:theoretica_edition] ||
+         self.record_type == MarcSource::RECORD_TYPES[:inventory_edition])
       return true
     end
     return false

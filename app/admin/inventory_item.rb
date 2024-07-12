@@ -143,9 +143,16 @@ ActiveAdmin.register InventoryItem do
       
       # Apply the right default file
       default_file = "default.marc"
+      default_file = "inventory_edition_default.marc" if source.get_record_type == :inventory_edition
 
       new_marc = MarcInventoryItem.new(File.read(ConfigFilePath.get_marc_editor_profile_path("#{Rails.root}/config/marc/#{RISM::MARC}/inventory_item/#{default_file}")))
       new_marc.load_source false # this will need to be fixed
+
+      # Add the 773 to the parent
+      node = MarcNode.new("inventory_item", "773", "", "18")
+      node.add_at(MarcNode.new("inventory_item", "w", @inventory_item.source.id, nil), 0)
+      new_marc.root.children.insert(new_marc.get_insert_position("773"), node)
+
       @inventory_item.marc = new_marc
 
       @editor_profile = EditorConfiguration.get_default_layout @inventory_item

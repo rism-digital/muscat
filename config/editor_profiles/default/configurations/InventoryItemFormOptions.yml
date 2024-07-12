@@ -158,15 +158,10 @@
       - prt
       - asn
 "773":
-  new_window: sources
-  record_type_helper: get_allowed_record_type_holding
-  lib_siglum_helper: get_allowed_lib_siglum_holding
   layout: 
     fields: 
-    - - u
-      - type: source
-        editor_partial: subfield_secondary
-        only_new_window: true
+    - - w
+      - read_only: true
 "856": 
   layout: 
     fields: 

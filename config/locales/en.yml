@@ -900,6 +900,8 @@ en:
     "9": "LEC"
     "10": "TEC"
     "11": "CMP"
+    "12": "INM"
+    "13": "INE"
     
   status_codes:
     published: "PUB"

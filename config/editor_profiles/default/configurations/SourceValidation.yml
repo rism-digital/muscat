@@ -153,6 +153,7 @@ client:
         - libretto_edition_content
         - theoretica_edition
         - theoretica_edition_content
+        - inventory_edition
         "c":
         - edition
         - edition_content
@@ -160,6 +161,7 @@ client:
         - libretto_edition_content
         - theoretica_edition
         - theoretica_edition_content
+        - inventory_edition
     tags:
       c: mandatory
       x: mandatory
