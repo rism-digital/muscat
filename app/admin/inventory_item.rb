@@ -96,12 +96,21 @@ ActiveAdmin.register InventoryItem do
 
     def show
       begin
-        @inventory_item = InventoryItem.find(params[:id])
+        @item = @inventory_item = InventoryItem.find(params[:id])
       rescue ActiveRecord::RecordNotFound
-        redirect_to admin_root_path, :flash => { :error => "#{I18n.t(:error_not_found)} (Inventory Utem #{params[:id]})"  }
+        redirect_to admin_root_path, :flash => { :error => "#{I18n.t(:error_not_found)} (Inventory Item #{params[:id]})" }
         return
       end
-      redirect_to edit_admin_source_path(@inventory_item.source)
+      @editor_profile = EditorConfiguration.get_show_layout @inventory_item
+      @editor_validation = EditorValidation.get_default_validation(@inventory_item)
+      @prev_item, @next_item, @prev_page, @next_page, @nav_positions = Person.near_items_as_ransack(params, @inventory_item)
+
+      @jobs = @inventory_item.delayed_jobs
+
+      respond_to do |format|
+        format.html
+        format.xml { render :xml => @item.marc.to_xml({ created_at: @item.created_at, updated_at: @item.updated_at, versions: @item.versions }) }
+      end
     end
    
     def index
