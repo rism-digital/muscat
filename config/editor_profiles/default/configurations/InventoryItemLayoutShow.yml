@@ -12,7 +12,6 @@ groups:
 
   edit_library: 
     all_tags: 
-    - '773'
     - "100"
     - '245'
     - '246'
@@ -34,6 +33,7 @@ groups:
 
   edit_links:
     all_tags:
+    - '773'
     - "930"
     - "931"
     - "932"

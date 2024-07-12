@@ -1,7 +1,7 @@
 ActiveAdmin.register InventoryItem do
   
   # Hide the menu
-  menu false
+  menu :parent => "indexes_menu", :label => proc {I18n.t(:menu_inventory_items)}
 
   config.clear_action_items!
   # Remove mass-delete action
@@ -171,7 +171,8 @@ ActiveAdmin.register InventoryItem do
   index :download_links => false do
     selectable_column if !is_selection_mode?
     column (I18n.t :filter_id), :id    
-    column (I18n.t :"inventory_items") {|h| h.formatted_title}
+    column (I18n.t :filter_title), :title
+    column (I18n.t :filter_composer), :composer
     active_admin_muscat_actions( self, false ) # Hide the "view" button
   end
   

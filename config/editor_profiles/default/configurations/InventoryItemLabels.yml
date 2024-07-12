@@ -8,105 +8,70 @@
   label: records.artistic_production
 02_codes_performing:
   label: records.performance
-'035':
-  fields:
-    a:
-      label: records.local_id_number
-  label: records.local_id_number
 03_codes_technical:
   label: records.technical_production
 04_codes_other:
   label: records.other
-'300':
+'100':
+  fields:
+    a:
+      label: records.name
+    d:
+      label: records.life_dates
+    j:
+      label: records.attribution_qualifier
+  label: records.composer_author
+'245':
+  fields:
+    a:
+      label: records.title_on_source
+  label: records.title_on_source
+'246':
+  fields:
+    a:
+      label: records.variant_ms_title
+  label: records.variant_source_title
+'260':
   fields:
     '8':
       label: records.material_group
     a:
-      label: records.format_extent
+      label: records.place
     b:
-      label: records.other_physical_details
+      label: records.publisher_copyist
     c:
-      label: records.dimensions
-  label: records.physical_description
+      label: records.date
+    e:
+      label: records.location_printer
+    f:
+      label: records.name_printer
+  label: records.publishing_printing_production
 '500':
   fields:
     '8':
       label: records.material_group
     a:
-      label: records.general_note_institution
-  label: records.general_note_institution
-'506':
+      label: records.general_note
+  label: records.general_note
+'560':
   fields:
     a:
-      label: records.access_restrictions
-  label: records.access_restrictions
-'518':
-  fields:
-    a:
-      label: records.performer_note
-  label: records.note_on_performance
-'525':
-  fields:
-    a:
-      label: records.supplementary_material
-  label: records.supplementary_material
-'541':
-  fields:
-    a:
-      label: records.source_of_acquisition_note
-    c:
-      label: records.method_of_acquisition
-    d:
-      label: records.date_of_acquisition
-    e:
-      label: records.accession_number
-  label: records.source_of_acquisition_note
-'561':
-  fields:
-    a:
-      label: records.provenance_notes
-  label: records.provenance_notes
-'563':
-  fields:
-    a:
-      label: records.binding_note
-  label: records.binding_note
-'591':
-  fields:
-    a:
-      label: records.other_shelfmark
-  label: records.other_shelfmark
-'592':
+      label: records.what_is_this
+  label: records.what_is_this
+'593':
   fields:
     '8':
       label: records.material_group
     a:
-      label: records.watermark_description
-  label: records.watermark_description
-'593':
-  fields:
-    a:
-      label: filter_source_type
+      label: records.source_type
     b:
-      label: filter_source_content_type
+      label: records.content_type
   label: records.source_type
 '599':
   fields:
     a:
       label: records.local_notes_field
   label: records.local_notes_field
-'651':
-  fields:
-    a:
-      label: records.location_performance
-  label: records.location_performance
-'691':
-  fields:
-    a:
-      label: records.bibliographic_reference
-    n:
-      label: records.number_page
-  label: records.bibliographic_reference
 '700':
   fields:
     '4':
@@ -135,25 +100,11 @@
     g:
       label: records.attribution_qualifier
   label: records.additional_institution
-'852':
+'773':
   fields:
-    a:
-      label: records.library_siglum
-    b:
-      label: records.department
-    c:
-      label: records.shelfmark
-    d:
-      label: records.shelfmark_olim
-    e:
-      label: records.library
-    q:
-      label: records.material_held
-    u:
-      label: general.uri
-    z:
-      label: records.provenance
-  label: records.library_siglum
+    w:
+      label: records.inventory_source
+  label: records.inventory_source
 '856':
   fields:
     u:
@@ -163,11 +114,21 @@
     z:
       label: records.note_external_resource
   label: records.external_resource_uri
-'973':
+'930':
   fields:
-    u:
-      label: records.bound_with
-  label: records.bound_with
+    w:
+      label: records.identified_manuscript
+  label: records.identified_manuscript
+'931':
+  fields:
+    w:
+      label: records.identified_holding
+  label: records.identified_holding
+'932':
+  fields:
+    w:
+      label: records.identified_work
+  label: records.identified_work
 Alleged:
   label: records.alleged
 Ascertained:
