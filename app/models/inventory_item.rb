@@ -110,7 +110,7 @@ class InventoryItem < ApplicationRecord
   def update_links
     return if self.suppress_recreate_trigger == true
     
-    allowed_relations = ["institutions", "publications", "people", "places"]
+    allowed_relations = ["sources", "holdings", "works", "institutions", "publications", "people", "places"]
     recreate_links(marc, allowed_relations)
   end
   

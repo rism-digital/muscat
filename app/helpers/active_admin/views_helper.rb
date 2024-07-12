@@ -78,7 +78,8 @@ module ActiveAdmin::ViewsHelper
     name = item.full_name if item.respond_to?(:full_name)
     name = item.title if item.respond_to?(:title)
     name = item.autocomplete_label if item.respond_to?(:autocomplete_label)
-    
+    name = item.formatted_title if item.respond_to?(:formatted_title)
+
     link_to("Select", "#", :data => { :marc_editor_select => item.id, :marc_editor_label => name })
   end
   

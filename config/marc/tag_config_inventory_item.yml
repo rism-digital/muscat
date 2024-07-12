@@ -204,27 +204,39 @@
   "930":
     :master: "w"
     :indicator: "##"
-    :occurrences: "?"
+    :occurrences: "1"
     :fields:
     - - "w"
       - :occurrences: "?"
         :foreign_class: Source
         :foreign_field: id
+    - - a
+      - :occurrences: "?"
+        :foreign_class: ^w
+        :foreign_field: title
   "931":
     :master: "w"
     :indicator: "##"
-    :occurrences: "?"
+    :occurrences: "1"
     :fields:
     - - "w"
       - :occurrences: "?"
         :foreign_class: Holding
         :foreign_field: id
+    - - a
+      - :occurrences: "?"
+        :foreign_class: ^w
+        :foreign_field: lib_siglum
   "932":
     :master: "w"
     :indicator: "##"
-    :occurrences: "?"
+    :occurrences: "1"
     :fields:
     - - "w"
       - :occurrences: "?"
         :foreign_class: Work
         :foreign_field: id
+    - - a
+      - :occurrences: "?"
+        :foreign_class: ^w
+        :foreign_field: title
