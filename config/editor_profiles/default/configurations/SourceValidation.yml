@@ -20,6 +20,8 @@ client:
           - edition
           - libretto_edition
           - theoretica_edition
+          - inventory
+          - inventory_edition
     tags:
       "0": mandatory
   "240":
@@ -66,6 +68,8 @@ client:
         - theoretica_source
         - libretto_edition_content
         - theoretica_edition_content
+        - inventory
+        - inventory_edition
     tags:
       "a": mandatory
 # Remove until 593 is sorted out
@@ -135,6 +139,8 @@ client:
         - theoretica_edition
         - edition
         - composite_volume
+        - inventory
+        - inventory_edition
     tags:
       'w': mandatory
   "852":

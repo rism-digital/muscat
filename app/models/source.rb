@@ -497,6 +497,14 @@ class Source < ApplicationRecord
     return false
   end
 
+  def allow_inventory_items?
+    if  (self.record_type == MarcSource::RECORD_TYPES[:inventory] ||
+         self.record_type == MarcSource::RECORD_TYPES[:inventory_edition])
+      return true
+    end
+    return false
+  end
+
   def fix_ids
     #generate_new_id
     # If there is no marc, do not add the id
