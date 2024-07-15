@@ -381,6 +381,22 @@ ActiveAdmin.register Source do
     active_admin_user_wf( self, @item )
     active_admin_navigation_bar( self )
     active_admin_comments if !is_selection_mode?
+
+    # FIXME Experimental: box for InventoryItems
+    active_admin_embedded_link_list(self, @item, InventoryItem, I18n.t(:inventory_items)) do |context|
+      context.table_for(context.collection) do |cr|
+        context.column "id", :id
+        context.column (I18n.t :composer), :composer
+        context.column (I18n.t :title), :title
+        if !is_selection_mode?
+          context.column "" do |ii|
+            link_to "View", controller: :inventory_items, action: :show, id: ii.id
+          end
+        end
+      end
+    
+  end
+
   end
   
   # 8.0.1 #1190, make the sidebar floating only if there are no holdings

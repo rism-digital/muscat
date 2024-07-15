@@ -31,6 +31,9 @@ module ActiveAdmin::ViewsHelper
       c = Source.where(id: item.referring_sources.ids).or(Source.where(id: item.referring_holdings.pluck(:source_id)))
     elsif link_class == Source && item.respond_to?("referring_sources") && item.is_a?(Institution)
       c = Source.where(id: item.referring_sources.ids).or(Source.where(id: item.holdings.pluck(:source_id)))
+    elsif link_class == InventoryItem &&item.respond_to?("inventory_items") && item.is_a?(Source)
+      ap item
+      c = item.inventory_items
     else
       c = item.send("referring_" + link_class.to_s.pluralize.underscore)
     end    

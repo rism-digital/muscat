@@ -85,6 +85,8 @@ class Source < ApplicationRecord
   has_many :holdings
 	has_many :collection_holdings, class_name: "Holding", foreign_key: "collection_id"
   
+  has_many :inventory_items
+
   #has_and_belongs_to_many :works, join_table: "sources_to_works"
   has_many :source_work_relations
   has_many :works, through: :source_work_relations
