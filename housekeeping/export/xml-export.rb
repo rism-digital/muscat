@@ -22,7 +22,7 @@ bar = ProgressBar.new(items.size)
 
 items.each do |s|
   record = model.find(s)
-
+  # Add deprecated_ids: "false" if necessary
   file.write(record.marc.to_xml_record({ created_at: record.created_at, updated_at: record.updated_at, holdings: true }).root.to_s)
 
   bar.increment!
