@@ -46,12 +46,74 @@ SHELFMARK_MAP = {
 "A-FKsta, Akt Nr. 269": "Akt Nr. 269"
 }
 
-inventories_db = YAML::load(File.read('database_export.yml'), permitted_classes: [ActiveSupport::HashWithIndifferentAccess, Time, Date, ActiveSupport::TimeWithZone, ActiveSupport::TimeZone])
+print "Please stand while loading the db... "
+@inventories_db = YAML::load(File.read('housekeeping/inventories_migration/database_export.yml'), permitted_classes: [ActiveSupport::HashWithIndifferentAccess, Time, Date, ActiveSupport::TimeWithZone, ActiveSupport::TimeZone])
+@person_map = YAML::load(File.read('housekeeping/inventories_migration/inventory_people_map.yml'), permitted_classes: [ActiveSupport::HashWithIndifferentAccess, Time, Date, ActiveSupport::TimeWithZone, ActiveSupport::TimeZone])
+puts "done"
+
+@person_tags = ["100", "600", "700"]
 
 def slow_select(model_a, model_b, id_to_find, array)
 return array
   .select { |item| item[model_a] == id_to_find }
   .map { |item| item[model_b] }
+end
+
+def slow_find(column, id_to_find, array)
+  return array.select { |item| item[column] == id_to_find }.first
+end
+
+def ms2inventory(source, library_id)
+
+  mss = slow_select("library_id", "manuscript_id", library_id, @inventories_db["libraries_manuscripts"])
+
+  mss.each do |ms_id|
+    the_ms = slow_find("id", ms_id, @inventories_db["manuscripts"])
+
+    inventory_item = InventoryItem.new
+    inventory_item.source = source
+    
+    # Apply the right default file
+    default_file = "default.marc"
+
+    # Swap 246 and 245
+    src_txt = the_ms["source"].gsub("=246", "=NEWTAG")
+    src_txt = src_txt.gsub("=245", "=246")
+    src_txt = src_txt.gsub("=246", "=245")
+
+    new_marc = MarcInventoryItem.new(the_ms["source"])
+    new_marc.load_source false # this will need to be fixed
+
+    new_marc.by_tags("000").each {|t2| t2.destroy_yourself}
+    new_marc.by_tags("003").each {|t2| t2.destroy_yourself}
+    new_marc.by_tags("005").each {|t2| t2.destroy_yourself}
+    new_marc.by_tags("007").each {|t2| t2.destroy_yourself}
+
+    @person_tags.each do |t|
+      new_marc.each_by_tag(t) do |tt|
+        link_t = tt.fetch_first_by_tag("0")
+        if @person_map.include? link_t.content
+          link_t.destroy_yourself
+          #link_t.content = @person_map[link_t.content].to_s
+          puts @person_map[link_t.content].to_s
+          tt.add_at(MarcNode.new("inventory_item", "0", @person_map[link_t.content].to_s, nil), 0)
+          #ap tt
+        end
+      end
+    end
+
+    # Add the 773 to the parent
+    node = MarcNode.new("inventory_item", "773", "", "18")
+    node.add_at(MarcNode.new("inventory_item", "w", inventory_item.source.id, nil), 0)
+    new_marc.root.children.insert(new_marc.get_insert_position("773"), node)
+
+    new_marc.import
+
+    inventory_item.marc = new_marc
+    inventory_item.save
+
+  end
+
 end
 
 #ap slow_select("institution_id", "manuscript_id", 591, inventories_db["institutions_manuscripts"])
@@ -61,7 +123,7 @@ end
 
 # Step 1, create new inventories in the Source template
 
-inventories_db["libraries"].each do |inventory|
+@inventories_db["libraries"].each do |inventory|
 
   muscat_inventory = Source.new
   muscat_inventory.record_type = MarcSource::RECORD_TYPES[:inventory]
@@ -114,6 +176,10 @@ inventories_db["libraries"].each do |inventory|
   
   i2 = Source.find(muscat_inventory.id)
   i2.save
+
+  # Now convert all the inventory_items
+  ms2inventory(i2, inventory["id"])
+
 end
 
 Sunspot.commit

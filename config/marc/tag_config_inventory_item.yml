@@ -121,6 +121,31 @@
       - :occurrences: "?"
     - - b
       - :occurrences: "?" 
+  "650":
+    :master: a
+    :indicator: "##"
+    :occurrences: "*"
+    :fields:
+    - - a
+      - :occurrences: "?"
+  "690":
+    :master: a
+    :indicator: "##"
+    :occurrences: "*"
+    :fields:
+    - - a
+      - :occurrences: "?"
+    - - n
+      - :occurrences: "?"
+  "691":
+    :master: a
+    :indicator: "##"
+    :occurrences: "*"
+    :fields:
+    - - a
+      - :occurrences: "?"
+    - - n
+      - :occurrences: "?"
   "700":
     :master: "0"
     :indicator: "1#"
@@ -189,6 +214,45 @@
         :foreign_field: id
         :zero_padding: "14"
         :browse_helper: application_helper_link_source_id
+  "775":
+    :master: w
+    :indicator: "##"
+    :occurrences: "?"
+    :foreign_links: false
+    :fields:
+    - - w
+      - :occurrences: "?"
+    - - "4"
+      - :occurrences: "?"
+  "786":
+    :master: a
+    :indicator: "##"
+    :occurrences: "*"
+    :fields:
+    - - a
+      - :occurrences: "?"
+    - - d
+      - :occurrences: "?"
+    - - i
+      - :occurrences: "?"
+    - - n
+      - :occurrences: "?"
+    - - o
+      - :occurrences: "?"
+    - - t
+      - :occurrences: "?"
+  "852":
+    :master: a
+    :indicator: "##"
+    :occurrences: "?"
+    :foreign_links: false
+    :fields:
+    - - a
+      - :occurrences: "?"
+    - - d
+      - :occurrences: "?"
+    - - p
+      - :occurrences: "?"
   "856":
     :master: u
     :indicator: "##"

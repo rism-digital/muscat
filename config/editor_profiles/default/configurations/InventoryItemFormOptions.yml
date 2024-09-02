@@ -77,6 +77,15 @@
       - growfield: true
     - - b
       - hidden: true
+"650":
+  layout: 
+    fields: 
+    - - a
+"690":
+  layout: 
+    fields: 
+    - - a
+    - - n
 "700":
   new_window: people
   new_window_field: full_name_equals
@@ -162,6 +171,21 @@
     fields: 
     - - w
       - read_only: true
+"786":
+  layout: 
+    fields: 
+    - - a
+    - - d
+    - - i
+    - - n
+    - - o
+    - - t
+"852":
+  layout: 
+    fields: 
+    - - a
+    - - d
+    - - p
 "856": 
   layout: 
     fields: 

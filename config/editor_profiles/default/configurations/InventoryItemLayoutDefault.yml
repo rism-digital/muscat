@@ -16,7 +16,10 @@ groups:
     - '245'
     - '246'
     - '260'
+    - "650"
+    - "690"
     - '856'
+    - "852"
     all_tag_templates: 
       "856": marc_show/show_link
   edit_names:
@@ -30,6 +33,7 @@ groups:
     - "599"
     - '593' 
     - '560'
+    - "786"
 
   edit_links:
     all_tags:
