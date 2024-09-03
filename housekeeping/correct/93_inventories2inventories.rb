@@ -49,9 +49,11 @@ SHELFMARK_MAP = {
 print "Please stand while loading the db... "
 @inventories_db = YAML::load(File.read('housekeeping/inventories_migration/database_export.yml'), permitted_classes: [ActiveSupport::HashWithIndifferentAccess, Time, Date, ActiveSupport::TimeWithZone, ActiveSupport::TimeZone])
 @person_map = YAML::load(File.read('housekeeping/inventories_migration/inventory_people_map.yml'), permitted_classes: [ActiveSupport::HashWithIndifferentAccess, Time, Date, ActiveSupport::TimeWithZone, ActiveSupport::TimeZone])
+@institution_map = YAML::load(File.read('housekeeping/inventories_migration/inventory_institution_map.yml'), permitted_classes: [ActiveSupport::HashWithIndifferentAccess, Time, Date, ActiveSupport::TimeWithZone, ActiveSupport::TimeZone])
 puts "done"
 
 @person_tags = ["100", "600", "700"]
+@institution_tags = ["110", "710"]
 
 def slow_select(model_a, model_b, id_to_find, array)
 return array
@@ -95,8 +97,22 @@ def ms2inventory(source, library_id)
         if @person_map.include? link_t.content
           link_t.destroy_yourself
           #link_t.content = @person_map[link_t.content].to_s
-          puts @person_map[link_t.content].to_s
+          #puts @person_map[link_t.content].to_s
           tt.add_at(MarcNode.new("inventory_item", "0", @person_map[link_t.content].to_s, nil), 0)
+          #ap tt
+        end
+      end
+    end
+
+    @institution_tags.each do |t|
+      new_marc.each_by_tag(t) do |tt|
+        link_t = tt.fetch_first_by_tag("0")
+        next if !link_t || !link_t.content
+        if @institution_map.include? link_t.content
+          link_t.destroy_yourself
+          #link_t.content = @person_map[link_t.content].to_s
+          puts @institution_map[link_t.content].to_s
+          tt.add_at(MarcNode.new("inventory_item", "0", @institution_map[link_t.content].to_s, nil), 0)
           #ap tt
         end
       end
