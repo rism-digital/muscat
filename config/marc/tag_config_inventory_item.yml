@@ -129,21 +129,35 @@
     - - a
       - :occurrences: "?"
   "690":
-    :master: a
-    :indicator: "##"
+    :master: "0"
+    :indicator: "#7"
     :occurrences: "*"
     :fields:
+    - - "0"
+      - :occurrences: "?"
+        :foreign_class: Publication
+        :foreign_field: id
+        :no_show: true
     - - a
       - :occurrences: "?"
+        :foreign_class: ^0
+        :foreign_field: short_name
     - - n
       - :occurrences: "?"
   "691":
-    :master: a
-    :indicator: "##"
+    :master: "0"
+    :indicator: "#7"
     :occurrences: "*"
     :fields:
+    - - "0"
+      - :occurrences: "?"
+        :foreign_class: Publication
+        :foreign_field: id
+        :no_show: true
     - - a
       - :occurrences: "?"
+        :foreign_class: ^0
+        :foreign_field: short_name
     - - n
       - :occurrences: "?"
   "700":

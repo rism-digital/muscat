@@ -46,6 +46,74 @@ SHELFMARK_MAP = {
 "A-FKsta, Akt Nr. 269": "Akt Nr. 269"
 }
 
+@publication_map = {
+"51000117":	143,
+"51000692":	844,
+"51001039":	1272,
+"51001146":	1395,
+"51002568":	3046,
+"51002801":	3332,
+"51003879":	40000046,
+"51003883":	30029269,
+"51003892":	30016916,
+"51003894":	3582,
+"51003900":	41000451,
+"51003917":	30029272,
+"51003183": 3806,
+"51003292": 30000057,
+
+}
+
+@migrate_catalogs = %w(
+51000117
+51000692
+51001039
+51001146
+51002568
+51002801
+51003183
+51003292
+51003850
+51003852
+51003876
+51003877
+51003878
+51003879
+51003881
+51003882
+51003883
+51003884
+51003885
+51003886
+51003887
+51003889
+51003890
+51003891
+51003892
+51003893
+51003894
+51003895
+51003896
+51003897
+51003898
+51003899
+51003900
+51003901
+51003902
+51003903
+51003904
+51003905
+51003906
+51003907
+51003908
+51003909
+51003910
+51003911
+51003914
+51003915
+51003916
+51003917)
+
 print "Please stand while loading the db... "
 @inventories_db = YAML::load(File.read('housekeeping/inventories_migration/database_export.yml'), permitted_classes: [ActiveSupport::HashWithIndifferentAccess, Time, Date, ActiveSupport::TimeWithZone, ActiveSupport::TimeZone])
 @person_map = YAML::load(File.read('housekeeping/inventories_migration/inventory_people_map.yml'), permitted_classes: [ActiveSupport::HashWithIndifferentAccess, Time, Date, ActiveSupport::TimeWithZone, ActiveSupport::TimeZone])
@@ -54,6 +122,7 @@ puts "done"
 
 @person_tags = ["100", "600", "700"]
 @institution_tags = ["110", "710"]
+@catalogue_tags = ["690", "691"]
 
 def slow_select(model_a, model_b, id_to_find, array)
 return array
@@ -104,6 +173,17 @@ def ms2inventory(source, library_id)
       end
     end
 
+    @catalogue_tags.each do |t|
+      new_marc.each_by_tag(t) do |tt|
+        link_t = tt.fetch_first_by_tag("0")
+        if @publication_map.include? link_t.content
+          link_t.destroy_yourself
+          tt.add_at(MarcNode.new("inventory_item", "0", @publication_map[link_t.content].to_s, nil), 0)
+          #ap tt
+        end
+      end
+    end
+
     @institution_tags.each do |t|
       new_marc.each_by_tag(t) do |tt|
         link_t = tt.fetch_first_by_tag("0")
@@ -136,6 +216,64 @@ end
 
 #ap slow_select("library_id", "manuscript_id", 6876, inventories_db["libraries_manuscripts"])
 
+# Step 0, migrate the missing Publications/Catalogues
+@inventories_db["catalogues"].each do |catalogue|
+  next if @publication_map[catalogue["ext_id"].to_s.to_sym] != nil
+  next if !@migrate_catalogs.include?(catalogue["ext_id"].to_s)
+
+  #puts catalogue["ext_id"]
+
+  mc = MarcConfigCache.get_configuration("publication")
+
+  new_marc = MarcPublication.new()
+  id = MarcNode.new("publication", "001", catalogue["ext_id"], "")
+
+  new_marc.root.add_at(id, new_marc.get_insert_position("001") )
+
+  x100 = MarcNode.new("publication", "100", "", mc.get_default_indicator("100"))
+  x100.add_at(MarcNode.new("publication", "a", catalogue["author"], nil), 0 )
+  x100.sort_alphabetically
+  new_marc.root.add_at(x100, new_marc.get_insert_position("100") )
+
+  x240 = MarcNode.new("publication", "240", "", mc.get_default_indicator("240"))
+  x240.add_at(MarcNode.new("publication", "a", catalogue["description"], nil), 0 )
+  x240.sort_alphabetically
+  new_marc.root.add_at(x240, new_marc.get_insert_position("240") )
+
+  x210 = MarcNode.new("publication", "210", "", mc.get_default_indicator("210"))
+  x210.add_at(MarcNode.new("publication", "a", catalogue["name"], nil), 0 )
+  x210.sort_alphabetically
+  new_marc.root.add_at(x210, new_marc.get_insert_position("210") )
+
+  if catalogue["pages"] && !catalogue["pages"].empty?
+    x300 = MarcNode.new("publication", "300", "", mc.get_default_indicator("300"))
+    x300.add_at(MarcNode.new("publication", "a", catalogue["pages"], nil), 0 )
+    x300.sort_alphabetically
+    new_marc.root.add_at(x300, new_marc.get_insert_position("300") )
+  end
+
+  x260 = MarcNode.new("publication", "260", "", mc.get_default_indicator("260"))
+  x260.add_at(MarcNode.new("publication", "a", catalogue["place"], nil), 0 ) if catalogue["place"]
+  x260.add_at(MarcNode.new("publication", "c", catalogue["date"], nil), 0 ) if catalogue["date"]
+  x260.sort_alphabetically
+  new_marc.root.add_at(x260, new_marc.get_insert_position("260") )
+
+  if catalogue["revue_title"] && !catalogue["revue_title"].empty?
+    x760 = MarcNode.new("publication", "760", "", mc.get_default_indicator("760"))
+    x760.add_at(MarcNode.new("publication", "a", catalogue["revue_title"], nil), 0 )
+    x760.sort_alphabetically
+    new_marc.root.add_at(x760, new_marc.get_insert_position("760") )
+  end
+
+  new_marc.import
+
+  pub = Publication.new
+  pub.marc_source = new_marc
+  pub.save
+
+end
+
+GULOP
 
 # Step 1, create new inventories in the Source template
 
