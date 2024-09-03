@@ -176,9 +176,9 @@ def ms2inventory(source, library_id)
     @catalogue_tags.each do |t|
       new_marc.each_by_tag(t) do |tt|
         link_t = tt.fetch_first_by_tag("0")
-        if @publication_map.include? link_t.content
+        if @publication_map.include? link_t.content.to_sym
           link_t.destroy_yourself
-          tt.add_at(MarcNode.new("inventory_item", "0", @publication_map[link_t.content].to_s, nil), 0)
+          tt.add_at(MarcNode.new("inventory_item", "0", @publication_map[link_t.content.to_sym].to_s, nil), 0)
           #ap tt
         end
       end
@@ -258,12 +258,12 @@ end
   x260.sort_alphabetically
   new_marc.root.add_at(x260, new_marc.get_insert_position("260") )
 
-  if catalogue["revue_title"] && !catalogue["revue_title"].empty?
-    x760 = MarcNode.new("publication", "760", "", mc.get_default_indicator("760"))
-    x760.add_at(MarcNode.new("publication", "a", catalogue["revue_title"], nil), 0 )
-    x760.sort_alphabetically
-    new_marc.root.add_at(x760, new_marc.get_insert_position("760") )
-  end
+  #if catalogue["revue_title"] && !catalogue["revue_title"].empty?
+  #  x760 = MarcNode.new("publication", "760", "", mc.get_default_indicator("760"))
+  #  x760.add_at(MarcNode.new("publication", "a", catalogue["revue_title"], nil), 0 )
+  #  x760.sort_alphabetically
+  #  new_marc.root.add_at(x760, new_marc.get_insert_position("760") )
+  #end
 
   new_marc.import
 
@@ -272,8 +272,6 @@ end
   pub.save
 
 end
-
-GULOP
 
 # Step 1, create new inventories in the Source template
 
