@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_07_10_121340) do
+ActiveRecord::Schema[7.1].define(version: 2024_09_04_114906) do
   create_table "active_admin_comments", id: :integer, charset: "utf8mb3", force: :cascade do |t|
     t.string "namespace"
     t.text "body"
@@ -280,6 +280,15 @@ ActiveRecord::Schema[7.1].define(version: 2024_07_10_121340) do
   create_table "inventory_items_to_sources", charset: "utf8mb3", force: :cascade do |t|
     t.integer "inventory_item_id"
     t.integer "source_id"
+    t.string "marc_tag"
+    t.string "relator_code"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "inventory_items_to_standard_terms", charset: "utf8mb3", force: :cascade do |t|
+    t.integer "inventory_item_id"
+    t.integer "standard_term_id"
     t.string "marc_tag"
     t.string "relator_code"
     t.datetime "created_at", null: false

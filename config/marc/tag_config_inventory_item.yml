@@ -122,12 +122,22 @@
     - - b
       - :occurrences: "?" 
   "650":
-    :master: a
-    :indicator: "##"
+    :master: "0"
+    :indicator: "07"
     :occurrences: "*"
     :fields:
+    - - "0"
+      - :occurrences: "?"
+        :foreign_class: StandardTerm
+        :foreign_field: id
+        :no_show: true
     - - a
       - :occurrences: "?"
+        :foreign_class: ^0
+        :foreign_field: term
+    - - "2"
+      - :occurrences: "?"
+        :no_browse: true
   "690":
     :master: "0"
     :indicator: "#7"

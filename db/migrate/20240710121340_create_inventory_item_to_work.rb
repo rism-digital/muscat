@@ -5,8 +5,6 @@ class CreateInventoryItemToWork < ActiveRecord::Migration[7.1]
       t.integer :work_id
       t.string :marc_tag
       t.string :relator_code
-
-      t.timestamps
     end
   end
 end

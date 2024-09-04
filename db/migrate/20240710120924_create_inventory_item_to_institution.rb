@@ -5,8 +5,6 @@ class CreateInventoryItemToInstitution < ActiveRecord::Migration[7.1]
       t.integer :institution_id
       t.string :marc_tag
       t.string :relator_code
-
-      t.timestamps
     end
   end
 end

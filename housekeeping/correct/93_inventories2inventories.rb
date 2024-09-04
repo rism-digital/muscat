@@ -140,6 +140,7 @@ print "Please stand while loading the db... "
 @inventories_db = YAML::load(File.read('housekeeping/inventories_migration/database_export.yml'), permitted_classes: [ActiveSupport::HashWithIndifferentAccess, Time, Date, ActiveSupport::TimeWithZone, ActiveSupport::TimeZone])
 @person_map = YAML::load(File.read('housekeeping/inventories_migration/inventory_people_map.yml'), permitted_classes: [ActiveSupport::HashWithIndifferentAccess, Time, Date, ActiveSupport::TimeWithZone, ActiveSupport::TimeZone])
 @institution_map = YAML::load(File.read('housekeeping/inventories_migration/inventory_institution_map.yml'), permitted_classes: [ActiveSupport::HashWithIndifferentAccess, Time, Date, ActiveSupport::TimeWithZone, ActiveSupport::TimeZone])
+@standard_term_map = YAML::load(File.read('housekeeping/inventories_migration/inventory_standard_term_map.yml'), permitted_classes: [ActiveSupport::HashWithIndifferentAccess, Time, Date, ActiveSupport::TimeWithZone, ActiveSupport::TimeZone])
 puts "done"
 
 @person_tags = ["100", "600", "700"]
@@ -228,6 +229,16 @@ def ms2inventory(source, library_id)
       end
     end
     nuke_list.each {|t| t.destroy_yourself}
+
+    # Fix 650
+    new_marc.each_by_tag("650") do |tt|
+      link_t = tt.fetch_first_by_tag("0")
+      if @standard_term_map.include? link_t.content
+        link_t.destroy_yourself
+        tt.add_at(MarcNode.new("inventory_item", "0", @standard_term_map[link_t.content].to_s, nil), 0)
+        #ap tt
+      end
+    end
 
     # Add the 773 to the parent
     node = MarcNode.new("inventory_item", "773", "", "18")
