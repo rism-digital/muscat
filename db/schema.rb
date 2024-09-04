@@ -246,8 +246,6 @@ ActiveRecord::Schema[7.1].define(version: 2024_09_04_114906) do
     t.integer "holding_id"
     t.string "marc_tag"
     t.string "relator_code"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
   end
 
   create_table "inventory_items_to_institutions", charset: "utf8mb3", force: :cascade do |t|
@@ -255,8 +253,6 @@ ActiveRecord::Schema[7.1].define(version: 2024_09_04_114906) do
     t.integer "institution_id"
     t.string "marc_tag"
     t.string "relator_code"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
   end
 
   create_table "inventory_items_to_people", charset: "utf8mb3", force: :cascade do |t|
@@ -264,8 +260,6 @@ ActiveRecord::Schema[7.1].define(version: 2024_09_04_114906) do
     t.integer "person_id"
     t.string "marc_tag"
     t.string "relator_code"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
   end
 
   create_table "inventory_items_to_publications", charset: "utf8mb3", force: :cascade do |t|
@@ -273,8 +267,6 @@ ActiveRecord::Schema[7.1].define(version: 2024_09_04_114906) do
     t.integer "publication_id"
     t.string "marc_tag"
     t.string "relator_code"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
   end
 
   create_table "inventory_items_to_sources", charset: "utf8mb3", force: :cascade do |t|
@@ -282,8 +274,6 @@ ActiveRecord::Schema[7.1].define(version: 2024_09_04_114906) do
     t.integer "source_id"
     t.string "marc_tag"
     t.string "relator_code"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
   end
 
   create_table "inventory_items_to_standard_terms", charset: "utf8mb3", force: :cascade do |t|
@@ -291,8 +281,6 @@ ActiveRecord::Schema[7.1].define(version: 2024_09_04_114906) do
     t.integer "standard_term_id"
     t.string "marc_tag"
     t.string "relator_code"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
   end
 
   create_table "inventory_items_to_works", charset: "utf8mb3", force: :cascade do |t|
@@ -300,8 +288,6 @@ ActiveRecord::Schema[7.1].define(version: 2024_09_04_114906) do
     t.integer "work_id"
     t.string "marc_tag"
     t.string "relator_code"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
   end
 
   create_table "liturgical_feasts", id: :integer, charset: "utf8mb3", force: :cascade do |t|
