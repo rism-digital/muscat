@@ -118,6 +118,11 @@ count = 0
 array.each do |i| 
     sanit_name = i["name"].gsub("[A/I]", "").strip
 
+    pers = Institution.where(id: i["ext_id"])
+    puts "#{pers[0].id} #{pers[0].name} #{sanit_name}" if pers[0]
+    
+    next
+
     pers =  Institution.where(name: sanit_name)
     
     if !pers[0]

@@ -44,12 +44,16 @@ das_map = {
 "Masson, Charles": 30102353,
 }
 
-array = CSV.read('inventory_names-csv.csv', headers: true).map(&:to_h)
+array = CSV.read('housekeeping/inventories_migration/inventory_names-csv.csv', headers: true).map(&:to_h)
 
 id_map = {}
 
 array.each do |i| 
     sanit_name = i["full_name"].gsub("[A/I]", "").strip
+
+    #pers = Person.where(id: i["ext_id"])
+    #puts "#{pers[0].id} #{pers[0].full_name} #{sanit_name}" if pers[0]
+    #next
 
     pers =  Person.where(full_name: sanit_name)
 
@@ -101,6 +105,14 @@ array.each do |i|
     end
 
     #ap pers[0].id
+    
+    # make sure IDs are not reused
+    #if !pers[0]
+    #    puts sanit_name
+    #    pep = Person.where(id: i["ext_id"])
+    #    puts "#{pep[0].id} #{pep[0].full_name} #{sanit_name}" if pep[0]
+    #end
+
     id_map[i["ext_id"]] = pers[0].id if pers[0]
 end
 

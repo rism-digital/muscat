@@ -114,6 +114,28 @@ SHELFMARK_MAP = {
 51003916
 51003917)
 
+@series_map = {
+  "Montfort": 30027220,
+  "Rivista italiana di musicologia": 1504,
+  "Early Music": 30026189,
+  "Fonti musicali italiane": 30026214,
+  "Kirchenmusikalisches Jahrbuch": 486,
+  "Recercare": 30028117,
+  "Musik in Geschichte und Gegenwart": 1263,
+  "Dizionario Biografico degli Italiani": 2955,
+  "Music & Letters": 279,
+  "Studi musicali": 30026276,
+  "Studi Musicali": 30026276
+}
+
+print "Cleanup... "
+InventoryItem.find_by_sql("TRUNCATE TABLE inventory_items")
+Publication.where(created_at: Time.zone.now.beginning_of_day..Time.zone.now.end_of_day).delete_all
+Person.where(created_at: Time.zone.now.beginning_of_day..Time.zone.now.end_of_day).delete_all
+Institution.where(created_at: Time.zone.now.beginning_of_day..Time.zone.now.end_of_day).delete_all
+Source.where(created_at: Time.zone.now.beginning_of_day..Time.zone.now.end_of_day).delete_all
+puts "done"
+
 print "Please stand while loading the db... "
 @inventories_db = YAML::load(File.read('housekeeping/inventories_migration/database_export.yml'), permitted_classes: [ActiveSupport::HashWithIndifferentAccess, Time, Date, ActiveSupport::TimeWithZone, ActiveSupport::TimeZone])
 @person_map = YAML::load(File.read('housekeeping/inventories_migration/inventory_people_map.yml'), permitted_classes: [ActiveSupport::HashWithIndifferentAccess, Time, Date, ActiveSupport::TimeWithZone, ActiveSupport::TimeZone])
@@ -191,12 +213,21 @@ def ms2inventory(source, library_id)
         if @institution_map.include? link_t.content
           link_t.destroy_yourself
           #link_t.content = @person_map[link_t.content].to_s
-          puts @institution_map[link_t.content].to_s
+          #puts @institution_map[link_t.content].to_s
           tt.add_at(MarcNode.new("inventory_item", "0", @institution_map[link_t.content].to_s, nil), 0)
           #ap tt
         end
       end
     end
+
+    # Some 710 are kust $4pbl. Nuke them
+    nuke_list = []
+    new_marc.each_by_tag("710") do |tt|
+      if !tt.fetch_first_by_tag("0")
+        nuke_list << tt if tt.fetch_first_by_tag("4").content == "pbl"
+      end
+    end
+    nuke_list.each {|t| t.destroy_yourself}
 
     # Add the 773 to the parent
     node = MarcNode.new("inventory_item", "773", "", "18")
@@ -258,12 +289,13 @@ end
   x260.sort_alphabetically
   new_marc.root.add_at(x260, new_marc.get_insert_position("260") )
 
-  #if catalogue["revue_title"] && !catalogue["revue_title"].empty?
-  #  x760 = MarcNode.new("publication", "760", "", mc.get_default_indicator("760"))
-  #  x760.add_at(MarcNode.new("publication", "a", catalogue["revue_title"], nil), 0 )
-  #  x760.sort_alphabetically
-  #  new_marc.root.add_at(x760, new_marc.get_insert_position("760") )
-  #end
+  if catalogue["revue_title"] && !catalogue["revue_title"].empty?
+    x760 = MarcNode.new("publication", "760", "", mc.get_default_indicator("760"))
+    x760.add_at(MarcNode.new("publication", "0", @series_map[catalogue["revue_title"].to_sym], nil), 0 )
+    x760.add_at(MarcNode.new("publication", "a", catalogue["revue_title"], nil), 0 )
+    x760.sort_alphabetically
+    new_marc.root.add_at(x760, new_marc.get_insert_position("760") )
+  end
 
   new_marc.import
 
