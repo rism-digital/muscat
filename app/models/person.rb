@@ -368,5 +368,12 @@ class Person < ApplicationRecord
     true
   end
 
+  # We have a column for display name
+  # which is used by auto_link, so make
+  # sure we always have a value here
+  def display_name
+    super.presence || self.name
+  end
+
 end
 

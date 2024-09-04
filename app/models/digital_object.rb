@@ -116,4 +116,9 @@ class DigitalObject < ApplicationRecord
   def self.ransackable_associations(auth_object = nil)
     reflect_on_all_associations.map { |a| a.name.to_s }
   end
+
+  def display_name
+    self.description
+  end
+
 end
