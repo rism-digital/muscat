@@ -128,13 +128,29 @@ SHELFMARK_MAP = {
   "Studi Musicali": 30026276
 }
 
-print "Cleanup... "
-InventoryItem.find_by_sql("TRUNCATE TABLE inventory_items")
-Publication.where(created_at: Time.zone.now.beginning_of_day..Time.zone.now.end_of_day).delete_all
-Person.where(created_at: Time.zone.now.beginning_of_day..Time.zone.now.end_of_day).delete_all
-Institution.where(created_at: Time.zone.now.beginning_of_day..Time.zone.now.end_of_day).delete_all
-Source.where(created_at: Time.zone.now.beginning_of_day..Time.zone.now.end_of_day).delete_all
-puts "done"
+@fixed_stdterm_map = {
+  "00000410001784": 3900056,
+  "00000410001795": 3900056,
+  "00000410001827": 3900056,
+  "00000410001829": 3900056,
+  "00000410001830": 25309,
+  "00000410001831": 25178,
+  "00000410001832": 25178,
+  "00000410001834": 25178,
+  "00000410001835": 25233,
+  "00000410001910": 25257,
+  "00000410001911": 25233
+}
+
+if ARGV[0] == "--cleanup"
+  print "DO NOT DO THIS IN PRODUCTION Cleanup... "
+  InventoryItem.find_by_sql("TRUNCATE TABLE inventory_items")
+  Publication.where(created_at: Time.zone.yesterday.beginning_of_day..Time.zone.now.end_of_day).delete_all
+  Person.where(created_at: Time.zone.yesterday.beginning_of_day..Time.zone.now.end_of_day).delete_all
+  Institution.where(created_at: Time.zone.yesterday.beginning_of_day..Time.zone.now.end_of_day).delete_all
+  Source.where(created_at: Time.zone.yesterday.beginning_of_day..Time.zone.now.end_of_day).delete_all
+  puts "done"
+end
 
 print "Please stand while loading the db... "
 @inventories_db = YAML::load(File.read('housekeeping/inventories_migration/database_export.yml'), permitted_classes: [ActiveSupport::HashWithIndifferentAccess, Time, Date, ActiveSupport::TimeWithZone, ActiveSupport::TimeZone])
@@ -233,7 +249,11 @@ def ms2inventory(source, library_id)
     # Fix 650
     new_marc.each_by_tag("650") do |tt|
       link_t = tt.fetch_first_by_tag("0")
-      if @standard_term_map.include? link_t.content
+      # Some recrds have a hardcoded mapping
+      if @fixed_stdterm_map.include?(the_ms["ext_id"].to_sym) && link_t.content == "51000330"
+        link_t.destroy_yourself
+        tt.add_at(MarcNode.new("inventory_item", "0", @fixed_stdterm_map[the_ms["ext_id"].to_sym].to_s, nil), 0)
+      elsif @standard_term_map.include? link_t.content
         link_t.destroy_yourself
         tt.add_at(MarcNode.new("inventory_item", "0", @standard_term_map[link_t.content].to_s, nil), 0)
         #ap tt
