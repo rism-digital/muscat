@@ -145,6 +145,23 @@ SHELFMARK_MAP = {
   "00000410001911": 25233
 }
 
+@manifest_map = {
+  "A-FKsta_description.xml": ["A_FKsta_Akt_Nr_269.json"],
+  "B-Oa_description.xml": ["B_Oa.json"],
+  "CH_A_description.xml": ["CH_A_Stadtarchiv_II_562_c.json"],
+  "CH_BEa_1697_description.xml": ["CH_BEa_B_III_873.json", "berne_1697_wm.json"],
+  "CH_BEa_1761_description.xml": ["CH_BEa_OG_Bern_Muenster_208", "berne_1761_wm.json"],
+  "CH_BM_description.xml": ["CH_BM_1206.json", "beromuenster_wm.json"],
+  "CH_Bischofszell_description.xml": ["CH_Bischofszell_Museum_Diarium_1.json"],
+  "CH_G_description.xml": ["CH-G_AEG.json-MISSING"],
+  "CH_Lz_description.xml": ["CH_Lz_Pp_Msc_11.json"],
+  "CH_SOa_description.xml": ["CH_SOa_StLeodegar_Prot_Bd_1.json"],
+  "CH_W_description.xml": ["CH_W_DepMK_303.json"],
+  "CH_Zz_c_description.xml": ["CH_Zz_AMG_Archiv_IV_A_6_inv.json"],
+  "CH_Zz_d_description.xml": ["CH_Zz_AMG_Archiv_IV_A_3_inv.json"],
+  "Parstorffer_description.xml": ["Parstorffer.json"]
+}
+
 if ARGV[0] == "--cleanup"
   print "DO NOT DO THIS IN PRODUCTION Cleanup... "
   InventoryItem.find_by_sql("TRUNCATE TABLE inventory_items")
@@ -498,6 +515,17 @@ spinner = TTY::Spinner.new("[:spinner] :title", format: :shark)
     new_marc.root.add_at(x245, new_marc.get_insert_position("245") )
   end
 =end
+
+  if inventory["url"] && @manifest_map[inventory["url"].to_sym]
+    @manifest_map[inventory["url"].to_sym].each do |mani|
+      a856 = MarcNode.new("source", "856", "", mc.get_default_indicator("856"))
+      a856.add_at(MarcNode.new("source", "u", "https://iiif.rism.digital/manifest/in/#{mani}", nil), 0 )
+      a856.add_at(MarcNode.new("source", "x", "IIIF manifest (digitized source)", nil), 0 )
+      a856.add_at(MarcNode.new("source", "z", "IIIF manifest", nil), 0 )
+      a856.sort_alphabetically
+      new_marc.root.add_at(a856, new_marc.get_insert_position("856") )
+    end
+  end
 
   # variant title?
   x246 = MarcNode.new("source", "246", "", mc.get_default_indicator("246"))
