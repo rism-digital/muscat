@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?><tei xmlns="http://www.tei-c.org/ns/1.0" xmlns:mei="http://www.music-encoding.org/ns/mei" xmlns:marc="http://www.loc.gov/MARC21/slim">
+<teiHeader xmlns="">
+<fileDesc>
+<titleStmt>
+<author/>
+</titleStmt>
+<pubStmt>
+<respStmt>
+<corpName>Swiss RISM Office<identifier type="MarcOrganizationCode">CH-BeSRO</identifier>
+</corpName>
+</respStmt>
+<date>--</date>
+</pubStmt>
+<sourceDesc>
+<p/>
+</sourceDesc>
+</fileDesc>
+<encodingDesc>
+<appInfo>
+<application version="1.0 beta">
+<name>rism2tei-2012</name>
+</application>
+</appInfo>
+</encodingDesc>
+</teiHeader>
+<text xmlns="">
+<body>
+<div>
+<head>CH-BEk Studer 1101</head>
+<p>
+<p>Pan Kai Aphrodite, A, Coro femminile, orch, FavS 1101, 1</p>
+</p>
+<p>
+<hi rend="italics">[score, caption title:] Pan Kai Aphrodite / Lyrische Kantate nach altgriechischen Gedichten / fur Alt-Solo, Frauenchor und Orchester / Hans Studer / 1950, 1961, 1966 / [by later hand, pencil]: Texte aus 
+"Griechische Gedichte" Heimeran / "Fragmente fruhgriechischer Lyrik" Eckart Peterich Arche</hi>
+</p>
+<p>
+<p><l>1 score: 70p. 5 short scores (vocal score): 14p. 12 parts: 7, 7, 7, 6, 5p.; 6, 5, 5, 5p.; 6p.; 9p.; 3p.</l><l>Different sizes</l></p>
+</p>
+<p>
+<p>1.1.1, S 1 coro, Ruhig, 4/4</p>
+<p>Da die Sturme des Winters nun aus den Luften gewichen lachelt</p>
+<p>1.1.2, A solo, , c</p>
+<p>Anbei die dunkle Erde bekranzt sich mit grunenden Grasern</p>
+<p>1.2.1, , II, c</p>
+<p>Kuhles Wasser rauscht Rosenbusche beschatten den Ort</p>
+<p>1.3.1, , III, 6/8</p>
+<p>Pan jaget durch die Schluchten</p>
+<p>1.4.1, ob solo, Intermezzo I, 4/4</p>
+<p>[Was sitzt du hier du Herr der Fluren]</p>
+<p>1.5.1, , V, 2/4</p>
+<p>O jungfraulichen Blickes du Knabe</p>
+<p>1.6.1, , VI, 6/4</p>
+<p>Ich kann nicht suse Mutter nicht mein Gewebe weben</p>
+<p>1.7.1, , VII, 4/4</p>
+<p>Gegen die Liebe mein Kind ist kein anderes Mittel</p>
+<p>1.8.1, , VIII, 3/4</p>
+<p>Nun ruhen der Berge Gipfel und Schluchten</p>
+<p>1.9.1, , IX, 3/4</p>
+<p>Wenn nach Sonnenuntergang ein rosenfarber Mond die Sterne alle uberstrahlt</p>
+<p>1.10.1, , XI, c</p>
+<p>Der Mond ging unter die Pleiaden</p>
+</p>
+</div>
+</body>
+</text>
+</tei>
+

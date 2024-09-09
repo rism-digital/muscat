@@ -1,3 +1,6 @@
+require "rexml/document" 
+include REXML
+
 SIGLUM_MAP = {
 "Parstorffer 1653": 51003803,
 "IRL Dmh (in IRL Dtc)": 30003329,
@@ -267,6 +270,9 @@ def ms2inventory(source, library_id)
 
     new_marc.import
 
+    inventory_item.created_at = the_ms["created_at"]
+    inventory_item.updated_at = the_ms["updated_at"]
+
     inventory_item.marc = new_marc
     inventory_item.save
 
@@ -338,16 +344,143 @@ end
 
 # Step 1, create new inventories in the Source template
 
+def dexmlize(marc, file)
+  doc = REXML::Document.new(File.open("housekeeping/inventories_migration/xml/#{file}"))
+  mc = MarcConfigCache.get_configuration("source")
+
+  XPath.each(doc, "/TEI/teiHeader/fileDesc/titleStmt/title") do |txt|
+    next if !txt.text || txt.text.strip.empty?
+    tag = MarcNode.new("source", "599", "", mc.get_default_indicator("599"))
+    tag.add_at(MarcNode.new("source", "a", txt.text, nil), 0 )
+    tag.sort_alphabetically
+    marc.root.add_at(tag, marc.get_insert_position("599") )
+  end
+
+  XPath.each(doc, "/TEI/teiHeader/fileDesc/editionStmt/") do |txt|
+    #next if !txt.text || txt.text.strip.empty?
+
+    resp_stmt = txt.elements['respStmt']
+    concatenated_text = []
+    resp_stmt.each_recursive do |element|
+      element.text.gsub!("RISM Digital Center", "and RISM Digital Center")
+      element.text.gsub!("Swiss RISM Office", "and RISM Digital Center")
+      concatenated_text << element.text.strip if element.text
+    end
+
+    tag = MarcNode.new("source", "599", "", mc.get_default_indicator("599"))
+    tag.add_at(MarcNode.new("source", "a", concatenated_text.join(" "), nil), 0 )
+    tag.sort_alphabetically
+    marc.root.add_at(tag, marc.get_insert_position("599") )
+  end
+
+  XPath.each(doc, "/TEI/teiHeader/fileDesc/publicationStmt") do |txt|
+
+    #next if !txt.text || txt.text.strip.empty?
+
+    resp_stmt = txt.elements['publisher']
+    concatenated_text = []
+    resp_stmt.each_recursive do |element|
+      element.text.gsub!("Swiss RISM Office", "RISM Digital Center")
+      concatenated_text << element.text.strip if element.text
+    end
+
+    concatenated_text << resp_stmt.text.strip if resp_stmt.text
+
+    tag = MarcNode.new("source", "599", "", mc.get_default_indicator("599"))
+    tag.add_at(MarcNode.new("source", "a", concatenated_text.join(" "), nil), 0 )
+    tag.sort_alphabetically
+    marc.root.add_at(tag, marc.get_insert_position("599") )
+  end
+
+  XPath.each(doc, "/TEI/teiHeader/fileDesc/sourceDesc/msDesc/head") do |head|
+
+    place = head.elements["origPlace"].first
+    date = head.elements["origDate"].first rescue date = nil
+    title = head.elements["title"].first
+
+    if place || date
+      tag = MarcNode.new("source", "260", "", mc.get_default_indicator("260"))
+      tag.add_at(MarcNode.new("source", "a", place.to_s, nil), 0 ) if place
+      tag.add_at(MarcNode.new("source", "c", date.to_s, nil), 0 ) if date
+      tag.add_at(MarcNode.new("source", "8", "01", nil), 0 )
+      tag.sort_alphabetically
+      marc.root.add_at(tag, marc.get_insert_position("260") )
+    end
+
+    if title
+      tag = MarcNode.new("source", "245", "", mc.get_default_indicator("245"))
+      tag.add_at(MarcNode.new("source", "a", title.to_s, nil), 0 ) if place
+      tag.sort_alphabetically
+      marc.root.add_at(tag, marc.get_insert_position("245") )
+    end
+
+  end
+
+  XPath.each(doc, "/TEI/teiHeader/fileDesc/sourceDesc/msDesc/physDesc/objectDesc/supportDesc/extent") do |txt|
+    #next if !txt.text || txt.text.strip.empty?
+
+    pages = txt.elements["measure[@type='pagesCount']"]
+    dimensions = txt.elements["measure[@type='pageDimensions']"]
+
+    if pages || dimensions
+      tag = MarcNode.new("source", "300", "", mc.get_default_indicator("300"))
+      tag.add_at(MarcNode.new("source", "a", pages.text, nil), 0 ) if pages 
+      tag.add_at(MarcNode.new("source", "c", dimensions.text, nil), 0 ) if dimensions
+      tag.add_at(MarcNode.new("source", "8", "01", nil), 0 )
+      tag.sort_alphabetically
+      marc.root.add_at(tag, marc.get_insert_position("300") )
+    end
+  end
+
+  XPath.each(doc, "/TEI/teiHeader/fileDesc/sourceDesc/msDesc/msContents/summary") do |txt|
+    next if !txt.text || txt.text.strip.empty?
+    tag = MarcNode.new("source", "500", "", mc.get_default_indicator("500"))
+    tag.add_at(MarcNode.new("source", "a", txt.text, nil), 0 )
+    tag.sort_alphabetically
+    marc.root.add_at(tag, marc.get_insert_position("500") )
+  end
+
+
+  XPath.each(doc, "/TEI/teiHeader/fileDesc/sourceDesc/msDesc/additional/adminInfo/recordHist/source/bibl") do |txt|
+    next if !txt.text || txt.text.strip.empty?
+    tag = MarcNode.new("source", "599", "", mc.get_default_indicator("599"))
+    tag.add_at(MarcNode.new("source", "a", txt.text, nil), 0 )
+    tag.sort_alphabetically
+    marc.root.add_at(tag, marc.get_insert_position("599") )
+  end
+
+  XPath.each(doc, "/TEI/teiHeader/fileDesc/sourceDesc/msDesc/additional/listBibl/bibl") do |txt|
+    next if !txt.text || txt.text.strip.empty?
+    tag = MarcNode.new("source", "599", "", mc.get_default_indicator("599"))
+    tag.add_at(MarcNode.new("source", "a", txt.text, nil), 0 )
+    tag.sort_alphabetically
+    marc.root.add_at(tag, marc.get_insert_position("599") )
+  end
+
+end
+
+spinner = TTY::Spinner.new("[:spinner] :title", format: :shark)
 @inventories_db["libraries"].each do |inventory|
+
+  next if inventory["ext_id"] == 51006873
+
+  spinner.update(title: "Converting #{inventory["name"]}...")
+  spinner.auto_spin
 
   muscat_inventory = Source.new
   muscat_inventory.record_type = MarcSource::RECORD_TYPES[:inventory]
-  new_marc = MarcSource.new("", MarcSource::RECORD_TYPES[:inventory])
+  new_marc = MarcSource.new("=001 __TEMP__", MarcSource::RECORD_TYPES[:inventory])
 
   mc = MarcConfigCache.get_configuration("source")
 
   siglum = SIGLUM_MAP[inventory["siglum"].strip.to_sym]
   shelfmark = SHELFMARK_MAP[inventory["siglum"].strip.to_sym]
+
+  # 240 Inventory
+  x240 = MarcNode.new("source", "240", "", mc.get_default_indicator("240"))
+  x240.add_at(MarcNode.new("source", "0", 3930931, nil), 0 )
+  x240.sort_alphabetically
+  new_marc.root.add_at(x240, new_marc.get_insert_position("240") )
 
   # Add Library info
   x852 = MarcNode.new("source", "852", "", mc.get_default_indicator("852"))
@@ -356,13 +489,15 @@ end
   x852.sort_alphabetically
   new_marc.root.add_at(x852, new_marc.get_insert_position("852") )
 
-  # Title on src
+  # WHERE TO PUT THE ADDRESS??
+=begin
   if inventory["address"] && !inventory["address"].empty?
     x245 = MarcNode.new("source", "245", "", mc.get_default_indicator("245"))
     x245.add_at(MarcNode.new("source", "a", inventory["address"], nil), 0 )
     x245.sort_alphabetically
     new_marc.root.add_at(x245, new_marc.get_insert_position("245") )
   end
+=end
 
   # variant title?
   x246 = MarcNode.new("source", "246", "", mc.get_default_indicator("246"))
@@ -370,17 +505,13 @@ end
   x246.sort_alphabetically
   new_marc.root.add_at(x246, new_marc.get_insert_position("246") )
 
-  # 240 Inventory
-  x240 = MarcNode.new("source", "240", "", mc.get_default_indicator("240"))
-  x240.add_at(MarcNode.new("source", "0", 3930931, nil), 0 )
-  x240.sort_alphabetically
-  new_marc.root.add_at(x240, new_marc.get_insert_position("240") )
-
   # 650 Standard Term
   x650 = MarcNode.new("source", "650", "", mc.get_default_indicator("650"))
   x650.add_at(MarcNode.new("source", "0", 3025686, nil), 0 )
   x650.sort_alphabetically
   new_marc.root.add_at(x650, new_marc.get_insert_position("650") )
+
+  dexmlize(new_marc, inventory["url"]) if inventory["url"] && !inventory["url"].empty?
 
   new_marc.suppress_scaffold_links
   new_marc.import
@@ -398,3 +529,4 @@ end
 end
 
 Sunspot.commit
+puts

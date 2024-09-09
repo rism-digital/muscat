@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<TEI xmlns="http://www.tei-c.org/ns/1.0">
+<!-- "###" means: to be completed -->
+  <teiHeader>
+    <fileDesc>
+      <titleStmt>
+        <title>The Berne Inventory (1761), ed. Claudio Bacciagaluppi, 2012 (Historical Music Inventories, ###) </title>
+      </titleStmt>
+      <editionStmt>
+        <edition>After TEI P5.1</edition>
+        <respStmt>
+          <resp>Cataloguer: <persName>Claudio Bacciagaluppi</persName>
+            <date when="2012-09">September 2012</date>
+          </resp>
+          <name>Université de Fribourg, Switzerland</name> 
+          <name>Swiss RISM Office</name>
+        </respStmt>
+      </editionStmt>
+      <publicationStmt>
+        <publisher><orgName xml:base="http://www.rism-ch.org">Swiss RISM Office</orgName>, Université de Fribourg, Switzerland</publisher>
+      </publicationStmt>
+      <sourceDesc>
+        <msDesc>
+          <msIdentifier>
+            <settlement>Bern</settlement>
+            <repository>Staatsarchiv</repository>
+            <idno>OG Bern-Münster 208</idno>
+          </msIdentifier>
+          <head>
+            <title>Inventarium aller derjenigen Instrumenten und Büchern </title>
+            <origPlace>Bern </origPlace>
+            <date> Date of the inventory: <origDate notBefore="1761"> 1761-1769c</origDate>
+            </date>
+          </head>
+          <msContents>
+            <summary>
+            The only inventory of a music society in an independent volume, as far as it is known today (2012), is the <ref target="http://in-dev.rism.digital/images/berne_1761">inventory</ref> of the Berne Collegium musicum, started in 1761. We do not know the circumstances that led to its compilation. It was completed, or updated, in 1763 by Cantor Emanuel Wyss, who signed the book as a token of his taking over the responsibility for the belongings of the Collegium musicum. The entry for eight vocal scores of Graun's 'Tod Jesu', printed in 1785, gives us a terminus post quem for the later entries in the inventory. The frequent star signs (*) preceding the inventory entries served to check the items still present when a revision of the whole library was made, at an unknown time in the late eighteenth century.<lb/>
+            It is not clear if the Collegium musicum of the 1760s was a direct continuation of one of the two Collegia of the late seventeenth century, called 'collegium musicum maius' and 'minus', founded by Johann Ulrich Sultzberger in 1672 and 1675 respectively, or if the two merged in the early eighteenth century. The first was made up of well-to-do citizens, the second of students and schoolboys. In any case, music-making received substantial encouragement from the town government: in 1703 a music room was furnished with an organ in the French church, where the Collegium still met in 1761.
+            </summary>
+            <msItem><ab><metamark>Contents:</metamark>
+              <list>
+                <item><ref target="http://in-dev.rism.digital/images/berne_1761#z=2&amp;n=5&amp;i=/CH_BEa_OG_Bern_Muenster_208/pyr_CH_BEa_OG_Bern_Muenster_208-0001.tif&amp;y=61&amp;h=700&amp;w=773">front cover</ref> Title on sticker.</item>
+                <item><ref target="http://in-dev.rism.digital/images/berne_1761#z=2&amp;n=5&amp;i=/CH_BEa_OG_Bern_Muenster_208/pyr_CH_BEa_OG_Bern_Muenster_208-0009.tif&amp;y=102&amp;h=700&amp;w=773">p. 1</ref> List of musical instruments.</item>
+                <item><ref target="http://in-dev.rism.digital/images/berne_1761#z=2&amp;n=5&amp;i=/CH_BEa_OG_Bern_Muenster_208/pyr_CH_BEa_OG_Bern_Muenster_208-0010.tif&amp;y=50&amp;h=700&amp;w=773">p. 2</ref> Inventory 1761-63 of the sources in the music room, with later additions.</item>
+                <item><ref target="http://in-dev.rism.digital/images/berne_1761#z=2&amp;n=5&amp;i=/CH_BEa_OG_Bern_Muenster_208/pyr_CH_BEa_OG_Bern_Muenster_208-0016.tif&amp;y=95&amp;h=700&amp;w=773">p. 8</ref> Musical sources in the boy's school.</item><item><ref target="http://in-dev.rism.digital/images/berne_1761#z=2&amp;n=5&amp;i=/CH_BEa_OG_Bern_Muenster_208/pyr_CH_BEa_OG_Bern_Muenster_208-0016.tif&amp;y=95&amp;h=700&amp;w=773">on the same page</ref> Other accessories, keys and stools, in the music room.</item>
+                <item><ref target="http://in-dev.rism.digital/images/berne_1761#z=2&amp;n=5&amp;i=/CH_BEa_OG_Bern_Muenster_208/pyr_CH_BEa_OG_Bern_Muenster_208-0017.tif&amp;y=95&amp;h=700&amp;w=773">p. 9</ref> Additions 1763-1769c.</item>
+            </list>
+            </ab></msItem>
+          </msContents>
+          <physDesc>
+          <p><hi rend='bold'>Physical description:</hi></p>
+            <objectDesc>
+              <supportDesc>
+                <extent>
+                  <measure type="pagesCount" n="64">[4] fols + 1-10, [11-58] pp.</measure>
+                  <measure type="pageDimensions">In folio.</measure>
+                </extent>
+                <foliation>Original pagination.<lb/>
+                  <watermark>
+                   <hi rend='bold'>Watermark: </hi>
+                   <ref target="http://in-dev.rism.digital/images/berne_1761_wm#z=2&amp;n=5&amp;i=/berne_1761_wm/pyr_berne_1761_wm.tif&amp;h=700&amp;w=773">Berne arms, below: M.</ref>
+                  </watermark>
+                </foliation>                
+              </supportDesc>
+            </objectDesc>
+            <handDesc>
+<!-- Hands -->
+              <handNote>Scribe, 1761?-1763: Emanuel Wyss</handNote>
+            </handDesc>
+            <bindingDesc>
+              <p>Original binding in cardboard.</p>
+            </bindingDesc>
+          </physDesc>
+          <additional>
+            <adminInfo>
+              <recordHist>
+                <source>
+                  <bibl>Images © Staatsarchiv Bern (Berne, 2012).<lb/></bibl>
+                  <bibl>Records compiled by: Claudio Bacciagaluppi (Zurich, 2012).</bibl>
+                </source>
+              </recordHist>
+            </adminInfo>
+            <listBibl>
+              <head>Essential bibliography:</head>
+              <bibl>Fritz Brönnimann, Der Zinkenist und Musikdirektor Johann Ulrich Sultzberger und die Pflege der Musik in Bern in der zweiten Hälfte des XVII. Jahrhunderts, Zofingen: Zofinger Tagblatt, 1920 (PhD Diss., University of Berne, 1919)</bibl>
+              <bibl>Gerhard Aeschbacher, Die Reformation und das kirchenmusikalische Leben im alten Bern, in: 450 Jahre Berner Reformation: Beiträge zur Geschichte der Berner Reformation und zu Niklaus Manuel, ed. by Gerhard Aeschbacher et al., Bern, Historischer Verein des Kantons Bern, 1980-81 (Archiv des Historischen Vereins des Kantons Bern, 64/65), pp. 225-247.</bibl>
+              <bibl>François de Capitani, Musik in Bern: Musik, Musiker, Musikerinnen und Publikum in der Stadt Bern vom Mittelalter bis heute, Bern: Historischer Verein des Kantons Bern, 1993 (Archiv des Historischen Vereins des Kantons Bern, 76).</bibl>
+            </listBibl>
+          </additional>
+        </msDesc>
+      </sourceDesc>
+    </fileDesc>
+  </teiHeader>
+  <text>
+    <body>
+                <pb n="front cover" facs="http://in-dev.rism.digital/images/berne_1761#z=2&amp;n=5&amp;i=/CH_BEa_OG_Bern_Muenster_208/pyr_CH_BEa_OG_Bern_Muenster_208-0001.tif&amp;y=95&amp;h=700&amp;w=773"/><p><interp>[sticker on front cover]</interp>  INVENTARIUM <lb/>Aller derjenigen <lb/>Instrument<interp>en</interp> u. Büchern <lb/>die Sich <lb/>In dem Music-Saal beÿ der <lb/>Französischen Kirche <lb/>Befinden <lb/>1761. <lb/>M.C. <lb/>N.|o 2.</p>
+               	<p><gap/></p>
+               	<pb n="p. 1" facs="http://in-dev.rism.digital/images/berne_1761#z=2&amp;n=5&amp;i=/CH_BEa_OG_Bern_Muenster_208/pyr_CH_BEa_OG_Bern_Muenster_208-0009.tif&amp;y=95&amp;h=700&amp;w=773"/><p><interp>[p. 1]</interp> An Instrumenten Befinden sich</p>
+<list>
+<item>* <hi rend="underline">1.</hi> Ein Positiv von Sechs Registern. delabrirt und zum Verkauff</item>
+<item><hi rend="underline">2.</hi> Sieben Violin-Geigen, samt Eÿlff Fiedelbögen <lb/> deren jeder 2. fr. gekostet. seind 3. brauchbare übrige schlecht</item>
+<item>* <hi rend="underline">3.</hi> Zweÿ Große Violon oder Baßgeigen samt zu- <lb/> gehörigen Bögen. sind <del><gap/></del> da</item>
+<item><hi rend="underline">4.</hi> Zweÿ Paar Waldhorn auß D. und F. Zu Spie- <lb/> len. nonvaleurs</item>
+<item><hi rend="underline">5.</hi> Ein Paar Trompettes auß dem D. so samt den <lb/> daran hangenden Seidene<interp>n</interp> Quasten kosten<lb/>G. 44. sind da.</item>
+<item><hi rend="underline">6.</hi> Noch Eine Trompette VerEhrt von MmW:H: <lb/> Land-Major J: J: Zehender ist bey Posunist Isenschmid Ihme zum <lb/> exercirn concerit. längertes.</item>
+<item>* <hi rend="underline">7.</hi> Ein Paar Neüe Clarinet. Kosten Ein alte<interp>n</interp> L. Dor. nonvaleur <lb/> verkaufft u: verrechnet</item>
+<item>* <hi rend="underline">8.</hi> Eine Viola di Braccio. sind zweÿ.</item>
+</list>
+                <p>Neüe Instrument.</p>
+<list>
+<item><hi rend="underline">9.</hi> 1. Conte Bass, samt großen Bogen.</item>
+<item>* <hi rend="underline">10.</hi> 1. Forte Piano.</item>
+<item>* <hi rend="underline">11.</hi> 2. D Horn verehrt von J<interp>un</interp>k<interp>e</interp>r Tscharner v: Kersetz. non valeurs.</item>
+<item>* <hi rend="underline">11.</hi> 2. A. <lb/> x 2 F. <lb/> x 2 D Horn, neü angeschafft.</item>
+<item>13 Zweÿ Violin Geigen samt zweÿ Bögen. sind nicht da.</item>
+<item>* 2. B-Horn neu angekaufft.</item>
+</list>
+                <pb n="p. 2" facs="http://in-dev.rism.digital/images/berne_1761#z=2&amp;n=5&amp;i=/CH_BEa_OG_Bern_Muenster_208/pyr_CH_BEa_OG_Bern_Muenster_208-0010.tif&amp;y=95&amp;h=700&amp;w=773"/><p><interp>[p. 2]</interp> An Musicalischen Büchern und Schrifften <lb/>Zu Stim[m]en und Instrumenten <lb/>In Groß Folio.</p>
+                <p><gap/></p>
+                <pb n="p. 3" facs="http://in-dev.rism.digital/images/berne_1761#z=2&amp;n=5&amp;i=/CH_BEa_OG_Bern_Muenster_208/pyr_CH_BEa_OG_Bern_Muenster_208-0011.tif&amp;y=95&amp;h=700&amp;w=773"/><p><interp>[p. 3]</interp> An Musical.|en Bücheren und Schrifften <lb/>Zu Stim[m]en und Instrumenten <lb/>In Ordinar Folio.</p>
+                <p><gap/></p>
+                <pb n="p. 4" facs="http://in-dev.rism.digital/images/berne_1761#z=2&amp;n=5&amp;i=/CH_BEa_OG_Bern_Muenster_208/pyr_CH_BEa_OG_Bern_Muenster_208-0012.tif&amp;y=95&amp;h=700&amp;w=773"/><p><interp>[p. 4]</interp> An Musical.|en Bücheren und Schrifften</p>
+                <p><gap/></p>
+                <pb n="p. 5" facs="http://in-dev.rism.digital/images/berne_1761#z=2&amp;n=5&amp;i=/CH_BEa_OG_Bern_Muenster_208/pyr_CH_BEa_OG_Bern_Muenster_208-0013.tif&amp;y=95&amp;h=700&amp;w=773"/><p><interp>[p. 5]</interp> An Musical.|en Büchern und Schrifften <lb/>In Folio Oblongo.</p>
+                <p><gap/></p>
+                <pb n="p. 6" facs="http://in-dev.rism.digital/images/berne_1761#z=2&amp;n=5&amp;i=/CH_BEa_OG_Bern_Muenster_208/pyr_CH_BEa_OG_Bern_Muenster_208-0014.tif&amp;y=95&amp;h=700&amp;w=773"/><p><interp>[p. 6]</interp> Musical.|e Getruckt- und Geschriebene <lb/>Instrumental Stücke <lb/>In Folio</p>
+                <p><gap/></p>
+                <pb n="p. 7" facs="http://in-dev.rism.digital/images/berne_1761#z=2&amp;n=5&amp;i=/CH_BEa_OG_Bern_Muenster_208/pyr_CH_BEa_OG_Bern_Muenster_208-0015.tif&amp;y=95&amp;h=700&amp;w=773"/><p><interp>[p. 7]</interp> Musical.|e Singstücke mit Instrumenten <lb/>In Quarto.</p>
+                <p><gap/></p>
+                <pb n="p. 8" facs="http://in-dev.rism.digital/images/berne_1761#z=2&amp;n=5&amp;i=/CH_BEa_OG_Bern_Muenster_208/pyr_CH_BEa_OG_Bern_Muenster_208-0016.tif&amp;y=95&amp;h=700&amp;w=773"/><p><interp>[p. 8]</interp> In der Knaben Lehr sind:</p>
+                <p><gap/></p>
+                <p>Geräht im Music Saal.</p>
+<list>
+<item>* 7. Lehnenstühl.</item>
+<item>6. neüe Stabelle.</item>
+<item>1. Schlüssel zum Positiv.</item>
+<item>1. d.o zur Stegen Thür.</item>
+<item> 2. d.o zum großen Saal.</item>
+<item> 2. zum Bücherschafft.</item>
+<item> 1. zum Instrumenten Schafft.</item>
+<item> 1. zum Estrich.</item>
+<item> 4. zu den 4. Schöfften im Saal.</item>
+<item> 1. zum Stegenschäfftli.</item>
+</list>
+                <p>Alle oben ausgesetzte Sachen habe in meine Verwahrung <lb/>empfangen. Eman. Wÿß, Cantor publ. d<interp>en</interp> 18. Junij 1763.</p>
+                <p><gap/></p>
+                <pb n="p. 9" facs="http://in-dev.rism.digital/images/berne_1761#z=2&amp;n=5&amp;i=/CH_BEa_OG_Bern_Muenster_208/pyr_CH_BEa_OG_Bern_Muenster_208-0017.tif&amp;y=95&amp;h=700&amp;w=773"/><p><interp>[p. 9]</interp> Neüe Musical.|e Gedruckt und geschriebene Instrumental <lb/>und Sing-Stücke. in Folio.</p>
+                <p><gap/></p>
+                <pb n="p. 10" facs="http://in-dev.rism.digital/images/berne_1761#z=2&amp;n=5&amp;i=/CH_BEa_OG_Bern_Muenster_208/pyr_CH_BEa_OG_Bern_Muenster_208-0018.tif&amp;y=95&amp;h=700&amp;w=773"/><p><interp>[p. 10]</interp> Musical|e Singstücke mit Instrumenten <lb/>In Quarto</p>
+                <p><gap/></p>
+      <p>* Oster Montag Musicken Von A.|o 1767. 1768 &amp; 1769.</p>
+                <p><gap/></p>
+      <linkGrp>
+        <link/>
+<!-- ### -->
+      </linkGrp>
+    </body>
+  </text>
+</TEI>

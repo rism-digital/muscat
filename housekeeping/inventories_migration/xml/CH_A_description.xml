@@ -1,0 +1,532 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<TEI xmlns="http://www.tei-c.org/ns/1.0">
+<!-- "###" means: to be completed -->
+  <teiHeader>
+    <fileDesc>
+      <titleStmt>
+        <title>The 'Guldenes Buch' of the Aarau Collegium Musicum (1710), ed. Christoph Riedo (Historical Music Inventories, 13)</title>
+      </titleStmt>
+      <editionStmt>
+        <edition>After TEI P5.1</edition>
+        <respStmt>
+          <resp>Cataloguer: <persName>Christoph Riedo</persName>
+            <date when="2013-05">May 2013</date>
+          </resp>
+          <name>Université de Fribourg, Switzerland</name>
+        </respStmt>
+      </editionStmt>
+      <publicationStmt>
+        <publisher><orgName xml:base="http://www.rism-ch.org">Swiss RISM Office</orgName>, Université de Fribourg, Switzerland</publisher>
+      </publicationStmt>
+      <sourceDesc>
+        <msDesc>
+          <msIdentifier>
+            <settlement>Aarau</settlement>
+            <repository>Stadtarchiv</repository>
+            <idno>II.562c</idno>
+          </msIdentifier>
+          <head>
+            <title>Guldenes Buch</title>
+            <origPlace>Aarau</origPlace>
+            <origDate notBefore="1710">1710–1768p</origDate>
+          </head>
+          <msContents>
+            <summary>The music society in Aarau maintained a so-called 'Wappenbuch' (book of coats of arms): for future memory, the <ref target="http://in-dev.rism.digital/images/CH_A_Stadtarchiv_II_562_c#z=2&amp;n=5&amp;i=/CH_Aarau_Stadtarchiv">"Guldenes Buch"</ref> (Golden Book) contains the names and coats of arms of the founding members of the 'collegium musicum' in 1710, of all the new members until after 1768, and of all benefactors. These last are accompanied by a detailed statement of their donations, sometimes in cash, but often in nature - musical instruments, music books, and even paintings.</summary>
+            <msItem><ab><metamark>Contents:</metamark>
+              <list>
+                <item><ref target="http://in-dev.rism.digital/images/CH_A_Stadtarchiv_II_562_c#z=2&amp;n=5&amp;i=/CH_Aarau_Stadtarchiv/CH_A_Stadtarchiv_II_562_c-0004.tif&amp;h=700&amp;w=773#">fol. 4r </ref>Title page</item>
+                <item><ref target="http://in-dev.rism.digital/images/CH_A_Stadtarchiv_II_562_c#z=2&amp;n=5&amp;i=/CH_Aarau_Stadtarchiv/CH_A_Stadtarchiv_II_562_c-0005.tif&amp;h=700&amp;w=773">fol. 5r </ref>Coat of arms of the city of Aarau</item>
+                <item><ref target="http://in-dev.rism.digital/images/CH_A_Stadtarchiv_II_562_c#z=2&amp;n=5&amp;i=/CH_Aarau_Stadtarchiv/CH_A_Stadtarchiv_II_562_c-0006.tif&amp;h=700&amp;w=773">fols 6r-51r </ref>Donations by benefactors to the Collegium, 1710p</item>
+                <item><ref target="http://in-dev.rism.digital/images/CH_A_Stadtarchiv_II_562_c#z=2&amp;n=5&amp;i=/CH_Aarau_Stadtarchiv/CH_A_Stadtarchiv_II_562_c-0053.tif&amp;h=700&amp;w=773">fol. 52r </ref>Account of the new foundation of the Collegium in 1768</item>
+                <item><ref target="http://in-dev.rism.digital/images/CH_A_Stadtarchiv_II_562_c#z=2&amp;n=5&amp;i=/CH_Aarau_Stadtarchiv/CH_A_Stadtarchiv_II_562_c-0054.tif&amp;h=700&amp;w=773">fols  53r-54r</ref>Donations by benefactors, 1768p</item>
+                <item><ref target="http://in-dev.rism.digital/images/CH_A_Stadtarchiv_II_562_c#z=2&amp;n=5&amp;i=/CH_Aarau_Stadtarchiv/CH_A_Stadtarchiv_II_562_c-0056.tif&amp;h=700&amp;w=773#">fols 118-171 </ref>Donations by the founders of the Collegium, 1710</item> 
+                <item><ref target="http://in-dev.rism.digital/images/CH_A_Stadtarchiv_II_562_c#z=2&amp;n=5&amp;i=/CH_Aarau_Stadtarchiv/CH_A_Stadtarchiv_II_562_c-0070.tif&amp;h=700&amp;w=773#">fols 118-171 </ref>Donations by later members of the Collegium, 1710p</item>
+			 </list>
+           </ab></msItem>
+          </msContents>
+          <physDesc>
+            <objectDesc>
+              <supportDesc>
+                <extent>
+                  <measure type="pagesCount" n="225">1–225 fols</measure>
+                  <measure type="pageDimensions" n="34.5 x 21.5 cm">34.5 x 21.5 cm (in folio)</measure>
+                </extent>
+                <foliation>Modern foliation.</foliation>
+                  <watermark>Watermarks:<lb/>
+fol. 86 <ref target="http://in-dev.rism.digital/images/CH_A_Stadtarchiv_II_562_c#z=2&amp;n=5&amp;i=/CH_Aarau_Stadtarchiv/CH_Aarau_Stadtarchiv_wm-1.tif&amp;h=700&amp;w=773">N [heart] M, double lined, in rectangle</ref><lb/>
+fol. 87 <ref target="http://in-dev.rism.digital/images/CH_A_Stadtarchiv_II_562_c#z=2&amp;n=5&amp;i=/CH_Aarau_Stadtarchiv/CH_Aarau_Stadtarchiv_wm-2.tif&amp;h=700&amp;w=77">monogram</ref>
+                  </watermark>
+              </supportDesc>
+            </objectDesc>
+           </physDesc>
+          <additional>
+            <adminInfo>
+              <recordHist>
+                <source>
+                  <bibl>Images © 2012 Stadtarchiv Aarau (courtesy of Dr Martin Pestalozzi).<lb/></bibl>
+                  <bibl>Records compiled by: Christoph Riedo (Fribourg, 2013).</bibl>
+                </source>
+              </recordHist>
+            </adminInfo>
+            <listBibl>
+              <head>Essential bibliography:</head>
+              <bibl>Die Inventare der aargauischen Stadtarchive, ed. by Walther Merz, Aarau: Sauerländer, 1917 (Inventare schweizerischer Archive, part 3, sect. 1).</bibl>
+              <bibl>Christoph Riedo, Privates Musizieren in zwinglianischem Milieu im 17. und frühen 18. Jahrhundert, in Geist=reicher Zeit=Vertreib: Hausmusik im 17. und 18. Jahrhundert, Blankenburg: Stiftung Kloster Michaelstein, in preparation (Michaelsteiner Konferenzberichte).</bibl>
+            </listBibl>
+          </additional>
+        </msDesc>
+      </sourceDesc>
+    </fileDesc>
+  </teiHeader>
+  <text>
+        <body><ab>
+<date notBefore="1710"><interp>1710-1740c</interp></date>
+<p><pb n="fol. 4r" facs="http://in-dev.rism.digital/images/CH_A_Stadtarchiv_II_562_c#z=2&amp;n=5&amp;i=/CH_Aarau_Stadtarchiv/CH_A_Stadtarchiv_II_562_c-0004.tif&amp;h=700&amp;w=773"/><interp>fol. [4r]</interp></p>
+<p>Guldenes Buch. <lb/></p>
+<p>Darinnen neben denen Fundatoren und <lb/> Collegianten dieses Neüwen Collegij <lb/> Musici in alhiesiger Statt Arauw auch der <lb/> jenigen Persohnen, so zu eüffnung desselben ihre <lb/> freӱgebigkeit und milte Beӱsteür erwiesen, Nah <lb/> men und Wappen zu sonderen Ehren und Nach <lb/> ruhm verzeichnet sind.</p>
+<p>Datum als dieses Collegium Musicum <lb/> seinen Anfang genom<ex>m</ex>en Dinstags nach Bar- <lb/> tholomaej des Gnaden Jahrs Christi Un- <lb/> sers Erlösers Sibenzehen Hundert und Zehenden <lb/> 1710.</p>
+<p><pb n="fol. 5r" facs="http://in-dev.rism.digital/images/CH_A_Stadtarchiv_II_562_c#z=2&amp;n=5&amp;i=/CH_Aarau_Stadtarchiv/CH_A_Stadtarchiv_II_562_c-0005.tif&amp;h=700&amp;w=773"/><interp>fol. [5r]</interp></p>
+<p>Collegium Musicum Aroense.</p>
+<p><figure><figDesc>coat of arms of the city of Aarau</figDesc></figure></p>
+<p><pb n="fol. 6r" facs="http://in-dev.rism.digital/images/CH_A_Stadtarchiv_II_562_c#z=2&amp;n=5&amp;i=/CH_Aarau_Stadtarchiv/CH_A_Stadtarchiv_II_562_c-0006.tif&amp;h=700&amp;w=773"/><interp>fol. [6r]</interp></p>
+<p>Folgen nun die Nahmen und Wappen <lb/> der jenigen, so diesem Neüw angefangenen <lb/> Collegio Musico (: darzu der Höchste sein Gedeӱen <lb/> verleichen wolle :) Verehrungen getahn haben.</p>
+<p><figure><figDesc>coat of arms of the city of Aarau</figDesc></figure></p>
+<p>Aller vordrist ist zu wüßen, Daß Ein <lb/> Loblicher Magistrat hiesiger Statt auf be- <lb/> schehenes gebührendes Ansuchen der Collegianten, <lb/> zu befürderung solch Loblichen Vorhabens und <lb/> Undernem<ex>m</ex>ens, das jenige ob der Lateinischen <lb/> Schulstuben sich befindende Zim<ex>m</ex>er hierzu verwil- <lb/> liget und ohne der Collegianten Beschwärd haben <lb/> zurüsten laßen.</p>
+<p><pb n="fol. 6v" facs="http://in-dev.rism.digital/images/CH_A_Stadtarchiv_II_562_c#z=2&amp;n=5&amp;i=/CH_Aarau_Stadtarchiv/CH_A_Stadtarchiv_II_562_c-0007.tif&amp;h=700&amp;w=773"/><interp>fol. [6v]</interp></p>
+<p>Neben dem, so hat Ein Lobl: Magistrat <lb/> diesem Collegio auf der Collegianten bittliches <lb/> anhalten, auch zu bezeügung hierob nem<ex>m</ex>enden <lb/> Wohlgefallens, zu erschwingung der anfänglich <lb/> habenden Cösten mit erkauffung nöhtiger In- <lb/> strumenten und anderer Erforderligkeiten <lb/> aus gemeinerr Statt Seckel verehrt und gesteürt. <lb/> </p>
+<p>Namlichen: Hat Selbiger über sich genom<ex>m</ex>en <lb/> der Collegianten erkaufftes Positiv im ver- <lb/> glichenen Preis der Viertzig Thaleren sambt <lb/> einer Ducaten Trinckgelt zubezahlen; Mit dem <lb/> verneren erbieten, was daran noch manglen <lb/> möchte, solches in der Statt Costen machen, dasselbe <lb/> auch mahlen zu lassen; Jedoch alles in dem <lb/> verstand, daß dieses Positiv zwar dem Collegio, <lb/> als dem<ex>m</ex>e es gewidmet, so lang als solches im Stand <lb/> seӱn wird, verbleiben; so aber wider verhoffen <lb/> das Collegium abgehen wurde; das Positiv als- <lb/> dann zu handen der Statt genommen und Zur <lb/> anzeig deßen der Adler als der Statt Wappen <lb/> daran gemahlet werden soll.</p>
+<p><add>I<ex>m</ex> J<ex>ahr</ex> 1768 ist dieses Positiv verkauft worden, <lb/> und von W<ex>oh</ex>lh<ex>och</ex>g<ex>ee</ex>h<ex>rt</ex>en ein neües um 7 Louis d'or <lb/> angeschafft, und der Musik liebenden Jugend <lb/> geschenkt worden.</add></p>
+<p><pb n="fol. 7r" facs="http://in-dev.rism.digital/images/CH_A_Stadtarchiv_II_562_c#z=2&amp;n=5&amp;i=/CH_Aarau_Stadtarchiv/CH_A_Stadtarchiv_II_562_c-0008.tif&amp;h=700&amp;w=773"/><interp>fol. [7r]</interp></p>
+<p><figure><figDesc>coat of arms</figDesc></figure></p>
+<p>Herr Gleitsherr Jonas Schmutziger, <lb/> des kleinen rahts und gastgeb zum Löüwen <lb/> alhier, hat seine Liberalitet hierinn sunderbar <lb/> erwiesen, zudemme er dem Collegio ein halb <lb/> dutzet Ducaten verehrt hat.</p>
+<p><pb n="fol. 8r" facs="http://in-dev.rism.digital/images/CH_A_Stadtarchiv_II_562_c#z=2&amp;n=5&amp;i=/CH_Aarau_Stadtarchiv/CH_A_Stadtarchiv_II_562_c-0009.tif&amp;h=700&amp;w=773"/><interp>fol. [8r]</interp></p>
+<p><figure><figDesc>coat of arms</figDesc></figure></p>
+<p>Herr Joachim Bär, Prediger des heiligen Göttlichen <lb/> worts und Burger alhiesiger statt, hat verehrt: <lb/> </p>
+<p>Einen französischen thaler. </p>
+<p><pb n="fol. 9r" facs="http://in-dev.rism.digital/images/CH_A_Stadtarchiv_II_562_c#z=2&amp;n=5&amp;i=/CH_Aarau_Stadtarchiv/CH_A_Stadtarchiv_II_562_c-0010.tif&amp;h=700&amp;w=773"/><interp>fol. [9r]</interp></p>
+<p><figure><figDesc>coat of arms</figDesc></figure></p>
+<p>Herr Hans Heinrich Haberstock, Candidatus, <lb/> p<ex>ro</ex> t<ex>empore</ex> Ludi Magister zu lentzburg, alhiesiger burger, <lb/> hat verehrt: <lb/> </p>
+<p>Einen Croisat.</p>
+<p><pb n="fol. 10r" facs="http://in-dev.rism.digital/images/CH_A_Stadtarchiv_II_562_c#z=2&amp;n=5&amp;i=/CH_Aarau_Stadtarchiv/CH_A_Stadtarchiv_II_562_c-0011.tif&amp;h=700&amp;w=773"/><interp>fol. [10r]</interp></p>
+<p><figure><figDesc>coat of arms</figDesc></figure></p>
+<p>Frauw Anna Regula Schmutzigerin, <lb/> herren Marx Wӱdlers seel. wittib alhier, hatt <lb/> verehrt: <lb/> </p>
+<p>Ein halb dutzet Trente sols.</p>
+<p><pb n="fol. 11r" facs="http://in-dev.rism.digital/images/CH_A_Stadtarchiv_II_562_c#z=2&amp;n=5&amp;i=/CH_Aarau_Stadtarchiv/CH_A_Stadtarchiv_II_562_c-0012.tif&amp;h=700&amp;w=773"/><interp>fol. [11r]</interp></p>
+<p><figure><figDesc>coat of arms</figDesc></figure></p>
+<p>Frauw Helena Gräfin, Hrn. Predicant <lb/> Waßmers zu Umicken alhiesiger burgers gemahlin, <lb/> hat verehrt: <lb/> </p>
+<p>Ein Ducaten.</p>
+<p><pb n="fol. 12r" facs="http://in-dev.rism.digital/images/CH_A_Stadtarchiv_II_562_c#z=2&amp;n=5&amp;i=/CH_Aarau_Stadtarchiv/CH_A_Stadtarchiv_II_562_c-0013.tif&amp;h=700&amp;w=773"/><interp>fol. [12r]</interp></p>
+<p><figure><figDesc>coat of arms</figDesc></figure></p>
+<p>Jgfr: Johanna Magdalena Haßlerin alhier <lb/> hat verehrt: <lb/> </p>
+<p>Ein halbe Ducaten.</p>
+<p><pb n="fol. 13r" facs="http://in-dev.rism.digital/images/CH_A_Stadtarchiv_II_562_c#z=2&amp;n=5&amp;i=/CH_Aarau_Stadtarchiv/CH_A_Stadtarchiv_II_562_c-0014.tif&amp;h=700&amp;w=773"/><interp>fol. [13r]</interp></p>
+<p><figure><figDesc>coat of arms</figDesc></figure></p>
+<p>Jgfr. Maria Catharina Huntzickerin <lb/> alhier, hat verehrt: <lb/> </p>
+<p>Zweÿ thaler.</p>
+<p><pb n="fol. 14r" facs="http://in-dev.rism.digital/images/CH_A_Stadtarchiv_II_562_c#z=2&amp;n=5&amp;i=/CH_Aarau_Stadtarchiv/CH_A_Stadtarchiv_II_562_c-0015.tif&amp;h=700&amp;w=773"/><interp>fol. [14r]</interp></p>
+<p><figure><figDesc>coat of arms</figDesc></figure></p>
+<p>Herr Samuel Wagner des großen Rahts <lb/> der loblichen Statt Bern und wohlverwesener <lb/> OberVogt der herrschafft Biberstein, hat volgende <lb/> stuck verehrt: <lb/> </p>
+<p>1. Critique de monsieur Jurieux. <interp>Jurieu, Pierre. Histoire critique des dogmes et des cultes ... qui ont été dans l'Eglise depuis Adam jusqu'à Jesus-Christ ... Amsterdam: François l'Honoré, 1704-1705.</interp><lb/> </p>
+<p>2. Musica Historica. <lb/> </p>
+<p>3. Motteti d'Isabella Leonarda à 4. Voci. <lb/> 5 part.   </p>
+<p><pb n="fol. 15r" facs="http://in-dev.rism.digital/images/CH_A_Stadtarchiv_II_562_c#z=2&amp;n=5&amp;i=/CH_Aarau_Stadtarchiv/CH_A_Stadtarchiv_II_562_c-0016.tif&amp;h=700&amp;w=773"/><interp>fol. [15r]</interp></p>
+<p><figure><figDesc>coat of arms</figDesc></figure></p>
+<p>Herr Estienne Brutel, alhiesiger hindersäs <lb/> und kauffmann hat verehrt: <lb/></p>
+<p>Eine Ducaten.</p>
+<p><pb n="fol. 16r" facs="http://in-dev.rism.digital/images/CH_A_Stadtarchiv_II_562_c#z=2&amp;n=5&amp;i=/CH_Aarau_Stadtarchiv/CH_A_Stadtarchiv_II_562_c-0017.tif&amp;h=700&amp;w=773"/><interp>fol. [16r]</interp></p>
+<p><figure><figDesc>coat of arms</figDesc></figure></p>
+<p>Jungfr: Anna Gӱsj alhier, hat verehrt: <lb/> </p>
+<p>Einen thaler.</p>
+<p><pb n="fol. 17r" facs="http://in-dev.rism.digital/images/CH_A_Stadtarchiv_II_562_c#z=2&amp;n=5&amp;i=/CH_Aarau_Stadtarchiv/CH_A_Stadtarchiv_II_562_c-0018.tif&amp;h=700&amp;w=773"/><interp>fol. [17r]</interp></p>
+<p><figure><figDesc>coat of arms</figDesc></figure></p>
+<p>Herr Chauvin, ein frömbder dißmahlen zur <lb/> Brugg wohnender Kauffmann, hat verehrt: <lb/> </p>
+<p>Einen französischen thaler.</p>
+<p><pb n="fol. 18r" facs="http://in-dev.rism.digital/images/CH_A_Stadtarchiv_II_562_c#z=2&amp;n=5&amp;i=/CH_Aarau_Stadtarchiv/CH_A_Stadtarchiv_II_562_c-0019.tif&amp;h=700&amp;w=773"/><interp>fol. [18r]</interp></p>
+<p><figure><figDesc>coat of arms</figDesc></figure></p>
+<p>Herr Johann Jacob Huntzicker, der Zeith <lb/> wohl regierender schultheiß alhiesiger statt Araus, <lb/> hat verehrt: <lb/> </p>
+<p>Vier species thaler. </p>
+<p><pb n="fol. 19r" facs="http://in-dev.rism.digital/images/CH_A_Stadtarchiv_II_562_c#z=2&amp;n=5&amp;i=/CH_Aarau_Stadtarchiv/CH_A_Stadtarchiv_II_562_c-0020.tif&amp;h=700&amp;w=773"/><interp>fol. [19r]</interp></p>
+<p><figure><figDesc>coat of arms</figDesc></figure></p>
+<p>Herr Johann Jacob Nüschicker, Predicant <lb/> zu Melchnauw, alhiesiger burger, hat verehrt: <lb/> </p>
+<p>Einen thaler und 3. Trente sols. macht – 70 batz. <lb/> </p>
+<p>Item einen Violon-Bass.</p>
+<p><pb n="fol. 20r" facs="http://in-dev.rism.digital/images/CH_A_Stadtarchiv_II_562_c#z=2&amp;n=5&amp;i=/CH_Aarau_Stadtarchiv/CH_A_Stadtarchiv_II_562_c-0021.tif&amp;h=700&amp;w=773"/><interp>fol. [20r]</interp></p>
+<p><figure><figDesc>coat of arms</figDesc></figure></p>
+<p>Herr Samuel Sӱbold, burger hochlobl.r statt <lb/> Bern, S. Minist. Candidatus, p:t: Vicarius <lb/> zu Rohrbach, hat verehrt: <lb/> </p>
+<p>Eine silber Cronen</p>
+<p><pb n="fol. 21r" facs="http://in-dev.rism.digital/images/CH_A_Stadtarchiv_II_562_c#z=2&amp;n=5&amp;i=/CH_Aarau_Stadtarchiv/CH_A_Stadtarchiv_II_562_c-0022.tif&amp;h=700&amp;w=773"/><interp>fol. [21r]</interp> </p>
+<p><figure><figDesc>coat of arms</figDesc></figure></p>
+<p>Herr Haubtmann Caspar Wolff, <lb/> burger lobl.r statt Zürich hat verehrt: <lb/> </p>
+<p>Einen thaler.</p>
+<p><pb n="fol. 22r" facs="http://in-dev.rism.digital/images/CH_A_Stadtarchiv_II_562_c#z=2&amp;n=5&amp;i=/CH_Aarau_Stadtarchiv/CH_A_Stadtarchiv_II_562_c-0023.tif&amp;h=700&amp;w=773"/><interp>fol. [22r]</interp> </p>
+<p><figure><figDesc>coat of arms</figDesc></figure></p>
+<p>Fraw Anna Magdalena Schultheißin, <lb/> herren hans heinrich heÿdeggers sel. bÿ leben des <lb/> großen rahts lobl.r statt Zürich und gewesenen <lb/> obervogts in Lauffen hinderlaßene frau wittib <lb/> hat verehrt: <lb/></p>
+<p>Dreÿ Louijs blancs.</p>
+<p><pb n="fol. 23r" facs="http://in-dev.rism.digital/images/CH_A_Stadtarchiv_II_562_c#z=2&amp;n=5&amp;i=/CH_Aarau_Stadtarchiv/CH_A_Stadtarchiv_II_562_c-0024.tif&amp;h=700&amp;w=773"/><interp>fol. [23r]</interp></p>
+<p><figure><figDesc>coat of arms</figDesc></figure> </p>
+<p>Frauw Veronica Seillerin, herren <lb/> Cristoffel <unclear>Steffanins </unclear> seel. Wittib alhier, <lb/> hat verehrt: <lb/> </p>
+<p>ein halb dutzet Trente sols. <lb/> </p>
+<p>Item das Gemähld ob dem Positiv.</p>
+<p><pb n="fol. 24r" facs="http://in-dev.rism.digital/images/CH_A_Stadtarchiv_II_562_c#z=2&amp;n=5&amp;i=/CH_Aarau_Stadtarchiv/CH_A_Stadtarchiv_II_562_c-0025.tif&amp;h=700&amp;w=773"/><interp>fol. [24r]</interp> </p>
+<p><figure><figDesc>coat of arms</figDesc></figure></p>
+<p>Herr Johann Rudolf Kilchberger, burger <lb/> lobl.r statt Bern und Prediger des Göttlichen worts <lb/> zu Büren, hat verehrt: <lb/> </p>
+<p>Hammerschmids Dialogos Erst- und anderer Theil <lb/> </p>
+<p>in 4o part. 7</p>
+<p><pb n="fol. 25r" facs="http://in-dev.rism.digital/images/CH_A_Stadtarchiv_II_562_c#z=2&amp;n=5&amp;i=/CH_Aarau_Stadtarchiv/CH_A_Stadtarchiv_II_562_c-0026.tif&amp;h=700&amp;w=773"/><interp>fol. [25r]</interp></p>
+<p><figure><figDesc>coat of arms</figDesc></figure> </p>
+<p>Frauw Anna Müllerin, herren Johann <lb/> heinrich werdmüllers, bÿ leben des großen Rahts <lb/> lobl.r statt zürich, gewesnes haubtmans und Pflägers <lb/> einer lobl.r gesellschafft zum Mühle-Rad, hinder <lb/> lassene frauw wittib, hat verehrt: <lb/> </p>
+<p>Eine halbe Duplonen.</p>
+<p><pb n="fol. 26r" facs="http://in-dev.rism.digital/images/CH_A_Stadtarchiv_II_562_c#z=2&amp;n=5&amp;i=/CH_Aarau_Stadtarchiv/CH_A_Stadtarchiv_II_562_c-0027.tif&amp;h=700&amp;w=773"/><interp>fol. [26r]</interp></p>
+<p><figure><figDesc>coat of arms</figDesc></figure> </p>
+<p>Herr Philipp Christoff Stuber gebürtig von Calb <interp>[Calw]</interp>, in dem hertzogthum <lb/> Würtemberg, ein beÿ hrn johann heinrich Freӱ, <lb/> im Schloß alhier sich aufhaltender Kauffman<ex>n</ex> <lb/> hat verehrt: <lb/> </p>
+<p>Erlebachs harmonische freüde Musicalischer <lb/> freünden. à 1 é 2 Voc: mit Instrumenten <lb/> </p>
+<p>in folio, part: 6.</p>
+<p><pb n="fol. 27r" facs="http://in-dev.rism.digital/images/CH_A_Stadtarchiv_II_562_c#z=2&amp;n=5&amp;i=/CH_Aarau_Stadtarchiv/CH_A_Stadtarchiv_II_562_c-0028.tif&amp;h=700&amp;w=773"/><interp>fol. [27r]</interp></p>
+<p><figure><figDesc>coat of arms</figDesc></figure> </p>
+<p>Herr Caspar Stürm, gebürtig <lb/> von Sundheim, auß dem herzogthum Sachsen-Eisenach, <lb/> dißmahlen allhier sich aufhaltender Musicus <lb/> hat verehret: <lb/> </p>
+<p>Briegels Schwanen-Gesang. à 4 é 5 Voc: <lb/> in 4.|o partes 6.</p>
+<p><pb n="fol. 28r" facs="http://in-dev.rism.digital/images/CH_A_Stadtarchiv_II_562_c#z=2&amp;n=5&amp;i=/CH_Aarau_Stadtarchiv/CH_A_Stadtarchiv_II_562_c-0029.tif&amp;h=700&amp;w=773"/><interp>fol. [28r]</interp></p>
+<p><figure><figDesc>coat of arms</figDesc></figure> </p>
+<p>Herr Philipp Heinrich Sinner, des <lb/> underen ehrenden Collegii Musici in Lobl.r Statt Bern <lb/> Praeses hat im namen des gantzen Colegii verehrt: <lb/> </p>
+<p>Erstlich Scheiffelhuets Früehlings-Anfang à 2. VV. Viola <lb/> et Violone in 4.|to part: 5. <lb/> </p>
+<p>Item Horns Parergon Musicum à 5 Instrum: <lb/> Erst- ander- dritt- und vierter theil in 4.|to part: 6. <lb/> </p>
+<p>Item Horns Parergon Musicum fünfft undt <lb/> sechster theil. à 5. Instrum: in 4.|to part: 6.</p>
+<p><pb n="fol. 29r" facs="http://in-dev.rism.digital/images/CH_A_Stadtarchiv_II_562_c#z=2&amp;n=5&amp;i=/CH_Aarau_Stadtarchiv/CH_A_Stadtarchiv_II_562_c-0030.tif&amp;h=700&amp;w=773"/><interp>fol. [29r]</interp></p>
+<p><figure><figDesc>coat of arms</figDesc></figure> </p>
+<p>Frauw Anna Maria Steineggerin <lb/> herren Hieronӱmj Huntzickers, des rahts alhier <lb/> gemahlin hat verehrt: <lb/> </p>
+<p>Eine frantzösische duplonen.</p>
+<p><pb n="fol. 30r" facs="http://in-dev.rism.digital/images/CH_A_Stadtarchiv_II_562_c#z=2&amp;n=5&amp;i=/CH_Aarau_Stadtarchiv/CH_A_Stadtarchiv_II_562_c-0031.tif&amp;h=700&amp;w=773"/><interp>fol. [30r]</interp></p>
+<p><figure><figDesc>coat of arms</figDesc></figure> </p>
+<p>Jungfrau Rosina Fischerin, burgerin <lb/> lobl.r statt Bern hat verehrt: <lb/> </p>
+<p>Einen Ducaten. <lb/> </p>
+<p>Item als sie von hier verreißt noch ein halben <lb/> Dublonen.</p>
+<p><pb n="fol. 31r" facs="http://in-dev.rism.digital/images/CH_A_Stadtarchiv_II_562_c#z=2&amp;n=5&amp;i=/CH_Aarau_Stadtarchiv/CH_A_Stadtarchiv_II_562_c-0032.tif&amp;h=700&amp;w=773"/><interp>fol. [31r]</interp></p>
+<p><figure><figDesc>coat of arms</figDesc></figure> </p>
+<p>Herr Vincentz Herport, bürger hochlobl.r <lb/> statt Bern, Prediger des Göttlichen worts zuo <lb/> schöftland, und Decanus der ehrenwürdigen arauischen <lb/> <unclear>Class </unclear>, hat verehrt: <lb/> </p>
+<p>Zweÿ Pieçes de Trente sols.</p>
+<p><pb n="fol. 32r" facs="http://in-dev.rism.digital/images/CH_A_Stadtarchiv_II_562_c#z=2&amp;n=5&amp;i=/CH_Aarau_Stadtarchiv/CH_A_Stadtarchiv_II_562_c-0033.tif&amp;h=700&amp;w=773"/><interp>fol. [32r]</interp></p>
+<p><figure><figDesc>coat of arms</figDesc></figure> </p>
+<p>Herr Joh: Jacob Seiller, alhiesiger <lb/> burger, diener am wort Gottes zu Entfelden <lb/> und Camerarius des ehrenwürdiges Capituls <lb/> zu Arauw, hat verehrt: <lb/> </p>
+<p>Einen Louÿs blanc.</p>
+<p><pb n="fol. 33r" facs="http://in-dev.rism.digital/images/CH_A_Stadtarchiv_II_562_c#z=2&amp;n=5&amp;i=/CH_Aarau_Stadtarchiv/CH_A_Stadtarchiv_II_562_c-0034.tif&amp;h=700&amp;w=773"/><interp>fol. [33r]</interp></p>
+<p><figure><figDesc>coat of arms</figDesc></figure> </p>
+<p>Herr Emanuel Liecht, burger Lobl.r <lb/> statt Bern, Prediger des h: Göttlichen worts <lb/> zu Zöllicken und Secretarius der ehrwürdigen arauwischen <lb/> <unclear>Class </unclear>, hat verehrt: <lb/> </p>
+<p>Einen reichs thaler.</p>
+<p><pb n="fol. 34r" facs="http://in-dev.rism.digital/images/CH_A_Stadtarchiv_II_562_c#z=2&amp;n=5&amp;i=/CH_Aarau_Stadtarchiv/CH_A_Stadtarchiv_II_562_c-0035.tif&amp;h=700&amp;w=773"/><interp>fol. [34r]</interp></p>
+<p><figure><figDesc>coat of arms</figDesc></figure> </p>
+<p>Herr Samuel Straub, burger hochlobl.r <lb/> statt Bern und Prediger des h. Evangelij <lb/> zu Rÿnach, hat verehrt: <lb/> </p>
+<p>Einen louÿs blanc.</p>
+<p><pb n="fol. 35r" facs="http://in-dev.rism.digital/images/CH_A_Stadtarchiv_II_562_c#z=2&amp;n=5&amp;i=/CH_Aarau_Stadtarchiv/CH_A_Stadtarchiv_II_562_c-0036.tif&amp;h=700&amp;w=773"/><interp>fol. [35r]</interp></p>
+<p><figure><figDesc>coat of arms</figDesc></figure></p>
+<p>Herr Johannes Rubi, Medicinae Doctor, <lb/> Burger lobl.r statt Thun, hat verehrt: <lb/> </p>
+<p>Einen bacheoir. </p>
+<p><pb n="fol. 36r" facs="http://in-dev.rism.digital/images/CH_A_Stadtarchiv_II_562_c#z=2&amp;n=5&amp;i=/CH_Aarau_Stadtarchiv/CH_A_Stadtarchiv_II_562_c-0037.tif&amp;h=700&amp;w=773"/><interp>fol. [36r]</interp></p>
+<p><figure><figDesc>coat of arms</figDesc></figure> </p>
+<p>Herr Samuel Lupichj, burger hochlob.r <lb/> statt Bern, und Prediger des h: wort Gottes <lb/> zu Thun, hat verehrt: <lb/> </p>
+<p>Zweÿ reichsthaler.</p>
+<p><pb n="fol. 37r" facs="http://in-dev.rism.digital/images/CH_A_Stadtarchiv_II_562_c#z=2&amp;n=5&amp;i=/CH_Aarau_Stadtarchiv/CH_A_Stadtarchiv_II_562_c-0038.tif&amp;h=700&amp;w=773"/><interp>fol. [37r]</interp></p>
+<p><figure><figDesc>coat of arms</figDesc></figure> </p>
+<p>Herr Emanuel Eӱen, burger hochlob.r <lb/> statt Bern und alhier, wie auch dermahlen <lb/> Predicant dieser statt, hat verehrt: <lb/> </p>
+<p>Eine ducaten.</p>
+<p><pb n="fol. 38r" facs="http://in-dev.rism.digital/images/CH_A_Stadtarchiv_II_562_c#z=2&amp;n=5&amp;i=/CH_Aarau_Stadtarchiv/CH_A_Stadtarchiv_II_562_c-0039.tif&amp;h=700&amp;w=773"/><interp>fol. [38r]</interp></p>
+<p><figure><figDesc>coat of arms</figDesc></figure></p>
+<p>Frauw Margarita Jennerin herren <lb/> samuel Huntzickers Ehrliebst alhier hat ver <lb/> ehrt: <lb/> </p>
+<p>Eine halbe duplonen.</p>
+<p><pb n="fol. 39r" facs="http://in-dev.rism.digital/images/CH_A_Stadtarchiv_II_562_c#z=2&amp;n=5&amp;i=/CH_Aarau_Stadtarchiv/CH_A_Stadtarchiv_II_562_c-0040.tif&amp;h=700&amp;w=773"/><interp>fol. [39r]</interp></p>
+<p><figure><figDesc>coat of arms</figDesc></figure> </p>
+<p>Emanuel Eӱen, herren Predicanten <lb/> söhnli hat verehrt: <lb/> </p>
+<p>Eine R<ex>eichs</ex>thaler.</p>
+<p><pb n="fol. 40r" facs="http://in-dev.rism.digital/images/CH_A_Stadtarchiv_II_562_c#z=2&amp;n=5&amp;i=/CH_Aarau_Stadtarchiv/CH_A_Stadtarchiv_II_562_c-0041.tif&amp;h=700&amp;w=773"/><interp>fol. [40r]</interp></p>
+<p><figure><figDesc>coat of arms</figDesc></figure> </p>
+<p>Herr Felix von Birch, burger und Han- <lb/> delsmann lobl.r Statt Zürich hat verehrt: <lb/> </p>
+<p>Erlenbachs Gottgeheilligte Sing-stunden <lb/> in 4. partes. 8.</p>
+<p><pb n="fol. 41r" facs="http://in-dev.rism.digital/images/CH_A_Stadtarchiv_II_562_c#z=2&amp;n=5&amp;i=/CH_Aarau_Stadtarchiv/CH_A_Stadtarchiv_II_562_c-0042.tif&amp;h=700&amp;w=773"/><interp>fol. [41r]</interp></p>
+<p><figure><figDesc>coat of arms</figDesc></figure> </p>
+<p>Hr: Aimé André Cuenod von Bivis <interp>[Vevey]</interp> <lb/> hat verehrt: <lb/> </p>
+<p>Einen Reichs thaler.</p>
+<p><pb n="fol. 42r" facs="http://in-dev.rism.digital/images/CH_A_Stadtarchiv_II_562_c#z=2&amp;n=5&amp;i=/CH_Aarau_Stadtarchiv/CH_A_Stadtarchiv_II_562_c-0043.tif&amp;h=700&amp;w=773"/><interp>fol. [42r]</interp></p>
+<p><figure><figDesc>coat of arms</figDesc></figure> </p>
+<p>Herr Johann Rudolf Lautenburger, <lb/> burger lobl.r Statt Basel, kaӱserl.r notarius <lb/> und Kunstmahler hat verehrt: <lb/> </p>
+<p>Des sel: Calvini Conterfait.</p>
+<p><pb n="fol. 43r" facs="http://in-dev.rism.digital/images/CH_A_Stadtarchiv_II_562_c#z=2&amp;n=5&amp;i=/CH_Aarau_Stadtarchiv/CH_A_Stadtarchiv_II_562_c-0044.tif&amp;h=700&amp;w=773"/><interp>fol. [43r]</interp></p>
+<p><figure><figDesc>coat of arms</figDesc></figure> </p>
+<p>Herr Johannes Jetzler, burger und han <lb/> delsmann lobl.r statt Schaffhausen hat verehrt: <lb/></p>
+<p>Einen Reichs thaler.</p>
+<p><pb n="fol. 44r" facs="http://in-dev.rism.digital/images/CH_A_Stadtarchiv_II_562_c#z=2&amp;n=5&amp;i=/CH_Aarau_Stadtarchiv/CH_A_Stadtarchiv_II_562_c-0045.tif&amp;h=700&amp;w=773"/><interp>fol. [44r]</interp></p>
+<p><figure><figDesc>coat of arms</figDesc></figure> </p>
+<p>Herr Johannes Christoffel Im Hooff, <lb/> alhiesiger burger und Predicant zu holderbanck, hat verehrt: <lb/></p>
+<p>Zweÿ frantzösische thaler. thund 70 bz. </p>
+<p><pb n="fol. 45r" facs="http://in-dev.rism.digital/images/CH_A_Stadtarchiv_II_562_c#z=2&amp;n=5&amp;i=/CH_Aarau_Stadtarchiv/CH_A_Stadtarchiv_II_562_c-0046.tif&amp;h=700&amp;w=773"/><interp>fol. [45r]</interp></p>
+<p><figure><figDesc>coat of arms</figDesc></figure> </p>
+<p>Mein hochgeachter Herr LandAm<ex>m</ex>an <lb/> Johann Heinrich Zwickj von Glarus, als geweßner <lb/> Ehrengesandter auf einer im November A.|o 1715. alhier <lb/> gehaltener Conferentz vor lobl.en evangelischen Ständen <lb/> hat verehrt: <lb/> </p>
+<p>Zweÿ neüwe frantzösische Cronen-thaler, thund 70 bz.</p>
+<p><pb n="fol. 46r" facs="http://in-dev.rism.digital/images/CH_A_Stadtarchiv_II_562_c#z=2&amp;n=5&amp;i=/CH_Aarau_Stadtarchiv/CH_A_Stadtarchiv_II_562_c-0047.tif&amp;h=700&amp;w=773"/><interp>fol. [46r]</interp></p>
+<p><figure><figDesc>coat of arms</figDesc></figure> </p>
+<p>Mein hochgeachter Herr Statthalter <lb/> Melchior von Pfisteren, als gewesner ehren-gesandter <lb/> von lobl.er Statt Schaffhausen auf einer im November <lb/> A.|o 1715. alhier gehaltenen Conferentz vor lobl. Evangelischen <lb/> Ständen, hat verehrt: <lb/></p>
+<p>Eine halbe frantzösische Dublonen.</p>
+<p><pb n="fol. 47r" facs="http://in-dev.rism.digital/images/CH_A_Stadtarchiv_II_562_c#z=2&amp;n=5&amp;i=/CH_Aarau_Stadtarchiv/CH_A_Stadtarchiv_II_562_c-0048.tif&amp;h=700&amp;w=773"/><interp>fol. [47r]</interp></p>
+<p><figure><figDesc>coat of arms</figDesc></figure> </p>
+<p>Mein hochgeachter Herr Ratsherr Andreas <lb/> Wägelin von St. Gallen, als gewestner Ehrengesandter <lb/> auf einer im November A.|o 1715. alhier gehaltenen <lb/> tagsatzung von Lobl. Evangelischen Ständen hat verehrt: <lb/> </p>
+<p>Eine halbe französische dublonen. </p>
+<p><pb n="fol. 48r" facs="http://in-dev.rism.digital/images/CH_A_Stadtarchiv_II_562_c#z=2&amp;n=5&amp;i=/CH_Aarau_Stadtarchiv/CH_A_Stadtarchiv_II_562_c-0049.tif&amp;h=700&amp;w=773"/><interp>fol. [48r]</interp></p>
+<p><figure><figDesc>coat of arms</figDesc></figure></p>
+<p>Mein hochgeachter Herr Christoff Hoch- <lb/> reütiner J<ex>uris</ex> U<ex>triusque</ex> Doct<ex>or</ex> und Stattschreiber von St. Gallen, <lb/> auch gewesner Ehrengesandter auf einer im November <lb/> A.|o 1715. alhier gehaltenen conferentz von Lobl. Evangel: <lb/> Ständen hat verehrt: <lb/> </p>
+<p>Eine halbe frantz: dublonen.</p>
+<p><pb n="fol. 49r" facs="http://in-dev.rism.digital/images/CH_A_Stadtarchiv_II_562_c#z=2&amp;n=5&amp;i=/CH_Aarau_Stadtarchiv/CH_A_Stadtarchiv_II_562_c-0050.tif&amp;h=700&amp;w=773"/><interp>fol. [49r]</interp></p>
+<p><figure><figDesc>coat of arms</figDesc></figure> </p>
+<p>Herr Joh: Caspar Albertin V<ex>erbi</ex> D<ex>ivini</ex> M<ex>inister</ex> prae- <lb/> ceptor classis. III. Carolinae &amp; Cantor zu zürich hat <lb/> verehrt: <lb/> </p>
+<p>Bibers Fidicinium Sacro-Prophanum in fol: <lb/> </p>
+<p>Part: 6.</p>
+<p><pb n="fol. 50r" facs="http://in-dev.rism.digital/images/CH_A_Stadtarchiv_II_562_c#z=2&amp;n=5&amp;i=/CH_Aarau_Stadtarchiv/CH_A_Stadtarchiv_II_562_c-0051.tif&amp;h=700&amp;w=773"/><interp>fol. [50r]</interp></p>
+<p><figure><figDesc>coat of arms</figDesc></figure></p>
+<p>Herr Heinrich Huntzicker, alhiesiger burger, <lb/> S. Minist: Candidatus, hat verehrt: <lb/></p>
+<p>Eine halbe dublonen.</p>
+<p><pb n="fol. 51r" facs="http://in-dev.rism.digital/images/CH_A_Stadtarchiv_II_562_c#z=2&amp;n=5&amp;i=/CH_Aarau_Stadtarchiv/CH_A_Stadtarchiv_II_562_c-0052.tif&amp;h=700&amp;w=773"/><interp>fol. [51r]</interp></p>
+<p><figure><figDesc>coat of arms</figDesc></figure></p>
+<p>Herrn Schultheiß Steineggers sel: Ehrende Erbschafft <lb/> von Zoffingen hat verehrt: <lb/></p>
+<p>Die grosse mahlreÿ vom reichen mann und dem armen <lb/> Lazaro. </p>
+<date notBefore="1768"><interp>1768p</interp></date>
+<p><pb n="fol. 52r" facs="http://in-dev.rism.digital/images/CH_A_Stadtarchiv_II_562_c#z=2&amp;n=5&amp;i=/CH_Aarau_Stadtarchiv/CH_A_Stadtarchiv_II_562_c-0053.tif&amp;h=700&amp;w=773"/><interp>fol. [52r]</interp></p>
+<p>Alle bisher gemeldten geschenke <lb/> hatt die Gesellschaft im Anfang <lb/> ihrer Stifftung erhalten. In den Jahren <lb/> 1740 und 50 verlohren sich die Gön<ex>n</ex>er, <lb/> und die Geselschaftt zerstreüte sich. <lb/> 1768 aber fiengen die Neigung zur <lb/> Music wieder an aufzuleben, und es <lb/> zeigten sich auch wieder edle Seelen, <lb/> die durch ihre freӱgebigkeit die selbe <lb/> begünstigten, und deren Wapen <lb/> und Nahmen zu dankbarem <lb/> angedenken folgende Blätter <lb/> enthalten </p>
+<p><pb n="fol. 53r" facs="http://in-dev.rism.digital/images/CH_A_Stadtarchiv_II_562_c#z=2&amp;n=5&amp;i=/CH_Aarau_Stadtarchiv/CH_A_Stadtarchiv_II_562_c-0054.tif&amp;h=700&amp;w=773"/><interp>fol. [53r]</interp> </p>
+<p>Herr Grenadier Lieütenant <lb/> Hieronimus Hagnauer beschenkte E:E. <lb/> Gesellschafft mit 2 schönen großen Lanternen <lb/> so zu beleüchtung der treppen gebraucht werden <lb/> selbige haben gekostet Gl. 8.-.-.</p>
+<p><pb n="fol. 54r" facs="http://in-dev.rism.digital/images/CH_A_Stadtarchiv_II_562_c#z=2&amp;n=5&amp;i=/CH_Aarau_Stadtarchiv/CH_A_Stadtarchiv_II_562_c-0055.tif&amp;h=700&amp;w=773"/><interp>fol. [54r]</interp></p>
+<p><figure><figDesc>incomplete drawing of coat of arms</figDesc></figure></p>
+<date notBefore="1710"><interp>1710p</interp></date>
+<p><pb n="fol. 118r" facs="http://in-dev.rism.digital/images/CH_A_Stadtarchiv_II_562_c#z=2&amp;n=5&amp;i=/CH_Aarau_Stadtarchiv/CH_A_Stadtarchiv_II_562_c-0056.tif&amp;h=700&amp;w=773"/><interp>fol. [118r] </interp></p>
+<p>Volgen nun die Namen und Wap- <lb/> pen der Fundatoren und Collegianten <lb/> dieses Neüwen Collegij Musici, und was <lb/> ein jeder aus Liebe zur Music neben dem <lb/> geordneten Intranten-Gelt, in das <lb/> Collegium verehrt hat. </p>
+<p><figure><figDesc>coat of arms</figDesc></figure> </p>
+<p>Herr Hans Heinrich Haberstock, Bauw- <lb/> meister und des Rahts, als erwählter Erster <lb/> Praeses des Collegij, hat neben dem Intranten- <lb/> gelt verehrt: Eine Silber-Cronen.</p>
+<p><pb n="fol. 119r" facs="http://in-dev.rism.digital/images/CH_A_Stadtarchiv_II_562_c#z=2&amp;n=5&amp;i=/CH_Aarau_Stadtarchiv/CH_A_Stadtarchiv_II_562_c-0057.tif&amp;h=700&amp;w=773"/><interp>fol. [119r] </interp></p>
+<p><figure><figDesc>coat of arms</figDesc></figure> </p>
+<p>Herr Hans Jacob Steffani, Medicinae <lb/> Doctor, als erwählter erster Secretarius des <lb/> Collegii, hat neben dem Intranten-gelt verehrt: <lb/></p>
+<p>Erstlich an Gelt einen Bachoir. <lb/> </p>
+<p>Item Amores Musicales Fridericj 7. partes. <lb/> </p>
+<p>Item Diletti Pastorali Hermanni. 6. partes. <lb/> </p>
+<p>Und Psalmodia Davidis zu zwo stim<ex>m</ex>en.</p>
+<p><pb n="fol. 120r" facs="http://in-dev.rism.digital/images/CH_A_Stadtarchiv_II_562_c#z=2&amp;n=5&amp;i=/CH_Aarau_Stadtarchiv/CH_A_Stadtarchiv_II_562_c-0058.tif&amp;h=700&amp;w=773"/><interp>fol. [120r] </interp></p>
+<p><figure><figDesc>coat of arms</figDesc></figure></p>
+<p>Herr Johann Conrad Schmutziger <lb/> Candidatus p<ex>ro</ex> t<ex>empore</ex> Ludi Magister, als er- <lb/> wehlter erster Bibliotehcarius des Collegij, <lb/> hat neben dem Intranten-Gelt verehrt: <lb/> </p>
+<p>Erstlichen an gelt ein Reichsthaler. <lb/></p>
+<p>Item Stances Chretiennes 6 parties. <lb/> </p>
+<p>Und Pflegers Tricinia 4. Theil. </p>
+<p><pb n="fol. 121r" facs="http://in-dev.rism.digital/images/CH_A_Stadtarchiv_II_562_c#z=2&amp;n=5&amp;i=/CH_Aarau_Stadtarchiv/CH_A_Stadtarchiv_II_562_c-0059.tif&amp;h=700&amp;w=773"/><interp>fol. [121r] </interp></p>
+<p><figure><figDesc>coat of arms</figDesc></figure></p>
+<p>Herr Johann Heinrich Kӱburtz p<ex>ro</ex> t<ex>empore</ex> <lb/> Provisor alhier, und des Collegij erster Dictator, <lb/> hat über das geordnete Intranten-gelt verehrt: <lb/> </p>
+<p>1. an pfennigen 1. tt. <lb/> </p>
+<p>2. eine Violin. <lb/> </p>
+<p>3. Les Pieces Choisies des opera de Mr. De Lully, <lb/> á 5. parties. <lb/> </p>
+<p>4. Rueggij Harmonicorum Florum Fasciculum. <lb/> à 2-4 Voc: et Instr: 5. part. <lb/> </p>
+<p>5. Trio pour les Instruments de sa Composition. <lb/> 4. part. </p>
+<p><pb n="fol. 121v" facs="http://in-dev.rism.digital/images/CH_A_Stadtarchiv_II_562_c#z=2&amp;n=5&amp;i=/CH_Aarau_Stadtarchiv/CH_A_Stadtarchiv_II_562_c-0060.tif&amp;h=700&amp;w=773"/><interp>fol. [121v] </interp></p>
+<p>6. Pfflegeri hohes Lied à CCB 4. part. <lb/>   </p>
+<p>7. Sultzbergers Zesischer Salomon. à CCB. 4. part. <lb/> </p>
+<p>8. Airs à Boire, par Febure. à 4 C.A.T.B. 5 part <lb/> </p>
+<p>9. Motteti di Don<ex>n</ex>a Isabella Leonarda. à Voce sola <lb/> con é senza stromenti. </p>
+<p>10. Balthasar Musculi geistliche gesänge. à 4 Voc. <lb/> 4 part. <lb/> </p>
+<p>11. Dressleri Cantiones Sacras. à 5 Voc. 5 part.  <lb/> </p>
+<p>12. Den sitz zum Positiv. <lb/> </p>
+<p><pb n="fol. 122r" facs="http://in-dev.rism.digital/images/CH_A_Stadtarchiv_II_562_c#z=2&amp;n=5&amp;i=/CH_Aarau_Stadtarchiv/CH_A_Stadtarchiv_II_562_c-0061.tif&amp;h=700&amp;w=773"/><interp>fol. [122r] </interp></p>
+<p><figure><figDesc>coat of arms</figDesc></figure></p>
+<p>Herr Mauritz Haßler Stattschreiber alhier, <lb/> hat neben dem Intranten-gelt verehrt: <lb/> </p>
+<p>Einen Bachoir.</p>
+<p><pb n="fol. 123r" facs="http://in-dev.rism.digital/images/CH_A_Stadtarchiv_II_562_c#z=2&amp;n=5&amp;i=/CH_Aarau_Stadtarchiv/CH_A_Stadtarchiv_II_562_c-0062.tif&amp;h=700&amp;w=773"/><interp>fol. [123r] </interp></p>
+<p><figure><figDesc>coat of arms</figDesc></figure></p>
+<p>Herr Samuel Im Hooff, der appotecker, als <lb/> erwehlter erster Censor, hat neben dem Intran- <lb/> ten-gelt verehrt: <lb/> </p>
+<p>Eine Baß-Geigen. <lb/> </p>
+<p>Und eine Violin.</p>
+<p><pb n="fol. 124r" facs="http://in-dev.rism.digital/images/CH_A_Stadtarchiv_II_562_c#z=2&amp;n=5&amp;i=/CH_Aarau_Stadtarchiv/CH_A_Stadtarchiv_II_562_c-0063.tif&amp;h=700&amp;w=773"/><interp>fol. [124r] </interp></p>
+<p><figure><figDesc>coat of arms</figDesc></figure></p>
+<p>Herr Marc Wӱdler, der Burgeren alhier, <lb/> hat neben dem Intranten-gelt verehrt: <lb/> </p>
+<p>Einen Reichsthaler.</p>
+<p><pb n="fol. 125r" facs="http://in-dev.rism.digital/images/CH_A_Stadtarchiv_II_562_c#z=2&amp;n=5&amp;i=/CH_Aarau_Stadtarchiv/CH_A_Stadtarchiv_II_562_c-0064.tif&amp;h=700&amp;w=773"/><interp>fol. [125r] </interp></p>
+<p><figure><figDesc>coat of arms</figDesc></figure> </p>
+<p>Herr Daniel Seiller, landschreiber der <lb/> herrschafft Biberstein, hat neben dem Intran- <lb/> ten-Gelt verehrt: <lb/> </p>
+<p>Erstlich Annd<ex>[ere]</ex> 5. gl. </p>
+<p>Denne eine Baß-Geigen die größere. <lb/> </p>
+<p>Und eine Violin.</p>
+<p><pb n="fol. 126r" facs="http://in-dev.rism.digital/images/CH_A_Stadtarchiv_II_562_c#z=2&amp;n=5&amp;i=/CH_Aarau_Stadtarchiv/CH_A_Stadtarchiv_II_562_c-0065.tif&amp;h=700&amp;w=773"/><interp>fol. [126r] </interp></p>
+<p><figure><figDesc>coat of arms</figDesc></figure> </p>
+<p>Herr Felix Wassmer alhier, hat neben dem <lb/> Intranten-Gelt verehrt: <lb/> </p>
+<p>Zwo Violins.</p>
+<p><pb n="fol. 127r" facs="http://in-dev.rism.digital/images/CH_A_Stadtarchiv_II_562_c#z=2&amp;n=5&amp;i=/CH_Aarau_Stadtarchiv/CH_A_Stadtarchiv_II_562_c-0066.tif&amp;h=700&amp;w=773"/><interp>fol. [127r] </interp></p>
+<p><figure><figDesc>coat of arms</figDesc></figure> </p>
+<p>Herr Daniel Wӱdler alhier, hat neben <lb/> dem Intranten-gelt verehrt: <lb/> </p>
+<p>Einen Reichsthaler.</p>
+<p><pb n="fol. 128r" facs="http://in-dev.rism.digital/images/CH_A_Stadtarchiv_II_562_c#z=2&amp;n=5&amp;i=/CH_Aarau_Stadtarchiv/CH_A_Stadtarchiv_II_562_c-0067.tif&amp;h=700&amp;w=773"/><interp>fol. [128r] </interp></p>
+<p><figure><figDesc>coat of arms</figDesc></figure> </p>
+<p>Herr Hans Rudolff Kӱburtz, Chirurgus, <lb/> hat neben dem Intranten-gelt verehrt: <lb/> </p>
+<p>Annd<ex>[ere]</ex> 20 bz.</p>
+<p> <pb n="fol. 129r" facs="http://in-dev.rism.digital/images/CH_A_Stadtarchiv_II_562_c#z=2&amp;n=5&amp;i=/CH_Aarau_Stadtarchiv/CH_A_Stadtarchiv_II_562_c-0068.tif&amp;h=700&amp;w=773"/><interp>fol. [129r] </interp></p>
+<p><figure><figDesc>coat of arms</figDesc></figure> </p>
+<p>Herr Hans Geörg Hagnauwer alhier, <lb/> hat neben dem Intranten-gelt verehrt: <lb/></p>
+<p>Ann pfen: 5 1/2 gulden.</p>
+<p><pb n="fol. 130r" facs="http://in-dev.rism.digital/images/CH_A_Stadtarchiv_II_562_c#z=2&amp;n=5&amp;i=/CH_Aarau_Stadtarchiv/CH_A_Stadtarchiv_II_562_c-0069.tif&amp;h=700&amp;w=773"/><interp>fol. [130r] </interp></p>
+<p><figure><figDesc>coat of arms</figDesc></figure> </p>
+<p>Herr Daniel Steffani alhier, hat neben <lb/> dem Intranten-gelt verehrt: <lb/> </p>
+<p>Einen Reichsthaler. <lb/> </p>
+<p>Item And<ex>[ere]</ex> 3 tt 1/2 </p>
+<p><date notBefore="1710"><interp>[1710p]</interp></date></p>
+<p><pb n="fol. 130v" facs="http://in-dev.rism.digital/images/CH_A_Stadtarchiv_II_562_c#z=2&amp;n=5&amp;i=/CH_Aarau_Stadtarchiv/CH_A_Stadtarchiv_II_562_c-0070.tif&amp;h=700&amp;w=773"/><interp>fol. [130v] </interp></p>
+<p>Volgen nun die angenom<ex>m</ex>enen Collegianten.</p>
+<p><pb n="fol. 131r" facs="http://in-dev.rism.digital/images/CH_A_Stadtarchiv_II_562_c#z=2&amp;n=5&amp;i=/CH_Aarau_Stadtarchiv/CH_A_Stadtarchiv_II_562_c-0071.tif&amp;h=700&amp;w=773"/><interp>fol. [131r] </interp></p>
+<p><figure><figDesc>coat of arms</figDesc></figure></p>
+<p>Herr Hans Jacob Huntzigker, der burgeren <lb/> und handelsmann, wie auch bestelter Lieutenant <lb/> über eine Companeÿ Dragoner alhier, hat neben <lb/> dem Intranten-gelt verehrt: <lb/> </p>
+<p>Eine Ducaten.</p>
+<p><pb n="fol. 132r" facs="http://in-dev.rism.digital/images/CH_A_Stadtarchiv_II_562_c#z=2&amp;n=5&amp;i=/CH_Aarau_Stadtarchiv/CH_A_Stadtarchiv_II_562_c-0072.tif&amp;h=700&amp;w=773"/><interp>fol. [132r] </interp></p>
+<p><figure><figDesc>coat of arms</figDesc></figure></p>
+<p>Herr Hans Georg Schmid, der <lb/> burgeren alhier, hat neben dem Intraten-gelt <lb/> verehrt: <lb/> </p>
+<p>Einen thaler und <lb/> </p>
+<p>Eine Violin.</p>
+<p><pb n="fol. 133r" facs="http://in-dev.rism.digital/images/CH_A_Stadtarchiv_II_562_c#z=2&amp;n=5&amp;i=/CH_Aarau_Stadtarchiv/CH_A_Stadtarchiv_II_562_c-0073.tif&amp;h=700&amp;w=773"/><interp>fol. [133r] </interp></p>
+<p><figure><figDesc>coat of arms</figDesc></figure></p>
+<p>Herr Daniel Mërkh, Großweibel <lb/> alhier, hat neben dem Intranten-gelt verehrt: <lb/></p>
+<p>Ann pf: 5 1/2. Gl.</p>
+<p><pb n="fol. 134r" facs="http://in-dev.rism.digital/images/CH_A_Stadtarchiv_II_562_c#z=2&amp;n=5&amp;i=/CH_Aarau_Stadtarchiv/CH_A_Stadtarchiv_II_562_c-0074.tif&amp;h=700&amp;w=773"/><interp>fol. [134r] </interp></p>
+<p><figure><figDesc>coat of arms</figDesc></figure></p>
+<p>Herr Samuel Huntzicker alhier <lb/> hat neben dem Intranten gelt verehrt: <lb/> </p>
+<p>L'Opera d'Iphigénie en Tauride in 4.|to. <lb/> pars I. <lb/> </p>
+<p>Item zwey Tableaux en Taille douce.</p>
+<p><pb n="fol. 135r" facs="http://in-dev.rism.digital/images/CH_A_Stadtarchiv_II_562_c#z=2&amp;n=5&amp;i=/CH_Aarau_Stadtarchiv/CH_A_Stadtarchiv_II_562_c-0075.tif&amp;h=700&amp;w=773"/><interp>fol. [135r] </interp></p>
+<p><figure><figDesc>coat of arms</figDesc></figure></p>
+<p>Herr Joh: Rudolff Nüesperlin, hiesiger <lb/> burger, S:S: Ministerij Candidatus und diß- <lb/> mahliger Vicarius zu Rüegsau hat verehrt über <lb/> gewohntes Intranten-gelt: <lb/> </p>
+<p>1. einen Reichsthaler. <lb/> </p>
+<p>2. Motteti di Isabella Leonarda. à 4. Voc: in quarto, part: 5. <lb/> </p>
+<p>3. Trabattone Theatro Musicale. opera prima Posthuma <lb/> à 2: 3: 4 Voci, in 4. part: 5. <lb/> </p>
+<p>4. Trabattone Theatro Musicale. opera Seconda Posthuma <lb/> à voce sola. in 4. pars 1. <lb/> </p>
+<p>5. Trabattone Theatro musicale Missè è Salmi. opera <lb/> Terza Posthuma. à 4 Voci, in 4. part: 5. <lb/> </p>
+<p>6. Trabattone Theatro musicale. Opera Quarta Post= <lb/> huma. à 4. é 5. Voc: in 4. part: 7. <lb/> </p>
+<p><pb n="fol. 135v" facs="http://in-dev.rism.digital/images/CH_A_Stadtarchiv_II_562_c#z=2&amp;n=5&amp;i=/CH_Aarau_Stadtarchiv/CH_A_Stadtarchiv_II_562_c-0076.tif&amp;h=700&amp;w=773"/><interp>fol. [135v] </interp></p>
+<p>7. Pseaumes de Godeau. Composéz par Goüӱ, <lb/> a 4. Voix in 8. part: 4. <lb/> </p>
+<p>8. Pseaumes de Godeau, composéz par du Mont. <lb/> a 4. Voix in 4. part: 4. <lb/> </p>
+<p>9. Zürcherische Neüw-Jahr Geschenck. à 3 et 4 voc: <lb/> in 4. pars. 1 <lb/> </p>
+<p>10. Hippij Heliotropium Musicum. à 1.2.3.4. Voc. <lb/> cum et sine VV. in 4. part: 5 <lb/> </p>
+<p>11. Angelerj Misse, a due é tré voci. in 4. part: 4: <lb/> </p>
+<p>12. Salmi di Carlo Cozzj. à 3. 4. è 5. Voci. in 4. <lb/> part: 6. <lb/> </p>
+<p>13. Knopens Paduanen, Galliarden <ex>etc.</ex> a 2. VV. <lb/> et B. in 4. part: 3 <lb/> </p>
+<p>14. Musculi Geistliche Gesänge. a 4. Voc: in 4. <lb/> part: 4 <lb/> </p>
+<p>15. Ein Psalmenbuch in 4|to. à 2. Voc. M: SC. <lb/> </p>
+<p><pb n="fol. 136r" facs="http://in-dev.rism.digital/images/CH_A_Stadtarchiv_II_562_c#z=2&amp;n=5&amp;i=/CH_Aarau_Stadtarchiv/CH_A_Stadtarchiv_II_562_c-0077.tif&amp;h=700&amp;w=773"/><interp>fol. [136r] </interp></p>
+<p><figure><figDesc>coat of arms</figDesc></figure> </p>
+<p>Herr Joh. Caspar Schmid, stud: Theol: <lb/> alhiesiger burger und p<ex>ro</ex> t<ex>empore</ex> Ludi Magister alhier <lb/> hat neben gewohntem Intranten-gelt verehrt: <lb/> </p>
+<p>Einen thaler.</p>
+<p><pb n="fol. 137r" facs="http://in-dev.rism.digital/images/CH_A_Stadtarchiv_II_562_c#z=2&amp;n=5&amp;i=/CH_Aarau_Stadtarchiv/CH_A_Stadtarchiv_II_562_c-0078.tif&amp;h=700&amp;w=773"/><interp>fol. [137r] </interp></p>
+<p><figure><figDesc>coat of arms</figDesc></figure> </p>
+<p>Herr Martin Rӱchner V<ex>erbi</ex> D<ex>ivini</ex> m<ex>inister</ex> <lb/> p<ex>ro</ex> t<ex>empore</ex> Provisor alhier</p>
+<p><pb n="fol. 138r" facs="http://in-dev.rism.digital/images/CH_A_Stadtarchiv_II_562_c#z=2&amp;n=5&amp;i=/CH_Aarau_Stadtarchiv/CH_A_Stadtarchiv_II_562_c-0079.tif&amp;h=700&amp;w=773"/><interp>fol. [138r] </interp></p>
+<p><figure><figDesc>coat of arms</figDesc></figure> </p>
+<p>Herr Johan<ex>n</ex>es Fisch der Burgeren <lb/> alhier, hat neben dem Intraten verehrt <lb/></p>
+<p>Eine Ducaten.</p>
+<p><pb n="fol. 139r" facs="http://in-dev.rism.digital/images/CH_A_Stadtarchiv_II_562_c#z=2&amp;n=5&amp;i=/CH_Aarau_Stadtarchiv/CH_A_Stadtarchiv_II_562_c-0080.tif&amp;h=700&amp;w=773"/><interp>fol. [139r] </interp></p>
+<p><figure><figDesc>coat of arms</figDesc></figure> </p>
+<p>Herr Wilhelm Rӱchner, M. Doctor <lb/> allhier, hat neben dem Intranten verehrt. <lb/> </p>
+<p>4 Exemplar, von herren Hardmeӱers <lb/> Psalmenbüchern</p>
+<p><pb n="fol. 140r" facs="http://in-dev.rism.digital/images/CH_A_Stadtarchiv_II_562_c#z=2&amp;n=5&amp;i=/CH_Aarau_Stadtarchiv/CH_A_Stadtarchiv_II_562_c-0081.tif&amp;h=700&amp;w=773"/><interp>fol. [140r] </interp></p>
+<p><figure><figDesc>coat of arms</figDesc></figure> </p>
+<p>Herr Samuel Seelmatter Medicinae <lb/> Doctor, burger lobl statt Zoffingen hat neben <lb/> der Intranten verehrt. <lb/> </p>
+<p>Schikardts Trios 2. Theil <lb/> </p>
+<p>Schikardts Viol: Solo. é Bass. Cont: 2 theil <lb/> </p>
+<p>Item Trios Gavott: Sarab. <ex>etc.</ex> par Mon. la Barre <lb/> </p>
+<p>Item Trio von Mon: Valentini <lb/> </p>
+<p>Item Trio von Mons. Valentini <lb/></p>
+<p>Item Violin: Solo et Bass Contin: <lb/></p>
+<p>herrn erlebachs Gottgeheiligte singstunden. <lb/> </p>
+<p><pb n="fol. 141r" facs="http://in-dev.rism.digital/images/CH_A_Stadtarchiv_II_562_c#z=2&amp;n=5&amp;i=/CH_Aarau_Stadtarchiv/CH_A_Stadtarchiv_II_562_c-0082.tif&amp;h=700&amp;w=773"/><interp>fol. [141r] </interp></p>
+<p><figure><figDesc>coat of arms</figDesc></figure></p>
+<p>Herr Samuel <unclear>Lasthofler</unclear> </p>
+<p><pb n="fol. 143r" facs="http://in-dev.rism.digital/images/CH_A_Stadtarchiv_II_562_c#z=2&amp;n=5&amp;i=/CH_Aarau_Stadtarchiv/CH_A_Stadtarchiv_II_562_c-0083.tif&amp;h=700&amp;w=773"/><interp>fol. [143r] </interp></p>
+<p><figure><figDesc>coat of arms</figDesc></figure> </p>
+<p>Herr Abraham Roht- <lb/> pletz hat neben dem Intranten verehrt <lb/> </p>
+<p>Eine Ducaten. <lb/> </p>
+<p>Ferners eine Species Ducate. <lb/></p>
+<p>Item ein Transponirt geschriebenes <lb/> Psalmenbuch. <lb/> </p>
+<add> <p>Item eine Species Ducaten <lb/> </p>
+<p>Item einen Thaler. <lb/> </p>
+<p>Ferner hat hr. hauptman<ex>n</ex> Rohtpletz seine liberalitet <lb/> sehen laßen, in dem er wegen zugefallener erbs (: von Herren <lb/> Schultheiß Huntzikers seinem hrn Schwäher <interp>Schwiegervater</interp> sel<ex>ig</ex> :) geben und <lb/> verehrt vier Species Ducaten</p></add>
+<p><pb n="fol. 144r" facs="http://in-dev.rism.digital/images/CH_A_Stadtarchiv_II_562_c#z=2&amp;n=5&amp;i=/CH_Aarau_Stadtarchiv/CH_A_Stadtarchiv_II_562_c-0084.tif&amp;h=700&amp;w=773"/><interp>fol. [144r] </interp></p>
+<p><figure><figDesc>coat of arms</figDesc></figure> </p>
+<p>Herr Jacob Nüßperli S. S. Th. stud: </p>
+<p><pb n="fol. 145r" facs="http://in-dev.rism.digital/images/CH_A_Stadtarchiv_II_562_c#z=2&amp;n=5&amp;i=/CH_Aarau_Stadtarchiv/CH_A_Stadtarchiv_II_562_c-0085.tif&amp;h=700&amp;w=773"/><interp>fol. [145r] </interp></p>
+<p><figure><figDesc>coat of arms</figDesc></figure> </p>
+<p>Herr Frantz Ludwig Wӱdler.</p>
+<p><pb n="fol. 146r" facs="http://in-dev.rism.digital/images/CH_A_Stadtarchiv_II_562_c#z=2&amp;n=5&amp;i=/CH_Aarau_Stadtarchiv/CH_A_Stadtarchiv_II_562_c-0086.tif&amp;h=700&amp;w=773"/><interp>fol. [146r] </interp></p>
+<p><figure><figDesc>coat of arms</figDesc></figure> </p>
+<p>Herr Daniel Waßmer appotecker.</p>
+<p><pb n="fol. 147r" facs="http://in-dev.rism.digital/images/CH_A_Stadtarchiv_II_562_c#z=2&amp;n=5&amp;i=/CH_Aarau_Stadtarchiv/CH_A_Stadtarchiv_II_562_c-0087.tif&amp;h=700&amp;w=773"/><interp>fol. [147r] </interp></p>
+<p><figure><figDesc>coat of arms</figDesc></figure> </p>
+<p>Herr Johannes Ernst alhiesi <lb/> ger burger, wie auch dermahlen Predicant allhier <lb/> hat neben dem Intranten gelt verehrt <lb/></p>
+<p>6. Trente Sols.</p>
+<p><pb n="fol. 148r" facs="http://in-dev.rism.digital/images/CH_A_Stadtarchiv_II_562_c#z=2&amp;n=5&amp;i=/CH_Aarau_Stadtarchiv/CH_A_Stadtarchiv_II_562_c-0088.tif&amp;h=700&amp;w=773"/><interp>fol. [148r] </interp></p>
+<p><figure><figDesc>coat of arms</figDesc></figure> </p>
+<p>Herr Daniel Gӱsin alhier.</p>
+<p><pb n="fol. 149r" facs="http://in-dev.rism.digital/images/CH_A_Stadtarchiv_II_562_c#z=2&amp;n=5&amp;i=/CH_Aarau_Stadtarchiv/CH_A_Stadtarchiv_II_562_c-0089.tif&amp;h=700&amp;w=773"/><interp>fol. [149r] </interp></p>
+<p><figure><figDesc>coat of arms</figDesc></figure> </p>
+<p>Herr Niclaus Emanuel Saxer V<ex>erbi</ex> D<ex>ivini</ex> m<ex>inister</ex> <lb/> p<ex>ro</ex> t<ex>empore</ex> Provisor alhier.</p>
+<p><pb n="fol. 150r" facs="http://in-dev.rism.digital/images/CH_A_Stadtarchiv_II_562_c#z=2&amp;n=5&amp;i=/CH_Aarau_Stadtarchiv/CH_A_Stadtarchiv_II_562_c-0090.tif&amp;h=700&amp;w=773"/><interp>fol. [150r] </interp></p>
+<p><figure><figDesc>coat of arms</figDesc></figure> </p>
+<p>Herr Johann Anthonj <lb/> Frey, allhiesiger Einwohner und Handels Mann <lb/> auch lieutenant über eine Compagnie Dra- <lb/> goner, hat neben dem Intranten verehrt. <lb/></p>
+<p>Einen loiys blanc.</p>
+<p><pb n="fol. 151r" facs="http://in-dev.rism.digital/images/CH_A_Stadtarchiv_II_562_c#z=2&amp;n=5&amp;i=/CH_Aarau_Stadtarchiv/CH_A_Stadtarchiv_II_562_c-0091.tif&amp;h=700&amp;w=773"/><interp>fol. [151r] </interp></p>
+<p><figure><figDesc>coat of arms</figDesc></figure> </p>
+<p>Herr Balthasar Schmid <lb/> alhiesiger Burger und Chirurgus</p>
+<p><pb n="fol. 152r" facs="http://in-dev.rism.digital/images/CH_A_Stadtarchiv_II_562_c#z=2&amp;n=5&amp;i=/CH_Aarau_Stadtarchiv/CH_A_Stadtarchiv_II_562_c-0092.tif&amp;h=700&amp;w=773"/><interp>fol. [152r] </interp></p>
+<p><figure><figDesc>coat of arms</figDesc></figure></p>
+<p>Herr Johann Jacob Im Hooff <lb/></p>
+<p>Apotecker allhier.</p>
+<p><pb n="fol. 153r" facs="http://in-dev.rism.digital/images/CH_A_Stadtarchiv_II_562_c#z=2&amp;n=5&amp;i=/CH_Aarau_Stadtarchiv/CH_A_Stadtarchiv_II_562_c-0093.tif&amp;h=700&amp;w=773"/><interp>fol. [153r] </interp></p>
+<p><figure><figDesc>coat of arms</figDesc></figure></p>
+<p>Herr Gabriel Seiler alhiesiger Burger <lb/> dermahlen Pfarrherr dieser statt.</p>
+<p><pb n="fol. 154r" facs="http://in-dev.rism.digital/images/CH_A_Stadtarchiv_II_562_c#z=2&amp;n=5&amp;i=/CH_Aarau_Stadtarchiv/CH_A_Stadtarchiv_II_562_c-0094.tif&amp;h=700&amp;w=773"/><interp>fol. [154r] </interp></p>
+<p><figure><figDesc>coat of arms</figDesc></figure> </p>
+<p>Herr Georg Balthasar Hagnauwer <lb/> M.D. allhiesiger Burger</p>
+<p><pb n="fol. 155r" facs="http://in-dev.rism.digital/images/CH_A_Stadtarchiv_II_562_c#z=2&amp;n=5&amp;i=/CH_Aarau_Stadtarchiv/CH_A_Stadtarchiv_II_562_c-0095.tif&amp;h=700&amp;w=773"/><interp>fol. [155r] </interp></p>
+<p><figure><figDesc>coat of arms</figDesc></figure> </p>
+<p>Herr Gabriel Huntzicker Handels- <lb/> man<ex>n</ex> allhier</p>
+<p><pb n="fol. 156r" facs="http://in-dev.rism.digital/images/CH_A_Stadtarchiv_II_562_c#z=2&amp;n=5&amp;i=/CH_Aarau_Stadtarchiv/CH_A_Stadtarchiv_II_562_c-0096.tif&amp;h=700&amp;w=773"/><interp>fol. [156r] </interp></p>
+<p><figure><figDesc>coat of arms</figDesc></figure></p>
+<p>Herr Johann Jacob Huntzicker <lb/> allhier</p>
+<p><pb n="fol. 157r" facs="http://in-dev.rism.digital/images/CH_A_Stadtarchiv_II_562_c#z=2&amp;n=5&amp;i=/CH_Aarau_Stadtarchiv/CH_A_Stadtarchiv_II_562_c-0097.tif&amp;h=700&amp;w=773"/><interp>fol. [157r] </interp></p>
+<p><figure><figDesc>coat of arms</figDesc></figure></p>
+<p>Herr Johannes Ernst, p.t. Provisor</p>
+<p><pb n="fol. 158r" facs="http://in-dev.rism.digital/images/CH_A_Stadtarchiv_II_562_c#z=2&amp;n=5&amp;i=/CH_Aarau_Stadtarchiv/CH_A_Stadtarchiv_II_562_c-0098.tif&amp;h=700&amp;w=773"/><interp>fol. [158r] </interp></p>
+<p><figure><figDesc>coat of arms</figDesc></figure></p>
+<p>Herr Samuel Ernst SS. Th; st. </p>
+<p><pb n="fol. 159r" facs="http://in-dev.rism.digital/images/CH_A_Stadtarchiv_II_562_c#z=2&amp;n=5&amp;i=/CH_Aarau_Stadtarchiv/CH_A_Stadtarchiv_II_562_c-0099.tif&amp;h=700&amp;w=773"/><interp>fol. [159r] </interp></p>
+<p><figure><figDesc>coat of arms</figDesc></figure></p>
+<p>Herr Hieronimus Huntziger.</p>
+<p><pb n="fol. 160r" facs="http://in-dev.rism.digital/images/CH_A_Stadtarchiv_II_562_c#z=2&amp;n=5&amp;i=/CH_Aarau_Stadtarchiv/CH_A_Stadtarchiv_II_562_c-0100.tif&amp;h=700&amp;w=773"/><interp>fol. [160r] </interp></p>
+<p><figure><figDesc>coat of arms</figDesc></figure> </p>
+<p>Herr Johann Heinrich Huntziger.</p>
+<p><pb n="fol. 161r" facs="http://in-dev.rism.digital/images/CH_A_Stadtarchiv_II_562_c#z=2&amp;n=5&amp;i=/CH_Aarau_Stadtarchiv/CH_A_Stadtarchiv_II_562_c-0101.tif&amp;h=700&amp;w=773"/><interp>fol. [161r] </interp></p>
+<p><figure><figDesc>coat of arms</figDesc></figure> </p>
+<p>Herr Bartholome Daniel Moser.</p>
+<p><pb n="fol. 162r" facs="http://in-dev.rism.digital/images/CH_A_Stadtarchiv_II_562_c#z=2&amp;n=5&amp;i=/CH_Aarau_Stadtarchiv/CH_A_Stadtarchiv_II_562_c-0102.tif&amp;h=700&amp;w=773"/><interp>fol. [162r] </interp></p>
+<p><figure><figDesc>coat of arms</figDesc></figure> </p>
+<p>Herr Beat Ludwig Meӱer.</p>
+<p><pb n="fol. 163r" facs="http://in-dev.rism.digital/images/CH_A_Stadtarchiv_II_562_c#z=2&amp;n=5&amp;i=/CH_Aarau_Stadtarchiv/CH_A_Stadtarchiv_II_562_c-0103.tif&amp;h=700&amp;w=773"/><interp>fol. [163r] </interp></p>
+<p><figure><figDesc>coat of arms</figDesc></figure> </p>
+<p>Herr Martin Rӱchner.</p>
+<p><pb n="fol. 164r" facs="http://in-dev.rism.digital/images/CH_A_Stadtarchiv_II_562_c#z=2&amp;n=5&amp;i=/CH_Aarau_Stadtarchiv/CH_A_Stadtarchiv_II_562_c-0104.tif&amp;h=700&amp;w=773"/><interp>fol. [164r] </interp></p>
+<p><figure><figDesc>coat of arms</figDesc></figure> </p>
+<p>Herr Johann Heinrich Huntziger Jünger</p>
+<p><pb n="fol. 165r" facs="http://in-dev.rism.digital/images/CH_A_Stadtarchiv_II_562_c#z=2&amp;n=5&amp;i=/CH_Aarau_Stadtarchiv/CH_A_Stadtarchiv_II_562_c-0105.tif&amp;h=700&amp;w=773"/><interp>fol. [165r] </interp></p>
+<p><figure><figDesc>coat of arms</figDesc></figure> </p>
+<p>Herr Johann Ludwig Wӱdler.</p>
+<p> <pb n="fol. 166r" facs="http://in-dev.rism.digital/images/CH_A_Stadtarchiv_II_562_c#z=2&amp;n=5&amp;i=/CH_Aarau_Stadtarchiv/CH_A_Stadtarchiv_II_562_c-0106.tif&amp;h=700&amp;w=773"/><interp>fol. [166r] </interp></p>
+<p><figure><figDesc>coat of arms</figDesc></figure></p>
+<p>Herr Abram Rothpletz Jünger</p>
+<p><pb n="fol. 167r" facs="http://in-dev.rism.digital/images/CH_A_Stadtarchiv_II_562_c#z=2&amp;n=5&amp;i=/CH_Aarau_Stadtarchiv/CH_A_Stadtarchiv_II_562_c-0107.tif&amp;h=700&amp;w=773"/><interp>fol. [167r] </interp></p>
+<p><figure><figDesc>coat of arms</figDesc></figure> </p>
+<p>Herr Heinrich <unclear>Brӱtel</unclear></p>
+<p><pb n="fol. 168r" facs="http://in-dev.rism.digital/images/CH_A_Stadtarchiv_II_562_c#z=2&amp;n=5&amp;i=/CH_Aarau_Stadtarchiv/CH_A_Stadtarchiv_II_562_c-0108.tif&amp;h=700&amp;w=773"/><interp>fol. [168r] </interp></p>
+<p><figure><figDesc>coat of arms</figDesc></figure> </p>
+<p>Herr Heinrich Rothpletz.</p>
+<p><pb n="fol. 169r" facs="http://in-dev.rism.digital/images/CH_A_Stadtarchiv_II_562_c#z=2&amp;n=5&amp;i=/CH_Aarau_Stadtarchiv/CH_A_Stadtarchiv_II_562_c-0109.tif&amp;h=700&amp;w=773"/><interp>fol. [169r] </interp></p>
+<p><figure><figDesc>coat of arms</figDesc></figure> </p>
+<p>Herr Johann Jacob Iselin.</p>
+<p><pb n="fol. 170r" facs="http://in-dev.rism.digital/images/CH_A_Stadtarchiv_II_562_c#z=2&amp;n=5&amp;i=/CH_Aarau_Stadtarchiv/CH_A_Stadtarchiv_II_562_c-0110.tif&amp;h=700&amp;w=773"/><interp>fol. [170r] </interp></p> <p><figure><figDesc>coat of arms</figDesc></figure></p>
+<p>Herr Samuel Hürner.</p>
+<p><pb n="fol. 171r" facs="http://in-dev.rism.digital/images/CH_A_Stadtarchiv_II_562_c#z=2&amp;n=5&amp;i=/CH_Aarau_Stadtarchiv/CH_A_Stadtarchiv_II_562_c-0111.tif&amp;h=700&amp;w=773"/><interp>fol. [171r] </interp></p> <p><figure><figDesc>unfinished drawing</figDesc></figure></p>
+    </ab></body>
+  </text>
+</TEI>

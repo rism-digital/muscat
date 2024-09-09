@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<TEI xmlns="http://www.tei-c.org/ns/1.0">
+<!-- "###" means: to be completed -->
+  <teiHeader>
+    <fileDesc>
+      <titleStmt>
+        <title>The Berne Inventory (1697), ed. Florence Sidler, 2012 (Historical Music Inventories, 4) </title>
+      </titleStmt>
+      <editionStmt>
+        <edition>After TEI P5.1</edition>
+        <respStmt>
+          <resp>Cataloguer: <persName>Florence Sidler</persName>
+            <date when="2012-06">June 2012</date>
+          </resp>
+          <resp>Transcription: <persName>Student group under Prof. Cristina Urchueguía</persName>
+            <date when="2011">Autumn 2011</date>
+          </resp>
+          <name>Universität Bern, Switzerland</name> 
+          <name>Swiss RISM Office</name>
+        </respStmt>
+      </editionStmt>
+      <publicationStmt>
+        <publisher><orgName xml:base="http://www.rism-ch.org">Swiss RISM Office</orgName></publisher>
+      </publicationStmt>
+      <sourceDesc>
+        <msDesc>
+          <msIdentifier>
+            <settlement>Bern</settlement>
+            <repository>Staatsarchiv</repository>
+            <idno>B III 873</idno>
+          </msIdentifier>
+          <head>
+            <title>Specification </title>
+            <origPlace>Bern </origPlace>
+            <date> Date of the inventory: <origDate notBefore="1697">1697</origDate>
+            </date>
+          </head>
+          <msContents>
+            <summary>
+            At the beginning of the seventeenth century, beginning in eastern Switzerland, the first Collegia Musica were founded, musical associations originally connected with Psalm singing. In Berne, Collegia Musica were founded in the second half of the seventeenth century, with the decisive influence of cornett player and music director Johann Ulrich Sultzberger. A Collegium Musicum is first mentioned in Bern in 1672 in the town's regulations for music ('Ordnung'). At that time, the founding of a new association needed the approval from the authorities. Sultzberger founded his own Collegium Musicum probably in 1675, consisting of students from the High School. This Collegium Musicum is mentioned for the first time in 1677. <lb/>
+The records of the sessions of the Berne Board of Education ('Schulrats Manual') contains in the second volume (1696–1701) on fols 21v-22v a <ref target="http://in-dev.rism.digital/images/berne_1697#z=2&amp;n=5&amp;i=/CH_BEa_B_III_873/pyr_CH_BEa_B_III_873-0018.tif&amp;y=76&amp;h=700&amp;w=773">directory</ref> that lists instruments and musical works of the student Collegium Musicum. The inventory contains 32 entries for music and 6 items for instruments.<lb/>
+            The inventory provides an insight into the musical culture of the time. Sacred and secular works are balanced in number. Besides well known musicians such as Orlando di Lasso and Johann Rosenmüller, a large number of less known contemporary composers is listed.
+            </summary>
+            <msItem><ab><metamark>Contents:</metamark>
+              <list>
+                <item>fols 1-173: protocols of the school board, 1696-1701</item>
+                <item>fols [174–80]: alphabetical index </item>
+            </list>
+            </ab></msItem>
+          </msContents>
+          <physDesc>
+          <p><hi rend='bold'>Physical description:</hi></p>
+            <objectDesc>
+              <supportDesc>
+                <extent>
+                  <measure type="pagesCount" n="376">[vi] + 173 + [174–80] fols</measure>
+                  <measure type="pageDimensions">In folio.</measure>
+                </extent>
+                <foliation>
+                  <watermark>
+                   <hi rend='bold'>Watermark: </hi><lb/>
+                   <ref target="http://in-dev.rism.digital/images/berne_1697_wm#z=2&amp;n=5&amp;i=/berne_1697_wm/pyr_wm_2.tif&amp;x=120&amp;h=700&amp;w=773">monogram</ref>, 
+                   <ref target="http://in-dev.rism.digital/images/berne_1697_wm#z=2&amp;n=5&amp;i=/berne_1697_wm/pyr_wm_1.tif&amp;y=1&amp;x=120&amp;h=700&amp;w=773">S.G. double-lined in oval frame</ref>
+                  </watermark>
+                </foliation>
+              </supportDesc>
+            </objectDesc>
+          </physDesc>
+          <additional>
+            <adminInfo>
+              <recordHist>
+                <source>
+                  <bibl>Images © Staatsarchiv Bern (Berne, 2012). <lb/></bibl>
+                  <bibl>Records compiled by: Florence Sidler (Berne, 2012). <lb/></bibl>
+                  <bibl>Preliminary work and transcriptions were provided by a student group of the University of Berne under the supervision of Prof. Cristina Urchueguía in Autumn term 2011.</bibl>
+                </source>
+              </recordHist>
+            </adminInfo>
+            <listBibl>
+              <head>Essential bibliography:</head>
+              <bibl>Karl Nef, Die Collegia Musica in der deutschen reformierten Schweiz von ihrer Enstehung bis zum Beginn des neunzehnten Jahrhunderts, St. Gallen: Fehr, 1897</bibl>
+              <bibl>Fritz Brönnimann, Der Zinkenist und Musikdirektor Johann Ulrich Sultzberger und die Pflege der Musik in Bern in der zweiten Hälfte des XVII. Jahrhunderts, Zofingen: Zofinger Tagblatt, 1920 (PhD Diss., University of Berne, 1919)</bibl>
+              <bibl>François de Capitani, Musik in Bern: Musik, Musiker, Musikerinnen und Publikum in der Stadt Bern vom Mittelalter bis heute, Bern: Historischer Verein des Kantons Bern, 1993 (Archiv des Historischen Vereins des Kantons Bern, 76).</bibl>
+            </listBibl>
+          </additional>
+        </msDesc>
+      </sourceDesc>
+    </fileDesc>
+  </teiHeader>
+  <text>
+    <body>
+                <pb n="fol. 21v" facs="http://in-dev.rism.digital/images/berne_1697#z=2&amp;n=5&amp;i=/CH_BEa_B_III_873/pyr_CH_BEa_B_III_873-0018.tif&amp;y=76&amp;h=700&amp;w=773"/><p><interp>[fol. 21v:]</interp> Specification <lb/>Vnd Lista Jeniger hochobrigkeitlicher<lb/>music-büecher und Instrumenten<lb/>wie solche mir den Secretario in Beÿsei<expan>[n]</expan>
+Beider Mhhl: hr. Stiffschaffner Jenner<lb/>und hr. Landvogt Zeenders von H.<lb/>Steiner, dem Cantor den 13. hornung
+/ 1697. In der vndere<expan>[n]</expan> Lehr Im kleinere<expan>[n]</expan><lb/>schafft sind gewiesen, und hier abzu-<lb/>schreiben übergeben worde<expan>[n]</expan>. Darum Er<lb/>Hr. Cant. auch Rechenschafft geben soll.<lb/>
+		volgend erstlich die büecher<lb/>vnd zwar erstlich die Alten vnbrauchbahre<expan>[n]</expan>
+</p>
+               	<p><gap/></p>
+               	<pb n="fol. 22r" facs="http://in-dev.rism.digital/images/berne_1697#z=2&amp;n=5&amp;i=/CH_BEa_B_III_873/pyr_CH_BEa_B_III_873-0019.tif&amp;y=108&amp;h=700&amp;w=773"/><p><interp>[fol. 22r:]</interp>   An Instrumenten.<lb/>
+	1. gross aber vbel verderbte Violono a. 5. Cord.<lb/>
+	1. anderer feiner Bass Violon à 4 Cord.<lb/>
+	1. Viola Di gamba oder Tenor Geige<expan>[n]</expan>.<lb/>
+	2. Neüwe Discantgeigen von Waltshut<lb/>
+	2. Violae di Braccio oder alt Geige<expan>[n]</expan><lb/>
+	1. Alte Discantgeigen.<lb/>
+	4. Alte Krum<expan>[m]</expan> Hörner<lb/>
+               	</p>
+                <p><gap/></p>
+    </body>
+  </text>
+</TEI>

@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<TEI xmlns="http://www.tei-c.org/ns/1.0">
+<!-- "###" means: to be completed -->
+  <teiHeader>
+    <fileDesc>
+      <titleStmt>
+        <title>Musical works from Pierre Fatio's library (Geneva 1707) (Historical Music Inventories, 16)</title>
+      </titleStmt>
+      <editionStmt>
+        <edition>After TEI P5.1</edition>
+        <respStmt>
+          <resp>Cataloguer: <persName>Christoph Riedo</persName>
+            <date when="2020-11">October 2022</date>
+          </resp>
+          <name>Université de Genève, Switzerland</name> 
+          <name>RISM Digital Center</name>
+        </respStmt>
+      </editionStmt>
+      <publicationStmt>
+        <publisher><orgName xml:base="http://www.rism-ch.org">RISM Digital Center</orgName>, Université de Fribourg, Switzerland</publisher>
+      </publicationStmt>
+      <sourceDesc>
+        <msDesc>
+          <msIdentifier>
+            <settlement>Pierre Fatio</settlement>
+            <repository>«Livres de musique»</repository>
+            <idno>Geneva 1707</idno>
+</msIdentifier>
+          <head>
+            <title>Livres de musique</title>
+            <origPlace>Genève</origPlace>
+            <origDate notBefore="1707">1707</origDate>
+          </head>
+          <msContents>
+            <summary>The post mortem <ref target='http://in-dev.rism.digital/images/CH-G_AEG'>inventory</ref> of the belongings of Pierre Fatio (1662-1707), a Genevan lawyer and politician who was executed on the accusation of high treason, contains 40 pages of items from his personal library. The manuscript bears the title "Inventaire des biens meubles et effets delaissé par deffunct Pierre Fatio [...]". The entries for the library start with the title: "Chapitre de la bibliotecte dudi[t] deffunct" and these pages are numbered by a recent hand from 1 to 40. On p. 24 there is a sub-heading, "Livres de Musique".<lb></lb>
+20 entries for music books are written on p. 24 and 25. On p. 26 the next sub-heading follows, "Livre d'histoire". But there are still two music titles on p. 26 and two on p. 27, that were possibly forgotten and added later. The mentioned music sources are thus in total 24. Titles are given for the printed works. Manuscripts are subsumed under a collective title "Pièces de divers autherus ecritte a la main".<lb></lb>
+The images are taken from the original in the State Archive of Geneva (Archives d'Etat de Genève), AEG Jur. Civ. F 300.<lb></lb>
+            </summary>
+          </msContents>
+          <physDesc>
+            <objectDesc>
+              <supportDesc>
+                <extent>
+                </extent>
+              </supportDesc>
+            </objectDesc>
+           </physDesc>
+          <additional>
+            <adminInfo>
+              <recordHist>
+                <source>
+                  <bibl>Images by Archives d'Etat de Genève (2022).<lb/></bibl>
+                  <bibl>Records compiled by: Christoph Riedo and Claudio Bacciagaluppi (2022).</bibl>
+                </source>
+              </recordHist>
+            </adminInfo>
+            <listBibl>
+              <head>Essential bibliography:</head>
+              <bibl>Lesure, François: Bibliographie des éditions musicales publiées par Estienne Roger et Michel-Charles Le Cène (Amsterdam, 1696-1743), (Publications de la Société française de musicologie. Série 2, documents et catalogues, T. 12), Paris: Société française de musicologie, 1969.</bibl>
+              <bibl>Fatio, Olivier &amp; Fatio, Nicole: Pierre Fatio et la crise de 1707, Genève: Labor et Fides, 2007.</bibl>
+              <bibl>Jacques Barrelet: "Fatio, Pierre", in: Dictionnaire historique de la Suisse (DHS), version of 27.03.2006. Online: https://hls-dhs-dss.ch/fr/articles/027568/2006-03-27/, consulted 23.11.2022</bibl>
+              <bibl>Riedo, Christoph: From south to north and from the centre out: Corelli’s reception in 18th-century Switzerland, in: Corelli als Modell. Studien zum 300. Todestag von Arcangelo Corelli (1653–1713) (Basler Jahrbuch für historische Musikpraxis, vol. 37, 2013), Agnese Pavanello (ed.), Winterthur: Amadeus, 2015, pp. 237–263.</bibl>
+              </listBibl>
+          </additional>
+        </msDesc>
+      </sourceDesc>
+    </fileDesc>
+  </teiHeader>
+  <text>
+    <body><ab></ab></body>
+  </text>
+</TEI>

@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<TEI xmlns="http://www.tei-c.org/ns/1.0">
+<!-- "###" means: to be completed -->
+  <teiHeader>
+    <fileDesc>
+      <titleStmt>
+        <title>The Bischofszell Inventory (1743), ed. Claudio Bacciagaluppi, 2012 (Historical Music Inventories, 8)</title>
+        <title>The Bischofszell Inventory (1744), ed. Claudio Bacciagaluppi, 2012 (Historical Music Inventories, 9)</title>
+      </titleStmt>
+      <editionStmt>
+        <edition>After TEI P5.1</edition>
+        <respStmt>
+          <resp>Cataloguer: <persName>Claudio Bacciagaluppi</persName>
+            <date when="2012-12">December 2012</date>
+          </resp>
+          <name>Université de Fribourg, Switzerland</name> 
+          <name>Swiss RISM Office</name>
+        </respStmt>
+      </editionStmt>
+      <publicationStmt>
+        <publisher><orgName xml:base="http://www.rism-ch.org">Swiss RISM Office</orgName>, Université de Fribourg, Switzerland</publisher>
+      </publicationStmt>
+      <sourceDesc>
+        <msDesc>
+          <msIdentifier>
+            <settlement>Bischofszell</settlement>
+            <repository>Museum</repository>
+            <idno>olim W.2.I</idno>
+          </msIdentifier>
+          <head>
+            <title>Ohngefährliche Specification des Verlusts <lb/></title>
+            <origPlace>Bischofszell</origPlace>
+            <origDate when="1743">1743</origDate>
+            <title>Verzeichnuß derjenigen Musical-Authoren</title>
+            <origPlace>Bischofszell </origPlace>
+            <origDate when="1744">1744</origDate>
+          </head>
+          <msContents>
+            <summary>Johann Kaspar Diethelm (1706–1767), medical doctor, was the Protestant 'Stadtschreiber' of the mixed-confessional town of Bischofszell from 1728 to his death. In May 1743 a fire broke out which destroyed a great part of the old town. Diethelm started writing a diary soon afterwards, later titled 'Diarium domesticum'. He was no doubt stimulated by the risk of losing the citizenship's collective memory, which he must have felt quite near in the fire. The town was soon rebuilt, also thanks to the solidarity of the whole Confederation. <lb/>
+Also the local Collegium musicum had lost in the fire all its belongings. Diethelm estimated the losses in November 1743 at florins 564.48 worth in musical instruments, scores, and cash. One of the acts of solidarity that Bischofszell citizens experienced was the donation by the Collegium musicum 'auf der deutschen Schule' in Zurich, and by some private persons, of some fifteen music-books in February 1744, which enabled the Bischofszell amateur musicians to resume their activities. <lb/>
+The list of scores lost in 1743 is the first of the two <ref target="http://in-dev.rism.digital/images/bischofszell">inventories</ref> that Diethelm drew of the Collegium's musical collection, the second one being the list of the gifts offered to the Bischofszell music society early in 1744. Of this second inventory (to be precise, of its first twelve items) there exists a mirror image in the protocols of the donor, the Zurich society 'auf der deutschen Schule' (CH-Zz, AMG Archiv IV A 4, p. 494).</summary>
+            <msItem><ab><metamark>Contents:</metamark>
+              <list>
+                <item><ref target="http://in-dev.rism.digital/images/bischofszell#z=2&amp;n=5&amp;i=/CH_Bischofszell_Museum_Diarium_1/pyr_CH_Bischofszell_Museum_Diarium_1-0001.tif&amp;y=273&amp;h=700&amp;w=773">p. [iii] </ref>[...] Diario Domestic. / I [...]</item>
+                <item><ref target="http://in-dev.rism.digital/images/bischofszell#z=2&amp;n=5&amp;i=/CH_Bischofszell_Museum_Diarium_1/pyr_CH_Bischofszell_Museum_Diarium_1-0002.tif&amp;y=273&amp;h=700&amp;w=773">p. 27 </ref>[Diary entry of 18 November 1743]</item>
+                <item><ref target="http://in-dev.rism.digital/images/bischofszell#z=2&amp;n=5&amp;i=/CH_Bischofszell_Museum_Diarium_1/pyr_CH_Bischofszell_Museum_Diarium_1-0003.tif&amp;y=273&amp;h=700&amp;w=773">p. 28-29 </ref>[Inventory of items lost by the Collegium musicum in the 1743 fire]</item>
+                <item><ref target="http://in-dev.rism.digital/images/bischofszell#z=2&amp;n=5&amp;i=/CH_Bischofszell_Museum_Diarium_1/pyr_CH_Bischofszell_Museum_Diarium_1-0005.tif&amp;y=273&amp;h=700&amp;w=773">p. 63-64 </ref>[February 1744: list of items donated by the Zurich Collegium musicum 'auf der deutschen Schule' and private persons]</item>
+                <item><ref target="http://in-dev.rism.digital/images/bischofszell#z=2&amp;n=5&amp;i=/CH_Bischofszell_Museum_Diarium_1/pyr_CH_Bischofszell_Museum_Diarium_1-0007.tif&amp;y=273&amp;h=700&amp;w=773">p. 83-93 </ref> [Copy of the Collegium's protocols since 1706 and statutes]</item>
+             </list>
+           </ab></msItem>
+          </msContents>
+          <physDesc>
+            <objectDesc>
+              <supportDesc>
+                <extent>
+                  <measure type="pagesCount" n="1056">(a) [vi] + 36 + [iv] + (b) 1-412; (c) 413-1010 pp.</measure>
+                  <measure type="pageDimensions" n="37 x 24 cm">37 x 24 cm ca. (in folio)</measure>
+                </extent>
+                <foliation>Original pagination. <lb/>
+                   <watermark>
+                   <hi rend='bold'>Watermarks: </hi>(a) post-horn in shield with crown, no countermark; (b) steinbock rampant, countermark: 4-cross over H double lined; (c) unclear.
+                  </watermark>
+              </foliation>
+              </supportDesc>
+            </objectDesc>
+            <handDesc>
+              <handNote>Scribe: Johann Kaspar Diethelm</handNote>
+            </handDesc>
+           </physDesc>
+          <additional>
+            <adminInfo>
+              <recordHist>
+                <source>
+                  <bibl>Images © Museum Bischofszell (Bischofszell, 2012).<lb/></bibl>
+                  <bibl>Records compiled by: Claudio Bacciagaluppi (Zürich, 2012).</bibl>
+                </source>
+              </recordHist>
+            </adminInfo>
+            <listBibl>
+              <head>Essential bibliography:</head>
+              <bibl>Max Fehr, Das alte Musikkollegium Bischofszell, in Schweizerische Musikzeitung 58 (1918), 185-6, 194-5, 202.</bibl>
+              <bibl>J. Huber, Die Diethelm'schen Manuscripte zur Geschichte Bischofszell's, ms. in the Bischofszell Museum, 1896.</bibl>
+              <bibl>Frauke Volkland, Konfession und Selbstverständnis: reformierte Rituale in der gemischtkonfessionellen Kleinstadt Bischofszell im 17. Jahrhundert, Göttingen: Vandenhoeck und Ruprecht, 2005 (Veröffentlichungen des Max-Planck-Instituts für Geschichte, vol. 210).</bibl>
+            </listBibl>
+          </additional>
+        </msDesc>
+      </sourceDesc>
+    </fileDesc>
+  </teiHeader>
+  <text>
+    <body>
+      <pb n="p. 28" facs="http://in-dev.rism.digital/images/bischofszell#z=2&amp;n=5&amp;i=/CH_Bischofszell_Museum_Diarium_1/pyr_CH_Bischofszell_Museum_Diarium_1-0003.tif&amp;y=273&amp;h=700&amp;w=773"/><p><interp>p. 28 </interp><date when="1743-11-25"><expan>[Monday]</expan> 25 d|o</date> haben Sich die am Verwichenen Montag von einem Lobl. Music-Collegio <gap/> <lb/> Membra Zusam<expan>[m]</expan>en Gethan, um Zu deliberieren, wie groß der <sic>Verlurst</sic> seÿe, den <gap/> <lb/>durch letzter feüersbrunst erlitten, und haben <gap/> eine ohngefährliche Specification <gap/> So auß folgender weiß lautet: <lb/>Ohngefährliche Specification des Verursts <lb/>So das BischoffZellische Music-Collegium beÿ der den 16ten May <lb/>diß Lauffendt 1743sten Jahrs entstandener Großer feüersbrunst <lb/>in Hr. Pfleger Löhrers Hauß an der Kirchgaß Gelitten. <lb/>Das GanZe Orgel Werck So vor Wenig Jahren in St. Gallen erbautt <lb/>Kostete die Gesellschafft incirca ... fl 250 <lb/>Alle Musicalische Instrument, So in 6 Violin, 2 Trompetes Marines, <lb/>und in einem fagot bestanden ... <interp>[fl.]</interp> 64 <lb/>Latus fl. 314.</p>
+      <pb n="p. 29" facs="http://in-dev.rism.digital/images/bischofszell#z=2&amp;n=5&amp;i=/CH_Bischofszell_Museum_Diarium_1/pyr_CH_Bischofszell_Museum_Diarium_1-0004.tif&amp;y=273&amp;h=700&amp;w=773"/><p><interp>p. 29 </interp>Latus von voriger Seiten ... fl. 314.- <lb/>Vor Wolfgang Briegels und <lb/>Speeren Evangel. Dominical. et festal: fl. 15.- <lb/>Rathgeben Messen eingebunden ... <interp>[fl.]</interp> 8.- <lb/><unclear>Isnische [?]</unclear> Music Stuck beZalt ... <interp>[fl.]</interp> 50.- <lb/>vor vile geschribene Concert ... <interp>[fl.]</interp> 25.- <lb/>98.- <lb/>vor 20 Seelen Musicken à 1 fl. ... <interp>[fl.]</interp> 20.- <lb/>
+p<expan>[er]</expan> 12 Stuk Broks Irdisches <sic>Vernügen</sic> in Gott à 2 fl. 24 x|r <interp>[fl.]</interp> 28.48 <lb/>
+p<expan>[er]</expan> 15 Stuk Bachoffens Musicalisches Hallelujah à 24 Bz<expan>[en]</expan> ... <interp>[fl.]</interp> 24.- <lb/>
+p<expan>[er]</expan> 15 Stuk Steiners GesangBuch à 2 fl. ... <interp>[fl.]</interp> 30.- <lb/>
+p<expan>[er]</expan> 20 PsalmenBücher à 30 x|r ... <interp>[fl.]</interp> 10.- <lb/>112.48 <lb/>An Baarschafft in der Büchs Verlohren in: ... fl. 15.- <lb/>Ferners beÿ H. Doctor Music Seckel M|r Scherb an Baar <lb/>verlohren ... <interp>[fl.]</interp> 25.- <lb/>40.- <lb/>Sum<expan>[m]</expan>a des Ganzen <sic>Verlursts</sic> <interp>[fl.]</interp> 564.48 </p>
+<p>Nachdeme dises Project der GanZen Music Gesellschafft vorgelesen worden, ist Selbiges <lb/>nicht nur approbiert, sondern dabeÿ erkan<expan>[n]</expan>t worden, daß wan die Brandbeschä- <lb/>digte ihren Verlurst eingeben auch dise Specification in die Canzleÿ Gleich <lb/>Anderen eingelifferet werden solle.</p>
+               	<p><gap/></p>
+      <pb n="p. 63" facs="http://in-dev.rism.digital/images/bischofszell#z=2&amp;n=5&amp;i=/CH_Bischofszell_Museum_Diarium_1/pyr_CH_Bischofszell_Museum_Diarium_1-0005.tif&amp;y=273&amp;h=700&amp;w=773"/><p><interp>p. 63</interp> <date when="1744-02"><interp>[February 1744]</interp></date>VerZeichnuß <lb/>derjenigen Musical-Authoren, <lb/>So eine Lobl. Music Gesellschafft auff der teütschen Schul <lb/>Einer Lobl. Music Gesellschafft Zu BischoffsZell Zur VerEhrung übersandt. <lb/>
+N.|o 1. BraibanZii Mottetti Tom: 6. <lb/>
+<expan>[N.|o]</expan> 2. Briegels Evangel. Harffen T. 7. <lb/>
+<expan>[N.|o]</expan> 3 <expan>[Briegels]</expan> PalmenZweig T. 11. <lb/>
+<expan>[N.|o]</expan> 4 <expan>[Briegels]</expan> Evang. Lebensbrun<expan>[n]</expan> T. 9. <lb/>
+<expan>[N.|o]</expan> 5. Fischers Psalmi Vespertini T. 12. <lb/>
+<expan>[N.|o]</expan> 6. Ham<expan>[m]</expan>erschm: Buß- und Danklieder. T. 9. <lb/> 
+<expan>[N.|o]</expan> 7 <expan>[Hammerschmidt]</expan> Kirchen. u. taffel Music. T. 9. <lb/>
+<expan>[N.|o]</expan> 8. Martini Psalmodia Musical: T. 8. <lb/>
+<expan>[N.|o]</expan> 9. Molitoris Epinicion Marianum. T. 12 <lb/>
+<expan>[N.|o]</expan> 19. Moseri Viridarium Musicum T. 8. <lb/>
+<expan>[N.|o]</expan> 11. Sailer Cantiones Sacrae. T. 8. <lb/>
+<expan>[N.|o]</expan> 12. Speeren Philomela T. 6. <lb/>
+Hierauff wurde von unserem Music Collegio Erkan<expan>[n]</expan>t, daß Schreiber dieses <lb/>an H. Jacob Geßner V.D.M. und Verschreiber wie auch Praesidenten der Musicgesell- <lb/>schafft der teütschen Schul in Zürich ein höffliches Danksagungs Schreiben verfer- <lb/>tige um kom<expan>[m]</expan>enden Son<expan>[n]</expan>tag es fortschicken Zu kön<expan>[n]</expan>en. </p>
+<p>An disen Tag brachte Hr. Diacon Blaß auch eine Verehrung von etlichen theilen von einer <lb/>jgfr. Wolffin von Zürich, So Briegel Gemacht über die Son<expan>[n]</expan>- und festtäglich<expan>[en]</expan> Epistel.</p>
+      <pb n="p. 64" facs="http://in-dev.rism.digital/images/bischofszell#z=2&amp;n=5&amp;i=/CH_Bischofszell_Museum_Diarium_1/pyr_CH_Bischofszell_Museum_Diarium_1-0006.tif&amp;y=273&amp;h=700&amp;w=773"/><p><interp>p. 64 </interp>Disen Abendt noch hatte Hr. Freÿ Im nahmen H. Cantoris Bachoffens von Zürich <lb/>etliche Stuk getrukte, und etliche von ihm selbst außgesezte Music Stük dem <lb/>Collegio praesentirt und Zur verehrung übergeben. <lb/>Incirca 14 Tag vorher hatt Hr. Pfarrer Däniker nahmens seiner Jgfr. <unclear>Tochter [?]</unclear> <lb/>unser Music-Collegium beehret mit Briegels Musicalische Stuken auff die Sonn- <lb/>und festtägliche Evangelia gerichtet.</p>
+    </body>
+  </text>
+</TEI>
