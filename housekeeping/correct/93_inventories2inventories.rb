@@ -312,6 +312,11 @@ def ms2inventory(source, library_id)
     node.add_at(MarcNode.new("inventory_item", "w", inventory_item.source.id, nil), 0)
     new_marc.root.children.insert(new_marc.get_insert_position("773"), node)
 
+    # Purge the old "_" internal id tags
+    new_marc.all_tags.each do |tag|
+      tag.fetch_all_by_tag("_").each {|t| t.destroy_yourself}
+    end
+
     new_marc.import
 
     inventory_item.created_at = the_ms["created_at"]
