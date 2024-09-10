@@ -177,6 +177,7 @@ print "Please stand while loading the db... "
 @person_map = YAML::load(File.read('housekeeping/inventories_migration/inventory_people_map.yml'), permitted_classes: [ActiveSupport::HashWithIndifferentAccess, Time, Date, ActiveSupport::TimeWithZone, ActiveSupport::TimeZone])
 @institution_map = YAML::load(File.read('housekeeping/inventories_migration/inventory_institution_map.yml'), permitted_classes: [ActiveSupport::HashWithIndifferentAccess, Time, Date, ActiveSupport::TimeWithZone, ActiveSupport::TimeZone])
 @standard_term_map = YAML::load(File.read('housekeeping/inventories_migration/inventory_standard_term_map.yml'), permitted_classes: [ActiveSupport::HashWithIndifferentAccess, Time, Date, ActiveSupport::TimeWithZone, ActiveSupport::TimeZone])
+@image_map = YAML::load(File.read('housekeeping/inventories_migration/ms2image.yml'), permitted_classes: [ActiveSupport::HashWithIndifferentAccess, Time, Date, ActiveSupport::TimeWithZone, ActiveSupport::TimeZone])
 puts "done"
 
 @person_tags = ["100", "600", "700"]
@@ -196,6 +197,7 @@ end
 def ms2inventory(source, library_id)
 
   mss = slow_select("library_id", "manuscript_id", library_id, @inventories_db["libraries_manuscripts"])
+  mc = MarcConfigCache.get_configuration("source")
 
   mss.each do |ms_id|
     the_ms = slow_find("id", ms_id, @inventories_db["manuscripts"])
@@ -277,6 +279,19 @@ def ms2inventory(source, library_id)
         link_t.destroy_yourself
         tt.add_at(MarcNode.new("inventory_item", "0", @standard_term_map[link_t.content].to_s, nil), 0)
         #ap tt
+      end
+    end
+
+    #add the images in 856
+    if @image_map[the_ms["ext_id"]]
+      @image_map[the_ms["ext_id"]].each do |image|
+        next if image == "[spacer]"
+        a856 = MarcNode.new("source", "856", "", mc.get_default_indicator("856"))
+        a856.add_at(MarcNode.new("source", "u", "https://iiif.rism.digital/image/in/#{image}/full/full/0/default.jpg", nil), 0 )
+        a856.add_at(MarcNode.new("source", "x", "Digitized", nil), 0 )
+        a856.add_at(MarcNode.new("source", "z", "Link to page in the inventory", nil), 0 )
+        a856.sort_alphabetically
+        new_marc.root.add_at(a856, new_marc.get_insert_position("856") )
       end
     end
 
