@@ -294,6 +294,24 @@ def ms2inventory(source, library_id)
       end
     end
 
+    # move 852
+    the691s = []
+    new_marc.each_by_tag("852") do |tt|
+      e = tt.fetch_first_by_tag("e")
+      next if !e || !e.content
+      a691 = MarcNode.new("source", "691", "", mc.get_default_indicator("691"))
+      a691.add_at(MarcNode.new("source", "a", "HMI", nil), 0 )
+      a691.add_at(MarcNode.new("source", "n", e.content, nil), 0 )
+      a691.sort_alphabetically
+      the691s << a691
+    end
+
+    the691s.each do |a691|
+      new_marc.root.add_at(a691, new_marc.get_insert_position("691") )
+    end
+
+    new_marc.by_tags("852").each {|t2| t2.destroy_yourself}
+
     #add the images in 856
     if @image_map[the_ms["ext_id"]]
       @image_map[the_ms["ext_id"]].each do |image|

@@ -78,13 +78,33 @@
     - - b
       - hidden: true
 "650":
-  layout: 
-    fields: 
+  new_window: standard_terms
+  new_window_field: term_equals
+  layout:
+    fields:
     - - a
+      - type: standard_term
+        editor_partial: subfield_secondary
+        allow_new: true
 "690":
-  layout: 
-    fields: 
+  new_window: publications
+  new_window_field: name_equals
+  layout:
+    fields:
     - - a
+      - type: publication_only_short_name
+        editor_partial: subfield_secondary
+        allow_new: false
+    - - n
+"691":
+  new_window: publications
+  new_window_field: name_equals
+  layout:
+    fields:
+    - - a
+      - type: publication_only_short_name
+        editor_partial: subfield_secondary
+        allow_new: false
     - - n
 "700":
   new_window: people
