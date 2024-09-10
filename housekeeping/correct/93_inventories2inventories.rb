@@ -1,6 +1,18 @@
 require "rexml/document" 
 include REXML
 
+class REXML::Element
+
+  def inner_texts
+   REXML::XPath.match(self,'.//text()')
+  end
+ 
+  def inner_text
+   REXML::XPath.match(self,'.//text()').join 
+  end
+ 
+ end
+
 SIGLUM_MAP = {
 "Parstorffer 1653": 51003803,
 "IRL Dmh (in IRL Dtc)": 30003329,
@@ -464,10 +476,14 @@ def dexmlize(marc, file)
     end
   end
 
-  XPath.each(doc, "/TEI/teiHeader/fileDesc/sourceDesc/msDesc/msContents/summary") do |txt|
-    next if !txt.text || txt.text.strip.empty?
+  XPath.each(doc, "/TEI/teiHeader/fileDesc/sourceDesc/msDesc/msContents") do |txt|
+
+    tt = txt.elements['summary']
+    sanit = tt.inner_text.gsub("\n", " ").strip
+
+    #next if !txt.text || txt.text.strip.empty?
     tag = MarcNode.new("source", "500", "", mc.get_default_indicator("500"))
-    tag.add_at(MarcNode.new("source", "a", txt.text, nil), 0 )
+    tag.add_at(MarcNode.new("source", "a", sanit, nil), 0 )
     tag.sort_alphabetically
     marc.root.add_at(tag, marc.get_insert_position("500") )
   end
@@ -488,6 +504,11 @@ def dexmlize(marc, file)
     tag.sort_alphabetically
     marc.root.add_at(tag, marc.get_insert_position("599") )
   end
+
+  tag = MarcNode.new("source", "599", "", mc.get_default_indicator("599"))
+  tag.add_at(MarcNode.new("source", "a", file, nil), 0 )
+  tag.sort_alphabetically
+  marc.root.add_at(tag, marc.get_insert_position("599") )
 
 end
 
