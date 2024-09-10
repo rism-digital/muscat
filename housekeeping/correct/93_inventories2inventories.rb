@@ -156,7 +156,7 @@ SHELFMARK_MAP = {
   "CH_G_description.xml": ["CH-G_AEG.json"],
   "CH_Lz_description.xml": ["CH_Lz_Pp_Msc_11.json"],
   "CH_SOa_description.xml": ["CH_SOa_StLeodegar_Prot_Bd_1.json"],
-  "CH_W_description.xml": ["CH_W_DepMK_303.json"],
+  "CH_W_description.xml": ["CH_W_DepMK_303.json", "CH_W_DepMK_303-wm.json"],
   "CH_Zz_c_description.xml": ["CH_Zz_AMG_Archiv_IV_A_6_inv.json"],
   "CH_Zz_d_description.xml": ["CH_Zz_AMG_Archiv_IV_A_3_inv.json"],
   "Parstorffer_description.xml": ["Parstorffer.json"]
