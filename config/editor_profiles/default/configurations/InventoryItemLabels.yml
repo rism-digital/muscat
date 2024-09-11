@@ -445,7 +445,7 @@ unmatched:
 edit_incipits:
   label: records.incipits
 edit_links:
-  label: records.links
+  label: records.linkage
 voc:
   label: records.vocalist
 "Print with autograph annotations":
