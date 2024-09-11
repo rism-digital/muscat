@@ -523,7 +523,10 @@ ca:
     help_transposing_instruments: Ajuda pels instruments transpositors
     history_institution: Història de la institució
     holdings_location: Camps d'exemplars i fons
-    indentification_status: Identification status
+    identification_status: Identification status
+    identified_manuscript: Identified manuscript
+    identified_holding: Identified holding
+    identified_work: Identified work
     identity: Identitat
     identity_area: Identitat
     iiif_manifest: "Manifiest IIIF (font digitalitzada)"

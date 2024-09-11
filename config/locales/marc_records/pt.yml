@@ -523,7 +523,10 @@ pt:
     help_transposing_instruments: Ajuda para instrumentos transpositores
     history_institution: História da instituição
     holdings_location: Informação sobre o fundo
-    indentification_status: Identification status
+    identification_status: Identification status
+    identified_manuscript: Identified manuscript
+    identified_holding: Identified holding
+    identified_work: Identified work
     identity: Identidade
     identity_area: Identidade
     iiif_manifest: "Manifesto IIIF (fonte digitalizada)"

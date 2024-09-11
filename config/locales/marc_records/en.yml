@@ -523,7 +523,10 @@ en:
     help_transposing_instruments: Help for transposing instruments
     history_institution: History of institution
     holdings_location: Holdings, location, etc. fields
-    indentification_status: Identification status
+    identification_status: Identification status
+    identified_manuscript: Identified manuscript
+    identified_holding: Identified holding
+    identified_work: Identified work
     identity: Identity
     identity_area: Identity area
     iiif_manifest: "IIIF manifest (digitized source)"

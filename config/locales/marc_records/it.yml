@@ -523,7 +523,10 @@ it:
     help_transposing_instruments: Tabella degli strumenti traspositori
     history_institution: Storia dell'ente
     holdings_location: Informazioni sul fondo
-    indentification_status: Identification status
+    identification_status: Identification status
+    identified_manuscript: Identified manuscript
+    identified_holding: Identified holding
+    identified_work: Identified work
     identity: Identità
     identity_area: Identità
     iiif_manifest: "IIIF manifest (fonte digitale)"

@@ -523,7 +523,10 @@ pl:
     help_transposing_instruments: Pomoc przy transpozycji instrumentów
     history_institution: Historia instytucji
     holdings_location: Pola egzemplarza, lokalizacji itp.
-    indentification_status: Identification status
+    identification_status: Identification status
+    identified_manuscript: Identified manuscript
+    identified_holding: Identified holding
+    identified_work: Identified work
     identity: Tożsamość
     identity_area: Obszar tożsamości
     iiif_manifest: "Manifest IIIF (źródło zdigitalizowane)"

@@ -523,7 +523,10 @@ de:
     help_transposing_instruments: Hilfe zu transponierenden Instrumenten
     history_institution: Geschichte der Körperschaft
     holdings_location: Bestandsdaten
-    indentification_status: Identification status
+    identification_status: Identification status
+    identified_manuscript: Identified manuscript
+    identified_holding: Identified holding
+    identified_work: Identified work
     identity: Identifizierung
     identity_area: Identity area
     iiif_manifest: "IIIF-Manifest (digitalisierte Quelle)"
