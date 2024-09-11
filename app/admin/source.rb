@@ -383,11 +383,11 @@ ActiveAdmin.register Source do
     active_admin_comments if !is_selection_mode?
 
     # FIXME Experimental: box for InventoryItems
-    active_admin_embedded_link_list(self, @item, InventoryItem, I18n.t(:inventory_items)) do |context|
+    active_admin_embedded_link_list(self, @item, InventoryItem) do |context|
       context.table_for(context.collection) do |cr|
         context.column "id", :id
-        context.column (I18n.t :composer), :composer
-        context.column (I18n.t :title), :title
+        context.column (I18n.t :filter_composer), :composer
+        context.column (I18n.t :filter_title), :title
         if !is_selection_mode?
           context.column "" do |ii|
             link_to "View", controller: :inventory_items, action: :show, id: ii.id

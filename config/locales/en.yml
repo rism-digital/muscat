@@ -201,6 +201,9 @@ en:
       work:
         one: "Work"
         other: "Works"
+      inventory_item:
+        one: "Inventory item"
+        other: "Inventory items"
   
   #################### RECORD TYPES (TEMPLATES)
   select_template: "Select new template"
@@ -219,6 +222,8 @@ en:
     theoretica_edition: "Treatise, printed"
     theoretica_edition_content: "Printed treatise, item in collection"
     edition: "Printed music edition, collection parent record or individual item"
+    inventory: "Inventory"
+    inventory_edition: "Inventory edition"
 
     composite_volumes: "Composite volumes"
     composite_volume: "Record for a composite volume"
