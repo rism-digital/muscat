@@ -523,6 +523,7 @@ en:
     help_transposing_instruments: Help for transposing instruments
     history_institution: History of institution
     holdings_location: Holdings, location, etc. fields
+    indentification_status: Identification status
     identity: Identity
     identity_area: Identity area
     iiif_manifest: "IIIF manifest (digitized source)"
@@ -548,6 +549,8 @@ en:
     internal_note: Internal note
     introduction: Introduction
     invalid_standard_number: Canceled/invalid standard number or code
+    inventory_item: Inventory item
+    inventory_source: Inventory source
     isbn: ISBN
     ismn: ISMN
     issn: ISSN

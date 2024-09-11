@@ -523,6 +523,7 @@ fr:
     help_transposing_instruments: Aide pour les instruments transpositeurs
     history_institution: Historique de l'institution
     holdings_location: Données sur la collection, le fonds, etc.
+    indentification_status: Identification status
     identity: Identité
     identity_area: Identité
     iiif_manifest: "IIIF manifest (source numérisée)"
@@ -548,6 +549,8 @@ fr:
     internal_note: Note non publique
     introduction: Introduction
     invalid_standard_number: Numéro ou code standard annulé/invalide
+    inventory_item: Inventory item
+    inventory_source: Inventory source
     isbn: ISBN
     ismn: ISMN
     issn: ISSN

@@ -523,6 +523,7 @@ pt:
     help_transposing_instruments: Ajuda para instrumentos transpositores
     history_institution: História da instituição
     holdings_location: Informação sobre o fundo
+    indentification_status: Identification status
     identity: Identidade
     identity_area: Identidade
     iiif_manifest: "Manifesto IIIF (fonte digitalizada)"
@@ -548,6 +549,8 @@ pt:
     internal_note: Nota interna
     introduction: Introdução
     invalid_standard_number: Número ou código padrão cancelado/invalido
+    inventory_item: Inventory item
+    inventory_source: Inventory source
     isbn: ISBN
     ismn: ISMN
     issn: ISSN

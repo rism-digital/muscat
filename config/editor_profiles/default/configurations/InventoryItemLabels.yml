@@ -166,7 +166,7 @@
     i:
       label: records.identification_status
     o:
-      label: records.rism_number
+      label: records.rism_id_number
     t:
       label: records.title
   label: records.identification_status
