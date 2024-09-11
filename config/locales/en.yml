@@ -286,6 +286,7 @@ en:
   menu_holdings: "Holdings"
   menu_works: "Works"
   menu_work_nodes: "Work nodes"
+  menu_inventory_items: "Inventory Items"
   
   ### VARIOUS ELEMENTS
   recent_changes: "Lastest modifications"

@@ -3,6 +3,7 @@ group_order:
 - edit_library
 - edit_names
 - edit_material
+- edit_incipits
 - edit_links
 - edit_administration
 groups: 
@@ -28,7 +29,6 @@ groups:
       "690": marc_show/show_69x_url
       "691": marc_show/show_69x_url
 
-
   edit_names:
     all_tags: 
     - '700'
@@ -44,6 +44,12 @@ groups:
     - '593' 
     - '560'
     - "786"
+
+  edit_incipits: 
+    all_tags: 
+    - "031"
+    all_tag_templates: 
+      "031": marc_show/show_incipit
 
   edit_links:
     all_tags:

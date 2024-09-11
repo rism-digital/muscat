@@ -12,6 +12,39 @@
   label: records.technical_production
 04_codes_other:
   label: records.other
+'031':
+  fields:
+    a:
+      label: records.work_number
+    b:
+      label: records.movement_number
+    c:
+      label: records.incipit_number
+    d:
+      label: records.title_movement_tempo
+    e:
+      label: records.role
+    g:
+      label: records.clef
+    m:
+      label: records.voice_instrument
+    n:
+      label: records.key_signature
+    o:
+      label: records.time_signature
+    p:
+      label: records.music_incipit
+    q:
+      label: records.general_note_incipits
+    r:
+      label: records.key_or_mode
+    s:
+      label: general.validity
+    t:
+      label: records.text_incipit
+    z:
+      label: records.scoring_in_movement
+  label: records.incipit
 '100':
   fields:
     a:
@@ -72,6 +105,25 @@
     a:
       label: records.local_notes_field
   label: records.local_notes_field
+'650':
+  fields:
+    a:
+      label: records.subject_heading
+  label: records.subject_heading
+'690':
+  fields:
+    a:
+      label: records.catalog_works
+    n:
+      label: records.number_page
+  label: records.catalog_works
+'691':
+  fields:
+    a:
+      label: records.bibliographic_reference
+    n:
+      label: records.number_page
+  label: records.bibliographic_reference
 '700':
   fields:
     '4':
@@ -105,6 +157,19 @@
     w:
       label: records.inventory_source
   label: records.inventory_source
+'786':
+  fields:
+    'a':
+      label: records.name
+    'd':
+      label: records.imprint
+    i:
+      label: records.identification_status
+    o:
+      label: records.rism_number
+    t:
+      label: records.title
+  label: records.identification_status
 '856':
   fields:
     u:
@@ -377,6 +442,10 @@ trl:
   label: records.translator
 unmatched:
   label: general.unknown_fields
+edit_incipits:
+  label: records.incipits
+edit_links:
+  label: records.links
 voc:
   label: records.vocalist
 "Print with autograph annotations":

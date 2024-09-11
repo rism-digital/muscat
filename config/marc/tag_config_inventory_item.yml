@@ -28,6 +28,47 @@
     :fields:
     - - ""
       - :no_browse: true
+  "031":
+    :master: t
+    :master_optional: true
+    :indicator: "##"
+    :occurrences: "*"
+    :fields:
+    - - a
+      - :occurrences: "?"
+    - - b
+      - :occurrences: "?"
+    - - c
+      - :occurrences: "?"
+    - - d
+      - :occurrences: "*"
+    - - e
+      - :occurrences: "?"
+    - - g
+      - :occurrences: "?"
+    - - m
+      - :occurrences: "?"
+    - - n
+      - :occurrences: "?"
+    - - o
+      - :occurrences: "?"
+    - - p
+      - :occurrences: "?"
+    - - q
+      - :occurrences: "*"
+    - - r
+      - :occurrences: "?"
+    - - s
+      - :occurrences: "*"
+    - - t
+      - :occurrences: "*"
+        :link_to_model: StandardTitle
+        :link_to_field: title
+    - - u
+      - :occurrences: "?"
+        :no_browse: true
+    - - z
+      - :occurrences: "*"
   "100":
     :master: "0"
     :indicator: "1#"

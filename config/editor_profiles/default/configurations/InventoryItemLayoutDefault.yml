@@ -3,6 +3,7 @@ group_order:
 - edit_library
 - edit_names
 - edit_material
+- edit_incipits
 - edit_links
 - edit_administration
 groups: 
@@ -27,6 +28,11 @@ groups:
     all_tags: 
     - '700'
     - '710'
+
+  edit_incipits:
+    all_tags:
+    - '031'
+    template: show_incipit
 
   edit_material:
     all_tags:
