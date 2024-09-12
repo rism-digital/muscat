@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_09_04_114906) do
+ActiveRecord::Schema[7.1].define(version: 2024_09_12_074946) do
   create_table "active_admin_comments", id: :integer, charset: "utf8mb3", force: :cascade do |t|
     t.string "namespace"
     t.text "body"
@@ -251,6 +251,13 @@ ActiveRecord::Schema[7.1].define(version: 2024_09_04_114906) do
   create_table "inventory_items_to_institutions", charset: "utf8mb3", force: :cascade do |t|
     t.integer "inventory_item_id"
     t.integer "institution_id"
+    t.string "marc_tag"
+    t.string "relator_code"
+  end
+
+  create_table "inventory_items_to_inventory_items", charset: "utf8mb3", force: :cascade do |t|
+    t.integer "inventory_item_a_id"
+    t.integer "inventory_item_b_id"
     t.string "marc_tag"
     t.string "relator_code"
   end

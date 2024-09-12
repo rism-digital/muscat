@@ -480,6 +480,7 @@ ca:
     figured_bass_scores: Baix xifrat
     fijian: Fijià
     fingerprint_identifier: Identificador de l'empremta
+    first_entry: First entry
     first_second_group: Primer/segon grup
     form_subdivision: Subdivisió de forma
     format_extent: Format, extensió
@@ -573,6 +574,7 @@ ca:
     language_of_cataloging: Idioma de catalogació
     language_original_text: Idioma del text original
     language_text: Llengua del text
+    later_entry: Later entry
     later_heading: Encapçalament posterior
     latitude: Latitud
     leader: Capçalera

@@ -46,6 +46,13 @@ class InventoryItem < ApplicationRecord
   has_many :delayed_jobs, -> { where parent_type: "InventoryItem" }, class_name: 'Delayed::Backend::ActiveRecord::Job', foreign_key: "parent_id"
   belongs_to :user, :foreign_key => "wf_owner"
   
+  # Inventory items pointing to IIs
+  has_many :inventory_item_relations, foreign_key: "inventory_item_a_id"
+  has_many :inventory_items, through: :inventory_item_relations, source: :inventory_item_b
+  # And this is the one coming back, i.e. inventory_item pointing to this one from 775
+  has_many :referring_inventory_item_relations, class_name: "InventoryItemRelation", foreign_key: "inventory_item_b_id"
+  has_many :referring_inventory_items, through: :referring_inventory_item_relations, source: :inventory_item_a
+
   composed_of_reimplementation :marc, :class_name => "MarcInventoryItem", :mapping => %w(marc_source to_marc)
 
   before_save :set_object_fields
@@ -114,7 +121,7 @@ class InventoryItem < ApplicationRecord
   def update_links
     return if self.suppress_recreate_trigger == true
     
-    allowed_relations = ["sources", "holdings", "works", "institutions", "publications", "people", "places", "standard_terms"]
+    allowed_relations = ["sources", "holdings", "works", "institutions", "publications", "people", "places", "standard_terms", "inventory_items"]
     recreate_links(marc, allowed_relations)
   end
   

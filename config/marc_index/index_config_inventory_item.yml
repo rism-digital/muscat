@@ -3,6 +3,6 @@ config:
     :model: inventory_item
 
 fields:  
-  "852c":
+  "773w":
       :store: true
 

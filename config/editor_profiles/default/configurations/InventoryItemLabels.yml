@@ -157,6 +157,13 @@
     w:
       label: records.inventory_source
   label: records.inventory_source
+'775':
+  fields:
+    w:
+      label: records.later_entry
+    "4":
+      label: records.function
+  label: records.later_entry
 '786':
   fields:
     'a':
@@ -194,6 +201,8 @@
     w:
       label: records.identified_work
   label: records.identified_work
+"1st":
+  label: records.first_entry
 Alleged:
   label: records.alleged
 Ascertained:
@@ -412,6 +421,8 @@ prf:
   label: records.performer
 prt:
   label: records.printer
+led:
+  label: records.later_entry
 pub:
   label: records.publisher
 scr:

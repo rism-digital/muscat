@@ -480,6 +480,7 @@ it:
     figured_bass_scores: Basso cifrato
     fijian: Figiano
     fingerprint_identifier: Impronta
+    first_entry: First entry
     first_second_group: Primo/Secondo gruppo
     form_subdivision: Suddivisione formale
     format_extent: Categoria di fonte, estensione
@@ -525,8 +526,8 @@ it:
     holdings_location: Informazioni sul fondo
     identification_status: Identification status
     identified_manuscript: Identified manuscript
-    identified_holding: Identified holding
-    identified_work: Identified work
+    identified_holding: Esemplare identificato
+    identified_work: Composizione identificata
     identity: Identità
     identity_area: Identità
     iiif_manifest: "IIIF manifest (fonte digitale)"
@@ -552,8 +553,8 @@ it:
     internal_note: Nota interna
     introduction: Introduzione
     invalid_standard_number: Numero standard o codice standard annullato/non valido
-    inventory_item: Inventory item
-    inventory_source: Inventory source
+    inventory_item: Voce d'inventario
+    inventory_source: Inventario
     isbn: ISBN
     ismn: ISMN
     issn: ISSN
@@ -573,6 +574,7 @@ it:
     language_of_cataloging: Lingua della catalogazione
     language_original_text: Lingua del testo originale
     language_text: Lingua del testo cantato
+    later_entry: Later entry
     later_heading: Intestazione successiva
     latitude: Latitudine
     leader: Leader

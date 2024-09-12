@@ -342,6 +342,21 @@
     fields: 
     - - w
       - read_only: true
+"775":
+  new_window: inventory_items
+  layout:
+    fields:
+    - - w
+      - type: inventory_item
+        editor_partial: subfield_secondary
+    - - "4"
+      - editor_partial: subfield_select_codes
+        select_label: "Function"
+        codes_reference: "relator_codes"
+  tag_params: 
+    relator_codes: 
+    - led
+    - "1st"
 "786":
   layout: 
     fields: 

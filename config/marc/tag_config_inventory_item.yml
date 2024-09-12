@@ -282,13 +282,15 @@
   "775":
     :master: w
     :indicator: "##"
+    :relator_code: "4"
     :occurrences: "?"
-    :foreign_links: false
     :fields:
     - - w
-      - :occurrences: "?"
+      - :occurrences: "1"
+        :foreign_class: InventoryItem
+        :foreign_field: id
     - - "4"
-      - :occurrences: "?"
+      - :occurrences: "1"
   "786":
     :master: a
     :indicator: "##"

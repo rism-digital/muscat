@@ -480,6 +480,7 @@ pl:
     figured_bass_scores: Bas cyfrowany w partyturze i / lub w innych częściach
     fijian: Fidżyjski
     fingerprint_identifier: Identyfikator odcisku palca
+    first_entry: First entry
     first_second_group: Pierwsza / druga grupa
     form_subdivision: Dalszy podział formularza
     format_extent: Rodzaj źródła, objętość
@@ -573,6 +574,7 @@ pl:
     language_of_cataloging: Język katalogowania
     language_original_text: Język tekstu oryginalnego
     language_text: Język tekstu
+    later_entry: Later entry
     later_heading: Późniejsza pozycja
     latitude: Szerokość geograficzna
     leader: Leader

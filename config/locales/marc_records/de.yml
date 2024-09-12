@@ -480,6 +480,7 @@ de:
     figured_bass_scores: Generalbass
     fijian: Fidschianisch
     fingerprint_identifier: Fingerprint-Erkennung
+    first_entry: First entry
     first_second_group: Erste und zweite Zeichengruppe
     form_subdivision: Unterteilung nach der Form
     format_extent: Quellenart, Umfang
@@ -523,10 +524,10 @@ de:
     help_transposing_instruments: Hilfe zu transponierenden Instrumenten
     history_institution: Geschichte der Körperschaft
     holdings_location: Bestandsdaten
-    identification_status: Identification status
-    identified_manuscript: Identified manuscript
-    identified_holding: Identified holding
-    identified_work: Identified work
+    identification_status: Status der Identifikation
+    identified_manuscript: Identifiziertes Manuskript
+    identified_holding: Identifizierter Exemplareintrag
+    identified_work: Identifiziertes Werk
     identity: Identifizierung
     identity_area: Identity area
     iiif_manifest: "IIIF-Manifest (digitalisierte Quelle)"
@@ -552,8 +553,8 @@ de:
     internal_note: Interne Bemerkungen
     introduction: Einleitung
     invalid_standard_number: Stornierte/ungültige Standardnummer oder -code
-    inventory_item: Inventory item
-    inventory_source: Inventory source
+    inventory_item: Inventareinträge
+    inventory_source: Inventarquelle
     isbn: ISBN
     ismn: ISMN
     issn: ISSN
@@ -573,6 +574,7 @@ de:
     language_of_cataloging: Katalogisierungssprache
     language_original_text: Sprachcode des Originaltextes
     language_text: Sprachcode
+    later_entry: Later entry
     later_heading: Spätere Überschrift
     latitude: Breitengrad
     leader: Leader

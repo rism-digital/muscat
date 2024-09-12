@@ -213,7 +213,7 @@ def ms2inventory(source, library_id)
 
   mss.each do |ms_id|
     the_ms = slow_find("id", ms_id, @inventories_db["manuscripts"])
-
+    
     inventory_item = InventoryItem.new
     inventory_item.source = source
     
@@ -336,6 +336,14 @@ def ms2inventory(source, library_id)
     end
 
     new_marc.import
+
+    begin
+      dup = InventoryItem.find(the_ms["ext_id"].to_i)
+      dup.delete if dup.title.strip == "[none]"
+      puts "Nuked dup #{dup}"
+    rescue ActiveRecord::RecordNotFound
+      # all good!
+    end
 
     inventory_item.created_at = the_ms["created_at"]
     inventory_item.updated_at = the_ms["updated_at"]
@@ -544,8 +552,13 @@ spinner = TTY::Spinner.new("[:spinner] :title", format: :shark)
   spinner.auto_spin
 
   muscat_inventory = Source.new
-  muscat_inventory.record_type = MarcSource::RECORD_TYPES[:inventory]
-  new_marc = MarcSource.new("=001 __TEMP__", MarcSource::RECORD_TYPES[:inventory])
+  if inventory["siglum"].strip == "Parstorffer 1653"
+    muscat_inventory.record_type = MarcSource::RECORD_TYPES[:inventory_edition]
+    new_marc = MarcSource.new("=001 __TEMP__", MarcSource::RECORD_TYPES[:inventory_edition])
+  else
+    muscat_inventory.record_type = MarcSource::RECORD_TYPES[:inventory]
+    new_marc = MarcSource.new("=001 __TEMP__", MarcSource::RECORD_TYPES[:inventory])
+  end
 
   mc = MarcConfigCache.get_configuration("source")
 

@@ -480,6 +480,7 @@ fr:
     figured_bass_scores: Basse chiffrée
     fijian: Fidjien
     fingerprint_identifier: Indentificateur d'empreintes
+    first_entry: First entry
     first_second_group: Premier/deuxième groupe de caractères
     form_subdivision: Subdivision de forme
     format_extent: Type de source, extension
@@ -573,6 +574,7 @@ fr:
     language_of_cataloging: Langue de catalogage
     language_original_text: Langue du texte original
     language_text: Langue du texte chanté
+    later_entry: Later entry
     later_heading: Rubrique ultérieure
     latitude: Latitude
     leader: Guide

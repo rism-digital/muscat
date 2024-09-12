@@ -80,6 +80,9 @@ module ApplicationHelper
     ##autocomplete_person_full_name_admin_people_path
   end
 
+  def inventory_item_default_autocomplete
+  end
+
   # Create a link for a page in a new window
   def application_helper_link_http(value, node)
     result = []

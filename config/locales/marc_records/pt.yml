@@ -480,6 +480,7 @@ pt:
     figured_bass_scores: Baixo cifrado
     fijian: Fijianas
     fingerprint_identifier: Identificador de impressão
+    first_entry: First entry
     first_second_group: Primeiro/Segundo grupo
     form_subdivision: Divisão da forma
     format_extent: Formato, extensão
@@ -573,6 +574,7 @@ pt:
     language_of_cataloging: Idioma de catalogação
     language_original_text: Idioma do texto original
     language_text: Idioma do texto
+    later_entry: Later entry
     later_heading: Título posterior
     latitude: Latitude
     leader: Líder
