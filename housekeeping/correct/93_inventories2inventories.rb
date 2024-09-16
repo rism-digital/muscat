@@ -546,7 +546,12 @@ end
 spinner = TTY::Spinner.new("[:spinner] :title", format: :shark)
 @inventories_db["libraries"].each do |inventory|
 
-  next if inventory["ext_id"] == 51006873
+  # Deleted or not finished inventories
+  next if inventory["ext_id"] == 51006873 # I-Vas San Marco
+  next if inventory["ext_id"] == 51006871 # I-Vas
+  next if inventory["ext_id"] == 51006869 # IRL-Dmh
+  next if inventory["ext_id"] == 51006875 # Flurschütz 1613
+  next if inventory["ext_id"] == 51006829 # CH-La, KK 305
 
   spinner.update(title: "Converting #{inventory["name"]}...")
   spinner.auto_spin
@@ -610,6 +615,11 @@ spinner = TTY::Spinner.new("[:spinner] :title", format: :shark)
   x650.add_at(MarcNode.new("source", "0", 3025686, nil), 0 )
   x650.sort_alphabetically
   new_marc.root.add_at(x650, new_marc.get_insert_position("650") )
+
+  x599 = MarcNode.new("source", "599", "", mc.get_default_indicator("599"))
+  x599.add_at(MarcNode.new("source", "a", "Migrated from HMI id #{inventory["ext_id"]}", nil), 0 )
+  x599.sort_alphabetically
+  new_marc.root.add_at(x650, new_marc.get_insert_position("599") )
 
   dexmlize(new_marc, inventory["url"]) if inventory["url"] && !inventory["url"].empty?
 
