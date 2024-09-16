@@ -77,7 +77,7 @@ module ApplicationHelper
   end
 
   def holding_default_autocomplete
-    ##autocomplete_person_full_name_admin_people_path
+    autocomplete_intentory_item_id_admin_inventory_items_path
   end
 
   def inventory_item_default_autocomplete

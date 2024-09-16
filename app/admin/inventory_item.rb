@@ -1,5 +1,7 @@
 ActiveAdmin.register InventoryItem do
   
+  collection_action :autocomplete_intentory_item_id, :method => :get
+
   # Hide the menu
   menu :parent => "indexes_menu", :label => proc {I18n.t(:menu_inventory_items)}
 
@@ -21,6 +23,8 @@ ActiveAdmin.register InventoryItem do
       item.user = current_user
     end
     
+    autocomplete :inventory_item, :id, {:display_value => :autocomplete_label , :extra_data => [:title, :composer], :exact_match => true, :solr => false}
+
     def action_methods
       return super - ['new', 'edit', 'destroy'] if is_selection_mode?
       super

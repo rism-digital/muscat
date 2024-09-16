@@ -349,6 +349,7 @@
     - - w
       - type: inventory_item
         editor_partial: subfield_secondary
+        only_new_window: true
     - - "4"
       - editor_partial: subfield_select_codes
         select_label: "Function"
