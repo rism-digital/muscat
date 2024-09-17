@@ -174,6 +174,15 @@ SHELFMARK_MAP = {
   "Parstorffer_description.xml": ["Parstorffer.json"]
 }
 
+@user_map = {
+  "2": 49,
+  "6": 17,
+  "7": 594,
+  "8": 12,
+  "9": 74,
+  "10": 595,
+  "11": 106
+}
 if ARGV[0] == "--cleanup"
   print "DO NOT DO THIS IN PRODUCTION Cleanup... "
   InventoryItem.find_by_sql("TRUNCATE TABLE inventory_items")
@@ -348,6 +357,8 @@ def ms2inventory(source, library_id)
 
     inventory_item.created_at = the_ms["created_at"]
     inventory_item.updated_at = the_ms["updated_at"]
+
+    inventory_item.wf_owner = @user_map[the_ms["wf_owner"].to_s.to_sym]
 
     inventory_item.marc = new_marc
     inventory_item.save

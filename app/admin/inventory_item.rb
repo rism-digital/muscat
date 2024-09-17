@@ -203,7 +203,6 @@ ActiveAdmin.register InventoryItem do
     column (I18n.t :filter_composer), :composer
     column (I18n.t :"record_types.inventory"), :inventory_title, sortable: :inventory_title_order do |element|
       link_to(element.source.title, admin_source_path(element.source.id))
-      #element.source.title
     end
 
     active_admin_muscat_actions( self, false ) # Hide the "view" button
