@@ -276,6 +276,7 @@ def ms2inventory(source, library_id)
     new_marc.each_by_tag("710") do |tt|
       if !tt.fetch_first_by_tag("0")
         nuke_list << tt if tt.fetch_first_by_tag("4").content == "pbl"
+        nuke_list << tt if tt.fetch_first_by_tag("4").content == "prt"
       end
     end
     nuke_list.each {|t| t.destroy_yourself}
