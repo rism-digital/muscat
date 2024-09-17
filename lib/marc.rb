@@ -1008,6 +1008,18 @@ class Marc
     return out
   end
 
+  def marc_extract_bookid(conf_tag, conf_properties, marc, model)
+    out = []
+    marc.each_by_tag("510") do |marctag|
+      ct = marctag.fetch_first_by_tag("c")
+      next if !ct || !ct.content
+
+      out += ct.content.split(";").map{|i| i.strip}
+
+    end
+    return out
+  end
+
   # Get the birth date from MARC 100$d
   def marc_helper_get_birthdate(value)
     if value.include?('-')

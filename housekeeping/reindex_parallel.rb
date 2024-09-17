@@ -34,6 +34,7 @@ results = Parallel.map(0..@parallel_jobs - 1, in_processes: @parallel_jobs) do |
         current_limit += @batch_size
         puts "JOB #{jobid} START@#{offset} INDEXED #{current_limit}"
     end
+    puts "-JOB #{jobid} FINISHED #adios indexed:#{current_limit} oopies:#{e_count}"
     [current_limit, e_count]
 
 
