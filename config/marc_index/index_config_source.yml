@@ -58,6 +58,8 @@ fields:
   "510a":
       :type: string
       :store: true
+  "510c":
+      :type: text
   "518a":
       :holding_record: true
   "561a":
@@ -132,9 +134,6 @@ fields:
     :type: text
   "973u":
     :holding_record: true
-  "bookid_text":
-    :index_processor_helper: marc_extract_bookid
-    :as: "bookid_text"
   "bookid_string":
     :index_processor_helper: marc_extract_bookid
     :store: true

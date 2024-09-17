@@ -271,6 +271,7 @@ ActiveAdmin.register Source do
   filter :composer_cont, :label => proc{I18n.t(:composer_contains)}, :as => :string
 
   filter :"source_rism_ids_cont", :label => proc{I18n.t(:filter_id)}, :as => :string
+  filter :"510c_cont", :label => proc{I18n.t(:book_id)}, :as => :string
   
   filter :"852a_facet_cont", :label => proc{I18n.t(:library_sigla_contains)}, :as => :string, if: proc { !is_selection_mode? }
   # see See lib/active_admin_record_type_filter.rb
