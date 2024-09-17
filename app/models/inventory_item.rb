@@ -171,8 +171,21 @@ class InventoryItem < ApplicationRecord
 
   searchable :auto_index => false do |sunspot_dsl|
     sunspot_dsl.integer :id
-    sunspot_dsl.text :source_id do
-      source_id
+    sunspot_dsl.integer :source_id
+
+    sunspot_dsl.text :title
+    sunspot_dsl.text :composer
+
+    sunspot_dsl.string :title_order do |s|
+      s.title
+    end
+
+    sunspot_dsl.string :composer_order do |s|
+      s.composer
+    end
+
+    sunspot_dsl.string :inventory_title_order do |s|
+      s.source.title
     end
     
     sunspot_dsl.join(:folder_id, :target => FolderItem, :type => :integer, 
@@ -216,5 +229,7 @@ class InventoryItem < ApplicationRecord
   def self.ransackable_associations(auth_object = nil)
     reflect_on_all_associations.map { |a| a.name.to_s }
   end
+
+  ransacker :"786i", proc{ |v| } do |parent| parent.table[:id] end
 
 end

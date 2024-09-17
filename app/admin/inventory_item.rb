@@ -120,6 +120,8 @@ ActiveAdmin.register InventoryItem do
     def index
       @results, @hits = InventoryItem.search_as_ransack(params)
       
+      @ident_statuses = Source.get_terms("786i_sms")
+
       index! do |format|
         @inventory_items = @results
         format.html
@@ -176,23 +178,34 @@ ActiveAdmin.register InventoryItem do
   ###########
   ## Index ##
   ###########
-    
-  # Solr search all fields: "_equal"
-  #filter :lib_siglum_eq, :label => proc {I18n.t(:any_field_contains)}, :as => :string
-  #filter :source_id_cont, :label => proc{I18n.t(:filter_source_id)}, :as => :string
-
   
-  # This filter passes the value to the with() function in seach
-  # see config/initializers/ransack.rb
-  # Use it to filter sources by folder
+  filter :title_cont, :label => proc{I18n.t(:title_contains)}, :as => :string
+  filter :composer_cont, :label => proc{I18n.t(:composer_contains)}, :as => :string
+
+  # _eq is the any field
+  filter :title_eq, :label => proc {I18n.t(:any_field_contains)}, :as => :string
+
   filter :id_with_integer, :label => proc {I18n.t(:is_in_folder)}, as: :select, 
          collection: proc{Folder.where(folder_type: "InventoryItem").collect {|c| [c.lib_siglum, "folder_id:#{c.id}"]}}
   
+  filter :source_id_with_integer, :label => proc {I18n.t(:"record_types.inventory")}, as: :select, 
+         collection: proc{Source.where(record_type: MarcSource::RECORD_TYPES[:inventory]).or(Source.where(record_type: MarcSource::RECORD_TYPES[:inventory_edition])).collect {|c| [c.title, "source_id:#{c.id}"]}}
+
+  filter :"786i_with_integer", :label => proc {I18n.t(:"records.identification_status")}, as: :select, 
+         collection: proc{@ident_statuses.sort.collect {|k| [k.camelize, "786i:#{k}"]}}
+
+  filter :wf_owner_with_integer, :label => proc {I18n.t(:filter_owner)}, :as => :flexdatalist, data_path: proc{list_for_filter_admin_users_path()}
+
   index :download_links => false do
     selectable_column if !is_selection_mode?
     column (I18n.t :filter_id), :id    
     column (I18n.t :filter_title), :title
     column (I18n.t :filter_composer), :composer
+    column (I18n.t :"record_types.inventory"), :inventory_title, sortable: :inventory_title_order do |element|
+      link_to(element.source.title, admin_source_path(element.source.id))
+      #element.source.title
+    end
+
     active_admin_muscat_actions( self, false ) # Hide the "view" button
   end
   

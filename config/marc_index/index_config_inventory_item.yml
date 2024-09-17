@@ -3,6 +3,22 @@ config:
     :model: inventory_item
 
 fields:  
+  "100a":
+    :type: string
+  "786i":
+    :type: string
+    :store: true
+  "786o":
+    :type: text
+    :store: true
   "773w":
-      :store: true
+    :type: string
+  "775w":
+    :type: string
+  "930w":
+    :type: string
+  "931w":
+    :type: string
+  "932w":
+    :type: string
 
