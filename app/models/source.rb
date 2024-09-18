@@ -333,6 +333,10 @@ class Source < ApplicationRecord
       end
     end
 
+    sunspot_dsl.boolean :has_internal_note do |s|
+      (s.marc.by_tags(["599"]).count > 0)
+    end
+
     sunspot_dsl.text :text do |s|
       s.marc.to_raw_text
     end
@@ -712,5 +716,6 @@ class Source < ApplicationRecord
   ransacker :"856x", proc{ |v| } do |parent| parent.table[:id] end
   ransacker :record_type_select, proc{ |v| } do |parent| parent.table[:id] end
   ransacker :source_rism_ids, proc{ |v| } do |parent| parent.table[:id] end
-    
+  ransacker :has_internal_note, proc{ |v| } do |parent| parent.table[:id] end
+  
 end

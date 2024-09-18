@@ -293,6 +293,10 @@ class Institution < ApplicationRecord
       s.marc.to_raw_text
     end
 
+    sunspot_dsl.boolean :has_siglum do |i|
+      (i.siglum && !i.siglum.empty?) == true
+    end
+
     MarcIndex::attach_marc_index(sunspot_dsl, self.to_s.downcase)
     
   end
@@ -331,6 +335,7 @@ class Institution < ApplicationRecord
 
   ransacker :"110g_facet", proc{ |v| } do |parent| parent.table[:id] end
   ransacker :"667a", proc{ |v| } do |parent| parent.table[:id] end
+  ransacker :"has_siglum", proc{ |v| } do |parent| parent.table[:id] end
    
   def holdings
     ActiveSupport::Deprecation.warn('Please use referring_holdings from institution')

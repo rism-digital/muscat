@@ -280,6 +280,10 @@ ActiveAdmin.register Source do
     if: proc { is_selection_mode? == true && params.include?(:q) && params[:q].include?(:lib_siglum_with_integer)}, :as => :lib_siglum
   
   filter :"852c_cont", :label => proc{I18n.t(:filter_shelf_mark)}, :as => :string
+
+  filter :has_internal_note_with_integer, as: :select, :label => proc{I18n.t(:has_internal_notes)},
+    collection: proc{[["True", "has_internal_note:true"], ["False", "has_internal_note:false"]]}
+
   filter :"599a_cont", :label => proc{I18n.t(:internal_note_contains)}, :as => :string
 
   # This filter is the "any field" one
