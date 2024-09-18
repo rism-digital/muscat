@@ -271,7 +271,7 @@ ActiveAdmin.register Source do
   filter :composer_cont, :label => proc{I18n.t(:composer_contains)}, :as => :string
 
   filter :"source_rism_ids_cont", :label => proc{I18n.t(:filter_id)}, :as => :string
-  filter :"510c_cont", :label => proc{I18n.t(:book_id)}, :as => :string
+  filter :"510c_cont", :label => proc{I18n.t(:filter_book_id)}, :as => :string
   
   filter :"852a_facet_cont", :label => proc{I18n.t(:library_sigla_contains)}, :as => :string, if: proc { !is_selection_mode? }
   # see See lib/active_admin_record_type_filter.rb
@@ -281,7 +281,7 @@ ActiveAdmin.register Source do
   
   filter :"852c_cont", :label => proc{I18n.t(:filter_shelf_mark)}, :as => :string
 
-  filter :has_internal_note_with_integer, as: :select, :label => proc{I18n.t(:has_internal_notes)},
+  filter :has_internal_note_with_integer, as: :select, :label => proc{I18n.t(:filter_has_internal_notes)},
     collection: proc{[["True", "has_internal_note:true"], ["False", "has_internal_note:false"]]}
 
   filter :"599a_cont", :label => proc{I18n.t(:internal_note_contains)}, :as => :string

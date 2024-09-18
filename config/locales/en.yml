@@ -590,6 +590,10 @@ en:
   filter_is_text: "\"Text\", used in 031 $t"
   filter_is_standard: "\"Standard\", used in 240 $a"
   filter_is_additional: "\"Additional\", used in 730 $a"
+  filter_book_id: "Book id"
+  filter_has_internal_notes: "Has internal notes"
+  filter_has_siglum: "Has siglum"
+  filter_has_incipits: "Has incipits"
 
   ## Referring lists for auth files
   refers_to_this: "%{model_from} referring to this %{model_to}"

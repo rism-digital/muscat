@@ -117,7 +117,7 @@ ActiveAdmin.register Institution do
   # Solr search all fields: "_equal"
   filter :full_name_eq, :label => proc {I18n.t(:any_field_contains)}, :as => :string
   
-  filter :has_siglum_with_integer, as: :select, :label => proc{I18n.t(:has_siglum)},
+  filter :has_siglum_with_integer, as: :select, :label => proc{I18n.t(:filter_has_siglum)},
   collection: proc{[["True", "has_siglum:true"], ["False", "has_siglum:false"]]}
 
   filter :"110g_facet_cont", :label => proc{I18n.t(:library_sigla_contains)}, :as => :string
