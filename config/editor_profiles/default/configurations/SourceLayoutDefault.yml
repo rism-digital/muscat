@@ -15,7 +15,11 @@ group_exclude:
   composite_volume:
   - edit_incipits
   - edit_works
-
+  inventory:
+  - edit_incipits
+  inventory_edition:
+  - edit_incipits
+  
 tag_exclude:
   collection:
   - '026'

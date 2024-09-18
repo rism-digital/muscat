@@ -9,6 +9,25 @@
   layout: 
     fields: 
     - - a
+"040":
+  layout:
+    fields:
+    - - a
+      - hidden: true
+    - - d
+      - hidden: true
+    - - b
+      - editor_partial: subfield_select_codes
+        select_label: "Language"
+        codes_reference: "codes"
+  tag_params:
+    codes:
+      - "eng"
+      - "fre"
+      - "ger"
+      - "ita"
+      - "por"
+      - "spa"
 "300": 
   layout: 
     fields: 

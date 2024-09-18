@@ -61,11 +61,25 @@
     fields: 
     - - f
     - - d
-"040": 
-  layout: 
-    fields: 
+"040":
+  layout:
+    fields:
     - - a
-      - read_only: true
+      - hidden: true
+    - - d
+      - hidden: true
+    - - b
+      - editor_partial: subfield_select_codes
+        select_label: "Language"
+        codes_reference: "codes"
+  tag_params:
+    codes:
+      - "eng"
+      - "fre"
+      - "ger"
+      - "ita"
+      - "por"
+      - "spa"
 "043": 
   layout: 
     fields: 

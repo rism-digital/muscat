@@ -179,19 +179,25 @@
     - - indicator
       - editor_partial: subfield_indicator
     - - a
-
-"040": 
-  layout: 
-    fields: 
+"040":
+  layout:
+    fields:
     - - a
-      - cols: 2
-    - - c
-      - cols: 2
+      - hidden: true
     - - d
-      - cols: 2
+      - hidden: true
     - - b
-      - cols: 2
-    columns: 4
+      - editor_partial: subfield_select_codes
+        select_label: "Language"
+        codes_reference: "codes"
+  tag_params:
+    codes:
+      - "eng"
+      - "fre"
+      - "ger"
+      - "ita"
+      - "por"
+      - "spa"
 "100":
   new_window: people
   new_window_field: full_name_equals

@@ -48,13 +48,25 @@
         - "WKP"
         default: "VIAF"
         editor_partial: subfield_select
-"040": 
-  layout: 
-    fields: 
+"040":
+  layout:
+    fields:
     - - a
-    - - c
+      - hidden: true
     - - d
+      - hidden: true
     - - b
+      - editor_partial: subfield_select_codes
+        select_label: "Language"
+        codes_reference: "codes"
+  tag_params:
+    codes:
+      - "eng"
+      - "fre"
+      - "ger"
+      - "ita"
+      - "por"
+      - "spa"
 "042": 
   layout: 
     fields: 
