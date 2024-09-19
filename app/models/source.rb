@@ -325,6 +325,10 @@ class Source < ApplicationRecord
       Sunspot::Util::Coordinates.new(lat, lon)
     end
 
+    sunspot_dsl.boolean :has_music_incipit do |s|
+      s.marc.has_incipits?
+    end
+
     sunspot_dsl.integer :copies, :stored => true do |s|
       if s.holdings.count > 0
         s.holdings.count
@@ -717,5 +721,6 @@ class Source < ApplicationRecord
   ransacker :record_type_select, proc{ |v| } do |parent| parent.table[:id] end
   ransacker :source_rism_ids, proc{ |v| } do |parent| parent.table[:id] end
   ransacker :has_internal_note, proc{ |v| } do |parent| parent.table[:id] end
-  
+  ransacker :"has_music_incipit", proc{ |v| } do |parent| parent.table[:id] end
+
 end

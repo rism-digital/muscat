@@ -229,16 +229,7 @@ class Work < ApplicationRecord
     end
     
     sunspot_dsl.boolean :has_music_incipit do |s|
-      count = 0
-      s.marc.by_tags(["031"]).each do |st|
-        st.fetch_all_by_tag("p").each do |sst|
-          if sst && sst.content && !sst.content.empty?
-            count += 1 
-            break
-          end
-        end
-      end
-      count > 0
+      s.marc.has_incipits?
     end
 
     MarcIndex::attach_marc_index(sunspot_dsl, self.to_s.downcase)

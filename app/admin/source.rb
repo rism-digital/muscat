@@ -290,6 +290,10 @@ ActiveAdmin.register Source do
   filter :title_eq, :label => proc {I18n.t(:any_field_contains)}, :as => :string
   filter :updated_at, :label => proc{I18n.t(:updated_at)}, as: :date_range
   filter :created_at, :label => proc{I18n.t(:created_at)}, as: :date_range
+
+  filter :has_music_incipit_with_integer, as: :select, :label => proc{I18n.t(:filter_has_incipits)},
+  collection: proc{[["True", "has_music_incipit:true"], ["False", "has_music_incipit:false"]]}
+
   # This filter passes the value to the with() function in seach
   # see config/initializers/ransack.rb
   # Use it to filter sources by folder
