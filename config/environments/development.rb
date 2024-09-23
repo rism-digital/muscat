@@ -106,4 +106,6 @@ Rails.application.configure do
   # Raise error when a before_action's only/except options reference missing actions
   config.action_controller.raise_on_missing_callback_actions = true
 
+  # Do not add obsolete utf8=✓ to url parameters (default setting since Rails 6)
+  config.action_view.default_enforce_utf8 = false
 end
