@@ -24,6 +24,8 @@ end.parse!
 model = @options[:model_name].classify.constantize
 # For sources limit to published records
 published_only = (@options[:model_name] == "Source") ? {:wf_stage => 1} : {}
+#  Deprecated ids
+deprecated_ids = (@options[:legacy]) ? "true" : "false"
 
 # list of ids
 items = model.where(published_only).order(:id).pluck(:id)
@@ -36,7 +38,7 @@ bar = ProgressBar.new(items.size)
 items.each do |s|
   record = model.find(s)
   # Add deprecated_ids: "false" if necessary
-  file.write(record.marc.to_xml_record({ created_at: record.created_at, updated_at: record.updated_at, holdings: true }).root.to_s)
+  file.write(record.marc.to_xml_record({ created_at: record.created_at, updated_at: record.updated_at, holdings: true, deprecated_ids: deprecated_ids }).root.to_s)
 
   bar.increment!
   record = nil
