@@ -24,6 +24,11 @@ class Marc
 		'rus' => 'Russian'
   }
 
+  PREFIXES = {
+    "person" => "pe",
+    "institution" => "ks"
+  }
+
   public
   
   DOLLAR_STRING = "_DOLLAR_"
@@ -118,7 +123,11 @@ class Marc
       end
     end
 
-    by_tags("599").each {|t| t.destroy_yourself}
+    _035_content = "#{PREFIXES[@model]}#{first_occurance('001').content}"
+    tag_035 = MarcNode.new(@model, "035", nil, nil)
+    tag_035.add_at(MarcNode.new(@model, "a", _035_content, nil), 0)
+    @root.children.insert(get_insert_position("035"), tag_035)
+
   end
   
   # Parse a MARC 21 line

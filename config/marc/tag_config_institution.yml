@@ -79,6 +79,13 @@
       - :occurrences: "1"
     - - f
       - :occurrences: "1"
+  "035":
+    :master: "a"
+    :indicator: ""
+    :occurrences: "1"
+    :fields:
+    - - a
+      - :occurrences: "1"
   "040":
     :master: a
     :indicator: "##"
