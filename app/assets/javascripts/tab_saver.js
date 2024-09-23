@@ -45,7 +45,10 @@ function unpack_tab_cookie(cookie) {
     let cookie_value = decodeURI(parts[0])
     let cookie_payload = JSON.parse(atob(cookie_value))
 
-    return cookie_payload
+    // In rails 7 we need to extract more...
+    let message = JSON.parse(atob(cookie_payload["_rails"]["message"]))
+
+    return message
 }
 
 function get_or_create_tab_id() {
