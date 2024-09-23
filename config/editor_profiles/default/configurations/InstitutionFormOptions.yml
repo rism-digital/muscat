@@ -171,6 +171,17 @@
       - "XD-VE"
       - "XB-VN"
       - "XD-EC"
+"094": 
+  layout: 
+    fields: 
+    - - a
+    - - z
+    - - q
+      - editor_partial: subfield_hardcoded
+        value: "siglum"
+    - - "2"
+      - editor_partial: subfield_hardcoded
+        value: "rism"
 "110": 
   layout: 
     fields: 

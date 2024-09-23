@@ -15,6 +15,7 @@ groups:
       "024": marc_show/show_dnb_link
   identity:
     all_tags:
+    - "094"
     - "110"
     - "510"
     - "410"

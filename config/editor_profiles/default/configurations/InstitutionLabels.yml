@@ -64,6 +64,17 @@
   label: records.country_code
 04_codes_other:
   label: records.other
+'094':
+  fields:
+    '2':
+      label: records.source_number_code
+    a:
+      label: records.siglum
+    q:
+      label: records.qualifying_information
+    z:
+      label: records.former_siglum
+  label: records.siglum
 '110':
   fields:
     a:
