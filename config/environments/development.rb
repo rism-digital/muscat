@@ -100,4 +100,6 @@ Rails.application.configure do
 
   config.logger = ActiveSupport::Logger.new("log/#{Rails.env}.log", 10, 10485760)
 
+  # Do not add obsolete utf8=✓ to url parameters (default setting since Rails 6)
+  config.action_view.default_enforce_utf8 = false
 end
