@@ -32,6 +32,7 @@ groups:
     - "510"
     - "550" 
     - "551"
+    - "910"
     all_tag_templates:
       "500": people/show_related_person
       "510": marc_show/show_institution

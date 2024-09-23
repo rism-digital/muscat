@@ -152,6 +152,10 @@ en:
   switch_language: "Switch language" 
   this_file_language: "English"
   
+  ransack:
+    predicates:
+      with_integer: "is"
+
   time:
     formats:
       default: "%H:%M"

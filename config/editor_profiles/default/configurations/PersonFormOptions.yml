@@ -334,3 +334,10 @@
     - - z
       - unrestricted:
           - person_restricted
+"910":
+  layout:
+    fields:
+    - - a
+      - read_only: true
+    - - "0"
+      - hidden: true
