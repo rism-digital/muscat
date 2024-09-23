@@ -81,8 +81,8 @@ module Muscat
           else
             next_item = results[position + 1]
           end
-
-          return prev_item, next_item, prev_page, next_page, {position: position + 1, total: results.total_entries}
+          item_counter = position + ((page - 1) * MAX_PER_PAGE) + 1
+          return prev_item, next_item, prev_page, next_page, {position: item_counter , total: results.total_entries}
         end
 
         private
@@ -141,7 +141,7 @@ module Muscat
           fields = []
           order = {}
           with = {}
-          page = params.has_key?(:page) ? params[:page] : 1
+          page = params.has_key?(:page) ? params[:page].to_i : 1
 
           if params.has_key?(:order)
             order = params[:order].include?("_asc") ? "asc" : "desc"
