@@ -123,6 +123,8 @@ class Marc
       end
     end
 
+    by_tags("599").each {|t| t.destroy_yourself}
+
     _035_content = "#{PREFIXES[@model]}#{first_occurance('001').content}"
     tag_035 = MarcNode.new(@model, "035", nil, nil)
     tag_035.add_at(MarcNode.new(@model, "a", _035_content, nil), 0)
