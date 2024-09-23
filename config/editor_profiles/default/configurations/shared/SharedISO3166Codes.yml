@@ -136,6 +136,8 @@ XB-SA:
   label: places.saudi_arabia
 XB-SY:
   label: places.syrian_arab_republic
+XB-TM:
+  label: places.turkmenistan
 XB-TR:
   label: places.turkey
 XB-TW:
