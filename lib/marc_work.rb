@@ -19,6 +19,12 @@ class MarcWork < Marc
 
     cat_no = get_catalogue
 
+    node = first_occurance("130", "m")
+    scoring = node.content.truncate(50) if node && node.content
+    scoring = scoring.strip if scoring
+
+    title += ", #{scoring}" if scoring
+
     return "#{composer}" + [title, key, cat_no].join("; ")
   end
 
