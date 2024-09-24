@@ -818,6 +818,7 @@ en:
     begins_with_message: "Must begin with \"{0}\""
     required_if_message: "Field is mandatory because {0} ${1} is not empty"
     cannot_link_to_self: "The record cannot link to itself (%{id})."
+    check_group_message: "The first material group cannot be \"Additional printed material\""
     
   incipit_search:
     incipit_search: "Incipit Search"

@@ -79,6 +79,9 @@ client:
 #    tags:
 #      "a": mandatory
 #      "b": mandatory
+  "593":
+    tags:
+      a: check_group
   "594": 
     tag_overrides:
       exclude:

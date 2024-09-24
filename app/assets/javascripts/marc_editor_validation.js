@@ -295,6 +295,20 @@ function marc_validate_required_if(value, element, param) {
 	return valid;
 }
 
+// #1622, the first group cannot be "Additional printed material"
+function marc_validate_check_group(value, element, param) {
+
+	var my_dt = $(element).parents(".inner_group_dt");
+
+	// Are we the first group in the list?
+	if ($(my_dt).is('.toplevel_group_dl .inner_group_dt:first-child')) {
+		if (value === "Additional printed material")
+			return false;
+	}
+
+	return true;
+}
+
 function marc_validate_new_creation(value, element) {
 	if ($(element).data("check") == true) {
 		if (element.checked == false) {
@@ -449,6 +463,8 @@ function marc_editor_init_validation(form, validation_conf) {
 			$.validator.format(I18n.t("validation.required_if_message")));
 	$.validator.addMethod("begins_with", marc_validate_begins_with, 
 			$.validator.format(I18n.t("validation.begins_with_message")));
+	$.validator.addMethod("check_group", marc_validate_check_group,
+			$.validator.format(I18n.t("validation.check_group_message")));
 			
 	// New creation: this is not configurable, it is used to make sure the
 	// "confirm create new" checkbox is selected for new items
@@ -474,6 +490,8 @@ function marc_editor_init_validation(form, validation_conf) {
 					$.validator.addClassRules(element_class, { presence: true });
 				} else if (rule_name == "mandatory") {
 					$.validator.addClassRules(element_class, { mandatory: true });
+				} else if (rule_name == "check_group") {
+					$.validator.addClassRules(element_class, { check_group: true });
 				}
 			} else if (subtag instanceof Object) {
 				// More complex dataype
