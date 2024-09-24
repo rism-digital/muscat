@@ -19,6 +19,10 @@ module ActiveAdmin
       end
 
       def restore_search_filters
+
+        # If we render via ajax, skip all this
+        return if request.xhr?
+        
         # we like nice things! show it in the footer
         # Note: we need a global variable here so
         # it shows in the footer through Arbre
@@ -133,6 +137,9 @@ module ActiveAdmin
       end
 
       def save_search_filters
+        # as above, if we render via ajax, skip all this
+        return if request.xhr?
+
         saved_filters = create_saved_filters_for(cookies["tab-id"])
 
         session[:select] = nil
