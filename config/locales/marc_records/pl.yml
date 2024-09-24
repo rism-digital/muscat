@@ -526,8 +526,8 @@ pl:
     help_transposing_instruments: Pomoc przy transpozycji instrumentów
     history_institution: Historia instytucji
     holdings_location: Pola egzemplarza, lokalizacji itp.
-    identification_status: Identification status
-    identified_manuscript: Identified manuscript
+    identification_status: Status identyfikacji
+    identified_manuscript: Zidentyfikowany rękopis
     identified_holding: Identified holding
     identified_work: Identified work
     identity: Tożsamość
