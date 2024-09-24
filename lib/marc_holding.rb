@@ -35,8 +35,19 @@ class MarcHolding < Marc
         end
       end
     end
+    
+    # Sould always be there
+    if node.foreign_object && node.foreign_object.full_name
+      res['name'] = node.foreign_object.full_name.truncate(90) # Avoid overflowing the box
+    end
+
     if res.length > 0
-      return "#{res['a']}#{" " + res['c'] if res['c']}#{" [" + res['q'] +"]" if res['q']}"
+      #return "#{res['a']}#{" " + res['c'] if res['c']}#{" [" + res['q'] +"]" if res['q']}"
+      res.to_a.join(" ")
+      out = "#{res['a']} (#{res['name']})" # library name + siglum
+      out += ": #{res['c']}" if res['c'] && res['c'] != "[no indication]" # Do we have a shelfmark?
+      out += " [#{res['q']}]" if res['q'] # scoring
+      return out
     else
       I18n.t(:holding_no_siglum)
     end
