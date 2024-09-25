@@ -620,6 +620,7 @@ en:
   
   # Assorted error messages
   error_not_found: "The resource you are trying to access does not exist or has been deleted."
+  gnd_not_found: "The request to GND returned an empty record"
   error_saving: "The resource is not complete or generates a duplicate"
   unknown_tags: "There are some unknown fields in this record"
   ungrouped_tags: "There are ungrouped fields in this record"
