@@ -481,11 +481,11 @@ pl:
     figured_bass_scores: Bas cyfrowany w partyturze i / lub w innych częściach
     fijian: Fidżyjski
     fingerprint_identifier: Identyfikator odcisku palca
-    first_entry: First entry
+    first_entry: Pierwszy wpis
     first_second_group: Pierwsza / druga grupa
     form_subdivision: Dalszy podział formularza
     format_extent: Rodzaj źródła, objętość
-    former_siglum: Former siglum
+    former_siglum: Poprzednie siglum
     former_owner: Poprzedni właściciel
     fragments: Fragmenty
     fs_major: Fis-dur
@@ -528,8 +528,8 @@ pl:
     holdings_location: Pola egzemplarza, lokalizacji itp.
     identification_status: Status identyfikacji
     identified_manuscript: Zidentyfikowany rękopis
-    identified_holding: Identified holding
-    identified_work: Identified work
+    identified_holding: Zidentyfikowany egzemplarz
+    identified_work: Zidentyfikowane Dzieło
     identity: Tożsamość
     identity_area: Obszar tożsamości
     iiif_manifest: "Manifest IIIF (źródło zdigitalizowane)"
@@ -576,7 +576,7 @@ pl:
     language_of_cataloging: Język katalogowania
     language_original_text: Język tekstu oryginalnego
     language_text: Język tekstu
-    later_entry: Later entry
+    later_entry: Późniejszy wpis
     later_heading: Późniejsza pozycja
     latitude: Szerokość geograficzna
     leader: Leader

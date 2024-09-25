@@ -9,11 +9,11 @@ module GND
     require 'net/http'
 
     SRU_PUSH_URL = "https://devel.dnb.de/sru_ru/"
-    #SRU_READ_URL_AUTH = "https://services.dnb.de/sru/authorities"
-    #SRU_READ_URL = "https://services.dnb.de/sru/cbs-appr"
+    SRU_READ_URL_AUTH = "https://services.dnb.de/sru/authorities"
+    SRU_READ_URL = "https://services.dnb.de/sru/cbs-appr"
 
-    SRU_READ_URL_AUTH = "https://devel.dnb.de/sru/cbs-appr"
-    SRU_READ_URL = "https://devel.dnb.de/sru/cbs-appr"
+    #SRU_READ_URL_AUTH = "https://devel.dnb.de/sru/cbs-appr"
+    #SRU_READ_URL = "https://devel.dnb.de/sru/cbs-appr"
 
     def self.search(params, limit = 10)
         result = []
@@ -42,7 +42,10 @@ module GND
 
         action = m.get_id == "__TEMP__" ? :create : :replace
 
-        return send_to_gnd(action, m.to_xml_record({}), m.get_id)
+        # is this evil? maybe
+        xml = m.to_xml({}).gsub('<?xml version="1.0" encoding="UTF-8"?>', '')
+
+        return send_to_gnd(action, xml, m.get_id)
     end
 
     # post xml to gnd
@@ -61,7 +64,7 @@ module GND
         server.start {|http|
             http.request(post, request_body) {|response|
                 if response.code == "200"
-                    puts response.body
+            puts response.body
                     response_body = Nokogiri::XML(response.body)
 
                     # Get all the messages if any
@@ -82,6 +85,8 @@ module GND
                         title = response_body.xpath("//srw:recordData/record/datafield[@tag='130']/subfield[@code='a']", NAMESPACE).first.content rescue title = ""
                         author = response_body.xpath("//srw:recordData/record/datafield[@tag='400']/subfield[@code='a']", NAMESPACE).first.content rescue author = ""
                     end
+                else
+                    diagnostic_messages = "#{response.code} #{response.message}"
                 end
             }
         }
