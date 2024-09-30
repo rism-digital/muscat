@@ -101,10 +101,15 @@ include ApplicationHelper
             elsif rule == "uniq"
               binding.pry
             elsif rule == "check_group"
-              val = @marc.first_occurance("593", "a")
-              if index == 0 && marc_subtag && marc_subtag.content && marc_subtag.content == "Additional printed material"
-                add_error(tag, subtag, rule)
-                puts "The first material group cannot be \"Additional printed material\"" if DEBUG
+              grp_index = marc_tag.fetch_first_by_tag("8")
+              if grp_index && grp_index.content
+                if grp_index.content.to_i == 1 && marc_subtag && marc_subtag.content && marc_subtag.content == "Additional printed material"
+                  add_error(tag, subtag, rule)
+                  puts "The first material group cannot be \"Additional printed material\"" if DEBUG
+                end
+              else
+                add_error(tag, subtag, "not_in_group")
+                puts "check_group requested but tag is not in a group #{tag}#{subtag}" if DEBUG
               end
             else
               puts "Unknown rule #{rule}" if rule != "mandatory"
