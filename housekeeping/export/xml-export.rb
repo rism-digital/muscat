@@ -8,22 +8,24 @@ require 'optparse'
 
 # Default options
 @options = {
-    :model_name => 'Source',
-    :filename => "./export.xml",
-    :legacy => false
+  :filename => "./export.xml",
+  :model_name => 'Source',
+  :all => false,
+  :legacy => false
 }
 
 OptionParser.new do |opts|
   opts.banner = "Usage: example.rb [options]"
-  opts.on('-m', '--model NAME', 'Model name') { |v| @options[:model_name] = v }
   opts.on('-f', '--file FILE', 'Filename') { |v| @options[:filename] = v }
+  opts.on('-m', '--model NAME', 'Model name') { |v| @options[:model_name] = v }
+  opts.on("-a", "--all", "All records (including unpublished)") { @options[:all] = true }
   opts.on("-l", "--legacy", "Enable legacy mode") { @options[:legacy] = true }
 end.parse!
 
 # Retrieve the class
 model = @options[:model_name].classify.constantize
 # For sources limit to published records
-published_only = (@options[:model_name] == "Source") ? {:wf_stage => 1} : {}
+published_only = (@options[:all]) ? {} : {:wf_stage => 1}
 #  Deprecated ids
 deprecated_ids = (@options[:legacy]) ? "true" : "false"
 
