@@ -74,6 +74,8 @@ class MarcWork < Marc
 
   # Make sure we do not use the default to_external
   def to_external(created_at = nil, updated_at = nil, versions = nil, holdings = false, deprecated_ids = true)
+    super(created_at, updated_at, versions)
+    add_auth_leader("work")
   end
 
 end

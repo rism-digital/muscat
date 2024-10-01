@@ -65,9 +65,12 @@ class MarcInstitution < Marc
       end
     end
   end
+
   def to_external(created_at = nil, updated_at = nil, versions = nil, holdings = false, deprecated_ids = true)
     super(created_at, updated_at, versions)
     parent_object = Institution.find(get_id)
+
+    add_auth_leader()
     
     by_tags("667").each {|t| t.destroy_yourself}
 

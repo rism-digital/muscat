@@ -91,6 +91,7 @@ class Marc
     by_tags("005").each {|t| t.destroy_yourself}
     by_tags("008").each {|t| t.destroy_yourself}
   end
+
   # TODO arguments should use parameters or keywords
   def to_external(created_at = nil, updated_at = nil, versions = nil, holdings = false, deprecated_ids = true)
     # cataloguing agency
@@ -121,6 +122,13 @@ class Marc
     by_tags("599").each {|t| t.destroy_yourself}
   end
   
+  def add_auth_leader()
+    # This leader represents a new (05-n), Authority (06-z) record, using UTF-8 encoding (08-#)  
+    leader = "00000nz###2200037nu#4500"
+    new_leader = MarcNode.new(@model, "000", leader, "")
+    @root.children.insert(get_insert_position("000"), new_leader)
+  end
+
   # Parse a MARC 21 line
   def parse_marc21(tag, data)
     # Warning! we are skipping the tag that are not included in MarcConfig
