@@ -366,7 +366,7 @@ class MarcSource < Marc
     # Step 1, make leader
     # manuscript and print, if it is part of a collection (......[cd]d...............) or not (......[cd]m...............)
 
-    base_leader = "00000nXX#a2200000#u#4500"
+    base_leader = "00000nXX##2200000#u#4500"
 
     if (@record_type == RECORD_TYPES[:collection])
       leader = base_leader.gsub("XX", "dc")
