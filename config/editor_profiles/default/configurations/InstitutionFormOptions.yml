@@ -175,6 +175,11 @@
   layout: 
     fields: 
     - - a
+      - trigger:
+        - save:
+          - referring_sources
+          - referring_holdings
+          - referring_publications
       - editor_partial: subfield_hardcoded
     - - z
       - editor_partial: subfield_hardcoded
@@ -203,12 +208,6 @@
         - save:
           - referring_institutions
     - - c
-      - trigger:
-        - save:
-          - referring_sources
-          - referring_holdings
-          - referring_publications
-    - - g
       - trigger:
         - save:
           - referring_sources

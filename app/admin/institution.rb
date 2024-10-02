@@ -120,7 +120,7 @@ ActiveAdmin.register Institution do
   filter :has_siglum_with_integer, as: :select, :label => proc{I18n.t(:filter_has_siglum)},
   collection: proc{[["True", "has_siglum:true"], ["False", "has_siglum:false"]]}
 
-  filter :"110g_facet_cont", :label => proc{I18n.t(:library_sigla_contains)}, :as => :string
+  filter :"094a_facet_cont", :label => proc{I18n.t(:library_sigla_contains)}, :as => :string
   filter :place_cont, :label => proc {I18n.t(:filter_place)}, :as => :string
   filter :"667a_cont", :label => proc{I18n.t(:internal_note_contains)}, :as => :string
   filter :updated_at, :label => proc{I18n.t(:updated_at)}, as: :date_range

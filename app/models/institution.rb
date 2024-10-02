@@ -333,7 +333,7 @@ class Institution < ApplicationRecord
     reflect_on_all_associations.map { |a| a.name.to_s }
   end
 
-  ransacker :"110g_facet", proc{ |v| } do |parent| parent.table[:id] end
+  ransacker :"094a_facet", proc{ |v| } do |parent| parent.table[:id] end
   ransacker :"667a", proc{ |v| } do |parent| parent.table[:id] end
   ransacker :"has_siglum", proc{ |v| } do |parent| parent.table[:id] end
    
