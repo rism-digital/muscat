@@ -614,6 +614,10 @@
             - Print
           composite_volume:
             - Composite
+          inventory:
+            - Manuscript copy
+          inventory_edition:
+            - Print
         editor_partial: subfield_select
     - - b
       - values:
@@ -636,6 +640,10 @@
           - "Notated music"
           - "Libretto"
           - "Treatise"
+          inventory:
+          - "Inventory"
+          inventory_edition:
+          - "Inventory"
 "594":
   layout:
     fields:

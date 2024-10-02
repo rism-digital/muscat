@@ -228,6 +228,7 @@ en:
     edition: "Printed music edition, collection parent record or individual item"
     inventory: "Inventory"
     inventory_edition: "Inventory edition"
+    inventories: "Inventories"
 
     composite_volumes: "Composite volumes"
     composite_volume: "Record for a composite volume"
