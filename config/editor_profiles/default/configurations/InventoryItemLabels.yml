@@ -86,11 +86,6 @@
     a:
       label: records.general_note
   label: records.general_note
-'560':
-  fields:
-    a:
-      label: records.what_is_this
-  label: records.what_is_this
 '593':
   fields:
     '8':

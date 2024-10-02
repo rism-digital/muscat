@@ -134,13 +134,6 @@
     - - "8"
       - :occurrences: "?"
         :no_browse: true
-  "560":
-    :master: a
-    :indicator: "##"
-    :occurrences: "*"
-    :fields:
-    - - a
-      - :occurrences: "?"
   "593":
     :master: a
     :indicator: "##"

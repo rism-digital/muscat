@@ -218,11 +218,6 @@
     fields: 
     - - a
       - growfield: true
-"560": 
-  layout: 
-    fields: 
-    - - a
-      - growfield: true
 "593": 
   layout: 
     fields: 
