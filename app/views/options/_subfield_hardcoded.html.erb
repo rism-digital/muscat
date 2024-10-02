@@ -5,7 +5,8 @@ else
     value = params['value']
 end
 
-disabled = current_user.has_role?(:editor) || current_user.has_role?(:admin) ? "" : "disabled='true'"
-%>
+never_enable = params['never_enable'] #rescue never_enable = false
 
+disabled = (current_user.has_role?(:editor) || current_user.has_role?(:admin)) && !never_enable ? "" : "disabled='true'"
+%>
 <input class="subfield_entry serialize_marc" size="100" type="text" data-tag="<%=tag_name%>" data-subfield="<%=subfield%>" value="<%= h value %>" <%=disabled%>/>

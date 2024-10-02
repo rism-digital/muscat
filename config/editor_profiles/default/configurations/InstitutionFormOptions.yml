@@ -179,9 +179,11 @@
     - - q
       - editor_partial: subfield_hardcoded
         value: "siglum"
+        never_enable: true
     - - "2"
       - editor_partial: subfield_hardcoded
         value: "rism"
+        never_enable: true
 "110": 
   layout: 
     fields: 
