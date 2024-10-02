@@ -2,10 +2,10 @@
 if marc_subfield && marc_subfield.content && !marc_subfield.content.strip.empty?
     value = marc_subfield.content
 else
-    value = params['value']
+    value = params['value'] || ""
 end
 
-never_enable = params['never_enable'] #rescue never_enable = false
+never_enable = params['never_enable'] || false
 
 disabled = (current_user.has_role?(:editor) || current_user.has_role?(:admin)) && !never_enable ? "" : "disabled='true'"
 %>
