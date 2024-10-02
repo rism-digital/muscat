@@ -26,10 +26,10 @@ SIGLUM_MAP = {
 "CH-SOa, St Leod. Prot. vol. 1": 30005638,
 "CH-Lz, Pp Msc 11.4": 30000523,
 "CH-La, KK 305": 51003803,
-"CH-G AEG, Jur Civ F 300": 51003803,
+"CH-G AEG, Jur Civ F 300": 51008226,
 "CH-BM, StiA Bd. 1206": 30000005,
-"CH-Bischofszell, Museum [1744]": 51003803,
-"CH-Bischofszell, Museum [1743]": 51003803,
+"CH-Bischofszell, Museum [1744]": 51008227,
+"CH-Bischofszell, Museum [1743]": 51008227,
 "CH-BEa, OG Bern-Muenster 208": 30002638,
 "CH-BEa, B III 873": 30002638,
 "CH-A Stadtarchiv, II.562c": 30000001,
@@ -232,9 +232,10 @@ def ms2inventory(source, library_id)
     # Swap 246 and 245
     src_txt = the_ms["source"].gsub("=246", "=NEWTAG")
     src_txt = src_txt.gsub("=245", "=246")
-    src_txt = src_txt.gsub("=246", "=245")
+    src_txt = src_txt.gsub("=NEWTAG", "=245")
 
     new_marc = MarcInventoryItem.new(the_ms["source"])
+    new_marc = MarcInventoryItem.new(src_txt)
     new_marc.load_source false # this will need to be fixed
 
     new_marc.by_tags("000").each {|t2| t2.destroy_yourself}
