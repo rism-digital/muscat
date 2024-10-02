@@ -225,7 +225,7 @@ ca:
     slovenia: Eslovènia
     south_africa: Sud-àfrica
     spain: Espanya
-    suriname: Suriname
+    suriname: Surinam
     sweden: Suècia
     switzerland: Suïssa
     switzerland_vaud: 'Suïssa: cantó de Vaud'
@@ -481,11 +481,11 @@ ca:
     figured_bass_scores: Baix xifrat
     fijian: Fijià
     fingerprint_identifier: Identificador de l'empremta
-    first_entry: First entry
+    first_entry: Primera entrada
     first_second_group: Primer/segon grup
     form_subdivision: Subdivisió de forma
     format_extent: Format, extensió
-    former_siglum: Former siglum
+    former_siglum: Sigla anterior
     former_owner: Propietari anterior
     fragments: Fragments
     fs_major: Fa♯ major
@@ -526,10 +526,10 @@ ca:
     help_transposing_instruments: Ajuda pels instruments transpositors
     history_institution: Història de la institució
     holdings_location: Camps d'exemplars i fons
-    identification_status: Identification status
-    identified_manuscript: Identified manuscript
-    identified_holding: Identified holding
-    identified_work: Identified work
+    identification_status: Estat de la identificació
+    identified_manuscript: Manuscrit identificat
+    identified_holding: Fons identificat
+    identified_work: Obra identificada
     identity: Identitat
     identity_area: Identitat
     iiif_manifest: "Manifiest IIIF (font digitalitzada)"
@@ -555,8 +555,9 @@ ca:
     internal_note: Nota interna
     introduction: Introducció
     invalid_standard_number: Número o codi estàndard cancel·lat/invàlid
-    inventory_item: Inventory item
-    inventory_source: Inventory source
+    inventory: Inventari
+    inventory_item: Exemplar de l'inventari
+    inventory_source: Font de l'inventari
     isbn: ISBN
     ismn: ISMN
     issn: ISSN
@@ -576,7 +577,7 @@ ca:
     language_of_cataloging: Idioma de catalogació
     language_original_text: Idioma del text original
     language_text: Llengua del text
-    later_entry: Later entry
+    later_entry: Entrada posterior
     later_heading: Encapçalament posterior
     latitude: Latitud
     leader: Capçalera
@@ -927,14 +928,14 @@ ca:
     P60194: "Insertat en"
     P60183: "Insert"
   relations_works:
-    P60250: "Has derivative"
-    P60305: "Has source"
-    P60216: "Is expanded as"
-    P60294: "Is expanded version of"
-    P60274: "Is arranged as"
-    P60242: "Is arragement of"
-    P60198: "Is complemented by"
-    P60313: "Undefined"
+    P60250: "Obra derivada"
+    P60305: "Té com a font"
+    P60216: "Desenvolupat com a"
+    P60294: "Versió desenvolupada de"
+    P60274: "Arranjat com a"
+    P60242: "Arranjament de"
+    P60198: "Completat per"
+    P60313: "No definit"
   verovio:
     position: "Posició"
     warning: "Avís"

@@ -555,6 +555,7 @@ pt:
     internal_note: Nota interna
     introduction: Introdução
     invalid_standard_number: Número ou código padrão cancelado/invalido
+    inventory: Inventory
     inventory_item: Inventory item
     inventory_source: Inventory source
     isbn: ISBN
