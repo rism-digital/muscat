@@ -3,6 +3,11 @@ client:
   "024":
     tags:
       a: required
+  "094":
+    tags:
+      "a":
+        required_if:
+          "094": "q"
   "110":
     tags:
       a: mandatory
