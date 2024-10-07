@@ -73,7 +73,7 @@
     q:
       label: records.qualifying_information
     z:
-      label: records.former_siglum
+      label: records.former_sigla
   label: records.siglum
 '110':
   fields:
