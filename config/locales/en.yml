@@ -336,6 +336,8 @@ en:
   new_holding_page: "New holdings information"
   new_digital_object_image: "Attach a new image"
   new_digital_object_incipit: "Attach a new MEI incipit"
+  new_inventory_item: Create new inventory item
+  new_inventory_item_page: New inventory item
   record_actions: "Record Actions"
   record_status: "Record Status"
   record_owner: "Record Owner"

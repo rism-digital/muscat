@@ -61,7 +61,8 @@ gem 'activeadmin'
 gem 'sunspot_rails', '~> 2.7'
 #gem 'sunspot_solr'
 gem 'awesome_print'
-gem 'progress_bar', '1.0.6', git: 'https://github.com/rism-ch/progress_bar'
+# From 11.2: use the original progress bar so it is compatibile with i18n-tasks
+gem 'progress_bar'#, '1.0.6', git: 'https://github.com/rism-ch/progress_bar'
 
 gem "rails3-jquery-autocomplete", '~> 1.0.26', git: 'https://github.com/rism-ch/rails3-jquery-autocomplete'
 gem "cancancan"
@@ -170,6 +171,11 @@ gem 'libxml-ruby'
 gem 'passenger'
 
 gem 'listen'
+
+# To make sure the translations are all there
+gem 'i18n-tasks', '~> 1.0.14', group: :development
+#gem 'easy_translate', group: :development
+#gem 'ruby-openai', group: :development
 
 # Uncomment this if you want to test emails in development
 #gem 'mailcatcher'
