@@ -230,6 +230,10 @@ class InventoryItem < ApplicationRecord
     reflect_on_all_associations.map { |a| a.name.to_s }
   end
 
+  def creatable?
+    false
+  end
+
   ransacker :"786i", proc{ |v| } do |parent| parent.table[:id] end
 
 end

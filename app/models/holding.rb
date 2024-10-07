@@ -280,6 +280,10 @@ class Holding < ApplicationRecord
     self.marc.get_shelf_mark
   end
 
+  def creatable?
+    false
+  end
+
   def formatted_title
     return "#{lib_siglum} [#{id}]" if !source
     return "#{lib_siglum} [#{id}] in (#{source.std_title} [#{source.id}])"if !source.composer || source.composer.empty?
