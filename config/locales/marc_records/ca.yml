@@ -1005,7 +1005,7 @@ ca:
     ERR_063_LIGATURE_PITCH: Una lligadura no pot tenir dues notes consecutives del mateix to.
     ERR_064_LIGATURE_DURATION: La duració en una lligadura no pot ser més curta que una rodona.
     ERR_065_MREST_INVALID_MEASURE: Un compàs de silenci no pot incloure res més.
-    ERR_066_EMPTY_CONTAINER: A grace group or a beam cannot be empty.
+    ERR_066_EMPTY_CONTAINER: Un ornament o una barra d'unió entre notes no poden estar buides.
   rism_online:
     manuscript: "Manuscrit"
     printed: "Imprès"

@@ -11,8 +11,9 @@
     - - u
       - hidden: true
     - - a
-      - editor_partial: subfield_hardcoded
-        value: "1"
+      - read_only: true
+        default: "1"
+        override_admin: true
     - - b
     - - c
     - - d
@@ -205,14 +206,6 @@
     fields:
     - - a
       - growfield: true
-"260":
-  layout:
-    fields:
-    - - a
-    - - b
-    - - c
-    - - e
-    - - f
 "500": 
   layout: 
     fields: 

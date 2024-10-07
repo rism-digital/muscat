@@ -218,7 +218,7 @@ end
 def ms2inventory(source, library_id)
 
   mss = slow_select("library_id", "manuscript_id", library_id, @inventories_db["libraries_manuscripts"])
-  mc = MarcConfigCache.get_configuration("source")
+  mc = MarcConfigCache.get_configuration("inventory_item")
 
   mss.each do |ms_id|
     the_ms = slow_find("id", ms_id, @inventories_db["manuscripts"])
@@ -234,7 +234,7 @@ def ms2inventory(source, library_id)
     src_txt = src_txt.gsub("=245", "=246")
     src_txt = src_txt.gsub("=NEWTAG", "=245")
 
-    new_marc = MarcInventoryItem.new(the_ms["source"])
+    #new_marc = MarcInventoryItem.new(the_ms["source"])
     new_marc = MarcInventoryItem.new(src_txt)
     new_marc.load_source false # this will need to be fixed
 
@@ -310,9 +310,9 @@ def ms2inventory(source, library_id)
     new_marc.each_by_tag("852") do |tt|
       e = tt.fetch_first_by_tag("e")
       next if !e || !e.content
-      a691 = MarcNode.new("source", "691", "", mc.get_default_indicator("691"))
-      a691.add_at(MarcNode.new("source", "a", "HMI", nil), 0 )
-      a691.add_at(MarcNode.new("source", "n", e.content, nil), 0 )
+      a691 = MarcNode.new("inventory_item", "691", "", mc.get_default_indicator("691"))
+      a691.add_at(MarcNode.new("inventory_item", "a", "HMI", nil), 0 )
+      a691.add_at(MarcNode.new("inventory_item", "n", e.content, nil), 0 )
       a691.sort_alphabetically
       the691s << a691
     end
@@ -323,14 +323,25 @@ def ms2inventory(source, library_id)
 
     new_marc.by_tags("852").each {|t2| t2.destroy_yourself}
 
+    # move 260 and nuke
+    new_marc.each_by_tag("260") do |tt|
+      note_t = MarcNode.new("inventory_item", "599", "", mc.get_default_indicator("599"))
+      note = tt.map {|st| st.content}.compact.join("; ")
+      note_t.add_at(MarcNode.new("inventory_item", "a", note, nil), 0 )
+      note_t.sort_alphabetically
+      new_marc.root.add_at(note_t, new_marc.get_insert_position("599") )
+    end
+
+    new_marc.by_tags("260").each {|t2| t2.destroy_yourself}
+
     #add the images in 856
     if @image_map[the_ms["ext_id"]]
       @image_map[the_ms["ext_id"]].each do |image|
         next if image == "[spacer]"
-        a856 = MarcNode.new("source", "856", "", mc.get_default_indicator("856"))
-        a856.add_at(MarcNode.new("source", "u", "https://iiif.rism.digital/image/in/#{image}/full/full/0/default.jpg", nil), 0 )
-        a856.add_at(MarcNode.new("source", "x", "Digitized", nil), 0 )
-        a856.add_at(MarcNode.new("source", "z", "Link to page in the inventory", nil), 0 )
+        a856 = MarcNode.new("inventory_item", "856", "", mc.get_default_indicator("856"))
+        a856.add_at(MarcNode.new("inventory_item", "u", "https://iiif.rism.digital/image/in/#{image}/full/full/0/default.jpg", nil), 0 )
+        a856.add_at(MarcNode.new("inventory_item", "x", "Digitized", nil), 0 )
+        a856.add_at(MarcNode.new("inventory_item", "z", "Link to page in the inventory", nil), 0 )
         a856.sort_alphabetically
         new_marc.root.add_at(a856, new_marc.get_insert_position("856") )
       end

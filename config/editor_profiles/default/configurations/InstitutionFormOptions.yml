@@ -180,17 +180,17 @@
           - referring_sources
           - referring_holdings
           - referring_publications
-        editor_partial: subfield_hardcoded
+        read_only: true
+        override_admin: true
     - - z
-      - editor_partial: subfield_hardcoded
+      - read_only: true
+        override_admin: true
     - - q
-      - editor_partial: subfield_hardcoded
-        value: "siglum"
-        never_enable: true
+      - read_only: true
+        default: "siglum"
     - - "2"
-      - editor_partial: subfield_hardcoded
-        value: "rism"
-        never_enable: true
+      - read_only: true
+        default: "rism"
 "110": 
   layout: 
     fields: 
