@@ -323,6 +323,22 @@
       - :occurrences: "?"
     - - t
       - :occurrences: "?"
+  "787":
+    :master: "w"
+    :relator_code: "4"
+    :indicator: "0#"
+    :occurrences: "*"
+    :fields:
+    - - "4"
+      - :occurrences: "?"
+        :browse_helper: application_helper_resolve_relator_code
+    - - n
+      - :occurrences: "?"
+    - - w
+      - :occurrences: "1"
+        :foreign_class: Source
+        :foreign_field: id
+        :browse_helper: application_helper_link_source_id
   "852":
     :master: a
     :indicator: "##"

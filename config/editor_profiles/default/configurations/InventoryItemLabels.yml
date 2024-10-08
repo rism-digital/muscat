@@ -187,6 +187,15 @@
     t:
       label: records.title
   label: records.identification_status
+'787':
+  fields:
+    "4":
+      label: records.relationship
+    n:
+      label: records.note
+    w:
+      label: records.rism_id_number
+  label: records.related_source
 '856':
   fields:
     u:
