@@ -176,6 +176,117 @@
       - "ita"
       - "por"
       - "spa"
+"041":
+  layout:
+    fields:
+    - - a
+      - editor_partial: subfield_select_codes
+        select_label: "Language"
+        codes_reference: "codes"
+    - - h
+      - editor_partial: subfield_select_codes
+        select_label: "Language"
+        codes_reference: "codes"
+  tag_params:
+    codes:
+      - "afr"
+      - "alb"
+      - "ara"
+      - "arg"
+      - "arm"
+      - "art"
+      - "aus"
+      - "baq"
+      - "ben"
+      - "bos"
+      - "bul"
+      - "cat"
+      - "cel"
+      - "chi"
+      - "chu"
+      - "cre"
+      - "crp"
+      - "cze"
+      - "dak"
+      - "dan"
+      - "dsb"
+      - "dut"
+      - "eng"
+      - "enm"
+      - "est"
+      - "fao"
+      - "fij"
+      - "fin"
+      - "fre"
+      - "frm"
+      - "fro"
+      - "frr"
+      - "fry"
+      - "fur"
+      - "ger"
+      - "gez"
+      - "gle"
+      - "glg"
+      - "gmh"
+      - "goh"
+      - "grc"
+      - "gre"
+      - "gsw"
+      - "heb"
+      - "hrv"
+      - "hsb"
+      - "hun"
+      - "ice"
+      - "iii"
+      - "ita"
+      - "jpn"
+      - "kor"
+      - "lat"
+      - "lav"
+      - "lit"
+      - "ltz"
+      - "mac"
+      - "mao"
+      - "mon"
+      - "mul"
+      - "nap"
+      - "nds"
+      - "nor"
+      - "oci"
+      - "oji"
+      - "per"
+      - "pol"
+      - "por"
+      - "roh"
+      - "rom"
+      - "rum"
+      - "rus"
+      - "sai"
+      - "san"
+      - "scn"
+      - "sco"
+      - "sla"
+      - "slo"
+      - "slv"
+      - "smn"
+      - "spa"
+      - "srp"
+      - "swa"
+      - "swe"
+      - "tat"
+      - "tgl"
+      - "tha"
+      - "tib"
+      - "tsi"
+      - "tur"
+      - "ukr"
+      - "und"
+      - "vie"
+      - "wel"
+      - "wen"
+      - "xal"
+      - "yid"
+      - "zxx"
 "100":
   new_window: people
   new_window_field: full_name_equals
@@ -302,6 +413,18 @@
     fields:
     - - a
       - growfield: true
+"300":
+  layout:
+    fields:
+    - - a
+      - growfield: true
+    - - b
+      - growfield: true
+    - - c
+"383":
+  layout:
+    fields:
+    - - b
 "500": 
   layout: 
     fields: 
@@ -321,6 +444,31 @@
       - values:
         - "Inventory"
         editor_partial: subfield_select
+"594":
+  layout:
+    fields:
+    - - b
+      - type: source_594b_solr
+        field: value
+        editor_partial: subfield_secondary
+        allow_new: true
+    - - c
+"598":
+  layout:
+    fields:
+    - - a
+    - - b
+    - - c
+    - - d
+    - - e
+    - - f
+    - - g
+    - - h
+    - - i
+    - - k
+    - - l
+    - - m
+    - - n
 "599": 
   layout: 
     fields: 
@@ -437,6 +585,100 @@
       - ppm
       - prt
       - asn
+"730":
+  new_window: standard_titles
+  new_window_field: title_equals
+  layout:
+    fields:
+    - - a
+      - type: standard_title
+        editor_partial: subfield_secondary
+        allow_new: true
+    - - o
+      - editor_partial: subfield_select_codes
+        codes_reference: "730o"
+    - - g
+      - values:
+        - "RISM"
+        - "RDA"
+        - "RAK"
+        - "ICCU"
+        default: "RISM"
+        editor_partial: subfield_select
+    - - k
+      - editor_partial: subfield_select_codes
+        codes_reference: "730k"
+    - - r
+      - editor_partial: subfield_select_codes
+        codes_reference: "730r"
+    - - n
+    - - m
+  tag_params:
+    730k:
+      - "Excerpts"
+      - "Sketches"
+      - "Fragments"
+      - "Inserts"
+    730o:
+      - "Arr"
+      - "Var"
+    730r:
+      - "A"
+      - "a"
+      - "A|x"
+      - "a|x"
+      - "A|b"
+      - "a|b"
+      - "B"
+      - "b"
+      - "B|b"
+      - "b|b"
+      - "C"
+      - "c"
+      - "C|x"
+      - "c|x"
+      - "C|b"
+      - "c|b"
+      - "D"
+      - "d"
+      - "D|x"
+      - "d|x"
+      - "D|b"
+      - "d|b"
+      - "E"
+      - "e"
+      - "E|b"
+      - "e|b"
+      - "F"
+      - "f"
+      - "F|x"
+      - "f|x"
+      - "G"
+      - "g"
+      - "G|x"
+      - "g|x"
+      - "G|b"
+      - "g|b"
+      - "1t"
+      - "2t"
+      - "3t"
+      - "4t"
+      - "5t"
+      - "6t"
+      - "7t"
+      - "8t"
+      - "9t"
+      - "10t"
+      - "11t"
+      - "12t"
+      - "1byz"
+      - "2byz"
+      - "3byz"
+      - "4byz"
+      - "5byz"
+      - "6byz"
+      - "7byz"
+      - "8byz"
 "773":
   layout: 
     fields: 
@@ -462,11 +704,17 @@
   layout: 
     fields: 
     - - a
+      - read_only: true
     - - d
+      - read_only: true
     - - i
+      - read_only: true
     - - n
+      - read_only: true
     - - o
+      - read_only: true
     - - t
+      - read_only: true
 "787":
   new_window: sources
   layout:
@@ -541,6 +789,19 @@
         editor_partial: subfield_secondary
         allow_new: false
         only_new_window: true
+"981":
+  tag_params:
+    read_only: true
+    no_delete: true
+    no_move: true
+  layout:
+    hide_add_button: true
+    fields:
+    - - "0"
+      - read_only: true
+    - - "d"
+      - read_only: true
+
 ui: 
   hide_marc_identifiers: true
 triggers:

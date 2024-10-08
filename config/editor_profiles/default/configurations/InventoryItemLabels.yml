@@ -45,6 +45,21 @@
     z:
       label: records.scoring_in_movement
   label: records.incipit
+'041':
+  fields:
+    0#:
+      label: general.no
+    1#:
+      label: general.yes
+    a:
+      label: records.language_text
+    e:
+      label: records.language_libretto
+    h:
+      label: records.language_original_text
+    indicator:
+      label: records.translation
+  label: records.language_code
 '100':
   fields:
     a:
@@ -94,6 +109,22 @@
     f:
       label: records.name_printer
   label: records.publishing_printing_production
+'300':
+  fields:
+    '8':
+      label: records.material_group
+    a:
+      label: records.format_extent
+    b:
+      label: records.other_physical_details
+    c:
+      label: records.dimensions
+  label: records.physical_description
+'383':
+  fields:
+    b:
+      label: records.opus_number
+  label: records.opus_number
 '500':
   fields:
     '8':
@@ -110,6 +141,42 @@
     b:
       label: records.content_type
   label: records.source_type
+'594':
+  fields:
+    b:
+      label: records.voice_instrument
+    c:
+      label: records.number
+  label: records.total_scoring
+'598':
+  fields:
+    a:
+      label: records.solo_voice
+    b:
+      label: records.additional_solo_voice
+    c:
+      label: records.choir_voice
+    d:
+      label: records.additional_choir_voice
+    e:
+      label: records.soloist_instrument
+    f:
+      label: records.strings
+    g:
+      label: records.woodwinds
+    h:
+      label: records.brass_instruments
+    i:
+      label: records.plucked_instruments
+    k:
+      label: records.percussion
+    l:
+      label: records.keyboards
+    m:
+      label: records.other_instruments
+    n:
+      label: records.basso_continuo
+  label: records.coded_instrumentation
 '599':
   fields:
     a:
@@ -162,6 +229,23 @@
     g:
       label: records.attribution_qualifier
   label: records.additional_institution
+'730':
+  fields:
+    a:
+      label: records.additional_title
+    g:
+      label: general.rule_type
+    k:
+      label: records.subheading
+    m:
+      label: records.scoring_summary
+    n:
+      label: records.catalog_opus_number
+    o:
+      label: records.arrangement_statement
+    r:
+      label: records.key_or_mode
+  label: records.additional_title
 '773':
   fields:
     w:
@@ -228,6 +312,13 @@
     w:
       label: records.identified_work
   label: records.identified_work
+'981':
+  fields:
+    "0":
+      label: records.original_record
+    d:
+      label: records.date
+  label: records.duplicated_from
 "1st":
   label: records.first_entry
 Alleged:

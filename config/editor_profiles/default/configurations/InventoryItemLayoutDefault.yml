@@ -10,6 +10,7 @@ groups:
   edit_administration: 
     all_tags: 
     - "001"
+    - "981"
 
   edit_library: 
     all_tags: 
@@ -22,6 +23,7 @@ groups:
     - "691"
     - '856'
     - "852"
+    - "041"
     all_tag_templates: 
       "856": marc_show/show_link
   edit_names:
@@ -36,9 +38,14 @@ groups:
 
   edit_material:
     all_tags:
+    - "300"
+    - "383"
+    - "730"
     - "500"
     - "599"
     - '593' 
+    - "594"
+    - "598"
     - "786"
     - "775"
 
