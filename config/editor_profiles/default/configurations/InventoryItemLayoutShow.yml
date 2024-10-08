@@ -14,6 +14,7 @@ groups:
   edit_library: 
     all_tags: 
     - "100"
+    - "240"
     - '245'
     - '246'
     - "650"

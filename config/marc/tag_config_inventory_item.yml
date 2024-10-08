@@ -91,6 +91,28 @@
         :foreign_alternates: alternate_dates
     - - j
       - :occurrences: "?"
+  "240":
+    :master: "0"
+    :indicator: "10"
+    :occurrences: "?"
+    :fields:
+    - - "0"
+      - :occurrences: "?"
+        :foreign_class: StandardTitle
+        :foreign_field: id
+        :no_show: true
+    - - a
+      - :occurrences: "?"
+        :foreign_class: ^0
+        :foreign_field: title
+    - - k
+      - :occurrences: "?"
+    - - m
+      - :occurrences: "*"
+    - - o
+      - :occurrences: "?"
+    - - r
+      - :occurrences: "?"
   "245":
     :master: a
     :indicator: "10"

@@ -54,6 +54,21 @@
     j:
       label: records.attribution_qualifier
   label: records.composer_author
+'240':
+  fields:
+    a:
+      label: records.standardized_title
+    k:
+      label: records.subheading
+    m:
+      label: records.scoring_summary
+    o:
+      label: records.arrangement_statement
+    p:
+      label: records.title_section_part
+    r:
+      label: records.key_or_mode
+  label: records.standardized_title
 '245':
   fields:
     a:
