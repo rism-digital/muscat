@@ -321,7 +321,7 @@ def ms2inventory(source, library_id)
       new_marc.root.add_at(a691, new_marc.get_insert_position("691") )
     end
 
-    new_marc.by_tags("852").each {|t2| t2.destroy_yourself}
+    #new_marc.by_tags("852").each {|t2| t2.destroy_yourself}
 
     # move 260 and nuke
     new_marc.each_by_tag("260") do |tt|
