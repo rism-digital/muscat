@@ -11,6 +11,7 @@ def parse_records(filename)
   pb = ProgressBar.new(643976)
 
   File.open(filename, "r:ISO-8859-1") do |file|
+    last_tag = nil
     file.each_line do |line|
       line = line.encode('UTF-8', invalid: :replace, undef: :replace, replace: '?').chomp
 
@@ -18,6 +19,7 @@ def parse_records(filename)
         current_record = {}
         current_id = line[3..-1].to_i
         records[current_id] = current_record unless current_id.nil?
+        last_tag = nil
         pb.increment!
       elsif current_record && !line.empty?
         if line =~ /^(\d{3})(.*)/
@@ -26,6 +28,13 @@ def parse_records(filename)
 
           current_record[tag] ||= []
           current_record[tag] << value
+          last_tag = tag
+        else
+          if last_tag
+            item = current_record[last_tag].pop 
+            item += line.strip if last_tag
+            current_record[last_tag] << item
+          end
         end
       end
     end

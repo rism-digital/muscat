@@ -72,7 +72,7 @@ ActiveAdmin.register Workgroup do
              wg.show_libs.html_safe
        end
 
-    column (I18n.t :email), :email
+    column (I18n.t :filter_email), :email
 
     #column (I18n.t :filter_sources), :src_count
     actions
