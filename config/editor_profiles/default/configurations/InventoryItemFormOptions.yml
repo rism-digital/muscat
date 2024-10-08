@@ -223,10 +223,7 @@
         editor_partial: subfield_select
     - - b
       - values:
-        - "Notated music"
-        - "Libretto"
-        - "Treatise"
-        - "Other"
+        - "Inventory"
         editor_partial: subfield_select
 "599": 
   layout: 
@@ -403,6 +400,14 @@
         editor_partial: subfield_secondary
         allow_new: false
         only_new_window: true
+    - - "4"
+      - editor_partial: subfield_select_codes
+        select_label: "Identification status"
+        codes_reference: "codes"
+  tag_params: 
+    codes:
+      - "Identified"
+      - "Possibly identified"
 "931":
   new_window: holdings
   layout:

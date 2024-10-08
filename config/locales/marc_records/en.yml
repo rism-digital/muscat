@@ -525,10 +525,12 @@ en:
     heading_personal_name1: Heading-Personal name
     help_transposing_instruments: Help for transposing instruments
     history_institution: History of institution
+    holding: Holding
     holdings_location: Holdings, location, etc. fields
     identification_status: Identification status
-    identified_manuscript: Identified manuscript
+    identified: Identified
     identified_holding: Identified holding
+    identified_source: Identified source
     identified_work: Identified work
     identity: Identity
     identity_area: Identity area
@@ -755,6 +757,7 @@ en:
     plate_number: Plate number
     plucked_instruments: Plucked instruments
     possible_autograph_manuscript: Possible autograph manuscript
+    possibly_identified: Possibly identified
     postal_code: Postal code
     postal_place: Postal place
     preceding_entry: Preceding entry

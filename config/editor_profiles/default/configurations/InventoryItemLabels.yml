@@ -183,16 +183,24 @@
   label: records.external_resource_uri
 '930':
   fields:
+    a:
+      label: records.source
     w:
-      label: records.identified_manuscript
-  label: records.identified_manuscript
+      label: records.identified_source
+    '4':
+      label: records.identification_status
+  label: records.identified_source
 '931':
   fields:
+    a:
+      label: records.holding
     w:
       label: records.identified_holding
   label: records.identified_holding
 '932':
   fields:
+    a:
+      label: records.work
     w:
       label: records.identified_work
   label: records.identified_work
@@ -220,6 +228,10 @@ Facsimile:
   label: records.iiif_manifest
 "IIIF manifest (other)":
   label: records.iiif_manifest_other
+"Identified":
+  label: records.identified
+"Possibly identified":
+  label: records.possibly_identified
 Lithography:
   label: records.lithography
 Misattributed:
