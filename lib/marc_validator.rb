@@ -302,11 +302,12 @@ include ApplicationHelper
     @user
   end
 
-  def to_s
+  def to_s(options = {})
     output = ""
     @errors.each do |tag, subtags|
       subtags.each do |subtag, messages|
         messages.each do |message|
+          message = I18n.t("backend_validation." + message) if options.fetch(:translate, true)
           output += "#{@object.id}\t#{tag}\t#{subtag}\t#{message}\n"
         end
       end
