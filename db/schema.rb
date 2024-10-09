@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_10_08_134440) do
+ActiveRecord::Schema[7.1].define(version: 2024_10_09_074657) do
   create_table "active_admin_comments", id: :integer, charset: "utf8mb3", force: :cascade do |t|
     t.string "namespace"
     t.text "body"
@@ -512,6 +512,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_10_08_134440) do
     t.index ["source_id"], name: "index_sources_on_source_id"
     t.index ["std_title"], name: "index_sources_on_std_title", length: 255
     t.index ["updated_at"], name: "index_sources_on_updated_at"
+    t.index ["wf_owner"], name: "index_sources_on_wf_owner"
     t.index ["wf_stage"], name: "index_sources_on_wf_stage"
   end
 
