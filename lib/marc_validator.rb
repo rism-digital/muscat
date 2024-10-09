@@ -91,32 +91,13 @@ include ApplicationHelper
           #ap marc_subtag
           
           if rule.is_a? String
-            
-            if rule == "required" || rule == "required, warning" || rule == "mandatory"
-              if !marc_subtag || !marc_subtag.content
-                #@errors["#{tag}#{subtag}"] = rule
-                add_error(tag, subtag, rule) if (!@validation.is_warning?(tag, subtag) || @show_warnings)
-                puts "Missing #{tag} #{subtag}, #{rule}" if DEBUG
-              end
-            elsif rule == "uniq"
-              binding.pry
-            elsif rule == "check_group"
-              grp_index = marc_tag.fetch_first_by_tag("8")
-              if grp_index && grp_index.content
-                if grp_index.content.to_i == 1 && marc_subtag && marc_subtag.content && marc_subtag.content == "Additional printed material"
-                  add_error(tag, subtag, rule)
-                  puts "The first material group cannot be \"Additional printed material\"" if DEBUG
-                end
-              else
-                add_error(tag, subtag, "not_in_group")
-                puts "check_group requested but tag is not in a group #{tag}#{subtag}" if DEBUG
-              end
-            else
-              puts "Unknown rule #{rule}" if rule != "mandatory"
-            end
-            
+            validate_string_tag(rule, marc_tag, marc_subtag, tag, subtag)         
           elsif rule.is_a? Hash
-            if rule.has_key?("begins_with")
+            if rule.has_key?("any_of")
+              rule["any_of"].each do |subrule|
+                validate_string_tag(subrule, marc_tag, marc_subtag, tag, subtag)
+              end
+            elsif rule.has_key?("begins_with")
               subst = rule["begins_with"]
               if marc_subtag && marc_subtag.content && !marc_subtag.content.start_with?(subst)
                 add_error(tag, subtag, "begin_with:#{subst}")
@@ -335,6 +316,31 @@ include ApplicationHelper
   
   private
   
+  def validate_string_tag(rule, marc_tag, marc_subtag, tag, subtag)
+    if rule == "required" || rule == "required, warning" || rule == "mandatory"
+      if !marc_subtag || !marc_subtag.content
+        #@errors["#{tag}#{subtag}"] = rule
+        add_error(tag, subtag, rule) if (!@validation.is_warning?(tag, subtag) || @show_warnings)
+        puts "Missing #{tag} #{subtag}, #{rule}" if DEBUG
+      end
+    elsif rule == "uniq"
+      binding.pry
+    elsif rule == "check_group"
+      grp_index = marc_tag.fetch_first_by_tag("8")
+      if grp_index && grp_index.content
+        if grp_index.content.to_i == 1 && marc_subtag && marc_subtag.content && marc_subtag.content == "Additional printed material"
+          add_error(tag, subtag, rule)
+          puts "The first material group cannot be \"Additional printed material\"" if DEBUG
+        end
+      else
+        add_error(tag, subtag, "not_in_group")
+        puts "check_group requested but tag is not in a group #{tag}#{subtag}" if DEBUG
+      end
+    else
+      puts "Unknown rule #{rule}" if rule != "mandatory"
+    end
+  end
+
   def match_tags(marctag, unresolved_tags, foreigns)
     exclude_subfields = foreigns.collect {|s| s.tag}
     found = true
