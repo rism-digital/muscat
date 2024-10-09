@@ -1,6 +1,12 @@
 var warningList = [];
 var hasNewWarnings = false;
 
+const SIMPLE_RULE_MAP = {
+	"required": { presence: true },
+	"mandatory": { mandatory: true },
+	"check_group": { check_group: true }
+}
+
 function marc_validate_has_warnings() {
 	return hasNewWarnings;
 }
@@ -320,16 +326,25 @@ function marc_validate_new_creation(value, element) {
 
 function marc_editor_validate_advanced_rule(element_class, rules) {
 	for (var rule_name in rules) {
+		var rule_contents = rules[rule_name];
+
 		if (rule_name == "required_if") {
 			// the dependent rule contains a hash
 			// with the tag and subtag
-			var rule_contents = rules[rule_name];
-			
 			for (var tag in rule_contents) {
 				$.validator.addClassRules(element_class, { required_if: [ tag, rule_contents[tag]] });
 			}
 		} else if (rule_name == "begins_with") {
 			$.validator.addClassRules(element_class, { begins_with: rules[rule_name] });
+		} else if (rule_name == "any_of") {
+			let combined_rule = {};
+			for (var sub_rule in rule_contents) {
+				if (SIMPLE_RULE_MAP[rule_contents[sub_rule]])
+					combined_rule = { ...combined_rule, ...SIMPLE_RULE_MAP[rule_contents[sub_rule]] }
+				else
+					console.log("Unknown rule " + rule_contents[sub_rule] + " in " + rule_name)
+			}
+			$.validator.addClassRules(element_class, combined_rule);
 		} else {
 			console.log("Unknown advanced validation type: " + rule_name);
 		}
@@ -363,6 +378,13 @@ function marc_editor_validate_expand_placeholder(element) {
 	} else {
 		return element;
 	}
+}
+
+function add_simple_rules(element_class, rule_name) {
+	if (SIMPLE_RULE_MAP[rule_name])
+		$.validator.addClassRules(element_class, SIMPLE_RULE_MAP[rule_name]);
+	else
+		console.log("Unknown rule " + rule_name)
 }
 
 function marc_editor_init_validation(form, validation_conf) {
@@ -483,16 +505,7 @@ function marc_editor_init_validation(form, validation_conf) {
 				var str_parts = subtag.split(",");
 				// by convention: required, warning
 				// the rule name is always the first
-				var rule_name = str_parts[0];
-				if (rule_name == "required") {
-					// Our own validator is called "presence" to distinguish it
-					// from the default "required" validator
-					$.validator.addClassRules(element_class, { presence: true });
-				} else if (rule_name == "mandatory") {
-					$.validator.addClassRules(element_class, { mandatory: true });
-				} else if (rule_name == "check_group") {
-					$.validator.addClassRules(element_class, { check_group: true });
-				}
+				add_simple_rules(element_class, str_parts[0])
 			} else if (subtag instanceof Object) {
 				// More complex dataype
 				marc_editor_validate_advanced_rule(element_class, subtag);

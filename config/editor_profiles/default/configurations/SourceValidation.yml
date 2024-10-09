@@ -81,7 +81,11 @@ client:
 #      "b": mandatory
   "593":
     tags:
-      a: check_group
+      a: 
+        any_of:
+          - check_group
+          - mandatory
+      b: mandatory
   "594": 
     tag_overrides:
       exclude:
