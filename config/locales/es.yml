@@ -22,7 +22,7 @@ es:
       delete_confirmation: "¿Está seguro de que desea borrar este conjunto de %{plural_model}?"
       labels:
         add_to_folder: Añadir ítems a una carpeta existente
-        change_template: CHANGE TEMPLATE
+        change_template: Cambiar plantilla
         destroy: Borrar
         folder: Crear carpeta con
         merge: Fusionar registros de autoridad
@@ -422,8 +422,7 @@ es:
   filter_subject: Descriptor
   filter_subsequent_entries: Registros posteriores
   filter_term: Término
-  filter_textincipit: Incipit de texto
-  filter_textinipit: Íncipit literario
+  filter_textincipit: Incipit literario
   filter_thematic_opus: Catálogo temático / Opus no.
   filter_title: Título
   filter_title_on_ms: Título en la fuente
