@@ -175,6 +175,8 @@
   layout: 
     fields: 
     - - a
+    - - b
+      - read_only: true
     - - "2"
 "380": 
   layout: 
