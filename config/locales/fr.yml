@@ -549,8 +549,8 @@ fr:
     one: fête liturgique
     other: fêtes liturgiques
   logout:
-    confirm: 'Il y a des fenêtres Muscat ouvertes. Si vous vous déconnectez, toutes les modifications non enregistrées seront perdues. Voulez-vous continuer ?'
-    generic_error: 'Vous vous êtes déconnecté de Muscat. Veuillez actualiser la page pour revenir à l'écran de connexion.'
+    confirm: "Il y a des fenêtres Muscat ouvertes. Si vous vous déconnectez, toutes les modifications non enregistrées seront perdues. Voulez-vous continuer ?"
+    generic_error: "Vous vous êtes déconnecté de Muscat. Veuillez actualiser la page pour revenir à l'écran de connexion."
     warning: 'Vous vous êtes déconnecté de Muscat. Tout travail non enregistré sera perdu.'
   manuscript_links:
     one: 1 source
