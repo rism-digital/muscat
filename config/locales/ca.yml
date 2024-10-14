@@ -274,8 +274,28 @@ ca:
     unpub_records: Registres no publicats
     update: Actualtiza
   date:
-    day_names: ["diumenge", "dilluns", "dimarts", "dimecres", "dijous", "divendres", "dissabte"]
-    month_names: [nil, "gener", "febrer", "març", "abril", "maig", "juny", "juliol", "agost", "setembre", "octubre", "novembre", "desembre"]
+    day_names:
+    - diumenge
+    - dilluns
+    - dimarts
+    - dimecres
+    - dijous
+    - divendres
+    - dissabte
+    month_names:
+    - nil
+    - gener
+    - febrer
+    - març
+    - abril
+    - maig
+    - juny
+    - juliol
+    - agost
+    - setembre
+    - octubre
+    - novembre
+    - desembre
   default_view: Visualització estàndard
   delete: Elimina
   digital_object:
@@ -529,9 +549,9 @@ ca:
     one: festivitat litúrgica
     other: festivitats litúrguqyes
   logout:
-    confirm: "Hi ha finestres Muscat obertes. Si tanques la sessió, es perdran els canvis no desats. Vols continuar?"
-    generic_error: "T'has tancat la sessió de Muscat. Si us plau, actualitza la pàgina per tornar a la pantalla d'inici de sessió."
-    warning: "T'has tancat la sessió de Muscat. Qualsevol treball no desat es perdrà."
+    confirm: Hi ha finestres Muscat obertes. Si tanques la sessió, es perdran els canvis no desats. Vols continuar?
+    generic_error: T'has tancat la sessió de Muscat. Si us plau, actualitza la pàgina per tornar a la pantalla d'inici de sessió.
+    warning: T'has tancat la sessió de Muscat. Qualsevol treball no desat es perdrà.
   manuscript_links:
     one: 1 font
     other: "%{count} fonts"
@@ -540,14 +560,14 @@ ca:
     delete_field_confirm: Esteu segur que voleu eliminar aquest camp?
     delete_group_confirm: Esteu segur que voleu eliminar aquest grupo?
     delete_msg: Eliminar
-    error_diff: "S'ha produït un error en carregar la diferència entre versions: %{a} %{b} %{c}"
-    error_help: "S'ha produït un error en carregar l'ajuda per aquest element: %{a} %{b} %{c}"
-    error_holding: "S'ha produït un error en carregar la informació del registre de retenció: %{a} %{b} %{c}"
-    error_preview: "S'ha produït un error en carregar la vista prèvia del registre: %{a} %{b} %{c}"
-    error_save: "S'ha produït un error en desar aquest registre: %{a} %{b} %{c}"
-    error_summary: "S'ha produït un error en carregar el resum: %{a} %{b} %{c}"
-    error_validation: "S'ha produït un error en validar aquest registre: %{a} %{b} %{c}"
-    error_version: "S'ha produït un error en carregar la versió seleccionada: %{a} %{b} %{c}"
+    error_diff: 'S''ha produït un error en carregar la diferència entre versions: %{a} %{b} %{c}'
+    error_help: 'S''ha produït un error en carregar l''ajuda per aquest element: %{a} %{b} %{c}'
+    error_holding: 'S''ha produït un error en carregar la informació del registre de retenció: %{a} %{b} %{c}'
+    error_preview: 'S''ha produït un error en carregar la vista prèvia del registre: %{a} %{b} %{c}'
+    error_save: 'S''ha produït un error en desar aquest registre: %{a} %{b} %{c}'
+    error_summary: 'S''ha produït un error en carregar el resum: %{a} %{b} %{c}'
+    error_validation: 'S''ha produït un error en validar aquest registre: %{a} %{b} %{c}'
+    error_version: 'S''ha produït un error en carregar la versió seleccionada: %{a} %{b} %{c}'
   marcxml_view: Visualització MARCXML
   mei:
     banner: Feu clic a "Vista preliminat" per veure la sortida en MEI.
@@ -729,35 +749,6 @@ ca:
   status: Estat
   std_title_contains: Títol uniforme
   switch_language: Canvi d'idioma
-  tf_acknowledgments: La cerca per íncipits es fa gràcies al <a href="http://www.themefinder.org/" target="_blank">Themefinder</a> desenvolupat pel <a href="http://www.ccarh.org/" target="_blank">CCARH</a>.
-  tf_anchor: Cercar només al començament de l'íncipit
-  tf_anchor_help: Suggeriments per a la cerca per clau
-  tf_duration_help: Suggeriments per a la cerca per durada
-  tf_duration_search: Durada
-  tf_meter: Tempo
-  tf_metric_help: Suggeriments per a la cerca per mètrica
-  tf_metric_search: Mètrica
-  tf_pitch_help: Suggeriments per a la cerca melòdica
-  tf_pitch_search: Altura
-  tf_timesig_help: Ajuda per a la cerca per compàs
-  themefinder_C: precisió melòdica baixa
-  themefinder_E: precisió mètrica baixa
-  themefinder_I: interval diatònic
-  themefinder_L: nivell mètric
-  themefinder_P: altura cromàtica
-  themefinder_R: precisió de la durada baixa
-  themefinder_b: nivell de la pulsació
-  themefinder_c: precisió melòdica alta
-  themefinder_d: grau de l'escala diatònica
-  themefinder_d0: sense cercar-ne la durada
-  themefinder_e: precisió mètrica alta
-  themefinder_i: interval cromàtic
-  themefinder_l: posició mètrica
-  themefinder_m0: sense cercar-ne la mètrica
-  themefinder_p: altura diatònica
-  themefinder_p0: sense cerca per altura
-  themefinder_r: precisió de la durada alta
-  themefinder_u: durada exacta
   this_file_language: Català
   time:
     formats:

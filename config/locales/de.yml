@@ -549,9 +549,9 @@ de:
     one: Liturgisches Fest
     other: Liturgische Feste
   logout:
-    confirm: "Es gibt offene Muscat-Fenster. Wenn Sie sich abmelden, gehen nicht gespeicherte Änderungen verloren. Möchten Sie fortfahren?"
-    generic_error: "Sie haben sich von Muscat abgemeldet. Bitte aktualisieren Sie die Seite, um zum Anmeldebildschirm zurückzukehren."
-    warning: "Sie haben sich von Muscat abgemeldet. Nicht gespeicherte Arbeit wird verloren gehen."
+    confirm: Es gibt offene Muscat-Fenster. Wenn Sie sich abmelden, gehen nicht gespeicherte Änderungen verloren. Möchten Sie fortfahren?
+    generic_error: Sie haben sich von Muscat abgemeldet. Bitte aktualisieren Sie die Seite, um zum Anmeldebildschirm zurückzukehren.
+    warning: Sie haben sich von Muscat abgemeldet. Nicht gespeicherte Arbeit wird verloren gehen.
   manuscript_links:
     one: 1 Quelle
     other: "%{count} Quellen"
@@ -560,14 +560,14 @@ de:
     delete_field_confirm: Sind Sie sicher, dass Sie dieses Feld löschen möchten?
     delete_group_confirm: Sind Sie sicher, dass Sie dieses Gruppe löschen möchten?
     delete_msg: Löschen
-    error_diff: "Es ist ein Fehler beim Laden der Differenz zwischen den Versionen aufgetreten: %{a} %{b} %{c}"
-    error_help: "Es ist ein Fehler beim Laden der Hilfe für diese Elemente aufgetreten: %{a} %{b} %{c}"
-    error_holding: "Es ist ein Fehler beim Laden der Exemplarinformation aufgetreten: %{a} %{b} %{c}"
-    error_preview: "Es ist ein Fehler beim Laden der Vorschau des Eintrags aufgetreten: %{a} %{b} %{c}"
-    error_save: "Es ist ein Fehler beim Speichern dieses Eintrags aufgetreten: %{a} %{b} %{c}"
-    error_summary: "Es ist ein Fehler beim Laden der Zusammenfassung aufgetreten: %{a} %{b} %{c}"
-    error_validation: "Es ist ein Fehler bei der Validierung dieses Eintrags aufgetreten: %{a} %{b} %{c}"
-    error_version: "Es ist ein Fehler beim Laden der ausgewählten Version aufgetreten: %{a} %{b} %{c}"
+    error_diff: 'Es ist ein Fehler beim Laden der Differenz zwischen den Versionen aufgetreten: %{a} %{b} %{c}'
+    error_help: 'Es ist ein Fehler beim Laden der Hilfe für diese Elemente aufgetreten: %{a} %{b} %{c}'
+    error_holding: 'Es ist ein Fehler beim Laden der Exemplarinformation aufgetreten: %{a} %{b} %{c}'
+    error_preview: 'Es ist ein Fehler beim Laden der Vorschau des Eintrags aufgetreten: %{a} %{b} %{c}'
+    error_save: 'Es ist ein Fehler beim Speichern dieses Eintrags aufgetreten: %{a} %{b} %{c}'
+    error_summary: 'Es ist ein Fehler beim Laden der Zusammenfassung aufgetreten: %{a} %{b} %{c}'
+    error_validation: 'Es ist ein Fehler bei der Validierung dieses Eintrags aufgetreten: %{a} %{b} %{c}'
+    error_version: 'Es ist ein Fehler beim Laden der ausgewählten Version aufgetreten: %{a} %{b} %{c}'
   marcxml_view: MARCXML view
   mei:
     banner: Bitte "Vorschau" wählen, um die MEI-Konvertierung anzuzeigen.
@@ -749,35 +749,6 @@ de:
   status: Status
   std_title_contains: Einordnungstitel
   switch_language: Sprache ändern
-  tf_acknowledgments: Die Incipit-Suche verwendet das Tool <a href="http://www.themefinder.org/" target="_blank">Themefinder</a>, das vom <a href="http://www.ccarh.org/" target="_blank">CCARH</a> entwickelt wurde.
-  tf_anchor: Suche nur am Anfang des Incipits
-  tf_anchor_help: Tipps für die verankerte Suche
-  tf_duration_help: Tipps für die Tondauersuche
-  tf_duration_search: Tondauer
-  tf_meter: Taktart
-  tf_metric_help: Tipps für die Metrumsuche
-  tf_metric_search: Metrum
-  tf_pitch_help: Tipps für die Tonhöhensuche
-  tf_pitch_search: Tonhöhe
-  tf_timesig_help: Tipps für die Taktartsuche
-  themefinder_C: grobe Tonhöhenkontur
-  themefinder_E: metrische Grobkontur
-  themefinder_I: diatonisches Intervall
-  themefinder_L: metrische Ebene
-  themefinder_P: chromatische Tonhöhe
-  themefinder_R: grobe Tondauer-Kontur
-  themefinder_b: Schlag
-  themefinder_c: feine Tonhöhenkontur
-  themefinder_d: diatonische Stufe
-  themefinder_d0: keine Tondauersuche
-  themefinder_e: metrische Feinkontur
-  themefinder_i: chromatisches Intervall
-  themefinder_l: metrische Position
-  themefinder_m0: keine Metrumsuche
-  themefinder_p: diatonische Tonhöhe
-  themefinder_p0: keine Tonhöhensuche
-  themefinder_r: feine Tondauer-Kontur
-  themefinder_u: genaue Tondauer
   this_file_language: Deutsch
   time:
     formats:

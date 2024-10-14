@@ -261,7 +261,7 @@ es:
     news: Noticias de Muscat.
     no_items: No hay elementos para mostrar con los filtros seleccionados
     no_unpublished: No hay registros no publicados
-    no_unpublished_long: ¡No tienes registros no publicados!
+    no_unpublished_long: "¡No tienes registros no publicados!"
     owner: Propietario
     owner_any: Cualquiera
     owner_user: Yo
@@ -274,8 +274,28 @@ es:
     unpub_records: Registros no publicados
     update: Actualizar
   date:
-    day_names: ["domingo", "lunes", "martes", "miércoles", "jueves", "viernes", "sábado"]
-    month_names: [nil, "enero", "febrero", "marzo", "abril", "mayo", "junio", "julio", "agosto", "septiembre", "octubre", "noviembre", "diciembre"]
+    day_names:
+    - domingo
+    - lunes
+    - martes
+    - miércoles
+    - jueves
+    - viernes
+    - sábado
+    month_names:
+    - nil
+    - enero
+    - febrero
+    - marzo
+    - abril
+    - mayo
+    - junio
+    - julio
+    - agosto
+    - septiembre
+    - octubre
+    - noviembre
+    - diciembre
   default_view: Visualización estándar
   delete: Borrar
   digital_object:
@@ -529,9 +549,9 @@ es:
     one: festividad litúrgica
     other: festividades litúrgicas
   logout:
-    confirm: "Hay ventanas de Muscat abiertas. Si cierra sesión, se perderán los cambios no guardados. ¿Desea continuar?"
-    generic_error: "Se ha cerrado la sesión de Muscat. Por favor, actualice la página para volver a la pantalla de inicio de sesión."
-    warning: "Se ha cerrado la sesión de Muscat. Cualquier trabajo no guardado se perderá."
+    confirm: Hay ventanas de Muscat abiertas. Si cierra sesión, se perderán los cambios no guardados. ¿Desea continuar?
+    generic_error: Se ha cerrado la sesión de Muscat. Por favor, actualice la página para volver a la pantalla de inicio de sesión.
+    warning: Se ha cerrado la sesión de Muscat. Cualquier trabajo no guardado se perderá.
   manuscript_links:
     one: 1 fuente
     other: "%{count} fuentes"
@@ -540,14 +560,14 @@ es:
     delete_field_confirm: "¿Está seguro de que desea eliminar este campo?"
     delete_group_confirm: "¿Está seguro de que desea eliminar este grupo?"
     delete_msg: Borrar
-    error_diff: "Se produjo un error al cargar la diferencia entre versiones: %{a} %{b} %{c}"
-    error_help: "Se produjo un error al cargar la ayuda para este elemento: %{a} %{b} %{c}"
-    error_holding: "Se produjo un error al cargar la información del registro de retención: %{a} %{b} %{c}"
-    error_preview: "Se produjo un error al cargar la vista previa del registro: %{a} %{b} %{c}"
-    error_save: "Se produjo un error al guardar este registro: %{a} %{b} %{c}"
-    error_summary: "Se produjo un error al cargar el resumen: %{a} %{b} %{c}"
-    error_validation: "Se produjo un error al validar este registro: %{a} %{b} %{c}"
-    error_version: "Se produjo un error al cargar la versión seleccionada: %{a} %{b} %{c}"
+    error_diff: 'Se produjo un error al cargar la diferencia entre versiones: %{a} %{b} %{c}'
+    error_help: 'Se produjo un error al cargar la ayuda para este elemento: %{a} %{b} %{c}'
+    error_holding: 'Se produjo un error al cargar la información del registro de retención: %{a} %{b} %{c}'
+    error_preview: 'Se produjo un error al cargar la vista previa del registro: %{a} %{b} %{c}'
+    error_save: 'Se produjo un error al guardar este registro: %{a} %{b} %{c}'
+    error_summary: 'Se produjo un error al cargar el resumen: %{a} %{b} %{c}'
+    error_validation: 'Se produjo un error al validar este registro: %{a} %{b} %{c}'
+    error_version: 'Se produjo un error al cargar la versión seleccionada: %{a} %{b} %{c}'
   marcxml_view: Visualización MARCXML
   mei:
     banner: Por favor haga clic en "Vista preliminar" para mostrar la salida convertida a MEI.
@@ -729,35 +749,6 @@ es:
   status: Estado
   std_title_contains: Título uniforme
   switch_language: Cambiar idioma
-  tf_acknowledgments: La búsqueda por íncipits se realiza con <a href="http://www.themefinder.org/" target="_blank">Themefinder</a> desarrollado por <a href="http://www.ccarh.org/" target="_blank">CCARH</a>.
-  tf_anchor: Buscar sólo al comienzo del íncipit
-  tf_anchor_help: Sugerencias para la búsqueda anclada
-  tf_duration_help: Sugerencias para la búsqueda por duraciones
-  tf_duration_search: Duración
-  tf_meter: Métrica
-  tf_metric_help: Sugerencias para la búsqueda por métrica
-  tf_metric_search: Métrica
-  tf_pitch_help: Sugerencias para la búsqueda por alturas
-  tf_pitch_search: Altura
-  tf_timesig_help: Ayuda sobre las indicaciones de compás
-  themefinder_C: contorno de alturas grueso
-  themefinder_E: contorno métrico grueso
-  themefinder_I: intervalo diatónico
-  themefinder_L: nivel métrico
-  themefinder_P: clase de altura dodecafónica
-  themefinder_R: contorno de duraciones grueso
-  themefinder_b: nivel del pulso
-  themefinder_c: contorno de alturas refinado
-  themefinder_d: grado de la escala diatónica
-  themefinder_d0: ninguna búsqueda de duraciones
-  themefinder_e: contorno métrico refinado
-  themefinder_i: intervalo cromático
-  themefinder_l: posición métrica
-  themefinder_m0: ninguna búsqueda métrica
-  themefinder_p: clase de altura diatónica
-  themefinder_p0: ninguna búsqueda de altura
-  themefinder_r: contorno de duraciones refinado
-  themefinder_u: duraciones exactas
   this_file_language: Español
   time:
     formats:

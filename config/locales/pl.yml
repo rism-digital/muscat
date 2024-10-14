@@ -274,8 +274,28 @@ pl:
     unpub_records: Rekordy nieopublikowane
     update: Zaktualizuj
   date:
-    day_names: ["niedziela", "poniedziałek", "wtorek", "środa", "czwartek", "piątek", "sobota"]
-    month_names: [nil, "styczeń", "luty", "marzec", "kwiecień", "maj", "czerwiec", "lipiec", "sierpień", "wrzesień", "październik", "listopad", "grudzień"]
+    day_names:
+    - niedziela
+    - poniedziałek
+    - wtorek
+    - środa
+    - czwartek
+    - piątek
+    - sobota
+    month_names:
+    - nil
+    - styczeń
+    - luty
+    - marzec
+    - kwiecień
+    - maj
+    - czerwiec
+    - lipiec
+    - sierpień
+    - wrzesień
+    - październik
+    - listopad
+    - grudzień
   default_view: Default view
   delete: Usuń
   digital_object:
@@ -529,9 +549,9 @@ pl:
     one: Święto liturgiczne
     other: Święta liturgiczne
   logout:
-    confirm: "Są otwarte okna Muscat. Jeśli wylogujesz się, wszelkie niezapisane zmiany zostaną utracone. Czy chcesz kontynuować?"
-    generic_error: "Wylogowałeś się z Muscat. Odśwież stronę, aby wrócić do ekranu logowania."
-    warning: "Wylogowałeś się z Muscat. Każda niezapisana praca zostanie utracona."
+    confirm: Są otwarte okna Muscat. Jeśli wylogujesz się, wszelkie niezapisane zmiany zostaną utracone. Czy chcesz kontynuować?
+    generic_error: Wylogowałeś się z Muscat. Odśwież stronę, aby wrócić do ekranu logowania.
+    warning: Wylogowałeś się z Muscat. Każda niezapisana praca zostanie utracona.
   manuscript_links:
     one: 1 źródło
     other: 'Liczba źródeł: %{count}'
@@ -540,14 +560,14 @@ pl:
     delete_field_confirm: Czy na pewno chcesz usunąć to pole?
     delete_group_confirm: Czy na pewno chcesz usunąć to grupa?
     delete_msg: Usuń
-    error_diff: "Wystąpił błąd podczas ładowania różnicy między wersjami: %{a} %{b} %{c}"
-    error_help: "Wystąpił błąd podczas ładowania pomocy dla tego elementu: %{a} %{b} %{c}"
-    error_holding: "Wystąpił błąd podczas ładowania informacji o rekordzie retencji: %{a} %{b} %{c}"
-    error_preview: "Wystąpił błąd podczas ładowania podglądu rekordu: %{a} %{b} %{c}"
-    error_save: "Wystąpił błąd podczas zapisywania tego rekordu: %{a} %{b} %{c}"
-    error_summary: "Wystąpił błąd podczas ładowania podsumowania: %{a} %{b} %{c}"
-    error_validation: "Wystąpił błąd podczas walidacji tego rekordu: %{a} %{b} %{c}"
-    error_version: "Wystąpił błąd podczas ładowania wybranej wersji: %{a} %{b} %{c}"
+    error_diff: 'Wystąpił błąd podczas ładowania różnicy między wersjami: %{a} %{b} %{c}'
+    error_help: 'Wystąpił błąd podczas ładowania pomocy dla tego elementu: %{a} %{b} %{c}'
+    error_holding: 'Wystąpił błąd podczas ładowania informacji o rekordzie retencji: %{a} %{b} %{c}'
+    error_preview: 'Wystąpił błąd podczas ładowania podglądu rekordu: %{a} %{b} %{c}'
+    error_save: 'Wystąpił błąd podczas zapisywania tego rekordu: %{a} %{b} %{c}'
+    error_summary: 'Wystąpił błąd podczas ładowania podsumowania: %{a} %{b} %{c}'
+    error_validation: 'Wystąpił błąd podczas walidacji tego rekordu: %{a} %{b} %{c}'
+    error_version: 'Wystąpił błąd podczas ładowania wybranej wersji: %{a} %{b} %{c}'
   marcxml_view: MARCXML view
   mei:
     banner: Kliknij przycisk „Podgląd”, by wyświetlić wynik konwersji na MEI.'
@@ -729,35 +749,6 @@ pl:
   status: Status
   std_title_contains: Znormalizowany tytuł
   switch_language: Zmień język
-  tf_acknowledgments: Incipity są wyszukiwane na stronie <a href='http://www.themefinder.org/' target='_blank'>Themefinder</a> opracowanej przez <a href='http://www.ccarh.org/' target='_blank'>CCARH</a>.
-  tf_anchor: Wyszukaj tylko po początku incipitu
-  tf_anchor_help: Wskazówki do wyszukiwania początku lub końca terminu
-  tf_duration_help: Wskazówki do wyszukiwania po wartościach rytmicznych
-  tf_duration_search: Czas trwania
-  tf_meter: Określenie tempa
-  tf_metric_help: Wskazówki do wyszukiwania po metrum
-  tf_metric_search: Wartość rytmiczna
-  tf_pitch_help: Wskazówki do wyszukiwania po wysokościach dźwięku
-  tf_pitch_search: Wysokość dźwięku
-  tf_timesig_help: Wskazówki do wyszukiwania po metrum
-  themefinder_C: Zapis linii melodycznej zachowujący tylko interwały
-  themefinder_E: Zapis zachowujący tylko wartości rytmiczne
-  themefinder_I: Interwał diatoniczny
-  themefinder_L: Poziom wartości rytmicznych
-  themefinder_P: Wysokość chromatyczna
-  themefinder_R: Zapis zachowujący tylko czas trwania
-  themefinder_b: Poziom rytmu
-  themefinder_c: Dokładny zapis linii melodycznej
-  themefinder_d: Stopień na skali diatonicznej
-  themefinder_d0: Bez wyszukiwania czasu trwania
-  themefinder_e: Dokładny zapis wartości rytmicznych
-  themefinder_i: Interwał dwunastotonowy
-  themefinder_l: Pozycja wartości rytmicznych
-  themefinder_m0: Bez wyszukiwania po metrum
-  themefinder_p: Wysokość diatoniczna
-  themefinder_p0: Bez wyszukiwania dźwięków
-  themefinder_r: Dokładny zapis czasu trwania
-  themefinder_u: Dokładny czas trwania
   this_file_language: Angielski
   time:
     formats:

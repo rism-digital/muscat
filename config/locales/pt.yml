@@ -274,8 +274,28 @@ pt:
     unpub_records: Registros não publicados
     update: Atualizar
   date:
-    day_names: ["domingo", "segunda-feira", "terça-feira", "quarta-feira", "quinta-feira", "sexta-feira", "sábado"]
-    month_names: [nil, "janeiro", "fevereiro", "março", "abril", "maio", "junho", "julho", "agosto", "setembro", "outubro", "novembro", "dezembro"]
+    day_names:
+    - domingo
+    - segunda-feira
+    - terça-feira
+    - quarta-feira
+    - quinta-feira
+    - sexta-feira
+    - sábado
+    month_names:
+    - nil
+    - janeiro
+    - fevereiro
+    - março
+    - abril
+    - maio
+    - junho
+    - julho
+    - agosto
+    - setembro
+    - outubro
+    - novembro
+    - dezembro
   default_view: Default view
   delete: Apagar
   digital_object:
@@ -529,9 +549,9 @@ pt:
     one: festa litúrgica
     other: festas litúrgicas
   logout:
-    confirm: "Há janelas Muscat abertas. Se você sair, quaisquer alterações não salvas serão perdidas. Você deseja continuar?"
-    generic_error: "Você saiu do Muscat. Por favor, atualize a página para retornar à tela de login."
-    warning: "Você saiu do Muscat. Qualquer trabalho não salvo será perdido."
+    confirm: Há janelas Muscat abertas. Se você sair, quaisquer alterações não salvas serão perdidas. Você deseja continuar?
+    generic_error: Você saiu do Muscat. Por favor, atualize a página para retornar à tela de login.
+    warning: Você saiu do Muscat. Qualquer trabalho não salvo será perdido.
   manuscript_links:
     one: 1 fonte
     other: "%{count} fontes"
@@ -540,14 +560,14 @@ pt:
     delete_field_confirm: Tem a certeza que quer apagar este campo?
     delete_group_confirm: Tem a certeza que quer apagar este grupo?
     delete_msg: Eliminar
-    error_diff: "Ocorreu um erro ao carregar a diferença entre as versões: %{a} %{b} %{c}"
-    error_help: "Ocorreu um erro ao carregar a ajuda para este item: %{a} %{b} %{c}"
-    error_holding: "Ocorreu um erro ao carregar as informações do registro de retenção: %{a} %{b} %{c}"
-    error_preview: "Ocorreu um erro ao carregar a prévia do registro: %{a} %{b} %{c}"
-    error_save: "Ocorreu um erro ao salvar este registro: %{a} %{b} %{c}"
-    error_summary: "Ocorreu um erro ao carregar o resumo: %{a} %{b} %{c}"
-    error_validation: "Ocorreu um erro ao validar este registro: %{a} %{b} %{c}"
-    error_version: "Ocorreu um erro ao carregar a versão selecionada: %{a} %{b} %{c}"
+    error_diff: 'Ocorreu um erro ao carregar a diferença entre as versões: %{a} %{b} %{c}'
+    error_help: 'Ocorreu um erro ao carregar a ajuda para este item: %{a} %{b} %{c}'
+    error_holding: 'Ocorreu um erro ao carregar as informações do registro de retenção: %{a} %{b} %{c}'
+    error_preview: 'Ocorreu um erro ao carregar a prévia do registro: %{a} %{b} %{c}'
+    error_save: 'Ocorreu um erro ao salvar este registro: %{a} %{b} %{c}'
+    error_summary: 'Ocorreu um erro ao carregar o resumo: %{a} %{b} %{c}'
+    error_validation: 'Ocorreu um erro ao validar este registro: %{a} %{b} %{c}'
+    error_version: 'Ocorreu um erro ao carregar a versão selecionada: %{a} %{b} %{c}'
   marcxml_view: MARCXML view
   mei:
     banner: Please click "Preview" to show the MEI-converted output.
@@ -729,35 +749,6 @@ pt:
   status: Estado
   std_title_contains: Título uniforme
   switch_language: Mudar de idioma
-  tf_acknowledgments: Incipits search is performed with <a href="http://www.themefinder.org/" target="_blank">Themefinder</a> developed by the <a href="http://www.ccarh.org/" target="_blank">CCARH</a>.
-  tf_anchor: Search only at the begining of the incipit
-  tf_anchor_help: Anchored searching tips
-  tf_duration_help: Tips for duration search
-  tf_duration_search: Duration
-  tf_meter: Meter
-  tf_metric_help: Tips for metric help
-  tf_metric_search: Metric
-  tf_pitch_help: Tips for pitch search
-  tf_pitch_search: Pitch
-  tf_timesig_help: Time signature help
-  themefinder_C: pitch gross contour
-  themefinder_E: metric gross contour
-  themefinder_I: diatonic interval
-  themefinder_L: metric level
-  themefinder_P: twelve-tone pitch class
-  themefinder_R: duration gross contour
-  themefinder_b: beat level
-  themefinder_c: pitch refined contour
-  themefinder_d: diatonic scale degree
-  themefinder_d0: no duration search
-  themefinder_e: metric refined contour
-  themefinder_i: twelve-tone interval
-  themefinder_l: metric position
-  themefinder_m0: no metric search
-  themefinder_p: diatonic pitch class
-  themefinder_p0: no pitch search
-  themefinder_r: duration refined contour
-  themefinder_u: exact duration
   this_file_language: English
   time:
     formats:

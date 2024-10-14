@@ -274,8 +274,28 @@ en:
     unpub_records: Unpublished records
     update: Update
   date:
-    day_names: ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"]
-    month_names: [nil, "January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"]
+    day_names:
+    - Sunday
+    - Monday
+    - Tuesday
+    - Wednesday
+    - Thursday
+    - Friday
+    - Saturday
+    month_names:
+    - nil
+    - January
+    - February
+    - March
+    - April
+    - May
+    - June
+    - July
+    - August
+    - September
+    - October
+    - November
+    - December
   default_view: Default view
   delete: Delete
   digital_object:
@@ -749,35 +769,6 @@ en:
     published: PUB
   std_title_contains: Standardized title
   switch_language: Switch language
-  tf_acknowledgments: Incipits search is performed with <a href="http://www.themefinder.org/" target="_blank">Themefinder</a> developed by the <a href="http://www.ccarh.org/" target="_blank">CCARH</a>.
-  tf_anchor: Search only at the begining of the incipit
-  tf_anchor_help: Anchored searching tips
-  tf_duration_help: Tips for duration search
-  tf_duration_search: Duration
-  tf_meter: Meter
-  tf_metric_help: Tips for metric help
-  tf_metric_search: Metric
-  tf_pitch_help: Tips for pitch search
-  tf_pitch_search: Pitch
-  tf_timesig_help: Time signature help
-  themefinder_C: pitch gross contour
-  themefinder_E: metric gross contour
-  themefinder_I: diatonic interval
-  themefinder_L: metric level
-  themefinder_P: twelve-tone pitch class
-  themefinder_R: duration gross contour
-  themefinder_b: beat level
-  themefinder_c: pitch refined contour
-  themefinder_d: diatonic scale degree
-  themefinder_d0: no duration search
-  themefinder_e: metric refined contour
-  themefinder_i: twelve-tone interval
-  themefinder_l: metric position
-  themefinder_m0: no metric search
-  themefinder_p: diatonic pitch class
-  themefinder_p0: no pitch search
-  themefinder_r: duration refined contour
-  themefinder_u: exact duration
   this_file_language: English
   time:
     formats:

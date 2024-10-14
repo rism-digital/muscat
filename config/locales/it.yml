@@ -561,9 +561,9 @@ it:
     delete_group_confirm: Sei sicuro di voler eliminare questo gruppo?
     delete_msg: Elimina
     error_diff: 'Si è verificato un errore durante il caricamento della differenza tra le versioni: %{a} %{b} %{c}'
-    error_help: "Si è verificato un errore durante il caricamento dell'aiuto per questi elementi: %{a} %{b} %{c}"
+    error_help: 'Si è verificato un errore durante il caricamento dell''aiuto per questi elementi: %{a} %{b} %{c}'
     error_holding: 'Si è verificato un errore durante il caricamento delle informazioni del record di possesso: %{a} %{b} %{c}'
-    error_preview: "Si è verificato un errore durante il caricamento dell'anteprima del record: %{a} %{b} %{c}"
+    error_preview: 'Si è verificato un errore durante il caricamento dell''anteprima del record: %{a} %{b} %{c}'
     error_save: 'Si è verificato un errore durante il salvataggio di questo record: %{a} %{b} %{c}'
     error_summary: 'Si è verificato un errore durante il caricamento del sommario: %{a} %{b} %{c}'
     error_validation: 'Si è verificato un errore durante la validazione di questo record: %{a} %{b} %{c}'
@@ -749,35 +749,6 @@ it:
   status: Stato
   std_title_contains: Titolo standard
   switch_language: Cambia lingua
-  tf_acknowledgments: La ricerca per incipit utilizza il motore <a href="http://www.themfinder.org/" target="_blank">Themefinder</a> sviluppato dal <a href="http://www.ccarh.org/" target="_blank">CCARH</a>.
-  tf_anchor: Cerca solo all'inizio dell'incipit
-  tf_anchor_help: Suggerimenti per la ricerca ancorata
-  tf_duration_help: Suggerimenti per la ricerca delle durate
-  tf_duration_search: Durate
-  tf_meter: Indicazione di tempo
-  tf_metric_help: Suggerimenti per la ricerca dei valori metrici
-  tf_metric_search: Valori metrici
-  tf_pitch_help: Suggerimenti per la ricerca melodica
-  tf_pitch_search: Altezze
-  tf_timesig_help: Suggerimenti per la ricerca delle misure di tempo
-  themefinder_C: profilo melodico grezzo
-  themefinder_E: profilo metrico grezzo
-  themefinder_I: intervallo diatonico
-  themefinder_L: livello metrico
-  themefinder_P: altezza cromatica
-  themefinder_R: profilo grezzo delle durate
-  themefinder_b: livello di pulsazione
-  themefinder_c: profilo melodico fine
-  themefinder_d: grado diatonico
-  themefinder_d0: non cercare le durate
-  themefinder_e: profilo metrico fine
-  themefinder_i: intervallo cromatico
-  themefinder_l: posizione metrica
-  themefinder_m0: non cercare i valori metrici
-  themefinder_p: altezza diatonica
-  themefinder_p0: non cercare le altezze
-  themefinder_r: profilo fine delle durate
-  themefinder_u: durata precisa
   this_file_language: Italiano
   time:
     formats:

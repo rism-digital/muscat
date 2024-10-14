@@ -549,9 +549,9 @@ fr:
     one: fête liturgique
     other: fêtes liturgiques
   logout:
-    confirm: "Il y a des fenêtres Muscat ouvertes. Si vous vous déconnectez, toutes les modifications non enregistrées seront perdues. Voulez-vous continuer ?"
-    generic_error: "Vous vous êtes déconnecté de Muscat. Veuillez actualiser la page pour revenir à l'écran de connexion."
-    warning: 'Vous vous êtes déconnecté de Muscat. Tout travail non enregistré sera perdu.'
+    confirm: Il y a des fenêtres Muscat ouvertes. Si vous vous déconnectez, toutes les modifications non enregistrées seront perdues. Voulez-vous continuer ?
+    generic_error: Vous vous êtes déconnecté de Muscat. Veuillez actualiser la page pour revenir à l'écran de connexion.
+    warning: Vous vous êtes déconnecté de Muscat. Tout travail non enregistré sera perdu.
   manuscript_links:
     one: 1 source
     other: "%{count} sources"
@@ -561,10 +561,10 @@ fr:
     delete_group_confirm: Êtes-vous sûr de vouloir supprimer ce groupe?
     delete_msg: Supprimer
     error_diff: 'Une erreur est survenue lors du chargement de la différence entre les versions : %{a} %{b} %{c}'
-    error_help: "Une erreur est survenue lors du chargement de l'aide pour cet élément : %{a} %{b} %{c}"
-    error_holding: "Une erreur est survenue lors du chargement des informations de l'exemplaire : %{a} %{b} %{c}"
-    error_preview: "Une erreur est survenue lors du chargement de l'aperçu de l'enregistrement : %{a} %{b} %{c}"
-    error_save: "Une erreur est survenue lors de l'enregistrement de cet enregistrement : %{a} %{b} %{c}"
+    error_help: 'Une erreur est survenue lors du chargement de l''aide pour cet élément : %{a} %{b} %{c}'
+    error_holding: 'Une erreur est survenue lors du chargement des informations de l''exemplaire : %{a} %{b} %{c}'
+    error_preview: 'Une erreur est survenue lors du chargement de l''aperçu de l''enregistrement : %{a} %{b} %{c}'
+    error_save: 'Une erreur est survenue lors de l''enregistrement de cet enregistrement : %{a} %{b} %{c}'
     error_summary: 'Une erreur est survenue lors du chargement du résumé : %{a} %{b} %{c}'
     error_validation: 'Une erreur est survenue lors de la validation de cet enregistrement : %{a} %{b} %{c}'
     error_version: 'Une erreur est survenue lors du chargement de la version sélectionnée : %{a} %{b} %{c}'
@@ -749,35 +749,6 @@ fr:
   status: Statut
   std_title_contains: Titre standardisé
   switch_language: Changer de langue
-  tf_acknowledgments: La recherche par incipit utilise l'outil <a href="http://www.themefinder.org/" target="_blank">Themefinder</a> développé par le <a href="http://www.ccarh.org/"target="_blank">CCARH</a>.
-  tf_anchor: Chercher seulement au début de l'incipit
-  tf_anchor_help: Suggestions pour la recherche ancrée
-  tf_duration_help: Suggestions pour la recherche par durée
-  tf_duration_search: Durée
-  tf_meter: Mesure
-  tf_metric_help: Suggestions pour la recherche par mètre
-  tf_metric_search: Mètre
-  tf_pitch_help: Suggestions pour la recherche par hauteur
-  tf_pitch_search: Hauteur
-  tf_timesig_help: Suggestions pour la recherche par mesure
-  themefinder_C: contour mélodique grossier
-  themefinder_E: contour métrique grossier
-  themefinder_I: intervalle diatonique
-  themefinder_L: niveau métrique
-  themefinder_P: catégories de hauteur chromatiques
-  themefinder_R: contour grossier des durées
-  themefinder_b: niveau de pulsation
-  themefinder_c: contour mélodique fin
-  themefinder_d: degré diatonique
-  themefinder_d0: aucune recherche par durée
-  themefinder_e: contour métrique fin
-  themefinder_i: intervalle chromatique
-  themefinder_l: position métrique
-  themefinder_m0: aucune recherche métrique
-  themefinder_p: catégories de hauteur diatoniques
-  themefinder_p0: aucune recherche par hauteur
-  themefinder_r: contour fin des durées
-  themefinder_u: durée exacte
   this_file_language: Français
   time:
     formats:
