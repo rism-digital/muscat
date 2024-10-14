@@ -1,35 +1,34 @@
 de:
   gnd:
-    title: Example title
-    main_work: Haupteintragungen
-    variants: Namensvarianten
-    references: Literatur
     codes: Codes
-    relations: Beziehungen
     control: Kontrollfelder
-    ungrouped: Andere Felder, die nicht im Standard Muscat MARC-Editor enthalten sind
-    rism_id_number: RISM Dokumentnummer
     control_number_identifier: Kontrollnummer-Bezeichnung
+    control_subfield: Kontrollunterfeld
     date_time_last_transaction: Datum und Zeit der letzten Transaktion
-    source_number_code: Normdatenagentur
-    standard_number_code: Normdatenverweise
-    other_standard_identifier: Normdatenverweise
-    title: Titel
-    years_birth_death: Geburts- und Todesdaten
-    scoring_summary: Besetzungshinweis
-    opus_thematic_index_number: Numerische Kennzeichnung
-    key_or_mode: Tonart, Modus
-    title_part: Teiltitel
-    title_of_work: Werktitel
     heading: Ansetzungsform
     instrument: Instrumente
+    key_or_mode: Tonart, Modus
+    main_work: Haupteintragungen
     name: Name
-    preferred_title: Bevorzugter Titel
-    work_title: Werktitel
+    opus_thematic_index_number: Numerische Kennzeichnung
+    other_standard_identifier: Normdatenverweise
     partial_title: Teiltitel
-    time_relationship: Zeitbeziehung
-    time: Zeit
+    preferred_title: Bevorzugter Titel
     reference_phrase: Verweisungsphrase
-    control_subfield: Kontrollunterfeld
+    references: Literatur
     relationship_code: Beziehungscode
+    relations: Beziehungen
     remarks: Bemerkungen
+    rism_id_number: RISM Dokumentnummer
+    scoring_summary: Besetzungshinweis
+    source_number_code: Normdatenagentur
+    standard_number_code: Normdatenverweise
+    time: Zeit
+    time_relationship: Zeitbeziehung
+    title: Titel
+    title_of_work: Werktitel
+    title_part: Teiltitel
+    ungrouped: Andere Felder, die nicht im Standard Muscat MARC-Editor enthalten sind
+    variants: Namensvarianten
+    work_title: Werktitel
+    years_birth_death: Geburts- und Todesdaten
