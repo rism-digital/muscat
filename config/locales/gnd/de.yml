@@ -17,8 +17,9 @@ de:
     title: Titel
     years_birth_death: Geburts- und Todesdaten
     scoring_summary: Besetzungshinweis
-    opus_thematic_index_number: Opus / WV-Nummer
+    opus_thematic_index_number: Numerische Kennzeichnung
     key_or_mode: Tonart, Modus
+    title_part: Teiltitel
     title_of_work: Werktitel
     heading: Ansetzungsform
     instrument: Instrumente

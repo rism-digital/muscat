@@ -37,6 +37,8 @@ unmatched:
       label: gnd.scoring_summary
     n:
       label: gnd.opus_thematic_index_number
+    p:
+      label: gnd.title_part
     r:
       label: gnd.key_or_mode
     t:
