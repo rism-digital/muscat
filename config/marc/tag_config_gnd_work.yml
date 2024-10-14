@@ -67,7 +67,7 @@
     :indicator: "##"
     :occurrences: "*"
     :fields:
-    - - a
+    - - c
       - :occurrences: "?"
   "056":  
     :indicator: "##"
