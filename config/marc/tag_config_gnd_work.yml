@@ -207,6 +207,16 @@
     :fields:
     - - a
       - :occurrences: "?"
+    - - g
+      - :occurrences: "?"
+    - - i
+      - :occurrences: "?"
+    - - '0'
+      - :occurrences: "?"
+    - - '4'
+      - :occurrences: "?"
+    - - '9'
+      - :occurrences: "?"
   "667":  
     :indicator: "##"
     :occurrences: "*"

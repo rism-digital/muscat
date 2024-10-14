@@ -6,6 +6,7 @@ de:
     control_subfield: Kontrollunterfeld
     date_time_last_transaction: Datum und Zeit der letzten Transaktion
     heading: Ansetzungsform
+    identifying_addition: Identifizierender Zusatz
     instrument: Instrumente
     key_or_mode: Tonart, Modus
     main_work: Haupteintragungen
@@ -15,15 +16,19 @@ de:
     other_work_title: Abweichender Werktitel
     partial_title: Teiltitel
     preferred_title: Bevorzugter Titel
+    record_idn: IDN des Normdatensatzes
     reference_phrase: Verweisungsphrase
     references: Literatur
     relationship_code: Beziehungscode
+    relationship_phase: Beziehungsphrase
     relations: Beziehungen
     remarks: Bemerkungen
     rism_id_number: RISM Dokumentnummer
     scoring_summary: Besetzungshinweis
     source_number_code: Normdatenagentur
     standard_number_code: Normdatenverweise
+    subject_term: Sachbegriff
+    subject_term_relationship: Sachbegriff – Beziehung
     time: Zeit
     time_relationship: Zeitbeziehung
     title: Titel

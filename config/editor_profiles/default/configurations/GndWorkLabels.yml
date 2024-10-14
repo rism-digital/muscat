@@ -76,7 +76,21 @@ unmatched:
     '9':
       label: gnd.remarks
   label: gnd.time_relationship
-
+'550':
+  fields:
+    a:
+      label: gnd.subject_term
+    g:
+      label: gnd.identifying_addition
+    i:
+      label: gnd.relationship_phase
+    '0':
+      label: gnd.record_idn
+    '4':
+      label: gnd.relationship_code
+    '9':
+      label: gnd.remarks
+  label: gnd.subject_term_relationship
 10t:
   label: records.mode_10t
 10tt:
