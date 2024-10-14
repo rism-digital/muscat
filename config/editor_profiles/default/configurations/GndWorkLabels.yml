@@ -56,6 +56,19 @@ unmatched:
     a:
       label: gnd.instrument
   label: gnd.instrument
+'548':
+  fields:
+    a:
+      label: gnd.time
+    i:
+      label: gnd.reference_phrase
+    w:
+      label: gnd.control_subfield
+    '4':
+      label: gnd.relationship_code
+    '9':
+      label: gnd.remarks
+  label: gnd.time_relationship
 
 10t:
   label: records.mode_10t
