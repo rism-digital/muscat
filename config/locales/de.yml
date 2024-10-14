@@ -210,7 +210,7 @@ de:
         other: Gruppen
   add_holding: Holding verlinken
   add_institution: Institution verlinken
-  add_item_to_folder: ADD TO FOLDER
+  add_item_to_folder: Zum Ordner hinzufügen
   add_person: Person verlinken
   add_source: Quelle verlinken
   any_field_contains: Irgendein Feld
@@ -225,7 +225,7 @@ de:
   cancel: Abbrechen
   cannot_create_source: Sie sind nicht berechtigt, diese Art von Quellen zu erstellen
   cannot_update_source: Sie sind nicht berechtigt, diese Art von Quellen zu bearbeiten
-  choose_folder: "(PLEASE CHOOSE ONE)"
+  choose_folder: "(Bitte wählen Sie eines)"
   clipboard:
     copied: Ergebnisse in die Zwischenablage kopiert
   compare_versions:
@@ -704,7 +704,7 @@ de:
     unspecified: "[Unbekannte Vorlage]"
   refers_to_this: "%{model_from} die sich auf diesen %{model_to} beziehen"
   reindex: Reindexieren
-  remove_item_from_folder: DELETE FROM FOLDER
+  remove_item_from_folder: Aus Ordner löschen
   resave: Erneut speichern
   retro_level: Retroeinspielung
   rism_a: A-Dur/Moll
