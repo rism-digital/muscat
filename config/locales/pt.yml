@@ -22,7 +22,7 @@ pt:
       delete_confirmation: Tem certeza de que quer apagar estes %{plural_model}?
       labels:
         add_to_folder: Adicionar itens a pasta existente
-        change_template: TRME Change template
+        change_template: Mudar template
         destroy: Apagar
         folder: Criar pasta com itens
         merge: Combinar registros de autoridade
@@ -87,7 +87,7 @@ pt:
         title: Esqueceu sua senha?
       sign_up:
         submit: Inscrever-se
-        tiitle: TRME TRME s'inscrire
+        tiitle: Inscrever-se
         title: Inscrever-se
       subdomain:
         title: Subdomínio
@@ -134,7 +134,7 @@ pt:
       entry:
         one: registro
         other: registros
-      few: TRME TRME Kilka
+      few: Inscrever-se
       multiple: Exibindo %{model} <b>%{from}&nbsp;-&nbsp;%{to}</b> de <b>%{total}</b> no total
       multiple_without_total: Exibindo %{model} <b>%{from}&nbsp;-&nbsp;%{to}</b>
       one: Exibindo <b>1</b> %{model}
@@ -144,8 +144,8 @@ pt:
     previous: Anterior
     save_model: Salvar
     search_status:
-      current_filters: TRME TRME Filtri in uso
-      headline: TRME TRME Ambito
+      current_filters: Filtros em uso
+      headline: Âmbito
     sidebars:
       actions: Ações
       filters: Filtros
@@ -176,8 +176,8 @@ pt:
         one: Instituição
         other: Instituições
       inventory_item:
-        one: TRME Inventory item
-        other: TRME Inventory items
+        one: Item de inventário
+        other: Itens de inventário
       liturgical_feast:
         one: Festas litúrgicas
         other: Festas litúrgicas
@@ -203,8 +203,8 @@ pt:
         one: Obra
         other: Obras
       work_node:
-        one: TRME TRME Riferimento alle opere
-        other: TRME TRME Riferimenti alle opere
+        one: Work node
+        other: Work node
       workgroup:
         one: Grupo
         other: Grupos
@@ -220,14 +220,14 @@ pt:
   authorization_tokens: Auth tokens
   available_templates: Modelos disponíveis
   basic_level: Registro básico
-  body: 'TRME TRME '
+  body: Body
   btn_themefinder_reset: Reset
   cancel: Cancelar
   cannot_create_source: O usuário não tem autorização para criar este tipo de fonte
   cannot_update_source: O usuário não tem autorização para editar este tipo de fonte
   choose_folder: "(PLEASE CHOOSE ONE)"
   clipboard:
-    copied: TRME Results copied to clipboard
+    copied: Resultados copiados para a área de transferência
   compare_versions:
     date_message: Mostrar records modificados de %{date}.
     diff: Comparar
@@ -260,22 +260,22 @@ pt:
     my_records: Os meus registos
     news: Muscat Notícias
     no_items: Nenhum elemento para exibir com os filtros atuais
-    no_unpublished: TRME No unpublished records
-    no_unpublished_long: TRME You have no unpublished records!
+    no_unpublished: Nenhum registro não publicado
+    no_unpublished_long: Você não tem registros não publicados!
     owner: Proprietário
     owner_any: Todos
     owner_user: Eu
     quantity: Exibir
     selection: Selecione atividade recente
-    showing_out_of: TRME Showing %{max} records out of %{total}
+    showing_out_of: Mostrando %{max} registros de um total de %{total}
     type: Modificar tipo
     type_created: Recentemente criado
     type_updated: Recentemente atualizado
-    unpub_records: TRME Unpublished records
+    unpub_records: Registros não publicados
     update: Atualizar
   date:
-    day_names: TRME TRME ["domenica", "lunedì", "martedì", "mercoledì", "giovedì", "venerdì", "sabato"]
-    month_names: TRME TRME [nil, "gennaio", "febbraio", "marzo", "aprile", "maggio", "giugno", "luglio", "agosto", "settembre", "ottobre", "novembre", "dicembre"]
+    day_names: ["domingo", "segunda-feira", "terça-feira", "quarta-feira", "quinta-feira", "sexta-feira", "sábado"]
+    month_names: [nil, "janeiro", "fevereiro", "março", "abril", "maio", "junho", "julho", "agosto", "setembro", "outubro", "novembro", "dezembro"]
   default_view: Default view
   delete: Apagar
   digital_object:
@@ -313,7 +313,7 @@ pt:
   filter_author_or_editor: Autor/Editor
   filter_autograph_of: Autógrafo de
   filter_birth_place: Local de nascimento
-  filter_book_id: TRME Book id
+  filter_book_id: ID do livro
   filter_catalog: Catálogo
   filter_category_type: Categoria
   filter_collection: Coletânea
@@ -352,9 +352,9 @@ pt:
   filter_folder_type: Tipo de Pasta
   filter_full_name: Nome
   filter_gender: Gênero
-  filter_has_incipits: TRME Has incipits
-  filter_has_internal_notes: TRME Has internal notes
-  filter_has_siglum: TRME Has siglum
+  filter_has_incipits: Tem incipits
+  filter_has_internal_notes: Tem notas internas
+  filter_has_siglum: Tem sigla
   filter_id: ID RISM
   filter_id_no: ID RISM
   filter_image: Imagem
@@ -381,11 +381,11 @@ pt:
   filter_location_and_name: Nome e Local
   filter_male: Masculino
   filter_manuscript_no: Manuscrito número
-  filter_mei: TRME MEI file
+  filter_mei: MEI file
   filter_name: Nome
   filter_notes: Notas
   filter_old_versions: Versões anteriores
-  filter_opus: TRME Opus
+  filter_opus: Obra
   filter_owner: Proprietário
   filter_pages: Páginas
   filter_pattern: Padrões de sigla
@@ -470,7 +470,7 @@ pt:
     validation_started: 'Um e-mail será enviado para %{email} com a validação terminada (Validação id do trabalho: %{job})'
   from_existing_source: Criar a partir de uma fonte existente
   full_level: Registro completo
-  gnd_not_found: TRME The request to GND returned an empty record
+  gnd_not_found: A solicitação ao GND retornou um registro vazio.
   go_to_top: Voltar ao início
   hide_preview: Ocultar previsualização
   history_author: Autor
@@ -529,9 +529,9 @@ pt:
     one: festa litúrgica
     other: festas litúrgicas
   logout:
-    confirm: TRME There are open Muscat windows. If you log out, any unsaved changes will be lost. Do you want to continue?
-    generic_error: TRME You have logged out of Muscat. Please refresh the page to return to the login screen.
-    warning: TRME You have logged out from Muscat. Any unsaved work will be lost.
+    confirm: "Há janelas Muscat abertas. Se você sair, quaisquer alterações não salvas serão perdidas. Você deseja continuar?"
+    generic_error: "Você saiu do Muscat. Por favor, atualize a página para retornar à tela de login."
+    warning: "Você saiu do Muscat. Qualquer trabalho não salvo será perdido."
   manuscript_links:
     one: 1 fonte
     other: "%{count} fontes"
@@ -540,14 +540,14 @@ pt:
     delete_field_confirm: Tem a certeza que quer apagar este campo?
     delete_group_confirm: Tem a certeza que quer apagar este grupo?
     delete_msg: Eliminar
-    error_diff: 'TRME An error occurred while loading the diff between versions: %{a} %{b} %{c}'
-    error_help: 'TRME An error occurred while loading the help for this items: %{a} %{b} %{c}'
-    error_holding: 'TRME An error occurred while loading the holding record information: %{a} %{b} %{c}'
-    error_preview: 'TRME An error occurred while loading the record preview: %{a} %{b} %{c}'
-    error_save: 'TRME An error occurred saving this record: %{a} %{b} %{c}'
-    error_summary: 'TRME An error occurred while loading the summary: %{a} %{b} %{c}'
-    error_validation: 'TRME An error occurred validating this record: %{a} %{b} %{c}'
-    error_version: 'TRME An error occurred while loading the selected version: %{a} %{b} %{c}'
+    error_diff: "Ocorreu um erro ao carregar a diferença entre as versões: %{a} %{b} %{c}"
+    error_help: "Ocorreu um erro ao carregar a ajuda para este item: %{a} %{b} %{c}"
+    error_holding: "Ocorreu um erro ao carregar as informações do registro de retenção: %{a} %{b} %{c}"
+    error_preview: "Ocorreu um erro ao carregar a prévia do registro: %{a} %{b} %{c}"
+    error_save: "Ocorreu um erro ao salvar este registro: %{a} %{b} %{c}"
+    error_summary: "Ocorreu um erro ao carregar o resumo: %{a} %{b} %{c}"
+    error_validation: "Ocorreu um erro ao validar este registro: %{a} %{b} %{c}"
+    error_version: "Ocorreu um erro ao carregar a versão selecionada: %{a} %{b} %{c}"
   marcxml_view: MARCXML view
   mei:
     banner: Please click "Preview" to show the MEI-converted output.
@@ -576,7 +576,7 @@ pt:
   menu_home: Início
   menu_indexes: Autoridades
   menu_institutions: Instituições
-  menu_inventory_items: TRME Inventory Items
+  menu_inventory_items: itens de inventário
   menu_jobs: Trabalhos
   menu_languages: Idioma
   menu_latin: Texto latino
@@ -602,8 +602,8 @@ pt:
   new_digital_object_incipit: Adicionar um novo incipit MEI
   new_holding: Adicionar material
   new_holding_page: Informação de novo material
-  new_inventory_item: TRME Create new inventory item
-  new_inventory_item_page: TRME New inventory item
+  new_inventory_item: Criar novo item de inventário
+  new_inventory_item_page: Novo item de inventário
   no_action: Nenhuma ação disponível
   not_set: "[não definido]"
   notifications:
@@ -634,7 +634,7 @@ pt:
   queue: Fila
   ransack:
     predicates:
-      with_integer: TRME is
+      with_integer: é
   recent_changes: Últimas modificações
   record_actions: Ações do Registro
   record_audit: Origem do Registro
@@ -659,13 +659,13 @@ pt:
     individual_entry_libretti_printed: Libreto impresso, registro individual em coletânea
     individual_entry_threatise: Tratado manuscrito, registro individual em coletânea
     individual_entry_threatise_printed: Tratado impresso, registro individual em coletânea
-    inventories: TRME Inventories
-    inventory: TRME Inventory
-    inventory_edition: TRME Inventory edition
+    inventories: Inventários
+    inventory: Inventário
+    inventory_edition: Edição de inventário
     libretti_handwritten: Libretos, manuscritos
     libretti_printed: Libretos, impressos
     libretto_edition: Libreto, impresso
-    libretto_edition_content: TRME Printed libretto, item in collection
+    libretto_edition_content: Libretto impresso, item na coleção
     libretto_source: Libreto, manuscrito
     music_manuscripts: Manuscritos musicais
     printed_music: Música impressa
@@ -677,14 +677,14 @@ pt:
     single_threatise_printed: Tratado impresso único
     source: Manuscrito musical
     theoretica_edition: Tratado, impresso
-    theoretica_edition_content: TRME Printed treatise, item in collection
+    theoretica_edition_content: Tratado impresso, item na coleção
     theoretica_source: Tratado, manuscrito
     threatise_handwritten: Tratado, manuscrito
     threatise_printed: Tratado, impresso
     unspecified: "[Modelo desconhecido]"
   refers_to_this: "%{model_from} se refere a este %{model_to}"
   reindex: Reindexar fontes
-  remove_item_from_folder: DELETE FROM FOLDER
+  remove_item_from_folder: Deletar do pasta
   resave: Salvar fontes novamente
   retro_level: Retrocatalogação
   rism_a: A maior/menor
@@ -783,7 +783,7 @@ pt:
   validation:
     begins_with_message: O campo deve começar com "{0}"
     cannot_link_to_self: A criação de uma ligação em si não é permitida (%{id}).
-    check_group_message: TRME The first material group cannot be "Additional printed material"
+    check_group_message: O primeiro grupo de material não pode ser "Material impresso adicional".
     correct: O registro não tem erros de validação [200]
     insufficient_rights: O usuário não tem concessão para criar/atualizar um registro para esta instituição
     missing_message: Um valor neste campo é obrigatório
@@ -813,5 +813,5 @@ pt:
   work_catalogue: Catálogo de obras
   workgroups: Grupos de trabalho
   worknode:
-    one: TRME work node
-    other: TRME work nodes
+    one: Work node
+    other: Work nodes
