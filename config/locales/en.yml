@@ -1,935 +1,830 @@
-
+---
 en:
+  Composer: Composer
+  Date: Date
+  Images: Images
+  Incipit: Incipit
+  Library siglum: Library siglum
+  Number of printed copies: Number of printed copies
+  Scoring: Scoring
+  Source Type: Source Type
+  Standardized title: Standardized Title
+  Subject: Subject
+  abbreviated_level: Brief record, material examined
   active_admin:
-# Pad for italian, it has 2 missing items
-#
-#
-    compare_versions: Compare versions
-    gnd_works: GND Work Editor
-    dashboard: "Dashboard"
-    dashboard_welcome:
-      welcome: "Welcome to Active Admin. This is the default dashboard page."
-      call_to_action: "To add dashboard sections, checkout 'app/admin/dashboard.rb'"
-    view: "View"
-    edit: "Edit"
-    delete: "Delete"
-    delete_confirmation: "Are you sure you want to delete this?"
-    new_model: "New %{model}"
-    create_model: "New %{model}"
-    edit_model: "Edit %{model}"
-    update_model: "Edit %{model}"
-    delete_model: "Delete %{model}"
-    save_model: "Save"
-    details: "%{model} Details"
-    cancel: "Cancel"
-    empty: "Empty"
-    previous: "Previous"
-    next: "Next"
-    download: "Download:"
-    has_many_new: "Add New %{model}"
-    has_many_delete: "Delete"
-    has_many_remove: "Remove"
-    filters:
-      buttons:
-        filter: "Filter"
-        clear: "Clear Filters"
-      predicates:
-        contains: "Contains"
-        equals: "Equals"
-        starts_with: "Starts with"
-        ends_with: "Ends with"
-        greater_than: "Greater than"
-        less_than: "Less than"
-        with_integer: "Filter"
-        from: "Date from"
-        to: "Date to"
-    status_tag:
-      "yes": "Yes"
-      "no": "No"
-    main_content: "Please implement %{model}#main_content to display content."
-    logout: "Logout"
-    powered_by: "Powered by %{active_admin} %{version}"
-    sidebars:
-      filters: "Filters"
-      sections: "Sections and actions"
-      actions: "Actions"
-      toc: "Table of contents"
-      help: "Help"
-    pagination:
-      empty: "No %{model} found"
-      one: "Displaying <b>1</b> %{model}"
-      one_page: "Displaying <b>all %{n}</b> %{model}"
-      multiple: "Displaying %{model} <b>%{from}&nbsp;-&nbsp;%{to}</b> of <b>%{total}</b> in total"
-      multiple_without_total: "Displaying %{model} <b>%{from}&nbsp;-&nbsp;%{to}</b>"
-      per_page: "Elements per page:"
-      entry:
-        one: "entry"
-        other: "entries"
-    any: "Any"
-    blank_slate:
-      content: "There are no %{resource_name} yet."
-      link: "Create one"
-    dropdown_actions:
-      button_label: "Actions"
+    access_denied:
+      message: You are not authorized to perform this action.
+    any: Any
     batch_actions:
-      button_label: "Batch actions"
-      default_confirmation: "Are you sure you want to do this?"
-      delete_confirmation: "Are you sure you want to delete these %{plural_model}?"
-      succesfully_destroyed:
-        one: "Successfully destroyed 1 %{model}"
-        other: "Successfully destroyed %{count} %{plural_model}"
-      selection_toggle_explanation: "(Toggle Selection)"
-      link: "Create one"
       action_label: "%{title}"
+      button_label: Batch actions
+      default_confirmation: Are you sure you want to do this?
+      delete_confirmation: Are you sure you want to delete these %{plural_model}?
       labels:
-        destroy: "Delete"
-        folder: "Create folder with items"
-        add_to_folder: "Add items to existing folder"
-        merge: "Merge authority records"
-        change_template: "Change template"
-
+        add_to_folder: Add items to existing folder
+        change_template: Change template
+        destroy: Delete
+        folder: Create folder with items
+        merge: Merge authority records
+      link: Create one
+      selection_toggle_explanation: "(Toggle Selection)"
+      succesfully_destroyed:
+        one: Successfully destroyed 1 %{model}
+        other: Successfully destroyed %{count} %{plural_model}
+    blank_slate:
+      content: There are no %{resource_name} yet.
+      link: Create one
+    cancel: Cancel
     comments:
-      resource_type: "Resource type"
-      author_type: "Author type"
-      body: "Text"
-      author: "Author"
-      title: "Comment"
-      add: "Add comment"
-      resource: "Resource"
-      no_comments_yet: "No comments yet."
-      comments_help: "Type @ to mention a specific user, who will then receive a notification by email."
-      author_missing: "Anonymous"
-      title_content: "Comments (%{count})"
-      referring_comments: Comments where I am named
+      add: Add comment
+      author: Author
+      author_missing: Anonymous
+      author_type: Author type
+      body: Text
+      comments_help: Type @ to mention a specific user, who will then receive a notification by email.
+      errors:
+        empty_text: Comment wasn't saved, text was empty.
       my_item_comments: Comments on my records
       my_own_comments: Comments I made
-      errors:
-        empty_text: "Comment wasn't saved, text was empty."
+      no_comments_yet: No comments yet.
+      referring_comments: Comments where I am named
+      resource: Resource
+      resource_type: Resource type
+      title: Comment
+      title_content: Comments (%{count})
+    compare_versions: Compare versions
+    create_model: New %{model}
+    dashboard: Dashboard
+    dashboard_welcome:
+      call_to_action: To add dashboard sections, checkout 'app/admin/dashboard.rb'
+      welcome: Welcome to Active Admin. This is the default dashboard page.
+    delete: Delete
+    delete_confirmation: Are you sure you want to delete this?
+    delete_model: Delete %{model}
+    details: "%{model} Details"
     devise:
-      username:
-        title: "Username"
-      email:
-        title: "Email"
-      subdomain:
-        title: "Subdomain"
-      password:
-        title: "Password"
-      sign_up:
-        title: "Sign up"
-        submit: "Sign up"
-      login:
-        title: "Login"
-        remember_me: "Remember me"
-        submit: "Login"
-      reset_password:
-        title: "Forgot your password?"
-        submit: "Reset My Password"
       change_password:
-        title: "Change your password"
-        submit: "Change my password"
-      unlock:
-        title: "Resend unlock instructions"
-        submit: "Resend unlock instructions"
-      resend_confirmation_instructions:
-        title: "Resend confirmation instructions"
-        submit: "Resend confirmation instructions"
+        submit: Change my password
+        title: Change your password
+      email:
+        title: Email
       links:
-        sign_in: "Sign in"
-        forgot_your_password: "Forgot your password?"
-        sign_in_with_omniauth_provider: "Sign in with %{provider}"
-        resend_unlock_instructions: "Re-send unlock instructions"
-    unsupported_browser:
-      headline: "Please note that Muscat no longer supports Internet Explorer versions 8 or less."
-      recommendation: "We recommend upgrading to the latest <a href=\"http://windows.microsoft.com/ie\">Internet Explorer</a>, <a href=\"https://chrome.google.com/\">Google Chrome</a>, or <a href=\"https://mozilla.org/firefox/\">Firefox</a>."
-      turn_off_compatibility_view: "If you are using IE 9 or later, make sure you <a href=\"http://windows.microsoft.com/en-US/windows7/webpages-look-incorrect-in-Internet-Explorer\">turn off \"Compatibility View\"</a>."
-    access_denied:
-      message: "You are not authorized to perform this action."
+        forgot_your_password: Forgot your password?
+        resend_unlock_instructions: Re-send unlock instructions
+        sign_in: Sign in
+        sign_in_with_omniauth_provider: Sign in with %{provider}
+      login:
+        remember_me: Remember me
+        submit: Login
+        title: Login
+      password:
+        title: Password
+      resend_confirmation_instructions:
+        submit: Resend confirmation instructions
+        title: Resend confirmation instructions
+      reset_password:
+        submit: Reset My Password
+        title: Forgot your password?
+      sign_up:
+        submit: Sign up
+        title: Sign up
+      subdomain:
+        title: Subdomain
+      unlock:
+        submit: Resend unlock instructions
+        title: Resend unlock instructions
+      username:
+        title: Username
+    download: 'Download:'
+    dropdown_actions:
+      button_label: Actions
+    edit: Edit
+    edit_model: Edit %{model}
+    empty: Empty
+    filters:
+      buttons:
+        clear: Clear Filters
+        filter: Filter
+      predicates:
+        contains: Contains
+        ends_with: Ends with
+        equals: Equals
+        from: Date from
+        greater_than: Greater than
+        less_than: Less than
+        starts_with: Starts with
+        to: Date to
+        with_integer: Filter
+    gnd_works: GND Work Editor
+    has_many_delete: Delete
+    has_many_new: Add New %{model}
+    has_many_remove: Remove
     index_list:
-      table: "Table"
-      block: "List"
-      grid: "Grid"
-      blog: "Blog"
-  switch_language: "Switch language" 
-  this_file_language: "English"
-  
-  ransack:
-    predicates:
-      with_integer: "is"
-
-  time:
-    formats:
-      default: "%H:%M"
-      short: "%H:%M"
-      long: "%Y-%m-%d %H:%M"
-      verbose: "%B %d, %Y %H:%M"
-      
-  #################### MODELS      
+      block: List
+      blog: Blog
+      grid: Grid
+      table: Table
+    logout: Logout
+    main_content: Please implement %{model}#main_content to display content.
+    new_model: New %{model}
+    next: Next
+    pagination:
+      empty: No %{model} found
+      entry:
+        one: entry
+        other: entries
+      multiple: Displaying %{model} <b>%{from}&nbsp;-&nbsp;%{to}</b> of <b>%{total}</b> in total
+      multiple_without_total: Displaying %{model} <b>%{from}&nbsp;-&nbsp;%{to}</b>
+      one: Displaying <b>1</b> %{model}
+      one_page: Displaying <b>all %{n}</b> %{model}
+      per_page: 'Elements per page:'
+    powered_by: Powered by %{active_admin} %{version}
+    previous: Previous
+    save_model: Save
+    sidebars:
+      actions: Actions
+      filters: Filters
+      help: Help
+      sections: Sections and actions
+      toc: Table of contents
+    status_tag:
+      'no': 'No'
+      'yes': 'Yes'
+    unsupported_browser:
+      headline: Please note that Muscat no longer supports Internet Explorer versions 8 or less.
+      recommendation: We recommend upgrading to the latest <a href="http://windows.microsoft.com/ie">Internet Explorer</a>, <a href="https://chrome.google.com/">Google Chrome</a>, or <a href="https://mozilla.org/firefox/">Firefox</a>.
+      turn_off_compatibility_view: If you are using IE 9 or later, make sure you <a href="http://windows.microsoft.com/en-US/windows7/webpages-look-incorrect-in-Internet-Explorer">turn off "Compatibility View"</a>.
+    update_model: Edit %{model}
+    view: View
   activerecord:
     models:
       digital_object:
-        one: "Digital object"
-        other: "Digital objects"
-      publication:
-        one: "Secondary literature"
-        other: "Secondary literature"
+        one: Digital object
+        other: Digital objects
       folder:
-        one: "Folder"
-        other: "Folders"
-      workgroup:
-        one: "Group"
-        other: "Groups"
+        one: Folder
+        other: Folders
       holding:
-        one: "Holding"
-        other: "Holdings"
+        one: Holding
+        other: Holdings
       institution:
-        one: "Institution"
-        other: "Institutions"
-      liturgical_feast:
-        one: "Liturgical festivals"
-        other: "Liturgical festivals"
-      person:
-        one: "Personal name"
-        other: "Personal names"
-      source:
-        one: "Source"
-        other: "Sources"
-      standard_term:
-        one: "Subject heading"
-        other: "Subject headings"
-      standard_title:
-        one: "Standard title"
-        other: "Standard titles"
-      user:
-        one: "User"
-        other: "Users"
-      work:
-        one: "Work"
-        other: "Works"
+        one: Institution
+        other: Institutions
       inventory_item:
-        one: "Inventory item"
-        other: "Inventory items"
-  
-  #################### RECORD TYPES (TEMPLATES)
-  select_template: "Select new template"
-  available_templates: "Available templates"
-  from_existing_source: "Create from existing source"
-  create_from_existing: "Create"
-  record_types:
-    unspecified: "[Unknown template]"
-    collection: "Music manuscript, collection parent record"
-    source: "Music manuscript"
-    edition_content: "Printed music edition, item in collection"
-    libretto_source: "Libretto, handwritten"
-    libretto_edition: "Libretto, printed"
-    libretto_edition_content: "Printed libretto, item in collection"
-    theoretica_source: "Treatise, handwritten"
-    theoretica_edition: "Treatise, printed"
-    theoretica_edition_content: "Printed treatise, item in collection"
-    edition: "Printed music edition, collection parent record or individual item"
-    inventory: "Inventory"
-    inventory_edition: "Inventory edition"
-    inventories: "Inventories"
-
-    composite_volumes: "Composite volumes"
-    composite_volume: "Record for a composite volume"
-    
-    music_manuscripts: "Music manuscripts"
-    collection_record: "Collection record for a music manuscript"
-    individual_entry: "Individual entry in a music manuscript collection"
-    single_manuscript: "Single music manuscript"
-    
-    printed_music: "Printed music editions"
-    collection_record_edition: "Collection record for a printed music edition"
-    individual_entry_edition: "Individual entry in a printed edition collection"
-    single_edition: "Single printed music edition"
-
-    libretti_handwritten: "Libretti, handwritten"
-    collection_record_libretti: "Collection record for handwritten libretti"
-    individual_entry_libretti: "Individual entry in a handwritten libretto collection"
-    single_libretto: "Single handwritten libretto"
-    
-    libretti_printed: "Libretti, printed"
-    collection_record_libretti_printed: "Collection record for printed libretti"
-    individual_entry_libretti_printed: "Individual entry in a printed libretto collection"
-    single_libretto_printed: "Single printed libretto"
-    
-    threatise_handwritten: "Treatises, handwritten"
-    collection_record_threatise: "Collection record for handwritten treatises"
-    individual_entry_threatise: "Individual entry in a handwritten treatise collection"
-    single_threatise: "Single handwritten treatise"
-    
-    threatise_printed: "Treatises, printed"
-    collection_record_threatise_printed: "Collection record for printed treatises"
-    individual_entry_threatise_printed: "Individual entry in a printed treatise collection"
-    single_threatise_printed: "Single printed treatise"
-        
-  #################### MENUS
-  menu_home: "Home page"
-  menu_sources: "Sources"
-  menu_simple_search: "Simple search"
-  menu_advanced_search: "Advanced search"
-  menu_indexes: "Authorities"
-  menu_people: "Personal names"
-  menu_institutions: "Institutions"
-  menu_titles: "Titles / text incipits"
-  menu_subjects: "Subject headings"
-  menu_library_sigla: "Library siglum"
-  menu_publications: "Secondary literature"
-  menu_liturgical_feasts: "Liturgical festivals"
-  menu_latin: "Latin text"
-  menu_places: "Places"
-  menu_help: "Help"
-  menu_folders: "Folders"
-  menu_users: "Users"
-  menu_workgroups: "Workgroups"
-  menu_administration: "Administration"
-  menu_comments: "Comments"
-  menu_catalog: "Faceted search"
-  menu_languages: "Language"
-  menu_contact: "Contact"
-  menu_search_history: "Search history"
-  menu_guidelines: "Cataloguing guidelines"
-  menu_marc_documentation: "MARC configuration"
-  menu_guidelines_top: "Guidelines"
-  menu_cataloging: "Cataloguing"
-  menu_jobs: "Jobs"
-  menu_holdings: "Holdings"
-  menu_works: "Works"
-  menu_work_nodes: "Work nodes"
-  menu_inventory_items: "Inventory Items"
-  
-  ### VARIOUS ELEMENTS
-  recent_changes: "Lastest modifications"
-  any_field_contains: "Any field"
-  title_contains: "Diplomatic title"
-  std_title_contains: "Standardized title"
-  composer_contains: "Composer"
-  library_sigla_contains: "Siglum"
-  internal_note_contains: "Internal note"
-  is_in_folder: "Is in folder"
-  workgroups: "Workgroups"
-  roles: "Roles"
-  user_details: "User Details"
-  sections: "Sections"
-  edit: "Edit"
-  search_sources: "Search Sources"
-  created_at: "Created on"
-  updated_at: "Last modification"
-  status: "Status"
-  progress_stage: "Stage"
-  object: "Object"
-  queue: "Queue"
-  failed_at: "Failed At"
-  run_at: "Run At"
-  progress: "Progress"
-  failed: "Failed"
-  waiting: "Waiting"
-  running: "Running"
-  finished: "Finished"
-  lib_siglum: "Library Siglum"
-  holding_records: "Exemplar Information"
-  holding_no_siglum: "Holding without siglum"
-  holding_missing: "This printed source does not have any holdings attached yet. Please add your library siglum, shelfmark, and other copy-specific information to this record by clicking the \"%{new_holding}\" button on the right."
-  holding_missing_alert: "This printed source does not have any holdings attached yet. Please add your library siglum, shelfmark, and other copy-specific information to this record by clicking the \"%{new_holding}\" button on the right after you save."
-  holding_missing_show: "This printed source does not have any holdings attached yet. Please add your library siglum, shelfmark, and other copy-specific information to this record by editing this record and clicking the \"%{new_holding}\" button on the right."
-  new_holding: "Add holdings"
-  new_holding_page: "New holdings information"
-  new_digital_object_image: "Attach a new image"
-  new_digital_object_incipit: "Attach a new MEI incipit"
-  new_inventory_item: Create new inventory item
-  new_inventory_item_page: New inventory item
-  record_actions: "Record Actions"
-  record_status: "Record Status"
-  record_owner: "Record Owner"
-  record_audit: "Record Origin"
-  record_label: "Attribution Certainty"
-  basic_level: "Basic record"
-  full_level: "Full record"
-  #full_level: "Full record, material examined"
-  abbreviated_level: "Brief record, material examined"
-  retro_level: "Retrocataloging"
-  imported_level: "Imported record"
-  link_type: "Linked object type"
-  linked_object: "Linked Object"
-  links: "Links"
-  link_remove: "Remove link"
-  link_remove_confirm: "Are you sure you want to delete this link?"
-  unloadable_record: "This record experienced loading errors: it can be viewed but not edited. Please contact an administrator."
-  validation_level_error: "There are errors, please solve before saving"
-  validation_level_warning: "There are warnings, save again to override"
-  muscat_reindexing: "Muscat is reindexing, search results may be incomplete"
-  work_catalogue: "Is work catalogue"
-  default_view: "Default view"
-  marc21_view: "MARC21 view"
-  marcxml_view: "MARCXML view"
-  authorization_tokens: "Auth tokens"
-
-  jobs:
-    not_set: "[No status set]"
-    ok: "Job ended successfully"
-    no_status: "There was an Error Reading job Status"
-    error: "ERROR: "
-    running_jobs: "Running Jobs Cannot be Deleted."
-    auto_delete: "Cannot Delete: Finished job was Automatically Deleted."
-    no_view: "Cannot View: Finished job was Automatically Deleted."
-
-  # Sidebar
-  delete: "Delete"
-  to_the_list: "Return to the list"
-  go_to_top: "Back to the top"
-  edit: "Edit"
-  new: "Create"
-  duplicate: "Duplicate"
-  merge: "Merge"
-  no_action: "No action available"
-  reindex: "Reindex sources"
-  resave: "Resave sources"
-  publish: "Publish"
-  unpublish: "Unpublish"
-  select: "Select"
-  create_folder: "Add all to a new folder"
-  append_folder: "Add all to an existing folder"
-  add_institution: "Link Institution"
-  add_source: "Link Source"
-  add_person: "Link Person"
-  add_holding: "Link Holding"
-  archive_unarchive: "Archive / un-archive"
-  archive: "Archive"
-  unarchive: "Un-archive"
-  export_folder: "Export Folder as MARCXML"
-  export_folder_csv: "Export Folder as CSV"
-  export_folder_raw: "Export Folder as Muscat MARC"
-  validate_folder: "Validate items"
+        one: Inventory item
+        other: Inventory items
+      liturgical_feast:
+        one: Liturgical festivals
+        other: Liturgical festivals
+      person:
+        one: Personal name
+        other: Personal names
+      publication:
+        one: Secondary literature
+        other: Secondary literature
+      source:
+        one: Source
+        other: Sources
+      standard_term:
+        one: Subject heading
+        other: Subject headings
+      standard_title:
+        one: Standard title
+        other: Standard titles
+      user:
+        one: User
+        other: Users
+      work:
+        one: Work
+        other: Works
+      workgroup:
+        one: Group
+        other: Groups
+  add_holding: Link Holding
+  add_institution: Link Institution
+  add_item_to_folder: Add to folder
+  add_person: Link Person
+  add_source: Link Source
+  any_field_contains: Any field
+  append_folder: Add all to an existing folder
+  archive: Archive
+  archive_unarchive: Archive / un-archive
+  authorization_tokens: Auth tokens
+  available_templates: Available templates
+  basic_level: Basic record
+  btn_themefinder_reset: Reset
+  cancel: Cancel
+  cannot_create_source: You are not authorized to create this type of source
+  cannot_update_source: You are not authorized to edit this type of source
   choose_folder: "(Please choose one)"
-  add_item_to_folder: "Add to folder"
-  remove_item_from_folder: "Delete from folder"
-
-  # Editor sidebar
-  show_all_groups: "Show all sections"
-  show_preview: "Show preview"
-  hide_preview: "Hide preview"
-  show_validate: "Validate"
-  show_history: "Show modification history"
-  show_gnd: "GND Search"
-  show_viaf: "VIAF Search"
-  save_and_continue: "Save and continue editing"
-  save_and_exit: "Save and close"
-  cancel: "Cancel"
-  duplicate_confirm: "Are you sure you want to duplicate this record?"
-  convert_to_print: "Convert to print template"
-  
-  # Version history
-  history_date: "Date"
-  history_author: "Author"
-  history_event: "Event"
-  history_modification: "Modification"
-  history_view: "View"
-  history_diff: "Diff"
-  history_restore: "Restore"
-  history_delete: "Delete"
-  history_restore_confirm: "Do you want to restore this version?"
-  history_delete_confirm: "Do you want to delete this version?"
-  
-  #### FOLDER MESSAGES
-  folders:
-    save: "Save results to Folder"
-    success: "Folder %{name} created with %{count} items."
-    too_many: "Cannot add more than %{max} items (%{count} selected)."
-    added: "Added %{count} items to Folder %{name}."
-    added_bg: "Added items to folder, job %{job} enqueued."
-    success_bg: "Folder %{name} created, job %{job} enqueued."
-    items: "Items"
-    export_started: "An email will be sent to %{email} with the download link (Export job id: %{job})."
-    export_limit: "The limit on exportable items is %{max}, this folder contains %{count} items."
-    folder_empty: "Folder contains no items"
-    not_found: "Folder %{id} does not exist"
-    publish_job: "Publish job started (id: %{id})"
-    unpublish_job: "Unpublish job started (id: %{id})"
-    reindex_job: "Reindex job started (id: %{id})"
-    validation_started: "An email will be sent to %{email} with the validation has ended (Validation job id: %{job})."
-    folder_not_source: "Only folders containing Sources can be validated"
-    expires: "Expires on"
-    resetted: "Folder expiration date now is %{date}"
-    reset_expiration: "Reset expiration date"
-    delete_now: "The following folders were deleted:"
-    tomorrow: "The following folders will be deleted tomorrow %{date}"
-    one_week: "The following folders will be deleted in one week on %{date}"
-    two_weeks: "The following folders will be deleted in two weeks on %{date}"
-    one_month: "The following folders will be deleted in one month on %{date}"
-    make_catalogue: "Flag items as work catalogues"
-    expiring_folders: "Your Muscat folders will expire soon"
-
-  ### Digital objects
-  digital_objects: "Digital objects"
-  digital_object_new: "Add a new digital object"
-  digital_object_add: "Add"
-  
-  ############ filters
-  filter_address: "Address"
-  filter_alternate_dates: "Alternate dates"
-  filter_alternate_names: "Alternate names"
-  filter_alternate_terms: "Alternate terms"
-  filter_alternates: "Alternate names"
-  filter_any_field: "Any field"
-  filter_attachment_type: "Digital Object type"
-  filter_author: "Author"
-  filter_author_or_editor: "Author/Editor"
-  filter_autograph_of: "Autograph of"
-  filter_birth_place: "Birth place"
-  filter_catalog: "Catalogue"
-  filter_category_type: "Category"
-  filter_collection: "Collection"
-  filter_comment: "Comment"
-  filter_composer: "Composer"
-  filter_connected_libraries: "Libraries"
-  filter_country: "Country"
-  filter_creation_date: "Creation date"
-  filter_date: "Date"
-  filter_date_from: "Date from"
-  filter_date_of_publication: "Year of publication"
-  filter_date_to: "Date to"
-  filter_description: "Description"
-  filter_digital_objects: "Digital objects"
-  filter_district: "District"
-  filter_email: "E-mail"
-  filter_folder_type: "Folder Type"
-  filter_full_name: "Name"
-  filter_gender: "Gender"
-  filter_id: "ID"
-  filter_incipit: "Incipit"
-  filter_incipit_number: "Incipit number"
-  filter_incipits: "Incipits"
-  filter_incipits_ng: "Incipits (ngrams)"
-  filter_incipits_tf: "Incipits (themefinder)"
-  filter_incipit_key: "Incipit key"
-  filter_institution: "Institution"
-  filter_institutions: "Institutions"
-  filter_key: "Key"
-  filter_language: "Language"
-  filter_last_updated: "Last updated"
-  filter_lib_siglum: "Library siglum"
-  filter_life_dates: "Life dates"
-  filter_links: "Links"
-  filter_liturgical_feast: "Liturgical feast"
-  filter_location_and_name: "Name and location"
-  filter_manuscript_no: "Manuscript No."
-  filter_mei: "MEI file"
-  filter_male: "Male"
-  filter_female: "Female"
-  filter_unknown: "Unknown"
-  filter_shelf_mark: "Shelfmark"
-  filter_name: "Name"
-  filter_notes: "Notes"
-  filter_old_versions: "Old versions"
-  filter_owner: "Owner"
-  filter_pages: "Pages"
-  filter_pattern: "Siglum patterns"
-  filter_people: "People"
-  filter_person_100d: "Life Dates"
-  filter_person_550a: "Profession"
-  filter_person_375a: "Gender"
-  filter_person_043c: "Nationality"
-  filter_person_551a: "Places"
-  filter_person_100d_birthdate: "Year of Birth"
-  filter_person_100d_deathdate: "Year of Death"
-  filter_phone: "Phone"
-  filter_place: "Place"
-  filter_place_of_publication: "Place of publication"
-  filter_plate_no: "Plate number"
-  filter_provenance: "Provenance"
-  filter_record_type: "Template Type"
-  filter_record_type_short: "Type"
-  filter_publisher: "Publisher"
-  filter_journal: "Revue title"
-  filter_id: "RISM ID"
-  filter_id_no: "RISM ID"
-  filter_images: "Images"
-  filter_opus: "Opus"
-  filter_scoring: "Scoring"
-  filter_series_items: "Series items"
-  filter_siglum: "Siglum"
-  filter_source: "Source"
-  filter_source_id: "Source id"
-  filter_sources: "Sources"
-  filter_source_type: "Source type"
-  filter_source_content_type: "Content type"
-  filter_std_title: "Standardized title"
-  filter_subject: "Subject"
-  filter_subsequent_entries: "Subsequent Entries"
-  filter_term: "Term"
-  filter_textincipit: "Textincipit"
-  filter_thematic_opus: "Thematic cat. / Opus no."
-  filter_title: "Title"
-  filter_titles: "Titles"
-  filter_title_on_ms: "Title on source"
-  filter_title_short: "Short title"
-  filter_topic: "Topic"
-  filter_sub_topic: "Subtopic"
-  filter_url: "Internet address"
-  filter_variants: "Variants"
-  filter_versions: "Versions"
-  filter_volume: "Volume"
-  filter_image: "Image"
-  filter_file_name: "File name"
-  filter_file_size: "File size"
-  filter_content_type: "Content Type"
-  filter_wf: "WF"
-  filter_wf_audit: "Audit"
-  filter_wf_stage: "Status"
-  filter_distribution: "Scoring"
-  filter_dist_exclude: "Exclude"
-  filter_dist_594a: "Vocal parts (solo)"
-  filter_dist_594b: "Other vocal parts (solo)"
-  filter_dist_594c: "Vocal parts (coro)"
-  filter_dist_594d: "Other vocal parts (coro)"
-  filter_dist_594e: "Solo instrument"
-  filter_dist_594f: "Strings"
-  filter_dist_594g: "Woodwinds"
-  filter_dist_594h: "Brass instruments"
-  filter_dist_594i: "Plucked instruments"
-  filter_dist_594k: "Percussion instruments"
-  filter_dist_594l: "Keyboard instruments"
-  filter_dist_594m: "Other instruments"
-  filter_dist_594n: "Basso continuo instruments"
-  filter_source_name: "Source Name"
-  filter_source_composer: "Source Composer"
-  filter_printed_exemplars: "Number of printed copies"
-  filter_is_text: "\"Text\", used in 031 $t"
-  filter_is_standard: "\"Standard\", used in 240 $a"
-  filter_is_additional: "\"Additional\", used in 730 $a"
-  filter_book_id: "Book id"
-  filter_has_internal_notes: "Has internal notes"
-  filter_has_siglum: "Has siglum"
-  filter_has_incipits: "Has incipits"
-
-  ## Referring lists for auth files
-  refers_to_this: "%{model_from} referring to this %{model_to}"
- 
-  rism_any_key: "Any key"
-  rism_a_flat: "A flat major/minor"
-  rism_a: "A major/minor"
-  rism_b_flat: "B flat major/minor"
-  rism_b: "B major/minor"
-  rism_c: "C major/minor"
-  rism_c_sharp: "C sharp major/minor"
-  rism_d_flat: "D flat major/minor"
-  rism_d: "D major/minor"
-  rism_e_flat: "E flat major/minor"
-  rism_e: "E major/minor"
-  rism_f: "F major/minor"
-  rism_f_sharp: "F sharp major/minor"
-  rism_g: "G major/minor"
-  rism_g_sharp: "G sharp major/minor"
-  
-  # Assorted error messages
-  error_not_found: "The resource you are trying to access does not exist or has been deleted."
-  gnd_not_found: "The request to GND returned an empty record"
-  error_saving: "The resource is not complete or generates a duplicate"
-  unknown_tags: "There are some unknown fields in this record"
-  ungrouped_tags: "There are ungrouped fields in this record"
-  cannot_update_source: "You are not authorized to edit this type of source"
-  cannot_create_source: "You are not authorized to create this type of source"
-  validate_name_uniqness: "Record not saved: Same short title '%{term}' already exists."
-  validates_parent_id: "Record not saved: Parent record (773) cannot be same as this record"
-  is_part_of_collection: "This %{class} %{id} is part of a collection, please delete 773"
-  not_set: "[not set]"
-
-  #
-  entry:
-    one: "entry"
-    other: "entries"
-  digital_object:
-    one: "digital object"
-    other: "digital objects"
-  publication:
-    one: "catalogue"
-    other: "catalogues"
-  institution: 
-    one: "institution"
-    other: "institutions"
-  library: 
-    one: "library"
-    other: "libraries"
-  liturgicalfeast: 
-    one: "litrugical feast"
-    other: "liturgical feasts"
-  source:
-    one: "source"
-    other: "sources"
-  place:
-    one: "place"
-    other: "places"
-  person: 
-    one: "person"
-    other: "poeple"
-  standardterm:
-    one: "subject"
-    other: "subjects" 
-  standardtitle:
-    one: "title or text incipit"
-    other: "titles or text incipits" 
-  user:
-    one: "user"
-    other: "users" 
-  job:
-    one: "job"
-    other: "jobs"
-  folder:
-    one: "folder"
-    other: "folders"
-  worknode:
-    one: "work node"
-    other: "work nodes"
-
-  will_paginate:
-    page_entries_info:
-      single_page_html:
-        zero: "No %{model} found" 
-        one: "Displaying <b>1</b> %{model}"
-        other: "Displaying <b>all %{count}</b> %{model}"
-      multi_page_html: "Displaying %{model} <b>%{from}&nbsp;-&nbsp;%{to}</b> of <b>%{count}</b> in total"
-  
-    models:
-      person: 
-        one: "Person"
-        other: "People"
-
-  manuscript_links:
-     one: "1 source"
-     other: "%{count} sources" 
-     
-  # themefinder
-  themefinder_c: "pitch refined contour"
-  themefinder_C: "pitch gross contour"
-  themefinder_d: "diatonic scale degree"
-  themefinder_i: "twelve-tone interval"
-  themefinder_I: "diatonic interval"
-  themefinder_p: "diatonic pitch class"
-  themefinder_P: "twelve-tone pitch class"
-  themefinder_p0: "no pitch search"
-
-  themefinder_u: "exact duration"
-  themefinder_r: "duration refined contour"
-  themefinder_R: "duration gross contour"
-  themefinder_d0: "no duration search"
-  
-  themefinder_L: "metric level"
-  themefinder_l: "metric position"
-  themefinder_e: "metric refined contour"
-  themefinder_E: "metric gross contour"
-  themefinder_b: "beat level"
-  themefinder_m0: "no metric search"
-  
-  tf_pitch_search: "Pitch"
-  tf_duration_search: "Duration"
-  tf_metric_search: "Metric"
-  tf_meter: "Meter"
-  tf_anchor: "Search only at the begining of the incipit"
-  
-  tf_pitch_help: "Tips for pitch search"
-  tf_duration_help: "Tips for duration search"
-  tf_metric_help: "Tips for metric help"
-  tf_anchor_help: "Anchored searching tips"
-  tf_timesig_help: "Time signature help"
-  btn_themefinder_reset: "Reset"
-  
-  tf_acknowledgments: "Incipits search is performed with <a href=\"http://www.themefinder.org/\" target=\"_blank\">Themefinder</a> developed by the <a href=\"http://www.ccarh.org/\" target=\"_blank\">CCARH</a>."
-  
-  do_link_lang: "eng"
-  do_media_files_title: "Multimedia files"
-  do_ext_res_link: "External resources:"
-  do_ext_link_not_avail: "(Audio files not available from this location)"
-  do_images_title: "Images"
-  connected_libraries: "Libraries"
-  view_source: "View Source"
-
-  mei:
-    title: "MEI export for source %{source}"
-    parameters: "Parameters"
-    format: "Incipit output format:"
-    format_mei: "MEI"
-    format_pae: "PAE (no conversion)"
-    stylesheet: "Stylesheet"
-    default_stylesheet: "Default stylesheet"
-    custom_stylesheet: "Custom stylesheet:"
-    preview: "Preview"
-    download: "Download"
-    more: "More"
-    banner: 'Please click "Preview" to show the MEI-converted output.'
-
-  notifications:
-    cadence: Notification cadence
-    none: Notifications are disabled
-    every: Each time a matching record is saved
-    daily: Every day
-    weekly: Every week
-    rules: Rules
-    notifications: Notifications
-    edit: Edit notifications
-    empty_message: "No notifications are enabled. You can %{href} to activate them"
-    empty_message_href: edit them
-
-  wf_stage:
-    inprogress: "Unpublished (UNP)"
-    published: "Published (PUB)"
-    deleted: "Deleted"
-    deprecated: "Deprecated"
-  
-  dashboard:
-    selection: "Select recent activity"
-    type: "Change type"
-    type_created: "Recently created"
-    type_updated: "Recently updated"
-    owner: "Owner"
-    owner_user: "Myself"
-    owner_any: "Any"
-    quantity: "Display"
-    update: "Update"
-    no_items: "No elements to show with the current filters"
-    message_silenced: "The news message was silenced."
-    got_it: "Got it!"
-    got_it_explanation: "Clicking on this button will silence the news until the next one is released."
-    news: "Muscat News"
-    my_comments: "My comments"
-    my_records: "My records"
-    about_comments: "About comments"
-    unpub_records: "Unpublished records"
-    showing_out_of: "Showing %{max} records out of %{total}"
-    no_unpublished: "No unpublished records"
-    no_unpublished_long: "You have no unpublished records!"
-
-  compare_versions:
-    time_frame: Time frame
-    rule: Rule
-    display: Display
-    options: options
-    show: Show
-    hide: Hide
-    modified_records: Modified records
-    no_records: There are no records to show with the current selected options
-    new_record: New record
-    similarity: Difference
-    diff: Diff
-    date_message: "Showing modified records from %{date}."
-    
-  # editor validation 
-  validation:
-    missing_message: "A value in this field is mandatory"
-    warning_message: "A value for this field should be provided"
-    insufficient_rights: "User has insufficient rights to create/update a record of this library"
-    name_uniqueness: "Short name of entry is already taken"
-    correct: "The record has no validation errors [200]"
-    begins_with_message: "Must begin with \"{0}\""
-    required_if_message: "Field is mandatory because {0} ${1} is not empty"
-    cannot_link_to_self: "The record cannot link to itself (%{id})."
-    check_group_message: "The first material group cannot be \"Additional printed material\""
-    
-  incipit_search:
-    incipit_search: "Incipit Search"
-    query_type: "Query Type:"
-    exact_pitch: "Exact Pitch Name"
-    interval: "Interval"
-    refined_pitch: "Refined Pitch Contour"
-    gross_pitch: "Gross Pitch Contour (Fuzziest match)"
-    anchor: "Search only beginning"
-    erase: "Erase one note"
-
-  # This is used for the "incipit" seach in the search history in BL
-  # Note the capital 'I'
-  Incipit: "Incipit"
-  Images: "Images"
-  "Standardized title": "Standardized Title"
-  Composer: "Composer"
-  "Source Type": "Source Type"
-  Scoring: "Scoring"
-  Date: "Date"
-  "Library siglum": "Library siglum"
-  Subject: "Subject"
-  "Number of printed copies": "Number of printed copies"
-  publisher: "Publisher"
-
-  marc_editor:
-    delete_msg: "Delete"
-    delete_field_confirm: "Are you sure you want to delete this field?"
-    delete_group_confirm: "Are you sure you want to delete this group?"
-    error_save: "An error occurred saving this record: %{a} %{b} %{c}"
-    error_validation: "An error occurred validating this record: %{a} %{b} %{c}"
-    error_preview: "An error occurred while loading the record preview: %{a} %{b} %{c}"
-    error_version: "An error occurred while loading the selected version: %{a} %{b} %{c}"
-    error_holding: "An error occurred while loading the holding record information: %{a} %{b} %{c}"
-    error_summary: "An error occurred while loading the summary: %{a} %{b} %{c}"
-    error_diff: "An error occurred while loading the diff between versions: %{a} %{b} %{c}"
-    error_help: "An error occurred while loading the help for this items: %{a} %{b} %{c}"
-
-
-  cookies:
-    message: "Our website uses cookies to make your browsing experience better. By using our site you agree to our use of cookies."
-    dimiss: "Accept and Close"
-    link: 'Learn more'
-
-  logout:
-    confirm: "There are open Muscat windows. If you log out, any unsaved changes will be lost. Do you want to continue?"
-    warning: "You have logged out from Muscat. Any unsaved work will be lost."
-    generic_error: "You have logged out of Muscat. Please refresh the page to return to the login screen."
-
   clipboard:
     copied: Results copied to clipboard
-
-  # date:
-  # Empty lines for matching line numbers with other translation files  
-  #
-  #
-  #
-  #
-  #
-  #
-  #
-  #
-  #
-  #
-  #
-  #
-  #
-  #
-  #
-  #
-  #
-  #
-  #
-  #
-  #
-
-
-######################################################################################################
-# End of translation in all languages - make sure all the file have the same line number for this line
- 
-######################################################################################################
-# Record types, English only
-      
+  compare_versions:
+    date_message: Showing modified records from %{date}.
+    diff: Diff
+    display: Display
+    hide: Hide
+    modified_records: Modified records
+    new_record: New record
+    no_records: There are no records to show with the current selected options
+    options: options
+    rule: Rule
+    show: Show
+    similarity: Difference
+    time_frame: Time frame
+  composer_contains: Composer
+  connected_libraries: Libraries
+  convert_to_print: Convert to print template
+  cookies:
+    dimiss: Accept and Close
+    link: Learn more
+    message: Our website uses cookies to make your browsing experience better. By using our site you agree to our use of cookies.
+  create_folder: Add all to a new folder
+  create_from_existing: Create
+  created_at: Created on
+  dashboard:
+    about_comments: About comments
+    got_it: Got it!
+    got_it_explanation: Clicking on this button will silence the news until the next one is released.
+    message_silenced: The news message was silenced.
+    my_comments: My comments
+    my_records: My records
+    news: Muscat News
+    no_items: No elements to show with the current filters
+    no_unpublished: No unpublished records
+    no_unpublished_long: You have no unpublished records!
+    owner: Owner
+    owner_any: Any
+    owner_user: Myself
+    quantity: Display
+    selection: Select recent activity
+    showing_out_of: Showing %{max} records out of %{total}
+    type: Change type
+    type_created: Recently created
+    type_updated: Recently updated
+    unpub_records: Unpublished records
+    update: Update
+  default_view: Default view
+  delete: Delete
+  digital_object:
+    one: digital object
+    other: digital objects
+  digital_object_add: Add
+  digital_object_new: Add a new digital object
+  digital_objects: Digital objects
+  do_ext_link_not_avail: "(Audio files not available from this location)"
+  do_ext_res_link: 'External resources:'
+  do_images_title: Images
+  do_link_lang: eng
+  do_media_files_title: Multimedia files
+  duplicate: Duplicate
+  duplicate_confirm: Are you sure you want to duplicate this record?
+  edit: Edit
+  entry:
+    one: entry
+    other: entries
+  error_not_found: The resource you are trying to access does not exist or has been deleted.
+  error_saving: The resource is not complete or generates a duplicate
+  export_folder: Export Folder as MARCXML
+  export_folder_csv: Export Folder as CSV
+  export_folder_raw: Export Folder as Muscat MARC
+  failed: Failed
+  failed_at: Failed At
+  filter_address: Address
+  filter_alternate_dates: Alternate dates
+  filter_alternate_names: Alternate names
+  filter_alternate_terms: Alternate terms
+  filter_alternates: Alternate names
+  filter_any_field: Any field
+  filter_attachment_type: Digital Object type
+  filter_author: Author
+  filter_author_or_editor: Author/Editor
+  filter_autograph_of: Autograph of
+  filter_birth_place: Birth place
+  filter_book_id: Book id
+  filter_catalog: Catalogue
+  filter_category_type: Category
+  filter_collection: Collection
+  filter_comment: Comment
+  filter_composer: Composer
+  filter_connected_libraries: Libraries
+  filter_content_type: Content Type
+  filter_country: Country
+  filter_creation_date: Creation date
+  filter_date: Date
+  filter_date_from: Date from
+  filter_date_of_publication: Year of publication
+  filter_date_to: Date to
+  filter_description: Description
+  filter_digital_objects: Digital objects
+  filter_dist_594a: Vocal parts (solo)
+  filter_dist_594b: Other vocal parts (solo)
+  filter_dist_594c: Vocal parts (coro)
+  filter_dist_594d: Other vocal parts (coro)
+  filter_dist_594e: Solo instrument
+  filter_dist_594f: Strings
+  filter_dist_594g: Woodwinds
+  filter_dist_594h: Brass instruments
+  filter_dist_594i: Plucked instruments
+  filter_dist_594k: Percussion instruments
+  filter_dist_594l: Keyboard instruments
+  filter_dist_594m: Other instruments
+  filter_dist_594n: Basso continuo instruments
+  filter_dist_exclude: Exclude
+  filter_distribution: Scoring
+  filter_district: District
+  filter_email: E-mail
+  filter_female: Female
+  filter_file_name: File name
+  filter_file_size: File size
+  filter_folder_type: Folder Type
+  filter_full_name: Name
+  filter_gender: Gender
+  filter_has_incipits: Has incipits
+  filter_has_internal_notes: Has internal notes
+  filter_has_siglum: Has siglum
+  filter_id: RISM ID
+  filter_id_no: RISM ID
+  filter_image: Image
+  filter_images: Images
+  filter_incipit: Incipit
+  filter_incipit_key: Incipit key
+  filter_incipit_number: Incipit number
+  filter_incipits: Incipits
+  filter_incipits_ng: Incipits (ngrams)
+  filter_incipits_tf: Incipits (themefinder)
+  filter_institution: Institution
+  filter_institutions: Institutions
+  filter_is_additional: '"Additional", used in 730 $a'
+  filter_is_standard: '"Standard", used in 240 $a'
+  filter_is_text: '"Text", used in 031 $t'
+  filter_journal: Revue title
+  filter_key: Key
+  filter_language: Language
+  filter_last_updated: Last updated
+  filter_lib_siglum: Library siglum
+  filter_life_dates: Life dates
+  filter_links: Links
+  filter_liturgical_feast: Liturgical feast
+  filter_location_and_name: Name and location
+  filter_male: Male
+  filter_manuscript_no: Manuscript No.
+  filter_mei: MEI file
+  filter_name: Name
+  filter_notes: Notes
+  filter_old_versions: Old versions
+  filter_opus: Opus
+  filter_owner: Owner
+  filter_pages: Pages
+  filter_pattern: Siglum patterns
+  filter_people: People
+  filter_person_043c: Nationality
+  filter_person_100d: Life Dates
+  filter_person_100d_birthdate: Year of Birth
+  filter_person_100d_deathdate: Year of Death
+  filter_person_375a: Gender
+  filter_person_550a: Profession
+  filter_person_551a: Places
+  filter_phone: Phone
+  filter_place: Place
+  filter_place_of_publication: Place of publication
+  filter_plate_no: Plate number
+  filter_printed_exemplars: Number of printed copies
+  filter_provenance: Provenance
+  filter_publisher: Publisher
+  filter_record_type: Template Type
+  filter_record_type_short: Type
+  filter_scoring: Scoring
+  filter_series_items: Series items
+  filter_shelf_mark: Shelfmark
+  filter_siglum: Siglum
+  filter_source: Source
+  filter_source_composer: Source Composer
+  filter_source_content_type: Content type
+  filter_source_id: Source id
+  filter_source_name: Source Name
+  filter_source_type: Source type
+  filter_sources: Sources
+  filter_std_title: Standardized title
+  filter_sub_topic: Subtopic
+  filter_subject: Subject
+  filter_subsequent_entries: Subsequent Entries
+  filter_term: Term
+  filter_textincipit: Textincipit
+  filter_thematic_opus: Thematic cat. / Opus no.
+  filter_title: Title
+  filter_title_on_ms: Title on source
+  filter_title_short: Short title
+  filter_titles: Titles
+  filter_topic: Topic
+  filter_unknown: Unknown
+  filter_url: Internet address
+  filter_variants: Variants
+  filter_versions: Versions
+  filter_volume: Volume
+  filter_wf: WF
+  filter_wf_audit: Audit
+  filter_wf_stage: Status
+  finished: Finished
+  folder:
+    one: folder
+    other: folders
+  folders:
+    added: Added %{count} items to Folder %{name}.
+    added_bg: Added items to folder, job %{job} enqueued.
+    delete_now: 'The following folders were deleted:'
+    expires: Expires on
+    expiring_folders: Your Muscat folders will expire soon
+    export_limit: The limit on exportable items is %{max}, this folder contains %{count} items.
+    export_started: 'An email will be sent to %{email} with the download link (Export job id: %{job}).'
+    folder_empty: Folder contains no items
+    folder_not_source: Only folders containing Sources can be validated
+    items: Items
+    make_catalogue: Flag items as work catalogues
+    not_found: Folder %{id} does not exist
+    one_month: The following folders will be deleted in one month on %{date}
+    one_week: The following folders will be deleted in one week on %{date}
+    publish_job: 'Publish job started (id: %{id})'
+    reindex_job: 'Reindex job started (id: %{id})'
+    reset_expiration: Reset expiration date
+    resetted: Folder expiration date now is %{date}
+    save: Save results to Folder
+    success: Folder %{name} created with %{count} items.
+    success_bg: Folder %{name} created, job %{job} enqueued.
+    tomorrow: The following folders will be deleted tomorrow %{date}
+    too_many: Cannot add more than %{max} items (%{count} selected).
+    two_weeks: The following folders will be deleted in two weeks on %{date}
+    unpublish_job: 'Unpublish job started (id: %{id})'
+    validation_started: 'An email will be sent to %{email} with the validation has ended (Validation job id: %{job}).'
+  from_existing_source: Create from existing source
+  full_level: Full record
+  gnd_not_found: The request to GND returned an empty record
+  go_to_top: Back to the top
+  hide_preview: Hide preview
+  history_author: Author
+  history_date: Date
+  history_delete: Delete
+  history_delete_confirm: Do you want to delete this version?
+  history_diff: Diff
+  history_event: Event
+  history_modification: Modification
+  history_restore: Restore
+  history_restore_confirm: Do you want to restore this version?
+  history_view: View
+  holding_missing: This printed source does not have any holdings attached yet. Please add your library siglum, shelfmark, and other copy-specific information to this record by clicking the "%{new_holding}" button on the right.
+  holding_missing_alert: This printed source does not have any holdings attached yet. Please add your library siglum, shelfmark, and other copy-specific information to this record by clicking the "%{new_holding}" button on the right after you save.
+  holding_missing_show: This printed source does not have any holdings attached yet. Please add your library siglum, shelfmark, and other copy-specific information to this record by editing this record and clicking the "%{new_holding}" button on the right.
+  holding_no_siglum: Holding without siglum
+  holding_records: Exemplar Information
+  imported_level: Imported record
+  incipit_search:
+    anchor: Search only beginning
+    erase: Erase one note
+    exact_pitch: Exact Pitch Name
+    gross_pitch: Gross Pitch Contour (Fuzziest match)
+    incipit_search: Incipit Search
+    interval: Interval
+    query_type: 'Query Type:'
+    refined_pitch: Refined Pitch Contour
+  institution:
+    one: institution
+    other: institutions
+  internal_note_contains: Internal note
+  is_in_folder: Is in folder
+  is_part_of_collection: This %{class} %{id} is part of a collection, please delete 773
+  job:
+    one: job
+    other: jobs
+  jobs:
+    auto_delete: 'Cannot Delete: Finished job was Automatically Deleted.'
+    error: 'ERROR: '
+    no_status: There was an Error Reading job Status
+    no_view: 'Cannot View: Finished job was Automatically Deleted.'
+    not_set: "[No status set]"
+    ok: Job ended successfully
+    running_jobs: Running Jobs Cannot be Deleted.
+  lib_siglum: Library Siglum
+  library:
+    one: library
+    other: libraries
+  library_sigla_contains: Siglum
+  link_remove: Remove link
+  link_remove_confirm: Are you sure you want to delete this link?
+  link_type: Linked object type
+  linked_object: Linked Object
+  links: Links
+  liturgicalfeast:
+    one: litrugical feast
+    other: liturgical feasts
+  logout:
+    confirm: There are open Muscat windows. If you log out, any unsaved changes will be lost. Do you want to continue?
+    generic_error: You have logged out of Muscat. Please refresh the page to return to the login screen.
+    warning: You have logged out from Muscat. Any unsaved work will be lost.
+  manuscript_links:
+    one: 1 source
+    other: "%{count} sources"
+  marc21_view: MARC21 view
+  marc_editor:
+    delete_field_confirm: Are you sure you want to delete this field?
+    delete_group_confirm: Are you sure you want to delete this group?
+    delete_msg: Delete
+    error_diff: 'An error occurred while loading the diff between versions: %{a} %{b} %{c}'
+    error_help: 'An error occurred while loading the help for this items: %{a} %{b} %{c}'
+    error_holding: 'An error occurred while loading the holding record information: %{a} %{b} %{c}'
+    error_preview: 'An error occurred while loading the record preview: %{a} %{b} %{c}'
+    error_save: 'An error occurred saving this record: %{a} %{b} %{c}'
+    error_summary: 'An error occurred while loading the summary: %{a} %{b} %{c}'
+    error_validation: 'An error occurred validating this record: %{a} %{b} %{c}'
+    error_version: 'An error occurred while loading the selected version: %{a} %{b} %{c}'
+  marcxml_view: MARCXML view
+  mei:
+    banner: Please click "Preview" to show the MEI-converted output.
+    custom_stylesheet: 'Custom stylesheet:'
+    default_stylesheet: Default stylesheet
+    download: Download
+    format: 'Incipit output format:'
+    format_mei: MEI
+    format_pae: PAE (no conversion)
+    more: More
+    parameters: Parameters
+    preview: Preview
+    stylesheet: Stylesheet
+    title: MEI export for source %{source}
+  menu_administration: Administration
+  menu_advanced_search: Advanced search
+  menu_catalog: Faceted search
+  menu_cataloging: Cataloguing
+  menu_comments: Comments
+  menu_contact: Contact
+  menu_folders: Folders
+  menu_guidelines: Cataloguing guidelines
+  menu_guidelines_top: Guidelines
+  menu_help: Help
+  menu_holdings: Holdings
+  menu_home: Home page
+  menu_indexes: Authorities
+  menu_institutions: Institutions
+  menu_inventory_items: Inventory Items
+  menu_jobs: Jobs
+  menu_languages: Language
+  menu_latin: Latin text
+  menu_library_sigla: Library siglum
+  menu_liturgical_feasts: Liturgical festivals
+  menu_marc_documentation: MARC configuration
+  menu_people: Personal names
+  menu_places: Places
+  menu_publications: Secondary literature
+  menu_search_history: Search history
+  menu_simple_search: Simple search
+  menu_sources: Sources
+  menu_subjects: Subject headings
+  menu_titles: Titles / text incipits
+  menu_users: Users
+  menu_work_nodes: Work nodes
+  menu_workgroups: Workgroups
+  menu_works: Works
+  merge: Merge
+  muscat_reindexing: Muscat is reindexing, search results may be incomplete
+  new: Create
+  new_digital_object_image: Attach a new image
+  new_digital_object_incipit: Attach a new MEI incipit
+  new_holding: Add holdings
+  new_holding_page: New holdings information
+  new_inventory_item: Create new inventory item
+  new_inventory_item_page: New inventory item
+  no_action: No action available
+  not_set: "[not set]"
+  notifications:
+    cadence: Notification cadence
+    daily: Every day
+    edit: Edit notifications
+    empty_message: No notifications are enabled. You can %{href} to activate them
+    empty_message_href: edit them
+    every: Each time a matching record is saved
+    none: Notifications are disabled
+    notifications: Notifications
+    rules: Rules
+    weekly: Every week
+  object: Object
+  person:
+    one: person
+    other: poeple
+  place:
+    one: place
+    other: places
+  progress: Progress
+  progress_stage: Stage
+  publication:
+    one: catalogue
+    other: catalogues
+  publish: Publish
+  publisher: Publisher
+  queue: Queue
+  ransack:
+    predicates:
+      with_integer: is
+  recent_changes: Lastest modifications
+  record_actions: Record Actions
+  record_audit: Record Origin
+  record_label: Attribution Certainty
+  record_owner: Record Owner
+  record_status: Record Status
+  record_types:
+    collection: Music manuscript, collection parent record
+    collection_record: Collection record for a music manuscript
+    collection_record_edition: Collection record for a printed music edition
+    collection_record_libretti: Collection record for handwritten libretti
+    collection_record_libretti_printed: Collection record for printed libretti
+    collection_record_threatise: Collection record for handwritten treatises
+    collection_record_threatise_printed: Collection record for printed treatises
+    composite_volume: Record for a composite volume
+    composite_volumes: Composite volumes
+    edition: Printed music edition, collection parent record or individual item
+    edition_content: Printed music edition, item in collection
+    individual_entry: Individual entry in a music manuscript collection
+    individual_entry_edition: Individual entry in a printed edition collection
+    individual_entry_libretti: Individual entry in a handwritten libretto collection
+    individual_entry_libretti_printed: Individual entry in a printed libretto collection
+    individual_entry_threatise: Individual entry in a handwritten treatise collection
+    individual_entry_threatise_printed: Individual entry in a printed treatise collection
+    inventories: Inventories
+    inventory: Inventory
+    inventory_edition: Inventory edition
+    libretti_handwritten: Libretti, handwritten
+    libretti_printed: Libretti, printed
+    libretto_edition: Libretto, printed
+    libretto_edition_content: Printed libretto, item in collection
+    libretto_source: Libretto, handwritten
+    music_manuscripts: Music manuscripts
+    printed_music: Printed music editions
+    single_edition: Single printed music edition
+    single_libretto: Single handwritten libretto
+    single_libretto_printed: Single printed libretto
+    single_manuscript: Single music manuscript
+    single_threatise: Single handwritten treatise
+    single_threatise_printed: Single printed treatise
+    source: Music manuscript
+    theoretica_edition: Treatise, printed
+    theoretica_edition_content: Printed treatise, item in collection
+    theoretica_source: Treatise, handwritten
+    threatise_handwritten: Treatises, handwritten
+    threatise_printed: Treatises, printed
+    unspecified: "[Unknown template]"
   record_types_codes:
-    "0": "UNK"
-    "1": "COL"
-    "2": "MSR"
-    "3": "SUB"
-    "4": "LSR"
-    "5": "LED"
-    "6": "TSR"
-    "7": "TED"
-    "8": "EDT"
-    "9": "LEC"
-    "10": "TEC"
-    "11": "CMP"
-    "12": "INM"
-    "13": "INE"
-    
+    '0': UNK
+    '1': COL
+    '10': TEC
+    '11': CMP
+    '12': INM
+    '13': INE
+    '2': MSR
+    '3': SUB
+    '4': LSR
+    '5': LED
+    '6': TSR
+    '7': TED
+    '8': EDT
+    '9': LEC
+  refers_to_this: "%{model_from} referring to this %{model_to}"
+  reindex: Reindex sources
+  remove_item_from_folder: Delete from folder
+  resave: Resave sources
+  retro_level: Retrocataloging
+  rism_a: A major/minor
+  rism_a_flat: A flat major/minor
+  rism_any_key: Any key
+  rism_b: B major/minor
+  rism_b_flat: B flat major/minor
+  rism_c: C major/minor
+  rism_c_sharp: C sharp major/minor
+  rism_d: D major/minor
+  rism_d_flat: D flat major/minor
+  rism_e: E major/minor
+  rism_e_flat: E flat major/minor
+  rism_f: F major/minor
+  rism_f_sharp: F sharp major/minor
+  rism_g: G major/minor
+  rism_g_sharp: G sharp major/minor
+  roles: Roles
+  run_at: Run At
+  running: Running
+  save_and_continue: Save and continue editing
+  save_and_exit: Save and close
+  search_sources: Search Sources
+  sections: Sections
+  select: Select
+  select_template: Select new template
+  show_all_groups: Show all sections
+  show_gnd: GND Search
+  show_history: Show modification history
+  show_preview: Show preview
+  show_validate: Validate
+  show_viaf: VIAF Search
+  source:
+    one: source
+    other: sources
+  standardterm:
+    one: subject
+    other: subjects
+  standardtitle:
+    one: title or text incipit
+    other: titles or text incipits
+  status: Status
   status_codes:
-    published: "PUB"
-    inprogress: "UNP"
-    deprecated: "DEP"
-    deleted: "DEL"
-
+    deleted: DEL
+    deprecated: DEP
+    inprogress: UNP
+    published: PUB
+  std_title_contains: Standardized title
+  switch_language: Switch language
+  tf_acknowledgments: Incipits search is performed with <a href="http://www.themefinder.org/" target="_blank">Themefinder</a> developed by the <a href="http://www.ccarh.org/" target="_blank">CCARH</a>.
+  tf_anchor: Search only at the begining of the incipit
+  tf_anchor_help: Anchored searching tips
+  tf_duration_help: Tips for duration search
+  tf_duration_search: Duration
+  tf_meter: Meter
+  tf_metric_help: Tips for metric help
+  tf_metric_search: Metric
+  tf_pitch_help: Tips for pitch search
+  tf_pitch_search: Pitch
+  tf_timesig_help: Time signature help
+  themefinder_C: pitch gross contour
+  themefinder_E: metric gross contour
+  themefinder_I: diatonic interval
+  themefinder_L: metric level
+  themefinder_P: twelve-tone pitch class
+  themefinder_R: duration gross contour
+  themefinder_b: beat level
+  themefinder_c: pitch refined contour
+  themefinder_d: diatonic scale degree
+  themefinder_d0: no duration search
+  themefinder_e: metric refined contour
+  themefinder_i: twelve-tone interval
+  themefinder_l: metric position
+  themefinder_m0: no metric search
+  themefinder_p: diatonic pitch class
+  themefinder_p0: no pitch search
+  themefinder_r: duration refined contour
+  themefinder_u: exact duration
+  this_file_language: English
+  time:
+    formats:
+      default: "%H:%M"
+      long: "%Y-%m-%d %H:%M"
+      short: "%H:%M"
+      verbose: "%B %d, %Y %H:%M"
+  title_contains: Diplomatic title
+  to_the_list: Return to the list
+  unarchive: Un-archive
+  ungrouped_tags: There are ungrouped fields in this record
+  unknown_tags: There are some unknown fields in this record
+  unloadable_record: 'This record experienced loading errors: it can be viewed but not edited. Please contact an administrator.'
+  unpublish: Unpublish
+  updated_at: Last modification
+  user:
+    one: user
+    other: users
+  user_details: User Details
+  validate_folder: Validate items
+  validate_name_uniqness: 'Record not saved: Same short title ''%{term}'' already exists.'
+  validates_parent_id: 'Record not saved: Parent record (773) cannot be same as this record'
+  validation:
+    begins_with_message: Must begin with "{0}"
+    cannot_link_to_self: The record cannot link to itself (%{id}).
+    check_group_message: The first material group cannot be "Additional printed material"
+    correct: The record has no validation errors [200]
+    insufficient_rights: User has insufficient rights to create/update a record of this library
+    missing_message: A value in this field is mandatory
+    name_uniqueness: Short name of entry is already taken
+    required_if_message: Field is mandatory because {0} ${1} is not empty
+    warning_message: A value for this field should be provided
+  validation_level_error: There are errors, please solve before saving
+  validation_level_warning: There are warnings, save again to override
+  view_source: View Source
+  waiting: Waiting
+  wf_stage:
+    deleted: Deleted
+    deprecated: Deprecated
+    inprogress: Unpublished (UNP)
+    published: Published (PUB)
+  will_paginate:
+    models:
+      person:
+        one: Person
+        other: People
+    page_entries_info:
+      multi_page_html: Displaying %{model} <b>%{from}&nbsp;-&nbsp;%{to}</b> of <b>%{count}</b> in total
+      single_page_html:
+        one: Displaying <b>1</b> %{model}
+        other: Displaying <b>all %{count}</b> %{model}
+        zero: No %{model} found
+  work_catalogue: Is work catalogue
   work_label_codes:
-    normal: "NRM"
-    obsolete: "OBS"
-    doubtful: "DBT"
-    fragment: "FRG"
+    doubtful: DBT
+    fragment: FRG
+    normal: NRM
+    obsolete: OBS
+  workgroups: Workgroups
+  worknode:
+    one: work node
+    other: work nodes
