@@ -443,7 +443,6 @@ fr:
   filter_subsequent_entries: Entrées suivants
   filter_term: Terme
   filter_textincipit: TRME Textincipit
-  filter_textinipit: TEXTINCIPIT
   filter_thematic_opus: Cat. thématique / No d'opus
   filter_title: Titre
   filter_title_on_ms: Titre diplomatique
@@ -489,7 +488,6 @@ fr:
     two_weeks: Les dossiers suivants seront supprimés dans deux semaines à la date du %{date}
     unpublish_job: 'Début du Job d''annulation de la publication (id: %{id})'
     validation_started: 'Un courriel sera envoyé à %{email} avec la fin de la validation (Validation job id : %{job}).'
-    validação_iniciada: 'TRME TRME Um e-mail será enviado para %{email} com a validação terminada (Validação id do trabalho: %{job})'
   from_existing_source: Créer a partir d'une source
   full_level: Notice complète
   gnd_not_found: TRME The request to GND returned an empty record

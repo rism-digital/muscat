@@ -423,7 +423,6 @@ ca:
   filter_subsequent_entries: Entrada posterior
   filter_term: Terme
   filter_textincipit: Íncipit literari
-  filter_textinipit: TRME TRME Incipit testuale
   filter_thematic_opus: Catàleg temàtic / Número d'opus
   filter_title: Títol
   filter_title_on_ms: Títol a la font
@@ -469,7 +468,6 @@ ca:
     two_weeks: Carpetes que s'esborraran d'aquí a dues setmanes, el %{date}
     unpublish_job: 'Ha començat la tasca de despublicació (id: %{id})'
     validation_started: 'Rebreu un correu a %{email} quan hagi acabat la validació (tasca de validació: %{job}).'
-    validação_iniciada: 'TRME TRME Um e-mail será enviado para %{email} com a validação terminada (Validação id do trabalho: %{job})'
   from_existing_source: Crea-la a partir d'una font ja existent
   full_level: Registre complet
   gnd_not_found: TRME The request to GND returned an empty record

@@ -469,7 +469,6 @@ es:
     two_weeks: Las siguientes carpetas se borrarán dentro de dos semanas en %{date}
     unpublish_job: 'El Job de cancelación de la publicación comenzó (id: %{id})'
     validation_started: 'Se enviará un correo electrónico a %{email} con la validación ha terminado (ID de trabajo de validación: %{job})'
-    validação_iniciada: 'TRME TRME Um e-mail será enviado para %{email} com a validação terminada (Validação id do trabalho: %{job})'
   from_existing_source: Crear a partir de un registro existente
   full_level: Registro completo
   gnd_not_found: TRME The request to GND returned an empty record

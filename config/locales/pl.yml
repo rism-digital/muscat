@@ -423,7 +423,6 @@ pl:
   filter_subsequent_entries: Kolejne wpisy
   filter_term: Określenie
   filter_textincipit: Incipit tekstowy
-  filter_textinipit: TRME TRME Incipit testuale
   filter_thematic_opus: Kategoria tematyczna / Nr opus
   filter_title: Tytuł
   filter_title_on_ms: Tytuł w źródle
@@ -469,7 +468,6 @@ pl:
     two_weeks: Następujące foldery zostaną usunięte za dwa tygodnie w dniu %{date}
     unpublish_job: 'Cofnij publikację rozpoczętego zadania (id: %{id})'
     validation_started: 'Na adres %{e-mail} zostanie wysłana wiadomość z informacją o zatwierdzeniu (Validation job id: %{job}).'
-    validação_iniciada: 'TRME TRME Um e-mail será enviado para %{email} com a validação terminada (Validação id do trabalho: %{job})'
   from_existing_source: Utwórz z istniejącego źródła
   full_level: Rekord pełny
   gnd_not_found: TRME The request to GND returned an empty record

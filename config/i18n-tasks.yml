@@ -17,7 +17,7 @@ data:
   read:
     ## Default:
     - config/locales/%{locale}.yml
-    - config/locales/marc_records/%{locale}.yml
+    #- config/locales/marc_records/%{locale}.yml
 
   # Locale files to write new keys to, based on a list of key pattern => file rules. Matched from top to bottom:
   # `i18n-tasks normalize -p` will force move the keys according to these rules
@@ -165,6 +165,12 @@ ignore:
   - status_codes.*
   - work_label_codes.*
   - verovio.*
+  - records.*
+  - rism_online.*
+  - places.*
+  - languages.*
+  - general.*
+
 
 ## Sometimes, it isn't possible for i18n-tasks to match the key correctly,
 ## e.g. in case of a relative key defined in a helper method.

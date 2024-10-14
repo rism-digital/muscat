@@ -423,7 +423,6 @@ pt:
   filter_subsequent_entries: Registros subsequentes
   filter_term: Termo
   filter_textincipit: Incipit literário
-  filter_textinipit: TRME TRME Incipit testuale
   filter_thematic_opus: Catálogo temático / Número de Opus
   filter_title: Título
   filter_title_on_ms: Título na fonte
@@ -468,8 +467,7 @@ pt:
     too_many: Não é possível adicionar mais que %{max} itens (%{count} selecionados).
     two_weeks: As seguintes pastas serão apagadas dentro de duas semanas em %{date}
     unpublish_job: 'Início do Job de cancelamento da publicação (id: %{id})'
-    validation_started: 'TRME An email will be sent to %{email} with the validation has ended (Validation job id: %{job}).'
-    validação_iniciada: 'Um e-mail será enviado para %{email} com a validação terminada (Validação id do trabalho: %{job})'
+    validation_started: 'Um e-mail será enviado para %{email} com a validação terminada (Validação id do trabalho: %{job})'
   from_existing_source: Criar a partir de uma fonte existente
   full_level: Registro completo
   gnd_not_found: TRME The request to GND returned an empty record
