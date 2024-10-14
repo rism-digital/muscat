@@ -53,6 +53,7 @@
   layout: 
     fields: 
     - - a
+      - read_only: true
 "043": 
   layout: 
     fields: 
