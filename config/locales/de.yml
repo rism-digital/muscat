@@ -87,7 +87,7 @@ de:
         title: Passwort vergessen?
       sign_up:
         submit: Registrieren
-        tiitle: TRME TRME s'inscrire
+        tiitle: Registrieren
         title: Registrieren
       subdomain:
         title: Subdomain
@@ -134,7 +134,7 @@ de:
       entry:
         one: Eintrag
         other: Einträge
-      few: TRME TRME Kilka
+      few: Wenige
       multiple: Zeige %{model} <b>%{from}&nbsp;–&nbsp;%{to}</b> von <b>%{total}</b>
       multiple_without_total: Zeige %{model} <b>%{from}&nbsp;–&nbsp;%{to}</b>
       one: Zeige <b>1</b> %{model}
@@ -144,8 +144,8 @@ de:
     previous: Zurück
     save_model: Sichern
     search_status:
-      current_filters: TRME TRME Filtri in uso
-      headline: TRME TRME Ambito
+      current_filters: Verwendete Filter
+      headline: Bereich
     sidebars:
       actions: Aktionen
       filters: Filter
@@ -176,8 +176,8 @@ de:
         one: Körperschaft
         other: Körperschaften
       inventory_item:
-        one: TRME Inventory item
-        other: TRME Inventory items
+        one: Inventarartikel
+        other: Inventarartikel
       liturgical_feast:
         one: Liturgisches Fest
         other: Liturgische Feste
@@ -203,8 +203,8 @@ de:
         one: Werk
         other: Werk
       work_node:
-        one: TRME TRME Riferimento alle opere
-        other: TRME TRME Riferimenti alle opere
+        one: Work node
+        other: Work node
       workgroup:
         one: Gruppe
         other: Gruppen
@@ -220,14 +220,14 @@ de:
   authorization_tokens: Auth tokens
   available_templates: Verfügbare Vorlagen
   basic_level: Basiskatalog
-  body: 'TRME TRME '
+  body: Body
   btn_themefinder_reset: Zurücksetzen
   cancel: Abbrechen
   cannot_create_source: Sie sind nicht berechtigt, diese Art von Quellen zu erstellen
   cannot_update_source: Sie sind nicht berechtigt, diese Art von Quellen zu bearbeiten
   choose_folder: "(PLEASE CHOOSE ONE)"
   clipboard:
-    copied: TRME Results copied to clipboard
+    copied: Ergebnisse in die Zwischenablage kopiert
   compare_versions:
     date_message: Geänderte Datensätze anzeigen von %{date}.
     diff: Vergleich
@@ -260,18 +260,18 @@ de:
     my_records: Meine Einträge
     news: Muscat Nachrichten
     no_items: Keine Elemente, die mit den aktuellen Filtern angezeigt werden
-    no_unpublished: TRME No unpublished records
-    no_unpublished_long: TRME You have no unpublished records!
+    no_unpublished: Keine unveröffentlichten Datensätze.
+    no_unpublished_long: Sie haben keine unveröffentlichten Datensätze!
     owner: Inhaber
     owner_any: Irgendein
     owner_user: Mich
     quantity: Anzeige
     selection: Wählen Sie Letzte Aktivität
-    showing_out_of: TRME Showing %{max} records out of %{total}
+    showing_out_of: Anzeige von %{max} Datensätzen von %{total}
     type: Typ ändern
     type_created: Kürzlich erstellt
     type_updated: Kürzlich aktualisiert
-    unpub_records: TRME Unpublished records
+    unpub_records: Unveröffentlichte Datensätze
     update: Aktualisieren
   date:
     day_names:
@@ -333,7 +333,7 @@ de:
   filter_author_or_editor: Autor/Herausgeber
   filter_autograph_of: Autograph von
   filter_birth_place: Geburtsort
-  filter_book_id: TRME Book id
+  filter_book_id: Buch-ID
   filter_catalog: WV / Katalog
   filter_category_type: Kategorie
   filter_collection: Sammlung
@@ -372,9 +372,9 @@ de:
   filter_folder_type: Ordner-Typ
   filter_full_name: Name
   filter_gender: Geschlecht
-  filter_has_incipits: TRME Has incipits
-  filter_has_internal_notes: TRME Has internal notes
-  filter_has_siglum: TRME Has siglum
+  filter_has_incipits: Hat Incipits
+  filter_has_internal_notes: Hat interne Notizen
+  filter_has_siglum: Hat Sigel
   filter_id: RISM ID
   filter_id_no: RISM ID
   filter_image: Bild
@@ -401,11 +401,11 @@ de:
   filter_location_and_name: Name und Ort
   filter_male: Männlich
   filter_manuscript_no: Manuskript-Nr.
-  filter_mei: TRME MEI file
+  filter_mei: MEI file
   filter_name: Name
   filter_notes: Anmerkungen
   filter_old_versions: Alte Versionen
-  filter_opus: TRME Opus
+  filter_opus: Werk
   filter_owner: Besitzer
   filter_pages: Seiten
   filter_pattern: Sigel Muster
@@ -466,7 +466,7 @@ de:
     added_bg: Einträge in den Ordner hinzugefügt, Auftrag %{job} in Warteschleife.
     delete_now: 'Die folgenden Ordner wurden gelöscht:'
     expires: Läuft ab am
-    expiring_folders: TRME Your Muscat folders will expire soon
+    expiring_folders: Ihre Muscat-Ordner laufen bald ab
     export_limit: Die Grenze für exportierbare Elemente ist %{max}, dieser Ordner enthält %{count} Elemente.
     export_started: 'Es wird eine E-Mail mit dem Download-Link an %{email} geschickt (Export job id: %{job}).'
     folder_empty: Ordner enthält keine Elemente
@@ -490,7 +490,7 @@ de:
     validation_started: 'Es wird eine E-Mail an %{email} gesendet, wenn die Validierung beendet ist (Validierungsjob-ID: %{job}).'
   from_existing_source: Erstellen aus vorhandener Quelle
   full_level: Vollkatalogisat
-  gnd_not_found: TRME The request to GND returned an empty record
+  gnd_not_found: Die Anfrage an GND ergab keinen Eintrag
   go_to_top: Zurück zum Anfang
   hide_preview: Vorschau verbergen
   history_author: Bearbeiter
@@ -549,9 +549,9 @@ de:
     one: Liturgisches Fest
     other: Liturgische Feste
   logout:
-    confirm: TRME There are open Muscat windows. If you log out, any unsaved changes will be lost. Do you want to continue?
-    generic_error: TRME You have logged out of Muscat. Please refresh the page to return to the login screen.
-    warning: TRME You have logged out from Muscat. Any unsaved work will be lost.
+    confirm: "Es gibt offene Muscat-Fenster. Wenn Sie sich abmelden, gehen nicht gespeicherte Änderungen verloren. Möchten Sie fortfahren?"
+    generic_error: "Sie haben sich von Muscat abgemeldet. Bitte aktualisieren Sie die Seite, um zum Anmeldebildschirm zurückzukehren."
+    warning: "Sie haben sich von Muscat abgemeldet. Nicht gespeicherte Arbeit wird verloren gehen."
   manuscript_links:
     one: 1 Quelle
     other: "%{count} Quellen"
@@ -560,14 +560,14 @@ de:
     delete_field_confirm: Sind Sie sicher, dass Sie dieses Feld löschen möchten?
     delete_group_confirm: Sind Sie sicher, dass Sie dieses Gruppe löschen möchten?
     delete_msg: Löschen
-    error_diff: 'TRME An error occurred while loading the diff between versions: %{a} %{b} %{c}'
-    error_help: 'TRME An error occurred while loading the help for this items: %{a} %{b} %{c}'
-    error_holding: 'TRME An error occurred while loading the holding record information: %{a} %{b} %{c}'
-    error_preview: 'TRME An error occurred while loading the record preview: %{a} %{b} %{c}'
-    error_save: 'TRME An error occurred saving this record: %{a} %{b} %{c}'
-    error_summary: 'TRME An error occurred while loading the summary: %{a} %{b} %{c}'
-    error_validation: 'TRME An error occurred validating this record: %{a} %{b} %{c}'
-    error_version: 'TRME An error occurred while loading the selected version: %{a} %{b} %{c}'
+    error_diff: "Es ist ein Fehler beim Laden der Differenz zwischen den Versionen aufgetreten: %{a} %{b} %{c}"
+    error_help: "Es ist ein Fehler beim Laden der Hilfe für diese Elemente aufgetreten: %{a} %{b} %{c}"
+    error_holding: "Es ist ein Fehler beim Laden der Exemplarinformation aufgetreten: %{a} %{b} %{c}"
+    error_preview: "Es ist ein Fehler beim Laden der Vorschau des Eintrags aufgetreten: %{a} %{b} %{c}"
+    error_save: "Es ist ein Fehler beim Speichern dieses Eintrags aufgetreten: %{a} %{b} %{c}"
+    error_summary: "Es ist ein Fehler beim Laden der Zusammenfassung aufgetreten: %{a} %{b} %{c}"
+    error_validation: "Es ist ein Fehler bei der Validierung dieses Eintrags aufgetreten: %{a} %{b} %{c}"
+    error_version: "Es ist ein Fehler beim Laden der ausgewählten Version aufgetreten: %{a} %{b} %{c}"
   marcxml_view: MARCXML view
   mei:
     banner: Bitte "Vorschau" wählen, um die MEI-Konvertierung anzuzeigen.
@@ -596,7 +596,7 @@ de:
   menu_home: Home
   menu_indexes: Normdaten
   menu_institutions: Körperschaften
-  menu_inventory_items: TRME Inventory Items
+  menu_inventory_items: Inventarartikel
   menu_jobs: Jobs
   menu_languages: Sprache
   menu_latin: Latein
@@ -622,8 +622,8 @@ de:
   new_digital_object_incipit: Neues MEI-Incipit hinzufügen
   new_holding: Neuer Examplareintrag
   new_holding_page: Neuer Exemplareintrag
-  new_inventory_item: TRME Create new inventory item
-  new_inventory_item_page: TRME New inventory item
+  new_inventory_item: Neuen Inventarartikel erstellen
+  new_inventory_item_page: Neuer Inventarartikel
   no_action: Keine Aktion verfügbar
   not_set: "[nicht fest]"
   notifications:
@@ -654,7 +654,7 @@ de:
   queue: Warteschleife
   ransack:
     predicates:
-      with_integer: TRME is
+      with_integer: ist
   recent_changes: Letzte Änderungen
   record_actions: Aktion für Eintrag
   record_audit: Vorlageform
@@ -679,9 +679,9 @@ de:
     individual_entry_libretti_printed: Libretto, gedruckt - Teileintrag der Sammlung
     individual_entry_threatise: Theoreticum, handschriftlich - Teileintrag der Sammlung
     individual_entry_threatise_printed: Theoreticum, gedruckt - Teileintrag der Sammlung
-    inventories: TRME Inventories
-    inventory: TRME Inventory
-    inventory_edition: TRME Inventory edition
+    inventories: Inventare
+    inventory: Inventar
+    inventory_edition: Inventarausgabe
     libretti_handwritten: Libretto, handschriftlich
     libretti_printed: Libretto, gedruckt
     libretto_edition: Libretto, gedruckt
@@ -803,7 +803,7 @@ de:
   validation:
     begins_with_message: Das Feld muss mit "{0}" beginnen
     cannot_link_to_self: Das Erstellen eines Links selbst ist nicht erlaubt (%{id}).
-    check_group_message: TRME The first material group cannot be "Additional printed material"
+    check_group_message: Die erste Materialgruppe kann nicht "Zusätzliches gedrucktes Material" sein.
     correct: Der Eintrag enthält keine Validierungsfehler. [200]
     insufficient_rights: Der Anwender hat nicht die Berechtigung, für dieses Sigel einen Titel zu erstellen/zu ändern.
     missing_message: Dieses Feld muss zwingend ausgefüllt werden.
@@ -833,5 +833,5 @@ de:
   work_catalogue: Katalog der Werke
   workgroups: Benutzergruppen
   worknode:
-    one: TRME work node
-    other: TRME work nodes
+    one: Work node
+    other: Work nodes
