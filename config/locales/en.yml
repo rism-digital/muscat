@@ -87,6 +87,7 @@ en:
         title: Forgot your password?
       sign_up:
         submit: Sign up
+        tiitle: TRME s'inscrire
         title: Sign up
       subdomain:
         title: Subdomain
@@ -133,6 +134,7 @@ en:
       entry:
         one: entry
         other: entries
+      few: TRME Kilka
       multiple: Displaying %{model} <b>%{from}&nbsp;-&nbsp;%{to}</b> of <b>%{total}</b> in total
       multiple_without_total: Displaying %{model} <b>%{from}&nbsp;-&nbsp;%{to}</b>
       one: Displaying <b>1</b> %{model}
@@ -141,6 +143,9 @@ en:
     powered_by: Powered by %{active_admin} %{version}
     previous: Previous
     save_model: Save
+    search_status:
+      current_filters: TRME Filtri in uso
+      headline: TRME Ambito
     sidebars:
       actions: Actions
       filters: Filters
@@ -197,6 +202,9 @@ en:
       work:
         one: Work
         other: Works
+      work_node:
+        one: TRME Riferimento alle opere
+        other: TRME Riferimenti alle opere
       workgroup:
         one: Group
         other: Groups
@@ -212,6 +220,7 @@ en:
   authorization_tokens: Auth tokens
   available_templates: Available templates
   basic_level: Basic record
+  body: 'TRME '
   btn_themefinder_reset: Reset
   cancel: Cancel
   cannot_create_source: You are not authorized to create this type of source
@@ -264,6 +273,9 @@ en:
     type_updated: Recently updated
     unpub_records: Unpublished records
     update: Update
+  date:
+    day_names: TRME ["domenica", "lunedì", "martedì", "mercoledì", "giovedì", "venerdì", "sabato"]
+    month_names: TRME [nil, "gennaio", "febbraio", "marzo", "aprile", "maggio", "giugno", "luglio", "agosto", "settembre", "ottobre", "novembre", "dicembre"]
   default_view: Default view
   delete: Delete
   digital_object:
@@ -411,6 +423,7 @@ en:
   filter_subsequent_entries: Subsequent Entries
   filter_term: Term
   filter_textincipit: Textincipit
+  filter_textinipit: TRME Incipit testuale
   filter_thematic_opus: Thematic cat. / Opus no.
   filter_title: Title
   filter_title_on_ms: Title on source
@@ -456,6 +469,7 @@ en:
     two_weeks: The following folders will be deleted in two weeks on %{date}
     unpublish_job: 'Unpublish job started (id: %{id})'
     validation_started: 'An email will be sent to %{email} with the validation has ended (Validation job id: %{job}).'
+    validação_iniciada: 'TRME Um e-mail será enviado para %{email} com a validação terminada (Validação id do trabalho: %{job})'
   from_existing_source: Create from existing source
   full_level: Full record
   gnd_not_found: The request to GND returned an empty record

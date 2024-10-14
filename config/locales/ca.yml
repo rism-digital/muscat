@@ -87,6 +87,7 @@ ca:
         title: Heu oblidat la contrasenya?
       sign_up:
         submit: Registreu-vos
+        tiitle: TRME TRME s'inscrire
         title: Registreu-vos
       subdomain:
         title: Subdomini
@@ -133,6 +134,7 @@ ca:
       entry:
         one: entrada
         other: entrades
+      few: TRME TRME Kilka
       multiple: "%{model}, <b>%{from}&nbsp;-&nbsp;%{to}</b> d'un total de <b>%{total}</b>"
       multiple_without_total: "%{model}, <b>%{from}&nbsp;-&nbsp;%{to}</b>"
       one: Mostra <b>1</b> %{model}
@@ -173,6 +175,9 @@ ca:
       institution:
         one: Institució
         other: Institucions
+      inventory_item:
+        one: TRME Inventory item
+        other: TRME Inventory items
       liturgical_feast:
         one: Festivitat litúrgica
         other: Festivitats litúrgiques
@@ -197,6 +202,9 @@ ca:
       work:
         one: Obra
         other: Obres
+      work_node:
+        one: TRME TRME Riferimento alle opere
+        other: TRME TRME Riferimenti alle opere
       workgroup:
         one: Grup
         other: Grups
@@ -212,11 +220,14 @@ ca:
   authorization_tokens: Auth tokens
   available_templates: Platilles disponibles
   basic_level: Registre bàsic
+  body: 'TRME TRME '
   btn_themefinder_reset: Restableix
   cancel: Cancel·la
   cannot_create_source: No esteu autoritzats a crear aquest tipus de font
   cannot_update_source: No esteu autoritzats a editar aquest tipus de font
   choose_folder: "(Trieu-ne una)"
+  clipboard:
+    copied: TRME Results copied to clipboard
   compare_versions:
     date_message: Registres modificats des de %{date}.
     diff: Comparació
@@ -249,15 +260,22 @@ ca:
     my_records: Els meus registres
     news: Notícies de Muscat
     no_items: Amb aquests filtres ho hi surt cap element
+    no_unpublished: TRME No unpublished records
+    no_unpublished_long: TRME You have no unpublished records!
     owner: Propietari
     owner_any: Qualsevol
     owner_user: Jo mateix
     quantity: Mostra
     selection: Seleccioneu l'activitat recent
+    showing_out_of: TRME Showing %{max} records out of %{total}
     type: Tipus
     type_created: Nous
     type_updated: Actualitzats
+    unpub_records: TRME Unpublished records
     update: Actualtiza
+  date:
+    day_names: TRME TRME ["domenica", "lunedì", "martedì", "mercoledì", "giovedì", "venerdì", "sabato"]
+    month_names: TRME TRME [nil, "gennaio", "febbraio", "marzo", "aprile", "maggio", "giugno", "luglio", "agosto", "settembre", "ottobre", "novembre", "dicembre"]
   default_view: Visualització estàndard
   delete: Elimina
   digital_object:
@@ -295,6 +313,7 @@ ca:
   filter_author_or_editor: Autor/editor
   filter_autograph_of: Autògraf de
   filter_birth_place: Lloc de naixement
+  filter_book_id: TRME Book id
   filter_catalog: Catàleg
   filter_category_type: Categoria
   filter_collection: Col·lecció
@@ -333,6 +352,9 @@ ca:
   filter_folder_type: Tipus de carpeta
   filter_full_name: Nom
   filter_gender: Gènere
+  filter_has_incipits: TRME Has incipits
+  filter_has_internal_notes: TRME Has internal notes
+  filter_has_siglum: TRME Has siglum
   filter_id: RISM ID
   filter_id_no: RISM ID
   filter_image: Imatge
@@ -401,6 +423,7 @@ ca:
   filter_subsequent_entries: Entrada posterior
   filter_term: Terme
   filter_textincipit: Íncipit literari
+  filter_textinipit: TRME TRME Incipit testuale
   filter_thematic_opus: Catàleg temàtic / Número d'opus
   filter_title: Títol
   filter_title_on_ms: Títol a la font
@@ -424,6 +447,7 @@ ca:
     added_bg: Elements afegits a la carpeta, tasca %{job} pendent.
     delete_now: 'S''han esborrat aquestes carpetes:'
     expires: Expira el
+    expiring_folders: TRME Your Muscat folders will expire soon
     export_limit: El límit per exportar elements és de %{max}, i aquesta carpeta en té %{count}.
     export_started: Rebreu un correu a %{email} amb l'enllaç de la descàrrega (tasca d'exportació %{job}).
     folder_empty: La carpeta està buida
@@ -445,8 +469,10 @@ ca:
     two_weeks: Carpetes que s'esborraran d'aquí a dues setmanes, el %{date}
     unpublish_job: 'Ha començat la tasca de despublicació (id: %{id})'
     validation_started: 'Rebreu un correu a %{email} quan hagi acabat la validació (tasca de validació: %{job}).'
+    validação_iniciada: 'TRME TRME Um e-mail será enviado para %{email} com a validação terminada (Validação id do trabalho: %{job})'
   from_existing_source: Crea-la a partir d'una font ja existent
   full_level: Registre complet
+  gnd_not_found: TRME The request to GND returned an empty record
   go_to_top: Torna a dalt
   hide_preview: Oculta la vista prelimiar
   history_author: Autor
@@ -504,6 +530,10 @@ ca:
   liturgicalfeast:
     one: festivitat litúrgica
     other: festivitats litúrguqyes
+  logout:
+    confirm: TRME There are open Muscat windows. If you log out, any unsaved changes will be lost. Do you want to continue?
+    generic_error: TRME You have logged out of Muscat. Please refresh the page to return to the login screen.
+    warning: TRME You have logged out from Muscat. Any unsaved work will be lost.
   manuscript_links:
     one: 1 font
     other: "%{count} fonts"
@@ -512,6 +542,14 @@ ca:
     delete_field_confirm: Esteu segur que voleu eliminar aquest camp?
     delete_group_confirm: Esteu segur que voleu eliminar aquest grupo?
     delete_msg: Eliminar
+    error_diff: 'TRME An error occurred while loading the diff between versions: %{a} %{b} %{c}'
+    error_help: 'TRME An error occurred while loading the help for this items: %{a} %{b} %{c}'
+    error_holding: 'TRME An error occurred while loading the holding record information: %{a} %{b} %{c}'
+    error_preview: 'TRME An error occurred while loading the record preview: %{a} %{b} %{c}'
+    error_save: 'TRME An error occurred saving this record: %{a} %{b} %{c}'
+    error_summary: 'TRME An error occurred while loading the summary: %{a} %{b} %{c}'
+    error_validation: 'TRME An error occurred validating this record: %{a} %{b} %{c}'
+    error_version: 'TRME An error occurred while loading the selected version: %{a} %{b} %{c}'
   marcxml_view: Visualització MARCXML
   mei:
     banner: Feu clic a "Vista preliminat" per veure la sortida en MEI.
@@ -540,6 +578,7 @@ ca:
   menu_home: Pagina d'inici
   menu_indexes: Autoritats
   menu_institutions: Institucions
+  menu_inventory_items: TRME Inventory Items
   menu_jobs: Processos
   menu_languages: Idioma
   menu_latin: Text en llatí
@@ -565,6 +604,8 @@ ca:
   new_digital_object_incipit: Afegir-hi un altre ínciput MEI
   new_holding: Afegir-hi un exemplar
   new_holding_page: Nou registre d'exemplar
+  new_inventory_item: TRME Create new inventory item
+  new_inventory_item_page: TRME New inventory item
   no_action: Sense accions disponibles
   not_set: "[not set]"
   notifications:
@@ -593,6 +634,9 @@ ca:
   publish: Publica
   publisher: Editor
   queue: Cua
+  ransack:
+    predicates:
+      with_integer: TRME is
   recent_changes: Modifications recents
   record_actions: Accions sobre el registre
   record_audit: Origen del registre
@@ -617,6 +661,9 @@ ca:
     individual_entry_libretti_printed: Entrada individual en una col·lecció de llibrets impresos
     individual_entry_threatise: Entrada individual en una col·lecció de tractats manuscrits
     individual_entry_threatise_printed: Entrada individual en una col·lecció de tractats impresos
+    inventories: TRME Inventories
+    inventory: TRME Inventory
+    inventory_edition: TRME Inventory edition
     libretti_handwritten: Llibrets manuscrits
     libretti_printed: Llibrets impresos
     libretto_edition: Llibret imprès
@@ -738,6 +785,7 @@ ca:
   validation:
     begins_with_message: El camp ha de començar per "{0}"
     cannot_link_to_self: No podeu crear un enllaça al mateix registre (%{id}).
+    check_group_message: TRME The first material group cannot be "Additional printed material"
     correct: El registre no té cap error de validació [200]
     insufficient_rights: L'usuari no té els drets necessaris per crear o actualtizar un registre d'aquesta biblioteca
     missing_message: Aquest camp ha de tenir un valor

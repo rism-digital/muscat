@@ -88,6 +88,7 @@ fr:
       sign_up:
         submit: s'inscrire
         tiitle: s'inscrire
+        title: TRME Sign up
       subdomain:
         title: Sous-domaine
       unlock:
@@ -133,6 +134,7 @@ fr:
       entry:
         one: entrée
         other: entrées
+      few: TRME TRME Kilka
       multiple: Affichage de %{model} <b>%{from}&nbsp;-&nbsp;%{to}</b> sur un total de <b>%{total}</b>
       multiple_without_total: Affichage de %{model} <b>%{from}&nbsp;-&nbsp;%{to}</b>
       one: Affichage de <b>1</b> %{model}
@@ -141,6 +143,9 @@ fr:
     powered_by: Propulsé par %{active_admin} %{version}
     previous: Précédent
     save_model: Enregistrer
+    search_status:
+      current_filters: TRME TRME Filtri in uso
+      headline: TRME TRME Ambito
     sidebars:
       actions: Actions
       filters: Filtres
@@ -170,6 +175,9 @@ fr:
       institution:
         one: Institution
         other: Institutions
+      inventory_item:
+        one: TRME Inventory item
+        other: TRME Inventory items
       liturgical_feast:
         one: Fête liturgique
         other: Fêtes liturgiques
@@ -194,6 +202,9 @@ fr:
       work:
         one: WORK
         other: WORK
+      work_node:
+        one: TRME TRME Riferimento alle opere
+        other: TRME TRME Riferimenti alle opere
       workgroup:
         one: Groupe
         other: Groupes
@@ -209,11 +220,14 @@ fr:
   authorization_tokens: Auth tokens
   available_templates: Modèles disponibles
   basic_level: Notice de base
+  body: 'TRME TRME '
   btn_themefinder_reset: Reset
   cancel: Annuler
   cannot_create_source: Vous n'êtes pas autorisé à créer ce type de source
   cannot_update_source: Vous n'êtes pas autorisé à traiter ce type de source
   choose_folder: "(PLEASE CHOOSE ONE)"
+  clipboard:
+    copied: TRME Results copied to clipboard
   compare_versions:
     date_message: Affichage des records modifiés de %{date}.
     diff: Comparaison
@@ -246,14 +260,18 @@ fr:
     my_records: Mes dossiers
     news: Nouvelles de Muscat
     no_items: Aucun élément avec le fitre sélectionné
+    no_unpublished: TRME No unpublished records
+    no_unpublished_long: TRME You have no unpublished records!
     owner: Propriétaire
     owner_any: N'importe quel utilisateur
     owner_user: Moi-même
     quantity: Afficher
     selection: Sélection de l'activité récente
+    showing_out_of: TRME Showing %{max} records out of %{total}
     type: Type de modifications
     type_created: Créé récemment
     type_updated: Modifié récemment
+    unpub_records: TRME Unpublished records
     update: Mettre à jour
   date:
     day_names:
@@ -315,6 +333,7 @@ fr:
   filter_author_or_editor: Auteur/Éditeur
   filter_autograph_of: Autographe de
   filter_birth_place: Lieu de naissance
+  filter_book_id: TRME Book id
   filter_catalog: Catalogue
   filter_category_type: Catégorie
   filter_collection: Collection
@@ -353,6 +372,9 @@ fr:
   filter_folder_type: Type de dossier
   filter_full_name: Nom
   filter_gender: Genre
+  filter_has_incipits: TRME Has incipits
+  filter_has_internal_notes: TRME Has internal notes
+  filter_has_siglum: TRME Has siglum
   filter_id: No RISM
   filter_id_no: No RISM
   filter_image: Image
@@ -379,9 +401,11 @@ fr:
   filter_location_and_name: Nom et endroit
   filter_male: Masculin
   filter_manuscript_no: No de source
+  filter_mei: TRME MEI file
   filter_name: Nom
   filter_notes: Notes
   filter_old_versions: Anciennes versions
+  filter_opus: TRME Opus
   filter_owner: Propriétaire
   filter_pages: Pages
   filter_pattern: Modèle de sigle
@@ -418,6 +442,7 @@ fr:
   filter_subject: Sujet
   filter_subsequent_entries: Entrées suivants
   filter_term: Terme
+  filter_textincipit: TRME Textincipit
   filter_textinipit: TEXTINCIPIT
   filter_thematic_opus: Cat. thématique / No d'opus
   filter_title: Titre
@@ -442,6 +467,7 @@ fr:
     added_bg: Eléments ajoutés au dossier, tâche %{JOB} ajoutée à la queue.
     delete_now: 'Les dossiers suivants ont été supprimés :'
     expires: Expire le
+    expiring_folders: TRME Your Muscat folders will expire soon
     export_limit: Le nombre maximal d'éléments téléchargeables est de %{max}, alors que ce dossier contient %{count} éléments.
     export_started: 'Un courriel contenant le lien de téléchargement a été envoyé à %{email} (Export job id: %{job}).'
     folder_empty: Le dossier est vide
@@ -463,8 +489,10 @@ fr:
     two_weeks: Les dossiers suivants seront supprimés dans deux semaines à la date du %{date}
     unpublish_job: 'Début du Job d''annulation de la publication (id: %{id})'
     validation_started: 'Un courriel sera envoyé à %{email} avec la fin de la validation (Validation job id : %{job}).'
+    validação_iniciada: 'TRME TRME Um e-mail será enviado para %{email} com a validação terminada (Validação id do trabalho: %{job})'
   from_existing_source: Créer a partir d'une source
   full_level: Notice complète
+  gnd_not_found: TRME The request to GND returned an empty record
   go_to_top: Retour en haut de la page
   hide_preview: Masquer l'aperçu
   history_author: Auteur
@@ -522,6 +550,10 @@ fr:
   liturgicalfeast:
     one: fête liturgique
     other: fêtes liturgiques
+  logout:
+    confirm: TRME There are open Muscat windows. If you log out, any unsaved changes will be lost. Do you want to continue?
+    generic_error: TRME You have logged out of Muscat. Please refresh the page to return to the login screen.
+    warning: TRME You have logged out from Muscat. Any unsaved work will be lost.
   manuscript_links:
     one: 1 source
     other: "%{count} sources"
@@ -530,6 +562,14 @@ fr:
     delete_field_confirm: Êtes-vous sûr de vouloir supprimer ce champ?
     delete_group_confirm: Êtes-vous sûr de vouloir supprimer ce groupe?
     delete_msg: Supprimer
+    error_diff: 'TRME An error occurred while loading the diff between versions: %{a} %{b} %{c}'
+    error_help: 'TRME An error occurred while loading the help for this items: %{a} %{b} %{c}'
+    error_holding: 'TRME An error occurred while loading the holding record information: %{a} %{b} %{c}'
+    error_preview: 'TRME An error occurred while loading the record preview: %{a} %{b} %{c}'
+    error_save: 'TRME An error occurred saving this record: %{a} %{b} %{c}'
+    error_summary: 'TRME An error occurred while loading the summary: %{a} %{b} %{c}'
+    error_validation: 'TRME An error occurred validating this record: %{a} %{b} %{c}'
+    error_version: 'TRME An error occurred while loading the selected version: %{a} %{b} %{c}'
   marcxml_view: MARCXML view
   mei:
     banner: Cliquez "Aperçu" pour voir le résultat de la conversion en MEI.
@@ -558,6 +598,7 @@ fr:
   menu_home: Home
   menu_indexes: Recherche par indexe
   menu_institutions: Institutions
+  menu_inventory_items: TRME Inventory Items
   menu_jobs: Tâches
   menu_languages: Langue
   menu_latin: Textes latins
@@ -583,6 +624,8 @@ fr:
   new_digital_object_incipit: Attacher un nouveau MEI incipit
   new_holding: Ajouter une copie
   new_holding_page: Copie non enregistré
+  new_inventory_item: TRME Create new inventory item
+  new_inventory_item_page: TRME New inventory item
   no_action: Aucune action possible
   not_set: "[not défini]"
   notifications:
@@ -611,6 +654,9 @@ fr:
   publish: Publier
   publisher: Editeur
   queue: Queue
+  ransack:
+    predicates:
+      with_integer: TRME is
   recent_changes: Dernières modifications
   record_actions: Actions
   record_audit: Origine du dossier
@@ -635,6 +681,9 @@ fr:
     individual_entry_libretti_printed: Entrée dans une collection de traités imprimés
     individual_entry_threatise: Entrée dans une collection traités manuscrits
     individual_entry_threatise_printed: Entrée dans une collection de traités imprimés
+    inventories: TRME Inventories
+    inventory: TRME Inventory
+    inventory_edition: TRME Inventory edition
     libretti_handwritten: Libretti manuscrits
     libretti_printed: Libretti imprimés
     libretto_edition: Contenu d'un livret imprimé
@@ -756,6 +805,7 @@ fr:
   validation:
     begins_with_message: Le champ doit commencer par "{0}"
     cannot_link_to_self: La création d'un lien en soi n'est pas autorisée (%{id}).
+    check_group_message: TRME The first material group cannot be "Additional printed material"
     correct: L'enregistrement ne contient aucune erreur [200]
     insufficient_rights: L'utilisateur ne dispose pas des droits nécessaires pour créer un enregistrement avec cette bibliothèque.
     missing_message: Une valeur dans ce champ est nécessaire
@@ -784,3 +834,6 @@ fr:
         zero: "%{model} introuvable"
   work_catalogue: Catalogue d'œuvres
   workgroups: Groupes
+  worknode:
+    one: TRME work node
+    other: TRME work nodes
