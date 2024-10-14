@@ -24,3 +24,6 @@ de:
     heading: Ansetzungsform
     instrument: Instrumente
     name: Name
+    preferred_title: Bevorzugter Titel
+    work_title: Werktitel
+    partial_title: Teiltitel

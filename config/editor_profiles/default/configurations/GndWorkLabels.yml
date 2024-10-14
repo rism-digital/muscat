@@ -44,6 +44,13 @@ unmatched:
     t:
       label: gnd.title_of_work
   label: gnd.heading
+'130':
+  fields:
+    a:
+      label: gnd.work_title
+    p:
+      label: gnd.partial_title
+  label: gnd.preferred_title
 '382':
   fields:
     a:
