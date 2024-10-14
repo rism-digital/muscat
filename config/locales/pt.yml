@@ -707,21 +707,6 @@ pt:
   remove_item_from_folder: Deletar do pasta
   resave: Salvar fontes novamente
   retro_level: Retrocatalogação
-  rism_a: A maior/menor
-  rism_a_flat: A bemol maior/menor
-  rism_any_key: Qualquer tonalidade
-  rism_b: B maior/menor
-  rism_b_flat: B bemol maior/menor
-  rism_c: C maior/menor
-  rism_c_sharp: C sustenido maior/menor
-  rism_d: D maior/menor
-  rism_d_flat: D bemol maior/menor
-  rism_e: E maior/menor
-  rism_e_flat: E bemol maior/menor
-  rism_f: F maior/menor
-  rism_f_sharp: F sustenido maior/menor
-  rism_g: G maior/menor
-  rism_g_sharp: G sustenido maior/menor
   roles: Papéis
   run_at: Executado em
   running: Em execução

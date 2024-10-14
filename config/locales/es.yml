@@ -707,21 +707,6 @@ es:
   remove_item_from_folder: Quitar de la carpeta
   resave: Volver a guardar las fuentes
   retro_level: Retrocataloging
-  rism_a: La mayor/menor
-  rism_a_flat: La bemol mayor/menor
-  rism_any_key: Cualquier tonalidad
-  rism_b: Si mayor/menor
-  rism_b_flat: Si bemol mayor/menor
-  rism_c: Do mayor/menor
-  rism_c_sharp: Do sostenido mayor/menor
-  rism_d: Re mayor/menor
-  rism_d_flat: Re bemol mayor/menor
-  rism_e: Mi mayor/menor
-  rism_e_flat: Mi bemol mayor/menor
-  rism_f: Fa mayor/menor
-  rism_f_sharp: Fa sostenido mayor/menor
-  rism_g: Sol mayor/menor
-  rism_g_sharp: Sol sostenido mayor/menor
   roles: Roles
   run_at: Ejecutado en
   running: Ejecutando

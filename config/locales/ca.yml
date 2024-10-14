@@ -707,21 +707,6 @@ ca:
   remove_item_from_folder: Elimineu-lo de la carpeta
   resave: Torna a desar les fonts
   retro_level: Catalogació retrospectiva
-  rism_a: La major/menor
-  rism_a_flat: La bemoll major/menor
-  rism_any_key: Qualsevol tonalitat
-  rism_b: Si major/menor
-  rism_b_flat: Si bemoll major/menor
-  rism_c: Do major/menor
-  rism_c_sharp: Do diesi major/menor
-  rism_d: Re major/menor
-  rism_d_flat: Re bemoll major/menor
-  rism_e: Mi major/menor
-  rism_e_flat: Mi bemoll major/menor
-  rism_f: Fa major/menor
-  rism_f_sharp: Fa diesi major/menor
-  rism_g: Sol major/menor
-  rism_g_sharp: Sol diesi major/minor
   roles: Rols
   run_at: Executat a
   running: Executant-se

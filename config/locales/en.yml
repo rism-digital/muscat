@@ -722,21 +722,6 @@ en:
   remove_item_from_folder: Delete from folder
   resave: Resave sources
   retro_level: Retrocataloging
-  rism_a: A major/minor
-  rism_a_flat: A flat major/minor
-  rism_any_key: Any key
-  rism_b: B major/minor
-  rism_b_flat: B flat major/minor
-  rism_c: C major/minor
-  rism_c_sharp: C sharp major/minor
-  rism_d: D major/minor
-  rism_d_flat: D flat major/minor
-  rism_e: E major/minor
-  rism_e_flat: E flat major/minor
-  rism_f: F major/minor
-  rism_f_sharp: F sharp major/minor
-  rism_g: G major/minor
-  rism_g_sharp: G sharp major/minor
   roles: Roles
   run_at: Run At
   running: Running

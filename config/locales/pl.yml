@@ -707,21 +707,6 @@ pl:
   remove_item_from_folder: DELETE FROM FOLDER
   resave: Zapisz ponownie źródła
   retro_level: Katalogowanie retrospektywne
-  rism_a: A-dur / a-moll
-  rism_a_flat: As-dur / as-moll
-  rism_any_key: Dowolny klucz
-  rism_b: H-dur / h-moll
-  rism_b_flat: B-dur / b-moll
-  rism_c: C-dur / c-moll
-  rism_c_sharp: Cis-dur / cis-moll
-  rism_d: D-dur / d-moll
-  rism_d_flat: Des-dur / des-moll
-  rism_e: E-dur / e-moll
-  rism_e_flat: Es-dur / es-moll
-  rism_f: F-dur / f-moll
-  rism_f_sharp: Fis-dur / fis-moll
-  rism_g: G-dur / g-moll
-  rism_g_sharp: Gis-dur / gis-moll
   roles: Role
   run_at: Uruchom o godzinie …
   running: W toku

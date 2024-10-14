@@ -707,21 +707,6 @@ fr:
   remove_item_from_folder: DELETE FROM FOLDER
   resave: Resauver
   retro_level: Retrocataloging
-  rism_a: La majeur/mineur
-  rism_a_flat: La bémol majeur/mineur
-  rism_any_key: N'importe quelle tonalité
-  rism_b: Si majeur/mineur
-  rism_b_flat: Si bémol majeur/mineur
-  rism_c: Do majeur/mineur
-  rism_c_sharp: Do dièse majeur/mineur
-  rism_d: Ré majeur/mineur
-  rism_d_flat: Ré bémol majeur/mineur
-  rism_e: Mi majeur/mineur
-  rism_e_flat: Mi bémol majeur/mineur
-  rism_f: Fa majeur/mineur
-  rism_f_sharp: Fa dièse majeur/mineur
-  rism_g: Sol majeur/mineur
-  rism_g_sharp: Sol dièse majeur/mineur
   roles: Rôles
   run_at: Lancé à
   running: En cours

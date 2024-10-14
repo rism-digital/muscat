@@ -707,21 +707,6 @@ it:
   remove_item_from_folder: Rimuovi dalla cartella
   resave: Salva le fonti
   retro_level: Retrocatalogazione
-  rism_a: La maggiore/minore
-  rism_a_flat: La bemolle maggiore/minore
-  rism_any_key: ogni tonalità
-  rism_b: Si maggiore/minore
-  rism_b_flat: Si bemolle maggiore/minore
-  rism_c: Do maggiore/minore
-  rism_c_sharp: Do diesis maggiore/minore
-  rism_d: Re maggiore/minore
-  rism_d_flat: Re bemolle maggiore/minore
-  rism_e: Mi  maggiore/minore
-  rism_e_flat: Mi bemolle maggiore/minore
-  rism_f: Fa maggiore/minore
-  rism_f_sharp: Fa diesis maggiore/minore
-  rism_g: Sol maggiore/minore
-  rism_g_sharp: Sol diesis maggiore/minore
   roles: Ruoli
   run_at: Data esecuzione
   running: In esecuzione
