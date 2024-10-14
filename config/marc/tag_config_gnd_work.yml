@@ -169,6 +169,14 @@
       - :occurrences: "?"
     - - t
       - :occurrences: "?"
+  "430":  
+    :indicator: "##"
+    :occurrences: "*"
+    :fields:
+    - - a
+      - :occurrences: "?"
+    - - p
+      - :occurrences: "?"
   "500":  
     :indicator: "1#"
     :occurrences: "*"

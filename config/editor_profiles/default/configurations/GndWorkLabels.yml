@@ -56,6 +56,13 @@ unmatched:
     a:
       label: gnd.instrument
   label: gnd.instrument
+'430':
+  fields:
+    a:
+      label: gnd.work_title
+    p:
+      label: gnd.partial_title
+  label: gnd.other_work_title
 '548':
   fields:
     a:

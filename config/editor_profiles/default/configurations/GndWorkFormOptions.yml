@@ -230,6 +230,11 @@
     - - r
     - - t
     - - p
+"430": 
+  layout: 
+    fields:
+    - - a
+    - - p
 "500": 
   allow_new: true
   new_window: people
