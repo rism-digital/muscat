@@ -219,6 +219,13 @@ pt:
   archive_unarchive: Arquivar / desarquivar
   authorization_tokens: Auth tokens
   available_templates: Modelos disponíveis
+  backend_validation:
+    required: Este campo é obrigatório quando esta tag é adicionada
+    no_subtag: Este campo é obrigatório
+    mandatory: Este subcampo é obrigatório
+    required_if: Este campo é obrigatório porque outro está presente
+    check_group: Este campo contém um valor inválido em relação à posição no grupo
+    begin_with: Este campo deve começar com a string correta
   basic_level: Registro básico
   body: Body
   btn_themefinder_reset: Reset

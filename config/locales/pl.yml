@@ -219,6 +219,13 @@ pl:
   archive_unarchive: Zarchiwizuj / cofnij archiwizację
   authorization_tokens: Auth tokens
   available_templates: Dostępne szablony
+  backend_validation:
+    required: To pole jest wymagane, gdy ten tag zostanie dodany
+    no_subtag: To pole jest obowiązkowe
+    mandatory: To podpole jest obowiązkowe
+    required_if: To pole jest wymagane, ponieważ inne jest obecne
+    check_group: To pole zawiera nieprawidłową wartość względem pozycji w grupie
+    begin_with: To pole musi zaczynać się od prawidłowego ciągu znaków
   basic_level: Rekord podstawowy
   body: Body
   btn_themefinder_reset: Wyzeruj

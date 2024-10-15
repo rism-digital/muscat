@@ -219,6 +219,13 @@ es:
   archive_unarchive: Archivar / desarchivar
   authorization_tokens: Auth tokens
   available_templates: Plantillas disponibles
+  backend_validation:
+    required: Este campo es obligatorio cuando se añade esta etiqueta
+    no_subtag: Este campo es obligatorio
+    mandatory: Este subcampo es obligatorio
+    required_if: Este campo es obligatorio porque otro está presente
+    check_group: Este campo contiene un valor no válido en relación con la posición en el grupo
+    begin_with: Este campo debe comenzar con la cadena correcta
   basic_level: Registro básico
   body: Body
   btn_themefinder_reset: Reiniciar

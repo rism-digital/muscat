@@ -219,6 +219,13 @@ ca:
   archive_unarchive: Arxiva / Desarxiva
   authorization_tokens: Auth tokens
   available_templates: Platilles disponibles
+  backend_validation:
+    required: Aquest camp és obligatori quan s'afegeix aquesta etiqueta
+    no_subtag: Aquest camp és obligatori
+    mandatory: Aquest subcamp és obligatori
+    required_if: Aquest camp és obligatori perquè un altre és present
+    check_group: Aquest camp conté un valor no vàlid en relació amb la posició al grup
+    begin_with: Aquest camp ha de començar amb la cadena correcta
   basic_level: Registre bàsic
   body: Body
   btn_themefinder_reset: Restableix

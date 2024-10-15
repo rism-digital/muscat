@@ -1,7 +1,6 @@
 class MarcValidator
 include ApplicationHelper
   
-  DEBUG = false
 
   # test example:
   # MarcValidator.new(Source.first, nil, nil, nil, ValidationExclusion.new(Source)).validate_tags
@@ -307,8 +306,13 @@ include ApplicationHelper
     @errors.each do |tag, subtags|
       subtags.each do |subtag, messages|
         messages.each do |message|
-          message = I18n.t("backend_validation." + message) if options.fetch(:translate, true)
-          output += "#{@object.id}\t#{tag}\t#{subtag}\t#{message}\n"
+          loc_message = message
+          if options.fetch(:translate, true)
+            message = "no_subtag" if subtag == "no_subtag"
+            sanit_message = message.split("-").first.split(":").first
+            loc_message = I18n.t("backend_validation." + sanit_message) + " [#{message}]"
+          end
+          output += "#{@object.id}\t#{tag}\t#{subtag}\t#{loc_message}\n"
         end
       end
     end

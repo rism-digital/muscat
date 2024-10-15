@@ -219,6 +219,13 @@ fr:
   archive_unarchive: Archiver / désarchiver
   authorization_tokens: Auth tokens
   available_templates: Modèles disponibles
+  backend_validation:
+    required: Ce champ est requis lorsque cette étiquette est ajoutée
+    no_subtag: Ce champ est obligatoire
+    mandatory: Ce sous-champ est obligatoire
+    required_if: Ce champ est requis car un autre est présent
+    check_group: Ce champ contient une valeur invalide par rapport à la position dans le groupe
+    begin_with: Ce champ doit commencer par la chaîne correcte
   basic_level: Notice de base
   body: Contenu
   btn_themefinder_reset: Reset
