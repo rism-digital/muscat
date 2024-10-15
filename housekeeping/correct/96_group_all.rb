@@ -731,7 +731,7 @@ ids = %w(
 458001695
 )
 
-group_me = ["593", "260", "300", "590", "340", "028"]
+group_me = ["593", "260", "300", "590", "340", "028", "592", "563"]
 
 ids.each do |id|
     s = Source.find(id)
@@ -741,6 +741,8 @@ ids.each do |id|
     puts "processing #{s.id}"
     group_me.each do |the_tag|
         s.marc.each_by_tag(the_tag) do |t|
+            teight = t.fetch_first_by_tag("8")
+            next if teight && teight.content
             t.add_at(MarcNode.new("source", "8", "01", nil), 0 )
             t.sort_alphabetically
             grouped << the_tag
