@@ -5,6 +5,8 @@ include ApplicationHelper
   # test example:
   # MarcValidator.new(Source.first, nil, nil, nil, ValidationExclusion.new(Source)).validate_tags
 
+  DEBUG = false
+
   def initialize(object, user = nil, warnings = false, logger = nil, exclusions = nil)
     @validation = EditorValidation.get_default_validation(object)
     @rules = @validation.rules
