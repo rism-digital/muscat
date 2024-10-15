@@ -4,7 +4,8 @@ var hasNewWarnings = false;
 const SIMPLE_RULE_MAP = {
 	"required": { presence: true },
 	"mandatory": { mandatory: true },
-	"check_group": { check_group: true }
+	"check_group": { check_group: true },
+	"must_contain": { must_contain: true },
 }
 
 function marc_validate_has_warnings() {
@@ -157,6 +158,13 @@ function marc_validate_begins_with(value, element, param) {
 		return true;
 
 	return value.startsWith(param);
+}
+
+function marc_validate_must_contain(value, element, param) {
+	if (!value)
+		return true;
+
+	return value.includes(param);
 }
 
 // This is the simplest validator
@@ -324,30 +332,32 @@ function marc_validate_new_creation(value, element) {
 	return true;
 }
 
-function marc_editor_validate_advanced_rule(element_class, rules) {
-	for (var rule_name in rules) {
-		var rule_contents = rules[rule_name];
-
-		if (rule_name == "required_if") {
-			// the dependent rule contains a hash
-			// with the tag and subtag
-			for (var tag in rule_contents) {
-				$.validator.addClassRules(element_class, { required_if: [ tag, rule_contents[tag]] });
-			}
-		} else if (rule_name == "begins_with") {
-			$.validator.addClassRules(element_class, { begins_with: rules[rule_name] });
-		} else if (rule_name == "any_of") {
-			let combined_rule = {};
-			for (var sub_rule in rule_contents) {
-				if (SIMPLE_RULE_MAP[rule_contents[sub_rule]])
-					combined_rule = { ...combined_rule, ...SIMPLE_RULE_MAP[rule_contents[sub_rule]] }
-				else
-					console.log("Unknown rule " + rule_contents[sub_rule] + " in " + rule_name)
-			}
-			$.validator.addClassRules(element_class, combined_rule);
-		} else {
-			console.log("Unknown advanced validation type: " + rule_name);
+function marc_editor_parse_validation_rule(element_class, rule_name, rule_contents) {
+	if (rule_name === "required_if") {
+		for (const tag in rule_contents) {
+			$.validator.addClassRules(element_class, { required_if: [tag, rule_contents[tag]] });
 		}
+	} else if (rule_name === "begins_with") {
+		$.validator.addClassRules(element_class, { begins_with: rule_contents });
+	} else if (rule_name === "any_of") {
+		let combined_rule = {};
+		for (const sub_rule in rule_contents) {
+			if (SIMPLE_RULE_MAP[rule_contents[sub_rule]]) {
+				combined_rule = { ...combined_rule, ...SIMPLE_RULE_MAP[rule_contents[sub_rule]] };
+			} else {
+				console.log(`Unknown rule ${rule_contents[sub_rule]} in ${rule_name}`);
+			}
+		}
+		$.validator.addClassRules(element_class, combined_rule);
+	} else {
+		console.log(`Unknown advanced validation type: ${rule_name}`);
+	}
+}
+
+function marc_editor_validate_advanced_rule(element_class, rules) {
+	for (const rule_name in rules) {
+		const rule_contents = rules[rule_name];
+		marc_editor_parse_validation_rule(element_class, rule_name, rule_contents);
 	}
 }
 
@@ -487,6 +497,8 @@ function marc_editor_init_validation(form, validation_conf) {
 			$.validator.format(I18n.t("validation.begins_with_message")));
 	$.validator.addMethod("check_group", marc_validate_check_group,
 			$.validator.format(I18n.t("validation.check_group_message")));
+	$.validator.addMethod("must_contain", marc_validate_must_contain,
+				$.validator.format(I18n.t("validation.must_contain_message")));
 			
 	// New creation: this is not configurable, it is used to make sure the
 	// "confirm create new" checkbox is selected for new items
