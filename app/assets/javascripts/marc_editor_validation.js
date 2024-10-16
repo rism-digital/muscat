@@ -75,7 +75,7 @@ function _marc_validate_highlight( element, errorClass, validClass ) {
 		if (ac) {
 			ac.addClass( errorClass ).removeClass( validClass );
 		} else {
-			console.log("Tried to higlight a hidden object with no autocomplete.")
+			console.warn("Tried to higlight a hidden object with no autocomplete.")
 		}
 	} else if ( element.type === "checkbox" ) {
 		var label = $("#" + element.name + "-label");
@@ -125,7 +125,7 @@ function _marc_validate_unhighlight( element, errorClass, validClass ) {
 		if (ac) {
 			ac.removeClass( errorClass ).addClass( validClass );
 		} else {
-			console.log("Tried to un-higlight a hidden object with no autocomplete.")
+			console.warn("Tried to un-higlight a hidden object with no autocomplete.")
 		}
 	} else if ( element.type === "checkbox" ) {
 		var label = $("#" + element.name + "-label");
@@ -393,10 +393,9 @@ function marc_editor_parse_any_of_rule(element_class, rule_name, rule_contents) 
 			const rule_def = marc_editor_create_parameters(sub_rule_name, sub_rule_contents)
 			combined_rule = { ...combined_rule, ...rule_def };
 		} else {
-			console.log(`Unknown sub-rule ${sub_rule} in ${rule_name}`);
+			console.warn(`Unknown sub-rule ${sub_rule} in ${rule_name}`);
 		}
 	}
-	console.log(combined_rule)
 	$.validator.addClassRules(element_class, combined_rule);
 }
 
@@ -406,7 +405,7 @@ function marc_editor_parse_validation_rule(element_class, rule_name, rule_conten
 	} else if (PARAMETRIC_RULES.includes(rule_name)) {
 		$.validator.addClassRules(element_class, marc_editor_create_parameters(rule_name, rule_contents));
 	} else {
-		console.log(`Unknown advanced validation type: ${rule_name}`);
+		console.warn(`Unknown advanced validation type: ${rule_name}`);
 	}
 }
 
@@ -421,7 +420,7 @@ function add_simple_rules(element_class, rule_name) {
 	if (SIMPLE_RULE_MAP[rule_name])
 		$.validator.addClassRules(element_class, SIMPLE_RULE_MAP[rule_name]);
 	else
-		console.log("Unknown rule " + rule_name)
+		console.warn("Unknown rule " + rule_name)
 }
 
 function marc_editor_validate_className(tag, subtag) {
@@ -444,7 +443,7 @@ function marc_editor_validate_expand_placeholder(element) {
 		if (new_elements.length > 0) {
 			return new_elements[0];
 		} else {
-			console.log("Could not find newly created element");
+			console.warn("Could not find newly created element");
 			return element;
 		}
 		
@@ -578,7 +577,7 @@ function marc_editor_init_validation(form, validation_conf) {
 				// More complex dataype
 				marc_editor_validate_advanced_rule(element_class, subtag);
 			} else {
-				console.log("Unknown validation type: " + subtag);
+				console.warn("Unknown validation type: " + subtag);
 			}
 		}
 	}
