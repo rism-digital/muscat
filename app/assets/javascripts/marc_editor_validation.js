@@ -5,8 +5,13 @@ const SIMPLE_RULE_MAP = {
 	"required": { presence: true },
 	"mandatory": { mandatory: true },
 	"check_group": { check_group: true },
-	"must_contain": { must_contain: true },
 }
+
+const PARAMETRIC_RULES = [
+	"required_if",
+	"begins_with",
+	"must_contain"
+]
 
 function marc_validate_has_warnings() {
 	return hasNewWarnings;
@@ -160,11 +165,15 @@ function marc_validate_begins_with(value, element, param) {
 	return value.startsWith(param);
 }
 
+// #1616 implement a pattern matching
 function marc_validate_must_contain(value, element, param) {
 	if (!value)
 		return true;
 
-	return value.includes(param);
+	const predicate = param[0];
+	const token = param[1];
+
+	return value.includes(token);
 }
 
 // This is the simplest validator
@@ -266,8 +275,10 @@ function marc_validate_mandatory(value, element) {
 }
 
 function marc_validate_required_if(value, element, param) {
+	// Note! We can validaye just one of the required_if fields
 	var dep_tag = param[0];
 	var dep_subtag = param[1];
+	
 	var valid = true;
 	var tag = $(element).data("tag");
 	var toplevel;
@@ -297,6 +308,7 @@ function marc_validate_required_if(value, element, param) {
 	} else {
 		selector = '.serialize_marc[data-tag=' + dep_tag + '][data-subfield=' + dep_subtag + ']';
 	}
+
 	$(selector, toplevel).each(function() {
 		if ($(this).val() != "") {
 			// The value of the other field is set
@@ -332,23 +344,67 @@ function marc_validate_new_creation(value, element) {
 	return true;
 }
 
+function marc_editor_create_parameters(rule_name, rule_contents) {
+	// To make life simpler, required_if configuration passes
+	// a hash:
+	//  required_if:
+    //      "031": "a"
+	// Versus this mess here for an array with the same stuff:
+	//  required_if:
+	//       - "031"
+	//       - "a"
+	// We can make hashes work easily, but then the
+	// error message is messed up since the jquery validation
+	// plugin is kinda hardcoded to only get an array of parameters
+    // So we accept the hash, and then convert it to an array.
+	// We also only consider the FIRST pair, so no cheating like
+	// this:
+	//  required_if:
+    //      "031": "a"
+	//      "032": "b"
+	// It will not work in any case as it needs a different
+	// implementation of the validator
+    if (rule_contents instanceof Object) {
+    	const entries = Object.entries(rule_contents);
+
+        if (entries.length > 0) {
+            // Use only the first key-value pair, the others are ignored
+            rule_contents = entries[0];
+        } else {
+			// Let it die if the configuration in wrong+
+            throw new Error(`Please check the configuration for rule ${rule_name}`);
+        }
+    }
+
+	// Return a neat hash
+	return { [rule_name]: rule_contents }
+}
+
+function marc_editor_parse_any_of_rule(element_class, rule_name, rule_contents) {
+	let combined_rule = {};
+	for (const sub_rule_id in rule_contents) {
+		let sub_rule = rule_contents[sub_rule_id]
+
+		if (SIMPLE_RULE_MAP[sub_rule]) {
+			combined_rule = { ...combined_rule, ...SIMPLE_RULE_MAP[sub_rule] };
+		} else if (sub_rule instanceof Object) {
+			const sub_rule_name = Object.keys(sub_rule)[0];
+			const sub_rule_contents = sub_rule[sub_rule_name];
+			const rule_def = marc_editor_create_parameters(sub_rule_name, sub_rule_contents)
+			combined_rule = { ...combined_rule, ...rule_def };
+		} else {
+			console.log(`Unknown sub-rule ${sub_rule} in ${rule_name}`);
+		}
+	}
+	console.log(combined_rule)
+	$.validator.addClassRules(element_class, combined_rule);
+}
+
 function marc_editor_parse_validation_rule(element_class, rule_name, rule_contents) {
-	if (rule_name === "required_if") {
-		for (const tag in rule_contents) {
-			$.validator.addClassRules(element_class, { required_if: [tag, rule_contents[tag]] });
-		}
-	} else if (rule_name === "begins_with") {
-		$.validator.addClassRules(element_class, { begins_with: rule_contents });
-	} else if (rule_name === "any_of") {
-		let combined_rule = {};
-		for (const sub_rule in rule_contents) {
-			if (SIMPLE_RULE_MAP[rule_contents[sub_rule]]) {
-				combined_rule = { ...combined_rule, ...SIMPLE_RULE_MAP[rule_contents[sub_rule]] };
-			} else {
-				console.log(`Unknown rule ${rule_contents[sub_rule]} in ${rule_name}`);
-			}
-		}
-		$.validator.addClassRules(element_class, combined_rule);
+	if (rule_name === "any_of") {
+		marc_editor_parse_any_of_rule(element_class, rule_name, rule_contents)
+	} else if (PARAMETRIC_RULES.includes(rule_name)) {
+		$.validator.addClassRules(element_class, marc_editor_create_parameters(rule_name, rule_contents));
 	} else {
 		console.log(`Unknown advanced validation type: ${rule_name}`);
 	}
@@ -359,6 +415,13 @@ function marc_editor_validate_advanced_rule(element_class, rules) {
 		const rule_contents = rules[rule_name];
 		marc_editor_parse_validation_rule(element_class, rule_name, rule_contents);
 	}
+}
+
+function add_simple_rules(element_class, rule_name) {
+	if (SIMPLE_RULE_MAP[rule_name])
+		$.validator.addClassRules(element_class, SIMPLE_RULE_MAP[rule_name]);
+	else
+		console.log("Unknown rule " + rule_name)
 }
 
 function marc_editor_validate_className(tag, subtag) {
@@ -388,13 +451,6 @@ function marc_editor_validate_expand_placeholder(element) {
 	} else {
 		return element;
 	}
-}
-
-function add_simple_rules(element_class, rule_name) {
-	if (SIMPLE_RULE_MAP[rule_name])
-		$.validator.addClassRules(element_class, SIMPLE_RULE_MAP[rule_name]);
-	else
-		console.log("Unknown rule " + rule_name)
 }
 
 function marc_editor_init_validation(form, validation_conf) {

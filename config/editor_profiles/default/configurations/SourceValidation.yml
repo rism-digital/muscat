@@ -71,14 +71,11 @@ client:
         - inventory
         - inventory_edition
     tags:
-      "a": mandatory
-# Remove until 593 is sorted out
-# I guess we have not sorted this out yet
-#  "593":
-#    tag_overrides:
-#    tags:
-#      "a": mandatory
-#      "b": mandatory
+      "a":
+        any_of:
+          - must_contain:
+              pattern: "-"
+          - mandatory
   "593":
     tags:
       a: 
