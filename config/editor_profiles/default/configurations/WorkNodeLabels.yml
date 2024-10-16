@@ -365,8 +365,6 @@ C|x:
   label: records.cs_major
 D:
   label: records.d_major
-Doubtful:
-  label: records.doubtful
 D|b:
   label: records.df_major
 D|x:

@@ -423,7 +423,6 @@
       - "Ascertained"
       - "Alleged"
       - "Conjectural"
-      - "Doubtful"
       - "Misattributed"
     relator_codes: 
       - dte

@@ -626,8 +626,6 @@ D:
   label: records.d_major
 Digitized:
   label: records.digitized_source
-Doubtful:
-  label: records.doubtful
 D|b:
   label: records.df_major
 D|x:

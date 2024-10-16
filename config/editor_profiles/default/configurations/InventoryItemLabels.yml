@@ -333,8 +333,6 @@ Conjectural:
   label: records.conjectural
 Digitized:
   label: records.digitized_source
-Doubtful:
-  label: records.doubtful
 Engraving:
   label: records.engraving
 Facsimile:

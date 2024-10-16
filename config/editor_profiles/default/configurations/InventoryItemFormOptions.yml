@@ -528,7 +528,6 @@
       - "Ascertained"
       - "Alleged"
       - "Conjectural"
-      - "Doubtful"
       - "Misattributed"
     relator_codes: 
       - fmo
@@ -572,7 +571,6 @@
       - "Ascertained"
       - "Alleged"
       - "Conjectural"
-      - "Doubtful"
       - "Misattributed"
     relator_codes: 
       - fmo
