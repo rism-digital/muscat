@@ -789,6 +789,7 @@ en:
     correct: The record has no validation errors [200]
     insufficient_rights: User has insufficient rights to create/update a record of this library
     missing_message: A value in this field is mandatory
+    must_contain_message: "Enter the library siglum and shelfmark of the printed edition consulted."
     name_uniqueness: Short name of entry is already taken
     required_if_message: Field is mandatory because {0} ${1} is not empty
     warning_message: A value for this field should be provided

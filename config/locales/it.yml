@@ -769,6 +769,7 @@ it:
     correct: Il record non contiene errori [200]
     insufficient_rights: L'utente non ha i diritti necessari per creare un record con questa biblioteca
     missing_message: Questo campo deve contenere un valore
+    must_contain_message: "Inserisci il siglum della biblioteca e la collocazione dell'edizione stampata consultata."
     name_uniqueness: Il nome breve dell'elemento è già in uso
     required_if_message: Questo campo deve essere riempito poiché è obbligatorio in presenza di {0} ${1}
     warning_message: Questo campo dovrebbe contenere un valore

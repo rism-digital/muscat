@@ -769,6 +769,7 @@ de:
     correct: Der Eintrag enthält keine Validierungsfehler. [200]
     insufficient_rights: Der Anwender hat nicht die Berechtigung, für dieses Sigel einen Titel zu erstellen/zu ändern.
     missing_message: Dieses Feld muss zwingend ausgefüllt werden.
+    must_contain_message: "Geben Sie das Bibliothekssiglum und die Signatur der konsultierten Druckausgabe ein."
     name_uniqueness: Das Kürzel des Eintrages ist bereits vergeben.
     required_if_message: Dieses Feld muss ausgefüllt werden, da es obligatorisch ist in Anwesenheit von {0} ${1}
     warning_message: Dieses Feld enthält üblicherweise einen Eintrag.

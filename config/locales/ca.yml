@@ -769,6 +769,7 @@ ca:
     correct: El registre no té cap error de validació [200]
     insufficient_rights: L'usuari no té els drets necessaris per crear o actualtizar un registre d'aquesta biblioteca
     missing_message: Aquest camp ha de tenir un valor
+    must_contain_message: "Introduïu el sigle de la biblioteca i la signatura de l'edició impresa consultada."
     name_uniqueness: Aquest nom abreujat ja s'utilitza
     required_if_message: El camp és obligatori en presència de {0} ${1}
     warning_message: Caldria que aquest camp tingués un valor

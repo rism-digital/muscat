@@ -769,6 +769,7 @@ pt:
     correct: O registro não tem erros de validação [200]
     insufficient_rights: O usuário não tem concessão para criar/atualizar um registro para esta instituição
     missing_message: Um valor neste campo é obrigatório
+    must_contain_message: "Digite o sigla da biblioteca e a cota da edição impressa consultada."
     name_uniqueness: O nome abreviado do registro já está em uso
     required_if_message: Este campo deve ser preenchido, pois é obrigatório na presença de {0} ${1}
     warning_message: Um valor deve ser fornecido para este campo
