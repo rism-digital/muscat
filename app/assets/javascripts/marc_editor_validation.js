@@ -170,10 +170,7 @@ function marc_validate_must_contain(value, element, param) {
 	if (!value)
 		return true;
 
-	const predicate = param[0];
-	const token = param[1];
-
-	return value.includes(token);
+	return value.includes(param);
 }
 
 // This is the simplest validator
@@ -389,7 +386,7 @@ function marc_editor_parse_any_of_rule(element_class, rule_name, rule_contents) 
 			combined_rule = { ...combined_rule, ...SIMPLE_RULE_MAP[sub_rule] };
 		} else if (sub_rule instanceof Object) {
 			const sub_rule_name = Object.keys(sub_rule)[0];
-			const sub_rule_contents = sub_rule[sub_rule_name];
+			const sub_rule_contents = sub_rule[sub_rule_name]; // This is the parameter to the rule
 			const rule_def = marc_editor_create_parameters(sub_rule_name, sub_rule_contents)
 			combined_rule = { ...combined_rule, ...rule_def };
 		} else {

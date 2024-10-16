@@ -73,8 +73,7 @@ client:
     tags:
       "a":
         any_of:
-          - must_contain:
-              pattern: "-"
+          - must_contain: "-"
           - mandatory
   "593":
     tags:
@@ -172,7 +171,9 @@ client:
   "856": 
     tags:
       u:
-        begins_with: "http"
+        any_of:
+          - begins_with: "http"
+          - required
       z:
         required_if:
           "856": "u"
