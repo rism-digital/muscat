@@ -164,7 +164,7 @@ private
               end
 
               source = @model.find(source_id)
-              file.write(source.marc.to_marc)
+              file.write(source.marc.to_marc_external({ created_at: source.created_at, updated_at: source.updated_at, versions: nil, holdings: false }))
               file.write("\n")
               if jobid == 0
                 count += 1
@@ -231,7 +231,7 @@ private
       File.open(EXPORT_PATH.join(filename + @extension), "w") do |file|
         @getter.get_items.each do |source_id|
           source = @model.find(source_id)
-          file.write(source.marc.to_marc)
+          file.write(source.marc.to_marc_external({ created_at: source.created_at, updated_at: source.updated_at, versions: nil, holdings: false }))
           file.write("\n")
           count += 1
           update_stage_progress("Exported #{count}/#{@getter.get_item_count} [s]", step: 20) if count % 20 == 0 && @enquequed
