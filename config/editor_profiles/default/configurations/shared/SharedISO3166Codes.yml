@@ -176,6 +176,8 @@ XA-RS:
   label: places.serbia
 XA-RU:
   label: places.russian_federation
+XA-SM:
+  label: places.san_marino
 SB-SA:
   label: places.saudi_arabia
 XB-SA:
