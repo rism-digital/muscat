@@ -288,8 +288,9 @@
 "667": 
   layout: 
     fields: 
-    - - "5"
     - - a
+    - - "5"
+      - default: "RISM NFDI4Culture"
 "670": 
   layout: 
     fields: 
