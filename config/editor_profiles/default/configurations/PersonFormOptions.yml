@@ -72,8 +72,8 @@
     fields: 
     - - a
       - values:
-        - "individualized" 
-        - "not individualized"
+        - "differentiated" 
+        - "undifferentiated"
         editor_partial: subfield_select
 "043": 
   layout: 
