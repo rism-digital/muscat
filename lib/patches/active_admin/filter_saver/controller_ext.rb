@@ -160,13 +160,13 @@ module ActiveAdmin
             saved_filters["last_scope"] ||= Hash.new
             saved_filters["last_scope"][controller_name] = params[:scope] if params.include?(:scope)
           end
-          saved_filters[:select] = controller_name if params[:select]
+          session[:select] = controller_name if params[:select]
         # We also need to save the page param in show because it might be change 
         # by the prev/next navigation 
         elsif params[:action].to_sym == :show
           saved_filters[:last_search_page] ||= Hash.new
           saved_filters[:last_search_page][controller_name] = params[:page]
-          saved_filters[:select] = controller_name if params[:select]
+          session[:select] = controller_name if params[:select]
         end
 
         purge_params(saved_filters)
