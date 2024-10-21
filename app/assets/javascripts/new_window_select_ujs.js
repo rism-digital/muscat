@@ -165,7 +165,7 @@ function newWindowIsSelect() {
 				}
 
 				// Open up the new window
-				_child = window.open('/admin/' + controller + '?select=true' + encodeURI(search), null, "location=no");
+				_child = window.open('/admin/' + controller + '?select=true&page=1' + encodeURI(search), null, "location=no");
 				
 				_interval = setInterval(function() {
 					if (_child && _child.closed) {

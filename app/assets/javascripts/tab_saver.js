@@ -87,8 +87,17 @@ $(document).on('visibilitychange', function() {
     }
 });
 
+// Make sure we switch to the proper tab when a NEW
+// window is open over, and not just a tab switch
+window.addEventListener('focus', function() {
+    tab_saver_select();
+});
 
 $(window).on('load', function() {
+    if (window.opener) {
+        sessionStorage.removeItem("tab-id")
+        sessionStorage.removeItem("tab-store")
+    }
     let new_tab = sessionStorage.getItem("tab-id") === null ? true : false
     let tab_id = get_or_create_tab_id();
 
