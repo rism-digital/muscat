@@ -307,7 +307,7 @@
       - growfield: true
 "670":
   new_window: publications
-  new_window_field: name_eq
+  new_window_field: short_name_eq
   layout: 
     fields: 
     - - "a"

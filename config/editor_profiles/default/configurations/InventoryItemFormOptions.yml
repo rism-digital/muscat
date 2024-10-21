@@ -487,7 +487,7 @@
         allow_new: true
 "690":
   new_window: publications
-  new_window_field: name_eq
+  new_window_field: short_name_eq
   layout:
     fields:
     - - a
@@ -497,7 +497,7 @@
     - - n
 "691":
   new_window: publications
-  new_window_field: name_eq
+  new_window_field: short_name_eq
   layout:
     fields:
     - - a
