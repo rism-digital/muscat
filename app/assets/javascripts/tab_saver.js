@@ -95,8 +95,8 @@ window.addEventListener('focus', function() {
 
 $(window).on('load', function() {
     if (window.opener) {
-        sessionStorage.removeItem("tab-id")
-        sessionStorage.removeItem("tab-store")
+        //sessionStorage.removeItem("tab-id")
+        //sessionStorage.removeItem("tab-store")
     }
     let new_tab = sessionStorage.getItem("tab-id") === null ? true : false
     let tab_id = get_or_create_tab_id();
