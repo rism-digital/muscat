@@ -177,7 +177,7 @@
 "100": 
   allow_new: true
   new_window: people
-  new_window_field: full_name_or_400a_contains
+  new_window_field: full_name_or_400a_cont
   layout: 
     fields: 
     - - a
@@ -294,7 +294,7 @@
 "700":
   allow_new: true
   new_window: people
-  new_window_field: full_name_or_400a_contains
+  new_window_field: full_name_or_400a_cont
   layout:
     fields: 
     - - a
@@ -312,7 +312,7 @@
     - oth
 "710":
   new_window: institutions
-  new_window_field: corporate_name_equals
+  new_window_field: full_name_eq
   layout: 
     fields:
     - - a

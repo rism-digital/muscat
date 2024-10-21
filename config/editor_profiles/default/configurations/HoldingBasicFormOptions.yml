@@ -92,7 +92,7 @@
 
 "651":
   new_window: places
-  new_window_field: name_equals
+  new_window_field: name_eq
   layout: 
     fields: 
     - - a
@@ -101,7 +101,7 @@
         allow_new: true
 "691":
   new_window: publications
-  new_window_field: name_equals
+  new_window_field: name_eq
   layout: 
     fields: 
     - - a
@@ -111,7 +111,7 @@
     - - n
 "700":
   new_window: people
-  new_window_field: full_name_equals
+  new_window_field: full_name_eq
   layout:
     fields: 
     - - a
@@ -151,7 +151,7 @@
       - arr
 "710":
   new_window: institutions
-  new_window_field: name_equals
+  new_window_field: name_eq
   layout: 
     fields: 
     - - a

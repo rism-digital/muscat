@@ -31,7 +31,7 @@
         editor_partial: subfield_select
 "031": 
   new_window: standard_titles
-  new_window_field: title_equals
+  new_window_field: title_eq
   layout: 
     fields:
     - - u
@@ -201,7 +201,7 @@
     - - z
 "100":
   new_window: people
-  new_window_field: full_name_equals
+  new_window_field: full_name_eq
   layout:
     fields:
     - - a
@@ -215,7 +215,7 @@
       - autocomplete_extra: life_dates
 "130":
   new_window: standard_titles
-  new_window_field: title_equals
+  new_window_field: title_eq
   layout:
     fields:
     - - a
@@ -508,7 +508,7 @@
       - "8byz"
 "500":
   new_window: people
-  new_window_field: full_name_equals
+  new_window_field: full_name_eq
   layout:
     fields: 
     - - a
@@ -543,7 +543,7 @@
     - trl
 "510":
   new_window: institutions
-  new_window_field: corporate_name_equals
+  new_window_field: corporate_name_eq
   layout: 
     fields: 
     - - a
@@ -571,7 +571,7 @@
       - pat
 "530": 
   new_window: works
-  new_window_field: title_equals
+  new_window_field: title_eq
   layout: 
     fields: 
     - - "a"
@@ -607,7 +607,7 @@
       - growfield: true
 "670": 
   new_window: publications
-  new_window_field: name_equals
+  new_window_field: name_eq
   layout: 
     fields: 
     - - "a"
@@ -622,7 +622,7 @@
       - growfield: true
 "675": 
   new_window: publications
-  new_window_field: name_equals
+  new_window_field: name_eq
   layout: 
     fields: 
     - - "a"
@@ -636,7 +636,7 @@
       - growfield: true
 "690": 
   new_window: publications
-  new_window_field: name_equals
+  new_window_field: name_eq
   layout: 
     fields: 
     - - a
@@ -646,7 +646,7 @@
     - - n
 "691": 
   new_window: publications
-  new_window_field: name_equals
+  new_window_field: name_eq
   layout: 
     fields: 
     - - a
