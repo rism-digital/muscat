@@ -547,7 +547,7 @@
       - arr
 "710":
   new_window: institutions
-  new_window_field: name_eq
+  new_window_field: full_name_eq
   layout: 
     fields: 
     - - a
