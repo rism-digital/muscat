@@ -21,7 +21,8 @@ module ActiveAdmin
       def restore_search_filters
 
         # If we render via ajax, skip all this
-        return if request.xhr?
+        # Permit the "session" controller to deselect
+        return if request.xhr? && controller_name != "session"
         
         # we like nice things! show it in the footer
         # Note: we need a global variable here so
@@ -138,7 +139,8 @@ module ActiveAdmin
 
       def save_search_filters
         # as above, if we render via ajax, skip all this
-        return if request.xhr?
+        # if not in the deselection controller
+        return if request.xhr? && controller_name != "session"
 
         saved_filters = create_saved_filters_for(cookies["tab-id"])
 
@@ -176,7 +178,6 @@ module ActiveAdmin
 
         puts "Saved filters for #{@tab_id_for_footer}"
         cookies.signed["tab-store"] = {value: saved_filters}
-
       end
  
       def purge_params(the_hash)
