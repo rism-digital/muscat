@@ -108,7 +108,6 @@
 //= require marc_editor_manipulation
 //= require job_progress_bar
 //= require modification_trigger_ujs.js
-//= require filter_workaround.js
 //= require cookieconsent.min.js
 //= require merge_authority.js
 //= require compare_versions_actions.js

@@ -5,7 +5,6 @@ ActiveAdmin.register AuthorizationToken do
     config.clear_action_items!
 
     sidebar :actions, :only => :index do
-        render :partial => "activeadmin/filter_workaround"
         render :partial => "activeadmin/section_sidebar_index"
       end
 
