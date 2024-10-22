@@ -375,12 +375,12 @@ class MarcSource < Marc
 
     if (@record_type == RECORD_TYPES[:collection])
       leader = base_leader.gsub("XX", "dc")
-      generate_subentry_title # Add $a to 774s
+      #generate_subentry_title # Add $a to 774s
     elsif (@record_type == RECORD_TYPES[:edition])
       type = "cm"
       type = "cc" if by_tags("774").count > 0
       leader = base_leader.gsub("XX", type)
-      generate_subentry_title
+      #generate_subentry_title
     elsif @record_type == RECORD_TYPES[:composite_volume]
       leader = base_leader.gsub("XX", 'pc')
     elsif @record_type == RECORD_TYPES[:source]
@@ -416,6 +416,8 @@ class MarcSource < Marc
     
     new_leader = MarcNode.new("source", "000", leader, "")
     @root.children.insert(get_insert_position("000"), new_leader)
+
+    generate_subentry_title # Add $a to 774s if they are there
 
     # 240 to 130 when 100 is not present
     if by_tags("100").count == 0
@@ -605,15 +607,25 @@ class MarcSource < Marc
   end
 
   def generate_subentry_title
+    fetch_source = ->(w_content, t4_content) do
+      model_class = t4_content == "holding" ? Holding : Source
+      item = model_class.find(w_content) rescue item = nil
+      item.is_a?(Holding) ? item.source : item
+    end
+  
     each_by_tag("774") do |t|
       w = t.fetch_first_by_tag("w")
-      if w && w.content
-        source = Source.find(w.content) rescue next
-        t.add_at(MarcNode.new(@model, "a", source.name, nil), 0)
-      else
-        raise "Empty $w in 774"
-      end
+      t4 = t.fetch_first_by_tag("4")
+  
+      raise "Empty $w in 774" unless w&.content
+  
+      source = fetch_source.call(w.content, t4&.content)
+  
+      next unless source
+  
+      source_title = t4&.content == "holding" ? "#{source.id}: #{source.name}" : source.name
+      t.add_at(MarcNode.new(@model, "a", source_title, nil), 0)
     end
   end
-
+  
 end
