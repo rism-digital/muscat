@@ -146,12 +146,13 @@ es:
     austria_tyrol: 'Austria: Tirol'
     austria_upper_austria: 'Austria: Alta Austria'
     austria_vienna: 'Austria: Viena'
-    azerbiajan: Azerbaiyán
+    azerbaijan: Azerbaiyán
     bangladesh: Bangladesh
     belarus: Bielorrusia
     belgium: Bélgica
     benin: Benín
     bolivia: Bolivia
+    bosnia_and_herzegovina: Bosnia-Herzegovina
     bosnia_herzegovina: Bosnia-Herzegovina
     brazil: Brasil
     bulgaria: Bulgaria
@@ -194,9 +195,9 @@ es:
     japan: Japón
     korea: Corea, República de
     latvia: Letonia
+    lebanon: Líbano
     liechtenstein: Liechtenstein
     lithuania: Lituania
-    lebanon: Líbano
     luxembourg: Luxemburgo
     malta: Malta
     mexico: México
@@ -219,13 +220,14 @@ es:
     puerto_rico: Puerto Rico
     romania: Rumania
     russian_federation: Federación Rusa
+    san_marino: San Marino
     saudi_arabia: Arabia Saudita
     serbia: Serbia
     slovakia: Eslovaquia
     slovenia: Eslovenia
     south_africa: Sudáfrica
     spain: España
-    suriname: Suriname
+    suriname: Surinam
     sweden: Suecia
     switzerland: Suiza
     switzerland_vaud: 'Suiza: cantón de Vaud'
@@ -234,7 +236,7 @@ es:
     tajikistan: Tayikistán
     trinidad_tobego: Trinidad y Tobago
     turkey: Turquía
-    turkmenistan: Turkmenistan
+    turkmenistan: Turkmenistán
     uganda: Uganda
     uk: Reino Unido
     ukraine: Ucrania
@@ -362,7 +364,7 @@ es:
     collaborator: Colaborador
     collective_catalog: Catálogo colectivo
     colophon: Colofón
-    contributing_project: Contributing project
+    contributing_project: Contribuyendo al proyecto
     common_clefs: Claves comunes
     compiler: Compilador
     composer: Compositor
@@ -429,7 +431,6 @@ es:
     distributor: Distribuidor
     documentation_center: Documentation center
     donor: Donante
-    doubtful: Dudosa
     dramatic_roles_original: Nombres de personajes, ortografía original
     dramatic_roles_standardized: Nombres de personajes, normalizados
     ds_major: Re sostenido Mayor
@@ -481,11 +482,11 @@ es:
     figured_bass_scores: Bajo cifrado
     fijian: Fijiano
     fingerprint_identifier: Identificador tipográfico
-    first_entry: First entry
+    first_entry: Primera entrada
     first_second_group: Primero/segundo grupo
     form_subdivision: Subdivisión de forma
     format_extent: Formato, extensión
-    former_sigla: Former sigla
+    former_sigla: Clave anterior
     former_owner: Propietario anterior
     fragments: Fragmentos
     fs_major: Fa sostenido Mayor
@@ -525,11 +526,13 @@ es:
     heading_personal_name1: Nombre personal principal
     help_transposing_instruments: Ayuda para instrumentos transpositores
     history_institution: Historia de la institución
+    holding: En espera
     holdings_location: Campos de los ejemplares y su ubicación
-    identification_status: Identification status
-    identified_manuscript: Identified manuscript
-    identified_holding: Identified holding
-    identified_work: Identified work
+    identification_status: Estado de identificación
+    identified: Identificado
+    identified_holding: Identificando espera
+    identified_source: Identificando fuente
+    identified_work: Identificando obra
     identity: Identidad
     identity_area: Identidad
     iiif_manifest: "Manifiesto IIIF (fuente digitalizada)"
@@ -555,9 +558,9 @@ es:
     internal_note: Nota interna
     introduction: Introducción
     invalid_standard_number: Número o código estándar cancelado/inválido
-    inventory: Inventory
-    inventory_item: Inventory item
-    inventory_source: Inventory source
+    inventory: Inventario
+    inventory_item: Artículo de inventario
+    inventory_source: Fuente de inventario
     isbn: ISBN
     ismn: ISMN
     issn: ISSN
@@ -577,7 +580,7 @@ es:
     language_of_cataloging: Idioma de catalogación
     language_original_text: Idioma del texto original
     language_text: Idioma del texto
-    later_entry: Later entry
+    later_entry: Entrada posterior
     later_heading: El encabezamiento posterios
     latitude: Latitud
     leader: Líder
@@ -752,6 +755,7 @@ es:
     plate_number: Número de plancha
     plucked_instruments: Cuerdas pulsadas
     possible_autograph_manuscript: Posible manuscrito autográfico
+    possibly_identified: Posiblemente identificado
     postal_code: Código postal
     postal_place: Dirección postal
     preceding_entry: Registro precedente
@@ -907,7 +911,7 @@ es:
     watermark_description: Descripción de las filigranas
     woodwinds: Vientos-madera
     work: Obra
-    work_catalog_note: Work catalog note
+    work_catalog_note: Nota del catálogo de trabajo
     work_number: Número de obra
     work_tag: Etiqueta de revisión de trabajo
     work_tag_incipit_needs_revision: incipit-needs-revision
@@ -928,14 +932,14 @@ es:
     P60194: "Inserción en"
     P60183: "Insertar"
   relations_works:
-    P60250: "Has derivative"
-    P60305: "Has source"
-    P60216: "Is expanded as"
-    P60294: "Is expanded version of"
-    P60274: "Is arranged as"
-    P60242: "Is arragement of"
-    P60198: "Is complemented by"
-    P60313: "Undefined"
+    P60250: "Tiene derivado"
+    P60305: "Tiene fuente"
+    P60216: "Se expande como"
+    P60294: "Versión expandida de"
+    P60274: "Está ordenado como"
+    P60242: "Está organizado como"
+    P60198: "Es complementado por"
+    P60313: "No identificado"
   verovio:
     position: "Posición"
     warning: "Advertencia"
@@ -1005,7 +1009,7 @@ es:
     ERR_063_LIGATURE_PITCH: Una ligadura no puede tener dos notas consecutivas en el mismo tono.
     ERR_064_LIGATURE_DURATION: La duración de una ligadura no puede ser mas corta que una semibreve.
     ERR_065_MREST_INVALID_MEASURE: Un compás con un compás de silencio no puede incluir algo más.
-    ERR_066_EMPTY_CONTAINER: A grace group or a beam cannot be empty.
+    ERR_066_EMPTY_CONTAINER: Un grupo de gracia o un haz no pueden estar vacíos.
   rism_online:
     manuscript: "Manuscrito"
     printed: "Impreso"

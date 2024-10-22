@@ -146,12 +146,13 @@ it:
     austria_tyrol: 'Austria: Tirolo'
     austria_upper_austria: 'Austria: Austria Superiore'
     austria_vienna: 'Austria: Vienna'
-    azerbiajan: Azerbaigian
+    azerbaijan: Azerbaigian
     bangladesh: Bangladesh
     belarus: Bielorussia
     belgium: Belgio
     benin: Benin
     bolivia: Bolivia
+    bosnia_and_herzegovina: Bosnia ed Herzegovina
     bosnia_herzegovina: Bosnia ed Herzegovina
     brazil: Brasile
     bulgaria: Bulgaria
@@ -194,9 +195,9 @@ it:
     japan: Giappone
     korea: Corea, Repubblica di
     latvia: Lettonia
+    lebanon: Lebano
     liechtenstein: Principato del Liechtenstein
     lithuania: Lituania
-    lebanon: Lebano
     luxembourg: Lussemburgo
     malta: Malta
     mexico: Messico
@@ -219,6 +220,7 @@ it:
     puerto_rico: Portorico
     romania: Romania
     russian_federation: Federazione Russa
+    san_marino: San Marino
     saudi_arabia: Arabia Saudita
     serbia: Serbia
     slovakia: Slovacchia
@@ -429,7 +431,6 @@ it:
     distributor: Distributore
     documentation_center: Centro di documentazione
     donor: Donatore
-    doubtful: Dubbia
     dramatic_roles_original: Nomi originali dei personaggi
     dramatic_roles_standardized: Nomi standardizzati dei personaggi
     ds_major: Re♯ maggiore
@@ -485,7 +486,7 @@ it:
     first_second_group: Primo/Secondo gruppo
     form_subdivision: Suddivisione formale
     format_extent: Categoria di fonte, estensione
-    former_sigla: Former sigla
+    former_sigla: Sigle obsolete
     former_owner: Proprietario precedente
     fragments: Frammenti
     fs_major: Fa♯ maggiore
@@ -525,10 +526,12 @@ it:
     heading_personal_name1: Nome di persona
     help_transposing_instruments: Tabella degli strumenti traspositori
     history_institution: Storia dell'ente
+    holding: Copia posseduta
     holdings_location: Informazioni sul fondo
     identification_status: Identification status
-    identified_manuscript: Identified manuscript
+    identified: Fonte identificata
     identified_holding: Esemplare identificato
+    identified_source: Fonte identificata
     identified_work: Composizione identificata
     identity: Identità
     identity_area: Identità
@@ -752,6 +755,7 @@ it:
     plate_number: Numero della lastra
     plucked_instruments: Strumenti a pizzico
     possible_autograph_manuscript: Possibile manoscritto autografo
+    possibly_identified: Identificazione ipotetica
     postal_code: Codice postale
     postal_place: Luogo postale
     preceding_entry: Notizia precedente

@@ -146,12 +146,13 @@ ca:
     austria_tyrol: 'Àustria: Tirol'
     austria_upper_austria: 'Àustria: Alta Àustria'
     austria_vienna: 'Àustria: Viena'
-    azerbiajan: Azerbaidjan
+    azerbaijan: Azerbaidjan
     bangladesh: Bangladesh
     belarus: Bielorússia
     belgium: Bèlgica
     benin: Benín
     bolivia: Bolívia
+    bosnia_and_herzegovina: Bòsnia i Hercegovina
     bosnia_herzegovina: Bòsnia i Hercegovina
     brazil: Brasil
     bulgaria: Bulgària
@@ -194,9 +195,9 @@ ca:
     japan: Japó
     korea: Corea del Sud
     latvia: Letònia
+    lebanon: Líban
     liechtenstein: Liechtenstein
     lithuania: Lituània
-    lebanon: Líban
     luxembourg: Luxemburg
     malta: Malta
     mexico: Mèxic
@@ -219,6 +220,7 @@ ca:
     puerto_rico: Puerto Rico
     romania: Romania
     russian_federation: Federació Russa
+    san_marino: San Marino
     saudi_arabia: Aràbia Saudita
     serbia: Sèrbia
     slovakia: Eslovàquia
@@ -429,7 +431,6 @@ ca:
     distributor: Distribuïdor
     documentation_center: Centre de documentació
     donor: Donant
-    doubtful: Dubtós
     dramatic_roles_original: Noms originals dels personatges
     dramatic_roles_standardized: Noms normalitzats dels personatges
     ds_major: Re♯ major
@@ -525,10 +526,12 @@ ca:
     heading_personal_name1: Nom personal
     help_transposing_instruments: Ajuda pels instruments transpositors
     history_institution: Història de la institució
+    holding: Holding
     holdings_location: Camps d'exemplars i fons
     identification_status: Estat de la identificació
-    identified_manuscript: Manuscrit identificat
+    identified: Identified
     identified_holding: Fons identificat
+    identified_source: Identified source
     identified_work: Obra identificada
     identity: Identitat
     identity_area: Identitat
@@ -752,6 +755,7 @@ ca:
     plate_number: Número de planxa
     plucked_instruments: Instruments de corda pinçada
     possible_autograph_manuscript: Possible manuscrit autògraf
+    possibly_identified: Possibly identified
     postal_code: Codi postal
     postal_place: Adreça postal
     preceding_entry: Entrada anterior

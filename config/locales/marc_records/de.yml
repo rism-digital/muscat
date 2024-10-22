@@ -146,12 +146,13 @@ de:
     austria_tyrol: 'Österreich: Tirol'
     austria_upper_austria: 'Österreich: Oberösterreich'
     austria_vienna: 'Österreich: Wien'
-    azerbiajan: Aserbaidschan
+    azerbaijan: Aserbaidschan
     bangladesh: Bangladesch
     belarus: Weißrussland
     belgium: Belgien
     benin: Benin
     bolivia: Bolivien
+    bosnia_and_herzegovina: Bosnien und Herzegowina
     bosnia_herzegovina: Bosnien und Herzegowina
     brazil: Brasilien
     bulgaria: Bulgarien
@@ -194,9 +195,9 @@ de:
     japan: Japan
     korea: Korea, Republik
     latvia: Lettland
+    lebanon: Libanon
     liechtenstein: Liechtenstein
     lithuania: Litauen
-    lebanon: Libanon
     luxembourg: Luxemburg
     malta: Malta
     mexico: Mexiko
@@ -219,6 +220,7 @@ de:
     puerto_rico: Puerto Rico
     romania: Rumänien
     russian_federation: Russische Föderation
+    san_marino: San Marino
     saudi_arabia: Saudi-Arabien
     serbia: Serbien
     slovakia: Slowakei
@@ -429,7 +431,6 @@ de:
     distributor: Vertrieb
     documentation_center: Dokumentationszentrum
     donor: Donator
-    doubtful: Zweifelhaft
     dramatic_roles_original: Originale Schreibweise
     dramatic_roles_standardized: Rollennamen, standardisierte Schreibweise
     ds_major: Dis-Dur
@@ -525,10 +526,12 @@ de:
     heading_personal_name1: Personenname
     help_transposing_instruments: Hilfe zu transponierenden Instrumenten
     history_institution: Geschichte der Körperschaft
+    holding: Holding
     holdings_location: Bestandsdaten
     identification_status: Status der Identifikation
-    identified_manuscript: Identifiziertes Manuskript
+    identified: Identified
     identified_holding: Identifizierter Exemplareintrag
+    identified_source: Identifizierte Quelle
     identified_work: Identifiziertes Werk
     identity: Identifizierung
     identity_area: Identity area
@@ -752,6 +755,7 @@ de:
     plate_number: Plattennummer
     plucked_instruments: Zupfinstrumente
     possible_autograph_manuscript: Fragliches Autograph
+    possibly_identified: Possibly identified
     postal_code: Postleitzahl
     postal_place: postalischer Ort
     preceding_entry: Früherer Eintrag

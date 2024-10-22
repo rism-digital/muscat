@@ -146,12 +146,13 @@ pl:
     austria_tyrol: 'Austria: Tyrol'
     austria_upper_austria: 'Austria: Górna Austria'
     austria_vienna: 'Austria: Wiedeń'
-    azerbiajan: Azerbejdżan
+    azerbaijan: Azerbejdżan
     bangladesh: Bangladesz
     belarus: Białoruś
     belgium: Belgia
     benin: Benin
     bolivia: Boliwia
+    bosnia_and_herzegovina: Bośnia i Hercegowina
     bosnia_herzegovina: Bośnia i Hercegowina
     brazil: Brazylia
     bulgaria: Bułgaria
@@ -194,9 +195,9 @@ pl:
     japan: Japonia
     korea: Korea, Republika
     latvia: Łotwa
+    lebanon: Liban
     liechtenstein: Liechtenstein
     lithuania: Litwa
-    lebanon: Liban
     luxembourg: Luksemburg
     malta: Malta
     mexico: Meksyk
@@ -219,6 +220,7 @@ pl:
     puerto_rico: Portoryko
     romania: Rumunia
     russian_federation: Federacja Rosyjska
+    san_marino: San Marino
     saudi_arabia: Arabia Saudyjska
     serbia: Serbia
     slovakia: Słowacja
@@ -429,7 +431,6 @@ pl:
     distributor: Dystrybutor
     documentation_center: Centrum dokumentacji
     donor: Donator
-    doubtful: Wątpliwy
     dramatic_roles_original: Postaci w oryginalnej pisowni
     dramatic_roles_standardized: Znormalizowane nazwy postaci
     ds_major: Dis-dur
@@ -525,10 +526,12 @@ pl:
     heading_personal_name1: Nagłówek – nazwisko
     help_transposing_instruments: Pomoc przy transpozycji instrumentów
     history_institution: Historia instytucji
+    holding: Egzemplarz
     holdings_location: Pola egzemplarza, lokalizacji itp.
     identification_status: Status identyfikacji
-    identified_manuscript: Zidentyfikowany rękopis
+    identified: Zidentyfikowane
     identified_holding: Zidentyfikowany egzemplarz
+    identified_source: Zidentyfikowane źródło
     identified_work: Zidentyfikowane Dzieło
     identity: Tożsamość
     identity_area: Obszar tożsamości
@@ -556,8 +559,8 @@ pl:
     introduction: Wprowadzenie
     invalid_standard_number: Anulowany/nieważny numer standardowy lub kod
     inventory: Inwentarz
-    inventory_item: Inventory item
-    inventory_source: Inventory source
+    inventory_item: Indywidualny wpis pozycji w inwentarzu
+    inventory_source: Źródło inwentarz
     isbn: ISBN
     ismn: ISMN
     issn: ISSN
@@ -752,6 +755,7 @@ pl:
     plate_number: Numer wydawniczy
     plucked_instruments: Instrumenty szarpane
     possible_autograph_manuscript: Prawdopodobnie autograf
+    possibly_identified: Prawdopodobnie zidentyfikowane
     postal_code: Kod pocztowy
     postal_place: Rejon pocztowy
     preceding_entry: Poprzedzający wpis

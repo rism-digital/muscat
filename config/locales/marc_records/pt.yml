@@ -146,12 +146,13 @@ pt:
     austria_tyrol: 'Austria: Tyrol'
     austria_upper_austria: 'Austria: Upper Austria'
     austria_vienna: 'Austria: Vienna'
-    azerbiajan: Azerbaijão
+    azerbaijan: Azerbaijão
     bangladesh: Bangladesh
     belarus: Bielorrússia
     belgium: Bélgica
     benin: Benim
     bolivia: Bolívia
+    bosnia_and_herzegovina: Bósnia Herzegovina
     bosnia_herzegovina: Bósnia Herzegovina
     brazil: Brasil
     bulgaria: Bulgária
@@ -194,9 +195,9 @@ pt:
     japan: Japão
     korea: Coreia, República da
     latvia: Letónia
+    lebanon: Líbano
     liechtenstein: Liechtenstein
     lithuania: Lituânia
-    lebanon: Líbano
     luxembourg: Luxemburgo
     malta: Malta
     mexico: México
@@ -219,6 +220,7 @@ pt:
     puerto_rico: Porto Rico
     romania: Romênia
     russian_federation: Federação Russa
+    san_marino: San Marino
     saudi_arabia: Arábia Saudita
     serbia: Sérvia
     slovakia: Eslováquia
@@ -429,7 +431,6 @@ pt:
     distributor: Distribuidor
     documentation_center: Centro de Documentação
     donor: Doador
-    doubtful: Duvidosa
     dramatic_roles_original: Papéis dramáticos mencionado, grafia original
     dramatic_roles_standardized: Papéis dramáticos identificados, normalizados
     ds_major: Ré sustenido maior
@@ -525,10 +526,12 @@ pt:
     heading_personal_name1: Título-Nome de pessoa
     help_transposing_instruments: Ajuda para instrumentos transpositores
     history_institution: História da instituição
+    holding: Holding
     holdings_location: Informação sobre o fundo
     identification_status: Identification status
-    identified_manuscript: Identified manuscript
+    identified: Identified
     identified_holding: Identified holding
+    identified_source: Identified source
     identified_work: Identified work
     identity: Identidade
     identity_area: Identidade
@@ -752,6 +755,7 @@ pt:
     plate_number: Número de chapa
     plucked_instruments: Cordas dedilhadas
     possible_autograph_manuscript: Possível manuscrito autógrafo
+    possibly_identified: Possibly identified
     postal_code: Código postal
     postal_place: Local postal
     preceding_entry: Registro precedente

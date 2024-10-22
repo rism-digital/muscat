@@ -146,12 +146,13 @@ fr:
     austria_tyrol: 'Autriche: Tyrol'
     austria_upper_austria: 'Autriche: Haute-Autriche'
     austria_vienna: 'Autriche: Vienne'
-    azerbiajan: Azerbaïdjan
+    azerbaijan: Azerbaïdjan
     bangladesh: Bangladesh
     belarus: Bélarus
     belgium: Belgique
     benin: Benin
     bolivia: Bolivie
+    bosnia_and_herzegovina: Bosnie-Herzégovine
     bosnia_herzegovina: Bosnie-Herzégovine
     brazil: Brésil
     bulgaria: Bulgarie
@@ -194,9 +195,9 @@ fr:
     japan: Japon
     korea: Corée, République de
     latvia: Lettonie
+    lebanon: Liban
     liechtenstein: Liechtenstein
     lithuania: Lituanie
-    lebanon: Liban
     luxembourg: Luxembourg
     malta: Malte
     mexico: Mexique
@@ -219,6 +220,7 @@ fr:
     puerto_rico: Puerto Rico
     romania: Romanie
     russian_federation: Fédération russe
+    san_marino: San Marino
     saudi_arabia: Arabie Saoudite
     serbia: Serbie
     slovakia: Slovaquie
@@ -429,7 +431,6 @@ fr:
     distributor: Distributeur
     documentation_center: Centre de documentation
     donor: Donateur
-    doubtful: Douteux
     dramatic_roles_original: Noms originaux des personnages
     dramatic_roles_standardized: Noms standardisés des personnages
     ds_major: Ré♯ majeur
@@ -525,10 +526,12 @@ fr:
     heading_personal_name1: Compositeur/Auteur
     help_transposing_instruments: Aide pour les instruments transpositeurs
     history_institution: Historique de l'institution
+    holding: Holding
     holdings_location: Données sur la collection, le fonds, etc.
     identification_status: Identification status
-    identified_manuscript: Identified manuscript
+    identified: Identified
     identified_holding: Identified holding
+    identified_source: Identified source
     identified_work: Identified work
     identity: Identité
     identity_area: Identité
@@ -752,6 +755,7 @@ fr:
     plate_number: Numéro de plaque
     plucked_instruments: Instruments à cordes pincées
     possible_autograph_manuscript: Possible manuscrit autographe
+    possibly_identified: Possibly identified
     postal_code: Code postal
     postal_place: Endroit postal
     preceding_entry: Notice précédente
