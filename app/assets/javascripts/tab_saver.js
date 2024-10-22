@@ -66,14 +66,18 @@ function get_or_create_tab_id() {
 function tab_saver_select() {
     let tab_id = get_or_create_tab_id()
 
-    Cookies.set("tab-id", tab_id);
+    Cookies.set("tab-id", tab_id, { sameSite: 'Lax' });
     // Get the search data back from our storage
-    Cookies.set("tab-store", sessionStorage.getItem("tab-store"))
+    Cookies.set("tab-store", sessionStorage.getItem("tab-store"), { sameSite: 'Lax' })
     console.log("Set tab to " + tab_id)
 }
 
 
 $(document).on('visibilitychange', function() {
+    // The window is shown again
+    // CAVEAT! When a window select is open,
+    // this event is not fired (!), so tab_saver_select
+    // is called by hand in new_window_select deselect()
     if (!document.hidden) {
         tab_saver_select();
     } else {
@@ -87,17 +91,7 @@ $(document).on('visibilitychange', function() {
     }
 });
 
-// Make sure we switch to the proper tab when a NEW
-// window is open over, and not just a tab switch
-window.addEventListener('focus', function() {
-    tab_saver_select();
-});
-
 $(window).on('load', function() {
-    if (window.opener) {
-        //sessionStorage.removeItem("tab-id")
-        //sessionStorage.removeItem("tab-store")
-    }
     let new_tab = sessionStorage.getItem("tab-id") === null ? true : false
     let tab_id = get_or_create_tab_id();
 
