@@ -64,7 +64,7 @@ ActiveAdmin.register Person do
       @show_history = true if params[:show_history]
       @editor_profile = EditorConfiguration.get_default_layout @item
       @editor_validation = EditorValidation.get_default_validation(@item)
-      @page_title = "#{I18n.t(:edit)} #{@editor_profile.name} [#{@item.id}]"
+      @page_title = "#{I18n.t(:edit)} #{@editor_profile.name} [#{@item.id}] #{get_wf_stage_tag(@item.wf_stage)}".html_safe
 
       if cannot?(:edit, @item)
         redirect_to admin_person_path(@item), :flash => { :error => I18n.t(:"active_admin.access_denied.message") }
@@ -227,7 +227,7 @@ ActiveAdmin.register Person do
   ## Show ##
   ##########
 
-  show :title => proc{ active_admin_auth_show_title( @item.full_name, @item.life_dates, @item.id) } do
+  show :title => proc{ active_admin_auth_show_title( @item.full_name, @item.life_dates, @item.id, @item.wf_stage).html_safe } do
     # @item retrived by from the controller is not available there. We need to get it from the @arbre_context
     active_admin_navigation_bar( self )
 

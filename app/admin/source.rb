@@ -94,7 +94,7 @@ ActiveAdmin.register Source do
       @editor_validation = EditorValidation.get_default_validation(@item)
       record_type = @item.get_record_type
       record_type = record_type ? " - #{I18n.t('record_types.' + record_type.to_s)}" : ""
-      @page_title = "#{I18n.t(:edit)}#{record_type} [#{@item.id}]"
+      @page_title = "#{I18n.t(:edit)}#{record_type} [#{@item.id}] #{get_wf_stage_tag(@item.wf_stage)}".html_safe
       
       template = EditorConfiguration.get_source_default_file(@item.get_record_type) + ".marc"
 
@@ -371,7 +371,7 @@ ActiveAdmin.register Source do
   ## Show ##
   ##########
   
-  show :title => proc{ active_admin_source_show_title( @item.composer, @item.std_title, @item.id, @item.get_record_type) } do
+  show :title => proc{ active_admin_source_show_title( @item.composer, @item.std_title, @item.id, @item.get_record_type, @item.wf_stage).html_safe } do
     # @item retrived by from the controller is not available there. We need to get it from the @arbre_context
     active_admin_navigation_bar( self )
     @item = @arbre_context.assigns[:item]
