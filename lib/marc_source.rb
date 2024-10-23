@@ -623,8 +623,10 @@ class MarcSource < Marc
   
       next unless source
   
-      source_title = t4&.content == "holding" ? "#{source.id}: #{source.name}" : source.name
-      t.add_at(MarcNode.new(@model, "a", source_title, nil), 0)
+      source_title = t4&.content == "holding" ? "#{source.id}: #{source.std_title}" : source.std_title
+      t.add_at(MarcNode.new(@model, "t", source_title, nil), 0)
+      t.add_at(MarcNode.new(@model, "a", source.composer, nil), 0) if source.composer && !source.composer.empty?
+      t.sort_alphabetically
     end
   end
   
