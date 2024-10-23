@@ -250,7 +250,7 @@ ActiveAdmin.register Work do
   ## Show ##
   ##########
   
-  show :title => proc{ active_admin_auth_show_title( @item.title, nil, @item.id) } do
+  show :title => proc{ active_admin_auth_show_title( @item.title, nil, @item.id, @item.wf_stage).html_safe } do
     # @item retrived by from the controller is not available there. We need to get it from the @arbre_context
     active_admin_navigation_bar( self )
     

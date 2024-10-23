@@ -165,7 +165,7 @@ ActiveAdmin.register StandardTitle do
   ## Show ##
   ##########
   
-  show do
+  show :title => proc{ active_admin_auth_show_title(@standard_title.name, nil, @standard_title.id, @standard_title.wf_stage).html_safe } do
     active_admin_navigation_bar( self )
     render('jobs/jobs_monitor')
     attributes_table do
@@ -208,7 +208,7 @@ ActiveAdmin.register StandardTitle do
   ## Edit ##
   ##########
   
-  form do |f|
+  form :title => proc{ active_admin_auth_show_title(I18n.t(:edit), @standard_title.name, @standard_title.id, @standard_title.wf_stage).html_safe } do |f|
     f.inputs do
       ## Enable the trigger, only for editors
       if current_user.has_any_role?(:editor, :admin)

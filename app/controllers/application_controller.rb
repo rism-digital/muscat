@@ -7,6 +7,8 @@ class ApplicationController < ActionController::Base
   before_action :store_user_location!, if: :storable_location?
   before_action :set_locale, :set_paper_trail_whodunnit, :auth_user, :prepare_exception_notifier, :test_version_warning, :test_muscat_reindexing
 
+  helper_method :get_wf_stage_tag # so it is also accessible from views
+
   # see https://github.com/heartcombo/devise/wiki/How-To:-Redirect-back-to-current-page-after-sign-in,-sign-out,-sign-up,-update
   def storable_location?
     request.get? && is_navigational_format? && !devise_controller? && !request.xhr? 
@@ -131,6 +133,11 @@ class ApplicationController < ActionController::Base
   def save_search_filters  
   end
   
+  def get_wf_stage_tag(wf_stage)
+    stage_label = I18n.t("status_codes.#{wf_stage}", locale: :en)
+    Arbre::Context.new{ status_tag(wf_stage, label: stage_label) }
+  end
+
   private
   
   # Parse the http header to get a locale
