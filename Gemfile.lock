@@ -416,8 +416,7 @@ GEM
     retriable (3.1.2)
     reverse_markdown (2.1.1)
       nokogiri
-    rexml (3.3.6)
-      strscan
+    rexml (3.3.9)
     rmagick (6.0.1)
       observer (~> 0.1)
       pkg-config (~> 1.4)
@@ -488,7 +487,6 @@ GEM
     sqlite3 (2.0.2-arm64-darwin)
     sqlite3 (2.0.2-x86_64-linux-gnu)
     stringio (3.1.1)
-    strscan (3.1.0)
     sunspot (2.7.0)
       bigdecimal
       pr_geohash (~> 1.0)
