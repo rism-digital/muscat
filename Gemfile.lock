@@ -416,7 +416,7 @@ GEM
     retriable (3.1.2)
     reverse_markdown (2.1.1)
       nokogiri
-    rexml (3.3.0)
+    rexml (3.3.6)
       strscan
     rmagick (6.0.1)
       observer (~> 0.1)
