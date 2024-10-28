@@ -5,6 +5,7 @@
   <div class="panel_contents">
     <div class="attributes_table">
       <% templates.each do |toplevel, template_list| %>
+      <% next if toplevel == "inventories" && !current_user.has_role?(:admin) %>
       <p><h5 style="margin-bottom: 0;"><%= I18n.t('record_types.' + toplevel) %></h5>
         <ul class="template_ul">
           <% template_list.each do |label, properties| %>
