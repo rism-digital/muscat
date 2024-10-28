@@ -532,15 +532,18 @@ class MarcSource < Marc
     # Add a 930 $0 referering to the work node 024
     each_by_tag("930") do |t|
       if t.foreign_object and t.foreign_object.marc
-        # Look for each 024 in the work node
+        d0 = t.fetch_first_by_tag("0")
+        d0.destroy_yourself if d0
+        # Look for each 024 in the work node that we can resolve
         t.foreign_object.marc.each_by_tag("024") do |ft|
           s2 = ft.fetch_first_by_tag("2")
           a = ft.fetch_first_by_tag("a")
           next if (!s2 || !a || !s2.content || !a.content)
           t.add_at(MarcNode.new(@model, "0", "(#{s2.content})#{a.content}", nil), 0) rescue nil
+          # Only add one since 024 should actually be not repeatable
+          break
         end
       end
-      # Eventually we want to remove the $0 pointing to the work_node ID but left for 9.0
     end
 
     # Adding digital object links to 500 with new records
