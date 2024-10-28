@@ -175,11 +175,7 @@ GEM
     differ (0.1.2)
     domain_name (0.6.20240107)
     drb (2.2.1)
-    easy_translate (0.5.1)
-      thread
-      thread_safe
     erubi (1.13.0)
-    event_stream_parser (1.0.0)
     exception_notification (4.5.0)
       actionmailer (>= 5.2, < 8)
       activesupport (>= 5.2, < 8)
@@ -191,11 +187,10 @@ GEM
       railties (>= 5.0.0)
     faraday (2.9.2)
       faraday-net_http (>= 2.0, < 3.2)
-    faraday-multipart (1.0.4)
-      multipart-post (~> 2)
     faraday-net_http (3.1.0)
       net-http
     ffi (1.17.0-arm64-darwin)
+    ffi (1.17.0-x86_64-linux-gnu)
     ffi-compiler (1.3.2)
       ffi (>= 1.15.5)
       rake
@@ -312,7 +307,6 @@ GEM
     mini_mime (1.1.5)
     minitar (0.9)
     minitest (5.24.0)
-    multipart-post (2.4.1)
     mutex_m (0.2.0)
     mysql2 (0.5.6)
     needleman_wunsch_aligner (1.0.4)
@@ -329,6 +323,8 @@ GEM
       net-protocol
     nio4r (2.7.3)
     nokogiri (1.16.6-arm64-darwin)
+      racc (~> 1.4)
+    nokogiri (1.16.6-x86_64-linux)
       racc (~> 1.4)
     observer (0.1.2)
     options (2.3.2)
@@ -456,10 +452,6 @@ GEM
       rspec-mocks (~> 3.9.0)
       rspec-support (~> 3.9.0)
     rspec-support (3.9.4)
-    ruby-openai (7.1.0)
-      event_stream_parser (>= 0.3.0, < 2.0.0)
-      faraday (>= 1)
-      faraday-multipart (>= 1)
     ruby-prof (1.7.0)
     ruby-progressbar (1.13.0)
     ruby2_keywords (0.0.5)
@@ -494,6 +486,7 @@ GEM
       activesupport (>= 6.1)
       sprockets (>= 3.0.0)
     sqlite3 (2.0.2-arm64-darwin)
+    sqlite3 (2.0.2-x86_64-linux-gnu)
     stringio (3.1.1)
     strscan (3.1.0)
     sunspot (2.7.0)
@@ -510,8 +503,6 @@ GEM
     terser (1.2.3)
       execjs (>= 0.3.0, < 3)
     thor (1.3.1)
-    thread (0.2.2)
-    thread_safe (0.3.6)
     tilt (2.3.0)
     timeout (0.4.1)
     tty-cursor (0.7.1)
@@ -524,7 +515,7 @@ GEM
     uri (0.13.0)
     warden (1.2.9)
       rack (>= 2.0.9)
-    webrick (1.8.1)
+    webrick (1.8.2)
     websocket (1.2.10)
     websocket-driver (0.7.6)
       websocket-extensions (>= 0.1.0)
@@ -536,6 +527,7 @@ GEM
 
 PLATFORMS
   arm64-darwin-23
+  x86_64-linux
 
 DEPENDENCIES
   activeadmin
@@ -555,7 +547,6 @@ DEPENDENCIES
   devise
   devise-i18n
   differ
-  easy_translate
   exception_notification
   factory_bot_rails
   generator_spec
@@ -592,7 +583,6 @@ DEPENDENCIES
   rsolr
   rspec
   rspec-rails (~> 3.5)
-  ruby-openai
   ruby-prof
   rubyzip
   sassc-rails
