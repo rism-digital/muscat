@@ -340,7 +340,7 @@ en:
   filter_author_or_editor: Author/Editor
   filter_autograph_of: Autograph of
   filter_birth_place: Birth place
-  filter_book_id: Book id
+  filter_book_id: RISM series ID
   filter_catalog: Catalogue
   filter_category_type: Category
   filter_collection: Collection
@@ -379,7 +379,7 @@ en:
   filter_folder_type: Folder Type
   filter_full_name: Name
   filter_gender: Gender
-  filter_has_incipits: Has incipits
+  filter_has_incipits: Has music incipits
   filter_has_internal_notes: Has internal notes
   filter_has_siglum: Has siglum
   filter_id: RISM ID
