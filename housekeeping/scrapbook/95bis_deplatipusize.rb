@@ -7,7 +7,9 @@ File.open("housekeeping/scrapbook/protypen_fix.txt") do |f|
             next
         end
 
-        correction = more_correction if more_correction != "\n"
+        next if more_correction == "skip"
+
+        #correction = more_correction if more_correction != "\n"
 
         s = Source.find(id)
         s.marc_source.gsub!(word, correction)
