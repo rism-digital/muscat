@@ -174,6 +174,21 @@ SHELFMARK_MAP = {
   "Parstorffer_description.xml": ["Parstorffer.json"]
 }
 
+@author_map = {
+	"Luigi Collarile": "Collarile, Luigi",
+	"Henri Vanhulst": "Vanhulst, Henri",
+	"Cavalli, Pier Francesco": "Cavalli, Francesco",
+	#"Drennan, Jonathan R.J." create
+	#"Koldau, Linda Maria" create
+	"Kurtzman, Jeffrey": "Kurtzman, Jeffrey G.",
+	#"Passadore, Francesco – Rossi, Franco"	
+	#"Collarile, Luigi – Bryant, David Douglas"	
+	"Cherbuliez, Antoine-Elisée": "Cherbuliez, Antoine-Elisée",
+	#"Del Medico, Claudio Ermogene" create
+	#"Christian Gottlieb Jöcher, Johann Christoph Adelung, Heinrich Wilhelm Rotermund, Otto Gunther"
+	#"Bacciagaluppi, Claudio - Collarile, Luigi"	
+}
+
 @user_map = {
   "2": 49,
   "6": 17,
@@ -398,7 +413,9 @@ end
   new_marc.root.add_at(id, new_marc.get_insert_position("001") )
 
   x100 = MarcNode.new("publication", "100", "", mc.get_default_indicator("100"))
-  x100.add_at(MarcNode.new("publication", "a", catalogue["author"], nil), 0 )
+  author = catalogue["author"]
+  author = @author_map[author.strip.to_sym] if @author_map[author.strip.to_sym]
+  x100.add_at(MarcNode.new("publication", "a", author, nil), 0 )
   x100.sort_alphabetically
   new_marc.root.add_at(x100, new_marc.get_insert_position("100") )
 
