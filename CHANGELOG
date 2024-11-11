@@ -1,8 +1,18 @@
 Muscat Changelog
 ================
 
-v 11.2
+v 11.2.1
+* Bump rexml from 3.3.6 to 3.3.9
+* Merge pull request #1659 from rism-digital/dependabot/bundler/rexml-3.3.9
+* Fix book_id and has_incipits (insert angel emoji here)
+* Fix #1217 remove {{brk}} from 031 anf 563
+* Fix #1665, arriving this week with 11.3!
+* Fix latest names
+* Make folder filtering actually work
+* Add some missing names coming from sec lit
+* Fix the last elusive names in inventory import
 
+v 11.2
 * Update Gemfile
 * Fix #1463 - > initial removal of composed_of
 * Updates for 7.1
