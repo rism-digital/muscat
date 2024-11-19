@@ -207,37 +207,6 @@
       - :occurrences: "?"
     - - c
       - :occurrences: "?"
-  "598":
-    :master: ""
-    :indicator: "##"
-    :occurrences: "*"
-    :fields:
-    - - a
-      - :occurrences: "?"
-    - - b
-      - :occurrences: "*"
-    - - c
-      - :occurrences: "*"
-    - - d
-      - :occurrences: "*"
-    - - e
-      - :occurrences: "*"
-    - - f
-      - :occurrences: "?"
-    - - g
-      - :occurrences: "?"
-    - - h
-      - :occurrences: "?"
-    - - i
-      - :occurrences: "*"
-    - - k
-      - :occurrences: "*"
-    - - l
-      - :occurrences: "*"
-    - - m
-      - :occurrences: "*"
-    - - n
-      - :occurrences: "?"
   "599":
     :master: a
     :indicator: "##"

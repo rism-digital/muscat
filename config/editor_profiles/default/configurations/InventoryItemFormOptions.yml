@@ -453,22 +453,6 @@
         editor_partial: subfield_secondary
         allow_new: true
     - - c
-"598":
-  layout:
-    fields:
-    - - a
-    - - b
-    - - c
-    - - d
-    - - e
-    - - f
-    - - g
-    - - h
-    - - i
-    - - k
-    - - l
-    - - m
-    - - n
 "599": 
   layout: 
     fields: 
