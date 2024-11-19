@@ -236,7 +236,7 @@ fr:
     tajikistan: Tadjikistan
     trinidad_tobego: Trinité-et-Tobago
     turkey: Turquie
-    turkmenistan: Turkmenistan
+    turkmenistan: Turkménistan
     uganda: Ouganda
     uk: Royaume-Uni
     ukraine: Ukraine
@@ -482,11 +482,11 @@ fr:
     figured_bass_scores: Basse chiffrée
     fijian: Fidjien
     fingerprint_identifier: Indentificateur d'empreintes
-    first_entry: First entry
+    first_entry: Première entrée
     first_second_group: Premier/deuxième groupe de caractères
     form_subdivision: Subdivision de forme
     format_extent: Type de source, extension
-    former_sigla: Former sigla
+    former_sigla: Ancien sigle
     former_owner: Propriétaire précédent
     fragments: Fragments
     fs_major: Fa♯ majeur
@@ -526,13 +526,13 @@ fr:
     heading_personal_name1: Compositeur/Auteur
     help_transposing_instruments: Aide pour les instruments transpositeurs
     history_institution: Historique de l'institution
-    holding: Holding
+    holding: Copie possédée
     holdings_location: Données sur la collection, le fonds, etc.
-    identification_status: Identification status
-    identified: Identified
-    identified_holding: Identified holding
-    identified_source: Identified source
-    identified_work: Identified work
+    identification_status: Statut de l'identification
+    identified: Identifié
+    identified_holding: Copie possédée identifié
+    identified_source: Source identifiée
+    identified_work: Opus identifié
     identity: Identité
     identity_area: Identité
     iiif_manifest: "IIIF manifest (source numérisée)"
@@ -558,9 +558,9 @@ fr:
     internal_note: Note non publique
     introduction: Introduction
     invalid_standard_number: Numéro ou code standard annulé/invalide
-    inventory: Inventory
-    inventory_item: Inventory item
-    inventory_source: Inventory source
+    inventory: Inventaire
+    inventory_item: Item d'inventaire
+    inventory_source: Source de l'inventaire
     isbn: ISBN
     ismn: ISMN
     issn: ISSN
@@ -580,7 +580,7 @@ fr:
     language_of_cataloging: Langue de catalogage
     language_original_text: Langue du texte original
     language_text: Langue du texte chanté
-    later_entry: Later entry
+    later_entry: Entrée ultérieure
     later_heading: Rubrique ultérieure
     latitude: Latitude
     leader: Guide
@@ -755,7 +755,7 @@ fr:
     plate_number: Numéro de plaque
     plucked_instruments: Instruments à cordes pincées
     possible_autograph_manuscript: Possible manuscrit autographe
-    possibly_identified: Possibly identified
+    possibly_identified: Possiblement identifié
     postal_code: Code postal
     postal_place: Endroit postal
     preceding_entry: Notice précédente

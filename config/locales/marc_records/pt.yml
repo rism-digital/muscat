@@ -236,7 +236,7 @@ pt:
     tajikistan: Tajiquistão
     trinidad_tobego: Trinidad e Tobago
     turkey: Turquia
-    turkmenistan: Turkmenistan
+    turkmenistan: Turquemenistão
     uganda: Uganda
     uk: Reino Unido
     ukraine: Ucrânia
@@ -482,11 +482,11 @@ pt:
     figured_bass_scores: Baixo cifrado
     fijian: Fijianas
     fingerprint_identifier: Identificador de impressão
-    first_entry: First entry
+    first_entry: Primeira entrada
     first_second_group: Primeiro/Segundo grupo
     form_subdivision: Divisão da forma
     format_extent: Formato, extensão
-    former_sigla: Former sigla
+    former_sigla: Antiga sigla
     former_owner: Proprietário anterior
     fragments: Fragmentos
     fs_major: Fá sustenido maior
@@ -526,13 +526,13 @@ pt:
     heading_personal_name1: Título-Nome de pessoa
     help_transposing_instruments: Ajuda para instrumentos transpositores
     history_institution: História da instituição
-    holding: Holding
+    holding: Cópia possuída
     holdings_location: Informação sobre o fundo
-    identification_status: Identification status
-    identified: Identified
-    identified_holding: Identified holding
-    identified_source: Identified source
-    identified_work: Identified work
+    identification_status: Estado da identificação
+    identified: Identificado
+    identified_holding: Cópia possuída identificada
+    identified_source: Fonte identificada
+    identified_work: Trabalho identificado
     identity: Identidade
     identity_area: Identidade
     iiif_manifest: "Manifesto IIIF (fonte digitalizada)"
@@ -544,7 +544,7 @@ pt:
     incipit: Incipit
     incipit_number: Número de incipit
     incipits: Incipit
-    includes_holdings_from: Includes holdings from
+    includes_holdings_from: Inclui holdings de
     index_terms: Indexadores
     information_found: Informação encontrada
     initial: Inicial
@@ -558,9 +558,9 @@ pt:
     internal_note: Nota interna
     introduction: Introdução
     invalid_standard_number: Número ou código padrão cancelado/invalido
-    inventory: Inventory
-    inventory_item: Inventory item
-    inventory_source: Inventory source
+    inventory: Inventário
+    inventory_item: Item de inventário
+    inventory_source: Fonte do inventário
     isbn: ISBN
     ismn: ISMN
     issn: ISSN
@@ -755,7 +755,7 @@ pt:
     plate_number: Número de chapa
     plucked_instruments: Cordas dedilhadas
     possible_autograph_manuscript: Possível manuscrito autógrafo
-    possibly_identified: Possibly identified
+    possibly_identified: Possivelmente identificado
     postal_code: Código postal
     postal_place: Local postal
     preceding_entry: Registro precedente
@@ -768,7 +768,7 @@ pt:
     production_personnel: Pessoal da produção
     profession_or_function: Profissão ou função
     provenance: Proveniência
-    provenance_notes: Provenance note
+    provenance_notes: Nota de proveniência
     pseudonym: Pseudónimo
     public_note: Nota pública
     publisher: Casa editora
@@ -899,7 +899,7 @@ pt:
     typography: Tipografia
     uncategorized: Sem categoria
     unknown: Desconhecido
-    unparsed_fingerprint: Fingerprint
+    unparsed_fingerprint: Assinatura Digital
     variant_ms_title: Título variante na fonte
     variant_source_title: Título variante na fonte
     variations: Variações
@@ -932,14 +932,14 @@ pt:
     P60194: "Inserir em"
     P60183: "Inserir"
   relations_works:
-    P60250: "Has derivative"
-    P60305: "Has source"
-    P60216: "Is expanded as"
-    P60294: "Is expanded version of"
-    P60274: "Is arranged as"
-    P60242: "Is arragement of"
-    P60198: "Is complemented by"
-    P60313: "Undefined"
+    P60250: "Tem derivada"
+    P60305: "Tem origem"
+    P60216: "É expandido como"
+    P60294: "É a versão expandida de"
+    P60274: "Arranjado como"
+    P60242: "É arrependimento de"
+    P60198: "É complementado por"
+    P60313: "Indefinido"
   verovio:
     position: "Posição"
     warning: "Aviso"

@@ -486,7 +486,7 @@ ca:
     first_second_group: Primer/segon grup
     form_subdivision: Subdivisió de forma
     format_extent: Format, extensió
-    former_sigla: Former sigla
+    former_sigla: Sigla anterior
     former_owner: Propietari anterior
     fragments: Fragments
     fs_major: Fa♯ major
@@ -526,12 +526,12 @@ ca:
     heading_personal_name1: Nom personal
     help_transposing_instruments: Ajuda pels instruments transpositors
     history_institution: Història de la institució
-    holding: Holding
+    holding: Còpia posseïda
     holdings_location: Camps d'exemplars i fons
     identification_status: Estat de la identificació
-    identified: Identified
+    identified: Identificat
     identified_holding: Fons identificat
-    identified_source: Identified source
+    identified_source: Obra identificada
     identified_work: Obra identificada
     identity: Identitat
     identity_area: Identitat
@@ -755,7 +755,7 @@ ca:
     plate_number: Número de planxa
     plucked_instruments: Instruments de corda pinçada
     possible_autograph_manuscript: Possible manuscrit autògraf
-    possibly_identified: Possibly identified
+    possibly_identified: Possiblement identificat
     postal_code: Codi postal
     postal_place: Adreça postal
     preceding_entry: Entrada anterior
