@@ -148,35 +148,6 @@
     c:
       label: records.number
   label: records.total_scoring
-'598':
-  fields:
-    a:
-      label: records.solo_voice
-    b:
-      label: records.additional_solo_voice
-    c:
-      label: records.choir_voice
-    d:
-      label: records.additional_choir_voice
-    e:
-      label: records.soloist_instrument
-    f:
-      label: records.strings
-    g:
-      label: records.woodwinds
-    h:
-      label: records.brass_instruments
-    i:
-      label: records.plucked_instruments
-    k:
-      label: records.percussion
-    l:
-      label: records.keyboards
-    m:
-      label: records.other_instruments
-    n:
-      label: records.basso_continuo
-  label: records.coded_instrumentation
 '599':
   fields:
     a:
@@ -280,6 +251,27 @@
     w:
       label: records.rism_id_number
   label: records.related_source
+'852':
+  fields:
+    a:
+      label: records.library_siglum
+    b:
+      label: records.department
+    c:
+      label: records.shelfmark
+    d:
+      label: records.shelfmark_olim
+    e:
+      label: records.library
+    p:
+      label: records.number_page
+    q:
+      label: records.material_held
+    u:
+      label: general.uri
+    z:
+      label: records.provenance
+  label: records.library_siglum
 '856':
   fields:
     u:
