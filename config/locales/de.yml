@@ -176,8 +176,8 @@ de:
         one: Körperschaft
         other: Körperschaften
       inventory_item:
-        one: Inventarartikel
-        other: Inventarartikel
+        one: Inventareintrag
+        other: Inventareinträge
       liturgical_feast:
         one: Liturgisches Fest
         other: Liturgische Feste
@@ -603,7 +603,7 @@ de:
   menu_home: Home
   menu_indexes: Normdaten
   menu_institutions: Körperschaften
-  menu_inventory_items: Inventarartikel
+  menu_inventory_items: Inventareintrag
   menu_jobs: Jobs
   menu_languages: Sprache
   menu_latin: Latein
@@ -629,8 +629,8 @@ de:
   new_digital_object_incipit: Neues MEI-Incipit hinzufügen
   new_holding: Neuer Examplareintrag
   new_holding_page: Neuer Exemplareintrag
-  new_inventory_item: Neuen Inventarartikel erstellen
-  new_inventory_item_page: Neuer Inventarartikel
+  new_inventory_item: Neuen Inventareintrag erstellen
+  new_inventory_item_page: Neuer Inventareintrag
   no_action: Keine Aktion verfügbar
   not_set: "[nicht fest]"
   notifications:
