@@ -59,6 +59,9 @@ class Person < ApplicationRecord
   has_many :work_person_relations, class_name: "WorkPersonRelation"
   has_many :referring_works, through: :work_person_relations, source: :work
 
+  has_many :inventory_item_person_relations, class_name: "InventoryItemPersonRelation"
+  has_many :referring_inventory_items, through: :inventory_item_person_relations, source: :inventory_item
+
   #has_and_belongs_to_many :institutions, join_table: "people_to_institutions"
   has_many :person_institution_relations
   has_many :institutions, through: :person_institution_relations

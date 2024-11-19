@@ -31,6 +31,9 @@ class Holding < ApplicationRecord
   has_many :holding_place_relations
   has_many :places, through: :holding_place_relations
 
+  has_many :inventory_item_holding_relations, class_name: "InventoryItemHoldingRelation"
+  has_many :referring_inventory_items, through: :inventory_item_holding_relations, source: :inventory_item
+
   belongs_to :source
 	belongs_to :collection, class_name: "Source", foreign_key: "collection_id"
   has_many :folder_items, as: :item, dependent: :destroy
@@ -157,6 +160,7 @@ class Holding < ApplicationRecord
 
     # "Tell fields"
     self.lib_siglum = marc.get_lib_siglum
+    self.shelf_mark = marc.get_shelf_mark
     
     self.marc_source = self.marc.to_marc
   end

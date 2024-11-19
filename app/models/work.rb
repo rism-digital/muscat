@@ -23,6 +23,9 @@ class Work < ApplicationRecord
   has_many :source_work_relations, class_name: "SourceWorkRelation"
   has_many :referring_sources, through: :source_work_relations, source: :source
   
+  has_many :inventory_item_work_relations, class_name: "InventoryItemWorkRelation"
+  has_many :referring_inventory_items, through: :inventory_item_work_relations, source: :inventory_item
+
   #has_and_belongs_to_many :publications, join_table: "works_to_publications"
   has_many :work_publication_relations
   has_many :publications, through: :work_publication_relations

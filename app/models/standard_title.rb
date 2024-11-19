@@ -22,6 +22,9 @@ class StandardTitle < ApplicationRecord
   has_many :work_standard_title_relations, class_name: "WorkStandardTitleRelation"
   has_many :referring_works, through: :work_standard_title_relations, source: :work
 
+  has_many :inventory_item_standard_title_relations, class_name: "InventoryItemStandardTitleRelation"
+  has_many :referring_inventory_items, through: :inventory_item_standard_title_relations, source: :inventory_item
+
   has_and_belongs_to_many(:referring_work_nodes, class_name: "WorkNode", join_table: "work_nodes_to_standard_titles")
 
   has_many :folder_items, as: :item, dependent: :destroy

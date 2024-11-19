@@ -53,6 +53,10 @@ class Publication < ApplicationRecord
   has_many :work_publication_relations, class_name: "WorkPublicationRelation"
   has_many :referring_works, through: :work_publication_relations, source: :work
   
+  #has_and_belongs_to_many(:referring_inventory_items, class_name: "InventoryItem", join_table: "inentory_items_to_publications")
+  has_many :inventory_item_publication_relations, class_name: "InventoryItemPublicationRelation"
+  has_many :referring_inventory_items, through: :inventory_item_publication_relations, source: :inventory_item
+
   #has_and_belongs_to_many :people, join_table: "publications_to_people"
   has_many :publication_person_relations
   has_many :people, through: :publication_person_relations

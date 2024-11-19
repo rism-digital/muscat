@@ -30,6 +30,9 @@ class StandardTerm < ApplicationRecord
   has_many :inventory_item_standard_term_relations, class_name: "InventoryItemStandardTermRelation"
   has_many :referring_inventory_items, through: :inventory_item_standard_term_relations, source: :inventory_item
 
+  has_many :inventory_item_standard_term_relations, class_name: "InventoryItemStandardTermRelation"
+  has_many :referring_inventory_items, through: :inventory_item_standard_term_relations, source: :inventory_item
+
   has_and_belongs_to_many(:referring_work_nodes, class_name: "WorkNode", join_table: "work_nodes_to_standard_terms")
 
   has_many :folder_items, as: :item, dependent: :destroy

@@ -22,7 +22,7 @@ class MarcHolding < Marc
         m = node.content
       end
     end
-    m
+    m.truncate(255)
   end
 
   def description

@@ -85,7 +85,12 @@ class Source < ApplicationRecord
   has_many :holdings
 	has_many :collection_holdings, class_name: "Holding", foreign_key: "collection_id"
   
+  # This is for associating IIs to their Inventory
   has_many :inventory_items
+
+  # This is when an II references a source, like identitied src
+  has_many :inventory_item_source_relations, class_name: "InventoryItemSourceRelation"
+  has_many :referring_inventory_items, through: :inventory_item_source_relations, source: :inventory_item
 
   #has_and_belongs_to_many :works, join_table: "sources_to_works"
   has_many :source_work_relations
