@@ -4,6 +4,9 @@ ActiveAdmin.register AuthorizationToken do
     permit_params [:active, :name, :token, :comment]
     config.clear_action_items!
 
+
+    filter :name_cont, :as => :string
+
     sidebar :actions, :only => :index do
         render :partial => "activeadmin/section_sidebar_index"
       end
