@@ -122,24 +122,6 @@
     j:
       label: records.attribution_qualifier
   label: records.composer_author
-10t:
-  label: records.mode_10t
-10tt:
-  label: records.mode_10tt
-11t:
-  label: records.mode_11t
-11tt:
-  label: records.mode_11tt
-12t:
-  label: records.mode_12t
-12tt:
-  label: records.mode_12tt
-1byz:
-  label: records.octoechos1
-1t:
-  label: records.mode_1t
-1tt:
-  label: records.mode_1tt
 '240':
   fields:
     a:
@@ -180,12 +162,6 @@
     f:
       label: records.name_printer
   label: records.publishing_printing_production
-2byz:
-  label: records.octoechos2
-2t:
-  label: records.mode_2t
-2tt:
-  label: records.mode_2tt
 '300':
   fields:
     '8':
@@ -211,18 +187,6 @@
     b:
       label: records.opus_number
   label: records.opus_number
-3byz:
-  label: records.octoechos3
-3t:
-  label: records.mode_3t
-3tt:
-  label: records.mode_3tt
-4byz:
-  label: records.octoechos4
-4t:
-  label: records.mode_4t
-4tt:
-  label: records.mode_4tt
 '500':
   fields:
     '8':
@@ -394,12 +358,6 @@
     b:
       label: records.record_audit
   label: records.internal_note
-5byz:
-  label: records.octoechos5
-5t:
-  label: records.mode_5t
-5tt:
-  label: records.mode_5tt
 '650':
   fields:
     a:
@@ -429,12 +387,6 @@
     n:
       label: records.number_page
   label: records.bibliographic_reference
-6byz:
-  label: records.octoechos6
-6t:
-  label: records.mode_6t
-6tt:
-  label: records.mode_6tt
 '700':
   fields:
     '4':
@@ -504,12 +456,6 @@
     w:
       label: records.rism_id_number
   label: records.related_source
-7byz:
-  label: records.octoechos7
-7t:
-  label: records.mode_7t
-7tt:
-  label: records.mode_7tt
 '852':
   fields:
     a:
@@ -538,12 +484,6 @@
     z:
       label: records.note_external_resource
   label: records.external_resource
-8byz:
-  label: records.octoechos8
-8t:
-  label: records.mode_8t
-8tt:
-  label: records.mode_8tt
 '910':
   fields:
     a:
@@ -570,12 +510,7 @@
     d:
       label: records.date
   label: records.duplicated_from
-9t:
-  label: records.mode_9t
-9tt:
-  label: records.mode_9tt
-A:
-  label: records.a_major
+
 Alleged:
   label: records.alleged
 Arr:
@@ -584,16 +519,6 @@ Ascertained:
   label: records.ascertained
 Autography:
   label: records.autography
-A|b:
-  label: records.af_major
-A|x:
-  label: records.as_major
-B:
-  label: records.b_major
-B|b:
-  label: records.bf_major
-C:
-  label: records.c_major
 C+1:
   label: records.c_plus_1
 C+2:
@@ -618,28 +543,12 @@ Computer printout:
   label: records.computer_printout
 Conjectural:
   label: records.conjectural
-C|b:
-  label: records.cf_major
-C|x:
-  label: records.cs_major
-D:
-  label: records.d_major
 Digitized:
   label: records.digitized_source
-D|b:
-  label: records.df_major
-D|x:
-  label: records.ds_major
-E:
-  label: records.e_major
 Engraving:
   label: records.engraving
 Excerpts:
   label: records.excerpts
-E|b:
-  label: records.ef_major
-F:
-  label: records.f_major
 F+1:
   label: records.f_plus_1
 F+2:
@@ -664,10 +573,6 @@ Facsimile:
   label: records.facsimile
 Fragments:
   label: records.fragments
-F|x:
-  label: records.fs_major
-G:
-  label: records.g_major
 G+1:
   label: records.g_plus_1
 G+2:
@@ -688,10 +593,6 @@ G-4:
   label: records.g_minus_4
 G-5:
   label: records.g_minus_5
-G|b:
-  label: records.gf_major
-G|x:
-  label: records.gs_major
 "IIIF manifest (digitized source)":
   label: records.iiif_manifest
 "IIIF manifest (other)":
@@ -722,8 +623,6 @@ Var:
   label: records.variations
 Verified:
   label: general.verified
-a:
-  label: records.a_minor
 aid_best:
   label: general.rism_best_practices
 aid_dates:
@@ -768,22 +667,12 @@ aut:
   label: records.author
 autopsie:
   label: records.material_examined
-a|b:
-  label: records.af_minor
-a|x:
-  label: records.as_minor
-b:
-  label: records.b_minor
 bnd:
   label: records.binder
 brief:
   label: records.brief
 bsl:
   label: records.bookseller
-b|b:
-  label: records.bf_minor
-c:
-  label: records.c_minor
 ccp:
   label: records.conceptor
 chr:
@@ -804,12 +693,6 @@ cst:
   label: records.costume_designer
 ctb:
   label: records.co_composer
-c|b:
-  label: records.cf_minor
-c|x:
-  label: records.cs_minor
-d:
-  label: records.d_minor
 dnc:
   label: records.dancer
 dnr:
@@ -944,12 +827,6 @@ dst:
   label: records.distributor
 dte:
   label: records.dedicatee
-d|b:
-  label: records.df_minor
-d|x:
-  label: records.ds_minor
-e:
-  label: records.e_minor
 edit_administration:
   label: records.administration
 edit_content:
@@ -974,26 +851,14 @@ evp:
   label: records.event_place
 examined:
   label: records.material_examined
-e|b:
-  label: records.ef_minor
-f:
-  label: records.f_minor
 fij:
   label: records.fijian
 fmo:
   label: records.former_owner
 full:
   label: records.full
-f|x:
-  label: records.fs_minor
-g:
-  label: records.g_minor
 g-2:
   label: records.g_minus_2_octave
-g|b:
-  label: records.gf_minor
-g|x:
-  label: records.gs_minor
 ill:
   label: records.illustrator
 import:

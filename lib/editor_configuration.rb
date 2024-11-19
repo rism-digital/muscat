@@ -72,6 +72,7 @@ class EditorConfiguration
     superimpose_shared_file("SharedLanguageLabels.yml")
     superimpose_shared_file("SharedISO3166Codes.yml")
     superimpose_shared_file("SharedContentLabels.yml")
+    superimpose_shared_file("SharedKeyOrModes.yml")
   end
   
   def superimpose_shared_file(name)

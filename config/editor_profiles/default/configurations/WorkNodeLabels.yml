@@ -97,30 +97,6 @@
     r:
       label: records.key_or_mode
   label: records.standardized_title
-10t:
-  label: records.mode_10t
-10tt:
-  label: records.mode_10tt
-11t:
-  label: records.mode_11t
-11tt:
-  label: records.mode_11tt
-12t:
-  label: records.mode_12t
-12tt:
-  label: records.mode_12tt
-1byz:
-  label: records.octoechos1
-1t:
-  label: records.mode_1t
-1tt:
-  label: records.mode_1tt
-2byz:
-  label: records.octoechos2
-2t:
-  label: records.mode_2t
-2tt:
-  label: records.mode_2tt
 '370':
   fields:
     a:
@@ -136,12 +112,6 @@
     b:
       label: records.opus_number
   label: records.opus_number
-3byz:
-  label: records.octoechos3
-3t:
-  label: records.mode_3t
-3tt:
-  label: records.mode_3tt
 '400':
   fields:
     a:
@@ -157,12 +127,6 @@
     t:
       label: records.title_of_work
   label: records.heading
-4byz:
-  label: records.octoechos4
-4t:
-  label: records.mode_4t
-4tt:
-  label: records.mode_4tt
 '430':
   fields:
     a:
@@ -209,12 +173,6 @@
     i:
       label: records.type
   label: records.geographic_name
-5byz:
-  label: records.octoechos5
-5t:
-  label: records.mode_5t
-5tt:
-  label: records.mode_5tt
 '667':
   fields:
     a:
@@ -256,12 +214,6 @@
     n:
       label: records.number_page
   label: records.secondary_catalog_works
-6byz:
-  label: records.octoechos6
-6t:
-  label: records.mode_6t
-6tt:
-  label: records.mode_6tt
 '700':
   fields:
     '4':
@@ -291,12 +243,6 @@
     a:
       label: records.liturgical_festival
   label: records.liturgical_festival
-7byz:
-  label: records.octoechos7
-7t:
-  label: records.mode_7t
-7tt:
-  label: records.mode_7tt
 '856':
   fields:
     u:
@@ -304,12 +250,6 @@
     y:
       label: records.note_external_resource
   label: records.external_resource_uri
-8byz:
-  label: records.octoechos8
-8t:
-  label: records.mode_8t
-8tt:
-  label: records.mode_8tt
 '930':
   fields:
     a:
@@ -317,26 +257,10 @@
     i:
       label: records.type_relationship
   label: records.related_work
-9t:
-  label: records.mode_9t
-9tt:
-  label: records.mode_9tt
-A:
-  label: records.a_major
 Alleged:
   label: records.alleged
 Ascertained:
   label: records.ascertained
-A|b:
-  label: records.af_major
-A|x:
-  label: records.as_major
-B:
-  label: records.b_major
-B|b:
-  label: records.bf_major
-C:
-  label: records.c_major
 C+1:
   label: records.c_plus_1
 C+2:
@@ -359,22 +283,6 @@ C-5:
   label: records.c_minus_5
 Conjectural:
   label: records.conjectural
-C|b:
-  label: records.cf_major
-C|x:
-  label: records.cs_major
-D:
-  label: records.d_major
-D|b:
-  label: records.df_major
-D|x:
-  label: records.ds_major
-E:
-  label: records.e_major
-E|b:
-  label: records.ef_major
-F:
-  label: records.f_major
 F+1:
   label: records.f_plus_1
 F+2:
@@ -395,10 +303,6 @@ F-4:
   label: records.f_minus_4_bass
 F-5:
   label: records.f_minus_5
-F|x:
-  label: records.fs_major
-G:
-  label: records.g_major
 G+1:
   label: records.g_plus_1
 G+2:
@@ -419,34 +323,18 @@ G-4:
   label: records.g_minus_4
 G-5:
   label: records.g_minus_5
-G|b:
-  label: records.gf_major
-G|x:
-  label: records.gs_major
 Misattributed:
   label: records.misattributed
 Verified:
   label: general.verified
-a:
-  label: records.a_minor
 administration:
   label: records.administration
 asn:
   label: records.associated_name
-a|b:
-  label: records.af_minor
-a|x:
-  label: records.as_minor
-b:
-  label: records.b_minor
 bn:
   label: records.byname
 brother of:
   label: records.brother_of
-b|b:
-  label: records.bf_minor
-c:
-  label: records.c_minor
 child of:
   label: records.child_of
 cmp:
@@ -457,12 +345,6 @@ confused with:
   label: records.confused_with
 control:
   label: records.control_fields
-c|b:
-  label: records.cf_minor
-c|x:
-  label: records.cs_minor
-d:
-  label: records.d_minor
 da:
   label: records.pseudonym
 deprecated:
@@ -493,40 +375,22 @@ dte:
   label: records.dedicatee
 dv:
   label: records.other_searchform
-d|b:
-  label: records.df_minor
-d|x:
-  label: records.ds_minor
-e:
-  label: records.e_minor
 ee:
   label: records.married_name
 ef:
   label: records.family_name
-e|b:
-  label: records.ef_minor
-f:
-  label: records.f_minor
 father of:
   label: records.father_of
 female:
   label: general.female
 ff:
   label: records.person_name
-f|x:
-  label: records.fs_minor
-g:
-  label: records.g_minor
 g-2:
   label: records.g_minus_2_octave
 gg:
   label: records.birth_name
 go:
   label: records.place_birth
-g|b:
-  label: records.gf_minor
-g|x:
-  label: records.gs_minor
 ha:
   label: records.place_origin
 in:
