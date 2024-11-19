@@ -93,6 +93,8 @@
   label: records.technical_production
 '040':
   fields:
+    a:
+      label: records.original_cataloging_agency
     b:
       label: records.language_of_cataloging
   label: records.cataloging_agency
