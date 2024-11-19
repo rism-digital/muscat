@@ -80,26 +80,29 @@ class MarcInstitution < Marc
     end
 
     #1590 move 094 to 024    
+    #1668 Take in account institutions without siglum
     t094 = first_occurance("094")
-    new024 = t094.deep_copy
-    new024.tag = "024"
-    root.children.insert(get_insert_position("024"), new024)
+    if t094
+      new024 = t094.deep_copy
+      new024.tag = "024"
+      root.children.insert(get_insert_position("024"), new024)
 
-    # Then copy over 094 $a to 110 $g
-    siglum = first_occurance("094", "a")
-    t110 = first_occurance("110")
-    # make sure there is a 110, and we have a siglum
-    if t110 && siglum && siglum.content
+      # Then copy over 094 $a to 110 $g
+      siglum = first_occurance("094", "a")
+      t110 = first_occurance("110")
+      # make sure there is a 110, and we have a siglum
+      if t110 && siglum && siglum.content
 
-      # Remove eventual $g, should not happen but here we are
-      # The one in 024 takes precedence
-      t110.each_by_tag("g") {|t| t.destroy_yourself}
+        # Remove eventual $g, should not happen but here we are
+        # The one in 024 takes precedence
+        t110.each_by_tag("g") {|t| t.destroy_yourself}
 
-      t110.add_at(MarcNode.new(@model, "g", siglum.content, nil), 0)
-      t110.sort_alphabetically
+        t110.add_at(MarcNode.new(@model, "g", siglum.content, nil), 0)
+        t110.sort_alphabetically
+      end
+      # remove the tag
+      t094.destroy_yourself
     end
-    # remove the tag
-    t094.destroy_yourself
 
   end
 
