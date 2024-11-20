@@ -301,7 +301,7 @@
     b:
       label: records.voice_instrument
     c:
-      label: records.number
+      label: records.amount
   label: records.total_scoring
 '595':
   fields:
