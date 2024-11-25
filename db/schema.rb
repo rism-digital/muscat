@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_10_09_074657) do
+ActiveRecord::Schema[7.1].define(version: 2024_11_25_094020) do
   create_table "active_admin_comments", id: :integer, charset: "utf8mb3", force: :cascade do |t|
     t.string "namespace"
     t.text "body"
@@ -111,8 +111,10 @@ ActiveRecord::Schema[7.1].define(version: 2024_10_09_074657) do
     t.datetime "created_at", precision: nil
     t.datetime "updated_at", precision: nil
     t.integer "collection_id"
+    t.string "shelf_mark"
     t.index ["collection_id"], name: "index_holdings_on_collection_id"
     t.index ["lib_siglum"], name: "index_holdings_on_lib_siglum"
+    t.index ["shelf_mark"], name: "index_holdings_on_shelf_mark"
     t.index ["source_id"], name: "index_holdings_on_source_id"
     t.index ["wf_stage"], name: "index_holdings_on_wf_stage"
   end
