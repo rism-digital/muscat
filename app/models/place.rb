@@ -43,7 +43,7 @@ class Place < ApplicationRecord
 
   validates_presence_of :name
 
-  validates_uniqueness_of :name
+  validates_uniqueness_of :name, scope: [:country, :district]
 
   #include NewIds
 
@@ -88,6 +88,9 @@ class Place < ApplicationRecord
     text :alternate_terms
     text :topic
     text :sub_topic
+    string :district_order do
+      district
+    end
     text :district
 
     join(:folder_id, :target => FolderItem, :type => :integer, 
@@ -113,6 +116,10 @@ class Place < ApplicationRecord
       Place.count_by_sql("select count(*) from holdings_to_places where place_id = #{self[:id]}")
     end
 
+  end
+
+  def autocomplete_label
+    [self.name&.strip, self.district&.strip, self.country&.strip].compact.reject(&:empty?).join(", ")
   end
 
   # https://github.com/activeadmin/activeadmin/issues/7809

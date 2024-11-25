@@ -24,7 +24,7 @@ ActiveAdmin.register Place do
   # temporarily allow all parameters
   controller do
 
-    autocomplete :place, :name
+    autocomplete :place, :name, :display_value => :autocomplete_label, :extra_data => [:country, :district]
 
     after_destroy :check_model_errors
     before_create do |item|
@@ -82,6 +82,16 @@ ActiveAdmin.register Place do
         failure.html { redirect_back fallback_location: root_path, flash: { :error => "#{I18n.t(:error_saving)}" } }
       end
     end
+  
+    def save_resource(object)
+      nullable_strings = %i(country district notes alternate_terms topic sub_topic viaf gnd)
+      nullable_strings.each do |attribute|
+        next unless object.public_send(attribute).blank?
+  
+        object.public_send(:"#{attribute}=", nil)
+      end
+      super
+    end
 
   end
 
@@ -108,6 +118,7 @@ ActiveAdmin.register Place do
     column (I18n.t :filter_id), :id  
     column (I18n.t :filter_name), :name
     column (I18n.t :filter_country), :country
+    column (I18n.t :filter_district), :district
     column (I18n.t :filter_sources), :src_count_order, sortable: :src_count_order do |element|
 			all_hits = @arbre_context.assigns[:hits]
 			active_admin_stored_from_hits(all_hits, element, :src_count_order)
