@@ -494,8 +494,8 @@
 '930':
   fields:
     a:
-      label: records.work
-  label: records.work
+      label: records.work_node
+  label: records.work_node
 '980':
   fields:
     a:

@@ -727,6 +727,7 @@ pl:
     partial_autograph: Częściowy autograf
     parts_held: Głosy
     parts_held_extent: Głosy, objętość
+    part_of_title: Część tytułu
     patron: Sponsor
     people: Osoby
     people_institutions: Osoby i instytucje
@@ -913,6 +914,7 @@ pl:
     woodwinds: Instrumenty dęte drewniane
     work: Dzieło
     work_catalog_note: Notatka do katalogu utworów
+    work_node: Work node
     work_number: Numer dzieła
     work_tag: tag edycji Dzieła
     work_tag_incipit_needs_revision: incipit wymaga ponownego sprawdzenia

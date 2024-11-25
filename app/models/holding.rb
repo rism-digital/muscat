@@ -160,7 +160,7 @@ class Holding < ApplicationRecord
 
     # "Tell fields"
     self.lib_siglum = marc.get_lib_siglum
-    self.shelf_mark = marc.get_shelf_mark
+    #self.shelf_mark = marc.get_shelf_mark
     
     self.marc_source = self.marc.to_marc
   end

@@ -730,6 +730,7 @@ en:
     partial_autograph: Partial autograph
     parts_held: Parts held
     parts_held_extent: Parts held and extent
+    part_of_title: Part of title
     patron: Patron
     people: People
     people_institutions: People and institutions
@@ -916,6 +917,7 @@ en:
     woodwinds: Woodwinds
     work: Work
     work_catalog_note: Work catalog note
+    work_node: Work node
     work_number: Work number
     work_tag: Work revision tag
     work_tag_incipit_needs_revision: incipit-needs-revision

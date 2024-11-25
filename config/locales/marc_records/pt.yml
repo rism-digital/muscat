@@ -727,6 +727,7 @@ pt:
     partial_autograph: Autógrafo parcial
     parts_held: Partes existentes
     parts_held_extent: Partes existentes e extensão
+    part_of_title: Parte do título
     patron: Patrocinadore
     people: Pessoas
     people_institutions: Pessoas e instituições
@@ -913,6 +914,7 @@ pt:
     woodwinds: Madeiras
     work: Obra
     work_catalog_note: Nota no catálogo da obra
+    work_node: Work node
     work_number: Número de obra
     work_tag: Etiqueta de revisão de trabalho
     work_tag_incipit_needs_revision: incipit-needs-revision

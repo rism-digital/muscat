@@ -87,6 +87,8 @@
       label: records.key_or_mode
     t:
       label: records.title_of_work
+    p:
+      label: records.part_of_title
   label: records.heading
 '130':
   fields:

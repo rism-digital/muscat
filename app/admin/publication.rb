@@ -217,7 +217,7 @@ ActiveAdmin.register Publication do
   ## Show ##
   ##########
   
-  show :title => proc{ active_admin_publication_show_title( @item.author, @item.title.truncate(60), @item.id) } do
+  show :title => proc{ active_admin_publication_show_title( @item.author, @item.title&.truncate(60), @item.id) } do
     # @item retrived by from the controller is not available there. We need to get it from the @arbre_context
     active_admin_navigation_bar( self )
     render('jobs/jobs_monitor')
