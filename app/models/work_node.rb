@@ -168,7 +168,9 @@ class WorkNode < ApplicationRecord
   def set_object_fields
     return if marc_source == nil
     self.title = marc.get_title
-    self.person = marc.get_composer
+    self.person = marc.get_composer # This sets the person id!
+    self.composer = marc.get_composer_name # and this caches the composer name
+
 
     self.marc_source = self.marc.to_marc
   end

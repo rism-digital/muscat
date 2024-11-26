@@ -42,7 +42,7 @@ class MarcWorkNode < Marc
     if node = first_occurance("100", "a")
       composer = "#{node.content}" if !node.content.blank?
     end
-    return composer
+    return composer.truncate(255)
   end
 
   def get_composer
