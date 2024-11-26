@@ -139,13 +139,17 @@ class WorkNode < ApplicationRecord
       title
     end
     sunspot_dsl.text :title
-    sunspot_dsl.text :title
     
     sunspot_dsl.integer :wf_owner
     sunspot_dsl.string :wf_stage
     sunspot_dsl.time :updated_at
     sunspot_dsl.time :created_at
     
+    sunspot_dsl.string :composer_order do
+      composer
+    end
+    sunspot_dsl.text :composer
+
     sunspot_dsl.join(:folder_id, :target => FolderItem, :type => :integer, 
               :join => { :from => :item_id, :to => :id })
 
