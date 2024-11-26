@@ -30,7 +30,7 @@ ActiveAdmin.register WorkNode do
   # temporarily allow all parameters
   controller do
     
-    autocomplete :work_node, :title, :extra_data => [:title], :string_boundary => true
+    autocomplete :work_node, :title, :extra_data => [:title]#, :string_boundary => true
     
     after_destroy :check_model_errors
     before_create do |item|
