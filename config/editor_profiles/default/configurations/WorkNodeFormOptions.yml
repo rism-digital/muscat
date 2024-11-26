@@ -14,7 +14,6 @@
   layout: 
     fields: 
     - - a
-      - cols: 2
     - - "2"
       - values: 
         - "BNE"
@@ -30,8 +29,6 @@
         - "WKP"
         default: "VIAF"
         editor_partial: subfield_select
-      - cols: 2
-    columns: 4
 "031": 
   new_window: standard_titles
   new_window_field: title_eq
@@ -309,8 +306,6 @@
     - - "a"
       - type: standard_term
         editor_partial: subfield_secondary
-      - cols: 4
-    columns: 4
 "400":
   new_window: people
   new_window_field: full_name_eq
@@ -326,7 +321,6 @@
     - - n
     - - r
     - - t
-    columns: 4
 "500": 
   allow_new: true
   new_window: people
@@ -335,10 +329,8 @@
     - - "a"
       - type: person
         editor_partial: subfield_secondary
-      - cols: 4
     - - d
     - - e
-    columns: 4
 "548": 
   layout: 
     fields: 
@@ -352,8 +344,6 @@
   layout: 
     fields: 
     - - a
-      - cols: 2
-    columns: 2
 "670": 
   allow_new: true
   new_window: publications
@@ -362,10 +352,7 @@
     - - "a"
       - type: publication
         editor_partial: subfield_secondary
-      - cols: 4
     - - "b"
-      - cols: 2
-    columns: 4
 "675": 
   allow_new: true
   new_window: publications
@@ -374,8 +361,6 @@
     - - "a"
       - type: publication
         editor_partial: subfield_secondary
-      - cols: 4
-    columns: 4
 "680": 
   layout: 
     fields: 
@@ -435,7 +420,3 @@
     - - "a"
       - type: liturgical_feast
         editor_partial: subfield_secondary
-      - cols: 4
-    columns: 4
-triggers:
-  - notify_changes
