@@ -163,8 +163,8 @@ module Muscat
             time_gteq = {}
             time_lteq = {}
 
-            options.keys.each do |k|
-
+            options.keys.each do |key|
+              k = key.to_s.gsub("_contains", "_cont")
               # Skip to the next one if the value
               # for this query is empty
               next if options[k] == ""
