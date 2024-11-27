@@ -48,7 +48,7 @@
   "024":
     :master: a
     :indicator: "7#"
-    :occurrences: "?"
+    :occurrences: "1"
     :fields:
     - - a
       - :occurrences: "1"

@@ -11,6 +11,8 @@
     no_delete: true
   tag_header: none
 "024": 
+  tag_params: 
+    no_delete: true
   layout: 
     fields: 
     - - a
