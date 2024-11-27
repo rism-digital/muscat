@@ -184,6 +184,12 @@ class WorkNode < ApplicationRecord
     GND::Interface.search({title: str}, 20)
   end
  
+  def autocomplete_label
+    return "#{self.title} (#{self.composer})" if self.title && self.composer
+    return self.title if self.title
+    "no title for #{self.id}"
+  end
+
   # If we define our own ransacker, we need this
   def self.ransackable_attributes(auth_object = nil)
     column_names + _ransackers.keys

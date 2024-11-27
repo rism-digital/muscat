@@ -844,7 +844,7 @@ edit_names:
 edit_references:
   label: records.references_and_notes
 edit_works:
-  label: records.work
+  label: records.external_work_reference
 edt:
   label: records.editor
 egr:

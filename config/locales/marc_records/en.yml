@@ -463,6 +463,7 @@ en:
     external_resource: External resource
     external_resource_uri: External resource URI
     external_resource_url: External resource URL
+    external_work_reference: External work reference
     f_major: F major
     f_minor: F minor
     f_minus_1: F-1
@@ -917,7 +918,7 @@ en:
     woodwinds: Woodwinds
     work: Work
     work_catalog_note: Work catalog note
-    work_node: Work node
+    work_node: External work reference (Work node)
     work_number: Work number
     work_tag: Work revision tag
     work_tag_incipit_needs_revision: incipit-needs-revision
