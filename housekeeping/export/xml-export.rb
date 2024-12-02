@@ -18,6 +18,7 @@ OptionParser.new do |opts|
   opts.on('-m', '--model NAME', 'Model name') { |v| @options[:model_name] = v }
   opts.on('-f', '--file FILE', 'Filename') { |v| @options[:filename] = v }
   opts.on("-l", "--legacy", "Enable legacy mode") { @options[:legacy] = true }
+  opts.on("-s", "--silent", "Don't print the progressbar") { @options[:silent] = true }
 end.parse!
 
 # Retrieve the class
@@ -33,14 +34,14 @@ items = model.where(published_only).order(:id).pluck(:id)
 file = File.open(@options[:filename], "w")
 file.write("<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<collection xmlns=\"http://www.loc.gov/MARC21/slim\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xsi:schemaLocation=\"http://www.loc.gov/MARC21/slim http://www.loc.gov/standards/marcxml/schema/MARC21slim.xsd\">\n")
 
-bar = ProgressBar.new(items.size)
+bar = ProgressBar.new(items.size) if !@options[:silent]
 
 items.each do |s|
   record = model.find(s)
   # Add deprecated_ids: "false" if necessary
   file.write(record.marc.to_xml_record({ created_at: record.created_at, updated_at: record.updated_at, holdings: true, deprecated_ids: deprecated_ids }).root.to_s)
 
-  bar.increment!
+  bar.increment! if !@options[:silent]
   record = nil
 end
 
