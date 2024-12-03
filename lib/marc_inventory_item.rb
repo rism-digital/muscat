@@ -14,7 +14,7 @@ class MarcInventoryItem < Marc
 
   def get_source_title
     ms_title = "[none]"  
-    ms_title_field = (RISM::SITE_ID == "in") ? "246" : "245"
+    ms_title_field = "246"
     if node = first_occurance(ms_title_field, "a")
       ms_title = node.content
     end
