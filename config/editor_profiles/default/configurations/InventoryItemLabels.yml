@@ -92,8 +92,8 @@
 '246':
   fields:
     a:
-      label: records.variant_ms_title
-  label: records.variant_source_title
+      label: records.reconstructed_title
+  label: records.reconstructed_title
 '260':
   fields:
     '8':
@@ -254,13 +254,13 @@
 '852':
   fields:
     a:
-      label: records.library_siglum
+      label: records.inventory
     b:
       label: records.department
     c:
       label: records.shelfmark
     d:
-      label: records.shelfmark_olim
+      label: records.category_section
     e:
       label: records.library
     p:
@@ -271,7 +271,7 @@
       label: general.uri
     z:
       label: records.provenance
-  label: records.library_siglum
+  label: records.inventory_number
 '856':
   fields:
     u:
