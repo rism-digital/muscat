@@ -529,6 +529,8 @@
       - oth
       - asn
       - arr
+      - com
+      - dnr
 "710":
   new_window: institutions
   new_window_field: full_name_eq
@@ -567,6 +569,7 @@
       - ppm
       - prt
       - asn
+      - pbl
 "730":
   new_window: standard_titles
   new_window_field: title_eq
