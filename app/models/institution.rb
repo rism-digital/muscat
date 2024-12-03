@@ -341,7 +341,7 @@ class Institution < ApplicationRecord
   ransacker :"has_siglum", proc{ |v| } do |parent| parent.table[:id] end
    
   def holdings
-    ActiveSupport::Deprecation.warn('Please use referring_holdings from institution')
+    ActiveSupport::Deprecation.new("12", 'Please use referring_holdings from institution')
     referring_holdings
   end
 end
