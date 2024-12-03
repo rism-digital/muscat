@@ -26,7 +26,7 @@ class DigitalObject < ApplicationRecord
     has_many :folder_items, as: :item, dependent: :destroy
     belongs_to :user, :foreign_key => "wf_owner"
 
-    enum attachment_type: [ :images, :incipits ]
+    enum :attachment_type, [ :images, :incipits ]
     
     before_destroy :cleanup_comments
 

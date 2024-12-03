@@ -15,8 +15,8 @@ class User < ApplicationRecord
   # Used to permit username or email login
   attr_writer :login
 
-  enum notification_type: [:every, :daily, :weekly ]
-  enum preference_wf_stage: [ :inprogress, :published, :deleted ]
+  enum :notification_type, [:every, :daily, :weekly ]
+  enum :preference_wf_stage, [ :inprogress, :published, :deleted ]
   scope :ordered, -> {
     joins(:workgroups).order("workgroup.name")
           

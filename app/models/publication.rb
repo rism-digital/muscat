@@ -116,8 +116,8 @@ class Publication < ApplicationRecord
   alias_attribute :id_for_fulltext, :id
   alias_attribute :name, :short_name
 
-  enum wf_stage: [ :inprogress, :published, :deleted, :deprecated ]
-  enum wf_audit: [ :full, :abbreviated, :retro, :imported ]
+  enum :wf_stage, [ :inprogress, :published, :deleted, :deprecated ]
+  enum :wf_audit, [ :full, :abbreviated, :retro, :imported ]
 
   def after_initialize
     @last_user_save = nil

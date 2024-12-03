@@ -131,8 +131,8 @@ class Source < ApplicationRecord
   attr_accessor :suppress_update_77x_trigger
   attr_accessor :suppress_update_count_trigger
 
-  enum wf_stage: [ :inprogress, :published, :deleted, :deprecated ]
-  enum wf_audit: [ :full, :abbreviated, :retro, :imported ]
+  enum :wf_stage, [ :inprogress, :published, :deleted, :deprecated ]
+  enum :wf_audit, [ :full, :abbreviated, :retro, :imported ]
 
 =begin
   def marc
