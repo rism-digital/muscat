@@ -7,7 +7,8 @@ gem 'rails', '~> 7.1'
 gem 'mysql2'
 
 # Use SCSS for stylesheets
-gem 'sassc-rails'#, '~> 6.0'
+#gem 'sassc-rails' #sassc rails is deprecated...
+gem 'dartsass-sprockets'#, '~> 6.0'
 
 # NOTE not used anymore since rail 7.1
 # Use Uglifier as compressor for JavaScript assets
@@ -27,7 +28,7 @@ gem 'coffee-rails'#, '~> 5.0'
 
 # Use jquery as the JavaScript library
 gem 'jquery-rails', "~> 4.5"
-gem 'jquery-ui-rails', '~> 6.0.1'
+gem 'jquery-ui-rails', '~> 6.0.1', git: 'https://github.com/rism-digital/jquery-ui-rails', branch: "v6.0.1-desperation"
 gem 'js_cookie_rails', '~> 2.2.0'
 
 # Turbolinks makes following links in your web application faster. Read more: https://github.com/rails/turbolinks
