@@ -50,7 +50,7 @@ gem 'paper_trail'
 gem 'needleman_wunsch_aligner', "1.0.4"
 
 # for the documentation
-gem 'htmlentities', '~> 4.3.4'
+gem 'htmlentities'#, '~> 4.3'
 
 # Use debugger
 # gem 'debugger', group: [:development, :test
@@ -59,7 +59,7 @@ gem 'activeadmin'
 # Disabled - left to find it again
 #gem 'active_admin_scoped_collection_actions', git: 'https://github.com/activeadmin-plugins/active_admin_scoped_collection_actions'
 
-gem 'sunspot_rails', '~> 2.7'
+gem 'sunspot_rails', '~> 2.7.1'
 #gem 'sunspot_solr'
 gem 'awesome_print'
 # From 11.2: use the original progress bar so it is compatibile with i18n-tasks
