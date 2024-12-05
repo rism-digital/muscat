@@ -143,6 +143,10 @@ ActiveAdmin.register WorkNode do
   sidebar :actions, :only => :index do
     render :partial => "activeadmin/section_sidebar_index"
   end
+
+  sidebar :help, :only => [:index] do
+    render :partial => "work_nodes_help_show"
+  end
   
   # Include the folder actions
   include FolderControllerActions
