@@ -71,7 +71,9 @@ class EditorConfiguration
 
     # Create an empty label conf
     @squeezed_labels_config = Settings.new(Hash.new())
-
+    # Read the Editor Label conf from the file
+    editor_labels = squeeze(conf[:labels])
+    
     # ... the add all the shared labels...
     superimpose_shared_file("SharedLanguageLabels.yml")
     superimpose_shared_file("SharedISO3166Codes.yml")
@@ -82,7 +84,7 @@ class EditorConfiguration
     # overrides the shared ones if needed.
     # I.e. "a" can be A minor or records.earlier_heading
     # depending on the context (but not both)
-    @squeezed_labels_config = squeeze(conf[:labels])
+    @squeezed_labels_config.squeeze(editor_labels)
   end
   
   def superimpose_shared_file(name)
