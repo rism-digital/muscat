@@ -349,6 +349,7 @@ fr:
     cataloging_musical_sources: Catalogation des sources musicales
     cataloging_source: Source du catalogage
     category: Type
+    category_section: Catégorie/Section
     censor: Censeur
     cf_major: Do♭ majeur
     cf_minor: Do♭ mineur
@@ -463,6 +464,7 @@ fr:
     external_resource: Ressource électronique externe
     external_resource_uri: URI de la ressource électronique externe
     external_resource_url: URI de la ressource électronique externe
+    external_work_reference: Référence externe d'œuvre
     f_major: Fa majeur
     f_minor: Fa mineur
     f_minus_1: F-1
@@ -561,6 +563,7 @@ fr:
     invalid_standard_number: Numéro ou code standard annulé/invalide
     inventory: Inventaire
     inventory_item: Item d'inventaire
+    inventory_number: Numéro d'inventaire
     inventory_source: Source de l'inventaire
     isbn: ISBN
     ismn: ISMN
@@ -781,6 +784,7 @@ fr:
     qualifying_information: Informations requises
     range_dates: Intervalle de dates
     real_world_object_uri: Objet du monde réel URI
+    reconstructed_title: Titre reconstruit
     record_actions: Actions pour la notice
     record_audit: Vérification des enregistrements
     record_origin: Origine de la notice
@@ -914,7 +918,7 @@ fr:
     woodwinds: Bois
     work: Oeuvre
     work_catalog_note: Note sur le catalogue des œuvres
-    work_node: Work node
+    work_node: Référence externe d'œuvre (Work node)
     work_number: Numéro de l'œuvre
     work_tag: Étiquette de révision
     work_tag_incipit_needs_revision: incipit-needs-revision

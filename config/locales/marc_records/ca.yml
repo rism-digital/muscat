@@ -349,6 +349,7 @@ ca:
     cataloging_musical_sources: Catalogació de fonts musicals
     cataloging_source: Font de la catalogació
     category: Categoria
+    category_section: Categoria/secció
     censor: Censor
     cf_major: Do♭ major
     cf_minor: Do♭ menor
@@ -463,6 +464,7 @@ ca:
     external_resource: Recurs extern
     external_resource_uri: URI del recurs extern
     external_resource_url: URL del recurs extern
+    external_work_reference: Referència externa d'obra
     f_major: Fa major
     f_minor: Fa menor
     f_minus_1: F-1
@@ -561,6 +563,7 @@ ca:
     invalid_standard_number: Número o codi estàndard cancel·lat/invàlid
     inventory: Inventari
     inventory_item: Exemplar de l'inventari
+    inventory_number: Número d'inventari
     inventory_source: Font de l'inventari
     isbn: ISBN
     ismn: ISMN
@@ -781,6 +784,7 @@ ca:
     qualifying_information: Informació qualificada
     range_dates: Interval de dates
     real_world_object_uri: URI d'objecte del món real
+    reconstructed_title: Títol reconstruït
     record_actions: Accions al registre
     record_audit: Validació del registre
     record_origin: Origen del registre
@@ -914,7 +918,7 @@ ca:
     woodwinds: Vent-fusta
     work: Obra
     work_catalog_note: Nota sobre el catàleg de l'obra
-    work_node: Work node
+    work_node: Referència externa d'obra (Work node)
     work_number: Número d'obra
     work_tag: Etiqueta de revisió per obra
     work_tag_incipit_needs_revision: Íncipit a revisar

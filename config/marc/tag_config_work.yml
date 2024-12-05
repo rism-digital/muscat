@@ -201,6 +201,15 @@
     :fields:
     - - a
       - :occurrences: "*"
+  "383":
+    :master: a
+    :indicator: "##"
+    :occurrences: "*"
+    :fields:
+    - - a
+      - :occurrences: "?"
+    - - b
+      - :occurrences: "?"
   "430":
     :master: "0"
     :indicator: "#0"

@@ -115,9 +115,11 @@
   label: records.subject_heading
 '383':
   fields:
+    a:
+      label: records.serial_number
     b:
       label: records.opus_number
-  label: records.opus_number
+  label: records.numeric_designation
 '400':
   fields:
     a:

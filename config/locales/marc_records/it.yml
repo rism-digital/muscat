@@ -349,6 +349,7 @@ it:
     cataloging_musical_sources: Catalogazione delle fonti musicali
     cataloging_source: Fonte della catalogazione
     category: Tipo
+    category_section: Categoria/sezione
     censor: Censore
     cf_major: Do♭ maggiore
     cf_minor: Do♭ minore
@@ -463,6 +464,7 @@ it:
     external_resource: Localizzazione e accesso elettronico
     external_resource_uri: URI per l'accesso elettronico
     external_resource_url: URL per l'accesso elettronico
+    external_work_reference: Voce di autorità esterna
     f_major: Fa maggiore
     f_minor: Fa minore
     f_minus_1: F-1
@@ -561,6 +563,7 @@ it:
     invalid_standard_number: Numero standard o codice standard annullato/non valido
     inventory: Inventario
     inventory_item: Voce d'inventario
+    inventory_number: Numero nell'inventario
     inventory_source: Inventario
     isbn: ISBN
     ismn: ISMN
@@ -781,6 +784,7 @@ it:
     qualifying_information: Informazioni qualificanti
     range_dates: Ambito di datazione
     real_world_object_uri: Oggetto URI
+    reconstructed_title: Titolo ricostruito
     record_actions: Azioni per la scheda
     record_audit: Controllo del record
     record_origin: Origine della scheda
@@ -914,7 +918,7 @@ it:
     woodwinds: Legni
     work: Opera
     work_catalog_note: Nota sul catalogo delle opere
-    work_node: Work node
+    work_node: Voce di autorità esterna (Work node)
     work_number: Numero dell'opera
     work_tag: Tag per il Work
     work_tag_incipit_needs_revision: incipit-needs-revision

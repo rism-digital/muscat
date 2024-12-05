@@ -349,6 +349,7 @@ de:
     cataloging_musical_sources: Katalogisierung von Musikquellen
     cataloging_source: Katalogisierungsquelle
     category: Art/Inhalt
+    category_section: Kategorie/Abschnitt
     censor: Zensor
     cf_major: Ces-Dur
     cf_minor: ces-Moll
@@ -463,6 +464,7 @@ de:
     external_resource: Elektronische Lokalisierung und Zugriff
     external_resource_uri: Elektronische Lokalisierung und Zugriff
     external_resource_url: Uniform Resource Identifier
+    external_work_reference: Externe Werk-Referenz
     f_major: F-Dur
     f_minor: f-Moll
     f_minus_1: F-1
@@ -561,6 +563,7 @@ de:
     invalid_standard_number: Stornierte/ungültige Standardnummer oder -code
     inventory: Inventar
     inventory_item: Inventareinträge
+    inventory_number: Inventarnummer
     inventory_source: Inventarquelle
     isbn: ISBN
     ismn: ISMN
@@ -781,6 +784,7 @@ de:
     qualifying_information: Qualifizierende Informationen
     range_dates: Datierungsbereich
     real_world_object_uri: Real-World-Objekt-URI
+    reconstructed_title: Ermittelter Titel
     record_actions: Titel veröffentlichen
     record_audit: Datensatzprüfung
     record_origin: Herkunft
@@ -914,7 +918,7 @@ de:
     woodwinds: Holzblasinstrumente
     work: Werktitel
     work_catalog_note: Bemerkung Werkverzeichnis
-    work_node: Work node
+    work_node: Externe Werk-Referenz (Work node)
     work_number: Werknummer
     work_tag: Markierung der Werk-Revision
     work_tag_incipit_needs_revision: Incipit muss überarbeitet werden

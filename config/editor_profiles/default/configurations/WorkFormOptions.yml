@@ -424,9 +424,10 @@
       - type: standard_term
         editor_partial: subfield_secondary
         allow_new: true
-"383": 
-  layout: 
-    fields: 
+"383":
+  layout:
+    fields:
+    - - a
     - - b
 "430":
   layout:

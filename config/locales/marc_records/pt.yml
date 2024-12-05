@@ -349,6 +349,7 @@ pt:
     cataloging_musical_sources: Catalogando fontes musicais
     cataloging_source: Agência catalogadora
     category: Categoria
+    category_section: Categoria/Seção
     censor: Censor
     cf_major: Dó bemol maior
     cf_minor: Dó bemol menor
@@ -463,6 +464,7 @@ pt:
     external_resource: Recurso externo
     external_resource_uri: Recurso externo URI
     external_resource_url: Recurso externo URL
+    external_work_reference: Referência externa de obra
     f_major: Fá maior
     f_minor: Fá menor
     f_minus_1: F-1
@@ -561,6 +563,7 @@ pt:
     invalid_standard_number: Número ou código padrão cancelado/invalido
     inventory: Inventário
     inventory_item: Item de inventário
+    inventory_number: Número do inventário
     inventory_source: Fonte do inventário
     isbn: ISBN
     ismn: ISMN
@@ -781,6 +784,7 @@ pt:
     qualifying_information: Informação sobre qualificação
     range_dates: Faixa de datas
     real_world_object_uri: URI de objeto do mundo real
+    reconstructed_title: Título reconstruído
     record_actions: Ações do registro
     record_audit: Verificação do registo
     record_origin: Origem do registro
@@ -914,7 +918,7 @@ pt:
     woodwinds: Madeiras
     work: Obra
     work_catalog_note: Nota no catálogo da obra
-    work_node: Work node
+    work_node: Referência externa de obra (Work Node)
     work_number: Número de obra
     work_tag: Etiqueta de revisão de trabalho
     work_tag_incipit_needs_revision: incipit-needs-revision

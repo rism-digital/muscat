@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_11_26_091706) do
+ActiveRecord::Schema[7.2].define(version: 2024_11_26_091706) do
   create_table "active_admin_comments", id: :integer, charset: "utf8mb3", force: :cascade do |t|
     t.string "namespace"
     t.text "body"
@@ -897,5 +897,4 @@ ActiveRecord::Schema[7.1].define(version: 2024_11_26_091706) do
     t.index ["work_a_id"], name: "index_works_to_works_on_work_a_id"
     t.index ["work_b_id"], name: "index_works_to_works_on_work_b_id"
   end
-
 end

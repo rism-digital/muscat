@@ -349,6 +349,7 @@ ko:
     cataloging_musical_sources: Cataloging musical sources
     cataloging_source: Cataloging source
     category: Category
+    category_section: Category/Section
     censor: Censor
     cf_major: C♭ major
     cf_minor: C♭ minor
@@ -463,6 +464,7 @@ ko:
     external_resource: External resource
     external_resource_uri: External resource URI
     external_resource_url: External resource URL
+    external_work_reference: External work reference
     f_major: F major
     f_minor: F minor
     f_minus_1: F-1
@@ -561,6 +563,7 @@ ko:
     invalid_standard_number: Canceled/invalid standard number or code
     inventory: Inventory
     inventory_item: Inventory item
+    inventory_number: Inventory number
     inventory_source: Inventory source
     isbn: ISBN
     ismn: ISMN
@@ -781,6 +784,7 @@ ko:
     qualifying_information: Qualifying information
     range_dates: Range of dates
     real_world_object_uri: Real world object URI
+    reconstructed_title: Reconstructed title
     record_actions: Record actions
     record_audit: Record audit
     record_origin: Record origin
@@ -914,7 +918,7 @@ ko:
     woodwinds: Woodwinds
     work: Work
     work_catalog_note: Work catalog note
-    work_node: Work node
+    work_node: External work reference (Work node)
     work_number: Work number
     work_tag: Work revision tag
     work_tag_incipit_needs_revision: incipit-needs-revision
