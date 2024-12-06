@@ -8,6 +8,11 @@ if !ARGV.empty?
     models = [ARGV[0].constantize]
 end
 
+@fast_mode = false
+@fast_mode = true if ARGV.count > 1 && ARGV[1] == "--fast"
+
+puts "Fast mode on (all suppress_* enabled)" if @fast_mode
+
 begin_time = Time.now
 all_items = 0
 all_unsaved = 0
@@ -51,6 +56,14 @@ models.each do |model|
             begin
                 # Do not make a paper trail snapshot
                 PaperTrail.request(enabled: false) do
+                    if @fast_mode
+                        item.suppress_reindex if item.respond_to? :suppress_reindex
+                        item.suppress_scaffold_marc if item.respond_to? :suppress_scaffold_marc
+                        item.suppress_recreate if item.respond_to? :suppress_recreate
+                        item.suppress_update_count if item.respond_to? :suppress_update_count
+                        item.suppress_update_77x if item.respond_to? :suppress_update_77x
+                        item.suppress_update_workgroups if item.respond_to? :suppress_update_workgroups
+                    end
                     item.save
                     saved_items += 1
                 end

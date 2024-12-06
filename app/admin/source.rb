@@ -9,7 +9,7 @@ ActiveAdmin.register Source do
   
   # Remove all action items
   config.clear_action_items!
-  config.per_page = [10, 30, 50, 100]
+  config.per_page = [10, 30, 50, 100, 1000]
   
   menu :priority => 10, :label => proc {I18n.t(:menu_sources)}
 
@@ -72,7 +72,7 @@ ActiveAdmin.register Source do
       @editor_profile = EditorConfiguration.get_show_layout @item
       @prev_item, @next_item, @prev_page, @next_page, @nav_positions = Source.near_items_as_ransack(params, @item)
       
-      if @item.get_record_type == :edition || @item.get_record_type == :libretto_edition || @item.get_record_type == :theoretica_edition
+      if @item.get_record_type == :edition || @item.get_record_type == :libretto_edition || @item.get_record_type == :theoretica_edition || @item.get_record_type == :inventory_edition
         if @item.holdings.empty?
           flash.now[:error] = I18n.t(:holding_missing_show, new_holding: I18n.t(:new_holding))
         end
@@ -98,7 +98,7 @@ ActiveAdmin.register Source do
       
       template = EditorConfiguration.get_source_default_file(@item.get_record_type) + ".marc"
 
-      if @item.get_record_type == :edition || @item.get_record_type == :libretto_edition || @item.get_record_type == :theoretica_edition
+      if @item.get_record_type == :edition || @item.get_record_type == :libretto_edition || @item.get_record_type == :theoretica_edition || @item.get_record_type == :inventory_edition
         if @item.holdings.empty?
           flash.now[:error] = I18n.t(:holding_missing, new_holding: I18n.t(:new_holding))
         end
@@ -266,25 +266,34 @@ ActiveAdmin.register Source do
   ###########  
 
   # filers
-  filter :title_contains, :label => proc{I18n.t(:title_contains)}, :as => :string
-  filter :std_title_contains, :label => proc{I18n.t(:std_title_contains)}, :as => :string
-  filter :composer_contains, :label => proc{I18n.t(:composer_contains)}, :as => :string
+  filter :title_cont, :label => proc{I18n.t(:title_contains)}, :as => :string
+  filter :std_title_cont, :label => proc{I18n.t(:std_title_contains)}, :as => :string
+  filter :composer_cont, :label => proc{I18n.t(:composer_contains)}, :as => :string
 
-  filter :"source_rism_ids_contains", :label => proc{I18n.t(:filter_id)}, :as => :string
+  filter :"source_rism_ids_cont", :label => proc{I18n.t(:filter_id)}, :as => :string
+  filter :"510c_cont", :label => proc{I18n.t(:filter_book_id)}, :as => :string
   
-  filter :"852a_facet_contains", :label => proc{I18n.t(:library_sigla_contains)}, :as => :string, if: proc { !is_selection_mode? }
+  filter :"852a_facet_cont", :label => proc{I18n.t(:library_sigla_contains)}, :as => :string, if: proc { !is_selection_mode? }
   # see See lib/active_admin_record_type_filter.rb
   # The same as above, but when the lib siglum is forced and cannot be changed
   filter :lib_siglum_with_integer,
     if: proc { is_selection_mode? == true && params.include?(:q) && params[:q].include?(:lib_siglum_with_integer)}, :as => :lib_siglum
   
-  filter :"852c_contains", :label => proc{I18n.t(:filter_shelf_mark)}, :as => :string
-  filter :"599a_contains", :label => proc{I18n.t(:internal_note_contains)}, :as => :string
+  filter :"852c_cont", :label => proc{I18n.t(:filter_shelf_mark)}, :as => :string
+
+  filter :has_internal_note_with_integer, as: :select, :label => proc{I18n.t(:filter_has_internal_notes)},
+    collection: proc{[["True", "has_internal_note:true"], ["False", "has_internal_note:false"]]}
+
+  filter :"599a_cont", :label => proc{I18n.t(:internal_note_contains)}, :as => :string
 
   # This filter is the "any field" one
-  filter :title_equals, :label => proc {I18n.t(:any_field_contains)}, :as => :string
+  filter :title_eq, :label => proc {I18n.t(:any_field_contains)}, :as => :string
   filter :updated_at, :label => proc{I18n.t(:updated_at)}, as: :date_range
   filter :created_at, :label => proc{I18n.t(:created_at)}, as: :date_range
+
+  filter :has_music_incipit_with_integer, as: :select, :label => proc{I18n.t(:filter_has_incipits)},
+  collection: proc{[["True", "has_music_incipit:true"], ["False", "has_music_incipit:false"]]}
+
   # This filter passes the value to the with() function in seach
   # see config/initializers/ransack.rb
   # Use it to filter sources by folder
@@ -357,7 +366,6 @@ ActiveAdmin.register Source do
   end
   
   sidebar :actions, :only => :index do
-    render :partial => "activeadmin/filter_workaround"
     render :partial => "activeadmin/section_sidebar_index"
   end
   
@@ -381,6 +389,22 @@ ActiveAdmin.register Source do
     active_admin_user_wf( self, @item )
     active_admin_navigation_bar( self )
     active_admin_comments if !is_selection_mode?
+
+    # FIXME Experimental: box for InventoryItems
+    active_admin_embedded_link_list(self, @item, InventoryItem) do |context|
+      context.table_for(context.collection) do |cr|
+        context.column "id", :id
+        context.column (I18n.t :filter_composer), :composer
+        context.column (I18n.t :filter_title), :title
+        if !is_selection_mode?
+          context.column "" do |ii|
+            link_to "View", controller: :inventory_items, action: :show, id: ii.id
+          end
+        end
+      end
+    
+  end
+
   end
   
   # 8.0.1 #1190, make the sidebar floating only if there are no holdings

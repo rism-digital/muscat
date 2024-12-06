@@ -4,7 +4,6 @@ module ActiveAdmin
   module Filters
 
     class ActiveFilter
-
       def make_muscat_filter(part, value)
         if part == "record_type"
           code = I18n.t("record_types_codes." + value,  locale: :en)
@@ -17,7 +16,8 @@ module ActiveAdmin
             "Folder not found #{value}"
           end
         else
-          "#{part}:#{value}"
+          "#{value}"
+          # [#{part}] we used to print the filter name, do we need it?
         end
       end
 
@@ -41,15 +41,6 @@ module ActiveAdmin
         end
       end
 
-      def filter_label
-        return unless filter
-
-        if filter[:label].is_a? Proc
-          filter[:label].call
-        else
-          filter[:label] || I18n.t(name, scope: ["formtastic", "labels"], default: nil)
-        end
-      end
     end
   end
 		

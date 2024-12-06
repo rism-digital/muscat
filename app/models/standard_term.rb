@@ -26,6 +26,13 @@ class StandardTerm < ApplicationRecord
   has_many :work_standard_term_relations, class_name: "WorkStandardTermRelation"
   has_many :referring_works, through: :work_standard_term_relations, source: :work
 
+  #has_and_belongs_to_many(:referring_inventory_items, class_name: "InventoryItem", join_table: "inventory_items_to_standard_terms")
+  has_many :inventory_item_standard_term_relations, class_name: "InventoryItemStandardTermRelation"
+  has_many :referring_inventory_items, through: :inventory_item_standard_term_relations, source: :inventory_item
+
+  has_many :inventory_item_standard_term_relations, class_name: "InventoryItemStandardTermRelation"
+  has_many :referring_inventory_items, through: :inventory_item_standard_term_relations, source: :inventory_item
+
   has_and_belongs_to_many(:referring_work_nodes, class_name: "WorkNode", join_table: "work_nodes_to_standard_terms")
 
   has_many :folder_items, as: :item, dependent: :destroy
@@ -45,8 +52,8 @@ class StandardTerm < ApplicationRecord
 
   alias_attribute :id_for_fulltext, :id
 
-  enum wf_stage: [ :inprogress, :published, :deleted, :deprecated ]
-  enum wf_audit: [ :basic, :minimal, :full ]
+  enum :wf_stage, [ :inprogress, :published, :deleted, :deprecated ]
+  enum :wf_audit, [ :basic, :minimal, :full ]
   
   # Suppresses the solr reindex
   def suppress_reindex
@@ -97,5 +104,10 @@ class StandardTerm < ApplicationRecord
   def name
     return term
   end
+
+  # https://github.com/activeadmin/activeadmin/issues/7809
+  # In Non-marc models we can use the default
+  def self.ransackable_associations(_) = reflections.keys
+  def self.ransackable_attributes(_) = attribute_names - %w[token]
 
 end

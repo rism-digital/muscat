@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2024_05_21_090418) do
+ActiveRecord::Schema[7.2].define(version: 2024_11_26_091706) do
   create_table "active_admin_comments", id: :integer, charset: "utf8mb3", force: :cascade do |t|
     t.string "namespace"
     t.text "body"
@@ -111,8 +111,10 @@ ActiveRecord::Schema[7.0].define(version: 2024_05_21_090418) do
     t.datetime "created_at", precision: nil
     t.datetime "updated_at", precision: nil
     t.integer "collection_id"
+    t.string "shelf_mark"
     t.index ["collection_id"], name: "index_holdings_on_collection_id"
     t.index ["lib_siglum"], name: "index_holdings_on_lib_siglum"
+    t.index ["shelf_mark"], name: "index_holdings_on_shelf_mark"
     t.index ["source_id"], name: "index_holdings_on_source_id"
     t.index ["wf_stage"], name: "index_holdings_on_wf_stage"
   end
@@ -226,6 +228,84 @@ ActiveRecord::Schema[7.0].define(version: 2024_05_21_090418) do
     t.integer "institution_id"
     t.index ["institution_id"], name: "index_workgroups_institutions_on_institution_id"
     t.index ["workgroup_id"], name: "index_workgroups_institutions_on_workgroup_id"
+  end
+
+  create_table "inventory_items", charset: "utf8mb3", force: :cascade do |t|
+    t.integer "source_id"
+    t.string "title"
+    t.string "composer"
+    t.text "marc_source"
+    t.integer "lock_version"
+    t.integer "wf_audit"
+    t.integer "wf_owner"
+    t.integer "wf_stage"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "inventory_items_to_holdings", charset: "utf8mb3", force: :cascade do |t|
+    t.integer "inventory_item_id"
+    t.integer "holding_id"
+    t.string "marc_tag"
+    t.string "relator_code"
+  end
+
+  create_table "inventory_items_to_institutions", charset: "utf8mb3", force: :cascade do |t|
+    t.integer "inventory_item_id"
+    t.integer "institution_id"
+    t.string "marc_tag"
+    t.string "relator_code"
+  end
+
+  create_table "inventory_items_to_inventory_items", charset: "utf8mb3", force: :cascade do |t|
+    t.integer "inventory_item_a_id"
+    t.integer "inventory_item_b_id"
+    t.string "marc_tag"
+    t.string "relator_code"
+  end
+
+  create_table "inventory_items_to_people", charset: "utf8mb3", force: :cascade do |t|
+    t.integer "inventory_item_id"
+    t.integer "person_id"
+    t.string "marc_tag"
+    t.string "relator_code"
+  end
+
+  create_table "inventory_items_to_publications", charset: "utf8mb3", force: :cascade do |t|
+    t.integer "inventory_item_id"
+    t.integer "publication_id"
+    t.string "marc_tag"
+    t.string "relator_code"
+  end
+
+  create_table "inventory_items_to_sources", charset: "utf8mb3", force: :cascade do |t|
+    t.integer "inventory_item_id"
+    t.integer "source_id"
+    t.string "marc_tag"
+    t.string "relator_code"
+  end
+
+  create_table "inventory_items_to_standard_terms", charset: "utf8mb3", force: :cascade do |t|
+    t.integer "inventory_item_id"
+    t.integer "standard_term_id"
+    t.string "marc_tag"
+    t.string "relator_code"
+  end
+
+  create_table "inventory_items_to_standard_titles", charset: "utf8mb3", force: :cascade do |t|
+    t.integer "inventory_item_id"
+    t.integer "standard_title_id"
+    t.string "marc_tag"
+    t.string "relator_code"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "inventory_items_to_works", charset: "utf8mb3", force: :cascade do |t|
+    t.integer "inventory_item_id"
+    t.integer "work_id"
+    t.string "marc_tag"
+    t.string "relator_code"
   end
 
   create_table "liturgical_feasts", id: :integer, charset: "utf8mb3", force: :cascade do |t|
@@ -434,6 +514,7 @@ ActiveRecord::Schema[7.0].define(version: 2024_05_21_090418) do
     t.index ["source_id"], name: "index_sources_on_source_id"
     t.index ["std_title"], name: "index_sources_on_std_title", length: 255
     t.index ["updated_at"], name: "index_sources_on_updated_at"
+    t.index ["wf_owner"], name: "index_sources_on_wf_owner"
     t.index ["wf_stage"], name: "index_sources_on_wf_stage"
   end
 
@@ -615,6 +696,7 @@ ActiveRecord::Schema[7.0].define(version: 2024_05_21_090418) do
     t.string "whodunnit"
     t.text "object", size: :long
     t.datetime "created_at", precision: nil
+    t.index ["item_id"], name: "index_versions_on_item_id"
     t.index ["item_type", "item_id"], name: "index_versions_on_item_type_and_item_id"
   end
 
@@ -657,6 +739,7 @@ ActiveRecord::Schema[7.0].define(version: 2024_05_21_090418) do
     t.datetime "updated_at", precision: nil
     t.text "marc_source"
     t.integer "lock_version", default: 0, null: false
+    t.string "composer"
     t.index ["title"], name: "index_works_on_title"
     t.index ["wf_stage"], name: "index_works_on_wf_stage"
   end
@@ -814,5 +897,4 @@ ActiveRecord::Schema[7.0].define(version: 2024_05_21_090418) do
     t.index ["work_a_id"], name: "index_works_to_works_on_work_a_id"
     t.index ["work_b_id"], name: "index_works_to_works_on_work_b_id"
   end
-
 end

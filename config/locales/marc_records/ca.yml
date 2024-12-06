@@ -146,12 +146,13 @@ ca:
     austria_tyrol: 'Àustria: Tirol'
     austria_upper_austria: 'Àustria: Alta Àustria'
     austria_vienna: 'Àustria: Viena'
-    azerbiajan: Azerbaidjan
+    azerbaijan: Azerbaidjan
     bangladesh: Bangladesh
     belarus: Bielorússia
     belgium: Bèlgica
     benin: Benín
     bolivia: Bolívia
+    bosnia_and_herzegovina: Bòsnia i Hercegovina
     bosnia_herzegovina: Bòsnia i Hercegovina
     brazil: Brasil
     bulgaria: Bulgària
@@ -194,9 +195,9 @@ ca:
     japan: Japó
     korea: Corea del Sud
     latvia: Letònia
+    lebanon: Líban
     liechtenstein: Liechtenstein
     lithuania: Lituània
-    lebanon: Líban
     luxembourg: Luxemburg
     malta: Malta
     mexico: Mèxic
@@ -219,13 +220,14 @@ ca:
     puerto_rico: Puerto Rico
     romania: Romania
     russian_federation: Federació Russa
+    san_marino: San Marino
     saudi_arabia: Aràbia Saudita
     serbia: Sèrbia
     slovakia: Eslovàquia
     slovenia: Eslovènia
     south_africa: Sud-àfrica
     spain: Espanya
-    suriname: Suriname
+    suriname: Surinam
     sweden: Suècia
     switzerland: Suïssa
     switzerland_vaud: 'Suïssa: cantó de Vaud'
@@ -234,6 +236,7 @@ ca:
     tajikistan: Tadjikistan
     trinidad_tobego: Trinitat i Tobago
     turkey: Turquia
+    turkmenistan: Turkmenistan
     uganda: Uganda
     uk: Regne Unit
     ukraine: Ucraïna
@@ -275,6 +278,7 @@ ca:
     alleged: Suposat
     alternate_spelling: Ortografia alternativa
     alternative_work_title: Títol alternatiu
+    amount: Número
     archive: Arxiu
     arrangement: Arranjament
     arrangement_statement: Menció d'arranjament
@@ -345,6 +349,7 @@ ca:
     cataloging_musical_sources: Catalogació de fonts musicals
     cataloging_source: Font de la catalogació
     category: Categoria
+    category_section: Categoria/secció
     censor: Censor
     cf_major: Do♭ major
     cf_minor: Do♭ menor
@@ -428,7 +433,6 @@ ca:
     distributor: Distribuïdor
     documentation_center: Centre de documentació
     donor: Donant
-    doubtful: Dubtós
     dramatic_roles_original: Noms originals dels personatges
     dramatic_roles_standardized: Noms normalitzats dels personatges
     ds_major: Re♯ major
@@ -460,6 +464,7 @@ ca:
     external_resource: Recurs extern
     external_resource_uri: URI del recurs extern
     external_resource_url: URL del recurs extern
+    external_work_reference: Referència externa d'obra
     f_major: Fa major
     f_minor: Fa menor
     f_minus_1: F-1
@@ -480,9 +485,11 @@ ca:
     figured_bass_scores: Baix xifrat
     fijian: Fijià
     fingerprint_identifier: Identificador de l'empremta
+    first_entry: Primera entrada
     first_second_group: Primer/segon grup
     form_subdivision: Subdivisió de forma
     format_extent: Format, extensió
+    former_sigla: Sigla anterior
     former_owner: Propietari anterior
     fragments: Fragments
     fs_major: Fa♯ major
@@ -522,7 +529,13 @@ ca:
     heading_personal_name1: Nom personal
     help_transposing_instruments: Ajuda pels instruments transpositors
     history_institution: Història de la institució
+    holding: Còpia posseïda
     holdings_location: Camps d'exemplars i fons
+    identification_status: Estat de la identificació
+    identified: Identificat
+    identified_holding: Fons identificat
+    identified_source: Obra identificada
+    identified_work: Obra identificada
     identity: Identitat
     identity_area: Identitat
     iiif_manifest: "Manifiest IIIF (font digitalitzada)"
@@ -548,6 +561,10 @@ ca:
     internal_note: Nota interna
     introduction: Introducció
     invalid_standard_number: Número o codi estàndard cancel·lat/invàlid
+    inventory: Inventari
+    inventory_item: Exemplar de l'inventari
+    inventory_number: Número d'inventari
+    inventory_source: Font de l'inventari
     isbn: ISBN
     ismn: ISMN
     issn: ISSN
@@ -567,6 +584,7 @@ ca:
     language_of_cataloging: Idioma de catalogació
     language_original_text: Idioma del text original
     language_text: Llengua del text
+    later_entry: Entrada posterior
     later_heading: Encapçalament posterior
     latitude: Latitud
     leader: Capçalera
@@ -712,6 +730,7 @@ ca:
     partial_autograph: Parcialment autògraf
     parts_held: Parts existents
     parts_held_extent: Parts existents i extensió
+    part_of_title: Part del títol
     patron: Mecenes
     people: Persones
     people_institutions: Persones i institucions
@@ -741,6 +760,7 @@ ca:
     plate_number: Número de planxa
     plucked_instruments: Instruments de corda pinçada
     possible_autograph_manuscript: Possible manuscrit autògraf
+    possibly_identified: Possiblement identificat
     postal_code: Codi postal
     postal_place: Adreça postal
     preceding_entry: Entrada anterior
@@ -764,6 +784,7 @@ ca:
     qualifying_information: Informació qualificada
     range_dates: Interval de dates
     real_world_object_uri: URI d'objecte del món real
+    reconstructed_title: Títol reconstruït
     record_actions: Accions al registre
     record_audit: Validació del registre
     record_origin: Origen del registre
@@ -897,6 +918,7 @@ ca:
     woodwinds: Vent-fusta
     work: Obra
     work_catalog_note: Nota sobre el catàleg de l'obra
+    work_node: Referència externa d'obra (Work node)
     work_number: Número d'obra
     work_tag: Etiqueta de revisió per obra
     work_tag_incipit_needs_revision: Íncipit a revisar
@@ -917,14 +939,14 @@ ca:
     P60194: "Insertat en"
     P60183: "Insert"
   relations_works:
-    P60250: "Has derivative"
-    P60305: "Has source"
-    P60216: "Is expanded as"
-    P60294: "Is expanded version of"
-    P60274: "Is arranged as"
-    P60242: "Is arragement of"
-    P60198: "Is complemented by"
-    P60313: "Undefined"
+    P60250: "Obra derivada"
+    P60305: "Té com a font"
+    P60216: "Desenvolupat com a"
+    P60294: "Versió desenvolupada de"
+    P60274: "Arranjat com a"
+    P60242: "Arranjament de"
+    P60198: "Completat per"
+    P60313: "No definit"
   verovio:
     position: "Posició"
     warning: "Avís"
@@ -994,7 +1016,7 @@ ca:
     ERR_063_LIGATURE_PITCH: Una lligadura no pot tenir dues notes consecutives del mateix to.
     ERR_064_LIGATURE_DURATION: La duració en una lligadura no pot ser més curta que una rodona.
     ERR_065_MREST_INVALID_MEASURE: Un compàs de silenci no pot incloure res més.
-    ERR_066_EMPTY_CONTAINER: A grace group or a beam cannot be empty.
+    ERR_066_EMPTY_CONTAINER: Un ornament o una barra d'unió entre notes no poden estar buides.
   rism_online:
     manuscript: "Manuscrit"
     printed: "Imprès"

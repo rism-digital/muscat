@@ -5,7 +5,8 @@
   @editor_profile.each_subfield_for(tag_name) do |subfieldopt, field_settings|
 		field_settings = Hash.new if !field_settings
 		if subfieldopt == subfield
-			read_only = field_settings["read_only"] != nil ? field_settings["read_only"] : false
+			read_only = field_settings["read_only"] || false
+			read_only = false if (field_settings["override_admin"] || false) && (current_user.has_role?(:editor) || current_user.has_role?(:admin))
 			if field_settings["trigger"] && field_settings["trigger"].is_a?(Array)
 				data = field_settings["trigger"].to_json.html_safe
 				triggers = "data-trigger='".html_safe + data + "'".html_safe
@@ -53,8 +54,8 @@
 <%- else %>
   
   <% if read_only %>
-      <input class="subfield_entry <%=autocomplete_extra_class%>"  disabled="disabled" size="<%= params['width'] -%>" type="text" value="<%= h content %>"/>
-                    <input type="hidden" class="serialize_marc" data-tag="<%=tag_name%>" data-subfield="<%=subfield%>" value="<%= h content %>"/>
+    <input class="subfield_entry <%=autocomplete_extra_class%>"  disabled="disabled" size="<%= params['width'] -%>" type="text" value="<%= h content %>"/>
+    <input type="hidden" class="serialize_marc" data-tag="<%=tag_name%>" data-subfield="<%=subfield%>" value="<%= h content %>"/>
                   
     <% else %>
 

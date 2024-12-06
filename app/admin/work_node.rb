@@ -10,7 +10,7 @@ ActiveAdmin.register WorkNode do
   
   # Remove all action items
   config.clear_action_items!
-  config.per_page = [10, 30, 50, 100]
+  config.per_page = [10, 30, 50, 100, 1000]
   
   collection_action :autocomplete_work_node_title, :method => :get
 
@@ -30,7 +30,7 @@ ActiveAdmin.register WorkNode do
   # temporarily allow all parameters
   controller do
     
-    autocomplete :work_node, :title, :extra_data => [:title], :string_boundary => true
+    autocomplete :work_node, :title, :display_value => :autocomplete_label, :extra_data => [:title, :composer]#, :string_boundary => true
     
     after_destroy :check_model_errors
     before_create do |item|
@@ -119,7 +119,7 @@ ActiveAdmin.register WorkNode do
   ###########
   
   # Solr search all fields: "_equal"
-  filter :title_equals, :label => proc {I18n.t(:any_field_contains)}, :as => :string
+  filter :title_eq, :label => proc {I18n.t(:any_field_contains)}, :as => :string
   # This filter passes the value to the with() function in seach
   # see config/initializers/ransack.rb
   # Use it to filter sources by folder
@@ -131,6 +131,7 @@ ActiveAdmin.register WorkNode do
     column (I18n.t :filter_wf_stage) {|work_node| status_tag(work_node.wf_stage,
       label: I18n.t('status_codes.' + (work_node.wf_stage != nil ? work_node.wf_stage : ""), locale: :en))} 
     column (I18n.t :filter_id), :id  
+    column (I18n.t :filter_composer), :composer, sortable: :composer_order
     column (I18n.t :filter_title), :title
     column (I18n.t :filter_sources), :src_count_order, sortable: :src_count_order do |element|
 			all_hits = @arbre_context.assigns[:hits]
@@ -140,7 +141,6 @@ ActiveAdmin.register WorkNode do
   end
   
   sidebar :actions, :only => :index do
-    render :partial => "activeadmin/filter_workaround"
     render :partial => "activeadmin/section_sidebar_index"
   end
   

@@ -12,7 +12,7 @@ ActiveAdmin.register Publication do
   
   # Remove all action items
   config.clear_action_items!
-  config.per_page = [10, 30, 50, 100]
+  config.per_page = [10, 30, 50, 100, 1000]
 
   breadcrumb do
     active_admin_muscat_breadcrumb
@@ -161,9 +161,9 @@ ActiveAdmin.register Publication do
   ###########  
   
   # Solr search all fields: "_equal"
-  filter :name_equals, :label => proc {I18n.t(:any_field_contains)}, :as => :string
-  filter :"100a_or_700a_contains", :label => proc {I18n.t(:filter_author_or_editor)}, :as => :string
-  filter :title_contains, :label => proc {I18n.t(:filter_description)}, :as => :string
+  filter :short_name_eq, :label => proc {I18n.t(:any_field_contains)}, :as => :string
+  filter :"100a_or_700a_cont", :label => proc {I18n.t(:filter_author_or_editor)}, :as => :string
+  filter :title_cont, :label => proc {I18n.t(:filter_description)}, :as => :string
   
   #filter :"240g_contains", :label => proc {I18n.t(:filter_category_type)}, :as => :select,
   #  collection: proc{["Bibliography", "Catalog", "Collective catalogue", "Encyclopedia", "Music edition", "Other",
@@ -172,9 +172,9 @@ ActiveAdmin.register Publication do
   filter :"240g_with_integer", :label => proc{I18n.t(:"filter_category_type")}, as: :select,
     collection: proc{@categories.sort.collect {|k| [@editor_profile.get_label(k.to_s), "240g:#{k}"]}}
 
-  filter :"260b_contains", :label => proc {I18n.t(:filter_publisher)}, :as => :string
-  filter :"place_contains", :label => proc {I18n.t(:filter_place_of_publication)}, :as => :string
-  filter :"date_contains", :label => proc {I18n.t(:filter_date_of_publication)}, :as => :string
+  filter :"260b_cont", :label => proc {I18n.t(:filter_publisher)}, :as => :string
+  filter :"place_cont", :label => proc {I18n.t(:filter_place_of_publication)}, :as => :string
+  filter :"date_cont", :label => proc {I18n.t(:filter_date_of_publication)}, :as => :string
   filter :updated_at, :label => proc{I18n.t(:updated_at)}, as: :date_range
   filter :created_at, :label => proc{I18n.t(:created_at)}, as: :date_range
   # This filter passes the value to the with() function in seach
@@ -182,6 +182,9 @@ ActiveAdmin.register Publication do
   # Use it to filter sources by folder
   filter :id_with_integer, :label => proc {I18n.t(:is_in_folder)}, as: :select, 
          collection: proc{Folder.where(folder_type: "Publication").collect {|c| [c.name, "folder_id:#{c.id}"]}}
+
+  filter :wf_owner_with_integer, :label => proc {I18n.t(:filter_owner)}, :as => :flexdatalist, data_path: proc{list_for_filter_admin_users_path()}
+
   # work catalogue filter
   filter :work_catalogue_with_integer, :label => proc{I18n.t(:work_catalogue)}, as: :select, 
   collection: [["Yes", "work_catalogue:true"],["No", "work_catalogue:false"]], :if => proc{ current_user.has_any_role?(:admin) }
@@ -204,7 +207,6 @@ ActiveAdmin.register Publication do
   end
   
   sidebar :actions, :only => :index do
-    render :partial => "activeadmin/filter_workaround"
     render :partial => "activeadmin/section_sidebar_index"
   end
   
@@ -215,7 +217,8 @@ ActiveAdmin.register Publication do
   ## Show ##
   ##########
   
-  show :title => proc{ active_admin_publication_show_title( @item.author, @item.title.truncate(60), @item.id, @item.wf_stage).html_safe } do
+
+  show :title => proc{ active_admin_publication_show_title( @item.author, @item.title&.truncate(60), @item.id, @item.wf_stage).html_safe } do
     # @item retrived by from the controller is not available there. We need to get it from the @arbre_context
     active_admin_navigation_bar( self )
     render('jobs/jobs_monitor')

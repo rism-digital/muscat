@@ -96,7 +96,6 @@
 #= require new_window_select_non_marc
 #= require jsdiff.js
 #= require job_progress_bar
-#= require filter_workaround
 #= require merge_authority
 #= require compare_versions_actions
 
@@ -110,5 +109,6 @@
 
 #=require tribute.min
 #=require tribute_load
+#=require clipboard.min
 
 #= require jquery.highlight-within-textarea

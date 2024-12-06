@@ -146,12 +146,13 @@ it:
     austria_tyrol: 'Austria: Tirolo'
     austria_upper_austria: 'Austria: Austria Superiore'
     austria_vienna: 'Austria: Vienna'
-    azerbiajan: Azerbaigian
+    azerbaijan: Azerbaigian
     bangladesh: Bangladesh
     belarus: Bielorussia
     belgium: Belgio
     benin: Benin
     bolivia: Bolivia
+    bosnia_and_herzegovina: Bosnia ed Herzegovina
     bosnia_herzegovina: Bosnia ed Herzegovina
     brazil: Brasile
     bulgaria: Bulgaria
@@ -194,9 +195,9 @@ it:
     japan: Giappone
     korea: Corea, Repubblica di
     latvia: Lettonia
+    lebanon: Lebano
     liechtenstein: Principato del Liechtenstein
     lithuania: Lituania
-    lebanon: Lebano
     luxembourg: Lussemburgo
     malta: Malta
     mexico: Messico
@@ -219,6 +220,7 @@ it:
     puerto_rico: Portorico
     romania: Romania
     russian_federation: Federazione Russa
+    san_marino: San Marino
     saudi_arabia: Arabia Saudita
     serbia: Serbia
     slovakia: Slovacchia
@@ -234,6 +236,7 @@ it:
     tajikistan: Tagikistan
     trinidad_tobego: Trinidad e Tobago
     turkey: Turchia
+    turkmenistan: Turkmenistan
     uganda: Uganda
     uk: Regno Unito
     ukraine: Ucraina
@@ -275,6 +278,7 @@ it:
     alleged: Presunta
     alternate_spelling: Ortografia alternativa
     alternative_work_title: Titolo alternativo dell'opera
+    amount: Numero
     archive: Archivio
     arrangement: Arrangiamento
     arrangement_statement: Arrangiamento
@@ -345,6 +349,7 @@ it:
     cataloging_musical_sources: Catalogazione delle fonti musicali
     cataloging_source: Fonte della catalogazione
     category: Tipo
+    category_section: Categoria/sezione
     censor: Censore
     cf_major: Do♭ maggiore
     cf_minor: Do♭ minore
@@ -428,7 +433,6 @@ it:
     distributor: Distributore
     documentation_center: Centro di documentazione
     donor: Donatore
-    doubtful: Dubbia
     dramatic_roles_original: Nomi originali dei personaggi
     dramatic_roles_standardized: Nomi standardizzati dei personaggi
     ds_major: Re♯ maggiore
@@ -460,6 +464,7 @@ it:
     external_resource: Localizzazione e accesso elettronico
     external_resource_uri: URI per l'accesso elettronico
     external_resource_url: URL per l'accesso elettronico
+    external_work_reference: Voce di autorità esterna
     f_major: Fa maggiore
     f_minor: Fa minore
     f_minus_1: F-1
@@ -480,9 +485,11 @@ it:
     figured_bass_scores: Basso cifrato
     fijian: Figiano
     fingerprint_identifier: Impronta
+    first_entry: Prima notizia
     first_second_group: Primo/Secondo gruppo
     form_subdivision: Suddivisione formale
     format_extent: Categoria di fonte, estensione
+    former_sigla: Sigle obsolete
     former_owner: Proprietario precedente
     fragments: Frammenti
     fs_major: Fa♯ maggiore
@@ -522,7 +529,13 @@ it:
     heading_personal_name1: Nome di persona
     help_transposing_instruments: Tabella degli strumenti traspositori
     history_institution: Storia dell'ente
+    holding: Copia posseduta
     holdings_location: Informazioni sul fondo
+    identification_status: Stato dell'identificazione
+    identified: Fonte identificata
+    identified_holding: Esemplare identificato
+    identified_source: Fonte identificata
+    identified_work: Composizione identificata
     identity: Identità
     identity_area: Identità
     iiif_manifest: "IIIF manifest (fonte digitale)"
@@ -548,6 +561,10 @@ it:
     internal_note: Nota interna
     introduction: Introduzione
     invalid_standard_number: Numero standard o codice standard annullato/non valido
+    inventory: Inventario
+    inventory_item: Voce d'inventario
+    inventory_number: Numero nell'inventario
+    inventory_source: Inventario
     isbn: ISBN
     ismn: ISMN
     issn: ISSN
@@ -567,6 +584,7 @@ it:
     language_of_cataloging: Lingua della catalogazione
     language_original_text: Lingua del testo originale
     language_text: Lingua del testo cantato
+    later_entry: Notizia successiva
     later_heading: Intestazione successiva
     latitude: Latitudine
     leader: Leader
@@ -712,6 +730,7 @@ it:
     partial_autograph: Autografo parziale
     parts_held: Parti staccate esistenti
     parts_held_extent: Parti staccate, estensione
+    part_of_title: Parte del titolo
     patron: Committente
     people: Persone
     people_institutions: Persone ed istituzioni
@@ -741,6 +760,7 @@ it:
     plate_number: Numero della lastra
     plucked_instruments: Strumenti a pizzico
     possible_autograph_manuscript: Possibile manoscritto autografo
+    possibly_identified: Identificazione ipotetica
     postal_code: Codice postale
     postal_place: Luogo postale
     preceding_entry: Notizia precedente
@@ -764,6 +784,7 @@ it:
     qualifying_information: Informazioni qualificanti
     range_dates: Ambito di datazione
     real_world_object_uri: Oggetto URI
+    reconstructed_title: Titolo ricostruito
     record_actions: Azioni per la scheda
     record_audit: Controllo del record
     record_origin: Origine della scheda
@@ -897,6 +918,7 @@ it:
     woodwinds: Legni
     work: Opera
     work_catalog_note: Nota sul catalogo delle opere
+    work_node: Voce di autorità esterna (Work node)
     work_number: Numero dell'opera
     work_tag: Tag per il Work
     work_tag_incipit_needs_revision: incipit-needs-revision

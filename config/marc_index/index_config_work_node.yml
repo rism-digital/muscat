@@ -6,7 +6,19 @@ config:
     :model: work_node
 
 fields:  
+    "100a":
+      :type: text
     "100d":
+      :type: text 
+    "100n":
+      :type: text 
+    "100n":
+      :type: text 
+    "100r":
+      :type: text
+    "100t":
+      :type: text 
+    "100p":
       :type: text 
     "100d_birthdate":
       :from_tag: "100"

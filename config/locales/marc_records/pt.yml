@@ -146,12 +146,13 @@ pt:
     austria_tyrol: 'Austria: Tyrol'
     austria_upper_austria: 'Austria: Upper Austria'
     austria_vienna: 'Austria: Vienna'
-    azerbiajan: Azerbaijão
+    azerbaijan: Azerbaijão
     bangladesh: Bangladesh
     belarus: Bielorrússia
     belgium: Bélgica
     benin: Benim
     bolivia: Bolívia
+    bosnia_and_herzegovina: Bósnia Herzegovina
     bosnia_herzegovina: Bósnia Herzegovina
     brazil: Brasil
     bulgaria: Bulgária
@@ -194,9 +195,9 @@ pt:
     japan: Japão
     korea: Coreia, República da
     latvia: Letónia
+    lebanon: Líbano
     liechtenstein: Liechtenstein
     lithuania: Lituânia
-    lebanon: Líbano
     luxembourg: Luxemburgo
     malta: Malta
     mexico: México
@@ -219,6 +220,7 @@ pt:
     puerto_rico: Porto Rico
     romania: Romênia
     russian_federation: Federação Russa
+    san_marino: San Marino
     saudi_arabia: Arábia Saudita
     serbia: Sérvia
     slovakia: Eslováquia
@@ -234,6 +236,7 @@ pt:
     tajikistan: Tajiquistão
     trinidad_tobego: Trinidad e Tobago
     turkey: Turquia
+    turkmenistan: Turquemenistão
     uganda: Uganda
     uk: Reino Unido
     ukraine: Ucrânia
@@ -275,6 +278,7 @@ pt:
     alleged: Suposta
     alternate_spelling: Ortografia alternativa
     alternative_work_title: Título alternativo da obra
+    amount: Número
     archive: Arquivo
     arrangement: Arranjo
     arrangement_statement: Menção de arranjo
@@ -345,6 +349,7 @@ pt:
     cataloging_musical_sources: Catalogando fontes musicais
     cataloging_source: Agência catalogadora
     category: Categoria
+    category_section: Categoria/Seção
     censor: Censor
     cf_major: Dó bemol maior
     cf_minor: Dó bemol menor
@@ -428,7 +433,6 @@ pt:
     distributor: Distribuidor
     documentation_center: Centro de Documentação
     donor: Doador
-    doubtful: Duvidosa
     dramatic_roles_original: Papéis dramáticos mencionado, grafia original
     dramatic_roles_standardized: Papéis dramáticos identificados, normalizados
     ds_major: Ré sustenido maior
@@ -460,6 +464,7 @@ pt:
     external_resource: Recurso externo
     external_resource_uri: Recurso externo URI
     external_resource_url: Recurso externo URL
+    external_work_reference: Referência externa de obra
     f_major: Fá maior
     f_minor: Fá menor
     f_minus_1: F-1
@@ -480,9 +485,11 @@ pt:
     figured_bass_scores: Baixo cifrado
     fijian: Fijianas
     fingerprint_identifier: Identificador de impressão
+    first_entry: Primeira entrada
     first_second_group: Primeiro/Segundo grupo
     form_subdivision: Divisão da forma
     format_extent: Formato, extensão
+    former_sigla: Antiga sigla
     former_owner: Proprietário anterior
     fragments: Fragmentos
     fs_major: Fá sustenido maior
@@ -522,7 +529,13 @@ pt:
     heading_personal_name1: Título-Nome de pessoa
     help_transposing_instruments: Ajuda para instrumentos transpositores
     history_institution: História da instituição
+    holding: Cópia possuída
     holdings_location: Informação sobre o fundo
+    identification_status: Estado da identificação
+    identified: Identificado
+    identified_holding: Cópia possuída identificada
+    identified_source: Fonte identificada
+    identified_work: Trabalho identificado
     identity: Identidade
     identity_area: Identidade
     iiif_manifest: "Manifesto IIIF (fonte digitalizada)"
@@ -534,7 +547,7 @@ pt:
     incipit: Incipit
     incipit_number: Número de incipit
     incipits: Incipit
-    includes_holdings_from: Includes holdings from
+    includes_holdings_from: Inclui holdings de
     index_terms: Indexadores
     information_found: Informação encontrada
     initial: Inicial
@@ -548,6 +561,10 @@ pt:
     internal_note: Nota interna
     introduction: Introdução
     invalid_standard_number: Número ou código padrão cancelado/invalido
+    inventory: Inventário
+    inventory_item: Item de inventário
+    inventory_number: Número do inventário
+    inventory_source: Fonte do inventário
     isbn: ISBN
     ismn: ISMN
     issn: ISSN
@@ -567,6 +584,7 @@ pt:
     language_of_cataloging: Idioma de catalogação
     language_original_text: Idioma do texto original
     language_text: Idioma do texto
+    later_entry: Entrada posterior
     later_heading: Título posterior
     latitude: Latitude
     leader: Líder
@@ -712,6 +730,7 @@ pt:
     partial_autograph: Autógrafo parcial
     parts_held: Partes existentes
     parts_held_extent: Partes existentes e extensão
+    part_of_title: Parte do título
     patron: Patrocinadore
     people: Pessoas
     people_institutions: Pessoas e instituições
@@ -741,6 +760,7 @@ pt:
     plate_number: Número de chapa
     plucked_instruments: Cordas dedilhadas
     possible_autograph_manuscript: Possível manuscrito autógrafo
+    possibly_identified: Possivelmente identificado
     postal_code: Código postal
     postal_place: Local postal
     preceding_entry: Registro precedente
@@ -753,7 +773,7 @@ pt:
     production_personnel: Pessoal da produção
     profession_or_function: Profissão ou função
     provenance: Proveniência
-    provenance_notes: Provenance note
+    provenance_notes: Nota de proveniência
     pseudonym: Pseudónimo
     public_note: Nota pública
     publisher: Casa editora
@@ -764,6 +784,7 @@ pt:
     qualifying_information: Informação sobre qualificação
     range_dates: Faixa de datas
     real_world_object_uri: URI de objeto do mundo real
+    reconstructed_title: Título reconstruído
     record_actions: Ações do registro
     record_audit: Verificação do registo
     record_origin: Origem do registro
@@ -884,7 +905,7 @@ pt:
     typography: Tipografia
     uncategorized: Sem categoria
     unknown: Desconhecido
-    unparsed_fingerprint: Fingerprint
+    unparsed_fingerprint: Assinatura Digital
     variant_ms_title: Título variante na fonte
     variant_source_title: Título variante na fonte
     variations: Variações
@@ -897,6 +918,7 @@ pt:
     woodwinds: Madeiras
     work: Obra
     work_catalog_note: Nota no catálogo da obra
+    work_node: Referência externa de obra (Work Node)
     work_number: Número de obra
     work_tag: Etiqueta de revisão de trabalho
     work_tag_incipit_needs_revision: incipit-needs-revision
@@ -917,14 +939,14 @@ pt:
     P60194: "Inserir em"
     P60183: "Inserir"
   relations_works:
-    P60250: "Has derivative"
-    P60305: "Has source"
-    P60216: "Is expanded as"
-    P60294: "Is expanded version of"
-    P60274: "Is arranged as"
-    P60242: "Is arragement of"
-    P60198: "Is complemented by"
-    P60313: "Undefined"
+    P60250: "Tem derivada"
+    P60305: "Tem origem"
+    P60216: "É expandido como"
+    P60294: "É a versão expandida de"
+    P60274: "Arranjado como"
+    P60242: "É arrependimento de"
+    P60198: "É complementado por"
+    P60313: "Indefinido"
   verovio:
     position: "Posição"
     warning: "Aviso"

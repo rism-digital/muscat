@@ -55,6 +55,11 @@ fields:
        :index_processor_helper: :marc_extract_dates
   "500a":
       :holding_record: true
+  "510a":
+      :type: string
+      :store: true
+  "510c":
+      :type: text
   "518a":
       :holding_record: true
   "561a":
@@ -128,4 +133,8 @@ fields:
     :store: true
     :type: text
   "973u":
-      :holding_record: true
+    :holding_record: true
+  "bookid_string":
+    :index_processor_helper: marc_extract_bookid
+    :store: true
+    :as: "bookid_sms"

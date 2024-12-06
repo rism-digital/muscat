@@ -20,6 +20,8 @@ client:
           - edition
           - libretto_edition
           - theoretica_edition
+          - inventory
+          - inventory_edition
     tags:
       "0": mandatory
   "240":
@@ -66,15 +68,20 @@ client:
         - theoretica_source
         - libretto_edition_content
         - theoretica_edition_content
+        - inventory
+        - inventory_edition
     tags:
-      "a": mandatory
-# Remove until 593 is sorted out
-# I guess we have not sorted this out yet
-#  "593":
-#    tag_overrides:
-#    tags:
-#      "a": mandatory
-#      "b": mandatory
+      "a":
+        any_of:
+          - must_contain: "-"
+          - mandatory
+  "593":
+    tags:
+      a: 
+        any_of:
+          - check_group
+          - mandatory
+      b: mandatory
   "594": 
     tag_overrides:
       exclude:
@@ -135,6 +142,8 @@ client:
         - theoretica_edition
         - edition
         - composite_volume
+        - inventory
+        - inventory_edition
     tags:
       'w': mandatory
   "852":
@@ -147,6 +156,7 @@ client:
         - libretto_edition_content
         - theoretica_edition
         - theoretica_edition_content
+        - inventory_edition
         "c":
         - edition
         - edition_content
@@ -154,13 +164,16 @@ client:
         - libretto_edition_content
         - theoretica_edition
         - theoretica_edition_content
+        - inventory_edition
     tags:
       c: mandatory
       x: mandatory
   "856": 
     tags:
       u:
-        begins_with: "http"
+        any_of:
+          - begins_with: "http"
+          - required
       z:
         required_if:
           "856": "u"

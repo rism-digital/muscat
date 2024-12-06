@@ -15,8 +15,8 @@ class User < ApplicationRecord
   # Used to permit username or email login
   attr_writer :login
 
-  enum notification_type: [:every, :daily, :weekly ]
-  enum preference_wf_stage: [ :inprogress, :published, :deleted ]
+  enum :notification_type, [:every, :daily, :weekly ]
+  enum :preference_wf_stage, [ :inprogress, :published, :deleted ]
   scope :ordered, -> {
     joins(:workgroups).order("workgroup.name")
           
@@ -199,4 +199,10 @@ class User < ApplicationRecord
     user_create_strategy != :saml_authenticatable
     super
   end
+
+  # https://github.com/activeadmin/activeadmin/issues/7809
+  # In Non-marc models we can use the default
+  def self.ransackable_associations(_) = reflections.keys
+  def self.ransackable_attributes(_) = attribute_names - %w[token]
+
 end

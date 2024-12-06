@@ -35,6 +35,8 @@ class Ability
         can [:read, :create, :update, :destroy], Work
       end
 
+      can [:read, :create, :update, :destroy], InventoryItem
+
       can :prepare_convert, Source
       can :convert_manuscript, Source
 
@@ -91,6 +93,8 @@ class Ability
         user.can_edit? source
       end
       
+      can [:read, :create, :update, :destroy], InventoryItem
+
       can :update, Source do |s|
         user.can_edit_edition?(s)
       end

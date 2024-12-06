@@ -1,10 +1,11 @@
 class MarcValidator
 include ApplicationHelper
   
-  DEBUG = false
 
   # test example:
   # MarcValidator.new(Source.first, nil, nil, nil, ValidationExclusion.new(Source)).validate_tags
+
+  DEBUG = false
 
   def initialize(object, user = nil, warnings = false, logger = nil, exclusions = nil)
     @validation = EditorValidation.get_default_validation(object)
@@ -86,26 +87,18 @@ include ApplicationHelper
           next
         end
         
-        marc_tags.each do |marc_tag|
+        marc_tags.each_with_index do |marc_tag, index|
           marc_subtag = marc_tag.fetch_first_by_tag(subtag)
           #ap marc_subtag
           
           if rule.is_a? String
-            
-            if rule == "required" || rule == "required, warning" || rule == "mandatory"
-              if !marc_subtag || !marc_subtag.content
-                #@errors["#{tag}#{subtag}"] = rule
-                add_error(tag, subtag, rule) if (!@validation.is_warning?(tag, subtag) || @show_warnings)
-                puts "Missing #{tag} #{subtag}, #{rule}" if DEBUG
-              end
-            elsif rule == "uniq"
-              binding.pry
-            else
-              puts "Unknown rule #{rule}" if rule != "mandatory"
-            end
-            
+            validate_string_tag(rule, marc_tag, marc_subtag, tag, subtag)         
           elsif rule.is_a? Hash
-            if rule.has_key?("begins_with")
+            if rule.has_key?("any_of")
+              rule["any_of"].each do |subrule|
+                validate_string_tag(subrule, marc_tag, marc_subtag, tag, subtag)
+              end
+            elsif rule.has_key?("begins_with")
               subst = rule["begins_with"]
               if marc_subtag && marc_subtag.content && !marc_subtag.content.start_with?(subst)
                 add_error(tag, subtag, "begin_with:#{subst}")
@@ -310,12 +303,18 @@ include ApplicationHelper
     @user
   end
 
-  def to_s
+  def to_s(options = {})
     output = ""
     @errors.each do |tag, subtags|
       subtags.each do |subtag, messages|
         messages.each do |message|
-          output += "#{@object.id}\t#{tag}\t#{subtag}\t#{message}\n"
+          loc_message = message
+          if options.fetch(:translate, true)
+            message = "no_subtag" if subtag == "no_subtag"
+            sanit_message = message.split("-").first.split(":").first
+            loc_message = I18n.t("backend_validation." + sanit_message) + " [#{message}]"
+          end
+          output += "#{@object.id}\t#{tag}\t#{subtag}\t#{loc_message}\n"
         end
       end
     end
@@ -324,6 +323,31 @@ include ApplicationHelper
   
   private
   
+  def validate_string_tag(rule, marc_tag, marc_subtag, tag, subtag)
+    if rule == "required" || rule == "required, warning" || rule == "mandatory"
+      if !marc_subtag || !marc_subtag.content
+        #@errors["#{tag}#{subtag}"] = rule
+        add_error(tag, subtag, rule) if (!@validation.is_warning?(tag, subtag) || @show_warnings)
+        puts "Missing #{tag} #{subtag}, #{rule}" if DEBUG
+      end
+    elsif rule == "uniq"
+      binding.pry
+    elsif rule == "check_group"
+      grp_index = marc_tag.fetch_first_by_tag("8")
+      if grp_index && grp_index.content
+        if grp_index.content.to_i == 1 && marc_subtag && marc_subtag.content && marc_subtag.content == "Additional printed material"
+          add_error(tag, subtag, rule)
+          puts "The first material group cannot be \"Additional printed material\"" if DEBUG
+        end
+      else
+        add_error(tag, subtag, "not_in_group")
+        puts "check_group requested but tag is not in a group #{tag}#{subtag}" if DEBUG
+      end
+    else
+      puts "Unknown rule #{rule}" if rule != "mandatory"
+    end
+  end
+
   def match_tags(marctag, unresolved_tags, foreigns)
     exclude_subfields = foreigns.collect {|s| s.tag}
     found = true

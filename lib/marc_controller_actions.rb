@@ -35,7 +35,7 @@ module MarcControllerActions
       @item = nil
       if new_marc.get_id != "__TEMP__" 
         # To get the ID for holdings
-        if params[:controller] == "admin/holdings"
+        if params[:controller] == "admin/holdings" || params[:controller] == "admin/inventory_items"
           @item = model.find(params[:id])
         else
           @item = model.find(new_marc.get_marc_source_id)
@@ -336,7 +336,7 @@ module MarcControllerActions
       validator.validate_unknown_tags
       validator.validate_server_side
       if validator.has_errors
-        render json: {status: validator.to_s}
+        render json: {status: validator.to_s(translate: true)}
       else
         render json: {status: I18n.t("validation.correct")}
       end

@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<TEI xmlns="http://www.tei-c.org/ns/1.0">
+<!-- "###" means: to be completed -->
+  <teiHeader>
+    <fileDesc>
+      <titleStmt>
+        <title>The Oostende Inventory, 1747 (Historical Music Inventories, 14)</title>
+      </titleStmt>
+      <editionStmt>
+        <edition>After TEI P5.1</edition>
+        <respStmt><resp>Cataloguer: <date when="2014-04">April 2014, </date></resp><persName>Stefanie Beghein</persName>
+        </respStmt>
+      </editionStmt>
+      <publicationStmt>
+        <publisher><orgName xml:base="http://www.rism-ch.org">Swiss RISM Office</orgName></publisher>
+      </publicationStmt>
+      <sourceDesc>
+        <msDesc>
+          <msIdentifier>
+            <settlement>Oostende</settlement>
+            <repository>Stadsarchief</repository>
+            <idno>SAO AC027 236</idno>
+          </msIdentifier>
+          <head>
+            <title>Catalogus van de musicke toebehoorende aen de parochiale kercke van Oostende</title>
+            <origPlace>Oostende</origPlace>
+            <origDate notBefore="1747">1747</origDate>
+          </head>
+          <msContents>
+            <summary>In 1747, an inventory of the music books and music instruments owned by the parish church of Saint Peter and Saint Paul in Oostende was compiled. On May 24th, the books and instruments were handed over by frater Petrus Coordemans, the church's beadle, to a certain J. F. Bello (?). In 1760, an addition to the inventory repeated the 1747 list of music instruments. The inventoried music collection has not been preserved.
+The music inventory contains about 160 entries and covers printed music as well as music manuscripts. The manuscripts are often listed anonymously; the printed music consists of both local and international (Italian and German) repertoire. The inventory is divided in several sections. First, the church's printed masses and motets are listed (nrs 1-48), followed by antiphonies, motets, magnificats, and masses in manuscript (nrs 49-98). Subsequent sections deal with Christmas songs (manuscripts and printed music; nrs 99-102), sonatas (manuscripts as well as printed or engraved music; nrs 103-109), and printed books for daily use (unnumbered). The inventory concludes with an overview of the music which had been listed in an earlier catalogue but was lost in 1747 (unnumbered), and the music that was donated by Michiel De Bleu and a certain Cambier (unnumbered). In the sections with numbered inventory entries, both the new number and, if applicable, the ancient number are given.</summary>
+            <msItem><ab><metamark>Contents:</metamark>
+              <list>
+                <item>fol. [2r]: Gedruckte Boecken</item>
+                <item>fol. [3r]: 
+                  <list>
+                    <item>Libri De Manuscriptis</item>
+                    <item>particuliere stucken</item>
+                    <item>Mott. Antiph. et magnificat a 2:3 et 4 voc: inst</item>
+                  </list>
+                </item>
+                <item>fol. [3v]:
+                  <list>
+                  <item>Geschreven Missen</item>
+                    <item>Litaniae manuscriptae</item>
+                    <item>Antiph: B: mariae Virginis</item>
+                    <item>stucken sonder inst.</item>
+                  </list>
+                </item>
+                <item>fol. [4r]: 
+                  <list>
+                    <item>kersliedekens</item>
+                    <item>sonaten soo geschreven gedruckt als gegraveert</item>
+                    <item>Eenige gedruckte boecken die onbesloten sijn en dagelijckx gebruikt worden</item>
+                  </list>
+                </item>
+                <item>fol. [4v]: hier volgt de musijcque die te kort gevonden wort volgens de oude catalooge</item>
+                <item>fol. [5r]: 
+                  <list>
+                    <item>Dese volgende stucken sijn vereert aende kercke door michiel De Bleu den 25 april 1747</item>
+                    <item>item dese is de musijcke die sr. Cambier saliger vereert heeft aende kercke</item>
+                  </list>
+                </item>
+              </list>
+           </ab></msItem>
+          </msContents>
+          <physDesc>
+            <objectDesc>
+              <supportDesc>
+                <extent>
+                  <measure type="pagesCount" n="12">6 fols</measure>
+                </extent>
+                <foliation>No original pagination or foliation</foliation>
+              </supportDesc>
+            </objectDesc>
+           </physDesc>
+          <additional>
+            <adminInfo>
+              <recordHist>
+                <source>
+                  <bibl>Images © Stadsarchief Oostende (March 2014).<lb/></bibl>
+                  <bibl>Records compiled by: Stefanie Beghein (Antwerp, April 2014).</bibl>
+                </source>
+              </recordHist>
+            </adminInfo>
+          </additional>
+        </msDesc>
+      </sourceDesc>
+    </fileDesc>
+  </teiHeader>
+  <text>
+    <body><ab></ab></body>
+<!-- ### body-->
+  </text>
+</TEI>

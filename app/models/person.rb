@@ -20,6 +20,7 @@ class Person < ApplicationRecord
   include MarcIndex
   include AuthorityMerge
   include CommentsCleanup
+  include ComposedOfReimplementation
 
   # class variables for storing the user name and the event from the controller
   @last_user_save
@@ -57,6 +58,9 @@ class Person < ApplicationRecord
   #has_and_belongs_to_many(:referring_works, class_name: "Work", join_table: "works_to_people")
   has_many :work_person_relations, class_name: "WorkPersonRelation"
   has_many :referring_works, through: :work_person_relations, source: :work
+
+  has_many :inventory_item_person_relations, class_name: "InventoryItemPersonRelation"
+  has_many :referring_inventory_items, through: :inventory_item_person_relations, source: :inventory_item
 
   #has_and_belongs_to_many :institutions, join_table: "people_to_institutions"
   has_many :person_institution_relations
@@ -98,8 +102,7 @@ class Person < ApplicationRecord
   has_many :referring_people, through: :referring_person_relations, source: :person_a
   
 
-
-  composed_of :marc, :class_name => "MarcPerson", :mapping => %w(marc_source to_marc)
+  composed_of_reimplementation :marc, :class_name => "MarcPerson", :mapping => %w(marc_source to_marc)
   
 #  validates_presence_of :full_name  
   validate :field_length
@@ -119,8 +122,8 @@ class Person < ApplicationRecord
 
   alias_attribute :id_for_fulltext, :id
 
-  enum wf_stage: [ :inprogress, :published, :deleted, :deprecated ]
-  enum wf_audit: [ :full, :abbreviated, :retro, :imported ]
+  enum :wf_stage, [ :inprogress, :published, :deleted, :deprecated ]
+  enum :wf_audit, [ :full, :abbreviated, :retro, :imported ]
 
   def after_initialize
     @last_user_save = nil
@@ -336,6 +339,15 @@ class Person < ApplicationRecord
       (life_dates && !life_dates.empty? ? "  - #{life_dates}" : "")
   end
 
+  # If we define our own ransacker, we need this
+  def self.ransackable_attributes(auth_object = nil)
+    column_names + _ransackers.keys
+  end
+
+  def self.ransackable_associations(auth_object = nil)
+    reflect_on_all_associations.map { |a| a.name.to_s }
+  end
+
   ransacker :"100d", proc{ |v| } do |parent| parent.table[:id] end
   ransacker :"375a", proc{ |v| } do |parent| parent.table[:id] end
   ransacker :"550a", proc{ |v| } do |parent| parent.table[:id] end
@@ -357,6 +369,13 @@ class Person < ApplicationRecord
   def indexable?
     self.marc.load_source false
     true
+  end
+
+  # We have a column for display name
+  # which is used by auto_link, so make
+  # sure we always have a value here
+  def display_name
+    super.presence || self.name
   end
 
 end

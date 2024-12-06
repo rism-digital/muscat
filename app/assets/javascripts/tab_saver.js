@@ -45,7 +45,10 @@ function unpack_tab_cookie(cookie) {
     let cookie_value = decodeURI(parts[0])
     let cookie_payload = JSON.parse(atob(cookie_value))
 
-    return cookie_payload
+    // In rails 7 we need to extract more...
+    let message = JSON.parse(atob(cookie_payload["_rails"]["message"]))
+
+    return message
 }
 
 function get_or_create_tab_id() {
@@ -63,14 +66,18 @@ function get_or_create_tab_id() {
 function tab_saver_select() {
     let tab_id = get_or_create_tab_id()
 
-    Cookies.set("tab-id", tab_id);
+    Cookies.set("tab-id", tab_id, { sameSite: 'Lax' });
     // Get the search data back from our storage
-    Cookies.set("tab-store", sessionStorage.getItem("tab-store"))
+    Cookies.set("tab-store", sessionStorage.getItem("tab-store"), { sameSite: 'Lax' })
     console.log("Set tab to " + tab_id)
 }
 
 
 $(document).on('visibilitychange', function() {
+    // The window is shown again
+    // CAVEAT! When a window select is open,
+    // this event is not fired (!), so tab_saver_select
+    // is called by hand in new_window_select deselect()
     if (!document.hidden) {
         tab_saver_select();
     } else {
@@ -83,7 +90,6 @@ $(document).on('visibilitychange', function() {
         tab_saver_unload = false;
     }
 });
-
 
 $(window).on('load', function() {
     let new_tab = sessionStorage.getItem("tab-id") === null ? true : false
@@ -199,8 +205,73 @@ function setup_logout_watcher() {
     });
 }
 
+function show_clipboard_toast() {
+    var toast = $('#clipboard-message');
+
+    toast.fadeIn("fast");
+
+    setTimeout(function() {
+        toast.fadeOut("slow");
+    }, 2000);
+}
+
+// is this really the only way to do this??
+function get_origin() {
+    var protocol = window.location.protocol;
+    var hostname = window.location.hostname;
+    var port = window.location.port;
+    var fullHost = protocol + '//' + hostname;
+    if (port) {
+        fullHost += ':' + port;
+    }
+    return fullHost;
+}
+
+function setup_clipboard() {
+    // Add the Clipboard functions
+    var clipboard = new ClipboardJS('.copy_to_clipboard', {
+        text: function(trigger) {
+            let table_class = $(trigger).data("clipboard-target")
+            if ($(table_class).length < 1)
+                return;
+
+            let table = $(table_class)[0]
+            let rows = table.getElementsByTagName('tr');
+            let dataToCopy = '';
+        
+            for (let i = 0; i < rows.length; i++) {
+                let cells = rows[i].getElementsByTagName('td');
+                if (cells.length == 0)
+                    cells = rows[i].getElementsByTagName('th');
+                let rowData = [];
+        
+                for (let j = 1; j < cells.length - 1; j++) {
+                    rowData.push(cells[j].innerText);
+                }
+        
+                // the last cell is the Show/Edit/Delete buttons
+                var edit_link = $(cells[cells.length - 1]).find("a.edit_link")
+                if (edit_link.length > 0)
+                    rowData.push(get_origin() + $(edit_link[0]).attr("href"))
+
+                dataToCopy += rowData.join('\t') + '\n'; // Use tab-delimited format or change as needed
+            }
+            
+            //console.log(dataToCopy)
+            return dataToCopy;
+        }
+    });
+
+    clipboard.on('success', function(e) {
+        show_clipboard_toast();
+        e.clearSelection();
+    });
+}
+
 $(document).ready(function() {
     setup_logout_watcher();
+    setup_clipboard();
+
 });
 
 // Set a flag to know if we

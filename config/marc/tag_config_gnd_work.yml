@@ -67,7 +67,7 @@
     :indicator: "##"
     :occurrences: "*"
     :fields:
-    - - a
+    - - c
       - :occurrences: "?"
   "056":  
     :indicator: "##"
@@ -169,6 +169,14 @@
       - :occurrences: "?"
     - - t
       - :occurrences: "?"
+  "430":  
+    :indicator: "##"
+    :occurrences: "*"
+    :fields:
+    - - a
+      - :occurrences: "?"
+    - - p
+      - :occurrences: "?"
   "500":  
     :indicator: "1#"
     :occurrences: "*"
@@ -198,6 +206,16 @@
     :occurrences: "*"
     :fields:
     - - a
+      - :occurrences: "?"
+    - - g
+      - :occurrences: "?"
+    - - i
+      - :occurrences: "?"
+    - - '0'
+      - :occurrences: "?"
+    - - '4'
+      - :occurrences: "?"
+    - - '9'
       - :occurrences: "?"
   "667":  
     :indicator: "##"

@@ -83,6 +83,8 @@ body.active_admin {
     .status_tag.theoretica_edition { background: #deb887; }
     .status_tag.edition { background: #808080; }
     .status_tag.composite_volume { background: #87CEFA; }
+    .status_tag.inventory { background: #114d0f; }
+    .status_tag.inventory_edition { background: #22921f; }
 
     // For work Attribution Certainty
     .status_tag.obsolete { background: #e60606; }
@@ -380,4 +382,23 @@ body.index #sidebar {
     #search_status_sidebar_section { order: 1; }
     #filters_sidebar_section { order: 2; }
     #actions_sidebar_section { order: 3; }
+}
+
+table.muscat_index_header {
+  margin-bottom: 0em;
+}
+
+.icon-button span.icon-copy {
+  //background: url(public/marc-icons/copy.png) no-repeat;
+  background: image-url("/images/marc-icons/copy16x19.png") no-repeat;
+  float: right;
+  width: 16px;
+  height: 19px;
+}
+
+.clipboard-message {
+  float: right; 
+  display: none;
+  margin-right: 10px;
+  border-radius: 5px;
 }

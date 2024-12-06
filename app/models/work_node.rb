@@ -3,6 +3,7 @@ class WorkNode < ApplicationRecord
   include MarcIndex
   include AuthorityMerge
   include CommentsCleanup
+  include ComposedOfReimplementation
 
   # class variables for storing the user name and the event from the controller
   @last_user_save
@@ -11,7 +12,6 @@ class WorkNode < ApplicationRecord
   attr_accessor :last_event_save
 
   has_paper_trail :on => [:update, :destroy], :only => [:marc_source], :if => Proc.new { |t| VersionChecker.save_version?(t) }
-
 
   resourcify
   belongs_to :person
@@ -26,7 +26,7 @@ class WorkNode < ApplicationRecord
   has_many :delayed_jobs, -> { where parent_type: "WorkNode" }, class_name: 'Delayed::Backend::ActiveRecord::Job', foreign_key: "parent_id"
   belongs_to :user, :foreign_key => "wf_owner"
  
-  composed_of :marc, :class_name => "MarcWorkNode", :mapping => %w(marc_source to_marc)
+  composed_of_reimplementation :marc, :class_name => "MarcWorkNode", :mapping => %w(marc_source to_marc)
 
   before_destroy :check_dependencies, :cleanup_comments
   
@@ -39,8 +39,8 @@ class WorkNode < ApplicationRecord
   after_save :update_links, :reindex
   after_initialize :after_initialize
 
-  enum wf_stage: [ :inprogress, :published, :deleted, :deprecated ]
-  enum wf_audit: [ :basic, :minimal, :full ]
+  enum :wf_stage, [ :inprogress, :published, :deleted, :deprecated ]
+  enum :wf_audit, [ :basic, :minimal, :full ]
 
   alias_attribute :name, :title
   alias_attribute :id_for_fulltext, :id
@@ -139,13 +139,17 @@ class WorkNode < ApplicationRecord
       title
     end
     sunspot_dsl.text :title
-    sunspot_dsl.text :title
     
     sunspot_dsl.integer :wf_owner
     sunspot_dsl.string :wf_stage
     sunspot_dsl.time :updated_at
     sunspot_dsl.time :created_at
     
+    sunspot_dsl.string :composer_order do
+      composer
+    end
+    sunspot_dsl.text :composer
+
     sunspot_dsl.join(:folder_id, :target => FolderItem, :type => :integer, 
               :join => { :from => :item_id, :to => :id })
 
@@ -168,7 +172,9 @@ class WorkNode < ApplicationRecord
   def set_object_fields
     return if marc_source == nil
     self.title = marc.get_title
-    self.person = marc.get_composer
+    self.person = marc.get_composer # This sets the person id!
+    self.composer = marc.get_composer_name # and this caches the composer name
+
 
     self.marc_source = self.marc.to_marc
   end
@@ -178,6 +184,21 @@ class WorkNode < ApplicationRecord
     GND::Interface.search({title: str}, 20)
   end
  
+  def autocomplete_label
+    return "#{self.title} (#{self.composer})" if self.title && self.composer
+    return self.title if self.title
+    "no title for #{self.id}"
+  end
+
+  # If we define our own ransacker, we need this
+  def self.ransackable_attributes(auth_object = nil)
+    column_names + _ransackers.keys
+  end
+
+  def self.ransackable_associations(auth_object = nil)
+    reflect_on_all_associations.map { |a| a.name.to_s }
+  end
+
   ransacker :"031t", proc{ |v| } do |parent| parent.table[:id] end
 
 end

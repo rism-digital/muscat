@@ -1,8 +1,10 @@
 =001 __TEMP__
 =003 DE-101
 =008 220922n||aznnnaabn           | ana    |c
-=040 ##$aCH-633$bger$cCH-633
+=040 ##$aDE-633$bger$cDE-633$9DE-633
+=042 ##$agnd4
 =079 ##$ag$am$qf
 =075 ##$bu$2gndgen
 =075 ##$bwim$2gndspec
+=377 ##$biso639-2b
 =100 1#

@@ -31,6 +31,9 @@ module ActiveAdmin::ViewsHelper
       c = Source.where(id: item.referring_sources.ids).or(Source.where(id: item.referring_holdings.pluck(:source_id)))
     elsif link_class == Source && item.respond_to?("referring_sources") && item.is_a?(Institution)
       c = Source.where(id: item.referring_sources.ids).or(Source.where(id: item.holdings.pluck(:source_id)))
+    elsif link_class == InventoryItem &&item.respond_to?("inventory_items") && item.is_a?(Source)
+      ap item
+      c = item.inventory_items
     else
       c = item.send("referring_" + link_class.to_s.pluralize.underscore)
     end    
@@ -78,7 +81,8 @@ module ActiveAdmin::ViewsHelper
     name = item.full_name if item.respond_to?(:full_name)
     name = item.title if item.respond_to?(:title)
     name = item.autocomplete_label if item.respond_to?(:autocomplete_label)
-    
+    name = item.formatted_title if item.respond_to?(:formatted_title)
+
     link_to("Select", "#", :data => { :marc_editor_select => item.id, :marc_editor_label => name })
   end
   
@@ -191,7 +195,7 @@ module ActiveAdmin::ViewsHelper
   end
  
   def active_admin_publication_show_title( author, title, id, wf_stage )
-    if author.empty? && title.empty?
+    if author&.empty? && title&.empty?
       title_display = "[#{id}]"
     elsif author.empty? && !title.empty?
       title_display = "#{title} [#{id}]"
@@ -208,6 +212,10 @@ module ActiveAdmin::ViewsHelper
     return "#{description.truncate(60)} - [#{id}]"
   end
   
+  def active_admin_inventory_item_show_title (ii)
+    ii.title
+  end
+
   def digital_object_form_url
     parts = []
     parts << active_admin_namespace.name unless active_admin_namespace.root?

@@ -1,25 +1,40 @@
 de:
   gnd:
-    title: Example title
-    main_work: Haupteintragungen
-    variants: Namensvarianten
-    references: Literatur
     codes: Codes
-    relations: Beziehungen
     control: Kontrollfelder
-    ungrouped: Andere Felder, die nicht im Standard Muscat MARC-Editor enthalten sind
-    rism_id_number: RISM Dokumentnummer
     control_number_identifier: Kontrollnummer-Bezeichnung
+    control_subfield: Kontrollunterfeld
     date_time_last_transaction: Datum und Zeit der letzten Transaktion
+    heading: Ansetzungsform
+    identifying_addition: Identifizierender Zusatz
+    instrument: Instrumente
+    key_or_mode: Tonart, Modus
+    main_work: Haupteintragungen
+    name: Name
+    opus_thematic_index_number: Numerische Kennzeichnung
+    other_standard_identifier: Normdatenverweise
+    other_work_title: Abweichender Werktitel
+    partial_title: Teiltitel
+    preferred_title: Bevorzugter Titel
+    record_idn: IDN des Normdatensatzes
+    reference_phrase: Verweisungsphrase
+    references: Literatur
+    relationship_code: Beziehungscode
+    relationship_phase: Beziehungsphrase
+    relations: Beziehungen
+    remarks: Bemerkungen
+    rism_id_number: RISM Dokumentnummer
+    scoring_summary: Besetzungshinweis
     source_number_code: Normdatenagentur
     standard_number_code: Normdatenverweise
-    other_standard_identifier: Normdatenverweise
+    subject_term: Sachbegriff
+    subject_term_relationship: Sachbegriff – Beziehung
+    time: Zeit
+    time_relationship: Zeitbeziehung
     title: Titel
-    years_birth_death: Geburts- und Todesdaten
-    scoring_summary: Besetzungshinweis
-    opus_thematic_index_number: Opus / WV-Nummer
-    key_or_mode: Tonart, Modus
     title_of_work: Werktitel
-    heading: Ansetzungsform
-    instrument: Instrumente
-    name: Name
+    title_part: Teiltitel
+    ungrouped: Andere Felder, die nicht im Standard Muscat MARC-Editor enthalten sind
+    variants: Namensvarianten
+    work_title: Werktitel
+    years_birth_death: Geburts- und Todesdaten

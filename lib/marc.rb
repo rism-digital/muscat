@@ -755,6 +755,12 @@ class Marc
     return output
   end
 
+  def has_incipits?
+    by_tags(["031"]).any? do |st|
+      st.fetch_all_by_tag("p").any? { |sst| sst&.content&.present? }
+    end
+  end
+
   def ==(other)
     load_source unless @loaded
     @source_id == other.get_marc_source_id
@@ -1005,6 +1011,18 @@ class Marc
       end
     end
     
+    return out
+  end
+
+  def marc_extract_bookid(conf_tag, conf_properties, marc, model)
+    out = []
+    marc.each_by_tag("510") do |marctag|
+      ct = marctag.fetch_first_by_tag("c")
+      next if !ct || !ct.content
+
+      out += ct.content.split(";").map{|i| i.strip}
+
+    end
     return out
   end
 

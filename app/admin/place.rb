@@ -10,7 +10,7 @@ ActiveAdmin.register Place do
 
   # Remove all action items
   config.clear_action_items!
-  config.per_page = [10, 30, 50, 100]
+  config.per_page = [10, 30, 50, 100, 1000]
 
   collection_action :autocomplete_place_name, :method => :get
 
@@ -24,7 +24,7 @@ ActiveAdmin.register Place do
   # temporarily allow all parameters
   controller do
 
-    autocomplete :place, :name
+    autocomplete :place, :name, :display_value => :autocomplete_label, :extra_data => [:country, :district]
 
     after_destroy :check_model_errors
     before_create do |item|
@@ -82,6 +82,16 @@ ActiveAdmin.register Place do
         failure.html { redirect_back fallback_location: root_path, flash: { :error => "#{I18n.t(:error_saving)}" } }
       end
     end
+  
+    def save_resource(object)
+      nullable_strings = %i(country district notes alternate_terms topic sub_topic viaf gnd)
+      nullable_strings.each do |attribute|
+        next unless object.public_send(attribute).blank?
+  
+        object.public_send(:"#{attribute}=", nil)
+      end
+      super
+    end
 
   end
 
@@ -95,7 +105,7 @@ ActiveAdmin.register Place do
   ###########
 
   # Solr search all fields: "_equal"
-  filter :name_equals, :label => proc {I18n.t(:any_field_contains)}, :as => :string
+  filter :name_eq, :label => proc {I18n.t(:any_field_contains)}, :as => :string
 
   # This filter passes the value to the with() function in seach
   # see config/initializers/ransack.rb
@@ -107,6 +117,7 @@ ActiveAdmin.register Place do
     selectable_column if !is_selection_mode?
     column (I18n.t :filter_id), :id  
     column (I18n.t :filter_name), :name
+    column (I18n.t :filter_district), :district
     column (I18n.t :filter_country), :country
     column (I18n.t :filter_sources), :src_count_order, sortable: :src_count_order do |element|
 			all_hits = @arbre_context.assigns[:hits]
@@ -137,7 +148,6 @@ ActiveAdmin.register Place do
   end
 
   sidebar :actions, :only => :index do
-    render :partial => "activeadmin/filter_workaround"
     render :partial => "activeadmin/section_sidebar_index"
   end
 

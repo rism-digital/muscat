@@ -17,6 +17,7 @@ class Institution < ApplicationRecord
   include MarcIndex
   include AuthorityMerge
   include CommentsCleanup
+  include ComposedOfReimplementation
   resourcify
   
   # class variables for storing the user name and the event from the controller
@@ -50,6 +51,9 @@ class Institution < ApplicationRecord
   has_many :work_institution_relations, class_name: "WorkInstitutionRelation"
   has_many :referring_works, through: :work_institution_relations, source: :work
 
+  has_many :inventory_item_institution_relations, class_name: "InventoryItemInstitutionRelation"
+  has_many :referring_inventory_items, through: :inventory_item_institution_relations, source: :inventory_item
+
   #has_and_belongs_to_many :people, join_table: "institutions_to_people"
   has_many :institution_person_relations
   has_many :people, through: :institution_person_relations
@@ -70,7 +74,7 @@ class Institution < ApplicationRecord
   has_and_belongs_to_many(:referring_work_nodes, class_name: "WorkNode", join_table: "work_nodes_to_institutions")
 
 
-  composed_of :marc, :class_name => "MarcInstitution", :mapping => %w(marc_source to_marc)
+  composed_of_reimplementation :marc, :class_name => "MarcInstitution", :mapping => %w(marc_source to_marc)
 
 # OLD institutions_to_institutions
   # Institutions also can link to themselves
@@ -118,10 +122,9 @@ class Institution < ApplicationRecord
   alias_attribute :id_for_fulltext, :id
   alias_attribute :name, :full_name # activeadmin needs the name attribute
 
-  enum wf_stage: [ :inprogress, :published, :deleted, :deprecated ]
-  enum wf_audit: [ :full, :abbreviated, :retro, :imported ]
+  enum :wf_stage, [ :inprogress, :published, :deleted, :deprecated ]
+  enum :wf_audit, [ :full, :abbreviated, :retro, :imported ]
   
-
   def after_initialize
     @last_user_save = nil
     @last_event_save = "update"
@@ -293,6 +296,10 @@ class Institution < ApplicationRecord
       s.marc.to_raw_text
     end
 
+    sunspot_dsl.boolean :has_siglum do |i|
+      (i.siglum && !i.siglum.empty?) == true
+    end
+
     MarcIndex::attach_marc_index(sunspot_dsl, self.to_s.downcase)
     
   end
@@ -321,11 +328,20 @@ class Institution < ApplicationRecord
     "#{full_name}#{sigla}"
   end
  
-  ransacker :"110g_facet", proc{ |v| } do |parent| parent.table[:id] end
+  def self.ransackable_attributes(auth_object = nil)
+    column_names + _ransackers.keys
+  end
+
+  def self.ransackable_associations(auth_object = nil)
+    reflect_on_all_associations.map { |a| a.name.to_s }
+  end
+
+  ransacker :"094a_facet", proc{ |v| } do |parent| parent.table[:id] end
   ransacker :"667a", proc{ |v| } do |parent| parent.table[:id] end
+  ransacker :"has_siglum", proc{ |v| } do |parent| parent.table[:id] end
    
   def holdings
-    ActiveSupport::Deprecation.warn('Please use referring_holdings from institution')
+    ActiveSupport::Deprecation.new("12", 'Please use referring_holdings from institution')
     referring_holdings
   end
 end

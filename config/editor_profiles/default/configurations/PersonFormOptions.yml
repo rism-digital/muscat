@@ -48,20 +48,32 @@
         - "WKP"
         default: "VIAF"
         editor_partial: subfield_select
-"040": 
-  layout: 
-    fields: 
+"040":
+  layout:
+    fields:
     - - a
-    - - c
+      - hidden: true
     - - d
+      - hidden: true
     - - b
+      - editor_partial: subfield_select_codes
+        select_label: "Language"
+        codes_reference: "codes"
+  tag_params:
+    codes:
+      - "eng"
+      - "fre"
+      - "ger"
+      - "ita"
+      - "por"
+      - "spa"
 "042": 
   layout: 
     fields: 
     - - a
       - values:
-        - "individualized" 
-        - "not individualized"
+        - "differentiated" 
+        - "undifferentiated"
         editor_partial: subfield_select
 "043": 
   layout: 
@@ -159,10 +171,12 @@
       - "XD-US"
       - "XD-UY"
       - "XD-VE"
-      - "XB-VN"
-      - "XB-TW"
       - "XB-GE"
+      - "XB-TM"
+      - "XB-TW"
+      - "XB-VN"
       - "XD-EC"
+      - "XD-BO"
 "100": 
   layout: 
     fields: 
@@ -263,7 +277,7 @@
         allow_new: true
 "551": 
   new_window: places
-  new_window_field: name_equals
+  new_window_field: name_eq
   layout: 
     fields: 
     - - a
@@ -293,7 +307,7 @@
       - growfield: true
 "670":
   new_window: publications
-  new_window_field: name_equals
+  new_window_field: short_name_eq
   layout: 
     fields: 
     - - "a"
@@ -322,3 +336,10 @@
     - - z
       - unrestricted:
           - person_restricted
+"910":
+  layout:
+    fields:
+    - - a
+      - read_only: true
+    - - "0"
+      - hidden: true

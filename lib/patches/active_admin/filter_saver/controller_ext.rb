@@ -19,6 +19,11 @@ module ActiveAdmin
       end
 
       def restore_search_filters
+
+        # If we render via ajax, skip all this
+        # Permit the "session" controller to deselect
+        return if request.xhr? && controller_name != "session"
+        
         # we like nice things! show it in the footer
         # Note: we need a global variable here so
         # it shows in the footer through Arbre
@@ -133,6 +138,10 @@ module ActiveAdmin
       end
 
       def save_search_filters
+        # as above, if we render via ajax, skip all this
+        # if not in the deselection controller
+        return if request.xhr? && controller_name != "session"
+
         saved_filters = create_saved_filters_for(cookies["tab-id"])
 
         session[:select] = nil
@@ -153,13 +162,13 @@ module ActiveAdmin
             saved_filters["last_scope"] ||= Hash.new
             saved_filters["last_scope"][controller_name] = params[:scope] if params.include?(:scope)
           end
-          saved_filters[:select] = controller_name if params[:select]
+          session[:select] = controller_name if params[:select]
         # We also need to save the page param in show because it might be change 
         # by the prev/next navigation 
         elsif params[:action].to_sym == :show
           saved_filters[:last_search_page] ||= Hash.new
           saved_filters[:last_search_page][controller_name] = params[:page]
-          saved_filters[:select] = controller_name if params[:select]
+          session[:select] = controller_name if params[:select]
         end
 
         purge_params(saved_filters)
@@ -169,7 +178,6 @@ module ActiveAdmin
 
         puts "Saved filters for #{@tab_id_for_footer}"
         cookies.signed["tab-store"] = {value: saved_filters}
-
       end
  
       def purge_params(the_hash)

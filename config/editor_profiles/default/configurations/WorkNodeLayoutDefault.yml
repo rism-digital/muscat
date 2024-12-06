@@ -1,26 +1,13 @@
 --- !map:Settings 
 group_order: 
 - main_work
-- deprecated
 - control
 groups:   
   main_work: 
     all_tags: 
     - "100"
     - "024"
-  deprecated:
-    all_tags:
-    - "031"
-    - "380"
-    - "400"
-    - "548"
     - "667"
-    - "670"
-    - "675"
-    - "680"
-    - "700"
-    - "710"
-    - "747"
   control: 
     all_tags: 
     - "040"

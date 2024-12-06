@@ -1,0 +1,483 @@
+
+:version:
+  :name: tag_config
+  :current: 2.0
+  :authors: ["Rodolfo Zitellini"]
+
+:model: inventory_item
+:tags:
+  "000":
+    :master: ""
+    :indicator: ""
+    :occurrences: "1"
+    :fields:
+    - - ""
+      - :no_browse: true
+  "001":
+    :master: ""
+    :indicator: ""
+    :occurrences: "1"
+    :zero_padding: "14"
+    :fields:
+    - - ""
+      - :no_browse: true
+  "003":
+    :master: ""
+    :indicator: ""
+    :occurrences: "1"
+    :fields:
+    - - ""
+      - :no_browse: true
+  "031":
+    :master: t
+    :master_optional: true
+    :indicator: "##"
+    :occurrences: "*"
+    :fields:
+    - - a
+      - :occurrences: "?"
+    - - b
+      - :occurrences: "?"
+    - - c
+      - :occurrences: "?"
+    - - d
+      - :occurrences: "*"
+    - - e
+      - :occurrences: "?"
+    - - g
+      - :occurrences: "?"
+    - - m
+      - :occurrences: "?"
+    - - n
+      - :occurrences: "?"
+    - - o
+      - :occurrences: "?"
+    - - p
+      - :occurrences: "?"
+    - - q
+      - :occurrences: "*"
+    - - r
+      - :occurrences: "?"
+    - - s
+      - :occurrences: "*"
+    - - t
+      - :occurrences: "*"
+        :link_to_model: StandardTitle
+        :link_to_field: title
+    - - u
+      - :occurrences: "?"
+        :no_browse: true
+    - - z
+      - :occurrences: "*"
+  "041":
+    :master: a
+    :indicator: ["0#", "1#"]
+    :occurrences: "*"
+    :fields:
+    - - a
+      - :occurrences: "*"
+    - - h
+      - :occurrences: "*"
+  "100":
+    :master: "0"
+    :indicator: "1#"
+    :occurrences: "?"
+    :fields:
+    - - "0"
+      - :occurrences: "?"
+        :foreign_class: Person
+        :foreign_field: id
+        :no_show: true
+    - - a
+      - :occurrences: "?"
+        :foreign_class: ^0
+        :foreign_field: full_name
+    - - d
+      - :occurrences: "?"
+        :browse_inline: true
+        :foreign_class: ^0
+        :foreign_field: life_dates
+        :foreign_alternates: alternate_dates
+    - - j
+      - :occurrences: "?"
+  "240":
+    :master: "0"
+    :indicator: "10"
+    :occurrences: "?"
+    :fields:
+    - - "0"
+      - :occurrences: "?"
+        :foreign_class: StandardTitle
+        :foreign_field: id
+        :no_show: true
+    - - a
+      - :occurrences: "?"
+        :foreign_class: ^0
+        :foreign_field: title
+    - - k
+      - :occurrences: "?"
+    - - m
+      - :occurrences: "*"
+    - - o
+      - :occurrences: "?"
+    - - r
+      - :occurrences: "?"
+  "245":
+    :master: a
+    :indicator: "10"
+    :occurrences: "1"
+    :fields:
+    - - a
+      - :occurrences: "1"
+  "246":
+    :master: a
+    :indicator: "2#"
+    :occurrences: "*"
+    :fields:
+    - - a
+      - :occurrences: "?"
+  "260":
+    :master: a
+    :indicator: "##"
+    :occurrences: "+"
+    :fields:
+    - - a
+      - :occurrences: "*"
+    - - b
+      - :occurrences: "1"
+    - - c
+      - :occurrences: "1"
+    - - e
+      - :occurrences: "?"
+    - - f
+      - :occurrences: "?"
+    - - "8"
+      - :occurrences: "?"
+        :no_browse: true
+  "300":
+    :master: a
+    :indicator: "##"
+    :occurrences: "*"
+    :fields:
+    - - a
+      - :occurrences: "*"
+    - - b
+      - :occurrences: "*"
+    - - c
+      - :occurrences: "?"
+    - - "8"
+      - :occurrences: "?"
+        :no_browse: true
+  "383":
+    :master: b
+    :indicator: "##"
+    :occurrences: "*"
+    :fields:
+    - - b
+      - :occurrences: "?"
+  "500":
+    :master: a
+    :indicator: "##"
+    :occurrences: "*"
+    :fields:
+    - - a
+      - :occurrences: "?"
+        :browse_helper: application_helper_link_http
+    - - "8"
+      - :occurrences: "?"
+        :no_browse: true
+  "593":
+    :master: a
+    :indicator: "##"
+    :occurrences: "*"
+    :fields:
+    - - a
+      - :occurrences: "?"
+    - - b
+      - :occurrences: "?"
+    - - "8"
+      - :occurrences: "?"
+        :no_browse: true
+  "594":
+    :master: b
+    :indicator: "##"
+    :occurrences: "*"
+    :fields:
+    - - b
+      - :occurrences: "?"
+    - - c
+      - :occurrences: "?"
+  "599":
+    :master: a
+    :indicator: "##"
+    :occurrences: "*"
+    :fields:
+    - - a
+      - :occurrences: "?"
+    - - b
+      - :occurrences: "?" 
+  "650":
+    :master: "0"
+    :indicator: "07"
+    :occurrences: "*"
+    :fields:
+    - - "0"
+      - :occurrences: "?"
+        :foreign_class: StandardTerm
+        :foreign_field: id
+        :no_show: true
+    - - a
+      - :occurrences: "?"
+        :foreign_class: ^0
+        :foreign_field: term
+    - - "2"
+      - :occurrences: "?"
+        :no_browse: true
+  "690":
+    :master: "0"
+    :indicator: "#7"
+    :occurrences: "*"
+    :fields:
+    - - "0"
+      - :occurrences: "?"
+        :foreign_class: Publication
+        :foreign_field: id
+        :no_show: true
+    - - a
+      - :occurrences: "?"
+        :foreign_class: ^0
+        :foreign_field: short_name
+    - - n
+      - :occurrences: "?"
+  "691":
+    :master: "0"
+    :indicator: "#7"
+    :occurrences: "*"
+    :fields:
+    - - "0"
+      - :occurrences: "?"
+        :foreign_class: Publication
+        :foreign_field: id
+        :no_show: true
+    - - a
+      - :occurrences: "?"
+        :foreign_class: ^0
+        :foreign_field: short_name
+    - - n
+      - :occurrences: "?"
+  "700":
+    :master: "0"
+    :indicator: "1#"
+    :occurrences: "*"
+    :relator_code: "4"
+    :fields:
+    - - "0"
+      - :occurrences: "?"
+        :foreign_class: Person
+        :foreign_field: id
+        :no_show: true
+    - - a
+      - :occurrences: "?"
+        :foreign_class: ^0
+        :foreign_field: full_name
+    - - d
+      - :occurrences: "?"
+        :browse_inline: true
+        :foreign_class: ^0
+        :foreign_field: life_dates
+        :foreign_alternates: alternate_dates
+    - - j
+      - :occurrences: "?"
+    - - "4"
+      - :occurrences: "?"
+    - - "8"
+      - :occurrences: "?"
+        :no_browse: true
+  "710":
+    :master: "0"
+    :indicator: "2#"
+    :occurrences: "*"
+    :relator_code: "4"
+    :fields:
+    - - "0"
+      - :occurrences: "?"
+        :foreign_class: Institution
+        :foreign_field: id
+        :no_show: true
+    - - a
+      - :occurrences: "?"
+        :foreign_class: ^0
+        :foreign_field: corporate_name
+    - - b
+      - :occurrences: "*"
+    - - c
+      - :occurrences: "?"
+        :foreign_class: ^0
+        :foreign_field: place
+    - - g
+      - :occurrences: "?"
+    - - "4"
+      - :occurrences: "?"
+    - - "8"
+      - :occurrences: "?"
+        :no_browse: true
+  "730":
+    :master: "0"
+    :indicator: "0#"
+    :occurrences: "*"
+    :fields:
+    - - "0"
+      - :occurrences: "?"
+        :foreign_class: StandardTitle
+        :foreign_field: id
+        :no_show: true
+    - - a
+      - :occurrences: "?"
+        :foreign_class: ^0
+        :foreign_field: title
+    - - g
+      - :occurrences: "?"
+    - - k
+      - :occurrences: "?"
+    - - m
+      - :occurrences: "*"
+    - - n
+      - :occurrences: "*"
+    - - o
+      - :occurrences: "?"
+    - - r
+      - :occurrences: "?"
+  "773":
+    :master: w
+    :indicator: "18"
+    :occurrences: "?"
+    :foreign_links: false
+    :fields:
+    - - w
+      - :occurrences: "1"
+        :foreign_class: Source
+        :foreign_field: id
+        :zero_padding: "14"
+        :browse_helper: application_helper_link_source_id
+  "775":
+    :master: w
+    :indicator: "##"
+    :relator_code: "4"
+    :occurrences: "?"
+    :fields:
+    - - w
+      - :occurrences: "1"
+        :foreign_class: InventoryItem
+        :foreign_field: id
+    - - "4"
+      - :occurrences: "1"
+  "786":
+    :master: a
+    :indicator: "##"
+    :occurrences: "*"
+    :fields:
+    - - a
+      - :occurrences: "?"
+    - - d
+      - :occurrences: "?"
+    - - i
+      - :occurrences: "?"
+    - - n
+      - :occurrences: "?"
+    - - o
+      - :occurrences: "?"
+    - - t
+      - :occurrences: "?"
+  "787":
+    :master: "w"
+    :relator_code: "4"
+    :indicator: "0#"
+    :occurrences: "*"
+    :fields:
+    - - "4"
+      - :occurrences: "?"
+        :browse_helper: application_helper_resolve_relator_code
+    - - n
+      - :occurrences: "?"
+    - - w
+      - :occurrences: "1"
+        :foreign_class: Source
+        :foreign_field: id
+        :browse_helper: application_helper_link_source_id
+  "852":
+    :master: a
+    :indicator: "##"
+    :occurrences: "?"
+    :foreign_links: false
+    :fields:
+    - - a
+      - :occurrences: "?"
+    - - d
+      - :occurrences: "?"
+    - - p
+      - :occurrences: "?"
+  "856":
+    :master: u
+    :indicator: "##"
+    :occurrences: "*"
+    :fields:
+    - - u
+      - :occurrences: "*"
+        :browse_helper: application_helper_link_http
+    - - x
+      - :occurrences: "?"
+    - - z
+      - :occurrences: "*"
+    - - "8"
+      - :occurrences: "?"
+        :no_browse: true
+  "930":
+    :master: "w"
+    :indicator: "##"
+    :occurrences: "*"
+    :fields:
+    - - "w"
+      - :occurrences: "?"
+        :foreign_class: Source
+        :foreign_field: id
+    - - a
+      - :occurrences: "?"
+        :foreign_class: ^w
+        :foreign_field: title
+    - - "4"
+      - :occurrences: "1"
+  "931":
+    :master: "w"
+    :indicator: "##"
+    :occurrences: "*"
+    :fields:
+    - - "w"
+      - :occurrences: "?"
+        :foreign_class: Holding
+        :foreign_field: id
+    - - a
+      - :occurrences: "?"
+        :foreign_class: ^w
+        :foreign_field: lib_siglum
+  "932":
+    :master: "w"
+    :indicator: "##"
+    :occurrences: "*"
+    :fields:
+    - - "w"
+      - :occurrences: "?"
+        :foreign_class: Work
+        :foreign_field: id
+    - - a
+      - :occurrences: "?"
+        :foreign_class: ^w
+        :foreign_field: title
+  "981":
+    :master: ""
+    :indicator: "##"
+    :occurrences: "*"
+    :fields:
+    - - "0"
+      - :occurrences: "1"
+    - - d
+      - :occurrences: "1"

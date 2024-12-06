@@ -81,8 +81,8 @@ module Muscat
           else
             next_item = results[position + 1]
           end
-
-          return prev_item, next_item, prev_page, next_page, {position: position + 1, total: results.total_entries}
+          item_counter = position + ((page - 1) * MAX_PER_PAGE) + 1
+          return prev_item, next_item, prev_page, next_page, {position: item_counter , total: results.total_entries}
         end
 
         private
@@ -141,7 +141,7 @@ module Muscat
           fields = []
           order = {}
           with = {}
-          page = params.has_key?(:page) ? params[:page] : 1
+          page = params.has_key?(:page) ? params[:page].to_i : 1
 
           if params.has_key?(:order)
             order = params[:order].include?("_asc") ? "asc" : "desc"
@@ -163,8 +163,8 @@ module Muscat
             time_gteq = {}
             time_lteq = {}
 
-            options.keys.each do |k|
-
+            options.keys.each do |key|
+              k = key.to_s.gsub("_contains", "_cont")
               # Skip to the next one if the value
               # for this query is empty
               next if options[k] == ""
@@ -178,8 +178,8 @@ module Muscat
               # just use another predicate
               # and no field will be used
               f = []
-              if k.to_s.match("contains") # :filter xxx_contains
-                field = k.to_s.gsub("_contains", "")
+              if k.to_s.match("cont") # :filter xxx_contains
+                field = k.to_s.gsub("_cont", "")
                 # split it!
                 if field.include? "_or_"
                   f.concat(field.split("_or_"))
@@ -194,10 +194,10 @@ module Muscat
                 id = ActiveModel::Type::Boolean.new.cast(id) if id.to_s.downcase.strip == "true" || id.to_s.downcase.strip == "false"
                 with[field] = id
               elsif k.to_s.match("gteq") # :Greather than time range
-                field = k.to_s.gsub("_gteq_datetime", "")
+                field = k.to_s.gsub("_gteq", "")
                 time_gteq[field] = options[k]
               elsif k.to_s.match("lteq") # :Lesser than time range
-                field = k.to_s.gsub("_lteq_datetime", "")
+                field = k.to_s.gsub("_lteq", "")
                 time_lteq[field] = options[k]
               else # all the other ransack predicates
                 # make an "any" search, field is empty

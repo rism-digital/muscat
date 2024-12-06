@@ -44,19 +44,25 @@
   layout: 
     fields: 
     - - b
+      - read_only: true
     - - e
+      - read_only: true
     - - "9"
+      - read_only: true
     - - a
+      - read_only: true
     - - c
+      - read_only: true
     - - d
+      - read_only: true
 "042": 
   layout: 
     fields: 
     - - a
+      - read_only: true
 "043": 
   layout: 
     fields: 
-    - - a
     - - c
 "056": 
   layout: 
@@ -170,10 +176,13 @@
   layout:
     fields:
     - - "a"
+    - - "p"
 "377": 
   layout: 
     fields: 
     - - a
+    - - b
+      - read_only: true
     - - "2"
 "380": 
   layout: 
@@ -221,6 +230,11 @@
     - - r
     - - t
     - - p
+"430": 
+  layout: 
+    fields:
+    - - a
+    - - p
 "500": 
   allow_new: true
   new_window: people
@@ -260,16 +274,23 @@
     - - "4"
     - - i
     - - w
+      - default: "w"
     - - "9"
 "550": 
   layout: 
     fields: 
     - - a
+    - - g
+    - - i
+    - - '0'
+    - - '4'
+    - - '9'
 "667": 
   layout: 
     fields: 
-    - - "5"
     - - a
+    - - "5"
+      - default: "RISM NFDI4Culture"
 "670": 
   layout: 
     fields: 

@@ -2,7 +2,7 @@
 client:
   "024":
     tags:
-      a: required
+      a: mandatory
   "100":
     tags:
       "0": mandatory

@@ -22,6 +22,9 @@ class StandardTitle < ApplicationRecord
   has_many :work_standard_title_relations, class_name: "WorkStandardTitleRelation"
   has_many :referring_works, through: :work_standard_title_relations, source: :work
 
+  has_many :inventory_item_standard_title_relations, class_name: "InventoryItemStandardTitleRelation"
+  has_many :referring_inventory_items, through: :inventory_item_standard_title_relations, source: :inventory_item
+
   has_and_belongs_to_many(:referring_work_nodes, class_name: "WorkNode", join_table: "work_nodes_to_standard_titles")
 
   has_many :folder_items, as: :item, dependent: :destroy
@@ -41,8 +44,8 @@ class StandardTitle < ApplicationRecord
   alias_attribute :name, :title
   alias_attribute :id_for_fulltext, :id
   
-  enum wf_stage: [ :inprogress, :published, :deleted, :deprecated ]
-  enum wf_audit: [ :full, :abbreviated, :retro, :imported ]
+  enum :wf_stage, [ :inprogress, :published, :deleted, :deprecated ]
+  enum :wf_audit, [ :full, :abbreviated, :retro, :imported ]
   
   # Suppresses the solr reindex
   def suppress_reindex
@@ -136,6 +139,15 @@ class StandardTitle < ApplicationRecord
   # It receives a row of results from the SQL query
   def getter_function_autocomplete_label(query_row)    
     "#{title} (#{query_row[:count]})"
+  end
+
+  # If we define our own ransacker, we need this
+  def self.ransackable_attributes(auth_object = nil)
+    column_names + _ransackers.keys
+  end
+
+  def self.ransackable_associations(auth_object = nil)
+    reflect_on_all_associations.map { |a| a.name.to_s }
   end
 
   ransacker :"is_text", proc{ |v| } do |parent| parent.table[:id] end

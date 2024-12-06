@@ -1,6 +1,256 @@
 Muscat Changelog
 ================
 
+v 11.2.2
+* Add script to check if 593 is missing
+* Fix #1670 add all missing backward links to Inventory Items
+* Fix #1668, take in account institutions without siglum (don't move 094 if there is none)
+* #1671 Inventareintrag instead of Inventarartikel
+* #1671 make key or mode shared, and remove all the references
+* #1671 remove 598
+* #1671 fix 852 missing label
+* Fix #1667, add missing label for $a
+* Fix #1672, restore AuthToken interface after upgrade to ActiveAdmin 3.2
+* Fix #1671, number all the numbers in different amounts
+
+v 11.2.1
+* Bump rexml from 3.3.6 to 3.3.9
+* Merge pull request #1659 from rism-digital/dependabot/bundler/rexml-3.3.9
+* Fix book_id and has_incipits (insert angel emoji here)
+* Fix #1217 remove {{brk}} from 031 anf 563
+* Fix #1665, arriving this week with 11.3!
+* Fix latest names
+* Make folder filtering actually work
+* Add some missing names coming from sec lit
+* Fix the last elusive names in inventory import
+
+v 11.2
+* Update Gemfile
+* Fix #1463 - > initial removal of composed_of
+* Updates for 7.1
+* Initial port to AA 3.2
+* Make logs less verbose on development mode
+* Gem fixes for 7.1
+* Make Source work with new preducates https://github.com/activeadmin/activeadmin/pull/8010
+* Fix more models for Ransack 4 and AA 3.2.2
+* Initial fix for DigitalObjects for Ransack 4
+* Gem updates for 7.1
+* Test: reimplementation of composed_of for cleaner class layout
+* Switch over to composed_of_reimplementation
+* Add index to item_id
+* Refine the composed_of impl
+* Migrate more defaults to 7.1, update sunspot, remove sunspot_rails
+* Finish migrating settings to 7.1
+* Better SQL escaping
+* Remove old init files
+* Increment results to 1k on all models
+* Experimental: copy results to clipboard
+* Revert jquery-ui to 6.0.1
+* Less ugly clipboard implementation
+* Add icon and "toastify" class to notify user
+* Hand made toastify is better
+* If set to index when importing records, tell Solr to commit them
+* Copy the edit link
+* Ditch Uglifier and use Terser for JS compression
+* Add i18n to record actions pulldown texts
+* Tell the model to be (sunspot) indexed, if requested
+* Add 008 to marc exports
+* Change # to | (no attempt to code)
+* Add additional created_at parameters
+* Remove duplicating code in institution and person to_external
+* Add created_at to work nodes too
+* Make sure belongs_to is optional by default
+* Merge pull request #1607 from rism-digital/develop-export-008
+* Merge pull request #1606 from fjorba/record-actions-add-i18n-deprecated-deleted
+* Merge pull request #1605 from fjorba/sunspot-commit-after-import-if-index
+* Merge pull request #1602 from fjorba/slow-down-worker-sleep-delay-on-development
+* Commit whitespace in Gemfile
+* Remove Turbolinks
+* Add xml-export script
+* Merge pull request #1608 from rism-digital/develop-export-script
+* Initial implementation of templates for Inventories
+* Remove obsolete utf8=✓ to url parameters
+* Initial scaffolding for InventoryItem
+* Make sure empty items do get shown on the top of the sorted lists
+* Very basic bringup ov InventoryItem
+* Add relations for InventoryItem
+* More pieces for linking
+* Fix InventoryItem saving
+* Add tell fields, proper labels
+* Fix views and links to delayed jobs
+* Fix linking to IIs
+* Fix validation for source inventory
+* Make 773 linking work, add colors and abbr names
+* Add abilities for inventory_item
+* Expeimental box to show IIs
+* Add comment for deprecated_ids
+* Some correct scripts
+* Generate extra basic inventories from the inventories project
+* Initial working version of the import script
+* Institution translation
+* Inventory catalogues to publication migration
+* Fix catalogue mapping
+* Properly convert revue titles
+* Add missing display_name
+* Add proper 650 links to inventory items
+* Fix Christan Bergen
+* Add more partials for formatting
+* Fix StandardTerms
+* Convert data from the XML FILES
+* Translate images
+* Add links to the single images
+* Fix missing inventories
+* Fix more manifests
+* Proper conversion of the summary section
+* Remove obsolete "_" id tag
+* Migrate inventory_item 852 to 691 for proper bibliography
+* Add incipits to inventory items, remove incipits from inventories
+* Add translations for Inventory items
+* Fix typo and more labels for IIs
+* Add label for links section
+* Fix labels in inventory view
+* Add InventoryItem2InventoryItem to preserve "later entry" 775 links
+* Add autocompletes and 775 selection
+* Skip unfinished inventories
+* Index RISM Book ids and add script to search them for inventories
+* Remove more empty 710
+* Add more translations
+* Reindex IIs
+* Add proper filtering and indexes
+* Preserve the HMI user
+* Add book_id filter
+* Add some filters for internal note and siglum
+* Add new matched institutions
+* Make 040 the same for everybody
+* Add more institutions
+* Mini script to detect ID collisions
+* Match even more institutions
+* Add some missing translations
+* Add has_incipit? filter for source
+* Fix label view, remove obsolete fix for #559
+* Merge pull request #1610 from fjorba/remove-utf8-check-from-urls
+* Fix #1624, add 910 to People
+* Fix #1623, add scoring to titles in works
+* Fix #1621, add Turkmenistan to people
+* Fix #1611, add XD-BO
+* Add translations
+* Restore tab-saving functionality with rails 7.1
+* #1590 add 094 to institutions
+* #1590 modify to_external
+* #1590 script to fix institutions
+* Fix #1620, return the current index of items
+* Use option parser for the export script
+* Process --legacy option
+* Don't have the search if we are using ajax
+* Merge pull request #1626 from rism-digital/develop-export-script
+* #1622, add validation to make sure the first group is never "Additional printed material"
+* Fix #1622 implement the backend part
+* Fix #1615 refactor holding name
+* Fix GND push
+* Make GND retrieve reqiests fail gracefully if the result is empty
+* Fix check_group validator
+* Remove country code from language file
+* Make hardcoded fields never enabled, use for 094
+* Make 094 readable only by editors
+* Add saudi arabia to ISO codes
+* Remove 110g, make sure indexing works with 094a
+* Add "Inventory" Content type and make sure it is selected in new records
+* Remove 560 from II
+* Merge pull request #1632 from rism-digital/ahankinson-patch-1
+* Merge pull request #1631 from rism-digital/country-codes-fix
+* Initial fix for triggers + editor_partial
+* Remove fields from Source Inventory
+* Remove subfield_hardcoded and consolitate all the functionality in the normal subfield partial
+* Some utility scripts
+* Marc21 view should have two spaces
+* De-pikadize with ease!
+* Make 094 closed by default, add validation
+* Make some records not creatable by hand
+* Former siglum -> former sigla
+* Add some missing locales
+* Fix email translation, and parse more pikado lines
+* Fix InventoryIOtem 593 and 93x
+* Add 240 as in Source for InventoryItem
+* Add 787 to inventories
+* Add all inventory missing tags
+* Add link to standard title from inventory item
+* Keep the 852s from inventories
+* Add option for compound validation rules, on the road to solve #1128
+* Add an index to wf_owner in sources
+* Implement "any_of" in the backend validator
+* Make backend validation messages a bit more friendly
+* Remove spurious percent char
+* Reorder locale files
+* Add all the missing keys
+* Add all the missing italian translations
+* Fix the fr localization
+* Fix keys in FR translation
+* Fix the DE translations
+* translate more missing de
+* Fix the spanish translation
+* Fix filter_textinipit
+* Fix pt
+* Fix pl
+* Fix Catalan
+* Lastly, fix EN and collect cookie
+* Remove old and unused Themefinder keys
+* Remove more unused keys
+* Remove even more unused stuff
+* Fix #1453 and #1637
+* Add some basic guidelines for the GND stuff
+* Fix #1638
+* Fix #1639
+* Fix #1640
+* Implement #1641
+* Fix #1642
+* Order the gnd translations
+* Fix #1643
+* Implement #1644
+* More stuff for the GND
+* Script to fix the Protypens
+* Make the backend valitation localized messages actually work
+* Script to fix ungrouped tags
+* Add the missing tags
+* Fix missing DEBUG
+* Fix #1616, all this mess for a - !
+* Move to console.warn
+* Add the temp string for must_match
+* Refine the validation rules
+* Fix #1645
+* Merge pull request #1635 from fjorba/remove-extra-percent-char
+* Fix #1646 reindex required for Publication sometimes, miracles happen and this time it is filtering the DOs
+* Fix #1560, remove Doubtful, we have no doubts here!
+* More Doubtful to remove
+* Merge branch 'develop' into develop-11.2
+* Fix #1543 add all the locales!
+* Fix #1499
+* Fix #1627 Add san marino
+* Fix #1614 Use to_external marc
+* #1613 Fix disappearing "select"
+* Fix typo in relationship name
+* #1613, make sure the filters are restored when a NEW window is opened and switched back (the filters were never set back to the originating * window)
+* Change all the filter names ##1613
+* #1613 remove obsolete filter_workaround
+* Fix more problems with select window, rename name to short_name for pub #1613
+* #1613 Rename name to full_name in institution
+* Fix #1613, make sure the deselection works and removes session[:select]
+* Avoid regeneration of ids
+* Possibly more fixes for #1613, tab saving not workling in new_window_select
+* Fix #1650 make exported 774 more fancy
+* Fix #1650, add $a composer and $t title
+* Add 667 with the pub src counter to Person
+* Fix #1636
+* Whew! that was a lot for a minor release
+
+v 11.1
+* Bump jquery-ui-rails from 6.0.1 to 7.0.0
+* Bump actionpack from 7.0.8.1 to 7.0.8.4
+* Add Saudi Arabia to Institution Country Codes list
+* Merge pull request #1601 from rism-digital/update-saudi-arabia
+* Merge pull request #1594 from rism-digital/dependabot/bundler/actionpack-7.0.8.4
+* Merge pull request #1574 from rism-digital/dependabot/bundler/jquery-ui-rails-7.0.0
+* Backport: better SQL escaping
+
 v 11
 * Add authority reference counters to secondary literature records
 * Merge branch 'develop' into add-new-counters-for-secondary-literature

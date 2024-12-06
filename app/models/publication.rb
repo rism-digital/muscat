@@ -30,6 +30,7 @@ class Publication < ApplicationRecord
   include MarcIndex
   include AuthorityMerge
   include CommentsCleanup
+  include ComposedOfReimplementation
   resourcify
 
   #has_and_belongs_to_many(:referring_sources, class_name: "Source", join_table: "sources_to_publications")
@@ -52,6 +53,10 @@ class Publication < ApplicationRecord
   has_many :work_publication_relations, class_name: "WorkPublicationRelation"
   has_many :referring_works, through: :work_publication_relations, source: :work
   
+  #has_and_belongs_to_many(:referring_inventory_items, class_name: "InventoryItem", join_table: "inentory_items_to_publications")
+  has_many :inventory_item_publication_relations, class_name: "InventoryItemPublicationRelation"
+  has_many :referring_inventory_items, through: :inventory_item_publication_relations, source: :inventory_item
+
   #has_and_belongs_to_many :people, join_table: "publications_to_people"
   has_many :publication_person_relations
   has_many :people, through: :publication_person_relations
@@ -94,7 +99,7 @@ class Publication < ApplicationRecord
 
   has_and_belongs_to_many(:referring_work_nodes, class_name: "WorkNode", join_table: "work_nodes_to_publications")
 
-  composed_of :marc, :class_name => "MarcPublication", :mapping => %w(marc_source to_marc)
+  composed_of_reimplementation :marc, :class_name => "MarcPublication", :mapping => %w(marc_source to_marc)
 
   ##include NewIds
   before_destroy :check_dependencies, :cleanup_comments
@@ -111,8 +116,8 @@ class Publication < ApplicationRecord
   alias_attribute :id_for_fulltext, :id
   alias_attribute :name, :short_name
 
-  enum wf_stage: [ :inprogress, :published, :deleted, :deprecated ]
-  enum wf_audit: [ :full, :abbreviated, :retro, :imported ]
+  enum :wf_stage, [ :inprogress, :published, :deleted, :deprecated ]
+  enum :wf_audit, [ :full, :abbreviated, :retro, :imported ]
 
   def after_initialize
     @last_user_save = nil
@@ -234,6 +239,7 @@ class Publication < ApplicationRecord
 
     sunspot_dsl.text :pages
 
+    sunspot_dsl.integer :wf_owner
     sunspot_dsl.string :wf_stage
     sunspot_dsl.time :updated_at
     sunspot_dsl.time :created_at
@@ -322,6 +328,15 @@ class Publication < ApplicationRecord
 
   def getter_function_autocomplete_label(query_row)    
     autocomplete_label(query_row)
+  end
+
+  # If we define our own ransacker, we need this
+  def self.ransackable_attributes(auth_object = nil)
+    column_names + _ransackers.keys
+  end
+
+  def self.ransackable_associations(auth_object = nil)
+    reflect_on_all_associations.map { |a| a.name.to_s }
   end
 
   ransacker :"240g", proc{ |v| } do |parent| parent.table[:id] end

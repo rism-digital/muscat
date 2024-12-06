@@ -8,7 +8,7 @@ ActiveAdmin.register Institution do
 
   # Remove all action items
   config.clear_action_items!
-  config.per_page = [10, 30, 50, 100]
+  config.per_page = [10, 30, 50, 100, 1000]
 
   breadcrumb do
     active_admin_muscat_breadcrumb
@@ -115,10 +115,14 @@ ActiveAdmin.register Institution do
   ###########
 
   # Solr search all fields: "_equal"
-  filter :full_name_equals, :label => proc {I18n.t(:any_field_contains)}, :as => :string
-  filter :"110g_facet_contains", :label => proc{I18n.t(:library_sigla_contains)}, :as => :string
-  filter :place_contains, :label => proc {I18n.t(:filter_place)}, :as => :string
-  filter :"667a_contains", :label => proc{I18n.t(:internal_note_contains)}, :as => :string
+  filter :full_name_eq, :label => proc {I18n.t(:any_field_contains)}, :as => :string
+  
+  filter :has_siglum_with_integer, as: :select, :label => proc{I18n.t(:filter_has_siglum)},
+  collection: proc{[["True", "has_siglum:true"], ["False", "has_siglum:false"]]}
+
+  filter :"094a_facet_cont", :label => proc{I18n.t(:library_sigla_contains)}, :as => :string
+  filter :place_cont, :label => proc {I18n.t(:filter_place)}, :as => :string
+  filter :"667a_cont", :label => proc{I18n.t(:internal_note_contains)}, :as => :string
   filter :updated_at, :label => proc{I18n.t(:updated_at)}, as: :date_range
   filter :created_at, :label => proc{I18n.t(:created_at)}, as: :date_range
 
@@ -158,7 +162,6 @@ ActiveAdmin.register Institution do
   end
 
   sidebar :actions, :only => :index do
-    render :partial => "activeadmin/filter_workaround"
     render :partial => "activeadmin/section_sidebar_index"
   end
 

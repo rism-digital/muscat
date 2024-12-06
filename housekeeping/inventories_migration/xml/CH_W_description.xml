@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<TEI xmlns="http://www.tei-c.org/ns/1.0">
+<!-- "###" means: to be completed -->
+  <teiHeader>
+    <fileDesc>
+      <titleStmt>
+        <title>The Inventories of the Winterthur Collegium Musicum (1660 and 1722), ed. Claudio Bacciagaluppi, 2012 (Historical Music Inventories, ###) </title>
+      </titleStmt>
+      <editionStmt>
+        <edition>After TEI P5.1</edition>
+        <respStmt>
+          <resp>Cataloguer: <persName>Claudio Bacciagaluppi</persName>
+            <date when="2012-09">September 2012</date>
+          </resp>
+          <name>Université de Fribourg, Switzerland</name> 
+          <name>Swiss RISM Office</name>
+        </respStmt>
+      </editionStmt>
+      <publicationStmt>
+        <publisher><orgName xml:base="http://www.rism-ch.org">Swiss RISM Office</orgName>, Université de Fribourg, Switzerland</publisher>
+      </publicationStmt>
+      <sourceDesc>
+        <msDesc>
+          <msIdentifier>
+            <settlement>Winterthur</settlement>
+            <repository>Stadtbibliothek</repository>
+            <idno>Dep MK 303</idno>
+          </msIdentifier>
+          <head>
+            <title>Verzeichnus aller deren Music Büecheren</title>
+            <origPlace>Winterthur</origPlace>
+            <date>
+            Date of the volume: <origDate notBefore="1660">1660-1840c</origDate>
+            Date of the inventories: <origDate notBefore="1660">1660-1721</origDate>, <origDate notBefore="1698">1721-1764c</origDate>
+            </date>
+          </head>
+          <msContents>
+            <summary>
+            The so-called <ref target="http://in-dev.rism.digital/images/winterthur">'Wappenbuch'</ref> (book of coat-of-arms) of the Musikkollegium Winterthur (deposited in the Studienbibliothek Winterthur, Dep MK 303, olim 114) gathers together several documents relevant to the history of this remarkable institution, which was founded in 1629 and is still in existence today. It was compiled by its member Hans Ulrich Bidermann (died 1687, see fol. 110r) following a deliberation of the society's general assembly of 1660, where also new statutes were voted. The volume opens with a lengthy introduction, a copy of the statutes in the new version from 1660 and a list of the associates from the foundation of the music society (fols 4r–18r; the list was continued until 1800). The most immediately appealing part of the volume are the coat-of-arms of the associates from 1629 to the mid-19th century (the last dated coat of arms on fol. 203r being dated 1840s), drawn in brilliant colours (fols 88r–214r). In the first part, two different inventories of the music collection of the Collegium musicum are to be found, both of them bearing the title "Verzeichnus aller deren Music Büecheren So einem Loblichen Collegio der Music zugehörend". The first one was started by Biedermann together with the rest of the codex in 1660 (fols 23r-46v). In 1721, Salomon Hegner, probably a successor of Biedermann's as 'Actuarius' to the society, passed on in his turn the music collection to a new archivist, Johann Sulzer zur Sonnenuhr (fol. 60v), who compiled the second inventory, superseding the older one (fols 48r-50v). From 1726 Elias Sulzer continued adding new entries (after the note on fol. 60v), the last entries dating probably from 1764. The terminus ante quem can be gleaned from an account book of 1753–1809: the cost of binding the very last entry in the inventory, symphonies by Abel and Agrell under number 69, was entered there in September 1764 (CH-W, Dep MK 90, p. 89).<lb/>
+            Despite their description by Karl Nef in 1897 and a preliminary listing of all entries by Max Fehr in 1929, the two inventories have so far received little scholarly attention. One reason lies surely in the fact that this repertoire – more than one hundred items between the two inventories – is almost completely lost.
+            </summary>
+            <msItem><ab><metamark>Contents:</metamark>
+              <list>
+                <item><ref target="http://in-dev.rism.digital/images/winterthur#z=2&amp;n=5&amp;i=/CH_W_DepMK_303/pyr_CH_W_DepMk_303-0007.tif&amp;x=26&amp;h=700&amp;w=773">fol. [3r]</ref> [Title-page]</item>
+                <item><ref target="http://in-dev.rism.digital/images/winterthur#z=2&amp;n=5&amp;i=/CH_W_DepMK_303/pyr_CH_W_DepMk_303-0009.tif&amp;x=26&amp;h=700&amp;w=773">fol. [4r]</ref> [Introduction]</item>
+                <item><ref target="http://in-dev.rism.digital/images/winterthur#z=2&amp;n=5&amp;i=/CH_W_DepMK_303/pyr_CH_W_DepMk_303-0025.tif&amp;x=26&amp;h=700&amp;w=773">fol. [12r]</ref> [Statutes from 1660]</item>
+                <item><ref target="http://in-dev.rism.digital/images/winterthur#z=2&amp;n=5&amp;i=/CH_W_DepMK_303/pyr_CH_W_DepMk_303-0032.tif&amp;x=26&amp;h=700&amp;w=773">fol. [15v]</ref> [Associates' names since 1629]</item>
+                <item><ref target="http://in-dev.rism.digital/images/winterthur#z=2&amp;n=5&amp;i=/CH_W_DepMK_303/pyr_CH_W_DepMk_303-0037.tif&amp;x=26&amp;h=700&amp;w=773">fol. [18r]</ref> [last name entry: Salomon Reinhart zum Ochsen, 1800]</item>
+                <item><ref target="http://in-dev.rism.digital/images/winterthur#z=2&amp;n=5&amp;i=/CH_W_DepMK_303/pyr_CH_W_DepMk_303-0039.tif&amp;x=26&amp;h=700&amp;w=773">fol. [19r]</ref> [Addition to statutes, 1680]</item>
+                <item><ref target="http://in-dev.rism.digital/images/winterthur#z=2&amp;n=5&amp;i=/CH_W_DepMK_303/pyr_CH_W_DepMk_303-0047.tif&amp;x=26&amp;h=700&amp;w=773">fol. [23r]</ref> [Inventory 1660]</item>
+                <item>fol. [27r] [void]</item>
+                <item><ref target="http://in-dev.rism.digital/images/winterthur#z=2&amp;n=5&amp;i=/CH_W_DepMK_303/pyr_CH_W_DepMk_303-0055.tif&amp;x=26&amp;h=700&amp;w=773">fol. [43r]</ref> [Items belonging to Hegner]</item>
+                <item><ref target="http://in-dev.rism.digital/images/winterthur#z=2&amp;n=5&amp;i=/CH_W_DepMK_303/pyr_CH_W_DepMk_303-0056.tif&amp;x=26&amp;h=700&amp;w=773">fol. [43v]</ref> [Items belonging to Hans Jörg Küntzli]</item>
+                <item><ref target="http://in-dev.rism.digital/images/winterthur#z=2&amp;n=5&amp;i=/CH_W_DepMK_303/pyr_CH_W_DepMk_303-0058.tif&amp;x=26&amp;h=700&amp;w=773">fol. [44v]</ref> [Items belonging to Joachim Hettlinger]</item>
+                <item><ref target="http://in-dev.rism.digital/images/winterthur#z=2&amp;n=5&amp;i=/CH_W_DepMK_303/pyr_CH_W_DepMk_303-0061.tif&amp;x=26&amp;h=700&amp;w=773">fol. [46r]</ref> [Items belonging to the Bürgerbibliothek]</item>
+                <item><ref target="http://in-dev.rism.digital/images/winterthur#z=2&amp;n=5&amp;i=/CH_W_DepMK_303/pyr_CH_W_DepMk_303-0062.tif&amp;x=26&amp;h=700&amp;w=773">fol. [46v]</ref> [Items belonging to the heirs of Hanharten]</item>
+                <item><ref target="http://in-dev.rism.digital/images/winterthur#z=2&amp;n=5&amp;i=/CH_W_DepMK_303/pyr_CH_W_DepMk_303-0065.tif&amp;x=26&amp;h=700&amp;w=773">fol. [48r]</ref> [Inventory 1722]</item>
+                <item><ref target="http://in-dev.rism.digital/images/winterthur#z=2&amp;n=5&amp;i=/CH_W_DepMK_303/pyr_CH_W_DepMk_303-0071.tif&amp;x=26&amp;h=700&amp;w=773">fol. [51r]</ref> [Inventory of musical instruments, 1722c]</item>
+                <item><ref target="http://in-dev.rism.digital/images/winterthur#z=2&amp;n=5&amp;i=/CH_W_DepMK_303/pyr_CH_W_DepMk_303-0072.tif&amp;x=26&amp;h=700&amp;w=773">fol. [60r]</ref> [Inventory of musical instruments, 1660c]</item>
+                <item><ref target="http://in-dev.rism.digital/images/winterthur#z=2&amp;n=5&amp;i=/CH_W_DepMK_303/pyr_CH_W_DepMk_303-0073.tif&amp;x=26&amp;h=700&amp;w=773">fol. [60v]</ref> [Music handed over from Salomon Hegner to Johann Sulzer zur Sonnenuhr, 1721; music handed over from Johann Sulzer to Elias Sulzer, 1726]</item>
+                <item>fol. [61] [void]</item>
+                <item>fol. [75r] [one coat-of-arms, 19th century]</item>
+                <item>fol. [75v] [void]</item>
+                <item><ref target="http://in-dev.rism.digital/images/winterthur#z=2&amp;n=5&amp;i=/CH_W_DepMK_303/pyr_CH_W_DepMk_303-0074.tif&amp;x=26&amp;h=700&amp;w=773">fol. [88r]</ref> [coats-of-arms of all members since 1629]</item>
+                <item>fol. [214v-227v] [void]</item>
+            </list>
+            </ab></msItem>
+          </msContents>
+          <physDesc>
+          <p><hi rend='bold'>Physical description:</hi></p>
+            <objectDesc>
+              <supportDesc>
+                <extent>
+                  <measure type="pagesCount" n="228">[228c] fols.</measure>
+                  <measure type="pageDimensions">In folio.</measure>
+                </extent>
+                <foliation>Without foliation.<lb/>
+                  <watermark>
+                   <hi rend='bold'>Watermark: </hi><lb/>
+                   <ref target="http://in-dev.rism.digital/images/winterthur_wm">Double-headed eagle, above crown, supported by two lions holding a sword and an orb, beneath two coats-of-arms.</ref>
+                  </watermark>
+                </foliation>                
+              </supportDesc>
+            </objectDesc>
+            <handDesc><!-- Hands: -->
+              <handNote>Scribe, 1660–1687: [Hans Ulrich Bidermann]</handNote>
+              <handNote>Scribe, ?–1726: [Johann Sulzer zur Sonnenuhr]</handNote>
+              <handNote>Scribe, 1726–?: [Elias Sulzer]</handNote>
+            </handDesc>
+            <bindingDesc>
+              <p>Leather binding, possibly from the 17th century.</p>
+            </bindingDesc>
+          </physDesc>
+          <additional>
+            <adminInfo>
+              <recordHist>
+                <source>
+                   <bibl>Images © Musikkollegium Winterthur (Winterthur, 2012).<lb/></bibl>
+                  <bibl>Records compiled by: Claudio Bacciagaluppi (Zurich, 2012).</bibl>
+                </source>
+              </recordHist>
+            </adminInfo>
+            <listBibl>
+              <head>Essential bibliography:</head>
+              <bibl>Karl Nef, Die Collegia Musica in der deutschen reformierten Schweiz von ihrer Enstehung bis zum Beginn des neunzehnten Jahrhunderts, St. Gallen, Fehr, 1897.</bibl>
+              <bibl>Rudolf Geilinger, Zur Feier des 250-jährigen Bestehens des Musik-Collegium in Winterthur, Winterthur, Bleuler-Hausherr, 1880.</bibl>
+              <bibl>Max Fehr, Das Musikkollegium Winterthur 1629-1837, Winterthur, Musikkollegium, 1929 (Musikkollegium Winterthur: Festschrift zur Feier des dreihundertjährigen Bestehens 1629-1929, vol. 1).</bibl>
+              <bibl>Claudio Bacciagaluppi, More on Vivaldi in Switzerland, in Early Music 39 (2011), 597-604 (http://dx.doi.org/10.1093/em/car102).</bibl>
+            </listBibl>
+          </additional>
+        </msDesc>
+      </sourceDesc>
+    </fileDesc>
+  </teiHeader>
+  <text>
+    <body>
+                <pb n="fol. 3r" facs="http://in-dev.rism.digital/images/winterthur#z=2&amp;n=5&amp;i=/CH_W_DepMK_303/pyr_CH_W_DepMk_303-0007.tif&amp;x=26&amp;h=700&amp;w=773"/><p><interp>fol. [3r]</interp> Winterthurischer <lb/> Musicalischer <lb/> EhrenKrantz <lb/> das ist. <lb/> Eines Loblichen <lb/> COLLEGII MUSICI <lb/> alhie zu <lb/> Winterthur. <lb/> Anfang Forthgang Satzung- <lb/> en Ordnungen und Zugehör- <lb/> den, sampt aller demselbig- <lb/> en von Anno. 1629. <lb/> einverleibten Ehr- <lb/> en Persohnen Na- <lb/> men, geschlecht <lb/> und waapen. <lb/> Ihm Jahr <lb/> MDCL <lb/> X <interp>[corrected into:]</interp><add>1660</add></p>
+               	<p><interp>[...]</interp><gap/></p>
+               	<pb n="fol. 10v" facs="http://in-dev.rism.digital/images/winterthur#z=2&amp;n=5&amp;i=/CH_W_DepMK_303/pyr_CH_W_DepMk_303-0022.tif&amp;x=26&amp;h=700&amp;w=773"/><p><interp>fol. [10v]</interp><gloss>Music zu Winterthur von alterher geüebt und geliebet</gloss><lb/>
+                Nit nur, dass christliche Kirchengesäng nach der Reformation und Glabensverbesserung allererst allhie öffentlich eingeführt, sondern die Musik ferner also geüebet und embsig getriben worden; dass man die Musikanten von Winterthur zu Zürich und anderer Orten by ansehnlichen Hochzythen und anderen Soleniteten mit ruhm bedient. Ist auch diese edle Kunst bei verdenklichen Jahren nie so gahr in Abgang kommen, dass man eine Musik von vier oder fünf guten Stimmen zusammenbringen und sich derselbigen zu ehren und ergetzlichkeit hete bedienen mögen.</p>
+                <p><interp>[...]</interp><gap/></p>
+                <pb n="fol. 11r" facs="http://in-dev.rism.digital/images/winterthur#z=2&amp;n=5&amp;i=/CH_W_DepMK_303/pyr_CH_W_DepMk_303-0023.tif&amp;x=26&amp;h=700&amp;w=773"/><p><interp>fol. [11r]</interp><gloss>Collegium Musicu<expan>[m]</expan> Anno 1629 angefangen<lb/>
+                Bis das entlichen durch Gottes Gnad Ehre und Kunstliebenden Gemüetheren Ifer ihm Jahr Christi 1629 ein ordentlich Collegium Musicum wöchentlich zu gewüssen Tagen und Stunden ze halten angesehen; mit guten Satzungen und Ordnungen verfasset, bis dato durch Gottes sonderbare Gnad im lieben Frieden unverstört erhalten; mit allerleÿ guten Autoribus und Musicalischen Instrumenten, theils durch munificenz eines Ehrsam<expan>[m]</expan>en Magistrats, theils durch sich selbsten und ynverlybten glider vermehrt und gebeßeret worden.<lb/> <gloss>Mitel zu deßen üffnung und erhaltung</gloss><lb/>Damit nun dieses lobliche Collegium Musicum by uns in diesem feinen Blust noch wyter bestehe; ja in mehrers ufnehmen durch Gottes Gnad und Segen kommen möge, Alß Ist <expan>[von]</expan> den deßelbigen dißmalen Interessierten glideren samptlichen für gueth und nothwendig angesehen worden, daß Ihn ein Buch zusam<expan>[m]</expan>en getragen wurdend.</gloss> <lb/><interp>[...]</interp><gap/> 1. Eines Collegij Lobliche Satzungen <interp>[...]</interp><gap/></p>
+                <pb n="fol. 11v" facs="http://in-dev.rism.digital/images/winterthur#z=2&amp;n=5&amp;i=/CH_W_DepMK_303/pyr_CH_W_DepMk_303-0024.tif&amp;x=26&amp;h=700&amp;w=773"/><p><interp>fol. [11v]</interp> 2. Ein Verzeichnus aller deren sich bÿ dem Collegio befindenden Music büchern: Musicalischen Instrumenten und anderer zugehörd<expan>[en]</expan>. Woher Sÿ zu der Gesellschafft kom<expan>[m]</expan>en, oder wem Sÿ zu dienend, damit nichts (wie sich die Zÿthen und fäll Ihme enderen möchten) waß der Gsellschafft oder dero glideren zu gehörig distrahiert werde.<lb/>
+3. Der Ehren Persohnen (die sich von Anno 1629 biß uff diß ÿngegangen 1660 Jahr dißeren loblichen Collegio Musico ÿnverlÿbt: <interp>[...]</interp><gap/><lb/>
+4. Deren Nam<expan>[m]</expan>en und Wâpen <interp>[...]</interp><gap/></p>
+                <pb n="fol. 12r" facs="http://in-dev.rism.digital/images/winterthur#z=2&amp;n=5&amp;i=/CH_W_DepMK_303/pyr_CH_W_DepMk_303-0025.tif&amp;x=26&amp;h=700&amp;w=773"/><p><interp>fol. [12r]</interp><interp>[...]</interp><gap/> [Geilinger 10: Zum anderen Solle keiner Ihn solch Lob: Erhengeselschaft uff und angenommen werden; Er seye dann Ihn den principiis der Musicalischen Kunst fundirt: <interp>[...]</interp><gap/> Darzu einer loblichen Geselschafft zum eynstand und für den geniess der vorhandenen Music-Büchern Ein Ducaten in Specie: oder wass Soliche Jeder Zyth an Müntz geltend, also bahr Zuerlegen und Zu bezahlen. Wann dann für das Dritte ein Ehrengeselschaft an gehörigen Ort und Zyth versamblet ist, sol ein gewüsser und zuvor usserkiessner und erwelter author Musicus ufgeschlagen: ein Stund lang daruss Musizirt und alle Musictag Continuirt biss selbiger vollendet wirth, nach Verschynung aber angeregter stund, mag nach der anwessenden Glidern gefahlen uss andern Büchern auch gesungen werden. Zum Vierten, wan ein Glied der Music ein Musicalisches Instrument oder Buch mit sich heimb nimmt, sich alda privatim zu exerciren, soll selbiges uff nechst daruff folgenden Musiktag, wirder Zu der Musik gebracht werden; oder jeder Übertreter disses Punktes um vier Schilling gebüsst werden. Dess glychen wan einer von den Herren Musicanten, Syne bey der Geselschaft habende eigene Bücher oder Instrument, gewüsser Ursachen wegen abforderte und heimbgenommen, Solle solches Ihn den Catalog oder <interp>[sic]</interp> Music Büchern, nachrichtlich verzeichnet werden, damit man wüsse, wo sie hinkommen, und einer loblichen Geselschafft dess nachher netzit wyters Zugesucht werden könne.<lb/>
+                <interp>[...]</interp><gap/> Zum dryzechenden. Ist gerordnet, Alle Fronfasten wegen der ynamen: und ussgaben: dessglychen verfahlnen Buessen und Restanzen ein ordenliche abrechnung zetreffen <interp>[...]</interp><gap/></p>
+                <pb n="fol. 19r" facs="http://in-dev.rism.digital/images/winterthur#z=2&amp;n=5&amp;i=/CH_W_DepMK_303/pyr_CH_W_DepMk_303-0039.tif&amp;x=26&amp;h=700&amp;w=773"/><p><interp>fol. [19r]</interp> Erleütherung. <lb/> Über etliche Artickel <interp>[...]</interp><gap/> 1680</p>
+                <p><interp>[...]</interp><gap/></p>
+                <pb n="fol. 23r" facs="http://in-dev.rism.digital/images/winterthur#z=2&amp;n=5&amp;i=/CH_W_DepMK_303/pyr_CH_W_DepMk_303-0047.tif&amp;x=26&amp;h=700&amp;w=773"/><p><interp>fol. [23r]</interp> Verzeichnus aller deren Music <lb/> Büecheren So einem Loblichen Collegio der <lb/> Music zugehörend</p>
+                <p><interp>[...]</interp><gap/></p>
+                <pb n="fol. 43r" facs="http://in-dev.rism.digital/images/winterthur#z=2&amp;n=5&amp;i=/CH_W_DepMK_303/pyr_CH_W_DepMk_303-0055.tif&amp;x=26&amp;h=700&amp;w=773"/><p><interp>fol. [43r]</interp> Nach Folgende Büecher gehörend zu <lb/> Herren Statt: und Landtschreiber Hegner.</p>
+                <p><interp>[...]</interp><gap/></p>
+                <pb n="fol. 43v" facs="http://in-dev.rism.digital/images/winterthur#z=2&amp;n=5&amp;i=/CH_W_DepMK_303/pyr_CH_W_DepMk_303-0056.tif&amp;x=26&amp;h=700&amp;w=773"/><p><interp>fol. [43v]</interp> Nach Folgende Büecher gehör- <lb/> end Herren Hanß Jörg <lb/> Küntzli.</p>
+                <p><interp>[...]</interp><gap/></p>
+                <pb n="fol. 44v" facs="http://in-dev.rism.digital/images/winterthur#z=2&amp;n=5&amp;i=/CH_W_DepMK_303/pyr_CH_W_DepMk_303-0058.tif&amp;x=26&amp;h=700&amp;w=773"/><p><interp>fol. [44v]</interp> Nach Folgende Büecher gehörend <lb/> Herren Joachim Hettlinger</p>
+                <p><interp>[...]</interp><gap/></p>
+                <pb n="fol. 46r" facs="http://in-dev.rism.digital/images/winterthur#z=2&amp;n=5&amp;i=/CH_W_DepMK_303/pyr_CH_W_DepMk_303-0061.tif&amp;x=26&amp;h=700&amp;w=773"/><p><interp>fol. [46r]</interp> Nach Folgende Büecher gehörend zu <lb/> einer Bürgerlichen Bibliothec. <lb/> alhier.</p>
+                <p><interp>[...]</interp><gap/></p>
+                <pb n="fol. 46v" facs="http://in-dev.rism.digital/images/winterthur#z=2&amp;n=5&amp;i=/CH_W_DepMK_303/pyr_CH_W_DepMk_303-0062.tif&amp;x=26&amp;h=700&amp;w=773"/><p><interp>fol. [46v]</interp> Nachstehende Büecher gehören H<expan>[er]</expan>rn Cam<expan>[m]</expan>erer Hanharten sel. <lb/> Erben zu.</p>
+                <p><interp>[...]</interp><gap/></p>
+                <pb n="fol. 48r" facs="http://in-dev.rism.digital/images/winterthur#z=2&amp;n=5&amp;i=/CH_W_DepMK_303/pyr_CH_W_DepMk_303-0065.tif&amp;x=26&amp;h=700&amp;w=773"/><p><interp>fol. [48r]</interp> Verzeichnus aller deren <lb/> Music Büecheren So einem <lb/> Loblichen Collegio der Music <lb/> Zu gehörend.</p>
+                <p><interp>[...]</interp><gap/></p>
+                <pb n="fol. 60r" facs="http://in-dev.rism.digital/images/winterthur#z=2&amp;n=5&amp;i=/CH_W_DepMK_303/pyr_CH_W_DepMk_303-0072.tif&amp;x=26&amp;h=700&amp;w=773"/><p><interp>fol. [60r]</interp> Einem Loblichen Collegio Musico zudienende Musicaliche Instrumenta und Mobilia [1660c]</p>
+                <pb n="fol. 60v" facs="http://in-dev.rism.digital/images/winterthur#z=2&amp;n=5&amp;i=/CH_W_DepMK_303/pyr_CH_W_DepMk_303-0073.tif&amp;x=26&amp;h=700&amp;w=773"/><p><interp>fol. [60v]</interp> <interp>[...]</interp><gap/> Den 15ten Januar 1726 sind vorstehende Aucthores Sachen Hrn Elias Sultzer übergeben worden. In beÿseÿn Herrn Exactor u<expan>[n]</expan>d StattRichter Trollen <lb/> bescheint <lb/> Johann Sultzer<expan>[manu propria]</expan> <lb/> zur Son<expan>[n]</expan>en-uhr</p>
+                <p><interp>[...]</interp><gap/></p>
+                <pb/><p><interp>fol. [110r]</interp> 1658 <lb/> den 10.t<expan>[en]</expan> wÿnmonat <lb/> Herr Hans Ullrich Biderman <lb/> Huius operis Scriba <interp>[...]</interp><gap/> Starb den 21.t<expan>[en]</expan> Febr. Anno 1687</p>
+                <p><interp>[...]</interp><gap/></p>
+      <linkGrp>
+        <link/>
+<!-- ### -->
+      </linkGrp>
+    </body>
+  </text>
+</TEI>

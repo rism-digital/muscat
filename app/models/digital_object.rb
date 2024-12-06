@@ -26,7 +26,7 @@ class DigitalObject < ApplicationRecord
     has_many :folder_items, as: :item, dependent: :destroy
     belongs_to :user, :foreign_key => "wf_owner"
 
-    enum attachment_type: [ :images, :incipits ]
+    enum :attachment_type, [ :images, :incipits ]
     
     before_destroy :cleanup_comments
 
@@ -104,6 +104,21 @@ class DigitalObject < ApplicationRecord
       incipits["#{pae_nr}#{text}"] = "#{s.id}:#{pae_nr}"
     end
     incipits
+  end
+
+  # https://github.com/activeadmin/activeadmin/issues/7809
+  # In Non-marc models we can use the default
+  # If we define our own ransacker, we need this
+  def self.ransackable_attributes(auth_object = nil)
+    column_names + _ransackers.keys
+  end
+
+  def self.ransackable_associations(auth_object = nil)
+    reflect_on_all_associations.map { |a| a.name.to_s }
+  end
+
+  def display_name
+    self.description
   end
 
 end

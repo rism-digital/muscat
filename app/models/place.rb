@@ -43,7 +43,7 @@ class Place < ApplicationRecord
 
   validates_presence_of :name
 
-  validates_uniqueness_of :name
+  validates_uniqueness_of :name, scope: [:country, :district]
 
   #include NewIds
 
@@ -56,8 +56,8 @@ class Place < ApplicationRecord
 
   alias_attribute :id_for_fulltext, :id
 
-  enum wf_stage: [ :inprogress, :published, :deleted, :deprecated ]
-  enum wf_audit: [ :basic, :minimal, :full ]
+  enum :wf_stage, [ :inprogress, :published, :deleted, :deprecated ]
+  enum :wf_audit, [ :basic, :minimal, :full ]
 
   # Suppresses the solr reindex
   def suppress_reindex
@@ -88,6 +88,9 @@ class Place < ApplicationRecord
     text :alternate_terms
     text :topic
     text :sub_topic
+    string :district_order do
+      district
+    end
     text :district
 
     join(:folder_id, :target => FolderItem, :type => :integer, 
@@ -115,5 +118,14 @@ class Place < ApplicationRecord
 
   end
 
+  def autocomplete_label
+    [self.name&.strip, self.district&.strip, self.country&.strip].compact.reject(&:empty?).join(", ")
+  end
+
+  # https://github.com/activeadmin/activeadmin/issues/7809
+  # In Non-marc models we can use the default
+  def self.ransackable_associations(_) = reflections.keys
+  def self.ransackable_attributes(_) = attribute_names - %w[token]
+    
 end
 

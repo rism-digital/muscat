@@ -25,8 +25,9 @@
     - - u
       - hidden: true
     - - a
-      - editor_partial: subfield_hardcoded
-        value: "1"
+      - read_only: true
+        default: "1"
+        override_admin: true
     - - b
     - - c
     - - d
@@ -270,6 +271,7 @@
       - "per"
       - "pol"
       - "por"
+      - "roa"
       - "roh"
       - "rom"
       - "rum"
@@ -302,7 +304,7 @@
       - "zxx"
 "100":
   new_window: people
-  new_window_field: full_name_equals
+  new_window_field: full_name_eq
   layout:
     fields:
     - - a
@@ -322,7 +324,7 @@
       - "Misattributed"
 "240":
   new_window: standard_titles
-  new_window_field: title_equals
+  new_window_field: title_eq
   layout:
     fields:
     - - a
@@ -614,6 +616,10 @@
             - Print
           composite_volume:
             - Composite
+          inventory:
+            - Manuscript copy
+          inventory_edition:
+            - Print
         editor_partial: subfield_select
     - - b
       - values:
@@ -636,6 +642,10 @@
           - "Notated music"
           - "Libretto"
           - "Treatise"
+          inventory:
+          - "Inventory"
+          inventory_edition:
+          - "Inventory"
 "594":
   layout:
     fields:
@@ -704,7 +714,7 @@
       - hidden: true
 "650":
   new_window: standard_terms
-  new_window_field: term_equals
+  new_window_field: term_eq
   layout:
     fields:
     - - a
@@ -713,7 +723,7 @@
         allow_new: true
 "651":
   new_window: places
-  new_window_field: name_equals
+  new_window_field: name_eq
   layout:
     fields:
     - - a
@@ -722,7 +732,7 @@
         allow_new: true
 "657":
   new_window: liturgical_feasts
-  new_window_field: name_equals
+  new_window_field: name_eq
   layout:
     fields:
     - - a
@@ -731,7 +741,7 @@
         allow_new: true
 "690":
   new_window: publications
-  new_window_field: name_equals
+  new_window_field: short_name_eq
   layout:
     fields:
     - - a
@@ -741,7 +751,7 @@
     - - n
 "691":
   new_window: publications
-  new_window_field: name_equals
+  new_window_field: short_name_eq
   layout:
     fields:
     - - a
@@ -751,7 +761,7 @@
     - - n
 "700":
   new_window: people
-  new_window_field: full_name_equals
+  new_window_field: full_name_eq
   layout:
     fields:
     - - a
@@ -829,7 +839,7 @@
         - scr
 "710":
   new_window: institutions
-  new_window_field: corporate_name_equals
+  new_window_field: corporate_name_eq
   layout:
     fields:
     - - a
@@ -900,7 +910,7 @@
         - scr
 "730":
   new_window: standard_titles
-  new_window_field: title_equals
+  new_window_field: title_eq
   layout:
     fields:
     - - a
@@ -1092,7 +1102,7 @@
       - hidden: true
 "930":
   new_window: work_nodes
-  new_window_field: title_equals
+  new_window_field: title_eq
   layout:
     fields:
     - - a

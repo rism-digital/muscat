@@ -11,6 +11,14 @@ class MarcWorkNode < Marc
     if node = tag100.fetch_first_by_tag("t")
         title = node.content.blank? ? "[without title]" : "#{node.content}"
     end
+
+    #1662, emulate the GND title
+    if node = tag100.fetch_first_by_tag("p")
+      title = node.content.blank? ? title : "#{title}. #{node.content}"
+  end
+
+=begin
+    # See #1662, we are interested only in $t and $p
     # scoring from repeated $m
     if node = tag100.fetch_first_by_tag("m")
         scoring = node.content.blank? ? "" : ", #{node.content}"
@@ -25,6 +33,8 @@ class MarcWorkNode < Marc
     end
 
     return "#{title}#{scoring}#{number}#{key}"
+=end
+    return title.truncate(255)
   end
 
   def get_composer_name
@@ -32,7 +42,7 @@ class MarcWorkNode < Marc
     if node = first_occurance("100", "a")
       composer = "#{node.content}" if !node.content.blank?
     end
-    return composer
+    return composer.truncate(255)
   end
 
   def get_composer

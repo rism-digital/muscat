@@ -176,8 +176,10 @@ ActiveAdmin.register Folder do
   ###########
   
   # Solr search all fields: "_equal"
-  filter :name_equals, :label => proc {I18n.t(:any_field_contains)}, :as => :string
+  filter :name, :label => proc {I18n.t(:filter_name)}, :as => :string
+  filter :folder_type, :label => proc {I18n.t(:filter_folder_type)}, :as => :string
   
+
 =begin
   filter :wf_owner, :label => proc {I18n.t(:filter_owner)}, as: :select, 
          collection: proc {
@@ -215,7 +217,6 @@ ActiveAdmin.register Folder do
   end
   
   sidebar :actions, :only => :index do
-    render :partial => "activeadmin/filter_workaround"
     render :partial => "activeadmin/section_sidebar_index"
   end
 

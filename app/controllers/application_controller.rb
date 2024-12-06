@@ -127,7 +127,7 @@ class ApplicationController < ActionController::Base
     devise_parameter_sanitizer.permit :account_update, keys: added_attrs
   end
 
-  def restore_search_filters  
+  def restore_search_filters
   end
   
   def save_search_filters  

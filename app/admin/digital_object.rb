@@ -175,6 +175,8 @@ ActiveAdmin.register DigitalObject do
           collection: proc{{images: 0, incipits: 1}}
   filter :attachment_updated_at, :label => proc {I18n.t(:updated_at)}
   
+  filter :wf_owner, :label => proc {I18n.t(:filter_owner)}, :as => :flexdatalist, data_path: proc{list_for_filter_admin_users_path()}
+
   index :as => :grid, :download_links => false do |obj|
     div do
         if obj.images?
@@ -187,7 +189,6 @@ ActiveAdmin.register DigitalObject do
   end
   
   sidebar :actions, :only => :index do
-    render :partial => "activeadmin/filter_workaround"
     render :partial => "activeadmin/section_sidebar_index"
   end
   

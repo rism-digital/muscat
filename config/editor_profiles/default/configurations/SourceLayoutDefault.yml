@@ -15,7 +15,11 @@ group_exclude:
   composite_volume:
   - edit_incipits
   - edit_works
-
+  inventory:
+  - edit_incipits
+  inventory_edition:
+  - edit_incipits
+  
 tag_exclude:
   collection:
   - '026'
@@ -162,6 +166,49 @@ tag_exclude:
   - '773'
   - '775'
   - '787'
+  inventory:
+  - '026'
+  - '031'
+  - '100'
+  - '383'
+  - '510'
+  - '518'
+  - '546'
+  - '588'
+  - '590'
+  - '594'
+  - '595'
+  - '596'
+  - '598'
+  - '651'
+  - '657'
+  - '773'
+  - '774'
+  - '775'
+  - '787'
+  - '930'
+  inventory_edition:
+  - '031'
+  - '100'
+  - '383'
+  - '506'
+  - '510'
+  - '518'
+  - '525'
+  - '541'
+  - '561'
+  - '563'
+  - '590'
+  - '591'
+  - '592'
+  - '594'
+  - '596'
+  - '598'
+  - '773'
+  - '774'
+  - '787'
+  - '852'
+  - '930'
 
 tag_exclude_with_holdings:
   collection:

@@ -10,7 +10,7 @@ ActiveAdmin.register LiturgicalFeast do
 
   # Remove all action items
   config.clear_action_items!
-  config.per_page = [10, 30, 50, 100]
+  config.per_page = [10, 30, 50, 100, 1000]
   
   collection_action :autocomplete_liturgical_feast_name, :method => :get
 
@@ -96,7 +96,7 @@ ActiveAdmin.register LiturgicalFeast do
   ###########
   
   # Solr search all fields: "_equal"
-  filter :name_equals, :label => proc {I18n.t(:any_field_contains)}, :as => :string
+  filter :name_eq, :label => proc {I18n.t(:any_field_contains)}, :as => :string
   
   # This filter passes the value to the with() function in seach
   # see config/initializers/ransack.rb
@@ -122,7 +122,6 @@ ActiveAdmin.register LiturgicalFeast do
   end
   
   sidebar :actions, :only => :index do
-    render :partial => "activeadmin/filter_workaround"
     render :partial => "activeadmin/section_sidebar_index"
   end
   

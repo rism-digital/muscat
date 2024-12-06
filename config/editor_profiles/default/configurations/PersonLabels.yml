@@ -129,6 +129,11 @@
     z:
       label: records.note_external_resource
   label: records.external_resource
+'910':
+  fields:
+    a:
+      label: records.institution
+  label: records.contributing_project
 administration:
   label: records.administration
 bn:

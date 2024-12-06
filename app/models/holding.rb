@@ -1,6 +1,7 @@
 class Holding < ApplicationRecord
   include ForeignLinks
   include CommentsCleanup
+  include ComposedOfReimplementation
   resourcify
 
   # class variables for storing the user name and the event from the controller
@@ -30,13 +31,16 @@ class Holding < ApplicationRecord
   has_many :holding_place_relations
   has_many :places, through: :holding_place_relations
 
+  has_many :inventory_item_holding_relations, class_name: "InventoryItemHoldingRelation"
+  has_many :referring_inventory_items, through: :inventory_item_holding_relations, source: :inventory_item
+
   belongs_to :source
 	belongs_to :collection, class_name: "Source", foreign_key: "collection_id"
   has_many :folder_items, as: :item, dependent: :destroy
   belongs_to :user, :foreign_key => "wf_owner"
   
-  composed_of :marc, :class_name => "MarcHolding", :mapping => %w(marc_source to_marc)
-  
+  composed_of_reimplementation :marc, :class_name => "MarcHolding", :mapping => %w(marc_source to_marc)
+
   before_destroy :check_collection_id, prepend: true
 
   before_save :set_object_fields
@@ -53,8 +57,8 @@ class Holding < ApplicationRecord
   attr_accessor :suppress_update_77x_trigger
 
   # Keep both inprogress and unpublished for compatibility with older versions
-  enum wf_stage: { unpublished: 0, inprogress: 0, published: 1, deleted: 2, deprecated: 3 }
-  enum wf_audit: [ :unapproved, :full, :abbreviated, :retro, :imported ]
+  enum :wf_stage, { unpublished: 0, inprogress: 0, published: 1, deleted: 2, deprecated: 3 }
+  enum :wf_audit, [ :unapproved, :full, :abbreviated, :retro, :imported ]
 
   def after_initialize
     @old_collection = nil
@@ -156,6 +160,7 @@ class Holding < ApplicationRecord
 
     # "Tell fields"
     self.lib_siglum = marc.get_lib_siglum
+    self.shelf_mark = marc.get_shelf_mark
     
     self.marc_source = self.marc.to_marc
   end
@@ -279,11 +284,24 @@ class Holding < ApplicationRecord
     self.marc.get_shelf_mark
   end
 
+  def creatable?
+    false
+  end
+
   def formatted_title
     return "#{lib_siglum} [#{id}]" if !source
     return "#{lib_siglum} [#{id}] in (#{source.std_title} [#{source.id}])"if !source.composer || source.composer.empty?
     return "#{lib_siglum} [#{id}] in (#{source.composer} [#{source.id}])" if !source.std_title || source.std_title.empty?
     return "#{lib_siglum} [#{id}] in (#{source.composer} - #{source.std_title} [#{source.id}])"
+  end
+
+  # If we define our own ransacker, we need this
+  def self.ransackable_attributes(auth_object = nil)
+    column_names + _ransackers.keys
+  end
+
+  def self.ransackable_associations(auth_object = nil)
+    reflect_on_all_associations.map { |a| a.name.to_s }
   end
 
 end

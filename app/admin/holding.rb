@@ -180,8 +180,8 @@ ActiveAdmin.register Holding do
   #end
   
   # Solr search all fields: "_equal"
-  filter :lib_siglum_equals, :label => proc {I18n.t(:any_field_contains)}, :as => :string
-  filter :source_id_contains, :label => proc{I18n.t(:filter_source_id)}, :as => :string
+  filter :lib_siglum_eq, :label => proc {I18n.t(:any_field_contains)}, :as => :string
+  filter :source_id_cont, :label => proc{I18n.t(:filter_source_id)}, :as => :string
 
   
   # This filter passes the value to the with() function in seach

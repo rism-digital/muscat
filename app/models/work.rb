@@ -3,6 +3,7 @@ class Work < ApplicationRecord
   include MarcIndex
   include AuthorityMerge
   include CommentsCleanup
+  include ComposedOfReimplementation
 
   # class variables for storing the user name and the event from the controller
   @last_user_save
@@ -22,6 +23,9 @@ class Work < ApplicationRecord
   has_many :source_work_relations, class_name: "SourceWorkRelation"
   has_many :referring_sources, through: :source_work_relations, source: :source
   
+  has_many :inventory_item_work_relations, class_name: "InventoryItemWorkRelation"
+  has_many :referring_inventory_items, through: :inventory_item_work_relations, source: :inventory_item
+
   #has_and_belongs_to_many :publications, join_table: "works_to_publications"
   has_many :work_publication_relations
   has_many :publications, through: :work_publication_relations
@@ -72,7 +76,7 @@ class Work < ApplicationRecord
   has_many :referring_work_relations, class_name: "WorkRelation", foreign_key: "work_b_id"
   has_many :referring_works, through: :referring_work_relations, source: :work_a
 
-  composed_of :marc, :class_name => "MarcWork", :mapping => %w(marc_source to_marc)
+  composed_of_reimplementation :marc, :class_name => "MarcWork", :mapping => %w(marc_source to_marc)
 
   before_destroy :check_dependencies, :cleanup_comments
   
@@ -85,8 +89,8 @@ class Work < ApplicationRecord
   after_save :update_links, :reindex
   after_initialize :after_initialize
 
-  enum wf_stage: [ :inprogress, :published, :deleted, :deprecated ]
-  enum wf_audit: [ :normal, :obsolete, :doubtful, :fragment ]
+  enum :wf_stage, [ :inprogress, :published, :deleted, :deprecated ]
+  enum :wf_audit, [ :normal, :obsolete, :doubtful, :fragment ]
 
   alias_attribute :name, :title
   alias_attribute :id_for_fulltext, :id
@@ -228,16 +232,7 @@ class Work < ApplicationRecord
     end
     
     sunspot_dsl.boolean :has_music_incipit do |s|
-      count = 0
-      s.marc.by_tags(["031"]).each do |st|
-        st.fetch_all_by_tag("p").each do |sst|
-          if sst && sst.content && !sst.content.empty?
-            count += 1 
-            break
-          end
-        end
-      end
-      count > 0
+      s.marc.has_incipits?
     end
 
     MarcIndex::attach_marc_index(sunspot_dsl, self.to_s.downcase)
@@ -261,6 +256,15 @@ class Work < ApplicationRecord
     Viaf::Interface.search(str, self.to_s)
   end
  
+  # If we define our own ransacker, we need this
+  def self.ransackable_attributes(auth_object = nil)
+    column_names + _ransackers.keys
+  end
+
+  def self.ransackable_associations(auth_object = nil)
+    reflect_on_all_associations.map { |a| a.name.to_s }
+  end
+
   ransacker :"031t", proc{ |v| } do |parent| parent.table[:id] end
   ransacker :"0242_filter", proc{ |v| } do |parent| parent.table[:id] end
   ransacker :catalogue_name_order, proc{ |v| } do |parent| parent.table[:id] end

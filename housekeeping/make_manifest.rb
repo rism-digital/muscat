@@ -88,7 +88,7 @@ OptionParser.new do |opts|
     options[:onlyadd] = b
   end
 
-  opts.on("-m", "--match-metadata [FILE]", "Pull the metadata from a CSV file, ID,BANNER,TYPE") do |b|
+  opts.on("-m", "--match-metadata [FILE]", "Pull the metadata from a CSV file, ID,BANNER($z),TYPE($x)") do |b|
     options[:csv] = b
   end
 

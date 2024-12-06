@@ -146,12 +146,13 @@ pl:
     austria_tyrol: 'Austria: Tyrol'
     austria_upper_austria: 'Austria: Górna Austria'
     austria_vienna: 'Austria: Wiedeń'
-    azerbiajan: Azerbejdżan
+    azerbaijan: Azerbejdżan
     bangladesh: Bangladesz
     belarus: Białoruś
     belgium: Belgia
     benin: Benin
     bolivia: Boliwia
+    bosnia_and_herzegovina: Bośnia i Hercegowina
     bosnia_herzegovina: Bośnia i Hercegowina
     brazil: Brazylia
     bulgaria: Bułgaria
@@ -194,9 +195,9 @@ pl:
     japan: Japonia
     korea: Korea, Republika
     latvia: Łotwa
+    lebanon: Liban
     liechtenstein: Liechtenstein
     lithuania: Litwa
-    lebanon: Liban
     luxembourg: Luksemburg
     malta: Malta
     mexico: Meksyk
@@ -219,6 +220,7 @@ pl:
     puerto_rico: Portoryko
     romania: Rumunia
     russian_federation: Federacja Rosyjska
+    san_marino: San Marino
     saudi_arabia: Arabia Saudyjska
     serbia: Serbia
     slovakia: Słowacja
@@ -234,6 +236,7 @@ pl:
     tajikistan: Tadżykistan
     trinidad_tobego: Trynidad i Tobago
     turkey: Turcja
+    turkmenistan: Turkmenistan
     uganda: Uganda
     uk: Zjednoczone Królestwo
     ukraine: Ukraina
@@ -275,6 +278,7 @@ pl:
     alleged: Rzekomy
     alternate_spelling: Alternatywna pisownia
     alternative_work_title: Alternatywny tytuł dzieła
+    amount: Liczba
     archive: Archiwum
     arrangement: Aranżacja
     arrangement_statement: Uwaga do aranżacji
@@ -345,6 +349,7 @@ pl:
     cataloging_musical_sources: Katalogowanie źródeł muzycznych
     cataloging_source: Katalogowanie źródła
     category: Kategoria
+    category_section: Kategoria/Sekcja
     censor: Cenzor
     cf_major: Ces-dur
     cf_minor: ces-moll
@@ -428,7 +433,6 @@ pl:
     distributor: Dystrybutor
     documentation_center: Centrum dokumentacji
     donor: Donator
-    doubtful: Wątpliwy
     dramatic_roles_original: Postaci w oryginalnej pisowni
     dramatic_roles_standardized: Znormalizowane nazwy postaci
     ds_major: Dis-dur
@@ -460,6 +464,7 @@ pl:
     external_resource: Zasób zewnętrzny
     external_resource_uri: URI zasobu zewnętrznego
     external_resource_url: URL zasobu zewnętrznego
+    external_work_reference: Odniesienie do Dzieła zewnętrznego
     f_major: F-dur
     f_minor: f-moll
     f_minus_1: F-1
@@ -480,9 +485,11 @@ pl:
     figured_bass_scores: Bas cyfrowany w partyturze i / lub w innych częściach
     fijian: Fidżyjski
     fingerprint_identifier: Identyfikator odcisku palca
+    first_entry: Pierwszy wpis
     first_second_group: Pierwsza / druga grupa
     form_subdivision: Dalszy podział formularza
     format_extent: Rodzaj źródła, objętość
+    former_sigla: Poprzednie siglum
     former_owner: Poprzedni właściciel
     fragments: Fragmenty
     fs_major: Fis-dur
@@ -522,7 +529,13 @@ pl:
     heading_personal_name1: Nagłówek – nazwisko
     help_transposing_instruments: Pomoc przy transpozycji instrumentów
     history_institution: Historia instytucji
+    holding: Egzemplarz
     holdings_location: Pola egzemplarza, lokalizacji itp.
+    identification_status: Status identyfikacji
+    identified: Zidentyfikowane
+    identified_holding: Zidentyfikowany egzemplarz
+    identified_source: Zidentyfikowane źródło
+    identified_work: Zidentyfikowane Dzieło
     identity: Tożsamość
     identity_area: Obszar tożsamości
     iiif_manifest: "Manifest IIIF (źródło zdigitalizowane)"
@@ -548,6 +561,10 @@ pl:
     internal_note: Uwaga wewnętrzna
     introduction: Wprowadzenie
     invalid_standard_number: Anulowany/nieważny numer standardowy lub kod
+    inventory: Inwentarz
+    inventory_item: Indywidualny wpis pozycji w inwentarzu
+    inventory_number: Numer inwentarzowy
+    inventory_source: Źródło inwentarz
     isbn: ISBN
     ismn: ISMN
     issn: ISSN
@@ -567,6 +584,7 @@ pl:
     language_of_cataloging: Język katalogowania
     language_original_text: Język tekstu oryginalnego
     language_text: Język tekstu
+    later_entry: Późniejszy wpis
     later_heading: Późniejsza pozycja
     latitude: Szerokość geograficzna
     leader: Leader
@@ -712,6 +730,7 @@ pl:
     partial_autograph: Częściowy autograf
     parts_held: Głosy
     parts_held_extent: Głosy, objętość
+    part_of_title: Część tytułu
     patron: Sponsor
     people: Osoby
     people_institutions: Osoby i instytucje
@@ -741,6 +760,7 @@ pl:
     plate_number: Numer wydawniczy
     plucked_instruments: Instrumenty szarpane
     possible_autograph_manuscript: Prawdopodobnie autograf
+    possibly_identified: Prawdopodobnie zidentyfikowane
     postal_code: Kod pocztowy
     postal_place: Rejon pocztowy
     preceding_entry: Poprzedzający wpis
@@ -764,6 +784,7 @@ pl:
     qualifying_information: Informacje kwalifikacyjne
     range_dates: Zakres dat
     real_world_object_uri: Identyfikator URI
+    reconstructed_title: Zrekonstruowany tytuł
     record_actions: Działania na rekordzie
     record_audit: Kontrola rekordu
     record_origin: Pochodzenie rekordu
@@ -897,6 +918,7 @@ pl:
     woodwinds: Instrumenty dęte drewniane
     work: Dzieło
     work_catalog_note: Notatka do katalogu utworów
+    work_node: Odniesienie do Dzieła zewnętrznego (Work node)
     work_number: Numer dzieła
     work_tag: tag edycji Dzieła
     work_tag_incipit_needs_revision: incipit wymaga ponownego sprawdzenia

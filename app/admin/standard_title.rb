@@ -10,7 +10,7 @@ ActiveAdmin.register StandardTitle do
   include MergeControllerActions
   # Remove all action items
   config.clear_action_items!
-  config.per_page = [10, 30, 50, 100]
+  config.per_page = [10, 30, 50, 100, 1000]
 
   collection_action :autocomplete_standard_title_title, :method => :get
   collection_action :autocomplete_standard_title_title_no_730, :method => :get
@@ -120,7 +120,7 @@ ActiveAdmin.register StandardTitle do
   ###########
   
   # Solr search all fields: "_equal"
-  filter :title_equals, :label => proc {I18n.t(:any_field_contains)}, :as => :string
+  filter :title_eq, :label => proc {I18n.t(:any_field_contains)}, :as => :string
   
   # This filter passes the value to the with() function in seach
   # see config/initializers/ransack.rb
@@ -154,7 +154,6 @@ ActiveAdmin.register StandardTitle do
   end
   
   sidebar :actions, :only => :index do
-    render :partial => "activeadmin/filter_workaround"
     render :partial => "activeadmin/section_sidebar_index"
   end
   

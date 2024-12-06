@@ -17,7 +17,7 @@ Rails.application.configure do
   # In the development environment your application's code is reloaded any time
   # it changes. This slows down response time but is perfect for development
   # since you don't have to restart the web server when you make code changes.
-  config.cache_classes = false
+  config.enable_reloading = true
 
   # Do not eager load code on boot.
   config.eager_load = true
@@ -26,7 +26,7 @@ Rails.application.configure do
   config.consider_all_requests_local = true
 
   # Enable server timing
-  #config.server_timing = true
+  config.server_timing = true
 
   # Enable/disable caching. By default caching is disabled.
   # Run rails dev:cache to toggle caching.
@@ -36,7 +36,7 @@ Rails.application.configure do
 
     config.cache_store = :memory_store
     config.public_file_server.headers = {
-      'Cache-Control' => "public, max-age=#{2.days.to_i}"
+      "Cache-Control" => "public, max-age=#{2.days.to_i}"
     }
   else
     config.action_controller.perform_caching = false
@@ -78,6 +78,9 @@ Rails.application.configure do
   # number of complex assets.
   config.assets.debug = true
 
+  # Highlight code that enqueued background job in logs
+  config.active_job.verbose_enqueue_logs = true
+
   # Suppress logger output for asset requests.
   config.assets.quiet = true
 
@@ -99,6 +102,9 @@ Rails.application.configure do
   # config.action_cable.disable_request_forgery_protection = true
 
   config.logger = ActiveSupport::Logger.new("log/#{Rails.env}.log", 10, 10485760)
+
+  # Raise error when a before_action's only/except options reference missing actions
+  config.action_controller.raise_on_missing_callback_actions = true
 
   # Do not add obsolete utf8=✓ to url parameters (default setting since Rails 6)
   config.action_view.default_enforce_utf8 = false

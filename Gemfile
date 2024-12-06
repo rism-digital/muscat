@@ -1,19 +1,24 @@
 source 'https://rubygems.org'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '~> 7.0'
+gem 'rails', '~> 7.2'
 
 # Use mysql2 as the database for Active Record
 gem 'mysql2'
 
 # Use SCSS for stylesheets
-gem 'sassc-rails'#, '~> 6.0'
+#gem 'sassc-rails' #sassc rails is deprecated...
+gem 'dartsass-sprockets'#, '~> 6.0'
 
+# NOTE not used anymore since rail 7.1
 # Use Uglifier as compressor for JavaScript assets
-gem 'uglifier', '~> 4.2'
+#gem 'uglifier'#, '~> 4.2'
+
+# Use this instead of Uglifier
+gem 'terser'
 
 # Use CoffeeScript for .js.coffee assets and views
-gem 'coffee-rails', '~> 5.0'
+gem 'coffee-rails'#, '~> 5.0'
 
 # NOTE HERE: since execjs 2.8, the therubyracer is deprecated
 # Mini racer 0.4 appears to be broken.
@@ -23,14 +28,14 @@ gem 'coffee-rails', '~> 5.0'
 
 # Use jquery as the JavaScript library
 gem 'jquery-rails', "~> 4.5"
-gem 'jquery-ui-rails', '~> 6.0.1'
+gem 'jquery-ui-rails', '~> 6.0.1', git: 'https://github.com/rism-digital/jquery-ui-rails', branch: "v6.0.1-desperation"
 gem 'js_cookie_rails', '~> 2.2.0'
 
 # Turbolinks makes following links in your web application faster. Read more: https://github.com/rails/turbolinks
-gem 'turbolinks', '~> 5.2.1'
+## EXPERIMENTAL gem 'turbolinks', '~> 5.2.1'
 
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
-gem 'jbuilder', '~> 2.10'
+gem 'jbuilder', '~> 2.12'
 
 group :doc do
   # bundle exec rake doc:rails generates the API under doc/api.
@@ -45,17 +50,20 @@ gem 'paper_trail'
 gem 'needleman_wunsch_aligner', "1.0.4"
 
 # for the documentation
-gem 'htmlentities', '~> 4.3.4'
+gem 'htmlentities'#, '~> 4.3'
 
 # Use debugger
 # gem 'debugger', group: [:development, :test
 
-gem 'activeadmin', '2.13.1'
+gem 'activeadmin'
+# Disabled - left to find it again
+#gem 'active_admin_scoped_collection_actions', git: 'https://github.com/activeadmin-plugins/active_admin_scoped_collection_actions'
 
-gem 'sunspot_rails'
-gem 'sunspot_solr'
+gem 'sunspot_rails', '~> 2.7.1'
+#gem 'sunspot_solr'
 gem 'awesome_print'
-gem 'progress_bar', '1.0.6', git: 'https://github.com/rism-ch/progress_bar'
+# From 11.2: use the original progress bar so it is compatibile with i18n-tasks
+gem 'progress_bar'#, '1.0.6', git: 'https://github.com/rism-ch/progress_bar'
 
 gem "rails3-jquery-autocomplete", '~> 1.0.26', git: 'https://github.com/rism-ch/rails3-jquery-autocomplete'
 gem "cancancan"
@@ -95,7 +103,7 @@ gem 'progress_job', '0.0.4', git: "https://github.com/rism-ch/progress_job"
 gem 'daemons'
 
 # Add I18n in js
-gem "i18n-js", '~> 3.9.2'
+gem "i18n-js", '~> 3.4'
 gem 'colorize'
 
 gem 'exception_notification'
@@ -165,7 +173,15 @@ gem 'passenger'
 
 gem 'listen'
 
+# To make sure the translations are all there
+gem 'i18n-tasks', '~> 1.0.14', group: :development
+#gem 'easy_translate', group: :development
+#gem 'ruby-openai', group: :development
+
 # Uncomment this if you want to test emails in development
 #gem 'mailcatcher'
 #gem "string-similarity"
 #gem "rest-client"
+
+gem 'solargraph', group: :development
+gem 'rufo', group: :development

@@ -65,13 +65,26 @@ class EditorConfiguration
     @id = conf[:id]
     @filter = conf[:filter]
     @model = conf[:model]
-    @squeezed_labels_config = squeeze(conf[:labels])
+    
     @squeezed_options_config = squeeze(conf[:options])
     @squeezed_layout_config = squeeze(conf[:layout])
 
+    # Create an empty label conf
+    @squeezed_labels_config = Settings.new(Hash.new())
+    # Read the Editor Label conf from the file
+    editor_labels = squeeze(conf[:labels])
+    
+    # ... the add all the shared labels...
     superimpose_shared_file("SharedLanguageLabels.yml")
     superimpose_shared_file("SharedISO3166Codes.yml")
     superimpose_shared_file("SharedContentLabels.yml")
+    superimpose_shared_file("SharedKeyOrModes.yml")
+
+    # And lastly the actual label conf, so that it
+    # overrides the shared ones if needed.
+    # I.e. "a" can be A minor or records.earlier_heading
+    # depending on the context (but not both)
+    @squeezed_labels_config.squeeze(editor_labels)
   end
   
   def superimpose_shared_file(name)
@@ -477,6 +490,16 @@ class EditorConfiguration
   # Gets the html file name.
   def self.get_help_fname(name, model = "Source")
     model = (model == "Source") ? "" : "#{model.underscore}_"
+
+    # Oh the humanity!
+    # Until we figure out what to do with the guidelines,
+    # keep this in a different place
+    if model == "gnd_work_"
+      fname = "/gnd_works_help/#{model}#{name}_#{I18n.locale.to_s}.html"
+      return fname if File.exist?("#{Rails.root}/public#{fname}")
+      return ""
+    end
+
     # translated version?
     fname = ConfigFilePath.get_marc_editor_profile_path("/help/#{RISM::MARC}/#{model}#{name}_#{I18n.locale.to_s}.html")
     #ap fname

@@ -1,9 +1,19 @@
 --- !map:ActiveSupport::HashWithIndifferentAccess
 
-XA-AD:
-  label: places.andorra
+XB-AF:
+  label: places.afghanistan
 XA-AL:
   label: places.albania
+XC-DZ:
+  label: places.algeria
+XA-AD:
+  label: places.andorra
+XD-AR:
+  label: places.argentina
+XB-AM:
+  label: places.armenia
+XE-AU:
+  label: places.australia
 XA-AT:
   label: places.austria
 XA-AT-2:
@@ -20,60 +30,110 @@ XA-AT-7:
   label: places.austria_tyrol
 XA-AT-9:
   label: places.austria_vienna
+XB-AZ:
+  label: places.azerbaijan
+XB-BD:
+  label: places.bangladesh
+XC-BJ:
+  label: places.benin
 XA-BE:
   label: places.belgium
-XA-BG:
-  label: places.bulgaria
 XA-BY:
   label: places.belarus
-XA-CH:
-  label: places.switzerland
-XA-CH-VD:
-  label: places.switzerland_vaud
+XA-BA:
+  label: places.bosnia_and_herzegovina
+XD-BO:
+  label: places.bolivia
+XD-BR:
+  label: places.brazil
+XA-BG:
+  label: places.bulgaria
+XB-KH:
+  label: places.cambodia
+XD-CA:
+  label: places.canada
+XD-CL:
+  label: places.chile
+XB-CN:
+  label: places.china
+XD-CO:
+  label: places.colombia
+XD-CR:
+  label: places.costa_rica
+XA-HR:
+  label: places.croatia
+XD-CU:
+  label: places.cuba
 XA-CZ:
   label: places.czech_republic
+XA-DK:
+  label: places.denmark
+XD-EC:
+  label: places.ecuador
+XC-EG:
+  label: places.egypt
+XA-EE:
+  label: places.estonia
+XA-FI:
+  label: places.finland
+XA-FR:
+  label: places.france
+XB-GE:
+  label: places.georgia
+XC-GH:
+  label: places.ghana
+XC-GN:
+  label: places.guinea
+XD-GT:
+  label: places.guatemala
 XA-DE:
   label: places.germany
 XA-DE-BY:
   label: places.germany_bavaria
 XA-DE-SN:
   label: places.germany_saxony
-XA-DK:
-  label: places.denmark
-XA-EE:
-  label: places.estonia
-XA-ES:
-  label: places.spain
-XA-FI:
-  label: places.finland
-XA-FR:
-  label: places.france
-XA-GB:
-  label: places.uk
-XA-GB-NIR:
-  label: places.northern_ireland
 XA-GR:
   label: places.greece
-XA-HR:
-  label: places.croatia
+XD-HN:
+  label: places.honduras
+XB-HK:
+  label: places.hong_kong
 XA-HU:
   label: places.hungary
-XA-IE:
-  label: places.ireland
 XA-IS:
   label: places.iceland
+XB-IN:
+  label: places.india
+XB-ID:
+  label: places.indonesia
+XB-IR:
+  label: places.iran
+XB-IQ:
+  label: places.iraq
+XA-IE:
+  label: places.ireland
+XB-IL:
+  label: places.israel
 XA-IT:
   label: places.italy
 XA-IT-32:
   label: places.italy_trentino_alto_adige
+XD-JM:
+  label: places.jamaica
+XB-JP:
+  label: places.japan
+XB-KR:
+  label: places.korea
+XA-LV:
+  label: places.latvia
+XB-LB:
+  label: places.lebanon
 XA-LI:
   label: places.liechtenstein
 XA-LT:
   label: places.lithuania
 XA-LU:
   label: places.luxembourg
-XA-LV:
-  label: places.latvia
 XA-MC:
   label: places.monaco
 XA-MD:
@@ -82,125 +142,87 @@ XA-ME:
   label: places.montenegro
 XA-MT:
   label: places.malta
+XD-MX:
+  label: places.mexico
 XA-NL:
   label: places.netherlands
+XE-NZ:
+  label: places.new_zealand
+XD-NI:
+  label: places.nicaragua
+XA-GB-NIR:
+  label: places.northern_ireland
 XA-NO:
   label: places.norway
+XB-PK:
+  label: places.pakistan
+XE-PG:
+  label: places.papua_new_guinea
+XD-PY:
+  label: places.paraguay
+XD-PE:
+  label: places.peru
+XB-PH:
+  label: places.philippines
 XA-PL:
   label: places.poland
 XA-PT:
   label: places.portugal
+XD-PR:
+  label: places.puerto_rico
 XA-RO:
   label: places.romania
 XA-RS:
   label: places.serbia
 XA-RU:
   label: places.russian_federation
-XA-SE:
-  label: places.sweden
-XA-SI:
-  label: places.slovenia
-XA-SK:
-  label: places.slovakia
-XA-UA:
-  label: places.ukraine
-XA-VA:
-  label: places.holy_see
-XB-AM:
-  label: places.armenia
-XB-CN:
-  label: places.china
-XB-GE:
-  label: places.georgia
-XB-HK:
-  label: places.hong_kong
-XB-ID:
-  label: places.indonesia
-XB-IL:
-  label: places.israel
-XB-IN:
-  label: places.india
-XB-IQ:
-  label: places.iraq
-XB-IR:
-  label: places.iran
-XB-JP:
-  label: places.japan
-XB-KH:
-  label: places.cambodia
-XB-KR:
-  label: places.korea
-XB-PH:
-  label: places.philippines
+XA-SM:
+  label: places.san_marino
+SB-SA:
+  label: places.saudi_arabia
 XB-SA:
   label: places.saudi_arabia
-XB-SY:
-  label: places.syrian_arab_republic
-XB-TR:
-  label: places.turkey
-XB-TW:
-  label: places.taiwan
-XB-VN:
-  label: places.vietnam
-XC-BJ:
-  label: places.benin
-XC-DZ:
-  label: places.algeria
-XC-EG:
-  label: places.egypt
-XC-GH:
-  label: places.ghana
-XC-GN:
-  label: places.guinea
-XC-UG:
-  label: places.uganda
+XA-SK:
+  label: places.slovakia
+XA-SI:
+  label: places.slovenia
 XC-ZA:
   label: places.south_africa
-XD-AR:
-  label: places.argentina
-XD-BO:
-  label: places.bolivia
-XD-BR:
-  label: places.brazil
-XD-CA:
-  label: places.canada
-XD-CL:
-  label: places.chile
-XD-CO:
-  label: places.colombia
-XD-CU:
-  label: places.cuba
-XD-EC:
-  label: places.ecuador
-XD-GT:
-  label: places.guatemala
-XD-HN:
-  label: places.honduras
-XD-JM:
-  label: places.jamaica
-XD-MX:
-  label: places.mexico
-XD-NI:
-  label: places.nicaragua
-XD-PE:
-  label: places.peru
-XD-PR:
-  label: places.puerto_rico
-XD-PY:
-  label: places.paraguay
-XD-SR:
-  label: places.suriname
+XA-ES:
+  label: places.spain
+XA-SE:
+  label: places.sweden
+XA-CH:
+  label: places.switzerland
+XA-CH-VD:
+  label: places.switzerland_vaud
+XB-SY:
+  label: places.syrian_arab_republic
+XB-TW:
+  label: places.taiwan
+XB-TJ:
+  label: places.tajikistan
 XD-TT:
   label: places.trinidad_tobego
+XB-TR:
+  label: places.turkey
+XB-TM:
+  label: places.turkmenistan
+XC-UG:
+  label: places.uganda
+XA-UA:
+  label: places.ukraine
+XA-GB:
+  label: places.uk
 XD-US:
   label: places.usa
 XD-UY:
   label: places.uruguay
+XB-UZ:
+  label: places.uzbekistan
+XA-VA:
+  label: places.holy_see
 XD-VE:
   label: places.venezuela
-XE-AU:
-  label: places.australia
-XE-NZ:
-  label: places.new_zealand
-XE-PG:
-  label: places.papua_new_guinea
+XB-VN:
+  label: places.vietnam

@@ -100,6 +100,7 @@ en:
     persian: Persian
     polish: Polish
     portugese: Portuguese
+    romance_other: Romance (Other)
     romani: Romani
     romanian: Romanian
     romansh: Romansh
@@ -146,12 +147,13 @@ en:
     austria_tyrol: 'Austria: Tyrol'
     austria_upper_austria: 'Austria: Upper Austria'
     austria_vienna: 'Austria: Vienna'
-    azerbiajan: Azerbaijan
+    azerbaijan: Azerbaijan
     bangladesh: Bangladesh
     belarus: Belarus
     belgium: Belgium
     benin: Benin
     bolivia: Bolivia
+    bosnia_and_herzegovina: Bosnia and Herzegovina
     bosnia_herzegovina: Bosnia and Herzegovina
     brazil: Brazil
     bulgaria: Bulgaria
@@ -194,9 +196,9 @@ en:
     japan: Japan
     korea: Korea, Republic of
     latvia: Latvia
+    lebanon: Lebanon
     liechtenstein: Liechtenstein
     lithuania: Lithuania
-    lebanon: Lebanon
     luxembourg: Luxembourg
     malta: Malta
     mexico: Mexico
@@ -219,6 +221,7 @@ en:
     puerto_rico: Puerto Rico
     romania: Romania
     russian_federation: Russian Federation
+    san_marino: San Marino
     saudi_arabia: Saudi Arabia
     serbia: Serbia
     slovakia: Slovakia
@@ -234,6 +237,7 @@ en:
     tajikistan: Tajikistan
     trinidad_tobego: Trinidad and Tobago
     turkey: Turkey
+    turkmenistan: Turkmenistan
     uganda: Uganda
     uk: United Kingdom
     ukraine: Ukraine
@@ -275,6 +279,7 @@ en:
     alleged: Alleged
     alternate_spelling: Alternate spelling
     alternative_work_title: Alternative work title
+    amount: Number
     archive: Archive
     arrangement: Arrangement
     arrangement_statement: Arrangement statement
@@ -345,6 +350,7 @@ en:
     cataloging_musical_sources: Cataloging musical sources
     cataloging_source: Cataloging source
     category: Category
+    category_section: Category/Section
     censor: Censor
     cf_major: C♭ major
     cf_minor: C♭ minor
@@ -428,7 +434,6 @@ en:
     distributor: Distributor
     documentation_center: Documentation center
     donor: Donor
-    doubtful: Doubtful
     dramatic_roles_original: Dramatic role named, original spelling
     dramatic_roles_standardized: Dramatic role named, standardized
     ds_major: D♯ major
@@ -460,6 +465,7 @@ en:
     external_resource: External resource
     external_resource_uri: External resource URI
     external_resource_url: External resource URL
+    external_work_reference: External work reference
     f_major: F major
     f_minor: F minor
     f_minus_1: F-1
@@ -480,9 +486,11 @@ en:
     figured_bass_scores: Figured bass in scores and/or other parts
     fijian: Fijian
     fingerprint_identifier: Fingerprint identifier
+    first_entry: First entry
     first_second_group: First/second group
     form_subdivision: Form subdivision
     format_extent: Format, extent
+    former_sigla: Former sigla
     former_owner: Former owner
     fragments: Fragments
     fs_major: F♯ major
@@ -522,7 +530,13 @@ en:
     heading_personal_name1: Heading-Personal name
     help_transposing_instruments: Help for transposing instruments
     history_institution: History of institution
+    holding: Holding
     holdings_location: Holdings, location, etc. fields
+    identification_status: Identification status
+    identified: Identified
+    identified_holding: Identified holding
+    identified_source: Identified source
+    identified_work: Identified work
     identity: Identity
     identity_area: Identity area
     iiif_manifest: "IIIF manifest (digitized source)"
@@ -548,6 +562,10 @@ en:
     internal_note: Internal note
     introduction: Introduction
     invalid_standard_number: Canceled/invalid standard number or code
+    inventory: Inventory
+    inventory_item: Inventory item
+    inventory_number: Inventory number
+    inventory_source: Inventory source
     isbn: ISBN
     ismn: ISMN
     issn: ISSN
@@ -567,6 +585,7 @@ en:
     language_of_cataloging: Language of cataloging
     language_original_text: Language of original text
     language_text: Language of text
+    later_entry: Later entry
     later_heading: Later heading
     latitude: Latitude
     leader: Leader
@@ -676,6 +695,7 @@ en:
     number_part_section: Number of part/section of a work
     number_volume_part: Number of volume/part
     numbers_code_fields: Numbers and code fields
+    numeric_designation: Numeric designation
     octoechos1: 'Octoechos 1: Ēchos prōtos (First mode of Byzantine music)'
     octoechos2: 'Octoechos 2: Ēchos deuteros (Second mode of Byzantine music)'
     octoechos3: 'Octoechos 3: Ēchos tritos (Third mode of Byzantine music)'
@@ -715,6 +735,7 @@ en:
     partial_autograph: Partial autograph
     parts_held: Parts held
     parts_held_extent: Parts held and extent
+    part_of_title: Part of title
     patron: Patron
     people: People
     people_institutions: People and institutions
@@ -744,6 +765,7 @@ en:
     plate_number: Plate number
     plucked_instruments: Plucked instruments
     possible_autograph_manuscript: Possible autograph manuscript
+    possibly_identified: Possibly identified
     postal_code: Postal code
     postal_place: Postal place
     preceding_entry: Preceding entry
@@ -767,6 +789,7 @@ en:
     qualifying_information: Qualifying information
     range_dates: Range of dates
     real_world_object_uri: Real world object URI
+    reconstructed_title: Reconstructed title
     record_actions: Record actions
     record_audit: Record audit
     record_origin: Record origin
@@ -802,6 +825,7 @@ en:
     scribe: Scribe
     secondary_catalog_works: Secondary catalog of works
     secondary_literature: Secondary literature
+    serial_number: Serial number
     series: Series
     series_added_entry: Series added entry fields
     series_statement: Series statement fields
@@ -900,6 +924,7 @@ en:
     woodwinds: Woodwinds
     work: Work
     work_catalog_note: Work catalog note
+    work_node: External work reference (Work node)
     work_number: Work number
     work_tag: Work revision tag
     work_tag_incipit_needs_revision: incipit-needs-revision

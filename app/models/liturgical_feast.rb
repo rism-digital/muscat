@@ -43,8 +43,8 @@ class LiturgicalFeast < ApplicationRecord
 
   alias_attribute :id_for_fulltext, :id 
 
-  enum wf_stage: [ :inprogress, :published, :deleted, :deprecated ]
-  enum wf_audit: [ :basic, :minimal, :full ]
+  enum :wf_stage, [ :inprogress, :published, :deleted, :deprecated ]
+  enum :wf_audit, [ :basic, :minimal, :full ]
   
   # Suppresses the solr reindex
   def suppress_reindex
@@ -80,5 +80,10 @@ class LiturgicalFeast < ApplicationRecord
       LiturgicalFeast.count_by_sql("select count(*) from sources_to_liturgical_feasts where liturgical_feast_id = #{self[:id]}")
     end
   end
+
+  # https://github.com/activeadmin/activeadmin/issues/7809
+  # In Non-marc models we can use the default
+  def self.ransackable_associations(_) = reflections.keys
+  def self.ransackable_attributes(_) = attribute_names - %w[token]
 
 end

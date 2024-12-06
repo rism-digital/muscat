@@ -14,6 +14,8 @@ class MarcSource < Marc
     libretto_edition_content: 9,
     theoretica_edition_content: 10,
     composite_volume: 11,
+    inventory: 12,
+    inventory_edition: 13
   }
   
   RECORD_TYPE_ORDER = [
@@ -28,6 +30,8 @@ class MarcSource < Marc
     :libretto_edition_content,
     :theoretica_edition_content,
     :composite_volume,
+    :inventory,
+    :inventory_edition,
     :unspecified
   ]
 
@@ -44,7 +48,8 @@ class MarcSource < Marc
     MarcSource::RECORD_TYPES[:libretto_edition],
     MarcSource::RECORD_TYPES[:theoretica_edition],
     MarcSource::RECORD_TYPES[:libretto_edition_content],
-    MarcSource::RECORD_TYPES[:theoretica_edition_content]].include? record_type
+    MarcSource::RECORD_TYPES[:theoretica_edition_content],
+    MarcSource::RECORD_TYPES[:inventory_edition]].include? record_type
   end
 
   def initialize(source = nil, rt = 0)
@@ -370,12 +375,12 @@ class MarcSource < Marc
 
     if (@record_type == RECORD_TYPES[:collection])
       leader = base_leader.gsub("XX", "dc")
-      generate_subentry_title # Add $a to 774s
+      #generate_subentry_title # Add $a to 774s
     elsif (@record_type == RECORD_TYPES[:edition])
       type = "cm"
       type = "cc" if by_tags("774").count > 0
       leader = base_leader.gsub("XX", type)
-      generate_subentry_title
+      #generate_subentry_title
     elsif @record_type == RECORD_TYPES[:composite_volume]
       leader = base_leader.gsub("XX", 'pc')
     elsif @record_type == RECORD_TYPES[:source]
@@ -411,6 +416,8 @@ class MarcSource < Marc
     
     new_leader = MarcNode.new("source", "000", leader, "")
     @root.children.insert(get_insert_position("000"), new_leader)
+
+    generate_subentry_title # Add $a to 774s if they are there
 
     # 240 to 130 when 100 is not present
     if by_tags("100").count == 0
@@ -525,15 +532,18 @@ class MarcSource < Marc
     # Add a 930 $0 referering to the work node 024
     each_by_tag("930") do |t|
       if t.foreign_object and t.foreign_object.marc
-        # Look for each 024 in the work node
+        d0 = t.fetch_first_by_tag("0")
+        d0.destroy_yourself if d0
+        # Look for each 024 in the work node that we can resolve
         t.foreign_object.marc.each_by_tag("024") do |ft|
           s2 = ft.fetch_first_by_tag("2")
           a = ft.fetch_first_by_tag("a")
           next if (!s2 || !a || !s2.content || !a.content)
           t.add_at(MarcNode.new(@model, "0", "(#{s2.content})#{a.content}", nil), 0) rescue nil
+          # Only add one since 024 should actually be not repeatable
+          break
         end
       end
-      # Eventually we want to remove the $0 pointing to the work_node ID but left for 9.0
     end
 
     # Adding digital object links to 500 with new records
@@ -600,15 +610,27 @@ class MarcSource < Marc
   end
 
   def generate_subentry_title
+    fetch_source = ->(w_content, t4_content) do
+      model_class = t4_content == "holding" ? Holding : Source
+      item = model_class.find(w_content) rescue item = nil
+      item.is_a?(Holding) ? item.source : item
+    end
+  
     each_by_tag("774") do |t|
       w = t.fetch_first_by_tag("w")
-      if w && w.content
-        source = Source.find(w.content) rescue next
-        t.add_at(MarcNode.new(@model, "a", source.name, nil), 0)
-      else
-        raise "Empty $w in 774"
-      end
+      t4 = t.fetch_first_by_tag("4")
+  
+      raise "Empty $w in 774" unless w&.content
+  
+      source = fetch_source.call(w.content, t4&.content)
+  
+      next unless source
+  
+      source_title = t4&.content == "holding" ? "#{source.id}: #{source.std_title}" : source.std_title
+      t.add_at(MarcNode.new(@model, "t", source_title, nil), 0)
+      t.add_at(MarcNode.new(@model, "a", source.composer, nil), 0) if source.composer && !source.composer.empty?
+      t.sort_alphabetically
     end
   end
-
+  
 end

@@ -45,6 +45,8 @@ class Source < ApplicationRecord
   include MarcIndex
   include Template
   include CommentsCleanup
+  include ComposedOfReimplementation
+
   resourcify
 
   belongs_to :parent_source, class_name: "Source", foreign_key: "source_id"
@@ -83,6 +85,13 @@ class Source < ApplicationRecord
   has_many :holdings
 	has_many :collection_holdings, class_name: "Holding", foreign_key: "collection_id"
   
+  # This is for associating IIs to their Inventory
+  has_many :inventory_items
+
+  # This is when an II references a source, like identitied src
+  has_many :inventory_item_source_relations, class_name: "InventoryItemSourceRelation"
+  has_many :referring_inventory_items, through: :inventory_item_source_relations, source: :inventory_item
+
   #has_and_belongs_to_many :works, join_table: "sources_to_works"
   has_many :source_work_relations
   has_many :works, through: :source_work_relations
@@ -101,7 +110,9 @@ class Source < ApplicationRecord
   has_many :referring_source_relations, class_name: "SourceRelation", foreign_key: "source_b_id"
   has_many :referring_sources, through: :referring_source_relations, source: :source_a
 
-  composed_of :marc, :class_name => "MarcSource", :mapping => [%w(marc_source to_marc), %w(record_type record_type)]
+  #composed_of :marc, :class_name => "MarcSource", :mapping => [%w(marc_source to_marc), %w(record_type record_type)]
+  composed_of_reimplementation :marc, class_name: "MarcSource", mapping: [%w(marc_source to_marc), %w(record_type record_type)]
+
   alias_attribute :id_for_fulltext, :id
 
   scope :in_folder, ->(folder_id) { joins(:folder_items).where("folder_items.folder_id = ?", folder_id) }
@@ -120,14 +131,28 @@ class Source < ApplicationRecord
   attr_accessor :suppress_update_77x_trigger
   attr_accessor :suppress_update_count_trigger
 
-  enum wf_stage: [ :inprogress, :published, :deleted, :deprecated ]
-  enum wf_audit: [ :full, :abbreviated, :retro, :imported ]
+  enum :wf_stage, [ :inprogress, :published, :deleted, :deprecated ]
+  enum :wf_audit, [ :full, :abbreviated, :retro, :imported ]
 
+=begin
+  def marc
+    @marc ||= MarcSource.new(self.marc_source, self.record_type)
+  end
+
+
+  def marc=(marc)
+    self.marc_source = marc.to_marc
+    self.record_type = marc.record_type
+    
+    @marc = marc
+  end
+=end
   def after_initialize
     @old_parent = nil
     @last_user_save = nil
     @last_event_save = "update"
   end
+
 
   # Suppresses the recreation of the links with foreign MARC elements
   # (es libs, people, ...) on saving
@@ -305,12 +330,20 @@ class Source < ApplicationRecord
       Sunspot::Util::Coordinates.new(lat, lon)
     end
 
+    sunspot_dsl.boolean :has_music_incipit do |s|
+      s.marc.has_incipits?
+    end
+
     sunspot_dsl.integer :copies, :stored => true do |s|
       if s.holdings.count > 0
         s.holdings.count
       else
         nil
       end
+    end
+
+    sunspot_dsl.boolean :has_internal_note do |s|
+      (s.marc.by_tags(["599"]).count > 0)
     end
 
     sunspot_dsl.text :text do |s|
@@ -473,7 +506,16 @@ class Source < ApplicationRecord
   def allow_holding?
     if  (self.record_type == MarcSource::RECORD_TYPES[:edition] ||
          self.record_type == MarcSource::RECORD_TYPES[:libretto_edition] ||
-         self.record_type == MarcSource::RECORD_TYPES[:theoretica_edition])
+         self.record_type == MarcSource::RECORD_TYPES[:theoretica_edition] ||
+         self.record_type == MarcSource::RECORD_TYPES[:inventory_edition])
+      return true
+    end
+    return false
+  end
+
+  def allow_inventory_items?
+    if  (self.record_type == MarcSource::RECORD_TYPES[:inventory] ||
+         self.record_type == MarcSource::RECORD_TYPES[:inventory_edition])
       return true
     end
     return false
@@ -656,13 +698,34 @@ class Source < ApplicationRecord
     true
   end
 
+  #def self.ransackable_attributes(auth_object = nil)
+  #  ["593a_filter", "593b_filter", "599a", "852a_facet", "852c", "856x", "composer", "composer_d", "created_at", "date_from", "date_to", "id", "id_for_fulltext", "id_value", "language", "lib_siglum", "lock_version", "marc_source", "record_type", "record_type_select", "shelf_mark", "source_id", "std_title", "std_title_d", "title", "title_d", "updated_at", "wf_audit", "wf_owner", "wf_stage",
+  #  "child_sources", "collection_holdings", "digital_object_links", "digital_objects", "folder_items", "folders", "holdings", "institutions", "liturgical_feasts", "parent_source", "people", "places", "publications", "referring_source_relations", "referring_sources", "roles", "source_institution_relations", "source_person_relations", "source_relations", "source_work_relations", "sources", "standard_terms", "standard_titles", "user", "versions", "work_nodes", "works",
+  #  "child_sources", "collection_holdings", "digital_object_links", "digital_objects", "folder_items", "folders", "holdings", "institutions", "liturgical_feasts", "parent_source", "people", "places", "publications", "referring_source_relations", "referring_sources", "roles", "source_institution_relations", "source_person_relations", "source_relations", "source_work_relations", "sources", "standard_terms", "standard_titles", "user", "versions", "work_nodes", "works"]
+  #end
+
+  def self.ransackable_attributes(auth_object = nil)
+    column_names + _ransackers.keys
+  end
+
+  # `ransackable_associations` by default returns the names
+  # of all associations as an array of strings.
+  # For overriding with a whitelist array of strings.
+  #
+  def self.ransackable_associations(auth_object = nil)
+    reflect_on_all_associations.map { |a| a.name.to_s }
+  end
+
   ransacker :"852a_facet", proc{ |v| } do |parent| parent.table[:id] end
   ransacker :"852c", proc{ |v| } do |parent| parent.table[:id] end
+  ransacker :"510c", proc{ |v| } do |parent| parent.table[:id] end
   ransacker :"593a_filter", proc{ |v| } do |parent| parent.table[:id] end
   ransacker :"593b_filter", proc{ |v| } do |parent| parent.table[:id] end
   ransacker :"599a", proc{ |v| } do |parent| parent.table[:id] end
   ransacker :"856x", proc{ |v| } do |parent| parent.table[:id] end
   ransacker :record_type_select, proc{ |v| } do |parent| parent.table[:id] end
   ransacker :source_rism_ids, proc{ |v| } do |parent| parent.table[:id] end
-    
+  ransacker :has_internal_note, proc{ |v| } do |parent| parent.table[:id] end
+  ransacker :"has_music_incipit", proc{ |v| } do |parent| parent.table[:id] end
+
 end
