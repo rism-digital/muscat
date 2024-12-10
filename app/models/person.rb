@@ -281,11 +281,15 @@ class Person < ApplicationRecord
               :join => { :from => :item_id, :to => :id })
 
     sunspot_dsl.integer :src_count_order, :stored => true do
-      referring_sources.size + referring_holdings.size
+      #referring_sources.size + referring_holdings.size
+      # Use the jump table directly
+      source_person_relations.size + holding_person_relations.size
     end
 
     sunspot_dsl.integer :publications_count_order, :stored => true do
-      referring_publications.size
+      #referring_publications.size
+      # same as above
+      publication_person_relations.size
     end
 
     MarcIndex::attach_marc_index(sunspot_dsl, self.to_s.downcase)
