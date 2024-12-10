@@ -17,6 +17,7 @@ Options:
  -v, --versioning    update records version
  -u, --authorities   create (scaffold) related Marc authorities records
  -x, --index         index records as they are imported
+ -n, --new-ids       don't preserve imported ids, but assign new ones (default is to preserve)
  -h, --help          this help
 
 This script can also be run with positional arguments:
@@ -97,6 +98,8 @@ while ARGV.any? do
     options[:authorities] = true
   elsif ["-x", "--index"].include? arg
     options[:index] = true
+  elsif ["-n", "--new-ids"].include? arg
+    options[:new_ids] = true
   elsif ["-h", "--help"].include? arg
     display_help
   # The following options are for backward compatibility

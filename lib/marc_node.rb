@@ -118,14 +118,24 @@ class MarcNode
   # Try to get a foreign object using the id. If the object does not exist,
   # create it. It is used during import of a Marc record, so relations (ex People or Library)
   # are established and in case created
-  def find_or_new_foreign_object_by_foreign_field(class_name, field_name, search_value)
+  def find_or_new_foreign_object_by_foreign_field(class_name, field_name, search_value, force_create = true)
     new_foreign_object = nil
     if foreign_class = get_class(class_name)
       new_foreign_object = foreign_class.send("find_by_" + field_name, search_value)
       if !new_foreign_object
+
+        # We need to make sure id is valid!
+        if field_name == "id" && search_value.to_i == 0
+          puts "find_or_new_foreign_object_by_foreign_field: #{foreign_class} #{search_value} is invalid as Muscat id".red
+          return false if !force_create
+        end
+
         new_foreign_object = foreign_class.new
         new_foreign_object.send("#{field_name}=", search_value)
         new_foreign_object.send("wf_stage=", 'published')
+        puts "find_or_new_foreign_object_by_foreign_field: created new #{foreign_class} #{new_foreign_object.id} field:#{field_name}=#{search_value}".cyan
+      else
+        puts "find_or_new_foreign_object_by_foreign_field: matched #{foreign_class} #{new_foreign_object.id}".yellow
       end
     end
     return new_foreign_object
@@ -133,18 +143,25 @@ class MarcNode
 
   # This works as find_or_new_foreign_object_by_foreign_field but instead of $0 id
   # it tries to use another field for the relation, as specified from the @marc_configuration.
-  def find_or_new_foreign_object_by_all_foreign_fields(class_name, tag, nmasters)
+  def find_or_new_foreign_object_by_all_foreign_fields(class_name, tag, nmasters, force = true)
     new_foreign_object = nil
     if foreign_class = get_class(class_name)
       conditions = Hash.new
       # put all the fields into a condition hash
       nmasters.each do |nmaster|
+        ap nmaster
         conditions[@marc_configuration.get_foreign_field(tag, nmaster.tag)] = nmaster.looked_up_content if !nmaster.looked_up_content.empty?
       end
+      # The imported fields are just... empty!
+      return false if !force && conditions.empty?
+
       new_foreign_object = foreign_class.send("where", conditions).first
       if !new_foreign_object
         new_foreign_object = foreign_class.new
         new_foreign_object.send("wf_stage=", 'published')
+        puts "find_or_new_foreign_object_by_all_foreign_fields: created new #{foreign_class}".cyan
+      else
+        puts "find_or_new_foreign_object_by_all_foreign_fields: matched #{foreign_class}:#{new_foreign_object.id}, conditions:#{conditions}".yellow
       end
     end
     return new_foreign_object
@@ -222,7 +239,7 @@ class MarcNode
       end
     else
       self.sort_alphabetically
-      
+
       # Before resolving the master fields, process the lightwheight link_to
       populate_links_to(self.tag)
       
@@ -235,11 +252,24 @@ class MarcNode
         add_master = false
         # will be used to check if we need to add a $_ db_master or not (for 004 we don't have one)
         add_db_master = true
-        # If we have a master subfield, fo the lookup using that
+        # If we have a master subfield, for the lookup using that
         if master
           master_field = @marc_configuration.get_foreign_field(tag, master.tag)
-          self.foreign_object = find_or_new_foreign_object_by_foreign_field(@marc_configuration.get_foreign_class(tag, master.tag), master_field, master.looked_up_content)
-        # If we have no master subfiled but master is actually empty "" (e.g. 004) with holding records
+            found_obj = find_or_new_foreign_object_by_foreign_field(@marc_configuration.get_foreign_class(tag, master.tag), master_field, master.looked_up_content, false)
+          
+            if found_obj
+              self.foreign_object = found_obj
+            else
+              # Try again, without using the master field
+              master_tag = @marc_configuration.get_master( self.tag )
+              self.foreign_object = find_or_new_foreign_object_by_all_foreign_fields( @marc_configuration.get_foreign_class(tag, master_tag), tag, nmasters, false )
+            end
+          #a = self.fetch_first_by_tag("a")
+          #if self.foreign_object.class == Publication
+          #  puts "#{self.foreign_object.id}\t#{self.foreign_object.name}\t#{a.content}" if self.foreign_object.name && a && a.content && self.foreign_object.name.downcase.strip != a.content.downcase.strip
+          #end
+
+          # If we have no master subfiled but master is actually empty "" (e.g. 004) with holding records
         elsif !master && @marc_configuration.get_master( self.tag ) == ""
           add_db_master = false
           master_field = @marc_configuration.get_foreign_field(tag, "")
