@@ -108,6 +108,7 @@ files.each do |source_file|
         next if l[0] == "MARC"
         complete_log << l.join("\t")
     end
+    $MARC_LOG = []
 end
 
-ap complete_log
+complete_log.sort.uniq.each {|l| puts l}
