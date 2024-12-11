@@ -87,7 +87,7 @@ files = Dir.glob("CMO-MARCXML/Person/*.xml")
 #source_file = "CMO-MARCXML/Person/cmo_person_00000001.xml"
 
 # Minimal option set
-options = {first: 0, last: 1000000, versioning: false, index: false}
+options = {first: 0, last: 1000000, versioning: false, index: true}
 
 options[:new_ids] = true
 options[:authorities] = true
