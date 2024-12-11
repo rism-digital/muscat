@@ -127,6 +127,7 @@ class Marc
     # It would probably be wise to notify the user 
     if !@marc_configuration.has_tag? tag
       @results << "Tag #{tag} missing in the marc configuration"
+      marc_log "Tag #{tag} missing in the marc configuration"
       return
     end
     
@@ -156,7 +157,8 @@ class Marc
       
         # missing subtag 
         @results << "Subfield #{tag} $#{subtag} missing in the marc configuration" if !@marc_configuration.has_subfield? tag, subtag
-        
+        marc_log "Subfield #{tag} $#{subtag} missing in the marc configuration" if !@marc_configuration.has_subfield? tag, subtag
+
         subtag = tag_group << MarcNode.new(@model, subtag, content, nil)
       end
     end
@@ -1061,6 +1063,15 @@ class Marc
     end
 
     return out
+  end
+
+  def marc_log(str)
+    return if !defined?(:MARC_DEBUG)
+    return if !defined?(:MARC_LOG)
+    return if !$MARC_DEBUG
+
+    $MARC_LOG << "MARC #{str}"
+
   end
 
 end

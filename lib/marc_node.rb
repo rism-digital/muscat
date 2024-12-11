@@ -22,12 +22,19 @@ class MarcNode
     #raise "Model does not exit in enviroment" if !ActiveRecord::Base.descendants.map(&:name).include?(model.to_s.capitalize)
     @model = model
     @marc_configuration = MarcConfigCache.get_configuration @model
+
+    # This is used during import of records
+    # Muscat will try to always create the missing links, as default using
+    # the master (generally $0) field, and fail if there is a problem.
+    # This is the default behaviour.
+    # In some case it is useful to try again using other fields, so this global
+    # variable can be set to FALSE (remember, default is true!).
+    @force_marc_creation = defined?(:MARC_FORCE_CREATION) ? $MARC_FORCE_CREATION : true
   end
   
   def suppress_scaffold_links
     self.suppress_scaffold_links_trigger = true
   end  
-  
   
   # Returns a copy of this object an all of its references
   def deep_copy
@@ -66,6 +73,7 @@ class MarcNode
               
           #raise NoMethodError, "Tag #{self.tag}: missing master (expected in $#{@marc_configuration.get_master( self.tag )}), tag contents: #{self.to_marc} "
           $stderr.puts "[#{@model} #{object_id}] Tag #{self.tag}: missing master (expected in $#{@marc_configuration.get_master( self.tag )}), tag contents: #{self.to_marc} "
+          marc_node_log "[#{@model} #{object_id}] Tag #{self.tag}: missing master (expected in $#{@marc_configuration.get_master( self.tag )}), tag contents: #{self.to_marc} "
           #self.destroy_yourself
           return
         end
@@ -118,7 +126,7 @@ class MarcNode
   # Try to get a foreign object using the id. If the object does not exist,
   # create it. It is used during import of a Marc record, so relations (ex People or Library)
   # are established and in case created
-  def find_or_new_foreign_object_by_foreign_field(class_name, field_name, search_value, force_create = true)
+  def find_or_new_foreign_object_by_foreign_field(class_name, field_name, search_value)
     new_foreign_object = nil
     if foreign_class = get_class(class_name)
       new_foreign_object = foreign_class.send("find_by_" + field_name, search_value)
@@ -126,16 +134,18 @@ class MarcNode
 
         # We need to make sure id is valid!
         if field_name == "id" && search_value.to_i == 0
-          puts "find_or_new_foreign_object_by_foreign_field: #{foreign_class} #{search_value} is invalid as Muscat id".red
-          return false if !force_create
+          marc_node_log "find_or_new_foreign_object_by_foreign_field #{foreign_class} #{search_value} is invalid as Muscat id"
+          # In nodmal operation muscat will try to create this item nevertheless
+          # this is the option to change this behaviour
+          return false if @force_marc_creation == false
         end
 
         new_foreign_object = foreign_class.new
         new_foreign_object.send("#{field_name}=", search_value)
         new_foreign_object.send("wf_stage=", 'published')
-        puts "find_or_new_foreign_object_by_foreign_field: created new #{foreign_class} #{new_foreign_object.id} field:#{field_name}=#{search_value}".cyan
+        marc_node_log "find_or_new_foreign_object_by_foreign_field: created new #{foreign_class} #{new_foreign_object.id} field:#{field_name}=#{search_value}"
       else
-        puts "find_or_new_foreign_object_by_foreign_field: matched #{foreign_class} #{new_foreign_object.id}".yellow
+        marc_node_log "find_or_new_foreign_object_by_foreign_field: matched #{foreign_class} #{new_foreign_object.id}"
       end
     end
     return new_foreign_object
@@ -143,25 +153,26 @@ class MarcNode
 
   # This works as find_or_new_foreign_object_by_foreign_field but instead of $0 id
   # it tries to use another field for the relation, as specified from the @marc_configuration.
-  def find_or_new_foreign_object_by_all_foreign_fields(class_name, tag, nmasters, force = true)
+  def find_or_new_foreign_object_by_all_foreign_fields(class_name, tag, nmasters)
     new_foreign_object = nil
     if foreign_class = get_class(class_name)
       conditions = Hash.new
       # put all the fields into a condition hash
       nmasters.each do |nmaster|
-        ap nmaster
         conditions[@marc_configuration.get_foreign_field(tag, nmaster.tag)] = nmaster.looked_up_content if !nmaster.looked_up_content.empty?
       end
-      # The imported fields are just... empty!
-      return false if !force && conditions.empty?
+      # The imported fields are just... empty??
+      # Note normally muscat will go on and do its thing,
+      # returning here must be sxplicitly enabled
+      return false if @force_marc_creation == false && conditions.empty?
 
       new_foreign_object = foreign_class.send("where", conditions).first
       if !new_foreign_object
         new_foreign_object = foreign_class.new
         new_foreign_object.send("wf_stage=", 'published')
-        puts "find_or_new_foreign_object_by_all_foreign_fields: created new #{foreign_class}".cyan
+        marc_node_log "find_or_new_foreign_object_by_all_foreign_fields: created new #{foreign_class}"
       else
-        puts "find_or_new_foreign_object_by_all_foreign_fields: matched #{foreign_class}:#{new_foreign_object.id}, conditions:#{conditions}".yellow
+        marc_node_log "find_or_new_foreign_object_by_all_foreign_fields: matched #{foreign_class}:#{new_foreign_object.id}, conditions:#{conditions}"
       end
     end
     return new_foreign_object
@@ -239,7 +250,7 @@ class MarcNode
       end
     else
       self.sort_alphabetically
-
+      
       # Before resolving the master fields, process the lightwheight link_to
       populate_links_to(self.tag)
       
@@ -255,15 +266,15 @@ class MarcNode
         # If we have a master subfield, for the lookup using that
         if master
           master_field = @marc_configuration.get_foreign_field(tag, master.tag)
-            found_obj = find_or_new_foreign_object_by_foreign_field(@marc_configuration.get_foreign_class(tag, master.tag), master_field, master.looked_up_content, false)
-          
-            if found_obj
-              self.foreign_object = found_obj
-            else
-              # Try again, without using the master field
-              master_tag = @marc_configuration.get_master( self.tag )
-              self.foreign_object = find_or_new_foreign_object_by_all_foreign_fields( @marc_configuration.get_foreign_class(tag, master_tag), tag, nmasters, false )
-            end
+          self.foreign_object = find_or_new_foreign_object_by_foreign_field(@marc_configuration.get_foreign_class(tag, master.tag), master_field, master.looked_up_content)
+
+          # In this case, it means found_obj was not created
+          # because @force_marc_creation is false, try again
+          if !self.foreign_object && @force_marc_creation == false
+            # Try again, without using the master field
+            master_tag = @marc_configuration.get_master( self.tag )
+            self.foreign_object = find_or_new_foreign_object_by_all_foreign_fields( @marc_configuration.get_foreign_class(tag, master_tag), tag, nmasters )
+          end
           #a = self.fetch_first_by_tag("a")
           #if self.foreign_object.class == Publication
           #  puts "#{self.foreign_object.id}\t#{self.foreign_object.name}\t#{a.content}" if self.foreign_object.name && a && a.content && self.foreign_object.name.downcase.strip != a.content.downcase.strip
@@ -754,4 +765,12 @@ class MarcNode
     return str.gsub(/[\r\n]+/, single_space).gsub(/\n+/, single_space).gsub(/\r+/, single_space).gsub(/\$/, Marc::DOLLAR_STRING)
   end
   
+  def marc_node_log(str)
+    return if !defined?(:MARC_DEBUG)
+    return if !defined?(:MARC_LOG)
+    return if !$MARC_DEBUG
+
+    $MARC_LOG << "MARC_NODE #{str}"
+  end
+
 end

@@ -72,8 +72,14 @@ options[:new_ids] = true
 options[:authorities] = true
 options[:callback] = method(:preprocess_cmo)
 
+$MARC_DEBUG=true
+$MARC_LOG=[]
+$MARC_FORCE_CREATION = false
+
 files.each do |source_file|
     puts source_file
     import = MarcImport.new(source_file, "Person", options)
     import.import
 end
+
+ap $MARC_LOG
