@@ -69,7 +69,7 @@ def preprocess_cmo(marc, obj, options)
 
         if w && w.content
             # Move to internal note
-            n667 = MarcNode.new("person", "677", "", @mc.get_default_indicator("667"))
+            n667 = MarcNode.new("person", "667", "", @mc.get_default_indicator("667"))
             n667.add_at(MarcNode.new("person", "a", "#{a&.content} | #{w.content}", nil), 0 )
             n667.sort_alphabetically
             marc.root.add_at(n667, marc.get_insert_position("667") )
