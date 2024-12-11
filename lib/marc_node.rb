@@ -73,7 +73,7 @@ class MarcNode
               
           #raise NoMethodError, "Tag #{self.tag}: missing master (expected in $#{@marc_configuration.get_master( self.tag )}), tag contents: #{self.to_marc} "
           $stderr.puts "[#{@model} #{object_id}] Tag #{self.tag}: missing master (expected in $#{@marc_configuration.get_master( self.tag )}), tag contents: #{self.to_marc} "
-          marc_node_log "[#{@model} #{object_id}] Tag #{self.tag}: missing master (expected in $#{@marc_configuration.get_master( self.tag )}), tag contents: #{self.to_marc} "
+          marc_node_log ["MISSING_MASTER", "TAG=#{self.tag}", "SUBTAG=#{@marc_configuration.get_master( self.tag )}", "MODEL=#{@model}", "ID-#{object_id}", "DEBUG=#{self.to_marc}"]
           #self.destroy_yourself
           return
         end
@@ -134,7 +134,7 @@ class MarcNode
 
         # We need to make sure id is valid!
         if field_name == "id" && search_value.to_i == 0
-          marc_node_log "find_or_new_foreign_object_by_foreign_field #{foreign_class} #{search_value} is invalid as Muscat id"
+          marc_node_log ["LINK_BY_MASTER", "FORMAT_INVALID", "MODEL=#{foreign_class}", "ID=#{search_value}"]
           # In nodmal operation muscat will try to create this item nevertheless
           # this is the option to change this behaviour
           return false if @force_marc_creation == false
@@ -143,9 +143,9 @@ class MarcNode
         new_foreign_object = foreign_class.new
         new_foreign_object.send("#{field_name}=", search_value)
         new_foreign_object.send("wf_stage=", 'published')
-        marc_node_log "find_or_new_foreign_object_by_foreign_field: created new #{foreign_class} #{new_foreign_object.id} field:#{field_name}=#{search_value}"
+        marc_node_log ["LINK_BY_MASTER", "CREATE", "MODEL=#{foreign_class}", "ID=#{new_foreign_object.id}", "FIELD=#{field_name}", "VAL=#{search_value}"]
       else
-        marc_node_log "find_or_new_foreign_object_by_foreign_field: matched #{foreign_class} #{new_foreign_object.id}"
+        marc_node_log ["LINK_BY_MASTER", "MATCH", "MODEL=#{foreign_class}", "ID=#{new_foreign_object.id}", "FIELD=#{field_name}", "VAL=#{search_value}"]
       end
     end
     return new_foreign_object
@@ -170,9 +170,10 @@ class MarcNode
       if !new_foreign_object
         new_foreign_object = foreign_class.new
         new_foreign_object.send("wf_stage=", 'published')
-        marc_node_log "find_or_new_foreign_object_by_all_foreign_fields: created new #{foreign_class}"
+        marc_node_log ["LINK_BY_ALL_FIELDS", "CREATE", "MODEL=#{foreign_class}", "ID=#{new_foreign_object.id}", "FIELDS=#{conditions}"]
+
       else
-        marc_node_log "find_or_new_foreign_object_by_all_foreign_fields: matched #{foreign_class}:#{new_foreign_object.id}, conditions:#{conditions}"
+        marc_node_log ["LINK_BY_ALL_FIELDS", "MATCH", "MODEL=#{foreign_class}", "ID=#{new_foreign_object.id}", "FIELDS=#{conditions}"]
       end
     end
     return new_foreign_object
@@ -765,12 +766,12 @@ class MarcNode
     return str.gsub(/[\r\n]+/, single_space).gsub(/\n+/, single_space).gsub(/\r+/, single_space).gsub(/\$/, Marc::DOLLAR_STRING)
   end
   
-  def marc_node_log(str)
+  def marc_node_log(list)
     return if !defined?(:MARC_DEBUG)
     return if !defined?(:MARC_LOG)
     return if !$MARC_DEBUG
 
-    $MARC_LOG << "MARC_NODE #{str}"
+    $MARC_LOG << ["MARC_NODE"] + list
   end
 
 end
