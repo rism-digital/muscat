@@ -598,11 +598,12 @@ ActiveRecord::Schema[7.2].define(version: 2024_12_12_133213) do
     t.index ["standard_title_id"], name: "index_sources_to_standard_titles_on_standard_title_id"
   end
 
-  create_table "sources_to_work_nodes", id: false, charset: "utf8mb3", force: :cascade do |t|
+  create_table "sources_to_work_nodes", id: { type: :bigint, unsigned: true }, charset: "utf8mb3", force: :cascade do |t|
     t.integer "source_id"
     t.integer "work_node_id"
     t.string "marc_tag"
     t.string "relator_code"
+    t.index ["marc_tag", "relator_code", "work_node_id", "source_id"], name: "unique_records", unique: true
     t.index ["source_id"], name: "index_sources_to_works_on_source_id"
     t.index ["work_node_id"], name: "index_sources_to_works_on_work_id"
   end
