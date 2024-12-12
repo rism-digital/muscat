@@ -97,7 +97,9 @@ class Publication < ApplicationRecord
   has_many :referring_publication_relations, class_name: "PublicationRelation", foreign_key: "publication_b_id"
   has_many :referring_publications, through: :referring_publication_relations, source: :publication_a
 
-  has_and_belongs_to_many(:referring_work_nodes, class_name: "WorkNode", join_table: "work_nodes_to_publications")
+  #has_and_belongs_to_many(:referring_work_nodes, class_name: "WorkNode", join_table: "work_nodes_to_publications")
+  has_many :work_node_publication_relations, class_name: "WorkNodePublicationRelation"
+  has_many :referring_work_nodes, through: :work_node_publication_relations, source: :work_node
 
   composed_of_reimplementation :marc, :class_name => "MarcPublication", :mapping => %w(marc_source to_marc)
 

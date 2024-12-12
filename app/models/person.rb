@@ -74,7 +74,9 @@ class Person < ApplicationRecord
   has_many :person_place_relations
   has_many :places, through: :person_place_relations
 
-  has_and_belongs_to_many(:referring_work_nodes, class_name: "WorkNode", join_table: "work_nodes_to_people")
+  #has_and_belongs_to_many(:referring_work_nodes, class_name: "WorkNode", join_table: "work_nodes_to_people")
+  has_many :work_node_person_relations, class_name: "WorkNodePersonRelation"
+  has_many :referring_work_nodes, through: :work_node_person_relations, source: :work_node
 
   has_many :folder_items, as: :item, dependent: :destroy
   has_many :delayed_jobs, -> { where parent_type: "Person" }, class_name: 'Delayed::Backend::ActiveRecord::Job', foreign_key: "parent_id"
