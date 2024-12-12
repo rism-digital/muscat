@@ -1,0 +1,3 @@
+Los **Work nodes** actúan como enlaces etiquetados entre las fuentes en Muscat y las autoridades externas relacionadas con las obras (por ejemplo, obras del GND) y agrupan las fuentes que comparten la misma referencia. Sirven como un proxy para los datos de autoridad almacenados en Muscat, facilitando la gestión de los enlaces con el conjunto de datos de autoridad externa.
+
+Los **Work nodes** no se exportan como datos de autoridad, y las ID de los Work nodes no son visibles externamente. Sin embargo, los Work nodes se enumeran en los registros de fuentes que los apuntan a través de un campo Marc personalizado 930, junto con la ID de la obra del conjunto de datos de autoridad externa (por ejemplo, la ID del GND).
