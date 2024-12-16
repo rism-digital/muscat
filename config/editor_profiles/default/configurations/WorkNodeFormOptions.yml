@@ -24,7 +24,7 @@
         - "SWNL"
         - "VIAF"
         - "WKP"
-        default: "GND"
+        default: "DNB"
         editor_partial: subfield_select
 "040":
   layout:
