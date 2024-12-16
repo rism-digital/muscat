@@ -65,6 +65,12 @@ class Ability
         # the general design of the role allows extensions alike for e.g. institudions
         can :update, Person
       end
+
+      if user.has_role?(:inventory_editor)
+        can :update, InventoryItem, :wf_owner => user.id
+        can [:read, :create], InventoryItem
+      end
+
       can :update, [Publication, Institution, LiturgicalFeast, Person, Place, StandardTerm, StandardTitle, Holding, WorkNode], :wf_owner => user.id
       can [:destroy, :update], [DigitalObject], :wf_owner => user.id
       # Users cannot delete their holdings anymore as of 8.2, sorry!
@@ -93,8 +99,6 @@ class Ability
         user.can_edit? source
       end
       
-      can [:read, :create, :update, :destroy], InventoryItem
-
       can :update, Source do |s|
         user.can_edit_edition?(s)
       end

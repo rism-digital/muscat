@@ -2,7 +2,7 @@ ActiveAdmin.register InventoryItem do
   collection_action :autocomplete_intentory_item_id, :method => :get
 
   # Hide the menu
-  menu :parent => "indexes_menu", :label => proc {I18n.t(:menu_inventory_items)}, :if => proc{ current_user.has_role?(:admin)}
+  menu :parent => "indexes_menu", :label => proc {I18n.t(:menu_inventory_items)}, :if => proc{ can?(:update, InventoryItem)}
 
   config.clear_action_items!
   # Remove mass-delete action

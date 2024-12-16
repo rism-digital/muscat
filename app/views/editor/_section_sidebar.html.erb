@@ -81,7 +81,7 @@
 	</li>
 <%end%>	
 	
-<%if @item.id && @item.respond_to?(:allow_inventory_items?) && @item.allow_inventory_items? %>
+<%if @item.id && @item.respond_to?(:allow_inventory_items?) && @item.allow_inventory_items? && can?(:create, InventoryItem)%>
 	<li class="muscat_icon_separator"></li>
 	<li class="muscat_icon_link">
 		<%= link_to("#{I18n.t :new_inventory_item}", new_admin_inventory_item_path(source_id: @item.id),
