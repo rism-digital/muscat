@@ -196,7 +196,7 @@ class WorkNode < ApplicationRecord
     self.title = marc.get_title
     self.person = marc.get_composer # This sets the person id!
     self.composer = marc.get_composer_name # and this caches the composer name
-
+    self.ext_number, self.ext_code = marc.get_ext_nr
 
     self.marc_source = self.marc.to_marc
   end

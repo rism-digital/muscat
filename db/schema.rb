@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.2].define(version: 2024_12_12_133213) do
+ActiveRecord::Schema[7.2].define(version: 2024_12_16_120848) do
   create_table "active_admin_comments", id: :integer, charset: "utf8mb3", force: :cascade do |t|
     t.string "namespace"
     t.text "body"
@@ -743,6 +743,8 @@ ActiveRecord::Schema[7.2].define(version: 2024_12_12_133213) do
     t.text "marc_source"
     t.integer "lock_version", default: 0, null: false
     t.string "composer"
+    t.string "ext_number"
+    t.string "ext_code"
     t.index ["title"], name: "index_works_on_title"
     t.index ["wf_stage"], name: "index_works_on_wf_stage"
   end

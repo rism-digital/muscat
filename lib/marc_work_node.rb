@@ -17,6 +17,15 @@ class MarcWorkNode < Marc
       title = node.content.blank? ? title : "#{title}. #{node.content}"
   end
 
+  def get_ext_nr
+    tag = first_occurance("024")
+    a = tag&.fetch_first_by_tag("a")&.content
+    two = tag&.fetch_first_by_tag("2")&.content
+
+    [a, two]
+  end
+
+
 =begin
     # See #1662, we are interested only in $t and $p
     # scoring from repeated $m
