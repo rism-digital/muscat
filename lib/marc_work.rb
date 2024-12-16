@@ -80,6 +80,10 @@ class MarcWork < Marc
 
   # Make sure we do not use the default to_external
   def to_external(created_at = nil, updated_at = nil, versions = nil, holdings = false, deprecated_ids = true)
+    super(created_at, updated_at, versions)
+    
+    new_leader = MarcNode.new("work", "000", "00000nz  a2200000nc 4500", "")
+    @root.children.insert(get_insert_position("000"), new_leader)
   end
 
 end

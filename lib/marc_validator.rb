@@ -96,6 +96,7 @@ include ApplicationHelper
           elsif rule.is_a? Hash
             if rule.has_key?("any_of")
               rule["any_of"].each do |subrule|
+                ap subrule
                 validate_string_tag(subrule, marc_tag, marc_subtag, tag, subtag)
               end
             elsif rule.has_key?("begins_with")

@@ -72,6 +72,9 @@ class MarcPerson < Marc
   def to_external(created_at = nil, updated_at = nil, versions = nil, holdings = false, deprecated_ids = true)
     super(created_at, updated_at, versions)
     
+    new_leader = MarcNode.new("person", "000", "00000nz  a2200000nc 4500", "")
+    @root.children.insert(get_insert_position("000"), new_leader)
+
     # Remove the 667...
     by_tags("667").each {|t| t.destroy_yourself}
 

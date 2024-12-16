@@ -70,6 +70,9 @@ class MarcInstitution < Marc
     super(created_at, updated_at, versions)
     parent_object = Institution.find(get_id)
     
+    new_leader = MarcNode.new("institution", "000", "00000nz  a2200000nc 4500", "")
+    @root.children.insert(get_insert_position("000"), new_leader)
+
     by_tags("667").each {|t| t.destroy_yourself}
 
     source_size = parent_object.referring_sources.where(wf_stage: 1).size + parent_object.holdings.size rescue 0
