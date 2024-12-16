@@ -58,7 +58,6 @@ groups:
   control: 
     all_tags: 
     - "040"
-    - "000"
     - "001"
     - "981"
     all_tag_templates: 

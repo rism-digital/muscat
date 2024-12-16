@@ -38,8 +38,6 @@ groups:
   control: 
     all_tags: 
     - "001"
-    - "003"
-    - "005"
       
   notes: 
     all_tags: 

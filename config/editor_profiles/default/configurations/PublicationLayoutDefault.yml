@@ -31,10 +31,7 @@ groups:
     - "651"
   control: 
     all_tags: 
-    - "000"
     - "001"
-    - "003"
-    - "005"
     - "981"
   notes: 
     all_tags: 

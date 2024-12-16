@@ -43,9 +43,5 @@ groups:
       "700": marc_show/show_person
   control: 
     all_tags: 
-    - "000"
     - "001"
-    - "003"
-    - "005"
-    - "008"
     - "667"

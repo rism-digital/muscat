@@ -1,7 +1,7 @@
 --- !map:Settings 
-"001": 
+"001":
   tag: tag_no_subfield
-  tag_params: 
+  tag_params:
     read_only: true
     no_delete: true
   tag_header: none
