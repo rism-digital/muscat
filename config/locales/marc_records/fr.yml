@@ -100,7 +100,7 @@ fr:
     persian: Persan
     polish: Polonais
     portugese: Portugais
-    romance_other: Romance (Other)
+    romance_other: Langue romane (autre)
     romani: Romani
     romanian: Roumain
     romansh: Rhéto-roman
@@ -695,7 +695,7 @@ fr:
     number_part_section: Numéro de partie / section d'une œuvre
     number_volume_part: Numéro du volume ou de la partie
     numbers_code_fields: Numéros et codes
-    numeric_designation: Numeric designation
+    numeric_designation: Désignation numérique
     octoechos1: 'Octoechos 1: Ēchos prōtos (premier mode dans la musique byzantine)'
     octoechos2: 'Octoechos 2: Ēchos deuteros (deuxième mode dans la musique byzantine)'
     octoechos3: 'Octoechos 3: Ēchos tritos (troisième mode dans la musique byzantine)'
@@ -822,7 +822,7 @@ fr:
     scribe: Copiste / scribe
     secondary_catalog_works: Catalogue secondaire des oeuvres
     secondary_literature: Références
-    serial_number: Serial number
+    serial_number: Numéro de série
     series: Série
     series_added_entry: Champs de collection
     series_statement: Mentions de collection
