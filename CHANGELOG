@@ -1,6 +1,75 @@
 Muscat Changelog
 ================
 
+v 11.3
+* Add script to check if 593 is missing
+* Fix #1670 add all missing backward links to Inventory Items
+* Fix #1668, take in account institutions without siglum (don't move 094 if there is none)
+* #1671 Inventareintrag instead of Inventarartikel
+* #1671 make key or mode shared, and remove all the references
+* #1671 remove 598
+* #1671 fix 852 missing label
+* Fix #1667, add missing label for $a
+* Update locales
+* Make sure id is always there
+* Fix #1672, restore AuthToken interface after upgrade to ActiveAdmin 3.2
+* Fix #1671, number all the numbers in different amounts
+* Update changelog
+* Fix #1662, add new display for the WorkNode title
+* Add shelf_mark to holdings
+* Initial script for #1666
+* #1675 and #1663, add district and country to autocomplete, and add them to validates_uniqueness_of, make all valued null by default from AA so it works too
+* #1675 swap country and district in the list view
+* Fix mismatch in NotificationMatcher, remove mod trigger from MarcNode and remove obsolete column specification
+* Add composer to WorkNodes
+* Index composer for WN
+* Make ordering work in AA
+* Make WorkNode autocomplete match tokes in the middle of the phrase
+* #1676, map contains to cont
+* Make 024 mandatory #1677
+* #1677 add composer to autocomplete, fix labels
+* Remove all the deprecated fields from WorkNode, #1677
+* Add initial work node help (en and fr)
+* Add script to automate exports
+* Bump rails-html-sanitizer from 1.6.0 to 1.6.1
+* Merge pull request #1682 from rism-digital/dependabot/bundler/rails-html-sanitizer-1.6.1
+* Switch to dartsass-sprockets instead of sassc-rails
+* Merge branch 'develop' of https://github.com/rism-digital/muscat into develop
+* Update some of the gems
+* Update rails to 7.2 and ransack too
+* Update the rest of the gems
+* Fix deprecated deprecator
+* Switch all models to the new enum synthax
+* #1673 Make sure the shared labels don't override the labels for each model
+* #1674 add relators to 7x0
+* #1674 Use only 246 for title
+* Fix #1674 add all missing locales
+* Fix #1684 add 383 Numeric designation to Works, + minor goodies
+* Fix #1679, also fix display of superimposed labels
+* Fix #1508, remove duplicate 383
+* CMO Import
+* Use the jump tables to optimize relattion size
+* Preserve more CMO in notes
+* Bump actionpack from 7.2.2 to 7.2.2.1
+* Initial experimental logger for marc imports
+* Try to make logging more machine readable
+* Print logs...
+* Merge pull request #1688 from rism-digital/dependabot/bundler/actionpack-7.2.2.1
+* Use the proper tag for int note
+* Reindex while creating
+* Merge pull request #1678 from rism-digital/develop-work-node-help
+* #1677 Script to remove empty 024
+* #1677 Add more translations
+* #1677 extend all work_node tables
+* Fix migration #1677
+* Fix #1505 unify control fields
+* Fix #1498 add validation to 024 People
+* Fix roles for future inventory_editor
+* Add columns to work_node
+* #1614 Actually add the leaders
+* Add more debugging, but keep it out of 11.3
+* Update labels
+
 v 11.2.2
 * Add script to check if 593 is missing
 * Fix #1670 add all missing backward links to Inventory Items
