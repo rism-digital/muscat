@@ -100,6 +100,7 @@ ko:
     persian: Persian
     polish: Polish
     portugese: Portuguese
+    romance_other: Romance (Other)
     romani: Romani
     romanian: Romanian
     romansh: Romansh
@@ -694,6 +695,7 @@ ko:
     number_part_section: Number of part/section of a work
     number_volume_part: Number of volume/part
     numbers_code_fields: Numbers and code fields
+    numeric_designation: Numeric designation
     octoechos1: 'Octoechos 1: Ēchos prōtos (First mode of Byzantine music)'
     octoechos2: 'Octoechos 2: Ēchos deuteros (Second mode of Byzantine music)'
     octoechos3: 'Octoechos 3: Ēchos tritos (Third mode of Byzantine music)'
@@ -820,6 +822,7 @@ ko:
     scribe: Scribe
     secondary_catalog_works: Secondary catalog of works
     secondary_literature: Secondary literature
+    serial_number: Serial number
     series: Series
     series_added_entry: Series added entry fields
     series_statement: Series statement fields

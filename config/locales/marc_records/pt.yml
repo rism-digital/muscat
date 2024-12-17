@@ -100,6 +100,7 @@ pt:
     persian: Persa
     polish: Polonês
     portugese: Português
+    romance_other: Romance (Outro)
     romani: Romani
     romanian: Romeno
     romansh: Reto-romano
@@ -694,6 +695,7 @@ pt:
     number_part_section: Número de parte/seção de um trabalho
     number_volume_part: Número de volume/parte
     numbers_code_fields: Números e campos de código
+    numeric_designation: Designação numérica
     octoechos1: 'Octoechos 1: Ēchos prōtos (Primeiro modo bizantino)'
     octoechos2: 'Octoechos 2: Ēchos deuteros (Segundo modo bizantino)'
     octoechos3: 'Octoechos 3: Ēchos tritos (Terceiro modo bizantino)'
@@ -820,6 +822,7 @@ pt:
     scribe: Copista
     secondary_catalog_works: Catálogo secundário de obras
     secondary_literature: Literatura secundária
+    serial_number: Serial number
     series: Séries
     series_added_entry: Informação secundária sobre título superordenado
     series_statement: Campos de declaração da série

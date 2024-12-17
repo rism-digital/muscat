@@ -100,6 +100,7 @@ de:
     persian: Persisch
     polish: Polnisch
     portugese: Portugiesisch
+    romance_other: Romanisch (Andere)
     romani: Romani
     romanian: Rumänisch
     romansh: Bündnerromanisch (Rätoromanisch)
@@ -694,6 +695,7 @@ de:
     number_part_section: Anzahl Teile oder Abschnitte eines Werks
     number_volume_part: Nummer des Bandes oder Teils
     numbers_code_fields: Nummern und Codes
+    numeric_designation: Numerische Bezeichnung
     octoechos1: 'Octoechos 1: Ēchos prōtos (First mode of Byzantine music)'
     octoechos2: 'Octoechos 2: Ēchos deuteros (Second mode of Byzantine music)'
     octoechos3: 'Octoechos 3: Ēchos tritos (Third mode of Byzantine music)'
@@ -820,6 +822,7 @@ de:
     scribe: Schreiber
     secondary_catalog_works: Sekundärer Katalog der Werke
     secondary_literature: Sekundärliteratur
+    serial_number: Seriennummer
     series: Serie
     series_added_entry: Nebeneintragungen Gesamttitel
     series_statement: Gesamttitelangaben

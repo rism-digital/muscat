@@ -100,6 +100,7 @@ ca:
     persian: Persa
     polish: Polonès
     portugese: Portuguès
+    romance_other: Llengua romànica (altra)
     romani: Romaní
     romanian: Romanès
     romansh: Romanx
@@ -694,6 +695,7 @@ ca:
     number_part_section: Número de part / secció d'una obra
     number_volume_part: Número de volum o part
     numbers_code_fields: Números i camps codificats
+    numeric_designation: Designació numèrica
     octoechos1: 'Octoechos 1: Ēchos prōtos (primer mode bizanti)'
     octoechos2: 'Octoechos 2: Ēchos deuteros (segon mode bizantí)'
     octoechos3: 'Octoechos 3: Ēchos tritos (tercer mode bizantí)'
@@ -820,6 +822,7 @@ ca:
     scribe: Copista
     secondary_catalog_works: Catàleg secundari d'obres
     secondary_literature: Literatura secundària
+    serial_number: Número de sèrie
     series: Sèries
     series_added_entry: Entrades secundàries de col·lecció
     series_statement: Menció de col·lecció

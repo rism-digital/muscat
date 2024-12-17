@@ -100,6 +100,7 @@ pl:
     persian: Perski
     polish: Polski
     portugese: Portugalski
+    romance_other: Romans (inne)
     romani: Romski
     romanian: Rumuński
     romansh: Retoromański
@@ -694,6 +695,7 @@ pl:
     number_part_section: Numer części / sekcji dzieła
     number_volume_part: Numer wolumenu / części
     numbers_code_fields: Pola liczb i kodów
+    numeric_designation: Numeric designation
     octoechos1: 'Octoechos 1: Ēchos prōtos (pierwsza skala muzyki bizantyjskiej)'
     octoechos2: 'Octoechos 2: Ēchos deuteros (druga skala muzyki bizantyjskiej)'
     octoechos3: 'Octoechos 3: Ēchos tritos (trzecia skala muzyki bizantyjskiej)'
@@ -820,6 +822,7 @@ pl:
     scribe: Kopista
     secondary_catalog_works: Dodatkowy katalog utworów
     secondary_literature: Literatura pomocnicza
+    serial_number: Serial number
     series: Seria
     series_added_entry: Dodatkowe wpisy tytułów
     series_statement: Pola uwag do serii

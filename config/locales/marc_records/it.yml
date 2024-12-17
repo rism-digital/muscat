@@ -100,6 +100,7 @@ it:
     persian: Persiano
     polish: Polacco
     portugese: Portoghese
+    romance_other: Altra lingua romanza
     romani: Romani
     romanian: Romeno
     romansh: Romancio
@@ -694,6 +695,7 @@ it:
     number_part_section: Numero della parte/sezione di una composizione
     number_volume_part: Numero del volume/parte
     numbers_code_fields: Numeri e codici
+    numeric_designation: Numerazione identificativa
     octoechos1: 'Octoechos 1: Ēchos prōtos (primo modo nella musica bizantina)'
     octoechos2: 'Octoechos 2: Ēchos deuteros (secondo modo nella musica bizantina)'
     octoechos3: 'Octoechos 3: Ēchos tritos (terzo modo nella musica bizantina)'
@@ -820,6 +822,7 @@ it:
     scribe: Copista
     secondary_catalog_works: Catalogo secondario delle opere
     secondary_literature: Bibliografia
+    serial_number: Numerazione progressiva
     series: Serie
     series_added_entry: Notizia secondaria sul titolo sovraordinato
     series_statement: Informazioni sul titolo sovraordinato
