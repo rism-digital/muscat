@@ -139,6 +139,7 @@ ActiveAdmin.register LiturgicalFeast do
       row (I18n.t :filter_name) { |r| r.name }
       row (I18n.t :filter_alternate_terms) { |r| r.alternate_terms }
       row (I18n.t :filter_notes) { |r| r.notes } 
+      row (I18n.t :filter_owner) { |r| User.find_by(id: r.wf_owner).name rescue r.wf_owner }
     end
     active_admin_embedded_source_list( self, liturgical_feast, !is_selection_mode? )
 

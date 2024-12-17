@@ -153,6 +153,7 @@ ActiveAdmin.register StandardTerm do
       row (I18n.t :filter_term) { |r| r.term }
       row (I18n.t :filter_alternate_terms) { |r| r.alternate_terms }
       row (I18n.t :filter_notes) { |r| r.notes }    
+      row (I18n.t :filter_owner) { |r| User.find_by(id: r.wf_owner).name rescue r.wf_owner }
     end
     active_admin_embedded_source_list( self, standard_term, !is_selection_mode? )
     
