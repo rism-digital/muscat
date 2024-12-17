@@ -269,6 +269,7 @@ class MarcNode
           master_field = @marc_configuration.get_foreign_field(tag, master.tag)
           self.foreign_object = find_or_new_foreign_object_by_foreign_field(@marc_configuration.get_foreign_class(tag, master.tag), master_field, master.looked_up_content)
 
+=begin NOTE disable all this for the 11.3 release
           # In this case, it means found_obj was not created
           # because @force_marc_creation is false, try again
           if !self.foreign_object && @force_marc_creation == false
@@ -276,11 +277,23 @@ class MarcNode
             master_tag = @marc_configuration.get_master( self.tag )
             self.foreign_object = find_or_new_foreign_object_by_all_foreign_fields( @marc_configuration.get_foreign_class(tag, master_tag), tag, nmasters )
           end
-          #a = self.fetch_first_by_tag("a")
-          #if self.foreign_object.class == Publication
-          #  puts "#{self.foreign_object.id}\t#{self.foreign_object.name}\t#{a.content}" if self.foreign_object.name && a && a.content && self.foreign_object.name.downcase.strip != a.content.downcase.strip
-          #end
 
+          # Now figure out if there is an ID collision
+          if defined?(:MARC_DEBUG) && :MARC_DEBUG
+            nmasters.each do |nm|
+              next if !nm
+              next if !nm.content
+                ff = @marc_configuration&.get_foreign_field(tag, nm&.tag)
+                nexti if !ff
+                # Get the value in Muscat
+                db_val = self.foreign_object.send(ff) rescue db_val = nil
+                next if !db_val
+                if db_val.downcase != nm.content.downcase
+                  marc_node_log ["IMPORT", "VALUE_CHANGE", "MODEL=#{self.foreign_object.class}", "ID=#{self.foreign_object.id}", "TAG=#{tag}", "SUBTAG=#{nm.tag}", "IMPORT_VAL=#{nm.content}", "DB_VAL=#{db_val.downcase}"]
+                end
+            end
+          end
+=end
           # If we have no master subfiled but master is actually empty "" (e.g. 004) with holding records
         elsif !master && @marc_configuration.get_master( self.tag ) == ""
           add_db_master = false
