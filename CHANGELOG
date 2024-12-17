@@ -2,19 +2,6 @@ Muscat Changelog
 ================
 
 v 11.3
-* Add script to check if 593 is missing
-* Fix #1670 add all missing backward links to Inventory Items
-* Fix #1668, take in account institutions without siglum (don't move 094 if there is none)
-* #1671 Inventareintrag instead of Inventarartikel
-* #1671 make key or mode shared, and remove all the references
-* #1671 remove 598
-* #1671 fix 852 missing label
-* Fix #1667, add missing label for $a
-* Update locales
-* Make sure id is always there
-* Fix #1672, restore AuthToken interface after upgrade to ActiveAdmin 3.2
-* Fix #1671, number all the numbers in different amounts
-* Update changelog
 * Fix #1662, add new display for the WorkNode title
 * Add shelf_mark to holdings
 * Initial script for #1666
