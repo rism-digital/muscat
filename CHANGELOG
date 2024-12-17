@@ -70,6 +70,7 @@ v 11.3
 * Add more debugging, but keep it out of 11.3
 * Update labels
 * Fix #1618, use built-in  Anchored::Linker.auto_link instead of old URL helper
+* Merge pull request #1696 from rism-digital/HirschSt-patch-1
 
 v 11.2.2
 * Add script to check if 593 is missing
