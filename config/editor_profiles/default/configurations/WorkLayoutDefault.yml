@@ -17,7 +17,6 @@ groups:
     - "046"
     - "370"
     - "377"
-    - "383"
   references:
     all_tags:
     - "670"
