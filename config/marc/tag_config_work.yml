@@ -421,7 +421,6 @@
     :fields:
     - - u
       - :occurrences: "*"
-        :browse_helper: application_helper_link_http
     - - z
       - :occurrences: "*"
   "981":

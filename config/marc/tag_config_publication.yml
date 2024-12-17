@@ -248,7 +248,6 @@
     :fields:
     - - a
       - :occurrences: "?"
-        :browse_helper: application_helper_link_http
     - - "5"
       - :occurrences: "?"
         :no_browse: true
@@ -453,7 +452,6 @@
     :fields:
     - - u
       - :occurrences: "*"
-        :browse_helper: application_helper_link_http
     - - z
       - :occurrences: "*"
   "981":
