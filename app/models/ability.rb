@@ -66,7 +66,7 @@ class Ability
         can :update, Person
       end
 
-      if user.has_role?(:inventory_editor)
+      if user.has_role?(:inventory_cataloger)
         can :update, InventoryItem, :wf_owner => user.id
         can [:read, :create], InventoryItem
       end
