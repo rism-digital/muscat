@@ -18,7 +18,7 @@ class WorkNode < ApplicationRecord
 
   #has_and_belongs_to_many(:referring_sources, class_name: "Source", join_table: "sources_to_work_nodes")
   has_many :source_work_node_relations, class_name: "SourceWorkNodeRelation"
-  has_many :referring_sources, through: :source_work_relations, source: :source
+  has_many :referring_sources, through: :source_work_node_relations, source: :source
   
   #  has_and_belongs_to_many :publications, join_table: "work_nodes_to_publications"
   has_many :work_node_publication_relations
