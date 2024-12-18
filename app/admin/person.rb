@@ -240,36 +240,7 @@ ActiveAdmin.register Person do
     end
     active_admin_embedded_source_list( self, person, !is_selection_mode? )
 
-    # Box for publications referring to this person
-    active_admin_embedded_link_list(self, person, Publication) do |context|
-      context.table_for(context.collection) do |cr|
-        context.column "id", :id
-        context.column (I18n.t :filter_title_short), :short_name
-        context.column (I18n.t :filter_author), :author
-        context.column (I18n.t :filter_title), :title
-        if !is_selection_mode?
-          context.column "" do |publication|
-            link_to "View", controller: :publications, action: :show, id: publication.id
-          end
-        end
-      end
-    end
-
-    # Box for institutions referring to this person
-    active_admin_embedded_link_list(self, person, Institution) do |context|
-      context.table_for(context.collection) do |cr|
-        context.column "id", :id
-        context.column (I18n.t :filter_siglum), :siglum
-        context.column (I18n.t :filter_full_name), :full_name
-        context.column (I18n.t :filter_place), :place
-        if !is_selection_mode?
-          context.column "" do |ins|
-            link_to "View", controller: :institutions, action: :show, id: ins.id
-          end
-        end
-      end
-    end
-
+    # This one cannot use the compact form
     active_admin_embedded_link_list(self, person, Holding) do |context|
       context.table_for(context.collection) do |cr|
         context.column "id", :id
@@ -284,31 +255,11 @@ ActiveAdmin.register Person do
       end
     end
 
-    active_admin_embedded_link_list(self, person, Work) do |context|
-      context.table_for(context.collection) do |cr|
-        context.column "id", :id
-        context.column (I18n.t :filter_title), :title
-        if !is_selection_mode?
-          context.column "" do |work|
-            link_to "View", controller: :works, action: :show, id: work.id
-          end
-        end
-      end
-    end
-
-    active_admin_embedded_link_list(self, person, Person) do |context|
-      context.table_for(context.collection) do |cr|
-        context.column "id", :id
-        context.column (I18n.t :filter_full_name), :full_name
-        context.column (I18n.t :filter_life_dates), :life_dates
-        context.column (I18n.t :filter_alternate_names), :alternate_names
-        if !is_selection_mode?
-          context.column "" do |person|
-            link_to "View", controller: :people, action: :show, id: person.id
-          end
-        end
-      end
-    end
+    active_adnin_create_list_for(self, Publication, person, short_name: I18n.t(:filter_title_short), author: I18n.t(:filter_author), title: I18n.t(:filter_title))    
+    active_adnin_create_list_for(self, Institution, person, siglum: I18n.t(:filter_siglum), full_name: I18n.t(:filter_full_name), place: I18n.t(:filter_place))
+    active_adnin_create_list_for(self, Work, person, title: I18n.t(:filter_title))
+    active_adnin_create_list_for(self, Person, person, full_name: I18n.t(:filter_full_name), life_dates: I18n.t(:filter_life_dates), alternate_names: I18n.t(:filter_alternate_names))
+    active_adnin_create_list_for(self, InventoryItem, person, composer: I18n.t(:filter_composer), title: I18n.t(:filter_title))
 
     active_admin_digital_object( self, @item ) if !is_selection_mode?
     active_admin_user_wf( self, person )

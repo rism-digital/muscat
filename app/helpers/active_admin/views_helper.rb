@@ -48,6 +48,23 @@ module ActiveAdmin::ViewsHelper
     end
   end 
  
+  def active_adnin_create_list_for(context, model, item, *fields)
+    controller_name = item.class.name.downcase.pluralize.to_sym
+    active_admin_embedded_link_list(context, item, model) do |context|
+      context.table_for(context.collection) do |cr|
+        context.column "id", :id
+        fields.first.each do |field, label|
+          context.column label, field
+        end
+        if !is_selection_mode?
+          context.column "" do |ti|
+            link_to "View", controller: controller_name, action: :show, id: ti.id
+          end
+        end
+      end
+    end
+  end
+
   def is_selection_mode?
     return params && params[:select].present?
   end
