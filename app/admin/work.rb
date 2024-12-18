@@ -262,20 +262,7 @@ ActiveAdmin.register Work do
       render :partial => "marc/show"
     end
     active_admin_embedded_source_list( self, work, !is_selection_mode? )
-
-    active_admin_embedded_link_list(self, work, Work) do |context|
-      context.table_for(context.collection) do |cr|
-        column (I18n.t :filter_id), :id  
-        column (I18n.t :filter_title), :title
-        column "Opus", :opus
-        column "Catalogue", :catalogue
-        if !is_selection_mode?
-          context.column "" do |work|
-            link_to "View", controller: :works, action: :show, id: work.id
-          end
-        end
-      end
-    end
+    active_adnin_create_list_for(self, Work, work, title: I18n.t(:filter_title), opus: I18n.t(:filter_opus), catalogue: I18n.t(:filter_catalog))
 
     active_admin_digital_object( self, @item ) if !is_selection_mode?
     active_admin_user_wf( self, work )

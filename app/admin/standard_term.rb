@@ -155,35 +155,8 @@ ActiveAdmin.register StandardTerm do
       row (I18n.t :filter_notes) { |r| r.notes }    
     end
     active_admin_embedded_source_list( self, standard_term, !is_selection_mode? )
-    
-    # Box for publications referring to this standard_term
-    active_admin_embedded_link_list(self, standard_term, Publication) do |context|
-      context.table_for(context.collection) do |cr|
-        context.column "id", :id
-        context.column (I18n.t :filter_title_short), :short_name
-        context.column (I18n.t :filter_author), :author
-        context.column (I18n.t :filter_description), :description
-        if !is_selection_mode?
-          context.column "" do |publication|
-            link_to "View", controller: :publications, action: :show, id: publication.id
-          end
-        end
-      end
-    end 
-
-    active_admin_embedded_link_list(self, standard_term, Work) do |context|
-      context.table_for(context.collection) do |cr|
-        column (I18n.t :filter_id), :id  
-        column (I18n.t :filter_title), :title
-        column "Opus", :opus
-        column "Catalogue", :catalogue
-        if !is_selection_mode?
-          context.column "" do |work|
-            link_to "View", controller: :works, action: :show, id: work.id
-          end
-        end
-      end
-    end
+    active_adnin_create_list_for(self, Publication, standard_term, short_name: I18n.t(:filter_title_short), author: I18n.t(:filter_author), description: I18n.t(:filter_description))
+    active_adnin_create_list_for(self, Work, standard_term, title: I18n.t(:filter_title), opus: I18n.t(:filter_opus), catalogue: I18n.t(:filter_catalog))
 
     active_admin_user_wf( self, standard_term )
     active_admin_navigation_bar( self )
