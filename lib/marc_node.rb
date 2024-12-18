@@ -235,6 +235,31 @@ class MarcNode
     end
   end
   
+  def log_marc_value_changes(all_fields, tag, foreign_object)
+    all_fields.each do |nm|
+      next if !nm
+      next if !nm.content
+      ff = @marc_configuration&.get_foreign_field(tag, nm&.tag)
+      next if !ff
+      # Get the value in Muscat
+      db_val = foreign_object.send(ff) rescue db_val = nil
+      next if !db_val
+      if db_val.downcase != nm.content.downcase
+        marc_node_log [
+          "IMPORT",
+          "VALUE_CHANGE",
+          "MODEL=#{foreign_object.class}",
+          "ID=#{foreign_object.id}",
+          "TAG=#{tag}",
+          "SUBTAG=#{nm.tag}",
+          "IMPORT_VAL=#{nm.content}",
+          "DB_VAL=#{db_val.downcase}"
+        ]
+      end
+    end
+  end
+  
+
   # Once the Marc data is parsed to MarcNodes, it can be
   # inspected to create the relations with the external classes
   # ex. People. This function does this. If the tag has a $0 with an id
@@ -269,7 +294,6 @@ class MarcNode
           master_field = @marc_configuration.get_foreign_field(tag, master.tag)
           self.foreign_object = find_or_new_foreign_object_by_foreign_field(@marc_configuration.get_foreign_class(tag, master.tag), master_field, master.looked_up_content)
 
-=begin NOTE disable all this for the 11.3 release
           # In this case, it means found_obj was not created
           # because @force_marc_creation is false, try again
           if !self.foreign_object && @force_marc_creation == false
@@ -278,22 +302,9 @@ class MarcNode
             self.foreign_object = find_or_new_foreign_object_by_all_foreign_fields( @marc_configuration.get_foreign_class(tag, master_tag), tag, nmasters )
           end
 
-          # Now figure out if there is an ID collision
-          if defined?(:MARC_DEBUG) && :MARC_DEBUG
-            nmasters.each do |nm|
-              next if !nm
-              next if !nm.content
-                ff = @marc_configuration&.get_foreign_field(tag, nm&.tag)
-                nexti if !ff
-                # Get the value in Muscat
-                db_val = self.foreign_object.send(ff) rescue db_val = nil
-                next if !db_val
-                if db_val.downcase != nm.content.downcase
-                  marc_node_log ["IMPORT", "VALUE_CHANGE", "MODEL=#{self.foreign_object.class}", "ID=#{self.foreign_object.id}", "TAG=#{tag}", "SUBTAG=#{nm.tag}", "IMPORT_VAL=#{nm.content}", "DB_VAL=#{db_val.downcase}"]
-                end
-            end
-          end
-=end
+          # Use this to find ID collisions
+          log_marc_value_changes(nmasters, tag, self.foreign_object) if defined?(:MARC_DEBUG) && :MARC_DEBUG
+
           # If we have no master subfiled but master is actually empty "" (e.g. 004) with holding records
         elsif !master && @marc_configuration.get_master( self.tag ) == ""
           add_db_master = false
