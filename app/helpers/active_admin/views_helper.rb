@@ -49,7 +49,7 @@ module ActiveAdmin::ViewsHelper
   end 
  
   def active_adnin_create_list_for(context, model, item, *fields)
-    controller_name = item.class.name.downcase.pluralize.to_sym
+    controller_name = item.class.name.underscore.downcase.pluralize.to_sym
     active_admin_embedded_link_list(context, item, model) do |context|
       context.table_for(context.collection) do |cr|
         context.column "id", :id

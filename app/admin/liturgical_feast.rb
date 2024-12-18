@@ -141,20 +141,7 @@ ActiveAdmin.register LiturgicalFeast do
       row (I18n.t :filter_notes) { |r| r.notes } 
     end
     active_admin_embedded_source_list( self, liturgical_feast, !is_selection_mode? )
-
-    active_admin_embedded_link_list(self, liturgical_feast, Work) do |context|
-      context.table_for(context.collection) do |cr|
-        column (I18n.t :filter_id), :id  
-        column (I18n.t :filter_title), :title
-        column "Opus", :opus
-        column "Catalogue", :catalogue
-        if !is_selection_mode?
-          context.column "" do |work|
-            link_to "View", controller: :works, action: :show, id: work.id
-          end
-        end
-      end
-    end
+    active_adnin_create_list_for(self, Work, liturgical_feast, title: I18n.t(:filter_title), opus: I18n.t(:filter_opus), catalogue: I18n.t(:filter_catalog))
 
     active_admin_user_wf( self, liturgical_feast )
     active_admin_navigation_bar( self )
