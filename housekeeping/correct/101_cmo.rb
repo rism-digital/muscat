@@ -79,15 +79,23 @@ def preprocess_cmo(marc, obj, options)
         t.fetch_all_by_tag("w").each {|tt| tt.destroy_yourself}
     end
 
+    # move 1 to u
+    marc.by_tags("910").each do |t|
+        t.fetch_all_by_tag("1").each {|tt| tt.tag = "u"}
+    end
+
     return marc
 end
 
-files = Dir.glob("CMO-MARCXML/Person/*.xml")
+DIR="cmo_person_marcxml_20241213"
+#CMO-MARCXML/Person/
+
+files = Dir.glob("#{DIR}/*.xml")
 
 #source_file = "CMO-MARCXML/Person/cmo_person_00000001.xml"
 
 # Minimal option set
-options = {first: 0, last: 1000000, versioning: false, index: true}
+options = {first: 0, last: 1000000, versioning: false, index: false}
 
 options[:new_ids] = true
 options[:authorities] = true

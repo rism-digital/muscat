@@ -303,7 +303,7 @@ class MarcNode
           end
 
           # Use this to find ID collisions
-          log_marc_value_changes(nmasters, tag, self.foreign_object) if defined?(:MARC_DEBUG) && :MARC_DEBUG
+          log_marc_value_changes(nmasters, tag, self.foreign_object) if defined?(:MARC_DEBUG) && $MARC_DEBUG
 
           # If we have no master subfiled but master is actually empty "" (e.g. 004) with holding records
         elsif !master && @marc_configuration.get_master( self.tag ) == ""

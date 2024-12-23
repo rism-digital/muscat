@@ -133,6 +133,8 @@
   fields:
     a:
       label: records.institution
+    u:
+      label: general.url
   label: records.contributing_project
 administration:
   label: records.administration
