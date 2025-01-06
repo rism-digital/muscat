@@ -161,7 +161,7 @@ class InventoryItem < ApplicationRecord
     self.id = marc_source_id if marc_source_id and marc_source_id != "__TEMP__"
     
     self.composer = marc.get_composer
-    self.title = marc.get_source_title
+    self.title = marc.get_std_title
 
     self.marc_source = self.marc.to_marc
   end
