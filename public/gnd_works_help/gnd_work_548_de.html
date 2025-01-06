@@ -1,0 +1,26 @@
+<h2>548 – Zeitbeziehung</h2>
+Enthält Zeitangaben, die in Beziehung zum Werk stehen. Es müssen zumindest die Unterfelder $a und $4 belegt sein. Das Feld ist fakultativ und wiederholbar.
+Beispiel: Luigi Cherubini, Messe in C-Dur
+548 $a 1816 $ dats
+
+<h3>$a – Zeit</h3>
+Die Zeitbeziehung wird als Jahresangabe (JJJJ) oder als genaues Datum (TT.MM.JJJJ) eingetragen. 
+Für Zeitspannen wird ein Bindestrich (JJJJ-JJJJ) verwendet. Dabei kann auch nur der Beginn oder nur das Ende einer Zeitspanne mit Bindestrich angegeben werden (JJJJ- oder -JJJJ). Beginn und Ende der Zeitspanne müssen strukturgleich sein (JJJJ oder TT.MM.JJJJ).
+Ungefähre Zeitangaben (weder JJJJ-JJJJ noch JJJJ) erfolgen als Freitext muss zwingend mit „ca.“ beginnen (z. B. „ca. 14. Jhd.“).
+
+<h3>$4 - Beziehungscode</h3>
+Beschreibung der in $a angegebenen Zeitbeziehung. Mögliche Zeitbeziehungen sind:
+•	datb = Bestehen
+•	datf = Fundjahr
+•	datj = Erscheinungsjahr
+•	dats = Erstellungsdatum
+•	rela = Relation; Art der Beziehung nicht näher bekannt
+
+<h3>$i – Verweisungsphrase</h3>
+Aufgelöste Form des Beziehungscodes aus Unterfeld $4.
+
+<h3>$w - Kontrollunterfeld</h3>
+Wird standardmäßig mit „r“ belegt.
+
+<h3>$9 v – Bemerkungen</h3>
+Unterfeld für alternative Zeitangaben sowie Hinweise wie „ca.“, „um“, „etwa“, die nicht in Bezug auf Zeitspannen oder Zeitpunkte erfasst werden dürfen. Das Unterfeld ist wiederholbar.

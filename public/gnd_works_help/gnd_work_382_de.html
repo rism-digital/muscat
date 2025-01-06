@@ -1,0 +1,25 @@
+<h2>382 – Instrumente</h2>
+In diesem Feld werden Besetzung und Besetzungsstärke des Werks angegeben. Die Instrumente sind einzeln zu erfassen; für jedes ist folglich ein eigenes Feld 382 anzulegen. Ausgenommen ist Orchestermusik; dort erfolgt unter $a die Besetzungsangabe „Orchester“.
+Beispiel: Franz Schubert, Fantasie in f-Moll für Klavier zu vier Händen D 940
+382 (DE-101)040309827 $0 (DE-588)4030982-4 $0 https://d-nb.info/gnd/4030982-4 $a Klavier $v 4-händig
+
+<h2>$a – Besetzung</h2>
+Die Besetzungsangabe ist unter Rückgriff auf die Liste der normierten Besetzungsangaben (AH-001) zu machen.
+
+<h2>$0 – IDN des Normdatensatzes oder Standardnummer</h2>
+Die Identifikationsnummer des in $0 verzeichneten Normdatensatzes ist hier in dreifacher Weise anzugeben:
+•	DNB-interne Datensatznummer mit ISIL der DNB (DE-101) = PPN
+•	Überregionaler GND-Identifier mit ISIL der GND (DE-588)
+•	URI
+
+<h2>$2 – Quelle</h2>
+Automatisch ‚gnd‘. [Ausgrauen?]
+
+<h2>$v – Bemerkung</h2>
+Bemerkungen wie bspw. Angaben zur Handzahl (z. B. Klavier zu vier, acht etc. Händen) werden im Unterfeld $v erfasst.
+
+<h2>$n – Besetzungsstärke</h2>
+Die Stärke der in $a angegebenen Besetzung ist hier numerisch zu erfassen. Die Angabe entfällt, wenn es nur ein Instrument seiner Art gibt.
+
+<h2>$s – Gesamtzahl der Ausführenden</h2>
+Existieren mindestens zwei Felder 382 mit einer Instrumentenangabe in $a, ist die Gesamtzahl der Ausführenden hier in numerischer Form anzugeben.

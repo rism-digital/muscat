@@ -153,3 +153,264 @@ G-5:
   label: records.g_minus_5
 g-2:
   label: records.g_minus_2_octave
+
+'042':
+  label: gnd.cataloging_level
+
+'043':
+  fields:
+    c:
+      label: gnd.country_code
+  label: gnd.country_code
+
+'056':
+  label: gnd.meaning_in_rism_editor
+  fields:
+    a:
+      label: gnd.meaning_in_rism_editor
+
+'065':
+  label: gnd.gnd_systematics
+  fields:
+    a:
+      label: gnd.notation
+    "2":
+      label: gnd.source_code
+
+'075':
+  label: gnd.entity_type
+  fields:
+    b:
+      label: gnd.entity_type
+    "2":
+      label: gnd.source_code
+
+'079':
+  label: gnd.gnd_specific_coding
+  fields:
+    a:
+      label: gnd.dataset_type
+    q:
+      label: gnd.subcollection_identifier
+    u:
+      label: gnd.usage_identifier
+
+'100':
+  label: gnd.authorized_form
+  fields:
+    a:
+      label: gnd.name
+    d:
+      label: gnd.birth_and_death_dates
+    m:
+      label: gnd.instrumentation_hint
+    n:
+      label: gnd.numerical_identifier
+    p:
+      label: gnd.part_title
+    r:
+      label: gnd.key_or_mode
+    t:
+      label: gnd.work_title
+
+'130':
+  label: gnd.preferred_title
+  fields:
+    a:
+      label: gnd.work_title
+    p:
+      label: gnd.part_title
+
+'377':
+  label: gnd.language
+  fields:
+    a:
+      label: gnd.language_code
+    "2":
+      label: gnd.source_code
+
+'380':
+  label: form_of_work
+  fields:
+    "0":
+      label: gnd.id_of_authority_record
+    a:
+      label: gnd.form_of_work
+    "2":
+      label: gnd.source_code
+
+'382':
+  label: gnd.instrument
+  fields:
+    a:
+      label: gnd.ensemble
+    "0":
+      label: gnd.id_of_authority_record
+    "2":
+      label: gnd.source_code
+    v:
+      label: gnd.additional_remark
+    n:
+      label: gnd.numerical_count
+    s:
+      label: gnd.total_performers
+
+'383':
+  label: gnd.numerical_ordering
+  fields:
+    a:
+      label: gnd.numerical_ordering
+    b:
+      label: gnd.opus_number
+    c:
+      label: gnd.catalogue_number
+
+'384':
+  label: gnd.musical_key
+  fields:
+    a:
+      label: gnd.musical_key
+
+'400':
+  label: gnd.variant_name
+  fields:
+    a:
+      label: gnd.composer
+    d:
+      label: gnd.birth_and_death_dates
+    m:
+      label: gnd.instrumentation_hint
+    n:
+      label: gnd.catalogue_number
+    r:
+      label: gnd.key_or_mode
+    t:
+      label: gnd.work_title
+    p:
+      label: gnd.part_title
+
+'430':
+  label: gnd.work_relationship
+  fields:
+    a:
+      label: gnd.work_title
+    p:
+      label: gnd.part_title
+
+'500':
+  label: gnd.relationship
+  fields:
+    a:
+      label: gnd.composer
+    d:
+      label: gnd.birth_and_death_dates
+    e:
+      label: gnd.relation_phrase
+    "0":
+      label: gnd.id_of_authority_record
+    "4":
+      label: gnd.relation_code
+    i:
+      label: gnd.english_version
+    w:
+      label: gnd.control_field
+    "9":
+      label: gnd.additional_remark
+    t:
+      label: gnd.work_title
+    n:
+      label: gnd.numerical_ordering
+    p:
+      label: gnd.part_title
+    r:
+      label: gnd.key_or_mode
+
+'530':
+  label: gnd.unit_title_relationship
+  fields:
+    a:
+      label: gnd.work_title
+    "0":
+      label: gnd.id_of_authority_record
+    "4":
+      label: gnd.relation_code
+    i:
+      label: gnd.english_version
+    w:
+      label: gnd.control_field
+
+'548':
+  label: gnd.temporal_relationship
+  fields:
+    a:
+      label: gnd.time
+    "4":
+      label: gnd.historical_relationship_code
+    i:
+      label: gnd.english_version
+    w:
+      label: gnd.control_field
+    "9":
+      label: gnd.additional_remark
+
+'550':
+  label: gnd.topical_term
+  fields:
+    a:
+      label: gnd.form_of_work
+    g:
+      label: gnd.identifying_addition
+    i:
+      label: gnd.relation_phrase
+    "0":
+      label: gnd.id_of_authority_record
+    "4":
+      label: gnd.relation_code
+    "9":
+      label: gnd.additional_remark
+
+'667':
+  label: gnd.editorial_remark
+  fields:
+    "5":
+      label: gnd.institution_using_field
+    a:
+      label: gnd.editorial_remark
+
+'670':
+  label: gnd.source_reference
+  fields:
+    a:
+      label: gnd.source_reference
+    b:
+      label: gnd.available_information
+    u:
+      label: gnd.uri
+
+'675':
+  label: gnd.negative_source_reference
+  fields:
+    a:
+      label: gnd.source_reference
+
+'678':
+  label: gnd.biographical_or_historical_data
+  fields:
+    b:
+      label: gnd.explanatory_text
+
+'912':
+  label: gnd.mailbox
+  fields:
+    a:
+      label: gnd.mailbox
+
+'913':
+  label: gnd.previous_name_form
+  fields:
+    a:
+      label: gnd.previous_name_form
+    i:
+      label: gnd.entity_identification_previous_database
+    "0":
+      label: gnd.record_id
