@@ -27,70 +27,7 @@ unmatched:
     a:
       label: gnd.standard_number_code
   label: gnd.other_standard_identifier
-'100':
-  fields:
-    a:
-      label: gnd.name
-    d:
-      label: gnd.years_birth_death
-    m:
-      label: gnd.scoring_summary
-    n:
-      label: gnd.opus_thematic_index_number
-    p:
-      label: gnd.title_part
-    r:
-      label: gnd.key_or_mode
-    t:
-      label: gnd.title_of_work
-  label: gnd.heading
-'130':
-  fields:
-    a:
-      label: gnd.work_title
-    p:
-      label: gnd.partial_title
-  label: gnd.preferred_title
-'382':
-  fields:
-    a:
-      label: gnd.instrument
-  label: gnd.instrument
-'430':
-  fields:
-    a:
-      label: gnd.work_title
-    p:
-      label: gnd.partial_title
-  label: gnd.other_work_title
-'548':
-  fields:
-    a:
-      label: gnd.time
-    i:
-      label: gnd.reference_phrase
-    w:
-      label: gnd.control_subfield
-    '4':
-      label: gnd.relationship_code
-    '9':
-      label: gnd.remarks
-  label: gnd.time_relationship
-'550':
-  fields:
-    a:
-      label: gnd.subject_term
-    g:
-      label: gnd.identifying_addition
-    i:
-      label: gnd.relationship_phase
-    '0':
-      label: gnd.record_idn
-    '4':
-      label: gnd.relationship_code
-    '9':
-      label: gnd.remarks
-  label: gnd.subject_term_relationship
+
 C+1:
   label: records.c_plus_1
 C+2:
@@ -183,7 +120,7 @@ g-2:
     b:
       label: gnd.entity_type
     "2":
-      label: gnd.source_code
+      label: gnd.source
 
 '079':
   label: gnd.gnd_specific_coding
@@ -209,7 +146,7 @@ g-2:
     p:
       label: gnd.part_title
     r:
-      label: gnd.key_or_mode
+      label: gnd.key_mode
     t:
       label: gnd.work_title
 
@@ -219,7 +156,7 @@ g-2:
     a:
       label: gnd.work_title
     p:
-      label: gnd.part_title
+      label: gnd.partial_title_of_the_work
 
 '377':
   label: gnd.language
@@ -227,17 +164,17 @@ g-2:
     a:
       label: gnd.language_code
     "2":
-      label: gnd.source_code
+      label: gnd.source
 
 '380':
-  label: form_of_work
+  label: gnd.form_of_work
   fields:
     "0":
       label: gnd.id_of_authority_record
     a:
-      label: gnd.form_of_work
+      label: gnd.designation
     "2":
-      label: gnd.source_code
+      label: gnd.source
 
 '382':
   label: gnd.instrument
@@ -247,9 +184,9 @@ g-2:
     "0":
       label: gnd.id_of_authority_record
     "2":
-      label: gnd.source_code
+      label: gnd.source
     v:
-      label: gnd.additional_remark
+      label: gnd.remark
     n:
       label: gnd.numerical_count
     s:
@@ -259,7 +196,7 @@ g-2:
   label: gnd.numerical_ordering
   fields:
     a:
-      label: gnd.numerical_ordering
+      label: gnd.continuous_counting
     b:
       label: gnd.opus_number
     c:
@@ -277,15 +214,15 @@ g-2:
     a:
       label: gnd.composer
     d:
-      label: gnd.birth_and_death_dates
+      label: gnd.birth_and_death_years
     m:
       label: gnd.instrumentation_hint
     n:
-      label: gnd.catalogue_number
+      label: gnd.cast_summary
     r:
       label: gnd.key_or_mode
     t:
-      label: gnd.work_title
+      label: gnd.title_of_the_work
     p:
       label: gnd.part_title
 
@@ -295,47 +232,47 @@ g-2:
     a:
       label: gnd.work_title
     p:
-      label: gnd.part_title
+      label: gnd.partial_title_of_the_work
 
 '500':
   label: gnd.relationship
   fields:
     a:
-      label: gnd.composer
+      label: gnd.person_name
     d:
-      label: gnd.birth_and_death_dates
+      label: gnd.dates_in_connection_with_a_name
     e:
-      label: gnd.relation_phrase
+      label: gnd.function_name
     "0":
       label: gnd.id_of_authority_record
     "4":
       label: gnd.relation_code
     i:
-      label: gnd.english_version
+      label: gnd.relationship_phrase
     w:
       label: gnd.control_field
     "9":
       label: gnd.additional_remark
     t:
-      label: gnd.work_title
+      label: gnd.title_of_the_work
     n:
       label: gnd.numerical_ordering
     p:
       label: gnd.part_title
     r:
-      label: gnd.key_or_mode
+      label: gnd.key_mode
 
 '530':
   label: gnd.unit_title_relationship
   fields:
     a:
-      label: gnd.work_title
+      label: gnd.title_of_the_work
     "0":
       label: gnd.id_of_authority_record
     "4":
       label: gnd.relation_code
     i:
-      label: gnd.english_version
+      label: gnd.relationship_phrase
     w:
       label: gnd.control_field
 
@@ -345,7 +282,7 @@ g-2:
     a:
       label: gnd.time
     "4":
-      label: gnd.historical_relationship_code
+      label: gnd.relation_code
     i:
       label: gnd.english_version
     w:
@@ -357,11 +294,11 @@ g-2:
   label: gnd.topical_term
   fields:
     a:
-      label: gnd.form_of_work
+      label: gnd.material_concept
     g:
       label: gnd.identifying_addition
     i:
-      label: gnd.relation_phrase
+      label: gnd.relationship_phrase
     "0":
       label: gnd.id_of_authority_record
     "4":
@@ -378,7 +315,7 @@ g-2:
       label: gnd.editorial_remark
 
 '670':
-  label: gnd.source_reference
+  label: gnd.data_source
   fields:
     a:
       label: gnd.source_reference

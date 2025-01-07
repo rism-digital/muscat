@@ -8,7 +8,8 @@ de:
     heading: Ansetzungsform
     identifying_addition: Identifizierender Zusatz
     instrument: Instrumente
-    key_or_mode: Tonart, Modus
+    key_or_mode: Tonart oder Modus
+    key_mode: Tonart, Modus
     main_work: Haupteintragungen
     name: Name
     opus_thematic_index_number: Numerische Kennzeichnung
@@ -20,7 +21,7 @@ de:
     reference_phrase: Verweisungsphrase
     references: Literatur
     relationship_code: Beziehungscode
-    relationship_phase: Beziehungsphrase
+    relationship_phrase: Beziehungsphrase
     relations: Beziehungen
     remarks: Bemerkungen
     rism_id_number: RISM Dokumentnummer
@@ -36,8 +37,6 @@ de:
     title_part: Teiltitel
     ungrouped: Andere Felder, die nicht im Standard Muscat MARC-Editor enthalten sind
     variants: Namensvarianten
-    work_title: Werktitel
-    years_birth_death: Geburts- und Todesdaten
     cataloging_level: Katalogisierungslevel
     country_code: Länder-Code
     country_code_long: Länder-Code-long
@@ -52,10 +51,10 @@ de:
     authorized_form: Ansetzungsform
     name: Name
     birth_and_death_dates: Geburts- und Todesdaten
+    birth_and_death_years: Geburts- und Todesjahr
     instrumentation_hint: Besetzungshinweis
     numerical_identifier: Numerische Kennzeichnung
     part_title: Teiltitel
-    key_or_mode: Tonart, Modus
     work_title: Werktitel
     preferred_title: Bevorzugter Titel
     language: Sprache
@@ -72,8 +71,7 @@ de:
     variant_name: Abweichender Name
     composer: Komponist
     work_relationship: Abweichender Werktitel
-    relation_phrase: Beziehungsphrase
-    id_of_authority_record: IDN des Normdatensatzes
+    id_of_authority_record: IDN des Normdatensatzes oder Standardnummer
     relation_code: Beziehungscode
     control_field: Kontrollunterfeld
     additional_remark: Bemerkungen
@@ -98,5 +96,15 @@ de:
     record_id: IDN des Normdatensatzes oder Standardnummer (NW)
     unit_title_relationship: Einheitstitel – Beziehung
     gnd_specific_coding: Normdatenspezifische Codierung
-
-
+    source: Quelle
+    partial_title_of_the_work: Teiltitel des Werkes
+    designation: Bezeichnung
+    remark: Bemerkung
+    continuous_counting: Fortlaufende Zählung
+    cast_summary: Besetzungszusammenfassung
+    title_of_the_work: Title of the work
+    person_name: Personenname
+    dates_in_connection_with_a_name: Datumsangaben in Verbindung mit einem Namen
+    function_name: Funktionsbezeichnung
+    material_concept: Sachbegriff
+    data_source: Datenquelle
