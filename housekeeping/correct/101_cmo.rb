@@ -19,6 +19,13 @@ def preprocess_cmo(marc, obj, options)
     n024.sort_alphabetically
     marc.root.add_at(n024, marc.get_insert_position("024") )
 
+    n040 = MarcNode.new("person", "040", "", @mc.get_default_indicator("040"))
+    n040.add_at(MarcNode.new("person", "a", "DE-4353", nil), 0 )
+    n040.add_at(MarcNode.new("person", "b", "eng", nil), 0 )
+    n040.add_at(MarcNode.new("person", "c", "DE-633", nil), 0 )
+    n040.sort_alphabetically
+    marc.root.add_at(n040, marc.get_insert_position("040") )
+
     # We moved this to 024
     marc.by_tags("100").each do |t|
         t.fetch_all_by_tag("0").each {|tt| tt.destroy_yourself}
