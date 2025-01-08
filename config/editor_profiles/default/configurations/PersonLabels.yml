@@ -116,6 +116,8 @@
   fields:
     a:
       label: records.additional_biographical_information
+    b:
+      label: records.expansion
   label: records.additional_biographical_information
 '680':
   fields:

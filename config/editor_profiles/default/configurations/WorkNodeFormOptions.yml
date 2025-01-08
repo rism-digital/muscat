@@ -31,7 +31,7 @@
     fields:
     - - a
       - hidden: true
-    - - d
+    - - c
       - hidden: true
     - - b
       - editor_partial: subfield_select_codes

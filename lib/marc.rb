@@ -113,7 +113,7 @@ class Marc
       # 005 should not be there, if it is avoid duplicates
       _005_tag = first_occurance("005")
       if !_005_tag
-        @root.children.insert(get_insert_position("003"),
+        @root.children.insert(get_insert_position("005"),
             MarcNode.new(@model, "005", last_transcation, nil))
       end
     end
