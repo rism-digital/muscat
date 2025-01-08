@@ -15,7 +15,7 @@ def preprocess_cmo(marc, obj, options)
     n024 = MarcNode.new("person", "024", "", @mc.get_default_indicator("024"))
    
     n024.add_at(MarcNode.new("person", "a", cmo_id, nil), 0 )
-    n024.add_at(MarcNode.new("person", "2", "cmo", nil), 0 )
+    n024.add_at(MarcNode.new("person", "2", "CMO", nil), 0 )
     n024.sort_alphabetically
     marc.root.add_at(n024, marc.get_insert_position("024") )
 
