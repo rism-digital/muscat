@@ -38,7 +38,13 @@ file.write("<!-- Exported from Muscat #{Git::VERSION} (#{Git::REVISION}) -->\n")
 bar = ProgressBar.new(items.size) if !@options[:silent]
 
 items.each do |s|
-  record = model.find(s)
+  begin
+    record = model.find(s)
+  rescue ActiveRecord::RecordNotFound
+    # ops! Somebody deleted it while we were exporting...
+    puts "#{model.class.to_s} #{s} was deleted"
+  end
+
   # Add deprecated_ids: "false" if necessary
   file.write(record.marc.to_xml_record({ created_at: record.created_at, updated_at: record.updated_at, holdings: true, deprecated_ids: deprecated_ids }).root.to_s)
 
