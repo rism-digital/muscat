@@ -200,8 +200,8 @@ module ActiveAdmin::ViewsHelper
  
   def active_admin_publication_show_title( author, title, id )
     return "[#{id}]" if author&.empty? and title&.empty?
-    return "#{title} [#{id}]" if author.empty? and !title.empty?
-    return "#{author} [#{id}]" if (title.nil? or title.empty?)
+    return "#{title} [#{id}]" if author&.empty? and !title&.empty?
+    return "#{author} [#{id}]" if (title.nil? or title&.empty?)
     return "#{author} : #{title} [#{id}]"
   end
   
