@@ -419,6 +419,26 @@ class MarcSource < Marc
 
     generate_subentry_title # Add $a to 774s if they are there
 
+    # When a 774 points to a holding record, we need to add the
+    # source_id of that holding to the 774. Also take care
+    # of new ids!
+    if record_type == RECORD_TYPES[:composite_volume]
+        each_by_tag("774") do |node|
+          begin
+            is_holding = node.fetch_first_by_tag("4")
+            if is_holding && is_holding&.content == "holding"
+              holding_id = node.fetch_first_by_tag("w")&.content
+              holding = Holding.find(holding_id)
+              full_id = deprecated_ids ? holding.source.id : "sources/#{holding.source.id}"
+              node.add(MarcNode.new("source", "o", full_id, nil))
+            end
+          rescue
+            puts "#{get_id}: Could not load holding information for #{node.to_s}"
+            next
+          end
+        end
+    end
+
     # 240 to 130 when 100 is not present
     if by_tags("100").count == 0
       each_by_tag("240") do |t|
