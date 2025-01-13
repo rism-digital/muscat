@@ -4,13 +4,12 @@ Muscat is a framework for cataloging music documents (handwritten and printed mu
 
 ### Application Documentation
 
-* [Introduction](1-%20INTRODUCTION.rdoc)
-* [Installation](2-%20INSTALL.rdoc)
-* [Importing MARC Data](3-%20IMPORT.rdoc)
-* [Configuration](4-%20CONFIG.rdoc)
-* [Upgrading old versions](5-%20UPGRADE.rdoc)
-* [MARC21 Configuration and management](6-%20MARC_CONFIG.rdoc)
-* [RSPEC](7-%20RSPEC.rdoc)
+* [Introduction](1-INTRODUCTION.md)
+* [Installation](2-INSTALL.mf)
+* [Importing MARC Data](3-IMPORT.md)
+* [Configuration](4-CONFIG.md)
+* [MARC21 Configuration and management](5-MARC_CONFIG.md)
+* [RSPEC](6-RSPEC.md)
 
 The full code documentation is available on RDoc:
 
@@ -27,7 +26,7 @@ The full code documentation is available on RDoc:
 
 The following people contribute (or have contributed) to Muscat:
 
- * Yvonne Babioch (design and guidelines)
+ * Yvonne Peters (design and guidelines)
  * Claudio Bacciagaluppi (guidelines)
  * Cédric Güggi (guidelines)
  * Gabriella Hanke-Knaus (design)
