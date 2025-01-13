@@ -2,7 +2,7 @@ class CreateCatalogues < ActiveRecord::Migration[4.2]
   def self.up
     create_table(:catalogues, :options => 'ENGINE=InnoDB DEFAULT CHARSET=utf8') do |t|
     
-      t.column :name,               :string, { :null => false }
+      t.column :name,               :string, :null => false
       t.column :author,             :string
       t.column :description,        :string
       t.column :revue_title,        :string
@@ -11,10 +11,10 @@ class CreateCatalogues < ActiveRecord::Migration[4.2]
       t.column :date,               :string
       t.column :pages,              :string
       
-      t.column :wf_audit,           :string, { :limit => 16, :default => "unapproved" }
-      t.column :wf_stage,           :string, { :limit => 16, :default => "unpublished" }
+      t.column :wf_audit,           :string, :limit => 16, :default => "unapproved"
+      t.column :wf_stage,           :string, :limit => 16, :default => "unpublished"
       t.column :wf_notes,           :string
-      t.column :wf_owner,           :integer, { :default => 0 }
+      t.column :wf_owner,           :integer, :default => 0
       t.column :wf_version,         :integer, :default => 0
 
       t.column :src_count,          :integer, :default => 0
