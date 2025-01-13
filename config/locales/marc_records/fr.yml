@@ -460,6 +460,7 @@ fr:
     excerpts: Extraits
     exemplar: Exemplaire
     exemplars: Exemplaires
+    expansion: Expansion
     extent: Extension
     extent_parts: Extension (parties)
     external_resource: Ressource électronique externe
@@ -818,7 +819,7 @@ fr:
     rism_id_number: No. RISM
     role: Personnage
     scoring_in_movement: Instrumentation du mouvement
-    scoring_summary: Instrumentation
+    scoring_summary: Instrumentation condensée
     scribe: Copiste / scribe
     secondary_catalog_works: Catalogue secondaire des oeuvres
     secondary_literature: Références
@@ -891,7 +892,7 @@ fr:
     title_variants: Variantes du titre
     titles_text_incipits: Titres / incipits du texte
     topical_term: Terme thématique
-    total_scoring: Instrumentation
+    total_scoring: Instrumentation complète
     transcribing_agency: Organisme de la transcription
     translation: Traduction
     translator: Traducteur
