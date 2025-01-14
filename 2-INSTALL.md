@@ -1,70 +1,8 @@
-# Installation instructions {#installation-instructions}
-
-[Installation instructions](#installation-instructions)
-
-[Requirements](#requirements)
-
-[Preliminary steps](#preliminary-steps)
-
-[Mysql 8](#mysql-8)
-
-[Installing from the Oracle distribution](#installing-from-the-oracle-distribution)
-
-[MariaDB 10](#mariadb-10)
-
-[System dependencies](#system-dependencies)
-
-[Base packages](#base-packages)
-
-[How to break free of a proxy](#how-to-break-free-of-a-proxy)
-
-[Muscat user](#muscat-user)
-
-[RVM](#rvm)
-
-[Bootstrap the application](#bootstrap-the-application)
-
-[Create credential file](#create-credential-file)
-
-[Add the digital objects directory](#add-the-digital-objects-directory)
-
-[Solr installation and configuration](#solr-installation-and-configuration)
-
-[Installation using a "stock" solr using included setup script](#installation-using-a-"stock"-solr-using-included-setup-script)
-
-[Installation using a "stock" solr](#installation-using-a-"stock"-solr)
-
-[Development Startup](#development-startup)
-
-[Logging In](#logging-in)
-
-[Index rebuilding:](#index-rebuilding:)
-
-[Passenger standalone and Nginx](#passenger-standalone-and-nginx)
-
-[Sample nginx configuration:](#sample-nginx-configuration:)
-
-[Production Installation and daemons](#production-installation-and-daemons)
-
-[Crontab installation](#crontab-installation)
-
-[Logrotate](#logrotate)
-
-[Some MySQL optimizations](#some-mysql-optimizations)
-
-[Lazy's man import speedup](#lazy's-man-import-speedup)
-
-[Validation Exclusions](#validation-exclusions)
-
-[Muscat user authentication](#muscat-user-authentication)
-
-[Basic Apache configuration (deprecated)](#basic-apache-configuration-\(deprecated\))
-
-[Apache-itk option](#apache-itk-option)
+# Installation instructions
 
 This document describes how to bootstrap into the Muscar web application. The documentation is updated for Debian 12
 
-## Requirements {#requirements}
+## Requirements
 
 The following other libraries and programs are needed
 
@@ -76,7 +14,7 @@ The following other libraries and programs are needed
 
 **NOTE** From Muscat 6.1 MySQL *8.0.4 is required* for autocomplete and comments to properly work, as the REGEX library was changed.  MariaDB 10.x, as provided by Debian 10 (Buster) also seems to work properly.
 
-## Preliminary steps {#preliminary-steps}
+## Preliminary steps
 
 Make sure the system is updated
 
@@ -84,7 +22,7 @@ Make sure the system is updated
 sudo apt-get update
 ```
 
-## Mysql 8 {#mysql-8}
+## Mysql 8
 
 All modern systems should have a package. Make sure the`libmariadbd-dev`  client library is used instead of the default Mysql one.
 
@@ -95,7 +33,7 @@ sudo apt remove libmysqlclient-dev
 sudo apt install libmariadbd-dev
 ```
 
-### Installing from the Oracle distribution {#installing-from-the-oracle-distribution}
+### Installing from the Oracle distribution
 
 Depending on your system, a package for Mysql 8 may not exist. In this case use the official package provided by Oracle [https://dev.mysql.com/downloads/repo/apt/](https://dev.mysql.com/downloads/repo/apt/)
 
@@ -121,19 +59,19 @@ When prompted, select *use legacy passwords* as not all connectors for the momen
 sudo apt-get install libmysqlclient21 libmysqlclient-dev
 ```
 
-## MariaDB 10 {#mariadb-10}
+## MariaDB 10
 
 If you are using Debian 10 (Buster), the default MariaDB server (mariadb-server, that pulls 10.3) and clients (ruby-mysql2) are just fine.
 
-## System dependencies {#system-dependencies}
+## System dependencies
 
-### Base packages {#base-packages}
+### Base packages
 
 ```
 sudo apt-get install git gcc curl zlib1g-dev libxml2-dev imagemagick libmagickcore-6.q16-dev libmagickwand-6.q16-dev openjdk-17-jre-headless make libsqlite3-dev g++ nodejs
 ```
 
-### How to break free of a proxy {#how-to-break-free-of-a-proxy}
+### How to break free of a proxy
 
 ```
 # Run SSH on your local machine
@@ -151,7 +89,7 @@ export https_proxy=socks5://localhost:9080
 proxy = socks5://localhost:9080
 ```
 
-### Muscat user {#muscat-user}
+### Muscat user
 
 ```
 sudo adduser muscat
@@ -159,7 +97,7 @@ sudo adduser muscat
 
 Make sure the user can not login via ssh. Add it temporarily to sudoers for the next step.
 
-### RVM {#rvm}
+### RVM
 
 Current installations are supported only via rvm, used to get the correct version of ruby.  
 Install rvm following the instructions here: [https://rvm.io/rvm/install](https://rvm.io/rvm/install) ot the following. RVM will use .curlrc for a proxy as setup above
@@ -176,7 +114,7 @@ rvm --default use 3.3.6@rails
 source ~/.rvm/scripts/rvm
 ```
 
-## Bootstrap the application {#bootstrap-the-application}
+## Bootstrap the application
 
 Get the sources if necessary ([https://github.com/rism-ch/muscat](https://github.com/rism-ch/muscat) and [https://github.com/rism-ch/muscat-guidelines](https://github.com/rism-ch/muscat-guidelines))  
 All these commands are executed from the muscat user in the chosen muscat installation directory.
@@ -232,7 +170,7 @@ Add basic dataset if needed:
 bundle exec rake db:seed
 ```
 
-### Create credential file {#create-credential-file}
+### Create credential file
 
 All the secret keys are now stored in the rails 5.2 credentials file, which is not included in the repo.  A blank on must be created with:
 
@@ -262,15 +200,15 @@ Lastly, precompile the assets. Use the correct env
 bundle exec rake RAILS_ENV=production assets:precompile
 ```
 
-### Add the digital objects directory {#add-the-digital-objects-directory}
+### Add the digital objects directory
 
 It should be in public/system. It can be a symlink to another place. The credentials must be the same as the app (ex. muscat)
 
-## Solr installation and configuration {#solr-installation-and-configuration}
+## Solr installation and configuration
 
 As of Muscat 7.1, external Solr 8.8 installations are now supported. This allows, for instance, the use of a Solr cluster hosted on a separate server. While the internal Solr 5.5 server remains functional, it will no longer be supported in the future due to its outdated status and compatibility issues with modern Java versions. Muscat's core is designed to work with any Solr installation; the following example outlines a sample installation procedure, which should be customized to suit individual setups.
 
-### Installation using a "stock" solr using included setup script {#installation-using-a-"stock"-solr-using-included-setup-script}
+### Installation using a "stock" solr using included setup script
 
 **NOTE** this was tested on Linux distributions only. Grab a copy of the official distribution (8.11.4 at the time of writing) and unpack it in a suitable place. This is run as root or with sudo.
 
@@ -314,7 +252,7 @@ nano /etc/default/solr.in.sh
 # edit the line SOLR_JAVA_MEM, for exampleSOLR_JAVA_MEM="-Xms8g -Xmx8g"
 ```
 
-### Installation using a "stock" solr {#installation-using-a-"stock"-solr}
+### Installation using a "stock" solr
 
 But without using the installation script  
 Grab a copy of the official distribution (8.11.4 at the time of writing) and unpack it in a suitable place. **NOTE** Solr is installed and run as the **muscat** user.
@@ -338,7 +276,7 @@ Solr should run at this point:
 
 Or an appropriate startup script may be used
 
-## Development Startup {#development-startup}
+## Development Startup
 
 Make sure Solr and Mysql are running. Default (development) startup:
 
@@ -357,7 +295,7 @@ bundle exec rake RAILS_ENV=production assets:clean
 bundle exec rake RAILS_ENV=production assets:precompile
 ```
 
-## Logging In {#logging-in}
+## Logging In
 
 A default administrative user has been created as part of the installation process. To log in, go to `http://ip:3000/admin` and log in with the following credentials:
 
@@ -368,7 +306,7 @@ password: Password1234
 
 It is advised that you delete this account after creating a new administrative user in the admin interface.
 
-#### Index rebuilding: {#index-rebuilding:}
+#### Index rebuilding:
 
 ```
 rake sunspot:reindex
@@ -392,7 +330,7 @@ Do reindex in 1 record batches, useful if reindex crashes to see in which one (v
 rake sunspot:reindex[1]
 ```
 
-## Passenger standalone and Nginx {#passenger-standalone-and-nginx}
+## Passenger standalone and Nginx
 
 The recommended installation is as standalone and with Nginx as a frontend. The default gemfile includes the passenger gem.  
 It assumes Muscat was installed with the muscat user.  
@@ -450,7 +388,7 @@ ssh remote-host -L8081:localhost:8081
 
 Note: 8081 is the port passenger is listening on. Then it can be accessed via localhost:8081
 
-### Sample nginx configuration: {#sample-nginx-configuration:}
+### Sample nginx configuration:
 
 ```
 # These are some "magic" Nginx configuration options that aid in making
@@ -555,7 +493,7 @@ ssl_ciphers                 ECDHE-ECDSA-AES128-GCM-SHA256:ECDHE-RSA-AES128-GCM-S
 resolver                    8.8.8.8 [2001:4860:4860::8888] 1.1.1.1 [2606:4700:4700::1111] 8.8.4.4 1.0.0.1;
 ```
 
-## Production Installation and daemons {#production-installation-and-daemons}
+## Production Installation and daemons
 
 `DelayedJob` should run from the muscat user:
 
@@ -583,7 +521,7 @@ sudo iptables -A INPUT -p tcp -s localhost --dport 8983 -j ACCEPT
 sudo iptables -A INPUT -p tcp --dport 8983 -j DROP
 ```
 
-### Crontab installation {#crontab-installation}
+### Crontab installation
 
 In version 7.0 the crono scheduler was removed and a normal crontab plus a script is provided. The default crontab file should be linked in /etc/con.d. Edit the muscat\_crontab to set PATH\_TO to the correct muscat installation, you will need to do it by hand.
 
@@ -597,7 +535,7 @@ sudo service cron restart
 
 **NOTE** If you ever change the cron file name, it CANNOT contain dots\! Or it will silently fail.
 
-### Logrotate {#logrotate}
+### Logrotate
 
 It is handy to rotate the logs in production, in /etc/logrotate.d:
 
@@ -623,7 +561,7 @@ This file is also in config/muscat.logrotate.sample. It can be tested:
 logrotate -d /etc/logrotate.d/muscat.logrotate
 ```
 
-### Some MySQL optimizations {#some-mysql-optimizations}
+### Some MySQL optimizations
 
 Add to /etc/mysql.cnf
 
@@ -639,7 +577,7 @@ innodb_flush_log_at_trx_commit = 0
 
 To speed up imports. (See here for \[more)\]([https://www.percona.com/blog/2014/01/28/10-mysql-performance-tuning-se](https://www.percona.com/blog/2014/01/28/10-mysql-performance-tuning-se)ttings-after-installation/)
 
-## Lazy's man import speedup {#lazy's-man-import-speedup}
+## Lazy's man import speedup
 
 On a full muscat DB there can be many many *old versions* in the `versions` table, since version snapshots are kept for each saved item. When doing development this can be quite annoying since it can take up to 30 minutes to restore a db.
 
@@ -649,7 +587,7 @@ sed '/INSERT INTO `versions`/d' muscat_dump.sql > muscat_no_versions.sql
 
 Removes all the old versions. From 30 minutes to 9\.
 
-### Validation Exclusions {#validation-exclusions}
+### Validation Exclusions
 
 This concerns really only the internal use of the source validator job, which can validate all the sources periodically. Often it is useful to add blanket exclusions if some data will not be corrected. They must be placed in the folder `validation_exclusions` in config/, with subfolders containing the exclusions for each model, for example:
 
@@ -683,7 +621,7 @@ Other rules will be implemented in the future.
 
 No rules are provided by default in muscat and none should be pushed to the repo since the use depends on the user data.
 
-## Muscat user authentication {#muscat-user-authentication}
+## Muscat user authentication
 
 In Muscat's default configuration, users are created and authenticated in Muscat's own local database. This authentication method is called `:database_authenticatable`, and if it is fine to you, there is no need to modify nor configure anything further.
 
@@ -715,7 +653,7 @@ There is an alternative Single Sign On (SSO) authentication for corporate enviro
 
 The SSO authentication method is added as convenience to Muscat to serve some external users, but it is not supported by upstream developers. If you need support, please contact its authors: [https://coditramuntana.com/en/contact](https://coditramuntana.com/en/contact) .
 
-## Basic Apache configuration (deprecated) {#basic-apache-configuration-(deprecated)}
+## Basic Apache configuration (deprecated)
 
 Example Apache configuration:
 
@@ -737,7 +675,7 @@ Double check permissions in the muscat installation. Also make sure DocumentRoot
 
 Start Apache and the related services in production mode (see below).
 
-## Apache-itk option {#apache-itk-option}
+## Apache-itk option
 
 Alternatively, you can take advantage of the Apache itk module, that simplifies not only having more than one Muscat in a single server using virtual hosts, but also the whole file permissions and ownership altogether. This Apache module ([http://mpm-itk.sesse.net/](http://mpm-itk.sesse.net/)) makes the Apache web server to run as a plain user, so it is the owner of the files, and it is no longer necessary file ownership via chown or users via sudo.  Apache-itk is an official Debian and Ubuntu package, so:
 
