@@ -1,0 +1,13 @@
+/PATH_TO/muscat/log/*.log {
+    size=100M
+    missingok
+    rotate 10
+    compress
+    delaycompress
+    notifempty
+    copytruncate
+   prerotate
+       bash -c "[[ ! $1 =~ validation.log ]]"
+   endscript
+}
+
