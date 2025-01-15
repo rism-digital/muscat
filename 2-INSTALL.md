@@ -95,7 +95,16 @@ proxy = socks5://localhost:9080
 sudo adduser muscat
 ```
 
-Make sure the user can not login via ssh. Add it temporarily to sudoers for the next step.
+Make sure the user can not login via ssh.  
+Edit /etc/ssh/sshd\_config or make a file like /etc/ssh/sshd\_config.d/muscat.conf and add:
+
+```
+DenyUsers	muscat
+```
+
+Note the tab and not spaces\!
+
+Add it temporarily to sudoers for the next step.
 
 ### RVM
 
