@@ -84,7 +84,7 @@ module MarcIndex
                     out << v
                   end
                 rescue => e
-                  $stderr.puts "Index: Could not load holding record #{h.id} (ref. from #{obj.id})"
+                  $stderr.puts "Index: Could not load holding record #{holding.id} (ref. from #{obj.id})"
                   $stderr.puts e.message.blue
                   next
                 end
