@@ -314,8 +314,8 @@ ActiveAdmin.register Publication do
     render :partial => "activeadmin/section_sidebar_show", :locals => { :item => publication }
   end
 
-  sidebar :statistics, :only => :show do
-    render :partial => "publications/work_statistics"
+  sidebar :statistics, :only => :show, if: proc{ item && item.work_catalogue } do
+    render :partial => "publications/work_statistics", :locals => { :item => publication }
   end
 
   sidebar :folders, :only => :show do
