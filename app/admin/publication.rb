@@ -298,6 +298,10 @@ ActiveAdmin.register Publication do
     render :partial => "activeadmin/section_sidebar_show", :locals => { :item => publication }
   end
 
+  sidebar :statistics, :only => :show do
+    render :partial => "publications/work_statistics"
+  end
+
   sidebar :folders, :only => :show do
     render :partial => "activeadmin/section_sidebar_folder_actions", :locals => { :item => publication }
   end
