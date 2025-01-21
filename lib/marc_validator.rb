@@ -38,6 +38,168 @@ include ApplicationHelper
   end
 
   def validate_tags
+    @rules.each do |tag, tag_rules|
+      # 1. Determine mandatory subtags
+      mandatory_subtags = extract_mandatory_subtags(tag, tag_rules)
+      
+      # 2. Check if the entire tag is missing when mandatory
+      marc_tags = @marc.by_tags(tag)
+      # This tag has to be there if "mandatory"
+      next if entire_tag_missing_when_mandatory?(tag, marc_tags, mandatory_subtags)
+      
+      # 3. Validate each subtag rule
+      validate_subtags_for_tag(tag, tag_rules, marc_tags)
+    end
+  end
+
+  def extract_mandatory_subtags(tag, tag_rules)
+    tag_rules["tags"].map do |st, v|
+      if @exclusions&.exclude_from_tag?(tag, st, @object)
+        puts "Downgrate #{tag} #{st} to non mandatory because of static exclusions" if DEBUG
+        nil
+      else
+        st if v == "mandatory" && !is_subtag_excluded(tag, st)
+      end
+    end.compact
+  end
+  
+  def entire_tag_missing_when_mandatory?(tag, marc_tags, mandatory_subtags)
+    if marc_tags.empty? && mandatory_subtags.any?
+      add_error(tag, nil, I18n.t('validation.missing_message'))
+      puts "Missing #{tag}, mandatory" if DEBUG
+      return true
+    end
+    false
+  end
+
+  def validate_subtags_for_tag(tag, tag_rules, marc_tags)
+    tag_rules["tags"].each do |subtag, rule|
+      # Skip if subtag excluded
+      if @exclusions&.exclude_from_tag?(tag, subtag, @object)
+        puts "Skip #{tag} #{subtag} because of static exclusions" if DEBUG
+        next
+      end
+
+      if is_subtag_excluded(tag, subtag)
+        puts "Skip #{tag} #{subtag} because of tag_overrides" if DEBUG
+        next
+      end
+      
+      # We have to check each occurrence in marc_tags
+      marc_tags.each_with_index do |marc_tag, index|
+        marc_subtag = marc_tag.fetch_first_by_tag(subtag)
+        validate_subtag_rule(tag, subtag, rule, marc_tag, marc_subtag)
+      end
+    end
+  end
+
+  def validate_subtag_rule(tag, subtag, rule, marc_tag, marc_subtag)
+    # If rule is a simple string rule
+    if rule.is_a?(String)
+      validate_string_tag(rule, marc_tag, marc_subtag, tag, subtag)
+      return
+    end
+  
+    # If rule is a Hash, check sub-keys
+    if rule.is_a?(Hash)
+      validate_subtag_hash_rule(tag, subtag, rule, marc_tag, marc_subtag)
+    end
+  end
+  
+  def validate_subtag_hash_rule(tag, subtag, rule_hash, marc_tag, marc_subtag)
+    # Each key in rule_hash might be "any_of", "begins_with", "required_if", etc.
+    rule_hash.each do |key, value|
+      case key
+      when "any_of"
+        # value is an array of subrules
+        validate_any_of_rules(tag, subtag, value, marc_tag, marc_subtag)
+  
+      when "begins_with"
+        validate_begins_with_rule(tag, subtag, marc_subtag, value)
+  
+      when "required_if"
+        validate_required_if_rule(tag, subtag, marc_subtag, value)
+  
+      else
+        # Unknown rule or custom logic
+        puts "Unknown rule key: #{key} => #{value.inspect}" if DEBUG
+      end
+    end
+  end
+  
+  def validate_any_of_rules(tag, subtag, subrules, marc_tag, marc_subtag)
+    any_passed = false
+  
+    subrules.each do |subrule|
+      # If it passes, we're good; break out
+      if subrule_passes?(subrule, tag, subtag, marc_tag, marc_subtag)
+        any_passed = true
+        break
+      end
+    end
+  
+    unless any_passed
+      add_error(tag, subtag, "Failed any_of: none of the subrules passed.")
+      puts "any_of: no rule passed for #{tag} $#{subtag}" if DEBUG
+    end
+  end
+
+  def subrule_passes?(subrule, tag, subtag, marc_tag, marc_subtag)
+    old_error_count = @errors.size
+  
+    # Attempt validation
+    validate_single_subrule(subrule, tag, subtag, marc_tag, marc_subtag)
+  
+    new_error_count = @errors.size
+    # If no new errors => we consider it "passed"
+    passed = (new_error_count == old_error_count)
+  
+    # Optional: if you *don't* want partial errors from each attempt,
+    # you could revert any newly added errors. For example:
+    # unless passed
+    #   @errors = @errors.take(old_error_count)
+    # end
+  
+    passed
+  end
+
+  def validate_single_subrule(subrule, tag, subtag, marc_tag, marc_subtag)
+    if subrule.is_a?(String)
+      # For a string rule like "required", "not_empty", etc.
+      validate_string_tag(subrule, marc_tag, marc_subtag, tag, subtag)
+    elsif subrule.is_a?(Hash)
+      # Another hash rule, e.g. "begins_with" => "http"
+      validate_subtag_hash_rule(tag, subtag, subrule, marc_tag, marc_subtag)
+    else
+      puts "Unknown subrule format: #{subrule.inspect}" if DEBUG
+    end
+  end
+
+  def validate_begins_with_rule(tag, subtag, marc_subtag, required_prefix)
+    if marc_subtag && marc_subtag.content && 
+       !marc_subtag.content.start_with?(required_prefix)
+      add_error(tag, subtag, "begin_with:#{required_prefix}")
+      puts "#{tag} #{subtag} should begin with #{required_prefix}" if DEBUG
+    end
+  end
+  
+  def validate_required_if_rule(tag, subtag, marc_subtag, required_if_rules)
+    required_if_rules.each do |other_tag, other_subtag|
+      other_marc_tag = @marc.first_occurance(other_tag)
+      next unless other_marc_tag  # If not there, rule doesn't apply
+      other_marc_subtag = other_marc_tag.fetch_first_by_tag(other_subtag)
+      next unless other_marc_subtag&.content  # If no content, rule doesn't apply
+  
+      # Now we check if the current subtag is missing
+      if marc_subtag.nil? || marc_subtag.content.blank?
+        add_error(tag, subtag, "required_if-#{other_tag}#{other_subtag}")
+        puts "Missing #{tag} #{subtag}, required_if-#{other_tag}#{other_subtag}" if DEBUG
+      end
+    end
+  end
+
+=begin
+  def validate_tags
 
     @rules.each do |tag, tag_rules|
       #mandatory =  tag_rules["tags"].has_value? "mandatory"
@@ -136,7 +298,9 @@ include ApplicationHelper
     end
   
   end
-  
+=end
+
+
   def validate_links
     @marc.all_tags.each do |marctag|
       
@@ -345,6 +509,7 @@ include ApplicationHelper
         puts "check_group requested but tag is not in a group #{tag}#{subtag}" if DEBUG
       end
     else
+      puts rule.class
       puts "Unknown rule #{rule}" if rule != "mandatory"
     end
   end
