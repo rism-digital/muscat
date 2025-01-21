@@ -155,6 +155,22 @@ ActiveAdmin.register Publication do
     return
   end
  
+  collection_action :work_catalogs  do
+    #doc_url = 'https://docs.google.com/spreadsheets/d/1Wh45W93lUZfcf2AOb2OLn9LcIvbY7b55QgmoJ87xAc0/export?exportFormat=csv'
+
+    csv_string = URI.open(WORK_CATALOG_DOC).read rescue nil
+    @csv_data = CSV.parse(csv_string, headers: true).map(&:to_hash) if csv_string
+
+    #ap @csv_data
+
+    @paginated = Kaminari.paginate_array(@csv_data)
+
+    @page_title = "Work Catalogs"
+  end
+
+  sidebar :custom, only: :work_catalogs do
+    "Sidebar contents"
+  end
 
   ###########
   ## Index ##
