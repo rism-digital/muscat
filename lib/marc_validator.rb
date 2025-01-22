@@ -128,20 +128,13 @@ include ApplicationHelper
   end
   
   def validate_any_of_rules(tag, subtag, subrules, marc_tag, marc_subtag)
-    any_passed = false
-  
-    subrules.each do |subrule|
-      # If it passes, we're good; break out
-      if subrule_passes?(subrule, tag, subtag, marc_tag, marc_subtag)
-        any_passed = true
+    subrules.to_a.each do |subrule|
+      # If it does not pass, the whole any_of fails
+      if !subrule_passes?(subrule, tag, subtag, marc_tag, marc_subtag)
         break
       end
     end
   
-    unless any_passed
-      add_error(tag, subtag, "Failed any_of: none of the subrules passed.")
-      puts "any_of: no rule passed for #{tag} $#{subtag}" if DEBUG
-    end
   end
 
   def subrule_passes?(subrule, tag, subtag, marc_tag, marc_subtag)
