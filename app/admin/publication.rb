@@ -215,7 +215,7 @@ ActiveAdmin.register Publication do
     column (I18n.t :filter_title), :title
     column (I18n.t :filter_author), :author
     column (I18n.t :work_catalogue), :work_catalogue if current_user.has_any_role?(:admin)
-    column (I18n.t :filter_sources), :src_count_order, sortable: :src_count_order do |element|
+    column (I18n.t :filter_references), :src_count_order, sortable: :src_count_order do |element|
 			all_hits = @arbre_context.assigns[:hits]
 			active_admin_stored_from_hits(all_hits, element, :src_count_order)
 		end

@@ -256,9 +256,12 @@ class Publication < ApplicationRecord
     end
 
     sunspot_dsl.integer :src_count_order, :stored => true do
-      (Publication.count_by_sql("select count(*) from sources_to_publications where publication_id = #{self[:id]}") +
-      Publication.count_by_sql("select count(*) from institutions_to_publications where publication_id = #{self[:id]}") +
-      Publication.count_by_sql("select count(*) from people_to_publications where publication_id = #{self[:id]}"))
+      #(Publication.count_by_sql("select count(*) from sources_to_publications where publication_id = #{self[:id]}") +
+      #Publication.count_by_sql("select count(*) from institutions_to_publications where publication_id = #{self[:id]}") +
+      #Publication.count_by_sql("select count(*) from people_to_publications where publication_id = #{self[:id]}"))
+
+      # Experimental!
+      through_associations.sum {|ta| self.send(ta).size}
     end
     MarcIndex::attach_marc_index(sunspot_dsl, self.to_s.downcase)
   end
@@ -344,5 +347,12 @@ class Publication < ApplicationRecord
   ransacker :"240g", proc{ |v| } do |parent| parent.table[:id] end
   ransacker :"260b", proc{ |v| } do |parent| parent.table[:id] end
   ransacker :"100a_or_700a", proc{ |v| } do |parent| parent.table[:id] end
+
+  def self.through_associations
+    @through_associations ||= reflect_on_all_associations(:has_many)
+      .select { |ref| ref.options[:through].present? }
+      .map(&:name)
+  end
+    
 
 end
