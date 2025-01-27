@@ -1,5 +1,35 @@
 @mc = MarcConfigCache.get_configuration("person")
 
+#@mods = []
+
+#: {short_name: "", author: "", title: ""}
+CMO_LIT = {
+    "cmo_mods_00000008": {short_name: "TMA", author: "Öztuna, Yılmaz", title: "Türk Mûsikîsi Ansiklopedisi"},
+    "cmo_mods_00000009": {short_name: "TMAS", author: "Nezihi Turan, Ahmet", title: "Türk mûsikîsi akademik klasik Türk san'at mûsikîsi'nin ansiklopedik sözlüğü"},
+    "cmo_mods_00000010": {short_name: "LVE", author: "Ḥāfıẓ Ḫıżır İlyās", title: "Leṭāʾif-i veḳāʾi-yi enderūnīye"},
+    "cmo_mods_00000011": {short_name: "Hiwrmiwzean 1873", author: "Hiwrmiwzean, Eduard", title: "Tirac‘u Hambarjum"},
+    "cmo_mods_00000012": {short_name: "Mert 2011", author: "Mert, Talip", title: "Mehmed Şâkir Efendi/Şâkir Ağa: Sermüezzin, Kereste Nâzırı ve Su Nâzırı (1779–31.3.1837)"},
+    "cmo_mods_00000014": {short_name: "MMA", author: "Sözer, Vural", title: "Müzik ve Müzisyenler Ansiklopedisi"},
+    "cmo_mods_00000016": {short_name: "Reinhard/Pinto 1989", author: "Reinhard, Ursula; Oliveira Pinto, Tiago de", title: "Sänger und Poeten mit der Laute : Türkische Âşık und Ozan"},
+    "cmo_mods_00000021": {short_name: "MA", author: "Say, Ahmet", title: "Müzik Ansiklopedisi"},
+    "cmo_mods_00000022": {short_name: "TRTS", author: "Kip, Tarık", title: "TRT Türk Sanat Musikisi Saz Eserleri Repertuvarı: Ön basım"},
+    "cmo_mods_00000024": {short_name: "Feldman 1996", author: "Feldman, Walter", title: "Music of the Ottoman Court : Makam, Composition and the Early Ottoman Instrumental Repertoire"},
+    "cmo_mods_00000025": {short_name: "MA2", author: "Say, Ahmet", title: "Müzik Ansiklopedisi : Besteciler, Yorumcular, Eserler, Kavramlar"},
+    "cmo_mods_00000026": {short_name: "Toker 2016", author: "Toker, Hikmet", title: "Elhân-ı Aziz : Sultan Abdülaziz Devrinde Sarayda Mûsik"},
+    "cmo_mods_00000030": {short_name: "Mēnēvišean 1890", author: "Mēnēvišean, H. Gabriēl", title: "Azgabanut‘iwn aznowakan zarmin Tiwzeanc‘"},
+    "cmo_mods_00000031": {short_name: "Yazıcı 2011", author: "Yazıcı, Ümit", title: "Tanbûri Ali Efendi : Hayatı ve Eserleri"},
+    "cmo_mods_00000032": {short_name: "Kalaitzidis 2012", author: "Kalaitzidis, Kyriakos", title: "Post-Byzantine Music Manuscripts as a Source for Oriental Secular Music (15th to Early 19th Century)"},
+    "cmo_mods_00000035": {short_name: "Uzunçarşılı 1977", author: "Uzunçarşılı, İsmail Hakkı", title: "Osmanlılar Zamanında Saraylarda Musiki Hayatı"},
+    "cmo_mods_00000036": {short_name: "Tayean 1930", author: "Tayean, Łewond", title: "Mayr Diwan: Mxit‘areanc‘ Venetkoy i S. Łazar, 1707–1773 : I cagmanē uxtis minč‘ew c‘bažanumn t‘restean harc‘"},
+    "cmo_mods_00000037": {short_name: "Neubauer 1997", author: "Neubauer, Eckhard", title: "Zur Bedeutung der Begriffe Komponist und Komposition in der Musikgeschichte der islamischen Welt"},
+    "cmo_mods_00000040": {short_name: "Korkmaz 2015", author: "Korkmaz, Harun", title: "The Catalog of Music Manuscripts in Istanbul University Library"},
+    "cmo_mods_00000042": {short_name: "Mert 1999", author: "Mert, Talip", title: "Ortaçağ’ın en büyük kadın bestekârı: Dilhayat Kalfa’nın Mirası:"},
+    "cmo_mods_00000044": {short_name: "Cemil, Mes’ud", author: "Cemil, Mes’ud", title: "Tanbūrî Cemil’in Hayâtı"},
+    "cmo_mods_00000045": {short_name: "İA2", author: "Türkiye Diyanet Vakfı", title: "Türkiye Diyanet Vakfı İslâm Ansiklopedisi"},
+}
+
+@defined_lit = {}
+
 def preprocess_cmo(marc, obj, options)
     #puts "Callback to process #{obj.id}"
 
@@ -67,6 +97,8 @@ def preprocess_cmo(marc, obj, options)
             n670.add_at(MarcNode.new("person", "b", b&.content, nil), 0 ) if b && b.content
             n670.add_at(MarcNode.new("person", "u", w&.content, nil), 0 ) if w && w.content
 
+            #@mods << w&.content
+
             n670.sort_alphabetically
             marc.root.add_at(n670, marc.get_insert_position("670") )
         end
@@ -109,6 +141,32 @@ def preprocess_cmo(marc, obj, options)
     return marc
 end
 
+def create_cmo_lit
+
+    mconf = MarcConfigCache.get_configuration("publication")
+
+    #new_marc = MarcPublication.new(File.read(ConfigFilePath.get_marc_editor_profile_path("#{Rails.root}/config/marc/#{RISM::MARC}/publication/default.marc")))
+    #new_marc.load_source false # this will need to be fixed
+    
+    CMO_LIT.each do |name, vals|
+        item = Publication.new(author: vals[:author], short_name: vals[:short_name], title: vals[:title])
+        item.save!
+
+        item.marc.by_tags("100").each {|t| t.destroy_yourself}
+
+        new_100 = MarcNode.new("publication", "100", "", mconf.get_default_indicator("100"))
+        new_100.add_at(MarcNode.new("publication", "a", vals[:author], nil), 0)
+
+        n856 = MarcNode.new("publication", "856", "", "1#")
+        new_100.add_at(MarcNode.new("publication", "a", vals[:author], nil), 0)
+
+        item.marc.root.children.insert(item.marc.get_insert_position("100"), new_100)
+        item.marc.import
+        item.save
+
+    end
+end
+
 DIR="cmo_person_marcxml_20241213"
 #CMO-MARCXML/Person/
 
@@ -129,6 +187,9 @@ $MARC_FORCE_CREATION = false
 
 complete_log = []
 
+create_cmo_lit
+CULO
+
 files.each do |source_file|
     puts source_file
     import = MarcImport.new(source_file, "Person", options)
@@ -142,3 +203,5 @@ files.each do |source_file|
 end
 Sunspot.commit
 complete_log.sort.uniq.each {|l| puts l}
+
+ap @mods.sort.uniq
