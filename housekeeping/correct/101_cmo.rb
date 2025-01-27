@@ -71,12 +71,14 @@ def preprocess_cmo(marc, obj, options)
             n680.add_at(MarcNode.new("person", "a", b.content, nil), 0 )
             n680.sort_alphabetically
             marc.root.add_at(n680, marc.get_insert_position("680") )
-            puts "Moved date to 680"
+            #puts "Moved date to 680"
         end
 
         # We have stuff in $w too
         w = t.fetch_first_by_tag("w")
         b = t.fetch_first_by_tag("b")
+
+        is_defined = @defined_lit.keys.include?(w&.content&.strip&.to_sym)
 
         # This field can also contain bib info!
         # see cmo_person_00000497
@@ -90,12 +92,25 @@ def preprocess_cmo(marc, obj, options)
 
             n670 = MarcNode.new("person", "670", "", @mc.get_default_indicator("670"))
 
-            n670.add_at(MarcNode.new("person", "a", sanitized, nil), 0 ) # Add the revue name
+            # We already have this in Muscat,  pull the data from there
+            if is_defined
+                n670.add_at(MarcNode.new("person", "w", @defined_lit[w&.content&.strip&.to_sym], nil), 0 )
+
+                # Save the original $a
+                n680 = MarcNode.new("person", "680", "", @mc.get_default_indicator("680"))
+                n680.add_at(MarcNode.new("person", "a", "Original bibliographic ref: #{sanitized}", nil), 0 )
+                n680.sort_alphabetically
+                marc.root.add_at(n680, marc.get_insert_position("680") )
+            else
+                n670.add_at(MarcNode.new("person", "a", sanitized, nil), 0 ) # Add the revue name
+            end
+            
             n670.add_at(MarcNode.new("person", "9", parts[1], nil), 0 )if parts[1]  # add the pages
 
             # Move the other things
             n670.add_at(MarcNode.new("person", "b", b&.content, nil), 0 ) if b && b.content
-            n670.add_at(MarcNode.new("person", "u", w&.content, nil), 0 ) if w && w.content
+            # Make an URL out of $w
+            n670.add_at(MarcNode.new("person", "u", "https://corpus-musicae-ottomanicae.de/receive/#{w&.content}", nil), 0 ) if w && w.content
 
             #@mods << w&.content
 
@@ -159,16 +174,17 @@ def create_cmo_lit
 
         new_100 = MarcNode.new("publication", "100", "", mconf.get_default_indicator("100"))
         new_100.add_at(MarcNode.new("publication", "a", vals[:author], nil), 0)
-        item.marc.root.children.insert(item.marc.get_insert_position("100"), new_100)
+        item.marc.root.add_at(new_100, item.marc.get_insert_position("100"))
 
         n856 = MarcNode.new("publication", "856", "", mconf.get_default_indicator("100"))
         n856.add_at(MarcNode.new("publication", "u", "https://corpus-musicae-ottomanicae.de/receive/#{name}", nil), 0)
         n856.add_at(MarcNode.new("publication", "z", "Original catalog entry", nil), 0)
-        item.marc.root.children.insert(item.marc.get_insert_position("856"), n856)
+        item.marc.root.add_at(n856, item.marc.get_insert_position("856"))
 
         item.marc.import
         item.save
 
+        @defined_lit[name] = item.id
     end
 end
 
@@ -208,5 +224,3 @@ files.each do |source_file|
 end
 Sunspot.commit
 complete_log.sort.uniq.each {|l| puts l}
-
-ap @mods.sort.uniq
