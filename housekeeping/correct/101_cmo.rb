@@ -172,6 +172,9 @@ def create_cmo_lit
     end
 end
 
+# Create all the sec lit
+create_cmo_lit
+
 DIR="cmo_person_marcxml_20241213"
 #CMO-MARCXML/Person/
 
@@ -191,8 +194,6 @@ $MARC_LOG=[]
 $MARC_FORCE_CREATION = false
 
 complete_log = []
-
-# Remove all the CMO link stuff that was here
 
 files.each do |source_file|
     puts source_file
