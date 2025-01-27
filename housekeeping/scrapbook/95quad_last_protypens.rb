@@ -3,8 +3,8 @@ CSV::foreach("housekeeping/scrapbook/the_last_of_the_polypens.tsv", col_sep: "\t
 
     s = Source.find(r["id"])
 
-    ap s.marc_source.gsub!(r["word"], r["sub"])
-    s.paper_trail_event = "Fix protypen II #{r["word"]} with #{r["sub"]}"
+    s.marc_source.gsub!(r["word"], r["sub"])
+    s.paper_trail_event = "Fix protypen 2 #{r["word"]} with #{r["sub"]}"
     s.save
     puts s.id
 end
