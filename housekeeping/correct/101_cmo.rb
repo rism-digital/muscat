@@ -31,35 +31,50 @@ def preprocess_cmo(marc, obj, options)
         t.fetch_all_by_tag("0").each {|tt| tt.destroy_yourself}
     end
 
-    marc.by_tags("670").each do |t|
-        #is there a $b?
+    marc.by_tags("678").each do |t|
+        # is there a $b and no $a? Then it is a name!
+        a = t.fetch_first_by_tag("a")
         b = t.fetch_first_by_tag("b")
-        if b && b.content
+        if (b && b.content) && !a
             ## Move it to an  note
             n680 = MarcNode.new("person", "680", "", @mc.get_default_indicator("680"))
             n680.add_at(MarcNode.new("person", "a", b.content, nil), 0 )
             n680.sort_alphabetically
             marc.root.add_at(n680, marc.get_insert_position("680") )
+            puts "Moved date to 680"
         end
 
-        a = t.fetch_first_by_tag("a")
+        # We have stuff in $w too
+        w = t.fetch_first_by_tag("w")
+        b = t.fetch_first_by_tag("b")
 
-        if !a || !a.content || a.content.empty?
-
-            #puts "Remove empty #{t}"
-            t.destroy_yourself
-        else
+        # This field can also contain bib info!
+        # see cmo_person_00000497
+        if a && a.content && !a.content.empty?
+            # There is bib data to move
             # Do some magics
             parts = a.content.split(", ")
-            a.content = parts[0]
 
-            if parts[1]
-                t.add_at(MarcNode.new("person", "9", parts[1], nil), 0 )
-                t.sort_alphabetically
-            end
+            # Remove the unwanted spaces...
+            sanitized = parts[0].split.join(" ")
 
+            n670 = MarcNode.new("person", "670", "", @mc.get_default_indicator("670"))
+
+            n670.add_at(MarcNode.new("person", "a", sanitized, nil), 0 ) # Add the revue name
+            n670.add_at(MarcNode.new("person", "9", parts[1], nil), 0 )if parts[1]  # add the pages
+
+            # Move the other things
+            n670.add_at(MarcNode.new("person", "b", b&.content, nil), 0 ) if b && b.content
+            n670.add_at(MarcNode.new("person", "u", w&.content, nil), 0 ) if w && w.content
+
+            n670.sort_alphabetically
+            marc.root.add_at(n670, marc.get_insert_position("670") )
         end
+
     end
+
+    # Purge all the 678
+    marc.by_tags("678").each {|t| t.destroy_yourself}
 
     marc.by_tags("024").each do |t|
         a = t.fetch_first_by_tag("a")
@@ -102,7 +117,7 @@ files = Dir.glob("#{DIR}/*.xml")
 #source_file = "CMO-MARCXML/Person/cmo_person_00000001.xml"
 
 # Minimal option set
-options = {first: 0, last: 1000000, versioning: false, index: false}
+options = {first: 0, last: 1000000, versioning: false, index: true}
 
 options[:new_ids] = true
 options[:authorities] = true
@@ -125,5 +140,5 @@ files.each do |source_file|
     end
     $MARC_LOG = []
 end
-
+Sunspot.commit
 complete_log.sort.uniq.each {|l| puts l}
