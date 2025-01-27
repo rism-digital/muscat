@@ -9,6 +9,7 @@ module Statistics
       incipits = 0
       dnb = 0
       publication.referring_works.each do |w|
+        w.marc.load_source false
         incipits += 1 if w.marc.has_incipits?
         dnb += 1 if w.marc.has_link_to?("DNB")
       end
