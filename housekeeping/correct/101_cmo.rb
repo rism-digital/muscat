@@ -149,18 +149,23 @@ def create_cmo_lit
     #new_marc.load_source false # this will need to be fixed
     
     CMO_LIT.each do |name, vals|
-        item = Publication.new(author: vals[:author], short_name: vals[:short_name], title: vals[:title])
-        item.save!
+        item_a = Publication.new(author: vals[:author], short_name: vals[:short_name], title: vals[:title])
+        item_a.save!
+
+        item = Publication.find(item_a.id)
 
         item.marc.by_tags("100").each {|t| t.destroy_yourself}
+        item.marc.by_tags("760").each {|t| t.destroy_yourself}
 
         new_100 = MarcNode.new("publication", "100", "", mconf.get_default_indicator("100"))
         new_100.add_at(MarcNode.new("publication", "a", vals[:author], nil), 0)
-
-        n856 = MarcNode.new("publication", "856", "", "1#")
-        new_100.add_at(MarcNode.new("publication", "a", vals[:author], nil), 0)
-
         item.marc.root.children.insert(item.marc.get_insert_position("100"), new_100)
+
+        n856 = MarcNode.new("publication", "856", "", mconf.get_default_indicator("100"))
+        n856.add_at(MarcNode.new("publication", "u", "https://corpus-musicae-ottomanicae.de/receive/#{name}", nil), 0)
+        n856.add_at(MarcNode.new("publication", "z", "Original catalog entry", nil), 0)
+        item.marc.root.children.insert(item.marc.get_insert_position("856"), n856)
+
         item.marc.import
         item.save
 
@@ -187,8 +192,7 @@ $MARC_FORCE_CREATION = false
 
 complete_log = []
 
-create_cmo_lit
-CULO
+# Remove all the CMO link stuff that was here
 
 files.each do |source_file|
     puts source_file
