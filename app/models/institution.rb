@@ -106,7 +106,7 @@ class Institution < ApplicationRecord
   
   #include NewIds
   
-  before_destroy :check_dependencies, :cleanup_comments
+  before_destroy :check_dependencies, :cleanup_comments, :update_links
   
   #before_create :generate_new_id
   after_save :update_links, :reindex
@@ -119,6 +119,7 @@ class Institution < ApplicationRecord
   attr_accessor :suppress_scaffold_marc_trigger
   attr_accessor :suppress_recreate_trigger
   attr_accessor :suppress_update_workgroups_trigger
+  attr_accessor :suppress_update_count_trigger
 
   alias_attribute :id_for_fulltext, :id
   alias_attribute :name, :full_name # activeadmin needs the name attribute
@@ -147,6 +148,10 @@ class Institution < ApplicationRecord
 	def suppress_update_workgroups
 		self.suppress_update_workgroups_trigger = true
 	end
+
+  def suppress_update_count
+    self.suppress_update_count_trigger = true
+  end
 
   def fix_ids
     #generate_new_id

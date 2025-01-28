@@ -105,7 +105,7 @@ class Publication < ApplicationRecord
   composed_of_reimplementation :marc, :class_name => "MarcPublication", :mapping => %w(marc_source to_marc)
 
   ##include NewIds
-  before_destroy :check_dependencies, :cleanup_comments
+  before_destroy :check_dependencies, :cleanup_comments, :update_links
 
   before_save :set_object_fields
   after_create :scaffold_marc, :fix_ids
@@ -115,6 +115,7 @@ class Publication < ApplicationRecord
   attr_accessor :suppress_reindex_trigger
   attr_accessor :suppress_recreate_trigger
   attr_accessor :suppress_scaffold_marc_trigger
+  attr_accessor :suppress_update_count_trigger
 
   alias_attribute :id_for_fulltext, :id
   alias_attribute :name, :short_name
@@ -135,6 +136,10 @@ class Publication < ApplicationRecord
 
   def suppress_scaffold_marc
     self.suppress_scaffold_marc_trigger = true
+  end
+
+  def suppress_update_count
+    self.suppress_update_count_trigger = true
   end
 
   def update_links

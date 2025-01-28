@@ -43,6 +43,8 @@ class StandardTitle < ApplicationRecord
   after_save :reindex
   
   attr_accessor :suppress_reindex_trigger
+  attr_accessor :suppress_update_count_trigger
+
   alias_attribute :name, :title
   alias_attribute :id_for_fulltext, :id
   
@@ -54,6 +56,10 @@ class StandardTitle < ApplicationRecord
     self.suppress_reindex_trigger = true
   end
   
+  def suppress_update_count
+    self.suppress_update_count_trigger = true
+  end
+
   def reindex
     return if self.suppress_reindex_trigger == true
     self.index

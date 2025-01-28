@@ -47,7 +47,7 @@ class Holding < ApplicationRecord
   after_create :scaffold_marc, :fix_ids
   after_save :update_links, :update_774, :reindex
   after_initialize :after_initialize
-  before_destroy :update_links, :cleanup_comments
+  before_destroy :update_links, :cleanup_comments, :update_links
   
   
   attr_accessor :suppress_reindex_trigger

@@ -78,11 +78,12 @@ class Work < ApplicationRecord
 
   composed_of_reimplementation :marc, :class_name => "MarcWork", :mapping => %w(marc_source to_marc)
 
-  before_destroy :check_dependencies, :cleanup_comments
+  before_destroy :check_dependencies, :cleanup_comments, :update_links
   
   attr_accessor :suppress_reindex_trigger
   attr_accessor :suppress_scaffold_marc_trigger
   attr_accessor :suppress_recreate_trigger
+  #attr_accessor :suppress_update_count_trigger
 
   before_save :set_object_fields
   after_create :scaffold_marc, :fix_ids
@@ -105,6 +106,10 @@ class Work < ApplicationRecord
     self.suppress_scaffold_marc_trigger = true
   end
   
+  def suppress_update_count
+    self.suppress_update_count_trigger = true
+  end
+
   def suppress_recreate
     self.suppress_recreate_trigger = true
   end 
