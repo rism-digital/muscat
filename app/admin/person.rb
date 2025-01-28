@@ -209,9 +209,11 @@ ActiveAdmin.register Person do
     column (I18n.t :filter_life_dates), :life_dates
     column (I18n.t :filter_owner) {|person| User.find(person.wf_owner).name rescue 0} if current_user.has_any_role?(:editor, :admin)
     column (I18n.t :filter_sources), :src_count_order, sortable: :src_count_order do |element|
-      all_hits = @arbre_context.assigns[:hits]
-      active_admin_stored_from_hits(all_hits, element, :src_count_order)
+      active_admin_stored_from_hits(all_hits = @arbre_context.assigns[:hits], element, :src_count_order)
     end
+    column (I18n.t :filter_authorities), :referring_objects_count, sortable: :referring_objects_count do |element|
+			active_admin_stored_from_hits(@arbre_context.assigns[:hits], element, :referring_objects_count)
+		end
     active_admin_muscat_actions( self )
   end
 
