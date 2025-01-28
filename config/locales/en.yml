@@ -338,6 +338,7 @@ en:
   filter_attachment_type: Digital Object type
   filter_author: Author
   filter_author_or_editor: Author/Editor
+  filter_authorities: Authorities
   filter_autograph_of: Autograph of
   filter_birth_place: Birth place
   filter_book_id: RISM series ID
