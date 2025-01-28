@@ -256,12 +256,12 @@ ActiveAdmin.register Person do
         end
       end
     end
-
-    active_adnin_create_list_for(self, Publication, person, short_name: I18n.t(:filter_title_short), author: I18n.t(:filter_author), title: I18n.t(:filter_title))    
+    
     active_adnin_create_list_for(self, Institution, person, siglum: I18n.t(:filter_siglum), full_name: I18n.t(:filter_full_name), place: I18n.t(:filter_place))
-    active_adnin_create_list_for(self, Work, person, title: I18n.t(:filter_title))
-    active_adnin_create_list_for(self, Person, person, full_name: I18n.t(:filter_full_name), life_dates: I18n.t(:filter_life_dates), alternate_names: I18n.t(:filter_alternate_names))
     active_adnin_create_list_for(self, InventoryItem, person, composer: I18n.t(:filter_composer), title: I18n.t(:filter_title))
+    active_adnin_create_list_for(self, Person, person, full_name: I18n.t(:filter_full_name), life_dates: I18n.t(:filter_life_dates), alternate_names: I18n.t(:filter_alternate_names))
+    active_adnin_create_list_for(self, Publication, person, short_name: I18n.t(:filter_title_short), author: I18n.t(:filter_author), title: I18n.t(:filter_title))    
+    active_adnin_create_list_for(self, Work, person, title: I18n.t(:filter_title))
 
     active_admin_digital_object( self, @item ) if !is_selection_mode?
     active_admin_user_wf( self, person )
