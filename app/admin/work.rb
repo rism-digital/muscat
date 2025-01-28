@@ -262,6 +262,8 @@ ActiveAdmin.register Work do
       render :partial => "marc/show"
     end
     active_admin_embedded_source_list( self, work, !is_selection_mode? )
+    
+    active_adnin_create_list_for(self, InventoryItem, work, composer: I18n.t(:filter_composer), title: I18n.t(:filter_title))
     active_adnin_create_list_for(self, Work, work, title: I18n.t(:filter_title), opus: I18n.t(:filter_opus), catalogue: I18n.t(:filter_catalog))
 
     active_admin_digital_object( self, @item ) if !is_selection_mode?

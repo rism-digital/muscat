@@ -155,6 +155,7 @@ ActiveAdmin.register StandardTerm do
       row (I18n.t :filter_notes) { |r| r.notes }    
     end
     active_admin_embedded_source_list( self, standard_term, !is_selection_mode? )
+    active_adnin_create_list_for(self, InventoryItem, standard_term, composer: I18n.t(:filter_composer), title: I18n.t(:filter_title))
     active_adnin_create_list_for(self, Publication, standard_term, short_name: I18n.t(:filter_title_short), author: I18n.t(:filter_author), description: I18n.t(:filter_description))
     active_adnin_create_list_for(self, Work, standard_term, title: I18n.t(:filter_title), opus: I18n.t(:filter_opus), catalogue: I18n.t(:filter_catalog))
 

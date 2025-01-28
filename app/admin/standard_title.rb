@@ -175,6 +175,7 @@ ActiveAdmin.register StandardTitle do
       row (I18n.t :filter_notes) { |r| r.notes }  
     end
     active_admin_embedded_source_list( self, standard_title, !is_selection_mode? )
+    active_adnin_create_list_for(self, InventoryItem, standard_title, composer: I18n.t(:filter_composer), title: I18n.t(:filter_title))
     active_adnin_create_list_for(self, Work, standard_title, title: I18n.t(:filter_title), opus: I18n.t(:filter_opus), catalogue: I18n.t(:filter_catalog))
 
     active_admin_user_wf( self, standard_title )
