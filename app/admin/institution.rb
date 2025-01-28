@@ -187,64 +187,26 @@ ActiveAdmin.register Institution do
 
     active_admin_embedded_source_list( self, institution, !is_selection_mode? )
 
-    # Box for people referring to this institution
-    active_admin_embedded_link_list(self, institution, Person) do |context|
+    # This one cannot use the compact form
+    active_admin_embedded_link_list(self, institution, Holding) do |context|
       context.table_for(context.collection) do |cr|
         context.column "id", :id
-        context.column (I18n.t :filter_full_name), :full_name
-        context.column (I18n.t :filter_life_dates), :life_dates
-        context.column (I18n.t :filter_alternate_names), :alternate_names
+        context.column (I18n.t :filter_siglum), :lib_siglum
+        context.column (I18n.t :filter_source_name) {|hld| hld.source.std_title}
+        context.column (I18n.t :filter_source_composer) {|hld| hld.source.composer}
         if !is_selection_mode?
-          context.column "" do |person|
-            link_to "View", controller: :people, action: :show, id: person.id
+          context.column "" do |hold|
+            link_to I18n.t(:view_source), controller: :holdings, action: :show, id: hold.id
           end
         end
       end
     end
 
-    # Box for publications referring to this institution
-    active_admin_embedded_link_list(self, institution, Publication) do |context|
-      context.table_for(context.collection) do |cr|
-        context.column "id", :id
-        context.column (I18n.t :filter_title_short), :short_name
-        context.column (I18n.t :filter_author), :author
-        context.column (I18n.t :filter_title), :title
-        if !is_selection_mode?
-          context.column "" do |publication|
-            link_to "View", controller: :publications, action: :show, id: publication.id
-          end
-        end
-      end
-    end
-
-    # Box for institutions referring to this institution
-    active_admin_embedded_link_list(self, institution, Institution) do |context|
-      context.table_for(context.collection) do |cr|
-        context.column "id", :id
-        context.column (I18n.t :filter_siglum), :siglum
-        context.column (I18n.t :filter_full_name), :full_name
-        context.column (I18n.t :filter_place), :place
-        if !is_selection_mode?
-          context.column "" do |inst|
-            link_to "View", controller: :institutions, action: :show, id: inst.id
-          end
-        end
-      end
-    end
-
-    active_admin_embedded_link_list(self, institution, Work) do |context|
-      context.table_for(context.collection) do |cr|
-        column (I18n.t :filter_id), :id  
-        column (I18n.t :filter_title), :title
-        column "Opus", :opus
-        column "Catalogue", :catalogue
-        if !is_selection_mode?
-          context.column "" do |work|
-            link_to "View", controller: :works, action: :show, id: work.id
-          end
-        end
-      end
-    end
+    active_adnin_create_list_for(self, Institution, institution, siglum: I18n.t(:filter_siglum), full_name: I18n.t(:filter_full_name), place: I18n.t(:filter_place))
+    active_adnin_create_list_for(self, InventoryItem, institution, composer: I18n.t(:filter_composer), title: I18n.t(:filter_title))
+    active_adnin_create_list_for(self, Person, institution, full_name: I18n.t(:filter_full_name), life_dates: I18n.t(:filter_life_dates), alternate_names: I18n.t(:filter_alternate_names))
+    active_adnin_create_list_for(self, Publication, institution, short_name: I18n.t(:filter_title_short), author: I18n.t(:filter_author), title: I18n.t(:filter_title))    
+    active_adnin_create_list_for(self, Work, institution, title: I18n.t(:filter_title))
 
     active_admin_digital_object( self, @item ) if !is_selection_mode?
     active_admin_user_wf( self, institution )
