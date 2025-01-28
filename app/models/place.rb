@@ -12,6 +12,7 @@
 class Place < ApplicationRecord
   include ForeignLinks
   include CommentsCleanup
+  include ThroughAssociations
 
   #has_and_belongs_to_many(:referring_sources, class_name: "Source", join_table: "sources_to_places")
   has_many :source_place_relations, class_name: "SourcePlaceRelation"
@@ -101,25 +102,8 @@ class Place < ApplicationRecord
     join(:folder_id, :target => FolderItem, :type => :integer, 
               :join => { :from => :item_id, :to => :id })
     
-    integer :src_count_order, :stored => true do 
-      Place.count_by_sql("select count(*) from sources_to_places where place_id = #{self[:id]}")
-    end
-
-    integer :person_count_order, :stored => true do 
-      Place.count_by_sql("select count(*) from people_to_places where place_id = #{self[:id]}")
-    end
-
-    integer :institution_count_order, :stored => true do 
-      Place.count_by_sql("select count(*) from institutions_to_places where place_id = #{self[:id]}")
-    end
-
-    integer :publication_count_order, :stored => true do 
-      Place.count_by_sql("select count(*) from publications_to_places where place_id = #{self[:id]}")
-    end
-
-    integer :holding_count_order, :stored => true do 
-      Place.count_by_sql("select count(*) from holdings_to_places where place_id = #{self[:id]}")
-    end
+    integer(:src_count_order, :stored => true) {through_associations_source_count}
+    integer(:referring_objects_order, stored: true) {through_associations_exclude_source_count}
 
   end
 

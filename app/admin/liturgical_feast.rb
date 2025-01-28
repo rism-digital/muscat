@@ -115,8 +115,10 @@ ActiveAdmin.register LiturgicalFeast do
     column (I18n.t :filter_name), :name
     column (I18n.t :filter_alternate_terms), :alternate_terms
     column (I18n.t :filter_sources), :src_count_order, sortable: :src_count_order do |element|
-			all_hits = @arbre_context.assigns[:hits]
-			active_admin_stored_from_hits(all_hits, element, :src_count_order)
+			active_admin_stored_from_hits(@arbre_context.assigns[:hits], element, :src_count_order)
+		end
+    column (I18n.t :filter_authorities), :referring_objects_order, sortable: :referring_objects_order do |element|
+			active_admin_stored_from_hits(@arbre_context.assigns[:hits], element, :referring_objects_order)
 		end
     active_admin_muscat_actions( self )
   end

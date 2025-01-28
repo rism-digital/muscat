@@ -4,7 +4,8 @@ class Work < ApplicationRecord
   include AuthorityMerge
   include CommentsCleanup
   include ComposedOfReimplementation
-
+  include ThroughAssociations
+  
   # class variables for storing the user name and the event from the controller
   @last_user_save
   attr_accessor :last_user_save
@@ -226,11 +227,8 @@ class Work < ApplicationRecord
     sunspot_dsl.join(:folder_id, :target => FolderItem, :type => :integer, 
               :join => { :from => :item_id, :to => :id })
 
-    sunspot_dsl.integer :src_count_order, :stored => true do 
-      #self.marc.load_source false
-      #self.marc.root.fetch_all_by_tag("856").size
-      Work.count_by_sql("select count(*) from sources_to_works where work_id = #{self[:id]}")
-    end
+    sunspot_dsl.integer(:src_count_order, :stored => true) {through_associations_source_count}
+    sunspot_dsl.integer(:referring_objects_order, stored: true) {through_associations_exclude_source_count}
         
     sunspot_dsl.boolean :has_music_incipit do |s|
       s.marc.has_incipits?

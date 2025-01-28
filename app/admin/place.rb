@@ -120,28 +120,10 @@ ActiveAdmin.register Place do
     column (I18n.t :filter_district), :district
     column (I18n.t :filter_country), :country
     column (I18n.t :filter_sources), :src_count_order, sortable: :src_count_order do |element|
-			all_hits = @arbre_context.assigns[:hits]
-			active_admin_stored_from_hits(all_hits, element, :src_count_order)
+			active_admin_stored_from_hits(@arbre_context.assigns[:hits], element, :src_count_order)
 		end
-
-    column (I18n.t :filter_people), :person_count_order, sortable: :person_count_order do |element|
-			all_hits = @arbre_context.assigns[:hits]
-			active_admin_stored_from_hits(all_hits, element, :person_count_order)
-		end
-
-    column (I18n.t :filter_institutions), :institution_count_order, sortable: :institution_count_order do |element|
-			all_hits = @arbre_context.assigns[:hits]
-			active_admin_stored_from_hits(all_hits, element, :institution_count_order)
-		end
-
-    column (I18n.t :menu_publications), :publication_count_order, sortable: :publication_count_order do |element|
-			all_hits = @arbre_context.assigns[:hits]
-			active_admin_stored_from_hits(all_hits, element, :publication_count_order)
-		end
-
-    column (I18n.t :menu_holdings), :holding_count_order, sortable: :holding_count_order do |element|
-			all_hits = @arbre_context.assigns[:hits]
-			active_admin_stored_from_hits(all_hits, element, :holding_count_order)
+    column (I18n.t :filter_authorities), :referring_objects_order, sortable: :referring_objects_order do |element|
+			active_admin_stored_from_hits(@arbre_context.assigns[:hits], element, :referring_objects_order)
 		end
 
     active_admin_muscat_actions( self )
@@ -174,7 +156,7 @@ ActiveAdmin.register Place do
     active_admin_embedded_source_list( self, place, !is_selection_mode? )
     
     # This one cannot use the compact form
-    active_admin_embedded_link_list(self, placr, Holding) do |context|
+    active_admin_embedded_link_list(self, place, Holding) do |context|
       context.table_for(context.collection) do |cr|
         context.column "id", :id
         context.column (I18n.t :filter_siglum), :lib_siglum

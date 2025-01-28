@@ -12,6 +12,7 @@ class LiturgicalFeast < ApplicationRecord
   include ForeignLinks
   include AuthorityMerge
   include CommentsCleanup
+  include ThroughAssociations
   
   #has_and_belongs_to_many(:referring_sources, class_name: "Source", join_table: "sources_to_liturgical_feasts")
   has_many :source_liturgical_feast_relations, class_name: "SourceLiturgicalFeastRelation"
@@ -82,9 +83,8 @@ class LiturgicalFeast < ApplicationRecord
     join(:folder_id, :target => FolderItem, :type => :integer, 
               :join => { :from => :item_id, :to => :id })
     
-    integer :src_count_order, :stored => true do 
-      LiturgicalFeast.count_by_sql("select count(*) from sources_to_liturgical_feasts where liturgical_feast_id = #{self[:id]}")
-    end
+    integer(:src_count_order, :stored => true) {through_associations_source_count}
+    integer(:referring_objects_order, stored: true) {through_associations_exclude_source_count}
   end
 
   # https://github.com/activeadmin/activeadmin/issues/7809

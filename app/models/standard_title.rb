@@ -13,6 +13,7 @@ class StandardTitle < ApplicationRecord
   include ForeignLinks
   include AuthorityMerge
   include CommentsCleanup
+  include ThroughAssociations
 
   #has_and_belongs_to_many(:referring_sources, class_name: "Source", join_table: "sources_to_standard_titles")
   has_many :source_standard_title_relations, class_name: "SourceStandardTitleRelation"
@@ -121,6 +122,9 @@ class StandardTitle < ApplicationRecord
       end
       #StandardTitle.count_by_sql("select count(*) from sources_to_standard_titles where standard_title_id = #{self[:id]}")
     end
+    # Not this one!
+    #sunspot_dsl.integer(:src_count_order, :stored => true) {through_associations_source_count}
+    integer(:referring_objects_order, stored: true) {through_associations_exclude_source_count}
   end
   
   def get_typus
