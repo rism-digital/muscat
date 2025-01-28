@@ -27,12 +27,11 @@ module ActiveAdmin::ViewsHelper
   def active_admin_embedded_link_list(context, item, link_class, panel_title = nil, &block)
     current_page_name = link_class.to_s.downcase + "_list_page"
     current_page = params[current_page_name]
-    if link_class == Source && item.respond_to?("referring_sources") && item.respond_to?("referring_holdings")
-      c = Source.where(id: item.referring_sources.ids).or(Source.where(id: item.referring_holdings.pluck(:source_id)))
-    elsif link_class == Source && item.respond_to?("referring_sources") && item.is_a?(Institution)
-      c = Source.where(id: item.referring_sources.ids).or(Source.where(id: item.holdings.pluck(:source_id)))
-    elsif link_class == InventoryItem &&item.respond_to?("inventory_items") && item.is_a?(Source)
-      ap item
+    #if link_class == Source && item.respond_to?("referring_sources") && item.respond_to?("referring_holdings")
+    #  c = Source.where(id: item.referring_sources.ids).or(Source.where(id: item.referring_holdings.pluck(:source_id)))
+    #elsif link_class == Source && item.respond_to?("referring_sources") && item.is_a?(Institution)
+    #  c = Source.where(id: item.referring_sources.ids).or(Source.where(id: item.holdings.pluck(:source_id)))
+    if link_class == InventoryItem &&item.respond_to?("inventory_items") && item.is_a?(Source)
       c = item.inventory_items
     else
       c = item.send("referring_" + link_class.to_s.pluralize.underscore)

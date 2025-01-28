@@ -18,6 +18,8 @@ class Institution < ApplicationRecord
   include AuthorityMerge
   include CommentsCleanup
   include ComposedOfReimplementation
+  include ThroughAssociations
+
   resourcify
   
   # class variables for storing the user name and the event from the controller
@@ -285,9 +287,8 @@ class Institution < ApplicationRecord
     sunspot_dsl.join(:folder_id, :target => FolderItem, :type => :integer, 
               :join => { :from => :item_id, :to => :id })
     
-    sunspot_dsl.integer :src_count_order, :stored => true do 
-      referring_sources.size + referring_holdings.size
-    end
+    sunspot_dsl.integer(:src_count_order, :stored => true) {through_associations_source_count}
+    sunspot_dsl.integer(:referring_objects_order, stored: true) {through_associations_exclude_source_count}
 
     sunspot_dsl.integer :wf_owner
     sunspot_dsl.string :wf_stage
