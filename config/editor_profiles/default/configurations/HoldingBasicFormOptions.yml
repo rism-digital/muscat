@@ -80,6 +80,7 @@
         - "Notated music"
         - "Libretto"
         - "Treatise"
+        - "Inventory"
         - "Other"
         editor_partial: subfield_select
 "599": 
