@@ -48,6 +48,7 @@ tag_exclude:
   - '775'
   edition_content:
   - '026'
+  - '490'
   - '506'
   - '525'
   - '541'
@@ -87,6 +88,7 @@ tag_exclude:
   - '787'
   - '852'
   libretto_edition_content:
+  - '490'
   - '506'
   - '525'
   - '541'
@@ -138,6 +140,7 @@ tag_exclude:
   - '852'
   theoretica_edition_content:
   - '026'
+  - '490'
   - '506'
   - '518'
   - '541'
@@ -163,6 +166,7 @@ tag_exclude:
   - '041'
   - '100'
   - '383'
+  - '490'
   - '510'
   - '518'
   - '546'
@@ -291,6 +295,7 @@ groups:
     template: show_incipit
   edit_references:
     all_tags:
+    - "490"
     - '588'
     - '500'
     - '505'

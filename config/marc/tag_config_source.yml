@@ -310,6 +310,23 @@
     :fields:
     - - b
       - :occurrences: "?"
+  "490":
+    :master: "0"
+    :indicator: "1#"
+    :occurrences: "*"
+    :fields:
+    - - "0"
+      - :occurrences: "?"
+        :foreign_class: StandardTitle
+        :foreign_field: id
+        :no_show: true
+    - - a
+      - :occurrences: "?"
+        :foreign_class: ^0
+        :foreign_field: title
+      - :occurrences: "?"
+    - - v
+      - :occurrences: "?"
   "500":
     :master: a
     :indicator: "##"

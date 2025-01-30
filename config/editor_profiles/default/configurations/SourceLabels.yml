@@ -21,7 +21,7 @@
     e:
       label: records.unparsed_fingerprint
   label: records.fingerprint_identifier
-028:
+'028':
   fields:
     indicator:
       label: records.publisher_plate_number
@@ -189,6 +189,13 @@
     b:
       label: records.opus_number
   label: records.opus_number
+'490':
+  fields:
+    a:
+      label: records.periodical_or_series_title
+    v:
+      label: records.number_volume
+  label: records.periodical_or_series
 '500':
   fields:
     '8':
