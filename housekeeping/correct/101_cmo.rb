@@ -55,6 +55,11 @@ def preprocess_cmo(marc, obj, options)
     n040.add_at(MarcNode.new("person", "c", "DE-633", nil), 0 )
     n040.sort_alphabetically
     marc.root.add_at(n040, marc.get_insert_position("040") )
+    
+    n042 = MarcNode.new("person", "042", "", @mc.get_default_indicator("042"))
+    n042.add_at(MarcNode.new("person", "a", "differentiated", nil), 0 )
+    n042.sort_alphabetically
+    marc.root.add_at(n042, marc.get_insert_position("042") )
 
     # We moved this to 024
     marc.by_tags("100").each do |t|
@@ -79,6 +84,22 @@ def preprocess_cmo(marc, obj, options)
         b = t.fetch_first_by_tag("b")
 
         is_defined = @defined_lit.keys.include?(w&.content&.strip&.to_sym)
+
+        # This is a ref to a source, move to an 856
+        if w&.content&.include?("source")
+
+            n856 = MarcNode.new("person", "856", "", @mc.get_default_indicator("856"))
+            n856.add_at(MarcNode.new("person", "u", "https://corpus-musicae-ottomanicae.de/receive/#{w&.content}", nil), 0)
+
+            # Move the note over here, and remove the double spaces!!
+            note_tag = [a&.content, b&.content].join(" ").split.join(" ")
+            n856.add_at(MarcNode.new("person", "z", note_tag, nil), 0)
+
+            marc.root.add_at(n856, marc.get_insert_position("856"))
+
+            # Nothing more to do here
+            next
+        end
 
         # This field can also contain bib info!
         # see cmo_person_00000497
@@ -176,7 +197,7 @@ def create_cmo_lit
         new_100.add_at(MarcNode.new("publication", "a", vals[:author], nil), 0)
         item.marc.root.add_at(new_100, item.marc.get_insert_position("100"))
 
-        n856 = MarcNode.new("publication", "856", "", mconf.get_default_indicator("100"))
+        n856 = MarcNode.new("publication", "856", "", mconf.get_default_indicator("856"))
         n856.add_at(MarcNode.new("publication", "u", "https://corpus-musicae-ottomanicae.de/receive/#{name}", nil), 0)
         n856.add_at(MarcNode.new("publication", "z", "Original catalog entry", nil), 0)
         item.marc.root.add_at(n856, item.marc.get_insert_position("856"))
