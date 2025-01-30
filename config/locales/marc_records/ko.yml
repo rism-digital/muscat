@@ -694,6 +694,7 @@ ko:
     number: Number
     number_page: Number/page
     number_part_section: Number of part/section of a work
+    number_volume: Number/volume
     number_volume_part: Number of volume/part
     numbers_code_fields: Numbers and code fields
     numeric_designation: Numeric designation
@@ -742,6 +743,8 @@ ko:
     performances: Performances
     performer: Performer
     performer_note: Note on performance
+    periodical_or_series: Periodical or series
+    periodical_or_series_title: Periodical or series title
     person: Person
     person_name: Person name
     personal_name: Personal name

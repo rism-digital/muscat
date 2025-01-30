@@ -103,7 +103,7 @@
       - :occurrences: "?"
   "024":
     :master: a
-    :indicator: "##"
+    :indicator: "2#"
     :occurrences: "*"
     :fields:
     - - a

@@ -694,6 +694,7 @@ it:
     number: Numero
     number_page: Numero/pagina
     number_part_section: Numero della parte/sezione di una composizione
+    number_volume: Number/volume
     number_volume_part: Numero del volume/parte
     numbers_code_fields: Numeri e codici
     numeric_designation: Numerazione identificativa
@@ -742,6 +743,8 @@ it:
     performances: Esecuzioni
     performer: Interprete
     performer_note: Nota sull'esecuzione
+    periodical_or_series: Periodical or series
+    periodical_or_series_title: Periodical or series title
     person: Persona
     person_name: Nome di persona
     personal_name: Nome di persona

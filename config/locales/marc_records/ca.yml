@@ -694,6 +694,7 @@ ca:
     number: Número
     number_page: Número/pàgina
     number_part_section: Número de part / secció d'una obra
+    number_volume: Number/volume
     number_volume_part: Número de volum o part
     numbers_code_fields: Números i camps codificats
     numeric_designation: Designació numèrica
@@ -742,6 +743,8 @@ ca:
     performances: Interpretacions
     performer: Intèrpret
     performer_note: Nota sobre la interpretació
+    periodical_or_series: Periodical or series
+    periodical_or_series_title: Periodical or series title
     person: Persona
     person_name: Nom personal
     personal_name: Nom personal
