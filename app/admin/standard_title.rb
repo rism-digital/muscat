@@ -175,6 +175,7 @@ ActiveAdmin.register StandardTitle do
       row (I18n.t :filter_record_type) { |r| r.typus }
       row (I18n.t :menu_latin) { |r| r.latin }
       row (I18n.t :filter_notes) { |r| r.notes }  
+      row (I18n.t :filter_owner) { |r| User.find_by(id: r.wf_owner).name rescue r.wf_owner }
     end
     active_admin_embedded_source_list( self, standard_title, !is_selection_mode? )
     active_adnin_create_list_for(self, InventoryItem, standard_title, composer: I18n.t(:filter_composer), title: I18n.t(:filter_title))

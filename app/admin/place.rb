@@ -151,6 +151,7 @@ ActiveAdmin.register Place do
       row (I18n.t :filter_country) { |r| r.country }
       row (I18n.t :filter_district) { |r| r.district }    
       row (I18n.t :filter_notes) { |r| r.notes }    
+      row (I18n.t :filter_owner) { |r| User.find_by(id: r.wf_owner).name rescue r.wf_owner }
     end
 
     active_admin_embedded_source_list( self, place, !is_selection_mode? )
