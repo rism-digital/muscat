@@ -26,6 +26,7 @@ CMO_LIT = {
     "cmo_mods_00000042": {short_name: "Mert 1999", author: "Mert, Talip", title: "Ortaçağ’ın en büyük kadın bestekârı: Dilhayat Kalfa’nın Mirası:"},
     "cmo_mods_00000044": {short_name: "Cemil, Mes’ud", author: "Cemil, Mes’ud", title: "Tanbūrî Cemil’in Hayâtı"},
     "cmo_mods_00000045": {short_name: "İA2", author: "Türkiye Diyanet Vakfı", title: "Türkiye Diyanet Vakfı İslâm Ansiklopedisi"},
+    "cmo_mods_00000759": {short_name: "YYTM", author: "Mustafa Rona", title: "Yirminci Yüzyıl Türk Musıkisi : Bestekârları ve Besteleri Güftelerile"},
 }
 
 @defined_lit = {}
@@ -82,6 +83,13 @@ def preprocess_cmo(marc, obj, options)
         # We have stuff in $w too
         w = t.fetch_first_by_tag("w")
         b = t.fetch_first_by_tag("b")
+
+
+        # Hack alert! for cmo_person_00000555
+        # it has no $w...
+        if a&.content&.include?("YYTM")
+            w = MarcNode.new("person", "w", "cmo_mods_00000759", nil)
+        end
 
         is_defined = @defined_lit.keys.include?(w&.content&.strip&.to_sym)
 
@@ -204,7 +212,7 @@ def create_cmo_lit
 
         item.marc.import
         item.save
-
+        item.reindex
         @defined_lit[name] = item.id
     end
 end
