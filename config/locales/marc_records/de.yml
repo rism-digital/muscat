@@ -694,7 +694,7 @@ de:
     number: Nummer
     number_page: Nummer/Seitenzahl
     number_part_section: Anzahl Teile oder Abschnitte eines Werks
-    number_volume: Number/volume
+    number_volume: Nummer/Band
     number_volume_part: Nummer des Bandes oder Teils
     numbers_code_fields: Nummern und Codes
     numeric_designation: Numerische Bezeichnung
@@ -743,8 +743,8 @@ de:
     performances: Aufführungen
     performer: Interpret
     performer_note: Bemerkungen zu den Aufführungen
-    periodical_or_series: Periodical or series
-    periodical_or_series_title: Periodical or series title
+    periodical_or_series: Zeitschrift oder Reihe
+    periodical_or_series_title: Zeitschrift oder Reihentitel
     person: Person
     person_name: Personenname
     personal_name: Personenname
