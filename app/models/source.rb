@@ -93,7 +93,7 @@ class Source < ApplicationRecord
   has_many :referring_inventory_items, through: :inventory_item_source_relations, source: :inventory_item
 
   #has_and_belongs_to_many :works, join_table: "sources_to_works"
-  has_many :source_work_relations
+  has_many :source_work_relations, dependent: :destroy
   has_many :works, through: :source_work_relations
 
   #has_and_belongs_to_many :work_nodes, join_table: "sources_to_work_nodes"

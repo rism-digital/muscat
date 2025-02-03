@@ -21,7 +21,7 @@ class Work < ApplicationRecord
   has_many :digital_objects, through: :digital_object_links, foreign_key: "object_link_id"
 
   #has_and_belongs_to_many(:referring_sources, class_name: "Source", join_table: "sources_to_works")
-  has_many :source_work_relations, class_name: "SourceWorkRelation"
+  has_many :source_work_relations, class_name: "SourceWorkRelation", dependent: :destroy
   has_many :referring_sources, through: :source_work_relations, source: :source
   
   has_many :inventory_item_work_relations, class_name: "InventoryItemWorkRelation"
