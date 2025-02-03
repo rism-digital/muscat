@@ -34,10 +34,6 @@ class StandardTerm < ApplicationRecord
   has_many :inventory_item_standard_term_relations, class_name: "InventoryItemStandardTermRelation"
   has_many :referring_inventory_items, through: :inventory_item_standard_term_relations, source: :inventory_item
 
-  #has_and_belongs_to_many(:referring_work_nodes, class_name: "WorkNode", join_table: "work_nodes_to_standard_terms")
-  has_many :work_node_standard_term_relations, class_name: "WorkNodeStandardTermRelation"
-  has_many :referring_work_nodes, through: :work_node_standard_term_relations, source: :work_node
-
   has_many :folder_items, as: :item, dependent: :destroy
   has_many :delayed_jobs, -> { where parent_type: "StandardTerm" }, class_name: 'Delayed::Backend::ActiveRecord::Job', foreign_key: "parent_id"
   belongs_to :user, :foreign_key => "wf_owner"

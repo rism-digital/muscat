@@ -20,26 +20,6 @@ class WorkNode < ApplicationRecord
   has_many :source_work_node_relations, class_name: "SourceWorkNodeRelation"
   has_many :referring_sources, through: :source_work_node_relations, source: :source
   
-  #  has_and_belongs_to_many :publications, join_table: "work_nodes_to_publications"
-  has_many :work_node_publication_relations
-  has_many :publications, through: :work_node_publication_relations
-
-  #has_and_belongs_to_many :standard_terms, join_table: "work_nodes_to_standard_terms"
-  has_many :work_node_standard_term_relations
-  has_many :standard_terms, through: :work_node_standard_term_relations
-
-  #has_and_belongs_to_many :standard_titles, join_table: "work_nodes_to_standard_titles"
-  has_many :work_node_standard_title_relations
-  has_many :standard_titles, through: :work_node_standard_title_relations
-
-  #has_and_belongs_to_many :liturgical_feasts, join_table: "work_nodes_to_liturgical_feasts"
-  has_many :work_node_liturgical_feast_relations
-  has_many :liturgical_feasts, through: :work_node_liturgical_feast_relations
-
-  #has_and_belongs_to_many :institutions, join_table: "work_nodes_to_institutions"
-  has_many :work_node_institution_relations
-  has_many :institutions, through: :work_node_institution_relations
-
   #has_and_belongs_to_many :people, join_table: "work_nodes_to_people"
   has_many :work_node_person_relations
   has_many :people, through: :work_node_person_relations
