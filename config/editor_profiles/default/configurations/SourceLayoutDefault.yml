@@ -267,6 +267,7 @@ groups:
     - '730'
     - '597'
     - '650'
+    - "490"
     - '520'
     - '594'
     - '598'
@@ -295,7 +296,6 @@ groups:
     template: show_incipit
   edit_references:
     all_tags:
-    - "490"
     - '588'
     - '500'
     - '505'

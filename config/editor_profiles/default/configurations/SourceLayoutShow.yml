@@ -26,6 +26,7 @@ groups:
     - "730"
     - "597"
     - "930"
+    - "490"
     - "001"
     all_tag_templates: 
       "100": marc_show/show_person
@@ -96,7 +97,6 @@ groups:
 
   show_references: 
     all_tags: 
-    - "490"
     - "596"
     - "690"
     - "691"
