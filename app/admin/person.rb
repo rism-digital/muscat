@@ -262,6 +262,7 @@ ActiveAdmin.register Person do
     active_adnin_create_list_for(self, Person, person, full_name: I18n.t(:filter_full_name), life_dates: I18n.t(:filter_life_dates), alternate_names: I18n.t(:filter_alternate_names))
     active_adnin_create_list_for(self, Publication, person, short_name: I18n.t(:filter_title_short), author: I18n.t(:filter_author), title: I18n.t(:filter_title))    
     active_adnin_create_list_for(self, Work, person, title: I18n.t(:filter_title))
+    active_adnin_create_list_for(self, WorkNode, person, title: I18n.t(:filter_title))
 
     active_admin_digital_object( self, @item ) if !is_selection_mode?
     active_admin_user_wf( self, person )
