@@ -32,13 +32,22 @@ class NotificationMatcher
 
     rules = NotificationMatcher::parse_rules(user_notifications, @limit_rules)
 
+
     rules.each do |model, rule_groups|
       next if @object.class.to_s.downcase != model.downcase
 
+      # Process exclusions, for now only "matches" works
+      exclude = rule_groups.flatten.find { |item| item[:property] == "exclude" }&.dig(:pattern)
+      if exclude == "mine"
+        next if process_mine_exclusions
+      end
+
       rule_groups.each do |property_patterns|
+        # We need to purge the excludes
+        property_patterns.reject! { |h| h[:property] == "exclude" }
+
         partial_match = []
         property_patterns.each do |rule|
-          
           next if !allowed?(rule[:property])
           
           if special_case?(rule[:property])
@@ -127,6 +136,13 @@ class NotificationMatcher
     false
   end
 
+  def process_mine_exclusions()
+    # Was the last modification made by the same user?
+    last_user = @object.versions&.last&.whodunnit&.downcase
+    match_user = @user.name.downcase
+    return true if last_user == match_user
+    false
+  end
 
   def self.split_line(line)
     parts = line.strip.split(":")
