@@ -131,5 +131,5 @@ With the &quot;Notification type&quot; drop-down selector, you can choose the fr
 
 - **every** Send a notification each time a source is saved (with a grace period of one hour to account for multiple saves)
 - **daily** A list of the modified sources is sent once a day
-- **title** A list of the modified sources is sent once a week
+- **weekly** A list of the modified sources is sent once a week
 - **off** Notifications are disabled
