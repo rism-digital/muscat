@@ -3,7 +3,7 @@
 class MarcNode
 
   include Enumerable
-  attr_reader :tag, :content, :indicator, :foreign_object, :parent, :diff, :diff_is_deleted
+  attr_reader :tag, :content, :indicator, :foreign_object, :parent, :diff, :diff_is_deleted, :model
   attr_writer :tag, :content, :indicator, :foreign_object, :foreign_field, :diff, :diff_is_deleted
   attr_accessor :foreign_host, :suppress_scaffold_links_trigger
   
@@ -722,6 +722,9 @@ class MarcNode
   
   # Add an element at specified position
   def add_at(child, index)
+    if child.model != @model
+      puts "#{caller.first.red}: MarcNode add_at() child model #{child.model.cyan} is not the same as root model #{@model.cyan} [#{child.to_s.strip}]"
+    end
     @children.insert(index, child)
     child.parent = self
     return child
