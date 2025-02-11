@@ -15,7 +15,7 @@
         begin_time = Time.now
 
         # Run the checkup function
-        checkup = MuscatCheckup.new({model: @base_model, jobs: 10, skip_validation: true, skip_dates: true, skip_unknown_tags: true, skip_dead_774: true})
+        checkup = MuscatCheckup.new({model: @base_model, jobs: 10, skip_validation: true, skip_dates: true, skip_unknown_tags: true, skip_dead_774: true, skip_588_validation: true})
         total_errors, total_validations, foreign_tag_errors, unknown_tags = checkup.run_parallel
 
         # Force a reconnect

@@ -23,6 +23,7 @@ class MuscatCheckup
       @skip_holdings = (options.include?(:skip_holdings) && options[:skip_holdings] == true)
       @skip_dead_774 = (options.include?(:skip_dead_774) && options[:skip_dead_774] == true)
       @skip_parent_institution = (options.include?(:skip_parent_institution) && options[:skip_parent_institution] == true)
+      @skip_588_validation = (options.include?(:skip_588_validation) && options[:skip_588_validation] == true)
       @debug_logger = options.include?(:logger) ? options[:logger] : nil
 
       # These are relevant only for Sources
@@ -164,6 +165,7 @@ class MuscatCheckup
       validator.validate_holdings if !@skip_holdings
       validator.validate_dead_774_links if !@skip_dead_774
       validator.validate_parent_institution if !@skip_parent_institution
+      validator.validate_588 if !@skip_588_validation
       return validator.get_errors
     rescue Exception => e
       puts e.message
