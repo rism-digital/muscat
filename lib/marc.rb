@@ -569,17 +569,21 @@ class Marc
 
   # Accept the same parameters as the XML exporter
   def to_marc_external(options = {})
-    created_at = options.has_key?(:created_at) ? options[:created_at] : nil
-    updated_at = options.has_key?(:updated_at) ? options[:updated_at] : nil
-    versions = options.has_key?(:versions) ? options[:versions] : nil
-    holdings = options.has_key?(:holdings) ? options[:holdings] : true
+    created_at = options.fetch(:created_at, nil)
+    updated_at = options.fetch(:updated_at, nil)
+    versions = options.fetch(:versions, nil)
+    holdings =  options.fetch(:holdings, true)
+    sanitize = options.fetch(:sanitize, false)
 
     safe_marc = self.deep_copy
     safe_marc.root = @root.deep_copy
     safe_marc.to_external(created_at, updated_at, versions, holdings)
 
-    # Send back a sanitized version for HTML display
-    ERB::Util.html_escape(safe_marc.to_marc.gsub(DOLLAR_STRING, "{dollar}"))
+    marc_data = safe_marc.to_marc.gsub(DOLLAR_STRING, "{dollar}")
+    # Send back a sanitized version for HTML display?
+    marc_data = ERB::Util.html_escape(marc_data) if sanitize
+
+    return marc_data
   end
 
   # Export a dump of the contents
