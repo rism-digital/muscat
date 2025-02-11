@@ -9,7 +9,6 @@ groups:
   codes:
     all_tags:
     - "024"
-    - "040"
     - "043"
     - "034"
   identity:
@@ -37,4 +36,5 @@ groups:
   control: 
     all_tags: 
     - "001"
+    - "040"
     - "667"

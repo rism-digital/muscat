@@ -9,7 +9,6 @@ groups:
   codes:
     all_tags:
     - "024"
-    - "040"
     - "043"
     all_tag_templates:
       "024": marc_show/show_dnb_link
@@ -44,4 +43,5 @@ groups:
   control: 
     all_tags: 
     - "001"
+    - "040"
     - "667"
