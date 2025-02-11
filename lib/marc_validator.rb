@@ -440,6 +440,27 @@ include ApplicationHelper
     end
   end
 
+  def validate_588
+    return if !@object.respond_to?(:holdings) && @object.holdings.count == 0
+    return if @object.marc.by_tags("588").count == 0
+
+    holdings_sigla = @object.holdings.map(&:lib_siglum)
+
+    @object.marc.each_by_tag("588") do |t|
+      # There should be only one of these...
+      t.fetch_all_by_tag("a").map(&:content).compact.each do |content|
+        # Extract the first chunk as the siglum
+        siglum = content.split(" ").first
+        
+        unless holdings_sigla.include?(siglum)
+          add_error("588", "a", "Siglum #{siglum} in 588 is not found in the holdings", "source_description_missing")
+        end
+      end
+    end
+    
+
+  end
+
   def validate
     validate_tags
     validate_dates
@@ -448,6 +469,7 @@ include ApplicationHelper
     validate_unknown_tags
     validate_dead_774_links
     validate_parent_institution
+    validate_588
     return @errors
   end
 
