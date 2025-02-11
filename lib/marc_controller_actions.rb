@@ -335,7 +335,6 @@ module MarcControllerActions
       validator.validate_links
       validator.validate_unknown_tags
       validator.validate_server_side
-      validator.validate_588
       if validator.has_errors
         render json: {status: validator.to_s(translate: true)}
       else
