@@ -60,6 +60,7 @@ pl:
       welcome: Witamy w części produkcyjnej. Domyślna strona panelu użytkownika.
     delete: Usuń
     delete_confirmation: Czy na pewno to usunąć?
+    delete_confirmation_description: "Czy na pewno to usunąć? %{description}"
     delete_model: Usuń %{model}
     details: "%{model} Szczegóły"
     devise:

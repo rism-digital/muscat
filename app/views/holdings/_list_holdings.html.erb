@@ -6,17 +6,20 @@
 			<tr>
 				<th>ID</th>
 				<th><%=I18n.t(:lib_siglum)%></th>
+				<th>&nbsp;</th>
 			</tr>
 		<% @holdings.each do |h| %>
 			<tr class="<%= cycle('even', 'odd') -%>">
+				<td class="col"> <%= link_to(h.id, edit_admin_holding_path(h.id )) %> </td>
+				<td class="col"> <%= h.lib_siglum%> </td>
 				<td class="col">
+					<%= link_to( I18n.t('edit'), edit_admin_holding_path(h.id )) %>
 					<% if can?(:destroy, h)%>
-						<%= h.id %> - <%= link_to I18n.t('delete'), admin_holding_path(h.id), method: :delete, data: { confirm: I18n.t('active_admin.delete_confirmation') }%>
-						<% else %>
-							<%= h.id %>
-						<% end %>
+						<% desc = "#{I18n.t("records.exemplar")} #{h.lib_siglum} (#{h.class.to_s.humanize} #{h.id})" %>
+						&nbsp;-&nbsp;
+						<%= link_to I18n.t('delete'), admin_holding_path(h.id), method: :delete, data: { confirm: I18n.t('active_admin.delete_confirmation_description', description: desc) }%>
+					<% end %>
 				</td>
-				<td class="col"><%= link_to(h.lib_siglum, edit_admin_holding_path(h.id )) %></td>
 			</tr>
 		<% end %>
 		</table>

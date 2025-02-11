@@ -60,6 +60,7 @@ ca:
       welcome: Benvinguts a l'Active Admin. Aquesta és el tauler d'activitat per defecte.
     delete: Elimina
     delete_confirmation: Segur que voleu eliminar-lo?
+    delete_confirmation_description: "Esteu segur que voleu suprimir aquest element? %{description}"
     delete_model: Elimina %{model}
     details: Detalls de %{model}
     devise:

@@ -60,6 +60,7 @@ pt:
       welcome: Benvindo(a) ao Active Admin. Esta é a página padrão do Painel de controle.
     delete: Apagar
     delete_confirmation: Tem certeza de que quer apagar isto?
+    delete_confirmation_description: "Tem certeza de que deseja excluir este item? %{description}"
     delete_model: Apagar %{model}
     details: "%Detalhes do {model}"
     devise:

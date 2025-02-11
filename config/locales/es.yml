@@ -60,6 +60,7 @@ es:
       welcome: "¡Bienvenidos a Active Admin! Este es el panel de actividad."
     delete: Borrar
     delete_confirmation: "¿Está seguro de que desea borrar esto?"
+    delete_confirmation_description: "¿Está seguro de que desea eliminar este elemento? %{description}"
     delete_model: Borrar %{model}
     details: Detalles de %{model}
     devise:

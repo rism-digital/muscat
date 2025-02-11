@@ -60,6 +60,7 @@ fr:
       welcome: Bienvenue dans Active Admin. Ceci est la page par défaut.
     delete: Supprimer
     delete_confirmation: Êtes-vous certain de vouloir supprimer ceci ?
+    delete_confirmation_description: "Êtes-vous sûr de vouloir supprimer cet élément ? %{description}"
     delete_model: Supprimer %{model}
     details: Détails de %{model}
     devise:

@@ -60,6 +60,7 @@ it:
       welcome: Benvenuti in Active Admin. Questa è la pagina dashboard di default.
     delete: Rimuovi
     delete_confirmation: Sei sicuro di volerlo rimuovere?
+    delete_confirmation_description: Sei sicuro di voler eliminare questo elemento? %{description}
     delete_model: Rimuovi %{model}
     details: Dettagli %{model}
     devise:

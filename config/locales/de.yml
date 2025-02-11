@@ -60,6 +60,7 @@ de:
       welcome: Willkommen in Active Admin. Dies ist die Standard-Übersichtsseite.
     delete: Löschen
     delete_confirmation: Wollen Sie dieses Element wirklich löschen?
+    delete_confirmation_description: "Wollen Sie dieses Element wirklich löschen? %{description}"
     delete_model: "%{model} löschen"
     details: "%{model} Details"
     devise:
