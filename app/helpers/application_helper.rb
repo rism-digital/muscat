@@ -76,6 +76,10 @@ module ApplicationHelper
     autocomplete_source_031t_filter_sms_admin_sources_path
   end
 
+  def publication_505t_solr_default_autocomplete
+    autocomplete_publication_505t_sms_admin_publications_path
+  end
+  
   def holding_default_autocomplete
     autocomplete_intentory_item_id_admin_inventory_items_path
   end

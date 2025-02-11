@@ -343,6 +343,7 @@ class Publication < ApplicationRecord
 
   ransacker :"240g", proc{ |v| } do |parent| parent.table[:id] end
   ransacker :"260b", proc{ |v| } do |parent| parent.table[:id] end
+  ransacker :"505t", proc{ |v| } do |parent| parent.table[:id] end
   ransacker :"100a_or_700a", proc{ |v| } do |parent| parent.table[:id] end
     
 end

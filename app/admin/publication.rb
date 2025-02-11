@@ -4,6 +4,7 @@ ActiveAdmin.register Publication do
   
   collection_action :autocomplete_publication_short_name, :method => :get
   collection_action :autocomplete_publication_only_short_name, :method => :get
+  collection_action :autocomplete_publication_505t_sms, :method => :get
 
   menu :parent => "indexes_menu", :label => proc {I18n.t(:menu_publications)}
 
@@ -30,8 +31,8 @@ ActiveAdmin.register Publication do
       item.user = current_user
     end
     autocomplete :publication, [:short_name, :author, :title], :display_value => :autocomplete_label , :extra_data => [:author, :date, :title]
-
     autocomplete :publication, :only_short_name, :record_field => :short_name, :string_boundary => true, :display_value => :label, :getter_function => :get_autocomplete_title_with_count
+    autocomplete :publication, "505t_sms", :solr => true, :display_value => :label
 
     def get_autocomplete_title_with_count(token,  options = {})
 

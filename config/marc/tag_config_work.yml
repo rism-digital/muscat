@@ -389,6 +389,10 @@
         :foreign_field: short_name
     - - n
       - :occurrences: "?"
+    - - s
+      - :occurrences: "?"
+    - - x
+      - :occurrences: "?"
   "691":
     :master: "0"
     :indicator: "#7"
