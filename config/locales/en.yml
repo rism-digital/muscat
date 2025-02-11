@@ -227,6 +227,8 @@ en:
     required_if: This field is required because another one is present
     check_group: This field contains an invalid value relative to the position in the group
     begin_with: This field must begin with the correct string
+    must_contain: This field does not match the required pattern (for example CZ-Nlob X A a 12)
+    siglum_not_found: The siglum in one or more 588 fields does not match any holding record
   basic_level: Basic record
   body: Body
   btn_themefinder_reset: Reset

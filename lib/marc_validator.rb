@@ -121,7 +121,9 @@ include ApplicationHelper
   
       when "required_if"
         validate_required_if_rule(tag, subtag, marc_subtag, value)
-  
+
+      when "must_contain"
+        validate_must_contain_rule(tag, subtag, marc_subtag, value)
       else
         # Unknown rule or custom logic
         puts "Unknown rule key: #{key} => #{value.inspect}" if DEBUG
@@ -175,6 +177,14 @@ include ApplicationHelper
        !marc_subtag.content.start_with?(required_prefix)
       add_error(tag, subtag, "begin_with:#{required_prefix}")
       puts "#{tag} #{subtag} should begin with #{required_prefix}" if DEBUG
+    end
+  end
+
+  def validate_must_contain_rule(tag, subtag, marc_subtag, substring)
+    if marc_subtag && marc_subtag.content && 
+       !marc_subtag.content.include?(substring)
+      add_error(tag, subtag, "must_contain:#{substring}")
+      puts "#{tag} #{subtag} must include the substring #{substring}" if DEBUG
     end
   end
   
@@ -453,7 +463,7 @@ include ApplicationHelper
         siglum = content.split(" ").first
         
         unless holdings_sigla.include?(siglum)
-          add_error("588", "a", "Siglum #{siglum} in 588 is not found in the holdings", "source_description_missing")
+          add_error("588", "a", "siglum_not_found:#{siglum}", "source_description_missing")
         end
       end
     end
