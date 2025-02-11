@@ -60,7 +60,7 @@ include ApplicationHelper
       else
         st if v == "mandatory" && !is_subtag_excluded(tag, st)
         # Also manage any_of mixed rules
-        st if v.is_a?(Hash) && v.keys.any?("any_of") && v.values.first.any?("mandatory") 
+        st if v.is_a?(Hash) && v.keys.any?("any_of") && v.values.first.any?("mandatory") && !is_subtag_excluded(tag, st)
       end
     end.compact
   end
