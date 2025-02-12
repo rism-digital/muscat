@@ -227,6 +227,8 @@ ca:
     required_if: Aquest camp és obligatori perquè un altre és present
     check_group: Aquest camp conté un valor no vàlid en relació amb la posició al grup
     begin_with: Aquest camp ha de començar amb la cadena correcta
+    must_contain: "Aquest camp no coincideix amb el patró requerit (per exemple CZ-Nlob X A a 12)"
+    siglum_not_found: "El siglum en un o més camps 588 no coincideix amb cap registre de fons"
   basic_level: Registre bàsic
   body: Body
   btn_themefinder_reset: Restableix

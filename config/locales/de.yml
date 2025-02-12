@@ -227,6 +227,8 @@ de:
     required_if: Dieses Feld ist erforderlich, weil ein anderes vorhanden ist
     check_group: Dieses Feld enthält einen ungültigen Wert in Bezug auf die Position in der Gruppe
     begin_with: Dieses Feld muss mit der richtigen Zeichenfolge beginnen
+    must_contain: "Dieses Feld entspricht nicht dem erforderlichen Muster (zum Beispiel CZ-Nlob X A a 12)"
+    siglum_not_found: "Das Siglum in einem oder mehreren 588-Feldern entspricht keinem vorhandenen Bestandsdatensatz"
   basic_level: Basiskatalog
   body: Body
   btn_themefinder_reset: Zurücksetzen

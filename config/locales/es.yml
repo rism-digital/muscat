@@ -227,6 +227,8 @@ es:
     required_if: Este campo es obligatorio porque otro está presente
     check_group: Este campo contiene un valor no válido en relación con la posición en el grupo
     begin_with: Este campo debe comenzar con la cadena correcta
+    must_contain: "Este campo no coincide con el patrón requerido (por ejemplo CZ-Nlob X A a 12)"
+    siglum_not_found: "El siglum en uno o varios campos 588 no coincide con ningún registro de tenencia"
   basic_level: Registro básico
   body: Body
   btn_themefinder_reset: Reiniciar

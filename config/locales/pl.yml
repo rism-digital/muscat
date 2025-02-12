@@ -227,6 +227,8 @@ pl:
     required_if: To pole jest wymagane, ponieważ inne jest obecne
     check_group: To pole zawiera nieprawidłową wartość względem pozycji w grupie
     begin_with: To pole musi zaczynać się od prawidłowego ciągu znaków
+    must_contain: "To pole nie pasuje do wymaganego wzorca (na przykład CZ-Nlob X A a 12)"
+    siglum_not_found: "Siglum w jednym lub kilku polach 588 nie odpowiada żadnemu rekordowi zasobów"
   basic_level: Rekord podstawowy
   body: Body
   btn_themefinder_reset: Wyzeruj

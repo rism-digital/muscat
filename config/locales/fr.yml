@@ -227,6 +227,8 @@ fr:
     required_if: Ce champ est requis car un autre est présent
     check_group: Ce champ contient une valeur invalide par rapport à la position dans le groupe
     begin_with: Ce champ doit commencer par la chaîne correcte
+    must_contain: "Ce champ ne correspond pas au modèle requis (par exemple CZ-Nlob X A a 12)"
+    siglum_not_found: "Le sigle dans un ou plusieurs champs 588 ne correspond à aucun enregistrement de fonds"
   basic_level: Notice de base
   body: Contenu
   btn_themefinder_reset: Reset

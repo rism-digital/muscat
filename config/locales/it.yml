@@ -227,6 +227,8 @@ it:
     required_if: Questo campo è obbligatorio perché un altro è presente
     check_group: Questo campo contiene un valore non valido rispetto alla posizione nel gruppo
     begin_with: Questo campo deve iniziare con la stringa corretta
+    must_contain: "Questo campo non corrisponde al modello richiesto (ad esempio CZ-Nlob X A a 12)"
+    siglum_not_found: "Il siglum in uno o più campi 588 non corrisponde a nessuna holding"
   basic_level: Record di base
   body: Contenuto
   btn_themefinder_reset: Reset
