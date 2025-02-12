@@ -32,3 +32,5 @@ Inventory:
   label: relations.P60194
 "rdau:P60183":
   label: relations.P60183
+"Appendix":
+  label: records.appendix
