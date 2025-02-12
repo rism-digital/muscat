@@ -280,6 +280,8 @@ ko:
     alternate_spelling: Alternate spelling
     alternative_work_title: Alternative work title
     amount: Number
+    annex: Annex
+    appendix: Appendix
     archive: Archive
     arrangement: Arrangement
     arrangement_statement: Arrangement statement
@@ -830,6 +832,7 @@ ko:
     series: Series
     series_added_entry: Series added entry fields
     series_statement: Series statement fields
+    section: Section
     shelfmark: Shelfmark
     shelfmark_olim: Former shelfmark (olim)
     short_title: Short title

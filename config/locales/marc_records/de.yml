@@ -280,6 +280,8 @@ de:
     alternate_spelling: Andere Schreibweise
     alternative_work_title: Alternativer Werktitel
     amount: Anzahl
+    annex: Anhang
+    appendix: Zusatz
     archive: Archiv
     arrangement: Bearbeitung
     arrangement_statement: Bearbeitung
@@ -830,6 +832,7 @@ de:
     series: Serie
     series_added_entry: Nebeneintragungen Gesamttitel
     series_statement: Gesamttitelangaben
+    section: Abschnitt
     shelfmark: Signatur
     shelfmark_olim: Alte Signatur (olim)
     short_title: Kurztitel

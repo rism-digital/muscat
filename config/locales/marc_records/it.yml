@@ -280,6 +280,8 @@ it:
     alternate_spelling: Ortografia alternativa
     alternative_work_title: Titolo alternativo dell'opera
     amount: Numero
+    annex: Annex
+    appendix: Appendice
     archive: Archivio
     arrangement: Arrangiamento
     arrangement_statement: Arrangiamento
@@ -830,6 +832,7 @@ it:
     series: Serie
     series_added_entry: Notizia secondaria sul titolo sovraordinato
     series_statement: Informazioni sul titolo sovraordinato
+    section: Sezione
     shelfmark: Segnatura
     shelfmark_olim: Segnatura antica (olim)
     short_title: Titolo breve

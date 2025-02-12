@@ -280,6 +280,8 @@ ca:
     alternate_spelling: Ortografia alternativa
     alternative_work_title: Títol alternatiu
     amount: Número
+    annex: Annex
+    appendix: Appendix
     archive: Arxiu
     arrangement: Arranjament
     arrangement_statement: Menció d'arranjament
@@ -830,6 +832,7 @@ ca:
     series: Sèries
     series_added_entry: Entrades secundàries de col·lecció
     series_statement: Menció de col·lecció
+    section: Section
     shelfmark: Signatura
     shelfmark_olim: Signatura anterior (olim)
     short_title: Títol abreujat

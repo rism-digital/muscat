@@ -280,6 +280,8 @@ fr:
     alternate_spelling: Autres formes
     alternative_work_title: Titre alternatif
     amount: Nombre
+    annex: Annex
+    appendix: Appendix
     archive: Archives
     arrangement: Arrangement
     arrangement_statement: Mention d'arrangement
@@ -830,6 +832,7 @@ fr:
     series: Série
     series_added_entry: Champs de collection
     series_statement: Mentions de collection
+    section: Section
     shelfmark: Cote
     shelfmark_olim: Ancienne cote (olim)
     short_title: Titre abrégé
