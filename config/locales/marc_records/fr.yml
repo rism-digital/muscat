@@ -694,7 +694,7 @@ fr:
     number: Nombre
     number_page: Numéro/page
     number_part_section: Numéro de partie / section d'une œuvre
-    number_volume: Number/volume
+    number_volume: Numéro/volume
     number_volume_part: Numéro du volume ou de la partie
     numbers_code_fields: Numéros et codes
     numeric_designation: Désignation numérique
@@ -743,8 +743,8 @@ fr:
     performances: Exécutions
     performer: Interprète
     performer_note: Remarque sur les interprètes
-    periodical_or_series: Periodical or series
-    periodical_or_series_title: Periodical or series title
+    periodical_or_series: Revue ou série
+    periodical_or_series_title: Titre de la revue ou série
     person: Personne
     person_name: Nom de la personne
     personal_name: Nom de la personne
