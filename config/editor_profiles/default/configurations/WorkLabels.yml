@@ -223,7 +223,7 @@
     s:
       label: records.section
     x:
-      label: records.annex
+      label: records.appendix
   label: records.catalog_works
 '691':
   fields:
@@ -234,7 +234,7 @@
     s:
       label: records.section
     x:
-      label: records.annex
+      label: records.appendix
   label: records.secondary_catalog_works
 '699':
   fields:
