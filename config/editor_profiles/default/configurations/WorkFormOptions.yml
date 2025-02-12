@@ -641,8 +641,8 @@
         allow_new: false
     - - n
     - - s
-      - type: publication_505t_solr
-        editor_partial: subfield_autocomplete
+      #- type: publication_505t_solr
+      #  editor_partial: subfield_autocomplete
     - - x
       - editor_partial: subfield_select_codes
         codes_reference: "codes"
@@ -660,8 +660,8 @@
         allow_new: false
     - - n
     - - s
-      - type: publication_505t_solr
-        editor_partial: subfield_autocomplete
+      #- type: publication_505t_solr
+      #  editor_partial: subfield_autocomplete
     - - x
       - editor_partial: subfield_select_codes
         codes_reference: "codes"
