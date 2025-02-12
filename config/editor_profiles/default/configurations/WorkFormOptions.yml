@@ -648,7 +648,6 @@
         codes_reference: "codes"
   tag_params:
       codes:
-      - "Section"
       - "Appendix"
 "691": 
   new_window: publications
@@ -660,6 +659,15 @@
         editor_partial: subfield_secondary
         allow_new: false
     - - n
+    - - s
+      - type: publication_505t_solr
+        editor_partial: subfield_autocomplete
+    - - x
+      - editor_partial: subfield_select_codes
+        codes_reference: "codes"
+  tag_params:
+      codes:
+      - "Appendix"
 "699": 
   layout: 
     fields:
