@@ -60,7 +60,7 @@ ca:
       welcome: Benvinguts a l'Active Admin. Aquesta és el tauler d'activitat per defecte.
     delete: Elimina
     delete_confirmation: Segur que voleu eliminar-lo?
-    delete_confirmation_description: "Esteu segur que voleu suprimir aquest element? %{description}"
+    delete_confirmation_description: Esteu segur que voleu suprimir aquest element? %{description}
     delete_model: Elimina %{model}
     details: Detalls de %{model}
     devise:
@@ -221,14 +221,14 @@ ca:
   authorization_tokens: Auth tokens
   available_templates: Platilles disponibles
   backend_validation:
-    required: Aquest camp és obligatori quan s'afegeix aquesta etiqueta
-    no_subtag: Aquest camp és obligatori
-    mandatory: Aquest subcamp és obligatori
-    required_if: Aquest camp és obligatori perquè un altre és present
-    check_group: Aquest camp conté un valor no vàlid en relació amb la posició al grup
     begin_with: Aquest camp ha de començar amb la cadena correcta
-    must_contain: "Aquest camp no coincideix amb el patró requerit (per exemple CZ-Nlob X A a 12)"
-    siglum_not_found: "El siglum en un o més camps 588 no coincideix amb cap registre de fons"
+    check_group: Aquest camp conté un valor no vàlid en relació amb la posició al grup
+    mandatory: Aquest subcamp és obligatori
+    must_contain: Aquest camp no coincideix amb el patró requerit (per exemple CZ-Nlob X A a 12)
+    no_subtag: Aquest camp és obligatori
+    required: Aquest camp és obligatori quan s'afegeix aquesta etiqueta
+    required_if: Aquest camp és obligatori perquè un altre és present
+    siglum_not_found: El siglum en un o més camps 588 no coincideix amb cap registre de fons
   basic_level: Registre bàsic
   body: Body
   btn_themefinder_reset: Restableix
@@ -341,6 +341,7 @@ ca:
   filter_attachment_type: Tipus d'objecte digital
   filter_author: Autor
   filter_author_or_editor: Autor/editor
+  filter_authorities: Autoritats
   filter_autograph_of: Autògraf de
   filter_birth_place: Lloc de naixement
   filter_book_id: ID del llibre
@@ -772,7 +773,7 @@ ca:
     correct: El registre no té cap error de validació [200]
     insufficient_rights: L'usuari no té els drets necessaris per crear o actualtizar un registre d'aquesta biblioteca
     missing_message: Aquest camp ha de tenir un valor
-    must_contain_message: "Introduïu el sigle de la biblioteca i la signatura de l'edició impresa consultada."
+    must_contain_message: Introduïu el sigle de la biblioteca i la signatura de l'edició impresa consultada.
     name_uniqueness: Aquest nom abreujat ja s'utilitza
     required_if_message: El camp és obligatori en presència de {0} ${1}
     warning_message: Caldria que aquest camp tingués un valor

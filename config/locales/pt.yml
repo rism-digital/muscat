@@ -60,7 +60,7 @@ pt:
       welcome: Benvindo(a) ao Active Admin. Esta é a página padrão do Painel de controle.
     delete: Apagar
     delete_confirmation: Tem certeza de que quer apagar isto?
-    delete_confirmation_description: "Tem certeza de que deseja excluir este item? %{description}"
+    delete_confirmation_description: Tem certeza de que deseja excluir este item? %{description}
     delete_model: Apagar %{model}
     details: "%Detalhes do {model}"
     devise:
@@ -221,14 +221,14 @@ pt:
   authorization_tokens: Auth tokens
   available_templates: Modelos disponíveis
   backend_validation:
-    required: Este campo é obrigatório quando esta tag é adicionada
-    no_subtag: Este campo é obrigatório
-    mandatory: Este subcampo é obrigatório
-    required_if: Este campo é obrigatório porque outro está presente
-    check_group: Este campo contém um valor inválido em relação à posição no grupo
     begin_with: Este campo deve começar com a string correta
-    must_contain: "Este campo não corresponde ao padrão exigido (por exemplo, CZ-Nlob X A a 12)"
-    siglum_not_found: "O siglum em um ou mais campos 588 não corresponde a nenhum registro de acervo"
+    check_group: Este campo contém um valor inválido em relação à posição no grupo
+    mandatory: Este subcampo é obrigatório
+    must_contain: Este campo não corresponde ao padrão exigido (por exemplo, CZ-Nlob X A a 12)
+    no_subtag: Este campo é obrigatório
+    required: Este campo é obrigatório quando esta tag é adicionada
+    required_if: Este campo é obrigatório porque outro está presente
+    siglum_not_found: O siglum em um ou mais campos 588 não corresponde a nenhum registro de acervo
   basic_level: Registro básico
   body: Body
   btn_themefinder_reset: Reset
@@ -341,6 +341,7 @@ pt:
   filter_attachment_type: Tipo de objecto digital
   filter_author: Autor
   filter_author_or_editor: Autor/Editor
+  filter_authorities: Autoridades
   filter_autograph_of: Autógrafo de
   filter_birth_place: Local de nascimento
   filter_book_id: ID do livro
@@ -772,7 +773,7 @@ pt:
     correct: O registro não tem erros de validação [200]
     insufficient_rights: O usuário não tem concessão para criar/atualizar um registro para esta instituição
     missing_message: Um valor neste campo é obrigatório
-    must_contain_message: "Digite o sigla da biblioteca e a cota da edição impressa consultada."
+    must_contain_message: Digite o sigla da biblioteca e a cota da edição impressa consultada.
     name_uniqueness: O nome abreviado do registro já está em uso
     required_if_message: Este campo deve ser preenchido, pois é obrigatório na presença de {0} ${1}
     warning_message: Um valor deve ser fornecido para este campo

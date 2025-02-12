@@ -221,14 +221,14 @@ it:
   authorization_tokens: Auth tokens
   available_templates: Template disponibili
   backend_validation:
-    required: Questo campo è obbligatorio quando questo tag è aggiunto
-    no_subtag: Questo campo è obbligatorio
-    mandatory: Questo sotto-campo è obbligatorio
-    required_if: Questo campo è obbligatorio perché un altro è presente
-    check_group: Questo campo contiene un valore non valido rispetto alla posizione nel gruppo
     begin_with: Questo campo deve iniziare con la stringa corretta
-    must_contain: "Questo campo non corrisponde al modello richiesto (ad esempio CZ-Nlob X A a 12)"
-    siglum_not_found: "Il siglum in uno o più campi 588 non corrisponde a nessuna holding"
+    check_group: Questo campo contiene un valore non valido rispetto alla posizione nel gruppo
+    mandatory: Questo sotto-campo è obbligatorio
+    must_contain: Questo campo non corrisponde al modello richiesto (ad esempio CZ-Nlob X A a 12)
+    no_subtag: Questo campo è obbligatorio
+    required: Questo campo è obbligatorio quando questo tag è aggiunto
+    required_if: Questo campo è obbligatorio perché un altro è presente
+    siglum_not_found: Il siglum in uno o più campi 588 non corrisponde a nessuna holding
   basic_level: Record di base
   body: Contenuto
   btn_themefinder_reset: Reset
@@ -341,6 +341,7 @@ it:
   filter_attachment_type: Tipo di Oggetto Digitale
   filter_author: Autore
   filter_author_or_editor: Autore/Editore
+  filter_authorities: File di autorità
   filter_autograph_of: Autografo di
   filter_birth_place: Luogo di nascita
   filter_book_id: Identificatore RISM
@@ -772,7 +773,7 @@ it:
     correct: Il record non contiene errori [200]
     insufficient_rights: L'utente non ha i diritti necessari per creare un record con questa biblioteca
     missing_message: Questo campo deve contenere un valore
-    must_contain_message: "Inserisci il siglum della biblioteca e la collocazione dell'edizione stampata consultata."
+    must_contain_message: Inserisci il siglum della biblioteca e la collocazione dell'edizione stampata consultata.
     name_uniqueness: Il nome breve dell'elemento è già in uso
     required_if_message: Questo campo deve essere riempito poiché è obbligatorio in presenza di {0} ${1}
     warning_message: Questo campo dovrebbe contenere un valore

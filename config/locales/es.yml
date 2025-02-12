@@ -221,14 +221,14 @@ es:
   authorization_tokens: Auth tokens
   available_templates: Plantillas disponibles
   backend_validation:
-    required: Este campo es obligatorio cuando se añade esta etiqueta
-    no_subtag: Este campo es obligatorio
-    mandatory: Este subcampo es obligatorio
-    required_if: Este campo es obligatorio porque otro está presente
-    check_group: Este campo contiene un valor no válido en relación con la posición en el grupo
     begin_with: Este campo debe comenzar con la cadena correcta
-    must_contain: "Este campo no coincide con el patrón requerido (por ejemplo CZ-Nlob X A a 12)"
-    siglum_not_found: "El siglum en uno o varios campos 588 no coincide con ningún registro de tenencia"
+    check_group: Este campo contiene un valor no válido en relación con la posición en el grupo
+    mandatory: Este subcampo es obligatorio
+    must_contain: Este campo no coincide con el patrón requerido (por ejemplo CZ-Nlob X A a 12)
+    no_subtag: Este campo es obligatorio
+    required: Este campo es obligatorio cuando se añade esta etiqueta
+    required_if: Este campo es obligatorio porque otro está presente
+    siglum_not_found: El siglum en uno o varios campos 588 no coincide con ningún registro de tenencia
   basic_level: Registro básico
   body: Body
   btn_themefinder_reset: Reiniciar
@@ -341,6 +341,7 @@ es:
   filter_attachment_type: Tipo de objeto digital
   filter_author: Autor
   filter_author_or_editor: Autor/Editor
+  filter_authorities: Autoridades
   filter_autograph_of: Autógrafo de
   filter_birth_place: Lugar de nacimiento
   filter_book_id: ID del libro
@@ -772,7 +773,7 @@ es:
     correct: El registro no presenta errores de validación [200]
     insufficient_rights: El usuario no tiene los derechos necesarios para crear/actualizar un registro de este repositorio
     missing_message: Este campo debe contener un valor
-    must_contain_message: "Introduzca el siglum de la biblioteca y la signatura de la edición impresa consultada."
+    must_contain_message: Introduzca el siglum de la biblioteca y la signatura de la edición impresa consultada.
     name_uniqueness: El nombre corto del elemento ya está en uso
     required_if_message: Este campo debe ser rellenado ya que es obligatorio en presencia de {0} ${1}
     warning_message: Debería proveerse un valor para este campo

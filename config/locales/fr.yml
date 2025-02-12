@@ -60,7 +60,7 @@ fr:
       welcome: Bienvenue dans Active Admin. Ceci est la page par défaut.
     delete: Supprimer
     delete_confirmation: Êtes-vous certain de vouloir supprimer ceci ?
-    delete_confirmation_description: "Êtes-vous sûr de vouloir supprimer cet élément ? %{description}"
+    delete_confirmation_description: Êtes-vous sûr de vouloir supprimer cet élément ? %{description}
     delete_model: Supprimer %{model}
     details: Détails de %{model}
     devise:
@@ -221,14 +221,14 @@ fr:
   authorization_tokens: Auth tokens
   available_templates: Modèles disponibles
   backend_validation:
-    required: Ce champ est requis lorsque cette étiquette est ajoutée
-    no_subtag: Ce champ est obligatoire
-    mandatory: Ce sous-champ est obligatoire
-    required_if: Ce champ est requis car un autre est présent
-    check_group: Ce champ contient une valeur invalide par rapport à la position dans le groupe
     begin_with: Ce champ doit commencer par la chaîne correcte
-    must_contain: "Ce champ ne correspond pas au modèle requis (par exemple CZ-Nlob X A a 12)"
-    siglum_not_found: "Le sigle dans un ou plusieurs champs 588 ne correspond à aucun enregistrement de fonds"
+    check_group: Ce champ contient une valeur invalide par rapport à la position dans le groupe
+    mandatory: Ce sous-champ est obligatoire
+    must_contain: Ce champ ne correspond pas au modèle requis (par exemple CZ-Nlob X A a 12)
+    no_subtag: Ce champ est obligatoire
+    required: Ce champ est requis lorsque cette étiquette est ajoutée
+    required_if: Ce champ est requis car un autre est présent
+    siglum_not_found: Le sigle dans un ou plusieurs champs 588 ne correspond à aucun enregistrement de fonds
   basic_level: Notice de base
   body: Contenu
   btn_themefinder_reset: Reset
@@ -341,6 +341,7 @@ fr:
   filter_attachment_type: Type d'objet numérique
   filter_author: Auteur
   filter_author_or_editor: Auteur/Éditeur
+  filter_authorities: Autorités
   filter_autograph_of: Autographe de
   filter_birth_place: Lieu de naissance
   filter_book_id: Identifiant du livre
@@ -772,7 +773,7 @@ fr:
     correct: L'enregistrement ne contient aucune erreur [200]
     insufficient_rights: L'utilisateur ne dispose pas des droits nécessaires pour créer un enregistrement avec cette bibliothèque.
     missing_message: Une valeur dans ce champ est nécessaire
-    must_contain_message: "Entrez le sigle de la bibliothèque et la cote de l'édition imprimée consultée."
+    must_contain_message: Entrez le sigle de la bibliothèque et la cote de l'édition imprimée consultée.
     name_uniqueness: Le nom abrégé de l'élément est déjà utilisé
     required_if_message: Ce champ doit être rempli car il est obligatoire en présence de {0} ${1}
     warning_message: Une valeur devrait être présente pour ce champ
