@@ -229,6 +229,7 @@ fr:
     required: Ce champ est requis lorsque cette étiquette est ajoutée
     required_if: Ce champ est requis car un autre est présent
     siglum_not_found: Le sigle dans un ou plusieurs champs 588 ne correspond à aucun enregistrement de fonds
+    validate_588_siglum: "Entrez le sigle de la bibliothèque et la cote selon le format : I-Bc Q.51"
   basic_level: Notice de base
   body: Contenu
   btn_themefinder_reset: Reset
@@ -777,6 +778,7 @@ fr:
     name_uniqueness: Le nom abrégé de l'élément est déjà utilisé
     required_if_message: Ce champ doit être rempli car il est obligatoire en présence de {0} ${1}
     warning_message: Une valeur devrait être présente pour ce champ
+    validate_588_siglum: "Entrez le sigle de la bibliothèque et la cote selon le format : I-Bc Q.51"
   validation_level_error: Il y a des erreurs à corriger avant d'enregistrer.
   validation_level_warning: Il y a des avertissements. Enregistrer à nouveau pour ignorer.
   view_source: Montrer la source

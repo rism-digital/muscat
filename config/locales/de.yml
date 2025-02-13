@@ -229,6 +229,7 @@ de:
     required: Dieses Feld ist erforderlich, wenn dieses Tag hinzugefügt wird
     required_if: Dieses Feld ist erforderlich, weil ein anderes vorhanden ist
     siglum_not_found: Das Siglum in einem oder mehreren 588-Feldern entspricht keinem vorhandenen Bestandsdatensatz
+    validate_588_siglum: "Geben Sie das Bibliothekssigel und die Signatur im Format ein: I-Bc Q.51"
   basic_level: Basiskatalog
   body: Body
   btn_themefinder_reset: Zurücksetzen
@@ -777,6 +778,7 @@ de:
     name_uniqueness: Das Kürzel des Eintrages ist bereits vergeben.
     required_if_message: Dieses Feld muss ausgefüllt werden, da es obligatorisch ist in Anwesenheit von {0} ${1}
     warning_message: Dieses Feld enthält üblicherweise einen Eintrag.
+    validate_588_siglum: "Geben Sie das Bibliothekssigel und die Signatur im Format ein: I-Bc Q.51"
   validation_level_error: Die Fehler müssen vor dem Speichern behoben werden.
   validation_level_warning: Erneut speichern, um die Warnung(en) zu ignorieren.
   view_source: Quelle anzeigen

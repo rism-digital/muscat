@@ -229,6 +229,7 @@ pl:
     required: To pole jest wymagane, gdy ten tag zostanie dodany
     required_if: To pole jest wymagane, ponieważ inne jest obecne
     siglum_not_found: Siglum w jednym lub kilku polach 588 nie odpowiada żadnemu rekordowi zasobów
+    validate_588_siglum: "Wprowadź sygnaturę biblioteki i półkę według formatu: I-Bc Q.51"
   basic_level: Rekord podstawowy
   body: Body
   btn_themefinder_reset: Wyzeruj
@@ -777,6 +778,7 @@ pl:
     name_uniqueness: Skrócona nazwa wpisu została już pobrana
     required_if_message: Pole obowiązkowe, ponieważ pole {0} ${1} nie jest puste
     warning_message: To pole powinno zawierać wartość
+    validate_588_siglum: "Wprowadź sygnaturę biblioteki i półkę według formatu: I-Bc Q.51"
   validation_level_error: Wystąpiły błędy. Napraw je przed zapisaniem.
   validation_level_warning: Wystąpiły ostrzeżenia. Zapisz ponownie, by je skasować.
   view_source: Sprawdź źródło

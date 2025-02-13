@@ -229,6 +229,7 @@ es:
     required: Este campo es obligatorio cuando se añade esta etiqueta
     required_if: Este campo es obligatorio porque otro está presente
     siglum_not_found: El siglum en uno o varios campos 588 no coincide con ningún registro de tenencia
+    validate_588_siglum: "Introduzca el siglum de la biblioteca y la signatura siguiendo el formato: I-Bc Q.51"
   basic_level: Registro básico
   body: Body
   btn_themefinder_reset: Reiniciar
@@ -777,6 +778,7 @@ es:
     name_uniqueness: El nombre corto del elemento ya está en uso
     required_if_message: Este campo debe ser rellenado ya que es obligatorio en presencia de {0} ${1}
     warning_message: Debería proveerse un valor para este campo
+    validate_588_siglum: "Introduzca el siglum de la biblioteca y la signatura siguiendo el formato: I-Bc Q.51"
   validation_level_error: El registro tiene errores. Por favor, resuélvalos antes de guardar.
   validation_level_warning: El registro presenta advertencias. Si desea ignorarlas, pulse nuevamente en guardar.
   view_source: Mostrar fuente

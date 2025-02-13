@@ -229,6 +229,7 @@ ca:
     required: Aquest camp és obligatori quan s'afegeix aquesta etiqueta
     required_if: Aquest camp és obligatori perquè un altre és present
     siglum_not_found: El siglum en un o més camps 588 no coincideix amb cap registre de fons
+    validate_588_siglum: "Introduïu el siglum de la biblioteca i la signatura seguint el format: I-Bc Q.51"
   basic_level: Registre bàsic
   body: Body
   btn_themefinder_reset: Restableix
@@ -777,6 +778,7 @@ ca:
     name_uniqueness: Aquest nom abreujat ja s'utilitza
     required_if_message: El camp és obligatori en presència de {0} ${1}
     warning_message: Caldria que aquest camp tingués un valor
+    validate_588_siglum: "Introduïu el siglum de la biblioteca i la signatura seguint el format: I-Bc Q.51"
   validation_level_error: Hi ha errors. Resoleu-vos abans de desar-lo
   validation_level_warning: Hi ha advertiments. Els podeu ignorar tornant a desar-lo
   view_source: Mostra font
