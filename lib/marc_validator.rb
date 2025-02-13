@@ -544,6 +544,14 @@ include ApplicationHelper
         add_error(tag, subtag, "not_in_group")
         puts "check_group requested but tag is not in a group #{tag}#{subtag}" if DEBUG
       end
+    elsif rule == "validate_588_siglum"
+      siglum_pattern_nopunct = /\b[A-Z]{1,3}-[\p{L}\p{M}]+(?=\s|$)/u
+      if marc_subtag && marc_subtag.content
+        if !marc_subtag.content.match(siglum_pattern_nopunct)
+          add_error(tag, subtag, rule)
+          puts "588 does not have a valid sigla #{tag} #{subtag}, #{rule}" if DEBUG
+        end
+      end
     else
       puts rule.class
       puts "Unknown rule #{rule}" if rule != "mandatory"

@@ -797,6 +797,7 @@ en:
     name_uniqueness: Short name of entry is already taken
     required_if_message: Field is mandatory because {0} ${1} is not empty
     warning_message: A value for this field should be provided
+    validate_588_siglum: The siglum is invalid. Make sure is followed by a space and not punctuation.
   validation_level_error: There are errors, please solve before saving
   validation_level_warning: There are warnings, save again to override
   view_source: View Source

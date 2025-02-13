@@ -73,7 +73,8 @@ client:
     tags:
       "a":
         any_of:
-          - must_contain: "-"
+          #- must_contain: "-"
+          - validate_588_siglum
           - mandatory
   "593":
     tags:

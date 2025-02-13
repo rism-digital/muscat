@@ -5,6 +5,7 @@ const SIMPLE_RULE_MAP = {
 	"required": { presence: true },
 	"mandatory": { mandatory: true },
 	"check_group": { check_group: true },
+	"validate_588_siglum": { validate_588_siglum: true },
 }
 
 const PARAMETRIC_RULES = [
@@ -171,6 +172,14 @@ function marc_validate_must_contain(value, element, param) {
 		return true;
 
 	return value.includes(param);
+}
+
+function marc_validate_588_siglum(value, element, param) {
+	const siglumPattern = /\b[A-Z]{1,3}-[\p{L}\p{M}]+(?=\s|$)/gu;
+	if (!value)
+		return true;
+
+	return siglumPattern.test(value);
 }
 
 // This is the simplest validator
@@ -551,6 +560,8 @@ function marc_editor_init_validation(form, validation_conf) {
 			$.validator.format(I18n.t("validation.check_group_message")));
 	$.validator.addMethod("must_contain", marc_validate_must_contain,
 				$.validator.format(I18n.t("validation.must_contain_message")));
+	$.validator.addMethod("validate_588_siglum", marc_validate_588_siglum,
+					$.validator.format(I18n.t("validation.validate_588_siglum")));
 			
 	// New creation: this is not configurable, it is used to make sure the
 	// "confirm create new" checkbox is selected for new items
