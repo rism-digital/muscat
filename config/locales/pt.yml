@@ -224,7 +224,7 @@ pt:
     begin_with: Este campo deve começar com a string correta
     check_group: Este campo contém um valor inválido em relação à posição no grupo
     mandatory: Este subcampo é obrigatório
-    must_contain: Este campo não corresponde ao padrão exigido (por exemplo, CZ-Nlob X A a 12)
+    must_contain: Este campo deve corresponder ao padrão requerido
     no_subtag: Este campo é obrigatório
     required: Este campo é obrigatório quando esta tag é adicionada
     required_if: Este campo é obrigatório porque outro está presente
@@ -773,7 +773,7 @@ pt:
     correct: O registro não tem erros de validação [200]
     insufficient_rights: O usuário não tem concessão para criar/atualizar um registro para esta instituição
     missing_message: Um valor neste campo é obrigatório
-    must_contain_message: Digite o sigla da biblioteca e a cota da edição impressa consultada.
+    must_contain_message: Este campo deve corresponder ao padrão requerido
     name_uniqueness: O nome abreviado do registro já está em uso
     required_if_message: Este campo deve ser preenchido, pois é obrigatório na presença de {0} ${1}
     warning_message: Um valor deve ser fornecido para este campo

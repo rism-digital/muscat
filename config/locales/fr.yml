@@ -224,7 +224,7 @@ fr:
     begin_with: Ce champ doit commencer par la chaîne correcte
     check_group: Ce champ contient une valeur invalide par rapport à la position dans le groupe
     mandatory: Ce sous-champ est obligatoire
-    must_contain: Ce champ ne correspond pas au modèle requis (par exemple CZ-Nlob X A a 12)
+    must_contain: Ce champ ne correspond pas au modèle requis
     no_subtag: Ce champ est obligatoire
     required: Ce champ est requis lorsque cette étiquette est ajoutée
     required_if: Ce champ est requis car un autre est présent
@@ -773,7 +773,7 @@ fr:
     correct: L'enregistrement ne contient aucune erreur [200]
     insufficient_rights: L'utilisateur ne dispose pas des droits nécessaires pour créer un enregistrement avec cette bibliothèque.
     missing_message: Une valeur dans ce champ est nécessaire
-    must_contain_message: Entrez le sigle de la bibliothèque et la cote de l'édition imprimée consultée.
+    must_contain_message: Ce champ doit correspondre au modèle requis.
     name_uniqueness: Le nom abrégé de l'élément est déjà utilisé
     required_if_message: Ce champ doit être rempli car il est obligatoire en présence de {0} ${1}
     warning_message: Une valeur devrait être présente pour ce champ

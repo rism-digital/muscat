@@ -227,8 +227,9 @@ en:
     required_if: This field is required because another one is present
     check_group: This field contains an invalid value relative to the position in the group
     begin_with: This field must begin with the correct string
-    must_contain: This field does not match the required pattern (for example CZ-Nlob X A a 12)
+    must_contain: This field does not match the required pattern
     siglum_not_found: The siglum in one or more 588 fields does not match any holding record
+    validate_588_siglum: "Enter the library siglum and shelfmark as in the format: I-Bc Q.51"
   basic_level: Basic record
   body: Body
   btn_themefinder_reset: Reset
@@ -793,11 +794,11 @@ en:
     correct: The record has no validation errors [200]
     insufficient_rights: User has insufficient rights to create/update a record of this library
     missing_message: A value in this field is mandatory
-    must_contain_message: "Enter the library siglum and shelfmark of the printed edition consulted."
+    must_contain_message: "This field must match the required pattern."
     name_uniqueness: Short name of entry is already taken
     required_if_message: Field is mandatory because {0} ${1} is not empty
     warning_message: A value for this field should be provided
-    validate_588_siglum: The siglum is invalid. Make sure is followed by a space and not punctuation.
+    validate_588_siglum: "Enter the library siglum and shelfmark as in the format: I-Bc Q.51"
   validation_level_error: There are errors, please solve before saving
   validation_level_warning: There are warnings, save again to override
   view_source: View Source

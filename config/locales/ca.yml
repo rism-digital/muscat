@@ -224,7 +224,7 @@ ca:
     begin_with: Aquest camp ha de començar amb la cadena correcta
     check_group: Aquest camp conté un valor no vàlid en relació amb la posició al grup
     mandatory: Aquest subcamp és obligatori
-    must_contain: Aquest camp no coincideix amb el patró requerit (per exemple CZ-Nlob X A a 12)
+    must_contain: Aquest camp ha de coincidir amb el patró requerit
     no_subtag: Aquest camp és obligatori
     required: Aquest camp és obligatori quan s'afegeix aquesta etiqueta
     required_if: Aquest camp és obligatori perquè un altre és present
@@ -773,7 +773,7 @@ ca:
     correct: El registre no té cap error de validació [200]
     insufficient_rights: L'usuari no té els drets necessaris per crear o actualtizar un registre d'aquesta biblioteca
     missing_message: Aquest camp ha de tenir un valor
-    must_contain_message: Introduïu el sigle de la biblioteca i la signatura de l'edició impresa consultada.
+    must_contain_message: Aquest camp ha de coincidir amb el patró requerit
     name_uniqueness: Aquest nom abreujat ja s'utilitza
     required_if_message: El camp és obligatori en presència de {0} ${1}
     warning_message: Caldria que aquest camp tingués un valor
