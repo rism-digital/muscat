@@ -462,9 +462,18 @@ include ApplicationHelper
         # Extract the first chunk as the siglum
         siglum = content.split(" ").first
         
-        unless holdings_sigla.include?(siglum)
-          add_error("588", "a", "siglum_not_found:#{siglum}", "source_description_missing")
+        #siglum_pattern = /\b[A-Z]{1,3}-[\p{L}\p{M}]+\b/u
+        siglum_pattern_nopunct = /\b[A-Z]{1,3}-[\p{L}\p{M}]+(?=\s|$)/u
+        matches = content.scan(siglum_pattern_nopunct)
+
+        matches.each do |match|
+          unless holdings_sigla.include?(match)
+            add_error("588", "a", "siglum_not_found:#{siglum}", "source_description_missing")
+          end
         end
+
+        add_error("588", "a", "invalid_siglum:#{siglum}", "source_description_missing") if matches.count == 0
+
       end
     end
     
