@@ -58,9 +58,10 @@ include ApplicationHelper
         puts "Downgrate #{tag} #{st} to non mandatory because of static exclusions" if DEBUG
         nil
       else
-        st if v == "mandatory" && !is_subtag_excluded(tag, st)
+        # "next" is cool so it "returns" from the loop with the val
+        next st if v == "mandatory" && !is_subtag_excluded(tag, st)
         # Also manage any_of mixed rules
-        st if v.is_a?(Hash) && v.keys.any?("any_of") && v.values.first.any?("mandatory") && !is_subtag_excluded(tag, st)
+        next st if v.is_a?(Hash) && v.keys.any?("any_of") && v.values.first.any?("mandatory") && !is_subtag_excluded(tag, st)
       end
     end.compact
   end
