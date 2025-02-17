@@ -5,7 +5,14 @@ class MarcGndWork < Marc
 
   def to_external(created_at = nil, updated_at = nil, versions = nil, holdings = false, deprecated_ids = true)
     super(created_at, updated_at, nil, holdings)
-    # nothing specific to do - this is used ony for deprecating works
+
+    leader = "00000cz  a2200000oc 4500"
+    # Is this a new record?
+    leader = "00000nz  a2200000oc 4500" if get_id() == "__TEMP__"
+
+    new_leader = MarcNode.new("gnd_work", "000", leader, "")
+    @root.children.insert(get_insert_position("000"), new_leader)
+
   end
   
 end

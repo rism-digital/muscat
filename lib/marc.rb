@@ -544,10 +544,12 @@ class Marc
   
   def to_xml_record(options = {})
     # parse available options
-    created_at = options.has_key?(:created_at) ? options[:created_at] : nil
-    updated_at = options.has_key?(:updated_at) ? options[:updated_at] : nil
-    versions = options.has_key?(:versions) ? options[:versions] : nil
-    holdings = options.has_key?(:holdings) ? options[:holdings] : true
+    created_at = options.fetch(:created_at, nil)
+    updated_at = options.fetch(:updated_at, nil)
+    versions   = options.fetch(:versions, nil)
+    holdings   = options.fetch(:holdings, true)
+    authority  = options.fetch(:authority, false)
+
     # Temp fix to allow deprecated ids
     deprecated_ids = options.has_key?(:deprecated_ids) ? !(options[:deprecated_ids] == "false") : true
 
@@ -559,6 +561,7 @@ class Marc
     
     document = XML::Document.new()
     document.root = XML::Node.new("record")
+    document.root['type'] = "Authority" if authority
 
     for child in safe_marc.root.children
       document.root << child.to_xml_element(options)

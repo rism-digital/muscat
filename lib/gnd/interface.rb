@@ -43,8 +43,7 @@ module GND
         action = m.get_id == "__TEMP__" ? :create : :replace
 
         # is this evil? maybe
-        xml = m.to_xml({}).gsub('<?xml version="1.0" encoding="UTF-8"?>', '')
-
+        xml = m.to_xml({authority: true}).gsub('<?xml version="1.0" encoding="UTF-8"?>', '')
         return send_to_gnd(action, xml, m.get_id)
     end
 
