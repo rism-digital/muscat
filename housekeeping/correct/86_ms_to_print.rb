@@ -1,4 +1,14 @@
 
+def fix_digital_objects(s, holding_id)
+    count = 0
+    s.digital_object_links.each do |dol|
+        dol.object_link_id = holding_id
+        dol.object_link_type = "Holding"
+        dol.save
+        count += 1
+    end
+    puts "Switched #{count} DOLs to Holding #{holding_id}" if count > 0
+end
 
 def migrate_print(id, migrate_500)
     begin
@@ -46,7 +56,9 @@ def migrate_print(id, migrate_500)
     end
 
     holding_id = s.manuscript_to_print(move_tags)
-    puts "Created holding #{holding_id}"
+    #puts "Created holding #{holding_id}"
+
+    fix_digital_objects(s, holding_id)
 end
 
 filename = ARGV[0]
