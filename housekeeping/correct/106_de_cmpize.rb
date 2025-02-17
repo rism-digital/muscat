@@ -12,8 +12,16 @@ def decmpize(model)
           save = true if tgs&.content == "att"
         end
 
-      s.paper_trail_event = "Change 700 $4 cmp to att"
-      s.save if save
+      #s.paper_trail_event = "Change 700 $4 cmp to att"
+      PaperTrail.request(enabled: false) do
+        s.suppress_reindex if s.respond_to? :suppress_reindex
+        s.suppress_scaffold_marc if s.respond_to? :suppress_scaffold_marc
+        s.suppress_recreate if s.respond_to? :suppress_recreate
+        s.suppress_update_count if s.respond_to? :suppress_update_count
+        s.suppress_update_77x if s.respond_to? :suppress_update_77x
+        s.suppress_update_workgroups if s.respond_to? :suppress_update_workgroups
+        s.save if save
+      end
       puts "Skip #{s.id}" if !save
 
       pb.increment!
