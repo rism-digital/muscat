@@ -521,3 +521,5 @@ z:
   label: records.work_tag_incipit_needs_revision
 "incipit-replace":
   label: records.work_tag_incipit_replace
+"Appendix":
+  label: active_admin.status_tag.yes
