@@ -339,8 +339,6 @@ brother of:
   label: records.brother_of
 child of:
   label: records.child_of
-cmp:
-  label: records.composer_cross_reference
 codes:
   label: records.numbers_code_fields
 confused with:

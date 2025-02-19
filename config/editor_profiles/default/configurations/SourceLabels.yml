@@ -688,7 +688,7 @@ chr:
   label: records.choreographer
 clb:
   label: records.contributor
-cmp:
+att:
   label: records.composer_cross_reference
 cnd:
   label: records.conductor

@@ -393,7 +393,7 @@ brother of:
   label: records.brother_of
 child of:
   label: records.child_of
-cmp:
+att:
   label: records.composer_cross_reference
 ccp:
   label: records.conceptor

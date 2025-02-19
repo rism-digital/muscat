@@ -218,7 +218,7 @@ chr:
   label: records.choreographer
 clb:
   label: records.collaborator
-cmp:
+att:
   label: records.composer
 cnd:
   label: records.conductor

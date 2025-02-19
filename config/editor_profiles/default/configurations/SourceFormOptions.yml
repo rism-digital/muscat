@@ -791,7 +791,7 @@
       - "Misattributed"
     relator_codes:
       - scr
-      - cmp
+      - att
       - cns
       - arr
       - prf

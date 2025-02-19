@@ -517,7 +517,7 @@
     relator_codes: 
       - fmo
       - scr
-      - cmp
+      - att
       - prf
       - dte
       - trl
