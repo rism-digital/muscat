@@ -1,6 +1,138 @@
 Muscat Changelog
 ================
 
+v 11.4
+* After modifying non-marc authority files, show modified record
+* Display record owner for all non-marc authority files
+* Display wf_stage in place authority records
+* Fix Work Node relations non Work in notification
+* Remove duplicate 383 for Works
+* Fix #1629 protypens everywhere
+* Logger function for marc.import
+* Fix #1629 Polypens everywhere
+* Rename inventory_editor to inventory_cataloger
+* Fix *t28 protypen
+* Temp fix for #1701
+* Add InventoryItem box for Person and a new compact way to create them
+* Switch source to the compact decl form
+* Switch Liturgical Feast to the compact decl
+* More short forms
+* Mini-mods for CMO
+* Fix #1703 Switch to 240 for title
+* Fix #1702 GND Texts and translations
+* Fix more labels for #1702
+* Fix all the 040 $c
+* Uppercase CMO
+* Add 040 in CMO import
+* Fix nil in pub title
+* Fix nil in pub
+* Make sure che export script does not crash if a source was deleted
+* Remove the warning for 973 missing when exporting prints
+* Add source_id for holdings in 774
+* Push locales
+* Make the old migrations work in 2025
+* Rename doc files
+* Update links in README
+* More installation instructions
+* Remove the index, which does not work
+* Initial refactoring of validate_tags
+* Fix any_of to actually fail
+* Latest fixes for CMO
+* Fix publication default files
+* Create CMO sec lit
+* Make CMO script actually make proper lit
+* Better relation count
+* Fix the last protypens
+* Set a better name for the version
+* Open a new SOLR searcher to make commits visible after committing
+* Initial implementation for better link counting
+* Make sure all models will update links, and offer the possibility to suppress_update_count_trigger
+* Make foreign_links reindex all models
+* Remove unused publications_count_order
+* Add compact form to publication
+* Add Authorities counter to person
+* Reorder the boxes
+* Add compact form to institution
+* Add all the missing relation boxes
+* rename referring_objects_count to referring_objects_order to make ordering work
+* Implement the cool "authorities" column everywhere
+* Script to traverse all the relation tables and delete dead links
+* Add inventory to 593$b holding
+* Fix #921 and #1394, fix creation of holdings and fic 593$b in holdings
+* Make the record type visible in the old versions
+* Script to purge holdings attached to child records
+* Fix wrong controller in link box
+* Merge pull request #1698 from fjorba/display-wf-stage-in-place-authority-records
+* Merge pull request #1697 from fjorba/display-wf-owner-in-all-non-marc-authority-records
+* Merge pull request #1695 from fjorba/redirect-to-full-record-after-updating-non-marc-records
+* Fix #1687, remove tags
+* Fix #1686, remove 563 from libretto_edition_content
+* Fix #1603 add tag 490
+* Fix #1511, edit 026
+* Update locales
+* Update translations
+* Create DE text for #1701
+* Add simple exclusions to notifications
+* Move 490
+* Make sure sources_to_works is cleaned up
+* Remove old work node relations
+* Add box of links for publication
+* Make sure that when copying tags the models match
+* Bump net-imap from 0.5.1 to 0.5.6
+* Fix #1709, remove automatic default excapint, some small scripts
+* Make "mandatory" rules in an "any_of" group work in the backed validation
+* Add all the basic pieces for #1707, including autocomplete but missing labels
+* #1707 revert 505
+* Merge pull request #1711 from rism-digital/dependabot/bundler/net-imap-0.5.6
+* Fix #1272. add composite_volume for libretto_source and theoretica_source
+* Merge branch 'develop' of https://github.com/rism-digital/muscat into develop
+* Fix #1673 move 040
+* Fix #1617, add better message for holdings
+* Fix #1616 Add test for 588
+* Update the validator
+* Exclude subtags when they should be excluded...
+* Better 588 validation
+* This can never work!
+* Add scripts to fix 588
+* Rename script
+* Remove section in 690$x  and add subfields to 691
+* Add missing locales
+* The infinite pursuit to perfect translations pt. 1
+* The infinite pursuit to perfect translations pt. 2
+* Merge pull request #1712 from rism-digital/develop-690-fix
+* Disable autocompletes for now
+* More locales
+* Update the correction map
+* Switch to array so duplicate entries work
+* Give 690 $x a more appropriate name
+* More translations
+* Bump rack from 3.1.8 to 3.1.10
+* Add option for hash
+* Use a regex for more clever siglum matching
+* Make the 588 validator very, very clever
+* Fix again mandatory fields
+* Update must_contain message
+* Add the 588 message
+* Fixes for GND
+* Sort holdings also by shelf_maek
+* Add 563 to the default tags
+* Make the appendix tag work as expected
+* Script to change cmp to att
+* Remove unused check in work, inhibit paper_trail
+* Make sure repeated tags and works work
+* Move digital objects to holdings
+* Fix #1689, switch cmp to att
+* Bump nokogiri from 1.17.1 to 1.18.3
+* Merge pull request #1713 from rism-digital/dependabot/bundler/rack-3.1.10
+* Merge pull request #1715 from rism-digital/dependabot/bundler/nokogiri-1.18.3
+* Fix DE help as in 79d1b6d
+
+v 11.3.1
+* 400 in WorkNode was removed
+* Cherry pick source_work_nodes_relations fix
+* Remove duplicate 383 for Works
+* Fix Werktiel
+
 v 11.3
 * Fix #1662, add new display for the WorkNode title
 * Add shelf_mark to holdings
