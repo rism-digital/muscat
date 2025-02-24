@@ -137,6 +137,56 @@ class Source < ApplicationRecord
   enum :wf_stage, [ :inprogress, :published, :deleted, :deprecated ]
   enum :wf_audit, [ :full, :abbreviated, :retro, :imported ]
 
+  scope :by_shelf_mark_and_siglum, ->(shelf_mark, lib_siglum) {
+    left_joins(:holdings)
+      .where(
+        %(
+          (sources.shelf_mark LIKE :shelf_mark AND sources.lib_siglum = :lib_siglum)
+           OR
+          (holdings.shelf_mark LIKE :shelf_mark AND holdings.lib_siglum = :lib_siglum)
+        ),
+        shelf_mark: "%#{shelf_mark}%",  # wrap in '%' for "contains"
+        lib_siglum: lib_siglum
+      )
+      .distinct
+  }
+
+  scope :by_shelf_mark_and_siglum_contains, ->(shelf_mark, lib_siglum) {
+    left_joins(:holdings)
+      .where(
+        %(
+          (sources.shelf_mark LIKE :shelf_mark AND sources.lib_siglum LIKE :lib_siglum)
+           OR
+          (holdings.shelf_mark LIKE :shelf_mark AND holdings.lib_siglum LIKE :lib_siglum)
+        ),
+        shelf_mark: "%#{shelf_mark}%",  # wrap in '%' for "contains"
+        lib_siglum: "%#{lib_siglum}%"
+      )
+      .distinct
+  }
+
+  scope :by_shelf_mark, ->(shelf_mark) {
+    return all if shelf_mark.blank?
+
+    left_joins(:holdings)
+      .where(
+        "sources.shelf_mark LIKE :val OR holdings.shelf_mark LIKE :val",
+        val: "%#{shelf_mark}%"
+      )
+      .distinct
+  }
+
+  scope :by_siglum, ->(siglum) {
+    return all if siglum.blank?
+
+    left_joins(:holdings)
+      .where(
+        "sources.lib_siglum = :val OR holdings.lib_siglum = :val",
+        val: siglum
+      )
+      .distinct
+  }
+
 =begin
   def marc
     @marc ||= MarcSource.new(self.marc_source, self.record_type)
