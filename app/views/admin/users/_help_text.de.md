@@ -83,15 +83,15 @@ Wenn die Anführungszeichen fehlen, wird nur nach dem ersten Wort gesucht, währ
 - **record\_type** _Vorlagentyp_:
   - collection (übergeordnete Datensätze für Manuskripte, Libretti oder Traktate)
   - source (Manuskripte, ohne Sammlungsdatensätze)
-  - edition (gedruckte Musikausgaben, ohne einzelne Einträge)
-  - edition\_content (einzelne Einträge in einer gedruckten Ausgabe)
+  - edition (gedruckte Musikausgaben, ohne Teileinträge)
+  - edition\_content (Teileinträge in einer gedruckten Ausgabe)
   - libretto\_source (handgeschriebene Libretti, ohne Sammlungsdatensätze)
-  - libretto\_edition (gedruckte Libretti, ohne einzelne Einträge)
-  - libretto\_edition\_content (einzelne Einträge in einem gedruckten Libretto)
+  - libretto\_edition (gedruckte Libretti, ohne Teileinträge)
+  - libretto\_edition\_content (Teileinträge in einem gedruckten Libretto)
   - theoretica\_source (handgeschriebene Traktate, ohne Sammlungsdatensätze)
-  - theoretica\_edition (gedruckte Traktate, ohne einzelne Einträge)
-  - theoretica\_edition\_content (einzelne Einträge in einem gedruckten Traktat)
-  - composite\_volume
+  - theoretica\_edition (gedruckte Traktate, ohne Teileinträge)
+  - theoretica\_edition\_content (Teileinträge in einem gedruckten Traktat)
+  - composite\_volume (Konvolut)
 
 Beispiel:
 
@@ -102,7 +102,7 @@ record_type:edition lib_siglum:CH* composer:Bach* std_title:"6 Fugues";
 ### Werke
 
 - **composer** _Name des Komponisten (100 \$a)_
-- **title** _Titel des Werks (100 \$t)_
+- **title** _Werktitel (100 \$t)_
 
 Beispiel:
 
@@ -114,8 +114,8 @@ work composer:"Bach, Albert*"
 
 - **name** _Bevorzugte Form des Institutionsnamens (110 \$a)_
 - **place** _Stadt der Institution (110 \$c)_
-- **siglum** _Institutionssigel (110 \$g)_
-- **address** _Institutionsadresse (371 \$a)_
+- **siglum** _Bibliothekssigel (110 \$g)_
+- **address** _Adresse der Institution (371 \$a)_
 - **alternates** _Alternative Namen (510 oder 410)_
 - **notes** _Beliebiger Inhalt im Notizenfeld (680 \$a)_
 
