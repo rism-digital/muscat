@@ -187,6 +187,17 @@ class Source < ApplicationRecord
       .distinct
   }
 
+  scope :by_siglum_contains, ->(siglum) {
+    return all if siglum.blank?
+
+    left_joins(:holdings)
+      .where(
+        "sources.lib_siglum LIKE :val OR holdings.lib_siglum LIKE :val",
+        val: "%#{siglum}%"
+      )
+      .distinct
+  }
+
 =begin
   def marc
     @marc ||= MarcSource.new(self.marc_source, self.record_type)
