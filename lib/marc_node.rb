@@ -722,8 +722,8 @@ class MarcNode
   
   # Add an element at specified position
   def add_at(child, index)
-    if child.model != @model
-      puts "#{caller.first.red}: MarcNode add_at() child model #{child.model.cyan} is not the same as root model #{@model.cyan} [#{child.to_s.strip}]"
+    if child.model != @model && child.model
+      puts "#{caller.first.red}: MarcNode add_at() child model #{child.model&.cyan} is not the same as root model #{@model&.cyan} [#{child&.to_s.strip}]"
     end
     @children.insert(index, child)
     child.parent = self
