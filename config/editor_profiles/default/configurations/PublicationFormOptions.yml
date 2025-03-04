@@ -200,6 +200,7 @@
         - "Music edition"
         - "Other"
         - "Thematic catalog"
+        - "Work list"
         editor_partial: subfield_select
     - - h
       - values:

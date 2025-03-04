@@ -928,6 +928,7 @@ es:
     woodwinds: Vientos-madera
     work: Obra
     work_catalog_note: Nota del catálogo de trabajo
+    work_list: Lista de obras
     work_node: Referencia de trabajo externo (nodo de trabajo)
     work_number: Número de obra
     work_tag: Etiqueta de revisión de trabajo

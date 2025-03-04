@@ -280,8 +280,8 @@ fr:
     alternate_spelling: Autres formes
     alternative_work_title: Titre alternatif
     amount: Nombre
-    annex: Annex
-    appendix: Appendix
+    annex: Annexe
+    appendix: Appendice
     archive: Archives
     arrangement: Arrangement
     arrangement_statement: Mention d'arrangement
@@ -928,6 +928,7 @@ fr:
     woodwinds: Bois
     work: Oeuvre
     work_catalog_note: Note sur le catalogue des œuvres
+    work_list: Liste des œuvres
     work_node: Référence externe d'œuvre (Work node)
     work_number: Numéro de l'œuvre
     work_tag: Étiquette de révision

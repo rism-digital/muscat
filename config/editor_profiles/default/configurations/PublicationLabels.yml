@@ -374,3 +374,5 @@ Other:
   label: records.other
 "Thematic catalog":
   label: records.thematic_catalog
+"Work list":
+  label: records.work_list

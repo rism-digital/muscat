@@ -928,6 +928,7 @@ it:
     woodwinds: Legni
     work: Opera
     work_catalog_note: Nota sul catalogo delle opere
+    work_list: Lista di opere
     work_node: Voce di autorità esterna (Work node)
     work_number: Numero dell'opera
     work_tag: Tag per il Work

@@ -928,6 +928,7 @@ pt:
     woodwinds: Madeiras
     work: Obra
     work_catalog_note: Nota no catálogo da obra
+    work_list: Work list
     work_node: Referência externa de obra (Work Node)
     work_number: Número de obra
     work_tag: Etiqueta de revisão de trabalho

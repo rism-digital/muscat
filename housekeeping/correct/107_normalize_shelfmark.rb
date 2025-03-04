@@ -1,5 +1,6 @@
 
 collection_ms = {}
+single_ms = {}
 by_id = {}
 subentry = {}
 
@@ -73,6 +74,69 @@ def untangle_with_color(h, by_id, table)
     end
 end
 
+def untangle_with_color_one_per_line(h, by_id, table)
+    h.each do |s, v|
+        collection = {}
+
+        # First step, divide them by collection
+        v.each do |item|
+            parent_id = item[7]
+            what = item[3]
+            key = "#{what}:#{parent_id}"
+            collection[key] ||= Array.new
+            collection[key] << item
+        end
+
+        collection.each do |id, items|
+            items.sort_by! { |sub_array| sub_array[0] }
+            collection[id] = items
+        end
+
+        # Get the max number of items in one of the collections
+        max_length = collection.map {|k, v| v.count}.max
+
+        # Pad the other collection to make them match with empty items
+        collection.each do |id, items|
+            if items.count < max_length
+                for i in 1..(max_length - items.count)
+                    collection[id] << [nil,nil,nil,nil,nil,nil,nil,nil]
+                end
+            end
+        end
+
+        # Let's print the header
+        row = table.row
+        collection.keys.each do |coll_id|
+            type, id = coll_id.split(":")
+            parent_record = by_id[id.to_i]
+
+            color = parent_record[3] == "ICCU" ? "coll-iccu" : "coll-rism"
+            parent_record.each do |i|
+                row.cell(i, style: color)
+            end
+        end
+
+        # Now align them
+        # For each item in this collection
+        for i in 0..max_length-1
+            # Make a new row for aligning this
+            row = table.row
+            collection.keys.each do |coll_id|
+                # Print each collection, on the same row
+                item = collection[coll_id][i]
+
+                color = item[3] == "ICCU" ? "iccu" : "rism"
+                item.each do |i|
+                    row.cell(i, style: color)
+                end
+            end
+
+        end
+
+
+    end
+end
+
 def is_iccu?(s)
     s.marc.each_by_tag("856") do |t|
         t.fetch_all_by_tag("u").each do|tt|
@@ -92,7 +156,7 @@ end
 # Nodeda.Something 234.5@3
 # Always strip the stuff after @
 def strip_at_and_punct(str)
-    return str.sub(/@\d+\z/, "").split(/\W+/).join(' ').downcase.strip
+    return str.sub(/@\d+\z/, "").sub(/\/\d+\z/, "").split(/\W+/).join(' ').downcase.strip
 end
 
 if ARGV.count < 1
@@ -122,7 +186,12 @@ Source.by_siglum(siglum).each do |s|
 
 
     if !s.parent_source
-        (collection_ms[cleaned] ||= []) << entry
+        if s.record_type == 2
+            (single_ms[cleaned] ||= []) << entry
+        else
+            (collection_ms[cleaned] ||= []) << entry
+        end
+         
         #(subentry[cleaned] ||= []) << entry if s.record_type == 1 # put the collections with the children
 
         # save all of them flat
@@ -152,8 +221,10 @@ sheet.style 'rism', family: :cell do |s|
     s.property :cell, 'background-color' => "#b9dbeb"
 end
 
-table = sheet.table("Parents #{siglum}")
+table = sheet.table("Single MSS #{siglum}")
+untangle(single_ms, table)
 
+table = sheet.table("Collections #{siglum}")
 untangle(collection_ms, table)
 
 #table = sheet.table("Subs #{siglum}")
@@ -163,5 +234,8 @@ untangle(collection_ms, table)
 
 table = sheet.table("Subs #{siglum}")
 untangle_with_color(subentry, by_id, table)
+
+table = sheet.table("Subs aligned #{siglum}")
+untangle_with_color_one_per_line(subentry, by_id, table)
 
 sheet.write_to "duplicates_#{siglum}.ods"

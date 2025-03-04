@@ -928,6 +928,7 @@ ca:
     woodwinds: Vent-fusta
     work: Obra
     work_catalog_note: Nota sobre el catàleg de l'obra
+    work_list: Work list
     work_node: Referència externa d'obra (Work node)
     work_number: Número d'obra
     work_tag: Etiqueta de revisió per obra

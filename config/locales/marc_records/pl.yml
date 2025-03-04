@@ -928,6 +928,7 @@ pl:
     woodwinds: Instrumenty dęte drewniane
     work: Dzieło
     work_catalog_note: Notatka do katalogu utworów
+    work_list: Work list
     work_node: Odniesienie do Dzieła zewnętrznego (Work node)
     work_number: Numer dzieła
     work_tag: tag edycji Dzieła
