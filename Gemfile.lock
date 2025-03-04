@@ -348,9 +348,9 @@ GEM
     parser (3.3.6.0)
       ast (~> 2.4.1)
       racc
-    passenger (6.0.23)
+    passenger (6.0.26)
       rack (>= 1.6.13)
-      rackup
+      rackup (>= 2.0.0)
       rake (>= 12.3.3)
     pkg-config (1.5.8)
     pr_geohash (1.0.0)
