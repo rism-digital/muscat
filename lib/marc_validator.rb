@@ -371,7 +371,10 @@ include ApplicationHelper
   end
 
   def validate_dead_773_links
+    # We should never have more than one 773 but here we are
+    count = 0
     @marc.each_by_tag("773") do |link|
+      count += 1
       link_id = link.fetch_first_by_tag("w")
       link_type = link.fetch_first_by_tag("4")
       
@@ -380,21 +383,25 @@ include ApplicationHelper
       begin
         parent = Source.find(link_id.content)
       rescue ActiveRecord::RecordNotFound
-        add_error("deleted-773", nil, "773_parent_deleted #{link_id.content}", "773_error")
+        add_error("deleted-773", nil, "773: parent deleted #{link_id.content}", "773_error")
       end
 
       found = false
       parent.marc.each_by_tag("774") do |parent_774|
+
         parent_link_id = parent_774.fetch_first_by_tag("w")
         next if !parent_link_id || !parent_link_id.content
-        if link_id.content == parent_link_id.content
+
+        if @object.id.to_s == parent_link_id.content.strip
           found = true
           break
         end
       end
 
-      add_error("stale-773", nil, "773_not_in_parent #{link_id.content}", "773_error") if !found
+      add_error("stale-773", nil, "773: missing 774 tag in parent #{link_id.content}", "773_error") if !found
     end
+
+    add_error("multiple-773", nil, "773: More than one", "773_error") if count > 1
   end
 
   def validate_dates
