@@ -22,6 +22,7 @@ class MuscatCheckup
       @skip_unknown_tags = (options.include?(:skip_unknown_tags) && options[:skip_unknown_tags] == true)
       @skip_holdings = (options.include?(:skip_holdings) && options[:skip_holdings] == true)
       @skip_dead_774 = (options.include?(:skip_dead_774) && options[:skip_dead_774] == true)
+      @skip_dead_773 = (options.include?(:skip_dead_773) && options[:skip_dead_773] == true)
       @skip_parent_institution = (options.include?(:skip_parent_institution) && options[:skip_parent_institution] == true)
       @skip_588_validation = (options.include?(:skip_588_validation) && options[:skip_588_validation] == true)
       @debug_logger = options.include?(:logger) ? options[:logger] : nil
@@ -29,6 +30,7 @@ class MuscatCheckup
       # These are relevant only for Sources
       @skip_holdings = true if @model != Source
       @skip_dead_774 = true if @model != Source
+      @skip_dead_773 = true if @model != Source
       @skip_parent_institution = true if @model != Source
 
       # Generate the exclusion matcher
@@ -164,7 +166,7 @@ class MuscatCheckup
       validator.validate_unknown_tags if !@skip_unknown_tags
       validator.validate_holdings if !@skip_holdings
       validator.validate_dead_774_links if !@skip_dead_774
-      validator.validate_dead_773_links
+      validator.validate_dead_773_links if !@skip_dead_773
       validator.validate_parent_institution if !@skip_parent_institution
       validator.validate_588 if !@skip_588_validation
       return validator.get_errors
