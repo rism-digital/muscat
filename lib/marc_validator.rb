@@ -370,6 +370,33 @@ include ApplicationHelper
     end
   end
 
+  def validate_dead_773_links
+    @marc.each_by_tag("773") do |link|
+      link_id = link.fetch_first_by_tag("w")
+      link_type = link.fetch_first_by_tag("4")
+      
+      next if link_type && link_type.content && link_type.content == "holding"
+
+      begin
+        parent = Source.find(link_id.content)
+      rescue ActiveRecord::RecordNotFound
+        add_error("deleted-773", nil, "773_parent_deleted #{link_id.content}", "773_error")
+      end
+
+      found = false
+      parent.marc.each_by_tag("774") do |parent_774|
+        parent_link_id = parent_774.fetch_first_by_tag("w")
+        next if !parent_link_id || !parent_link_id.content
+        if link_id.content == parent_link_id.content
+          found = true
+          break
+        end
+      end
+
+      add_error("stale-773", nil, "773_not_in_parent #{link_id.content}", "773_error") if !found
+    end
+  end
+
   def validate_dates
     
     @marc.each_by_tag("260") do |marctag|
@@ -488,6 +515,7 @@ include ApplicationHelper
     validate_holdings
     validate_unknown_tags
     validate_dead_774_links
+    validate_dead_773_links
     validate_parent_institution
     validate_588
     return @errors
