@@ -392,7 +392,7 @@ include ApplicationHelper
         parent_link_id = parent_774.fetch_first_by_tag("w")
         next if !parent_link_id || !parent_link_id.content
 
-        if @object.id.to_s == parent_link_id.content.strip
+        if @object.id.to_i == parent_link_id.content.to_i
           found = true
           break
         end
