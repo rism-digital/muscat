@@ -164,6 +164,7 @@ class MuscatCheckup
       validator.validate_unknown_tags if !@skip_unknown_tags
       validator.validate_holdings if !@skip_holdings
       validator.validate_dead_774_links if !@skip_dead_774
+      validator.validate_dead_773_links
       validator.validate_parent_institution if !@skip_parent_institution
       validator.validate_588 if !@skip_588_validation
       return validator.get_errors
