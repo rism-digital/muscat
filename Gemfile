@@ -185,3 +185,5 @@ gem 'i18n-tasks', '~> 1.0.14', group: :development
 
 gem 'solargraph', group: :development
 gem 'rufo', group: :development
+
+gem 'diff-lcs', group: :development

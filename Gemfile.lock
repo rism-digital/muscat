@@ -591,6 +591,7 @@ DEPENDENCIES
   delayed_job_active_record
   devise
   devise-i18n
+  diff-lcs
   differ
   exception_notification
   factory_bot_rails
