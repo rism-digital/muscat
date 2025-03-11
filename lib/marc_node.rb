@@ -3,7 +3,7 @@
 class MarcNode
 
   include Enumerable
-  attr_reader :tag, :content, :indicator, :foreign_object, :parent, :diff, :diff_is_deleted, :model
+  attr_reader :tag, :content, :raw_content, :indicator, :foreign_object, :parent, :diff, :diff_is_deleted, :model
   attr_writer :tag, :content, :indicator, :foreign_object, :foreign_field, :diff, :diff_is_deleted
   attr_accessor :foreign_host, :suppress_scaffold_links_trigger
   
@@ -447,6 +447,10 @@ class MarcNode
     end
   end
   
+  def raw_content
+    return @content
+  end
+
   # Return the content of a foreign object non from the Marc data itself
   # but from the corresponding class
   def looked_up_content
