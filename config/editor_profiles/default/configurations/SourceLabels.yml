@@ -324,7 +324,7 @@
     b:
       label: general.rism_series_number
     c:
-      label: records.reference_record_id
+      label: records.rism_id_number
   label: general.rism_series_a_b_references
 '597':
   fields:
