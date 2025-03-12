@@ -27,10 +27,7 @@ class EditorHelpController < ApplicationController
     legacy = I18n.locale == :en ? false : true
 
     help_fname = EditorConfiguration.get_help_file(page, legacy)
-    ap help_fname
-    ap legacy
     file_type = help_fname.end_with?(".md")
-    ap file_type
 
     begin
       file_data = IO.read("#{Rails.root}/public/#{help_fname}")
