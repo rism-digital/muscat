@@ -485,6 +485,14 @@ class EditorConfiguration
     
   def self.get_help_file(item_name, legacy = false)
 
+    # GND works as usual work "indipendently"
+    if item_name.start_with? "gnd_work_"
+      fname = "/gnd_works_help/#{item_name}_#{I18n.locale.to_s}.html"
+      ap fname
+      return fname if File.exist?("#{Rails.root}/public#{fname}")
+      return ""
+    end
+
     # Get the legacy translation
     # It it is missing, return the new english file
     if legacy
@@ -506,18 +514,6 @@ class EditorConfiguration
   private
 
   def self.get_help_fname_legacy(item_name)
-    # Oh the humanity!
-    # Until we figure out what to do with the guidelines,
-    # keep this in a different place
-    # FIXME!
-=begin
-    if model == "gnd_work_"
-      fname = "/gnd_works_help/#{model}#{name}_#{I18n.locale.to_s}.html"
-      return fname if File.exist?("#{Rails.root}/public#{fname}")
-      return ""
-    end
-=end
-
     # Source items had no source_
     item_name.gsub!("source_", "")
 
