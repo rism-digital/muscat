@@ -1,3 +1,8 @@
-<% render_panel = params[:marc_editor_dest] %>
-
-$('#<%= render_panel %>').html("<%= escape_javascript(render(:partial =>  "editor/help")) -%>");
+<div class="panel tabpanel">
+	<h3><%= @help_title.html_safe -%></h3>
+	<div class="guidelines_panel_content">
+		<div class="guidelines">
+	    <p><%= @help_text.html_safe -%></p>
+	    </div>
+	</div>
+</div>

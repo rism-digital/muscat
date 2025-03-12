@@ -338,20 +338,19 @@ function _marc_editor_validate(source_form, destination, rails_model) {
 		return false
 }
 
-function _marc_editor_help( destination, help, title, rails_model ) {
+function _marc_editor_help( destination, help, title ) {
 
-	var url = "/admin/" + rails_model + "/marc_editor_help";
-	
+	var url = "/admin/editor_help_box/" + help
+
 	$.ajax({
 		success: function(data) {
+			$('#' + destination).html(data)
 			marc_editor_show_panel(destination);
 		},
 		data: {
-			help: help,
 			title: title,
-			marc_editor_dest: destination
 		},
-		dataType: 'script',
+		dataType: 'html',
 		timeout: 20000,
 		type: 'post',
 		url: url, 

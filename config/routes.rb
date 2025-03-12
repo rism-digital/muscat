@@ -51,6 +51,8 @@ Rails.application.routes.draw do
   get '/data/:model/:id' => "data#show"
   match '/data', :to => 'data#routing_error', via: :all
 
+  post 'admin/editor_help/:page', to: 'editor_help#render_page'
+  post 'admin/editor_help_box/:page', to: 'editor_help#render_page_in_box'
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

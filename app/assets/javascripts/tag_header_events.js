@@ -189,8 +189,8 @@ used for _tag_header partial
     		},
     		dataType: 'html',
     		timeout: 1000, 
-    		type: 'get',
-    		url: elem.data("help")
+    		type: 'post',
+    		url: "/admin/editor_help/" + elem.data("help") //elem.data("help")
     	});
 	}
 	

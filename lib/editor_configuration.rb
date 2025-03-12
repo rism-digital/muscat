@@ -213,11 +213,7 @@ class EditorConfiguration
   # Extracts from the configuration the file name of the helpfile for the specified tag.
   # Help files oare in <tt>public/help</tt>. Used from the editor view.
   def get_tag_extended_help(tag_name, model)
-    if options_config.include?(tag_name) && options_config[tag_name].include?("extended_help")
-      return EditorConfiguration.get_help_fname("#{options_config[tag_name]["extended_help"]}", model)
-    else
-      return EditorConfiguration.get_help_fname("#{tag_name}", model)
-    end
+    return "#{model.underscore}_#{tag_name}"
   end
   
   # gets the display partial for the specified tag from the configuration. Used so
@@ -489,6 +485,32 @@ class EditorConfiguration
     
   # Gets the html file name.
   def self.get_help_fname(name, model = "Source")
+
+    # The old-style guidelines do not have different dirs for different locales
+    if Dir.exist?(ConfigFilePath.get_marc_editor_profile_path("/help/default/en"))
+      return get_help_fname_old(name, model)
+    else
+      return get_help_fname_markdown(name, model)
+    end
+  end
+
+  def self.get_markdown_help(item_name)
+
+    file = ConfigFilePath.get_marc_editor_profile_path("/help/default/#{I18n.locale.to_s}/#{item_name}.md")
+
+    return file if File.exist?("#{Rails.root}/public#{file}")
+
+    # english?
+    file = ConfigFilePath.get_marc_editor_profile_path("/help/default/en/#{item_name}.md")
+    return file if File.exist?("#{Rails.root}/public#{file}")
+
+    # sorry
+    return ""
+  end
+
+  private
+
+  def self.get_help_fname_old(name, model)
     model = (model == "Source") ? "" : "#{model.underscore}_"
 
     # Oh the humanity!
@@ -503,6 +525,7 @@ class EditorConfiguration
     # translated version?
     fname = ConfigFilePath.get_marc_editor_profile_path("/help/#{RISM::MARC}/#{model}#{name}_#{I18n.locale.to_s}.html")
     #ap fname
+    #
     return fname if File.exist?("#{Rails.root}/public#{fname}")
     # english?
     fname = ConfigFilePath.get_marc_editor_profile_path("/help/#{RISM::MARC}/#{model}#{name}_en.html")
@@ -511,7 +534,27 @@ class EditorConfiguration
     return ""
   end
 
-  private
+  def self.get_help_fname_markdown(name, model)
+    model = "#{model.underscore}_"
+
+    # In the new version we still need to keep the GND stuff as-is for the moment
+    if model == "gnd_work_"
+      fname = "/gnd_works_help/#{model}#{name}_#{I18n.locale.to_s}.html"
+      return fname if File.exist?("#{Rails.root}/public#{fname}")
+      return ""
+    end
+
+    file = ConfigFilePath.get_marc_editor_profile_path("/help/default/#{I18n.locale.to_s}/#{model}#{name}.md")
+
+    return file if File.exist?("#{Rails.root}/public#{file}")
+
+    # english?
+    file = ConfigFilePath.get_marc_editor_profile_path("/help/default/en/#{model}#{name}.md")
+    return file if File.exist?("#{Rails.root}/public#{file}")
+
+    # sorry
+    return ""
+  end
 
   # Get all the EditorConfigurations defined in config/editor_profiles/default/profiles.yml
   # and locals is config/editor_profiles/$EDITOR_PROFILE/profiles.yml

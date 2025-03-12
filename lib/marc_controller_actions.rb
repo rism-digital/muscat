@@ -179,7 +179,14 @@ module MarcControllerActions
       help = params[:help]
       help_fname = EditorConfiguration.get_help_fname(help)
       @help_title = params[:title]
-      @help_text = IO.read("#{Rails.root}/public/#{help_fname}")
+
+      if help_fname.end_with?(".html")
+        @help_text = IO.read("#{Rails.root}/public/#{help_fname}")
+      else
+        markdown = IO.read("#{Rails.root}/public/#{help_fname}")
+        ap markdown
+        @help_text = Redcarpet::Markdown.new(Redcarpet::Render::HTML).render(markdown).html_safe
+      end
      
       render :template => 'editor/show_help'
     end
