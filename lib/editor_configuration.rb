@@ -483,21 +483,16 @@ class EditorConfiguration
     return nil
   end
     
-  # Gets the html file name.
-  def self.get_help_fname(name, model = "Source")
+  def self.get_help_file(item_name, legacy = false)
 
-    # The old-style guidelines do not have different dirs for different locales
-    if Dir.exist?(ConfigFilePath.get_marc_editor_profile_path("/help/default/en"))
-      return get_help_fname_old(name, model)
-    else
-      return get_help_fname_markdown(name, model)
-    end
-  end
-
-  def self.get_markdown_help(item_name)
+    # Get the legacy translation
+    # It it is missing, return the new english file
+    if legacy
+      file = get_help_fname_legacy(item_name)
+      return file if !file.empty?
+    end 
 
     file = ConfigFilePath.get_marc_editor_profile_path("/help/default/#{I18n.locale.to_s}/#{item_name}.md")
-
     return file if File.exist?("#{Rails.root}/public#{file}")
 
     # english?
@@ -510,49 +505,28 @@ class EditorConfiguration
 
   private
 
-  def self.get_help_fname_old(name, model)
-    model = (model == "Source") ? "" : "#{model.underscore}_"
-
+  def self.get_help_fname_legacy(item_name)
     # Oh the humanity!
     # Until we figure out what to do with the guidelines,
     # keep this in a different place
+    # FIXME!
+=begin
     if model == "gnd_work_"
       fname = "/gnd_works_help/#{model}#{name}_#{I18n.locale.to_s}.html"
       return fname if File.exist?("#{Rails.root}/public#{fname}")
       return ""
     end
+=end
+
+    # Source items had no source_
+    item_name.gsub!("source_", "")
 
     # translated version?
-    fname = ConfigFilePath.get_marc_editor_profile_path("/help/#{RISM::MARC}/#{model}#{name}_#{I18n.locale.to_s}.html")
-    #ap fname
-    #
+    fname = ConfigFilePath.get_marc_editor_profile_path("/help_legacy/#{RISM::MARC}/#{item_name}_#{I18n.locale.to_s}.html")
+    
     return fname if File.exist?("#{Rails.root}/public#{fname}")
-    # english?
-    fname = ConfigFilePath.get_marc_editor_profile_path("/help/#{RISM::MARC}/#{model}#{name}_en.html")
-    return fname if File.exist?("#{Rails.root}/public#{fname}")
+
     # nope...
-    return ""
-  end
-
-  def self.get_help_fname_markdown(name, model)
-    model = "#{model.underscore}_"
-
-    # In the new version we still need to keep the GND stuff as-is for the moment
-    if model == "gnd_work_"
-      fname = "/gnd_works_help/#{model}#{name}_#{I18n.locale.to_s}.html"
-      return fname if File.exist?("#{Rails.root}/public#{fname}")
-      return ""
-    end
-
-    file = ConfigFilePath.get_marc_editor_profile_path("/help/default/#{I18n.locale.to_s}/#{model}#{name}.md")
-
-    return file if File.exist?("#{Rails.root}/public#{file}")
-
-    # english?
-    file = ConfigFilePath.get_marc_editor_profile_path("/help/default/en/#{model}#{name}.md")
-    return file if File.exist?("#{Rails.root}/public#{file}")
-
-    # sorry
     return ""
   end
 

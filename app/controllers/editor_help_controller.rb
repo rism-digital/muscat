@@ -22,16 +22,30 @@ class EditorHelpController < ApplicationController
 
   private
 
-  def render_markdown(page) 
-    help_fname = EditorConfiguration.get_markdown_help(page)
+  def render_markdown(page)
+    # Use the legacy GD for all except English
+    legacy = I18n.locale == :en ? false : true
+
+    help_fname = EditorConfiguration.get_help_file(page, legacy)
+    ap help_fname
+    ap legacy
+    file_type = help_fname.end_with?(".md")
+    ap file_type
 
     begin
-      markdown = IO.read("#{Rails.root}/public/#{help_fname}")
+      file_data = IO.read("#{Rails.root}/public/#{help_fname}")
     rescue
       return "#{page} not found"
     end
 
-    return Redcarpet::Markdown.new(Redcarpet::Render::HTML).render(markdown).html_safe
+    if file_type
+      file_data = Redcarpet::Markdown.new(Redcarpet::Render::HTML).render(file_data).html_safe
+      file_data += "<small>new-guidelines</small>".html_safe
+    else
+      file_data += "<small>legacy-guidelines</small>".html_safe
+    end
+
+    return file_data.html_safe
   end
 
 end
