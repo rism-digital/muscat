@@ -1106,6 +1106,8 @@
       - read_only: true
     - - "0"
       - hidden: true
+    - - u
+      - read_only: true
 "930":
   new_window: work_nodes
   new_window_field: title_eq

@@ -497,6 +497,8 @@
   fields:
     a:
       label: records.institution
+    u:
+      label: records.project_url
   label: records.contributing_project
 '930':
   fields:
