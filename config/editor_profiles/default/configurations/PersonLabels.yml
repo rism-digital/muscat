@@ -41,7 +41,7 @@
     a:
       label: records.heading_personal_name
     c:
-      label: records.religious_order
+      label: records.name_titles_words
     d:
       label: records.life_dates
     y:
@@ -136,7 +136,7 @@
     a:
       label: records.institution
     u:
-      label: general.url
+      label: records.project_url
   label: records.contributing_project
 administration:
   label: records.administration

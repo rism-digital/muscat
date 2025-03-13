@@ -819,6 +819,8 @@
       - :occurrences: "?"
         :foreign_class: ^0
         :foreign_field: corporate_name
+    - - u
+      - :occurrences: "?"
   "930":
     :master: "0"
     :indicator: "1#"

@@ -585,7 +585,7 @@ ko:
     language_codes: Language codes
     language_libretto: Language of libretto
     language_note: Language note
-    language_of_cataloging: Language of cataloging
+    language_of_cataloging: Cataloging language
     language_original_text: Language of original text
     language_text: Language of text
     later_entry: Later entry

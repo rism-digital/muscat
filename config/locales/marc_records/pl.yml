@@ -280,7 +280,7 @@ pl:
     alternate_spelling: Alternatywna pisownia
     alternative_work_title: Alternatywny tytuł dzieła
     amount: Liczba
-    annex: Annex
+    annex: Dodatek
     appendix: Załącznik
     archive: Archiwum
     arrangement: Aranżacja
@@ -928,7 +928,7 @@ pl:
     woodwinds: Instrumenty dęte drewniane
     work: Dzieło
     work_catalog_note: Notatka do katalogu utworów
-    work_list: Work list
+    work_list: Lista Dzieł
     work_node: Odniesienie do Dzieła zewnętrznego (Work node)
     work_number: Numer dzieła
     work_tag: tag edycji Dzieła

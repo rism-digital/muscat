@@ -281,7 +281,7 @@ ca:
     alternative_work_title: Títol alternatiu
     amount: Número
     annex: Annex
-    appendix: Appendix
+    appendix: Apèndix
     archive: Arxiu
     arrangement: Arranjament
     arrangement_statement: Menció d'arranjament
@@ -462,7 +462,7 @@ ca:
     excerpts: Extractes
     exemplar: Exemplar
     exemplars: Exemplars
-    expansion: Expansion
+    expansion: Expansió
     extent: Extensió
     extent_parts: Extensió (particel·les)
     external_resource: Recurs extern
@@ -585,7 +585,7 @@ ca:
     language_codes: Codis d'idioma
     language_libretto: Llengua del llibret
     language_note: Nota de llengua
-    language_of_cataloging: Idioma de catalogació
+    language_of_cataloging: Llengua de catalogació
     language_original_text: Idioma del text original
     language_text: Llengua del text
     later_entry: Entrada posterior
@@ -696,7 +696,7 @@ ca:
     number: Número
     number_page: Número/pàgina
     number_part_section: Número de part / secció d'una obra
-    number_volume: Number/volume
+    number_volume: Número/Volum
     number_volume_part: Número de volum o part
     numbers_code_fields: Números i camps codificats
     numeric_designation: Designació numèrica
@@ -745,8 +745,8 @@ ca:
     performances: Interpretacions
     performer: Intèrpret
     performer_note: Nota sobre la interpretació
-    periodical_or_series: Periodical or series
-    periodical_or_series_title: Periodical or series title
+    periodical_or_series: Revista o sèrie
+    periodical_or_series_title: Títol de la revista o sèrie
     person: Persona
     person_name: Nom personal
     personal_name: Nom personal
@@ -832,7 +832,7 @@ ca:
     series: Sèries
     series_added_entry: Entrades secundàries de col·lecció
     series_statement: Menció de col·lecció
-    section: Section
+    section: Secció
     shelfmark: Signatura
     shelfmark_olim: Signatura anterior (olim)
     short_title: Títol abreujat
@@ -928,7 +928,7 @@ ca:
     woodwinds: Vent-fusta
     work: Obra
     work_catalog_note: Nota sobre el catàleg de l'obra
-    work_list: Work list
+    work_list: Llista d'obres
     work_node: Referència externa d'obra (Work node)
     work_number: Número d'obra
     work_tag: Etiqueta de revisió per obra

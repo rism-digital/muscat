@@ -323,3 +323,4 @@
     - - "0"
       - hidden: true
     - - u
+      - read_only: true
