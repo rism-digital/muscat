@@ -152,6 +152,7 @@
     - - a
       - :occurrences: "?"
   "400":  
+    :master: "0"
     :indicator: "1#"
     :occurrences: "*"
     :fields:
@@ -178,6 +179,7 @@
     - - p
       - :occurrences: "?"
   "500":  
+    :master: "0"
     :indicator: "1#"
     :occurrences: "*"
     :fields:
