@@ -251,7 +251,7 @@ ActiveAdmin.register Person do
         context.column (I18n.t :filter_source_composer) {|hld| hld.source.composer}
         if !is_selection_mode?
           context.column "" do |hold|
-            link_to I18n.t(:view_source), controller: :holdings, action: :show, id: hold.id
+            link_to I18n.t(:view_source), controller: :sources, action: :show, id: hold.source.id
           end
         end
       end
