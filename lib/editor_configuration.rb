@@ -488,7 +488,6 @@ class EditorConfiguration
     # GND works as usual work "indipendently"
     if item_name.start_with? "gnd_work_"
       fname = "/gnd_works_help/#{item_name}_#{I18n.locale.to_s}.html"
-      ap fname
       return fname if File.exist?("#{Rails.root}/public#{fname}")
       return ""
     end
@@ -515,11 +514,10 @@ class EditorConfiguration
 
   def self.get_help_fname_legacy(item_name)
     # Source items had no source_
-    item_name.gsub!("source_", "")
+    clean_name = item_name.gsub("source_", "")
 
     # translated version?
-    fname = ConfigFilePath.get_marc_editor_profile_path("/help_legacy/#{RISM::MARC}/#{item_name}_#{I18n.locale.to_s}.html")
-    
+    fname = ConfigFilePath.get_marc_editor_profile_path("/help_legacy/#{RISM::MARC}/#{clean_name}_#{I18n.locale.to_s}.html")
     return fname if File.exist?("#{Rails.root}/public#{fname}")
 
     # nope...
