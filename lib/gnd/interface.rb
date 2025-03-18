@@ -55,7 +55,6 @@ module GND
         diagnostic_messages = ""
         author = ""
         title = ""
-
         uri = URI.parse(server)
         post = Net::HTTP::Post.new(uri.path, 'Content-Type' => 'text/xml')
         server = Net::HTTP.new(uri.host, uri.port)
@@ -63,7 +62,6 @@ module GND
         server.start {|http|
             http.request(post, request_body) {|response|
                 if response.code == "200"
-            puts response.body
                     response_body = Nokogiri::XML(response.body)
 
                     # Get all the messages if any
@@ -97,6 +95,7 @@ module GND
     def self.make_gnd_envelope(action, data, id=nil)
         login = "#{Rails.application.credentials.gnd[:user]}/#{Rails.application.credentials.gnd[:password]}"
         recordId = id ? "<ucp:recordIdentifier>gnd:gnd#{id}</ucp:recordIdentifier>" : ""
+        puts data
         xml = <<-TEXT
     <soap:Envelope xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/">
         <soap:Body>
@@ -311,7 +310,7 @@ module GND
             item = {}
             node_001 = record.xpath("./marc:controlfield[@tag='001']", NAMESPACE).first
             next if !node_001
-            item[:id] = node_001.text
+            item[:id] = "(DE-101)#{node_001.text}"
             node_100a_val = record.xpath("./marc:datafield[@tag='100']/marc:subfield[@code='a']", NAMESPACE).first.text rescue "[missing]"
             item["person"] = node_100a_val
             node_100d_val = record.xpath("./marc:datafield[@tag='100']/marc:subfield[@code='d']", NAMESPACE).first.text rescue ""
