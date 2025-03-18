@@ -351,3 +351,72 @@ g-2:
       label: gnd.entity_identification_previous_database
     "0":
       label: gnd.record_id
+
+arra:
+  label: gnd.arrangeur
+aut1:
+  label: gnd.verfasser_erster
+auta:
+  label: gnd.verfasser
+autf:
+  label: gnd.verfasser_fiktiver
+bear:
+  label: gnd.bearbeiter
+chre:
+  label: gnd.choreograf
+comp:
+  label: gnd.compiler
+dich:
+  label: gnd.textdichter
+druc:
+  label: gnd.drucker
+feie:
+  label: gnd.gefeierte_oder_dargestellte_person_familie
+grav:
+  label: gnd.graveur_stecher
+hers:
+  label: gnd.hersteller
+hrsg:
+  label: gnd.herausgeber
+illu:
+  label: gnd.illustrator_illuminator
+istm:
+  label: gnd.instrumentalmusiker
+kom1:
+  label: gnd.komponist_erster
+koma:
+  label: gnd.komponist
+kopi:
+  label: gnd.kopist
+kue1:
+  label: gnd.künstler_erster
+kuen:
+  label: gnd.künstler
+libr:
+  label: gnd.librettist
+malr:
+  label: gnd.maler
+regi:
+  label: gnd.regisseur
+saen:
+  label: gnd.sänger
+saml:
+  label: gnd.sammler
+spon:
+  label: gnd.sponsor_mäzen
+spre:
+  label: gnd.sprecher
+stif:
+  label: gnd.stifter
+them:
+  label: gnd.thema
+uebe:
+  label: gnd.übersetzer
+urhe:
+  label: gnd.urheber
+vbal:
+  label: gnd.verwandter_begriff_allgemein
+verr:
+  label: gnd.veranlasser
+widm:
+  label: gnd.widmungsempfänger

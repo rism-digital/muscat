@@ -50,8 +50,8 @@ de:
     usage_identifier: Nutzungskennzeichen
     authorized_form: Ansetzungsform
     name: Name
-    birth_and_death_dates: Geburts- und Todesdaten
-    birth_and_death_years: Geburts- und Todesjahr
+    birth_and_death_dates: Geburtsund Todesdaten
+    birth_and_death_years: Geburtsund Todesjahr
     instrumentation_hint: Besetzungshinweis
     numerical_identifier: Numerische Kennzeichnung
     part_title: Teiltitel
@@ -108,3 +108,37 @@ de:
     function_name: Funktionsbezeichnung
     material_concept: Sachbegriff
     data_source: Datenquelle
+    arrangeur: "Arrangeur"
+    verfasser_erster: "Verfasser, erster"
+    verfasser: "Verfasser"
+    verfasser_fiktiver: "Verfasser, fiktiver"
+    bearbeiter: "Bearbeiter"
+    choreograf: "Choreograf"
+    compiler: "Compiler"
+    textdichter: "Textdichter"
+    drucker: "Drucker"
+    gefeierte_oder_dargestellte_person_familie: "Gefeierte oder dargestellte Person/Familie"
+    graveur_stecher: "Graveur, Stecher"
+    hersteller: "Hersteller"
+    herausgeber: "Herausgeber"
+    illustrator_illuminator: "Illustrator, Illuminator"
+    instrumentalmusiker: "Instrumentalmusiker"
+    komponist_erster: "Komponist, erster"
+    komponist: "Komponist"
+    kopist: "Kopist"
+    künstler_erster: "Künstler, erster"
+    künstler: "Künstler"
+    librettist: "Librettist"
+    maler: "Maler"
+    regisseur: "Regisseur"
+    sänger: "Sänger"
+    sammler: "Sammler"
+    sponsor_mäzen: "Sponsor, Mäzen"
+    sprecher: "Sprecher"
+    stifter: "Stifter"
+    thema: "Thema"
+    übersetzer: "Übersetzer"
+    urheber: "Urheber"
+    verwandter_begriff_allgemein: "Verwandter Begriff (allgemein)"
+    veranlasser: "Veranlasser"
+    widmungsempfänger: "Widmungsempfänger"

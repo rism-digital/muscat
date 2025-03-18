@@ -249,6 +249,9 @@
     - - e
     - - "0"
     - - "4"
+      - editor_partial: subfield_select_codes
+        select_label: "Function"
+        codes_reference: "relator_codes"
     - - i
     - - w
     - - "9"
@@ -256,6 +259,42 @@
     - - n
     - - p
     - - r
+  tag_params:
+    relator_codes:
+      - arra
+      - aut1
+      - auta
+      - autf
+      - bear
+      - chre
+      - comp
+      - dich
+      - druc
+      - feie
+      - grav
+      - hers
+      - hrsg
+      - illu
+      - istm
+      - kom1
+      - koma
+      - kopi
+      - kue1
+      - kuen
+      - libr
+      - malr
+      - regi
+      - saen
+      - saml
+      - spon
+      - spre
+      - stif
+      - them
+      - uebe
+      - urhe
+      - vbal
+      - verr
+      - widm
 "530": 
   layout: 
     fields: 
