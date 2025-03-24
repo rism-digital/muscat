@@ -1,3 +1,3 @@
-The **Work nodes** items act as labelled links between sources in Muscat and external work authorities (e.g., GND works) and regroup sources sharing the same reference. They serve as authority data proxy stored in Muscat for facilitating the handling of the links with the external authority dataset.
+The **Work nodes** serve as a link between sources in Muscat and external work authorities. Within Muscat, they group sources sharing the same external work authority ID number. A link to an existing, external work authority, preferably to the GND from the German National Library (DNB), is required to create a work node.
 
-Work nodes are themselves not exported as authority date, and work nodes IDs are not exposed externally. However, work nodes are listed in the source records pointing to them through a custom Marc field 930, together with work ID of the external work authority dataset (e.g., the GND ID).
+Work nodes are not exported as authority data, and work nodes do not have external ID numbers. They are linked in the source records through the field **External work reference** (930), and link to the external authority through that authority's work ID number.
