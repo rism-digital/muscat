@@ -190,7 +190,7 @@
     - - "a"
       - type: gnd_work_form
         preserve_foreign_value: true
-        editor_partial: subfield_autocomplete
+        editor_partial: subfield_secondary #subfield_autocomplete
     - - "0"
     - - "2"
 "382": 
