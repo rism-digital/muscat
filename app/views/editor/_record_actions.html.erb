@@ -15,24 +15,14 @@
 	    				<div style="vertical-align: bottom; background-color: transparent">
 							<select id="record_status" width="100">
 								<% if @item.id == nil %>
-									<% if current_user.preference_wf_stage == "published" %>
-										<option value="published" selected="true"><%=I18n.t("wf_stage.published")%></option>
-										<option value="inprogress"><%=I18n.t("wf_stage.inprogress")%></option>
-									<%else%>
-										<option value="published"><%=I18n.t("wf_stage.published")%></option>
-										<option value="inprogress" selected="true"><%=I18n.t("wf_stage.inprogress")%></option>
+									<% ["published", "inprogress"].each do |wf_stage| %>
+										<option value="<%=wf_stage%>"<%=" selected" if wf_stage == current_user.preference_wf_stage%>><%=I18n.t("wf_stage.#{wf_stage}")%></option>
 									<%end%>
 								<%else%>
-									<% if @item.wf_stage == "published" %>
-										<option value="published" selected="true"><%=I18n.t("wf_stage.published")%></option>
-										<option value="inprogress"><%=I18n.t("wf_stage.inprogress")%></option>
-									<%else%>
-										<option value="published"><%=I18n.t("wf_stage.published")%></option>
-										<option value="inprogress" selected="true"><%=I18n.t("wf_stage.inprogress")%></option>
+									<% ["published", "inprogress"].each do |wf_stage| %>
+										<option value="<%=wf_stage%>"<%=" selected" if wf_stage == @item.wf_stage%>><%=I18n.t("wf_stage.#{wf_stage}")%></option>
 									<%end%>
 								<%end%>
-								<option value="deprecated"><%=I18n.t("wf_stage.deprecated")%></option>
-								<option value="deleted"><%=I18n.t("wf_stage.deleted")%></option>
 							</select>
 	    				</div>
 	    			</div>
