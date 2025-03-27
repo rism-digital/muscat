@@ -95,7 +95,6 @@ module GND
     def self.make_gnd_envelope(action, data, id=nil)
         login = "#{Rails.application.credentials.gnd[:user]}/#{Rails.application.credentials.gnd[:password]}"
         recordId = id ? "<ucp:recordIdentifier>gnd:gnd#{id}</ucp:recordIdentifier>" : ""
-        puts data
         xml = <<-TEXT
     <soap:Envelope xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/">
         <soap:Body>
@@ -331,7 +330,8 @@ module GND
             item = {}
             node_001 = record.xpath("./marc:controlfield[@tag='001']", NAMESPACE).first
             next if !node_001
-            item[:id] = node_001.text
+            #item[:id] = node_001.text
+            item[:id] = "(DE-101)#{node_001.text}"
             node_150a_val = record.xpath("./marc:datafield[@tag='150']/marc:subfield[@code='a']", NAMESPACE).first.text rescue "[missing]"
             item["instrument"] = node_150a_val
             item[:label] = "#{node_150a_val}"
@@ -350,7 +350,8 @@ module GND
             item = {}
             node_001 = record.xpath("./marc:controlfield[@tag='001']", NAMESPACE).first
             next if !node_001
-            item[:id] = node_001.text
+            #item[:id] = node_001.text
+            item[:id] = "(DE-101)#{node_001.text}"
             node_150a_val = record.xpath("./marc:datafield[@tag='150']/marc:subfield[@code='a']", NAMESPACE).first.text rescue "[missing]"
             item["form"] = node_150a_val
             item[:label] = "#{node_150a_val}"
