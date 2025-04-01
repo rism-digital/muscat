@@ -88,14 +88,14 @@
     - - v
 "100":
   layout: 
-    fields: 
-    - - t
     - - a
       - type: gnd_work_person
         #preserve_foreign_value: true
         editor_partial: subfield_secondary
     - - d
       - autocomplete_extra: life_dates
+    fields: 
+    - - t
     - - m
     - - n
     - - o
@@ -176,9 +176,8 @@
 "130":
   layout: 
     fields: 
-    - - t
     - - a
-    - - d
+    - - f
     - - m
     - - n
     - - o
@@ -298,22 +297,28 @@
 "400":
   layout: 
     fields:
-    - - t
     - - a
       - type: gnd_work_person
         #preserve_foreign_value: true
         editor_partial: subfield_secondary
     - - d
       - autocomplete_extra: life_dates
+    - - t
     - - m
     - - n
+    - - o
     - - r
     - - p
 "430": 
   layout: 
     fields:
     - - a
+    - - f
+    - - m
+    - - n
+    - - o
     - - p
+    - - r
 "500": 
   allow_new: true
   new_window: people
