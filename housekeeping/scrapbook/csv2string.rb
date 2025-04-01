@@ -9,7 +9,7 @@ def csv_to_base64_gzipped_yaml(csv_file_path, hash = true)
 
   CSV.foreach(csv_file_path, headers: false) do |row|
     key, value, val2 = row
-    data_array << [key, value, val2] if !hash
+    data_array << [key, value, val2, row[3], row[4], row[5]] if !hash
     data_array[key] = value if hash
   end
 
