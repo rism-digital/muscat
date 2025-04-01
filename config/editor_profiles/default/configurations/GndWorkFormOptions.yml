@@ -88,13 +88,14 @@
     - - v
 "100":
   layout: 
+    fields: 
     - - a
       - type: gnd_work_person
         #preserve_foreign_value: true
         editor_partial: subfield_secondary
     - - d
       - autocomplete_extra: life_dates
-    fields: 
+
     - - t
     - - m
     - - n
