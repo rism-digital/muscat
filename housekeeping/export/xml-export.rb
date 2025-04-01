@@ -42,7 +42,8 @@ items.each do |s|
     record = model.find(s)
   rescue ActiveRecord::RecordNotFound
     # ops! Somebody deleted it while we were exporting...
-    puts "#{model.class.to_s} #{s} was deleted"
+    puts "#{model&.to_s} #{s} was deleted"
+    next
   end
 
   # Add deprecated_ids: "false" if necessary
