@@ -116,6 +116,33 @@
       - :occurrences: "?"
     - - n
       - :occurrences: "?"
+    - - o
+      - :occurrences: "?"
+    - - r
+      - :occurrences: "?"
+    - - t
+      - :occurrences: "?"
+  "130":  
+    :master: "0"
+    :indicator: "1#"
+    :occurrences: "?"
+    :fields:
+    - - "0"
+      - :occurrences: "?"  
+        #:foreign_class: GndWork
+        #:foreign_field: id
+    - - a
+      - :occurrences: "?"
+        #:foreign_class: ^0
+        #:foreign_field: full_name
+    - - d
+      - :occurrences: "?"
+    - - m
+      - :occurrences: "?"
+    - - n
+      - :occurrences: "?"
+    - - o
+      - :occurrences: "?"
     - - r
       - :occurrences: "?"
     - - t
@@ -127,13 +154,26 @@
     :fields:
     - - "0"
       - :occurrences: "?"  
+    - - "2"
+      - :occurrences: "?"  
     - - a
       - :occurrences: "?"
   "382":  
+    :master: "0"
     :indicator: "##"
     :occurrences: "*"
     :fields:
+    - - "0"
+      - :occurrences: "?"  
     - - "9"
+      - :occurrences: "?"
+    - - "2"
+      - :occurrences: "?"
+    - - v
+      - :occurrences: "?"
+    - - n
+      - :occurrences: "?"
+    - - s
       - :occurrences: "?"
   "383":  
     :indicator: "##"
@@ -168,6 +208,8 @@
       - :occurrences: "?"
     - - r
       - :occurrences: "?"
+    - - o
+      - :occurrences: "?"
     - - t
       - :occurrences: "?"
   "430":  
@@ -190,6 +232,20 @@
     - - "d"
       - :occurrences: "?"
     - - "e"
+      - :occurrences: "?"
+    - - "4"
+      - :occurrences: "?"
+    - - i
+      - :occurrences: "?"
+    - - w
+      - :occurrences: "?"
+    - - "9"
+      - :occurrences: "?"
+    - - n
+      - :occurrences: "?"
+    - - p
+      - :occurrences: "?"
+    - - r
       - :occurrences: "?"
   "530":  
     :indicator: "##"
