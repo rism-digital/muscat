@@ -420,3 +420,5 @@ verr:
   label: gnd.veranlasser
 widm:
   label: gnd.widmungsempfänger
+obpa:
+  label: gnd.oberbegriff_partitiv
