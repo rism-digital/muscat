@@ -279,12 +279,12 @@
       - type: gnd_work_instrument
         preserve_foreign_value: true
         editor_partial: subfield_secondary #subfield_autocomplete
-    - - "9"
-    - - "0"
-    - - "2"
-    - - v
     - - n
     - - s
+    - - v
+    - - "0"
+    - - "2"
+    - - "9"
 "383": 
   layout: 
     fields: 
