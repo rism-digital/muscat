@@ -64,6 +64,118 @@
   layout: 
     fields: 
     - - c
+      - editor_partial: subfield_select_codes
+        select_label: "Country"
+  tag_params:
+    codes:
+        - "XA-AD"
+        - "XA-AL"
+        - "XC-DZ"
+        - "XA-AT"
+        - "XA-AT-2"
+        - "XA-AT-3"
+        - "XA-AT-4"
+        - "XA-AT-5"
+        - "XA-AT-6"
+        - "XA-AT-7"
+        - "XA-AT-9"
+        - "XB-AZ"
+        - "XB-BD"
+        - "XA-BE"
+        - "XA-BY"
+        - "XA-BA"
+        - "XD-BO"
+        - "XD-BR"
+        - "XA-BG"
+        - "XB-KH"
+        - "XD-CA"
+        - "XD-CL"
+        - "XB-CN"
+        - "XD-CO"
+        - "XD-CR"
+        - "XA-HR"
+        - "XD-CU"
+        - "XA-CZ"
+        - "XA-DK"
+        - "XD-EC"
+        - "XC-EG"
+        - "XA-EE"
+        - "XA-FI"
+        - "XA-FR"
+        - "XB-GE"
+        - "XC-GH"
+        - "XC-GN"
+        - "XD-GT"
+        - "XA-DE"
+        - "XA-DE-BY"
+        - "XA-DE-SN"
+        - "XA-GR"
+        - "XD-HN"
+        - "XB-HK"
+        - "XA-HU"
+        - "XA-IS"
+        - "XB-IN"
+        - "XB-ID"
+        - "XB-IR"
+        - "XB-IQ"
+        - "XA-IE"
+        - "XB-IL"
+        - "XA-IT"
+        - "XA-IT-32"
+        - "XD-JM"
+        - "XB-JP"
+        - "XB-KR"
+        - "XA-LV"
+        - "XB-LB"
+        - "XA-LI"
+        - "XA-LT"
+        - "XA-LU"
+        - "XA-MC"
+        - "XA-MD"
+        - "XA-ME"
+        - "XA-MT"
+        - "XD-MX"
+        - "XA-NL"
+        - "XE-NZ"
+        - "XD-NI"
+        - "XA-GB-NIR"
+        - "XA-NO"
+        - "XB-PK"
+        - "XE-PG"
+        - "XD-PY"
+        - "XD-PE"
+        - "XB-PH"
+        - "XA-PL"
+        - "XA-PT"
+        - "XD-PR"
+        - "XA-RO"
+        - "XA-RS"
+        - "XA-RU"
+        - "SB-SA"
+        - "XB-SA"
+        - "XA-SK"
+        - "XA-SI"
+        - "XC-ZA"
+        - "XA-ES"
+        - "XA-SE"
+        - "XA-CH"
+        - "XA-CH-VD"
+        - "XA-SM"
+        - "XB-SY"
+        - "XB-TW"
+        - "XB-TJ"
+        - "XD-TT"
+        - "XB-TR"
+        - "XB-TM"
+        - "XC-UG"
+        - "XA-UA"
+        - "XA-GB"
+        - "XD-US"
+        - "XD-UY"
+        - "XB-UZ"
+        - "XA-VA"
+        - "XD-VE"
+        - "XB-VN"
 "056": 
   layout: 
     fields: 
@@ -284,7 +396,6 @@
     - - v
     - - "0"
     - - "2"
-    - - "9"
 "383": 
   layout: 
     fields: 
@@ -295,6 +406,78 @@
   layout: 
     fields: 
     - - a
+      - editor_partial: subfield_select_codes
+        codes_reference: "384r"
+  tag_params:
+      384r:
+      - "A"
+      - "a"
+      - "A|x"
+      - "a|x"
+      - "A|b"
+      - "a|b"
+      - "B"
+      - "b"
+      - "B|b"
+      - "b|b"
+      - "C"
+      - "c"
+      - "C|x"
+      - "c|x"
+      - "C|b"
+      - "c|b"
+      - "D"
+      - "d"
+      - "D|x"
+      - "d|x"
+      - "D|b"
+      - "d|b"
+      - "E"
+      - "e"
+      - "E|b"
+      - "e|b"
+      - "F"
+      - "f"
+      - "F|x"
+      - "f|x"
+      - "G"
+      - "g"
+      - "G|x"
+      - "g|x"
+      - "G|b"
+      - "g|b"
+      - "1t"
+      - "2t"
+      - "3t"
+      - "4t"
+      - "5t"
+      - "6t"
+      - "7t"
+      - "8t"
+      - "9t"
+      - "10t"
+      - "11t"
+      - "12t"
+      - "1tt"
+      - "2tt"
+      - "3tt"
+      - "4tt"
+      - "5tt"
+      - "6tt"
+      - "7tt"
+      - "8tt"
+      - "9tt"
+      - "10tt"
+      - "11tt"
+      - "12tt"
+      - "1byz"
+      - "2byz"
+      - "3byz"
+      - "4byz"
+      - "5byz"
+      - "6byz"
+      - "7byz"
+      - "8byz"
 "400":
   layout: 
     fields:
@@ -388,6 +571,7 @@
     - - "0"
     - - "4"
     - - i
+    - - v
     - - w
 "540": 
   layout: 
@@ -397,11 +581,20 @@
   layout: 
     fields: 
     - - a
+    - - b
+    - - c
     - - "4"
+      - editor_partial: subfield_select_codes
+        select_label: "Function"
+        codes_reference: "relator_codes"
     - - i
     - - w
       - default: "w"
     - - "9"
+  tag_params:
+    relator_codes:
+      - datj
+      - dats
 "550": 
   layout: 
     fields: 

@@ -164,9 +164,7 @@
     :occurrences: "*"
     :fields:
     - - "0"
-      - :occurrences: "?"  
-    - - "9"
-      - :occurrences: "?"
+      - :occurrences: "?" 
     - - "2"
       - :occurrences: "?"
     - - v
@@ -253,11 +251,19 @@
     :fields:
     - - a
       - :occurrences: "?"
+    - - v
+      - :occurrences: "?"
   "548":  
     :indicator: "##"
     :occurrences: "*"
     :fields:
     - - a
+      - :occurrences: "?"
+    - - b
+      - :occurrences: "?"
+    - - c
+      - :occurrences: "?"
+    - - "4"
       - :occurrences: "?"
   "550":  
     :indicator: "##"
