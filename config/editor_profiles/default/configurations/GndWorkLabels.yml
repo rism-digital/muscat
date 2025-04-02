@@ -422,3 +422,7 @@ widm:
   label: gnd.widmungsempfänger
 obpa:
   label: gnd.oberbegriff_partitiv
+datj:
+  label: gnd.erscheinungsjahr_des_werkes
+dats:
+  label: gnd.entstehungszeit
