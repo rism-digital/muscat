@@ -69,7 +69,7 @@ CSV::foreach("i-bc_holdings.csv").each do |r|
 
       a856.add_at(MarcNode.new("holding", "u", bib_link, nil), 0 )
       a856.add_at(MarcNode.new("holding", "x", "Other", nil), 0 )
-      a856.add_at(MarcNode.new("holding", "z", "Original catalog entry", nil), 0 )
+      a856.add_at(MarcNode.new("holding", "z", "Link to record in Gaspari online", nil), 0 )
       a856.sort_alphabetically
       h.marc.root.add_at(a856, h.marc.get_insert_position("856") )
     else
