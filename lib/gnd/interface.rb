@@ -343,7 +343,7 @@ module GND
 
     def self.autocomplete_form(term, limit, options)
         result = []
-        xml = self.query(term, "WOE", "Ts", "saz", limit)
+        xml = self.query(term, "WOE", "Ts", "saz", 500)
         
         # Loop on each record in the result list
         xml.xpath("//marc:record", NAMESPACE).each do |record|
@@ -353,6 +353,7 @@ module GND
             #item[:id] = node_001.text
             item[:id] = "(DE-101)#{node_001.text}"
             node_150a_val = record.xpath("./marc:datafield[@tag='150']/marc:subfield[@code='a']", NAMESPACE).first.text rescue "[missing]"
+            next if !node_150a_val&.downcase&.include?(term&.downcase)
             item["form"] = node_150a_val
             item[:label] = "#{node_150a_val}"
             item[:label] += " – #{item[:id]}"

@@ -40,7 +40,6 @@ de:
     cataloging_level: Katalogisierungslevel
     country_code: Länder-Code
     country_code_long: Länder-Code-long
-    meaning_in_rism_editor: Welche Bedeutung hat das Feld im RISM-Editor?
     gnd_systematics: GND-Systematik
     notation: Notation
     source_code: Code für die Quelle der Notation
