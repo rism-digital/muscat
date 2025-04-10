@@ -69,10 +69,12 @@
     :fields:
     - - c
       - :occurrences: "?"
-  "056":  
+  "065":  
     :indicator: "##"
     :occurrences: "*"
     :fields:
+    - - "2"
+      - :occurrences: "?"
     - - a
       - :occurrences: "?"
   "075":  

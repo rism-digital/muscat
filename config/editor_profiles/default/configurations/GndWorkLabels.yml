@@ -99,13 +99,7 @@ g-2:
     c:
       label: gnd.country_code
   label: gnd.country_code
-
-'056':
-  label: gnd.meaning_in_rism_editor
-  fields:
-    a:
-      label: gnd.meaning_in_rism_editor
-
+  
 '065':
   label: gnd.gnd_systematics
   fields:
