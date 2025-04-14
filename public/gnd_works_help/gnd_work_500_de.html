@@ -1,33 +1,27 @@
 <h2>500 – Personenbeziehung</h2>
 Dieses Feld enthält Angaben zu Personen, die mit der Komposition in Verbindung stehen. Ein Beziehungscode in $4 muss zwingend vergeben werden, ebenso muss mindestens Unterfeld $a belegt sein.
-Beispiel: Franz Schubert, Fantasie in f-Moll für Klavier zu vier Händen D 940, gewidmet Caroline Esterházy
-500 $0 (DE-101)118610961 $0 (DE-588)118610961 $0 https://d-nb.info/gnd/118610961 $a Schubert, Franz $d 1797-1828 $4 kom1 $w r $i Komponist1 $e Komponist1
-500 $0 (DE-101)1269448374 $0 (DE-588)1269448374 $0 https://d-nb.info/gnd/1269448374 $a Esterházy, Caroline $d 1805-1851 $4 widm $i Widmungsempfaenger $e Widmungsempfaenger
 
 
 <h3>$a – Personenname</h3>
-Nachgestellte Präfixe sind in Spitzklammern <<…>> zu setzen.
+Der Name ist per Autovervollständigung auswählbar.
 
 <h3>$d – Datumsangaben in Verbindung mit einem Namen</h3>
-Dieses Unterfeld enthält Angaben zu den Lebensdaten der Person im Format JJJJ-JJJJ.
+Die Lebensdaten werden automatisch ergänzt.
 
 <h3>$e – Funktionsbezeichnung</h3>
-Dies ist die aufgelöste Form des Beziehungscodes $4.
+Wird automatisch ergänzt.
 
 <h3>$0 – IDN des Normdatensatzes oder Standardnummer</h3>
-Die Identifikationsnummer des in $0 verzeichneten Normdatensatzes ist hier in dreifacher Weise anzugeben:
-•	DNB-interne Datensatznummer mit ISIL der DNB (DE-101) = PPN
-•	Überregionaler GND-Identifier mit ISIL der GND (DE-588)
-•	URI
+Wird automatisch ergänzt.
 
 <h3>$4 – Beziehungscode</h3>
-Für mögliche Beziehungscodes siehe: https://www.alma-dach.org/alma-marc/authority/500/
+Der zutreffende Beziehungscode ist aus der Liste auszuwählen.
 
 <h3>$i – Beziehungsphrase</h3>
-Dies ist die aufgelöste Form des Beziehungscodes $4 und ist somit identisch zu $e.
+Wird automatisch ergänzt.
 
 <h3>$w – Kontrollunterfeld</h3>
-Standard ‚r‘. [Ausgrauen?]
+Standardwert.
 
 <h3>$9 – Bemerkungen</h3>
 [Anmerkung Faschon: Hier gibt es potenziell $9 v und $9 Z. Das müsste noch aufgeschlüsselt werden im Editor.]
@@ -40,7 +34,8 @@ Hier ist ggf. die numerische Kennzeichnung des Werks einzutragen. Darunter falle
 
 <h3>$p – Teiltitel</h3>
 Hier können Teile eines Werkes erfasst werden.
-Beispiel: $a Smetana, Bedřich $d 1824-1884 $t Má vlast $p Vltava
+<br>
+<i>Beispiel: $a Smetana, Bedřich $d 1824-1884 $t Má vlast $p Vltava</i>
 
 <h3>$r – Tonart, Modus</h3>
 Hier ist die Tonart eines Werkes zu erfassen, wenn entweder das Werk einen unspezifischen Titel trägt (z. B. „Quartett“) oder wenn Werke mit spezifischem Titel voneinander unterschieden werden sollen.
