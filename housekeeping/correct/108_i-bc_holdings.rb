@@ -2,6 +2,18 @@ count = 0
 
 mc = MarcConfigCache.get_configuration("holding")
 
+@overrides852q = {}
+
+CSV::foreach("i-bc_overrides.csv").each do |r|
+  holding = r[1].gsub("https://muscat.rism.info/admin/holdings/","").gsub("/edit", "")
+  if !r[5].nil?
+    @overrides852q[holding.to_i] = r[3]
+  end
+end
+
+#ap @overrides852q
+#exit
+
 CSV::foreach("i-bc_holdings.csv").each do |r|
   s = Source.find(r[0])
 
@@ -11,7 +23,7 @@ CSV::foreach("i-bc_holdings.csv").each do |r|
     puts "#{s.id}, #{r[1]}"
   end
 
-  puts "No I-Bc holdings for #{s.id}" if hold.empty?
+  #puts "No I-Bc holdings for #{s.id}" if hold.empty?
 
   hold.each do |h|
 
@@ -24,9 +36,16 @@ CSV::foreach("i-bc_holdings.csv").each do |r|
 
     the852 = h.marc.by_tags("852").first # if there is more than one we have other problems
 
+    #if parts && parts.content && r[3] && parts.content.downcase.strip != r[3].downcase.strip
+    #  puts "852$Q\thttps://muscat.rism.info/admin/holdings/#{h.id}/edit\thttps://muscat.rism.info/admin/sources/#{s.id}/edit\t#{parts.content}\t#{r[3]}"
+    #end
+
+    # Keep the RISM version of 852 $q?
+    q852 = @overrides852q.keys.include?(h.id.to_i) ? @overrides852q[h.id.to_i] : r[3]
+
     # Fix the material held
     parts.destroy_yourself if parts
-    the852.add_at(MarcNode.new("holding", "q", r[3], nil), 0 ) if r[3]
+    the852.add_at(MarcNode.new("holding", "q", q852, nil), 0 ) if q852
     
     # Fix the shelfmark
     shmark = h.marc.first_occurance("852", "c")
@@ -73,7 +92,7 @@ CSV::foreach("i-bc_holdings.csv").each do |r|
       a856.sort_alphabetically
       h.marc.root.add_at(a856, h.marc.get_insert_position("856") )
     else
-      puts "#{s.id} #{h.id} #{r[1]} has no catalog entry"
+      #puts "#{s.id} #{h.id} #{r[1]} has no catalog entry"
     end
 
     if r[4]
