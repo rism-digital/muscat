@@ -105,6 +105,7 @@ CSV::foreach("i-bc_holdings.csv").each do |r|
     PaperTrail.request.whodunnit = 'Rodolfo Zitellini'
     s.paper_trail_event = "Fix I-Bc holdings"
 
+    h.wf_stage = :published
     h.save
 
   end
