@@ -678,6 +678,7 @@ ko:
     name_family: Name of family
     name_of_part: Name of part/section of a work
     name_printer: Name of printer
+    name_titles_words: Titles and words associated with a name
     name_variant: Name variant
     name_variants: Name variants
     named_dramatic_roles: Named dramatic role
@@ -777,9 +778,11 @@ ko:
     print_with_non_autograph_annotations: Print with non-autograph annotations
     printer: Printer
     printing_technique: Printing technique
+    private_collection: Private collection
     production: Production
     production_personnel: Production personnel
     profession_or_function: Profession or function
+    project_url: Project URL
     provenance: Provenance
     provenance_notes: Provenance note
     pseudonym: Pseudonym

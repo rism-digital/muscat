@@ -678,6 +678,7 @@ ca:
     name_family: Cognom
     name_of_part: Número de part/secció d'una obra
     name_printer: Impressor
+    name_titles_words: Titles and words associated with a name
     name_variant: Variant del nom
     name_variants: Variants del nom
     named_dramatic_roles: Noms dels personatges
@@ -777,9 +778,11 @@ ca:
     print_with_non_autograph_annotations: Imprès amb anotacions no autògrafes
     printer: Impressor
     printing_technique: Tècnica d'impressió
+    private_collection: Private collection
     production: Producció
     production_personnel: Personal de producció
     profession_or_function: Professió o funció
+    project_url: Project URL
     provenance: Custòdia
     provenance_notes: Nota sobre la procedència
     pseudonym: Pseudònim

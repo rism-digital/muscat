@@ -678,6 +678,7 @@ pt:
     name_family: Nome da família
     name_of_part: Nome da parte/seção da obra
     name_printer: Nome do impressor
+    name_titles_words: Títulos e palavras associados com um nome
     name_variant: Variante de nome
     name_variants: Variantes de nome
     named_dramatic_roles: Papéis dramáticos identificados
@@ -777,9 +778,11 @@ pt:
     print_with_non_autograph_annotations: Imprimir com anotações não autógrafos
     printer: Impressor(a)
     printing_technique: Técnica de impressão
+    private_collection: Private collection
     production: Produção
     production_personnel: Pessoal da produção
     profession_or_function: Profissão ou função
+    project_url: URL do projeto
     provenance: Proveniência
     provenance_notes: Nota de proveniência
     pseudonym: Pseudónimo

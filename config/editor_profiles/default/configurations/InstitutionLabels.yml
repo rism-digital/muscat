@@ -239,6 +239,8 @@ Publisher:
   label: records.publisher
 Research institute:
   label: records.research_institute
+Private collection:
+  label: records.private_collection
 administration:
   label: records.administration
 arr:

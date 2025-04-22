@@ -30,7 +30,7 @@ de:
     url: URL
     using_muscat: Editor Hilfe
     validity: Gültigkeit
-    when_to_input_new_record: Wann soll ein neuer Eintrag erstellt werden (Musikdrucke)
+    when_to_input_new_record: Wann soll einen neuen Eintrag erstellt werden (Musikdrucke)
     workflow: Workflow
     'yes': 'Ja'
   languages:
@@ -298,7 +298,7 @@ de:
     associated_name_lit: Behandelte Person
     associated_place: Zugehöriger Ort
     attribution_qualifier: Zuschreibungsvermerk
-    authentication_code: Individualisierung
+    authentication_code: Individualsierung
     author: Autor
     author_editor: Autor / Herausgeber
     authorities: Normdaten
@@ -504,7 +504,7 @@ de:
     g_major: G-Dur
     g_minor: g-Moll
     g_minus_1: G-1
-    g_minus_2_octave: g-2 (oktavierender Violinschlüssel)
+    g_minus_2_octave: g-2 (oktavierenden Violinschlüssels)
     g_minus_2_treble: G-2 (Violin-Schlüssel)
     g_minus_3: G-3
     g_minus_4: G-4
@@ -541,7 +541,7 @@ de:
     identified_source: Identifizierte Quelle
     identified_work: Identifiziertes Werk
     identity: Identifizierung
-    identity_area: Identitätsbereich
+    identity_area: Identity area
     iiif_manifest: "IIIF-Manifest (digitalisierte Quelle)"
     iiif_manifest_other: "IIIF-Manifest (sonstige)"
     illustrator: Illustrator
@@ -556,7 +556,7 @@ de:
     information_found: Vorhandene Informationen
     initial: Initiale
     initial_entry: Ersteintrag in A/I
-    initials: Initialen
+    initials: Initiale
     insertions: Einlagen
     inserts: Einlagen
     institution: Körperschaft
@@ -678,6 +678,7 @@ de:
     name_family: Familienname
     name_of_part: Anzahl Teile oder Abschnitte eines Werks
     name_printer: Drucker, Druckerei
+    name_titles_words: Mit einem Namen verknüpfte Titel und Zusätze
     name_variant: Namensvarianten
     name_variants: Namensvarianten
     named_dramatic_roles: 'Rollennamen: Schreibweise'
@@ -777,9 +778,11 @@ de:
     print_with_non_autograph_annotations: Druck mit nicht-autographen Eintragungen
     printer: Drucker
     printing_technique: Drucktechnik
+    private_collection: Private collection
     production: Verlauf
     production_personnel: Produktionspersonal
     profession_or_function: Beruf oder Funktion
+    project_url: Projekt-URL
     provenance: Bestandsname
     provenance_notes: Provenienzvermerk
     pseudonym: Pseudonym
@@ -796,7 +799,7 @@ de:
     record_actions: Titel veröffentlichen
     record_audit: Datensatzprüfung
     record_origin: Herkunft
-    record_status: Status des Eintrags
+    record_status: RECORD STATUS
     reference_instruction_phrase: Referenzanweisungsphrase im Unterfeld $i
     reference_record_id: Referenzdatensatz ID
     references: Literatur
@@ -856,7 +859,7 @@ de:
     source_type: Quellentyp
     special_production_technique: Spezielle Fertigungstechnik
     standard: Standard
-    standard_musical_terms: Fachbegriffe
+    standard_musical_terms: STANDARD MUSIC TERMS
     standard_number_code: Normdatenverweise
     standard_texts_sacred_works: Liturgische Texte
     standard_watermarks: Wasserzeichen
@@ -964,14 +967,14 @@ de:
     clef: "Schlüssel"
     keysig: "Akzidentien"
     timesig: "Metrum"
-    ERR_001_EMPTY: Geben Sie ein verschlüsseltes Incipit ein.
+    ERR_001_EMPTY: Geben Sie einen verschlüsselten Incipit ein.
     ERR_004_KEY_SPACE: Dem Wechsel der Tonart muss ein Leerzeichen folgen.
     ERR_005_CLEF_SPACE: Dem Wechsel des Notenschlüssels muss ein Leerzeichen folgen.
     ERR_006_TIMESIG_SPACE: Dem Taktartwechsel muss ein Leerzeichen folgen.
     ERR_007_REP_EMPTY: Geben Sie die zu wiederholenden Noten ein.
     ERR_008_REP_MARKER: Kennzeichnen Sie das Ende der wiederholten Figur mit "!" vor dem "f".
     ERR_009_REP_OPEN: Schließen Sie die wiederholte Figur mit '!' vor dem Taktende ab.
-    ERR_010_REP_UNUSED: Die zur Wiederholung markierte Figur ist nicht wiederholt worden. Kennzeichnen Sie die Wiederholung mit einem "f".
+    ERR_010_REP_UNUSED: Die zur Wiederholung markierte Figurl ist nicht wiederholt worden. Kennzeichnen Sie die Wiederholung mit einem "f".
     ERR_011_REP_NO_FIGURE: Damit die Figur wiederholt werden kann, muss auf '!' ein 'f' folgen.
     ERR_012_REP_NOT_BEGIN: Um den Takt zu wiederholen, muss dem "i" ein Taktstrich vorangestellt werden.
     ERR_013_REP_NO_CONTENT: "i' ist ohne zu wiederholenden Inhalt vorhanden."
@@ -979,10 +982,10 @@ de:
     ERR_015_MREST_INVALID: Auf eine Pause mit '=' kann nicht direkt ein weiteres '=' folgen.
     ERR_016_MREST_NUMBER: Auf eine Pause mit '=' muss ein Taktstrich oder eine Zahl größer als 0 folgen.
     ERR_017_TRILL_INVALID: Ein Triller "t" muss direkt auf die zugehörige Note folgen.
-    ERR_018_FERMATA_NESTED: "Einer '(' kann nicht direkt eine weitere '(' folgen."
+    ERR_018_FERMATA_NESTED: "Einer '(' kann nicht direkt von eine weitere '(' folgen."
     ERR_019_ACCID_NO_NOTE: Auf ein Vorzeichen muss direkt eine Note folgen.
     ERR_020_CHORD_NOTE_BEFORE: Um einen Akkord zu kennzeichnen, muss einer Note ein '^' vorangestellt werden.
-    ERR_021_CHORD_NOTE_AFTER: Um einen Akkord zu kennzeichnen, muss auf ein '^' eine Note folgen.
+    ERR_021_CHORD_NOTE_AFTER: Um einen Akkord zu kennzeichnn, muss auf ein '^' eine Note folgen.
     ERR_022_BEAM_MENSURAL: Balkungen können nicht mit Mensuralnotation verwendet werden.
     ERR_023_BEAM_NESTED: Starten Sie eine Balkung nicht, bevor Sie die vorherige geschlossen haben.
     ERR_024_BEAM_CLOSING: 'Ein zusätzliches ''}'' zum Schließen der Balkung ist vorhanden. Löschen Sie es oder geben Sie an, wo die Balkung mit "{" beginnt.'

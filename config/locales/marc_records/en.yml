@@ -781,6 +781,7 @@ en:
     print_with_non_autograph_annotations: Print with non-autograph annotations
     printer: Printer
     printing_technique: Printing technique
+    private_collection: Private collection
     production: Production
     production_personnel: Production personnel
     profession_or_function: Profession or function
