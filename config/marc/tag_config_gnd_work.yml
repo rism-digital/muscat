@@ -91,13 +91,9 @@
     :fields:
     - - a
       - :occurrences: "?"
-    - - b
-      - :occurrences: "?"
     - - q
       - :occurrences: "?"
     - - u
-      - :occurrences: "?"
-    - - v
       - :occurrences: "?"
   "100":  
     :master: "0"
@@ -253,7 +249,7 @@
     :fields:
     - - a
       - :occurrences: "?"
-    - - v
+    - - w
       - :occurrences: "?"
   "548":  
     :indicator: "##"
