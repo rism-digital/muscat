@@ -19,5 +19,8 @@ client:
       "0": required
   "856":
     tags:
-      "u": required
+      u:
+        any_of:
+          - begins_with: "http"
+          - required
       "z": required
