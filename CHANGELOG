@@ -1,6 +1,82 @@
 Muscat Changelog
 ================
 
+v 11.5
+* Bump passenger from 6.0.23 to 6.0.26
+* Scripts for ICCU dups and Corago
+* Add handy siglum-contains
+* Merge pull request #1718 from rism-digital/dependabot/bundler/passenger-6.0.26
+* Fix #1714, and some impros to the dup script
+* Script to fix duplicate items in 245
+* Update SourceLabels.yml
+* Add validation for orphan 773
+* #1725 Make the validator actually validate 773
+* Fix the 773 test script
+* It fails if there are the leading 0000
+* Bump rack from 3.1.10 to 3.1.12
+* Improve the un-000 script
+* Add handy diffy tool
+* Bump uri from 1.0.2 to 1.0.3
+* Merge pull request #1726 from rism-digital/dependabot/bundler/rack-3.1.12
+* Merge pull request #1727 from rism-digital/dependabot/bundler/uri-1.0.3
+* Merge pull request #1724 from rism-digital/jenniferward-patch-1
+* Remove obsolete code
+* Use MD
+* Fish non english GLs from legacy
+* Remove ap
+* Fix help for GND Works
+* Fix #1729, make $u untouchable
+* Fix #1730, add 910 to source
+* #1731 link to source show and not edit
+* Don't remove the guidelines backend just yet, add a permanent redirect
+* Fix fname cleaning
+* Unmake $t mandatory in gnd_work
+* GND: Switch to subfield_secondary
+* Update _work_nodes_help_show.en.md
+* Try to fix GND ids
+* Gnd: fix #1733
+* Bump nokogiri from 1.18.3 to 1.18.4
+* Merge pull request #1737 from rism-digital/dependabot/bundler/nokogiri-1.18.4
+* Merge pull request #1732 from rism-digital/jenniferward-patch-2
+* Switch GND autocomplete to subfield_secondary, match 100 and 130, reorder fields in 130
+* #1741 add and reorder fields
+* Add script to export marc records as html
+* Add obpa
+* Add the partittive Oberbegriff
+* Make sure gnd work tag config follows form options
+* Make sure that when exporting records, if a record is deleted it is actually skipped... Also print the correct name
+* GND Work order 382
+* Some minor fixes to GND, #1742
+* Change to Link to record in Gaspari online
+* Update marc 008 for authorities (position 14)
+* Merge pull request #1745 from rism-digital/lpugin-patch-1
+* Remove 056 from GND
+* Make Form autocomplete more verbose
+* Merge pull request #1746 from afaschon/patch-2
+* Merge pull request #1748 from afaschon/patch-3
+* Merge pull request #1749 from afaschon/patch-4
+* Merge pull request #1750 from afaschon/patch-5
+* Merge pull request #1751 from afaschon/patch-6
+* Merge pull request #1752 from afaschon/patch-7
+* Merge pull request #1753 from afaschon/patch-9
+* Merge pull request #1754 from afaschon/patch-10
+* Merge pull request #1755 from afaschon/patch-11
+* Apply RISM overrides to I-Bc stuff
+* Bump nokogiri from 1.18.4 to 1.18.8
+* Merge pull request #1759 from rism-digital/dependabot/bundler/nokogiri-1.18.8
+* Fix #1741
+* Fix #1756, add a huge amout of languages
+* Fix #1758, add "ara"
+* Add private collection fix #1735
+* Add proper linking to 596 #1721
+* Fix #1492 add rule for http
+* Update locales
+* Prepare landing page for release
+* Use the correct spelling for Guidelines in each language
+
+v 11.4.1
+* Backport: fix cyan
+
 v 11.4
 * After modifying non-marc authority files, show modified record
 * Display record owner for all non-marc authority files
