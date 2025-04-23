@@ -770,6 +770,12 @@ class Marc
     end
   end
 
+  def has_link_to? auth
+    by_tags(["024"]).any? do |st|
+      st.fetch_all_by_tag("2").any? { |sst| (sst&.content == auth) }
+    end
+  end
+
   def ==(other)
     load_source unless @loaded
     @source_id == other.get_marc_source_id
