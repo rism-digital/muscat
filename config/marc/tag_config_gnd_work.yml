@@ -182,7 +182,7 @@
     - - c
       - :occurrences: "?"
   "384":  
-    :indicator: "##"
+    :indicator: "1#"
     :occurrences: "*"
     :fields:
     - - a
