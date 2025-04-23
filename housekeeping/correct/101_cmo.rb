@@ -71,7 +71,7 @@ def preprocess_cmo(marc, obj, options)
         # is there a $b and no $a? Then it is a name!
         a = t.fetch_first_by_tag("a")
         b = t.fetch_first_by_tag("b")
-        if (b && b.content) && !a
+        if (b && b.content) && (!a || a&.content.empty?)
             ## Move it to an  note
             n680 = MarcNode.new("person", "680", "", @mc.get_default_indicator("680"))
             n680.add_at(MarcNode.new("person", "a", b.content, nil), 0 )
