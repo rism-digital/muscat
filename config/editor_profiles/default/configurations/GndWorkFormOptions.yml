@@ -1198,11 +1198,26 @@
     - - "0"
       - read_only: true
     - - "4"
+      - editor_partial: subfield_select_codes
+        select_label: "Function"
+        codes_reference: "relator_codes"
     - - i
       - read_only: true
     - - w
       - read_only: true
     - - "9"
+  tag_params:
+    relator_codes:
+      - anla
+      - nach
+      - vorg
+      - obal
+      - obpa
+      - rela
+      - them
+      - vbal
+      - vorl
+      - werk
 "540": 
   layout: 
     fields: 

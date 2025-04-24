@@ -142,8 +142,21 @@ de:
     veranlasser: "Veranlasser"
     widmungsempfänger: "Widmungsempfänger"
     oberbegriff_partitiv: "Oberbegriff, partitiv"
-    erscheinungsjahr_des_werkes: "Erscheinungsjahr des Werkes"
-    entstehungszeit: "Entstehungszeit"
+    datj: "Erscheinungszeitraum/Erscheinungsjahr/Erscheinungsjahr ca."
+    dats: "Kompositionszeitraum/Kompositionsjahr/Kompositionsjahr ca."
+
+    anla: "Anlass"
+    nach: "Nachfolger"
+    vorg: "Vorgänger"
+    obal: "Oberbegriff (allgemein)"
+    obpa: "Oberbegriff partitiv"
+    rela: "Relation (allgemein)"
+    them: "Thema"
+    vbal: "Verwandter Begriff (allgemein)"
+    vorl: "Vorlage (literarische u. ä.)"
+    werk: "Werk"
+
+
     aar: Danakil-Sprache
     abk: Abchasisch
     ace: Aceh-Sprache

@@ -419,9 +419,9 @@ widm:
 obpa:
   label: gnd.oberbegriff_partitiv
 datj:
-  label: gnd.erscheinungsjahr_des_werkes
+  label: gnd.datj
 dats:
-  label: gnd.entstehungszeit
+  label: gnd.dats
 
 
 aar:
@@ -1396,3 +1396,24 @@ doi:
   label: gnd.doi
 bho:
   label: gnd.bho
+
+anla:
+  label: gnd.anla
+nach:
+  label: gnd.nach
+vorg:
+  label: gnd.vorg
+obal:
+  label: gnd.obal
+obpa:
+  label: gnd.obpa
+rela:
+  label: gnd.rela
+them:
+  label: gnd.them
+vbal:
+  label: gnd.vbal
+vorl:
+  label: gnd.vorl
+werk:
+  label: gnd.werk
