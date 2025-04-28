@@ -194,6 +194,7 @@
   layout: 
     fields: 
     - - q
+      - read_only: true
     - - u
 "100":
   layout: 
