@@ -180,7 +180,9 @@
   layout: 
     fields:
     - - "2"
+      - read_only: true
     - - a
+      - read_only: true
 "075": 
   layout: 
     fields: 
@@ -191,7 +193,6 @@
 "079": 
   layout: 
     fields: 
-    - - b
     - - q
     - - u
 "100":
@@ -371,6 +372,7 @@
         codes_reference: "377a"
     - - "2"
       - read_only: true
+        default: "iso639-2b"
   tag_params:
       377a:
       - aar
@@ -867,6 +869,7 @@
         editor_partial: subfield_secondary #subfield_autocomplete
     - - "2"
       - read_only: true
+        default: "gnd"
 "382": 
   layout: 
     fields: 
@@ -879,6 +882,7 @@
     - - v
     - - "2"
       - read_only: true
+        default: "gnd"
 "383": 
   layout: 
     fields: 
@@ -1205,7 +1209,9 @@
       - read_only: true
     - - w
       - read_only: true
+        default: "r"
     - - "9"
+      - default: "v:"
   tag_params:
     relator_codes:
       - anla
@@ -1235,6 +1241,7 @@
     - - w
       - read_only: true
     - - "9"
+      - default: "v:"
   tag_params:
     relator_codes:
       - datj

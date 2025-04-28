@@ -3,12 +3,8 @@
 =008 220922n||aznnnaabn           | ana    |c
 =040 ##$aDE-633$bger$cDE-633$9DE-633
 =042 ##$agnd4
-=079 ##$ag$am$qf
 =075 ##$bu$2gndgen
 =075 ##$bwim$2gndspec
-=377 ##$2iso639-2b
-=380 ##$2gnd
-=382 ##$2gnd
-=530 ##$wr$9v:
-=548 ##$ww$9v:
+=079 ##$qm
+=079 ##$qf
 =100 1#
