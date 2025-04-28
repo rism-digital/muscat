@@ -209,6 +209,7 @@
     - - n
     - - o
     - - p
+    - - f
     - - r
       - editor_partial: subfield_select_codes
         codes_reference: "100r"
