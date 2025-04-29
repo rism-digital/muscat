@@ -266,16 +266,16 @@ class MarcNode
   # (the field is returned by get_master_foreign_subfield) it will try
   # to get the corrensponding object from the DB. If no id ($0) is present
   # it will try to look it up
-  def import(overwrite = false, reindex = false, user = nil)
+  def import(overwrite = false, reindex = false, user = nil, force_editor_ordering = false)
     foreign_associations = {}
     if parent == nil
       @children.each do |child|
         child.suppress_scaffold_links if self.suppress_scaffold_links_trigger == true
-        child_foreign_associations = child.import(overwrite, reindex, user)
+        child_foreign_associations = child.import(overwrite, reindex, user, force_editor_ordering)
         foreign_associations.merge!(child_foreign_associations) unless !child_foreign_associations
       end
     else
-      self.sort_alphabetically
+      self.sort_alphabetically if !force_editor_ordering
       
       # Before resolving the master fields, process the lightwheight link_to
       populate_links_to(self.tag)
@@ -514,6 +514,7 @@ class MarcNode
   def to_xml_element(options = {})
     # deprecated ids are missing the model prefix and are ambiguous
     deprecated_ids = options.has_key?(:deprecated_ids) ? !(options[:deprecated_ids] == "false") : true
+    force_editor_ordering = options.fetch(:force_editor_ordering, false)
     element = XML::Node.new('leader')
 
     # skip the $_ (db_id)
@@ -550,7 +551,11 @@ class MarcNode
         ind1 = " " if !ind1
         element["ind1"] = ind0.gsub(/[#\\]/," ")
         element["ind2"] = ind1.gsub(/[#\\]/," ")
-        for_every_child_sorted { |child| element << child.to_xml_element(options) }
+        if force_editor_ordering
+          @children.each { |child| element << child.to_xml_element(options) }
+        else
+          for_every_child_sorted { |child| element << child.to_xml_element(options) }
+        end
       end
     else
       #subfield

@@ -212,6 +212,10 @@ function _marc_editor_send_form(form_name, rails_model, redirect) {
 		parent_object_type: $('#parent_object_type').val(),
 		record_status: $('#record_status').val(),
 		record_owner: $('#record_owner').val(),
+		//force_editor_ordering is used only by GND, and it is
+		// hardcoded there. It can be added here if needed in the furure
+		// for other models
+		//force_editor_ordering: $('#force_editor_ordering').val(),
 		triggers: JSON.stringify(triggers),
 		redirect: redirect
 	};
