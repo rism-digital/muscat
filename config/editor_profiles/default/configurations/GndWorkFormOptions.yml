@@ -207,13 +207,6 @@ force_editor_ordering: true
     - - r
       - editor_partial: subfield_select_codes
         codes_reference: "100r"
-    - - a
-      - type: gnd_work_person
-        #preserve_foreign_value: true
-        editor_partial: subfield_secondary
-    - - d
-      - autocomplete_extra: life_dates
-    - - o
   tag_params:
       100r:
       - "A"
