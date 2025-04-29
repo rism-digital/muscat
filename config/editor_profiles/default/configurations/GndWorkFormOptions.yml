@@ -1,4 +1,5 @@
 --- !map:Settings 
+force_editor_ordering: true
 "000": 
   tag: tag_no_subfield
   tag_params: 
@@ -199,21 +200,20 @@
 "100":
   layout: 
     fields: 
+    - - t
+    - - m
+    - - n
+    - - p
+    - - r
+      - editor_partial: subfield_select_codes
+        codes_reference: "100r"
     - - a
       - type: gnd_work_person
         #preserve_foreign_value: true
         editor_partial: subfield_secondary
     - - d
       - autocomplete_extra: life_dates
-    - - t
-    - - m
-    - - n
     - - o
-    - - p
-    - - f
-    - - r
-      - editor_partial: subfield_select_codes
-        codes_reference: "100r"
   tag_params:
       100r:
       - "A"

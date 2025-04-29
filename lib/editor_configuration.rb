@@ -280,6 +280,14 @@ class EditorConfiguration
     return options_config.include?("triggers") ? options_config["triggers"] : nil
   end
 
+  # This is used for the GND editor
+  # where the MARC fields should not be ordered alphabetically
+  # but must come in the order in the editor
+  def force_editor_ordering?
+    return true if options_config.include?("force_editor_ordering") && options_config["force_editor_ordering"]
+    false
+  end
+
   # Used to import unknown marc into muscat
   def add_fake_config(incoming_marc)
 
