@@ -27,12 +27,16 @@ class MarcPublication < Marc
   def get_title
     title = ""
 
-    if node = first_occurance("240", "a")
-      if node.content
-        title = node.content.truncate(255)
+    # Accept both 240 or 245 for title, prefer the later
+    ["240", "245"].each do |tag|
+      if node = first_occurance(tag, "a")
+        title = node.content
+        if node = first_occurance(tag, "b")
+          title += " #{node.content}" if node.content
+        end
       end
     end
-    title
+    title.truncate(255)
   end
   
   def get_place_and_date
