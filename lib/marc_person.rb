@@ -22,6 +22,25 @@ class MarcPerson < Marc
     [full_name, dates]
   end
   
+  def get_display_name
+    # Person name as displayed in people lists and autocomplete fields
+    display_name = ""
+
+    if node = first_occurance("100", "a")
+      display_name = node.content
+    end
+
+    if node = first_occurance("100", "c")
+      display_name += " (#{node.content})"
+    end
+
+    if node = first_occurance("100", "d")
+      display_name += " - #{node.content}"
+    end
+
+    display_name.truncate(256)
+  end
+
   def get_alternate_names_and_dates
     names = []
     dates = nil
