@@ -829,6 +829,8 @@ en:
     one: work node
     other: work nodes
   set_work_catalogue_status: Set work catalogue status
+  delete_this_item_from_folder: Delete this item from folder
+  add_this_item_to_folder: Add this item to folder
   helpers:
     label:
       folder:
