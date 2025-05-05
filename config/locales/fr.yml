@@ -484,7 +484,6 @@ fr:
     folder_empty: Le dossier est vide
     folder_not_source: Seuls les dossiers contenant des Sources peuvent être validés
     items: Éléments
-    make_catalogue: Marquer les éléments comme des catalogues de oeuvres
     not_found: Le dossier %{id} est inexistant
     one_month: Les dossiers suivants seront supprimés dans un mois, le %{date}
     one_week: Les dossiers suivants seront supprimés dans une semaine, le %{date}

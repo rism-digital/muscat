@@ -484,7 +484,6 @@ it:
     folder_empty: La cartella è vuota
     folder_not_source: Solo le cartelle contenenti Fonti possono essere convalidate.
     items: Elementi
-    make_catalogue: Contrassegnare gli elementi come cataloghi di opere
     not_found: La cartella %{id} è inesistente
     one_month: Le seguenti cartelle saranno eliminate tra un mese, il %{date}
     one_week: Le seguenti cartelle saranno eliminate tra una settimana, il %{date}

@@ -484,7 +484,6 @@ de:
     folder_empty: Ordner enthält keine Elemente
     folder_not_source: Nur Ordner, die Quellen enthalten, können validiert werden
     items: Einträge
-    make_catalogue: Artikel als Arbeitskataloge kennzeichnen
     not_found: Ordner %{id} existiert nicht
     one_month: Die folgenden Ordner werden in einem Monat am %{date} gelöscht
     one_week: Die folgenden Ordner werden in einer Woche am %{date} gelöscht

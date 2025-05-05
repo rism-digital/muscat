@@ -484,7 +484,6 @@ ca:
     folder_empty: La carpeta està buida
     folder_not_source: Només es poden validar carpetes amb fonts
     items: Elements
-    make_catalogue: Marcar els elements per fer-ne un catàleg
     not_found: La carpeta %{id} no existeix
     one_month: Carpetes que s'esborraran el mes que ve, el %{date}
     one_week: Carpetes que s'esborraran la setmana que ve, el %{date}

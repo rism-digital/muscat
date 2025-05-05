@@ -484,7 +484,6 @@ pt:
     folder_empty: A pasta está vazia
     folder_not_source: Apenas as pastas contendo Fontes podem ser validadas
     items: Elementos
-    make_catalogue: Marcar artigos como catálogos de obras
     not_found: A pasta %{id} é inexistente.
     one_month: As seguintes pastas serão apagadas dentro de um mês em %{date}
     one_week: As seguintes pastas serão apagadas dentro de uma semana em %{date}

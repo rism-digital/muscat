@@ -484,7 +484,6 @@ es:
     folder_empty: La carpeta está vacía
     folder_not_source: Sólo se pueden validar las carpetas que contienen Fuentes
     items: Elementos
-    make_catalogue: Marcar elementos como catálogos de obras
     not_found: La carpeta %{id} es inexistente
     one_month: Las siguientes carpetas se eliminarán en un mes en %{date}
     one_week: Las siguientes carpetas se borrarán dentro de una semana en %{date}

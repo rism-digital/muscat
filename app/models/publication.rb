@@ -118,6 +118,7 @@ class Publication < ApplicationRecord
 
   enum :wf_stage, [ :inprogress, :published, :deleted, :deprecated ]
   enum :wf_audit, [ :full, :abbreviated, :retro, :imported ]
+  enum :work_catalogue, [:not_work_catalogue, :work_catalogue_in_preparation, :work_catalogue_partial, :work_catalogue_complete, :work_catalogue_alternate]
 
   def after_initialize
     @last_user_save = nil

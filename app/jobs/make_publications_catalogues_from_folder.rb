@@ -1,7 +1,8 @@
 class MakePublicationsCataloguesFromFolder < ProgressJob::Base
   
-    def initialize(parent_id)
+    def initialize(parent_id, status_flag)
       @parent_id = parent_id
+      @status_flag = status_flag
     end
     
     def enqueue(job)
@@ -17,7 +18,7 @@ class MakePublicationsCataloguesFromFolder < ProgressJob::Base
       
       update_progress_max(0)
           
-      update_stage("Add 'work_catalog' flag")
+      update_stage("Set work_catalog flag to #{@status_flag}")
       f2 = Folder.find(@parent_id)
       return if f2.folder_type != "Publication"
 
@@ -25,7 +26,7 @@ class MakePublicationsCataloguesFromFolder < ProgressJob::Base
         
       count = 0
       f2.folder_items.each do |fi|
-        fi.item.work_catalogue = true
+        fi.item.work_catalogue = @status_flag.to_sym
         
         if  PaperTrail.request.enabled_for_model?(fi.item.class) 
           fi.item.paper_trail_event = "Add work_catalog flag from folder #{@parent_id}"

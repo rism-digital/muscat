@@ -484,7 +484,6 @@ pl:
     folder_empty: Folder nie zawiera pozycji.
     folder_not_source: Można zatwierdzać tylko foldery zawierające źródła.
     items: Pozycje
-    make_catalogue: Oznacz pozycje jako katalogi robocze
     not_found: Folder %{id} nie istnieje.
     one_month: Następujące foldery zostaną usunięte w ciągu jednego miesiąca w dniu %{date}
     one_week: Następujące foldery zostaną usunięte za tydzień w dniu %{date}

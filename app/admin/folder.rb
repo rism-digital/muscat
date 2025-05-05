@@ -86,14 +86,14 @@ ActiveAdmin.register Folder do
     redirect_to resource_path(params[:id]), notice: I18n.t(:unpublish_job, scope: :folders, id: job.id)
   end
  
-  member_action :make_catalogue, method: :get do
+  member_action :make_catalogue, method: :post do    
     # A bit contorted here: only work_editors can make a Publication into catalogs
-    if !can?(:edit, Work)
+    if !can?(:edit, Work) || !can?(:edit, Publication)
       redirect_to collection_path, :flash => {error: I18n.t(:"active_admin.access_denied.message")}
       return
     end
 
-    job = Delayed::Job.enqueue(MakePublicationsCataloguesFromFolder.new(params[:id]))
+    job = Delayed::Job.enqueue(MakePublicationsCataloguesFromFolder.new(params[:id], params[:work_catalogue_option]))
     redirect_to resource_path(params[:id]), notice: I18n.t(:make_catalogue, scope: :folders, id: job.id)
   end
 
@@ -270,6 +270,9 @@ ActiveAdmin.register Folder do
   
   sidebar :actions, :only => :show do
     render :partial => "activeadmin/section_sidebar_show", :locals => { :item => folder }
+    if folder.folder_type == "Publication" && (can? :edit, Work) && (can? :edit, Publication)
+      render :partial => "activeadmin/section_sidebar_work_catalogue_actions", :locals => { :item => folder }
+    end
   end
 
   sidebar :help, :only => [:show] do
