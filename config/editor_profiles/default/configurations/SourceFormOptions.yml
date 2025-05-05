@@ -689,7 +689,7 @@
     - - c
       - type: source
         editor_partial: subfield_secondary
-        only_new_window: true
+        allow_new: false
 "597":
   layout:
     fields:

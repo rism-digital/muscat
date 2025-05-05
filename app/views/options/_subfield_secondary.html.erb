@@ -21,7 +21,7 @@
 <%- allow_new = params.has_key?("allow_new") ? params['allow_new'] : false %>
 
 <%- disabled =  params.has_key?("only_new_window") ? true : false %>
-<!-- validation plugin REQUIRES a name. Make it random as we never call it elsewhere -->
+<%# validation plugin REQUIRES a name. Make it random as we never call it elsewhere %>
 <%- check_name = "confirmation_uniq_" + SecureRandom.hex(5)%>
 
 <% 
