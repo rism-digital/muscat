@@ -529,7 +529,9 @@ class MarcSource < Marc
     # Add $a to 773
     if node = root.fetch_first_by_tag("773")
       source = parent_object.parent_source
-      node.add_at(MarcNode.new(@model, "a", source.name, nil), 0) if source
+      node.add_at(MarcNode.new(@model, "a", source.composer, nil), 0) if source
+      node.add_at(MarcNode.new(@model, "t", source.std_title, nil), 0) if source
+      node.sort_alphabetically
     end
 
     # Feeding 240$n workcatalog number from 690$a/$n and 383$b
@@ -649,6 +651,19 @@ class MarcSource < Marc
       source_title = t4&.content == "holding" ? "#{source.id}: #{source.std_title}" : source.std_title
       t.add_at(MarcNode.new(@model, "t", source_title, nil), 0)
       t.add_at(MarcNode.new(@model, "a", source.composer, nil), 0) if source.composer && !source.composer.empty?
+      t.sort_alphabetically
+    end
+  end
+
+  def generate_parent_title
+    # There should be only 1 773 but alas...
+    each_by_tag("773") do |t|
+      w = t.fetch_first_by_tag("w")
+  
+      raise "773 does not match source_id" if w.to_i != source_id
+
+      t.add_at(MarcNode.new(@model, "t", parent_source.std_title, nil), 0)
+      t.add_at(MarcNode.new(@model, "a", parent_source.composer, nil), 0) if parent_source.composer && parent_source.composer.empty?
       t.sort_alphabetically
     end
   end

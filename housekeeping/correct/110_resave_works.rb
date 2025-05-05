@@ -24,15 +24,22 @@ def diffize(id, marc1, marc2)
 
 end
 
-Work.all.each do |w|
-  marc1 = w.marc_source
-  marc2 = w.marc_source.each_line.uniq.join
-  diffize(w.id, marc1, marc2)
-  w.marc_source = marc2
-  #puts w.marc_source
-  w.marc.load_source(false)
-	w.marc.import
-  w.save if marc1 != marc2
+model = Work
+save = false
+
+model.find_in_batches do |batch|
+
+  batch.each do |w|
+    marc1 = w.marc_source
+    marc2 = w.marc_source.each_line.uniq.join
+    diffize(w.id, marc1, marc2)
+    w.marc_source = marc2
+    #puts w.marc_source
+    w.marc.load_source(false)
+    w.marc.import
+    w.save if marc1 != marc2 && save
+    
+  end
 end
 
 =begin
