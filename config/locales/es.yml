@@ -214,6 +214,7 @@ es:
   add_item_to_folder: Añadir a la carpeta
   add_person: Vincular persona
   add_source: Vincular fuente
+  add_this_item_to_folder: Añadir este elemento a la carpeta
   any_field_contains: Cualquier campo
   append_folder: Añadir todo a una carpeta existente
   archive: Archivar
@@ -229,7 +230,7 @@ es:
     required: Este campo es obligatorio cuando se añade esta etiqueta
     required_if: Este campo es obligatorio porque otro está presente
     siglum_not_found: El siglum en uno o varios campos 588 no coincide con ningún registro de tenencia
-    validate_588_siglum: "Introduzca el siglum de la biblioteca y la signatura siguiendo el formato: I-Bc Q.51"
+    validate_588_siglum: 'Introduzca el siglum de la biblioteca y la signatura siguiendo el formato: I-Bc Q.51'
   basic_level: Registro básico
   body: Body
   btn_themefinder_reset: Reiniciar
@@ -309,6 +310,7 @@ es:
     - diciembre
   default_view: Visualización estándar
   delete: Borrar
+  delete_this_item_from_folder: Eliminar este elemento de la carpeta
   digital_object:
     one: objeto digital
     other: objetos digitales
@@ -503,6 +505,10 @@ es:
   full_level: Registro completo
   gnd_not_found: La solicitud a GND devolvió un registro vacío.
   go_to_top: Volver al principio
+  helpers:
+    label:
+      folder:
+        work_catalogue_status: Estado del catálogo de obras
   hide_preview: Ocultar vista preliminar
   history_author: Autor
   history_date: Fecha
@@ -726,6 +732,7 @@ es:
   sections: Secciones
   select: Seleccionar
   select_template: Seleccione una plantilla
+  set_work_catalogue_status: Establecer estado del catálogo de obras
   show_all_groups: Mostrar todas las secciones
   show_gnd: Búsqueda GND
   show_history: Mostrar historial de modificaciones
@@ -776,8 +783,8 @@ es:
     must_contain_message: Este campo debe coincidir con el patrón requerido.
     name_uniqueness: El nombre corto del elemento ya está en uso
     required_if_message: Este campo debe ser rellenado ya que es obligatorio en presencia de {0} ${1}
+    validate_588_siglum: 'Introduzca el siglum de la biblioteca y la signatura siguiendo el formato: I-Bc Q.51'
     warning_message: Debería proveerse un valor para este campo
-    validate_588_siglum: "Introduzca el siglum de la biblioteca y la signatura siguiendo el formato: I-Bc Q.51"
   validation_level_error: El registro tiene errores. Por favor, resuélvalos antes de guardar.
   validation_level_warning: El registro presenta advertencias. Si desea ignorarlas, pulse nuevamente en guardar.
   view_source: Mostrar fuente

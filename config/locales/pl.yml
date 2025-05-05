@@ -214,6 +214,7 @@ pl:
   add_item_to_folder: Dodaj do folderu
   add_person: Powiąż osobę
   add_source: Powiąż źródło
+  add_this_item_to_folder: Dodaj ten element do folderu
   any_field_contains: Dowolne pole
   append_folder: Dodaj wszystko do istniejącego folderu
   archive: Zarchiwizuj
@@ -229,7 +230,7 @@ pl:
     required: To pole jest wymagane, gdy ten tag zostanie dodany
     required_if: To pole jest wymagane, ponieważ inne jest obecne
     siglum_not_found: Siglum w jednym lub kilku polach 588 nie odpowiada żadnemu rekordowi zasobów
-    validate_588_siglum: "Wprowadź sygnaturę biblioteki i półkę według formatu: I-Bc Q.51"
+    validate_588_siglum: 'Wprowadź sygnaturę biblioteki i półkę według formatu: I-Bc Q.51'
   basic_level: Rekord podstawowy
   body: Body
   btn_themefinder_reset: Wyzeruj
@@ -309,6 +310,7 @@ pl:
     - grudzień
   default_view: Default view
   delete: Usuń
+  delete_this_item_from_folder: Usuń ten element z folderu
   digital_object:
     one: Obiekt cyfrowy
     other: Obiekty cyfrowe
@@ -503,6 +505,10 @@ pl:
   full_level: Rekord pełny
   gnd_not_found: Żądanie do GND zwróciło pusty rekord.
   go_to_top: Powrót na górę
+  helpers:
+    label:
+      folder:
+        work_catalogue_status: Status katalogu dzieł
   hide_preview: Ukryj podgląd
   history_author: Autor
   history_date: Data
@@ -726,6 +732,7 @@ pl:
   sections: Sekcje
   select: Wybierz
   select_template: Wybierz nowy szablon
+  set_work_catalogue_status: Ustaw status katalogu dzieł
   show_all_groups: Pokaż wszystkie sekcje
   show_gnd: Wyszukiwanie w Search
   show_history: Pokaż historię modyfikacji
@@ -776,8 +783,8 @@ pl:
     must_contain_message: To pole musi odpowiadać wymaganemu wzorcowi
     name_uniqueness: Skrócona nazwa wpisu została już pobrana
     required_if_message: Pole obowiązkowe, ponieważ pole {0} ${1} nie jest puste
+    validate_588_siglum: 'Wprowadź sygnaturę biblioteki i półkę według formatu: I-Bc Q.51'
     warning_message: To pole powinno zawierać wartość
-    validate_588_siglum: "Wprowadź sygnaturę biblioteki i półkę według formatu: I-Bc Q.51"
   validation_level_error: Wystąpiły błędy. Napraw je przed zapisaniem.
   validation_level_warning: Wystąpiły ostrzeżenia. Zapisz ponownie, by je skasować.
   view_source: Sprawdź źródło

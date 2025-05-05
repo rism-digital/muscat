@@ -211,9 +211,10 @@ pt:
         other: Grupos
   add_holding: Vincular Holding
   add_institution: Vincular instituição
-  add_item_to_folder: ADD TO FOLDER
+  add_item_to_folder: Adicionar à pasta
   add_person: Vincular Pessoa
   add_source: Vincular fonte
+  add_this_item_to_folder: Adicionar este item à pasta
   any_field_contains: Qualquer campo
   append_folder: Adicionar tudo a uma pasta existente
   archive: Arquivar
@@ -229,7 +230,7 @@ pt:
     required: Este campo é obrigatório quando esta tag é adicionada
     required_if: Este campo é obrigatório porque outro está presente
     siglum_not_found: O siglum em um ou mais campos 588 não corresponde a nenhum registro de acervo
-    validate_588_siglum: "Insira o siglum da biblioteca e a classificação no formato: I-Bc Q.51"
+    validate_588_siglum: 'Insira o siglum da biblioteca e a classificação no formato: I-Bc Q.51'
   basic_level: Registro básico
   body: Body
   btn_themefinder_reset: Reset
@@ -309,6 +310,7 @@ pt:
     - dezembro
   default_view: Default view
   delete: Apagar
+  delete_this_item_from_folder: Eliminar este item da pasta
   digital_object:
     one: objeto digital
     other: objetos digitais
@@ -503,6 +505,10 @@ pt:
   full_level: Registro completo
   gnd_not_found: A solicitação ao GND retornou um registro vazio.
   go_to_top: Voltar ao início
+  helpers:
+    label:
+      folder:
+        work_catalogue_status: Estado do catálogo de obras
   hide_preview: Ocultar previsualização
   history_author: Autor
   history_date: Data
@@ -726,6 +732,7 @@ pt:
   sections: Seções
   select: Selecionar
   select_template: Selecionar novo modelo
+  set_work_catalogue_status: Definir estado do catálogo de obras
   show_all_groups: Mostrar todas as seções
   show_gnd: Busca no GND
   show_history: Mostrar histórico de modificação
@@ -776,8 +783,8 @@ pt:
     must_contain_message: Este campo deve corresponder ao padrão requerido
     name_uniqueness: O nome abreviado do registro já está em uso
     required_if_message: Este campo deve ser preenchido, pois é obrigatório na presença de {0} ${1}
+    validate_588_siglum: 'Insira o siglum da biblioteca e a classificação no formato: I-Bc Q.51'
     warning_message: Um valor deve ser fornecido para este campo
-    validate_588_siglum: "Insira o siglum da biblioteca e a classificação no formato: I-Bc Q.51"
   validation_level_error: Há erros, por favor resolva antes de salvar.
   validation_level_warning: Estes são avisos, salve novamente para ignorar.
   view_source: View Source

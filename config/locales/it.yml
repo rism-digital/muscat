@@ -214,6 +214,7 @@ it:
   add_item_to_folder: Aggiungi alla cartella
   add_person: Collega persona
   add_source: Collega fonte
+  add_this_item_to_folder: Aggiungi questo elemento alla cartella
   any_field_contains: Qualsiasi campo
   append_folder: Aggiungi a cartella
   archive: Archivia
@@ -229,7 +230,7 @@ it:
     required: Questo campo è obbligatorio quando questo tag è aggiunto
     required_if: Questo campo è obbligatorio perché un altro è presente
     siglum_not_found: Il siglum in uno o più campi 588 non corrisponde a nessuna holding
-    validate_588_siglum: "Inserisci il siglum della biblioteca e la collocazione secondo il formato: I-Bc Q.51"
+    validate_588_siglum: 'Inserisci il siglum della biblioteca e la collocazione secondo il formato: I-Bc Q.51'
   basic_level: Record di base
   body: Contenuto
   btn_themefinder_reset: Reset
@@ -309,6 +310,7 @@ it:
     - dicembre
   default_view: Default view
   delete: Cancella
+  delete_this_item_from_folder: Rimuovi questo elemento dalla cartella
   digital_object:
     one: Oggetto digitale
     other: Oggetti digitali
@@ -503,6 +505,10 @@ it:
   full_level: Record completo
   gnd_not_found: La richiesta a GND ha restituito un record vuoto
   go_to_top: Ritorna in cima
+  helpers:
+    label:
+      folder:
+        work_catalogue_status: Tipo di work catalogue
   hide_preview: Nascondi anteprima
   history_author: Autore
   history_date: Data
@@ -726,6 +732,7 @@ it:
   sections: Sezioni
   select: Seleziona
   select_template: Seleziona un nuovo template
+  set_work_catalogue_status: Seleziona il tipo di work catalog
   show_all_groups: Mostra tutti i gruppi
   show_gnd: Ricerca GND
   show_history: Mostra lo storico
@@ -776,8 +783,8 @@ it:
     must_contain_message: Questo campo deve corrispondere al modello richiesto
     name_uniqueness: Il nome breve dell'elemento è già in uso
     required_if_message: Questo campo deve essere riempito poiché è obbligatorio in presenza di {0} ${1}
+    validate_588_siglum: 'Inserisci il siglum della biblioteca e la collocazione secondo il formato: I-Bc Q.51'
     warning_message: Questo campo dovrebbe contenere un valore
-    validate_588_siglum: "Inserisci il siglum della biblioteca e la collocazione secondo il formato: I-Bc Q.51"
   validation_level_error: Sono presenti errori, correggerli prima di continuare
   validation_level_warning: Alcuni elementi richiedono attenzione, salvare ancora per procedere
   view_source: Mostra fonte

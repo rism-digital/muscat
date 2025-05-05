@@ -211,9 +211,10 @@ fr:
         other: Groupes
   add_holding: Attacher une Holding
   add_institution: Attacher une institution
-  add_item_to_folder: ADD TO FOLDER
+  add_item_to_folder: Ajouter au dossier
   add_person: Attacher une personne
   add_source: Attacher une source
+  add_this_item_to_folder: Ajouter cet élément au dossier
   any_field_contains: N'importe quel champ
   append_folder: Ajouter à un dossier existant
   archive: Archiver
@@ -229,7 +230,7 @@ fr:
     required: Ce champ est requis lorsque cette étiquette est ajoutée
     required_if: Ce champ est requis car un autre est présent
     siglum_not_found: Le sigle dans un ou plusieurs champs 588 ne correspond à aucun enregistrement de fonds
-    validate_588_siglum: "Entrez le sigle de la bibliothèque et la cote selon le format : I-Bc Q.51"
+    validate_588_siglum: 'Entrez le sigle de la bibliothèque et la cote selon le format : I-Bc Q.51'
   basic_level: Notice de base
   body: Contenu
   btn_themefinder_reset: Reset
@@ -309,6 +310,7 @@ fr:
     - décembre
   default_view: Default view
   delete: Supprimer
+  delete_this_item_from_folder: Supprimer cet élément du dossier
   digital_object:
     one: Objet numérique
     other: Objet numériques
@@ -503,6 +505,10 @@ fr:
   full_level: Notice complète
   gnd_not_found: La demande à la GND a renvoyé un enregistrement vide.
   go_to_top: Retour en haut de la page
+  helpers:
+    label:
+      folder:
+        work_catalogue_status: Statut du catalogue des œuvres
   hide_preview: Masquer l'aperçu
   history_author: Auteur
   history_date: Date
@@ -726,6 +732,7 @@ fr:
   sections: Sections
   select: Sélectionner
   select_template: Choisir un modèle
+  set_work_catalogue_status: Définir le statut du catalogue des œuvres
   show_all_groups: Afficher tous les groupes
   show_gnd: Recherche GND
   show_history: Afficher l'historique
@@ -776,8 +783,8 @@ fr:
     must_contain_message: Ce champ doit correspondre au modèle requis.
     name_uniqueness: Le nom abrégé de l'élément est déjà utilisé
     required_if_message: Ce champ doit être rempli car il est obligatoire en présence de {0} ${1}
+    validate_588_siglum: 'Entrez le sigle de la bibliothèque et la cote selon le format : I-Bc Q.51'
     warning_message: Une valeur devrait être présente pour ce champ
-    validate_588_siglum: "Entrez le sigle de la bibliothèque et la cote selon le format : I-Bc Q.51"
   validation_level_error: Il y a des erreurs à corriger avant d'enregistrer.
   validation_level_warning: Il y a des avertissements. Enregistrer à nouveau pour ignorer.
   view_source: Montrer la source

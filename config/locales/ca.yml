@@ -214,6 +214,7 @@ ca:
   add_item_to_folder: Afegiu-lo a la carpeta
   add_person: Vincula-hi una persona
   add_source: Vincula-hi una font
+  add_this_item_to_folder: Afegeix aquest element a la carpeta
   any_field_contains: Qualsevol camp
   append_folder: Afegeix-los tots a una carpeta existent
   archive: Arxiva
@@ -229,7 +230,7 @@ ca:
     required: Aquest camp és obligatori quan s'afegeix aquesta etiqueta
     required_if: Aquest camp és obligatori perquè un altre és present
     siglum_not_found: El siglum en un o més camps 588 no coincideix amb cap registre de fons
-    validate_588_siglum: "Introduïu el siglum de la biblioteca i la signatura seguint el format: I-Bc Q.51"
+    validate_588_siglum: 'Introduïu el siglum de la biblioteca i la signatura seguint el format: I-Bc Q.51'
   basic_level: Registre bàsic
   body: Body
   btn_themefinder_reset: Restableix
@@ -309,6 +310,7 @@ ca:
     - desembre
   default_view: Visualització estàndard
   delete: Elimina
+  delete_this_item_from_folder: Suprimeix aquest element de la carpeta
   digital_object:
     one: objecte digital
     other: objectes digitals
@@ -503,6 +505,10 @@ ca:
   full_level: Registre complet
   gnd_not_found: La sol·licitud a GND ha retornat un registre buit.
   go_to_top: Torna a dalt
+  helpers:
+    label:
+      folder:
+        work_catalogue_status: Estat del catàleg d'obres
   hide_preview: Oculta la vista prelimiar
   history_author: Autor
   history_date: Data
@@ -726,6 +732,7 @@ ca:
   sections: Seccions
   select: Selecciona
   select_template: Seleccioneu una plantilla
+  set_work_catalogue_status: Estableix l'estat del catàleg d'obres
   show_all_groups: Mostra totes les seccions
   show_gnd: Cerca al GND
   show_history: Historial de modificacions
@@ -776,8 +783,8 @@ ca:
     must_contain_message: Aquest camp ha de coincidir amb el patró requerit
     name_uniqueness: Aquest nom abreujat ja s'utilitza
     required_if_message: El camp és obligatori en presència de {0} ${1}
+    validate_588_siglum: 'Introduïu el siglum de la biblioteca i la signatura seguint el format: I-Bc Q.51'
     warning_message: Caldria que aquest camp tingués un valor
-    validate_588_siglum: "Introduïu el siglum de la biblioteca i la signatura seguint el format: I-Bc Q.51"
   validation_level_error: Hi ha errors. Resoleu-vos abans de desar-lo
   validation_level_warning: Hi ha advertiments. Els podeu ignorar tornant a desar-lo
   view_source: Mostra font

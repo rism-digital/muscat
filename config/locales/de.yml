@@ -214,6 +214,7 @@ de:
   add_item_to_folder: Zum Ordner hinzufügen
   add_person: Person verlinken
   add_source: Quelle verlinken
+  add_this_item_to_folder: Dieses Element zum Ordner hinzufügen
   any_field_contains: Irgendein Feld
   append_folder: Zu Ordner hinzufügen
   archive: Archivieren
@@ -229,7 +230,7 @@ de:
     required: Dieses Feld ist erforderlich, wenn dieses Tag hinzugefügt wird
     required_if: Dieses Feld ist erforderlich, weil ein anderes vorhanden ist
     siglum_not_found: Das Siglum in einem oder mehreren 588-Feldern entspricht keinem vorhandenen Bestandsdatensatz
-    validate_588_siglum: "Geben Sie das Bibliothekssigel und die Signatur im Format ein: I-Bc Q.51"
+    validate_588_siglum: 'Geben Sie das Bibliothekssigel und die Signatur im Format ein: I-Bc Q.51'
   basic_level: Basiskatalog
   body: Body
   btn_themefinder_reset: Zurücksetzen
@@ -309,6 +310,7 @@ de:
     - Dezember
   default_view: Default view
   delete: Löschen
+  delete_this_item_from_folder: Dieses Element aus dem Ordner löschen
   digital_object:
     one: Digitales Objekt
     other: Digitale Objekte
@@ -503,6 +505,10 @@ de:
   full_level: Vollkatalogisat
   gnd_not_found: Die Anfrage an GND ergab keinen Eintrag
   go_to_top: Zurück zum Anfang
+  helpers:
+    label:
+      folder:
+        work_catalogue_status: Werkverzeichnis-Status
   hide_preview: Vorschau verbergen
   history_author: Bearbeiter
   history_date: Datum
@@ -726,6 +732,7 @@ de:
   sections: Sektionen
   select: Auswählen
   select_template: Auswahl der Vorlage
+  set_work_catalogue_status: Werkverzeichnis-Status festlegen
   show_all_groups: Alle Blöcke anzeigen
   show_gnd: GND Suche
   show_history: Änderungsgeschichte
@@ -776,8 +783,8 @@ de:
     must_contain_message: Dieses Feld muss dem erforderlichen Muster entsprechen.
     name_uniqueness: Das Kürzel des Eintrages ist bereits vergeben.
     required_if_message: Dieses Feld muss ausgefüllt werden, da es obligatorisch ist in Anwesenheit von {0} ${1}
+    validate_588_siglum: 'Geben Sie das Bibliothekssigel und die Signatur im Format ein: I-Bc Q.51'
     warning_message: Dieses Feld enthält üblicherweise einen Eintrag.
-    validate_588_siglum: "Geben Sie das Bibliothekssigel und die Signatur im Format ein: I-Bc Q.51"
   validation_level_error: Die Fehler müssen vor dem Speichern behoben werden.
   validation_level_warning: Erneut speichern, um die Warnung(en) zu ignorieren.
   view_source: Quelle anzeigen
