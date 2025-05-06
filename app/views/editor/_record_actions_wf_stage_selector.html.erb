@@ -5,7 +5,11 @@
        @item.wf_stage
      end
 
-    wf_stages = @item.class.wf_stages.to_h
+    # unpublished shares the same enum value (0) as inprogress.
+    # We keep the key in the enum so older versions can still be read,
+    # but omit it from the UI's select box because inprogress is the
+    # preferred, clearer label.
+    wf_stages = @item.class.wf_stages.to_h..except("unpublished")
 
     if defined?(RISM::REMOVE_DELETED_WF_STAGE) && RISM::REMOVE_DELETED_WF_STAGE
         wf_stages = wf_stages.except("deleted", "deprecated")
