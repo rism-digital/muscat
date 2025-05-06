@@ -270,7 +270,7 @@ ActiveAdmin.register Folder do
   
   sidebar :actions, :only => :show do
     render :partial => "activeadmin/section_sidebar_show", :locals => { :item => folder }
-    if folder.folder_type == "Publication" && (can? :edit, Work) && (can? :edit, Publication)
+    if folder.folder_type == "Publication" && (can? :edit, Work)
       render :partial => "activeadmin/section_sidebar_work_catalogue_actions", :locals => { :item => folder }
     end
   end
