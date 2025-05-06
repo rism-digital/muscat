@@ -140,6 +140,10 @@ module RISM
   # Turn on or off collation of special chars for ordering
   CLEVER_ORDERING = true
 
+  # In some cases, only inprogress and published should remain in wf_stage
+  # Remove deleted and deprecated from the menu
+  REMOVE_DELETED_WF_STAGE = false
+
   # Supported devise authentication methods are:
   # - database_authenticatable (the default)
   # - saml_authenticatable, with trackable (which is already defined in User.rb

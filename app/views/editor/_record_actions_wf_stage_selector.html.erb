@@ -1,0 +1,35 @@
+<% selected_stage =
+     if @item.new_record?
+       (current_user.preference_wf_stage == "published" && !@item.is_a?(Work)) ? "published" : "inprogress"
+     else
+       @item.wf_stage
+     end
+
+    wf_stages = @item.class.wf_stages.to_h
+
+    if defined?(RISM::REMOVE_DELETED_WF_STAGE) && RISM::REMOVE_DELETED_WF_STAGE
+        wf_stages = wf_stages.except("deleted", "deprecated")
+    end
+
+%>
+
+<%= defined?(RISM::REMOVE_DELETED_WF_STAGE).to_s %>
+
+<tr>
+    <td>
+        <div class="grid_cell_header">
+            <%=I18n.t(:record_status)%>
+        </div>
+    </td>
+    <td colspan="3">
+        <div class="grid_cell">
+            <div style="vertical-align: bottom; background-color: transparent">
+
+                <%= select_tag :record_status, options_for_select(wf_stages.map { |k, v| [t("wf_stage.#{k}"), k] }, selected_stage),
+                    id: "record_status", class: "w-100"
+                %>
+
+            </div>
+        </div>
+    </td>
+</tr>
