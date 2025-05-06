@@ -15,6 +15,8 @@ module ActiveAdmin
           rescue ActiveRecord::RecordNotFound
             "Folder not found #{value}"
           end
+        elsif part == "work_catalogue"
+          I18n.t("work_catalogue_labels." + value)
         else
           "#{value}"
           # [#{part}] we used to print the filter name, do we need it?

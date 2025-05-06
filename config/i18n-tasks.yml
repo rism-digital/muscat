@@ -170,6 +170,7 @@ ignore:
   - places.*
   - languages.*
   - general.*
+  - work_catalogue_tags.*
 
 
 ## Sometimes, it isn't possible for i18n-tasks to match the key correctly,

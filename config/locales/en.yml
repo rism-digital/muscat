@@ -825,7 +825,7 @@ en:
         one: Displaying <b>1</b> %{model}
         other: Displaying <b>all %{count}</b> %{model}
         zero: No %{model} found
-  work_catalogue: Is work catalogue
+  work_catalogue: Work catalogue status
   work_label_codes:
     doubtful: DBT
     fragment: FRG
@@ -835,3 +835,15 @@ en:
   worknode:
     one: work node
     other: work nodes
+  work_catalogue_tags:
+    not_work_catalogue: N.a.
+    work_catalogue_in_preparation: In prep
+    work_catalogue_partial: Partial
+    work_catalogue_complete: Complete
+    work_catalogue_alternate: Alternate
+  work_catalogue_labels:
+    not_work_catalogue: Not work catalogue
+    work_catalogue_in_preparation: In preparation
+    work_catalogue_partial: Partial
+    work_catalogue_complete: Complete
+    work_catalogue_alternate: Alternate

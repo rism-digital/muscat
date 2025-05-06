@@ -810,3 +810,9 @@ it:
   worknode:
     one: Work node
     other: Work node
+  work_catalogue_labels:
+    not_work_catalogue: Non è un catalogo delle opere
+    work_catalogue_in_preparation: In preparazione
+    work_catalogue_partial: Parziale
+    work_catalogue_complete: Completo
+    work_catalogue_alternate: Alternativo

@@ -810,3 +810,9 @@ ca:
   worknode:
     one: work node
     other: work nodes
+  work_catalogue_labels:
+    not_work_catalogue: Sense catàleg d'obres
+    work_catalogue_in_preparation: En preparació
+    work_catalogue_partial: Parcial
+    work_catalogue_complete: Complet
+    work_catalogue_alternate: Alternatiu

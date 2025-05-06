@@ -202,10 +202,8 @@ ActiveAdmin.register Publication do
 
   filter :wf_owner_with_integer, :label => proc {I18n.t(:filter_owner)}, :as => :flexdatalist, data_path: proc{list_for_filter_admin_users_path()}
 
-  # work catalogue filter
   filter :work_catalogue_with_integer, :label => proc{I18n.t(:work_catalogue)}, as: :select, 
-  collection: [["Yes", "work_catalogue:true"],["No", "work_catalogue:false"]], :if => proc{ current_user.has_any_role?(:admin) }
-
+  collection: proc{Publication.work_catalogues.collect {|k,v| [I18n.t("work_catalogue_labels." + k), "work_catalogue:#{k}"]}}, :if => proc{ can?(:edit, Work) && can?(:edit, Person) }
   
   index :download_links => false do
     selectable_column if !is_selection_mode?
@@ -215,7 +213,8 @@ ActiveAdmin.register Publication do
     column (I18n.t :filter_title_short), :short_name
     column (I18n.t :filter_title), :title
     column (I18n.t :filter_author), :author
-    column (I18n.t :work_catalogue), :work_catalogue if current_user.has_any_role?(:admin)
+    column (I18n.t :work_catalogue) {|cat| status_tag(cat.work_catalogue,
+      label: I18n.t('work_catalogue_tags.' + (cat.work_catalogue != nil ? cat.work_catalogue : ""), locale: :en))} if can?(:edit, Work) && can?(:edit, Person)
     column (I18n.t :filter_sources), :src_count_order, sortable: :src_count_order do |element|
 			active_admin_stored_from_hits(@arbre_context.assigns[:hits], element, :src_count_order)
 		end

@@ -91,6 +91,13 @@ body.active_admin {
     .status_tag.doubtful { background: #d74501; }
     .status_tag.fragment { background: #5a01d7; }
 
+    // For Work Catalog in Publications
+    .status_tag.not_work_catalogue { background: #aea5a5; }
+    .status_tag.work_catalogue_in_preparation { background: #d75a01; }
+    .status_tag.work_catalogue_partial { background: #910a03; }
+    .status_tag.work_catalogue_complete { background: #0fa019; }
+    .status_tag.work_catalogue_alternate { background: #0e4c03; }
+
 /* These colors were deprecated in AA 2.0 - not realy a problem, I leave them here
  * if we need to reconstruct a color. Only 'published' is used for wf_stage
 
