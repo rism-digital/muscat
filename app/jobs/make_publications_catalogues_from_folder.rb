@@ -33,7 +33,7 @@ class MakePublicationsCataloguesFromFolder < ProgressJob::Base
         end
         
         fi.item.save
-        fi.reindex
+        fi.item.reindex
         
         update_stage_progress("Updating records #{count}/#{f2.folder_items.count}", step: 1)
         count += 1
