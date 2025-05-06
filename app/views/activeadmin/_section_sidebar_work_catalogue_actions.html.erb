@@ -1,4 +1,4 @@
-<% options = Publication.work_catalogues.keys.map do |key| [key.humanize, key]end %>
+<% options = Publication.work_catalogues.keys.map do |key| [I18n.t("work_catalogue_labels." + key), key]end %>
 
 <ul><li class="muscat_icon_separator"></li></ul>&nbsp;
 
