@@ -29,15 +29,17 @@ class MakePublicationsCataloguesFromFolder < ProgressJob::Base
         fi.item.work_catalogue = @status_flag.to_sym
         
         if  PaperTrail.request.enabled_for_model?(fi.item.class) 
-          fi.item.paper_trail_event = "Add work_catalog flag from folder #{@parent_id}"
+          fi.item.paper_trail_event = "Set work_catalog flag from folder #{@parent_id}"
         end
         
         fi.item.save
+        fi.reindex
         
         update_stage_progress("Updating records #{count}/#{f2.folder_items.count}", step: 1)
         count += 1
       end
       
+      Sunspot.commit
     end
     
     
