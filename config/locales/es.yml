@@ -816,3 +816,6 @@ es:
     work_catalogue_partial: Parcial
     work_catalogue_complete: Completo
     work_catalogue_alternate: Alternativo
+  work_catalogue_publication_warning: "Para publicar las obras vinculadas, establece el estado del catálogo de obras en 'Parcial', 'Completo' o 'Alternativo'."
+  work_catalog_publish: "Publicar las obras vinculadas"
+  work_catalog_unpublish: "Despublicar las obras vinculadas"

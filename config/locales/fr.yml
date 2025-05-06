@@ -816,3 +816,6 @@ fr:
     work_catalogue_partial: Partiel
     work_catalogue_complete: Complet
     work_catalogue_alternate: Alternatif
+  work_catalogue_publication_warning: "Pour publier les œuvres liées, définissez le statut du catalogue d'œuvres sur 'Partiel', 'Complet' ou 'Alternatif'."
+  work_catalog_publish: "Publier les œuvres liées"
+  work_catalog_unpublish: "Dépublier les œuvres liées"

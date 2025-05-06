@@ -1,0 +1,19 @@
+<ul><li class="muscat_icon_separator"></li></ul>&nbsp;
+
+<% if ["work_catalogue_partial", "work_catalogue_complete", "work_catalogue_alternate"].include?(item.work_catalogue) %>
+
+<ul>
+    <li class="muscat_icon_link">
+    <%= link_to("#{I18n.t :work_catalog_publish}", send("publish_works_admin_publication_path", item),
+        :class => "muscat_icon_link muscat_icon_link_publish") %>
+    </li>
+    <li class="muscat_icon_link">
+    <%= link_to("#{I18n.t :work_catalog_unpublish}", send("unpublish_works_admin_publication_path", item),
+        :class => "muscat_icon_link muscat_icon_link_unpublish") %>
+    </li>
+</ul>
+
+<% else %>
+<br>
+<%= I18n.t(:work_catalogue_publication_warning) %>
+<% end %>

@@ -156,6 +156,14 @@ ActiveAdmin.register Publication do
     return
   end
  
+  member_action :publish_works, method: :get do
+    
+  end
+
+  member_action :unpublish_works, method: :get do
+    
+  end
+
   collection_action :work_catalogs  do
     #doc_url = 'https://docs.google.com/spreadsheets/d/1Wh45W93lUZfcf2AOb2OLn9LcIvbY7b55QgmoJ87xAc0/export?exportFormat=csv'
 
@@ -278,6 +286,9 @@ ActiveAdmin.register Publication do
   
   sidebar :actions, :only => :show do
     render :partial => "activeadmin/section_sidebar_show", :locals => { :item => publication }
+    if can?(:edit, Work) && !publication.referring_works.empty?
+      render :partial => "activeadmin/section_sidebar_publication", :locals => { :item => publication }
+    end
   end
 
   sidebar :statistics, :only => :show, if: proc{ item && item.work_catalogue } do

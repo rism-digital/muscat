@@ -816,3 +816,6 @@ de:
     work_catalogue_partial: Teilweise
     work_catalogue_complete: Vollständig
     work_catalogue_alternate: Alternativ
+  work_catalogue_publication_warning: "Um verknüpfte Werke zu veröffentlichen, setzen Sie den Werkkatalog-Status auf 'Teilweise', 'Vollständig' oder 'Alternativ'."
+  work_catalog_publish: "Verknüpfte Werke veröffentlichen"
+  work_catalog_unpublish: "Veröffentlichung verknüpfter Werke aufheben"

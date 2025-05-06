@@ -816,3 +816,6 @@ ca:
     work_catalogue_partial: Parcial
     work_catalogue_complete: Complet
     work_catalogue_alternate: Alternatiu
+  work_catalogue_publication_warning: "Per publicar les obres enllaçades, estableix l'estat del catàleg d'obres a 'Parcial', 'Complet' o 'Alternatiu'."
+  work_catalog_publish: "Publica les obres enllaçades"
+  work_catalog_unpublish: "Despublica les obres enllaçades"

@@ -816,3 +816,6 @@ pl:
     work_catalogue_partial: Częściowy
     work_catalogue_complete: Kompletny
     work_catalogue_alternate: Alternatywny
+  work_catalogue_publication_warning: "Aby opublikować powiązane dzieła, ustaw status katalogu dzieł na 'Częściowy', 'Kompletny' lub 'Alternatywny'."
+  work_catalog_publish: "Opublikuj powiązane dzieła"
+  work_catalog_unpublish: "Cofnij publikację powiązanych dzieł"

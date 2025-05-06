@@ -847,3 +847,6 @@ en:
     work_catalogue_partial: Partial
     work_catalogue_complete: Complete
     work_catalogue_alternate: Alternate
+  work_catalogue_publication_warning: To publish linked works, set the work-catalogue status to Partial, Complete, or Alternate.
+  work_catalog_publish: Publish linked works
+  work_catalog_unpublish: Unpublish linked works
