@@ -157,11 +157,13 @@ ActiveAdmin.register Publication do
   end
  
   member_action :publish_works, method: :get do
-    
+    job = Delayed::Job.enqueue(PublishItemsJob.new(params[:id], Publication, :referring_works, :publish))
+    redirect_to resource_path(params[:id]), notice: I18n.t(:publish_job, scope: :folders, id: job.id)
   end
 
   member_action :unpublish_works, method: :get do
-    
+    job = Delayed::Job.enqueue(PublishItemsJob.new(params[:id], Publication, :referring_works, :unpublish))
+    redirect_to resource_path(params[:id]), notice: I18n.t(:publish_job, scope: :folders, id: job.id)
   end
 
   collection_action :work_catalogs  do

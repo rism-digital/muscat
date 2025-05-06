@@ -77,12 +77,12 @@ ActiveAdmin.register Folder do
   #end
   
   member_action :publish, method: :get do
-    job = Delayed::Job.enqueue(PublishFolderJob.new(params[:id]))
+    job = Delayed::Job.enqueue(PublishItemsJob.new(params[:id], Folder, :folder_items, :publish))
     redirect_to resource_path(params[:id]), notice: I18n.t(:publish_job, scope: :folders, id: job.id)
   end
  
   member_action :unpublish, method: :get do
-    job = Delayed::Job.enqueue(PublishFolderJob.new(params[:id], unpublish: true))
+    job = Delayed::Job.enqueue(PublishItemsJob.new(params[:id], Folder, :folder_items, :unpublish))
     redirect_to resource_path(params[:id]), notice: I18n.t(:unpublish_job, scope: :folders, id: job.id)
   end
  
