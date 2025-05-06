@@ -1193,7 +1193,10 @@ force_editor_ordering: true
 "530": 
   layout: 
     fields: 
-    - - a
+    - - "a"
+      - type: gnd_work_title
+        preserve_foreign_value: true
+        editor_partial: subfield_secondary #subfield_autocomplete
     - - "0"
       - read_only: true
     - - "4"

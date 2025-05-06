@@ -7,6 +7,7 @@ ActiveAdmin.register_page "gnd_works" do
     autocomplete :gnd_works, "person", :gnd => true, :display_value => :label, :extra_data => [:life_dates]
     autocomplete :gnd_works, "instrument", :gnd => true, :display_value => :label
     autocomplete :gnd_works, "form", :gnd => true, :display_value => :label
+    autocomplete :gnd_works, "title", :gnd => true, :display_value => :label
 
     MAX_SAVED_IDS_SIZE = 20
 

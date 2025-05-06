@@ -298,6 +298,8 @@ module GND
             return autocomplete_instrument(term, limit, options)
         elsif method == "form" 
             return autocomplete_form(term, limit, options)
+        elsif method == "title" 
+            return autocomplete_title(term, limit, options)
         end
         {}
     end
@@ -346,6 +348,29 @@ module GND
         result = []
         xml = self.query(term, "WOE", "Ts", "saz", 500)
         
+        # Loop on each record in the result list
+        xml.xpath("//marc:record", NAMESPACE).each do |record|
+            item = {}
+            node_001 = record.xpath("./marc:controlfield[@tag='001']", NAMESPACE).first
+            next if !node_001
+            #item[:id] = node_001.text
+            item[:id] = "(DE-101)#{node_001.text}"
+            node_150a_val = record.xpath("./marc:datafield[@tag='150']/marc:subfield[@code='a']", NAMESPACE).first.text rescue "[missing]"
+            next if !node_150a_val&.downcase&.include?(term&.downcase)
+            item["form"] = node_150a_val
+            item[:label] = "#{node_150a_val}"
+            item[:label] += " – #{item[:id]}"
+            result << item
+        end
+        result
+    end
+
+    def self.autocomplete_title(term, limit, options)
+        result = []
+        xml = self.query(term, "WOE", "Tu", "wim", 500)
+        
+        ap xml
+
         # Loop on each record in the result list
         xml.xpath("//marc:record", NAMESPACE).each do |record|
             item = {}
