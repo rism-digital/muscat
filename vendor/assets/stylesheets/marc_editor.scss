@@ -1,3 +1,5 @@
+@use "sass:color";
+
 .marc_guidelines {
     background: #fff;
     border: 1px solid $primary-color;
@@ -203,7 +205,7 @@ $diff-padding-width: 15px;
         background-color: #eee;
     }
     .modification_bar_content {
-        background-color: lighten($primary-color, 20%)
+        background-color: color.adjust($primary-color, $lightness: 20%, $space: hsl)
     }
     .marc_historic_view {
         margin-top: 30px;
@@ -431,7 +433,7 @@ h3 {
         background-color: #eee;
     }
     .modification_bar_content {
-        background-color: lighten($primary-color, 20%)
+        background-color: color.adjust($primary-color, $lightness: 20%, $space: hsl)
     }
 }
 

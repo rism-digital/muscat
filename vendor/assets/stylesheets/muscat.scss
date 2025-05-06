@@ -1,3 +1,5 @@
+@use "sass:color";
+
 @import url('https://fonts.googleapis.com/css?family=Noto+Sans+Display:400,500,700,400italic,500italic,700italic');
 //@import url('https://fonts.googleapis.com/css?family=Noto+Sans:400,500,700,400italic,500italic,700italic');
 
@@ -138,7 +140,7 @@ body.active_admin {
     background-color: #eee;
 }
 .progress_bar_content {
-    background-color: lighten($primary-color, 20%)
+    background-color: color.adjust($primary-color, $lightness: 20%, $space: hsl)
 }
 
 .srutable_wrapper {
