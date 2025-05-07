@@ -494,6 +494,7 @@ es:
     reset_expiration: Restablecer la fecha de caducidad
     resetted: La fecha de caducidad de la carpeta es ahora %{date}
     save: Guardar resultados en la carpeta
+    setting_catalogue_status: Configuración del estado del catálogo
     success: Carpeta %{name} creada con %{count} ítems.
     success_bg: Carpeta %{name} creada, tarea %{job} pendiente.
     tomorrow: Las siguientes carpetas se borrarán mañana %{date}
@@ -805,17 +806,17 @@ es:
         one: Mostrando <b>1</b> %{model}
         other: Mostranto un <b> total de %{count}</b> %{model}
         zero: No se han encontrado %{model}
+  work_catalog_publish: Publicar las obras vinculadas
+  work_catalog_unpublish: Despublicar las obras vinculadas
   work_catalogue: Catálogo de obras
+  work_catalogue_labels:
+    not_work_catalogue: Sin catálogo de obras
+    work_catalogue_alternate: Alternativo
+    work_catalogue_complete: Completo
+    work_catalogue_in_preparation: En preparación
+    work_catalogue_partial: Parcial
+  work_catalogue_publication_warning: Para publicar las obras vinculadas, establece el estado del catálogo de obras en 'Parcial', 'Completo' o 'Alternativo'.
   workgroups: Grupos de trabajo
   worknode:
     one: Work node
     other: Work nodes
-  work_catalogue_labels:
-    not_work_catalogue: Sin catálogo de obras
-    work_catalogue_in_preparation: En preparación
-    work_catalogue_partial: Parcial
-    work_catalogue_complete: Completo
-    work_catalogue_alternate: Alternativo
-  work_catalogue_publication_warning: "Para publicar las obras vinculadas, establece el estado del catálogo de obras en 'Parcial', 'Completo' o 'Alternativo'."
-  work_catalog_publish: "Publicar las obras vinculadas"
-  work_catalog_unpublish: "Despublicar las obras vinculadas"

@@ -494,6 +494,7 @@ pt:
     reset_expiration: Repor data de expiração
     resetted: Data de expiração da pasta agora é %{date}
     save: Salvar resultados em Pasta
+    setting_catalogue_status: Configuração do status do catálogo
     success: Pasta %{name} criada com %{count} itens.
     success_bg: Pasta %{name} criada, trabalho %{job} na fila.
     tomorrow: As seguintes pastas serão eliminadas amanhã %{date}
@@ -805,17 +806,17 @@ pt:
         one: Exibindo <b>1</b> %{model}
         other: Exibindo <b>todos %{count}</b> %{model}
         zero: Nenhum %{model} encontrado
+  work_catalog_publish: Publicar obras vinculadas
+  work_catalog_unpublish: Anular publicação das obras vinculadas
   work_catalogue: Catálogo de obras
+  work_catalogue_labels:
+    not_work_catalogue: Sem catálogo de obras
+    work_catalogue_alternate: Alternativo
+    work_catalogue_complete: Completo
+    work_catalogue_in_preparation: Em preparação
+    work_catalogue_partial: Parcial
+  work_catalogue_publication_warning: Para publicar obras vinculadas, defina o status do catálogo de obras como 'Parcial', 'Completo' ou 'Alternativo'.
   workgroups: Grupos de trabalho
   worknode:
     one: Work node
     other: Work nodes
-  work_catalogue_labels:
-    not_work_catalogue: Sem catálogo de obras
-    work_catalogue_in_preparation: Em preparação
-    work_catalogue_partial: Parcial
-    work_catalogue_complete: Completo
-    work_catalogue_alternate: Alternativo
-  work_catalogue_publication_warning: "Para publicar obras vinculadas, defina o status do catálogo de obras como 'Parcial', 'Completo' ou 'Alternativo'."
-  work_catalog_publish: "Publicar obras vinculadas"
-  work_catalog_unpublish: "Anular publicação das obras vinculadas"

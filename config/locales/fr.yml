@@ -494,6 +494,7 @@ fr:
     reset_expiration: Réinitialiser la date d'expiration
     resetted: La date d'expiration du dossier est désormais fixée à %{date}
     save: Sauver les résultats dans un dossier
+    setting_catalogue_status: Définition du statut du catalogue
     success: Le dossier %{name} créé avec %{count} éléments.
     success_bg: Dossier %{name} créé, tâche %{job} ajoutée à la queue.
     tomorrow: Les dossiers suivants seront supprimés demain %{date}
@@ -805,17 +806,17 @@ fr:
         one: Affichage de <b>1</b> %{model}
         other: Affichage des <b>%{count}</b> %{model}
         zero: "%{model} introuvable"
+  work_catalog_publish: Publier les œuvres liées
+  work_catalog_unpublish: Dépublier les œuvres liées
   work_catalogue: Catalogue d'œuvres
+  work_catalogue_labels:
+    not_work_catalogue: Pas de catalogue des œuvres
+    work_catalogue_alternate: Alternatif
+    work_catalogue_complete: Complet
+    work_catalogue_in_preparation: En préparation
+    work_catalogue_partial: Partiel
+  work_catalogue_publication_warning: Pour publier les œuvres liées, définissez le statut du catalogue d'œuvres sur 'Partiel', 'Complet' ou 'Alternatif'.
   workgroups: Groupes
   worknode:
     one: Work node
     other: Work nodes
-  work_catalogue_labels:
-    not_work_catalogue: Pas de catalogue des œuvres
-    work_catalogue_in_preparation: En préparation
-    work_catalogue_partial: Partiel
-    work_catalogue_complete: Complet
-    work_catalogue_alternate: Alternatif
-  work_catalogue_publication_warning: "Pour publier les œuvres liées, définissez le statut du catalogue d'œuvres sur 'Partiel', 'Complet' ou 'Alternatif'."
-  work_catalog_publish: "Publier les œuvres liées"
-  work_catalog_unpublish: "Dépublier les œuvres liées"

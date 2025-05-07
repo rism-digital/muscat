@@ -494,6 +494,7 @@ ca:
     reset_expiration: Reestablir la data d'expiració
     resetted: La data de caducitat ha passat a ser %{date}
     save: Desa els resultats a una carpeta
+    setting_catalogue_status: Configuració de l'estat del catàleg
     success: Carpeta %{name} creada amb %{count} elements.
     success_bg: Carpeta %{name} creada, tasca %{job} pendent.
     tomorrow: Carpetes que s'esborraran demà %{date}
@@ -805,17 +806,17 @@ ca:
         one: Mostra <b>1</b> %{model}
         other: "%{model}, un <b>total de %{count}</b>"
         zero: No se n'ha trobat cap
+  work_catalog_publish: Publica les obres enllaçades
+  work_catalog_unpublish: Despublica les obres enllaçades
   work_catalogue: Catàleg d'obres
+  work_catalogue_labels:
+    not_work_catalogue: Sense catàleg d'obres
+    work_catalogue_alternate: Alternatiu
+    work_catalogue_complete: Complet
+    work_catalogue_in_preparation: En preparació
+    work_catalogue_partial: Parcial
+  work_catalogue_publication_warning: Per publicar les obres enllaçades, estableix l'estat del catàleg d'obres a 'Parcial', 'Complet' o 'Alternatiu'.
   workgroups: Grups de treball
   worknode:
     one: work node
     other: work nodes
-  work_catalogue_labels:
-    not_work_catalogue: Sense catàleg d'obres
-    work_catalogue_in_preparation: En preparació
-    work_catalogue_partial: Parcial
-    work_catalogue_complete: Complet
-    work_catalogue_alternate: Alternatiu
-  work_catalogue_publication_warning: "Per publicar les obres enllaçades, estableix l'estat del catàleg d'obres a 'Parcial', 'Complet' o 'Alternatiu'."
-  work_catalog_publish: "Publica les obres enllaçades"
-  work_catalog_unpublish: "Despublica les obres enllaçades"

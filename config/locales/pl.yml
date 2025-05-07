@@ -494,6 +494,7 @@ pl:
     reset_expiration: Resetuj datę wygaśnięcia
     resetted: Data wygaśnięcia folderu teraz to %{date}
     save: Zapisz wyniki w folderze
+    setting_catalogue_status: Ustawianie statusu katalogu
     success: Utworzono folder %{name} zawierający %{count} pozycji.
     success_bg: Folder %{name} utworzony, zadanie %{job} zakolejkowane.
     tomorrow: Następujące foldery zostaną usunięte jutro %{date}
@@ -805,17 +806,17 @@ pl:
         one: Wyświetlany <b>1</b> %{model}
         other: Wyświetlane <b>wszystkie %{count}</b> %{model}
         zero: Nie znaleziono %{model}
+  work_catalog_publish: Opublikuj powiązane dzieła
+  work_catalog_unpublish: Cofnij publikację powiązanych dzieł
   work_catalogue: Katalog dzieł
+  work_catalogue_labels:
+    not_work_catalogue: Brak katalogu dzieł
+    work_catalogue_alternate: Alternatywny
+    work_catalogue_complete: Kompletny
+    work_catalogue_in_preparation: W przygotowaniu
+    work_catalogue_partial: Częściowy
+  work_catalogue_publication_warning: Aby opublikować powiązane dzieła, ustaw status katalogu dzieł na 'Częściowy', 'Kompletny' lub 'Alternatywny'.
   workgroups: Grupy robocze
   worknode:
     one: Work node
     other: Work nodes
-  work_catalogue_labels:
-    not_work_catalogue: Brak katalogu dzieł
-    work_catalogue_in_preparation: W przygotowaniu
-    work_catalogue_partial: Częściowy
-    work_catalogue_complete: Kompletny
-    work_catalogue_alternate: Alternatywny
-  work_catalogue_publication_warning: "Aby opublikować powiązane dzieła, ustaw status katalogu dzieł na 'Częściowy', 'Kompletny' lub 'Alternatywny'."
-  work_catalog_publish: "Opublikuj powiązane dzieła"
-  work_catalog_unpublish: "Cofnij publikację powiązanych dzieł"

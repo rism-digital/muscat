@@ -501,6 +501,7 @@ en:
     two_weeks: The following folders will be deleted in two weeks on %{date}
     unpublish_job: 'Unpublish job started (id: %{id})'
     validation_started: 'An email will be sent to %{email} with the validation has ended (Validation job id: %{job}).'
+    setting_catalogue_status: Setting catalogue status
   from_existing_source: Create from existing source
   full_level: Full record
   gnd_not_found: The request to GND returned an empty record

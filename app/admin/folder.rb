@@ -94,7 +94,7 @@ ActiveAdmin.register Folder do
     end
 
     job = Delayed::Job.enqueue(MakePublicationsCataloguesFromFolder.new(params[:id], params[:work_catalogue_option]))
-    redirect_to resource_path(params[:id]), notice: I18n.t(:make_catalogue, scope: :folders, id: job.id)
+    redirect_to resource_path(params[:id]), notice: I18n.t(:setting_catalogue_status, scope: :folders, id: job.id)
   end
 
   member_action :reset_expiration, method: :get do

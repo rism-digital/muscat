@@ -14,9 +14,9 @@
             <%= submit_tag I18n.t :remove_item_from_folder %>
         </div>
     <% end %>
-	
+	<br>
 <% end %>
-<br>
+
 <% if @folders_without_this_item.any? %>
     <label><%= I18n.t(:add_this_item_to_folder)%></label>
     <% select_options = @folders_without_this_item.sort_by{ |f| f.name.downcase }.map{ |f| [f.name, f.id] } %>

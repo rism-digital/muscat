@@ -494,6 +494,7 @@ de:
     reset_expiration: Verfallsdatum zurücksetzen
     resetted: Das Ablaufdatum des Ordners ist jetzt %{date}
     save: In Ordner speichern
+    setting_catalogue_status: Festlegen des Katalogstatus
     success: Ordner %{name} generiert aus %{count} Datensätzen.
     success_bg: Ordner %{name} erstellt, Auftrag %{job} in Warteschleife.
     tomorrow: Die folgenden Ordner werden morgen %{date} gelöscht
@@ -805,17 +806,17 @@ de:
         one: Anzeige von <b>1</b> %{model}
         other: Anzeige <b>aller %{count}</b> %{model}
         zero: Keine(n) %{model} gefunden
+  work_catalog_publish: Verknüpfte Werke veröffentlichen
+  work_catalog_unpublish: Veröffentlichung verknüpfter Werke aufheben
   work_catalogue: Katalog der Werke
+  work_catalogue_labels:
+    not_work_catalogue: Kein Werkverzeichnis
+    work_catalogue_alternate: Alternativ
+    work_catalogue_complete: Vollständig
+    work_catalogue_in_preparation: In Vorbereitung
+    work_catalogue_partial: Teilweise
+  work_catalogue_publication_warning: Um verknüpfte Werke zu veröffentlichen, setzen Sie den Werkkatalog-Status auf 'Teilweise', 'Vollständig' oder 'Alternativ'.
   workgroups: Benutzergruppen
   worknode:
     one: Work node
     other: Work nodes
-  work_catalogue_labels:
-    not_work_catalogue: Kein Werkverzeichnis
-    work_catalogue_in_preparation: In Vorbereitung
-    work_catalogue_partial: Teilweise
-    work_catalogue_complete: Vollständig
-    work_catalogue_alternate: Alternativ
-  work_catalogue_publication_warning: "Um verknüpfte Werke zu veröffentlichen, setzen Sie den Werkkatalog-Status auf 'Teilweise', 'Vollständig' oder 'Alternativ'."
-  work_catalog_publish: "Verknüpfte Werke veröffentlichen"
-  work_catalog_unpublish: "Veröffentlichung verknüpfter Werke aufheben"

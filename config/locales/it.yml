@@ -494,6 +494,7 @@ it:
     reset_expiration: Ripristinare la data di scadenza
     resetted: La data di scadenza della cartella è ora %{date}
     save: Salva i risultati in una cartella
+    setting_catalogue_status: Impostazione dello stato del catalogo
     success: Cartella %{name} creata con %{count} oggetti.
     success_bg: Creata cartella %{name}, job %{job} in coda.
     tomorrow: Le seguenti cartelle saranno eliminate domani %{date}
@@ -805,17 +806,17 @@ it:
         one: Risultato di ricerca <b>1</b> %{model}
         other: Risultati di ricerca <b> %{count}</b> %{model}%
         zero: Nessun %{model} trovato
+  work_catalog_publish: Pubblica le opere collegate
+  work_catalog_unpublish: Annulla la pubblicazione delle opere collegate
   work_catalogue: Catalogo di opere
+  work_catalogue_labels:
+    not_work_catalogue: Non è un catalogo delle opere
+    work_catalogue_alternate: Alternativo
+    work_catalogue_complete: Completo
+    work_catalogue_in_preparation: In preparazione
+    work_catalogue_partial: Parziale
+  work_catalogue_publication_warning: Per pubblicare le opere collegate, imposta lo stato del catalogo opere su 'Parziale', 'Completo' o 'Alternativo'.
   workgroups: Gruppi
   worknode:
     one: Work node
     other: Work node
-  work_catalogue_labels:
-    not_work_catalogue: Non è un catalogo delle opere
-    work_catalogue_in_preparation: In preparazione
-    work_catalogue_partial: Parziale
-    work_catalogue_complete: Completo
-    work_catalogue_alternate: Alternativo
-  work_catalogue_publication_warning: "Per pubblicare le opere collegate, imposta lo stato del catalogo opere su 'Parziale', 'Completo' o 'Alternativo'."
-  work_catalog_publish: "Pubblica le opere collegate"
-  work_catalog_unpublish: "Annulla la pubblicazione delle opere collegate"
