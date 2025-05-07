@@ -103,7 +103,14 @@ class Marc
     # adding created at 008
     if created_at 
       created = created_at.strftime("%y%m%d")
-      _008_content = "#{created}||||||||a|||||||||||||||||||||||||"
+      _008_content = "#{created}||||||||||||||||||||||||||||||||||"
+      
+      if @model != "source"
+        _008_content[10] = 'z'
+        _008_content[14] = 'a'
+        _008_content[39] = 'd'
+      end
+
       tag_008 = MarcNode.new(@model, "008", _008_content, nil)
       @root.children.insert(get_insert_position("008"), tag_008)
     end
