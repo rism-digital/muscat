@@ -142,8 +142,10 @@ de:
     veranlasser: "Veranlasser"
     widmungsempfänger: "Widmungsempfänger"
     oberbegriff_partitiv: "Oberbegriff, partitiv"
-    datj: "Erscheinungszeitraum/Erscheinungsjahr/Erscheinungsjahr ca."
-    dats: "Kompositionszeitraum/Kompositionsjahr/Kompositionsjahr ca."
+    datj_erscheinungszeitraum: "Erscheinungszeitraum"
+    datj: "Erscheinungsjahr/Erscheinungsjahr ca."
+    dats_kompositionszeitraum: "Kompositionszeitraum"
+    dats: "Kompositionsjahr/Kompositionsjahr ca."
 
     anla: "Anlass"
     nach: "Nachfolger"

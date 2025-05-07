@@ -1243,7 +1243,11 @@ force_editor_ordering: true
   tag_params:
     relator_codes:
       - datj
+      - code: datj
+        label: "gnd.datj_erscheinungszeitraum"
       - dats
+      - code: dats
+        label: "gnd.dats_kompositionszeitraum"
 "550": 
   layout: 
     fields: 

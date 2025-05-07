@@ -57,6 +57,14 @@ end
 	<option value="<%= marc_subfield.content %>" selected><%= marc_subfield.content%></option>
 	<% end %>
 	<%- sorted_values.each do |code| %>
-    	<option value="<%= code -%>" <%= "selected" if marc_subfield.content == code %>><%= @editor_profile.get_label(code) -%></option>
+		<% 
+			if code.is_a?(Hash)
+				label = I18n.t(code["label"])
+				code = code["code"]
+			else
+				label = @editor_profile.get_label(code)
+			end 
+		%>
+    	<option value="<%= code -%>" <%= "selected" if marc_subfield.content == code %>><%= label -%></option>
 	<%- end %>
 </select>
