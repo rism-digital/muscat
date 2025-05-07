@@ -80,6 +80,12 @@ module MarcControllerActions
         @item.wf_audit = params[:record_audit]
       end
 
+      if params.has_key?(:work_catalogue_status) && @item.is_a?(Publication) &&
+        (can?(:edit, Work) || current_user.has_role?(:editor) || current_user.has_role?(:admin))
+        @item.work_catalogue = params[:work_catalogue_status]
+        ap params[:work_catalogue_status]
+      end
+
       # Set the user name to the model class variable
       # This is used by the VersionChecker module to see if we want a version to be stored
       @item.last_user_save = current_user.name

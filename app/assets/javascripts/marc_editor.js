@@ -216,6 +216,7 @@ function _marc_editor_send_form(form_name, rails_model, redirect) {
 		// hardcoded there. It can be added here if needed in the furure
 		// for other models
 		//force_editor_ordering: $('#force_editor_ordering').val(),
+		work_catalogue_status: $('#work_catalogue_status').val(),
 		triggers: JSON.stringify(triggers),
 		redirect: redirect
 	};

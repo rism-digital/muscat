@@ -12,6 +12,11 @@
 				<%= render "editor/record_actions_wf_audit_work" %>
 			<% end %>
 
+			<% if @item.is_a?(Publication) && can?(:edit, Work) %>
+				<%= render "editor/record_actions_work_catalogue_status" %>
+			<% end %>
+
+
 		</table>
 	</div>
 </div>
