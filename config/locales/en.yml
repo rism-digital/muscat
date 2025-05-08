@@ -348,7 +348,7 @@ en:
   filter_autograph_of: Autograph of
   filter_birth_place: Birth place
   filter_book_id: RISM series ID
-  filter_catalog: Catalogue
+  filter_catalog: Catalog
   filter_category_type: Category
   filter_collection: Collection
   filter_comment: Comment
@@ -494,7 +494,7 @@ en:
     reset_expiration: Reset expiration date
     resetted: Folder expiration date now is %{date}
     save: Save results to Folder
-    setting_catalogue_status: Setting catalogue status
+    setting_catalogue_status: Setting catalog status
     success: Folder %{name} created with %{count} items.
     success_bg: Folder %{name} created, job %{job} enqueued.
     tomorrow: The following folders will be deleted tomorrow %{date}
@@ -509,7 +509,7 @@ en:
   helpers:
     label:
       folder:
-        work_catalogue_status: Work catalogue status
+        work_catalogue_status: Work catalog status
   hide_preview: Hide preview
   history_author: Author
   history_date: Date
@@ -665,8 +665,8 @@ en:
   progress: Progress
   progress_stage: Stage
   publication:
-    one: catalogue
-    other: catalogues
+    one: catalog
+    other: catalogs
   publish: Publish
   publisher: Publisher
   queue: Queue
@@ -748,7 +748,7 @@ en:
   sections: Sections
   select: Select
   select_template: Select new template
-  set_work_catalogue_status: Set work catalogue status
+  set_work_catalogue_status: Set work catalog status
   show_all_groups: Show all sections
   show_gnd: GND Search
   show_history: Show modification history
@@ -828,19 +828,19 @@ en:
         zero: No %{model} found
   work_catalog_publish: Publish linked works
   work_catalog_unpublish: Unpublish linked works
-  work_catalogue: Work catalogue status
+  work_catalogue: Work catalog status
   work_catalogue_labels:
-    not_work_catalogue: Not work catalogue
+    not_work_catalogue: Not work catalog
     work_catalogue_alternate: Alternate
     work_catalogue_complete: Complete
-    work_catalogue_in_preparation: In preparation
+    work_catalogue_in_preparation: Eligible
     work_catalogue_partial: Partial
-  work_catalogue_publication_warning: To publish linked works, set the work-catalogue status to Partial, Complete, or Alternate.
+  work_catalogue_publication_warning: To publish linked works, set the work-catalog status to Partial, Complete, or Alternate.
   work_catalogue_tags:
     not_work_catalogue: N.a.
     work_catalogue_alternate: Alternate
     work_catalogue_complete: Complete
-    work_catalogue_in_preparation: In prep
+    work_catalogue_in_preparation: Eligible
     work_catalogue_partial: Partial
   work_label_codes:
     doubtful: DBT

@@ -31,9 +31,6 @@ class StandardTerm < ApplicationRecord
   has_many :inventory_item_standard_term_relations, class_name: "InventoryItemStandardTermRelation"
   has_many :referring_inventory_items, through: :inventory_item_standard_term_relations, source: :inventory_item
 
-  has_many :inventory_item_standard_term_relations, class_name: "InventoryItemStandardTermRelation"
-  has_many :referring_inventory_items, through: :inventory_item_standard_term_relations, source: :inventory_item
-
   has_many :folder_items, as: :item, dependent: :destroy
   has_many :delayed_jobs, -> { where parent_type: "StandardTerm" }, class_name: 'Delayed::Backend::ActiveRecord::Job', foreign_key: "parent_id"
   belongs_to :user, :foreign_key => "wf_owner"
@@ -41,7 +38,7 @@ class StandardTerm < ApplicationRecord
   validates_uniqueness_of :term
   alias_attribute :name, :term
   #include NewIds
-  
+
   before_destroy :check_dependencies, :cleanup_comments
   
   #before_create :generate_new_id

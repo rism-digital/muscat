@@ -28,8 +28,7 @@ ActiveAdmin.register StandardTerm do
     
     autocomplete :standard_term, :term, :display_value => :label, :getter_function => :get_autocomplete_title_with_count
 
-    def get_autocomplete_title_with_count(token, options = {})
-
+    def get_autocomplete_title_with_count(token, options = {})      
       sanit = ActiveRecord::Base.send(:sanitize_sql_like, token) + "%"
 
       query = "SELECT `standard_terms`.`id`, `standard_terms`.`term`, count(standard_terms.id) AS count \
