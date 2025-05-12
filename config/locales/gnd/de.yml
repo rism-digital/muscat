@@ -9,7 +9,7 @@ de:
     identifying_addition: Identifizierender Zusatz
     instrument: Instrumente
     key_or_mode: Tonart oder Modus
-    key_mode: Tonart, Modus
+    key_mode: Tonart oder Modus
     main_work: Haupteintragungen
     name: Name
     opus_thematic_index_number: Numerische Kennzeichnung
@@ -34,7 +34,6 @@ de:
     time_relationship: Zeitbeziehung
     title: Titel
     title_of_work: Werktitel
-    title_part: Teiltitel
     ungrouped: Andere Felder, die nicht im Standard Muscat MARC-Editor enthalten sind
     variants: Namensvarianten
     cataloging_level: Katalogisierungslevel
@@ -50,7 +49,7 @@ de:
     authorized_form: Ansetzungsform
     name: Name
     birth_and_death_dates: Geburtsund Todesdaten
-    birth_and_death_years: Geburtsund Todesjahr
+    birth_and_death_years: Lebensdaten
     instrumentation_hint: Besetzungshinweis
     numerical_identifier: Numerische Kennzeichnung
     part_title: Teiltitel
@@ -146,6 +145,8 @@ de:
     datj: "Erscheinungsjahr/Erscheinungsjahr ca."
     dats_kompositionszeitraum: "Kompositionszeitraum"
     dats: "Kompositionsjahr/Kompositionsjahr ca."
+    instrument_singular: Instrument
+    count: Zählung
 
     anla: "Anlass"
     nach: "Nachfolger"

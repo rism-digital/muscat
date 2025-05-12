@@ -284,7 +284,6 @@ force_editor_ordering: true
     - - f
     - - m
     - - n
-    - - o
     - - p
     - - r
       - editor_partial: subfield_select_codes
@@ -1053,7 +1052,6 @@ force_editor_ordering: true
     - - f
     - - m
     - - n
-    - - o
     - - p
     - - r
       - editor_partial: subfield_select_codes
@@ -1141,7 +1139,6 @@ force_editor_ordering: true
     - - d
       - autocomplete_extra: life_dates
     - - e
-    - - "0"
     - - "4"
       - editor_partial: subfield_select_codes
         select_label: "Function"
@@ -1196,8 +1193,6 @@ force_editor_ordering: true
       - type: gnd_work_title
         preserve_foreign_value: true
         editor_partial: subfield_secondary #subfield_autocomplete
-    - - "0"
-      - read_only: true
     - - "4"
       - editor_partial: subfield_select_codes
         select_label: "Function"
@@ -1258,10 +1253,10 @@ force_editor_ordering: true
     - - '9'
 "667": 
   layout: 
-    fields: 
+    fields:
     - - a
-    - - "5"
       - default: "RISM NFDI4Culture"
+    - - "5"
 "670": 
   layout: 
     fields: 
@@ -1284,5 +1279,8 @@ force_editor_ordering: true
   layout: 
     fields: 
     - - a
+      - read_only: true
     - - "0"
+      - read_only: true
     - - i
+      - read_only: true

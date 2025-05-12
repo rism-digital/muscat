@@ -149,8 +149,16 @@ g-2:
   fields:
     a:
       label: gnd.work_title
+    f:
+      label: gnd.time
+    m:
+      label: gnd.instrument_singular
+    n:
+      label: gnd.count
     p:
-      label: gnd.partial_title_of_the_work
+      label: gnd.part_title
+    r:
+      label: gnd.key_mode
 
 '377':
   label: gnd.language
@@ -212,11 +220,11 @@ g-2:
     m:
       label: gnd.instrumentation_hint
     n:
-      label: gnd.cast_summary
+      label: gnd.count
     r:
       label: gnd.key_or_mode
     t:
-      label: gnd.title_of_the_work
+      label: gnd.work_title
     p:
       label: gnd.part_title
 
@@ -225,8 +233,16 @@ g-2:
   fields:
     a:
       label: gnd.work_title
+    f:
+      label: gnd.time
+    m:
+      label: gnd.instrument_singular
+    n:
+      label: gnd.count
     p:
-      label: gnd.partial_title_of_the_work
+      label: gnd.part_title
+    r:
+      label: gnd.key_mode
 
 '500':
   label: gnd.relationship
