@@ -972,7 +972,6 @@ force_editor_ordering: true
     - - t
     - - m
     - - n
-    - - o
     - - p
     - - r
       - editor_partial: subfield_select_codes

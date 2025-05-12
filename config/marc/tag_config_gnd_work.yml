@@ -111,11 +111,13 @@
     - - d
       - :occurrences: "?"
     - - m
-      - :occurrences: "?"
+      - :occurrences: "+"
     - - n
-      - :occurrences: "?"
+      - :occurrences: "+"
     - - o
       - :occurrences: "?"
+    - - p
+      - :occurrences: "+"
     - - r
       - :occurrences: "?"
     - - t
@@ -136,11 +138,13 @@
     - - d
       - :occurrences: "?"
     - - m
-      - :occurrences: "?"
+      - :occurrences: "+"
     - - n
-      - :occurrences: "?"
+      - :occurrences: "+"
     - - o
       - :occurrences: "?"
+    - - p
+      - :occurrences: "+"
     - - r
       - :occurrences: "?"
     - - t
@@ -150,12 +154,19 @@
     :indicator: "##"
     :occurrences: "*"
     :fields:
+    - - a
+      - :occurrences: "+"
+  "380":  
+    :master: "0"
+    :indicator: "##"
+    :occurrences: "*"
+    :fields:
     - - "0"
       - :occurrences: "?"  
     - - "2"
-      - :occurrences: "?"  
+      - :occurrences: "+"
     - - a
-      - :occurrences: "?"
+      - :occurrences: "+"
   "382":  
     :master: "0"
     :indicator: "##"
@@ -199,9 +210,11 @@
     - - d
       - :occurrences: "?"
     - - m
-      - :occurrences: "?"
+      - :occurrences: "+"
     - - n
-      - :occurrences: "?"
+      - :occurrences: "+"
+    - - p
+      - :occurrences: "+"
     - - r
       - :occurrences: "?"
     - - o
@@ -214,8 +227,12 @@
     :fields:
     - - a
       - :occurrences: "?"
+    - - m
+      - :occurrences: "+"
+    - - n
+      - :occurrences: "+"
     - - p
-      - :occurrences: "?"
+      - :occurrences: "+"
   "500":  
     :master: "0"
     :indicator: "1#"
@@ -230,23 +247,29 @@
     - - "e"
       - :occurrences: "?"
     - - "4"
-      - :occurrences: "?"
+      - :occurrences: "+"
     - - i
       - :occurrences: "?"
     - - w
       - :occurrences: "?"
     - - "9"
-      - :occurrences: "?"
+      - :occurrences: "+"
     - - n
-      - :occurrences: "?"
+      - :occurrences: "+"
+    - - m
+      - :occurrences: "+"
     - - p
-      - :occurrences: "?"
+      - :occurrences: "+"
     - - r
       - :occurrences: "?"
   "530":  
     :indicator: "##"
     :occurrences: "*"
     :fields:
+    - - "4"
+      - :occurrences: "+"
+    - - "9"
+      - :occurrences: "+"
     - - a
       - :occurrences: "?"
     - - w
@@ -262,7 +285,9 @@
     - - c
       - :occurrences: "?"
     - - "4"
-      - :occurrences: "?"
+      - :occurrences: "+"
+    - - "9"
+      - :occurrences: "+"
   "550":  
     :indicator: "##"
     :occurrences: "*"
@@ -276,27 +301,29 @@
     - - '0'
       - :occurrences: "?"
     - - '4'
-      - :occurrences: "?"
+      - :occurrences: "+"
     - - '9'
-      - :occurrences: "?"
+      - :occurrences: "+"
   "667":  
     :indicator: "##"
     :occurrences: "*"
     :fields:
     - - "5"
-      - :occurrences: "?"
+      - :occurrences: "+"
   "670":  
     :indicator: "##"
     :occurrences: "*"
     :fields:
     - - a
       - :occurrences: "?"
+    - - u
+      - :occurrences: "+"
   "675":  
     :indicator: "##"
     :occurrences: "*"
     :fields:
     - - a
-      - :occurrences: "?"
+      - :occurrences: "+"
   "678":  
     :indicator: "##"
     :occurrences: "*"
