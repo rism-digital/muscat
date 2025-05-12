@@ -106,7 +106,7 @@ ActiveAdmin.register InventoryItem do
       end
       @editor_profile = EditorConfiguration.get_show_layout @inventory_item
       @editor_validation = EditorValidation.get_default_validation(@inventory_item)
-      @prev_item, @next_item, @prev_page, @next_page, @nav_positions = Person.near_items_as_ransack(params, @inventory_item)
+      @prev_item, @next_item, @prev_page, @next_page, @nav_positions = InventoryItem.near_items_as_ransack(params, @inventory_item)
 
       @jobs = @inventory_item.delayed_jobs
 
