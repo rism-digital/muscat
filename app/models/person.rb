@@ -252,7 +252,7 @@ class Person < ApplicationRecord
   end
 
   searchable :auto_index => false do |sunspot_dsl|
-    sunspot_dsl.integer :id
+    sunspot_dsl.integer :id, stored: true
     sunspot_dsl.text :id_text do
       id_for_fulltext
     end
@@ -262,6 +262,14 @@ class Person < ApplicationRecord
 
     sunspot_dsl.string :full_name_ans, :as => "full_name_ans_s" do
       full_name
+    end
+
+    sunspot_dsl.string :full_name_autocomplete, :as => "full_name_autocomplete" do
+      full_name
+    end
+
+    sunspot_dsl.string :label, stored: true do
+      autocomplete_label(true)
     end
 
     sunspot_dsl.text :full_name
@@ -296,6 +304,7 @@ class Person < ApplicationRecord
 
     sunspot_dsl.integer(:src_count_order, :stored => true) {through_associations_source_count}
     sunspot_dsl.integer(:referring_objects_order, stored: true) {through_associations_exclude_source_count}
+    sunspot_dsl.integer(:total_obj_count_order, stored: true) {through_associations_total_count}
 
     MarcIndex::attach_marc_index(sunspot_dsl, self.to_s.downcase)
     
@@ -336,16 +345,21 @@ class Person < ApplicationRecord
     return full_name
   end
   
-  def autocomplete_label
+  def autocomplete_label(use_self = false)
     #1540, does this slow things up too much?
     #Since the autocomplete only gets the minimum fields
-    pp = Person.find(id)
+    if use_self
+      pp = self
+    else
+      pp = Person.find(id)
+    end
+
     pp.marc.load_source false
     person_function = pp.marc.first_occurance("100", "c")
 
     "#{full_name}" + 
       (person_function && person_function.content && !person_function.content.empty? ? " (#{person_function.content})" : "") + 
-      (life_dates && !life_dates.empty? ? "  - #{life_dates}" : "")
+      (life_dates && !life_dates.empty? ? " - #{life_dates}" : "")
   end
 
   # If we define our own ransacker, we need this

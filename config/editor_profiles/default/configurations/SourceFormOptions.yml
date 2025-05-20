@@ -308,7 +308,7 @@
         editor_partial: subfield_secondary
         allow_new: true
     - - d
-      - autocomplete_extra: life_dates
+      - autocomplete_extra: life_dates_order_s
     - - j
       - editor_partial: subfield_select_codes
         codes_reference: "codes"
@@ -775,7 +775,7 @@
         editor_partial: subfield_secondary
         allow_new: true
     - - d
-      - autocomplete_extra: life_dates
+      - autocomplete_extra: life_dates_order_s
     - - j
       - editor_partial: subfield_select_codes
         codes_reference: "codes"

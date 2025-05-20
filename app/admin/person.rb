@@ -36,7 +36,9 @@ ActiveAdmin.register Person do
   # temporarily allow all parameters
   controller do
 
-    autocomplete :person, :full_name, :display_value => :autocomplete_label , :extra_data => [:life_dates]
+    autocomplete :person, :full_name, :extra_data => [:life_dates_order_s], :solr_search => true,
+                 :search_field => :full_name_autocomplete, :order_field => :total_obj_count_order_is,
+                 :display_value => :label_ss, :value_field => :full_name_order_s
     autocomplete :person, "550a_sms", :solr => true, :display_value => :label
 
     after_destroy :check_model_errors
