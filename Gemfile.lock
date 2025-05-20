@@ -20,9 +20,9 @@ GIT
 
 GIT
   remote: https://github.com/rism-ch/rails3-jquery-autocomplete
-  revision: 2023fa6186993f61be72abfa24a88288233fa97d
+  revision: 0c03030f5209eac451c6cf361ec3fbaf3fc363b0
   specs:
-    rails3-jquery-autocomplete (1.0.33)
+    rails3-jquery-autocomplete (1.0.36)
       rails (>= 5.1)
 
 GIT
@@ -188,6 +188,7 @@ GEM
     differ (0.1.2)
     drb (2.2.1)
     e2mmap (0.1.0)
+    erb (5.0.1)
     erubi (1.13.1)
     exception_notification (4.5.0)
       actionmailer (>= 5.2, < 8)
@@ -302,7 +303,7 @@ GEM
       rb-fsevent (~> 0.10, >= 0.10.3)
       rb-inotify (~> 0.9, >= 0.9.10)
     logger (1.7.0)
-    loofah (2.24.0)
+    loofah (2.24.1)
       crass (~> 1.0.2)
       nokogiri (>= 1.12.0)
     mail (2.8.1)
@@ -324,14 +325,14 @@ GEM
     needleman_wunsch_aligner (1.0.4)
     net-http (0.6.0)
       uri
-    net-imap (0.5.7)
+    net-imap (0.5.8)
       date
       net-protocol
     net-pop (0.1.2)
       net-protocol
     net-protocol (0.2.2)
       timeout
-    net-smtp (0.5.0)
+    net-smtp (0.5.1)
       net-protocol
     nio4r (2.7.4)
     nokogiri (1.18.8-arm64-darwin)
@@ -364,21 +365,21 @@ GEM
     pry (0.15.0)
       coderay (~> 1.1)
       method_source (~> 1.0)
-    psych (5.2.4)
+    psych (5.2.6)
       date
       stringio
     public_suffix (6.0.1)
     puma (6.5.0)
       nio4r (~> 2.0)
     racc (1.8.1)
-    rack (2.2.13)
-    rack-session (1.0.2)
-      rack (< 3)
+    rack (3.1.15)
+    rack-session (2.1.1)
+      base64 (>= 0.1.0)
+      rack (>= 3.0.0)
     rack-test (2.2.0)
       rack (>= 1.3)
-    rackup (1.0.1)
-      rack (< 3)
-      webrick
+    rackup (2.2.1)
+      rack (>= 3)
     rails (7.2.2.1)
       actioncable (= 7.2.2.1)
       actionmailbox (= 7.2.2.1)
@@ -421,7 +422,8 @@ GEM
     rb-inotify (0.11.1)
       ffi (~> 1.0)
     rbs (2.8.4)
-    rdoc (6.13.1)
+    rdoc (6.14.0)
+      erb
       psych (>= 4.0.0)
     redcarpet (3.6.0)
     regexp_parser (2.9.3)
@@ -564,16 +566,16 @@ GEM
     useragent (0.16.11)
     warden (1.2.9)
       rack (>= 2.0.9)
-    webrick (1.9.1)
     websocket (1.2.11)
-    websocket-driver (0.7.6)
+    websocket-driver (0.7.7)
+      base64
       websocket-extensions (>= 0.1.0)
     websocket-extensions (0.1.5)
     whatlanguage (1.0.6)
     xpath (3.2.0)
       nokogiri (~> 1.8)
     yard (0.9.37)
-    zeitwerk (2.7.2)
+    zeitwerk (2.7.3)
 
 PLATFORMS
   arm64-darwin-23
