@@ -1190,9 +1190,9 @@ force_editor_ordering: true
   layout: 
     fields: 
     - - "a"
-      - type: gnd_work_title
-        preserve_foreign_value: true
-        editor_partial: subfield_secondary #subfield_autocomplete
+      #- type: gnd_work_title
+      #  preserve_foreign_value: true
+      #  editor_partial: subfield_secondary #subfield_autocomplete
     - - "4"
       - editor_partial: subfield_select_codes
         select_label: "Function"
@@ -1246,11 +1246,24 @@ force_editor_ordering: true
   layout: 
     fields: 
     - - a
-    - - g
-    - - i
-    - - '0'
-    - - '4'
+    - - "4"
+      - editor_partial: subfield_select_codes
+        select_label: "Function"
+        codes_reference: "relator_codes"
     - - '9'
+      - default: "v:"
+  tag_params:
+    relator_codes:
+      - anla
+      - feie
+      - istr
+      - obal
+      - obin
+      - obpa
+      - rela
+      - spra
+      - them
+      - vbal
 "667": 
   layout: 
     fields:

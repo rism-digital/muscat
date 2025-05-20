@@ -158,7 +158,14 @@ de:
     vbal: "Verwandter Begriff (allgemein)"
     vorl: "Vorlage (literarische u. ä.)"
     werk: "Werk"
-
+    feie: "Ereignis/Sachverhalt"
+    istr: "Instrument"
+    obin: "Oberbegriff instanziell"
+    obpa: "Oberbegriff partitiv"
+    rela: "Relation (allgemein)"
+    spra: "Sprache"
+    them: "Thema"
+    vbal: "Verwandter Begriff"
 
     aar: Danakil-Sprache
     abk: Abchasisch

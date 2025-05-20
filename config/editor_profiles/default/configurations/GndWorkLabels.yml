@@ -1433,3 +1433,19 @@ vorl:
   label: gnd.vorl
 werk:
   label: gnd.werk
+feie:
+  label: gnd.feie
+istr:
+  label: gnd.istr
+obin:
+  label: gnd.obin
+obpa:
+  label: gnd.obpa
+rela:
+  label: gnd.rela
+spra:
+  label: gnd.spra
+them:
+  label: gnd.them
+vbal:
+  label: gnd.vbal
