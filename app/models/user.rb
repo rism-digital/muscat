@@ -27,6 +27,8 @@ class User < ApplicationRecord
   validates_format_of :username, with: /[\p{Letter}\s]+/u, :multiline => true
   #/^[a-zA-ZÀ-ż0-9_\.]*$/, :multiline => true
   
+  validates :name, presence: true
+
   searchable :auto_index => false do
     integer :id
     text :name
