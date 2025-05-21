@@ -1,9 +1,18 @@
-<% selected_stage =
+<% 
+    disabled = false
+    selected_stage =
      if @item.new_record?
        (current_user.preference_wf_stage == "published" && !@item.is_a?(Work)) ? "published" : "inprogress"
      else
        @item.wf_stage
      end
+
+    # In Holdings, some magic needs to happen. They are always published
+    if @item.is_a? Holding
+        selected_stage = "published"
+        disabled = true
+    end
+
 
     # unpublished shares the same enum value (0) as inprogress.
     # We keep the key in the enum so older versions can still be read,
@@ -28,7 +37,7 @@
             <div style="vertical-align: bottom; background-color: transparent">
 
                 <%= select_tag :record_status, options_for_select(wf_stages.map { |k, v| [t("wf_stage.#{k}"), k] }, selected_stage),
-                    id: "record_status", class: "w-100"
+                    id: "record_status", class: "w-100", disabled: disabled
                 %>
 
             </div>
