@@ -8,10 +8,16 @@
         <div class="grid_cell">
             <div style="vertical-align: bottom; background-color: transparent">
                 <%= select_tag :record_owner,
-                    options_from_collection_for_select(User.sort_all_by_last_name, :id, :name, @item.new_record? ? current_user.id : @item.user.id),
+                    options_from_collection_for_select(User.sort_all_by_last_name, :id, :name, @item.new_record? ? current_user.id : @item.user&.id),
                     id: 'record_owner', class: 'w-100', disabled: !(current_user.has_role?(:editor) || current_user.has_role?(:admin))
                 %>
             </div>
         </div>
     </td>
 </tr>
+
+<%
+
+    # Note: in some cases user can be 0, so @item.user == nil
+    # In this case it just becomes admin
+%>
