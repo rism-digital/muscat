@@ -311,8 +311,7 @@ ActiveAdmin.setup do |config|
   #
   # config.filters = true
   
-  
-  config.view_factory.header = MuscatAdminHeader
+  config.view_factory.register header: MuscatAdminHeader
 end
 
 # LP - added for caching filters, pagination and order
