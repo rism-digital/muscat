@@ -1,1 +1,8 @@
+<%
+    name = current_user.name rescue name = "No user"
+%>
+
 <%= pretty_xml = @data.to_s%>
+<p>
+Save by: <%= name %>
+</p>
