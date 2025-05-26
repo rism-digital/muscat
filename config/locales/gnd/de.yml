@@ -142,9 +142,9 @@ de:
     widmungsempfänger: "Widmungsempfänger"
     oberbegriff_partitiv: "Oberbegriff, partitiv"
     datj_erscheinungszeitraum: "Erscheinungszeitraum"
-    datj: "Erscheinungsjahr/Erscheinungsjahr ca."
+    datj: "Erscheinungsjahr"
     dats_kompositionszeitraum: "Kompositionszeitraum"
-    dats: "Kompositionsjahr/Kompositionsjahr ca."
+    dats: "Kompositionsjahr"
     instrument_singular: Instrument
     count: Zählung
 

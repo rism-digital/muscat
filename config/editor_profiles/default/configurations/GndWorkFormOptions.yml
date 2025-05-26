@@ -962,12 +962,12 @@ force_editor_ordering: true
 "400":
   layout: 
     fields:
-    - - a
-      - type: gnd_work_person
+    #- - a
+    #  - type: gnd_work_person
         #preserve_foreign_value: true
-        editor_partial: subfield_secondary
-    - - d
-      - autocomplete_extra: life_dates
+    #    editor_partial: subfield_secondary
+    #- - d
+    #  - autocomplete_extra: life_dates
     - - t
     - - m
     - - n
@@ -1132,25 +1132,22 @@ force_editor_ordering: true
   layout: 
     fields: 
     - - t
-    - - "a"
-      - type: gnd_work_person
-        #preserve_foreign_value: true
-        editor_partial: subfield_secondary
-    - - d
-      - autocomplete_extra: life_dates
-    - - e
+    #- - "a"
+    #  - type: gnd_work_person
+    #    #preserve_foreign_value: true
+    #    editor_partial: subfield_secondary
+    - - "0"
     - - "4"
       - editor_partial: subfield_select_codes
         select_label: "Function"
         codes_reference: "relator_codes"
-    - - i
-    - - w
     - - "9"
     - - n
     - - p
     - - r
   tag_params:
     relator_codes:
+      - anla
       - arra
       - aut1
       - auta
@@ -1172,9 +1169,12 @@ force_editor_ordering: true
       - kue1
       - kuen
       - libr
-      - obpa
       - malr
+      - nach
+      - obal
+      - obpa
       - regi
+      - rela
       - saen
       - saml
       - spon
@@ -1185,23 +1185,18 @@ force_editor_ordering: true
       - urhe
       - vbal
       - verr
+      - vorg
+      - vorl
+      - werk
       - widm
 "530": 
   layout: 
     fields: 
-    - - "a"
-      #- type: gnd_work_title
-      #  preserve_foreign_value: true
-      #  editor_partial: subfield_secondary #subfield_autocomplete
+    - - "0"
     - - "4"
       - editor_partial: subfield_select_codes
         select_label: "Function"
         codes_reference: "relator_codes"
-    - - i
-      - read_only: true
-    - - w
-      - read_only: true
-        default: "r"
     - - "9"
       - default: "v:"
   tag_params:
@@ -1228,10 +1223,6 @@ force_editor_ordering: true
       - editor_partial: subfield_select_codes
         select_label: "Function"
         codes_reference: "relator_codes"
-    - - i
-      - read_only: true
-    - - w
-      - read_only: true
     - - "9"
       - default: "v:"
   tag_params:
@@ -1245,7 +1236,7 @@ force_editor_ordering: true
 "550": 
   layout: 
     fields: 
-    - - a
+    - - "0"
     - - "4"
       - editor_partial: subfield_select_codes
         select_label: "Function"
