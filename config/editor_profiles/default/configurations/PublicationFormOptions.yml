@@ -41,6 +41,7 @@
   tag_params:
     codes:
       - "alb"
+      - 'arm'
       - "cat"
       - "cze"
       - "dan"
