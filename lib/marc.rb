@@ -104,7 +104,7 @@ class Marc
 
     #1744 adjust 040 and position 32
     # only for auth files
-    if @model != "source"
+    if ["publication", "person", "institution"].include? @model
 
       _040_tag = first_occurance("040")
       if !_040_tag

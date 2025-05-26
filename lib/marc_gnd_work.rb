@@ -4,7 +4,8 @@ class MarcGndWork < Marc
   end
 
   def to_external(created_at = nil, updated_at = nil, versions = nil, holdings = false, deprecated_ids = true)
-    super(created_at, updated_at, nil, holdings)
+    # Do we need to do the default one?
+    #super(created_at, updated_at, nil, holdings)
 
     leader = "00000cz  a2200000oc 4500"
     # Is this a new record?
