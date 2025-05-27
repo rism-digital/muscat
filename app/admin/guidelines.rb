@@ -1,5 +1,6 @@
 ActiveAdmin.register_page "guidelines" do
-  menu :label => proc {I18n.t(:menu_guidelines_top)}, :priority => 25
+  # Open in a new tab!
+  menu :label => proc {I18n.t(:menu_guidelines_top)}, :priority => 25, html_options: { target: "_blank" }
   
   controller do
     def index

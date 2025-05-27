@@ -261,9 +261,13 @@ ActiveAdmin.setup do |config|
         lang.add :label => "PT", :url => proc { url_for(:locale => 'pt') }, id: 'i18n-pt', :priority => 7, :html_options   => {:style => 'float:left;'}
         lang.add :label => "CA", :url => proc { url_for(:locale => 'ca') }, id: 'i18n-ca', :priority => 8, :html_options   => {:style => 'float:left;'}      
       end
+      
       # Add the menu by hand because otherwise it is not getting translated
       menu.add :label => proc {I18n.t(:menu_comments)}, id: 'comments_menu', :priority => 4, :url => "/admin/comments"
       menu.add :label => proc {I18n.t(:menu_indexes)}, id: 'indexes_menu', :priority => 20
+
+      # For reference: open a new tab
+      #menu.add label: "The Application", url: "/", priority: 21, html_options: { target: "_blank" }
     end
     
     admin.build_menu :utility_navigation do |menu|
