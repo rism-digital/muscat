@@ -294,7 +294,7 @@ class Institution < ApplicationRecord
 
 
     sunspot_dsl.string :full_name_autocomplete, :as => "corporate_name_autocomplete" do
-      corporate_name
+      full_name
     end
 
     sunspot_dsl.string :label, stored: true do

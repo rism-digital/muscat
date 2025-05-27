@@ -20,9 +20,9 @@ GIT
 
 GIT
   remote: https://github.com/rism-ch/rails3-jquery-autocomplete
-  revision: e21238f979b70fd7558dd351e0ceb308d00b7ce9
+  revision: 5fb78fc5c25e52b26bf76d24925efd27bc4887a9
   specs:
-    rails3-jquery-autocomplete (1.0.38)
+    rails3-jquery-autocomplete (1.0.39)
       rails (>= 5.1)
 
 GIT
@@ -186,7 +186,7 @@ GEM
       devise (>= 4.9.0)
     diff-lcs (1.5.1)
     differ (0.1.2)
-    drb (2.2.1)
+    drb (2.2.3)
     e2mmap (0.1.0)
     erb (5.0.1)
     erubi (1.13.1)
@@ -394,7 +394,7 @@ GEM
       activesupport (= 7.2.2.1)
       bundler (>= 1.15.0)
       railties (= 7.2.2.1)
-    rails-dom-testing (2.2.0)
+    rails-dom-testing (2.3.0)
       activesupport (>= 5.0.0)
       minitest
       nokogiri (>= 1.6)
@@ -567,7 +567,7 @@ GEM
     warden (1.2.9)
       rack (>= 2.0.9)
     websocket (1.2.11)
-    websocket-driver (0.7.7)
+    websocket-driver (0.8.0)
       base64
       websocket-extensions (>= 0.1.0)
     websocket-extensions (0.1.5)
