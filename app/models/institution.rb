@@ -285,11 +285,22 @@ class Institution < ApplicationRecord
     
     sunspot_dsl.integer(:src_count_order, :stored => true) {through_associations_source_count}
     sunspot_dsl.integer(:referring_objects_order, stored: true) {through_associations_exclude_source_count}
+    sunspot_dsl.integer(:total_obj_count_order, stored: true) {through_associations_total_count}
 
     sunspot_dsl.integer :wf_owner
     sunspot_dsl.string :wf_stage
     sunspot_dsl.time :updated_at
     sunspot_dsl.time :created_at
+
+
+    sunspot_dsl.string :full_name_autocomplete, :as => "corporate_name_autocomplete" do
+      corporate_name
+    end
+
+    sunspot_dsl.string :label, stored: true do
+      autocomplete_label_name
+    end
+
 
     sunspot_dsl.text :text do |s|
       s.marc.to_raw_text

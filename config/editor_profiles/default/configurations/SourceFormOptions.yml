@@ -849,14 +849,14 @@
   layout:
     fields:
     - - a
-      - type: institution
+      - type: institution_collate
         editor_partial: subfield_secondary
         allow_new: true
     - - b
     - - c
       - type: place
         editor_partial: subfield_autocomplete
-        autocomplete_extra: place
+        autocomplete_extra: place_order_s
     - - g
       - editor_partial: subfield_select_codes
         codes_reference: "codes"

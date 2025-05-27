@@ -16,6 +16,7 @@ ActiveAdmin.register Institution do
 
   collection_action :autocomplete_institution_siglum, :method => :get
   collection_action :autocomplete_institution_corporate_name, :method => :get
+  collection_action :autocomplete_institution_corporate_name_collate, :method => :get
 
   # See permitted parameters documentation:
   # https://github.com/gregbell/active_admin/blob/master/docs/2-resource-customization.md#setting-up-strong-parameters
@@ -25,6 +26,10 @@ ActiveAdmin.register Institution do
 
     autocomplete :institution, [:siglum, :full_name], :display_value => :autocomplete_label_siglum, :extra_data => [:siglum, :full_name], :required => :siglum
     autocomplete :institution, :corporate_name, :display_value => :autocomplete_label_name, :extra_data => [:siglum, :full_name, :place]
+
+    autocomplete :institution, :corporate_name_collate, :extra_data => [:place_order_s], :solr_search => true,
+                 :search_field => :corporate_name_autocomplete, :order_field => :total_obj_count_order_is,
+                 :display_value => :label_ss, :value_field => :full_name_order_s
 
     after_destroy :check_model_errors
     before_create do |item|

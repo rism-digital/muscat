@@ -11,6 +11,10 @@ module ApplicationHelper
   def institution_default_autocomplete
     autocomplete_institution_corporate_name_admin_institutions_path
   end
+
+  def institution_collate_default_autocomplete
+    autocomplete_institution_corporate_name_collate_admin_institutions_path
+  end
   
   def library_default_autocomplete
     autocomplete_institution_siglum_admin_institutions_path
