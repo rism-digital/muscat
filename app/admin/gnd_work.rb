@@ -96,7 +96,7 @@ ActiveAdmin.register_page "gnd_works" do
     def marc_editor_save
       marc_hash = JSON.parse params[:marc]
 
-      result, messages, author, title = GND::Interface.push(marc_hash)
+      result, messages, author, title = GND::Interface.push(marc_hash, current_user)
       path = admin_gnd_works_path
 
       session[:gnd_message] = "GND Response: " + messages
