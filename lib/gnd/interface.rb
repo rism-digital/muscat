@@ -36,7 +36,8 @@ module GND
         return result
     end
 
-    def self.push(marc_hash)
+    def self.push(marc_hash, current_user = nil)
+        @current_user = current_user
         m = MarcGndWork.new
         m.load_from_hash(marc_hash, force_editor_ordering: true)
 
@@ -49,9 +50,12 @@ module GND
 
     # post xml to gnd
     def self.send_to_gnd(action, xml, id=nil)
-        GndSaveNotification.notify("Saved XML", xml).deliver_now
         server = SRU_PUSH_URL
         request_body = make_gnd_envelope(action, xml.to_s, id)
+
+        debug_body = make_gnd_envelope_sanitized(action, xml.to_s, id)
+        GndSaveNotification.notify("Saved XML", debug_body, @current_user).deliver_now
+
         call_result = nil
         diagnostic_messages = ""
         author = ""
@@ -112,6 +116,34 @@ module GND
             </srw:record>
             <srw:extraRequestData>
             <authenticationToken>#{login}</authenticationToken>
+            </srw:extraRequestData>
+        </ucp:updateRequest>
+        </soap:Body>
+    </soap:Envelope> 
+        TEXT
+        doc = Nokogiri::XML(xml,nil, 'UTF-8')
+        return doc.to_xml(indent: 2)
+    end
+
+    ## THIS IS ONLY FOR DEBUGGING THE GND STUFF!!!!
+    def self.make_gnd_envelope_sanitized(action, data, id=nil)
+        recordId = id ? "<ucp:recordIdentifier>gnd:gnd#{id}</ucp:recordIdentifier>" : ""
+        xml = <<-TEXT
+    <soap:Envelope xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/">
+        <soap:Body>
+        <ucp:updateRequest xmlns:ucp="http://www.loc.gov/zing/srw/update/" xmlns:srw="http://www.loc.gov/zing/srw/"  xmlns:diag="http://www.loc.gov/zing/srw/diagnostic/">
+            <srw:version>1.0</srw:version>
+            #{recordId}
+            <ucp:action>info:srw/action/1/#{action}</ucp:action>
+            <srw:record>
+            <srw:recordPacking>xml</srw:recordPacking>
+            <srw:recordSchema>MARC21-xml</srw:recordSchema>
+            <srw:recordData>
+            #{data}
+            </srw:recordData>
+            </srw:record>
+            <srw:extraRequestData>
+            <authenticationToken>REDACTED</authenticationToken>
             </srw:extraRequestData>
         </ucp:updateRequest>
         </soap:Body>
