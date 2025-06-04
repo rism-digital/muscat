@@ -1137,6 +1137,7 @@ force_editor_ordering: true
     #    #preserve_foreign_value: true
     #    editor_partial: subfield_secondary
     - - "0"
+      - default: "(DE-588)"
     - - "4"
       - editor_partial: subfield_select_codes
         select_label: "Function"
@@ -1193,6 +1194,7 @@ force_editor_ordering: true
   layout: 
     fields: 
     - - "0"
+      - default: "(DE-588)"
     - - "4"
       - editor_partial: subfield_select_codes
         select_label: "Function"
