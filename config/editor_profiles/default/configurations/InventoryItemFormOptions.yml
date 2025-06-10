@@ -436,6 +436,7 @@
     fields: 
     - - a
       - values:
+        - Manuscript copy
         - Print
         - Print with autograph annotations
         - Print with non-autograph annotations
@@ -444,6 +445,10 @@
     - - b
       - values:
         - "Inventory"
+        - "Notated music"
+        - "Libretto"
+        - "Treatise"
+        - "Other"
         editor_partial: subfield_select
 "594":
   layout:
