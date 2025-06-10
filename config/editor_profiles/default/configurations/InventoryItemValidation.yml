@@ -1,5 +1,14 @@
 --- !map:Settings
 client:
+  "031":
+    tags:
+      "a": mandatory
+      "b":
+        required_if:
+          "031": "a"
+      "c":
+        required_if:
+          "031": "a"
   "100":
     tags:
       "0":
