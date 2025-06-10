@@ -1,5 +1,27 @@
 --- !map:Settings
 client:
+  "100":
+    tags:
+      "0":
+        required_if:
+          "100": "j"
+  "240":
+    tags:
+      "0": mandatory
+      m: required, warning
+  "245":
+    tags:
+      a: mandatory
+  "593":
+    tags:
+      a: mandatory
+      b: mandatory
+  "650":
+    tags:
+      "0": mandatory
+  "852":
+    tags:
+      a: mandatory
   "700": 
     tags:
       "0": required
