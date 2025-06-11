@@ -6,6 +6,7 @@ const SIMPLE_RULE_MAP = {
 	"mandatory": { mandatory: true },
 	"check_group": { check_group: true },
 	"validate_588_siglum": { validate_588_siglum: true },
+	"validate_edtf": { validate_edtf: true },
 }
 
 const PARAMETRIC_RULES = [
@@ -172,6 +173,16 @@ function marc_validate_must_contain(value, element, param) {
 		return true;
 
 	return value.includes(param);
+}
+
+function marc_validate_edtf(value, element, param) {
+	let result = false;
+	try {
+		const p = edtf(value);
+		result = true;
+	} catch(err) {}
+
+	return result;
 }
 
 function marc_validate_588_siglum(value, element, param) {
@@ -549,6 +560,7 @@ function marc_editor_init_validation(form, validation_conf) {
 		}
 	});
 	
+
 	// Add validator methods
 	$.validator.addMethod("presence", marc_validate_presence, I18n.t("validation.missing_message"));
 	$.validator.addMethod("mandatory", marc_validate_mandatory, I18n.t("validation.missing_message"));
@@ -562,6 +574,8 @@ function marc_editor_init_validation(form, validation_conf) {
 				$.validator.format(I18n.t("validation.must_contain_message")));
 	$.validator.addMethod("validate_588_siglum", marc_validate_588_siglum,
 					$.validator.format(I18n.t("validation.validate_588_siglum")));
+	$.validator.addMethod("validate_edtf", marc_validate_edtf,
+					$.validator.format(I18n.t("validation.validate_edtf")));
 			
 	// New creation: this is not configurable, it is used to make sure the
 	// "confirm create new" checkbox is selected for new items

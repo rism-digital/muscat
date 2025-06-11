@@ -24,6 +24,7 @@ require 'patches/active_admin/inputs/filters/record_type_input.rb'
 require 'patches/active_admin/inputs/filters/lib_siglum_input.rb'
 require 'patches/active_admin/inputs/filters/flexdatalist_input.rb'
 require 'patches/active_admin/table_tool_patch.rb'
+require 'patches/active_admin/importmaps.rb'
 
 ActiveAdmin.setup do |config|
 

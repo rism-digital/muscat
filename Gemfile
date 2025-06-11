@@ -26,6 +26,9 @@ gem 'coffee-rails'#, '~> 5.0'
 # See https://github.com/sstephenson/execjs#readme for more supported runtimes
 # gem 'mini_racer', platforms: :ruby
 
+# Use importmaps for ESM javascript modules
+gem "importmap-rails", "~> 2.1"
+
 # Use jquery as the JavaScript library
 gem 'jquery-rails', "~> 4.5"
 gem 'jquery-ui-rails', '~> 6.0.1', git: 'https://github.com/rism-digital/jquery-ui-rails', branch: "v6.0.1-desperation"
@@ -187,3 +190,4 @@ gem 'solargraph', group: :development
 gem 'rufo', group: :development
 
 gem 'diff-lcs', group: :development
+
