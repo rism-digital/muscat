@@ -86,6 +86,8 @@ mc = MarcConfigCache.get_configuration("work")
 
 rows = CSV.parse(tsv, col_sep: "\t", headers: %i[id note property]) 
 
+maps = {}
+
 rows.each do |r|
   old = Work.find(r[:id])
 
@@ -113,11 +115,18 @@ rows.each do |r|
   
   new_work.save
   puts new_work.id
-end
 
+  maps[old.id] = new_work.id
+end
+#ap maps
 # Obsoletize the old ones
 rows.each do |r|
   old = Work.find(r[:id])
+  new = Work.find(maps[old.id])
+
+  new.referring_sources = old.referring_sources
+  old.referring_sources.clear
+  #ap new.referring_sources
 
   old.wf_audit = :obsolete
   old.save
