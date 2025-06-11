@@ -4,20 +4,25 @@ InventoryItem.all.each do |ii|
   
   the245 = ii.marc.by_tags("245")
 
-  if the245.count > 1
-    big = the245.map{|t| t.fetch_first_by_tag("a").content}.join("; ")
-    the245.each {|t| t.destroy_yourself}
+  next if the245.count == 1
+  
+  the245.each_with_index do |t, i|
 
+    # The first one stays a 245
+    next if i == 0
 
-    a245 = MarcNode.new("inventory_item", "245", "", mc.get_default_indicator("245"))
-    a245.add_at(MarcNode.new("inventory_item", "a", big, nil), 0 )
+    n500 = MarcNode.new("inventory_item", "500", "", mc.get_default_indicator("500"))
+    n500.add_at(MarcNode.new("inventory_item", "a", "Further references: " + t.fetch_first_by_tag("a").content, nil), 0 )
+    ii.marc.root.add_at(n500, ii.marc.get_insert_position("500") )
 
-    ii.marc.root.add_at(a245, ii.marc.get_insert_position("245") )
+    # ciuss!
+    t.destroy_yourself
 
-
-    puts ii.id
-    ii.paper_trail_event = "Concatenate multiple 245"
-    ii.save
   end
 
+    #puts ii.marc
+
+    puts ii.id
+    ii.paper_trail_event = "Move multiple 245 to 500"
+    ii.save
 end
