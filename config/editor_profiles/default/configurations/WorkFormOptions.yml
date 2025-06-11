@@ -192,6 +192,7 @@
   layout: 
     fields: 
     - - k
+      - editor_partial: subfield_edtf
     - - l
     - - z
 "100":

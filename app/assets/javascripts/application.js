@@ -93,6 +93,7 @@
 //= require jquery.scrollTo.js
 //= require js.cookie
 //= require pae_incipit_render_ujs
+//= require edtf_subfield_ujs
 //= require textarea_autogrow_ujs
 //= require inline_autocomplete_ujs
 //= require marc_versioning_ujs
