@@ -114,3 +114,11 @@ rows.each do |r|
   new_work.save
   puts new_work.id
 end
+
+# Obsoletize the old ones
+rows.each do |r|
+  old = Work.find(r[:id])
+
+  old.wf_audit = :obsolete
+  old.save
+end
