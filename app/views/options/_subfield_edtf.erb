@@ -1,10 +1,21 @@
 <%
+	if @editor_validation && @editor_validation.validate_subtag?(tag_name, subfield, @item)
+		validate_class, unique_name = @editor_validation.get_subtag_class_name(tag_name, subfield)
+		name_tag = raw "name=\"#{unique_name}\""
+		validate_marker = "validating"
+		validate_level = "warning" if @editor_validation.is_warning?(tag_name, subfield)
+	else
+		validate_class = ""
+	end
+
 	tag_params = @editor_profile.options_config[tag_name]["tag_params"]
 %>
+
 <table width="100%" class="marc_editor_pae_textbox">
 
-<input id="input-edtf" type="text" class="subfield_entry serialize_marc marc_editor_hotkey" data-tag="<%=tag_name%>" data-subfield="<%=subfield%>" spellcheck="false" value="<%= h marc_subfield.content %>" />
+<input id="input-edtf" type="text" class="subfield_entry serialize_marc marc_editor_hotkey <%=validate_class%> <%=validate_marker%>" data-tag="<%=tag_name%>" data-subfield="<%=subfield%>" spellcheck="false" value="<%= h marc_subfield.content %>" />
 
+<div id="edtf-message" class="edtf-message"></div>
 <div id="edtf-error" class="edtf-error"></div>
 
 </table>

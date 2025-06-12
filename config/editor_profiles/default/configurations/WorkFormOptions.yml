@@ -193,7 +193,7 @@
     fields: 
     - - k
       - editor_partial: subfield_edtf
-    - - l
+    #- - l
     - - z
 "100":
   new_window: people
