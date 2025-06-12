@@ -139,7 +139,7 @@
     '4':
       label: records.function
     a:
-      label: records.name
+      label: records.additional_personal_name_lit
   label: records.additional_personal_name_lit
 '710':
   fields:
