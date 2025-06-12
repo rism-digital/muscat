@@ -873,6 +873,7 @@ force_editor_ordering: true
         editor_partial: subfield_secondary #subfield_autocomplete
     - - n
     - - s
+    - - t
     - - v
     - - "2"
       - read_only: true

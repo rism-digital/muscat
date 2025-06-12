@@ -147,6 +147,10 @@ de:
     dats: "Kompositionsjahr"
     instrument_singular: Instrument
     count: Zählung
+    count_anzahl: Anzahl
+    total_number_performers: Gesamtzahl der Ausführenden
+    total_number_ensembles: Gesamtzahl der Ensembles
+    note: Bemerkung
 
     anla: "Anlass"
     nach: "Nachfolger"

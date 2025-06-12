@@ -182,17 +182,17 @@ g-2:
   label: gnd.instrument
   fields:
     a:
-      label: gnd.ensemble
-    "0":
-      label: gnd.id_of_authority_record
+      label: gnd.instrument_singular
+    n:
+      label: gnd.count_anzahl
+    s:
+      label: gnd.total_number_performers
+    t:
+      label: gnd.total_number_ensembles
+    v:
+      label: gnd.note
     "2":
       label: gnd.source
-    v:
-      label: gnd.remark
-    n:
-      label: gnd.numerical_count
-    s:
-      label: gnd.total_performers
 
 '383':
   label: gnd.numerical_ordering
