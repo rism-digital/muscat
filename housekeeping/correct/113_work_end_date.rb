@@ -5,6 +5,7 @@ Work.all.each do |w|
   date.each do |dtag|
     
     next if !dtag.fetch_first_by_tag("l")
+    next if !dtag.fetch_first_by_tag("k")
 
     start = dtag.fetch_first_by_tag("k")
     later = dtag.fetch_first_by_tag("l")
