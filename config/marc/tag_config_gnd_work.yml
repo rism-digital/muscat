@@ -149,6 +149,15 @@
       - :occurrences: "?"
     - - t
       - :occurrences: "?"
+  "377":  
+    :master: "0"
+    :indicator: "##"
+    :occurrences: "*"
+    :fields:
+    - - "2"
+      - :occurrences: "?"
+    - - a
+      - :occurrences: "?"
   "380":  
     :master: "0"
     :indicator: "##"
