@@ -73,7 +73,7 @@ pb = ProgressBar.new(Source.count)
 File.open("marc_recs.html", "w") do |file|
 	Source.find_in_batches do |batch|
 
-		batch.first(1).each do |s|
+		batch.each do |s|
 							
 			@item = s
 			@editor_profile = EditorConfiguration.get_show_layout @item
