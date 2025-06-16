@@ -1,3 +1,4 @@
+# grep "ORIG\|NEW" un000-output.txt | awk '{print $3}' | sort | uniq
 
 def diffize(id, marc1, marc2)
   

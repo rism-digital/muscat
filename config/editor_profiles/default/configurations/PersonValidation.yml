@@ -7,6 +7,12 @@ client:
   "100":
     tags:
       "a": mandatory
+  "551": 
+    tags:
+      "0": required
+      "4":
+        required_if:
+          "510": "0"
   "670":
     tags:
       "w": required

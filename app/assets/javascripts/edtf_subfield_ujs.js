@@ -34,16 +34,52 @@
 		init: function(object) {
 
 			function update_edtf(obj) {
+				let parsed_date;
+				let default_locale = "en-US";
+
+				const formats = {
+					weekday: "long",
+					year: "numeric",
+					month: "long",
+					day: "numeric",
+				}
+
+				/*
+				The various localizations are lacking
+				so for the moment we default to the eng one
+				const locales = {
+					en: "en-US",
+					it: "it-IT",
+					de: "de-DE",
+					fr: "fr-FR",
+					es: "es-ES"
+				};
+
+				if ((I18n.locale in locales))
+					default_locale = locales[I18n.locale]
+				*/
+
 				try {
-					const parsed_date = edtf($(obj).val());
-					//const formatted = edtf_format(parsed_date, 'en-US')
-					$("#edtf-message").html("EDTF Date parser is happy! ☺︎");
-					$("#edtf-error").empty();
+					parsed_date = edtf($(obj).val());
 				} catch (err) {
 					const first_3_lines = err.message.split(/\r?\n/).slice(0, 4).join('\n');
 					$("#edtf-message").html("It was not possible to parse the EDTF date ☹");
 					$("#edtf-error").html($('<pre>').text(first_3_lines) );
+					return;
 				}
+
+				let formatted = parsed_date
+
+				try {
+					formatted = edtf_format(parsed_date, default_locale, formats)
+				} catch (err) {
+					//console.log(err)
+				}
+				
+				//const formatted = edtf_format(parsed_date, 'en-US')
+				$("#edtf-message").html("Formatted date: " + formatted);
+				$("#edtf-error").empty();
+
 			}
 
 			// Atach to the keyup event
