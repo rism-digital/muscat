@@ -651,6 +651,11 @@ class Marc
     return tags
   end
   
+  # Shortcut for the above
+  def [](tag)
+    by_tags(tag)
+  end
+
   # Return an ordered list of the given tags
   def by_tags_with_order(tag_names)
     load_source unless @loaded

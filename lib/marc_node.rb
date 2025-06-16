@@ -721,6 +721,11 @@ class MarcNode
     return matching_children  
   end
 
+  # Shortcut for the above
+  def [](tag)
+    fetch_all_by_tag(tag)
+  end
+
   def destroy_yourself
     @parent.destroy_child(self) if @parent
   end
