@@ -778,7 +778,7 @@ pl:
     print_with_non_autograph_annotations: Druk z adnotacjami nieautorskimi
     printer: Drukarnia
     printing_technique: Technika druku
-    private_collection: Private collection
+    private_collection: Kolekcja prywatna
     production: Produkcja
     production_personnel: Personel produkcyjny
     profession_or_function: Zawód lub funkcja
@@ -930,6 +930,8 @@ pl:
     watermark_description: Opis znaku wodnego
     woodwinds: Instrumenty dęte drewniane
     work: Dzieło
+    work_catalog: Katalog dzieł
+    work_catalogs: Katalogi dzieł
     work_catalog_note: Notatka do katalogu utworów
     work_list: Lista Dzieł
     work_node: Odniesienie do Dzieła zewnętrznego (Work node)

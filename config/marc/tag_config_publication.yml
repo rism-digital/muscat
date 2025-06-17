@@ -108,6 +108,21 @@
     :fields:
     - - a
       - :occurrences: "?"
+  "040":
+    :master: a
+    :indicator: "##"
+    :occurrences: "1"
+    :fields:
+    - - a
+      - :occurrences: "1"
+    - - b
+      - :occurrences: "1"
+    - - c
+      - :occurrences: "1"
+    - - d
+      - :occurrences: "?"
+    - - e
+      - :occurrences: "1"
   "041":
     :master: a
     :indicator: ["0#", "1#"]

@@ -493,7 +493,7 @@ it:
     first_second_group: Primo/Secondo gruppo
     form_subdivision: Suddivisione formale
     format_extent: Categoria di fonte, estensione
-    former_sigla: Sigle obsolete
+    former_sigla: Sigla obsoleta
     former_owner: Proprietario precedente
     fragments: Frammenti
     fs_major: Fa♯ maggiore
@@ -930,6 +930,8 @@ it:
     watermark_description: Filigrana
     woodwinds: Legni
     work: Opera
+    work_catalog: Catalogo delle opere
+    work_catalogs: Cataloghi delle opere
     work_catalog_note: Nota sul catalogo delle opere
     work_list: Lista di opere
     work_node: Voce di autorità esterna (Work node)

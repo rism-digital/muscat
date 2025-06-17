@@ -3,7 +3,7 @@
 <% codes_reference = params.include?("codes_reference") ? params["codes_reference"] : "codes"%>
 <% show_error = (!tag_params[codes_reference].include?(marc_subfield.content) && marc_subfield.content) ? "" : "" %>
 <% no_sort = params.include?("no_sort") ? params["no_sort"] : false %>
-
+<% default = params.include?("default") ? params["default"] : false %>
 
 <%
 if @editor_validation && @editor_validation.validate_subtag?(tag_name, subfield, @item)
@@ -65,6 +65,7 @@ end
 				label = @editor_profile.get_label(code)
 			end 
 		%>
-    	<option value="<%= code -%>" <%= "selected" if marc_subfield.content == code %>><%= label -%></option>
+		<% is_selected = marc_subfield.content == code || default && code == default %>
+    	<option value="<%= code -%>" <%= "selected" if is_selected %>><%= label -%></option>
 	<%- end %>
 </select>

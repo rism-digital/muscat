@@ -62,6 +62,8 @@
       label: records.transcribing_agency
     d:
       label: records.modifying_agency
+    e:
+      label: records.description_conventions
   label: records.cataloging_source
 '046':
   fields:

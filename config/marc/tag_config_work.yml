@@ -108,6 +108,8 @@
       - :occurrences: "1"
     - - d
       - :occurrences: "?"
+    - - e
+      - :occurrences: "1"
   "046":
     :master: k
     :indicator: "##"

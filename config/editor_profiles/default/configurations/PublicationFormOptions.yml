@@ -17,13 +17,22 @@
   layout:
     fields:
     - - a
-      - hidden: true
-    - - c
-      - hidden: true
+      - read_only: true
+        default: "DE-633"
     - - b
       - editor_partial: subfield_select_codes
         select_label: "Language"
         codes_reference: "codes"
+        default: "eng"
+    - - c
+      - read_only: true
+        default: "DE-633"
+    - - d
+      - read_only: true
+        default: "DE-633"
+    - - e
+      - read_only: true
+        default: "rismg"
   tag_params:
     codes:
       - "eng"

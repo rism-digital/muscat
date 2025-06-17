@@ -11,6 +11,7 @@ groups:
     all_tags: 
     - "001"
     - "981"
+    - "040"
 
   edit_library: 
     all_tags: 

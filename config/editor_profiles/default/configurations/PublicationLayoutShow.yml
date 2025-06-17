@@ -37,8 +37,9 @@ groups:
       "710": marc_show/show_institution
   control: 
     all_tags: 
+    - "040"
     - "001"
-      
+
   notes: 
     all_tags: 
     - "500"

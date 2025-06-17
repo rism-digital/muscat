@@ -29,6 +29,19 @@
   label: records.performance
 03_codes_technical:
   label: records.technical_production
+'040':
+  fields:
+    a:
+      label: records.original_cataloging_agency
+    b:
+      label: records.language_of_cataloging
+    c:
+      label: records.transcribing_agency
+    d:
+      label: records.modifying_agency
+    e:
+      label: records.description_conventions
+  label: records.cataloging_source
 '041':
   fields:
     a:

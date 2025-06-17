@@ -930,6 +930,8 @@ es:
     watermark_description: Descripción de las filigranas
     woodwinds: Vientos-madera
     work: Obra
+    work_catalog: Work catalog
+    work_catalogs: Catálogos de trabajo
     work_catalog_note: Nota del catálogo de trabajo
     work_list: Lista de obras
     work_node: Referencia de trabajo externo (nodo de trabajo)
@@ -958,7 +960,7 @@ es:
     P60216: "Se expande como"
     P60294: "Versión expandida de"
     P60274: "Está ordenado como"
-    P60242: "Está organizado como"
+    P60242: "Arreglo de"
     P60198: "Es complementado por"
     P60313: "No identificado"
   verovio:

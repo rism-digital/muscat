@@ -930,6 +930,8 @@ ca:
     watermark_description: Descripció de la filigrana
     woodwinds: Vent-fusta
     work: Obra
+    work_catalog: Work catalog
+    work_catalogs: Work catalogs
     work_catalog_note: Nota sobre el catàleg de l'obra
     work_list: Llista d'obres
     work_node: Referència externa d'obra (Work node)
@@ -958,7 +960,7 @@ ca:
     P60216: "Desenvolupat com a"
     P60294: "Versió desenvolupada de"
     P60274: "Arranjat com a"
-    P60242: "Arranjament de"
+    P60242: "Is arrangement of"
     P60198: "Completat per"
     P60313: "No definit"
   verovio:

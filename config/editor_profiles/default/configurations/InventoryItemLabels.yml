@@ -45,6 +45,19 @@
     z:
       label: records.scoring_in_movement
   label: records.incipit
+'040':
+  fields:
+    a:
+      label: records.original_cataloging_agency
+    b:
+      label: records.language_of_cataloging
+    c:
+      label: records.transcribing_agency
+    d:
+      label: records.modifying_agency
+    e:
+      label: records.description_conventions
+  label: records.cataloging_source
 '041':
   fields:
     0#:

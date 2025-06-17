@@ -97,7 +97,13 @@
       label: records.original_cataloging_agency
     b:
       label: records.language_of_cataloging
-  label: records.cataloging_agency
+    c:
+      label: records.transcribing_agency
+    d:
+      label: records.modifying_agency
+    e:
+      label: records.description_conventions
+  label: records.cataloging_source
 '041':
   fields:
     0#:

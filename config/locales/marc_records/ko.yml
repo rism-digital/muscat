@@ -493,7 +493,7 @@ ko:
     first_second_group: First/second group
     form_subdivision: Form subdivision
     format_extent: Format, extent
-    former_sigla: Former sigla
+    former_sigla: Former siglum
     former_owner: Former owner
     fragments: Fragments
     fs_major: F♯ major
@@ -930,6 +930,8 @@ ko:
     watermark_description: Watermark description
     woodwinds: Woodwinds
     work: Work
+    work_catalog: Work catalog
+    work_catalogs: Work catalogs
     work_catalog_note: Work catalog note
     work_list: Work list
     work_node: External work reference (Work node)
@@ -958,7 +960,7 @@ ko:
     P60216: "Is expanded as"
     P60294: "Is expanded version of"
     P60274: "Is arranged as"
-    P60242: "Is arragement of"
+    P60242: "Is arrangement of"
     P60198: "Is complemented by"
     P60313: "Undefined"
   verovio:
