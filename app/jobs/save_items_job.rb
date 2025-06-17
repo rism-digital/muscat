@@ -23,11 +23,12 @@ class SaveItemsJob < ProgressJob::Base
     job.save!
   end
 
-  def perform
+  def perform(*args)
     # Sometimes, the record is deleted before the job is run
     begin
-      parent_obj = @parent_obj_class.send("find", @parent_obj_id)
+      parent_obj = @parent_obj_class.send("find", @parent_obj_id.to_i)
     rescue ActiveRecord::RecordNotFound
+      complain("Parent item was deleted before this job could run!", __LINE__, @job.id, @parent_obj_class, @relation, @parent_obj_id, "none at this point")
       return # Just exit
     end
     
@@ -41,7 +42,10 @@ class SaveItemsJob < ProgressJob::Base
     items.each do |i|
       i.paper_trail_event = "auth save"
       # By the time the job executes, things can get stale
-      next if !i.class.exists?(i.id)
+      if !i.class.exists?(i.id)
+        complain("Item does not exist anymore :(", __LINE__, @job.id, @parent_obj_class, @relation, @parent_obj_id, i.id)
+        next
+      end
       # Force a reload of the object
       reloaded_element = i.class.find(i.id)
       # let the job crash in case
@@ -69,5 +73,16 @@ class SaveItemsJob < ProgressJob::Base
   
   def queue_name
     'resave'
+  end
+
+  private
+  
+  def complain(message, line, jobid, model, relation, parentid, itemid)
+    ActionMailer::Base.mail(
+      from: "#{RISM::DEFAULT_EMAIL_NAME} Periodic Complaining Bot <#{RISM::DEFAULT_NOREPLY_EMAIL}>",
+      to: RISM::NOTIFICATION_EMAILS,
+      subject: "Save Items Job had a problem (job=#{jobid})",
+      body: "Job #{jobid} for #{model} id #{parentid} relation #{relation} (item=#{itemid}) exited on line #{line} with message: #{message}"
+    ).deliver_now
   end
 end
