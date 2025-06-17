@@ -144,6 +144,10 @@ module RISM
   # Remove deleted and deprecated from the menu
   REMOVE_DELETED_WF_STAGE = false
 
+  # In some remote places of Muscat, we harcode links
+  # Put the domain here so it works
+  MUSCAT_URL = "https://muscat.rism.info"
+
   # Supported devise authentication methods are:
   # - database_authenticatable (the default)
   # - saml_authenticatable, with trackable (which is already defined in User.rb
