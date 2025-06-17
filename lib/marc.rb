@@ -105,15 +105,8 @@ class Marc
     #1744 adjust 040 and position 32
     # only for auth files
     if ["publication", "person", "institution"].include? @model
-
-      _040_tag = first_occurance("040")
-      if !_040_tag
-        _040_tag = MarcNode.new(@model, "040", "", "##")
-        @root.children.insert(get_insert_position("040"), _040_tag)
-      end
-      _040_tag.add_at(MarcNode.new(@model, "e", "rismg", nil), 0)
-      _040_tag.sort_alphabetically
-
+      # NOTE 040 is included by default on all records
+      
       _042_tag = first_occurance("042", "a")
       if _042_tag
         _008_pos_32 = 'a' if _042_tag && _042_tag.content == "differentiated"

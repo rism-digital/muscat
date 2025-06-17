@@ -494,6 +494,9 @@ class MarcSource < Marc
     end
    
     # Add 040 if not exists; if 040$a!=DE-633 then add 040$c
+    # NOTE 040 is now added in all Muscat records
+    # see #1803 and #1042
+=begin
     if by_tags("040").count == 0
         n040 = MarcNode.new(@model, "040", "", "##")
         n040.add_at(MarcNode.new(@model, "a", RISM::AGENCY, nil), 0)
@@ -511,6 +514,7 @@ class MarcSource < Marc
         end
       end
     end
+=end
 
     #340 Add a 594 with $a
     scorings = []
