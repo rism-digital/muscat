@@ -105,7 +105,7 @@ class Marc
     #1744 adjust 040 and position 32
     # only for auth files
     if ["publication", "person", "institution"].include? @model
-      # NOTE 040 is included by default on all records
+      # NOTE 040 is included by default on all records, see #1042 and #1803
       
       _042_tag = first_occurance("042", "a")
       if _042_tag
