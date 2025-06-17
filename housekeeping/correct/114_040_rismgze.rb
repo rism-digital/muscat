@@ -28,34 +28,40 @@ end
 
 def is_040_sane?(marc)
   t040 = marc["040"]
-  return false if !t040
+  return false if t040.empty?
 
-  subtags = t040.children.map(&:tag)
+  subtags = t040.map {|t| t.children.map(&:tag).sort.uniq}
 
-  return subtags.all?(['a', 'b', 'c', 'd', 'e'])
+  return subtags.sort.uniq.all?(['a', 'b', 'c', 'd', 'e'])
 end
 
 def megasave(s)
   
   marc1 = s.marc_source
   s.marc.load_source true
-  save = true #!!!! fixme
 
-  model_marc = s.class.to_s.downcase.underscore
+  model_marc = s.class.to_s.underscore.downcase
 
-  _040_tage = s.marc.first_occurance("040", "e")
-  return if _040_tage && _040_tage.content == "rismg"
+  #puts is_040_sane?(s.marc)
+  #return if is_040_sane?(s.marc)
 
-  _040_tag = s.marc.first_occurance("040")
+  _040_tag = s.marc["040"].first
   if !_040_tag
     _040_tag = MarcNode.new(model_marc, "040", "", "##")
     s.marc.root.children.insert(s.marc.get_insert_position("040"), _040_tag)
   end
+  orig_tag = _040_tag.to_s
 
-  _040_tag.add_at(MarcNode.new(model_marc, "e", "rismg", nil), 0)
+  _040_tag.add_at(MarcNode.new(model_marc, "a", "DE-633", nil), 0)  if _040_tag["a"].empty?
+  _040_tag.add_at(MarcNode.new(model_marc, "b", "eng", nil), 0)     if _040_tag["b"].empty?
+  _040_tag.add_at(MarcNode.new(model_marc, "c", "DE-633", nil), 0)  if _040_tag["c"].empty?
+  _040_tag.add_at(MarcNode.new(model_marc, "d", "DE-633", nil), 0)  if _040_tag["d"].empty?
+
+  _040_tag.add_at(MarcNode.new(model_marc, "e", "rismg", nil), 0)   if _040_tag["e"].empty?
+
   _040_tag.sort_alphabetically
 
-  if save
+  if orig_tag != _040_tag.to_s
     puts "#{s.marc.get_id} SAVING"
 
     PaperTrail.request(enabled: false) do
@@ -74,7 +80,7 @@ def megasave(s)
 
 end
 
-InventoryItem.find_in_batches do |batch|
+Work.find_in_batches do |batch|
 
   batch.each do |s|
     megasave(s)

@@ -422,6 +422,7 @@ fr:
     deprecated_fields: Champs obsolètes (ne pas utiliser)
     description: Description
     description_area: Description
+    description_conventions: Description conventions
     description_summary: Description brève
     designer: Décorateur
     df_major: Ré♭ majeur

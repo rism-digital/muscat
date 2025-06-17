@@ -422,6 +422,7 @@ ko:
     deprecated_fields: Obsolete fields (do not use)
     description: Description
     description_area: Description area
+    description_conventions: Description conventions
     description_summary: Description summary
     designer: Designer
     df_major: D♭ major

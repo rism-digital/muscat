@@ -422,6 +422,7 @@ pl:
     deprecated_fields: Nieaktualne pola (nie uzupełniaj)
     description: Opis
     description_area: Obszar opisu
+    description_conventions: Description conventions
     description_summary: Podsumowanie
     designer: Projektant
     df_major: Des-dur

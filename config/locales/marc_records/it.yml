@@ -422,6 +422,7 @@ it:
     deprecated_fields: Campi obsoleti (non usare)
     description: Descrizione
     description_area: Descrizione
+    description_conventions: Description conventions
     description_summary: Descrizione sommaria
     designer: Progettista
     df_major: Re♭ maggiore

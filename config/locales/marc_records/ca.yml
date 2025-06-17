@@ -422,6 +422,7 @@ ca:
     deprecated_fields: Camps obsolets (no els utilitzeu)
     description: Descripció
     description_area: Descripció
+    description_conventions: Description conventions
     description_summary: Breu descripció
     designer: Dissenyador
     df_major: Re♭ major

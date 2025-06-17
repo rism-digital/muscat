@@ -422,6 +422,7 @@ de:
     deprecated_fields: Veraltete Felder (nicht verwenden)
     description: Beschreibung
     description_area: Beschreibung
+    description_conventions: Beschreibungskonventionen
     description_summary: Zusammenfassende Beschreibung
     designer: Designer
     df_major: Des-Dur

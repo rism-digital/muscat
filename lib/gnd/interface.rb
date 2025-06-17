@@ -36,6 +36,25 @@ module GND
         return result
     end
 
+    # Gets 1000 ids
+    def self.search_for_ids(params, times)
+        result = []
+        for o in 0..times do
+            xml = self.person_and_title_query(params, 2, 100 * o)
+            # Loop on each record in the result list
+            xml.xpath("//marc:record", NAMESPACE).each do |record|
+                marc = MarcWorkNode.new(nil, "work_node_gnd")
+                marc.load_from_xml(record)
+                # Some items do not have a 100 tag
+                next if !marc.first_occurance("100", "a")
+                
+                id = get_id(marc)
+                result << id
+            end
+        end
+        return result
+    end
+
     def self.push(marc_hash, current_user = nil)
         @current_user = current_user
         m = MarcGndWork.new
@@ -167,7 +186,7 @@ module GND
             marc.load_from_xml(record)
             result = marc
         end
-        return result
+        return result, xml
     end
 
     # Query the GND with the query parameters and return an XML document with the results
@@ -187,8 +206,8 @@ module GND
     end
 
     # Query the GND with the query parameters and return an XML document with the results
-    def self.person_and_title_query(params, limit = 30)
-        query = SRU_READ_URL_AUTH + "?version=1.1&operation=searchRetrieve&recordSchema=MARC21-xml&maximumRecords=#{limit}&query="
+    def self.person_and_title_query(params, limit = 30, offset = 0)
+        query = SRU_READ_URL_AUTH + "?version=1.1&operation=searchRetrieve&recordSchema=MARC21-xml&maximumRecords=#{limit}&startRecord=#{offset}&query="
         # We are searching the Work index
         query += "BBG=Tu*"
 
