@@ -58,12 +58,12 @@ module GND
     def self.push(marc_hash, current_user = nil)
         @current_user = current_user
         m = MarcGndWork.new
-        m.load_from_hash(marc_hash, force_editor_ordering: true)
+        m.load_from_hash(marc_hash, force_editor_ordering: false)
 
         action = m.get_id == "__TEMP__" ? :create : :replace
         
         # is this evil? maybe
-        xml = m.to_xml({authority: true, force_editor_ordering: true}).gsub('<?xml version="1.0" encoding="UTF-8"?>', '')
+        xml = m.to_xml({authority: true, force_editor_ordering: false}).gsub('<?xml version="1.0" encoding="UTF-8"?>', '')
         return send_to_gnd(action, xml, m.get_id)
     end
 
