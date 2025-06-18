@@ -52,11 +52,15 @@ def megasave(s)
   end
   orig_tag = _040_tag.to_s
 
+  # $a and $c must have a default value
   _040_tag.add_at(MarcNode.new(model_marc, "a", "DE-633", nil), 0)  if _040_tag["a"].empty?
-  _040_tag.add_at(MarcNode.new(model_marc, "b", "eng", nil), 0)     if _040_tag["b"].empty?
   _040_tag.add_at(MarcNode.new(model_marc, "c", "DE-633", nil), 0)  if _040_tag["c"].empty?
-  _040_tag.add_at(MarcNode.new(model_marc, "d", "DE-633", nil), 0)  if _040_tag["d"].empty?
+  
+  # $b and $d DO NOT NEED A DEFAULT VALUE
+  #_040_tag.add_at(MarcNode.new(model_marc, "b", "eng", nil), 0)     if _040_tag["b"].empty?
+  #_040_tag.add_at(MarcNode.new(model_marc, "d", "DE-633", nil), 0)  if _040_tag["d"].empty?
 
+  # and $e needs one too
   _040_tag.add_at(MarcNode.new(model_marc, "e", "rismg", nil), 0)   if _040_tag["e"].empty?
 
   _040_tag.sort_alphabetically
@@ -80,7 +84,7 @@ def megasave(s)
 
 end
 
-[Institution, InventoryItem, Holding, Publication, Person, Work].each do |model|
+[Institution, InventoryItem, Holding, Publication, Person, Work, WorkNode].each do |model|
   model.find_in_batches do |batch|
 
     batch.each do |s|
