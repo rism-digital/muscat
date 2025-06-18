@@ -1,33 +1,15 @@
-<h2>530 – Einheitstitel – Beziehung</h2>
-Dieses Feld enthält ein Werk, das zum beschriebenen Werk in Beziehung steht.
-Beispiel: Igor Stravinsky, The flood
-530 $0 (DE-101)040717070 $0 (DE-588)4071707-0 $0 https://d-nb.info/gnd/4071707-0 $a Bibel $4 them $w r $i Thema
+<h2>530 – Beziehung zu einem anonymen Werk</h2>
+Dieses Feld enthält den Verweis auf ein anonymes Werk, das zum beschriebenen Werk in Beziehung steht. Voraussetzung für die Eingabe ist, dass das Werk als Werknormsatz in der GND vorhanden ist.
 
-<h3>$a – Titel des Werks</h3>
-Hier ist der bevorzugte Titel des Werkes einzutragen.
+<h3>$t – Werktitel</h3>
+Hier ist der bevorzugte Titel eines anonymen Werkes einzutragen. Als bevorzugter Titel gilt der Titel in Originalsprache, über den das Werk in Quellen oder Nachschlagewerken bekannt wurde. <b>Das Feld ist für die Herstellung einer Werkbeziehung zwingend erforderlich.</b>
 
-<h3>$0 – IDN des Normdatensatzes oder Standardnummer</h3>
-Die Identifikationsnummer des in $0 verzeichneten Normdatensatzes ist hier in dreifacher Weise anzugeben:
-•	DNB-interne Datensatznummer mit ISIL der DNB (DE-101) = PPN
-•	Überregionaler GND-Identifier mit ISIL der GND (DE-588)
-•	URI
+<h3>$0 – IDN des Normdatensatzes</h3>
+Die Identifikationsnummer des Werkes ist über den <a href"https://explore.gnd.network/">GND Explorer</a> zu ermitteln. Im aufgerufenen Datensatz befindet sich die einzutragende ID unter „Identifikatoren“ an oberster Stelle mit dem Label „GND-Nummer“ oder am Ende der Adresszeile des Browsers. Das im Editor voreingestellte Präfix (DE-588) ist zwingend erforderlich, die ID wird ohne Leerzeichen angefügt.<br>
+Beispiel: (DE-588)4373923-4
 
 <h3>$4 – Beziehungscode</h3>
-Gibt an, in welcher konkreten Beziehung dieses Werk in Bezug zur Komposition steht. Mögliche Beziehungscodes sind:
-•	anla (Anlass)
-•	nach (Nachfolger)
-•	obpa (Oberbegriff partitiv)
-•	rela (Relation, allgemein)
-•	them (Thema)
-•	vbal (verwandter Begriff, allgemein)
-•	vorg (Vorgänger)
-•	vorl (Vorlage, literarisch o. ä.)
-•	werk (Werk)
+Gibt an, in welcher konkreten Beziehung dieses anonyme Werk zur Komposition steht. Falls es sich um eine Sammlung oder ein anderes übergeordnetes Werk handelt, ist die Bezeichnung „Oberbegriff, partitiv“ zu wählen.
 
-<h3>$i – Beziehungsphrase</h3>
-Aufgelöste Form von $4.
-
-<h3>$w – Kontrollunterfeld</h3>
-Standardmäßig ‚r‘.
-
-[$i und $w automatisch belegen & ausgrauen?]
+<h3>$9 – Bemerkungen</h3>
+Hier kann die Beziehung zum anonymen Werk genauer erläutert werden. <b>Achtung: Der vorangestellte Code „v:“ ist zwingend erforderlich und darf nicht gelöscht werden.</b>
