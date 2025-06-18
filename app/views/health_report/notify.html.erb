@@ -12,7 +12,7 @@
 <% @errors.each do |id, msg| %>
 	<% mod = @model.to_s.pluralize.underscore.downcase %>
 	<tr>
-		<td><a href="https://muscat.rism.info/admin/<%=mod%>/<%=id%>"><%=id%></a></td>
+		<td><a href="<%=RISM::MUSCAT_URL%>/admin/<%=mod%>/<%=id%>"><%=id%></a></td>
 		<td><%=msg.gsub("\n", "<br>").html_safe%></td>
 	</tr>
 <% end %>

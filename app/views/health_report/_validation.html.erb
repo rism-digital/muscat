@@ -5,7 +5,7 @@
   <%@unknown_tags.each do |key, value|%>
     <%="#{key}: #{value[:count]} items, first 100: "%>
      <% value[:items].each do |item| %>
-        <a href="https://muscat.rism.info/admin/<%=mod%>/<%=item%>"><%=item%></a>&nbsp;
+        <a href="<%=RISM::MUSCAT_URL%>/admin/<%=mod%>/<%=item%>"><%=item%></a>&nbsp;
      <% end %>
      <br>
   <%end%>
@@ -24,7 +24,7 @@
   <h3>All the other validations (missing holdings, missing child records, stale 774, ...)</h3>
 
   <%@validations.each do |id, errors|%>
-  <b><a href="https://muscat.rism.info/admin/<%=mod%>/<%=id%>"><%=id%></a></b>
+  <b><a href="<%=RISM::MUSCAT_URL%>/admin/<%=mod%>/<%=id%>"><%=id%></a></b>
   &nbsp;
     <% errors.each do |tag, subtags| %>
       <% subtags.each do |subtag, messages|  %>
