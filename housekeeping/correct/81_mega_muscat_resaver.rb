@@ -1,17 +1,22 @@
 FILENAME="unloadable.log"
 File.write(FILENAME, Time.now.to_s, mode: 'w')
 
-models = [Holding, Institution, Person, Publication, Source, Work, WorkNode]
+models = [Holding, Institution, InventoryItem, Person, Publication, Source, Work, WorkNode]
 
-if !ARGV.empty?
-    puts "Resaving only #{ARGV[0]}"
-    models = [ARGV[0].constantize]
-end
 
 @fast_mode = false
-@fast_mode = true if ARGV.count > 1 && ARGV[1] == "--fast"
+if ARGV.count > 1 && ARGV.last == "--fast"
+  @fast_mode = true
+  ARGV.pop # remove the last item, bad I know...
+  puts "Fast mode on (all suppress_* enabled)".cyan
+end
 
-puts "Fast mode on (all suppress_* enabled)" if @fast_mode
+if !ARGV.empty?
+    
+    models = ARGV.map {|v| v.constantize}
+    puts "Resaving only #{ARGV}".yellow
+    #models = [ARGV[0].constantize]
+end
 
 begin_time = Time.now
 all_items = 0
