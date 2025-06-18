@@ -207,6 +207,8 @@ force_editor_ordering: true
     - - r
       - editor_partial: subfield_select_codes
         codes_reference: "100r"
+    - - a
+    - - d
   tag_params:
       100r:
       - "A"
@@ -1194,6 +1196,7 @@ force_editor_ordering: true
 "530": 
   layout: 
     fields: 
+    - - t
     - - "0"
       - default: "(DE-588)"
     - - "4"

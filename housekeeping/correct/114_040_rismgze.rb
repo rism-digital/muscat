@@ -1,7 +1,7 @@
 # grep "ORIG\|NEW" un000-output.txt | awk '{print $3}' | sort | uniq
 # grep "ORIG\|NEW\|ADDED\|REMOVED" result | awk '{print $4}' | sort | uniq
 # 
-def diffize(id, marc1, marc2)
+def diffize(model, id, marc1, marc2)
   
     lines1 = marc1.split("\n")
     lines2 = marc2.split("\n")
@@ -13,14 +13,14 @@ def diffize(id, marc1, marc2)
 #    when '='
     when '!'
         #puts "Line #{diff.old_position + 1} changed:"
-        puts "#{id} ORIG #{diff.old_element}"
-        puts "#{id} NEW  #{diff.new_element}"
+        puts "#{model}-#{id} ORIG #{diff.old_element}"
+        puts "#{model}-#{id} NEW  #{diff.new_element}"
     when '-'
         # Line was removed
-        puts "#{id} REMOVED #{diff.old_element}"
+        puts "#{model}-#{id} REMOVED #{diff.old_element}"
     when '+'
         # Line was added
-        puts "#{id} ADDED   #{diff.new_element}"
+        puts "#{model}-#{id} ADDED   #{diff.new_element}"
     end
     end
 
@@ -73,17 +73,19 @@ def megasave(s)
         s.suppress_update_workgroups if s.respond_to? :suppress_update_workgroups
         s.save
         marc2 = s.marc_source
-        diffize(s.id, marc1, marc2)
+        diffize(s.class.to_s, s.id, marc1, marc2)
         puts "#{s.marc.get_id} DONE"
     end
   end
 
 end
 
-Work.find_in_batches do |batch|
+[Institution, InventoryItem, Holding, Publication, Person, Work].each do |model|
+  model.find_in_batches do |batch|
 
-  batch.each do |s|
-    megasave(s)
+    batch.each do |s|
+      megasave(s)
+    end
+
   end
-
 end
