@@ -1,41 +1,15 @@
-<h2>500 – Personenbeziehung</h2>
-Dieses Feld enthält Angaben zu Personen, die mit der Komposition in Verbindung stehen. Ein Beziehungscode in $4 muss zwingend vergeben werden, ebenso muss mindestens Unterfeld $a belegt sein.
-
-
-<h3>$a – Personenname</h3>
-Der Name ist per Autovervollständigung auswählbar.
-
-<h3>$d – Datumsangaben in Verbindung mit einem Namen</h3>
-Die Lebensdaten werden automatisch ergänzt.
-
-<h3>$e – Funktionsbezeichnung</h3>
-Wird automatisch ergänzt.
-
-<h3>$0 – IDN des Normdatensatzes oder Standardnummer</h3>
-Wird automatisch ergänzt.
-
-<h3>$4 – Beziehungscode</h3>
-Der zutreffende Beziehungscode ist aus der Liste auszuwählen.
-
-<h3>$i – Beziehungsphrase</h3>
-Wird automatisch ergänzt.
-
-<h3>$w – Kontrollunterfeld</h3>
-Standardwert.
-
-<h3>$9 – Bemerkungen</h3>
-[Anmerkung Faschon: Hier gibt es potenziell $9 v und $9 Z. Das müsste noch aufgeschlüsselt werden im Editor.]
+<h2>500 – Personen- oder nicht-anonyme Werkbeziehung</h2>
+Dieses Feld enthält Angaben zum Komponisten des Werkes sowie zu weiteren Personen oder nicht-anonymen Werken, die mit dem angesetzten Werk in Verbindung stehen.
 
 <h3>$t – Titel des Werkes</h3>
-Hier ist der bevorzugte Titel des Werkes einzutragen.
+Hier ist der bevorzugte Titel eines nicht-anonymen Werkes einzutragen. Als bevorzugter Titel gilt der Titel in Originalsprache, über den das Werk in Quellen oder Nachschlagewerken bekannt wurde. <b>Das Feld ist für die Herstellung einer Werkbeziehung zwingend erforderlich.</b>
 
-<h3>$n – Numerische Zählung</h3>
-Hier ist ggf. die numerische Kennzeichnung des Werks einzutragen. Darunter fallen fortlaufende Zählung, Opusnummer, Werkverzeichnisnummer etc. (Siehe Feld 383.)
+<h3>$0 – IDN des Normdatensatzes oder Standardnummer</h3>
+Die Identifikationsnummer des Normdatensatzes (Person oder Werk) ist über den <a href="https://explore.gnd.network/">GND Explorer</a> zu ermitteln. Im aufgerufenen Datensatz befindet sich die einzutragende ID unter „Identifikatoren“ an oberster Stelle mit dem Label „GND-Nummer“ oder am Ende der Adresszeile des Browsers. Das im Editor voreingestellte Präfix (DE-588) ist zwingend erforderlich, die ID wird ohne Leerzeichen angefügt.<br>
+<b>Beispiel: (DE-588)11861164X</b>
 
-<h3>$p – Teiltitel</h3>
-Hier können Teile eines Werkes erfasst werden.
-<br>
-<i>Beispiel: $a Smetana, Bedřich $d 1824-1884 $t Má vlast $p Vltava</i>
+<h3>$4 – Beziehungscode</h3>
+Gibt an, in welcher konkreten Beziehung diese Person oder dieses Werk zur Komposition steht. Der Komponist des Werkes, auf das sich der gesamte Datensatz bezieht, muss zwingend mit „Komponist, erster“ spezifiziert werden. Jeder weitere Komponist wird einfach als „Komponist“ verzeichnet. Für alle weiteren Funktionen wie Librettisten oder Autoren von (etwa literarischen) Vorlagen gilt dies nicht, hier entfällt die Angabe „erster“. Ist das Werk Teil eines anderen Werkes (z. B. einer Sammlung) ist die Beziehung „Oberbegriff, partitiv“ zu wählen.
 
-<h3>$r – Tonart, Modus</h3>
-Hier ist die Tonart eines Werkes zu erfassen, wenn entweder das Werk einen unspezifischen Titel trägt (z. B. „Quartett“) oder wenn Werke mit spezifischem Titel voneinander unterschieden werden sollen.
+<h3>$9 – Bemerkungen</h3>
+Hier kann die Beziehung genauer erläutert werden. <b>Achtung: Der vorangestellte Code „v:“ ist zwingend erforderlich und darf nicht gelöscht werden.</b>
