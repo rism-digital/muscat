@@ -422,7 +422,7 @@ pt:
     deprecated_fields: Campos obsoletos (não usam)
     description: Descrição
     description_area: Descrição
-    description_conventions: Description conventions
+    description_conventions: Convenções para as descrições
     description_summary: Síntese da descrição
     designer: Desenhador
     df_major: Ré bemol maior
