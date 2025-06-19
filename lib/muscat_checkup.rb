@@ -25,6 +25,7 @@ class MuscatCheckup
       @skip_dead_773 = (options.include?(:skip_dead_773) && options[:skip_dead_773] == true)
       @skip_parent_institution = (options.include?(:skip_parent_institution) && options[:skip_parent_institution] == true)
       @skip_588_validation = (options.include?(:skip_588_validation) && options[:skip_588_validation] == true)
+      @skip_validate_work_status = (options.include?(:skip_validate_work_status) && options[:skip_validate_work_status] == true)
       @debug_logger = options.include?(:logger) ? options[:logger] : nil
 
       # These are relevant only for Sources
@@ -169,6 +170,7 @@ class MuscatCheckup
       validator.validate_dead_773_links if !@skip_dead_773
       validator.validate_parent_institution if !@skip_parent_institution
       validator.validate_588 if !@skip_588_validation
+      validator.validate_work_status if !@skip_validate_work_status
       return validator.get_errors
     rescue Exception => e
       puts e.message

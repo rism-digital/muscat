@@ -486,7 +486,7 @@ include ApplicationHelper
   end
 
   def validate_588
-    return if !@object.respond_to?(:holdings) && @object.holdings.count == 0
+    return if !@object.respond_to?(:holdings) || @object.holdings.count == 0
     return if @object.marc.by_tags("588").count == 0
 
     holdings_sigla = @object.holdings.map(&:lib_siglum)
@@ -515,6 +515,37 @@ include ApplicationHelper
 
   end
 
+  def validate_work_status
+    return if !@object.is_a?(Work)
+
+    # No work is published unless belonging to a publication with work_catalogue 2, 3 or 4
+    if @object.wf_stage == "published"
+      
+      @object.publications.each do |p|
+
+        if p.wf_stage != "published" 
+          add_error("record", "work", "Published work is attached to an unpublished publication", "work_to_unpublished_publication")
+        end
+
+        if !p.work_catalogue || p.work_catalogue == "not_work_catalogue" ||  p.work_catalogue == "work_catalogue_in_preparation"
+          wc = p.work_catalogue ? p.work_catalogue.to_s : "not_set"
+          add_error("record", "work", "Work is attached to a non complete work catalog (wc=#{wc})", "work_to_non_work_catalog")
+        end
+      end
+
+    # All works for a publication with work_catalogue 2, 3 or 4 are published
+    # eg. work is unpublished, should not be attached to finished catalogs!
+    else 
+      @object.publications.each do |p|
+        if p.work_catalogue != "not_work_catalogue" &&  p.work_catalogue != "work_catalogue_in_preparation"
+          add_error("record", "work", "Work unpublished but attached to a completed catalog (wc=#{p.work_catalogue})", "work_unpublished_in_catalog")
+        end
+      end
+
+    end
+
+  end
+
   def validate
     validate_tags
     validate_dates
@@ -525,6 +556,7 @@ include ApplicationHelper
     validate_dead_773_links
     validate_parent_institution
     validate_588
+    validate_work_status
     return @errors
   end
 
