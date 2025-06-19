@@ -1,6 +1,150 @@
 Muscat Changelog
 ================
 
+v 11.6
+* Add action in publication to show work node list
+* Add sidebar with work catalogue info
+* Method for checking 024
+* Add work catalogue side bar with statistics
+* Don't load relations to speed up marc load
+* Mini script to get line dups
+* #1760 Add codes for 530
+* very quick and very dirty notificator for GND
+* #1756 Fix last issues
+* Fix 079
+* Make 079 $u read only
+* Use the COMMENT_EMAIL for to: if available
+* Bump net-imap from 0.5.6 to 0.5.7
+* Implement force_editor_ordering option in the frontend part
+* Make sure !force_editor_ordering is properly propagated
+* Remove person information for GND 100
+* Merge pull request #1763 from rism-digital/dependabot/bundler/net-imap-0.5.7
+* Fix #1762, add CMO
+* Fix #1720
+* #1739 align 773 to 774 on export
+* #1764: Add migration to smallint, add support and menu for more options on work catalogs
+* Make the folder option form more pretty
+* Add new translations for new actions
+* Properly order en.yml
+* Add proper menu for filtering Work Catalogues
+* Initial updates to scss and update AA to 3.3
+* Fix labels and translations
+* Make abilities more stringent
+* Make the work catalogue script more aggressive when reindexing
+* Make the work catalogue sortable
+* #1738 and #1765. Refactor wf_stage and user selection box, make deleted and deprecated optional
+* Fix GND work for new wf_stage selector, prepare for autocomplete
+* #1765 Initial setup for Work publication action in Publications
+* Make the folder reindexer reintex the items and NOT the folder items...
+* #1765 Add publication action to sidebar, make Reindex job generic
+* Update gnd_work_377_de.html
+* Merge pull request #1767 from afaschon/patch-12
+* Properly order en.yml
+* Make the "work catalogue status" editable directly in works for the authorized users
+* Add entry in the WF block
+* #1744 Make 008 editing more modular
+* Fix #1744, 008 in authority files
+* Make the same value have two labels for GND
+* Catalogue -> Catalog
+* Fix #1771, add repeatable fields for GND
+* Fix #1768, GND order and labels
+* Update gnd_work_380_de.html
+* Update gnd_work_384_de.html
+* Update gnd_work_667_de.html
+* Update gnd_work_130_de.html
+* Update gnd_work_670_de.html
+* Update gnd_work_675_de.html
+* Update gnd_work_912_de.html
+* Update gnd_work_913_de.html
+* Test: Switch to new AC
+* Update gems
+* Add ngram autocomplete field
+* Merge pull request #1774 from afaschon/patch-16
+* Merge pull request #1775 from afaschon/patch-17
+* Merge pull request #1776 from afaschon/patch-18
+* Merge pull request #1777 from afaschon/patch-19
+* Merge pull request #1778 from afaschon/patch-20
+* Merge pull request #1779 from afaschon/patch-21
+* Merge pull request #1780 from afaschon/patch-22
+* Merge pull request #1781 from afaschon/patch-23
+* Fix #1772 add new values
+* Fix part of #1773, make the user list not crash
+* Fix #1773, add presence for :name
+* Fix 1783, make changing wf_stage trigger a save
+* Force holdings to be published
+* Fix user selection
+* Fix #1782 add Armenian to 041
+* Make sure 040 $e is not included in GND
+* Make the Nosey more Nosey
+* Fix menu in selection_mode, use new method in AA 3.3
+* Open the guidelines in a new tab
+* Apply new AC to institution 710
+* Fix bug in siglum autocomplete
+* Make the GND nosey more nosey and more indented
+* Add debug stuff for nosey
+* Add default DE-588 values in 500 and 530
+* Fine-tune InventoryItem validation
+* Validate 031 in IIs
+* Expand the 593 options for II
+* Diplomatic script for #1791
+* Enable importmaps-rails to support ESM js packages
+* Add EDTF validation + initial inline errors
+* Fix 245 inventory item script, and make work dup script
+* Also make the old records obsolete
+* Also migrate the relations
+* Fix the foreign_class in 780 and 786 for Publication
+* Fix #1787, 382 refinements for GND
+* Update gnd_work_550_de.html
+* Update gnd_work_548_de.html
+* Update gnd_work_383_de.html
+* Merge pull request #1792 from afaschon/patch-24
+* Merge pull request #1793 from afaschon/patch-25
+* Merge pull request #1794 from afaschon/patch-26
+* More EDTF: make messages meaningful, make validation work
+* Update gnd_work_667_de.html
+* Update gnd_work_670_de.html
+* Merge pull request #1795 from afaschon/patch-27
+* Merge pull request #1796 from afaschon/patch-28
+* Fix #1788
+* Update gnd_work_550_de.html
+* Merge pull request #1797 from afaschon/patch-29
+* Update gnd_work_548_de.html
+* Merge pull request #1798 from afaschon/patch-31
+* Update gnd_work_383_de.html
+* Merge pull request #1799 from afaschon/patch-32
+* Update gnd_work_678_de.html
+* Merge pull request #1800 from afaschon/patch-33
+* Update gnd_work_382_de.html
+* Merge pull request #1801 from afaschon/patch-34
+* Fix #1802, minor GND changes
+* Remove unused js function OpenWindow
+* Basic HTML exporter
+* Add [] accessor to marc and marc_node to make stuff easier to navigate
+* Make edtf a bit better, add validation for 551 in person
+* Make the "owner" filter display a value
+* Make muscat complain even more!
+* #1804 Refactor link code, move url to a conf var, and fix links
+* #1042, align all 040 fields in preparation
+* Fix 040 script, make GND even more nosey, and locales
+* Do not add 040 anymore, it is included in the data
+* GND TEST! Force ordering of subtags
+* Make the megasave script accept more models
+* Update gnd_work_500_de.html
+* Update gnd_work_530_de.html
+* Merge pull request #1805 from afaschon/patch-35
+* Merge pull request #1806 from afaschon/patch-36
+* Some refinements for GND and 040 script
+* Move tu MUSCAT_URL
+* #1042 unify 040 across all models
+* Remove $b and $d defaults from editor conf
+* Add $e rismg in all default files #1042
+* #1042 adjust 040 script
+* Also adapt worknode
+* fix #1765, add validation
+* #1765 more stuff
+* Fix #1807, change labels
+* Update locales
+
 v 11.5
 * Bump passenger from 6.0.23 to 6.0.26
 * Scripts for ICCU dups and Corago

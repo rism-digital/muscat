@@ -182,12 +182,12 @@ gem 'i18n-tasks', '~> 1.0.14', group: :development
 #gem 'ruby-openai', group: :development
 
 # Uncomment this if you want to test emails in development
-#gem 'mailcatcher', '~> 0.10.0'
+gem 'mailcatcher', '~> 0.10.0', group: :development
 #gem "string-similarity"
 #gem "rest-client"
 
 gem 'solargraph', group: :development
 gem 'rufo', group: :development
 
-gem 'diff-lcs', group: :development
+gem 'diff-lcs'#, group: :development
 
