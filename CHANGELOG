@@ -1,6 +1,9 @@
 Muscat Changelog
 ================
 
+v 11.6.1
+* Fix #1808, invalid value in solr autocomplete
+
 v 11.6
 * Add action in publication to show work node list
 * Add sidebar with work catalogue info
