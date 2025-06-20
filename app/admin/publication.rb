@@ -32,7 +32,7 @@ ActiveAdmin.register Publication do
     end
     autocomplete :publication, [:short_name, :author, :title], :display_value => :autocomplete_label , :extra_data => [:author, :date, :title]
     autocomplete :publication, :only_short_name, :record_field => :short_name, :string_boundary => true, :display_value => :label, :getter_function => :get_autocomplete_title_with_count
-    autocomplete :publication, "505t_sms", :solr => true, :display_value => :label
+    autocomplete :publication, "505t_sms", :solr => true, :display_value => :label, :value_field => :"505t_sms"
 
     def get_autocomplete_title_with_count(token,  options = {})
 

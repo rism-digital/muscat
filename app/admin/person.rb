@@ -39,7 +39,7 @@ ActiveAdmin.register Person do
     autocomplete :person, :full_name, :extra_data => [:life_dates_order_s], :solr_search => true,
                  :search_field => :full_name_autocomplete, :order_field => :total_obj_count_order_is,
                  :display_value => :label_ss, :value_field => :full_name_order_s
-    autocomplete :person, "550a_sms", :solr => true, :display_value => :label
+    autocomplete :person, "550a_sms", :solr => true, :display_value => :label, :value_field => :"550a_sms"
 
     after_destroy :check_model_errors
     before_create do |item|

@@ -31,8 +31,8 @@ ActiveAdmin.register Source do
         end
     end
     autocomplete :source, :id, {:display_value => :autocomplete_label , :extra_data => [:std_title, :composer], :exact_match => false, :solr => false}
-    autocomplete :source, "594b_sms", :solr => true, :display_value => :label
-    autocomplete :source, "031t_filter_sms", :solr => true, :display_value => :label
+    autocomplete :source, "594b_sms", :solr => true, :display_value => :label, :value_field => :"594b_sms"
+    autocomplete :source, "031t_filter_sms", :solr => true, :display_value => :label, :value_field => :"031t_filter_sms"
 
     def check_model_errors(object)
       return unless object.errors.any?
