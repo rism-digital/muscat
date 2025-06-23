@@ -40,7 +40,7 @@ module GND
     def self.search_for_ids(params, times)
         result = []
         for o in 0..times do
-            xml = self.person_and_title_query(params, 2, 100 * o)
+            xml = self.person_and_title_query(params, 100, 100 * o)
             # Loop on each record in the result list
             xml.xpath("//marc:record", NAMESPACE).each do |record|
                 marc = MarcWorkNode.new(nil, "work_node_gnd")
