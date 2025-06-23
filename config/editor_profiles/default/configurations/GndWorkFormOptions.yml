@@ -205,8 +205,8 @@ force_editor_ordering: true
     - - n
     - - p
     - - r
-      - editor_partial: subfield_select_codes
-        codes_reference: "100r"
+      #- editor_partial: subfield_select_codes
+      #  codes_reference: "100r"
     - - a
     - - d
   tag_params:
@@ -890,8 +890,8 @@ force_editor_ordering: true
   layout: 
     fields: 
     - - a
-      - editor_partial: subfield_select_codes
-        codes_reference: "384r"
+      #- editor_partial: subfield_select_codes
+      #  codes_reference: "384r"
   tag_params:
       384r:
       - "A"
@@ -976,8 +976,8 @@ force_editor_ordering: true
     - - n
     - - p
     - - r
-      - editor_partial: subfield_select_codes
-        codes_reference: "400r"
+      #- editor_partial: subfield_select_codes
+      #  codes_reference: "400r"
   tag_params:
         400r:
         - "A"
