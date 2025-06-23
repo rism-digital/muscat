@@ -200,6 +200,8 @@ force_editor_ordering: true
 "100":
   layout: 
     fields: 
+    - - a
+    - - d
     - - t
     - - m
     - - n
@@ -207,8 +209,6 @@ force_editor_ordering: true
     - - r
       #- editor_partial: subfield_select_codes
       #  codes_reference: "100r"
-    - - a
-    - - d
   tag_params:
       100r:
       - "A"
