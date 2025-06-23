@@ -1,6 +1,10 @@
 Muscat Changelog
 ================
 
+v 11.6.2
+* Fix EDTF editing in Works
+* Merge pull request #1810 from afaschon/patch-37
+
 v 11.6.1
 * Fix #1808, invalid value in solr autocomplete
 
