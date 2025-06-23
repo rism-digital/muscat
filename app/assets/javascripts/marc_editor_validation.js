@@ -177,6 +177,11 @@ function marc_validate_must_contain(value, element, param) {
 
 function marc_validate_edtf(value, element, param) {
 	let result = false;
+	
+	// We can have empty values!
+	if (value == null || value === "")
+		return true;
+
 	try {
 		const p = edtf(value);
 		result = true;
