@@ -44,6 +44,13 @@
 					day: "numeric",
 				}
 
+				// Do nothing if empty
+				if ($(obj).val() == null || $(obj).val() === "") {
+					$("#edtf-message").empty();
+					$("#edtf-error").empty();
+					return;
+				}
+
 				/*
 				The various localizations are lacking
 				so for the moment we default to the eng one
