@@ -10,7 +10,7 @@ client:
   "551": 
     tags:
       "0": required
-      "4":
+      "i":
         required_if:
           "551": "0"
   "670":
