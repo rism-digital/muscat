@@ -195,7 +195,7 @@ module GND
         # Code
         query += "BBG=#{auth}*"
         term.split.each do |word|
-            query += " and #{index}=" + ERB::Util.url_encode(word + "*")
+            query += " and #{index}=" + ERB::Util.url_encode(word)
         end
         # Code - See https://wiki.dnb.de/download/attachments/90411323/entitaetenCodes.pdf
         query += " and COD=#{code}" if !code.empty?
