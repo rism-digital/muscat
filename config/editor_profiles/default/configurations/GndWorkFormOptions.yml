@@ -200,9 +200,9 @@ force_editor_ordering: true
 "100":
   layout: 
     fields: 
+    - - t
     - - a
     - - d
-    - - t
     - - m
     - - n
     - - p
