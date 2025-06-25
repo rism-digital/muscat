@@ -105,11 +105,11 @@
         #:foreign_class: GndWork
         #:foreign_field: id
     - - a
-      - :occurrences: "*"
+      - :occurrences: "?"
         #:foreign_class: ^0
         #:foreign_field: full_name
     - - d
-      - :occurrences: "*"
+      - :occurrences: "?"
     - - m
       - :occurrences: "+"
     - - n

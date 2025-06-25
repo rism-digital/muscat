@@ -965,13 +965,9 @@ force_editor_ordering: true
 "400":
   layout: 
     fields:
-    #- - a
-    #  - type: gnd_work_person
-        #preserve_foreign_value: true
-    #    editor_partial: subfield_secondary
-    #- - d
-    #  - autocomplete_extra: life_dates
     - - t
+    - - a
+    - - d
     - - m
     - - n
     - - p
