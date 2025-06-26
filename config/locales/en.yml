@@ -838,8 +838,8 @@ en:
   work_catalogue_publication_warning: To publish linked works, set the work-catalog status to Partial, Complete, or Alternate.
   work_catalogue_tags:
     not_work_catalogue: N.a.
-    work_catalogue_alternate: Completed
-    work_catalogue_complete: Complete
+    work_catalogue_alternate: Alternate
+    work_catalogue_complete: Completed
     work_catalogue_in_preparation: Eligible
     work_catalogue_partial: Partially completed
   work_label_codes:
