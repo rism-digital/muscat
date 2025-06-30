@@ -33,16 +33,22 @@ force_editor_ordering: true
   layout: 
     fields:
     - - "0" 
+      - read_only: true
     - - a
+      - read_only: true
     - - "2"
+      - read_only: true
   tag_params: 
     no_delete: true
 "035": 
   layout: 
     fields: 
     - - a
+      - read_only: true
     - - z
+      - read_only: true
     - - "9"
+      - read_only: true
   tag_params: 
     no_delete: true
 "040": 
@@ -76,6 +82,7 @@ force_editor_ordering: true
       - editor_partial: subfield_select_codes
         select_label: "Country"
   tag_params:
+    no_delete: true
     codes:
         - "XA-AD"
         - "XA-AL"
@@ -209,6 +216,7 @@ force_editor_ordering: true
     - - q
       - read_only: true
     - - u
+      - read_only: true
   tag_params: 
     no_delete: true
 "100":
