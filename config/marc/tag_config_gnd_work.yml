@@ -41,13 +41,13 @@
       - :no_browse: true
   "024":  
     :indicator: "##"
-    :occurrences: "*"
+    :occurrences: "+"
     :fields:
     - - a
       - :occurrences: "?"
   "035":  
     :indicator: "##"
-    :occurrences: "*"
+    :occurrences: "+"
     :fields:
     - - a
       - :occurrences: "?"
@@ -57,7 +57,7 @@
       - :occurrences: "?"
   "040":  
     :indicator: "##"
-    :occurrences: "*"
+    :occurrences: "+"
     :fields:
     - - b
       - :occurrences: "?"

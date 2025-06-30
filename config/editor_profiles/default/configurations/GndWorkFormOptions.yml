@@ -35,12 +35,16 @@ force_editor_ordering: true
     - - "0" 
     - - a
     - - "2"
+  tag_params: 
+    no_delete: true
 "035": 
   layout: 
     fields: 
     - - a
     - - z
     - - "9"
+  tag_params: 
+    no_delete: true
 "040": 
   layout: 
     fields: 
@@ -61,6 +65,8 @@ force_editor_ordering: true
     fields: 
     - - a
       - read_only: true
+  tag_params: 
+    no_delete: true
 "043": 
   layout: 
     fields: 
@@ -184,6 +190,8 @@ force_editor_ordering: true
       - read_only: true
     - - a
       - read_only: true
+  tag_params: 
+    no_delete: true
 "075": 
   layout: 
     fields: 
@@ -191,12 +199,16 @@ force_editor_ordering: true
       - read_only: true
     - - "2"
       - read_only: true
+  tag_params: 
+    no_delete: true
 "079": 
   layout: 
     fields: 
     - - q
       - read_only: true
     - - u
+  tag_params: 
+    no_delete: true
 "100":
   layout: 
     fields: 
