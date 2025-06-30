@@ -133,6 +133,8 @@ g-2:
       label: gnd.name
     d:
       label: gnd.birth_and_death_dates
+    f:
+      label: gnd.time
     m:
       label: gnd.instrumentation_hint
     n:
@@ -217,6 +219,8 @@ g-2:
       label: gnd.composer
     d:
       label: gnd.birth_and_death_years
+    f:
+      label: gnd.time
     m:
       label: gnd.instrumentation_hint
     n:
@@ -227,6 +231,8 @@ g-2:
       label: gnd.work_title
     p:
       label: gnd.part_title
+    "9":
+      label: gnd.remarks
 
 '430':
   label: gnd.work_relationship

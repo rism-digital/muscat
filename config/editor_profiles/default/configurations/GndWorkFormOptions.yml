@@ -203,6 +203,7 @@ force_editor_ordering: true
     - - t
     - - a
     - - d
+    - - f
     - - m
     - - n
     - - p
@@ -968,10 +969,13 @@ force_editor_ordering: true
     - - t
     - - a
     - - d
+    - - f
     - - m
     - - n
     - - p
     - - r
+    - - "9"
+      - default: "v:"
       #- editor_partial: subfield_select_codes
       #  codes_reference: "400r"
   tag_params:
