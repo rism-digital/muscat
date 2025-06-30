@@ -60,6 +60,8 @@ force_editor_ordering: true
       - read_only: true
     - - d
       - read_only: true
+  tag_params: 
+    no_delete: true
 "042": 
   layout: 
     fields: 
