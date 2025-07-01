@@ -246,3 +246,7 @@ xx:
   label: records.uncategorized
 z:
   label: records.alternate_spelling
+"IIIF manifest":
+  label: records.iiif_manifest_nothing_more
+"Online Resource":
+  label: records.online_resource
