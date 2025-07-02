@@ -24,7 +24,7 @@ class EditorHelpController < ApplicationController
 
   def render_markdown(page)
     # Use the legacy GD for all except English
-    legacy = I18n.locale == :en ? false : true
+    legacy = (I18n.locale == :en || I18n.locale == :de) ? false : true
 
     help_fname = EditorConfiguration.get_help_file(page, legacy)
     file_type = help_fname.end_with?(".md")
