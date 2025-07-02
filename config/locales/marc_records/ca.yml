@@ -545,6 +545,7 @@ ca:
     identity_area: Identitat
     iiif_manifest: "Manifiest IIIF (font digitalitzada)"
     iiif_manifest_other: "Manifiest IIIF (altre)"
+    iiif_manifest_nothing_more: Manifest IIIF
     illustrator: Il·lustrador
     immediate_parent_body: Institució immediatament superior
     import: Importar
@@ -711,6 +712,7 @@ ca:
     octoechos7: 'Octoechos 7: Ēchos barys (terceiro mode bizantí plagal)'
     octoechos8: 'Octoechos 8: Ēchos plagios tetartos (quart mode bizantí plagal)'
     online_finding_aids: Eines de cerca en línia
+    online_resource: Online resource
     opera_houses_concert_halls: Teatres d'òpera i sales de concert
     opus_number: Número d'opus
     opus_thematic_index_number: Número d'opus o d'índex temàtic
@@ -728,6 +730,7 @@ ca:
     other_instruments: Altres instruments
     other_life_dates: Altres dates
     other_physical_details: Altres detalls físics
+    other_resource: Other resource
     other_searchform: Altra variant
     other_shelfmark: Altra signatura
     other_standard_identifier: Altre identificador estàndard

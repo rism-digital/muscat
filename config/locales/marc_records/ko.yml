@@ -545,6 +545,7 @@ ko:
     identity_area: Identity area
     iiif_manifest: "IIIF manifest (digitized source)"
     iiif_manifest_other: "IIIF manifest (other)"
+    iiif_manifest_nothing_more: IIIF manifest
     illustrator: Illustrator
     immediate_parent_body: Immediate parent body
     import: Import
@@ -711,6 +712,7 @@ ko:
     octoechos7: 'Octoechos 7: Ēchos barys (Third plagal mode of Byzantine music)'
     octoechos8: 'Octoechos 8: Ēchos plagios tetartos (Fourth plagal mode of Byzantine music)'
     online_finding_aids: Online finding aids
+    online_resource: Online resource
     opera_houses_concert_halls: Opera houses and concert halls
     opus_number: Opus number
     opus_thematic_index_number: Opus/Thematic index number
@@ -728,6 +730,7 @@ ko:
     other_instruments: Other instruments
     other_life_dates: Other life dates
     other_physical_details: Other physical details
+    other_resource: Other resource
     other_searchform: Other Searchform
     other_shelfmark: Other shelfmark
     other_standard_identifier: Other standard identifier

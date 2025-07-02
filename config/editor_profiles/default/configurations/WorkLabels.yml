@@ -113,8 +113,8 @@
 '380':
   fields:
     a:
-      label: records.subject_heading
-  label: records.subject_heading
+      label: records.form_of_work
+  label: records.form_of_work
 '383':
   fields:
     a:

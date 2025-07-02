@@ -545,6 +545,7 @@ it:
     identity_area: Identità
     iiif_manifest: "IIIF manifest (fonte digitale)"
     iiif_manifest_other: "IIIF manifest (altro)"
+    iiif_manifest_nothing_more: Manifesto IIIF
     illustrator: Disegnatore
     immediate_parent_body: Istituzione immediatamente precedente
     import: Dati importati
@@ -711,6 +712,7 @@ it:
     octoechos7: 'Octoechos 7: Ēchos barys (terzo modo plagale nella musica bizantina)'
     octoechos8: 'Octoechos 8: Ēchos plagios tetartos (quarto modo plagale nella musica bizantina)'
     online_finding_aids: Strumenti di supporto alla ricerca online
+    online_resource: Risorsa in rete
     opera_houses_concert_halls: Teatri e sale da concerto
     opus_number: N.o d'opera
     opus_thematic_index_number: Numero d'opera / del catalogo delle opere
@@ -728,6 +730,7 @@ it:
     other_instruments: Altri strumenti
     other_life_dates: Altre date
     other_physical_details: Altri dettagli sul materiale
+    other_resource: Altra risorsa
     other_searchform: Altra forma di ricerca
     other_shelfmark: Altra segnatura
     other_standard_identifier: Riferimento autorità

@@ -545,6 +545,7 @@ es:
     identity_area: Identidad
     iiif_manifest: "Manifiesto IIIF (fuente digitalizada)"
     iiif_manifest_other: "Manifiesto IIIF (otro)"
+    iiif_manifest_nothing_more: Manifiesto IIIF
     illustrator: Ilustrador
     immediate_parent_body: Padre inmediato
     import: Importación
@@ -711,6 +712,7 @@ es:
     octoechos7: 'Octoechos 7: Ēchos barys (Tercer modo bizantino plagal)'
     octoechos8: 'Octoechos 8: Ēchos plagios tetartos (Cuarto modo bizantino plagal)'
     online_finding_aids: Guías del archivo online
+    online_resource: Recurso en línea
     opera_houses_concert_halls: Teatros de ópera y salas de concierto
     opus_number: Número de Opus
     opus_thematic_index_number: Número de Opus/Índice temático
@@ -728,6 +730,7 @@ es:
     other_instruments: Otros instrumentos
     other_life_dates: Otras fechas de vida
     other_physical_details: Otros detalles físicos
+    other_resource: Other resource
     other_searchform: Otra variante
     other_shelfmark: Otra signatura
     other_standard_identifier: Otro identificador estándar

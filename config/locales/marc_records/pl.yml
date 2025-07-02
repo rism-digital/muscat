@@ -545,6 +545,7 @@ pl:
     identity_area: Obszar tożsamości
     iiif_manifest: "Manifest IIIF (źródło zdigitalizowane)"
     iiif_manifest_other: "Manifest IIIF (inne)"
+    iiif_manifest_nothing_more: Manifest IIIF
     illustrator: Ilustrator
     immediate_parent_body: Natychmiastowy rodzic
     import: Import
@@ -711,6 +712,7 @@ pl:
     octoechos7: 'Octoechos 7: Ēchos barys (trzecia skala plagalna muzyki bizantyjskiej)'
     octoechos8: 'Octoechos 8: Ēchos plagios tetartos (czwarta skala plagalna muzyki bizantyjskiej)'
     online_finding_aids: Pomoce archiwalne on-line
+    online_resource: Zasoby Online
     opera_houses_concert_halls: Opery i sale koncertowe
     opus_number: Numer opus
     opus_thematic_index_number: Opus / Numer z katalogu tematycznego
@@ -728,6 +730,7 @@ pl:
     other_instruments: Pozostałe instrumenty
     other_life_dates: Pozostałe daty urodzenia i śmierci
     other_physical_details: Pozostałe dane fizyczne
+    other_resource: Inne zasoby
     other_searchform: Inna forma wyszukiwania
     other_shelfmark: Inna sygnatura
     other_standard_identifier: Identyfikator innego standardu
