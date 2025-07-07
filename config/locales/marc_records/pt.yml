@@ -492,6 +492,7 @@ pt:
     fingerprint_identifier: Identificador de impressão
     first_entry: Primeira entrada
     first_second_group: Primeiro/Segundo grupo
+    form_of_work: Forma da obra
     form_subdivision: Divisão da forma
     format_extent: Formato, extensão
     former_sigla: Former siglum

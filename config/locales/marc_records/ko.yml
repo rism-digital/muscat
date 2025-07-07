@@ -492,6 +492,7 @@ ko:
     fingerprint_identifier: Fingerprint identifier
     first_entry: First entry
     first_second_group: First/second group
+    form_of_work: Form of work
     form_subdivision: Form subdivision
     format_extent: Format, extent
     former_sigla: Former siglum

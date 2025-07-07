@@ -492,6 +492,7 @@ pl:
     fingerprint_identifier: Identyfikator odcisku palca
     first_entry: Pierwszy wpis
     first_second_group: Pierwsza / druga grupa
+    form_of_work: Gatunek dzieła
     form_subdivision: Dalszy podział formularza
     format_extent: Rodzaj źródła, objętość
     former_sigla: Poprzednie siglum

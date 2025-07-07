@@ -492,6 +492,7 @@ ca:
     fingerprint_identifier: Identificador de l'empremta
     first_entry: Primera entrada
     first_second_group: Primer/segon grup
+    form_of_work: Form of work
     form_subdivision: Subdivisió de forma
     format_extent: Format, extensió
     former_sigla: Sigla anterior
