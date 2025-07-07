@@ -36,7 +36,7 @@ class EditorHelpController < ApplicationController
     end
 
     if file_type
-      file_data = Redcarpet::Markdown.new(Redcarpet::Render::HTML).render(file_data).html_safe
+      file_data = Redcarpet::Markdown.new(Redcarpet::Render::HTML, autolink: true, tables: true).render(file_data, ).html_safe
       file_data += "<small style='color: gray;'>Muscat v11.6</small>".html_safe
     else
       file_data += "<small style='color: gray;'>Muscat v11.4</small>".html_safe
