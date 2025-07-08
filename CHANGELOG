@@ -1,6 +1,39 @@
 Muscat Changelog
 ================
 
+v 11.6.3
+* Make the Person validation validate the correct field (551)
+* Make GND ordering costum
+* More mods to the GND test scrip, + cornetto fixes
+* GND: make a and d editable in 400
+* FIx WC label
+* Update gnd_work_100_de.html
+* Merge pull request #1814 from afaschon/patch-38
+* Fix #1811, add missing subfields
+* #1813 make tags not deletable
+* Merge pull request #1825 from afaschon/patch-47
+* Merge pull request #1824 from afaschon/patch-46
+* Merge pull request #1823 from afaschon/patch-45
+* Merge pull request #1822 from afaschon/patch-44
+* Merge pull request #1821 from afaschon/patch-43
+* Merge pull request #1820 from afaschon/patch-42
+* Merge pull request #1819 from afaschon/patch-41
+* Merge pull request #1818 from afaschon/patch-40
+* Merge pull request #1817 from afaschon/patch-39
+* Merge pull request #1826 from afaschon/patch-48
+* Merge pull request #1828 from afaschon/patch-50
+* Merge pull request #1827 from afaschon/patch-49
+* Fix #1790, add 856 $x
+* Fix #1829, add proper stored ID for autocomplete
+* Merge pull request #1833 from afaschon/patch-54
+* Merge pull request #1832 from afaschon/patch-53
+* Merge pull request #1831 from afaschon/patch-52
+* Merge pull request #1830 from afaschon/patch-51
+* Fix #1815, rename to Form of work
+* Enable DE guidelines
+* Properly set the hardcoded guideline versions
+* Fix #1836, enable table rendering
+
 v 11.6.2
 * Fix EDTF editing in Works
 * Merge pull request #1810 from afaschon/patch-37
