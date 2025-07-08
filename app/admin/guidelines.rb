@@ -4,7 +4,8 @@ ActiveAdmin.register_page "guidelines" do
   
   controller do
     def index
-      redirect_to "https://guidelines.rism.info/", status: :moved_permanently, allow_other_host: true
+      lang = I18n.locale.to_s == "de" ? "de/" : "" rescue lang = ""
+      redirect_to "https://guidelines.rism.info/#{lang}", status: :moved_permanently, allow_other_host: true
 
      # @guidelines = Guidelines.new(ConfigFilePath.get_marc_editor_profile_path("#{Rails.root}/public/help/#{RISM::MARC}/guidelines.yml"), session[:locale])
     end
