@@ -329,6 +329,8 @@ require "patches/kaminari/helpers/tag"
 require 'patches/active_admin/filters/active_filter.rb'
 ## RZ Add some text to the comments box, for help
 require 'patches/active_admin/comments/views/comments_ext.rb'
+## Add a Clear button when a filter is active
+require 'patches/active_admin/views/components/active_filters_sidebar_content.rb'
 
 ActiveAdmin.before_load do |app|
   # Add our Extensions
