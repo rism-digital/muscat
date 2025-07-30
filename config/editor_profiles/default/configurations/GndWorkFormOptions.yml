@@ -1168,9 +1168,10 @@ force_editor_ordering: true
         select_label: "Function"
         codes_reference: "relator_codes"
     - - "9"
-    - - n
-    - - p
-    - - r
+      - default: "v:"
+    #- - n
+    #- - p
+    #- - r
   tag_params:
     relator_codes:
       - anla
@@ -1218,7 +1219,7 @@ force_editor_ordering: true
 "530": 
   layout: 
     fields: 
-    - - t
+    - - a
     - - "0"
       - default: "(DE-588)"
     - - "4"
@@ -1289,7 +1290,10 @@ force_editor_ordering: true
     fields:
     - - a
       - default: "RISM NFDI4Culture"
+        read_only: true
     - - "5"
+      - default: "DE-633"
+        read_only: true
 "670": 
   layout: 
     fields: 
