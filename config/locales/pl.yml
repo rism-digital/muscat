@@ -567,6 +567,7 @@ pl:
   liturgicalfeast:
     one: Święto liturgiczne
     other: Święta liturgiczne
+  loading: Ładowanie..
   logout:
     confirm: Są otwarte okna Muscat. Jeśli wylogujesz się, wszelkie niezapisane zmiany zostaną utracone. Czy chcesz kontynuować?
     generic_error: Wylogowałeś się z Muscat. Odśwież stronę, aby wrócić do ekranu logowania.

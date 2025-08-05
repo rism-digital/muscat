@@ -567,6 +567,7 @@ it:
   liturgicalfeast:
     one: festa liturgica
     other: feste liturgiche
+  loading: Caricamento...
   logout:
     confirm: Ci sono finestre di Muscat aperte. Se esci, eventuali modifiche non salvate andranno perse. Vuoi continuare?
     generic_error: Sei uscito da Muscat. Aggiorna la pagina per tornare alla schermata di accesso.

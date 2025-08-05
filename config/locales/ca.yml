@@ -567,6 +567,7 @@ ca:
   liturgicalfeast:
     one: festivitat litúrgica
     other: festivitats litúrguqyes
+  loading: Carregant...
   logout:
     confirm: Hi ha finestres Muscat obertes. Si tanques la sessió, es perdran els canvis no desats. Vols continuar?
     generic_error: T'has tancat la sessió de Muscat. Si us plau, actualitza la pàgina per tornar a la pantalla d'inici de sessió.

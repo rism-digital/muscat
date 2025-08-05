@@ -567,6 +567,7 @@ en:
   liturgicalfeast:
     one: litrugical feast
     other: liturgical feasts
+  loading: Loading...
   logout:
     confirm: There are open Muscat windows. If you log out, any unsaved changes will be lost. Do you want to continue?
     generic_error: You have logged out of Muscat. Please refresh the page to return to the login screen.

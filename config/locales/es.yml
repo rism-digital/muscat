@@ -567,6 +567,7 @@ es:
   liturgicalfeast:
     one: festividad litúrgica
     other: festividades litúrgicas
+  loading: Cargando...
   logout:
     confirm: Hay ventanas de Muscat abiertas. Si cierra sesión, se perderán los cambios no guardados. ¿Desea continuar?
     generic_error: Se ha cerrado la sesión de Muscat. Por favor, actualice la página para volver a la pantalla de inicio de sesión.

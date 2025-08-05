@@ -567,6 +567,7 @@ fr:
   liturgicalfeast:
     one: fête liturgique
     other: fêtes liturgiques
+  loading: Chargement...
   logout:
     confirm: Il y a des fenêtres Muscat ouvertes. Si vous vous déconnectez, toutes les modifications non enregistrées seront perdues. Voulez-vous continuer ?
     generic_error: Vous vous êtes déconnecté de Muscat. Veuillez actualiser la page pour revenir à l'écran de connexion.

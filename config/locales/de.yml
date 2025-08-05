@@ -567,6 +567,7 @@ de:
   liturgicalfeast:
     one: Liturgisches Fest
     other: Liturgische Feste
+  loading: Wird geladen...
   logout:
     confirm: Es gibt offene Muscat-Fenster. Wenn Sie sich abmelden, gehen nicht gespeicherte Änderungen verloren. Möchten Sie fortfahren?
     generic_error: Sie haben sich von Muscat abgemeldet. Bitte aktualisieren Sie die Seite, um zum Anmeldebildschirm zurückzukehren.
