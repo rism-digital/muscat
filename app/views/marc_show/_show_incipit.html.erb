@@ -78,14 +78,18 @@
 		<td></td>
 		<td>
 			<a onclick="javascript:show_hide_pae('<%=random_string%>');">PAE Code</a><p>
+			<ul>
+				<div class="icon-button">
+					<span class="icon-copy copy_to_clipboard" data-clipboard-text="<%= notation %>"></span>
+					<span id="clipboard-message" class="clipboard-message status_tag ok">Notation copied</>
+				</div>
+			</ul>
+
 			<span id="<%= random_string %>"  style="display:none"><%= label.html_safe %></span></p>
 			<div id="<%= image_render_div %>"><img src="/images/spinner_small.gif" />&nbsp;Engraving incipit...</div>
 		</td>
 	<tr>
-	<%-
 
-
-	%>
 
 	<script type="text/javascript">
 

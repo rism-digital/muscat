@@ -205,8 +205,8 @@ function setup_logout_watcher() {
     });
 }
 
-function show_clipboard_toast() {
-    var toast = $('#clipboard-message');
+function show_clipboard_toast(toast) {
+    //var toast = $('#clipboard-message');
 
     toast.fadeIn("fast");
 
@@ -228,42 +228,66 @@ function get_origin() {
 }
 
 function setup_clipboard() {
+
+    function copy_table(table_class) {
+        if ($(table_class).length < 1)
+            return;
+
+        let table = $(table_class)[0]
+        let rows = table.getElementsByTagName('tr');
+        let dataToCopy = '';
+    
+        for (let i = 0; i < rows.length; i++) {
+            let cells = rows[i].getElementsByTagName('td');
+            if (cells.length == 0)
+                cells = rows[i].getElementsByTagName('th');
+            let rowData = [];
+    
+            for (let j = 1; j < cells.length - 1; j++) {
+                rowData.push(cells[j].innerText);
+            }
+    
+            // the last cell is the Show/Edit/Delete buttons
+            var edit_link = $(cells[cells.length - 1]).find("a.edit_link")
+            if (edit_link.length > 0)
+                rowData.push(get_origin() + $(edit_link[0]).attr("href"))
+
+            dataToCopy += rowData.join('\t') + '\n'; // Use tab-delimited format or change as needed
+        }
+        
+        //console.log(dataToCopy)
+        return dataToCopy;
+    };
+
     // Add the Clipboard functions
     var clipboard = new ClipboardJS('.copy_to_clipboard', {
+
+
         text: function(trigger) {
             let table_class = $(trigger).data("clipboard-target")
-            if ($(table_class).length < 1)
-                return;
-
-            let table = $(table_class)[0]
-            let rows = table.getElementsByTagName('tr');
-            let dataToCopy = '';
-        
-            for (let i = 0; i < rows.length; i++) {
-                let cells = rows[i].getElementsByTagName('td');
-                if (cells.length == 0)
-                    cells = rows[i].getElementsByTagName('th');
-                let rowData = [];
-        
-                for (let j = 1; j < cells.length - 1; j++) {
-                    rowData.push(cells[j].innerText);
-                }
-        
-                // the last cell is the Show/Edit/Delete buttons
-                var edit_link = $(cells[cells.length - 1]).find("a.edit_link")
-                if (edit_link.length > 0)
-                    rowData.push(get_origin() + $(edit_link[0]).attr("href"))
-
-                dataToCopy += rowData.join('\t') + '\n'; // Use tab-delimited format or change as needed
+            if (table_class !== undefined) {
+                return copy_table(table_class)
             }
+
+            let hardcoded_data = $(trigger).data("clipboard-text")
             
-            //console.log(dataToCopy)
-            return dataToCopy;
+            if (hardcoded_data !== undefined) {
+                return hardcoded_data;
+            }
+
         }
     });
 
     clipboard.on('success', function(e) {
-        show_clipboard_toast();
+        let console_element = $(e.trigger)
+        if ($(console_element).data("clipboard-target") !== undefined)
+            show_clipboard_toast($('#clipboard-message'));
+
+        if ($(console_element).data("clipboard-text") !== undefined) {
+            const message = $(e.trigger).siblings('#clipboard-message');
+            show_clipboard_toast($(message));
+        }
+        
         e.clearSelection();
     });
 }
