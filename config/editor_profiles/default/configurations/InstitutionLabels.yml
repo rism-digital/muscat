@@ -385,3 +385,20 @@ t:
   label: records.immediate_parent_body
 Congress:
   label: records.congress
+
+"rdaa:P50008":
+  label: relations_institutions.P50008
+"rdaa:P50010":
+  label: relations_institutions.P50010
+"rdaa:P50012":
+  label: relations_institutions.P50012
+"rdaa:P50016":
+  label: relations_institutions.P50016
+"rdaa:P50020":
+  label: relations_institutions.P50020
+"rdaa:P50230":
+  label: relations_institutions.P50230
+"rdaa:P50435":
+  label: relations_institutions.P50435
+"rdaa:P50301":
+  label: relations_institutions.P50301

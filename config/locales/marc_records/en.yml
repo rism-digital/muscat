@@ -853,7 +853,7 @@ en:
     sister_of: Sister of
     sketches: Sketches
     solo_voice: Solo voice
-    soloist_instrument: Soloist intrument
+    soloist_instrument: Soloist instrument
     source: Source
     sources: Sources
     source_data_found: Source data found
@@ -971,6 +971,15 @@ en:
     P60242: "Is arrangement of"
     P60198: "Is complemented by"
     P60313: "Undefined"
+  relations_institutions:
+    P50008: Hierarchical superior
+    P50010: Hierarchical subordinate
+    P50012: Predecessor of corporate body
+    P50016: Successor of corporate body
+    P50020: Founding family of corporate body
+    P50230: Corporate body member of corporate body
+    P50435: Corporate body member of family
+    P50301: Absorbed corporate body
   verovio:
     position: "Position"
     warning: "Warning"

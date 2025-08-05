@@ -261,6 +261,8 @@
       - editor_partial: subfield_select_codes
         select_label: "Term"
     - - i
+      - editor_partial: subfield_select_codes
+        codes_reference: "510i"
   tag_params:
     codes:
       - "a" 
@@ -273,6 +275,15 @@
       - "n"
       - "r"
       - "t"
+    "510i":
+      - "rdaa:P50008"
+      - "rdaa:P50010"
+      - "rdaa:P50012"
+      - "rdaa:P50016"
+      - "rdaa:P50020"
+      - "rdaa:P50230"
+      - "rdaa:P50435"
+      - "rdaa:P50301"
 "551": 
   new_window: places
   layout: 
