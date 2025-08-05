@@ -70,7 +70,7 @@
 		</td>
 	<tr>
 	<script type="text/javascript">
-		render_music("<%=mei_incipit%>", "mei", $("#" + "<%=image_render_div%>"), 600);
+		render_music("<%=mei_incipit%>", "mei", $("#" + "<%=image_render_div%>"), $("#" + "<%=image_render_div%>").width());
 	</script>
 <% else %>
 	<%	if (tag_p && tag_p.content ) || (tag_g && tag_g.content ) || (tag_n && tag_n.content ) || (tag_o && tag_o.content ) %>
@@ -97,7 +97,7 @@
 		pae = pae + "@key:<%= key_or_mode %>\n";
 		pae = pae + "@timesig:<%= time %>\n";
 		pae = pae + "@data: <%= notation %>";
-		render_music(pae, 'pae', $("#" + "<%=image_render_div%>"));
+		render_music(pae, 'pae', $("#" + "<%=image_render_div%>"), $("#" + "<%=image_render_div%>").width());
 
 		function show_hide_pae(id) {
 			row = $("#" + id)
