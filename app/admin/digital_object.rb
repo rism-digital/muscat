@@ -38,15 +38,13 @@ ActiveAdmin.register DigitalObject do
         model = Source if params[:digital_object][:new_object_link_type] == "Source"
         model = Work if params[:digital_object][:new_object_link_type] == "Work"
 
-        #begin
+        begin
           @incipits = DigitalObject.incipits_for(model, params[:digital_object][:new_object_link_id])
-          ap @incipits
-        #rescue ActiveRecord::RecordNotFound
-        #  flash[:error] = "Object does not exist"
-        #  redirect_to collection_path
-        #end
+        rescue ActiveRecord::RecordNotFound
+          flash[:error] = "Object does not exist"
+          redirect_to collection_path
+        end
 
-        ap @incipits
         if @incipits.empty?
           flash[:error] = "Object contains no incipits"
           redirect_to collection_path
@@ -72,7 +70,9 @@ ActiveAdmin.register DigitalObject do
 
         begin
           model = @digital_object.digital_object_links.first.object_link_type.constantize
-          @incipits = model.incipits_for(@digital_object.digital_object_links.first.object_link_id)
+          #@incipits = model.incipits_for(@digital_object.digital_object_links.first.object_link_id)
+
+          @incipits = DigitalObject.incipits_for(model, @digital_object.digital_object_links.first.object_link_id)
         rescue ActiveRecord::RecordNotFound
           flash[:error] = "Object does not exist"
           redirect_to collection_path
