@@ -152,6 +152,14 @@ de:
     total_number_ensembles: Gesamtzahl der Ensembles
     note: Bemerkung
     biographical_historical_information: Biografische, geschichtliche und weitere Angaben
+    description: Beschreibung
+    gnd_editor_title: Dies ist der GND-Editor für Werke
+    last_20_created_records: Zuletzt erstellte 20 Einträge
+    gnd_id: GND-ID
+    date_created: Erstellungsdatum
+    edit: Bearbeiten
+    search: Suche
+    edit_gnd_record: GND-Datensatz bearbeiten
 
     anla: "Anlass"
     nach: "Nachfolger"
