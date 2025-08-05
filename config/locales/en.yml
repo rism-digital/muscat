@@ -643,6 +643,7 @@ en:
   new_inventory_item: Create new inventory item
   new_inventory_item_page: New inventory item
   no_action: No action available
+  notation_copied: Notation copied
   not_set: "[not set]"
   notifications:
     cadence: Notification cadence

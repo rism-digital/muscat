@@ -643,6 +643,7 @@ pl:
   new_inventory_item: Utwórz nowy element inwentarza
   new_inventory_item_page: Nowy element inwentarza
   no_action: Brak dostępnego działania
+  notation_copied: Notacja skopiowana
   not_set: "[nie ustawiony]"
   notifications:
     cadence: Kadencja powiadomień

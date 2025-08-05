@@ -643,6 +643,7 @@ fr:
   new_inventory_item: Créer un nouvel élément d'inventaire
   new_inventory_item_page: Nouvel élément d'inventaire
   no_action: Aucune action possible
+  notation_copied: Notation copié
   not_set: "[not défini]"
   notifications:
     cadence: Cadence des notifications

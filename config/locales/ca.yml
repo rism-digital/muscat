@@ -643,6 +643,7 @@ ca:
   new_inventory_item: Crear un nou article d'inventari
   new_inventory_item_page: Nou article d'inventari
   no_action: Sense accions disponibles
+  notation_copied: Notació copiada
   not_set: "[not set]"
   notifications:
     cadence: Freqüència de les notificacions

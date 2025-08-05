@@ -643,6 +643,7 @@ de:
   new_inventory_item: Neuen Inventareintrag erstellen
   new_inventory_item_page: Neuer Inventareintrag
   no_action: Keine Aktion verfügbar
+  notation_copied: Notation kopiert
   not_set: "[nicht fest]"
   notifications:
     cadence: Kadenz der Benachrichtigung
