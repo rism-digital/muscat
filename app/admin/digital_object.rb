@@ -28,9 +28,7 @@ ActiveAdmin.register DigitalObject do
       @attachment_type = params.include?(:attachment_type) && params[:attachment_type] == "incipit" ? :incipit : :image
 
       if @attachment_type == :incipit
-        # @incipits = Source.incipits_for(params[:digital_object][:new_object_link_id])
         # We support only works and sources
-
         if params[:digital_object][:new_object_link_type] != "Source" && params[:digital_object][:new_object_link_type] != "Work"
           raise ArgumentError, "Unsupported model #{params[:digital_object][:new_object_link_type]}"
         end
@@ -70,8 +68,6 @@ ActiveAdmin.register DigitalObject do
 
         begin
           model = @digital_object.digital_object_links.first.object_link_type.constantize
-          #@incipits = model.incipits_for(@digital_object.digital_object_links.first.object_link_id)
-
           @incipits = DigitalObject.incipits_for(model, @digital_object.digital_object_links.first.object_link_id)
         rescue ActiveRecord::RecordNotFound
           flash[:error] = "Object does not exist"
@@ -256,10 +252,13 @@ ActiveAdmin.register DigitalObject do
   
   sidebar :actions, :only => :show do
     render :partial => "activeadmin/section_sidebar_show", :locals => { :item => digital_object }
-    # You should not re-link incipit to multiple items
+
     if digital_object.images?
       render :partial => "activeadmin/section_sidebar_do_links", :locals => { :item => digital_object }
+    elsif digital_object.incipits?
+      render :partial => "activeadmin/section_sidebar_do_incipits", :locals => { :item => digital_object }
     end
+
     render :partial => "activeadmin/section_sidebar_folder_actions", :locals => { :item => digital_object }
   end
 
