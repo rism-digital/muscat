@@ -325,6 +325,7 @@ ca:
   duplicate: Duplica
   duplicate_confirm: Segur que voleu duplicar aquest registre?
   edit: Edita
+  engraving_incipit: Renderització de l’incipit...
   entry:
     one: entada
     other: entrades

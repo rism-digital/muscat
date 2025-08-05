@@ -325,6 +325,7 @@ es:
   duplicate: Duplicar
   duplicate_confirm: "¿Está seguro de que desea duplicar este registro?"
   edit: Editar
+  engraving_incipit: Renderizado del incipit...
   entry:
     one: entrada
     other: entradas

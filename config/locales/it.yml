@@ -325,6 +325,7 @@ it:
   duplicate: Duplica
   duplicate_confirm: Sei sicuro di voler duplicare questo record?
   edit: Modifica
+  engraving_incipit: Rendering dell'incipit...
   entry:
     one: voce
     other: voci

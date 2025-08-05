@@ -325,6 +325,7 @@ pl:
   duplicate: Powiel
   duplicate_confirm: Czy na pewno powielić ten rekord?
   edit: Edytuj
+  engraving_incipit: Renderowanie incipitu... 
   entry:
     one: Wpis
     other: Wpisy

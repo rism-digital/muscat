@@ -81,12 +81,12 @@
 			<ul>
 				<div class="icon-button">
 					<span class="icon-copy copy_to_clipboard" data-clipboard-text="<%= notation %>"></span>
-					<span id="clipboard-message" class="clipboard-message status_tag ok">Notation copied</>
+					<span id="clipboard-message" class="clipboard-message status_tag ok"><%= I18n.t(:notation_copied)%></>
 				</div>
 			</ul>
 
 			<span id="<%= random_string %>"  style="display:none"><%= label.html_safe %></span></p>
-			<div id="<%= image_render_div %>"><img src="/images/spinner_small.gif" />&nbsp;Engraving incipit...</div>
+			<div id="<%= image_render_div %>"><img src="/images/spinner_small.gif" />&nbsp;<%=I18n.t(:engraving_incipit)%></div>
 		</td>
 	<tr>
 
