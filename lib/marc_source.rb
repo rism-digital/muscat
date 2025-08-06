@@ -227,6 +227,12 @@ class MarcSource < Marc
     #load_source false if !@loaded
     first_occurance("001").content = "__TEMP__"
     by_tags("774").each {|t| t.destroy_yourself}
+
+    #1526 delete some additional fields
+    by_tags("588").each {|t| t.destroy_yourself}
+    by_tags("775").each {|t| t.destroy_yourself}
+    by_tags("599").each {|t| t.destroy_yourself}
+
   end
 
   def match_leader
