@@ -20,6 +20,8 @@
 
 				<%elsif item.is_a? Institution %>
 					<a href="<%=RISM::MUSCAT_URL%>/admin/institutions/<%=item.id%>"><%=item.id%></a>, <%=item.siglum%>, <%=item.name%> [created: <%=item.created_at%>, modified: <%=item.updated_at%>]
+				<%elsif item.is_a? Holding %>
+					<a href="<%=RISM::MUSCAT_URL%>/admin/holdings/<%=item.id%>/edit"><%=item.id%></a>, <%=item.lib_siglum%>, part of: <%=item.source_id%> [created: <%=item.created_at%>, modified: <%=item.updated_at%>]
 				<%else%>
 					<a href="<%=RISM::MUSCAT_URL%>/admin/works/<%=item.id%>"><%=item.id%></a>, <%=item.title%> [created: <%=item.created_at%>, modified: <%=item.updated_at%>]
 				<%end%>
