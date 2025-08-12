@@ -8,6 +8,7 @@ end
 Source.where("marc_source LIKE '%=510%'").each do |s|
   
   save = false
+  msg = ""
   s.marc.load_source
 
   s.marc["510"].each do |t|
@@ -19,13 +20,20 @@ Source.where("marc_source LIKE '%=510%'").each do |s|
         t["a"].first.content = "B/I"
         t["c"].first.content = normalize(c) if !c.empty?
         save = true
+        msg = "$a and $c"
       end
     end
-
+=begin
+  if a.include?("RISM")
+    t["a"].first.content = a.gsub("RISM", "").strip
+    save = true
+    msg = "$a"
+  end
+=end
   end
 
   if save
-    s.paper_trail_event = "Normalise 510$c"
+    s.paper_trail_event = "Normalise 510 $a and $c"
     s.save
     puts s.id
   end
