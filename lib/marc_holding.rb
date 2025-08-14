@@ -37,8 +37,10 @@ class MarcHolding < Marc
     end
     
     # Sould always be there
-    if node.foreign_object && node.foreign_object.full_name
+    if node && node.foreign_object && node.foreign_object.full_name
       res['name'] = node.foreign_object.full_name.truncate(90) # Avoid overflowing the box
+    else
+      res['name'] = 'UNNAMED LIBRARY'
     end
 
     if res.length > 0
