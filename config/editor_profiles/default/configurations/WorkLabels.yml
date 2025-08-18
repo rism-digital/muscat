@@ -68,7 +68,7 @@
 '046':
   fields:
     k:
-      label: records.beginning_or_single_date
+      label: records.date_of_creation
     l:
       label: records.end
     z:
