@@ -157,7 +157,7 @@ class Marc
     if @marc_configuration.is_tagless?(tag)
       if data =~ /^[\s]*(.+)$/
         content = $1
-        tag_group = @root << MarcNode.new(@model, tag, content, nil)
+        tag_group = @root << MarcNode.new(@model, tag, content&.strip, nil)
       end
     # normal fields
     else
@@ -181,7 +181,7 @@ class Marc
         @results << "Subfield #{tag} $#{subtag} missing in the marc configuration" if !@marc_configuration.has_subfield? tag, subtag
         marc_log ["PARSE", "SUBTAG_NOT_CONFIGURED", "TAG=#{tag}", "SUBTAG=#{subtag}"] if !@marc_configuration.has_subfield? tag, subtag
 
-        subtag = tag_group << MarcNode.new(@model, subtag, content, nil)
+        subtag = tag_group << MarcNode.new(@model, subtag, content&.strip, nil)
       end
     end
   end
