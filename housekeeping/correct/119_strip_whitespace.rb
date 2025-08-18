@@ -14,7 +14,7 @@ if !StandardTitle.respond_to? :referring_relations
 end
 
 cnt = 0
-StandardTitle.all.each do |st|
+StandardTitle.find_each(batch_size: 500) do |st|
   
   new_title = st.title.strip
   new_notes = st.notes&.strip
@@ -24,18 +24,15 @@ StandardTitle.all.each do |st|
   if st.title != new_title || new_notes != st.notes ||
      new_at != st.alternate_terms || new_topic != st.sub_topic
     
-    old_title = st.title
     st.title = new_title
     st.notes = new_notes if st.notes 
     st.alternate_terms = new_at if st.alternate_terms
     st.sub_topic = new_topic if st.sub_topic
 
-    
-
     cnt += 1
     st.save
 
-    StandardTitle.referring_relations.each {|rel| Delayed::Job.enqueue(SaveItemsJob.new(st.id, st.class, rel)) } if old_title != new_title
+    StandardTitle.referring_relations.each {|rel| Delayed::Job.enqueue(SaveItemsJob.new(st.id, st.class, rel)) } if st.saved_change_to_title?
   end
 
 end
@@ -43,7 +40,7 @@ end
 puts "saved #{cnt} titles"
 
 cnt = 0
-StandardTerm.all.each do |st|
+StandardTerm.find_each(batch_size: 500) do |st|
   
   new_term = st.term.strip
   new_notes = st.notes&.strip
@@ -53,8 +50,6 @@ StandardTerm.all.each do |st|
   if st.term != new_term || new_notes != st.notes ||
      new_at != st.alternate_terms || new_topic != st.sub_topic
     
-    old_term = st.term
-
     st.term = new_term
     st.notes = new_notes if st.notes 
     st.alternate_terms = new_at if st.alternate_terms
@@ -63,7 +58,7 @@ StandardTerm.all.each do |st|
     st.save
 
     cnt += 1
-    StandardTerm.referring_relations.each {|rel| Delayed::Job.enqueue(SaveItemsJob.new(st.id, st.class, rel)) } if old_term != new_term
+    StandardTerm.referring_relations.each {|rel| Delayed::Job.enqueue(SaveItemsJob.new(st.id, st.class, rel)) } if st.saved_change_to_term?
   end
 
 end
