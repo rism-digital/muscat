@@ -84,9 +84,13 @@ $(document).on('visibilitychange', function() {
         // document.hidden == true is set every time
         // there is a request. Here we are only interested
         // when the tab is actually hidden
-        if (!tab_saver_unload) {
-            console.log("Unset tab from " + get_or_create_tab_id())
-        }
+        // tab_saver_unload to save the search between closed windows
+        // UNCOMMENT FOR PREVIOUS WAY OF THINGS
+        //if (!tab_saver_unload) {
+            console.log("Unset tab from " + get_or_create_tab_id());
+            // REMOVE THIS TO PERSIST SEARCHES
+            Cookies.remove("tab-id");
+        //}
         tab_saver_unload = false;
     }
 });
@@ -106,7 +110,7 @@ $(window).on('load', function() {
             // save the searches. If we receive data for another tab, it
             // means both were loaded at the same time and the tab-id cookie
             // got overwritten. In this case we do not mix the two requests
-            if (cookie["tab-id"] === tab_id || new_tab) {
+            if (cookie["tab-id"] === tab_id) { //|| new_tab) { NOTE!! for testing: do not copy the tab store cookie in a new tab
                 sessionStorage.setItem("tab-store", Cookies.get("tab-store"));
             } else {
                 console.log("Tab id mismatch, possible race condition? Do not update tab store")
