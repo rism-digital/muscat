@@ -13,7 +13,6 @@ module ActiveAdmin
       def get_saved_filters_for(tag)
         # store in the session - only for testing!
         #return session["filters"][tag] if tag && !tag.empty? && session.include?("filters") && session["filters"].include?(tag)
-        
         return cookies.signed["tab-store"] if cookies.signed["tab-store"] && cookies.signed["tab-store"].is_a?(Hash)
         return session
       end
@@ -29,11 +28,15 @@ module ActiveAdmin
         # it shows in the footer through Arbre
         @tab_id_for_footer = cookies["tab-id"]
 
+        # REMOVE THIS to persist
+        return if !@tab_id_for_footer
+
         saved_filters = get_saved_filters_for(@tab_id_for_footer)
         puts "Using saved filters for #{@tab_id_for_footer}"
 
         filter_storage = saved_filters["last_search_filter"]
         pagination_storage = saved_filters["last_search_page"]
+        per_page_storage = saved_filters["last_per_page"]
         order_storage = saved_filters["last_order_page"]
         scope_storage = saved_filters["last_scope"]
         # Do not restore filters opening the select mode
@@ -63,21 +66,26 @@ module ActiveAdmin
             #logger.info "clearing pagination storage for #{controller_name}"
             pagination_storage.delete controller_name
           end
+
+          if per_page_storage
+            per_page_storage.delete controller_name
+          end
+
           # comment this to avoid resetting scoping when resetting filters
           if scope_storage
             scope_storage.delete controller_name
           end
           # uncomment this to also reset order
-          #if order_storage
-          #  logger.info "clearing order storage for #{controller_name}"
-          #  order_storage.delete controller_name
+          if order_storage
+            logger.info "clearing order storage for #{controller_name}"
+            order_storage.delete controller_name
           #end
           # oppositely, we want to restore the order (if not changed)
-          if order_storage && params[:order].blank?
-            saved_order = order_storage[controller_name]
-            unless saved_order.blank?
-              params[:order] = saved_order
-            end
+          #if order_storage && params[:order].blank?
+          #  saved_order = order_storage[controller_name]
+          #  unless saved_order.blank?
+          #    params[:order] = saved_order
+          #  end
           end
           puts "Cleared filters for #{@tab_id_for_footer}"
           cookies.signed["tab-store"] = {value: saved_filters}
@@ -106,6 +114,14 @@ module ActiveAdmin
                 params[:page] = saved_page
               end
             end
+
+            if per_page_storage && params[:per_page].blank?
+              saved_per_page = per_page_storage[controller_name]
+              unless saved_per_page.blank?
+                params[:per_page] = saved_per_page
+              end
+            end
+
             # and order too
             if order_storage && params[:order].blank?
               saved_order = order_storage[controller_name]
@@ -153,6 +169,10 @@ module ActiveAdmin
           if params.include?(:page)
             saved_filters["last_search_page"] ||= Hash.new
             saved_filters["last_search_page"][controller_name] = params[:page]
+          end
+          if params.include?(:per_page)
+            saved_filters["last_per_page"] ||= Hash.new
+            saved_filters["last_per_page"][controller_name] = params[:per_page]
           end
           if params.include?(:order)
             saved_filters["last_order_page"] ||= Hash.new
