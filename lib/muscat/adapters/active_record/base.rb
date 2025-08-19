@@ -46,8 +46,9 @@ module Muscat
           # page values will be 0 if the prev/next item are on the same result page
           prev_page = 0
           next_page = 0
+          per_page = params.has_key?(:per_page) ? params[:per_page].to_i : MAX_PER_PAGE rescue per_page = MAX_PER_PAGE
           fields, order, with, page = unpack_params(params)
-          results, hits = search_with_solr(fields, order, with, page)
+          results, hits = search_with_solr(fields, order, with, page, per_page)
 
           position = results.index(item)
 
@@ -61,7 +62,7 @@ module Muscat
           # Get the prev item in the searc
           if position == 0
             if !results.first_page?
-              results_prev_page, hits = search_with_solr(fields, order, with, results.previous_page)
+              results_prev_page, hits = search_with_solr(fields, order, with, results.previous_page, per_page)
               prev_item = results_prev_page.last
               # the previous item is one the previous page, we also need to return the page nb
               prev_page = results.previous_page
@@ -71,9 +72,9 @@ module Muscat
           end
 
           # get the next item in the search
-          if position == MAX_PER_PAGE - 1
+          if position == per_page - 1
             if !results.last_page?
-              results_next_page, hits = search_with_solr(fields, order, with, results.next_page)
+              results_next_page, hits = search_with_solr(fields, order, with, results.next_page, per_page)
               next_item = results_next_page.first
               # return the page number too
               next_page = results.next_page
@@ -81,7 +82,7 @@ module Muscat
           else
             next_item = results[position + 1]
           end
-          item_counter = position + ((page - 1) * MAX_PER_PAGE) + 1
+          item_counter = position + ((page - 1) * per_page) + 1
           return prev_item, next_item, prev_page, next_page, {position: item_counter , total: results.total_entries}
         end
 
