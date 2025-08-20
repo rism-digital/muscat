@@ -176,12 +176,10 @@ function marc_validate_031_duplicates(value, element, param) {
   const c = get($current031, 'c');
   const currentTuple = [a, b, c].join('.');
 
-  // Technically this should not happe,
+  // Technically this should not happen,
   // since a required_if should be present
-  // IF it happens fail validation
-  // and let the user scratch their head
-  // with the wrong error message!
-  if (!(a && b && c)) return false;
+  // We don't want to trap this two times
+  if (!(a && b && c)) return true;
 
   // Collect tuples for all *other* 031 blocks
   const otherTuples = $('.tag_toplevel_container[data-tag="031"]').filter(function () {
