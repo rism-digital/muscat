@@ -232,6 +232,7 @@ en:
     required_if: This field is required because another one is present
     siglum_not_found: The siglum in one or more 588 fields does not match any holding record
     validate_588_siglum: 'Enter the library siglum and shelfmark as in the format: I-Bc Q.51'
+    validate_031_dups: "This incipit number is already used: $b or $c are duplicated"
   basic_level: Basic record
   body: Body
   btn_themefinder_reset: Reset
@@ -810,6 +811,7 @@ en:
     required_if_message: Field is mandatory because {0} ${1} is not empty
     validate_588_siglum: 'Enter the library siglum and shelfmark as in the format: I-Bc Q.51'
     warning_message: A value for this field should be provided
+    validate_031_dups: This incipit number is already used
   validation_level_error: There are errors, please solve before saving
   validation_level_warning: There are warnings, save again to override
   view_source: View Source

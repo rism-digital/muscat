@@ -590,3 +590,11 @@ voc:
   label: records.print_with_non_autograph_annotations
 "Additional manuscript material":
   label: records.additional_manuscript_material
+Arr:
+  label: records.arrangement
+Excerpts:
+  label: records.excerpts
+Fragments:
+  label: records.fragments
+Sketches:
+  label: records.sketches

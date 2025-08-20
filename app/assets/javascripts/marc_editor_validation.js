@@ -7,6 +7,7 @@ const SIMPLE_RULE_MAP = {
 	"check_group": { check_group: true },
 	"validate_588_siglum": { validate_588_siglum: true },
 	"validate_edtf": { validate_edtf: true },
+	"validate_031_dups": { validate_031_dups: true },
 }
 
 const PARAMETRIC_RULES = [
@@ -158,6 +159,47 @@ function _marc_validate_unhighlight( element, errorClass, validClass ) {
 		if (errors.length == 0)
 			menu_item.removeClass(errorClass);
 	}
+}
+
+function marc_validate_031_duplicates(value, element, param) {
+  const $elem = $(element);
+  // This is the current 031 that triggered the event
+  const $current031 = $elem.closest('.tag_toplevel_container[data-tag="031"]');
+
+  const get = ($scope, sf) =>
+    $scope.find(':input[data-tag="031"][data-subfield="' + sf + '"]')
+      .first().val()?.toString().trim() || '';
+
+  // Build tuple for the current 031
+  const a = get($current031, 'a');
+  const b = get($current031, 'b');
+  const c = get($current031, 'c');
+  const currentTuple = [a, b, c].join('.');
+
+  // Technically this should not happe,
+  // since a required_if should be present
+  // IF it happens fail validation
+  // and let the user scratch their head
+  // with the wrong error message!
+  if (!(a && b && c)) return false;
+
+  // Collect tuples for all *other* 031 blocks
+  const otherTuples = $('.tag_toplevel_container[data-tag="031"]').filter(function () {
+    return this !== $current031.get(0); // Skip the current one!
+  }).map(function () {
+    const $scope = $(this);
+    const ta = get($scope, 'a');
+    const tb = get($scope, 'b');
+    const tc = get($scope, 'c');
+    return (ta && tb && tc) ? [ta, tb, tc].join('.') : null;
+  }).get().filter(Boolean);
+
+  // We will flah THIS 031 as duplicate
+  // When the validation gets to the other(s), it will
+  // also flag those.
+  const isDuplicate = otherTuples.includes(currentTuple);
+
+  return !isDuplicate;
 }
 
 function marc_validate_begins_with(value, element, param) {
@@ -576,12 +618,14 @@ function marc_editor_init_validation(form, validation_conf) {
 	$.validator.addMethod("check_group", marc_validate_check_group,
 			$.validator.format(I18n.t("validation.check_group_message")));
 	$.validator.addMethod("must_contain", marc_validate_must_contain,
-				$.validator.format(I18n.t("validation.must_contain_message")));
+			$.validator.format(I18n.t("validation.must_contain_message")));
 	$.validator.addMethod("validate_588_siglum", marc_validate_588_siglum,
-					$.validator.format(I18n.t("validation.validate_588_siglum")));
+			$.validator.format(I18n.t("validation.validate_588_siglum")));
 	$.validator.addMethod("validate_edtf", marc_validate_edtf,
-					$.validator.format(I18n.t("validation.validate_edtf")));
-			
+			$.validator.format(I18n.t("validation.validate_edtf")));	
+	$.validator.addMethod("validate_031_dups", marc_validate_031_duplicates,
+			$.validator.format(I18n.t("validation.validate_031_dups")));
+
 	// New creation: this is not configurable, it is used to make sure the
 	// "confirm create new" checkbox is selected for new items
 	$.validator.addMethod("new_creation", marc_validate_new_creation, "");

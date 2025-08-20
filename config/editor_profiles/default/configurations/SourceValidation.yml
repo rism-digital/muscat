@@ -5,12 +5,20 @@ server:
 client:
   "031":
     tags:
-      "b":
-        required_if:
-          "031": "a"
+      "b": 
+        any_of:
+        - required_if: 
+            "031": "a"
+        - validate_031_dups
+        #required_if:
+        #  "031": "a"
       "c":
-        required_if:
-          "031": "a"
+        any_of:
+        - required_if: 
+            "031": "a"
+        - validate_031_dups
+        #required_if:
+        #  "031": "a"
   "100":
     tag_overrides:
       exclude:
