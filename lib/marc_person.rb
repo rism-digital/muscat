@@ -65,7 +65,7 @@ class MarcPerson < Marc
       end
     end
 
-    [gender&.strip, birth_place&.strip, source&.strip]
+    [gender, birth_place&.strip, source&.strip]
   end
 
   
