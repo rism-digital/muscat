@@ -89,4 +89,35 @@ LiturgicalFeast.find_each(batch_size: 500) do |st|
 
 end
 
-puts "saved #{cnt} terms"
+puts "saved #{cnt} feasts"
+
+cnt = 0
+Place.find_each(batch_size: 500) do |st|
+  
+  new_name = st.name.strip
+  new_country = st.country&.strip
+  new_notes = st.notes&.strip
+  new_district = st.district&.strip
+  new_at = st.alternate_terms&.strip
+  new_topic = st.sub_topic&.strip
+
+  if st.name != new_name || new_notes != st.notes ||
+     new_at != st.alternate_terms || new_topic != st.sub_topic ||
+     new_country != st.country || new_district != st.district
+    
+    st.name = new_name
+    st.notes = new_notes if st.notes 
+    st.alternate_terms = new_at if st.alternate_terms
+    st.sub_topic = new_topic if st.sub_topic
+    st.district = new_district if st.district
+    st.country = new_country if st.country
+
+    st.save
+
+    cnt += 1
+    StandardTerm.referring_relations.each {|rel| Delayed::Job.enqueue(SaveItemsJob.new(st.id, st.class, rel)) } if st.saved_change_to_name
+  end
+
+end
+
+puts "saved #{cnt} places"
