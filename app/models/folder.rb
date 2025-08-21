@@ -1,4 +1,5 @@
 class Folder < ApplicationRecord
+  include AutoStripStrings
   
   has_many :folder_items, :dependent => :delete_all
   has_many :delayed_jobs, -> { where parent_type: "folder" }, class_name: 'Delayed::Backend::ActiveRecord::Job', foreign_key: "parent_id"

@@ -10,7 +10,7 @@ class MarcPublication < Marc
         author = node.content.truncate(255)
       end
     end
-    author
+    author&.strip
   end
 
   def get_name
@@ -21,7 +21,7 @@ class MarcPublication < Marc
         title = node.content.truncate(255)
       end
     end
-    title
+    title&.strip
   end
   
   def get_title
@@ -32,7 +32,7 @@ class MarcPublication < Marc
         title = node.content.truncate(255)
       end
     end
-    title
+    title&.strip
   end
   
   def get_place_and_date
@@ -50,7 +50,7 @@ class MarcPublication < Marc
         date = node.content.truncate(24)
       end
     end
-    [place, date]
+    [place&.strip, date&.strip]
 
   end
 
@@ -62,7 +62,7 @@ class MarcPublication < Marc
         title = node.content.truncate(255)
       end
     end
-    title
+    title&.strip
   end
   
   def reset_to_new

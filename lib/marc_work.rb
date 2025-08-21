@@ -25,7 +25,7 @@ class MarcWork < Marc
 
     title += ", #{scoring}" if scoring
 
-    return "#{composer}" + [title, key, cat_no].join("; ")
+    return "#{composer}" + [title, key, cat_no].join("; ")&.strip
   end
 
   def get_opus
@@ -44,7 +44,7 @@ class MarcWork < Marc
     cat_n = cat_n.strip if cat_n
    
     cat_no = "#{cat_a} #{cat_n}".strip
-    cat_no = cat_no.empty? ? "" : cat_no
+    cat_no = cat_no.empty? ? "" : cat_no&.strip
   end 
 
   def get_composer
@@ -52,7 +52,7 @@ class MarcWork < Marc
     if node = first_occurance("100", "a")
       person = node.foreign_object
     end
-    return person
+    return person&.strip
   end
 
   def get_link_status

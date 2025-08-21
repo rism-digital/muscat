@@ -64,3 +64,29 @@ StandardTerm.find_each(batch_size: 500) do |st|
 end
 
 puts "saved #{cnt} terms"
+
+cnt = 0
+LiturgicalFeast.find_each(batch_size: 500) do |st|
+  
+  new_term = st.name.strip
+  new_notes = st.notes&.strip
+  new_at = st.alternate_terms&.strip
+  new_topic = st.sub_topic&.strip
+
+  if st.name != new_term || new_notes != st.notes ||
+     new_at != st.alternate_terms || new_topic != st.sub_topic
+    
+    st.name = new_term
+    st.notes = new_notes if st.notes 
+    st.alternate_terms = new_at if st.alternate_terms
+    st.sub_topic = new_topic if st.sub_topic
+
+    st.save
+
+    cnt += 1
+    StandardTerm.referring_relations.each {|rel| Delayed::Job.enqueue(SaveItemsJob.new(st.id, st.class, rel)) } if st.saved_change_to_name
+  end
+
+end
+
+puts "saved #{cnt} terms"

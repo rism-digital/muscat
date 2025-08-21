@@ -13,6 +13,7 @@ class Place < ApplicationRecord
   include ForeignLinks
   include CommentsCleanup
   include ThroughAssociations
+  include AutoStripStrings
 
   #has_and_belongs_to_many(:referring_sources, class_name: "Source", join_table: "sources_to_places")
   has_many :source_place_relations, class_name: "SourcePlaceRelation"

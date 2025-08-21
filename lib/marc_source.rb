@@ -118,7 +118,7 @@ class MarcSource < Marc
     # use join so the "-" is not placed if one of the two is missing
     std_title = [title, desc].compact.join(" - ")
 
-    std_title
+    std_title&.strip
   end
   
   # Get the composer value
@@ -128,12 +128,12 @@ class MarcSource < Marc
       person = node.foreign_object
       composer = person.full_name
     end
-    composer
+    composer&.strip
   end
 
   def get_siglum
     if node = first_occurance("852", "a")
-      return node.content
+      return node.content&.strip
     end
   end
     
@@ -163,13 +163,13 @@ class MarcSource < Marc
       end
     end
     
-    return [siglum.truncate(255), ms_no.truncate(255)]
+    return [siglum.truncate(255)&.strip, ms_no.truncate(255)&.strip]
   end
   
   # On RISM A/1 ms_no contains the OLD RISM ID, get it from 035
   def get_book_rism_id
     if node = first_occurance("035", "a")
-      return node.content
+      return node.content&.strip
     end
   end
 
@@ -185,7 +185,7 @@ class MarcSource < Marc
       ms_title += " #{node.content}" if node.content
     end
    
-    ms_title.truncate(255)
+    ms_title.truncate(255)&.strip
   end
   
   # Set miscallaneous values
@@ -219,7 +219,7 @@ class MarcSource < Marc
       end
     end
     
-    return [language.truncate(16), date_from, date_to]
+    return [language.truncate(16)&.strip, date_from, date_to]
 
   end
   

@@ -337,8 +337,8 @@ class Person < ApplicationRecord
   end
   
   def field_length
-    self.life_dates = self.life_dates.truncate(24) if self.life_dates and self.life_dates.length > 24
-    self.full_name = self.full_name.truncate(128) if self.full_name and self.full_name.length > 128
+    self.life_dates = self.life_dates.truncate(24)&.strip if self.life_dates and self.life_dates.length > 24
+    self.full_name = self.full_name.truncate(128)&.strip if self.full_name and self.full_name.length > 128
   end
 
   def name
