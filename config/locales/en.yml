@@ -256,6 +256,7 @@ en:
     show: Show
     similarity: Difference
     time_frame: Time frame
+    tags: Tags
   composer_contains: Composer
   connected_libraries: Libraries
   convert_to_print: Convert to print template
