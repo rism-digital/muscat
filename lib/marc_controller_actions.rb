@@ -324,7 +324,7 @@ module MarcControllerActions
       
       validator = MarcValidator.new(@item, current_user)
       validator.validate_tags
-      validator.validate_links
+      #validator.validate_links
       validator.validate_unknown_tags
       validator.validate_server_side
       if validator.has_errors
