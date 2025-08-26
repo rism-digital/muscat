@@ -20,7 +20,8 @@
 <%- field = params.has_key?("field") ? params['field'] : "id" %>
 <%- allow_new = params.has_key?("allow_new") ? params['allow_new'] : false %>
 
-<%- disabled =  params.has_key?("only_new_window") ? true : false %>
+<%- only_new_window = params.has_key?("only_new_window") ? true : false %>
+<%- read_only = params.has_key?("read_only") && !(@current_user.has_role?(:editor) || @current_user.has_role?(:admin)) ? true : false %>
 <%# validation plugin REQUIRES a name. Make it random as we never call it elsewhere %>
 <%- check_name = "confirmation_uniq_" + SecureRandom.hex(5)%>
 
@@ -57,7 +58,7 @@ options = {
 	:"min-length" => 1
 }
 	options[:"data-trigger"] = triggers if triggers
-	options[:disabled] = "disabled" if disabled || @restricted=='disabled'
+	options[:disabled] = "disabled" if only_new_window || read_only || @restricted == 'disabled'
 %>
 
 <%

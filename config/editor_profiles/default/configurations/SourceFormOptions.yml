@@ -1033,13 +1033,16 @@
     - - '4'
       - hidden: true
 "775":
-  new_window: sources
+  #new_window: sources
   record_type_helper: get_allowed_record_type_775
+  tag_params:
+    no_delete_override: true
   layout:
     fields:
     - - w
       - type: source
         editor_partial: subfield_secondary
+        read_only: true
 "787":
   new_window: sources
   layout:
