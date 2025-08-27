@@ -641,7 +641,14 @@ include ApplicationHelper
         rescue
           return
         end
-
+      elsif rule == "validate_url"
+        http_regex = %r{\Ahttps?:\/\/(?:www\.)?[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b(?:[-a-zA-Z0-9()@:%_\+.~#?&\/=]*)\z}
+        if marc_subtag && marc_subtag.content
+          if !(marc_subtag.content =~ http_regex)
+            add_error(tag, subtag, rule)
+            puts "The URL in #{tag} #{subtag} is invalid [#{marc_subtag.content}], #{rule}" if DEBUG
+          end
+        end
     else
       puts rule.class
       puts "Unknown rule #{rule}" if rule != "mandatory"

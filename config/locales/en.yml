@@ -234,6 +234,7 @@ en:
     validate_588_siglum: 'Enter the library siglum and shelfmark as in the format: I-Bc Q.51'
     validate_031_dups: "This incipit number is already used: $b or $c are duplicated"
     031_incomplete: The numbering of this 031 is incomplete ($a, $b or $c are missing)
+    validate_url: The entered URL is invalid
   basic_level: Basic record
   body: Body
   btn_themefinder_reset: Reset
@@ -814,6 +815,7 @@ en:
     validate_588_siglum: 'Enter the library siglum and shelfmark as in the format: I-Bc Q.51'
     warning_message: A value for this field should be provided
     validate_031_dups: This incipit number is already used
+    validate_url: The entered URL is invalid
   validation_level_error: There are errors, please solve before saving
   validation_level_warning: There are warnings, save again to override
   view_source: View Source

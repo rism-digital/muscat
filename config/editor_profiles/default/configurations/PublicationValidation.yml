@@ -17,14 +17,17 @@ client:
   "760":
     tags:
       "0": required
-  #"856": 
-  #  tags:
-  #    u:
-  #      begins_with: "http"
-  #    z:
-  #      required_if:
-  #        "856": "u"
-  "856":
+  "856": 
     tags:
-      "u": required
-      "z": required
+      u:
+        any_of:
+          - validate_url
+          #- begins_with: "http"
+          - required
+      z:
+        required_if:
+          "856": "u"
+  #"856":
+  #  tags:
+  #    "u": required
+  #    "z": required

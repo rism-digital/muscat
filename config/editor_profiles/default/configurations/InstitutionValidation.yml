@@ -21,6 +21,7 @@ client:
     tags:
       u:
         any_of:
-          - begins_with: "http"
+          #- begins_with: "http"
+          - validate_url
           - required
       "z": required

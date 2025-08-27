@@ -181,7 +181,8 @@ client:
     tags:
       u:
         any_of:
-          - begins_with: "http"
+          - validate_url
+          #- begins_with: "http"
           - required
       z:
         required_if:

@@ -8,6 +8,7 @@ const SIMPLE_RULE_MAP = {
 	"validate_588_siglum": { validate_588_siglum: true },
 	"validate_edtf": { validate_edtf: true },
 	"validate_031_dups": { validate_031_dups: true },
+	"validate_url": { validate_url: true },
 }
 
 const PARAMETRIC_RULES = [
@@ -228,6 +229,16 @@ function marc_validate_edtf(value, element, param) {
 	} catch(err) {}
 
 	return result;
+}
+
+// Credit: https://uibakery.io/regex-library/url
+function marc_validate_url(value, element, param) {
+	var httpRegex = /^https?:\/\/(?:www\.)?[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b(?:[-a-zA-Z0-9()@:%_\+.~#?&\/=]*)$/;
+
+	if (value === "")
+		return true;
+
+	return httpRegex.test(value);
 }
 
 function marc_validate_588_siglum(value, element, param) {
@@ -623,6 +634,9 @@ function marc_editor_init_validation(form, validation_conf) {
 			$.validator.format(I18n.t("validation.validate_edtf")));	
 	$.validator.addMethod("validate_031_dups", marc_validate_031_duplicates,
 			$.validator.format(I18n.t("validation.validate_031_dups")));
+
+	$.validator.addMethod("validate_url", marc_validate_url,
+			$.validator.format(I18n.t("validation.validate_url")));
 
 	// New creation: this is not configurable, it is used to make sure the
 	// "confirm create new" checkbox is selected for new items
