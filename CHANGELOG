@@ -1,6 +1,54 @@
 Muscat Changelog
 ================
 
+v 11.6.4
+* Fix #1837, make the breadcrumbs preserve case
+* Bump thor from 1.3.2 to 1.4.0
+* Update autocomplete
+* Merge pull request #1840 from rism-digital/dependabot/bundler/thor-1.4.0
+* Bump nokogiri from 1.18.8 to 1.18.9
+* #1835 GND Editor Bigfix
+* Fix #1842, remove SB-SA
+* Fixed: Add north macedonia to the country list
+* Merge pull request #1843 from rism-digital/north-macedonia
+* Fix bug in WorkNode validation, add scoring and op no
+* Fix #1835. Add edit box and fix last missing translations
+* #1722 add button to copy PAE code
+* #1722 Add translations
+* Translate even more hardcoded stuff
+* Try to fix the width of the PAE box
+* Fix #1120, remove "magic" _all partials and obsolete support for them. Rename the only one.
+* Fix crash with MEI incipits
+* #1440 add new link buttons in 8 languages
+* Fix resizing of MEI files
+* Fix #1544, add all the relations!
+* Fix #1526, remove more tags when duplicating
+* #1786, add NotificationMatcher for Holding
+* Remove double 383
+* Script to fix incorrectly formatted B/I numbers
+* Script to fix the 510 $a
+* Bump activerecord from 7.2.2.1 to 7.2.2.2
+* Bump activestorage from 7.2.2.1 to 7.2.2.2
+* Make sure unnamed libraries don't crash all
+* Merge pull request #1841 from rism-digital/dependabot/bundler/nokogiri-1.18.9
+* Merge pull request #1845 from rism-digital/dependabot/bundler/activerecord-7.2.2.2
+* Merge pull request #1846 from rism-digital/dependabot/bundler/activestorage-7.2.2.2
+* #1848 more aggressive stripping of whitespace when loading marc
+* add "referring_relations" to concerns, and add script to purge whitespace
+* Fix #1849, change to date_of_creation
+* Reset searches in new tabs
+* Save per_page and purge ordering
+* Fix #1847, make nav links work on > 30 results
+* Script to fix the 043 in People
+* Validation rules for duplicated 031
+* Add the 031 validation to Works
+* #1575, aggressively strip whitespace all around muscat
+* #1844 Add tags in version diff
+* #1844 add compare versions mod
+* #1766, add "read only" option for subfield_secordary, and no_delete_override for tags
+* Do not validate links when saving - so the user can save and fix that error
+* #1852 add validation for URLs
+
 v 11.6.3
 * Make the Person validation validate the correct field (551)
 * Make GND ordering costum
@@ -355,7 +403,7 @@ v 11.4
 * This can never work!
 * Add scripts to fix 588
 * Rename script
-* Remove section in 690$x  and add subfields to 691
+* Remove section in 690$xand add subfields to 691
 * Add missing locales
 * The infinite pursuit to perfect translations pt. 1
 * The infinite pursuit to perfect translations pt. 2
@@ -448,7 +496,7 @@ v 11.3
 * #1614 Actually add the leaders
 * Add more debugging, but keep it out of 11.3
 * Update labels
-* Fix #1618, use built-in  Anchored::Linker.auto_link instead of old URL helper
+* Fix #1618, use built-inAnchored::Linker.auto_link instead of old URL helper
 * Merge pull request #1696 from rism-digital/HirschSt-patch-1
 
 v 11.2.2
@@ -852,7 +900,7 @@ v 10.2
 * Fix #1524, add new functions
 * Fix #1501, add $9 and $u to 670 in work and person
 * Fix #1522, move 530 to relations
-* Fix  #1506, make sure all validations do run (learn to program, young Padawan)
+* Fix#1506, make sure all validations do run (learn to program, young Padawan)
 * Make the mail report a bit nicer
 * Make notifications for works work on each save
 * Initial implementation for #1532
