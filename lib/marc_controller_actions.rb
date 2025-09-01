@@ -236,6 +236,11 @@ module MarcControllerActions
     
     dsl.member_action :marc_restore_version, method: :put do
       
+      if !current_user.has_role?(:admin)
+        redirect_to admin_root_path, :flash => { :error => I18n.t("active_admin.access_denied.message") }
+        return
+      end
+
       #Get the model we are working on
       model = self.class.resource_class
       @item = model.find(params[:id])
@@ -276,6 +281,11 @@ module MarcControllerActions
     
     dsl.member_action :marc_delete_version, method: :put do
       
+      if !current_user.has_role?(:admin)
+        redirect_to admin_root_path, :flash => { :error => I18n.t("active_admin.access_denied.message") }
+        return
+      end
+
       begin
         version = PaperTrail::Version.find( params[:version_id] )
       rescue ActiveRecord::RecordNotFound
