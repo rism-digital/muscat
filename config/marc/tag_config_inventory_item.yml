@@ -373,6 +373,12 @@
         :foreign_field: id
         :zero_padding: "14"
         :browse_helper: application_helper_link_source_id
+    - - o
+      - :occurrences: "?"
+    - - n
+      - :occurrences: "?"
+    - - g
+      - :occurrences: "?"
   "775":
     :master: w
     :indicator: "##"

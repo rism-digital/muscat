@@ -234,6 +234,12 @@
   fields:
     w:
       label: records.inventory_source
+    o:
+      label: records.inventory
+    n:
+      label: records.category_section
+    g:
+      label: records.number_page
   label: records.inventory_source
 '775':
   fields:

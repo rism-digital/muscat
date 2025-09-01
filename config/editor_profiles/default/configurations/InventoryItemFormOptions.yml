@@ -682,6 +682,9 @@
     fields: 
     - - w
       - read_only: true
+    - - o
+    - - n
+    - - g
 "775":
   new_window: inventory_items
   layout:
