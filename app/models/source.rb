@@ -737,11 +737,17 @@ class Source < ApplicationRecord
 
       # We can have multiple links
       # and want to fix only the source ones
+      # 
+      # Also make sure that if a DO is linked
+      # more than once, only ONE gets moved
+      migrated = []
       dol.each do |the_do|
         next if the_do.object_link_type != "Source"
+        next if migrated.include?(doid)
         the_do.object_link_id = holding.id
         the_do.object_link_type = "Holding"
         the_do.save
+        migrated << doid
       end
 
     end
