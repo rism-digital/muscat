@@ -236,6 +236,8 @@ ActiveAdmin.register Source do
     end
 
     param_tags = params.permit(:tag => {})[:tag]
+    param_dos = params.permit(:digital_objects => {})[:digital_objects]
+
 
     tags = {}
     param_tags.each do |k, v|
@@ -246,7 +248,10 @@ ActiveAdmin.register Source do
       end
     end
 
-    holding_id = resource.manuscript_to_print(tags)
+    # There can be no digital objects
+    dos = param_dos&.filter_map { |k, v| k if v == "on" } || []
+
+    holding_id = resource.manuscript_to_print(tags, dos)
 
     redirect_to action: :show
     if holding_id

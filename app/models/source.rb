@@ -678,7 +678,7 @@ class Source < ApplicationRecord
     return [self.shelf_mark]
   end
 
-  def manuscript_to_print(tags)
+  def manuscript_to_print(tags, digital_objects)
     is_child = self.parent_source != nil
     holding = Holding.new
     holding_marc = MarcHolding.new(File.read(ConfigFilePath.get_marc_editor_profile_path("#{Rails.root}/config/marc/#{RISM::MARC}/holding/default.marc")))
@@ -727,6 +727,25 @@ class Source < ApplicationRecord
       holding.save
     end
     
+    # Now move the digital objects
+    digital_objects.each do |doid|
+      begin
+        dol = DigitalObjectLink.where(digital_object_id: doid)
+      rescue ActiveRecord::RecordNotFound
+        next
+      end
+
+      # We can have multiple links
+      # and want to fix only the source ones
+      dol.each do |the_do|
+        next if the_do.object_link_type != "Source"
+        the_do.object_link_id = holding.id
+        the_do.object_link_type = "Holding"
+        the_do.save
+      end
+
+    end
+
     # Do some housekeeping here too
     if !is_child
       self.record_type = MarcSource::RECORD_TYPES[:edition]
