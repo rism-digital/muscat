@@ -249,7 +249,7 @@ ActiveAdmin.register Source do
     end
 
     # There can be no digital objects
-    dos = param_dos&.filter_map { |k, v| k if v == "on" } || []
+    dos = param_dos&.select { |_, v| v == "on" }&.keys || []
 
     holding_id = resource.manuscript_to_print(tags, dos)
 
