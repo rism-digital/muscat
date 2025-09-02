@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.2].define(version: 2025_05_05_112836) do
+ActiveRecord::Schema[7.2].define(version: 2025_09_02_083607) do
   create_table "active_admin_comments", id: :integer, charset: "utf8mb3", force: :cascade do |t|
     t.string "namespace"
     t.text "body"
@@ -241,6 +241,7 @@ ActiveRecord::Schema[7.2].define(version: 2025_05_05_112836) do
     t.integer "wf_stage"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "source_order"
   end
 
   create_table "inventory_items_to_holdings", charset: "utf8mb3", force: :cascade do |t|
@@ -508,6 +509,7 @@ ActiveRecord::Schema[7.2].define(version: 2025_05_05_112836) do
     t.datetime "created_at", precision: nil
     t.datetime "updated_at", precision: nil
     t.integer "lock_version", default: 0, null: false
+    t.integer "validation_status", default: 0, null: false
     t.index ["created_at"], name: "index_sources_on_created_at"
     t.index ["lib_siglum"], name: "index_sources_on_lib_siglum"
     t.index ["record_type"], name: "index_sources_on_record_type"

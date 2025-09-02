@@ -136,6 +136,7 @@ class Source < ApplicationRecord
 
   enum :wf_stage, [ :inprogress, :published, :deleted, :deprecated ]
   enum :wf_audit, [ :full, :abbreviated, :retro, :imported ]
+  enum :validation_status, [ :validation_paseed, :validation_failed ]
 
   scope :by_shelf_mark_and_siglum, ->(shelf_mark, lib_siglum) {
     left_joins(:holdings)
