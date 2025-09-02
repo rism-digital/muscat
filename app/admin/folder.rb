@@ -142,6 +142,7 @@ ActiveAdmin.register Folder do
       format = :xml if params[:type] == "xml"
       format = :csv if params[:type] == "csv"
       format = :raw if params[:type] == "raw"
+      format = :raw_holdings if params[:type] == "raw_holdings"
     end
 
     job = Delayed::Job.enqueue(ExportRecordsJob.new(:folder, {id: params[:id], email: current_user.email, format: format, model: model}))

@@ -339,6 +339,7 @@ en:
   export_folder: Export Folder as MARCXML
   export_folder_csv: Export Folder as CSV
   export_folder_raw: Export Folder as Muscat MARC
+  export_folder_raw_holdings: Export Folder as Muscat MARC (merging holding records)
   failed: Failed
   failed_at: Failed At
   filter_address: Address
