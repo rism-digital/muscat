@@ -349,6 +349,8 @@ class Institution < ApplicationRecord
   ransacker :"094a_facet", proc{ |v| } do |parent| parent.table[:id] end
   ransacker :"667a", proc{ |v| } do |parent| parent.table[:id] end
   ransacker :"has_siglum", proc{ |v| } do |parent| parent.table[:id] end
+  ransacker :"368a", proc{ |v| } do |parent| parent.table[:id] end
+
    
   def holdings
     ActiveSupport::Deprecation.new("12", 'Please use referring_holdings from institution')

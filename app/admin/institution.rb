@@ -84,6 +84,10 @@ ActiveAdmin.register Institution do
 
     def index
       @results, @hits = Institution.search_as_ransack(params)
+      @editor_profile = EditorConfiguration.get_default_layout Institution
+
+      @institution_types = Source.get_terms("368a_sms")
+
       index! do |format|
         @institutions = @results
         format.html
@@ -130,6 +134,9 @@ ActiveAdmin.register Institution do
   filter :"667a_cont", :label => proc{I18n.t(:internal_note_contains)}, :as => :string
   filter :updated_at, :label => proc{I18n.t(:updated_at)}, as: :date_range
   filter :created_at, :label => proc{I18n.t(:created_at)}, as: :date_range
+
+  filter :"368a_with_integer", :label => proc{I18n.t(:"records.type_institution")}, as: :select,
+  collection: proc{@institution_types.sort.compact.collect {|k| [@editor_profile.get_label(k.to_s), "368a:#{k}"]}}
 
   # This filter passes the value to the with() function in seach
   # see config/initializers/ransack.rb
