@@ -735,12 +735,6 @@
       - "rdau:P60195"
       - "rdau:P60242"
       - "rdau:P60194"
-"852":
-  layout: 
-    fields: 
-    - - a
-    - - d
-    - - p
 "856": 
   layout: 
     fields: 

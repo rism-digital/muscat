@@ -270,27 +270,6 @@
     w:
       label: records.rism_id_number
   label: records.related_source
-'852':
-  fields:
-    a:
-      label: records.inventory
-    b:
-      label: records.department
-    c:
-      label: records.shelfmark
-    d:
-      label: records.category_section
-    e:
-      label: records.library
-    p:
-      label: records.number_page
-    q:
-      label: records.material_held
-    u:
-      label: general.uri
-    z:
-      label: records.provenance
-  label: records.inventory_number
 '856':
   fields:
     u:

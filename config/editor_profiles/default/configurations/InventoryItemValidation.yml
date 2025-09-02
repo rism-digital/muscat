@@ -28,9 +28,6 @@ client:
   "650":
     tags:
       "0": mandatory
-  "852":
-    tags:
-      a: mandatory
   "700": 
     tags:
       "0": required
