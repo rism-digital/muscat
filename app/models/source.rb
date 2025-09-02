@@ -725,29 +725,34 @@ class Source < ApplicationRecord
       holding.source = self
 
       holding.save
-    end
-    
-    # Now move the digital objects
-    digital_objects.each do |doid|
-      begin
-        dol = DigitalObjectLink.where(digital_object_id: doid)
-      rescue ActiveRecord::RecordNotFound
-        next
-      end
 
-      # We can have multiple links
-      # and want to fix only the source ones
-      # 
-      # Also make sure that if a DO is linked
-      # more than once, only ONE gets moved
-      migrated = []
-      dol.each do |the_do|
-        next if the_do.object_link_type != "Source"
-        next if migrated.include?(doid)
-        the_do.object_link_id = holding.id
-        the_do.object_link_type = "Holding"
-        the_do.save
-        migrated << doid
+      # Now move the digital objects
+      digital_objects.each do |doid|
+        begin
+          dol = DigitalObjectLink.where(digital_object_id: doid)
+        rescue ActiveRecord::RecordNotFound
+          next
+        end
+
+        # We can have multiple links
+        # and want to fix only the source ones
+        # 
+        # Also make sure that if a DO is linked
+        # more than once, only ONE gets moved
+        migrated = []
+
+        dol.each do |the_do|
+          next if the_do.object_link_type != "Source"
+          next if the_do.object_link_id.to_i != self.id
+          next if migrated.include?(doid)
+
+          the_do.object_link_id = holding.id
+          the_do.object_link_type = "Holding"
+          the_do.save
+
+          migrated << doid
+        end
+
       end
 
     end
