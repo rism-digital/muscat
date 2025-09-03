@@ -495,7 +495,7 @@ pt:
     form_of_work: Forma da obra
     form_subdivision: Divisão da forma
     format_extent: Formato, extensão
-    former_sigla: Former siglum
+    former_sigla: Antiga sigla
     former_owner: Proprietário anterior
     fragments: Fragmentos
     fs_major: Fá sustenido maior
@@ -787,7 +787,7 @@ pt:
     production: Produção
     production_personnel: Pessoal da produção
     profession_or_function: Profissão ou função
-    project: Project
+    project: Projecto
     project_url: URL do projeto
     provenance: Proveniência
     provenance_notes: Nota de proveniência
@@ -936,8 +936,8 @@ pt:
     watermark_description: Descrição de Marca de água
     woodwinds: Madeiras
     work: Obra
-    work_catalog: Work catalog
-    work_catalogs: Work catalogs
+    work_catalog: Catálogo da obra
+    work_catalogs: Catálogos de l'obras
     work_catalog_note: Nota no catálogo da obra
     work_list: Lista de obras
     work_node: Referência externa de obra (Work Node)

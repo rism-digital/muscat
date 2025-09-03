@@ -713,7 +713,7 @@ ca:
     octoechos7: 'Octoechos 7: Ēchos barys (terceiro mode bizantí plagal)'
     octoechos8: 'Octoechos 8: Ēchos plagios tetartos (quart mode bizantí plagal)'
     online_finding_aids: Eines de cerca en línia
-    online_resource: Online resource
+    online_resource: Recursos en línia
     opera_houses_concert_halls: Teatres d'òpera i sales de concert
     opus_number: Número d'opus
     opus_thematic_index_number: Número d'opus o d'índex temàtic
@@ -731,7 +731,7 @@ ca:
     other_instruments: Altres instruments
     other_life_dates: Altres dates
     other_physical_details: Altres detalls físics
-    other_resource: Other resource
+    other_resource: Altres recursos
     other_searchform: Altra variant
     other_shelfmark: Altra signatura
     other_standard_identifier: Altre identificador estàndard
@@ -787,7 +787,7 @@ ca:
     production: Producció
     production_personnel: Personal de producció
     profession_or_function: Professió o funció
-    project: Project
+    project: Proyecto
     project_url: Project URL
     provenance: Custòdia
     provenance_notes: Nota sobre la procedència
@@ -936,8 +936,8 @@ ca:
     watermark_description: Descripció de la filigrana
     woodwinds: Vent-fusta
     work: Obra
-    work_catalog: Work catalog
-    work_catalogs: Work catalogs
+    work_catalog: Catàleg de l'obra
+    work_catalogs: Catàleg de l'obra
     work_catalog_note: Nota sobre el catàleg de l'obra
     work_list: Llista d'obres
     work_node: Referència externa d'obra (Work node)
@@ -966,7 +966,7 @@ ca:
     P60216: "Desenvolupat com a"
     P60294: "Versió desenvolupada de"
     P60274: "Arranjat com a"
-    P60242: "Is arrangement of"
+    P60242: "Arranjament de"
     P60198: "Completat per"
     P60313: "No definit"
   relations_institutions:
@@ -1050,10 +1050,10 @@ ca:
     ERR_066_EMPTY_CONTAINER: Un ornament o una barra d'unió entre notes no poden estar buides.
   work_catalogue:
     not_work_catalogue: Not work catalog
-    work_catalogue_alternate: Alternate
-    work_catalogue_complete: Completed
+    work_catalogue_alternate: Alternatiu
+    work_catalogue_complete: Completat
     work_catalogue_in_preparation: Eligible
-    work_catalogue_partial: Partially completed
+    work_catalogue_partial: En curs
   rism_online:
     manuscript: "Manuscrit"
     printed: "Imprès"

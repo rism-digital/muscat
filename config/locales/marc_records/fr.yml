@@ -422,7 +422,7 @@ fr:
     deprecated_fields: Champs obsolètes (ne pas utiliser)
     description: Description
     description_area: Description
-    description_conventions: Description conventions
+    description_conventions: Conventions de la description
     description_summary: Description brève
     designer: Décorateur
     df_major: Ré♭ majeur
@@ -492,10 +492,10 @@ fr:
     fingerprint_identifier: Indentificateur d'empreintes
     first_entry: Première entrée
     first_second_group: Premier/deuxième groupe de caractères
-    form_of_work: Form of work
+    form_of_work: Forme de l'œuvre
     form_subdivision: Subdivision de forme
     format_extent: Type de source, extension
-    former_sigla: Former siglum
+    former_sigla: Ancien sigle
     former_owner: Propriétaire précédent
     fragments: Fragments
     fs_major: Fa♯ majeur
@@ -713,7 +713,7 @@ fr:
     octoechos7: 'Octoechos 7: Ēchos barys (troisième mode plagal dans la musique byzantine)'
     octoechos8: 'Octoechos 8: Ēchos plagios tetartos (quatrième mode plagal dans la musique byzantine)'
     online_finding_aids: Instruments de recherche online
-    online_resource: Online resource
+    online_resource: Ressources en ligne
     opera_houses_concert_halls: Théâtres et salles de concert
     opus_number: No. de Opus
     opus_thematic_index_number: Numéro de opus / du catalogue des oeuvres
@@ -731,7 +731,7 @@ fr:
     other_instruments: Autres instruments
     other_life_dates: Autres dates
     other_physical_details: Autres détails du matériau
-    other_resource: Other resource
+    other_resource: Autres ressources
     other_searchform: Autre forme de recherche
     other_shelfmark: Autre cote
     other_standard_identifier: Référence d'authorité
@@ -787,7 +787,7 @@ fr:
     production: Production
     production_personnel: Personnel de réalisation
     profession_or_function: Profession ou fonction
-    project: Project
+    project: Projet
     project_url: URL du projet
     provenance: Provenance
     provenance_notes: Note de provenance
@@ -936,8 +936,8 @@ fr:
     watermark_description: Filigrane
     woodwinds: Bois
     work: Oeuvre
-    work_catalog: Work catalog
-    work_catalogs: Work catalogs
+    work_catalog: Catalogue des œuvres
+    work_catalogs: Catalogue des œuvres
     work_catalog_note: Note sur le catalogue des œuvres
     work_list: Liste des œuvres
     work_node: Référence externe d'œuvre (Work node)
@@ -970,14 +970,14 @@ fr:
     P60198: "Est complété par"
     P60313: "Indéfini"
   relations_institutions:
-    P50008: Hierarchical superior
-    P50010: Hierarchical subordinate
-    P50012: Predecessor of corporate body
-    P50016: Successor of corporate body
-    P50020: Founding family of corporate body
-    P50230: Corporate body member of corporate body
-    P50435: Corporate body member of family
-    P50301: Absorbed corporate body
+    P50008: Supérieur hiérarchique
+    P50010: Subordonné hiérarchique
+    P50012: Prédécesseur de la société
+    P50016: Successeur de la société
+    P50020: Famille fondatrice de la société
+    P50230: Membre corporatif de la société
+    P50435: Membre de la famille de la société
+    P50301: Corps sociétal absorbé
   verovio:
     position: "Position"
     warning: "Avertissement"
@@ -1049,11 +1049,11 @@ fr:
     ERR_065_MREST_INVALID_MEASURE: Une mesure avec une pause ne peut pas inclure autre chose.
     ERR_066_EMPTY_CONTAINER: Un groupe d'appoggiatures ou une liaison ne peut pas être vide.
   work_catalogue:
-    not_work_catalogue: Not work catalog
-    work_catalogue_alternate: Alternate
-    work_catalogue_complete: Completed
-    work_catalogue_in_preparation: Eligible
-    work_catalogue_partial: Partially completed
+    not_work_catalogue: Pas catalogue d'œuvres
+    work_catalogue_alternate: Alternatif
+    work_catalogue_complete: Terminé
+    work_catalogue_in_preparation: Éligible
+    work_catalogue_partial: Partiellement terminé
   rism_online:
     manuscript: "Manuscrit"
     printed: "Imprimé"

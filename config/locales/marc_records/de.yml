@@ -787,7 +787,7 @@ de:
     production: Verlauf
     production_personnel: Produktionspersonal
     profession_or_function: Beruf oder Funktion
-    project: Project
+    project: Projekt
     project_url: Projekt-URL
     provenance: Bestandsname
     provenance_notes: Provenienzvermerk
@@ -936,8 +936,8 @@ de:
     watermark_description: Wasserzeichen
     woodwinds: Holzblasinstrumente
     work: Werk
-    work_catalog: Work catalog
-    work_catalogs: Work catalogs
+    work_catalog: Werkkatalog
+    work_catalogs: Werkkatalog
     work_catalog_note: Bemerkung Werkverzeichnis
     work_list: Werkliste
     work_node: Externe Werk-Referenz (Work node)

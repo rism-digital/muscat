@@ -731,7 +731,7 @@ es:
     other_instruments: Otros instrumentos
     other_life_dates: Otras fechas de vida
     other_physical_details: Otros detalles físicos
-    other_resource: Other resource
+    other_resource: Otros recursos
     other_searchform: Otra variante
     other_shelfmark: Otra signatura
     other_standard_identifier: Otro identificador estándar
@@ -787,7 +787,7 @@ es:
     production: Producción
     production_personnel: Personal de producción
     profession_or_function: Profesión o función
-    project: Project
+    project: Proyecto
     project_url: URL del Proyecto
     provenance: Procedencia
     provenance_notes: Nota sobre procedencia
@@ -936,7 +936,7 @@ es:
     watermark_description: Descripción de las filigranas
     woodwinds: Vientos-madera
     work: Obra
-    work_catalog: Work catalog
+    work_catalog: Catálogos de trabajo
     work_catalogs: Catálogos de trabajo
     work_catalog_note: Nota del catálogo de trabajo
     work_list: Lista de obras
@@ -1049,11 +1049,11 @@ es:
     ERR_065_MREST_INVALID_MEASURE: Un compás con un compás de silencio no puede incluir algo más.
     ERR_066_EMPTY_CONTAINER: Un grupo de gracia o un haz no pueden estar vacíos.
   work_catalogue:
-    not_work_catalogue: Not work catalog
-    work_catalogue_alternate: Alternate
-    work_catalogue_complete: Completed
-    work_catalogue_in_preparation: Eligible
-    work_catalogue_partial: Partially completed
+    not_work_catalogue: Non catálogo de trabajo
+    work_catalogue_alternate: Alternativo
+    work_catalogue_complete: Completado
+    work_catalogue_in_preparation: Elegible
+    work_catalogue_partial: Parcialmente completado
   rism_online:
     manuscript: "Manuscrito"
     printed: "Impreso"
