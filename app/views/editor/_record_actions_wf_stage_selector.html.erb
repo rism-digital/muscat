@@ -13,6 +13,11 @@
         disabled = true
     end
 
+    # Special case: cataloguers cannot unpublish published records
+    if cannot?(:unpublish, @item) && (!@item.new_record? && @item.wf_stage == "published")
+        disabled = true
+    end
+
 
     # unpublished shares the same enum value (0) as inprogress.
     # We keep the key in the enum so older versions can still be read,

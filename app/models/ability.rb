@@ -12,7 +12,7 @@ class Ability
       can :manage, :all
       can :reindex, [Publication, Institution, LiturgicalFeast, Person, Place, StandardTerm, StandardTitle, Folder]
       can :publish, [Folder]
-      can :unpublish, [Folder]
+      can :unpublish, :all
       can :resave, :all
 
     ##########
@@ -41,7 +41,7 @@ class Ability
       can :convert_manuscript, Source
 
       can :manage, Folder#, :wf_owner => user.id
-      can :unpublish, [Folder]
+      can :unpublish, :all
       can [:read, :create, :destroy], ActiveAdmin::Comment
       can :read, ActiveAdmin::Page, :name => "Dashboard"
       can :read, ActiveAdmin::Page, :name => "guidelines"
@@ -90,7 +90,7 @@ class Ability
       can [:publish], Folder do |folder|
         user.can_publish?(folder)
       end
-      cannot [:unpublish, :reindex], Folder
+      cannot [:unpublish, :reindex], :all
       can [:read, :create, :destroy], ActiveAdmin::Comment
       can [:update], ActiveAdmin::Comment, :author_id => user.id
       can [:read, :create], Source
