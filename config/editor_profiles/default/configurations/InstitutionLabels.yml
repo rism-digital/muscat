@@ -237,6 +237,8 @@ Performer:
   label: records.performer
 Printer:
   label: records.printer
+Project:
+  label: records.project
 Publisher:
   label: records.publisher
 Research institute:

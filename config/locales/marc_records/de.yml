@@ -968,6 +968,15 @@ de:
     P60242: "Ist Anordnung von"
     P60198: "Wird ergänzt durch"
     P60313: "Nicht definiert"
+  relations_institutions:
+    P50008: Hierarchisch höher
+    P50010: Hierarchisch untergeordnet
+    P50012: Vorgänger der Körperschaft
+    P50016: Nachfolger der Körperschaft
+    P50020: Gründerfamilie der Körperschaft
+    P50230: Körperschaftsmitglied der Körperschaft
+    P50435: Corporate body member of family
+    P50301: Aufgenommene Körperschaft
   verovio:
     position: "Standort"
     warning: "Warnung"
@@ -1038,6 +1047,12 @@ de:
     ERR_064_LIGATURE_DURATION: Die Dauer einer Ligatur kann nicht kürzer als eine Semibrevis sein.
     ERR_065_MREST_INVALID_MEASURE: Ein Takt Pause kann nichts anderes enthalten.
     ERR_066_EMPTY_CONTAINER: Zwischen den Sonderzeichen für Gruppen von Vorschlagsnoten oder Balken müssen Noten stehen.
+  work_catalogue:
+    not_work_catalogue: Kein Werkverzeichnis
+    work_catalogue_alternate: Alternative
+    work_catalogue_complete: Abgeschlossen
+    work_catalogue_in_preparation: Geeignet
+    work_catalogue_partial: Teilweise abgeschlossen
   rism_online:
     manuscript: "Handschrift"
     printed: "Gedruckt"

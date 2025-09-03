@@ -968,6 +968,15 @@ it:
     P60242: "Arrangiamento di"
     P60198: "Complementare a"
     P60313: "Relazione indefinita"
+  relations_institutions:
+    P50008: Hierarchical superior
+    P50010: Subalterno gerarchico
+    P50012: Predecessor of corporate body
+    P50016: Successor of corporate body
+    P50020: Famiglia fondatrice dell'ente
+    P50230: Ente membro dell'ente
+    P50435: Corporate body member of family
+    P50301: Ente incorporato
   verovio:
     position: "Posizione"
     warning: "Attenzione"
@@ -1038,6 +1047,12 @@ it:
     ERR_064_LIGATURE_DURATION: La durata di una legatura non può essere inferiore a una semibreve.
     ERR_065_MREST_INVALID_MEASURE: Una battuta con una pausa per l'intera battuta non può includere altro.
     ERR_066_EMPTY_CONTAINER: Un gruppetto o una travatura non possono essere vuoti.
+  work_catalogue:
+    not_work_catalogue: Non un catalogo delle opere
+    work_catalogue_alternate: Catalogo alternativo
+    work_catalogue_complete: Completato
+    work_catalogue_in_preparation: Idoneo
+    work_catalogue_partial: Parzialmente processato
   rism_online:
     manuscript: "Manoscritto"
     printed: "A stampa"

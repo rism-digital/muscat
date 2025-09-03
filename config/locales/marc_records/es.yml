@@ -968,6 +968,15 @@ es:
     P60242: "Arreglo de"
     P60198: "Es complementado por"
     P60313: "No identificado"
+  relations_institutions:
+    P50008: Jerarquía superior
+    P50010: Jerarquía subordinada
+    P50012: Predecesor del cuerpo corporativo
+    P50016: Sucesor del cuerpo corporativo
+    P50020: Familia fundadora del cuerpo corporativo
+    P50230: Miembro del cuerpo corporativo del cuerpo corporativo
+    P50435: Miembro de la familia del cuerpo corporativo
+    P50301: Cuerpo corporativo absorbido
   verovio:
     position: "Posición"
     warning: "Advertencia"
@@ -1038,6 +1047,12 @@ es:
     ERR_064_LIGATURE_DURATION: La duración de una ligadura no puede ser mas corta que una semibreve.
     ERR_065_MREST_INVALID_MEASURE: Un compás con un compás de silencio no puede incluir algo más.
     ERR_066_EMPTY_CONTAINER: Un grupo de gracia o un haz no pueden estar vacíos.
+  work_catalogue:
+    not_work_catalogue: Not work catalog
+    work_catalogue_alternate: Alternate
+    work_catalogue_complete: Completed
+    work_catalogue_in_preparation: Eligible
+    work_catalogue_partial: Partially completed
   rism_online:
     manuscript: "Manuscrito"
     printed: "Impreso"

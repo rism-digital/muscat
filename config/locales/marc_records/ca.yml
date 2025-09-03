@@ -968,6 +968,15 @@ ca:
     P60242: "Is arrangement of"
     P60198: "Completat per"
     P60313: "No definit"
+  relations_institutions:
+    P50008: Hierarchical superior
+    P50010: Hierarchical subordinate
+    P50012: Predecessor of corporate body
+    P50016: Successor of corporate body
+    P50020: Founding family of corporate body
+    P50230: Corporate body member of corporate body
+    P50435: Corporate body member of family
+    P50301: Absorbed corporate body
   verovio:
     position: "Posició"
     warning: "Avís"
@@ -1038,6 +1047,12 @@ ca:
     ERR_064_LIGATURE_DURATION: La duració en una lligadura no pot ser més curta que una rodona.
     ERR_065_MREST_INVALID_MEASURE: Un compàs de silenci no pot incloure res més.
     ERR_066_EMPTY_CONTAINER: Un ornament o una barra d'unió entre notes no poden estar buides.
+  work_catalogue:
+    not_work_catalogue: Not work catalog
+    work_catalogue_alternate: Alternate
+    work_catalogue_complete: Completed
+    work_catalogue_in_preparation: Eligible
+    work_catalogue_partial: Partially completed
   rism_online:
     manuscript: "Manuscrit"
     printed: "Imprès"

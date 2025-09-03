@@ -790,6 +790,7 @@ en:
     production: Production
     production_personnel: Production personnel
     profession_or_function: Profession or function
+    project: Project
     project_url: Project URL
     provenance: Provenance
     provenance_notes: Provenance note
@@ -1050,6 +1051,12 @@ en:
     ERR_064_LIGATURE_DURATION: The duration in a ligature cannot be shorter than a semibreve.
     ERR_065_MREST_INVALID_MEASURE: A measure with a measure rest cannot include anything else.
     ERR_066_EMPTY_CONTAINER: A grace group or a beam cannot be empty.
+  work_catalogue:
+    not_work_catalogue: Not work catalog
+    work_catalogue_alternate: Alternate
+    work_catalogue_complete: Completed
+    work_catalogue_in_preparation: Eligible
+    work_catalogue_partial: Partially completed
   rism_online:
     manuscript: "Manuscript"
     printed: "Printed"
