@@ -787,6 +787,7 @@ it:
     production: Produzione
     production_personnel: Personale alla produzione
     profession_or_function: Professione o funzione
+    project: Project
     project_url: URL del progetto
     provenance: Provenienza
     provenance_notes: Nota sulla provenienza
@@ -969,13 +970,13 @@ it:
     P60198: "Complementare a"
     P60313: "Relazione indefinita"
   relations_institutions:
-    P50008: Hierarchical superior
+    P50008: Superiore gerarchico
     P50010: Subalterno gerarchico
-    P50012: Predecessor of corporate body
-    P50016: Successor of corporate body
+    P50012: Ente predecessore
+    P50016: Ente successore
     P50020: Famiglia fondatrice dell'ente
     P50230: Ente membro dell'ente
-    P50435: Corporate body member of family
+    P50435: Organismo aziendale membro della famiglia
     P50301: Ente incorporato
   verovio:
     position: "Posizione"

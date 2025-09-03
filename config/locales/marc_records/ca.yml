@@ -787,6 +787,7 @@ ca:
     production: Producció
     production_personnel: Personal de producció
     profession_or_function: Professió o funció
+    project: Project
     project_url: Project URL
     provenance: Custòdia
     provenance_notes: Nota sobre la procedència

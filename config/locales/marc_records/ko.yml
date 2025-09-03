@@ -787,6 +787,7 @@ ko:
     production: Production
     production_personnel: Production personnel
     profession_or_function: Profession or function
+    project: Project
     project_url: Project URL
     provenance: Provenance
     provenance_notes: Provenance note
