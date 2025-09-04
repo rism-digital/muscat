@@ -1,7 +1,7 @@
 Muscat Changelog
 ================
 
-v 11.6.4
+v 11.7
 * Fix #1837, make the breadcrumbs preserve case
 * Bump thor from 1.3.2 to 1.4.0
 * Update autocomplete
@@ -48,6 +48,22 @@ v 11.6.4
 * #1766, add "read only" option for subfield_secordary, and no_delete_override for tags
 * Do not validate links when saving - so the user can save and fix that error
 * #1852 add validation for URLs
+* Fix #1853, make delete and restore in versions only for admins
+* Script to migrate 852 into 773
+* Remove double 856 in works
+* #1851 and #1858, add migrations for new int fields
+* Fix #1859 add cool new search field!
+* Fix #1783, add wf_audit
+* Remove field 852 from InventoryItems, leave in the tag_config until update
+* #1784 Add possibility to move digital objects
+* Fix #1710, add option to merge holding records
+* Make sure only ONE do-link is moved
+* Fix DO migration
+* Fix #1854, limit "unpublish" to new records for cataloguers. They cannot unpub published records.
+* Sneakingly remove "deleted" from the user prefs
+* Fix #1860. add Project to Institution 368, upd. translations
+* Upd. translations
+
 
 v 11.6.3
 * Make the Person validation validate the correct field (551)
