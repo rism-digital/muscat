@@ -52,7 +52,7 @@ class MarcWork < Marc
     if node = first_occurance("100", "a")
       person = node.foreign_object
     end
-    return person&.strip
+    return person
   end
 
   def get_link_status
