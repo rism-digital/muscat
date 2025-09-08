@@ -812,7 +812,7 @@ ca:
         zero: No se n'ha trobat cap
   work_catalog_publish: Publica les obres enllaçades
   work_catalog_unpublish: Despublica les obres enllaçades
-  work_catalogue: Catàleg d'obres
+  work_catalog: Catàleg d'obres
   work_catalogue_labels:
     not_work_catalogue: Sense catàleg d'obres
     work_catalogue_alternate: Alternatiu

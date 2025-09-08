@@ -839,7 +839,7 @@ en:
         zero: No %{model} found
   work_catalog_publish: Publish linked works
   work_catalog_unpublish: Unpublish linked works
-  work_catalogue: Work catalog status
+  work_catalog: Work catalog status
   work_catalogue_labels:
     not_work_catalogue: Not work catalog
     work_catalogue_alternate: Alternate

@@ -812,7 +812,7 @@ es:
         zero: No se han encontrado %{model}
   work_catalog_publish: Publicar las obras vinculadas
   work_catalog_unpublish: Despublicar las obras vinculadas
-  work_catalogue: Catálogo de obras
+  work_catalog: Catálogo de obras
   work_catalogue_labels:
     not_work_catalogue: Sin catálogo de obras
     work_catalogue_alternate: Alternativo

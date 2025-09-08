@@ -812,7 +812,7 @@ de:
         zero: Keine(n) %{model} gefunden
   work_catalog_publish: Verknüpfte Werke veröffentlichen
   work_catalog_unpublish: Veröffentlichung verknüpfter Werke aufheben
-  work_catalogue: Katalog der Werke
+  work_catalog: Katalog der Werke
   work_catalogue_labels:
     not_work_catalogue: Kein Werkverzeichnis
     work_catalogue_alternate: Alternativ

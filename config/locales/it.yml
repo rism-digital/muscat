@@ -812,7 +812,7 @@ it:
         zero: Nessun %{model} trovato
   work_catalog_publish: Pubblica le opere collegate
   work_catalog_unpublish: Annulla la pubblicazione delle opere collegate
-  work_catalogue: Catalogo di opere
+  work_catalog: Catalogo di opere
   work_catalogue_labels:
     not_work_catalogue: Non è un catalogo delle opere
     work_catalogue_alternate: Alternativo

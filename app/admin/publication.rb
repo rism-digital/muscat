@@ -223,7 +223,7 @@ ActiveAdmin.register Publication do
     column (I18n.t :filter_title_short), :short_name
     column (I18n.t :filter_title), :title
     column (I18n.t :filter_author), :author
-    column (I18n.t :work_catalogue), :work_catalogue, sortable: :work_catalogue_order do  |cat|
+    column (I18n.t :"work_catalog"), :work_catalogue, sortable: :work_catalogue_order do  |cat|
       status_tag(cat.work_catalogue, label: I18n.t('work_catalogue_tags.' + (cat.work_catalogue != nil ? cat.work_catalogue : ""), locale: :en))
     end if can?(:edit, Work)
     column (I18n.t :filter_sources), :src_count_order, sortable: :src_count_order do |element|

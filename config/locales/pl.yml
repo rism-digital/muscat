@@ -812,7 +812,7 @@ pl:
         zero: Nie znaleziono %{model}
   work_catalog_publish: Opublikuj powiązane dzieła
   work_catalog_unpublish: Cofnij publikację powiązanych dzieł
-  work_catalogue: Katalog dzieł
+  work_catalog: Katalog dzieł
   work_catalogue_labels:
     not_work_catalogue: Brak katalogu dzieł
     work_catalogue_alternate: Alternatywny
