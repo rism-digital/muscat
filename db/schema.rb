@@ -241,7 +241,7 @@ ActiveRecord::Schema[7.2].define(version: 2025_09_02_083607) do
     t.integer "wf_stage"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "source_order"
+    t.integer "source_order", default: 0, null: false
   end
 
   create_table "inventory_items_to_holdings", charset: "utf8mb3", force: :cascade do |t|
