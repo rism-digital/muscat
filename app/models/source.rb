@@ -702,16 +702,33 @@ class Source < ApplicationRecord
       self.marc.root.add_at(t588, self.marc.get_insert_position("588") )
     end
 
-    tags.each do |copy_tag, indexes|
+    # Purge the default 593 from holding only if we are copying over a new one
+    holding_marc.each_by_tag("593") {|t2| t2.destroy_yourself} if tags.include?("593")
 
-      # Purge 593 only if we are copying over a new one
-      holding_marc.each_by_tag("593") {|t2| t2.destroy_yourself} if copy_tag == "593"
+    # 593 in the holding is non-repeatable, we allow the user
+    # to move only one. 
+    moved593 = false
+
+    tags.each do |copy_tag, indexes|
 
       match = marc.by_tags(copy_tag)
 
       indexes.each do |i|
         match[i].copy_to(holding_marc)
-        match[i].destroy_yourself
+
+        if match[i].tag == "593"
+          # Make sure the default 593 is set in the Source
+          # And make sure it is saved in the source!
+          if moved593 == false
+            match[i]["a"]&.first&.content = "Print" if match[i]
+            match[i]["b"]&.first&.content = "Notated music"
+            # We move and preserve only one 593
+            moved593 = true
+          end
+        else
+          # All other tags are removed from the Source
+          match[i].destroy_yourself
+        end
       end
 
     end
@@ -763,7 +780,6 @@ class Source < ApplicationRecord
     else
       self.record_type = MarcSource::RECORD_TYPES[:edition_content]
     end
-    self.save
 
     return holding.id
   end
