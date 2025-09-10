@@ -206,7 +206,9 @@
   layout: 
     fields: 
     - - a
-      - trigger:
+      - read_only: true
+        override_admin: true
+        trigger:
         - save:
           - referring_sources
           - referring_holdings
@@ -215,11 +217,15 @@
           - referring_publications
           - referring_works
     - - b
-      - trigger:
+      - read_only: true
+        override_admin: true
+        trigger:
         - save:
           - referring_institutions
     - - c
-      - trigger:
+      - read_only: true
+        override_admin: true
+        trigger:
         - save:
           - referring_sources
           - referring_holdings
