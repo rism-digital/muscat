@@ -1,6 +1,19 @@
 Muscat Changelog
 ================
 
+v 11.7.0.1
+* Somewhere, there was a bug: Needs to return an object not string
+* Fix #1863, rename :work_catalogue to :work_catalog to avoid conflict with RO
+* Script to fix works
+* Fix #1864, add Argentina
+* FIx #1716, add readonly fields wirh override for editor and admin
+* Fix #1680, cleanup psmd link
+* Fix #1556, Allow new personal name creation from 700 $a in institution
+* Fix #1470, make sure 593 is not deleted when moved
+* Fix news to say guidelines exist in EN and DE
+* Update tribute.js to fix some long standing bugs
+* The netmask for this release is 255.255.255.0
+
 v 11.7
 * Fix #1837, make the breadcrumbs preserve case
 * Bump thor from 1.3.2 to 1.4.0
