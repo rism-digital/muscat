@@ -962,7 +962,7 @@ ca:
     P60183: "Insert"
   relations_works:
     P60250: "Obra derivada"
-    P60305: "Té com a font"
+    P60305: "Is based on"
     P60216: "Desenvolupat com a"
     P60294: "Versió desenvolupada de"
     P60274: "Arranjat com a"

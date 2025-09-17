@@ -962,7 +962,7 @@ de:
     P60183: "Einfügen"
   relations_works:
     P60250: "Hat Derivate"
-    P60305: "Hat Quelle"
+    P60305: "Basiert auf"
     P60216: "Wird erweitert als"
     P60294: "Ist erweiterte Version von"
     P60274: "Bearbeitung als"

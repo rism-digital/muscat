@@ -965,7 +965,7 @@ en:
     P60183: "Insert"
   relations_works:
     P60250: "Has derivative"
-    P60305: "Has source"
+    P60305: "Is based on"
     P60216: "Is expanded as"
     P60294: "Is expanded version of"
     P60274: "Is arranged as"

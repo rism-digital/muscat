@@ -962,7 +962,7 @@ pl:
     P60183: "Wstawić"
   relations_works:
     P60250: "Posiada derywatywę"
-    P60305: "Posiada źródło"
+    P60305: "Jest oparte na"
     P60216: "Jest rozszerzony jako"
     P60294: "Jest rozszerzoną wersją"
     P60274: "Jest zaaranżowane jako"

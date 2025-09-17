@@ -962,7 +962,7 @@ pt:
     P60183: "Inserir"
   relations_works:
     P60250: "Tem derivada"
-    P60305: "Tem origem"
+    P60305: "Está baseado em"
     P60216: "É expandido como"
     P60294: "É a versão expandida de"
     P60274: "Arranjado como"

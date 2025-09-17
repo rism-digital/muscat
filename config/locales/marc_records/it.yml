@@ -962,7 +962,7 @@ it:
     P60183: "Inserto"
   relations_works:
     P60250: "Opera derivata"
-    P60305: "Basata su"
+    P60305: "Si basa su"
     P60216: "Estesa come"
     P60294: "Versione estesa di"
     P60274: "Arrangiata come"

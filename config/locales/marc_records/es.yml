@@ -962,7 +962,7 @@ es:
     P60183: "Insertar"
   relations_works:
     P60250: "Tiene derivado"
-    P60305: "Tiene fuente"
+    P60305: "Is based on"
     P60216: "Se expande como"
     P60294: "Versión expandida de"
     P60274: "Está ordenado como"

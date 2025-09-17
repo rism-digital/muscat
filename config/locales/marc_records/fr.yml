@@ -962,7 +962,7 @@ fr:
     P60183: "Insertion"
   relations_works:
     P60250: "A dérivé"
-    P60305: "A la source"
+    P60305: "Is based on"
     P60216: "Est élargi comme"
     P60294: "Est la version étendue de"
     P60274: "Est arrangé comme"
