@@ -12,6 +12,7 @@ v 11.7.0.1
 * Fix #1470, make sure 593 is not deleted when moved
 * Fix news to say guidelines exist in EN and DE
 * Update tribute.js to fix some long standing bugs
+* Mini changes to locales
 * The netmask for this release is 255.255.255.0
 
 v 11.7
