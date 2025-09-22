@@ -101,11 +101,7 @@ ActiveAdmin.register Person do
     end
 
     def index
-      person = Person.new
-      new_marc = MarcPerson.new(File.read(ConfigFilePath.get_marc_editor_profile_path("#{Rails.root}/config/marc/#{RISM::MARC}/person/default.marc")))
-      new_marc.load_source false # this will need to be fixed
-      person.marc = new_marc
-      @editor_profile = EditorConfiguration.get_default_layout person
+      @editor_profile = EditorConfiguration.get_default_layout Person
 
       # Get the terms for 550a, the "profession filter"
       @profession_types = Person.get_terms("550a_sms")
