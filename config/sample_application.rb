@@ -198,6 +198,8 @@ module Muscat
 
     config.active_record.yaml_column_permitted_classes = [ActiveSupport::HashWithIndifferentAccess, Time, Date, ActiveSupport::TimeWithZone, ActiveSupport::TimeZone]
     
+    Paperclip::Attachment.default_options[:url] = "https://muscat.rism.info/system/:class/:attachment/:id_partition/:style/:filename"
+
     # See what was loaded
     #Rails.autoloaders.log!
 

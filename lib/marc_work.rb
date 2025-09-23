@@ -84,6 +84,8 @@ class MarcWork < Marc
     
     new_leader = MarcNode.new("work", "000", "00000nz  a2200000nc 4500", "")
     @root.children.insert(get_insert_position("000"), new_leader)
+
+     _to_external_031!(Work.find(get_id))
   end
 
 end

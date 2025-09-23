@@ -624,6 +624,20 @@ class Marc
     return words.join(" ")
   end
 
+  def insert(tag, subtags = {})
+    the_t = MarcNode.new(@model, tag, "", @marc_configuration.get_default_indicator(tag))
+
+    subtags.each do |stag, val|
+      next if !val
+      next if val.empty?
+      the_t.add_at(MarcNode.new(@model, stag.to_s, val, nil), 0 )
+    end
+
+    the_t.sort_alphabetically
+    @root.add_at(the_t, get_insert_position(tag))
+    return the_t
+  end
+  
   # Return all tags
   def all_tags( resolve = true )
     load_source( resolve ) unless @loaded
@@ -1113,6 +1127,31 @@ class Marc
 
     $MARC_LOG << ["MARC"] + list
 
+  end
+
+  def _to_external_031!(parent_object)
+    each_by_tag("031") do |t|
+
+      # Export the MEI incipit link
+      if parent_object.digital_objects.incipits
+        vals = {}
+        [:a, :b, :c].each do |st|
+          v = t.fetch_first_by_tag(st)
+          vals[st] = v && v.content ? v.content : "x"
+        end
+        pae_nr = "#{vals[:a]}.#{vals[:b]}.#{vals[:c]}"
+
+        # Try to match it in the digital objects
+        parent_object.digital_objects.incipits.each do |incipit|
+          if incipit.match_pae_nr?(pae_nr)
+            t.add_at(MarcNode.new("source", "u", incipit.attachment.url(:original, false), nil), 0)
+          end
+        end
+      end
+
+      t.add_at(MarcNode.new("source", "2", "pe", nil), 0)
+      t.sort_alphabetically
+    end
   end
 
 end
