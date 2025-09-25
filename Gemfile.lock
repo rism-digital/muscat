@@ -131,6 +131,10 @@ GEM
     base64 (0.3.0)
     bcrypt (3.1.20)
     benchmark (0.4.1)
+    bibtex-ruby (6.2.0)
+      latex-decode (~> 0.0)
+      logger (~> 1.7)
+      racc (~> 1.7)
     bigdecimal (3.2.3)
     builder (3.3.0)
     cancancan (3.6.1)
@@ -307,6 +311,7 @@ GEM
       mime-types
       terrapin (>= 0.6.0, < 2.0)
     language_server-protocol (3.17.0.5)
+    latex-decode (0.4.0)
     libxml-ruby (5.0.5)
     lint_roller (1.1.0)
     listen (3.9.0)
@@ -637,6 +642,7 @@ DEPENDENCIES
   activerecord-import
   anchored
   awesome_print
+  bibtex-ruby
   cancancan
   capybara
   chart-js-rails

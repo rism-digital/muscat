@@ -118,6 +118,13 @@ ActiveAdmin.register Publication do
     def new
       flash.now[:error] = I18n.t(params[:validation_error], term: params[:validation_term]) if params[:validation_error]
       @publication = Publication.new
+      converted = false
+
+      if params.include?(:upload)
+        file = params.require(:upload).fetch(:file)
+        converted = Converters::BibtexImporter::bibtex2publication(file.read)
+      end
+
       if params[:existing_title] and !params[:existing_title].empty?
         # Check that the record does exist...
         begin
@@ -132,7 +139,14 @@ ActiveAdmin.register Publication do
         new_marc.insert_duplicated_from("981", base_item.id.to_s)
         @publication.marc = new_marc
       else
-        new_marc = MarcPublication.new(File.read(ConfigFilePath.get_marc_editor_profile_path("#{Rails.root}/config/marc/#{RISM::MARC}/publication/default.marc")))
+
+        if converted
+          marc_file = converted
+        else
+          marc_file = File.read(ConfigFilePath.get_marc_editor_profile_path("#{Rails.root}/config/marc/#{RISM::MARC}/publication/default.marc"))
+        end
+
+        new_marc = MarcPublication.new(marc_file)
         new_marc.load_source false # this will need to be fixed
         @publication.marc = new_marc
       end
@@ -237,6 +251,10 @@ ActiveAdmin.register Publication do
   
   sidebar :actions, :only => :index do
     render :partial => "activeadmin/section_sidebar_index"
+  end
+
+  sidebar :imports, only: :index do
+    render :partial => "activeadmin/section_sidebar_publication_imports"
   end
   
   # Include the folder actions

@@ -1,0 +1,8 @@
+<%= form_with url: admin_publications_new_path, local: true, html: { multipart: true } do |f| %>
+  <div>
+    <%= label_tag :file, "Create Publication from BibTex file" %><br>
+    <%= file_field_tag "upload[file]", accept: ".bib,.bibtex,.txt" %>
+  </div>
+  <br>
+  <%= f.submit "Import" %>
+<% end %>
