@@ -38,6 +38,16 @@ module Converters
         end
       end
 
+      if first_b[:editor]
+        first_b.editor.each_with_index do |aa|
+
+          p = Person.where(full_name: aa.to_s).first
+          id = p ? p&.id&.to_s : "IMPORT-NEW"
+          
+          new_marc.insert("700", a: aa.to_s, "4": "edt", "0": id)
+        end
+      end
+
       new_marc.insert("210", a: first_b.key) if first_b.key
 
       h240 = type_map.fetch(first_b&.type, nil)
