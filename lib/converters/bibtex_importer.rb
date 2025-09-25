@@ -24,15 +24,17 @@ module Converters
       new_marc.each_by_tag("260") {|t2| t2.destroy_yourself}
       new_marc.each_by_tag("210") {|t2| t2.destroy_yourself}
 
-      first_b.author.each_with_index do |aa, idx|
+      if first_b[:author]
+        first_b.author.each_with_index do |aa, idx|
 
-        p = Person.where(full_name: aa.to_s).first
-        id = p ? p&.id&.to_s : "IMPORT-NEW"
-        
-        if idx == 0
-          new_marc.insert("100", a: aa.to_s, "0": id)
-        else
-          new_marc.insert("700", a: aa.to_s, "4": "aut", "0": id)
+          p = Person.where(full_name: aa.to_s).first
+          id = p ? p&.id&.to_s : "IMPORT-NEW"
+          
+          if idx == 0
+            new_marc.insert("100", a: aa.to_s, "0": id)
+          else
+            new_marc.insert("700", a: aa.to_s, "4": "aut", "0": id)
+          end
         end
       end
 
