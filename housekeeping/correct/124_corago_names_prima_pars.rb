@@ -63,7 +63,7 @@ def update_record(all_records, found_id = nil)
   p.marc.root.add_at(a024, p.marc.get_insert_position("024") )
 
   # Do we have more items left? Add 400s!
-  all_records.each do |r|
+  alt_ids = all_records.map do |r|
     
     fullname = [r["COGNOME"]&.strip, r["NOME"]&.strip].compact.join(", ")
     fullname = "#{fullname} #{r["PREFISSO"]&.strip}" if r["PREFISSO"]
@@ -73,13 +73,21 @@ def update_record(all_records, found_id = nil)
       found = true if t["a"].first.content.strip.downcase == fullname.downcase
     end
 
-    puts "Add variant #{fullname} to #{p.id}" if !found
+    #puts "Add variant #{fullname} to #{p.id}" if !found
+    puts "VARIANT\t#{p.id}\t#{r["COD_RESP"]}\t#{p.name}\t#{fullname}" if !found
 
     p.marc.insert("400", a: fullname, j: "xx")
+    r["COD_RESP"]
+  end
+
+    if alt_ids.any?
+    p.marc.insert("667", a: "Alternate Corago ids: " + alt_ids.join(", "))
   end
 
   p.paper_trail_event = "Add CORAGO ID #{principal_entry["COD_RESP"]}"
   p.save
+
+  puts "ADD\t#{p.id}\t#{principal_entry["COD_RESP"]}\t#{p.name}"
 
 end
 
@@ -137,22 +145,30 @@ def create_record(records)
     new_marc.insert("680", a: principal_entry["BIOGRAFIA"].strip)
   end
 
- records.each do |r|
+
+  alt_ids = records.map do |r|
     fullname = [r["COGNOME"]&.strip, r["NOME"]&.strip].compact.join(", ")
     fullname = "#{fullname} #{r["PREFISSO"]&.strip}" if r["PREFISSO"]
     
     new_marc.insert("400", a: fullname, j: "xx")
+    r["COD_RESP"]
+  end
+
+  if alt_ids.any?
+    new_marc.insert("667", a: "Alternate Corago ids: " + alt_ids.join(", "))
   end
 
   #ap Date.parse(principal_entry["DATA_NAS_IND"])
 
-  puts new_marc
+  #puts new_marc
 
   new_marc.import
   person.save
-  puts person.id
+  #puts person.id
 
   person.index
+
+  puts "CREATE\t#{person.id}\t#{principal_entry["COD_RESP"]}\t#{person.name}"
 
 end
 
@@ -174,7 +190,7 @@ def match_test(records)
           #exact_matches[name] ||= Array.new
           #exact_matches[name] << {muscat_id: pr.id, muscat_name: pr.full_name, corago_name: name}
           puts "#{name} maps to #{pr.id}"
-          update_record(all_recs.dup, pr.id)
+          #update_record(all_recs.dup, pr.id)
       end
   else
 
@@ -237,12 +253,12 @@ grouped.each do |resp_id, records|
 
   if action == :create
     #puts "Add #{resp_id}..."
-    #create_record(records)
+    create_record(records.dup)
   elsif action == :update
     #puts "Update RISM record"
-    #update_record(records)
+    update_record(records.dup)
   elsif action == :match
-    match_test(records)
+    #match_test(records)
   else
     # skip for now
   end
