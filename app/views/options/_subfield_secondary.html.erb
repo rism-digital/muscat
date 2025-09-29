@@ -8,7 +8,7 @@
 		marc_subfield_m = marc_tag.fetch_first_by_tag(master) || MarcNode.new(@item.marc.get_model)
 		if marc_subfield_m&.content == "IMPORT-NEW"
 			marc_subfield_m.content = ""
-			force_new = true;
+			force_new = true
 		end
 	end 
 

@@ -19,10 +19,16 @@ module Converters
       new_marc = MarcPublication.new(File.read(ConfigFilePath.get_marc_editor_profile_path("#{Rails.root}/config/marc/#{RISM::MARC}/publication/default.marc")))
       new_marc.load_source false
 
+      new_marc.each_by_tag("041") {|t2| t2.destroy_yourself}
       new_marc.each_by_tag("100") {|t2| t2.destroy_yourself}
+      new_marc.each_by_tag("210") {|t2| t2.destroy_yourself}
       new_marc.each_by_tag("240") {|t2| t2.destroy_yourself}
       new_marc.each_by_tag("260") {|t2| t2.destroy_yourself}
-      new_marc.each_by_tag("210") {|t2| t2.destroy_yourself}
+      new_marc.each_by_tag("337") {|t2| t2.destroy_yourself}
+      new_marc.each_by_tag("650") {|t2| t2.destroy_yourself}
+      new_marc.each_by_tag("651") {|t2| t2.destroy_yourself}
+      new_marc.each_by_tag("700") {|t2| t2.destroy_yourself}
+      new_marc.each_by_tag("760") {|t2| t2.destroy_yourself}
 
       if first_b[:author]
         first_b.author.each_with_index do |aa, idx|
@@ -31,10 +37,11 @@ module Converters
           id = p ? p&.id&.to_s : "IMPORT-NEW"
           
           if idx == 0
-            new_marc.insert("100", a: aa.to_s, "0": id)
+            t = new_marc.insert("100", a: aa.to_s, "0": id)
           else
-            new_marc.insert("700", a: aa.to_s, "4": "aut", "0": id)
+            t = new_marc.insert("700", a: aa.to_s, "4": "aut", "0": id)
           end
+
         end
       end
 
