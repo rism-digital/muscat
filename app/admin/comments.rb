@@ -11,9 +11,9 @@ ActiveAdmin.register ActiveAdmin::Comment, :as => "Comment" do
     render :partial => "activeadmin/section_sidebar_show", :locals => { :item => comment }
   end
   
-  scope :admin
-  scope("Archived") { |scope| scope.where(namespace: :archived) }
-  scope :all
+  #scope :admin
+  #scope("Archived") { |scope| scope.where(namespace: :archived) }
+  #scope :all
   
   # Custom action for archiving comments - done with namespace attribute (for now)
   # param[:do] true/false for archive or unarchive a comment
@@ -21,7 +21,7 @@ ActiveAdmin.register ActiveAdmin::Comment, :as => "Comment" do
   member_action :archive, method: :get do
     if request.get? && can?(:manage, resource)
       value = (params[:do] && params[:do] == "false") ? :admin : :archived
-      resource.update_attributes! namespace: value || {}
+      resource.update namespace: value || {}
       resource.save!
       redirect_to collection_path, notice: "Item successfully (un-)archived"
     else
@@ -69,14 +69,16 @@ ActiveAdmin.register ActiveAdmin::Comment, :as => "Comment" do
   
   filter :body, :label => proc {I18n.t(:filter_comment)}, :as => :string
   filter :resource_type, :default => 'Source'
-  filter :author_id, :label => proc {I18n.t(:filter_author)}, as: :select, 
-         collection: proc {
-           if current_user.has_any_role?(:editor, :admin)
-             User.sort_all_by_last_name.map{|u| [u.name, "#{u.id}"]}
-           else
-             [[current_user.name, "#{current_user.id}"]]
-           end
-         }
+  filter :author_id, :label => proc {I18n.t(:filter_owner)}, as: :flexdatalist, data_path: proc{list_for_filter_admin_users_path()}
+
+  #filter :author_id, :label => proc {I18n.t(:filter_author)}, as: :select, 
+  #       collection: proc {
+  #         if current_user.has_any_role?(:editor, :admin)
+  #           User.sort_all_by_last_name.map{|u| [u.name, "#{u.id}"]}
+  #         else
+  #           [[current_user.name, "#{current_user.id}"]]
+  #         end
+  #       }
          
 end
 

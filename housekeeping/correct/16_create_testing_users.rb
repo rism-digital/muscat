@@ -7,7 +7,7 @@
 role = Role.where(:name => "cataloger").take
 wg = Workgroup.where(:id => 8).take #USA
 
-(1..50).each do |n|
+(1..99).each do |n|
 
   number = str = format('%02d', n)
     

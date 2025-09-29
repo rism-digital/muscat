@@ -1,0 +1,52 @@
+--- !map:Settings
+client:
+  "031":
+    tags:
+      "a": mandatory
+      "b":
+        required_if:
+          "031": "a"
+      "c":
+        required_if:
+          "031": "a"
+  "100":
+    tags:
+      "0":
+        required_if:
+          "100": "j"
+  "240":
+    tags:
+      "0": mandatory
+      m: required, warning
+  "245":
+    tags:
+      a: mandatory
+  "593":
+    tags:
+      a: mandatory
+      b: mandatory
+  "650":
+    tags:
+      "0": mandatory
+  "700": 
+    tags:
+      "0": required
+      "4":
+        required_if:
+          "700": "0"
+  "710": 
+    tags:
+      "0": required
+      "4":
+        required_if:
+          "710": "0"
+  "856": 
+    tags:
+      u: validate_url
+        #begins_with: "http"
+      z:
+        required_if:
+          "856": "u"
+      x:
+        required_if:
+          "856": "u"

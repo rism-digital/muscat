@@ -9,12 +9,10 @@ ActiveAdmin.register_page "Compare Versions" do
   limit = 20
 
   content title: proc { I18n.t("active_admin.compare_versions") } do
-
     script do
       text_node 'I18n.defaultLocale = "'.html_safe + I18n.default_locale.to_s + '";'.html_safe
       text_node 'I18n.locale = "'.html_safe + I18n.locale.to_s + '";'.html_safe
     end
-
     matches, model = diff_find_in_interval(Source, current_user, params[:time_frame], params[:rule])
 
     if matches.empty?
@@ -54,6 +52,7 @@ ActiveAdmin.register_page "Compare Versions" do
             th { text_node I18n.t(:created_at) }
             th { text_node I18n.t(:updated_at) }
             th { text_node I18n.t("compare_versions.similarity")}
+            th { text_node I18n.t("compare_versions.tags")}
             th { text_node I18n.t("compare_versions.diff") }
           end
 
@@ -109,12 +108,25 @@ ActiveAdmin.register_page "Compare Versions" do
               end
 
               td do
+                if sim > -1
+                changed = ->(sf) { sf.diff.nil? || sf.content != sf.diff.content || sf.diff_is_deleted }
+
+                s.marc.all_tags
+                  .map { |t| t.diff&.diff_is_deleted ? t.diff : t }
+                  .filter_map { |tag| tag.tag if tag.any?(&changed) }
+                  .uniq
+                  .sort
+                  .join(", ")
+                end
+              end
+
+              td do
                 id = s.versions.last != nil ? s.versions.last.id.to_s : "1"
                 link_to(I18n.t("compare_versions.show"), "#", class: "diff-button", name: "diff-#{s.id}")
               end
             end
             tr do
-              td(colspan: 7, class: "diff", id: "diff-#{s.id}", style: "display: none") do
+              td(colspan: 8, class: "diff", id: "diff-#{s.id}", style: "display: none") do
                 render(partial: "diff_record", locals: { :item => s })
               end
             end
@@ -126,6 +138,8 @@ ActiveAdmin.register_page "Compare Versions" do
   end # content
 
   sidebar I18n.t "compare_versions.options", :class => "sidebar_tabs", :only => [:index] do
+    #@arbre_context.assigns[:test] to get variables from content
+
     # no idea why the I18n.locale is not set by set_locale in the ApplicationController
     I18n.locale = session[:locale]
     render("compare_sidebar") # Calls a partial

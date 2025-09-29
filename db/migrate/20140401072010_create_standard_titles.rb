@@ -3,13 +3,13 @@ class CreateStandardTitles < ActiveRecord::Migration[4.2]
     create_table(:standard_titles, :options => 'ENGINE=InnoDB DEFAULT CHARSET=utf8') do |t|
     
       t.column :title,              :string, :null => false
-      t.column :title_d,            :string, { :limit => 128 }
+      t.column :title_d,            :string, :limit => 128
       t.column :notes,              :text
       
-      t.column :wf_audit,           :string, { :limit => 16, :default => "unapproved" }
-      t.column :wf_stage,           :string, { :limit => 16, :default => "unpublished" }
+      t.column :wf_audit,           :string, :limit => 16, :default => "unapproved"
+      t.column :wf_stage,           :string, :limit => 16, :default => "unpublished"
       t.column :wf_notes,           :string
-      t.column :wf_owner,           :integer, { :default => 0 }
+      t.column :wf_owner,           :integer, :default => 0
       t.column :wf_version,         :integer, :default => 0
           
       t.column :src_count,          :integer, :default => 0

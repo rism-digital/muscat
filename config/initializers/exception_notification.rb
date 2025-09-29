@@ -6,7 +6,7 @@ ExceptionNotification.configure do |config|
   # Ignore additional exception types.
   # ActiveRecord::RecordNotFound, Mongoid::Errors::DocumentNotFound, AbstractController::ActionNotFound and ActionController::RoutingError are already added.
   # config.ignored_exceptions += %w{ActionView::TemplateError CustomError}
-  config.ignored_exceptions -= %w(ActiveRecord::RecordNotFound)
+  config.ignored_exceptions -= %w(ActiveRecord::RecordNotFound, ActionController::InvalidAuthenticityToken)
 	
   # Adds a condition to decide when an exception must be ignored or not.
   # The ignore_if method can be invoked multiple times to add extra conditions.
@@ -20,7 +20,7 @@ ExceptionNotification.configure do |config|
   # Email notifier sends notifications by email.
 #  config.add_notifier :email, {
 #    :email_prefix         => "[ERROR] ",
-#    :sender_address       => "Notifier <norely@muscat.rism.info>",
+#    :sender_address       => "Notifier <noreply@muscat.rism.info>",
 #    :exception_recipients => [RISM::NOTIFICATION_EMAILS]
 #  }
 

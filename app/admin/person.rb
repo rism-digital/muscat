@@ -8,7 +8,7 @@ ActiveAdmin.register Person do
 
   # Remove all action items
   config.clear_action_items!
-  config.per_page = [10, 30, 50, 100]
+  config.per_page = [10, 30, 50, 100, 1000]
 
   # Not everybody likes cleverly ordered things
   if defined?(RISM::CLEVER_ORDERING) && RISM::CLEVER_ORDERING == true
@@ -36,8 +36,10 @@ ActiveAdmin.register Person do
   # temporarily allow all parameters
   controller do
 
-    autocomplete :person, :full_name, :display_value => :autocomplete_label , :extra_data => [:life_dates]
-    autocomplete :person, "550a_sms", :solr => true
+    autocomplete :person, :full_name, :extra_data => [:life_dates_order_s], :solr_search => true,
+                 :search_field => :full_name_autocomplete, :order_field => :total_obj_count_order_is,
+                 :display_value => :label_ss, :value_field => :full_name_order_s
+    autocomplete :person, "550a_sms", :solr => true, :display_value => :label, :value_field => :"550a_sms"
 
     after_destroy :check_model_errors
     before_create do |item|
@@ -63,6 +65,7 @@ ActiveAdmin.register Person do
       @item = Person.find(params[:id])
       @show_history = true if params[:show_history]
       @editor_profile = EditorConfiguration.get_default_layout @item
+      @editor_validation = EditorValidation.get_default_validation(@item)
       @page_title = "#{I18n.t(:edit)} #{@editor_profile.name} [#{@item.id}]"
 
       if cannot?(:edit, @item)
@@ -86,25 +89,22 @@ ActiveAdmin.register Person do
         return
       end
       @editor_profile = EditorConfiguration.get_show_layout @person
-      @prev_item, @next_item, @prev_page, @next_page = Person.near_items_as_ransack(params, @person)
+      @editor_validation = EditorValidation.get_default_validation(@person)
+      @prev_item, @next_item, @prev_page, @next_page, @nav_positions = Person.near_items_as_ransack(params, @person)
 
       @jobs = @person.delayed_jobs
 
       respond_to do |format|
         format.html
-        format.xml { render :xml => @item.marc.to_xml(@item.updated_at, @item.versions) }
+        format.xml { render :xml => @item.marc.to_xml({ created_at: @item.created_at, updated_at: @item.updated_at, versions: @item.versions }) }
       end
     end
 
     def index
-      person = Person.new
-      new_marc = MarcPerson.new(File.read(ConfigFilePath.get_marc_editor_profile_path("#{Rails.root}/config/marc/#{RISM::MARC}/person/default.marc")))
-      new_marc.load_source false # this will need to be fixed
-      person.marc = new_marc
-      @editor_profile = EditorConfiguration.get_default_layout person
+      @editor_profile = EditorConfiguration.get_default_layout Person
 
       # Get the terms for 550a, the "profession filter"
-      @profession_types = Source.get_terms("550a_sms")
+      @profession_types = Person.get_terms("550a_sms")
 
       @results, @hits = Person.search_as_ransack(params)
       index! do |format|
@@ -149,36 +149,37 @@ ActiveAdmin.register Person do
   # temporary, to be replaced by Solr
   #filter :id_eq, :label => proc {I18n.t(:filter_id)}
   #filter :full_name_contains, :label => proc {I18n.t(:filter_full_name)}, :as => :string
-	filter :full_name_or_400a_contains, :label => proc {I18n.t(:filter_full_name)}, :as => :string
-  filter :"100d_contains", :label => proc {I18n.t(:filter_person_100d)}, :as => :string
-  filter :"375a_contains", :label => proc {I18n.t(:filter_person_375a)}, :as => :select,
+	filter :full_name_or_400a_cont, :label => proc {I18n.t(:filter_full_name)}, :as => :string
+  filter :"100d_cont", :label => proc {I18n.t(:filter_person_100d)}, :as => :string
+  filter :"375a_cont", :label => proc {I18n.t(:filter_person_375a)}, :as => :select,
   # FIXME locale not read
     :collection => [[I18n.t(:filter_male), 'male'], [ I18n.t(:filter_female), 'female'], [I18n.t(:filter_unknown), 'unknown']]
-  #filter :"550a_contains", :label => proc {I18n.t(:filter_person_550a)}, :as => :string
+  #filter :"550a_cont", :label => proc {I18n.t(:filter_person_550a)}, :as => :string
 
   filter :"550a_with_integer", :label => proc{I18n.t(:filter_person_550a)}, as: :select,
   collection: proc{@profession_types.sort.collect {|k| [k.camelize, "550a:#{k}"]}}
 
-  filter :"043c_contains", :label => proc {I18n.t(:filter_person_043c)}, as: :select,
+  filter :"043c_cont", :label => proc {I18n.t(:filter_person_043c)}, as: :select,
     collection: proc {
       @editor_profile.options_config["043"]["tag_params"]["codes"].map{|e| [@editor_profile.get_label(e), e]}.sort_by{|k,v| k}
     }
-  filter :"551a_contains", :label => proc {I18n.t(:filter_person_551a)}, :as => :string
-  filter :"100d_birthdate_contains", :label => proc {I18n.t(:filter_person_100d_birthdate)}, :as => :string
-  filter :"100d_deathdate_contains", :label => proc {I18n.t(:filter_person_100d_deathdate)}, :as => :string
-  filter :"667a_contains", :label => proc{I18n.t(:internal_note_contains)}, :as => :string
-  filter :full_name_equals, :label => proc {I18n.t(:any_field_contains)}, :as => :string
+  filter :"551a_cont", :label => proc {I18n.t(:filter_person_551a)}, :as => :string
+  filter :"100d_birthdate_cont", :label => proc {I18n.t(:filter_person_100d_birthdate)}, :as => :string
+  filter :"100d_deathdate_cont", :label => proc {I18n.t(:filter_person_100d_deathdate)}, :as => :string
+  filter :"667a_cont", :label => proc{I18n.t(:internal_note_contains)}, :as => :string
+  filter :full_name_eq, :label => proc {I18n.t(:any_field_contains)}, :as => :string
   filter :updated_at, :label => proc {I18n.t(:updated_at)}, :as => :date_range
   filter :created_at, :label => proc{I18n.t(:created_at)}, as: :date_range
 
-  filter :wf_owner_with_integer, :label => proc {I18n.t(:filter_owner)}, as: :select,
-         collection: proc {
-           if current_user.has_any_role?(:editor, :admin)
-             User.all.collect {|c| [c.name, "wf_owner:#{c.id}"]}
-           else
-             [[current_user.name, "wf_owner:#{current_user.id}"]]
-           end
-         }
+  #filter :wf_owner_with_integer, :label => proc {I18n.t(:filter_owner)}, as: :select,
+  #       collection: proc {
+  #         if current_user.has_any_role?(:editor, :admin)
+  #           User.all.collect {|c| [c.name, "wf_owner:#{c.id}"]}
+  #         else
+  #           [[current_user.name, "wf_owner:#{current_user.id}"]]
+  #         end
+  #       }
+  filter :wf_owner_with_integer, :label => proc {I18n.t(:filter_owner)}, :as => :flexdatalist, data_path: proc{list_for_filter_admin_users_path()}
 
   # This filter passes the value to the with() function in seach
   # see config/initializers/ransack.rb
@@ -206,14 +207,15 @@ ActiveAdmin.register Person do
     column (I18n.t :filter_life_dates), :life_dates
     column (I18n.t :filter_owner) {|person| User.find(person.wf_owner).name rescue 0} if current_user.has_any_role?(:editor, :admin)
     column (I18n.t :filter_sources), :src_count_order, sortable: :src_count_order do |element|
-      all_hits = @arbre_context.assigns[:hits]
-      active_admin_stored_from_hits(all_hits, element, :src_count_order)
+      active_admin_stored_from_hits(all_hits = @arbre_context.assigns[:hits], element, :src_count_order)
     end
+    column (I18n.t :filter_authorities), :referring_objects_order, sortable: :referring_objects_order do |element|
+			active_admin_stored_from_hits(@arbre_context.assigns[:hits], element, :referring_objects_order)
+		end
     active_admin_muscat_actions( self )
   end
 
   sidebar :actions, :only => :index do
-    render :partial => "activeadmin/filter_workaround"
     render :partial => "activeadmin/section_sidebar_index"
   end
 
@@ -238,36 +240,7 @@ ActiveAdmin.register Person do
     end
     active_admin_embedded_source_list( self, person, !is_selection_mode? )
 
-    # Box for publications referring to this person
-    active_admin_embedded_link_list(self, person, Publication) do |context|
-      context.table_for(context.collection) do |cr|
-        context.column "id", :id
-        context.column (I18n.t :filter_title_short), :short_name
-        context.column (I18n.t :filter_author), :author
-        context.column (I18n.t :filter_title), :title
-        if !is_selection_mode?
-          context.column "" do |publication|
-            link_to "View", controller: :publications, action: :show, id: publication.id
-          end
-        end
-      end
-    end
-
-    # Box for institutions referring to this person
-    active_admin_embedded_link_list(self, person, Institution) do |context|
-      context.table_for(context.collection) do |cr|
-        context.column "id", :id
-        context.column (I18n.t :filter_siglum), :siglum
-        context.column (I18n.t :filter_full_name), :full_name
-        context.column (I18n.t :filter_place), :place
-        if !is_selection_mode?
-          context.column "" do |ins|
-            link_to "View", controller: :institutions, action: :show, id: ins.id
-          end
-        end
-      end
-    end
-
+    # This one cannot use the compact form
     active_admin_embedded_link_list(self, person, Holding) do |context|
       context.table_for(context.collection) do |cr|
         context.column "id", :id
@@ -276,37 +249,18 @@ ActiveAdmin.register Person do
         context.column (I18n.t :filter_source_composer) {|hld| hld.source.composer}
         if !is_selection_mode?
           context.column "" do |hold|
-            link_to I18n.t(:view_source), controller: :holdings, action: :show, id: hold.id
+            link_to I18n.t(:view_source), controller: :sources, action: :show, id: hold.source.id
           end
         end
       end
     end
-
-    active_admin_embedded_link_list(self, person, Work) do |context|
-      context.table_for(context.collection) do |cr|
-        context.column "id", :id
-        context.column (I18n.t :filter_title), :title
-        if !is_selection_mode?
-          context.column "" do |work|
-            link_to "View", controller: :works, action: :show, id: work.id
-          end
-        end
-      end
-    end
-
-    active_admin_embedded_link_list(self, person, Person) do |context|
-      context.table_for(context.collection) do |cr|
-        context.column "id", :id
-        context.column (I18n.t :filter_full_name), :full_name
-        context.column (I18n.t :filter_life_dates), :life_dates
-        context.column (I18n.t :filter_alternate_names), :alternate_names
-        if !is_selection_mode?
-          context.column "" do |person|
-            link_to "View", controller: :people, action: :show, id: person.id
-          end
-        end
-      end
-    end
+    
+    active_adnin_create_list_for(self, Institution, person, siglum: I18n.t(:filter_siglum), full_name: I18n.t(:filter_full_name), place: I18n.t(:filter_place))
+    active_adnin_create_list_for(self, InventoryItem, person, composer: I18n.t(:filter_composer), title: I18n.t(:filter_title))
+    active_adnin_create_list_for(self, Person, person, full_name: I18n.t(:filter_full_name), life_dates: I18n.t(:filter_life_dates), alternate_names: I18n.t(:filter_alternate_names))
+    active_adnin_create_list_for(self, Publication, person, short_name: I18n.t(:filter_title_short), author: I18n.t(:filter_author), title: I18n.t(:filter_title))    
+    active_adnin_create_list_for(self, Work, person, title: I18n.t(:filter_title))
+    active_adnin_create_list_for(self, WorkNode, person, title: I18n.t(:filter_title))
 
     active_admin_digital_object( self, @item ) if !is_selection_mode?
     active_admin_user_wf( self, person )
@@ -320,6 +274,10 @@ ActiveAdmin.register Person do
 
   sidebar :libraries, :only => :show do
     render :partial => "people/library_pie"
+  end
+
+  sidebar :folders, :only => :show do
+    render :partial => "activeadmin/section_sidebar_folder_actions", :locals => { :item => person }
   end
 
   ##########

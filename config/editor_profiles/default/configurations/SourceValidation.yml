@@ -5,12 +5,20 @@ server:
 client:
   "031":
     tags:
-      "b":
-        required_if:
-          "031": "a"
+      "b": 
+        any_of:
+        - required_if: 
+            "031": "a"
+        - validate_031_dups
+        #required_if:
+        #  "031": "a"
       "c":
-        required_if:
-          "031": "a"
+        any_of:
+        - required_if: 
+            "031": "a"
+        - validate_031_dups
+        #required_if:
+        #  "031": "a"
   "100":
     tag_overrides:
       exclude:
@@ -20,6 +28,8 @@ client:
           - edition
           - libretto_edition
           - theoretica_edition
+          - inventory
+          - inventory_edition
     tags:
       "0": mandatory
   "240":
@@ -66,17 +76,21 @@ client:
         - theoretica_source
         - libretto_edition_content
         - theoretica_edition_content
+        - inventory
+        - inventory_edition
     tags:
-      "a": mandatory
-# Remove until 593 is sorted out
-#  "593":
-#    tag_overrides:
-#      exclude:
-#        "a":
-#        - collection
-#        - composite_volume
-#    tags:
-#      "a": mandatory
+      "a":
+        any_of:
+          #- must_contain: "-"
+          - validate_588_siglum
+          - mandatory
+  "593":
+    tags:
+      a: 
+        any_of:
+          - check_group
+          - mandatory
+      b: mandatory
   "594": 
     tag_overrides:
       exclude:
@@ -137,6 +151,8 @@ client:
         - theoretica_edition
         - edition
         - composite_volume
+        - inventory
+        - inventory_edition
     tags:
       'w': mandatory
   "852":
@@ -149,6 +165,7 @@ client:
         - libretto_edition_content
         - theoretica_edition
         - theoretica_edition_content
+        - inventory_edition
         "c":
         - edition
         - edition_content
@@ -156,13 +173,17 @@ client:
         - libretto_edition_content
         - theoretica_edition
         - theoretica_edition_content
+        - inventory_edition
     tags:
       c: mandatory
       x: mandatory
   "856": 
     tags:
       u:
-        begins_with: "http"
+        any_of:
+          - validate_url
+          #- begins_with: "http"
+          - required
       z:
         required_if:
           "856": "u"

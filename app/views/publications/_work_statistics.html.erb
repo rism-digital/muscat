@@ -1,0 +1,17 @@
+<% stats = Statistics::Publication.works_statistics(item) %>
+
+Works with incipits
+<div class="modification_bar">
+  <div class="modification_bar_content" data-version-modification="<%= stats[:incipits] %>" class="version_modification">&nbsp;</div>
+</div>
+
+<hr/>
+
+Works with GND link
+<div class="modification_bar">
+  <div class="modification_bar_content" data-version-modification="<%= stats[:dnb] %>" class="version_modification">&nbsp;</div>
+</div>
+
+
+
+

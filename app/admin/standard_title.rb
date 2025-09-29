@@ -10,9 +10,10 @@ ActiveAdmin.register StandardTitle do
   include MergeControllerActions
   # Remove all action items
   config.clear_action_items!
-  config.per_page = [10, 30, 50, 100]
+  config.per_page = [10, 30, 50, 100, 1000]
 
   collection_action :autocomplete_standard_title_title, :method => :get
+  collection_action :autocomplete_standard_title_title_no_730, :method => :get
 
   breadcrumb do
     active_admin_muscat_breadcrumb
@@ -24,8 +25,29 @@ ActiveAdmin.register StandardTitle do
   # temporarily allow all parameters
   controller do
     
-    autocomplete :standard_title, :title, :extra_data => [:title], :string_boundary => true
- 
+    autocomplete :standard_title, :title, :string_boundary => true, :display_value => :label, :getter_function => :get_autocomplete_title_with_count
+    autocomplete :standard_title, :"title_no_730", :record_field => :title, :string_boundary => true, :display_value => :label, 
+                  :getter_function => :get_autocomplete_title_with_count, :getter_options => {skip_730: true}
+
+
+    # Note: the method (title) and other elements
+    # should match in the getter_function_autocomplete_label
+    def get_autocomplete_title_with_count(token,  options = {})
+
+      sanit = ActiveRecord::Base.send(:sanitize_sql_like, token) + "%"
+      skip_730 = options.include?(:skip_730) && options[:skip_730] == true ? "AND sst.marc_tag != 730" : ""
+
+      query = "SELECT `standard_titles`.`id`, `standard_titles`.`title`, count(standard_titles.id) AS count \
+      FROM `standard_titles` 
+      JOIN sources_to_standard_titles AS sst on standard_titles.id = sst.standard_title_id \
+      WHERE standard_titles.title LIKE (?) \
+      #{skip_730} \
+      GROUP BY standard_titles.id \
+      ORDER BY COUNT(standard_titles.id) DESC LIMIT 20"
+      
+      return StandardTitle.find_by_sql([query, sanit])
+    end
+
     after_destroy :check_model_errors
     before_create do |item|
       item.user = current_user
@@ -53,7 +75,7 @@ ActiveAdmin.register StandardTitle do
         redirect_to admin_root_path, :flash => { :error => "#{I18n.t(:error_not_found)} (StandardTitle #{params[:id]})" }
         return
       end
-      @prev_item, @next_item, @prev_page, @next_page = StandardTitle.near_items_as_ransack(params, @standard_title)
+      @prev_item, @next_item, @prev_page, @next_page, @nav_positions = StandardTitle.near_items_as_ransack(params, @standard_title)
       
       @jobs = @standard_title.delayed_jobs
     end
@@ -70,7 +92,7 @@ ActiveAdmin.register StandardTitle do
     # redirect update failure for preserving sidebars
     def update
       update! do |success,failure|
-        success.html { redirect_to collection_path }
+        success.html { redirect_to resource_path(params[:id]) }
         failure.html { redirect_back fallback_location: root_path, flash: { :error => "#{I18n.t(:error_saving)}" } }
       end
 
@@ -98,7 +120,7 @@ ActiveAdmin.register StandardTitle do
   ###########
   
   # Solr search all fields: "_equal"
-  filter :title_equals, :label => proc {I18n.t(:any_field_contains)}, :as => :string
+  filter :title_eq, :label => proc {I18n.t(:any_field_contains)}, :as => :string
   
   # This filter passes the value to the with() function in seach
   # see config/initializers/ransack.rb
@@ -125,14 +147,15 @@ ActiveAdmin.register StandardTitle do
     column (I18n.t :filter_variants), :alternate_terms
     column (I18n.t :menu_latin), :latin
     column (I18n.t :filter_sources), :src_count_order, sortable: :src_count_order do |element|
-			all_hits = @arbre_context.assigns[:hits]
-			active_admin_stored_from_hits(all_hits, element, :src_count_order)
+			active_admin_stored_from_hits(@arbre_context.assigns[:hits], element, :src_count_order)
+		end
+    column (I18n.t :filter_authorities), :referring_objects_order, sortable: :referring_objects_order do |element|
+			active_admin_stored_from_hits(@arbre_context.assigns[:hits], element, :referring_objects_order)
 		end
     active_admin_muscat_actions( self )
   end
   
   sidebar :actions, :only => :index do
-    render :partial => "activeadmin/filter_workaround"
     render :partial => "activeadmin/section_sidebar_index"
   end
   
@@ -152,8 +175,12 @@ ActiveAdmin.register StandardTitle do
       row (I18n.t :filter_record_type) { |r| r.typus }
       row (I18n.t :menu_latin) { |r| r.latin }
       row (I18n.t :filter_notes) { |r| r.notes }  
+      row (I18n.t :filter_owner) { |r| User.find_by(id: r.wf_owner).name rescue r.wf_owner }
     end
     active_admin_embedded_source_list( self, standard_title, !is_selection_mode? )
+    active_adnin_create_list_for(self, InventoryItem, standard_title, composer: I18n.t(:filter_composer), title: I18n.t(:filter_title))
+    active_adnin_create_list_for(self, Work, standard_title, title: I18n.t(:filter_title), opus: I18n.t(:filter_opus), catalogue: I18n.t(:filter_catalog))
+
     active_admin_user_wf( self, standard_title )
     active_admin_navigation_bar( self )
     active_admin_comments if !is_selection_mode?
@@ -163,6 +190,10 @@ ActiveAdmin.register StandardTitle do
     render :partial => "activeadmin/section_sidebar_show", :locals => { :item => standard_title }
   end
   
+  sidebar :folders, :only => :show do
+    render :partial => "activeadmin/section_sidebar_folder_actions", :locals => { :item => standard_title }
+  end
+
   ##########
   ## Edit ##
   ##########
@@ -171,7 +202,7 @@ ActiveAdmin.register StandardTitle do
     f.inputs do
       ## Enable the trigger, only for editors
       if current_user.has_any_role?(:editor, :admin)
-        f.input :title, :label => (I18n.t :filter_title), input_html: {data: {trigger: triggers_from_hash({save: ["referring_sources"]}) }}
+        f.input :title, :label => (I18n.t :filter_title), input_html: {data: {trigger: triggers_from_hash({save: ["referring_sources", "referring_works"]}) }}
       else
         f.input :title, :label => (I18n.t :filter_title), :input_html => { :disabled => true }
       end

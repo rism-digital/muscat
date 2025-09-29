@@ -1,0 +1,1457 @@
+--- !map:ActiveSupport::HashWithIndifferentAccess
+_default_unknown_labels: true
+main_work:
+  label: gnd.main_work
+variants:
+  label: gnd.variants
+references:
+  label: gnd.references
+codes:
+  label: gnd.codes
+relations:
+  label: gnd.relations
+control:
+  label: gnd.control
+unmatched:
+  label: gnd.ungrouped
+'001':
+  label: gnd.rism_id_number
+'003':
+  label: gnd.control_number_identifier
+'005':
+  label: gnd.date_time_last_transaction
+'024':
+  fields:
+    '2':
+      label: gnd.source_number_code
+    a:
+      label: gnd.standard_number_code
+  label: gnd.other_standard_identifier
+
+C+1:
+  label: records.c_plus_1
+C+2:
+  label: records.c_plus_2
+C+3:
+  label: records.c_plus_3
+C+4:
+  label: records.c_plus_4
+C+5:
+  label: records.c_plus_5
+C-1:
+  label: records.c_minus_1
+C-2:
+  label: records.c_minus_2
+C-3:
+  label: records.c_minus_3
+C-4:
+  label: records.c_minus_4
+C-5:
+  label: records.c_minus_5
+F+1:
+  label: records.f_plus_1
+F+2:
+  label: records.f_plus_2
+F+3:
+  label: records.f_plus_3
+F+4:
+  label: records.f_plus_4
+F+5:
+  label: records.f_plus_5
+F-1:
+  label: records.f_minus_1
+F-2:
+  label: records.f_minus_2
+F-3:
+  label: records.f_minus_3
+F-4:
+  label: records.f_minus_4_bass
+F-5:
+  label: records.f_minus_5
+G+1:
+  label: records.g_plus_1
+G+2:
+  label: records.g_plus_2
+G+3:
+  label: records.g_plus_3
+G+4:
+  label: records.g_plus_4
+G+5:
+  label: records.g_plus_5
+G-1:
+  label: records.g_minus_1
+G-2:
+  label: records.g_minus_2_treble
+G-3:
+  label: records.g_minus_3
+G-4:
+  label: records.g_minus_4
+G-5:
+  label: records.g_minus_5
+g-2:
+  label: records.g_minus_2_octave
+
+'042':
+  label: gnd.cataloging_level
+
+'043':
+  fields:
+    c:
+      label: gnd.country_code
+  label: gnd.country_code
+  
+'065':
+  label: gnd.gnd_systematics
+  fields:
+    a:
+      label: gnd.notation
+    "2":
+      label: gnd.source_code
+
+'075':
+  label: gnd.entity_type
+  fields:
+    b:
+      label: gnd.entity_type
+    "2":
+      label: gnd.source
+
+'079':
+  label: gnd.gnd_specific_coding
+  fields:
+    a:
+      label: gnd.dataset_type
+    q:
+      label: gnd.subcollection_identifier
+    u:
+      label: gnd.usage_identifier
+
+'100':
+  label: gnd.authorized_form
+  fields:
+    a:
+      label: gnd.name
+    d:
+      label: gnd.birth_and_death_dates
+    f:
+      label: gnd.time
+    m:
+      label: gnd.instrumentation_hint
+    n:
+      label: gnd.numerical_identifier
+    p:
+      label: gnd.part_title
+    r:
+      label: gnd.key_mode
+    t:
+      label: gnd.work_title
+
+'130':
+  label: gnd.preferred_title
+  fields:
+    a:
+      label: gnd.work_title
+    f:
+      label: gnd.time
+    m:
+      label: gnd.instrument_singular
+    n:
+      label: gnd.count
+    p:
+      label: gnd.part_title
+    r:
+      label: gnd.key_mode
+
+'377':
+  label: gnd.language
+  fields:
+    a:
+      label: gnd.language_code
+    "2":
+      label: gnd.source
+
+'380':
+  label: gnd.form_of_work
+  fields:
+    "0":
+      label: gnd.id_of_authority_record
+    a:
+      label: gnd.designation
+    "2":
+      label: gnd.source
+
+'382':
+  label: gnd.instrument
+  fields:
+    a:
+      label: gnd.instrument_singular
+    n:
+      label: gnd.count_anzahl
+    s:
+      label: gnd.total_number_performers
+    t:
+      label: gnd.total_number_ensembles
+    v:
+      label: gnd.note
+    "2":
+      label: gnd.source
+
+'383':
+  label: gnd.numerical_ordering
+  fields:
+    a:
+      label: gnd.continuous_counting
+    b:
+      label: gnd.opus_number
+    c:
+      label: gnd.catalogue_number
+
+'384':
+  label: gnd.musical_key
+  fields:
+    a:
+      label: gnd.musical_key
+
+'400':
+  label: gnd.variant_name
+  fields:
+    a:
+      label: gnd.composer
+    d:
+      label: gnd.birth_and_death_years
+    f:
+      label: gnd.time
+    m:
+      label: gnd.instrumentation_hint
+    n:
+      label: gnd.count
+    r:
+      label: gnd.key_or_mode
+    t:
+      label: gnd.work_title
+    p:
+      label: gnd.part_title
+    "9":
+      label: gnd.remarks
+
+'430':
+  label: gnd.work_relationship
+  fields:
+    a:
+      label: gnd.work_title
+    f:
+      label: gnd.time
+    m:
+      label: gnd.instrument_singular
+    n:
+      label: gnd.count
+    p:
+      label: gnd.part_title
+    r:
+      label: gnd.key_mode
+
+'500':
+  label: gnd.relationship
+  fields:
+    a:
+      label: gnd.person_name
+    d:
+      label: gnd.dates_in_connection_with_a_name
+    e:
+      label: gnd.function_name
+    "0":
+      label: gnd.id_of_authority_record
+    "4":
+      label: gnd.relation_code
+    i:
+      label: gnd.relationship_phrase
+    w:
+      label: gnd.control_field
+    "9":
+      label: gnd.additional_remark
+    t:
+      label: gnd.title_of_the_work
+    n:
+      label: gnd.numerical_ordering
+    p:
+      label: gnd.part_title
+    r:
+      label: gnd.key_mode
+
+'530':
+  label: gnd.unit_title_relationship
+  fields:
+    a:
+      label: gnd.title_of_the_work
+    "0":
+      label: gnd.id_of_authority_record
+    "4":
+      label: gnd.relation_code
+    i:
+      label: gnd.relationship_phrase
+    w:
+      label: gnd.control_field
+    "9":
+      label: gnd.remarks
+
+'548':
+  label: gnd.temporal_relationship
+  fields:
+    a:
+      label: gnd.time
+    "4":
+      label: gnd.relation_code
+    i:
+      label: gnd.english_version
+    w:
+      label: gnd.control_field
+    "9":
+      label: gnd.additional_remark
+
+'550':
+  label: gnd.topical_term
+  fields:
+    a:
+      label: gnd.material_concept
+    g:
+      label: gnd.identifying_addition
+    i:
+      label: gnd.relationship_phrase
+    "0":
+      label: gnd.id_of_authority_record
+    "4":
+      label: gnd.relation_code
+    "9":
+      label: gnd.additional_remark
+
+'667':
+  label: gnd.editorial_remark
+  fields:
+    "5":
+      label: gnd.institution_using_field
+    a:
+      label: gnd.editorial_remark
+
+'670':
+  label: gnd.data_source
+  fields:
+    a:
+      label: gnd.source_reference
+    b:
+      label: gnd.available_information
+    u:
+      label: gnd.uri
+
+'675':
+  label: gnd.negative_source_reference
+  fields:
+    a:
+      label: gnd.source_reference
+
+'678':
+  label: gnd.biographical_historical_information
+  fields:
+    b:
+      label: gnd.explanatory_text
+
+'912':
+  label: gnd.mailbox
+  fields:
+    a:
+      label: gnd.mailbox
+
+'913':
+  label: gnd.previous_name_form
+  fields:
+    a:
+      label: gnd.previous_name_form
+    i:
+      label: gnd.entity_identification_previous_database
+    "0":
+      label: gnd.record_id
+
+arra:
+  label: gnd.arrangeur
+aut1:
+  label: gnd.verfasser_erster
+auta:
+  label: gnd.verfasser
+autf:
+  label: gnd.verfasser_fiktiver
+bear:
+  label: gnd.bearbeiter
+chre:
+  label: gnd.choreograf
+comp:
+  label: gnd.compiler
+dich:
+  label: gnd.textdichter
+druc:
+  label: gnd.drucker
+feie:
+  label: gnd.gefeierte_oder_dargestellte_person_familie
+grav:
+  label: gnd.graveur_stecher
+hers:
+  label: gnd.hersteller
+hrsg:
+  label: gnd.herausgeber
+illu:
+  label: gnd.illustrator_illuminator
+istm:
+  label: gnd.instrumentalmusiker
+kom1:
+  label: gnd.komponist_erster
+koma:
+  label: gnd.komponist
+kopi:
+  label: gnd.kopist
+kue1:
+  label: gnd.künstler_erster
+kuen:
+  label: gnd.künstler
+libr:
+  label: gnd.librettist
+malr:
+  label: gnd.maler
+regi:
+  label: gnd.regisseur
+saen:
+  label: gnd.sänger
+saml:
+  label: gnd.sammler
+spon:
+  label: gnd.sponsor_mäzen
+spre:
+  label: gnd.sprecher
+stif:
+  label: gnd.stifter
+them:
+  label: gnd.thema
+uebe:
+  label: gnd.übersetzer
+urhe:
+  label: gnd.urheber
+vbal:
+  label: gnd.verwandter_begriff_allgemein
+verr:
+  label: gnd.veranlasser
+widm:
+  label: gnd.widmungsempfänger
+obpa:
+  label: gnd.oberbegriff_partitiv
+datj:
+  label: gnd.datj
+dats:
+  label: gnd.dats
+
+
+aar:
+  label: gnd.aar
+abk:
+  label: gnd.abk
+ace:
+  label: gnd.ace
+ach:
+  label: gnd.ach
+ada:
+  label: gnd.ada
+ady:
+  label: gnd.ady
+afa:
+  label: gnd.afa
+afh:
+  label: gnd.afh
+afr:
+  label: gnd.afr
+ain:
+  label: gnd.ain
+aka:
+  label: gnd.aka
+akk:
+  label: gnd.akk
+alb:
+  label: gnd.alb
+ale:
+  label: gnd.ale
+alg:
+  label: gnd.alg
+alt:
+  label: gnd.alt
+amh:
+  label: gnd.amh
+ang:
+  label: gnd.ang
+anp:
+  label: gnd.anp
+apa:
+  label: gnd.apa
+ara:
+  label: gnd.ara
+arc:
+  label: gnd.arc
+arg:
+  label: gnd.arg
+arm:
+  label: gnd.arm
+arn:
+  label: gnd.arn
+arp:
+  label: gnd.arp
+art:
+  label: gnd.art
+arw:
+  label: gnd.arw
+asm:
+  label: gnd.asm
+ast:
+  label: gnd.ast
+ath:
+  label: gnd.ath
+aus:
+  label: gnd.aus
+ava:
+  label: gnd.ava
+ave:
+  label: gnd.ave
+awa:
+  label: gnd.awa
+aym:
+  label: gnd.aym
+aze:
+  label: gnd.aze
+bad:
+  label: gnd.bad
+bai:
+  label: gnd.bai
+bak:
+  label: gnd.bak
+bal:
+  label: gnd.bal
+bam:
+  label: gnd.bam
+ban:
+  label: gnd.ban
+baq:
+  label: gnd.baq
+bas:
+  label: gnd.bas
+bat:
+  label: gnd.bat
+bej:
+  label: gnd.bej
+bel:
+  label: gnd.bel
+bem:
+  label: gnd.bem
+ben:
+  label: gnd.ben
+ber:
+  label: gnd.ber
+bih:
+  label: gnd.bih
+bik:
+  label: gnd.bik
+bin:
+  label: gnd.bin
+bis:
+  label: gnd.bis
+bla:
+  label: gnd.bla
+bnt:
+  label: gnd.bnt
+bos:
+  label: gnd.bos
+bra:
+  label: gnd.bra
+bre:
+  label: gnd.bre
+btk:
+  label: gnd.btk
+bua:
+  label: gnd.bua
+bug:
+  label: gnd.bug
+bul:
+  label: gnd.bul
+bur:
+  label: gnd.bur
+byn:
+  label: gnd.byn
+cad:
+  label: gnd.cad
+cai:
+  label: gnd.cai
+car:
+  label: gnd.car
+cat:
+  label: gnd.cat
+cau:
+  label: gnd.cau
+ceb:
+  label: gnd.ceb
+cel:
+  label: gnd.cel
+cha:
+  label: gnd.cha
+chb:
+  label: gnd.chb
+che:
+  label: gnd.che
+chg:
+  label: gnd.chg
+chi:
+  label: gnd.chi
+chk:
+  label: gnd.chk
+chm:
+  label: gnd.chm
+chn:
+  label: gnd.chn
+cho:
+  label: gnd.cho
+chp:
+  label: gnd.chp
+chr:
+  label: gnd.chr
+chu:
+  label: gnd.chu
+chv:
+  label: gnd.chv
+chy:
+  label: gnd.chy
+cmc:
+  label: gnd.cmc
+cnr:
+  label: gnd.cnr
+cop:
+  label: gnd.cop
+cor:
+  label: gnd.cor
+cos:
+  label: gnd.cos
+cpe:
+  label: gnd.cpe
+cpf:
+  label: gnd.cpf
+cpp:
+  label: gnd.cpp
+cre:
+  label: gnd.cre
+crh:
+  label: gnd.crh
+crp:
+  label: gnd.crp
+csb:
+  label: gnd.csb
+cus:
+  label: gnd.cus
+cze:
+  label: gnd.cze
+dak:
+  label: gnd.dak
+dan:
+  label: gnd.dan
+dar:
+  label: gnd.dar
+day:
+  label: gnd.day
+del:
+  label: gnd.del
+den:
+  label: gnd.den
+dgr:
+  label: gnd.dgr
+din:
+  label: gnd.din
+div:
+  label: gnd.div
+dra:
+  label: gnd.dra
+dsb:
+  label: gnd.dsb
+dua:
+  label: gnd.dua
+dum:
+  label: gnd.dum
+dut:
+  label: gnd.dut
+dyu:
+  label: gnd.dyu
+dzo:
+  label: gnd.dzo
+efi:
+  label: gnd.efi
+egy:
+  label: gnd.egy
+eka:
+  label: gnd.eka
+elx:
+  label: gnd.elx
+eng:
+  label: gnd.eng
+enm:
+  label: gnd.enm
+epo:
+  label: gnd.epo
+est:
+  label: gnd.est
+ewe:
+  label: gnd.ewe
+ewo:
+  label: gnd.ewo
+fan:
+  label: gnd.fan
+fao:
+  label: gnd.fao
+fat:
+  label: gnd.fat
+fij:
+  label: gnd.fij
+fil:
+  label: gnd.fil
+fin:
+  label: gnd.fin
+fiu:
+  label: gnd.fiu
+fon:
+  label: gnd.fon
+fre:
+  label: gnd.fre
+frm:
+  label: gnd.frm
+fro:
+  label: gnd.fro
+frr:
+  label: gnd.frr
+frs:
+  label: gnd.frs
+fry:
+  label: gnd.fry
+ful:
+  label: gnd.ful
+fur:
+  label: gnd.fur
+gaa:
+  label: gnd.gaa
+gay:
+  label: gnd.gay
+gba:
+  label: gnd.gba
+gem:
+  label: gnd.gem
+geo:
+  label: gnd.geo
+ger:
+  label: gnd.ger
+gez:
+  label: gnd.gez
+gil:
+  label: gnd.gil
+gla:
+  label: gnd.gla
+gle:
+  label: gnd.gle
+glg:
+  label: gnd.glg
+glv:
+  label: gnd.glv
+gmh:
+  label: gnd.gmh
+goh:
+  label: gnd.goh
+gon:
+  label: gnd.gon
+gor:
+  label: gnd.gor
+got:
+  label: gnd.got
+grb:
+  label: gnd.grb
+grc:
+  label: gnd.grc
+gre:
+  label: gnd.gre
+grn:
+  label: gnd.grn
+gsw:
+  label: gnd.gsw
+guj:
+  label: gnd.guj
+gwi:
+  label: gnd.gwi
+hai:
+  label: gnd.hai
+hat:
+  label: gnd.hat
+hau:
+  label: gnd.hau
+haw:
+  label: gnd.haw
+heb:
+  label: gnd.heb
+her:
+  label: gnd.her
+hil:
+  label: gnd.hil
+him:
+  label: gnd.him
+hin:
+  label: gnd.hin
+hit:
+  label: gnd.hit
+hmn:
+  label: gnd.hmn
+hmo:
+  label: gnd.hmo
+hrv:
+  label: gnd.hrv
+hsb:
+  label: gnd.hsb
+hun:
+  label: gnd.hun
+hup:
+  label: gnd.hup
+iba:
+  label: gnd.iba
+ibo:
+  label: gnd.ibo
+ice:
+  label: gnd.ice
+iii:
+  label: gnd.iii
+ijo:
+  label: gnd.ijo
+iku:
+  label: gnd.iku
+ile:
+  label: gnd.ile
+ilo:
+  label: gnd.ilo
+ina:
+  label: gnd.ina
+inc:
+  label: gnd.inc
+ind:
+  label: gnd.ind
+ine:
+  label: gnd.ine
+inh:
+  label: gnd.inh
+ipk:
+  label: gnd.ipk
+ira:
+  label: gnd.ira
+iro:
+  label: gnd.iro
+ita:
+  label: gnd.ita
+jav:
+  label: gnd.jav
+jbo:
+  label: gnd.jbo
+jpn:
+  label: gnd.jpn
+jpr:
+  label: gnd.jpr
+jrb:
+  label: gnd.jrb
+kaa:
+  label: gnd.kaa
+kab:
+  label: gnd.kab
+kac:
+  label: gnd.kac
+kal:
+  label: gnd.kal
+kam:
+  label: gnd.kam
+kan:
+  label: gnd.kan
+kar:
+  label: gnd.kar
+kas:
+  label: gnd.kas
+kau:
+  label: gnd.kau
+kaw:
+  label: gnd.kaw
+kaz:
+  label: gnd.kaz
+kbd:
+  label: gnd.kbd
+kha:
+  label: gnd.kha
+khi:
+  label: gnd.khi
+khm:
+  label: gnd.khm
+kho:
+  label: gnd.kho
+kik:
+  label: gnd.kik
+kin:
+  label: gnd.kin
+kir:
+  label: gnd.kir
+kmb:
+  label: gnd.kmb
+kok:
+  label: gnd.kok
+kom:
+  label: gnd.kom
+kon:
+  label: gnd.kon
+kor:
+  label: gnd.kor
+kos:
+  label: gnd.kos
+kpe:
+  label: gnd.kpe
+krc:
+  label: gnd.krc
+krl:
+  label: gnd.krl
+kro:
+  label: gnd.kro
+kru:
+  label: gnd.kru
+kua:
+  label: gnd.kua
+kum:
+  label: gnd.kum
+kur:
+  label: gnd.kur
+kut:
+  label: gnd.kut
+lad:
+  label: gnd.lad
+lah:
+  label: gnd.lah
+lam:
+  label: gnd.lam
+lao:
+  label: gnd.lao
+lat:
+  label: gnd.lat
+lav:
+  label: gnd.lav
+lez:
+  label: gnd.lez
+lim:
+  label: gnd.lim
+lin:
+  label: gnd.lin
+lit:
+  label: gnd.lit
+lol:
+  label: gnd.lol
+loz:
+  label: gnd.loz
+ltz:
+  label: gnd.ltz
+lua:
+  label: gnd.lua
+lub:
+  label: gnd.lub
+lug:
+  label: gnd.lug
+lui:
+  label: gnd.lui
+lun:
+  label: gnd.lun
+luo:
+  label: gnd.luo
+lus:
+  label: gnd.lus
+mac:
+  label: gnd.mac
+mad:
+  label: gnd.mad
+mag:
+  label: gnd.mag
+mah:
+  label: gnd.mah
+mai:
+  label: gnd.mai
+mak:
+  label: gnd.mak
+mal:
+  label: gnd.mal
+man:
+  label: gnd.man
+mao:
+  label: gnd.mao
+map:
+  label: gnd.map
+mar:
+  label: gnd.mar
+mas:
+  label: gnd.mas
+may:
+  label: gnd.may
+mdf:
+  label: gnd.mdf
+mdr:
+  label: gnd.mdr
+men:
+  label: gnd.men
+mga:
+  label: gnd.mga
+mic:
+  label: gnd.mic
+min:
+  label: gnd.min
+mis:
+  label: gnd.mis
+mkh:
+  label: gnd.mkh
+mlg:
+  label: gnd.mlg
+mlt:
+  label: gnd.mlt
+mnc:
+  label: gnd.mnc
+mni:
+  label: gnd.mni
+mno:
+  label: gnd.mno
+moh:
+  label: gnd.moh
+mon:
+  label: gnd.mon
+mos:
+  label: gnd.mos
+mul:
+  label: gnd.mul
+mun:
+  label: gnd.mun
+mus:
+  label: gnd.mus
+mwl:
+  label: gnd.mwl
+myn:
+  label: gnd.myn
+myv:
+  label: gnd.myv
+nah:
+  label: gnd.nah
+nai:
+  label: gnd.nai
+nap:
+  label: gnd.nap
+nau:
+  label: gnd.nau
+nav:
+  label: gnd.nav
+nbl:
+  label: gnd.nbl
+nde:
+  label: gnd.nde
+ndo:
+  label: gnd.ndo
+nds:
+  label: gnd.nds
+nep:
+  label: gnd.nep
+nia:
+  label: gnd.nia
+nic:
+  label: gnd.nic
+niu:
+  label: gnd.niu
+nno:
+  label: gnd.nno
+nob:
+  label: gnd.nob
+nog:
+  label: gnd.nog
+non:
+  label: gnd.non
+nor:
+  label: gnd.nor
+nqo:
+  label: gnd.nqo
+nso:
+  label: gnd.nso
+nub:
+  label: gnd.nub
+nya:
+  label: gnd.nya
+nym:
+  label: gnd.nym
+nyn:
+  label: gnd.nyn
+nyo:
+  label: gnd.nyo
+nzi:
+  label: gnd.nzi
+oci:
+  label: gnd.oci
+oji:
+  label: gnd.oji
+ori:
+  label: gnd.ori
+orm:
+  label: gnd.orm
+osa:
+  label: gnd.osa
+oss:
+  label: gnd.oss
+ota:
+  label: gnd.ota
+oto:
+  label: gnd.oto
+paa:
+  label: gnd.paa
+pag:
+  label: gnd.pag
+pal:
+  label: gnd.pal
+pam:
+  label: gnd.pam
+pan:
+  label: gnd.pan
+pap:
+  label: gnd.pap
+pau:
+  label: gnd.pau
+peo:
+  label: gnd.peo
+per:
+  label: gnd.per
+phi:
+  label: gnd.phi
+phn:
+  label: gnd.phn
+pol:
+  label: gnd.pol
+pon:
+  label: gnd.pon
+por:
+  label: gnd.por
+pro:
+  label: gnd.pro
+pus:
+  label: gnd.pus
+qaa-qtz:
+  label: gnd.qaa-qtz
+que:
+  label: gnd.que
+raj:
+  label: gnd.raj
+rap:
+  label: gnd.rap
+rar:
+  label: gnd.rar
+roa:
+  label: gnd.roa
+roh:
+  label: gnd.roh
+rom:
+  label: gnd.rom
+rum:
+  label: gnd.rum
+run:
+  label: gnd.run
+rup:
+  label: gnd.rup
+rus:
+  label: gnd.rus
+sad:
+  label: gnd.sad
+sag:
+  label: gnd.sag
+sah:
+  label: gnd.sah
+sai:
+  label: gnd.sai
+sal:
+  label: gnd.sal
+sam:
+  label: gnd.sam
+san:
+  label: gnd.san
+sas:
+  label: gnd.sas
+sat:
+  label: gnd.sat
+scn:
+  label: gnd.scn
+sco:
+  label: gnd.sco
+sel:
+  label: gnd.sel
+sem:
+  label: gnd.sem
+sga:
+  label: gnd.sga
+sgn:
+  label: gnd.sgn
+shn:
+  label: gnd.shn
+sid:
+  label: gnd.sid
+sin:
+  label: gnd.sin
+sio:
+  label: gnd.sio
+sit:
+  label: gnd.sit
+sla:
+  label: gnd.sla
+slo:
+  label: gnd.slo
+slv:
+  label: gnd.slv
+sma:
+  label: gnd.sma
+sme:
+  label: gnd.sme
+smi:
+  label: gnd.smi
+smj:
+  label: gnd.smj
+smn:
+  label: gnd.smn
+smo:
+  label: gnd.smo
+sms:
+  label: gnd.sms
+sna:
+  label: gnd.sna
+snd:
+  label: gnd.snd
+snk:
+  label: gnd.snk
+sog:
+  label: gnd.sog
+som:
+  label: gnd.som
+son:
+  label: gnd.son
+sot:
+  label: gnd.sot
+spa:
+  label: gnd.spa
+srd:
+  label: gnd.srd
+srn:
+  label: gnd.srn
+srp:
+  label: gnd.srp
+srr:
+  label: gnd.srr
+ssa:
+  label: gnd.ssa
+ssw:
+  label: gnd.ssw
+suk:
+  label: gnd.suk
+sun:
+  label: gnd.sun
+sus:
+  label: gnd.sus
+sux:
+  label: gnd.sux
+swa:
+  label: gnd.swa
+swe:
+  label: gnd.swe
+syc:
+  label: gnd.syc
+syr:
+  label: gnd.syr
+tah:
+  label: gnd.tah
+tai:
+  label: gnd.tai
+tam:
+  label: gnd.tam
+tat:
+  label: gnd.tat
+tel:
+  label: gnd.tel
+tem:
+  label: gnd.tem
+ter:
+  label: gnd.ter
+tet:
+  label: gnd.tet
+tgk:
+  label: gnd.tgk
+tgl:
+  label: gnd.tgl
+tha:
+  label: gnd.tha
+tib:
+  label: gnd.tib
+tig:
+  label: gnd.tig
+tir:
+  label: gnd.tir
+tiv:
+  label: gnd.tiv
+tkl:
+  label: gnd.tkl
+tlh:
+  label: gnd.tlh
+tli:
+  label: gnd.tli
+tmh:
+  label: gnd.tmh
+tog:
+  label: gnd.tog
+ton:
+  label: gnd.ton
+tpi:
+  label: gnd.tpi
+tsi:
+  label: gnd.tsi
+tsn:
+  label: gnd.tsn
+tso:
+  label: gnd.tso
+tuk:
+  label: gnd.tuk
+tum:
+  label: gnd.tum
+tup:
+  label: gnd.tup
+tur:
+  label: gnd.tur
+tut:
+  label: gnd.tut
+tvl:
+  label: gnd.tvl
+twi:
+  label: gnd.twi
+tyv:
+  label: gnd.tyv
+udm:
+  label: gnd.udm
+uga:
+  label: gnd.uga
+uig:
+  label: gnd.uig
+ukr:
+  label: gnd.ukr
+umb:
+  label: gnd.umb
+und:
+  label: gnd.und
+urd:
+  label: gnd.urd
+uzb:
+  label: gnd.uzb
+vai:
+  label: gnd.vai
+ven:
+  label: gnd.ven
+vie:
+  label: gnd.vie
+vol:
+  label: gnd.vol
+vot:
+  label: gnd.vot
+wak:
+  label: gnd.wak
+wal:
+  label: gnd.wal
+war:
+  label: gnd.war
+was:
+  label: gnd.was
+wel:
+  label: gnd.wel
+wen:
+  label: gnd.wen
+wln:
+  label: gnd.wln
+wol:
+  label: gnd.wol
+xal:
+  label: gnd.xal
+xho:
+  label: gnd.xho
+yao:
+  label: gnd.yao
+yap:
+  label: gnd.yap
+yid:
+  label: gnd.yid
+yor:
+  label: gnd.yor
+ypk:
+  label: gnd.ypk
+zap:
+  label: gnd.zap
+zbl:
+  label: gnd.zbl
+zen:
+  label: gnd.zen
+zha:
+  label: gnd.zha
+znd:
+  label: gnd.znd
+zul:
+  label: gnd.zul
+zun:
+  label: gnd.zun
+zxx:
+  label: gnd.zxx
+zza:
+  label: gnd.zza
+mwr:
+  label: gnd.mwr
+nwc:
+  label: gnd.nwc
+ido:
+  label: gnd.ido
+pli:
+  label: gnd.pli
+pra:
+  label: gnd.pra
+new:
+  label: gnd.new
+doi:
+  label: gnd.doi
+bho:
+  label: gnd.bho
+
+anla:
+  label: gnd.anla
+nach:
+  label: gnd.nach
+vorg:
+  label: gnd.vorg
+obal:
+  label: gnd.obal
+obpa:
+  label: gnd.obpa
+rela:
+  label: gnd.rela
+them:
+  label: gnd.them
+vbal:
+  label: gnd.vbal
+vorl:
+  label: gnd.vorl
+werk:
+  label: gnd.werk
+feie:
+  label: gnd.feie
+istr:
+  label: gnd.istr
+obin:
+  label: gnd.obin
+obpa:
+  label: gnd.obpa
+rela:
+  label: gnd.rela
+spra:
+  label: gnd.spra
+them:
+  label: gnd.them
+vbal:
+  label: gnd.vbal

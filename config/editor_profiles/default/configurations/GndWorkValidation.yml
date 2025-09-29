@@ -1,0 +1,6 @@
+--- !map:Settings
+client:
+  "548":
+    tags:
+      a: required
+      '4': required

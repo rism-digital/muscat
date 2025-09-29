@@ -1,5 +1,6 @@
 # include the override for group_values
-require 'sunspot_extensions.rb'
+# FIXME on rails 7.0, do we still need this?
+#require 'patches/sunspot/search/paginated_collection.rb'
 
 module ActiveAdmin::ViewsHelper
   
@@ -26,10 +27,12 @@ module ActiveAdmin::ViewsHelper
   def active_admin_embedded_link_list(context, item, link_class, panel_title = nil, &block)
     current_page_name = link_class.to_s.downcase + "_list_page"
     current_page = params[current_page_name]
-    if link_class == Source && item.respond_to?("referring_sources") && item.respond_to?("referring_holdings")
-      c = Source.where(id: item.referring_sources.ids).or(Source.where(id: item.referring_holdings.pluck(:source_id)))
-    elsif link_class == Source && item.respond_to?("referring_sources") && item.is_a?(Institution)
-      c = Source.where(id: item.referring_sources.ids).or(Source.where(id: item.holdings.pluck(:source_id)))
+    #if link_class == Source && item.respond_to?("referring_sources") && item.respond_to?("referring_holdings")
+    #  c = Source.where(id: item.referring_sources.ids).or(Source.where(id: item.referring_holdings.pluck(:source_id)))
+    #elsif link_class == Source && item.respond_to?("referring_sources") && item.is_a?(Institution)
+    #  c = Source.where(id: item.referring_sources.ids).or(Source.where(id: item.holdings.pluck(:source_id)))
+    if link_class == InventoryItem &&item.respond_to?("inventory_items") && item.is_a?(Source)
+      c = item.inventory_items
     else
       c = item.send("referring_" + link_class.to_s.pluralize.underscore)
     end    
@@ -44,6 +47,23 @@ module ActiveAdmin::ViewsHelper
     end
   end 
  
+  def active_adnin_create_list_for(context, model, item, *fields)
+    controller_name = model.name.underscore.downcase.pluralize.to_sym
+    active_admin_embedded_link_list(context, item, model) do |context|
+      context.table_for(context.collection) do |cr|
+        context.column "id", :id
+        fields.first.each do |field, label|
+          context.column label, field
+        end
+        if !is_selection_mode?
+          context.column "" do |ti|
+            link_to "View", controller: controller_name, action: :show, id: ti.id
+          end
+        end
+      end
+    end
+  end
+
   def is_selection_mode?
     return params && params[:select].present?
   end
@@ -63,7 +83,8 @@ module ActiveAdmin::ViewsHelper
       context.attributes_table_for item  do
         context.row (I18n.t :filter_owner) { |r| r.user.name } if ( item.user )
         context.row (I18n.t :filter_wf_stage) { |r| I18n.t("wf_stage.#{r.wf_stage}") } if ( item.wf_stage )
-        #context.row (I18n.t :record_audit) { |r| I18n.t("#{r.wf_audit}_level") } if ( item.user )
+        context.row (I18n.t :"general.validity") { |r| r.wf_audit.to_s.capitalize } if ( item.is_a?(Work) && item.wf_audit != "normal" ) # I know I know will be translated if needed, #1532
+        context.row (I18n.t 'helpers.label.folder.work_catalogue_status') { |r| I18n.t("work_catalogue_labels." + r.work_catalogue) } if ( item.is_a?(Publication) && item.work_catalogue && can?(:edit, Work) )
         context.row (I18n.t :created_at) { |r| I18n.localize(r.created_at ? r.created_at.localtime : "", :format => '%A %e %B %Y - %H:%M') }
         context.row (I18n.t :updated_at) { |r| I18n.localize(r.updated_at ? r.updated_at.localtime : "", :format => '%A %e %B %Y - %H:%M') }
       end
@@ -77,18 +98,19 @@ module ActiveAdmin::ViewsHelper
     name = item.full_name if item.respond_to?(:full_name)
     name = item.title if item.respond_to?(:title)
     name = item.autocomplete_label if item.respond_to?(:autocomplete_label)
-    
+    name = item.formatted_title if item.respond_to?(:formatted_title)
+
     link_to("Select", "#", :data => { :marc_editor_select => item.id, :marc_editor_label => name })
   end
   
-  def active_admin_muscat_actions( context )
+  def active_admin_muscat_actions( context, show_view = true )
     # Build the dynamic path function, then call it with send
     model = self.resource_class.to_s.underscore.downcase
     view_link_function = "admin_#{model}_path"
     if is_selection_mode?
       context.actions defaults: false do |item|
         item_links = Array.new
-        item_links << link_to("View", "#{send( view_link_function, item )}")
+        item_links << link_to("View", "#{send( view_link_function, item )}") if show_view
         item_links << active_admin_muscat_select_link( item )
         safe_join item_links, ' '
       end
@@ -116,8 +138,15 @@ module ActiveAdmin::ViewsHelper
     # Build the back to index path function
     model = self.resource_class.to_s.pluralize.underscore.downcase
     index_link_function = "admin_#{model}_path"
-    
+
     context.div class: :table_tools do
+
+      context.ul class: :table_tools_segmented_control do
+        context.li class: :scope do
+          context.a class: "table_tools_button" do context.text_node "#{@nav_positions[:position]}/#{@nav_positions[:total]}" end
+        end
+      end
+
       context.ul class: :table_tools_segmented_control do
         context.li class: :scope do
           if @prev_item != nil
@@ -129,6 +158,7 @@ module ActiveAdmin::ViewsHelper
         context.li class: :scope do
           context.a href: "#{send(index_link_function)}", class: :table_tools_button do  context.text_node "Back to the list"  end
         end
+
         context.li class: :scope do
           if @next_item != nil
             context.a href: next_id, class: :table_tools_button do  context.text_node "Next"  end
@@ -169,9 +199,9 @@ module ActiveAdmin::ViewsHelper
   end
  
   def active_admin_publication_show_title( author, title, id )
-    return "[#{id}]" if author.empty? and title.empty?
-    return "#{title} [#{id}]" if author.empty? and !title.empty?
-    return "#{author} [#{id}]" if (title.nil? or title.empty?)
+    return "[#{id}]" if author&.empty? and title&.empty?
+    return "#{title} [#{id}]" if author&.empty? and !title&.empty?
+    return "#{author} [#{id}]" if (title.nil? or title&.empty?)
     return "#{author} : #{title} [#{id}]"
   end
   
@@ -180,6 +210,10 @@ module ActiveAdmin::ViewsHelper
     return "#{description.truncate(60)} - [#{id}]"
   end
   
+  def active_admin_inventory_item_show_title (ii)
+    ii.title
+  end
+
   def digital_object_form_url
     parts = []
     parts << active_admin_namespace.name unless active_admin_namespace.root?
@@ -272,6 +306,17 @@ module ActiveAdmin::ViewsHelper
     else
       model.where((modif_at + "> ?"), days.days.ago).limit(limit).order(modif_at + " DESC") 
     end
+  end
+
+  def dashboard_find_unpublished(model, limit, user)
+    if user != -1
+      src = model.where(wf_stage: :inprogress).where("wf_owner = ?", user).limit(limit).order("id DESC")
+      count = model.where(wf_stage: :inprogress).where("wf_owner = ?", user).count
+    else
+      src = model.where(wf_stage: :inprogress).limit(limit).order("id DESC")
+      count = model.where(wf_stage: :inprogress).count
+    end
+    return src, count
   end
 
   def dashboard_get_model_comments(limit, days = 7)

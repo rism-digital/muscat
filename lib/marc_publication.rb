@@ -10,7 +10,7 @@ class MarcPublication < Marc
         author = node.content.truncate(255)
       end
     end
-    author
+    author&.strip
   end
 
   def get_name
@@ -21,7 +21,7 @@ class MarcPublication < Marc
         title = node.content.truncate(255)
       end
     end
-    title
+    title&.strip
   end
   
   def get_title
@@ -36,7 +36,7 @@ class MarcPublication < Marc
         end
       end
     end
-    title.truncate(255)
+    title.truncate(255)&.strip
   end
   
   def get_place_and_date
@@ -54,7 +54,7 @@ class MarcPublication < Marc
         date = node.content.truncate(24)
       end
     end
-    [place, date]
+    [place&.strip, date&.strip]
 
   end
 
@@ -66,13 +66,18 @@ class MarcPublication < Marc
         title = node.content.truncate(255)
       end
     end
-    title
+    title&.strip
   end
   
   def reset_to_new
     first_occurance("001").content = "__TEMP__"
   end
 
-
+  def to_external(created_at = nil, updated_at = nil, versions = nil, holdings = false, deprecated_ids = true)
+    super(created_at, updated_at, versions)
+    
+    new_leader = MarcNode.new("publication", "000", "00000nz  a2200000nc 4500", "")
+    @root.children.insert(get_insert_position("000"), new_leader)
+  end
 
 end

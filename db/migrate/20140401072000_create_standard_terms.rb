@@ -6,10 +6,10 @@ class CreateStandardTerms < ActiveRecord::Migration[4.2]
       t.column :alternate_terms,    :text
       t.column :notes,              :text
 
-      t.column :wf_audit,           :string, { :limit => 16, :default => "unapproved" }
-      t.column :wf_stage,           :string, { :limit => 16, :default => "unpublished" }
+      t.column :wf_audit,           :string, :limit => 16, :default => "unapproved"
+      t.column :wf_stage,           :string, :limit => 16, :default => "unpublished"
       t.column :wf_notes,           :string
-      t.column :wf_owner,           :integer, { :default => 0 }
+      t.column :wf_owner,           :integer, :default => 0
       t.column :wf_version,         :integer, :default => 0
        
       t.column :src_count,          :integer, :default => 0

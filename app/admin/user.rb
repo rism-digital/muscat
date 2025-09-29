@@ -1,5 +1,5 @@
 ActiveAdmin.register User do
-  menu :parent => "admin_menu", :label => proc {I18n.t(:menu_users)}, :if => proc{ can? :manage, User }
+  menu :parent => "admin_menu", :label => proc {I18n.t(:menu_users)}, :if => proc{ (can? :read, User) || current_user.has_role?(:editor)}
   
   permit_params :preference_wf_stage, :email, :password, :password_confirmation, 
                 :username, :name, :notifications, :notification_type, :notification_email, 
@@ -21,12 +21,25 @@ ActiveAdmin.register User do
 
 	end
 
+  # this is used by tribute_load.js
   collection_action :list, method: :post do
     params.permit!
     if params.include?(:q)
       users = User.where("name REGEXP ?", "\\b#{params[:q]}").collect {|u| {name: u.name, id: u.name.gsub(" ", "_")}}
     else
       users = []
+    end
+    respond_to do |format|
+        format.json { render json: users  }
+    end
+  end
+
+  # And this is used by thle flexdatalist for the user selection
+  collection_action :list_for_filter, method: :get do
+    if current_user.has_any_role?(:editor, :admin)
+      users = User.all.map {|u| {name: u.name, id: "wf_owner:#{u.id}", shortid: u.id} }
+    else
+      users = [{name: current_user.name, id: "wf_owner:#{current_user.id}", shortid: current_user.id}]
     end
     respond_to do |format|
         format.json { render json: users  }
@@ -73,7 +86,6 @@ ActiveAdmin.register User do
   end
   
   sidebar :actions, :only => :index do
-    render :partial => "activeadmin/filter_workaround"
     render :partial => "activeadmin/section_sidebar_index"
   end
  
@@ -155,7 +167,7 @@ ActiveAdmin.register User do
   end
 =end
 
-  sidebar :actions, :only => [:edit, :new, :update] do
+  sidebar :actions, :only => [:edit, :new, :update, :create] do
     render :partial => "activeadmin/section_sidebar_edit", :locals => { :item => user }
   end
 

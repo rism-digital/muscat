@@ -24,43 +24,84 @@ class Publication < ApplicationRecord
   @last_event_save
   attr_accessor :last_event_save
 
-  has_paper_trail :on => [:update, :destroy], :only => [:marc_source, :wf_stage], :if => Proc.new { |t| VersionChecker.save_version?(t) }
+  has_paper_trail :on => [:update, :destroy], :only => [:marc_source, :wf_stage, :wf_audit, :work_catalogue], :if => Proc.new { |t| VersionChecker.save_version?(t) }
 
   include ForeignLinks
   include MarcIndex
   include AuthorityMerge
+  include CommentsCleanup
+  include ComposedOfReimplementation
+  include ThroughAssociations
   resourcify
 
-  has_and_belongs_to_many(:referring_sources, class_name: "Source", join_table: "sources_to_publications")
-  has_and_belongs_to_many(:referring_institutions, class_name: "Institution", join_table: "institutions_to_publications")
-  has_and_belongs_to_many(:referring_people, class_name: "Person", join_table: "people_to_publications")
-  has_and_belongs_to_many(:referring_holdings, class_name: "Holding", join_table: "holdings_to_publications")
-  has_and_belongs_to_many :people, join_table: "publications_to_people"
-  has_and_belongs_to_many :institutions, join_table: "publications_to_institutions"
-  has_and_belongs_to_many :places, join_table: "publications_to_places"
-  has_and_belongs_to_many :standard_terms, join_table: "publications_to_standard_terms"
+  #has_and_belongs_to_many(:referring_sources, class_name: "Source", join_table: "sources_to_publications")
+  has_many :source_publication_relations, class_name: "SourcePublicationRelation"
+  has_many :referring_sources, through: :source_publication_relations, source: :source
+
+  #has_and_belongs_to_many(:referring_institutions, class_name: "Institution", join_table: "institutions_to_publications")
+  has_many :institution_publication_relations, class_name: "InstitutionPublicationRelation"
+  has_many :referring_institutions, through: :institution_publication_relations, source: :institution
+
+  #has_and_belongs_to_many(:referring_people, class_name: "Person", join_table: "people_to_publications")
+  has_many :person_publication_relations, class_name: "PersonPublicationRelation"
+  has_many :referring_people, through: :person_publication_relations, source: :person
+  
+  #has_and_belongs_to_many(:referring_holdings, class_name: "Holding", join_table: "holdings_to_publications")
+  has_many :holding_publication_relations, class_name: "HoldingPublicationRelation"
+  has_many :referring_holdings, through: :holding_publication_relations, source: :holding
+  
+  #has_and_belongs_to_many(:referring_works, class_name: "Work", join_table: "works_to_publications")
+  has_many :work_publication_relations, class_name: "WorkPublicationRelation"
+  has_many :referring_works, through: :work_publication_relations, source: :work
+  
+  #has_and_belongs_to_many(:referring_inventory_items, class_name: "InventoryItem", join_table: "inentory_items_to_publications")
+  has_many :inventory_item_publication_relations, class_name: "InventoryItemPublicationRelation"
+  has_many :referring_inventory_items, through: :inventory_item_publication_relations, source: :inventory_item
+
+  #has_and_belongs_to_many :people, join_table: "publications_to_people"
+  has_many :publication_person_relations
+  has_many :people, through: :publication_person_relations
+
+  #has_and_belongs_to_many :institutions, join_table: "publications_to_institutions"
+  has_many :publication_institution_relations
+  has_many :institutions, through: :publication_institution_relations
+
+  #has_and_belongs_to_many :places, join_table: "publications_to_places"
+  has_many :publication_place_relations
+  has_many :places, through: :publication_place_relations
+
+  #has_and_belongs_to_many :standard_terms, join_table: "publications_to_standard_terms"
+  has_many :publication_standard_term_relations
+  has_many :standard_terms, through: :publication_standard_term_relations
+
   has_many :folder_items, as: :item, dependent: :destroy
   has_many :delayed_jobs, -> { where parent_type: "Publication" }, class_name: 'Delayed::Backend::ActiveRecord::Job', foreign_key: "parent_id"
   belongs_to :user, :foreign_key => "wf_owner"
 
   # This is the forward link
-  has_and_belongs_to_many(:publications,
-    :class_name => "Publication",
-    :foreign_key => "publication_a_id",
-    :association_foreign_key => "publication_b_id",
-    join_table: "publications_to_publications")
+#  has_and_belongs_to_many(:publications,
+#    :class_name => "Publication",
+#    :foreign_key => "publication_a_id",
+#    :association_foreign_key => "publication_b_id",
+#    join_table: "publications_to_publications")
 
   # This is the backward link
-  has_and_belongs_to_many(:referring_publications,
-    :class_name => "Publication",
-    :foreign_key => "publication_b_id",
-    :association_foreign_key => "publication_a_id",
-    join_table: "publications_to_publications")
+#  has_and_belongs_to_many(:referring_publications,
+#    :class_name => "Publication",
+#    :foreign_key => "publication_b_id",
+#    :association_foreign_key => "publication_a_id",
+#    join_table: "publications_to_publications")
 
-  composed_of :marc, :class_name => "MarcPublication", :mapping => %w(marc_source to_marc)
+  has_many :publication_relations, foreign_key: "publication_a_id"
+  has_many :publications, through: :publication_relations, source: :publication_b
+  # And this is the one coming back
+  has_many :referring_publication_relations, class_name: "PublicationRelation", foreign_key: "publication_b_id"
+  has_many :referring_publications, through: :referring_publication_relations, source: :publication_a
+
+  composed_of_reimplementation :marc, :class_name => "MarcPublication", :mapping => %w(marc_source to_marc)
 
   ##include NewIds
-  before_destroy :check_dependencies
+  before_destroy :check_dependencies, :cleanup_comments, :update_links
 
   before_save :set_object_fields
   after_create :scaffold_marc, :fix_ids
@@ -70,12 +111,14 @@ class Publication < ApplicationRecord
   attr_accessor :suppress_reindex_trigger
   attr_accessor :suppress_recreate_trigger
   attr_accessor :suppress_scaffold_marc_trigger
+  attr_accessor :suppress_update_count_trigger
 
   alias_attribute :id_for_fulltext, :id
   alias_attribute :name, :short_name
 
-  enum wf_stage: [ :inprogress, :published, :deleted, :deprecated ]
-  enum wf_audit: [ :full, :abbreviated, :retro, :imported ]
+  enum :wf_stage, [ :inprogress, :published, :deleted, :deprecated ]
+  enum :wf_audit, [ :full, :abbreviated, :retro, :imported ]
+  enum :work_catalogue, [:not_work_catalogue, :work_catalogue_in_preparation, :work_catalogue_partial, :work_catalogue_complete, :work_catalogue_alternate]
 
   def after_initialize
     @last_user_save = nil
@@ -90,6 +133,10 @@ class Publication < ApplicationRecord
 
   def suppress_scaffold_marc
     self.suppress_scaffold_marc_trigger = true
+  end
+
+  def suppress_update_count
+    self.suppress_update_count_trigger = true
   end
 
   def update_links
@@ -163,7 +210,7 @@ class Publication < ApplicationRecord
   end
 
   searchable :auto_index => false do |sunspot_dsl|
-    sunspot_dsl.integer :id
+    sunspot_dsl.integer :id, stored: true
     sunspot_dsl.text :id_text do
       id_for_fulltext
     end
@@ -197,20 +244,28 @@ class Publication < ApplicationRecord
 
     sunspot_dsl.text :pages
 
+    sunspot_dsl.integer :wf_owner
     sunspot_dsl.string :wf_stage
     sunspot_dsl.time :updated_at
     sunspot_dsl.time :created_at
 
-    sunspot_dsl.boolean :work_catalogue
+    # We could also use the enum value here (0...3)
+    # but using the symbol seems less obscure
+    sunspot_dsl.string :work_catalogue
+    sunspot_dsl.string :work_catalogue_order do
+      work_catalogue
+    end
 
     sunspot_dsl.join(:folder_id, :target => FolderItem, :type => :integer,
               :join => { :from => :item_id, :to => :id })
 
-    sunspot_dsl.integer :src_count_order, :stored => true do
-      (Publication.count_by_sql("select count(*) from sources_to_publications where publication_id = #{self[:id]}") +
-      Publication.count_by_sql("select count(*) from institutions_to_publications where publication_id = #{self[:id]}") +
-      Publication.count_by_sql("select count(*) from people_to_publications where publication_id = #{self[:id]}"))
+    sunspot_dsl.text :text do |s|
+      s.marc.to_raw_text
     end
+
+    sunspot_dsl.integer(:src_count_order, :stored => true) {through_associations_source_count}
+    sunspot_dsl.integer(:referring_objects_order, stored: true) {through_associations_exclude_source_count}
+
     MarcIndex::attach_marc_index(sunspot_dsl, self.to_s.downcase)
   end
 
@@ -268,22 +323,33 @@ class Publication < ApplicationRecord
     end
   end
 
-  def autocomplete_label
+  def autocomplete_label(query_row = nil) 
     aut = (author and !author.empty? ? author : nil)
-    tit = (title and !title.empty? ? title.truncate(45) : nil)
+    tit = (title and !title.empty? ? title : nil)
     dat = (date and !date.empty? ? date : nil)
 
-    infos = [aut, dat, tit].join(", ")
+    infos = [aut, dat, tit].compact.join(", ")
 
-    "#{self.short_name}: #{infos}"
+    return "#{self.short_name} (#{query_row[:count]}): #{infos}".truncate(100)  if query_row
+    return "#{self.short_name}: #{infos}".truncate(110)
   end
 
-  def get_items
-    MarcSearch.select(Publication, '760$0', id.to_s).to_a
+  def getter_function_autocomplete_label(query_row)    
+    autocomplete_label(query_row)
+  end
+
+  # If we define our own ransacker, we need this
+  def self.ransackable_attributes(auth_object = nil)
+    column_names + _ransackers.keys
+  end
+
+  def self.ransackable_associations(auth_object = nil)
+    reflect_on_all_associations.map { |a| a.name.to_s }
   end
 
   ransacker :"240g", proc{ |v| } do |parent| parent.table[:id] end
   ransacker :"260b", proc{ |v| } do |parent| parent.table[:id] end
+  ransacker :"505t", proc{ |v| } do |parent| parent.table[:id] end
   ransacker :"100a_or_700a", proc{ |v| } do |parent| parent.table[:id] end
-
+    
 end

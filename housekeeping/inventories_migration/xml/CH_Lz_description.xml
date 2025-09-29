@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<TEI xmlns="http://www.tei-c.org/ns/1.0">
+  <teiHeader>
+    <fileDesc>
+      <titleStmt>
+        <title>The St Urban Inventory (1661), ed. Claudio Bacciagaluppi and Luigi Collarile with Annaïck Bouquin, 2010 (Historical Music Inventories, 2)</title>
+      </titleStmt>
+      <editionStmt>
+        <edition>After TEI P5.1</edition>
+        <respStmt>
+          <resp>Edited by <persName>Claudio Bacciagaluppi and Luigi Collarile with Annaïck Bouquin</persName>
+            <date when="2010-06">June 2010</date>
+          </resp>
+          <name>Université de Fribourg, Switzerland</name> 
+          <name>Swiss RISM Office</name>
+        </respStmt>
+      </editionStmt>
+      <publicationStmt>
+        <publisher><orgName xml:base="http://www.rism-ch.org">Swiss RISM Office</orgName>, Université de Fribourg, Switzerland</publisher>
+      </publicationStmt>
+      <sourceDesc>
+        <msDesc>
+          <msIdentifier>
+            <settlement>Luzern</settlement>
+            <repository>Zentral- und Hochschulbibliothek</repository>
+            <idno>Pp Msc 11.4</idno>
+          </msIdentifier>
+          <head>
+            <title>Bibliotheca S. Urbani</title>
+            <origPlace>St. Urban</origPlace>
+            <origDate notBefore="1661">1661</origDate>
+          </head>
+          <msContents>
+<!-- "###" means: to be completed -->
+            <summary>In 1661, the library of the Cistercian abbey of St. Urban near Lucerne was catalogued. The 18th chapter of the library catalogue, simply called „Bibliotheca S. Urbani“, today in Lucerne Central and University Library (CH-Lz, Pp Msc 11), lists the music items. This was quite exceptional at the time, as usually music was preserved in the organ loft in the church. The catalogue comprises a detailed list, alphabetically arranged after the composer’s first names (p. 611-645), and a short alphabetical index of the composers’ surnames (p. 779-786).<lb/>
+            This <ref target="http://in-dev.rism.digital/images/st-urban">music inventory</ref> is among the oldest preserved in Switzerland. The entries go into considerable detail, permitting in most cases the identification of the print. The unknown compiler lists the title, the existing parts, the format, and lastly the place and date of the print. Composers and printers from Switzerland, Germany and Italy are represented in approximately equal proportions.</summary>
+            <msItem><ab><metamark>Contents:</metamark>
+              <list>
+                <item><ref target="http://in-dev.rism.digital/images/st-urban#z=2&amp;n=5&amp;i=/CH_Lz_Pp_Msc_11/pyr_CH_Lz_Pp_Msc_11_0458.tif&amp;y=143&amp;h=700&amp;w=773">p. [vii]</ref> BIBLIOTHE- / CA / S. VRBANI. / A|no M.DC.LXI.|mo / Xvj. Kal. Decemb.</item>
+                <item><ref target="http://in-dev.rism.digital/images/st-urban#z=2&amp;n=5&amp;i=/CH_Lz_Pp_Msc_11/pyr_CH_Lz_Pp_Msc_11_0460.tif&amp;y=62&amp;h=700&amp;w=773">p. [ix]</ref> [Dedication page to abbot Edmund Schnyder, with coat-of-arms]</item>
+                <item><ref target="http://in-dev.rism.digital/images/st-urban#z=2&amp;n=5&amp;i=/CH_Lz_Pp_Msc_11/pyr_CH_Lz_Pp_Msc_11_0462.tif&amp;y=44&amp;h=700&amp;w=773">p. [xi]</ref> [Contents]</item>
+                <item><ref target="http://in-dev.rism.digital/images/st-urban#z=2&amp;n=5&amp;i=/CH_Lz_Pp_Msc_11/pyr_CH_Lz_Pp_Msc_11_0464.tif&amp;y=79&amp;h=700&amp;w=773">p. [611]</ref> TITUL[us] XVIII. / LIBRI MVSICA- / LES. [inventory, ordered by composers' first name]</item>
+                <item>p. [646] [continuation of the library catalogue]</item>
+                <item><ref target="http://in-dev.rism.digital/images/st-urban#z=2&amp;n=2&amp;i=/CH_Lz_Pp_Msc_11/pyr_CH_Lz_Pp_Msc_11_0499.tif&amp;y=115&amp;gy=6127&amp;h=700&amp;w=773">p. [779]</ref> Cognomina Autho- / rum Lib. Musica- / lium. [list of composers' surnames]</item>
+                <item><ref target="http://in-dev.rism.digital/images/st-urban#z=3&amp;n=2&amp;i=/CH_Lz_Pp_Msc_11/pyr_CH_Lz_Pp_Msc_11_0505.tif&amp;x=193&amp;gy=6127&amp;h=700&amp;w=773">p. [785]</ref> [void]</item>
+              </list>
+             </ab></msItem>
+          </msContents>
+          <physDesc>
+            <objectDesc>
+              <supportDesc>
+                <extent>
+                  <measure type="pagesCount" n="12">[xii] + 1-605, [606-790] pp.</measure>
+                  <measure type="pageDimensions">In quarto.</measure>
+                </extent>
+                <foliation>Partly original pagination.</foliation>
+              </supportDesc>
+            </objectDesc>
+            <handDesc>
+              <handNote>Scribe: unkown.</handNote>
+            </handDesc>
+           </physDesc>
+          <additional>
+            <adminInfo>
+              <recordHist>
+                <source>
+                  <bibl>Images © Zentral- und Hochschulbibliothek Luzern (Lucerne, March 2010).<lb/></bibl>
+                  <bibl>Records compiled by: Claudio Bacciagaluppi, Luigi Collarile, with the 
+collaboration of Annaïck Bouquin (Fribourg, June 2010).</bibl>
+                </source>
+              </recordHist>
+            </adminInfo>
+            <listBibl>
+              <head>Essential bibliography:</head>
+              <bibl>Jerger, Wilhelm (1956), Ein Musikinventar aus dem Jahre 1661 im Katalog von St. Urban, in Die Musikforschung 9 (1956), p. 274-281.</bibl>
+            </listBibl>
+          </additional>
+        </msDesc>
+      </sourceDesc>
+    </fileDesc>
+  </teiHeader>
+  <text>
+    <body><ab></ab></body>
+<!-- ### -->
+  </text>
+</TEI>

@@ -1,869 +1,826 @@
-
+---
 de:
+  Composer: Komponist
+  Date: Datum
+  Images: Bilder
+  Incipit: Incipit
+  Library siglum: Bibliothekssigel
+  Number of printed copies: Anzahl der gedruckten Exemplare
+  Scoring: Besetzung
+  Source Type: Quellentyp
+  Standardized title: Standardtitel
+  Subject: Schlagwörter
+  abbreviated_level: Kurzkatalogisat mittels Autopsie
   active_admin:
-# Pad for italian, it has 2 missing items
-#
-#
-    compare_versions: Versionen vergleichen
-    dashboard: "Dashboard"
-    dashboard_welcome:
-      welcome: "Willkommen in Active Admin. Dies ist die Standard-Übersichtsseite."
-      call_to_action: "Siehe 'app/admin/dashboard.rb', um Übersichts-Bereiche hinzuzufügen."
-    view: "Anzeigen"
-    edit: "Bearbeiten"
-    delete: "Löschen"
-    delete_confirmation: "Wollen Sie dieses Element wirklich löschen?"
-    new_model: "%{model} erstellen"
-    create_model: "%{model} erstellen"
-    edit_model: "%{model} bearbeiten"
-    update_model: "%{model} bearbeiten"
-    delete_model: "%{model} löschen"
-    save_model: "Sichern"
-    details: "%{model} Details"
-    cancel: "Abbrechen"
-    empty: "Leer"
-    previous: "Zurück"
-    next: "Weiter"
-    download: "Herunterladen:"
-    has_many_new: "%{model} Hinzufügen"
-    has_many_delete: "Löschen"
-    has_many_remove: "Entfernen"
-    filters:
-      buttons:
-        filter: "Filtern"
-        clear: "Filter entfernen"
-      predicates:
-        contains: "Enthält"
-        equals: "Gleich"
-        starts_with: "Beginnt mit"
-        ends_with: "Endet mit"
-        greater_than: "Größer als"
-        less_than: "Kleiner als"
-        with_integer: "Filter"
-        from: "Datum von"
-        to: "Datum bis"
-    status_tag:
-      "yes": "Ja"
-      "no": "Nein"
-    main_content: "Bitte implementieren Sie %{model}#main_content, um Inhalte anzuzeigen."
-    logout: "Abmelden"
-    powered_by: "Powered by %{active_admin} %{version}"
-    sidebars:
-      filters: "Filter"
-      sections: "Blöcke und Aktionen"
-      actions: "Aktionen"
-      toc: "Inhalt"
-    pagination:
-      empty: "Keine %{model} gefunden"
-      one: "Zeige <b>1</b> %{model}"
-      one_page: "Zeige <b>alle %{n}</b> %{model}"
-      multiple: "Zeige %{model} <b>%{from}&nbsp;–&nbsp;%{to}</b> von <b>%{total}</b>"
-      multiple_without_total: "Zeige %{model} <b>%{from}&nbsp;–&nbsp;%{to}</b>"
-      per_page: "Elemente pro Seite:"
-      entry:
-        one: "Eintrag"
-        other: "Einträge"
-    any: "Alle"
-    blank_slate:
-      content: "Es gibt noch keine %{resource_name}."
-      link: "Erstellen"
-    dropdown_actions:
-      button_label: "Aktionen"
+    access_denied:
+      message: Sie haben keine Berechtigung, diese Aktion auszuführen.
+    any: Alle
     batch_actions:
-      button_label: "Stapelverarbeitung"
-      default_confirmation: "Sind Sie sicher, dass Sie dies tun wollen?"
-      delete_confirmation: "Sind Sie sicher, dass Sie diese %{plural_model} löschen wollen?"
-      succesfully_destroyed:
-        one: "Erfolgreich 1 %{model} gelöscht"
-        other: "Erfolgreich %{count} %{plural_model} gelöscht"
-      selection_toggle_explanation: "(Auswahl umschalten)"
-      link: "erstellen"
       action_label: "%{title}"
+      button_label: Stapelverarbeitung
+      default_confirmation: Sind Sie sicher, dass Sie dies tun wollen?
+      delete_confirmation: Sind Sie sicher, dass Sie diese %{plural_model} löschen wollen?
       labels:
-        destroy: "Lösche"
-        folder: "Erstelle Ordner mit"
-        add_to_folder: "Hinzufügen von Elementen zum einem vorhandenen Ordner"
-        merge: "Normdaten zusammenführen"
-        change_template: "Ändere Template"
-
+        add_to_folder: Hinzufügen von Elementen zum einem vorhandenen Ordner
+        change_template: Ändere Template
+        destroy: Lösche
+        folder: Erstelle Ordner mit
+        merge: Normdaten zusammenführen
+      link: erstellen
+      selection_toggle_explanation: "(Auswahl umschalten)"
+      succesfully_destroyed:
+        one: Erfolgreich 1 %{model} gelöscht
+        other: Erfolgreich %{count} %{plural_model} gelöscht
+    blank_slate:
+      content: Es gibt noch keine %{resource_name}.
+      link: Erstellen
+    cancel: Abbrechen
     comments:
-      resource_type: "Quellentyp"
-      author_type: "Autor-Typ"
-      body: "Inhalt"
-      author: "Autor"
-      title: "Kommentar"
-      add: "Kommentar hinzufügen"
-      resource: "Quelle"
-      no_comments_yet: "Es gibt noch keine Kommentare."
-      comments_help: "Geben Sie @ ein, um einen bestimmten Benutzer zu nennen, der dann eine Benachrichtigung per E-Mail erhält."
-      author_missing: "Unbekannt"
-      title_content: "Kommentare (%{count})"
-      referring_comments: Kommentare, in denen ich genannt werde
+      add: Kommentar hinzufügen
+      author: Autor
+      author_missing: Unbekannt
+      author_type: Autor-Typ
+      body: Inhalt
+      comments_help: Geben Sie @ ein, um einen bestimmten Benutzer zu nennen, der dann eine Benachrichtigung per E-Mail erhält.
+      errors:
+        empty_text: Der Kommentar wurde nicht gespeichert, da der Text fehlt.
       my_item_comments: Kommentare zu meinen Einträgen
       my_own_comments: Kommentare, die ich gemacht habe
-      errors:
-        empty_text: "Der Kommentar wurde nicht gespeichert, da der Text fehlt."
+      no_comments_yet: Es gibt noch keine Kommentare.
+      referring_comments: Kommentare, in denen ich genannt werde
+      resource: Quelle
+      resource_type: Quellentyp
+      title: Kommentar
+      title_content: Kommentare (%{count})
+    compare_versions: Versionen vergleichen
+    create_model: "%{model} erstellen"
+    dashboard: Dashboard
+    dashboard_welcome:
+      call_to_action: Siehe 'app/admin/dashboard.rb', um Übersichts-Bereiche hinzuzufügen.
+      welcome: Willkommen in Active Admin. Dies ist die Standard-Übersichtsseite.
+    delete: Löschen
+    delete_confirmation: Wollen Sie dieses Element wirklich löschen?
+    delete_confirmation_description: Wollen Sie dieses Element wirklich löschen? %{description}
+    delete_model: "%{model} löschen"
+    details: "%{model} Details"
     devise:
-      username:
-        title: "Benutzername"
-      email:
-        title: "E-Mail"
-      subdomain:
-        title: "Subdomain"
-      password:
-        title: "Passwort"
-      sign_up:
-        title: "Registrieren"
-        submit: "Registrieren"
-      login:
-        title: "Login"
-        remember_me: "Angemeldet bleiben"
-        submit: "Login"
-      reset_password:
-        title: "Passwort vergessen?"
-        submit: "Mein Passwort zurücksetzen"
       change_password:
-        title: "Ändern Sie Ihr Passwort"
-        submit: "Mein Passwort ändern"
-      unlock:
-        title: "Anleitung zur Aufhebung der Blockierung nochmals schicken"
-        submit: "Anleitung zur Aufhebung der Blockierung nochmals schicken"
-      resend_confirmation_instructions:
-        title: "Anleitung zur Bestätigung nochmals schicken"
-        submit: "Anleitung zur Bestätigung nochmals schicken"
+        submit: Mein Passwort ändern
+        title: Ändern Sie Ihr Passwort
+      email:
+        title: E-Mail
       links:
-        sign_in: "Anmeldung"
-        forgot_your_password: "Passwort vergessen?"
-        sign_in_with_omniauth_provider: "Anmeldung mit %{provider}"
-        resend_unlock_instructions: "Anleitung zur Aufhebung der Blockierung nochmals schicken"
-    unsupported_browser:
-      headline: "Muscat unterstützt den Internet Explorer Version 8 oder niedriger nicht mehr."
-      recommendation: "Wir empfehlen die Nutzung von <a href=\"http://windows.microsoft.com/ie\">Internet Explorer</a>, <a href=\"https://chrome.google.com/\">Google Chrome</a>, oder <a href=\"https://mozilla.org/firefox/\">Firefox</a>."
-      turn_off_compatibility_view: "Wenn Sie den Internet Explorer 9 oder neuer benutzen, achten Sie darauf, dass Sie den <a href=\"http://windows.microsoft.com/en-US/windows7/webpages-look-incorrect-in-Internet-Explorer\">\"Kompatibilitätsansicht\" ausgeschaltet</a> haben."
-    access_denied:
-      message: "Sie haben keine Berechtigung, diese Aktion auszuführen." 
+        forgot_your_password: Passwort vergessen?
+        resend_unlock_instructions: Anleitung zur Aufhebung der Blockierung nochmals schicken
+        sign_in: Anmeldung
+        sign_in_with_omniauth_provider: Anmeldung mit %{provider}
+      login:
+        remember_me: Angemeldet bleiben
+        submit: Login
+        title: Login
+      password:
+        title: Passwort
+      resend_confirmation_instructions:
+        submit: Anleitung zur Bestätigung nochmals schicken
+        title: Anleitung zur Bestätigung nochmals schicken
+      reset_password:
+        submit: Mein Passwort zurücksetzen
+        title: Passwort vergessen?
+      sign_up:
+        submit: Registrieren
+        tiitle: Registrieren
+        title: Registrieren
+      subdomain:
+        title: Subdomain
+      unlock:
+        submit: Anleitung zur Aufhebung der Blockierung nochmals schicken
+        title: Anleitung zur Aufhebung der Blockierung nochmals schicken
+      username:
+        title: Benutzername
+    download: 'Herunterladen:'
+    dropdown_actions:
+      button_label: Aktionen
+    edit: Bearbeiten
+    edit_model: "%{model} bearbeiten"
+    empty: Leer
+    filters:
+      buttons:
+        clear: Filter entfernen
+        filter: Filtern
+      predicates:
+        contains: Enthält
+        ends_with: Endet mit
+        equals: Gleich
+        from: Datum von
+        greater_than: Größer als
+        less_than: Kleiner als
+        starts_with: Beginnt mit
+        to: Datum bis
+        with_integer: Filter
+    gnd_works: GND Werk Editor
+    has_many_delete: Löschen
+    has_many_new: "%{model} Hinzufügen"
+    has_many_remove: Entfernen
     index_list:
-      table: "Tabelle"
-      block: "Liste"
-      grid: "Raster"
-      blog: "Blog"
-  switch_language: "Sprache ändern" 
-  this_file_language: "Deutsch"
-
-  time:
-    formats:
-      default: "%H:%M"
-      short: "%H:%M"
-      long: "%Y-%m-%d %H:%M"
-      verbose: "%A, %d. %B %Y, %H:%M Uhr"
-  
-  #################### MODELS      
+      block: Liste
+      blog: Blog
+      grid: Raster
+      table: Tabelle
+    logout: Abmelden
+    main_content: Bitte implementieren Sie %{model}#main_content, um Inhalte anzuzeigen.
+    new_model: "%{model} erstellen"
+    next: Weiter
+    pagination:
+      empty: Keine %{model} gefunden
+      entry:
+        one: Eintrag
+        other: Einträge
+      few: Wenige
+      multiple: Zeige %{model} <b>%{from}&nbsp;–&nbsp;%{to}</b> von <b>%{total}</b>
+      multiple_without_total: Zeige %{model} <b>%{from}&nbsp;–&nbsp;%{to}</b>
+      one: Zeige <b>1</b> %{model}
+      one_page: Zeige <b>alle %{n}</b> %{model}
+      per_page: 'Elemente pro Seite:'
+    powered_by: Powered by %{active_admin} %{version}
+    previous: Zurück
+    save_model: Sichern
+    search_status:
+      current_filters: Verwendete Filter
+      headline: Bereich
+    sidebars:
+      actions: Aktionen
+      filters: Filter
+      help: Hilfe
+      sections: Blöcke und Aktionen
+      toc: Inhalt
+    status_tag:
+      'no': Nein
+      'yes': Ja
+    unsupported_browser:
+      headline: Muscat unterstützt den Internet Explorer Version 8 oder niedriger nicht mehr.
+      recommendation: Wir empfehlen die Nutzung von <a href="http://windows.microsoft.com/ie">Internet Explorer</a>, <a href="https://chrome.google.com/">Google Chrome</a>, oder <a href="https://mozilla.org/firefox/">Firefox</a>.
+      turn_off_compatibility_view: Wenn Sie den Internet Explorer 9 oder neuer benutzen, achten Sie darauf, dass Sie den <a href="http://windows.microsoft.com/en-US/windows7/webpages-look-incorrect-in-Internet-Explorer">"Kompatibilitätsansicht" ausgeschaltet</a> haben.
+    update_model: "%{model} bearbeiten"
+    view: Anzeigen
   activerecord:
     models:
       digital_object:
-        one: "Digitales Objekt"
-        other: "Digitale Objekte"
-      publication:
-        one: "Sekundärliteratur"
-        other: "Sekundärliteratur"
+        one: Digitales Objekt
+        other: Digitale Objekte
       folder:
-        one: "Ordner"
-        other: "Ordner"
-      workgroup:
-        one: "Gruppe"
-        other: "Gruppen"
+        one: Ordner
+        other: Ordner
       holding:
-        one: "Holding"
-        other: "Holdings"
+        one: Holding
+        other: Holdings
       institution:
-        one: "Körperschaft"
-        other: "Körperschaften"
+        one: Körperschaft
+        other: Körperschaften
+      inventory_item:
+        one: Inventareintrag
+        other: Inventareinträge
       liturgical_feast:
-        one: "Liturgisches Fest"
-        other: "Liturgische Feste"
+        one: Liturgisches Fest
+        other: Liturgische Feste
       person:
-        one: "Person"
-        other: "Personen"
+        one: Person
+        other: Personen
+      publication:
+        one: Sekundärliteratur
+        other: Sekundärliteratur
       source:
-        one: "Quelle"
-        other: "Quellen"
+        one: Quelle
+        other: Quellen
       standard_term:
-        one: "Schlagwort"
-        other: "Schlagwörter"
+        one: Schlagwort
+        other: Schlagwörter
       standard_title:
-        one: "Standardtitel"
-        other: "Standardtitel"
+        one: Standardtitel
+        other: Standardtitel
       user:
-        one: "Benutzer"
-        other: "Benutzer"
+        one: Benutzer
+        other: Benutzer
       work:
-        one: "Werk"
-        other: "Werk"
-  
-  #################### RECORD TYPES (TEMPLATES)
-  select_template: "Auswahl der Vorlage"
-  available_templates: "Verfügbare Vorlagen"
-  from_existing_source: "Erstellen aus vorhandener Quelle"
-  create_from_existing: "Erstellen"
-  record_types:
-    unspecified: "[Unbekannte Vorlage]"
-    collection: "Musikhandschrift, Haupteintrag Sammlung"
-    source: "Musikhandschrift, Indvidual- oder Teileintrag"
-    edition_content: "Musikdruck, Teileintrag"
-    libretto_source: "Libretto, handschriftlich"
-    libretto_edition: "Libretto, gedruckt"
-    libretto_edition_content: "Libretto, gedruckt - Teileintrag der Sammlung"
-    theoretica_source: "Theoreticum, handschriftlich"
-    theoretica_edition: "Theoreticum, gedruckt"
-    theoretica_edition_content: "Theoreticum, gedruckt - Teileintrag der Sammlung"
-    edition: "Musikdruck, Haupteintrag Sammlung oder Individualeintrag"
- 
-    composite_volumes: "Konvolut"
-    composite_volume: "Haupteintrag für ein Konvolut"
-
-    music_manuscripts: "Musikhandschrift"
-    collection_record: "Musikhandschrift, Haupteintrag Sammlung"
-    individual_entry: "Musikhandschrift, Teileintrag der Sammlung"
-    single_manuscript: "Musikhandschrift, Individualeintrag"
-    
-    printed_music: "Musikdruck"
-    collection_record_edition: "Musikdruck, Haupteintrag Sammlung"
-    individual_entry_edition: "Musikdruck, Teileintrag der Sammlung"
-    single_edition: "Musikdruck, Individualeintrag"
-    
-    libretti_handwritten: "Libretto, handschriftlich"
-    collection_record_libretti: "Libretto, handschriftlich - Haupteintrag Sammlung"
-    individual_entry_libretti: "Libretto, handschriftlich - Teileintrag der Sammlung"
-    single_libretto: "Libretto, handschriftlich - Individualeintrag"
-    
-    libretti_printed: "Libretto, gedruckt"
-    collection_record_libretti_printed: "Libretto, gedruckt - Haupteintrag Sammlung"
-    individual_entry_libretti_printed: "Libretto, gedruckt - Teileintrag der Sammlung"
-    single_libretto_printed: "Libretto, gedruckt - Individualeintrag"
-
-    threatise_handwritten: "Theoreticum, handschriftlich"
-    collection_record_threatise: "Theoreticum, handschriftlich - Haupteintrag Sammlung"
-    individual_entry_threatise: "Theoreticum, handschriftlich - Teileintrag der Sammlung"
-    single_threatise: "Theoreticum, handschriftlich - Individualeintrag"
-
-    threatise_printed: "Theoreticum, gedruckt"
-    collection_record_threatise_printed: "Theoreticum, gedruckt - Haupteintrag Sammlung"
-    individual_entry_threatise_printed: "Theoreticum, gedruckt - Teileintrag der Sammlung"
-    single_threatise_printed: "Theoreticum, gedruckt - Individualeintrag"
-  
-  #################### MENUS
-  menu_home: "Home"
-  menu_sources: "Quellen"
-  menu_simple_search: "Einfache Suche"
-  menu_advanced_search: "Erweiterte Suche"
-  menu_indexes: "Normdaten"
-  menu_people: "Personen"
-  menu_institutions: "Körperschaften"
-  menu_titles: "Titel / Textincipit"
-  menu_subjects: "Schlagwörter"
-  menu_library_sigla: "Bibliothekssigel"
-  menu_publications: "Sekundärliteratur"
-  menu_liturgical_feasts: "Liturgische Feste"
-  menu_latin: "Latein"
-  menu_places: "Orte"
-  menu_help: "Hilfe"
-  menu_folders: "Ordner"
-  menu_users: "Benutzer"
-  menu_workgroups: "Benutzergruppen"
-  menu_administration: "Administration"
-  menu_comments: "Kommentare"
-  menu_catalog: "Facettensuche"
-  menu_languages: "Sprache"
-  menu_contact: "Kontakt"
-  menu_search_history: "Suchverlauf"
-  menu_guidelines: "Katalogisierungsrichtlinien"
-  menu_marc_documentation: "MARC Einstellungen"
-  menu_guidelines_top: "Richtlinien"
-  menu_cataloging: "Katalogisierung"
-  menu_jobs: "Jobs"
-  menu_holdings: "Examplare"
-  menu_works: "Werktitel"
-  menu_work_nodes: "Work Nodes"
-  
-  ### VARIOUS ELEMENTS
-  recent_changes: "Letzte Änderungen"
-  any_field_contains: "Irgendein Feld enthält"
-  title_contains: "Dipl. Titel enthält"
-  std_title_contains: "Einordnungstitel enthält"
-  composer_contains: "Komponist enthält"
-  library_sigla_contains: "Sigel enthält"
-  internal_note_contains: "Interner Hinweis enthält"
-  is_in_folder: "Ist im Ordner"
-  workgroups: "Benutzergruppen"
-  roles: "Rollen"
-  user_details: "Benutzerinfo"
-  sections: "Sektionen"
-  edit: "Bearbeiten"
-  search_sources: "Quellensuche"
-  created_at: "Erstellungsdatum"
-  updated_at: "Letzte Änderung"
-  status: "Status"
-  progress_stage: "Stand Fortschritt"
-  object: "Objekt"
-  queue: "Warteschleife"
-  failed_at: "Fehlgeschlagen am"
-  run_at: "Durchgeführt am"
-  progress: "Fortschritt"
-  failed: "Fehlgeschlagen"
-  waiting: "Wartet"
-  running: "Läuft"
-  finished: "Beendet"
-  lib_siglum: "Bibliothekssigel"
-  holding_records: "Exemplarinformation"
-  holding_no_siglum: "Unmarkierte Kopie"
-  holding_missing: "Dieser Musikdruck enthält noch keinen Nachweis. Bitte fügen Sie diesem Datensatz Ihr Bibliothekssigel, Ihre Signatur und andere exemplarspezifische Informationen hinzu, indem Sie auf die Schaltfläche \"%{new_holding}\" auf der rechten Seite klicken."
-  holding_missing_alert: "Dieser Musikdruck enthält noch keinen Nachweis. Bitte fügen Sie diesem Datensatz Ihr Bibliothekssigel, Ihre Signatur und andere exemplarspezifische Informationen hinzu, indem Sie auf die Schaltfläche \"%{new_holding}\" auf der rechten Seite klicken."
-  holding_missing_show: "Dieser Musikdruck enthält noch keinen Nachweis. Bitte fügen Sie diesem Datensatz Ihr Bibliothekssigel, Ihre Signatur und andere exemplarspezifische Informationen hinzu, indem Sie diesen Datensatz bearbeiten und auf die Schaltfläche \"%{new_holding}\" auf der rechten Seite klicken."
-  new_holding: "Neuer Examplareintrag"
-  new_holding_page: "Neuer Exemplareintrag"
-  new_digital_object_image: "Neues Bild hinzufügen"
-  new_digital_object_incipit: "Neues MEI-Incipit hinzufügen"
-  record_actions: "Aktion für Eintrag"
-  record_status: "Status des Eintrags"
-  record_owner: "Besitzer des Eintrags"
-  record_audit: "Vorlageform"
-  basic_level: "Basiskatalog"
-  full_level: "Vollkatalogisat"
-  #full_level: "Vollkatalogisat mittels Autopsie"
-  abbreviated_level: "Kurzkatalogisat mittels Autopsie"
-  retro_level: "Retroeinspielung"
-  imported_level: "Fremdeinspielung"
-  link_type: "Verlinkungstyp"
-  linked_object: "Verknüpftes Objekt"
-  links: "Verlinkungen"
-  link_remove: "Link entfernen"
-  link_remove_confirm: "Link entfernen?"
-  unloadable_record: "Fehler beim Laden des Eintrags: Änderung nicht möglich, bitte einen Administrator kontaktieren."
-  validation_level_error: "Die Fehler müssen vor dem Speichern behoben werden."
-  validation_level_warning: "Erneut speichern, um die Warnung(en) zu ignorieren."
-  muscat_reindexing: "Muscat wird neu indiziert, Suchergebnisse können unvollständig sein"
-  work_catalogue: "Katalog der Werke"
-
-  jobs:
-    not_set: "[Kein Status gesetzt]"
-    ok: "Prozess erfolgreich abgeschlossen"
-    no_status: "Fehler beim Lesen des Prozess-Status'"
-    error: "Fehler: "
-    running_jobs: "Laufender Prozess kann nicht gelöscht werden."
-    auto_delete: "Löschen nicht möglich: Abgeschlossener Prozess wurde bereits automatisch gelöscht."
-    no_view: "Ansicht nicht möglich: Abgeschlossener Prozess wurde bereits automatisch gelöscht."
-
-  # Sidebar
-  delete: "Löschen"
-  to_the_list: "Zurück zur Liste"
-  go_to_top:  "Zurück zum Anfang"
-  edit: "Bearbeiten"
-  new: "Erstellen"
-  duplicate: "Kopieren"
-  merge: "Umhängen"
-  no_action: "Keine Aktion verfügbar"
-  reindex: "Reindexieren"
-  resave: "Erneut speichern"
-  publish: "Veröffentlichen"
-  unpublish: "Nicht veröffentlichen"
-  select: "Auswählen"
-  create_folder: "Erstelle Ordner"
-  append_folder: "Zu Ordner hinzufügen"
-  add_institution: "Institution verlinken"
-  add_source: "Quelle verlinken"
-  add_person: "Person verlinken"
-  archive_unarchive: "Archivieren / Dearchivieren"
-  archive: "Archivieren"
-  unarchive: "Dearchivieren"
-  export_folder: "Ordner als MARCXML exportieren"
-  export_folder_csv: "Ordner als CSV exportieren"
-  validate_folder: "Ordner validieren"
-
-  
-  # Editor sidebar
-  show_all_groups: "Alle Blöcke anzeigen"
-  show_preview: "Vorschau anzeigen"
-  hide_preview: "Vorschau verbergen"
-  show_validate: "Validierung"
-  show_history: "Änderungsgeschichte"
-  show_gnd: "GND Suche"
-  show_viaf: "VIAF Suche"
-  save_and_continue: "Speichern und weiter bearbeiten"
-  save_and_exit: "Speichern und verlassen"
-  cancel: "Abbrechen"
-  duplicate_confirm: "Wollen Sie diesen Titel wirklich duplizieren?"
-  convert_to_print: "In Druckvorlage umwandeln"
-  
-  # Version history
-  history_date: "Datum"
-  history_author: "Bearbeiter"
-  history_event: "Aktion"
-  history_modification: "Modifikation"
-  history_view: "Anzeigen"
-  history_diff: "Vergleichen"
-  history_restore: "Wiederherstellen"
-  history_delete: "Löschen"
-  history_restore_confirm: "Wollen Sie diese Version wiederherstellen?"
-  history_delete_confirm: "Wollen Sie diese Version löschen?"
-  
-  #### FOLDER MESSAGES
-  folders:
-    save: "In Ordner speichern"
-    success: "Ordner %{name} generiert aus %{count} Datensätzen."
-    too_many: "Es können nicht mehr als %{max} Datensätze ausgewählt werden (%{count} wurden ausgewählt)."
-    added: "%{count} Einträge zum Ordner %{name} hinzugefügt."
-    added_bg: "Einträge in den Ordner hinzugefügt, Auftrag %{job} in Warteschleife."
-    success_bg: "Ordner %{name} erstellt, Auftrag %{job} in Warteschleife."
-    items: "Einträge"
-    export_started: "Es wird eine E-Mail mit dem Download-Link an %{email} geschickt (Export job id: %{job})."
-    export_limit: "Die Grenze für exportierbare Elemente ist %{max}, dieser Ordner enthält %{count} Elemente."
-    folder_empty: "Ordner enthält keine Elemente"
-    not_found: "Ordner %{id} existiert nicht"
-    publish_job: "Job der Veröffentlichung gestartet (id: %{id})"
-    unpublish_job: "Job der Unveröffentlichung gestartet (id: %{id})"
-    reindex_job: "Neuindizierung begonnen (id: %{id})"
-    validation_started: "Es wird eine E-Mail an %{email} gesendet, wenn die Validierung beendet ist (Validierungsjob-ID: %{job})."
-    folder_not_source: "Nur Ordner, die Quellen enthalten, können validiert werden"
-    expires: "Läuft ab am"
-    resetted: "Das Ablaufdatum des Ordners ist jetzt %{date}"
-    reset_expiration: "Verfallsdatum zurücksetzen"
-    delete_now: "Die folgenden Ordner wurden gelöscht:"
-    tomorrow: "Die folgenden Ordner werden morgen %{date} gelöscht"
-    one_week: "Die folgenden Ordner werden in einer Woche am %{date} gelöscht"
-    two_weeks: "Die folgenden Ordner werden in zwei Wochen am %{date} gelöscht"
-    one_month: "Die folgenden Ordner werden in einem Monat am %{date} gelöscht"
-    make_catalogue: "Artikel als Arbeitskataloge kennzeichnen"
-
-  ### Digital objects
-  digital_objects: "Digitale Objekte"
-  digital_object_new: "Neues Digitales Objekt hinzufügen"
-  digital_object_add: "Hinzufügen"
-
-  ############ filters
-  filter_address: "Adresse"
-  filter_alternate_dates: "Andere Daten"
-  filter_alternate_names: "Andere Namen"
-  filter_alternate_terms: "Synonym"
-  filter_alternates: "Andere Namen"
-  filter_any_field: "Irgendein Feld"
-  filter_attachment_type: "Digitaler Objekttyp"
-  filter_author: "Autor"
-  filter_author_or_editor: "Autor/Herausgeber"
-  filter_autograph_of: "Autograph von"
-  filter_birth_place: "Geburtsort"
-  filter_catalog: "WV / Katalog"
-  filter_collection: "Sammlung"
-  filter_category_type: "Kategorie"
-  filter_comment: "Kommentar"
-  filter_composer: "Komponist"
-  filter_connected_libraries: "Bibliotheken"
-  filter_country: "Land"
-  filter_creation_date: "Erfassungsdatum"
-  filter_date: "Datum"
-  filter_date_from: "Datum von"
-  filter_date_of_publication: "Publikationsjahr"
-  filter_date_to: "Datum bis"
-  filter_description: "Beschreibung"
-  filter_digital_objects: "Digitale Objekte"
-  filter_district: "Region"
-  filter_email: "E-Mail"
-  filter_folder_type: "Ordner-Typ"
-  filter_full_name: "Name"
-  filter_gender: "Geschlecht"
-  filter_id: "ID"
-  filter_incipit: "Incipit"
-  filter_incipit_number: "Incipit-Nummer"
-  filter_incipits: "Incipits"
-  filter_incipits_ng: "Incipits (ngrams)"
-  filter_incipits_tf: "Incipits (themefinder)"
-  filter_incipit_key: "Tonart im Incipit"
-  filter_institution: "Institution"
-  filter_institutions: "Institutionen"
-  filter_key: "Tonart"
-  filter_language: "Sprache"
-  filter_last_updated: "Letztes Update"
-  filter_lib_siglum: "Bibliothekssigel"
-  filter_life_dates: "Lebensdaten"
-  filter_links: "Links"
-  filter_liturgical_feast: "Liturgische Feste"
-  filter_location_and_name: "Name und Ort"
-  filter_manuscript_no: "Manuskript-Nr."
-  filter_male: "Männlich"
-  filter_female: "Weiblich"
-  filter_unknown: "Unbekannt"
-  filter_shelf_mark: "Signatur"
-  filter_name: "Name"
-  filter_notes: "Anmerkungen"
-  filter_old_versions: "Alte Versionen"
-  filter_owner: "Besitzer"
-  filter_pages: "Seiten"
-  filter_pattern: "Sigel Muster"
-  filter_people: "Personen"
-  filter_person_100d: "Lebensdaten"
-  filter_person_550a: "Beruf"
-  filter_person_375a: "Geschlecht"
-  filter_person_043c: "Nationalität"
-  filter_person_551a: "Orte"
-  filter_person_100d_birthdate: "Geburtsjahr"
-  filter_person_100d_deathdate: "Todesjahr"
-  filter_phone: "Telefon"
-  filter_place: "Ort"
-  filter_place_of_publication: "Verlagsort"
-  filter_plate_no: "Plattennummer"
-  filter_provenance: "Herkunft"
-  filter_record_type: "Template Typ"
-  filter_record_type_short: "Typ"
-  filter_publisher: "Verlag"
-  filter_journal: "Zeitschriftentitel"
-  filter_id: "RISM ID"
-  filter_id_no: "RISM ID"
-  filter_images: "Bilder"
-  filter_scoring: "Besetzung"
-  filter_series_items: "Zugehörige Einträge"
-  filter_siglum: "Sigel"
-  filter_source: "Quelle"
-  filter_sources: "Quellen"
-  filter_source_type: "Quellentyp"
-  filter_source_content_type: "Inhaltstyp"
-  filter_std_title: "Standardtitel"
-  filter_subject: "Schlagwörter"
-  filter_subsequent_entries: "Späteren Eintrag"
-  filter_term: "Begriff"
-  filter_textincipit: "Textincipit"
-  filter_thematic_opus: "Them. Kat. / Op.-Nr."
-  filter_title: "Titel"
-  filter_titles: "Titel"
-  filter_title_on_ms: "Diplomatischer Titel"
-  filter_title_short: "Kürzel"
-  filter_topic: "Oberbegriff"
-  filter_sub_topic: "Unterbegriff"
-  filter_url: "Internet-Adresse"
-  filter_variants: "Varianten"
-  filter_versions: "Versionen"
-  filter_volume: "Band"
-  filter_image: "Bild"
-  filter_file_name: "Dateiname"
-  filter_file_size: "Dateigrösse"
-  filter_content_type: "Typ"
-  filter_wf: "WF"
-  filter_wf_audit: "Prüfung"
-  filter_wf_stage: "Status"
-  filter_distribution: "Besetzung"
-  filter_dist_exclude: "Ausschließen"
-  filter_dist_594a: "Vokalstimmen (Solo)"
-  filter_dist_594b: "Weitere Vokalstimmen (Solo)"
-  filter_dist_594c: "Vokalstimmen (Coro)"
-  filter_dist_594d: "Weitere Vokalstimmen (Coro)"
-  filter_dist_594e: "Soloinstrumente"
-  filter_dist_594f: "Streicher"
-  filter_dist_594g: "Holzblasinstrumente"
-  filter_dist_594h: "Blechblasinstrumente"
-  filter_dist_594i: "Zupfinstrumente"
-  filter_dist_594k: "Schlaginstrumente"
-  filter_dist_594l: "Tasteninstrumente"
-  filter_dist_594m: "Weitere Instrumente"
-  filter_dist_594n: "Basso-continuo-Instrumente"
-  filter_source_name: "Name der Quelle"
-  filter_source_composer: "Komponist der Quelle"
-  filter_printed_exemplars: "Anzahl der gedruckten Exemplare"
-  filter_is_text: "\"Text\", benutz in 031 $t"
-  filter_is_standard: "\"Standard\", benutz in 240 $a"
-  filter_is_additional: "\"Additional\", benutz in 730 $a"
-
-  ## Referring lists for auth files
-  refers_to_this: "%{model_from} die sich auf diesen %{model_to} beziehen"
-
-  rism_any_key: "Irgendeine Tonart"
-  rism_a_flat: "As-Dur/Moll"
-  rism_a: "A-Dur/Moll"
-  rism_b_flat: "B-Dur/Moll"
-  rism_b: "B-Dur/Moll"
-  rism_c: "C-Dur/Moll"
-  rism_c_sharp: "Cis-Dur/Moll"
-  rism_d_flat: "Des-Dur/Moll"
-  rism_d: "D-Dur/Moll"
-  rism_e_flat: "Es-Dur/Moll"
-  rism_e: "E-Dur/Moll"
-  rism_f: "F-Dur/Moll"
-  rism_f_sharp: "Fis-Dur/Moll"
-  rism_g: "G-Dur/Moll"
-  rism_g_sharp: "Gis-Dur/Moll"
-  
-  # Assorted error messages
-  error_not_found: "Der gesuchte Eintrag existiert nicht oder wurde gelöscht."
-  error_saving: "Dieser Eintrag ist unvollständig oder erstellt eine Dublette."
-  unknown_tags: "Dieser Eintrag enthält falsch verwendete Felder."
-  ungrouped_tags: "Dieser Eintrag enthält Felder, die keiner Gruppe zugeteilt sind"
-  cannot_update_source: "Sie sind nicht berechtigt, diese Art von Quellen zu bearbeiten"
-  cannot_create_source: "Sie sind nicht berechtigt, diese Art von Quellen zu erstellen"
-  validate_name_uniqness: "Eintrag nicht gespeichert: Das Kürzel '%{term}' existiert bereits."
-  validates_parent_id: "Eintrag nicht gespeichert: Übergeordneter Eintrag (773) kann nicht mit diesem Eintrag identisch sein."
-  is_part_of_collection: "Diese %{class} %{id} ist Teil einer Sammlung, Sie müssen die 773 entfernen, bevor Sie sie löschen können"
-  not_set: "[nicht fest]"
-
-  #
-  entry:
-    one: "Eintrag"
-    other: "Einträge"
-  digital_object:
-    one: "Digitales Objekt"
-    other: "Digitale Objekte"
-  publication:
-    one: "Katalog"
-    other: "Kataloge"
-  institution: 
-    one: "Institution"
-    other: "Institutionen"
-  library: 
-    one: "Bibliothek"
-    other: "Bibliotheken"
-  liturgicalfeast: 
-    one: "Liturgisches Fest"
-    other: "Liturgische Feste"
-  source:
-    one: "Quelle"
-    other: "Quellen"
-  place:
-    one: "Ort"
-    other: "Orte"
-  person: 
-    one: "Person"
-    other: "Personen"
-  standardterm:
-    one: "Schlagwort"
-    other: "Schlagwörter" 
-  standardtitle:
-    one: "Titel oder Textincipit"
-    other: "Titel oder Textincipits"
-
-  user:
-    one: "Benutzer"
-    other: "Benutzer" 
-  job:
-    one: "Job"
-    other: "Jobs"
-  folder:
-    one: "Ordner"
-    other: "Ordner"
-
-  will_paginate:
-    page_entries_info:
-      single_page_html:
-        zero: "Keine(n) %{model} gefunden" 
-        one: "Anzeige von <b>1</b> %{model}"
-        other:  "Anzeige <b>aller %{count}</b> %{model}"
-      multi_page_html: "Anzeige %{model} <b>%{from}&nbsp;-&nbsp;%{to}</b> von total <b>%{count}</b>"
-  
-    models:
-      person: 
-        one: "Person"
-        other: "Personen"
-
-  manuscript_links:
-     one: "1 Quelle"
-     other: "%{count} Quellen" 
-
-  # themefinder
-  themefinder_c: "feine Tonhöhenkontur"
-  themefinder_C: "grobe Tonhöhenkontur"
-  themefinder_d: "diatonische Stufe"
-  themefinder_i: "chromatisches Intervall"
-  themefinder_I: "diatonisches Intervall"
-  themefinder_p: "diatonische Tonhöhe"
-  themefinder_P: "chromatische Tonhöhe"
-  themefinder_p0: "keine Tonhöhensuche"
-
-  themefinder_u: "genaue Tondauer"
-  themefinder_r: "feine Tondauer-Kontur"
-  themefinder_R: "grobe Tondauer-Kontur"
-  themefinder_d0: "keine Tondauersuche"
-  
-  themefinder_L: "metrische Ebene"
-  themefinder_l: "metrische Position"
-  themefinder_e: "metrische Feinkontur"
-  themefinder_E: "metrische Grobkontur"
-  themefinder_b: "Schlag"
-  themefinder_m0: "keine Metrumsuche"
-  
-  tf_pitch_search: "Tonhöhe"
-  tf_duration_search: "Tondauer"
-  tf_metric_search: "Metrum"
-  tf_meter: "Taktart"
-  tf_anchor: "Suche nur am Anfang des Incipits"
-  
-  tf_pitch_help: "Tipps für die Tonhöhensuche"
-  tf_duration_help: "Tipps für die Tondauersuche"
-  tf_metric_help: "Tipps für die Metrumsuche"
-  tf_anchor_help: "Tipps für die verankerte Suche"
-  tf_timesig_help: "Tipps für die Taktartsuche"
-  btn_themefinder_reset: "Zurücksetzen"
-  
-  tf_acknowledgments: "Die Incipit-Suche verwendet das Tool <a href=\"http://www.themefinder.org/\" target=\"_blank\">Themefinder</a>, das vom <a href=\"http://www.ccarh.org/\" target=\"_blank\">CCARH</a> entwickelt wurde."
-  
-  do_link_lang: "ENG"
-  do_media_files_title: "Multimedia-Dateien"
-  do_ext_res_link: "Externer Link:"
-  do_ext_link_not_avail: "(Audio-Dateien sind hier nicht verfügbar.)"
-  do_images_title: "Bilder"
-  connected_libraries: "Bibliotheken"
-  view_source: "Quelle anzeigen"
- 
-  mei:
-    title: "MEI-Export für folgende Quelle: %{source}"
-    parameters: "Export-Parameter"
-    format: "Output-Format für Incipit:"
-    format_mei: "MEI"
-    format_pae: "PAE (Keine Umwandlung)"
-    stylesheet: "Formatvorlage"
-    default_stylesheet: "Standard-Formatvorlage verwenden"
-    custom_stylesheet: "Eigene Formatvorlage:"
-    preview: "Vorschau"
-    download: "Download"
-    more: "Mehr"
-    banner: 'Bitte "Vorschau" wählen, um die MEI-Konvertierung anzuzeigen.'
-
-  notifications:
-    cadence: Kadenz der Benachrichtigung
-    none: Benachrichtigungen sind deaktiviert
-    every: Jedes Mal, wenn ein passender Datensatz gespeichert wird
-    daily: Jeden Tag
-    weekly: Jede Woche
-    rules: Regeln
-    notifications: Benachrichtigungen
-    edit: Edit notifications
-    empty_message: "Es sind keine Benachrichtigungen aktiviert. Sie können %{href}, um sie zu aktivieren"
-    empty_message_href: bearbeiten
-
-  wf_stage:
-    inprogress: "In Arbeit (UNP)"
-    published: "Veröffentlicht (PUB)"
-    deleted: "Gelöscht"
-    deprecated: "Überholt"
-
-  dashboard:
-    selection: "Wählen Sie Letzte Aktivität"
-    type: "Typ ändern"
-    type_created: "Kürzlich erstellt"
-    type_updated: "Kürzlich aktualisiert"
-    owner: "Inhaber"
-    owner_user: "Mich"
-    owner_any: "Irgendein"
-    quantity: "Anzeige"
-    update: "Aktualisieren"
-    no_items: "Keine Elemente, die mit den aktuellen Filtern angezeigt werden"
-    message_silenced: "Die Nachricht wurde zum Schweigen gebracht."
-    got_it: "Verstanden!"
-    got_it_explanation: "Wenn Sie auf diese Schaltfläche klicken, wird die Nachricht nicht mehr angezeigt, bis die nächste veröffentlicht wird."
-    news: "Muscat Nachrichten"
-    my_comments: "Meine Kommentare"
-    my_records: "Meine Einträge"
-    about_comments: "Über Kommentare"
-
+        one: Werk
+        other: Werk
+      work_node:
+        one: Work node
+        other: Work node
+      workgroup:
+        one: Gruppe
+        other: Gruppen
+  add_holding: Holding verlinken
+  add_institution: Institution verlinken
+  add_item_to_folder: Zum Ordner hinzufügen
+  add_person: Person verlinken
+  add_source: Quelle verlinken
+  add_this_item_to_folder: Dieses Element zum Ordner hinzufügen
+  add_work: Werk verknüpfen
+  any_field_contains: Irgendein Feld
+  append_folder: Zu Ordner hinzufügen
+  archive: Archivieren
+  archive_unarchive: Archivieren / Dearchivieren
+  authorization_tokens: Auth tokens
+  available_templates: Verfügbare Vorlagen
+  backend_validation:
+    begin_with: Dieses Feld muss mit der richtigen Zeichenfolge beginnen
+    check_group: Dieses Feld enthält einen ungültigen Wert in Bezug auf die Position in der Gruppe
+    mandatory: Dieses Unterfeld ist obligatorisch
+    must_contain: Dieses Feld muss dem erforderlichen Muster entsprechen
+    no_subtag: Dieses Feld ist obligatorisch
+    required: Dieses Feld ist erforderlich, wenn dieses Tag hinzugefügt wird
+    required_if: Dieses Feld ist erforderlich, weil ein anderes vorhanden ist
+    siglum_not_found: Das Siglum in einem oder mehreren 588-Feldern entspricht keinem vorhandenen Bestandsdatensatz
+    validate_588_siglum: 'Geben Sie das Bibliothekssigel und die Signatur im Format ein: I-Bc Q.51'
+  basic_level: Basiskatalog
+  body: Body
+  btn_themefinder_reset: Zurücksetzen
+  cancel: Abbrechen
+  cannot_create_source: Sie sind nicht berechtigt, diese Art von Quellen zu erstellen
+  cannot_update_source: Sie sind nicht berechtigt, diese Art von Quellen zu bearbeiten
+  choose_folder: "(Bitte wählen Sie eines)"
+  clipboard:
+    copied: Ergebnisse in die Zwischenablage kopiert
   compare_versions:
-    time_frame: Zeitrahmen
-    rule: Regel
+    date_message: Geänderte Datensätze anzeigen von %{date}.
+    diff: Vergleich
     display: Anzeige
-    options: Optionen
-    show: Anzeigen
     hide: Verbergen
     modified_records: Geänderte Datensätze
-    no_records: Es gibt keine Datensätze, die mit den aktuell ausgewählten Optionen angezeigt werden können 
     new_record: Neuer Datensatz
+    no_records: Es gibt keine Datensätze, die mit den aktuell ausgewählten Optionen angezeigt werden können
+    options: Optionen
+    rule: Regel
+    show: Anzeigen
     similarity: Unterschiede
-    diff: Vergleich
-    date_message: "Geänderte Datensätze anzeigen von %{date}."
-
-  # editor validation 
-  validation:
-    missing_message: "Dieses Feld muss zwingend ausgefüllt werden."
-    warning_message: "Dieses Feld enthält üblicherweise einen Eintrag."
-    insufficient_rights: "Der Anwender hat nicht die Berechtigung, für dieses Sigel einen Titel zu erstellen/zu ändern."
-    name_uniqueness: "Das Kürzel des Eintrages ist bereits vergeben."
-    correct: "Der Eintrag enthält keine Validierungsfehler. [200]"
-    begins_with_message: "Das Feld muss mit \"{0}\" beginnen"
-    required_if_message: "Dieses Feld muss ausgefüllt werden, da es obligatorisch ist in Anwesenheit von {0} ${1}"
-    cannot_link_to_self: "Das Erstellen eines Links selbst ist nicht erlaubt (%{id})."
-
-  incipit_search:
-    incipit_search: "Incipit Suche"
-    query_type: "Art der Anfrage:"
-    exact_pitch: "Genaue Tonhöhe (genaueste Suche)"
-    interval: "Intervall"
-    refined_pitch: "Melodisches Profil (fein)"
-    gross_pitch: "Melodisches Profil (grob, unschärfste Suche)"
-    anchor: "Suche nur den Anfang"
-    erase: "Lösche eine Note"
-
-  # This is used for the "incipit" seach in the search history in BL
-  # Note the capital 'I'
-  Incipit: "Incipit"
-  Images: "Bilder"
-  "Standardized title": "Standardtitel"
-  Composer: "Komponist"
-  "Source Type": "Quellentyp"
-  Scoring: "Besetzung"
-  Date: "Datum"
-  "Library siglum": "Bibliothekssigel"
-  Subject: "Schlagwörter"
-  "Number of printed copies": "Anzahl der gedruckten Exemplare"
-  publisher: "Verleger"
-
-  marc_editor:
-    delete_msg: "Löschen"
-    delete_field_confirm: "Sind Sie sicher, dass Sie dieses Feld löschen möchten?"
-
+    time_frame: Zeitrahmen
+  composer_contains: Komponist
+  connected_libraries: Bibliotheken
+  convert_to_print: In Druckvorlage umwandeln
   cookies:
-    message: "Unsere Website verwendet Cookies, um Ihre Browser-Erfahrung zu verbessern. Durch die Nutzung unserer Website stimmen Sie der Verwendung von Cookies zu."
-    dimiss: "Akzeptieren und schließen"
-    link: 'Mehr erfahren'
-
+    dimiss: Akzeptieren und schließen
+    link: Mehr erfahren
+    message: Unsere Website verwendet Cookies, um Ihre Browser-Erfahrung zu verbessern. Durch die Nutzung unserer Website stimmen Sie der Verwendung von Cookies zu.
+  create_folder: Erstelle Ordner
+  create_from_existing: Erstellen
+  created_at: Erstellungsdatum
+  dashboard:
+    about_comments: Über Kommentare
+    got_it: Verstanden!
+    got_it_explanation: Wenn Sie auf diese Schaltfläche klicken, wird die Nachricht nicht mehr angezeigt, bis die nächste veröffentlicht wird.
+    message_silenced: Die Nachricht wurde zum Schweigen gebracht.
+    my_comments: Meine Kommentare
+    my_records: Meine Einträge
+    news: Muscat Nachrichten
+    no_items: Keine Elemente, die mit den aktuellen Filtern angezeigt werden
+    no_unpublished: Keine unveröffentlichten Datensätze.
+    no_unpublished_long: Sie haben keine unveröffentlichten Datensätze!
+    owner: Inhaber
+    owner_any: Irgendein
+    owner_user: Mich
+    quantity: Anzeige
+    selection: Wählen Sie Letzte Aktivität
+    showing_out_of: Anzeige von %{max} Datensätzen von %{total}
+    type: Typ ändern
+    type_created: Kürzlich erstellt
+    type_updated: Kürzlich aktualisiert
+    unpub_records: Unveröffentlichte Datensätze
+    update: Aktualisieren
   date:
+    day_names:
+    - Sonntag
+    - Montag
+    - Dienstag
+    - Mittwoch
+    - Donnerstag
+    - Freitag
+    - Samstag
     month_names:
     -
-    - "Januar"
-    - "Februar"
-    - "März"
-    - "April"
-    - "Mai"
-    - "Juni"
-    - "Juli"
-    - "August"
-    - "September"
-    - "Oktober"
-    - "November"
-    - "Dezember"
-    day_names:
-    - "Sonntag"
-    - "Montag"
-    - "Dienstag"
-    - "Mittwoch"
-    - "Donnerstag"
-    - "Freitag"
-    - "Samstag"
- 
-######################################################################################################
-# End of translation in all languages - make sure all the file have the same line number for this line
- 
-######################################################################################################
-# Blacklights overriden translations - the list can vary from one language to another
-
-  blacklight:
-    application_name: 'Muscat'
-    header_links:
-      logout: 'Abmelden'
-    range_limit:
-      range_begin: "%{field_label} Bereichsanfang"
-      range_end: "%{field_label} Bereichsende"
-      submit_limit: 'Beschränken'
-      remove_limit: 'Entfernen'
-  blacklight_advanced_search:
-    all: allen Eigenschaften
-    any: irgendeiner Eigenschaft
-    form:
-      title: "Erweiterte Suche"
-      search_context: "In der Suche"
-      limit_criteria_heading_html: "<strong>und</strong> haben diese Eigenschaften"
-      query_criteria_heading_html: "Elemente mit %{select_menu} suchen"
-      sort_label: "Ordnen nach"
-      start_over: "Zurücksetzen"
-      search_btn: 'Suche'
+    - Januar
+    - Februar
+    - März
+    - April
+    - Mai
+    - Juni
+    - Juli
+    - August
+    - September
+    - Oktober
+    - November
+    - Dezember
+  default_view: Default view
+  delete: Löschen
+  delete_this_item_from_folder: Dieses Element aus dem Ordner löschen
+  digital_object:
+    one: Digitales Objekt
+    other: Digitale Objekte
+  digital_object_add: Hinzufügen
+  digital_object_new: Neues Digitales Objekt hinzufügen
+  digital_objects: Digitale Objekte
+  do_ext_link_not_avail: "(Audio-Dateien sind hier nicht verfügbar.)"
+  do_ext_res_link: 'Externer Link:'
+  do_images_title: Bilder
+  do_link_lang: ENG
+  do_media_files_title: Multimedia-Dateien
+  duplicate: Kopieren
+  duplicate_confirm: Wollen Sie diesen Titel wirklich duplizieren?
+  edit: Bearbeiten
+  engraving_incipit: Rendering des Incipits...
+  entry:
+    one: Eintrag
+    other: Einträge
+  error_not_found: Der gesuchte Eintrag existiert nicht oder wurde gelöscht.
+  error_saving: Dieser Eintrag ist unvollständig oder erstellt eine Dublette.
+  export_folder: Ordner als MARCXML exportieren
+  export_folder_csv: Ordner als CSV exportieren
+  export_folder_raw: Ordner als Muscat MARC exportieren
+  failed: Fehlgeschlagen
+  failed_at: Fehlgeschlagen am
+  filter_address: Adresse
+  filter_alternate_dates: Andere Daten
+  filter_alternate_names: Andere Namen
+  filter_alternate_terms: Synonym
+  filter_alternates: Andere Namen
+  filter_any_field: Irgendein Feld
+  filter_attachment_type: Digitaler Objekttyp
+  filter_author: Autor
+  filter_author_or_editor: Autor/Herausgeber
+  filter_authorities: Normdaten
+  filter_autograph_of: Autograph von
+  filter_birth_place: Geburtsort
+  filter_book_id: Buch-ID
+  filter_catalog: WV / Katalog
+  filter_category_type: Kategorie
+  filter_collection: Sammlung
+  filter_comment: Kommentar
+  filter_composer: Komponist
+  filter_connected_libraries: Bibliotheken
+  filter_content_type: Typ
+  filter_country: Land
+  filter_creation_date: Erfassungsdatum
+  filter_date: Datum
+  filter_date_from: Datum von
+  filter_date_of_publication: Publikationsjahr
+  filter_date_to: Datum bis
+  filter_description: Beschreibung
+  filter_digital_objects: Digitale Objekte
+  filter_dist_594a: Vokalstimmen (Solo)
+  filter_dist_594b: Weitere Vokalstimmen (Solo)
+  filter_dist_594c: Vokalstimmen (Coro)
+  filter_dist_594d: Weitere Vokalstimmen (Coro)
+  filter_dist_594e: Soloinstrumente
+  filter_dist_594f: Streicher
+  filter_dist_594g: Holzblasinstrumente
+  filter_dist_594h: Blechblasinstrumente
+  filter_dist_594i: Zupfinstrumente
+  filter_dist_594k: Schlaginstrumente
+  filter_dist_594l: Tasteninstrumente
+  filter_dist_594m: Weitere Instrumente
+  filter_dist_594n: Basso-continuo-Instrumente
+  filter_dist_exclude: Ausschließen
+  filter_distribution: Besetzung
+  filter_district: Region
+  filter_email: E-Mail
+  filter_female: Weiblich
+  filter_file_name: Dateiname
+  filter_file_size: Dateigrösse
+  filter_folder_type: Ordner-Typ
+  filter_full_name: Name
+  filter_gender: Geschlecht
+  filter_has_incipits: Hat Incipits
+  filter_has_internal_notes: Hat interne Notizen
+  filter_has_siglum: Hat Sigel
+  filter_id: RISM ID
+  filter_id_no: RISM ID
+  filter_image: Bild
+  filter_images: Bilder
+  filter_incipit: Incipit
+  filter_incipit_key: Tonart im Incipit
+  filter_incipit_number: Incipit-Nummer
+  filter_incipits: Incipits
+  filter_incipits_ng: Incipits (ngrams)
+  filter_incipits_tf: Incipits (themefinder)
+  filter_institution: Institution
+  filter_institutions: Institutionen
+  filter_is_additional: '"Additional", benutz in 730 $a'
+  filter_is_standard: '"Standard", benutz in 240 $a'
+  filter_is_text: '"Text", benutz in 031 $t'
+  filter_journal: Zeitschriftentitel
+  filter_key: Tonart
+  filter_language: Sprache
+  filter_last_updated: Letztes Update
+  filter_lib_siglum: Bibliothekssigel
+  filter_life_dates: Lebensdaten
+  filter_links: Links
+  filter_liturgical_feast: Liturgische Feste
+  filter_location_and_name: Name und Ort
+  filter_male: Männlich
+  filter_manuscript_no: Manuskript-Nr.
+  filter_mei: MEI file
+  filter_name: Name
+  filter_notes: Anmerkungen
+  filter_old_versions: Alte Versionen
+  filter_opus: Werk
+  filter_owner: Besitzer
+  filter_pages: Seiten
+  filter_pattern: Sigel Muster
+  filter_people: Personen
+  filter_person_043c: Nationalität
+  filter_person_100d: Lebensdaten
+  filter_person_100d_birthdate: Geburtsjahr
+  filter_person_100d_deathdate: Todesjahr
+  filter_person_375a: Geschlecht
+  filter_person_550a: Beruf
+  filter_person_551a: Orte
+  filter_phone: Telefon
+  filter_place: Ort
+  filter_place_of_publication: Verlagsort
+  filter_plate_no: Plattennummer
+  filter_printed_exemplars: Anzahl der gedruckten Exemplare
+  filter_provenance: Herkunft
+  filter_publisher: Verlag
+  filter_record_type: Template Typ
+  filter_record_type_short: Typ
+  filter_scoring: Besetzung
+  filter_series_items: Zugehörige Einträge
+  filter_shelf_mark: Signatur
+  filter_siglum: Sigel
+  filter_source: Quelle
+  filter_source_composer: Komponist der Quelle
+  filter_source_content_type: Inhaltstyp
+  filter_source_id: Quelle id
+  filter_source_name: Name der Quelle
+  filter_source_type: Quellentyp
+  filter_sources: Quellen
+  filter_std_title: Standardtitel
+  filter_sub_topic: Unterbegriff
+  filter_subject: Schlagwörter
+  filter_subsequent_entries: Späteren Eintrag
+  filter_term: Begriff
+  filter_textincipit: Textincipit
+  filter_thematic_opus: Them. Kat. / Op.-Nr.
+  filter_title: Titel
+  filter_title_on_ms: Diplomatischer Titel
+  filter_title_short: Kürzel
+  filter_titles: Titel
+  filter_topic: Oberbegriff
+  filter_unknown: Unbekannt
+  filter_url: Internet-Adresse
+  filter_variants: Varianten
+  filter_versions: Versionen
+  filter_volume: Band
+  filter_wf: WF
+  filter_wf_audit: Prüfung
+  filter_wf_stage: Status
+  finished: Beendet
+  folder:
+    one: Ordner
+    other: Ordner
+  folders:
+    added: "%{count} Einträge zum Ordner %{name} hinzugefügt."
+    added_bg: Einträge in den Ordner hinzugefügt, Auftrag %{job} in Warteschleife.
+    delete_now: 'Die folgenden Ordner wurden gelöscht:'
+    expires: Läuft ab am
+    expiring_folders: Ihre Muscat-Ordner laufen bald ab
+    export_limit: Die Grenze für exportierbare Elemente ist %{max}, dieser Ordner enthält %{count} Elemente.
+    export_started: 'Es wird eine E-Mail mit dem Download-Link an %{email} geschickt (Export job id: %{job}).'
+    folder_empty: Ordner enthält keine Elemente
+    folder_not_source: Nur Ordner, die Quellen enthalten, können validiert werden
+    items: Einträge
+    not_found: Ordner %{id} existiert nicht
+    one_month: Die folgenden Ordner werden in einem Monat am %{date} gelöscht
+    one_week: Die folgenden Ordner werden in einer Woche am %{date} gelöscht
+    publish_job: 'Job der Veröffentlichung gestartet (id: %{id})'
+    reindex_job: 'Neuindizierung begonnen (id: %{id})'
+    reset_expiration: Verfallsdatum zurücksetzen
+    resetted: Das Ablaufdatum des Ordners ist jetzt %{date}
+    save: In Ordner speichern
+    setting_catalogue_status: Festlegen des Katalogstatus
+    success: Ordner %{name} generiert aus %{count} Datensätzen.
+    success_bg: Ordner %{name} erstellt, Auftrag %{job} in Warteschleife.
+    tomorrow: Die folgenden Ordner werden morgen %{date} gelöscht
+    too_many: Es können nicht mehr als %{max} Datensätze ausgewählt werden (%{count} wurden ausgewählt).
+    two_weeks: Die folgenden Ordner werden in zwei Wochen am %{date} gelöscht
+    unpublish_job: 'Job der Unveröffentlichung gestartet (id: %{id})'
+    validation_started: 'Es wird eine E-Mail an %{email} gesendet, wenn die Validierung beendet ist (Validierungsjob-ID: %{job}).'
+  from_existing_source: Erstellen aus vorhandener Quelle
+  full_level: Vollkatalogisat
+  gnd_not_found: Die Anfrage an GND ergab keinen Eintrag
+  go_to_top: Zurück zum Anfang
+  helpers:
+    label:
+      folder:
+        work_catalogue_status: Werkverzeichnis-Status
+  hide_preview: Vorschau verbergen
+  history_author: Bearbeiter
+  history_date: Datum
+  history_delete: Löschen
+  history_delete_confirm: Wollen Sie diese Version löschen?
+  history_diff: Vergleichen
+  history_event: Aktion
+  history_modification: Modifikation
+  history_restore: Wiederherstellen
+  history_restore_confirm: Wollen Sie diese Version wiederherstellen?
+  history_view: Anzeigen
+  holding_missing: Dieser Musikdruck enthält noch keinen Nachweis. Bitte fügen Sie diesem Datensatz Ihr Bibliothekssigel, Ihre Signatur und andere exemplarspezifische Informationen hinzu, indem Sie auf die Schaltfläche "%{new_holding}" auf der rechten Seite klicken.
+  holding_missing_alert: Dieser Musikdruck enthält noch keinen Nachweis. Bitte fügen Sie diesem Datensatz Ihr Bibliothekssigel, Ihre Signatur und andere exemplarspezifische Informationen hinzu, indem Sie auf die Schaltfläche "%{new_holding}" auf der rechten Seite klicken.
+  holding_missing_show: Dieser Musikdruck enthält noch keinen Nachweis. Bitte fügen Sie diesem Datensatz Ihr Bibliothekssigel, Ihre Signatur und andere exemplarspezifische Informationen hinzu, indem Sie diesen Datensatz bearbeiten und auf die Schaltfläche "%{new_holding}" auf der rechten Seite klicken.
+  holding_no_siglum: Unmarkierte Kopie
+  holding_records: Exemplarinformation
+  imported_level: Fremdeinspielung
+  incipit_search:
+    anchor: Suche nur den Anfang
+    erase: Lösche eine Note
+    exact_pitch: Genaue Tonhöhe (genaueste Suche)
+    gross_pitch: Melodisches Profil (grob, unschärfste Suche)
+    incipit_search: Incipit Suche
+    interval: Intervall
+    query_type: 'Art der Anfrage:'
+    refined_pitch: Melodisches Profil (fein)
+  institution:
+    one: Institution
+    other: Institutionen
+  internal_note_contains: Interner Hinweis
+  is_in_folder: Ist im Ordner
+  is_part_of_collection: Diese %{class} %{id} ist Teil einer Sammlung, Sie müssen die 773 entfernen, bevor Sie sie löschen können
+  job:
+    one: Job
+    other: Jobs
+  jobs:
+    auto_delete: 'Löschen nicht möglich: Abgeschlossener Prozess wurde bereits automatisch gelöscht.'
+    error: 'Fehler: '
+    no_status: Fehler beim Lesen des Prozess-Status'
+    no_view: 'Ansicht nicht möglich: Abgeschlossener Prozess wurde bereits automatisch gelöscht.'
+    not_set: "[Kein Status gesetzt]"
+    ok: Prozess erfolgreich abgeschlossen
+    running_jobs: Laufender Prozess kann nicht gelöscht werden.
+  lib_siglum: Bibliothekssigel
+  library:
+    one: Bibliothek
+    other: Bibliotheken
+  library_sigla_contains: Sigel
+  link_remove: Link entfernen
+  link_remove_confirm: Link entfernen?
+  link_type: Verlinkungstyp
+  linked_object: Verknüpftes Objekt
+  links: Verlinkungen
+  liturgicalfeast:
+    one: Liturgisches Fest
+    other: Liturgische Feste
+  loading: Wird geladen...
+  logout:
+    confirm: Es gibt offene Muscat-Fenster. Wenn Sie sich abmelden, gehen nicht gespeicherte Änderungen verloren. Möchten Sie fortfahren?
+    generic_error: Sie haben sich von Muscat abgemeldet. Bitte aktualisieren Sie die Seite, um zum Anmeldebildschirm zurückzukehren.
+    warning: Sie haben sich von Muscat abgemeldet. Nicht gespeicherte Arbeit wird verloren gehen.
+  manuscript_links:
+    one: 1 Quelle
+    other: "%{count} Quellen"
+  marc21_view: MARC21 view
+  marc_editor:
+    delete_field_confirm: Sind Sie sicher, dass Sie dieses Feld löschen möchten?
+    delete_group_confirm: Sind Sie sicher, dass Sie dieses Gruppe löschen möchten?
+    delete_msg: Löschen
+    error_diff: 'Es ist ein Fehler beim Laden der Differenz zwischen den Versionen aufgetreten: %{a} %{b} %{c}'
+    error_help: 'Es ist ein Fehler beim Laden der Hilfe für diese Elemente aufgetreten: %{a} %{b} %{c}'
+    error_holding: 'Es ist ein Fehler beim Laden der Exemplarinformation aufgetreten: %{a} %{b} %{c}'
+    error_preview: 'Es ist ein Fehler beim Laden der Vorschau des Eintrags aufgetreten: %{a} %{b} %{c}'
+    error_save: 'Es ist ein Fehler beim Speichern dieses Eintrags aufgetreten: %{a} %{b} %{c}'
+    error_summary: 'Es ist ein Fehler beim Laden der Zusammenfassung aufgetreten: %{a} %{b} %{c}'
+    error_validation: 'Es ist ein Fehler bei der Validierung dieses Eintrags aufgetreten: %{a} %{b} %{c}'
+    error_version: 'Es ist ein Fehler beim Laden der ausgewählten Version aufgetreten: %{a} %{b} %{c}'
+  marcxml_view: MARCXML view
+  mei:
+    banner: Bitte "Vorschau" wählen, um die MEI-Konvertierung anzuzeigen.
+    custom_stylesheet: 'Eigene Formatvorlage:'
+    default_stylesheet: Standard-Formatvorlage verwenden
+    download: Download
+    format: 'Output-Format für Incipit:'
+    format_mei: MEI
+    format_pae: PAE (Keine Umwandlung)
+    more: Mehr
+    parameters: Export-Parameter
+    preview: Vorschau
+    stylesheet: Formatvorlage
+    title: 'MEI-Export für folgende Quelle: %{source}'
+  menu_administration: Administration
+  menu_advanced_search: Erweiterte Suche
+  menu_catalog: Facettensuche
+  menu_cataloging: Katalogisierung
+  menu_comments: Kommentare
+  menu_contact: Kontakt
+  menu_folders: Ordner
+  menu_guidelines: Katalogisierungsrichtlinien
+  menu_guidelines_top: Richtlinien
+  menu_help: Hilfe
+  menu_holdings: Examplare
+  menu_home: Home
+  menu_indexes: Normdaten
+  menu_institutions: Körperschaften
+  menu_inventory_items: Inventareintrag
+  menu_jobs: Jobs
+  menu_languages: Sprache
+  menu_latin: Latein
+  menu_library_sigla: Bibliothekssigel
+  menu_liturgical_feasts: Liturgische Feste
+  menu_marc_documentation: MARC Einstellungen
+  menu_people: Personen
+  menu_places: Orte
+  menu_publications: Sekundärliteratur
+  menu_search_history: Suchverlauf
+  menu_simple_search: Einfache Suche
+  menu_sources: Quellen
+  menu_subjects: Schlagwörter
+  menu_titles: Titel / Textincipit
+  menu_users: Benutzer
+  menu_work_nodes: Work Nodes
+  menu_workgroups: Benutzergruppen
+  menu_works: Werktitel
+  merge: Umhängen
+  muscat_reindexing: Muscat wird neu indiziert, Suchergebnisse können unvollständig sein
+  new: Erstellen
+  new_digital_object_image: Neues Bild hinzufügen
+  new_digital_object_incipit: Neues MEI-Incipit hinzufügen
+  new_holding: Neuer Examplareintrag
+  new_holding_page: Neuer Exemplareintrag
+  new_inventory_item: Neuen Inventareintrag erstellen
+  new_inventory_item_page: Neuer Inventareintrag
+  no_action: Keine Aktion verfügbar
+  notation_copied: Notation kopiert
+  not_set: "[nicht fest]"
+  notifications:
+    cadence: Kadenz der Benachrichtigung
+    daily: Jeden Tag
+    edit: Edit notifications
+    empty_message: Es sind keine Benachrichtigungen aktiviert. Sie können %{href}, um sie zu aktivieren
+    empty_message_href: bearbeiten
+    every: Jedes Mal, wenn ein passender Datensatz gespeichert wird
+    none: Benachrichtigungen sind deaktiviert
+    notifications: Benachrichtigungen
+    rules: Regeln
+    weekly: Jede Woche
+  object: Objekt
+  person:
+    one: Person
+    other: Personen
+  place:
+    one: Ort
+    other: Orte
+  progress: Fortschritt
+  progress_stage: Stand Fortschritt
+  publication:
+    one: Katalog
+    other: Kataloge
+  publish: Veröffentlichen
+  publisher: Verleger
+  queue: Warteschleife
+  ransack:
+    predicates:
+      with_integer: ist
+  recent_changes: Letzte Änderungen
+  record_actions: Aktion für Eintrag
+  record_audit: Vorlageform
+  record_label: Gewissheit der Zuschreibung
+  record_owner: Besitzer des Eintrags
+  record_status: Status des Eintrags
+  record_types:
+    collection: Musikhandschrift, Haupteintrag Sammlung
+    collection_record: Musikhandschrift, Haupteintrag Sammlung
+    collection_record_edition: Musikdruck, Haupteintrag Sammlung
+    collection_record_libretti: Libretto, handschriftlich - Haupteintrag Sammlung
+    collection_record_libretti_printed: Libretto, gedruckt - Haupteintrag Sammlung
+    collection_record_threatise: Theoreticum, handschriftlich - Haupteintrag Sammlung
+    collection_record_threatise_printed: Theoreticum, gedruckt - Haupteintrag Sammlung
+    composite_volume: Haupteintrag für ein Konvolut
+    composite_volumes: Konvolut
+    edition: Musikdruck, Haupteintrag Sammlung oder Individualeintrag
+    edition_content: Musikdruck, Teileintrag
+    individual_entry: Musikhandschrift, Teileintrag der Sammlung
+    individual_entry_edition: Musikdruck, Teileintrag der Sammlung
+    individual_entry_libretti: Libretto, handschriftlich - Teileintrag der Sammlung
+    individual_entry_libretti_printed: Libretto, gedruckt - Teileintrag der Sammlung
+    individual_entry_threatise: Theoreticum, handschriftlich - Teileintrag der Sammlung
+    individual_entry_threatise_printed: Theoreticum, gedruckt - Teileintrag der Sammlung
+    inventories: Inventare
+    inventory: Inventar
+    inventory_edition: Inventarausgabe
+    libretti_handwritten: Libretto, handschriftlich
+    libretti_printed: Libretto, gedruckt
+    libretto_edition: Libretto, gedruckt
+    libretto_edition_content: Libretto, gedruckt - Teileintrag der Sammlung
+    libretto_source: Libretto, handschriftlich
+    music_manuscripts: Musikhandschrift
+    printed_music: Musikdruck
+    single_edition: Musikdruck, Individualeintrag
+    single_libretto: Libretto, handschriftlich - Individualeintrag
+    single_libretto_printed: Libretto, gedruckt - Individualeintrag
+    single_manuscript: Musikhandschrift, Individualeintrag
+    single_threatise: Theoreticum, handschriftlich - Individualeintrag
+    single_threatise_printed: Theoreticum, gedruckt - Individualeintrag
+    source: Musikhandschrift, Indvidual- oder Teileintrag
+    theoretica_edition: Theoreticum, gedruckt
+    theoretica_edition_content: Theoreticum, gedruckt - Teileintrag der Sammlung
+    theoretica_source: Theoreticum, handschriftlich
+    threatise_handwritten: Theoreticum, handschriftlich
+    threatise_printed: Theoreticum, gedruckt
+    unspecified: "[Unbekannte Vorlage]"
+  refers_to_this: "%{model_from} die sich auf diesen %{model_to} beziehen"
+  reindex: Reindexieren
+  remove_item_from_folder: Aus Ordner löschen
+  resave: Erneut speichern
+  roles: Rollen
+  run_at: Durchgeführt am
+  running: Läuft
+  save_and_continue: Speichern und weiter bearbeiten
+  save_and_exit: Speichern und verlassen
+  search_sources: Quellensuche
+  sections: Sektionen
+  select: Auswählen
+  select_template: Auswahl der Vorlage
+  set_work_catalogue_status: Werkverzeichnis-Status festlegen
+  show_all_groups: Alle Blöcke anzeigen
+  show_gnd: GND Suche
+  show_history: Änderungsgeschichte
+  show_preview: Vorschau anzeigen
+  show_validate: Validierung
+  show_viaf: VIAF Suche
+  source:
+    one: Quelle
+    other: Quellen
+  standardterm:
+    one: Schlagwort
+    other: Schlagwörter
+  standardtitle:
+    one: Titel oder Textincipit
+    other: Titel oder Textincipits
+  status: Status
+  std_title_contains: Einordnungstitel
+  switch_language: Sprache ändern
+  this_file_language: Deutsch
+  time:
+    formats:
+      default: "%H:%M"
+      long: "%Y-%m-%d %H:%M"
+      short: "%H:%M"
+      verbose: "%A, %d. %B %Y, %H:%M Uhr"
+  title_contains: Dipl. Titel
+  to_the_list: Zurück zur Liste
+  unarchive: Dearchivieren
+  ungrouped_tags: Dieser Eintrag enthält Felder, die keiner Gruppe zugeteilt sind
+  unknown_tags: Dieser Eintrag enthält falsch verwendete Felder.
+  unloadable_record: 'Fehler beim Laden des Eintrags: Änderung nicht möglich, bitte einen Administrator kontaktieren.'
+  unpublish: Nicht veröffentlichen
+  updated_at: Letzte Änderung
+  user:
+    one: Benutzer
+    other: Benutzer
+  user_details: Benutzerinfo
+  validate_folder: Ordner validieren
+  validate_name_uniqness: 'Eintrag nicht gespeichert: Das Kürzel ''%{term}'' existiert bereits.'
+  validates_parent_id: 'Eintrag nicht gespeichert: Übergeordneter Eintrag (773) kann nicht mit diesem Eintrag identisch sein.'
+  validation:
+    begins_with_message: Das Feld muss mit "{0}" beginnen
+    cannot_link_to_self: Das Erstellen eines Links selbst ist nicht erlaubt (%{id}).
+    check_group_message: Die erste Materialgruppe kann nicht "Zusätzliches gedrucktes Material" sein.
+    correct: Der Eintrag enthält keine Validierungsfehler. [200]
+    insufficient_rights: Der Anwender hat nicht die Berechtigung, für dieses Sigel einen Titel zu erstellen/zu ändern.
+    missing_message: Dieses Feld muss zwingend ausgefüllt werden.
+    must_contain_message: Dieses Feld muss dem erforderlichen Muster entsprechen.
+    name_uniqueness: Das Kürzel des Eintrages ist bereits vergeben.
+    required_if_message: Dieses Feld muss ausgefüllt werden, da es obligatorisch ist in Anwesenheit von {0} ${1}
+    validate_588_siglum: 'Geben Sie das Bibliothekssigel und die Signatur im Format ein: I-Bc Q.51'
+    warning_message: Dieses Feld enthält üblicherweise einen Eintrag.
+  validation_level_error: Die Fehler müssen vor dem Speichern behoben werden.
+  validation_level_warning: Erneut speichern, um die Warnung(en) zu ignorieren.
+  view_source: Quelle anzeigen
+  waiting: Wartet
+  wf_stage:
+    deleted: Gelöscht
+    deprecated: Überholt
+    inprogress: In Arbeit (UNP)
+    published: Veröffentlicht (PUB)
+  will_paginate:
+    models:
+      person:
+        one: Person
+        other: Personen
+    page_entries_info:
+      multi_page_html: Anzeige %{model} <b>%{from}&nbsp;-&nbsp;%{to}</b> von total <b>%{count}</b>
+      single_page_html:
+        one: Anzeige von <b>1</b> %{model}
+        other: Anzeige <b>aller %{count}</b> %{model}
+        zero: Keine(n) %{model} gefunden
+  work_catalog_publish: Verknüpfte Werke veröffentlichen
+  work_catalog_unpublish: Veröffentlichung verknüpfter Werke aufheben
+  work_catalog: Katalog der Werke
+  work_catalogue_labels:
+    not_work_catalogue: Kein Werkverzeichnis
+    work_catalogue_alternate: Alternativ
+    work_catalogue_complete: Vollständig
+    work_catalogue_in_preparation: In Vorbereitung
+    work_catalogue_partial: Teilweise
+  work_catalogue_publication_warning: Um verknüpfte Werke zu veröffentlichen, setzen Sie den Werkkatalog-Status auf 'Teilweise', 'Vollständig' oder 'Alternativ'.
+  workgroups: Benutzergruppen
+  worknode:
+    one: Work node
+    other: Work nodes

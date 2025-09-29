@@ -67,6 +67,8 @@
       - :occurrences: "1"
     - - d
       - :occurrences: "?"
+    - - e
+      - :occurrences: "1"
   "042":
     :master: a
     :indicator: "##"
@@ -93,9 +95,6 @@
     - - d
       - :occurrences: "?"
         :browse_inline: true
-    - - w
-      - :occurrences: "?"
-        :no_show: true
     - - y
       - :occurrences: "?"
   "375":
@@ -232,7 +231,10 @@
         :foreign_field: short_name
     - - b
       - :occurrences: "?"
-
+    - - u
+      - :occurrences: "*"
+    - - "9"
+      - :occurrences: "?"
   "678":
     :master: a
     :indicator: "##"
@@ -279,5 +281,22 @@
     :fields:
     - - u
       - :occurrences: "?"
-    - - y
+    - - z
+      - :occurrences: "?"
+  "910":
+    :master: "0"
+    :indicator: "2#"
+    :relator_code: "4"
+    :occurrences: "*"
+    :fields:
+    - - "0"
+      - :occurrences: "?"
+        :foreign_class: Institution
+        :foreign_field: id
+        :no_show: true
+    - - a
+      - :occurrences: "?"
+        :foreign_class: ^0
+        :foreign_field: corporate_name
+    - - u
       - :occurrences: "?"

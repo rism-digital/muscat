@@ -1,3 +1,5 @@
+@use "sass:color";
+
 .marc_guidelines {
     background: #fff;
     border: 1px solid $primary-color;
@@ -203,7 +205,7 @@ $diff-padding-width: 15px;
         background-color: #eee;
     }
     .modification_bar_content {
-        background-color: lighten($primary-color, 20%)
+        background-color: color.adjust($primary-color, $lightness: 20%, $space: hsl)
     }
     .marc_historic_view {
         margin-top: 30px;
@@ -351,6 +353,12 @@ h3 {
         a.muscat_icon_link_list {
             background: image-url("/images/marc-icons/list.png") no-repeat;
         }
+        a.muscat_icon_link_marc21 {
+            background: image-url("/images/marc-icons/marc21.png") no-repeat;
+        }
+        a.muscat_icon_link_marcxml {
+            background: image-url("/images/marc-icons/marcxml.png") no-repeat;
+        }
         a.muscat_icon_link_more {
             background: image-url("/images/marc-icons/more.png") no-repeat;
         }
@@ -418,6 +426,17 @@ h3 {
     }
 }
 
+.panel_contents {
+    .modification_bar {
+        border: #ccc 1px solid; 
+        width: 100%; 
+        background-color: #eee;
+    }
+    .modification_bar_content {
+        background-color: color.adjust($primary-color, $lightness: 20%, $space: hsl)
+    }
+}
+
 /*******************/
 /* Save and cancel */
 /*******************/
@@ -445,6 +464,7 @@ a.marc_cancel_btn {
    zoom: 1;
    /* So the buttons are always the same height */
    line-height: 1.2em;
+   box-sizing: unset !important;
 }
 
 
@@ -503,6 +523,13 @@ button.abutton-icon-solo .ui-icon {left: 0;}
 	background-position: center right;
 }
 
+.inline-autocomplete {
+	background-image:url('/images/textfield_key.png');
+	background-repeat: no-repeat;
+	background-position: center right;
+}
+
+
 // Form Validation
 a.error {
   color: red;
@@ -534,6 +561,33 @@ a.warning {
     background: image-url("/images/marc-icons/search_composite.png") no-repeat
   }
 
-  .sortable-button {
+.sortable-button {
     cursor: move;
   }
+
+// Workaround to aa 2.12 adding
+// box-sizing: inherit everywhere!
+.subfield_entry {
+    box-sizing: unset !important;
+}
+
+// same, for autocompletes
+.marc_editor_hotkey {
+    box-sizing: unset !important;
+}
+
+.marc21 {
+    font-family: monospace;
+}
+
+.marc_tag {
+    font-weight: bold;
+    color: saddlebrown;
+}
+
+.marc_subfield {
+    font-weight: bold;
+    color: darkgoldenrod;
+    margin-left: 0.8ex;
+    margin-right: 0.8ex;
+}

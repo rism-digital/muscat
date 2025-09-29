@@ -1,0 +1,803 @@
+--- !map:Settings 
+"001":
+  tag: tag_no_subfield
+  tag_params:
+    read_only: true
+    no_delete: true
+  tag_header: none
+"031":
+  layout:
+    fields:
+    - - u
+      - hidden: true
+    - - a
+      - read_only: true
+        default: "1"
+        override_admin: true
+    - - b
+    - - c
+    - - d
+    - - m
+    - - e
+    - - t
+      - growfield: true
+        type: source_031t_solr
+        editor_partial: subfield_autocomplete
+    - - r
+      - editor_partial: subfield_select_codes
+        codes_reference: "031r"
+        no_sort: true
+    - - n
+      - values:
+        - "xF"
+        - "xFC"
+        - "xFCG"
+        - "xFCGD"
+        - "xFCGDA"
+        - "xFCGDAE"
+        - "xFCGDAEB"
+        - "bB"
+        - "bBE"
+        - "bBEA"
+        - "bBEAD"
+        - "bBEADG"
+        - "bBEADGC"
+        - "bBEADGCF"
+        editor_partial: subfield_autocomplete
+    - - o
+    - - g
+      - editor_partial: subfield_select_codes_grouped
+        codes_reference: clef_groups
+    - - s
+    - - p
+      - editor_partial: subfield_pae
+    - - q
+    - - z
+  tag_params:
+    031r:
+      - "A"
+      - "a"
+      - "A|x"
+      - "a|x"
+      - "A|b"
+      - "a|b"
+      - "B"
+      - "b"
+      - "B|b"
+      - "b|b"
+      - "C"
+      - "c"
+      - "C|x"
+      - "c|x"
+      - "C|b"
+      - "c|b"
+      - "D"
+      - "d"
+      - "D|x"
+      - "d|x"
+      - "D|b"
+      - "d|b"
+      - "E"
+      - "e"
+      - "E|b"
+      - "e|b"
+      - "F"
+      - "f"
+      - "F|x"
+      - "f|x"
+      - "G"
+      - "g"
+      - "G|x"
+      - "g|x"
+      - "G|b"
+      - "g|b"
+      - "1t"
+      - "2t"
+      - "3t"
+      - "4t"
+      - "5t"
+      - "6t"
+      - "7t"
+      - "8t"
+      - "9t"
+      - "10t"
+      - "11t"
+      - "12t"
+      - "1tt"
+      - "2tt"
+      - "3tt"
+      - "4tt"
+      - "5tt"
+      - "6tt"
+      - "7tt"
+      - "8tt"
+      - "9tt"
+      - "10tt"
+      - "11tt"
+      - "12tt"
+      - "1byz"
+      - "2byz"
+      - "3byz"
+      - "4byz"
+      - "5byz"
+      - "6byz"
+      - "7byz"
+      - "8byz"
+    clef_groups:
+      01_modern_clefs:
+      - C-1
+      - C-2
+      - C-3
+      - C-4
+      - C-5
+      - F-1
+      - F-2
+      - F-3
+      - F-4
+      - F-5
+      - G-1
+      - G-2
+      - G-3
+      - G-4
+      - G-5
+      - g-2
+      02_mensural_clefs:
+      - C+1
+      - C+2
+      - C+3
+      - C+4
+      - C+5
+      - F+1
+      - F+2
+      - F+3
+      - F+4
+      - F+5
+      - G+1
+      - G+2
+      - G+3
+      - G+4
+      - G+5
+"040":
+  layout:
+    fields:
+    - - a
+      - read_only: true
+        default: "DE-633"
+    - - b
+      - editor_partial: subfield_select_codes
+        select_label: "Language"
+        codes_reference: "codes"
+    - - c
+      - read_only: true
+        default: "DE-633"
+    - - d
+      - read_only: true
+    - - e
+      - read_only: true
+        default: "rismg"
+  tag_params:
+    codes:
+      - "eng"
+      - "fre"
+      - "ger"
+      - "ita"
+      - "por"
+      - "spa"
+"041":
+  layout:
+    fields:
+    - - a
+      - editor_partial: subfield_select_codes
+        select_label: "Language"
+        codes_reference: "codes"
+    - - h
+      - editor_partial: subfield_select_codes
+        select_label: "Language"
+        codes_reference: "codes"
+  tag_params:
+    codes:
+      - "afr"
+      - "alb"
+      - "ara"
+      - "arg"
+      - "arm"
+      - "art"
+      - "aus"
+      - "baq"
+      - "ben"
+      - "bos"
+      - "bul"
+      - "cat"
+      - "cel"
+      - "chi"
+      - "chu"
+      - "cre"
+      - "crp"
+      - "cze"
+      - "dak"
+      - "dan"
+      - "dsb"
+      - "dut"
+      - "eng"
+      - "enm"
+      - "est"
+      - "fao"
+      - "fij"
+      - "fin"
+      - "fre"
+      - "frm"
+      - "fro"
+      - "frr"
+      - "fry"
+      - "fur"
+      - "ger"
+      - "gez"
+      - "gle"
+      - "glg"
+      - "gmh"
+      - "goh"
+      - "grc"
+      - "gre"
+      - "gsw"
+      - "heb"
+      - "hrv"
+      - "hsb"
+      - "hun"
+      - "ice"
+      - "iii"
+      - "ita"
+      - "jpn"
+      - "kor"
+      - "lat"
+      - "lav"
+      - "lit"
+      - "ltz"
+      - "mac"
+      - "mao"
+      - "mon"
+      - "mul"
+      - "nap"
+      - "nds"
+      - "nor"
+      - "oci"
+      - "oji"
+      - "per"
+      - "pol"
+      - "por"
+      - "roa"
+      - "roh"
+      - "rom"
+      - "rum"
+      - "rus"
+      - "sai"
+      - "san"
+      - "scn"
+      - "sco"
+      - "sla"
+      - "slo"
+      - "slv"
+      - "smn"
+      - "spa"
+      - "srp"
+      - "swa"
+      - "swe"
+      - "tat"
+      - "tgl"
+      - "tha"
+      - "tib"
+      - "tsi"
+      - "tur"
+      - "ukr"
+      - "und"
+      - "vie"
+      - "wel"
+      - "wen"
+      - "xal"
+      - "yid"
+      - "zxx"
+"100":
+  new_window: people
+  new_window_field: full_name_eq
+  layout:
+    fields:
+    - - a
+      - type: person
+        editor_partial: subfield_secondary
+        allow_new: true
+    - - d
+      - autocomplete_extra: life_dates
+    - - j
+      - editor_partial: subfield_select_codes
+        codes_reference: "codes"
+  tag_params:
+    codes:
+      - "Ascertained"
+      - "Alleged"
+      - "Conjectural"
+      - "Misattributed"
+"240":
+  new_window: standard_titles
+  new_window_field: title_eq
+  layout:
+    fields:
+    - - a
+      - type: standard_title_no_730
+        editor_partial: subfield_secondary
+        allow_new: true
+    - - o
+      - editor_partial: subfield_select_codes
+        codes_reference: "240o"
+    - - k
+      - editor_partial: subfield_select_codes
+        codes_reference: "240k"
+    - - r
+      - editor_partial: subfield_select_codes
+        codes_reference: "240r"
+        no_sort: true
+    - - m
+  tag_params:
+    240k:
+      - "Excerpts"
+      - "Sketches"
+      - "Fragments"
+    240o:
+      - "Arr"
+    240r:
+      - "A"
+      - "a"
+      - "A|x"
+      - "a|x"
+      - "A|b"
+      - "a|b"
+      - "B"
+      - "b"
+      - "B|b"
+      - "b|b"
+      - "C"
+      - "c"
+      - "C|x"
+      - "c|x"
+      - "C|b"
+      - "c|b"
+      - "D"
+      - "d"
+      - "D|x"
+      - "d|x"
+      - "D|b"
+      - "d|b"
+      - "E"
+      - "e"
+      - "E|b"
+      - "e|b"
+      - "F"
+      - "f"
+      - "F|x"
+      - "f|x"
+      - "G"
+      - "g"
+      - "G|x"
+      - "g|x"
+      - "G|b"
+      - "g|b"
+      - "1t"
+      - "2t"
+      - "3t"
+      - "4t"
+      - "5t"
+      - "6t"
+      - "7t"
+      - "8t"
+      - "9t"
+      - "10t"
+      - "11t"
+      - "12t"
+      - "1tt"
+      - "2tt"
+      - "3tt"
+      - "4tt"
+      - "5tt"
+      - "6tt"
+      - "7tt"
+      - "8tt"
+      - "9tt"
+      - "10tt"
+      - "11tt"
+      - "12tt"
+      - "1byz"
+      - "2byz"
+      - "3byz"
+      - "4byz"
+      - "5byz"
+      - "6byz"
+      - "7byz"
+      - "8byz"
+"245":
+  layout:
+    fields:
+    - - a
+      - growfield: true
+"246":
+  layout:
+    fields:
+    - - a
+      - growfield: true
+"300":
+  layout:
+    fields:
+    - - a
+      - growfield: true
+    - - b
+      - growfield: true
+    - - c
+"383":
+  layout:
+    fields:
+    - - b
+"500": 
+  layout: 
+    fields: 
+    - - a
+      - growfield: true
+"593": 
+  layout: 
+    fields: 
+    - - a
+      - values:
+        - Manuscript copy
+        - Print
+        - Print with autograph annotations
+        - Print with non-autograph annotations
+        - Additional manuscript material
+        editor_partial: subfield_select
+    - - b
+      - values:
+        - "Inventory"
+        - "Notated music"
+        - "Libretto"
+        - "Treatise"
+        - "Other"
+        editor_partial: subfield_select
+"594":
+  layout:
+    fields:
+    - - b
+      - type: source_594b_solr
+        field: value
+        editor_partial: subfield_secondary
+        allow_new: true
+    - - c
+"599": 
+  layout: 
+    fields: 
+    - - a
+      - growfield: true
+    - - b
+      - hidden: true
+"650":
+  new_window: standard_terms
+  new_window_field: term_eq
+  layout:
+    fields:
+    - - a
+      - type: standard_term
+        editor_partial: subfield_secondary
+        allow_new: true
+"690":
+  new_window: publications
+  new_window_field: short_name_eq
+  layout:
+    fields:
+    - - a
+      - type: publication_only_short_name
+        editor_partial: subfield_secondary
+        allow_new: false
+    - - n
+"691":
+  new_window: publications
+  new_window_field: short_name_eq
+  layout:
+    fields:
+    - - a
+      - type: publication_only_short_name
+        editor_partial: subfield_secondary
+        allow_new: false
+    - - n
+"700":
+  new_window: people
+  new_window_field: full_name_eq
+  layout:
+    fields: 
+    - - a
+      - type: person
+        editor_partial: subfield_secondary
+        allow_new: true
+    - - d
+      - autocomplete_extra: life_dates
+    - - j
+      - editor_partial: subfield_select_codes
+        codes_reference: "codes"
+    - - "4"
+      - editor_partial: subfield_select_codes
+        select_label: "Function"
+        codes_reference: "relator_codes"
+  tag_params: 
+    codes:
+      - "Ascertained"
+      - "Alleged"
+      - "Conjectural"
+      - "Misattributed"
+    relator_codes: 
+      - fmo
+      - scr
+      - att
+      - prf
+      - dte
+      - trl
+      - edt
+      - ltg
+      - egr
+      - ill
+      - prt
+      - ppm
+      - oth
+      - asn
+      - arr
+      - com
+      - dnr
+"710":
+  new_window: institutions
+  new_window_field: full_name_eq
+  layout: 
+    fields: 
+    - - a
+      - type: institution
+        editor_partial: subfield_secondary
+        allow_new: true
+    - - b
+    - - c
+      - type: place
+        editor_partial: subfield_autocomplete
+        autocomplete_extra: place
+    - - g
+      - editor_partial: subfield_select_codes
+        codes_reference: "codes"
+    - - "4"
+      - editor_partial: subfield_select_codes
+        select_label: "Function"
+        codes_reference: "relator_codes"
+  tag_params: 
+    codes:
+      - "Ascertained"
+      - "Alleged"
+      - "Conjectural"
+      - "Misattributed"
+    relator_codes: 
+      - fmo
+      - dpt
+      - dte
+      - prf
+      - bsl
+      - evp
+      - oth
+      - ppm
+      - prt
+      - asn
+      - pbl
+"730":
+  new_window: standard_titles
+  new_window_field: title_eq
+  layout:
+    fields:
+    - - a
+      - type: standard_title
+        editor_partial: subfield_secondary
+        allow_new: true
+    - - o
+      - editor_partial: subfield_select_codes
+        codes_reference: "730o"
+    - - g
+      - values:
+        - "RISM"
+        - "RDA"
+        - "RAK"
+        - "ICCU"
+        default: "RISM"
+        editor_partial: subfield_select
+    - - k
+      - editor_partial: subfield_select_codes
+        codes_reference: "730k"
+    - - r
+      - editor_partial: subfield_select_codes
+        codes_reference: "730r"
+    - - n
+    - - m
+  tag_params:
+    730k:
+      - "Excerpts"
+      - "Sketches"
+      - "Fragments"
+      - "Inserts"
+    730o:
+      - "Arr"
+      - "Var"
+    730r:
+      - "A"
+      - "a"
+      - "A|x"
+      - "a|x"
+      - "A|b"
+      - "a|b"
+      - "B"
+      - "b"
+      - "B|b"
+      - "b|b"
+      - "C"
+      - "c"
+      - "C|x"
+      - "c|x"
+      - "C|b"
+      - "c|b"
+      - "D"
+      - "d"
+      - "D|x"
+      - "d|x"
+      - "D|b"
+      - "d|b"
+      - "E"
+      - "e"
+      - "E|b"
+      - "e|b"
+      - "F"
+      - "f"
+      - "F|x"
+      - "f|x"
+      - "G"
+      - "g"
+      - "G|x"
+      - "g|x"
+      - "G|b"
+      - "g|b"
+      - "1t"
+      - "2t"
+      - "3t"
+      - "4t"
+      - "5t"
+      - "6t"
+      - "7t"
+      - "8t"
+      - "9t"
+      - "10t"
+      - "11t"
+      - "12t"
+      - "1byz"
+      - "2byz"
+      - "3byz"
+      - "4byz"
+      - "5byz"
+      - "6byz"
+      - "7byz"
+      - "8byz"
+"773":
+  layout: 
+    fields: 
+    - - w
+      - read_only: true
+    - - o
+    - - n
+    - - g
+"775":
+  new_window: inventory_items
+  layout:
+    fields:
+    - - w
+      - type: inventory_item
+        editor_partial: subfield_secondary
+        only_new_window: true
+    - - "4"
+      - editor_partial: subfield_select_codes
+        select_label: "Function"
+        codes_reference: "relator_codes"
+  tag_params: 
+    relator_codes: 
+    - led
+    - "1st"
+"786":
+  layout: 
+    fields: 
+    - - a
+      - read_only: true
+    - - d
+      - read_only: true
+    - - i
+      - read_only: true
+    - - n
+      - read_only: true
+    - - o
+      - read_only: true
+    - - t
+      - read_only: true
+"787":
+  new_window: sources
+  layout:
+    fields:
+    - - "4"
+      - editor_partial: subfield_select_codes
+        codes_reference: "relator_codes"
+    - - n
+    - - w
+      - type: source
+        editor_partial: subfield_secondary
+  tag_params:
+      relator_codes:
+      - "rdau:P60191"
+      - "rdau:P60198"
+      - "rdau:P60311"
+      - "rdau:P60195"
+      - "rdau:P60242"
+      - "rdau:P60194"
+"856": 
+  layout: 
+    fields: 
+    - - u
+    - - z
+    - - x
+      - editor_partial: subfield_select_codes
+        codes_reference: "codes"
+  tag_params: 
+    codes:
+      - "IIIF manifest (digitized source)"
+      - "IIIF manifest (other)"
+      - "Digitized"
+      - "Other"
+"930":
+  new_window: sources
+  layout:
+    fields:
+    - - a
+      - type: source
+        editor_partial: subfield_secondary
+        allow_new: false
+        only_new_window: true
+    - - "4"
+      - editor_partial: subfield_select_codes
+        select_label: "Identification status"
+        codes_reference: "codes"
+  tag_params: 
+    codes:
+      - "Identified"
+      - "Possibly identified"
+"931":
+  new_window: holdings
+  layout:
+    fields:
+    - - a
+      - type: holding
+        editor_partial: subfield_secondary
+        allow_new: false
+        only_new_window: true
+"932":
+  new_window: works
+  layout:
+    fields:
+    - - a
+      - type: work
+        editor_partial: subfield_secondary
+        allow_new: false
+        only_new_window: true
+"981":
+  tag_params:
+    read_only: true
+    no_delete: true
+    no_move: true
+  layout:
+    hide_add_button: true
+    fields:
+    - - "0"
+      - read_only: true
+    - - "d"
+      - read_only: true
+
+ui: 
+  hide_marc_identifiers: true
+triggers:
+  - reindex_source

@@ -7,24 +7,21 @@ Code in provided inline, in the future it can be moved out
 used for _tag_header partial
 
 */
-
-
-    
-    // adjust the link when a help file is loaded in the editor
-    // because we then want the interal link to load their content
-    // through marc_editor_show_help (and not using #anchors)
-    function adjust_editor_help_links() { 
-        $('a[data-help-internal]').click(function(e){
-            e.preventDefault();
-            var title = $(this).text();
-            marc_editor_show_help($(this).data("help-internal"), title);
-        });
-    }
 	
 	function tag_header_toggle(elem) {
 		var tag_container = elem.parents(".tag_container");
+		// It could be a group. We use the group_container class there
+		// to avoid clashes with the tag containter, but is works in the same way
+		if (tag_container.length < 1) {
+			tag_container = elem.parents(".group_container_collapsable");
+		}
 		var collapsable = tag_container.children(".tag_content_collapsable");
 		
+		// The same as above, try to get the group tag
+		if (collapsable.length < 1) {
+			collapsable = tag_container.children(".group_content_collapsable");
+		}
+
 		// toggle
 		collapsable.slideToggle(0);
 	
@@ -188,13 +185,12 @@ used for _tag_header partial
     	$.ajax({
     		success: function(data) {
                 help_div.children(".help_content").html(data);
-                adjust_editor_help_links();
                 help_div.fadeIn('fast');
     		},
     		dataType: 'html',
     		timeout: 1000, 
-    		type: 'get',
-    		url: elem.data("help")
+    		type: 'post',
+    		url: "/admin/editor_help/" + elem.data("help") //elem.data("help")
     	});
 	}
 	
@@ -209,6 +205,28 @@ used for _tag_header partial
 		dt.addClass("inner_group_dt");
 		dt.appendTo(toplevel_dl);
 		dt.fadeIn('fast');
+	}
+
+	function tag_header_remove_group(elem) {
+		// FIXME dialog should not be hardcoded for the second time
+		$('#dialog').html('<p>' + I18n.t("marc_editor.delete_group_confirm") + '</p>');
+		$("#dialog").dialog();
+		$("#dialog").dialog( 'option', 'title', I18n.t("marc_editor.delete_msg") );
+		$("#dialog").dialog( 'option', 'width', 300);
+		$("#dialog").dialog( 'option', 'buttons', {
+			OK: function() {
+				marc_editor_set_dirty();
+				var this_group = elem.parents(".inner_group_dt");
+				
+				this_group.fadeOut('fast', function() {
+					this_group.remove();
+				});
+				
+				$(this).dialog('close');
+			},
+			Cancel: function() { $(this).dialog('close');	}
+			});
+		$("#dialog").dialog('open');
 	}
 
 (function(jQuery) {
@@ -258,6 +276,8 @@ used for _tag_header partial
 					tag_header_help($(this));
 				}else if ($(this).data("group-button") == "add") {
 					tag_header_new_group($(this));
+				}else if ($(this).data("group-button") == "remove") {
+					tag_header_remove_group($(this));
 				}
 			});
 		}

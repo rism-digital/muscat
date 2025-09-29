@@ -62,23 +62,24 @@
       label: records.transcribing_agency
     d:
       label: records.modifying_agency
+    e:
+      label: records.description_conventions
   label: records.cataloging_source
-'042':
+'046':
   fields:
-    a:
-      label: records.authentication_code
-  label: records.authentication_code
-'043':
-  fields:
-    c:
-      label: records.nationality
-  label: records.nationality
+    k:
+      label: records.date_of_creation
+    l:
+      label: records.end
+    z:
+      label: records.public_note
+  label: records.date_of_creation
 '100':
   fields:
     a:
       label: records.composer
     d:
-      label: records.years_birth_death
+      label: records.life_dates
     m:
       label: records.scoring_summary
     n:
@@ -97,51 +98,30 @@
     r:
       label: records.key_or_mode
   label: records.standardized_title
-10t:
-  label: records.mode_10t
-10tt:
-  label: records.mode_10tt
-11t:
-  label: records.mode_11t
-11tt:
-  label: records.mode_11tt
-12t:
-  label: records.mode_12t
-12tt:
-  label: records.mode_12tt
-1byz:
-  label: records.octoechos1
-1t:
-  label: records.mode_1t
-1tt:
-  label: records.mode_1tt
-2byz:
-  label: records.octoechos2
-2t:
-  label: records.mode_2t
-2tt:
-  label: records.mode_2tt
 '370':
   fields:
+    g:
+      label: records.place_origin
+    i:
+      label: records.relationship_information
+  label: records.place_of_creation
+'377':
+  fields:
     a:
-      label: records.place_birth
-  label: records.associated_place
+      label: records.language_code
+  label: records.language_code
 '380':
   fields:
     a:
-      label: records.subject_heading
-  label: records.subject_heading
+      label: records.form_of_work
+  label: records.form_of_work
 '383':
   fields:
+    a:
+      label: records.serial_number
     b:
       label: records.opus_number
-  label: records.opus_number
-3byz:
-  label: records.octoechos3
-3t:
-  label: records.mode_3t
-3tt:
-  label: records.mode_3tt
+  label: records.numeric_designation
 '400':
   fields:
     a:
@@ -157,12 +137,6 @@
     t:
       label: records.title_of_work
   label: records.heading
-4byz:
-  label: records.octoechos4
-4t:
-  label: records.mode_4t
-4tt:
-  label: records.mode_4tt
 '430':
   fields:
     a:
@@ -176,18 +150,20 @@
     p:
       label: records.version_information
   label: records.alternative_work_title
-'500':
-  fields:
-    a:
-      label: records.related_personal_name
-    y:
-      label: records.type_relationship
-  label: records.related_personal_name
 '510':
   fields:
     a:
       label: records.associated_institution
   label: records.associated_institution
+'530':
+  fields:
+    a:
+      label: records.work
+    g:
+      label: records.note
+    i:
+      label: records.relationship_information
+  label: records.related_work
 '548':
   fields:
     a:
@@ -209,12 +185,6 @@
     i:
       label: records.type
   label: records.geographic_name
-5byz:
-  label: records.octoechos5
-5t:
-  label: records.mode_5t
-5tt:
-  label: records.mode_5tt
 '667':
   fields:
     a:
@@ -226,6 +196,10 @@
       label: records.source_data_found
     b:
       label: records.information_found
+    u:
+      label: general.uri
+    "9":
+      label: general.source_citation
   label: records.source_data_found
 '675':
   fields:
@@ -248,6 +222,10 @@
       label: records.catalog_works
     n:
       label: records.number_page
+    s:
+      label: records.section
+    x:
+      label: records.appendix
   label: records.catalog_works
 '691':
   fields:
@@ -255,14 +233,19 @@
       label: records.secondary_catalog_works
     n:
       label: records.number_page
+    s:
+      label: records.section
+    x:
+      label: records.appendix
   label: records.secondary_catalog_works
-6byz:
-  label: records.octoechos6
-6t:
-  label: records.mode_6t
-6tt:
-  label: records.mode_6tt
-'700':
+'699':
+  fields:
+    a:
+      label: records.work_tag_type
+    b:
+      label: records.work_tag_note
+  label: records.work_tag
+'500':
   fields:
     '4':
       label: records.function
@@ -272,8 +255,8 @@
       label: records.life_dates
     j:
       label: records.attribution_qualifier
-  label: records.additional_personal_name
-'710':
+  label: records.related_personal_name
+'510':
   fields:
     '4':
       label: records.function
@@ -285,31 +268,19 @@
       label: records.department
     g:
       label: records.attribution_qualifier
-  label: records.additional_institution
-'747':
+  label: records.related_institution
+'547':
   fields:
     a:
       label: records.liturgical_festival
   label: records.liturgical_festival
-7byz:
-  label: records.octoechos7
-7t:
-  label: records.mode_7t
-7tt:
-  label: records.mode_7tt
 '856':
   fields:
     u:
-      label: records.external_resource
-    y:
+      label: records.external_resource_url
+    z:
       label: records.note_external_resource
-  label: records.external_resource_uri
-8byz:
-  label: records.octoechos8
-8t:
-  label: records.mode_8t
-8tt:
-  label: records.mode_8tt
+  label: records.external_resource
 '930':
   fields:
     a:
@@ -317,26 +288,17 @@
     i:
       label: records.type_relationship
   label: records.related_work
-9t:
-  label: records.mode_9t
-9tt:
-  label: records.mode_9tt
-A:
-  label: records.a_major
+'981':
+  fields:
+    "0":
+      label: records.original_record
+    d:
+      label: records.date
+  label: records.duplicated_from
 Alleged:
   label: records.alleged
 Ascertained:
   label: records.ascertained
-A|b:
-  label: records.af_major
-A|x:
-  label: records.as_major
-B:
-  label: records.b_major
-B|b:
-  label: records.bf_major
-C:
-  label: records.c_major
 C+1:
   label: records.c_plus_1
 C+2:
@@ -359,24 +321,6 @@ C-5:
   label: records.c_minus_5
 Conjectural:
   label: records.conjectural
-C|b:
-  label: records.cf_major
-C|x:
-  label: records.cs_major
-D:
-  label: records.d_major
-Doubtful:
-  label: records.doubtful
-D|b:
-  label: records.df_major
-D|x:
-  label: records.ds_major
-E:
-  label: records.e_major
-E|b:
-  label: records.ef_major
-F:
-  label: records.f_major
 F+1:
   label: records.f_plus_1
 F+2:
@@ -397,10 +341,6 @@ F-4:
   label: records.f_minus_4_bass
 F-5:
   label: records.f_minus_5
-F|x:
-  label: records.fs_major
-G:
-  label: records.g_major
 G+1:
   label: records.g_plus_1
 G+2:
@@ -421,202 +361,52 @@ G-4:
   label: records.g_minus_4
 G-5:
   label: records.g_minus_5
-G|b:
-  label: records.gf_major
-G|x:
-  label: records.gs_major
 Misattributed:
   label: records.misattributed
+"rdau:P60250":
+  label: relations_works.P60250
+"rdau:P60305":
+  label: relations_works.P60305
+"rdau:P60216":
+  label: relations_works.P60216
+"rdau:P60294":
+  label: relations_works.P60294
+"rdau:P60274":
+  label: relations_works.P60274
+"rdau:P60242":
+  label: relations_works.P60242
+"rdau:P60198":
+  label: relations_works.P60198
+"rdau:P60313":
+  label: relations_works.P60313
 Verified:
   label: general.verified
-XA-AT:
-  label: places.austria
-XA-AT-2:
-  label: places.austria_carinthia
-XA-AT-3:
-  label: places.austria_lower_austria
-XA-AT-4:
-  label: places.austria_upper_austria
-XA-AT-5:
-  label: places.austria_salzburg
-XA-AT-6:
-  label: places.austria_styria
-XA-AT-7:
-  label: places.austria_tyrol
-XA-AT-9:
-  label: places.austria_vienna
-XA-BE:
-  label: places.belgium
-XA-BG:
-  label: places.bulgaria
-XA-CH:
-  label: places.switzerland
-XA-CH-VD:
-  label: places.switzerland_vaud
-XA-CZ:
-  label: places.czech_republic
-XA-DE:
-  label: places.germany
-XA-DE-BY:
-  label: places.germany_bavaria
-XA-DE-SN:
-  label: places.germany_saxony
-XA-DK:
-  label: places.denmark
-XA-EE:
-  label: places.estonia
-XA-ES:
-  label: places.spain
-XA-FI:
-  label: places.finland
-XA-FR:
-  label: places.france
-XA-GB:
-  label: places.uk
-XA-GR:
-  label: places.greece
-XA-HR:
-  label: places.croatia
-XA-HU:
-  label: places.hungary
-XA-IE:
-  label: places.ireland
-XA-IS:
-  label: places.iceland
-XA-IT:
-  label: places.italy
-XA-IT-32:
-  label: places.italy_trentino_alto_adige
-XA-LT:
-  label: places.lithuania
-XA-LU:
-  label: places.luxembourg
-XA-LV:
-  label: places.latvia
-XA-ME:
-  label: places.montenegro
-XA-MT:
-  label: places.malta
-XA-NL:
-  label: places.netherlands
-XA-NO:
-  label: places.norway
-XA-PL:
-  label: places.poland
-XA-PT:
-  label: places.portugal
-XA-RO:
-  label: places.romania
-XA-RS:
-  label: places.serbia
-XA-RU:
-  label: places.russian_federation
-XA-SE:
-  label: places.sweden
-XA-SI:
-  label: places.slovenia
-XA-SK:
-  label: places.slovakia
-XA-UA:
-  label: places.ukraine
-XA-VA:
-  label: places.holy_see
-XB-AM:
-  label: places.armenia
-XB-CN:
-  label: places.china
-XB-IL:
-  label: places.israel
-XB-IN:
-  label: places.india
-XB-IR:
-  label: places.iran
-XB-JP:
-  label: places.japan
-XB-KH:
-  label: places.cambodia
-XB-KR:
-  label: places.korea
-XB-SY:
-  label: places.syrian_arab_republic
-XB-TR:
-  label: places.turkey
-XC-BJ:
-  label: languages.benin
-XC-DZ:
-  label: places.algeria
-XC-EG:
-  label: places.egypt
-XC-ZA:
-  label: places.south_africa
-XD-AR:
-  label: places.argentina
-XD-BR:
-  label: places.brazil
-XD-CA:
-  label: places.canada
-XD-CL:
-  label: places.chile
-XD-CO:
-  label: places.colombia
-XD-CU:
-  label: places.cuba
-XD-HN:
-  label: places.honduras
-XD-MX:
-  label: places.mexico
-XD-PR:
-  label: places.puerto_rico
-XD-PY:
-  label: places.paraguay
-XD-TT:
-  label: places.trinidad_tobego
-XD-US:
-  label: places.usa
-XD-UY:
-  label: places.uruguay
-XD-VE:
-  label: places.venezuela
-XE-AU:
-  label: places.australia
-XE-NZ:
-  label: places.new_zealand
-a:
-  label: records.a_minor
 administration:
   label: records.administration
+arr:
+  label: records.arranger
 asn:
   label: records.associated_name
-a|b:
-  label: records.af_minor
-a|x:
-  label: records.as_minor
-b:
-  label: records.b_minor
+aut:
+  label: records.author
 bn:
   label: records.byname
 brother of:
   label: records.brother_of
-b|b:
-  label: records.bf_minor
-c:
-  label: records.c_minor
 child of:
   label: records.child_of
-cmp:
+att:
   label: records.composer_cross_reference
+ccp:
+  label: records.conceptor
+ctb:
+  label: records.co_composer
 codes:
   label: records.numbers_code_fields
 confused with:
   label: records.confused_with
 control:
   label: records.control_fields
-c|b:
-  label: records.cf_minor
-c|x:
-  label: records.cs_minor
-d:
-  label: records.d_minor
 da:
   label: records.pseudonym
 deprecated:
@@ -647,40 +437,22 @@ dte:
   label: records.dedicatee
 dv:
   label: records.other_searchform
-d|b:
-  label: records.df_minor
-d|x:
-  label: records.ds_minor
-e:
-  label: records.e_minor
 ee:
   label: records.married_name
 ef:
   label: records.family_name
-e|b:
-  label: records.ef_minor
-f:
-  label: records.f_minor
 father of:
   label: records.father_of
 female:
   label: general.female
 ff:
   label: records.person_name
-f|x:
-  label: records.fs_minor
-g:
-  label: records.g_minor
 g-2:
   label: records.g_minus_2_octave
 gg:
   label: records.birth_name
 go:
   label: records.place_birth
-g|b:
-  label: records.gf_minor
-g|x:
-  label: records.gs_minor
 ha:
   label: records.place_origin
 in:
@@ -707,6 +479,8 @@ oth:
   label: records.other_function
 other:
   label: records.other
+pat:
+  label: records.patron
 places:
   label: records.countries_places
 po:
@@ -725,6 +499,8 @@ subject:
   label: records.subject_access_fields
 tn:
   label: records.baptismal_name
+trl:
+  label: records.translator
 ub:
   label: records.translation
 unknown:
@@ -741,3 +517,11 @@ xx:
   label: records.unknown
 z:
   label: records.other_form
+"needs-revision":
+  label: records.work_tag_needs_revision
+"incipit-needs-revision":
+  label: records.work_tag_incipit_needs_revision
+"incipit-replace":
+  label: records.work_tag_incipit_replace
+"Appendix":
+  label: active_admin.status_tag.yes

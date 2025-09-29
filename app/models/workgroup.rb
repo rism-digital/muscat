@@ -37,4 +37,9 @@ class Workgroup < ApplicationRecord
     libs = self.get_institutions.map(&:siglum)
     return libs.size > 4 ? "#{libs[0..4].join(', ')} [ ... #{libs.size - 5} more]" : libs.join(', ')
   end
+
+  def self.ransackable_associations(_) = reflections.keys
+  def self.ransackable_attributes(_) = attribute_names - %w[token]
+
 end
+

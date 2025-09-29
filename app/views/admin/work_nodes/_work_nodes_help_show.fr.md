@@ -1,0 +1,3 @@
+Les **noeuds d'oeuvre** servent de liens étiquetés entre les sources dans Muscat et les autorités d'oeuvres externes (par exemple, les oeuvres dans GND) et regroupent les sources partageant la même référence. Ils servent de proxy de données d'autorité stockées dans Muscat pour faciliter le traitement des liens avec des données d'autorité externe.
+
+Les noeuds d'oeuvre ne sont pas exportés en tant que données d'autorité et les identifiants des noeuds d'oeuvre ne sont pas exposés à l'extérieur de Muscat. Toutefois, les noeuds d'oeuvres sont répertoriés dans les descriptions des sources qui y sont liés par le biais d'un champ Marc personnalisé 930, avec l'identifiant du jeu de données d'autorité externe (par exemple, l'identifiant du GND).

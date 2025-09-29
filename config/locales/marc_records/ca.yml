@@ -95,10 +95,12 @@ ca:
     norwegian: Noruec
     occitan: Occità
     oirat: Oirat
+    ojibwa: Ojibwa
     old_church_slavonic: Eslau eclesiàstic antic
     persian: Persa
     polish: Polonès
     portugese: Portuguès
+    romance_other: Llengua romànica (altra)
     romani: Romaní
     romanian: Romanès
     romansh: Romanx
@@ -145,12 +147,13 @@ ca:
     austria_tyrol: 'Àustria: Tirol'
     austria_upper_austria: 'Àustria: Alta Àustria'
     austria_vienna: 'Àustria: Viena'
-    azerbiajan: Azerbaidjan
+    azerbaijan: Azerbaidjan
     bangladesh: Bangladesh
     belarus: Bielorússia
     belgium: Bèlgica
     benin: Benín
     bolivia: Bolívia
+    bosnia_and_herzegovina: Bòsnia i Hercegovina
     bosnia_herzegovina: Bòsnia i Hercegovina
     brazil: Brasil
     bulgaria: Bulgària
@@ -173,6 +176,7 @@ ca:
     germany: Alemanya
     germany_bavaria: 'Alemanya: Baviera'
     germany_saxony: 'Alemanya: Saxònia'
+    ghana: Ghana
     greece: Grècia
     guatemala: Guatemala
     guinea: Guinea
@@ -188,11 +192,13 @@ ca:
     israel: Israel
     italy: Itàlia
     italy_trentino_alto_adige: 'Itàlia: Trentino-Alto Adige'
+    jamaica: Jamaica
     japan: Japó
     korea: Corea del Sud
     latvia: Letònia
-    lithuania: Lituània
     lebanon: Líban
+    liechtenstein: Liechtenstein
+    lithuania: Lituània
     luxembourg: Luxemburg
     malta: Malta
     mexico: Mèxic
@@ -215,12 +221,14 @@ ca:
     puerto_rico: Puerto Rico
     romania: Romania
     russian_federation: Federació Russa
+    san_marino: San Marino
     saudi_arabia: Aràbia Saudita
     serbia: Sèrbia
     slovakia: Eslovàquia
     slovenia: Eslovènia
     south_africa: Sud-àfrica
     spain: Espanya
+    suriname: Surinam
     sweden: Suècia
     switzerland: Suïssa
     switzerland_vaud: 'Suïssa: cantó de Vaud'
@@ -229,6 +237,8 @@ ca:
     tajikistan: Tadjikistan
     trinidad_tobego: Trinitat i Tobago
     turkey: Turquia
+    turkmenistan: Turkmenistan
+    uganda: Uganda
     uk: Regne Unit
     ukraine: Ucraïna
     uruguay: Uruguai
@@ -269,6 +279,9 @@ ca:
     alleged: Suposat
     alternate_spelling: Ortografia alternativa
     alternative_work_title: Títol alternatiu
+    amount: Número
+    annex: Annex
+    appendix: Apèndix
     archive: Arxiu
     arrangement: Arranjament
     arrangement_statement: Menció d'arranjament
@@ -299,6 +312,7 @@ ca:
     baptismal_name: Nom baptismal
     basic_functions: Funcions bàsiques
     basso_continuo: Baix continu
+    beginning_or_single_date: Data única o inicial
     bf_major: Si♭ major
     bf_minor: Si♭ minor
     bibliography: Bibliografia
@@ -338,6 +352,7 @@ ca:
     cataloging_musical_sources: Catalogació de fonts musicals
     cataloging_source: Font de la catalogació
     category: Categoria
+    category_section: Categoria/secció
     censor: Censor
     cf_major: Do♭ major
     cf_minor: Do♭ menor
@@ -354,6 +369,7 @@ ca:
     collaborator: Col·laborador
     collective_catalog: Catàleg col·lectiu
     colophon: Colofó
+    contributing_project: Contribueix al projecte
     common_clefs: Claus comunes
     compiler: Compilador
     composer: Compositor
@@ -386,7 +402,7 @@ ca:
     country_activity: País d'activitat
     country_code: Codi de país
     country_of_publication: País de publicació
-    county_province: Estat o província
+    county_province: País, província, comarca
     creation_production_note: Nota sobre la creació/produció
     cs_major: Do♯ major
     cs_minor: Do♯ menor
@@ -399,12 +415,14 @@ ca:
     date_time_last_transaction: Data i hora de l'última transacció
     date_type: Tipus de data
     dates: Dates
+    dates_of_publication: Dates de publicació
     dedicatee: Dedicatari
     department: Departament
     depositor: Dipositant
     deprecated_fields: Camps obsolets (no els utilitzeu)
     description: Descripció
     description_area: Descripció
+    description_conventions: Description conventions
     description_summary: Breu descripció
     designer: Dissenyador
     df_major: Re♭ major
@@ -419,12 +437,12 @@ ca:
     distributor: Distribuïdor
     documentation_center: Centre de documentació
     donor: Donant
-    doubtful: Dubtós
     dramatic_roles_original: Noms originals dels personatges
     dramatic_roles_standardized: Noms normalitzats dels personatges
     ds_major: Re♯ major
     ds_minor: Re♯ menor
     dubious: Dubtós
+    duplicated_from: Duplicat de
     e_major: Mi major
     e_minor: Mi menor
     earlier_heading: Encapçalament anterior
@@ -436,18 +454,22 @@ ca:
     ef_major: Mi♭ major
     ef_minor: Mi♭ menor
     encyclopedia: Enciclopèdia
+    end: Final
     end_period: Període final
     engraver: Gravador
     engraving: Gravat
     event_organizer: Organitzador
     event_place: Lloc de l'esdeveniment
     excerpts: Extractes
+    exemplar: Exemplar
     exemplars: Exemplars
+    expansion: Expansió
     extent: Extensió
     extent_parts: Extensió (particel·les)
     external_resource: Recurs extern
     external_resource_uri: URI del recurs extern
     external_resource_url: URL del recurs extern
+    external_work_reference: Referència externa d'obra
     f_major: Fa major
     f_minor: Fa menor
     f_minus_1: F-1
@@ -468,9 +490,12 @@ ca:
     figured_bass_scores: Baix xifrat
     fijian: Fijià
     fingerprint_identifier: Identificador de l'empremta
+    first_entry: Primera entrada
     first_second_group: Primer/segon grup
+    form_of_work: Form of work
     form_subdivision: Subdivisió de forma
     format_extent: Format, extensió
+    former_sigla: Sigla anterior
     former_owner: Propietari anterior
     fragments: Fragments
     fs_major: Fa♯ major
@@ -510,11 +535,18 @@ ca:
     heading_personal_name1: Nom personal
     help_transposing_instruments: Ajuda pels instruments transpositors
     history_institution: Història de la institució
+    holding: Còpia posseïda
     holdings_location: Camps d'exemplars i fons
+    identification_status: Estat de la identificació
+    identified: Identificat
+    identified_holding: Fons identificat
+    identified_source: Obra identificada
+    identified_work: Obra identificada
     identity: Identitat
     identity_area: Identitat
     iiif_manifest: "Manifiest IIIF (font digitalitzada)"
     iiif_manifest_other: "Manifiest IIIF (altre)"
+    iiif_manifest_nothing_more: Manifest IIIF
     illustrator: Il·lustrador
     immediate_parent_body: Institució immediatament superior
     import: Importar
@@ -522,10 +554,11 @@ ca:
     incipit: Íncipit musical
     incipit_number: Número d'íncipit
     incipits: Íncipits
+    includes_holdings_from: Inclou fons de
     index_terms: Termes d'indexació
     information_found: Informació trobada
     initial: Inicial
-    initial_entry: Entrada inicial
+    initial_entry: Primer registre a A/I
     initials: Inicials
     insertions: Insercions
     inserts: Insercions
@@ -535,6 +568,10 @@ ca:
     internal_note: Nota interna
     introduction: Introducció
     invalid_standard_number: Número o codi estàndard cancel·lat/invàlid
+    inventory: Inventari
+    inventory_item: Exemplar de l'inventari
+    inventory_number: Número d'inventari
+    inventory_source: Font de l'inventari
     isbn: ISBN
     ismn: ISMN
     issn: ISSN
@@ -551,9 +588,10 @@ ca:
     language_codes: Codis d'idioma
     language_libretto: Llengua del llibret
     language_note: Nota de llengua
-    language_of_cataloging: Idioma de catalogació
+    language_of_cataloging: Llengua de catalogació
     language_original_text: Idioma del text original
     language_text: Llengua del text
+    later_entry: Entrada posterior
     later_heading: Encapçalament posterior
     latitude: Latitud
     leader: Capçalera
@@ -594,8 +632,10 @@ ca:
     married_with: Casat/da amb
     material_description: Descripció del material
     material_examined: Material examinat
+    material_group: Grup de material
     material_held: Material conservat
     material_not_examined: Material no examinat
+    material_type: Tipus de material
     media_type: Tipus de suport
     mensural_clefs: Claus mensurals
     method_of_acquisition: Mètode d'adquisició
@@ -641,6 +681,7 @@ ca:
     name_family: Cognom
     name_of_part: Número de part/secció d'una obra
     name_printer: Impressor
+    name_titles_words: Titles and words associated with a name
     name_variant: Variant del nom
     name_variants: Variants del nom
     named_dramatic_roles: Noms dels personatges
@@ -659,8 +700,10 @@ ca:
     number: Número
     number_page: Número/pàgina
     number_part_section: Número de part / secció d'una obra
+    number_volume: Número/Volum
     number_volume_part: Número de volum o part
     numbers_code_fields: Números i camps codificats
+    numeric_designation: Designació numèrica
     octoechos1: 'Octoechos 1: Ēchos prōtos (primer mode bizanti)'
     octoechos2: 'Octoechos 2: Ēchos deuteros (segon mode bizantí)'
     octoechos3: 'Octoechos 3: Ēchos tritos (tercer mode bizantí)'
@@ -670,12 +713,14 @@ ca:
     octoechos7: 'Octoechos 7: Ēchos barys (terceiro mode bizantí plagal)'
     octoechos8: 'Octoechos 8: Ēchos plagios tetartos (quart mode bizantí plagal)'
     online_finding_aids: Eines de cerca en línia
+    online_resource: Recursos en línia
     opera_houses_concert_halls: Teatres d'òpera i sales de concert
     opus_number: Número d'opus
     opus_thematic_index_number: Número d'opus o d'índex temàtic
     order_name: Orde religiós
     origin: Origen
     original_cataloging_agency: Organisme de catalogació original
+    original_record: Registre original
     other: Altres
     other_associated_place: Altre lloc associat
     other_designation: Altra designació
@@ -686,6 +731,7 @@ ca:
     other_instruments: Altres instruments
     other_life_dates: Altres dates
     other_physical_details: Altres detalls físics
+    other_resource: Altres recursos
     other_searchform: Altra variant
     other_shelfmark: Altra signatura
     other_standard_identifier: Altre identificador estàndard
@@ -696,6 +742,7 @@ ca:
     partial_autograph: Parcialment autògraf
     parts_held: Parts existents
     parts_held_extent: Parts existents i extensió
+    part_of_title: Part del títol
     patron: Mecenes
     people: Persones
     people_institutions: Persones i institucions
@@ -703,12 +750,14 @@ ca:
     performance: Interpretació
     performances: Interpretacions
     performer: Intèrpret
-    performer_note: Nota sobre l'intèrpret
+    performer_note: Nota sobre la interpretació
+    periodical_or_series: Revista o sèrie
+    periodical_or_series_title: Títol de la revista o sèrie
     person: Persona
     person_name: Nom personal
     personal_name: Nom personal
     personal_names: Noms personals
-    photoreproductive_process: Procés fotoreproductiu
+    photoreproductive_process: Procés fotoreproductiu (blueprint)
     physical_description: Descripció física
     physical_description_fields: Camps de descripció física
     place: Lloc
@@ -716,6 +765,7 @@ ca:
     place_activity: Lloc d'activitat
     place_birth: Lloc de naixement
     place_death: Lloc de mort
+    place_of_creation: Lloc de creació
     place_of_residence: Lloc de residència/seu
     place_origin: Lloc d'origen
     place_publication: Lloc de publicació
@@ -724,6 +774,7 @@ ca:
     plate_number: Número de planxa
     plucked_instruments: Instruments de corda pinçada
     possible_autograph_manuscript: Possible manuscrit autògraf
+    possibly_identified: Possiblement identificat
     postal_code: Codi postal
     postal_place: Adreça postal
     preceding_entry: Entrada anterior
@@ -732,11 +783,14 @@ ca:
     print_with_non_autograph_annotations: Imprès amb anotacions no autògrafes
     printer: Impressor
     printing_technique: Tècnica d'impressió
+    private_collection: Private collection
     production: Producció
     production_personnel: Personal de producció
     profession_or_function: Professió o funció
+    project: Proyecto
+    project_url: Project URL
     provenance: Custòdia
-    provenance_notes: Història de la propietat i de la custòdia
+    provenance_notes: Nota sobre la procedència
     pseudonym: Pseudònim
     public_note: Nota pública
     publisher: Editor
@@ -747,6 +801,7 @@ ca:
     qualifying_information: Informació qualificada
     range_dates: Interval de dates
     real_world_object_uri: URI d'objecte del món real
+    reconstructed_title: Títol reconstruït
     record_actions: Accions al registre
     record_audit: Validació del registre
     record_origin: Origen del registre
@@ -771,7 +826,7 @@ ca:
     relationship_designation: Designació de la relació al $i o $4
     relationship_information: Informació de la relació
     religious_name: Nom religiós
-    religious_order: Orde religiosa
+    religious_order: "Orde religiosa/títol"
     reproduction: Reproducció
     research_institute: Institut de recerca
     retrospective_conversion: Conversió retrospectiva
@@ -782,10 +837,11 @@ ca:
     scribe: Copista
     secondary_catalog_works: Catàleg secundari d'obres
     secondary_literature: Literatura secundària
+    serial_number: Número de sèrie
     series: Sèries
     series_added_entry: Entrades secundàries de col·lecció
     series_statement: Menció de col·lecció
-    material_group: Grup de material
+    section: Secció
     shelfmark: Signatura
     shelfmark_olim: Signatura anterior (olim)
     short_title: Títol abreujat
@@ -868,8 +924,8 @@ ca:
     typography: Tipografia
     uncategorized: Sense classificar
     unknown: Desconegut
-    unparsed_fingerprint: Empremta sense analitzar
-    variant_ms_title: Variant de títol al manuscrit
+    unparsed_fingerprint: Empremta
+    variant_ms_title: Variant de títol a la font
     variant_source_title: Variant de títol a la font
     variations: Variacions
     verified: Verificat
@@ -880,7 +936,18 @@ ca:
     watermark_description: Descripció de la filigrana
     woodwinds: Vent-fusta
     work: Obra
+    work_catalog: Catàleg de l'obra
+    work_catalogs: Catàleg de l'obra
+    work_catalog_note: Nota sobre el catàleg de l'obra
+    work_list: Llista d'obres
+    work_node: Referència externa d'obra (Work node)
     work_number: Número d'obra
+    work_tag: Etiqueta de revisió per obra
+    work_tag_incipit_needs_revision: Íncipit a revisar
+    work_tag_incipit_replace: Íncipit a substituir
+    work_tag_needs_revision: Cal revisar-ho
+    work_tag_note: Nota d'etiqueta
+    work_tag_type: Tipus d'etiqueta
     year: Any
     years_birth_death: Anys de naixement i mort
   relations:
@@ -893,6 +960,24 @@ ca:
     P60274: "Arranjat com a"
     P60194: "Insertat en"
     P60183: "Insert"
+  relations_works:
+    P60250: "Obra derivada"
+    P60305: "Is based on"
+    P60216: "Desenvolupat com a"
+    P60294: "Versió desenvolupada de"
+    P60274: "Arranjat com a"
+    P60242: "Arranjament de"
+    P60198: "Completat per"
+    P60313: "No definit"
+  relations_institutions:
+    P50008: Hierarchical superior
+    P50010: Hierarchical subordinate
+    P50012: Predecessor of corporate body
+    P50016: Successor of corporate body
+    P50020: Founding family of corporate body
+    P50230: Corporate body member of corporate body
+    P50435: Corporate body member of family
+    P50301: Absorbed corporate body
   verovio:
     position: "Posició"
     warning: "Avís"
@@ -962,10 +1047,20 @@ ca:
     ERR_063_LIGATURE_PITCH: Una lligadura no pot tenir dues notes consecutives del mateix to.
     ERR_064_LIGATURE_DURATION: La duració en una lligadura no pot ser més curta que una rodona.
     ERR_065_MREST_INVALID_MEASURE: Un compàs de silenci no pot incloure res més.
+    ERR_066_EMPTY_CONTAINER: Un ornament o una barra d'unió entre notes no poden estar buides.
+  work_catalogue:
+    not_work_catalogue: Not work catalog
+    work_catalogue_alternate: Alternatiu
+    work_catalogue_complete: Completat
+    work_catalogue_in_preparation: Eligible
+    work_catalogue_partial: En curs
   rism_online:
     manuscript: "Manuscrit"
     printed: "Imprès"
     composite: "Volum compost"
+    collection: "Col·lecció"
+    item: "Element"
+    single_item: "Element individual"
     apply_filters: "Aplicar els filtres"
     error_loading_results: "Error en carregar els resultats"
     global_collection: "Col·lecció global"

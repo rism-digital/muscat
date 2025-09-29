@@ -1,0 +1,29 @@
+per_page = params.include?(:compare_version_quantity) ? params[:compare_version_quantity] : 20
+
+panel "Work Catalogs" do
+
+#    table_for assigns[:csv_data] do
+#        column :Composer, "Composer"
+#        column :Id, "Id"
+#    end
+
+
+
+    paginated_collection(assigns[:paginated].page(params[:work_node_list_page]).per(per_page), param_name: "work_node_list_page", download_links: false, entry_name: "Work Catalogs") do
+        table_for collection do
+            column :composer, "Composer"
+            column :dates, "Dates"
+            column :notes, "Notes"
+            column :status, "Status"
+            column :author, "Author"
+            column (:publication) do |c| 
+                if !c["Id"].nil? && !c["Id"].empty?
+                    link_to c["Id"], admin_publication_path(c["Id"])
+                else
+                    "No publication"
+                end
+            end
+        end
+    end
+
+end

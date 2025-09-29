@@ -1,6 +1,20 @@
+@use "sass:color";
+
+@import url('https://fonts.googleapis.com/css?family=Noto+Sans+Display:400,500,700,400italic,500italic,700italic');
+//@import url('https://fonts.googleapis.com/css?family=Noto+Sans:400,500,700,400italic,500italic,700italic');
+
 body {
   font-size: 12px !important;
-  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif !important;
+  font-family: "Noto Sans Display", Helvetica, Arial, sans-serif !important;
+  font-weight: 400 !important;
+  color: #000000 !important;
+  letter-spacing: 0.028em;
+  //Helvetica, Arial, sans-serif !important;
+}
+
+form input, form textarea, form select {
+  font-family: "Noto Sans Display", Helvetica, Arial, sans-serif !important;
+  letter-spacing: 0.028em;
 }
 
 .muscat_panel {
@@ -71,6 +85,20 @@ body.active_admin {
     .status_tag.theoretica_edition { background: #deb887; }
     .status_tag.edition { background: #808080; }
     .status_tag.composite_volume { background: #87CEFA; }
+    .status_tag.inventory { background: #114d0f; }
+    .status_tag.inventory_edition { background: #22921f; }
+
+    // For work Attribution Certainty
+    .status_tag.obsolete { background: #e60606; }
+    .status_tag.doubtful { background: #d74501; }
+    .status_tag.fragment { background: #5a01d7; }
+
+    // For Work Catalog in Publications
+    .status_tag.not_work_catalogue { background: #aea5a5; }
+    .status_tag.work_catalogue_in_preparation { background: #d75a01; }
+    .status_tag.work_catalogue_partial { background: #910a03; }
+    .status_tag.work_catalogue_complete { background: #0fa019; }
+    .status_tag.work_catalogue_alternate { background: #0e4c03; }
 
 /* These colors were deprecated in AA 2.0 - not realy a problem, I leave them here
  * if we need to reconstruct a color. Only 'published' is used for wf_stage
@@ -112,7 +140,7 @@ body.active_admin {
     background-color: #eee;
 }
 .progress_bar_content {
-    background-color: lighten($primary-color, 20%)
+    background-color: color.adjust($primary-color, $lightness: 20%, $space: hsl)
 }
 
 .srutable_wrapper {
@@ -214,6 +242,14 @@ select[name="target_template"] {
   background: image-url("/images/ebook.png");
 }
 
+.holding_do_link {
+  float: right; 
+	width: 16px;
+	height: 16px;
+  margin-right: 8px;
+  background: image-url("/images/paperclip.png");
+}
+
 .diff {
   ins {
     text-decoration: none;
@@ -313,7 +349,7 @@ select[name="target_template"] {
 	//font: inherit;
   font-size: 16px !important;
   font-weight: 500 !important;
-  font-family: 'Courier New', monospace;
+  font-family: 'Courier New', monospace !important;
 	overflow-x: hidden !important;
 	overflow-y: auto !important;
   padding-right: 7px !important;
@@ -336,6 +372,10 @@ select[name="target_template"] {
   background-image: linear-gradient(180deg, #b9b7b7, #08010149) !important;
 }
 
+.red_title {
+  color:brown !important;
+}
+
 .ui-tabs .ui-tabs-nav li.ui-tabs-active .ui-tabs-anchor {
 	cursor: pointer !important;
 }
@@ -343,4 +383,32 @@ select[name="target_template"] {
 a.button-link {
   color: white;
   text-decoration: none;
+}
+
+body.index #sidebar {
+    display: flex;
+    flex-direction: column;
+    #search_status_sidebar_section { order: 1; }
+    #filters_sidebar_section { order: 2; }
+    #actions_sidebar_section { order: 3; }
+    #imports_sidebar_section { order: 4; }
+}
+
+table.muscat_index_header {
+  margin-bottom: 0em;
+}
+
+.icon-button span.icon-copy {
+  //background: url(public/marc-icons/copy.png) no-repeat;
+  background: image-url("/images/marc-icons/copy16x19.png") no-repeat;
+  float: right;
+  width: 16px;
+  height: 19px;
+}
+
+.clipboard-message {
+  float: right; 
+  display: none;
+  margin-right: 10px;
+  border-radius: 5px;
 }

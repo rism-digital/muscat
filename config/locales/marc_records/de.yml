@@ -95,10 +95,12 @@ de:
     norwegian: Norwegisch
     occitan: Okzitanisch
     oirat: Oiratisch
+    ojibwa: Ojibwe
     old_church_slavonic: Altkirchenslawisch
     persian: Persisch
     polish: Polnisch
     portugese: Portugiesisch
+    romance_other: Romanisch (Andere)
     romani: Romani
     romanian: Rumänisch
     romansh: Bündnerromanisch (Rätoromanisch)
@@ -145,12 +147,13 @@ de:
     austria_tyrol: 'Österreich: Tirol'
     austria_upper_austria: 'Österreich: Oberösterreich'
     austria_vienna: 'Österreich: Wien'
-    azerbiajan: Aserbaidschan
+    azerbaijan: Aserbaidschan
     bangladesh: Bangladesch
     belarus: Weißrussland
     belgium: Belgien
     benin: Benin
     bolivia: Bolivien
+    bosnia_and_herzegovina: Bosnien und Herzegowina
     bosnia_herzegovina: Bosnien und Herzegowina
     brazil: Brasilien
     bulgaria: Bulgarien
@@ -173,6 +176,7 @@ de:
     germany: Deutschland
     germany_bavaria: 'Deutschland: Bayern'
     germany_saxony: 'Deutschland: Sachsen'
+    ghana: Ghana
     greece: Griechenland
     guatemala: Guatemala
     guinea: Guinea
@@ -188,11 +192,13 @@ de:
     israel: Israel
     italy: Italien
     italy_trentino_alto_adige: 'Italien: Trentino-Alto Adige'
+    jamaica: Jamaika
     japan: Japan
     korea: Korea, Republik
     latvia: Lettland
-    lithuania: Litauen
     lebanon: Libanon
+    liechtenstein: Liechtenstein
+    lithuania: Litauen
     luxembourg: Luxemburg
     malta: Malta
     mexico: Mexiko
@@ -215,12 +221,14 @@ de:
     puerto_rico: Puerto Rico
     romania: Rumänien
     russian_federation: Russische Föderation
+    san_marino: San Marino
     saudi_arabia: Saudi-Arabien
     serbia: Serbien
     slovakia: Slowakei
     slovenia: Slowenien
     south_africa: Südafrika
     spain: Spanien
+    suriname: Suriname
     sweden: Schweden
     switzerland: Schweiz
     switzerland_vaud: 'Schweiz: Vaud'
@@ -229,6 +237,8 @@ de:
     tajikistan: Tadschikistan
     trinidad_tobego: Trinidad und Tobago
     turkey: Türkei
+    turkmenistan: Turkmenistan
+    uganda: Uganda
     uk: Vereinigtes Königreich
     ukraine: Ukraine
     uruguay: Uruguay
@@ -269,6 +279,9 @@ de:
     alleged: Angeblich
     alternate_spelling: Andere Schreibweise
     alternative_work_title: Alternativer Werktitel
+    amount: Anzahl
+    annex: Anhang
+    appendix: Zusatz
     archive: Archiv
     arrangement: Bearbeitung
     arrangement_statement: Bearbeitung
@@ -299,6 +312,7 @@ de:
     baptismal_name: Taufname
     basic_functions: Grundsätzliche Funktionen
     basso_continuo: Basso continuo
+    beginning_or_single_date: Anfangs- oder Einzeldatum
     bf_major: B-Dur
     bf_minor: b-Moll
     bibliography: Bibliographie
@@ -338,6 +352,7 @@ de:
     cataloging_musical_sources: Katalogisierung von Musikquellen
     cataloging_source: Katalogisierungsquelle
     category: Art/Inhalt
+    category_section: Kategorie/Abschnitt
     censor: Zensor
     cf_major: Ces-Dur
     cf_minor: ces-Moll
@@ -354,6 +369,7 @@ de:
     collaborator: Mitverfasser
     collective_catalog: Sammelkatalog
     colophon: Kolophon
+    contributing_project: Beitrag zum Projekt
     common_clefs: Common clefs
     compiler: Kompilator
     composer: Komponist
@@ -386,7 +402,7 @@ de:
     country_activity: Wirkungsland
     country_code: Länder-Code
     country_of_publication: Land
-    county_province: Bezirk oder Staat
+    county_province: Landkreis, Provinz, Bundesland
     creation_production_note: Bemerkung zur Person / Körperschaft
     cs_major: Cis-Dur
     cs_minor: cis-Moll
@@ -399,12 +415,14 @@ de:
     date_time_last_transaction: Datum und Zeit der letzten Transaktion
     date_type: Datierungtypus
     dates: Datierungen
+    dates_of_publication: Veröffentlichungsdatum
     dedicatee: Widmungsträger
     department: Abteilung
     depositor: Depositor
     deprecated_fields: Veraltete Felder (nicht verwenden)
     description: Beschreibung
     description_area: Beschreibung
+    description_conventions: Beschreibungskonventionen
     description_summary: Zusammenfassende Beschreibung
     designer: Designer
     df_major: Des-Dur
@@ -419,12 +437,12 @@ de:
     distributor: Vertrieb
     documentation_center: Dokumentationszentrum
     donor: Donator
-    doubtful: Zweifelhaft
     dramatic_roles_original: Originale Schreibweise
     dramatic_roles_standardized: Rollennamen, standardisierte Schreibweise
     ds_major: Dis-Dur
     ds_minor: dis-Moll
     dubious: Zweifelhaft
+    duplicated_from: Dupliziert von
     e_major: E-Dur
     e_minor: e-Moll
     earlier_heading: Frühere Überschrift
@@ -436,18 +454,22 @@ de:
     ef_major: Es-Dur
     ef_minor: es-Moll
     encyclopedia: Enzyklopädie
+    end: Ende
     end_period: Periode beenden
     engraver: Stecher
     engraving: Stich
     event_organizer: Veranstalter
     event_place: Veranstaltungsort
     excerpts: Ausschnitte
+    exemplar: Exemplar
     exemplars: Exemplars
+    expansion: Erweiterung
     extent: Umfang
     extent_parts: Umfang Stimmenmaterial
     external_resource: Elektronische Lokalisierung und Zugriff
     external_resource_uri: Elektronische Lokalisierung und Zugriff
     external_resource_url: Uniform Resource Identifier
+    external_work_reference: Externe Werk-Referenz
     f_major: F-Dur
     f_minor: f-Moll
     f_minus_1: F-1
@@ -468,9 +490,12 @@ de:
     figured_bass_scores: Generalbass
     fijian: Fidschianisch
     fingerprint_identifier: Fingerprint-Erkennung
+    first_entry: Erster Eintrag
     first_second_group: Erste und zweite Zeichengruppe
+    form_of_work: Werkgattung
     form_subdivision: Unterteilung nach der Form
     format_extent: Quellenart, Umfang
+    former_sigla: Früheres Sigel
     former_owner: Vorbesitzer
     fragments: Fragmente
     fs_major: Fis-Dur
@@ -510,11 +535,18 @@ de:
     heading_personal_name1: Personenname
     help_transposing_instruments: Hilfe zu transponierenden Instrumenten
     history_institution: Geschichte der Körperschaft
+    holding: Holding
     holdings_location: Bestandsdaten
+    identification_status: Status der Identifikation
+    identified: Identifiziert
+    identified_holding: Identifizierter Exemplareintrag
+    identified_source: Identifizierte Quelle
+    identified_work: Identifiziertes Werk
     identity: Identifizierung
     identity_area: Identity area
     iiif_manifest: "IIIF-Manifest (digitalisierte Quelle)"
     iiif_manifest_other: "IIIF-Manifest (sonstige)"
+    iiif_manifest_nothing_more: IIIF-Manifest
     illustrator: Illustrator
     immediate_parent_body: Unmittelbarer Elternteil
     import: Fremddateneinspielung
@@ -522,10 +554,11 @@ de:
     incipit: Musikincipit
     incipit_number: Incipitnummer
     incipits: Incipits
+    includes_holdings_from: Enthält Bestände aus
     index_terms: Deskriptoren
-    information_found: Fundstelle
+    information_found: Vorhandene Informationen
     initial: Initiale
-    initial_entry: Ersteintrag
+    initial_entry: Ersteintrag in A/I
     initials: Initiale
     insertions: Einlagen
     inserts: Einlagen
@@ -535,6 +568,10 @@ de:
     internal_note: Interne Bemerkungen
     introduction: Einleitung
     invalid_standard_number: Stornierte/ungültige Standardnummer oder -code
+    inventory: Inventar
+    inventory_item: Inventareinträge
+    inventory_number: Inventarnummer
+    inventory_source: Inventarquelle
     isbn: ISBN
     ismn: ISMN
     issn: ISSN
@@ -551,9 +588,10 @@ de:
     language_codes: Sprachcodes
     language_libretto: Sprachcode von Libretti
     language_note: Sprachenvermerk
-    language_of_cataloging: Katalogisierungssprache
+    language_of_cataloging: Katalogisierungsspache
     language_original_text: Sprachcode des Originaltextes
     language_text: Sprachcode
+    later_entry: Späterer Eintrag
     later_heading: Spätere Überschrift
     latitude: Breitengrad
     leader: Leader
@@ -594,8 +632,10 @@ de:
     married_with: Verheiratet mit
     material_description: Materialbeschreibung
     material_examined: Autopsie
+    material_group: Materialgruppe
     material_held: Erhaltenes Material
     material_not_examined: Keine Autopsie
+    material_type: Materialart
     media_type: Physisches Medium
     mensural_clefs: Mensural-Notenschlüssel
     method_of_acquisition: Beschaffungsart
@@ -641,6 +681,7 @@ de:
     name_family: Familienname
     name_of_part: Anzahl Teile oder Abschnitte eines Werks
     name_printer: Drucker, Druckerei
+    name_titles_words: Mit einem Namen verknüpfte Titel und Zusätze
     name_variant: Namensvarianten
     name_variants: Namensvarianten
     named_dramatic_roles: 'Rollennamen: Schreibweise'
@@ -659,8 +700,10 @@ de:
     number: Nummer
     number_page: Nummer/Seitenzahl
     number_part_section: Anzahl Teile oder Abschnitte eines Werks
+    number_volume: Nummer/Band
     number_volume_part: Nummer des Bandes oder Teils
     numbers_code_fields: Nummern und Codes
+    numeric_designation: Numerische Bezeichnung
     octoechos1: 'Octoechos 1: Ēchos prōtos (First mode of Byzantine music)'
     octoechos2: 'Octoechos 2: Ēchos deuteros (Second mode of Byzantine music)'
     octoechos3: 'Octoechos 3: Ēchos tritos (Third mode of Byzantine music)'
@@ -670,12 +713,14 @@ de:
     octoechos7: 'Octoechos 7: Ēchos barys (Third plagal mode of Byzantine music)'
     octoechos8: 'Octoechos 8: Ēchos plagios tetartos (Fourth plagal mode of Byzantine music)'
     online_finding_aids: Archivführer und andere Publikationen
+    online_resource: Online-Ressource
     opera_houses_concert_halls: Opernhäuser und Konzerthallen
     opus_number: Opus
     opus_thematic_index_number: Opus / WV-Nummer
     order_name: Ordensname
     origin: Herkunft
     original_cataloging_agency: Original-Katalogisierungsstelle
+    original_record: Originaleintrag
     other: Sonstige Funktion
     other_associated_place: Anderer zugehöriger Ort
     other_designation: Andere Bezeichnung
@@ -686,6 +731,7 @@ de:
     other_instruments: Weitere Instrumente
     other_life_dates: Andere Lebensdaten
     other_physical_details: Zusätzliche Materialbeschreibung
+    other_resource: Weitere Ressourcen
     other_searchform: andere Suchform
     other_shelfmark: Weitere Signatur
     other_standard_identifier: Normdatenverweise
@@ -696,7 +742,8 @@ de:
     partial_autograph: Teilautograph
     parts_held: Vorhandene Stimmen
     parts_held_extent: Stimmenmaterial
-    patron: Mäzen/Auftraggeber
+    part_of_title: Teiltitel
+    patron: Auftraggeber
     people: Personen
     people_institutions: Personen und Körperschaften
     percussion: Schlaginstrumente
@@ -704,6 +751,8 @@ de:
     performances: Aufführungen
     performer: Interpret
     performer_note: Bemerkungen zu den Aufführungen
+    periodical_or_series: Zeitschrift oder Reihe
+    periodical_or_series_title: Zeitschrift oder Reihentitel
     person: Person
     person_name: Personenname
     personal_name: Personenname
@@ -716,6 +765,7 @@ de:
     place_activity: Wirkungsort
     place_birth: Geburtsort
     place_death: Sterbeort
+    place_of_creation: Ort der Erschaffung
     place_of_residence: Wohnort/Hauptsitz
     place_origin: Herkunftsangabe
     place_publication: Verlagsort
@@ -724,6 +774,7 @@ de:
     plate_number: Plattennummer
     plucked_instruments: Zupfinstrumente
     possible_autograph_manuscript: Fragliches Autograph
+    possibly_identified: Möglicherweise identifiziert
     postal_code: Postleitzahl
     postal_place: postalischer Ort
     preceding_entry: Früherer Eintrag
@@ -732,11 +783,14 @@ de:
     print_with_non_autograph_annotations: Druck mit nicht-autographen Eintragungen
     printer: Drucker
     printing_technique: Drucktechnik
+    private_collection: Privatsammlung
     production: Verlauf
     production_personnel: Produktionspersonal
     profession_or_function: Beruf oder Funktion
+    project: Projekt
+    project_url: Projekt-URL
     provenance: Bestandsname
-    provenance_notes: Provenienzvermerke
+    provenance_notes: Provenienzvermerk
     pseudonym: Pseudonym
     public_note: Bemerkungen
     publisher: Verleger
@@ -747,6 +801,7 @@ de:
     qualifying_information: Qualifizierende Informationen
     range_dates: Datierungsbereich
     real_world_object_uri: Real-World-Objekt-URI
+    reconstructed_title: Ermittelter Titel
     record_actions: Titel veröffentlichen
     record_audit: Datensatzprüfung
     record_origin: Herkunft
@@ -771,7 +826,7 @@ de:
     relationship_designation: Beziehungsbezeichnung in $i oder $4
     relationship_information: Informationen zur Beziehung
     religious_name: Ordensname
-    religious_order: Orden/Titel
+    religious_order: "Orden/Titel"
     reproduction: Reproduktion
     research_institute: Forschungsinstitut
     retrospective_conversion: Retroeinspielung
@@ -782,10 +837,11 @@ de:
     scribe: Schreiber
     secondary_catalog_works: Sekundärer Katalog der Werke
     secondary_literature: Sekundärliteratur
+    serial_number: Seriennummer
     series: Serie
     series_added_entry: Nebeneintragungen Gesamttitel
     series_statement: Gesamttitelangaben
-    material_group: Materialgruppe
+    section: Abschnitt
     shelfmark: Signatur
     shelfmark_olim: Alte Signatur (olim)
     short_title: Kurztitel
@@ -795,7 +851,7 @@ de:
     sister_of: Schwester von
     sketches: Skizzen
     solo_voice: Solostimme
-    soloist_instrument: Solistisches Instrument
+    soloist_instrument: Soloinstrument
     source: Quelle
     sources: Quellen
     source_data_found: Literaturnachweis
@@ -823,7 +879,7 @@ de:
     subheading_general: Allgemeine Unterteilung
     subject_access_fields: Schlagworteintragungen
     subject_heading: Schlagworteintragung
-    subject_headings: Schlagworte
+    subject_headings: Schlagwörter
     subordinate_unit: Untergeordnete Körperschaft
     succeeding_entry: Folgeeintrag
     summary: Zusammenfassung
@@ -868,7 +924,7 @@ de:
     typography: Typendruck
     uncategorized: Nicht kategorisiert
     unknown: Unbekannt
-    unparsed_fingerprint: Zusammenhängender Fingerprint
+    unparsed_fingerprint: Fingerprint
     variant_ms_title: Weiterer diplomatischer Titel
     variant_source_title: Weiterer diplomatischer Titel
     variations: Variationen
@@ -879,8 +935,19 @@ de:
     volume_year_page: Jahrgang, Seite
     watermark_description: Wasserzeichen
     woodwinds: Holzblasinstrumente
-    work: Werktitel
-    work_number: Incipitnummer
+    work: Werk
+    work_catalog: Werkkatalog
+    work_catalogs: Werkkatalog
+    work_catalog_note: Bemerkung Werkverzeichnis
+    work_list: Werkliste
+    work_node: Externe Werk-Referenz (Work node)
+    work_number: Werknummer
+    work_tag: Markierung der Werk-Revision
+    work_tag_incipit_needs_revision: Incipit muss überarbeitet werden
+    work_tag_incipit_replace: Incipit ersetzen
+    work_tag_needs_revision: Überarbeitung notwendig
+    work_tag_note: Markierungshinweis
+    work_tag_type: Markierungstyp
     year: Jahr
     years_birth_death: Geburts- und Todesdaten
   relations:
@@ -893,6 +960,24 @@ de:
     P60274: "Bearbeitung als"
     P60194: "Einfügen in"
     P60183: "Einfügen"
+  relations_works:
+    P60250: "Hat Derivate"
+    P60305: "Basiert auf"
+    P60216: "Wird erweitert als"
+    P60294: "Ist erweiterte Version von"
+    P60274: "Bearbeitung als"
+    P60242: "Ist Anordnung von"
+    P60198: "Wird ergänzt durch"
+    P60313: "Nicht definiert"
+  relations_institutions:
+    P50008: Hierarchisch höher
+    P50010: Hierarchisch untergeordnet
+    P50012: Vorgänger der Körperschaft
+    P50016: Nachfolger der Körperschaft
+    P50020: Gründerfamilie der Körperschaft
+    P50230: Körperschaftsmitglied der Körperschaft
+    P50435: Corporate body member of family
+    P50301: Aufgenommene Körperschaft
   verovio:
     position: "Standort"
     warning: "Warnung"
@@ -962,10 +1047,20 @@ de:
     ERR_063_LIGATURE_PITCH: Eine Ligatur kann nicht zwei aufeinander folgende Noten mit derselben Tonhöhe haben.
     ERR_064_LIGATURE_DURATION: Die Dauer einer Ligatur kann nicht kürzer als eine Semibrevis sein.
     ERR_065_MREST_INVALID_MEASURE: Ein Takt Pause kann nichts anderes enthalten.
+    ERR_066_EMPTY_CONTAINER: Zwischen den Sonderzeichen für Gruppen von Vorschlagsnoten oder Balken müssen Noten stehen.
+  work_catalogue:
+    not_work_catalogue: Kein Werkverzeichnis
+    work_catalogue_alternate: Alternative
+    work_catalogue_complete: Abgeschlossen
+    work_catalogue_in_preparation: Geeignet
+    work_catalogue_partial: Teilweise abgeschlossen
   rism_online:
     manuscript: "Handschrift"
     printed: "Gedruckt"
     composite: "Konvolut"
+    collection: "Sammlung"
+    item: "Eintrag"
+    single_item: "Einzelnes Element"
     apply_filters: "Filter anwenden"
     error_loading_results: "Fehler beim Laden der Ergebnisse"
     global_collection: "Globale Sammlung"

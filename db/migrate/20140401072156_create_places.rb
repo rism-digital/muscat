@@ -2,15 +2,15 @@ class CreatePlaces < ActiveRecord::Migration[4.2]
   def self.up
     create_table(:places, :options => 'ENGINE=InnoDB DEFAULT CHARSET=utf8') do |t|
     
-      t.column :name,               :string, { :null => false }
+      t.column :name,               :string, :null => false
       t.column :country,            :string
       t.column :district,           :string
       t.column :notes,              :string
       
-      t.column :wf_audit,           :string, { :limit => 16, :default => "unapproved" }
-      t.column :wf_stage,           :string, { :limit => 16, :default => "unpublished" }
+      t.column :wf_audit,           :string, :limit => 16, :default => "unapproved"
+      t.column :wf_stage,           :string, :limit => 16, :default => "unpublished"
       t.column :wf_notes,           :string
-      t.column :wf_owner,           :integer, { :default => 0 }
+      t.column :wf_owner,           :integer, :default => 0
       t.column :wf_version,         :integer, :default => 0
 
       t.column :src_count,          :integer, :default => 0

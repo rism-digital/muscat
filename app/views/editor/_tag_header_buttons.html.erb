@@ -4,17 +4,22 @@
 <%
   no_add = false
   no_delete = false
+  no_move = false
   new_window_controller = false
+
   if @editor_profile.options_config[tag_name] && @editor_profile.options_config[tag_name]["layout"]
-    if @editor_profile.options_config[tag_name]["layout"]["hide_add_button"]
-      no_add = true
-    end
+    no_add = true if @editor_profile.options_config[tag_name]["layout"]["hide_add_button"]
   end
 	
   if @editor_profile.options_config[tag_name] && @editor_profile.options_config[tag_name]["tag_params"]
-    if @editor_profile.options_config[tag_name]["tag_params"]["no_delete"]
-      no_delete = true
-    end
+   # This no delete here is overridable by editors and admins
+   no_delete = true if @editor_profile.options_config[tag_name]["tag_params"]["no_delete_override"] && !(@current_user.has_role?(:editor) || @current_user.has_role?(:admin))
+   # while no_delete is for everybody
+   no_delete = true if @editor_profile.options_config[tag_name]["tag_params"]["no_delete"]
+  end
+	
+  if @editor_profile.options_config[tag_name] && @editor_profile.options_config[tag_name]["tag_params"]
+   no_move = true if @editor_profile.options_config[tag_name]["tag_params"]["no_move"]
   end
 	
   if @editor_profile.options_config[tag_name] && @editor_profile.options_config[tag_name].include?("new_window")
@@ -48,7 +53,7 @@
       <% end %>
     <%end%>
 
-    <%- if @item.marc.config.multiples_allowed?(tag_name) -%>
+    <%- if @item.marc.config.multiples_allowed?(tag_name) && no_move == false -%>
       <a class="abutton ui-state-default marc_editor_button_left abutton-icon-solo ui-corner-all sortable-button" href="#" title="Move"><span class="ui-icon ui-icon-arrowthick-2-n-s"></span>_</a>
     <% end %>
 

@@ -26,4 +26,4 @@
 #     only: "*"
 #
 
-js_available_locales: ["de", "en", "fr", "it", "es", "pl", "pt"]
+js_available_locales: ["de", "en", "fr", "it", "es", "pl", "pt", "ca"]

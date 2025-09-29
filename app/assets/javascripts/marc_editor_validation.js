@@ -1,6 +1,22 @@
 var warningList = [];
 var hasNewWarnings = false;
 
+const SIMPLE_RULE_MAP = {
+	"required": { presence: true },
+	"mandatory": { mandatory: true },
+	"check_group": { check_group: true },
+	"validate_588_siglum": { validate_588_siglum: true },
+	"validate_edtf": { validate_edtf: true },
+	"validate_031_dups": { validate_031_dups: true },
+	"validate_url": { validate_url: true },
+}
+
+const PARAMETRIC_RULES = [
+	"required_if",
+	"begins_with",
+	"must_contain"
+]
+
 function marc_validate_has_warnings() {
 	return hasNewWarnings;
 }
@@ -63,7 +79,7 @@ function _marc_validate_highlight( element, errorClass, validClass ) {
 		if (ac) {
 			ac.addClass( errorClass ).removeClass( validClass );
 		} else {
-			console.log("Tried to higlight a hidden object with no autocomplete.")
+			console.warn("Tried to higlight a hidden object with no autocomplete.")
 		}
 	} else if ( element.type === "checkbox" ) {
 		var label = $("#" + element.name + "-label");
@@ -113,7 +129,7 @@ function _marc_validate_unhighlight( element, errorClass, validClass ) {
 		if (ac) {
 			ac.removeClass( errorClass ).addClass( validClass );
 		} else {
-			console.log("Tried to un-higlight a hidden object with no autocomplete.")
+			console.warn("Tried to un-higlight a hidden object with no autocomplete.")
 		}
 	} else if ( element.type === "checkbox" ) {
 		var label = $("#" + element.name + "-label");
@@ -146,11 +162,91 @@ function _marc_validate_unhighlight( element, errorClass, validClass ) {
 	}
 }
 
+function marc_validate_031_duplicates(value, element, param) {
+  const $elem = $(element);
+  // This is the current 031 that triggered the event
+  const $current031 = $elem.closest('.tag_toplevel_container[data-tag="031"]');
+
+  const get = ($scope, sf) =>
+    $scope.find(':input[data-tag="031"][data-subfield="' + sf + '"]')
+      .first().val()?.toString().trim() || '';
+
+  // Build tuple for the current 031
+  const a = get($current031, 'a');
+  const b = get($current031, 'b');
+  const c = get($current031, 'c');
+  const currentTuple = [a, b, c].join('.');
+
+  // Technically this should not happen,
+  // since a required_if should be present
+  // We don't want to trap this two times
+  if (!(a && b && c)) return true;
+
+  // Collect tuples for all *other* 031 blocks
+  const otherTuples = $('.tag_toplevel_container[data-tag="031"]').filter(function () {
+    return this !== $current031.get(0); // Skip the current one!
+  }).map(function () {
+    const $scope = $(this);
+    const ta = get($scope, 'a');
+    const tb = get($scope, 'b');
+    const tc = get($scope, 'c');
+    return (ta && tb && tc) ? [ta, tb, tc].join('.') : null;
+  }).get().filter(Boolean);
+
+  // We will flah THIS 031 as duplicate
+  // When the validation gets to the other(s), it will
+  // also flag those.
+  const isDuplicate = otherTuples.includes(currentTuple);
+
+  return !isDuplicate;
+}
+
 function marc_validate_begins_with(value, element, param) {
 	if (!value)
 		return true;
 
 	return value.startsWith(param);
+}
+
+// #1616 implement a pattern matching
+function marc_validate_must_contain(value, element, param) {
+	if (!value)
+		return true;
+
+	return value.includes(param);
+}
+
+function marc_validate_edtf(value, element, param) {
+	let result = false;
+	
+	// We can have empty values!
+	if (value == null || value === "")
+		return true;
+
+	try {
+		const p = edtf(value);
+		result = true;
+	} catch(err) {}
+
+	return result;
+}
+
+// Credit: https://uibakery.io/regex-library/url
+function marc_validate_url(value, element, param) {
+	var httpRegex = /^https?:\/\/(?:www\.)?[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b(?:[-a-zA-Z0-9()@:%_\+.~#?&\/=]*)$/;
+
+	if (value === "")
+		return true;
+
+	return httpRegex.test(value);
+}
+
+function marc_validate_588_siglum(value, element, param) {
+	const siglumPattern = /\b[A-Z]{1,3}-[\p{L}\p{M}]+(?=\s|$)/gu;
+	if (!value)
+		return true;
+
+	return siglumPattern.test(value);
 }
 
 // This is the simplest validator
@@ -169,7 +265,7 @@ function marc_validate_presence(value, element) {
 	
 	var validate_level = $(element).data("validate-level");
 
-	if (value == "") {
+	if (value.trim() == "") {
 		// There are other values in the form
 		// it is mandatory that this field is filled
 		if (others) {
@@ -238,7 +334,7 @@ function marc_validate_mandatory(value, element) {
 		return true;
 */
 
-	if (value == "") {
+	if (value.trim() == "") {
 			if (validate_level == "warning") {
 				marc_validate_add_warnings(element);
 				return true;
@@ -252,8 +348,10 @@ function marc_validate_mandatory(value, element) {
 }
 
 function marc_validate_required_if(value, element, param) {
+	// Note! We can validaye just one of the required_if fields
 	var dep_tag = param[0];
 	var dep_subtag = param[1];
+	
 	var valid = true;
 	var tag = $(element).data("tag");
 	var toplevel;
@@ -283,16 +381,31 @@ function marc_validate_required_if(value, element, param) {
 	} else {
 		selector = '.serialize_marc[data-tag=' + dep_tag + '][data-subfield=' + dep_subtag + ']';
 	}
+
 	$(selector, toplevel).each(function() {
 		if ($(this).val() != "") {
 			// The value of the other field is set
 			// it makes the validated field mandatory
-			if (value == "")
+			if (value.trim() == "")
 				valid = false;
 		}
 	});
 
 	return valid;
+}
+
+// #1622, the first group cannot be "Additional printed material"
+function marc_validate_check_group(value, element, param) {
+
+	var my_dt = $(element).parents(".inner_group_dt");
+
+	// Are we the first group in the list?
+	if ($(my_dt).is('.toplevel_group_dl .inner_group_dt:first-child')) {
+		if (value === "Additional printed material")
+			return false;
+	}
+
+	return true;
 }
 
 function marc_validate_new_creation(value, element) {
@@ -304,22 +417,83 @@ function marc_validate_new_creation(value, element) {
 	return true;
 }
 
-function marc_editor_validate_advanced_rule(element_class, rules) {
-	for (var rule_name in rules) {
-		if (rule_name == "required_if") {
-			// the dependent rule contains a hash
-			// with the tag and subtag
-			var rule_contents = rules[rule_name];
-			
-			for (var tag in rule_contents) {
-				$.validator.addClassRules(element_class, { required_if: [ tag, rule_contents[tag]] });
-			}
-		} else if (rule_name == "begins_with") {
-			$.validator.addClassRules(element_class, { begins_with: rules[rule_name] });
+function marc_editor_create_parameters(rule_name, rule_contents) {
+	// To make life simpler, required_if configuration passes
+	// a hash:
+	//  required_if:
+    //      "031": "a"
+	// Versus this mess here for an array with the same stuff:
+	//  required_if:
+	//       - "031"
+	//       - "a"
+	// We can make hashes work easily, but then the
+	// error message is messed up since the jquery validation
+	// plugin is kinda hardcoded to only get an array of parameters
+    // So we accept the hash, and then convert it to an array.
+	// We also only consider the FIRST pair, so no cheating like
+	// this:
+	//  required_if:
+    //      "031": "a"
+	//      "032": "b"
+	// It will not work in any case as it needs a different
+	// implementation of the validator
+    if (rule_contents instanceof Object) {
+    	const entries = Object.entries(rule_contents);
+
+        if (entries.length > 0) {
+            // Use only the first key-value pair, the others are ignored
+            rule_contents = entries[0];
+        } else {
+			// Let it die if the configuration in wrong+
+            throw new Error(`Please check the configuration for rule ${rule_name}`);
+        }
+    }
+
+	// Return a neat hash
+	return { [rule_name]: rule_contents }
+}
+
+function marc_editor_parse_any_of_rule(element_class, rule_name, rule_contents) {
+	let combined_rule = {};
+	for (const sub_rule_id in rule_contents) {
+		let sub_rule = rule_contents[sub_rule_id]
+
+		if (SIMPLE_RULE_MAP[sub_rule]) {
+			combined_rule = { ...combined_rule, ...SIMPLE_RULE_MAP[sub_rule] };
+		} else if (sub_rule instanceof Object) {
+			const sub_rule_name = Object.keys(sub_rule)[0];
+			const sub_rule_contents = sub_rule[sub_rule_name]; // This is the parameter to the rule
+			const rule_def = marc_editor_create_parameters(sub_rule_name, sub_rule_contents)
+			combined_rule = { ...combined_rule, ...rule_def };
 		} else {
-			console.log("Unknown advanced validation type: " + rule_name);
+			console.warn(`Unknown sub-rule ${sub_rule} in ${rule_name}`);
 		}
 	}
+	$.validator.addClassRules(element_class, combined_rule);
+}
+
+function marc_editor_parse_validation_rule(element_class, rule_name, rule_contents) {
+	if (rule_name === "any_of") {
+		marc_editor_parse_any_of_rule(element_class, rule_name, rule_contents)
+	} else if (PARAMETRIC_RULES.includes(rule_name)) {
+		$.validator.addClassRules(element_class, marc_editor_create_parameters(rule_name, rule_contents));
+	} else {
+		console.warn(`Unknown advanced validation type: ${rule_name}`);
+	}
+}
+
+function marc_editor_validate_advanced_rule(element_class, rules) {
+	for (const rule_name in rules) {
+		const rule_contents = rules[rule_name];
+		marc_editor_parse_validation_rule(element_class, rule_name, rule_contents);
+	}
+}
+
+function add_simple_rules(element_class, rule_name) {
+	if (SIMPLE_RULE_MAP[rule_name])
+		$.validator.addClassRules(element_class, SIMPLE_RULE_MAP[rule_name]);
+	else
+		console.warn("Unknown rule " + rule_name)
 }
 
 function marc_editor_validate_className(tag, subtag) {
@@ -342,7 +516,7 @@ function marc_editor_validate_expand_placeholder(element) {
 		if (new_elements.length > 0) {
 			return new_elements[0];
 		} else {
-			console.log("Could not find newly created element");
+			console.warn("Could not find newly created element");
 			return element;
 		}
 		
@@ -442,6 +616,7 @@ function marc_editor_init_validation(form, validation_conf) {
 		}
 	});
 	
+
 	// Add validator methods
 	$.validator.addMethod("presence", marc_validate_presence, I18n.t("validation.missing_message"));
 	$.validator.addMethod("mandatory", marc_validate_mandatory, I18n.t("validation.missing_message"));
@@ -449,7 +624,20 @@ function marc_editor_init_validation(form, validation_conf) {
 			$.validator.format(I18n.t("validation.required_if_message")));
 	$.validator.addMethod("begins_with", marc_validate_begins_with, 
 			$.validator.format(I18n.t("validation.begins_with_message")));
-			
+	$.validator.addMethod("check_group", marc_validate_check_group,
+			$.validator.format(I18n.t("validation.check_group_message")));
+	$.validator.addMethod("must_contain", marc_validate_must_contain,
+			$.validator.format(I18n.t("validation.must_contain_message")));
+	$.validator.addMethod("validate_588_siglum", marc_validate_588_siglum,
+			$.validator.format(I18n.t("validation.validate_588_siglum")));
+	$.validator.addMethod("validate_edtf", marc_validate_edtf,
+			$.validator.format(I18n.t("validation.validate_edtf")));	
+	$.validator.addMethod("validate_031_dups", marc_validate_031_duplicates,
+			$.validator.format(I18n.t("validation.validate_031_dups")));
+
+	$.validator.addMethod("validate_url", marc_validate_url,
+			$.validator.format(I18n.t("validation.validate_url")));
+
 	// New creation: this is not configurable, it is used to make sure the
 	// "confirm create new" checkbox is selected for new items
 	$.validator.addMethod("new_creation", marc_validate_new_creation, "");
@@ -467,19 +655,12 @@ function marc_editor_init_validation(form, validation_conf) {
 				var str_parts = subtag.split(",");
 				// by convention: required, warning
 				// the rule name is always the first
-				var rule_name = str_parts[0];
-				if (rule_name == "required") {
-					// Our own validator is called "presence" to distinguish it
-					// from the default "required" validator
-					$.validator.addClassRules(element_class, { presence: true });
-				} else if (rule_name == "mandatory") {
-					$.validator.addClassRules(element_class, { mandatory: true });
-				}
+				add_simple_rules(element_class, str_parts[0])
 			} else if (subtag instanceof Object) {
 				// More complex dataype
 				marc_editor_validate_advanced_rule(element_class, subtag);
 			} else {
-				console.log("Unknown validation type: " + subtag);
+				console.warn("Unknown validation type: " + subtag);
 			}
 		}
 	}

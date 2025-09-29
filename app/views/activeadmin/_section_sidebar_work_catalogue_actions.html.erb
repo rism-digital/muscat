@@ -1,0 +1,16 @@
+<% options = Publication.work_catalogues.keys.map do |key| [I18n.t("work_catalogue_labels." + key), key]end %>
+
+<ul><li class="muscat_icon_separator"></li></ul>&nbsp;
+
+<div class="panel_contents">
+    <%= label(:folder, :work_catalogue_status)%>
+    
+    <%= form_tag send("make_catalogue_admin_folder_path", item.id), method: 'post' do %>
+    <tr>
+        <%= select_tag :work_catalogue_option, options_for_select(options), {required: true} %>
+        <%= hidden_field_tag :item_id, item.id %>
+    <div class="buttons">
+        <%= submit_tag I18n.t :set_work_catalogue_status %>
+    </div>
+    <% end %>
+</div>

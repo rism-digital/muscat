@@ -1,9 +1,13 @@
 ActiveAdmin.register_page "guidelines" do
-  menu :label => proc {I18n.t(:menu_guidelines_top)}, :priority => 25
+  # Open in a new tab!
+  menu :label => proc {I18n.t(:menu_guidelines_top)}, :priority => 25, html_options: { target: "_blank" }
   
   controller do
     def index
-      @guidelines = Guidelines.new(ConfigFilePath.get_marc_editor_profile_path("#{Rails.root}/public/help/#{RISM::MARC}/guidelines.yml"), session[:locale])
+      lang = I18n.locale.to_s == "de" ? "de/" : "" rescue lang = ""
+      redirect_to "https://guidelines.rism.info/#{lang}", status: :moved_permanently, allow_other_host: true
+
+     # @guidelines = Guidelines.new(ConfigFilePath.get_marc_editor_profile_path("#{Rails.root}/public/help/#{RISM::MARC}/guidelines.yml"), session[:locale])
     end
   end
   

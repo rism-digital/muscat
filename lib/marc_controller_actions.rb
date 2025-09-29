@@ -1,6 +1,7 @@
 # Override collection_action so it is public
 # from activeadmin lib/active_admin/resource_dsl.rb
-require 'resource_dsl_extensions.rb'
+require 'patches/active_admin/resource_dsl.rb'
+require 'patches/active_admin/resource_controller.rb'
 include Triggers
 
 # Extension module, see
@@ -34,7 +35,7 @@ module MarcControllerActions
       @item = nil
       if new_marc.get_id != "__TEMP__" 
         # To get the ID for holdings
-        if params[:controller] == "admin/holdings"
+        if params[:controller] == "admin/holdings" || params[:controller] == "admin/inventory_items"
           @item = model.find(params[:id])
         else
           @item = model.find(new_marc.get_marc_source_id)
@@ -77,6 +78,12 @@ module MarcControllerActions
       if params.has_key?(:record_audit) &&
         (current_user.has_role?(:cataloger) || current_user.has_role?(:editor) || current_user.has_role?(:admin))
         @item.wf_audit = params[:record_audit]
+      end
+
+      if params.has_key?(:work_catalogue_status) && @item.is_a?(Publication) &&
+        (can?(:edit, Work) || current_user.has_role?(:editor) || current_user.has_role?(:admin))
+        @item.work_catalogue = params[:work_catalogue_status]
+        ap params[:work_catalogue_status]
       end
 
       # Set the user name to the model class variable
@@ -152,7 +159,7 @@ module MarcControllerActions
 
       @editor_profile = EditorConfiguration.get_show_layout @item
      
-      render :template => 'marc_show/show_preview', :locals => { :opac => false }
+      render :template => 'marc_show/show_preview'
     end
 
     ###################
@@ -166,23 +173,9 @@ module MarcControllerActions
       @item.marc.load_source(true)
       @editor_profile = EditorConfiguration.get_show_layout @item
       
-      render :template => 'marc_show/show_preview', :locals => { :opac => false }
+      render :template => 'marc_show/show_preview'
     end
-  
-    ##########
-    ## Help ##
-    ##########
     
-    dsl.collection_action :marc_editor_help, :method => :post do
-
-      help = params[:help]
-      help_fname = EditorConfiguration.get_help_fname(help)
-      @help_title = params[:title]
-      @help_text = IO.read("#{Rails.root}/public/#{help_fname}")
-     
-      render :template => 'editor/show_help'
-    end
-  
     ##################
     ## View version ##
     ##################
@@ -202,7 +195,7 @@ module MarcControllerActions
       @item.marc.load_source(false)
       @editor_profile = EditorConfiguration.get_show_layout @item
       
-      render :template => 'marc_show/show_preview', :locals => { :opac => false }
+      render :template => 'marc_show/show_preview'
     end
   
     ##################
@@ -234,7 +227,7 @@ module MarcControllerActions
         @wf_stages = false
       end
 
-      render :template => 'marc_show/show_preview', :locals => { :opac => false }
+      render :template => 'marc_show/show_preview'
     end
     
     #####################
@@ -243,6 +236,11 @@ module MarcControllerActions
     
     dsl.member_action :marc_restore_version, method: :put do
       
+      if !current_user.has_role?(:admin)
+        redirect_to admin_root_path, :flash => { :error => I18n.t("active_admin.access_denied.message") }
+        return
+      end
+
       #Get the model we are working on
       model = self.class.resource_class
       @item = model.find(params[:id])
@@ -283,6 +281,11 @@ module MarcControllerActions
     
     dsl.member_action :marc_delete_version, method: :put do
       
+      if !current_user.has_role?(:admin)
+        redirect_to admin_root_path, :flash => { :error => I18n.t("active_admin.access_denied.message") }
+        return
+      end
+
       begin
         version = PaperTrail::Version.find( params[:version_id] )
       rescue ActiveRecord::RecordNotFound
@@ -331,11 +334,11 @@ module MarcControllerActions
       
       validator = MarcValidator.new(@item, current_user)
       validator.validate_tags
-      validator.validate_links
+      #validator.validate_links
       validator.validate_unknown_tags
       validator.validate_server_side
       if validator.has_errors
-        render json: {status: validator.to_s}
+        render json: {status: validator.to_s(translate: true)}
       else
         render json: {status: I18n.t("validation.correct")}
       end

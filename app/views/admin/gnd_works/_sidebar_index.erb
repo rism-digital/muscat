@@ -1,0 +1,43 @@
+<%= form_tag("/admin/gnd_works/search", method: "get", class: "filter_form") do %>
+  <div class="filter_form">
+      <div class="string input optional stringish filter_form_field filter_string">
+        <%= label_tag("q[composer]", I18n.t("gnd.composer")) %>
+        <%= text_field_tag("q[composer]", @composer) %>
+      </div>
+      <div class="string input optional stringish filter_form_field filter_string">
+        <%= label_tag("q[title]", I18n.t("gnd.work_title")) %>
+        <%= text_field_tag("q[title]", @title) %>
+      </div>
+    <div class="buttons">
+      <%= submit_tag("Search") %>
+    </div>
+  </div>
+<% end %>
+
+<ul>
+  <li class="muscat_icon_separator"></li>
+  <li class="muscat_icon_link">
+  </li>
+</ul>
+
+<%= form_tag("/admin/gnd_works/edit", method: "get", class: "filter_form") do %>
+  <div class="filter_form">
+      <div class="string input optional stringish filter_form_field filter_string">
+        <%= label_tag("id", I18n.t("gnd.edit_gnd_record")) %>
+        <%= text_field_tag("id", "") %>
+      </div>
+    <div class="buttons">
+      <%= submit_tag(I18n.t("gnd.edit")) %>
+    </div>
+  </div>
+<% end %>
+
+<ul>
+  <li class="muscat_icon_separator"></li>
+  <li class="muscat_icon_link">
+    <a href="/admin/gnd_works/new" class="muscat_icon_link muscat_icon_link_new"><%=(I18n.t :new)%></a>
+  </li>
+</ul>
+
+
+

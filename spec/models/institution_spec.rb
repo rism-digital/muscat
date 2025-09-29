@@ -5,7 +5,7 @@ RSpec.describe Institution, solr: true do
 
     it "compares the sizes of depending workgroups" do
       before_size = Workgroup.where(:name => 'Germany').take.institutions.size
-      institution = Institution.create(:name => "Entenhausen", :siglum => "D-Enteh")
+      institution = Institution.create(:full_name => "Entenhausen", :siglum => "D-Enteh")
       after_size = Workgroup.where(:name => 'Germany').take.institutions.size
       expect((before_size + 1)).to be == after_size
       institution.destroy

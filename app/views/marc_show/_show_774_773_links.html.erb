@@ -10,12 +10,10 @@
 							<%= @editor_profile.get_sub_label("773", "w") %>
 						</th>
 						<td valign="top">
-							<% if opac %>
-								<%= link_to @item.parent_source.id.to_s, solr_document_path(@item.parent_source.id.to_s)%>
-							<% elsif is_selection_mode? %>
+							<% if is_selection_mode? %>
 								<%= @item.parent_source.id.to_s%>
 							<% else %>
-								<%= application_helper_link_source_id(@item.parent_source.id, "", opac).html_safe %>
+								<%= application_helper_link_source_id(@item.parent_source.id, "").html_safe %>
 							<% end %>
 							<%= " #{@item.parent_source.composer}" if @item.parent_source.composer != "" %><%= ": " if (@item.parent_source.composer != "" && @item.parent_source.std_title)%><i><%= "#{@item.parent_source.std_title}" if @item.parent_source.std_title %></i>
 						</td>
@@ -44,12 +42,10 @@
 						<tr class="row">
 							<th><%= count == 0 ? title : "&nbsp;".html_safe %></th>
 							<td>
-								<% if opac %>
-									<%= link_to child.id.to_s, solr_document_path(child.id.to_s)%>
-								<% elsif is_selection_mode? %>
+								<% if is_selection_mode? %>
 									<%= child.id.to_s%>
 								<% else %>
-									<%= application_helper_link_source_id(child.id, "", opac).html_safe %>
+									<%= application_helper_link_source_id(child.id, "").html_safe %>
 								<% end %>
 								<%= " #{child.composer}" if child.composer != "" %><%= ": " if (child.composer != "" && child.std_title != "") %><i><%= "#{child.std_title}" if child.std_title != "" %></i>
 								<% if holding_link%>
@@ -76,12 +72,10 @@
 							<%= @editor_profile.get_sub_label("775", "w") %>
 						</th>
 						<td valign="top">
-							<% if opac %>
-								<%= link_to @item.sources.first.id.to_s, solr_document_path(@item.sources.first.id.to_s)%>
-							<% elsif is_selection_mode? %>
+							<% if is_selection_mode? %>
 								<%= @item.sources.first.id.to_s%>
 							<% else %>
-								<%= application_helper_link_source_id(@item.sources.first.id, "", opac).html_safe %>
+								<%= application_helper_link_source_id(@item.sources.first.id, "").html_safe %>
 							<% end %>
 							<%= " #{@item.sources.first.composer}" if @item.sources.first.composer != "" %><%= ": " if (@item.sources.first.composer != "" && @item.sources.first.std_title)%><i><%= "#{@item.sources.first.std_title}" if @item.sources.first.std_title %></i>
 						</td>

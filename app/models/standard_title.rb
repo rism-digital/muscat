@@ -3,7 +3,6 @@
 #
 # === Fields
 # * <tt>title</tt> - the standardized title
-# * <tt>title_d</tt> - downcase and stripped title
 # * <tt>notes</tt>
 # * <tt>src_count</tt> - keeps track of the Source models tied to this element
 #
@@ -13,33 +12,52 @@
 class StandardTitle < ApplicationRecord
   include ForeignLinks
   include AuthorityMerge
-  
-  has_and_belongs_to_many(:referring_sources, class_name: "Source", join_table: "sources_to_standard_titles")
+  include CommentsCleanup
+  include ThroughAssociations
+  include AutoStripStrings
+
+  #has_and_belongs_to_many(:referring_sources, class_name: "Source", join_table: "sources_to_standard_titles")
+  has_many :source_standard_title_relations, class_name: "SourceStandardTitleRelation"
+  has_many :referring_sources, through: :source_standard_title_relations, source: :source
+
+  #has_and_belongs_to_many(:referring_works, class_name: "Work", join_table: "works_to_standard_titles")
+  has_many :work_standard_title_relations, class_name: "WorkStandardTitleRelation"
+  has_many :referring_works, through: :work_standard_title_relations, source: :work
+
+  has_many :inventory_item_standard_title_relations, class_name: "InventoryItemStandardTitleRelation"
+  has_many :referring_inventory_items, through: :inventory_item_standard_title_relations, source: :inventory_item
+
   has_many :folder_items, as: :item, dependent: :destroy
   has_many :delayed_jobs, -> { where parent_type: "StandardTitle" }, class_name: 'Delayed::Backend::ActiveRecord::Job', foreign_key: "parent_id"
   belongs_to :user, :foreign_key => "wf_owner"
-    
+  
   validates_presence_of :title
   
   #include NewIds
   
-  before_destroy :check_dependencies
+  before_destroy :check_dependencies, :cleanup_comments
   
   #before_create :generate_new_id
   after_save :reindex
   
   attr_accessor :suppress_reindex_trigger
+  attr_accessor :suppress_update_count_trigger
+
   alias_attribute :name, :title
   alias_attribute :id_for_fulltext, :id
   
-  enum wf_stage: [ :inprogress, :published, :deleted, :deprecated ]
-  enum wf_audit: [ :full, :abbreviated, :retro, :imported ]
+  enum :wf_stage, [ :inprogress, :published, :deleted, :deprecated ]
+  enum :wf_audit, [ :full, :abbreviated, :retro, :imported ]
   
   # Suppresses the solr reindex
   def suppress_reindex
     self.suppress_reindex_trigger = true
   end
   
+  def suppress_update_count
+    self.suppress_update_count_trigger = true
+  end
+
   def reindex
     return if self.suppress_reindex_trigger == true
     self.index
@@ -55,7 +73,6 @@ class StandardTitle < ApplicationRecord
       title
     end
     text :title
-    text :title_d
     
     boolean :latin_order do
       latin
@@ -102,6 +119,9 @@ class StandardTitle < ApplicationRecord
       end
       #StandardTitle.count_by_sql("select count(*) from sources_to_standard_titles where standard_title_id = #{self[:id]}")
     end
+    # Not this one!
+    #sunspot_dsl.integer(:src_count_order, :stored => true) {through_associations_source_count}
+    integer(:referring_objects_order, stored: true) {through_associations_exclude_source_count}
   end
   
   def get_typus
@@ -121,6 +141,22 @@ class StandardTitle < ApplicationRecord
 	 
   def name
     return title
+  end
+
+  # This function has to be implemented to use
+  # the getter_function autocomplete
+  # It receives a row of results from the SQL query
+  def getter_function_autocomplete_label(query_row)    
+    "#{title} (#{query_row[:count]})"
+  end
+
+  # If we define our own ransacker, we need this
+  def self.ransackable_attributes(auth_object = nil)
+    column_names + _ransackers.keys
+  end
+
+  def self.ransackable_associations(auth_object = nil)
+    reflect_on_all_associations.map { |a| a.name.to_s }
   end
 
   ransacker :"is_text", proc{ |v| } do |parent| parent.table[:id] end

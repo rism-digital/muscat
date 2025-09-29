@@ -1,12 +1,7 @@
 --- !map:Settings 
-"000": 
+"001":
   tag: tag_no_subfield
-  tag_params: 
-    editor_only: true
-  tag_header: none
-"001": 
-  tag: tag_no_subfield
-  tag_params: 
+  tag_params:
     read_only: true
     no_delete: true
   tag_header: none
@@ -31,7 +26,7 @@
         editor_partial: subfield_select
 "031": 
   new_window: standard_titles
-  new_window_field: title_equals
+  new_window_field: title_eq
   layout: 
     fields:
     - - u
@@ -44,11 +39,8 @@
     - - e
     - - t
       - growfield: true
-        type: standard_title
-        field: title
-        editor_partial: subfield_secondary
-        allow_new: true
-        has_links_to: true
+        type: source_031t_solr
+        editor_partial: subfield_autocomplete
     - - r
       - editor_partial: subfield_select_codes
         codes_reference: "031r"
@@ -77,6 +69,7 @@
     - - p
       - editor_partial: subfield_pae
     - - q
+      - growfield: true
     - - z
   tag_params:
     031r:
@@ -176,37 +169,71 @@
     - - indicator
       - editor_partial: subfield_indicator
     - - a
-
-"040": 
+"040":
+  layout:
+    fields:
+    - - a
+      - read_only: true
+        default: "DE-633"
+    - - b
+      - editor_partial: subfield_select_codes
+        select_label: "Language"
+        codes_reference: "codes"
+    - - c
+      - read_only: true
+        default: "DE-633"
+    - - d
+      - read_only: true
+    - - e
+      - read_only: true
+        default: "rismg"
+  tag_params:
+    codes:
+      - "eng"
+      - "fre"
+      - "ger"
+      - "ita"
+      - "por"
+      - "spa"
+"046": 
   layout: 
     fields: 
-    - - a
-    - - c
-    - - d
-    - - b
+    - - k
+      - editor_partial: subfield_edtf
+    #- - l
+    - - z
 "100":
   new_window: people
-  new_window_field: full_name_equals
+  new_window_field: full_name_eq
   layout:
     fields:
     - - a
       - type: person
         editor_partial: subfield_secondary
         allow_new: true
+      - trigger:
+        - save:
+          - referring_works
     - - d
       - autocomplete_extra: life_dates
 "130":
   new_window: standard_titles
-  new_window_field: title_equals
+  new_window_field: title_eq
   layout:
     fields:
     - - a
       - type: standard_title
         editor_partial: subfield_secondary
         allow_new: true
+      - trigger:
+        - save:
+          - referring_works
     - - r
       - editor_partial: subfield_select_codes
         codes_reference: "130r"
+      - trigger:
+        - save:
+          - referring_works
     - - m
   tag_params:
     130r:
@@ -278,30 +305,138 @@
       - "6byz"
       - "7byz"
       - "8byz"
+"370": 
+  layout: 
+    fields: 
+    - - "g"
+      - type: place
+        editor_partial: subfield_secondary
+        allow_new: true
+    - - i
+"377": 
+  layout: 
+    fields:
+    - - a
+      - editor_partial: subfield_select_codes
+        select_label: "Language"
+  tag_params:
+    codes:
+      - "afr"
+      - "alb"
+      - "ara"
+      - "arg"
+      - "arm"
+      - "art"
+      - "aus"
+      - "baq"
+      - "ben"
+      - "bos"
+      - "bul"
+      - "cat"
+      - "cel"
+      - "chi"
+      - "chu"
+      - "cre"
+      - "crp"
+      - "cze"
+      - "dak"
+      - "dan"
+      - "dsb"
+      - "dut"
+      - "eng"
+      - "enm"
+      - "est"
+      - "fao"
+      - "fij"
+      - "fin"
+      - "fre"
+      - "frm"
+      - "fro"
+      - "frr"
+      - "fry"
+      - "fur"
+      - "ger"
+      - "gez"
+      - "gle"
+      - "glg"
+      - "gmh"
+      - "goh"
+      - "grc"
+      - "gre"
+      - "gsw"
+      - "heb"
+      - "hrv"
+      - "hsb"
+      - "hun"
+      - "ice"
+      - "iii"
+      - "ita"
+      - "jpn"
+      - "kor"
+      - "lat"
+      - "lav"
+      - "lit"
+      - "ltz"
+      - "mac"
+      - "mao"
+      - "mon"
+      - "mul"
+      - "nap"
+      - "nds"
+      - "nor"
+      - "oci"
+      - "oji"
+      - "per"
+      - "pol"
+      - "por"
+      - "roh"
+      - "rom"
+      - "rum"
+      - "rus"
+      - "sai"
+      - "san"
+      - "scn"
+      - "sco"
+      - "sla"
+      - "slo"
+      - "slv"
+      - "smn"
+      - "spa"
+      - "srp"
+      - "swa"
+      - "swe"
+      - "tat"
+      - "tgl"
+      - "tha"
+      - "tib"
+      - "tsi"
+      - "tur"
+      - "ukr"
+      - "und"
+      - "vie"
+      - "wel"
+      - "wen"
+      - "xal"
+      - "yid"
+      - "zxx"
 "380": 
-  allow_new: true
   new_window: standard_terms
   layout: 
     fields: 
     - - "a"
       - type: standard_term
         editor_partial: subfield_secondary
-"383": 
-  layout: 
-    fields: 
-    - - b
-"430": 
-  new_window: standard_titles
-  new_window_field: title_equals
+        allow_new: true
+"383":
   layout:
     fields:
     - - a
-      - type: standard_title
-        editor_partial: subfield_secondary
-        allow_new: true
+    - - b
+"430":
+  layout:
+    fields:
+    - - a
     - - r
-      - editor_partial: subfield_select_codes
-        codes_reference: "430r"
     - - m
     - - p
     - - s
@@ -375,94 +510,44 @@
       - "6byz"
       - "7byz"
       - "8byz"
-"500": 
-  allow_new: true
+"500":
   new_window: people
-  layout: 
-    fields: 
-    - - "a"
-      - type: person
-        editor_partial: subfield_secondary
-    - - d
-    - - e
-"548": 
-  layout: 
-    fields: 
-    - - a
-      - growfield: true
-    - - i
-      - values:
-        - "Date of origin"  
-        editor_partial: subfield_select
-"667": 
-  layout: 
-    fields: 
-    - - a
-"670": 
-  allow_new: true
-  new_window: publications
-  layout: 
-    fields: 
-    - - "a"
-      - type: publication
-        editor_partial: subfield_secondary
-    - - "b"
-"675": 
-  allow_new: true
-  new_window: publications
-  layout: 
-    fields: 
-    - - "a"
-      - type: publication
-        editor_partial: subfield_secondary
-"680": 
-  layout: 
-    fields: 
-    - - a
-      - growfield: true
-"690": 
-  new_window: publications
-  new_window_field: name_equals
-  layout: 
-    fields: 
-    - - a
-      - type: publication
-        editor_partial: subfield_secondary
-        allow_new: false
-    - - n
-"691": 
-  new_window: publications
-  new_window_field: name_equals
-  layout: 
-    fields: 
-    - - a
-      - type: publication
-        editor_partial: subfield_secondary
-        allow_new: false
-    - - n
-"700":
-  allow_new: true
-  new_window: people
+  new_window_field: full_name_eq
   layout:
     fields: 
     - - a
       - type: person
         editor_partial: subfield_secondary
+        allow_new: true
+    - - "j"
+      - editor_partial: subfield_select_codes
+        codes_reference: "codes"
     - - "4"
       - editor_partial: subfield_select_codes
         select_label: "Function"
         codes_reference: "relator_codes"
   tag_params: 
+    codes:
+      - "Ascertained"
+      - "Alleged"
+      - "Conjectural"
+      - "Misattributed"
     relator_codes: 
-    - cmp
-    - dte
+    - arr
     - asn
+    - aut
+    - ccp
+    - att
+    - ctb
+    - dte
     - lbt
     - lyr
     - oth
-"710":
+    - pat
+    - trl
+"510":
   new_window: institutions
-  new_window_field: name_equals
+  new_window_field: corporate_name_eq
   layout: 
     fields: 
     - - a
@@ -482,34 +567,145 @@
       - "Ascertained"
       - "Alleged"
       - "Conjectural"
-      - "Doubtful"
       - "Misattributed"
     relator_codes: 
+      - asn
       - dte
       - oth
-"747": 
-  allow_new: true
+      - pat
+"530": 
+  new_window: works
+  new_window_field: title_eq
+  layout: 
+    fields: 
+    - - "a"
+      - type: work
+        editor_partial: subfield_secondary
+        allow_new: true
+    - - g
+    - - i
+      - editor_partial: subfield_select_codes
+        codes_reference: "codes"
+  tag_params:
+      codes:
+      - "rdau:P60250"
+      - "rdau:P60305"
+      - "rdau:P60216"
+      - "rdau:P60294"
+      - "rdau:P60274"
+      - "rdau:P60242"
+      - "rdau:P60198"
+      - "rdau:P60313"
+"547": 
   new_window: liturgical_feasts
   layout: 
     fields: 
     - - "a"
       - type: liturgical_feast
         editor_partial: subfield_secondary
-"930": 
-  allow_new: true
-  new_window: works
+        allow_new: true
+"667": 
+  layout: 
+    fields: 
+    - - a
+      - growfield: true
+"670": 
+  new_window: publications
+  new_window_field: short_name_eq
   layout: 
     fields: 
     - - "a"
-      - type: work
+      - type: publication
         editor_partial: subfield_secondary
-    - - i
-      - values:
-        - "Adaption of"
-        - "Continuation of"
-        - "Inspired by"
-        - "Other"
-        - "Part of"
-        - "Pharaphrase of"  
-        - "Variation of"  
-        editor_partial: subfield_select
+        allow_new: false
+    - - "9"
+      - growfield: true
+    - - "b"
+      - growfield: true
+    - - "u"
+      - growfield: true
+"675": 
+  new_window: publications
+  new_window_field: short_name_eq
+  layout: 
+    fields: 
+    - - "a"
+      - type: publication
+        allow_new: false
+        editor_partial: subfield_secondary
+"680": 
+  layout: 
+    fields: 
+    - - a
+      - growfield: true
+"690": 
+  new_window: publications
+  new_window_field: short_name_eq
+  layout: 
+    fields: 
+    - - a
+      - type: publication_only_short_name
+        editor_partial: subfield_secondary
+        allow_new: false
+    - - n
+    - - s
+      #- type: publication_505t_solr
+      #  editor_partial: subfield_autocomplete
+    - - x
+      - editor_partial: subfield_select_codes
+        codes_reference: "codes"
+  tag_params:
+      codes:
+      - "Appendix"
+"691": 
+  new_window: publications
+  new_window_field: short_name_eq
+  layout: 
+    fields: 
+    - - a
+      - type: publication_only_short_name
+        editor_partial: subfield_secondary
+        allow_new: false
+    - - n
+    - - s
+      #- type: publication_505t_solr
+      #  editor_partial: subfield_autocomplete
+    - - x
+      - editor_partial: subfield_select_codes
+        codes_reference: "codes"
+  tag_params:
+      codes:
+      - "Appendix"
+"699": 
+  layout: 
+    fields:
+    - - a
+      - editor_partial: subfield_select_codes
+        select_label: "Type"
+    - - b
+      - growfield: true
+  tag_params:
+    codes:
+      - "needs-revision" 
+      - "incipit-needs-revision"
+      - "incipit-replace"
+
+"856": 
+  layout: 
+    fields: 
+    - - u
+    - - z
+      - growfield: true
+"981":
+  tag_params:
+    read_only: true
+    no_delete: true
+  layout:
+    fields:
+    - - "0"
+      - read_only: true
+    - - "d"
+      - read_only: true
+
+triggers:
+  - notify_changes

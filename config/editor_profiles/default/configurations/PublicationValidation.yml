@@ -5,16 +5,29 @@ client:
   "041":
     tags:
       a: required, warning
+  "100":
+    tags:
+      "0": required
   "240":
     tags:
       a: required, warning
   "337":
     tags:
       a: required, warning
+  "760":
+    tags:
+      "0": required
   "856": 
     tags:
       u:
-        begins_with: "http"
+        any_of:
+          - validate_url
+          #- begins_with: "http"
+          - required
       z:
         required_if:
           "856": "u"
+  #"856":
+  #  tags:
+  #    "u": required
+  #    "z": required

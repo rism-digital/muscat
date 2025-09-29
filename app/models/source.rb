@@ -12,11 +12,8 @@
 # * <tt>ms_lib_siglums</tt> - List of the library siglums, Library_id is nost stored anymore here, we use LibrariesSource for many-to-many
 # * <tt>record_type</tt> - set to 1 id the ms. is anonymous, set to 2 if the ms. is a holding record
 # * <tt>std_title</tt> - Standard Title
-# * <tt>std_title_d</tt> - Standard title, downcase, with all UTF chars stripped (and substituted by ASCII chars)
 # * <tt>composer</tt> - Composer name
-# * <tt>composer_d</tt> - Composer, downcase, as standard title
 # * <tt>title</tt> - Title on manuscript (non standardized)
-# * <tt>title_d</tt> - Title on ms, downcase, chars stripped as in std_title_d and composer_d
 # * <tt>shelf_mark</tt> - source shelfmark
 # * <tt>language</tt> - Language of the text (if present) in the ms.
 # * <tt>date_from</tt> - First date on ms.
@@ -40,19 +37,23 @@ class Source < ApplicationRecord
   @last_event_save
   attr_accessor :last_event_save
 
-  has_paper_trail :on => [:update, :destroy], :only => [:marc_source, :wf_stage], :if => Proc.new { |t| VersionChecker.save_version?(t) }
+  has_paper_trail :on => [:update, :destroy], :only => [:marc_source, :wf_stage, :wf_audit], :if => Proc.new { |t| VersionChecker.save_version?(t) }
 
   # include the override for group_values
-  require 'solr_search.rb'
+  require 'muscat/adapters/active_record/base.rb'
   include ForeignLinks
   include MarcIndex
   include Template
+  include CommentsCleanup
+  include ComposedOfReimplementation
+
   resourcify
 
-  belongs_to :parent_source, {class_name: "Source", foreign_key: "source_id"}
-  has_many :child_sources, {class_name: "Source"}
+  belongs_to :parent_source, class_name: "Source", foreign_key: "source_id"
+  has_many :child_sources, class_name: "Source"
   has_many :digital_object_links, :as => :object_link, :dependent => :delete_all
   has_many :digital_objects, through: :digital_object_links, foreign_key: "object_link_id"
+
   #has_and_belongs_to_many :institutions, join_table: "sources_to_institutions"
   has_many :source_institution_relations
   has_many :institutions, through: :source_institution_relations
@@ -61,19 +62,44 @@ class Source < ApplicationRecord
   has_many :source_person_relations
   has_many :people, through: :source_person_relations
 
-  has_and_belongs_to_many :standard_titles, join_table: "sources_to_standard_titles"
-  has_and_belongs_to_many :standard_terms, join_table: "sources_to_standard_terms"
-  has_and_belongs_to_many :publications, join_table: "sources_to_publications"
-  has_and_belongs_to_many :liturgical_feasts, join_table: "sources_to_liturgical_feasts"
-  has_and_belongs_to_many :places, join_table: "sources_to_places"
+  #has_and_belongs_to_many :standard_titles, join_table: "sources_to_standard_titles"
+  has_many :source_standard_title_relations
+  has_many :standard_titles, through: :source_standard_title_relations
+
+  #has_and_belongs_to_many :standard_terms, join_table: "sources_to_standard_terms"
+  has_many :source_standard_term_relations
+  has_many :standard_terms, through: :source_standard_term_relations
+
+  #has_and_belongs_to_many :publications, join_table: "sources_to_publications"
+  has_many :source_publication_relations
+  has_many :publications, through: :source_publication_relations
+
+  #has_and_belongs_to_many :liturgical_feasts, join_table: "sources_to_liturgical_feasts"
+  has_many :source_liturgical_feast_relations
+  has_many :liturgical_feasts, through: :source_liturgical_feast_relations
+
+  #has_and_belongs_to_many :places, join_table: "sources_to_places"
+  has_many :source_place_relations
+  has_many :places, through: :source_place_relations
+
   has_many :holdings
-	has_many :collection_holdings, {class_name: "Holding", foreign_key: "collection_id"}
+	has_many :collection_holdings, class_name: "Holding", foreign_key: "collection_id"
   
+  # This is for associating IIs to their Inventory
+  has_many :inventory_items
+
+  # This is when an II references a source, like identitied src
+  has_many :inventory_item_source_relations, class_name: "InventoryItemSourceRelation"
+  has_many :referring_inventory_items, through: :inventory_item_source_relations, source: :inventory_item
+
   #has_and_belongs_to_many :works, join_table: "sources_to_works"
-  has_many :source_work_relations
+  has_many :source_work_relations, dependent: :destroy
   has_many :works, through: :source_work_relations
 
-  has_and_belongs_to_many :work_nodes, join_table: "sources_to_work_nodes"
+  #has_and_belongs_to_many :work_nodes, join_table: "sources_to_work_nodes"
+  has_many :source_work_node_relations
+  has_many :work_nodes, through: :source_work_node_relations
+
   has_many :folder_items, as: :item, dependent: :destroy
   has_many :folders, through: :folder_items, foreign_key: "item_id"
   belongs_to :user, :foreign_key => "wf_owner"
@@ -87,33 +113,111 @@ class Source < ApplicationRecord
   has_many :referring_source_relations, class_name: "SourceRelation", foreign_key: "source_b_id"
   has_many :referring_sources, through: :referring_source_relations, source: :source_a
 
-  composed_of :marc, :class_name => "MarcSource", :mapping => [%w(marc_source to_marc), %w(record_type record_type)]
+  #composed_of :marc, :class_name => "MarcSource", :mapping => [%w(marc_source to_marc), %w(record_type record_type)]
+  composed_of_reimplementation :marc, class_name: "MarcSource", mapping: [%w(marc_source to_marc), %w(record_type record_type)]
+
   alias_attribute :id_for_fulltext, :id
 
   scope :in_folder, ->(folder_id) { joins(:folder_items).where("folder_items.folder_id = ?", folder_id) }
 
-  # FIXME id generation
   before_destroy :check_dependencies, :check_parent, prepend: true
+  before_destroy :update_links_for_destroy, :cleanup_comments
 
   before_save :set_object_fields, :save_updated_at
   after_create :fix_ids
   after_initialize :after_initialize
   after_save :update_links, :reindex
-  before_destroy :update_links_for_destroy
+  
 
   attr_accessor :suppress_reindex_trigger
   attr_accessor :suppress_recreate_trigger
   attr_accessor :suppress_update_77x_trigger
   attr_accessor :suppress_update_count_trigger
 
-  enum wf_stage: [ :inprogress, :published, :deleted, :deprecated ]
-  enum wf_audit: [ :full, :abbreviated, :retro, :imported ]
+  enum :wf_stage, [ :inprogress, :published, :deleted, :deprecated ]
+  enum :wf_audit, [ :full, :abbreviated, :retro, :imported ]
+  enum :validation_status, [ :validation_paseed, :validation_failed ]
 
+  scope :by_shelf_mark_and_siglum, ->(shelf_mark, lib_siglum) {
+    left_joins(:holdings)
+      .where(
+        %(
+          (sources.shelf_mark LIKE :shelf_mark AND sources.lib_siglum = :lib_siglum)
+           OR
+          (holdings.shelf_mark LIKE :shelf_mark AND holdings.lib_siglum = :lib_siglum)
+        ),
+        shelf_mark: "%#{shelf_mark}%",  # wrap in '%' for "contains"
+        lib_siglum: lib_siglum
+      )
+      .distinct
+  }
+
+  scope :by_shelf_mark_and_siglum_contains, ->(shelf_mark, lib_siglum) {
+    left_joins(:holdings)
+      .where(
+        %(
+          (sources.shelf_mark LIKE :shelf_mark AND sources.lib_siglum LIKE :lib_siglum)
+           OR
+          (holdings.shelf_mark LIKE :shelf_mark AND holdings.lib_siglum LIKE :lib_siglum)
+        ),
+        shelf_mark: "%#{shelf_mark}%",  # wrap in '%' for "contains"
+        lib_siglum: "%#{lib_siglum}%"
+      )
+      .distinct
+  }
+
+  scope :by_shelf_mark, ->(shelf_mark) {
+    return all if shelf_mark.blank?
+
+    left_joins(:holdings)
+      .where(
+        "sources.shelf_mark LIKE :val OR holdings.shelf_mark LIKE :val",
+        val: "%#{shelf_mark}%"
+      )
+      .distinct
+  }
+
+  scope :by_siglum, ->(siglum) {
+    return all if siglum.blank?
+
+    left_joins(:holdings)
+      .where(
+        "sources.lib_siglum = :val OR holdings.lib_siglum = :val",
+        val: siglum
+      )
+      .distinct
+  }
+
+  scope :by_siglum_contains, ->(siglum) {
+    return all if siglum.blank?
+
+    left_joins(:holdings)
+      .where(
+        "sources.lib_siglum LIKE :val OR holdings.lib_siglum LIKE :val",
+        val: "%#{siglum}%"
+      )
+      .distinct
+  }
+
+=begin
+  def marc
+    @marc ||= MarcSource.new(self.marc_source, self.record_type)
+  end
+
+
+  def marc=(marc)
+    self.marc_source = marc.to_marc
+    self.record_type = marc.record_type
+    
+    @marc = marc
+  end
+=end
   def after_initialize
     @old_parent = nil
     @last_user_save = nil
     @last_event_save = "update"
   end
+
 
   # Suppresses the recreation of the links with foreign MARC elements
   # (es libs, people, ...) on saving
@@ -174,7 +278,7 @@ class Source < ApplicationRecord
   end
 
   searchable :auto_index => false do |sunspot_dsl|
-   sunspot_dsl.integer :id
+   sunspot_dsl.integer :id, stored: true
    sunspot_dsl.integer :record_type
 
     sunspot_dsl.text :id_fulltext do |s|
@@ -182,6 +286,19 @@ class Source < ApplicationRecord
     end
 
     sunspot_dsl.text :source_id
+
+    # This is not the ideal way as a text field
+    # But for current limitations it is the best way now
+    # FIXME use a multiple string
+    sunspot_dsl.text :source_rism_ids do |s|
+      all_ids = s.child_sources.pluck(:id)
+      all_ids << s.parent_source.id if s.parent_source
+      all_ids << s.id
+      all_ids += s.sources.pluck(:id)
+      all_ids += s.referring_sources.pluck(:id)
+      
+      all_ids.sort.uniq.compact.join(" ")
+    end
 
     # For ordering
     sunspot_dsl.string :std_title_shelforder, :as => "std_title_shelforder_s" do |s|
@@ -193,7 +310,6 @@ class Source < ApplicationRecord
     end
     # For fulltext search
     sunspot_dsl.text :std_title, :stored => true
-    sunspot_dsl.text :std_title_d
 
     sunspot_dsl.string :composer_order do |s|
       s.composer == "" ? nil : s.composer
@@ -215,14 +331,11 @@ class Source < ApplicationRecord
       end
     end
 
-    sunspot_dsl.text :composer_d
-
     sunspot_dsl. string :title_order do |s|
       s.title
     end
 
     sunspot_dsl.text :title, :stored => true
-    sunspot_dsl.text :title_d
 
     sunspot_dsl.string :shelf_mark_order do |s|
       s.shelf_mark
@@ -246,12 +359,6 @@ class Source < ApplicationRecord
     # We use it for GIS
     sunspot_dsl.string :lib_siglum, :stored => true
     # Dates now come directly from MARC
-#    sunspot_dsl.integer :date_from do
-#      date_from != nil && date_from > 0 ? date_from : nil
-#    end
-#    sunspot_dsl.integer :date_to do
-#      date_to != nil && date_to > 0 ? date_to : nil
-#    end
 
     sunspot_dsl.integer :wf_owner
 
@@ -288,12 +395,20 @@ class Source < ApplicationRecord
       Sunspot::Util::Coordinates.new(lat, lon)
     end
 
+    sunspot_dsl.boolean :has_music_incipit do |s|
+      s.marc.has_incipits?
+    end
+
     sunspot_dsl.integer :copies, :stored => true do |s|
       if s.holdings.count > 0
         s.holdings.count
       else
         nil
       end
+    end
+
+    sunspot_dsl.boolean :has_internal_note do |s|
+      (s.marc.by_tags(["599"]).count > 0)
     end
 
     sunspot_dsl.text :text do |s|
@@ -313,11 +428,8 @@ class Source < ApplicationRecord
   #
   # Fields are:
   #  std_title
-  #  std_title_d
   #  composer
-  #  composer_d
   #  ms_title
-  #  ms_title_d
   #
   # the _d variant fields store a normalized lower case version with accents removed
   # the _d columns are used for western dictionary sorting in list forms
@@ -343,10 +455,10 @@ class Source < ApplicationRecord
     self.source_id = parent ? parent.id : nil
 
     # std_title
-    self.std_title, self.std_title_d = marc.get_std_title
+    self.std_title = marc.get_std_title
 
     # composer
-    self.composer, self.composer_d = marc.get_composer
+    self.composer = marc.get_composer
 
     # NOTE we now decided to leave composer empty in all cases
     # when 100 is not set
@@ -358,7 +470,7 @@ class Source < ApplicationRecord
     self.lib_siglum, self.shelf_mark = marc.get_siglum_and_shelf_mark
 
     # ms_title for bibliographic records
-    self.title, self.title_d = marc.get_source_title
+    self.title = marc.get_source_title
 
     # miscallaneous
     self.language, self.date_from, self.date_to = marc.get_miscellaneous_values
@@ -459,7 +571,16 @@ class Source < ApplicationRecord
   def allow_holding?
     if  (self.record_type == MarcSource::RECORD_TYPES[:edition] ||
          self.record_type == MarcSource::RECORD_TYPES[:libretto_edition] ||
-         self.record_type == MarcSource::RECORD_TYPES[:theoretica_edition])
+         self.record_type == MarcSource::RECORD_TYPES[:theoretica_edition] ||
+         self.record_type == MarcSource::RECORD_TYPES[:inventory_edition])
+      return true
+    end
+    return false
+  end
+
+  def allow_inventory_items?
+    if  (self.record_type == MarcSource::RECORD_TYPES[:inventory] ||
+         self.record_type == MarcSource::RECORD_TYPES[:inventory_edition])
       return true
     end
     return false
@@ -495,7 +616,7 @@ class Source < ApplicationRecord
   end
 
   def to_marcxml
-	  marc.to_xml(updated_at, versions)
+	  marc.to_xml({ updated_at: updated_at, versions: versions })
   end
 
   def marc_helper_set_anonymous
@@ -557,29 +678,7 @@ class Source < ApplicationRecord
     return [self.shelf_mark]
   end
 
-  def self.incipits_for(id)
-    s = Source.find(id)
-
-    incipits = {}
-
-    s.marc.each_by_tag("031") do |t|
-      subtags = [:a, :b, :c, :t]
-      vals = {}
-
-      subtags.each do |st|
-        v = t.fetch_first_by_tag(st)
-        vals[st] = v && v.content ? v.content : "x"
-      end
-
-      pae_nr = "#{vals[:a]}.#{vals[:b]}.#{vals[:c]}"
-      text = vals[:t] == "x" ? "" : " #{vals[:t]}"
-      incipits["#{pae_nr}#{text}"] = "#{s.id}:#{pae_nr}"
-    end
-
-    incipits
-  end
-
-  def manuscript_to_print(tags)
+  def manuscript_to_print(tags, digital_objects)
     is_child = self.parent_source != nil
     holding = Holding.new
     holding_marc = MarcHolding.new(File.read(ConfigFilePath.get_marc_editor_profile_path("#{Rails.root}/config/marc/#{RISM::MARC}/holding/default.marc")))
@@ -603,16 +702,33 @@ class Source < ApplicationRecord
       self.marc.root.add_at(t588, self.marc.get_insert_position("588") )
     end
 
-    tags.each do |copy_tag, indexes|
+    # Purge the default 593 from holding only if we are copying over a new one
+    holding_marc.each_by_tag("593") {|t2| t2.destroy_yourself} if tags.include?("593")
 
-      # Purge 593 only if we are copying over a new one
-      holding_marc.each_by_tag("593") {|t2| t2.destroy_yourself} if copy_tag == "593"
+    # 593 in the holding is non-repeatable, we allow the user
+    # to move only one. 
+    moved593 = false
+
+    tags.each do |copy_tag, indexes|
 
       match = marc.by_tags(copy_tag)
 
       indexes.each do |i|
         match[i].copy_to(holding_marc)
-        match[i].destroy_yourself
+
+        if match[i].tag == "593"
+          # Make sure the default 593 is set in the Source
+          # And make sure it is saved in the source!
+          if moved593 == false
+            match[i]["a"]&.first&.content = "Print" if match[i]
+            match[i]["b"]&.first&.content = "Notated music"
+            # We move and preserve only one 593
+            moved593 = true
+          end
+        else
+          # All other tags are removed from the Source
+          match[i].destroy_yourself
+        end
       end
 
     end
@@ -626,15 +742,44 @@ class Source < ApplicationRecord
       holding.source = self
 
       holding.save
+
+      # Now move the digital objects
+      digital_objects.each do |doid|
+        begin
+          dol = DigitalObjectLink.where(digital_object_id: doid)
+        rescue ActiveRecord::RecordNotFound
+          next
+        end
+
+        # We can have multiple links
+        # and want to fix only the source ones
+        # 
+        # Also make sure that if a DO is linked
+        # more than once, only ONE gets moved
+        migrated = []
+
+        dol.each do |the_do|
+          next if the_do.object_link_type != "Source"
+          next if the_do.object_link_id.to_i != self.id
+          next if migrated.include?(doid)
+
+          the_do.object_link_id = holding.id
+          the_do.object_link_type = "Holding"
+          the_do.save
+
+          migrated << doid
+        end
+
+      end
+
     end
-    
+
     # Do some housekeeping here too
     if !is_child
       self.record_type = MarcSource::RECORD_TYPES[:edition]
     else
       self.record_type = MarcSource::RECORD_TYPES[:edition_content]
     end
-    self.save
 
     return holding.id
   end
@@ -664,12 +809,34 @@ class Source < ApplicationRecord
     true
   end
 
+  #def self.ransackable_attributes(auth_object = nil)
+  #  ["593a_filter", "593b_filter", "599a", "852a_facet", "852c", "856x", "composer", "composer_d", "created_at", "date_from", "date_to", "id", "id_for_fulltext", "id_value", "language", "lib_siglum", "lock_version", "marc_source", "record_type", "record_type_select", "shelf_mark", "source_id", "std_title", "std_title_d", "title", "title_d", "updated_at", "wf_audit", "wf_owner", "wf_stage",
+  #  "child_sources", "collection_holdings", "digital_object_links", "digital_objects", "folder_items", "folders", "holdings", "institutions", "liturgical_feasts", "parent_source", "people", "places", "publications", "referring_source_relations", "referring_sources", "roles", "source_institution_relations", "source_person_relations", "source_relations", "source_work_relations", "sources", "standard_terms", "standard_titles", "user", "versions", "work_nodes", "works",
+  #  "child_sources", "collection_holdings", "digital_object_links", "digital_objects", "folder_items", "folders", "holdings", "institutions", "liturgical_feasts", "parent_source", "people", "places", "publications", "referring_source_relations", "referring_sources", "roles", "source_institution_relations", "source_person_relations", "source_relations", "source_work_relations", "sources", "standard_terms", "standard_titles", "user", "versions", "work_nodes", "works"]
+  #end
+
+  def self.ransackable_attributes(auth_object = nil)
+    column_names + _ransackers.keys
+  end
+
+  # `ransackable_associations` by default returns the names
+  # of all associations as an array of strings.
+  # For overriding with a whitelist array of strings.
+  #
+  def self.ransackable_associations(auth_object = nil)
+    reflect_on_all_associations.map { |a| a.name.to_s }
+  end
+
   ransacker :"852a_facet", proc{ |v| } do |parent| parent.table[:id] end
   ransacker :"852c", proc{ |v| } do |parent| parent.table[:id] end
+  ransacker :"510c", proc{ |v| } do |parent| parent.table[:id] end
   ransacker :"593a_filter", proc{ |v| } do |parent| parent.table[:id] end
   ransacker :"593b_filter", proc{ |v| } do |parent| parent.table[:id] end
   ransacker :"599a", proc{ |v| } do |parent| parent.table[:id] end
   ransacker :"856x", proc{ |v| } do |parent| parent.table[:id] end
   ransacker :record_type_select, proc{ |v| } do |parent| parent.table[:id] end
+  ransacker :source_rism_ids, proc{ |v| } do |parent| parent.table[:id] end
+  ransacker :has_internal_note, proc{ |v| } do |parent| parent.table[:id] end
+  ransacker :"has_music_incipit", proc{ |v| } do |parent| parent.table[:id] end
 
 end

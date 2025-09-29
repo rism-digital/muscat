@@ -26,6 +26,7 @@ groups:
     - "730"
     - "597"
     - "930"
+    - "490"
     - "001"
     all_tag_templates: 
       "100": marc_show/show_person
@@ -56,7 +57,7 @@ groups:
     all_tags: 
     - "594"
     all_tag_templates: 
-      "594": marc_show/show_distribution_all
+      "594": marc_show/show_distribution
       
   show_material: 
     all_tags: 
@@ -98,7 +99,6 @@ groups:
     all_tags: 
     - "596"
     - "690"
-    - "383"
     - "691"
     all_tag_templates: 
       "690": marc_show/show_69x_url
@@ -136,10 +136,12 @@ groups:
     - "040"
     - "599"
     - "980"
+    - "981"
     - "510"
+    - "910"
     all_tag_templates: 
       "510": marc_show/show_subfield_concat
-    admin_only: true
+      "981": marc_show/show_duplicated_from
     
   show_links: 
     all_tags: 

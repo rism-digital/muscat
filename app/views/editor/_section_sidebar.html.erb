@@ -81,6 +81,14 @@
 	</li>
 <%end%>	
 	
+<%if @item.id && @item.respond_to?(:allow_inventory_items?) && @item.allow_inventory_items? && can?(:create, InventoryItem)%>
+	<li class="muscat_icon_separator"></li>
+	<li class="muscat_icon_link">
+		<%= link_to("#{I18n.t :new_inventory_item}", new_admin_inventory_item_path(source_id: @item.id),
+			:class => "muscat_icon_link muscat_icon_link_new") %>
+	</li>
+<%end%>	
+	
 	<li class="muscat_icon_separator"></li>
 	<li class="muscat_icon_link" id="validation_override_container" hidden>
 		<input class="creation_checkbox" type="checkbox" id="validation_override_checkbox"/>
@@ -113,7 +121,7 @@
 			:class => "muscat_icon_link muscat_icon_link_picture") %>
 	</li>
 
-	<% if @item.is_a?(Source) && (@current_user.has_role?(:editor) || @current_user.has_role?(:admin)) %>
+	<% if (@current_user.has_role?(:editor) || @current_user.has_role?(:admin)) %>
 		<li class="muscat_icon_link">
 		<%= link_to("#{I18n.t :new_digital_object_incipit}", new_admin_digital_object_path(digital_object: {new_object_link_id:  @item.id, new_object_link_type: @item.class}, attachment_type: :incipit),
 			:class => "muscat_icon_link muscat_icon_link_note") %>
@@ -131,7 +139,7 @@
 
 	<li class="muscat_icon_separator"></li>
 	<li class="muscat_icon_link">
-		<a data-scroll-target="show_help" data-panel="marc_editor_help" data-help="edit_functions" data-help-title="<%= help_title -%>" href="#" class="muscat_icon_link muscat_icon_link_help"><%= help_title -%></a></li>
+		<a data-scroll-target="show_help" data-panel="marc_editor_help" data-help="using_functions" data-help-title="<%= help_title -%>" href="#" class="muscat_icon_link muscat_icon_link_help"><%= help_title -%></a></li>
 
 </ul>
 

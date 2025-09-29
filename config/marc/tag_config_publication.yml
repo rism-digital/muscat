@@ -103,11 +103,26 @@
       - :occurrences: "?"
   "024":
     :master: a
-    :indicator: "##"
+    :indicator: "2#"
     :occurrences: "*"
     :fields:
     - - a
       - :occurrences: "?"
+  "040":
+    :master: a
+    :indicator: "##"
+    :occurrences: "1"
+    :fields:
+    - - a
+      - :occurrences: "1"
+    - - b
+      - :occurrences: "1"
+    - - c
+      - :occurrences: "1"
+    - - d
+      - :occurrences: "?"
+    - - e
+      - :occurrences: "1"
   "041":
     :master: a
     :indicator: ["0#", "1#"]
@@ -248,7 +263,6 @@
     :fields:
     - - a
       - :occurrences: "?"
-        :browse_helper: application_helper_link_http
     - - "5"
       - :occurrences: "?"
         :no_browse: true
@@ -259,7 +273,21 @@
     :fields:
     - - a
       - :occurrences: "?"
+  "505":
+    :master: t
+    :indicator: "##"
+    :occurrences: "?"
+    :fields:
+    - - t
+      - :occurrences: "*"
   "520":
+    :master: a
+    :indicator: "##"
+    :occurrences: "*"
+    :fields:
+    - - a
+      - :occurrences: "?"
+  "590":
     :master: a
     :indicator: "##"
     :occurrences: "*"
@@ -322,6 +350,7 @@
       # default "CH-BeSRO" value must be added during exportation
   "700":
     :master: "0"
+    :relator_code: "4"
     :indicator: "1#"
     :occurrences: "*"
     :fields:
@@ -354,6 +383,7 @@
         :no_browse: true
   "710":
     :master: "0"
+    :relator_code: "4"
     :indicator: "2#"
     :occurrences: "*"
     :fields:
@@ -368,6 +398,10 @@
         :foreign_field: corporate_name
     - - b
       - :occurrences: "*"
+    - - c
+      - :occurrences: "?"
+        :foreign_class: ^0
+        :foreign_field: place
     - - k
       - :occurrences: "0"
         :export_as: "Source"
@@ -440,7 +474,14 @@
     :fields:
     - - u
       - :occurrences: "*"
-        :browse_helper: application_helper_link_http
     - - z
       - :occurrences: "*"
-
+  "981":
+    :master: ""
+    :indicator: "##"
+    :occurrences: "*"
+    :fields:
+    - - "0"
+      - :occurrences: "1"
+    - - d
+      - :occurrences: "1"

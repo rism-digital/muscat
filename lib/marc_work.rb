@@ -8,20 +8,24 @@ class MarcWork < Marc
     if node = first_occurance("100", "a")
       composer = node.content.blank? ? "" : "#{node.content}:"
     end
+
     if node = first_occurance("130", "a")
       title = node.content.blank? ? " [without title]" : " #{node.content}"
     end
-    #if node = first_occurance("100", "n")
-    #  number = node.content.blank? ? "" : " #{node.content}"
-    #end
+
     if node = first_occurance("130", "r")
       key = node.content.blank? ? "" : " #{node.content}"
     end
-    #if node = first_occurance("100", "m")
-    #  scoring = node.content.blank? ? "" : "; #{node.content}"
-    #end
 
-    return "#{composer}#{title}#{key}"
+    cat_no = get_catalogue
+
+    node = first_occurance("130", "m")
+    scoring = node.content.truncate(50) if node && node.content
+    scoring = scoring.strip if scoring
+
+    title += ", #{scoring}" if scoring
+
+    return "#{composer}" + [title, key, cat_no].join("; ")&.strip
   end
 
   def get_opus
@@ -40,10 +44,11 @@ class MarcWork < Marc
     cat_n = cat_n.strip if cat_n
    
     cat_no = "#{cat_a} #{cat_n}".strip
-    cat_no = cat_no.empty? ? "" : cat_no
+    cat_no = cat_no.empty? ? "" : cat_no&.strip
   end 
 
   def get_composer
+    person = nil
     if node = first_occurance("100", "a")
       person = node.foreign_object
     end
@@ -67,6 +72,20 @@ class MarcWork < Marc
       end
     end
     return status
+  end
+
+  def reset_to_new
+    first_occurance("001").content = "__TEMP__"
+  end
+
+  # Make sure we do not use the default to_external
+  def to_external(created_at = nil, updated_at = nil, versions = nil, holdings = false, deprecated_ids = true)
+    super(created_at, updated_at, versions)
+    
+    new_leader = MarcNode.new("work", "000", "00000nz  a2200000nc 4500", "")
+    @root.children.insert(get_insert_position("000"), new_leader)
+
+     _to_external_031!(Work.find(get_id))
   end
 
 end

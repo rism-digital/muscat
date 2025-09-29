@@ -95,7 +95,6 @@
         :no_browse: true
     - - z
       - :occurrences: "*"
-
   "040":
     :master: a
     :indicator: "##"
@@ -109,6 +108,19 @@
       - :occurrences: "1"
     - - d
       - :occurrences: "?"
+    - - e
+      - :occurrences: "1"
+  "046":
+    :master: k
+    :indicator: "##"
+    :occurrences: "?"
+    :fields:
+    - - k
+      - :occurrences: "1"
+    - - l
+      - :occurrences: "1"
+    - - z
+      - :occurrences: "1"
   "100":
     :master: "0"
     :indicator: "1#"
@@ -168,20 +180,45 @@
     :fields:
     - - b
       - :occurrences: "*"
+  "370":
+    :master: "0"
+    :indicator: "##"
+    :occurrences: "*"
+    :fields:
+    - - "0"
+      - :occurrences: "?"
+        :foreign_class: Place
+        :foreign_field: id
+        :no_show: true
+    - - g
+      - :occurrences: "?"
+        :foreign_class: ^0
+        :foreign_field: name
+    - - i
+      - :occurrences: "?"
+  "377":
+    :master: a
+    :indicator: "##"
+    :occurrences: "*"
+    :fields:
+    - - a
+      - :occurrences: "*"
+  "383":
+    :master: a
+    :indicator: "##"
+    :occurrences: "*"
+    :fields:
+    - - a
+      - :occurrences: "?"
+    - - b
+      - :occurrences: "?"
   "430":
     :master: "0"
     :indicator: "#0"
     :occurrences: "*"
     :fields:
-    - - "0"
-      - :occurrences: "?"
-        :foreign_class: StandardTitle
-        :foreign_field: id
-        :no_show: true
     - - a
       - :occurrences: "?"
-        :foreign_class: ^0
-        :foreign_field: title
     - - m
       - :occurrences: "*"
     - - r
@@ -190,11 +227,11 @@
       - :occurrences: "*"
     - - s
       - :occurrences: "*"
-# This is a linked field
   "500":
     :master: "0"
     :indicator: "1#"
     :occurrences: "*"
+    :relator_code: "4"
     :fields:
     - - "0"
       - :occurrences: "?"
@@ -205,19 +242,87 @@
       - :occurrences: "?"
         :foreign_class: ^0
         :foreign_field: full_name
-    - - "d"
+    - - d
       - :occurrences: "?"
+        :browse_inline: true
+        :foreign_class: ^0
+        :foreign_field: life_dates
+        :foreign_alternates: alternate_dates
+        #:no_browse: true
     - - "e"
+      - :occurrences: "*"
+    - - "j"
       - :occurrences: "?"
-  "548":
-    :master: a
+    - - "t"
+      - :occurrences: "?"
+    - - "4"
+      - :occurrences: "?"
+        :browse_inline: true
+        #:no_browse: true
+    - - "5"
+      - :occurrences: "?"
+        :no_browse: true
+  "510":
+    :master: "0"
+    :indicator: "2#"
+    :occurrences: "*"
+    :relator_code: "4"
+    :fields:
+    - - "0"
+      - :occurrences: "?"
+        :foreign_class: Institution
+        :foreign_field: id
+        :no_show: true
+    - - a
+      - :occurrences: "?"
+        :foreign_class: ^0
+        :foreign_field: corporate_name
+    - - b
+      - :occurrences: "*"
+    - - c
+      - :occurrences: "*"
+    - - g
+      - :occurrences: "?"
+    - - "4"
+      - :occurrences: "?"
+    - - "8"
+      - :occurrences: "?"
+        :no_browse: true
+  "530":
+    :master: "0"
     :indicator: "##"
     :occurrences: "*"
     :fields:
+    - - "0"
+      - :occurrences: "?"
+        :foreign_class: Work
+        :foreign_field: id
+        :no_show: true
     - - a
       - :occurrences: "?"
-    - - i
+        :foreign_class: ^0
+        :foreign_field: title
+    - - "g"
       - :occurrences: "?"
+    - - "i"
+      - :occurrences: "?"
+  "547":
+    :master: "0"
+    :indicator: "#7"
+    :occurrences: "*"
+    :fields:
+    - - "0"
+      - :occurrences: "?"
+        :foreign_class: LiturgicalFeast
+        :foreign_field: id
+        :no_show: true
+    - - a
+      - :occurrences: "?"
+        :foreign_class: ^0
+        :foreign_field: name
+    - - "2"
+      - :occurrences: "?"
+        :no_browse: true
   "667":
     :master: a
     :indicator: "##"
@@ -241,6 +346,10 @@
         :foreign_field: short_name
     - - b
       - :occurrences: "?"
+    - - u
+      - :occurrences: "*"
+    - - "9"
+      - :occurrences: "?"
   "675":
     :master: "w"
     :indicator: "##"
@@ -254,7 +363,7 @@
     - - a
       - :occurrences: "?"
         :foreign_class: ^w
-        :foreign_field: name
+        :foreign_field: short_name
   "680":
     :master: a
     :indicator: "##"
@@ -279,8 +388,12 @@
     - - a
       - :occurrences: "?"
         :foreign_class: ^0
-        :foreign_field: name
+        :foreign_field: short_name
     - - n
+      - :occurrences: "?"
+    - - s
+      - :occurrences: "?"
+    - - x
       - :occurrences: "?"
   "691":
     :master: "0"
@@ -295,83 +408,18 @@
     - - a
       - :occurrences: "?"
         :foreign_class: ^0
-        :foreign_field: name
+        :foreign_field: short_name
     - - n
-      - :occurrences: "?"  
-  "700":
-    :master: "0"
-    :indicator: "1#"
+      - :occurrences: "?"
+  "699":
+    :master: a
+    :indicator: "##"
     :occurrences: "*"
     :fields:
-    - - "0"
-      - :occurrences: "?"
-        :foreign_class: Person
-        :foreign_field: id
-        :no_show: true
     - - a
       - :occurrences: "?"
-        :foreign_class: ^0
-        :foreign_field: full_name
-    - - d
-      - :occurrences: "?"
-        :browse_inline: true
-        :foreign_class: ^0
-        :foreign_field: life_dates
-        :foreign_alternates: alternate_dates
-        #:no_browse: true
-    - - "e"
-      - :occurrences: "*"
-    - - "t"
-      - :occurrences: "?"
-    - - "4"
-      - :occurrences: "*"
-        :browse_inline: true
-        #:no_browse: true
-    - - "5"
-      - :occurrences: "?"
-        :no_browse: true
-  "710":
-    :master: "0"
-    :indicator: "2#"
-    :occurrences: "*"
-    :fields:
-    - - "0"
-      - :occurrences: "?"
-        :foreign_class: Institution
-        :foreign_field: id
-        :no_show: true
-    - - a
-      - :occurrences: "?"
-        :foreign_class: ^0
-        :foreign_field: corporate_name
     - - b
-      - :occurrences: "*"
-    - - c
-      - :occurrences: "*"
-    - - g
       - :occurrences: "?"
-    - - "4"
-      - :occurrences: "*"
-    - - "8"
-      - :occurrences: "?"
-        :no_browse: true
-  "747":
-    :master: "0"
-    :indicator: "#7"
-    :occurrences: "*"
-    :fields:
-    - - "0"
-      - :occurrences: "?"
-        :foreign_class: LiturgicalFeast
-        :foreign_field: id
-        :no_show: true
-    - - a
-      - :occurrences: "?"
-        :foreign_class: ^0
-        :foreign_field: name
-    - - "2"
-      - :occurrences: "?"
-        :no_browse: true
   "856":
     :master: u
     :indicator: "##"
@@ -379,24 +427,14 @@
     :fields:
     - - u
       - :occurrences: "*"
-        :browse_helper: application_helper_link_http
     - - z
       - :occurrences: "*"
-  "930":
-    :master: "0"
-    :indicator: "1#"
+  "981":
+    :master: ""
+    :indicator: "##"
     :occurrences: "*"
     :fields:
     - - "0"
-      - :occurrences: "?"
-        :foreign_class: Work
-        :foreign_field: id
-        :no_show: true
-    - - a
-      - :occurrences: "?"
-        :foreign_class: ^0
-        :foreign_field: title
-    - - "i"
-      - :occurrences: "?"
- 
-
+      - :occurrences: "1"
+    - - d
+      - :occurrences: "1"

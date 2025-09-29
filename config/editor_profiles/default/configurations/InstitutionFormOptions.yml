@@ -1,49 +1,20 @@
 --- !map:Settings 
-"000": 
+"001":
   tag: tag_no_subfield
-  tag_params: 
-    editor_only: true
-  tag_header: none
-"001": 
-  tag: tag_no_subfield
-  tag_params: 
+  tag_params:
     read_only: true
     no_delete: true
-  tag_header: none
-"003": 
-  tag: tag_no_subfield
-  tag_params: 
-    read_only: true
-  tag_header: none
-"005": 
-  tag: tag_no_subfield
-  tag_params: 
-    read_only: true
-  tag_header: none
-008: 
-  tag: tag_no_subfield
-  tag_params: 
-    maskedinput: 
-      definitions: "['~']='[|0-9]'"
-      mask: 999999a~~~~~~~~||||||||||||||||||||aaa|d
   tag_header: none
 "024": 
   layout: 
     fields: 
     - - a
-      - cols: 2
     - - c
-      - cols: 2
     - - d
-      - cols: 2
     - - q
-      - cols: 2
     - - z
-      - cols: 2
     - - "0"
-      - cols: 2
     - - "1"
-      - cols: 2
     - - "2"
       - values:
         - "ISIL" 
@@ -61,151 +32,213 @@
         - "MOC"
         default: "VIAF"
         editor_partial: subfield_select
-      - cols: 2
     - - "6"
-      - cols: 2
     - - "8"
-      - cols: 2
-    columns: 4
 "034": 
   layout: 
     fields: 
     - - f
-      - cols: 2
     - - d
-      - cols: 2
-    columns: 4
-"040": 
-  layout: 
-    fields: 
+"040":
+  layout:
+    fields:
     - - a
-      - cols: 2
-        read_only: true
+      - read_only: true
+        default: "DE-633"
+    - - b
+      - editor_partial: subfield_select_codes
+        select_label: "Language"
+        codes_reference: "codes"
+    - - c
+      - read_only: true
+        default: "DE-633"
+    - - d
+      - read_only: true
+    - - e
+      - read_only: true
+        default: "rismg"
+  tag_params:
+    codes:
+      - "eng"
+      - "fre"
+      - "ger"
+      - "ita"
+      - "por"
+      - "spa"
 "043": 
   layout: 
     fields: 
     - - c
-      - cols: 2 
-        editor_partial: subfield_select_codes
+      - editor_partial: subfield_select_codes
         select_label: "Country"
-    columns: 2
   tag_params:
     codes:
-      - "XC-DZ"
-      - "XD-AR"
-      - "XB-AM"
-      - "XE-AU"
-      - "XA-AT"
-      - "XA-AT-2"
-      - "XA-AT-3"
-      - "XA-AT-5"
-      - "XA-AT-6"
-      - "XA-AT-7"
-      - "XA-AT-4"
-      - "XA-AT-9"
-      - "XA-BE"
-      - "XC-BJ"
-      - "XD-BR"
-      - "XA-BG"
-      - "XA-BY"
-      - "XB-KH"
-      - "XD-CA"
-      - "XD-CL"
-      - "XB-CN"
-      - "XD-CO"
-      - "XA-HR"
-      - "XD-CU"
-      - "XA-CZ"
-      - "XA-DK"
-      - "XC-EG"
-      - "XA-EE"
-      - "XA-FI"
-      - "XA-FR"
-      - "XA-DE"
-      - "XA-DE-BY"
-      - "XA-DE-SN"
-      - "XA-GR"
-      - "XD-GT"
-      - "XA-VA"
-      - "XD-HN"
-      - "XA-HU"
-      - "XA-IS"
-      - "XB-IN"
-      - "XB-IR"
-      - "XA-IE"
-      - "XB-IL"
-      - "XA-IT-32"
-      - "XA-IT"
-      - "XB-JP"
-      - "XB-KR"
-      - "XA-LV"
-      - "XA-LT"
-      - "XA-LU"
-      - "XA-MT"
-      - "XD-MX"
-      - "XA-ME"
-      - "XA-NL"
-      - "XE-NZ"
-      - "XA-NO"
-      - "XD-PE"
-      - "XD-PY"
-      - "XA-PL"
-      - "XA-PT"
-      - "XD-PR"
-      - "XA-RO"
-      - "XA-RU"
-      - "XA-RS"
-      - "XA-SK"
-      - "XA-SI"
-      - "XC-ZA"
-      - "XA-ES"
-      - "XA-SE"
-      - "XA-CH"
-      - "XA-CH-VD"
-      - "XB-SY"
-      - "XD-TT"
-      - "XB-TR"
-      - "XA-UA"
-      - "XA-GB"
-      - "XD-US"
-      - "XD-UY"
-      - "XD-VE"
-      - "XB-VN"
-      - "XD-EC"
+        - "XA-AD"
+        - "XA-AL"
+        - "XC-DZ"
+        - "XA-AT"
+        - "XA-AT-2"
+        - "XA-AT-3"
+        - "XA-AT-4"
+        - "XA-AT-5"
+        - "XA-AT-6"
+        - "XA-AT-7"
+        - "XA-AT-9"
+        - "XB-AZ"
+        - "XD-AR"
+        - "XB-BD"
+        - "XA-BE"
+        - "XA-BY"
+        - "XA-BA"
+        - "XD-BO"
+        - "XD-BR"
+        - "XA-BG"
+        - "XB-KH"
+        - "XD-CA"
+        - "XD-CL"
+        - "XB-CN"
+        - "XD-CO"
+        - "XD-CR"
+        - "XA-HR"
+        - "XD-CU"
+        - "XA-CZ"
+        - "XA-DK"
+        - "XD-EC"
+        - "XC-EG"
+        - "XA-EE"
+        - "XA-FI"
+        - "XA-FR"
+        - "XB-GE"
+        - "XC-GH"
+        - "XC-GN"
+        - "XD-GT"
+        - "XA-DE"
+        - "XA-DE-BY"
+        - "XA-DE-SN"
+        - "XA-GR"
+        - "XD-HN"
+        - "XB-HK"
+        - "XA-HU"
+        - "XA-IS"
+        - "XB-IN"
+        - "XB-ID"
+        - "XB-IR"
+        - "XB-IQ"
+        - "XA-IE"
+        - "XB-IL"
+        - "XA-IT"
+        - "XA-IT-32"
+        - "XD-JM"
+        - "XB-JP"
+        - "XB-KR"
+        - "XA-LV"
+        - "XB-LB"
+        - "XA-LI"
+        - "XA-LT"
+        - "XA-LU"
+        - "XA-MC"
+        - "XA-MD"
+        - "XA-ME"
+        - "XA-MK"
+        - "XA-MT"
+        - "XD-MX"
+        - "XA-NL"
+        - "XE-NZ"
+        - "XD-NI"
+        - "XA-GB-NIR"
+        - "XA-NO"
+        - "XB-PK"
+        - "XE-PG"
+        - "XD-PY"
+        - "XD-PE"
+        - "XB-PH"
+        - "XA-PL"
+        - "XA-PT"
+        - "XD-PR"
+        - "XA-RO"
+        - "XA-RS"
+        - "XA-RU"
+        - "XB-SA"
+        - "XA-SK"
+        - "XA-SI"
+        - "XC-ZA"
+        - "XA-ES"
+        - "XA-SE"
+        - "XA-CH"
+        - "XA-CH-VD"
+        - "XA-SM"
+        - "XB-SY"
+        - "XB-TW"
+        - "XB-TJ"
+        - "XD-TT"
+        - "XB-TR"
+        - "XB-TM"
+        - "XC-UG"
+        - "XA-UA"
+        - "XA-GB"
+        - "XD-US"
+        - "XD-UY"
+        - "XB-UZ"
+        - "XA-VA"
+        - "XD-VE"
+        - "XB-VN"
+"094": 
+  layout: 
+    fields: 
+    - - a
+      - trigger:
+        - save:
+          - referring_sources
+          - referring_holdings
+          - referring_publications
+        read_only: true
+        override_admin: true
+    - - z
+      - read_only: true
+        override_admin: true
+    - - q
+      - read_only: true
+        default: "siglum"
+    - - "2"
+      - read_only: true
+        default: "rism"
 "110": 
   layout: 
     fields: 
     - - a
-      - cols: 2
+      - read_only: true
+        override_admin: true
         trigger:
         - save:
           - referring_sources
-          - holdings
+          - referring_holdings
+          - referring_people
+          - referring_institutions
+          - referring_publications
+          - referring_works
     - - b
-      - cols: 2
+      - read_only: true
+        override_admin: true
+        trigger:
+        - save:
+          - referring_institutions
     - - c
-      - cols: 2
-    - - g
-      - cols: 2
+      - read_only: true
+        override_admin: true
         trigger:
         - save:
           - referring_sources
-          - holdings
-    columns: 4
+          - referring_holdings
+          - referring_publications
 "368": 
   layout: 
     fields: 
     - - a
-      - cols: 2
-        editor_partial: subfield_select_codes
+      - editor_partial: subfield_select_codes
         select_label: "Type"
     - - b
-      - cols: 2
     - - c
-      - cols: 2
     - - "2"
-      - cols: 2
-    columns: 2
   tag_params:
     codes:
       - "Archive" 
@@ -222,24 +255,22 @@
       - "Other"
       - "Printer"
       - "Research institute"
+      - "Private collection"
+      - "Project"
 "410": 
   layout: 
     fields: 
     - - a
-      - cols: 4
-    columns: 4
 "510": 
   layout: 
     fields:
     - - a
-      - cols: 2
     - - w
-      - cols: 2
-        editor_partial: subfield_select_codes
+      - editor_partial: subfield_select_codes
         select_label: "Term"
     - - i
-      - cols: 2
-    columns: 2
+      - editor_partial: subfield_select_codes
+        codes_reference: "510i"
   tag_params:
     codes:
       - "a" 
@@ -252,6 +283,15 @@
       - "n"
       - "r"
       - "t"
+    "510i":
+      - "rdaa:P50008"
+      - "rdaa:P50010"
+      - "rdaa:P50012"
+      - "rdaa:P50016"
+      - "rdaa:P50020"
+      - "rdaa:P50230"
+      - "rdaa:P50435"
+      - "rdaa:P50301"
 "551": 
   new_window: places
   layout: 
@@ -259,8 +299,6 @@
     - - "a"
       - type: place
         editor_partial: subfield_secondary
-      - cols: 4
-    columns: 4
 "580": 
   new_window: institutions
   layout: 
@@ -268,14 +306,11 @@
     - - "x"
       - type: institution
         editor_partial: subfield_secondary
-      - cols: 4
-    columns: 4
 "667": 
   layout: 
     fields: 
     - - a
-      - cols: 4
-    columns: 4
+      - growfield: true
 "670": 
   new_window: publications
   layout: 
@@ -283,20 +318,15 @@
     - - "a"
       - type: publication
         editor_partial: subfield_secondary
-      - cols: 4
+        allow_new: false
     - - "9"
-      - cols: 2
     - - "b"
-      - cols: 2
     - - "u"
-      - cols: 2
-    columns: 4
 "680": 
   layout: 
     fields: 
     - - a
-      - cols: 4
-    columns: 4
+      - growfield: true
 "700":
   allow_new: true
   new_window: people
@@ -305,6 +335,9 @@
     - - a
       - type: person
         editor_partial: subfield_secondary
+        allow_new: true
+    - - d
+      - autocomplete_extra: life_dates
     - - "4"
       - editor_partial: subfield_select_codes
         select_label: "Function"
@@ -312,7 +345,7 @@
   tag_params: 
     relator_codes: 
       - scr
-      - cmp
+      - att
       - cns
       - arr
       - prf
@@ -344,7 +377,5 @@
     - - "a"
       - type: institution
         editor_partial: subfield_secondary
-      - cols: 4
-    columns: 4
 
 

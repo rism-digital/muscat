@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<TEI xmlns="http://www.tei-c.org/ns/1.0">
+<!-- "###" means: to be completed -->
+  <teiHeader>
+    <fileDesc>
+      <titleStmt>
+        <title>Paul Parstorffer's Inventory (Munich 1653) (Historical Music Inventories, 15)</title>
+      </titleStmt>
+      <editionStmt>
+        <edition>After TEI P5.1</edition>
+        <respStmt>
+          <resp>Cataloguer: <persName>Luigi Collarile</persName>
+            <date when="2020-11">November 2020</date>
+          </resp>
+          <name>Université de Fribourg, Switzerland</name> 
+          <name>Swiss RISM Office</name>
+        </respStmt>
+      </editionStmt>
+      <publicationStmt>
+        <publisher><orgName xml:base="http://www.rism-ch.org">Swiss RISM Office</orgName>, Université de Fribourg, Switzerland</publisher>
+      </publicationStmt>
+      <sourceDesc>
+        <msDesc>
+          <msIdentifier>
+            <settlement>Paul Parstorffer</settlement>
+            <repository>«Indice di tutte le Opere di Musica»</repository>
+            <idno>Munich 1653</idno>
+</msIdentifier>
+          <head>
+            <title>Indice di tutte le Opere di Musica</title>
+            <origPlace>München</origPlace>
+            <origDate notBefore="1653">1653</origDate>
+          </head>
+          <msContents>
+            <summary>In 1653 Paul Parstorffer, bookseller in Munich specialized in the trade of music editions, published an ‘inventory of all music works’ («Indice di tutte le Opere di Musica») available in his shop. No copies of this catalogue are preserved today. However, Johann Gottfried Walther (1684–1748) employed it as bibliographic source in his Musicalisches Lexicon (Leipzig 1732). In a letter to Heinrich Bockemeyer (1679–1751) written on 6 February 1730, Walther explained that the copy of Parstorffer’s inventory he inspected – a document in folio – was given to him by Franz Xaver Anton Murschhauser (1663–1738), organist of the Munich Frauenkirche, who in turn had received it from Adam Drese, Kapellmeister of Arnstadt (1620–1701).<lb></lb>
+              The present digital edition is a critical reconstruction of Parstorffer’s inventory based on information provided by Walther’s Musicalisches Lexicon (Leipzig 1732). The images are taken from the copy in the Bayerische Staatsbibliothek München, Mus.th. 7271, <ref target="urn:nbn:de:bvb:12-bsb10600439-7">urn:nbn:de:bvb:12-bsb10600439-7</ref>.<lb></lb>
+              It is possible to identify 214 editions quoted from Parstorffer’s inventory. Although in some cases the sources used by Walther may have been more than one, the information obtained from Parstorffer’s inventory has been generally reported with precision. Walther often gave the print date of the quoted editions and included the page number of the inventory. However, he never reported the publisher’s name, information probably missing in Parstorffer’s inventory as well. In the present edition, these references have been obtained from a comparison with the preserved editorial production and other bibliographic sources.<lb></lb>
+              The editions mentioned in Parstorffer’s inventory refer to 78 composers, most of them Italian (68). As the Italian title of the inventory makes explicit, most of these editions are music prints published in Italy (189), with a clear prevalence of titles produced in Venice (183). 97 titles have been produced by the Vincenti publishing house (45.3% of the titles in the inventory); 82 titles by the other important Venetian publishing house, the Gardano-Magni  (38.3% of the titles in the inventory). Four editions have been published by other Venetian publishers. Finally, four titles are printed in Rome, one in Milan and one in Bologna. Alongside this group of Italian editions, which together represent over 88% of the titles cited in Parstorffer’s inventory, there is a set of non-Italian music prints. The largest group consists of editions printed by Michael Wagner in Innsbruck (15 titles, 7% of the titles cited in the inventory). There are also two editions printed in Innsbruck by Johann Gäch, two printed by Swiss publisher David Hautt (active in Lucerne, Vienna and Constance), and three others editions printed in Augsburg, Ingolstadt and Ravensburg respectively.<lb></lb> 
+              The editions mentioned in Parstorffer’s inventory are published between 1600 and 1653, with a peak between 1637 and 1651. The presence of editions containing Catholic vocal music is clearly predominant, a genre that was in great demand in Bavaria and southern Germany after the end of the Thirty Years’ War.<lb></lb>
+              Among the titles quoted by Parstorffer it is possible to identify 37 lost editions (17.3% of the titles mentioned in the inventory). They mainly concern editions printed by Gardano-Magni (22 titles, more than 25% of Magni’s editions in Parstorffer’s inventory). 10 titles concern editions printed by Vincenti.<lb></lb>
+              It was supposed that Paul Parstorffer was an agent of Vincenti’s Venetian workshop in Bavaria (cf. Wollny 1998, p. 53-54 and ID. 2016, p. 30; this assumption was accepted by Rose 2005, p. 12-13, and Mannoia 2018, p. 138). A comparison with the catalogue published by Vincenti in 1649, which includes 735 records (cf. Mischiati 1984, cat. IXbis), shows that only 78 titles are present in Parstorffer’s inventory. The German bookseller mainly traded Venetian music editions. However, he did not trade in exclusive editions by Vincenti. His catalogue includes editions printed by Gardano-Magni and other music publishers. Parstorffer’s contacts with Venice crossed the Tyrol and Innsbruck, another square from which the German bookseller (probably himself of Tyrolean origin) draws. Financially, Parstorffer’s business was prosperous. In 1632 the bookseller was taken hostage, together with other wealthy people from Munich, during the occupation of the city by Swedish troops.<lb></lb>
+              The presence of Venetian editions in Parstorffer’s inventory shows emblematically the ability of the Venetian music book production to circulate in the German market despite the serious crisis that hit the Venetian economy following the plague of 1630–2 and the subsequent war of Candia (1645–69). Although no longer present in the great book fairs of Leipzig and Frankfurt, Venetian music books continued to be bought and sold through specific channels, as in the case of the bookseller Parstorffer.<lb></lb>
+            </summary>
+          </msContents>
+          <physDesc>
+            <objectDesc>
+              <supportDesc>
+                <extent>
+                </extent>
+              </supportDesc>
+            </objectDesc>
+           </physDesc>
+          <additional>
+            <adminInfo>
+              <recordHist>
+                <source>
+                  <bibl>Images by Bayerische Staatsbibliothek München (2020).<lb/></bibl>
+                  <bibl>Records compiled by: Luigi Collarile (Basel, 2020).</bibl>
+                </source>
+              </recordHist>
+            </adminInfo>
+            <listBibl>
+              <head>Essential bibliography:</head>
+              <bibl>Klaus Beckmann, Hans-Joachim Schulze (ed.), Johann Gottfried Walther. Briefe. Leipzig: VEB Deutscher Verlag für Musik, 1987.</bibl>
+              <bibl>Luigi Collarile: ‘Lost Venetian Music Edition. New historical and bibliographical perspectives’. In: David Bryant, Luigi Collarile (eds): Music Printing and Publishing in Early Modern Italy: New Approaches. Turnhout: Brepols, forthcoming (Venetian Music Studies, 3).</bibl>
+              <bibl>Valeria M.R. Mannoia: ‘Una nuova ricognizione della presenza delle composizioni sacre di Claudio Monteverdi nelle antologie sacre tedesche del Seicento’. In: Philomusica on-line 17 (2018), p. 131–160 – open access: <ref target="http://riviste.paviauniversitypress.it/index.php/phi/article/view/1983">http://riviste.paviauniversitypress.it/index.php/phi/article/view/1983</ref></bibl>
+              <bibl>Oscar Mischiati: Indici, cataloghi e avvisi degli editori e librai musicali italiani dal 1591 al 1798. Florence: Olschki, 1984 (Studi e testi per la storia della musica, 2).</bibl>
+              <bibl>Stephen Rose: ‘The Mechanism of the Music Trade in Central Germany, 1600–40’. In: Journal of the Royal Musical Association 130 (2005), pp. 1–37.</bibl>
+              <bibl>Peter Wollny: ‘The distribution and reception of Claudio Monteverdi’s music in seventeenth-century Germany’. In: Silke Leopold, Joachim Steinheuer (eds), Claudio Monteverdi und die Folgen. Bericht über das Internationale Symposium Detmold 1993. Kassel (etc.): Bärenreiter, 1998, p. 51–75.</bibl>
+              <bibl>Peter Wollny: Studien zum Stilwandel in der protestantischen Figuralmusik des mittleren 17. Jahrhunderts. Beeskow: Ortus Musikverlag, 2016 (Forum Mitteldeutsche Barockmusik, 5).</bibl>
+              </listBibl>
+          </additional>
+        </msDesc>
+      </sourceDesc>
+    </fileDesc>
+  </teiHeader>
+  <text>
+    <body><ab></ab></body>
+  </text>
+</TEI>

@@ -4,27 +4,36 @@ class MarcWorkNode < Marc
   end
   
   def get_title
-    title = "", scoring = "", number = "", key = ""
+    title = ""
     tag100 = first_occurance("100")
     return "[unspecified]" if !tag100
     # title from $t
     if node = tag100.fetch_first_by_tag("t")
         title = node.content.blank? ? "[without title]" : "#{node.content}"
     end
-    # scoring from repeated $m
-    if node = tag100.fetch_first_by_tag("m")
-        scoring = node.content.blank? ? "" : ", #{node.content}"
-    end
-    # number from repeated $n
-    if node = tag100.fetch_first_by_tag("n")
-        number = node.content.blank? ? "" : ", #{node.content}"
-    end
-    # key from $r
-    if node = tag100.fetch_first_by_tag("r")
-        key = node.content.blank? ? "" : " (#{node.content})"
+
+    #1662, emulate the GND title
+    if node = tag100.fetch_first_by_tag("p")
+      title = node.content.blank? ? title : "#{title}. #{node.content}"
     end
 
-    return "#{title}#{scoring}#{number}#{key}"
+    if node = tag100.fetch_first_by_tag("n")
+      title = node.content.blank? ? title : "#{title}; #{node.content}"
+    end
+
+    if node = tag100.fetch_first_by_tag("m")
+      title = node.content.blank? ? title : "#{title}; #{node.content}"
+    end
+
+    return title.truncate(255)
+  end
+
+  def get_ext_nr
+    tag = first_occurance("024")
+    a = tag&.fetch_first_by_tag("a")&.content
+    two = tag&.fetch_first_by_tag("2")&.content
+
+    [a, two]
   end
 
   def get_composer_name
@@ -32,7 +41,7 @@ class MarcWorkNode < Marc
     if node = first_occurance("100", "a")
       composer = "#{node.content}" if !node.content.blank?
     end
-    return composer
+    return composer.truncate(255)
   end
 
   def get_composer
@@ -47,8 +56,8 @@ class MarcWorkNode < Marc
     tag100.add_at(MarcNode.new("work_node", "0", person.id, nil), 0)
   end
 
-  def to_external(updated_at = nil, versions = nil, holdings = false)
-    super(updated_at, nil, holdings)
+  def to_external(created_at = nil, updated_at = nil, versions = nil, holdings = false, deprecated_ids = true)
+    super(created_at, updated_at, nil, holdings)
     # nothing specific to do - this is used ony for deprecating works
   end
   

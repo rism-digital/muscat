@@ -1,7 +1,6 @@
 ActiveAdmin.register Source do
   
   collection_action :autocomplete_source_id, :method => :get
-  collection_action :autocomplete_source_740_autocomplete_sms, :method => :get
   collection_action :autocomplete_source_594b_sms, :method => :get
   collection_action :autocomplete_source_031t_filter_sms, :method => :get
 
@@ -10,7 +9,7 @@ ActiveAdmin.register Source do
   
   # Remove all action items
   config.clear_action_items!
-  config.per_page = [10, 30, 50, 100]
+  config.per_page = [10, 30, 50, 100, 1000]
   
   menu :priority => 10, :label => proc {I18n.t(:menu_sources)}
 
@@ -31,10 +30,9 @@ ActiveAdmin.register Source do
                  #params['q'] = {:std_title_contains => "[Holding]"} 
         end
     end
-    autocomplete :source, :id, {:display_value => :autocomplete_label , :extra_data => [:std_title, :composer], :exact_match => true, :solr => false}
-    autocomplete :source, "740_autocomplete_sms", :solr => true
-    autocomplete :source, "594b_sms", :solr => true
-    autocomplete :source, "031t_filter_sms", :solr => true
+    autocomplete :source, :id, {:display_value => :autocomplete_label , :extra_data => [:std_title, :composer], :exact_match => false, :solr => false}
+    autocomplete :source, "594b_sms", :solr => true, :display_value => :label, :value_field => :"594b_sms"
+    autocomplete :source, "031t_filter_sms", :solr => true, :display_value => :label, :value_field => :"031t_filter_sms"
 
     def check_model_errors(object)
       return unless object.errors.any?
@@ -72,9 +70,9 @@ ActiveAdmin.register Source do
       end
       
       @editor_profile = EditorConfiguration.get_show_layout @item
-      @prev_item, @next_item, @prev_page, @next_page = Source.near_items_as_ransack(params, @item)
+      @prev_item, @next_item, @prev_page, @next_page, @nav_positions = Source.near_items_as_ransack(params, @item)
       
-      if @item.get_record_type == :edition || @item.get_record_type == :libretto_edition || @item.get_record_type == :theoretica_edition
+      if @item.get_record_type == :edition || @item.get_record_type == :libretto_edition || @item.get_record_type == :theoretica_edition || @item.get_record_type == :inventory_edition
         if @item.holdings.empty?
           flash.now[:error] = I18n.t(:holding_missing_show, new_holding: I18n.t(:new_holding))
         end
@@ -82,7 +80,7 @@ ActiveAdmin.register Source do
 
       respond_to do |format|
         format.html
-        format.xml { render :xml => @item.marc.to_xml(@item.updated_at, @item.versions) }
+        format.xml { render :xml => @item.marc.to_xml({ created_at: @item.created_at, updated_at: @item.updated_at, versions: @item.versions}) }
       end
     end
 
@@ -100,7 +98,7 @@ ActiveAdmin.register Source do
       
       template = EditorConfiguration.get_source_default_file(@item.get_record_type) + ".marc"
 
-      if @item.get_record_type == :edition || @item.get_record_type == :libretto_edition || @item.get_record_type == :theoretica_edition
+      if @item.get_record_type == :edition || @item.get_record_type == :libretto_edition || @item.get_record_type == :theoretica_edition || @item.get_record_type == :inventory_edition
         if @item.holdings.empty?
           flash.now[:error] = I18n.t(:holding_missing, new_holding: I18n.t(:new_holding))
         end
@@ -164,6 +162,8 @@ ActiveAdmin.register Source do
         new_marc = MarcSource.new(base_item.marc.marc_source, base_item.record_type)
         # Reset the basic fields to default values
         new_marc.reset_to_new
+        new_marc.insert_duplicated_from("981", base_item.id.to_s)
+
         # copy the record type
         @source.marc = new_marc
         @source.record_type = base_item.record_type
@@ -172,8 +172,8 @@ ActiveAdmin.register Source do
         
         default_file_name = EditorConfiguration.get_source_default_file(params[:new_record_type])
         default_file = ConfigFilePath.get_marc_editor_profile_path("#{Rails.root}/config/marc/#{RISM::MARC}/source/#{default_file_name}.marc")
-        
-        if File.exists?(default_file)
+     
+        if File.exist?(default_file)
           new_marc = MarcSource.new(File.read(default_file), MarcSource::RECORD_TYPES[params[:new_record_type].to_sym])
           new_marc.load_source false # this will need to be fixed
           @source.marc = new_marc
@@ -236,6 +236,8 @@ ActiveAdmin.register Source do
     end
 
     param_tags = params.permit(:tag => {})[:tag]
+    param_dos = params.permit(:digital_objects => {})[:digital_objects]
+
 
     tags = {}
     param_tags.each do |k, v|
@@ -246,7 +248,10 @@ ActiveAdmin.register Source do
       end
     end
 
-    holding_id = resource.manuscript_to_print(tags)
+    # There can be no digital objects
+    dos = param_dos&.select { |_, v| v == "on" }&.keys || []
+
+    holding_id = resource.manuscript_to_print(tags, dos)
 
     redirect_to action: :show
     if holding_id
@@ -266,37 +271,51 @@ ActiveAdmin.register Source do
   ###########  
 
   # filers
-  filter :title_contains, :label => proc{I18n.t(:title_contains)}, :as => :string
-  filter :std_title_contains, :label => proc{I18n.t(:std_title_contains)}, :as => :string
-  filter :composer_contains, :label => proc{I18n.t(:composer_contains)}, :as => :string
+  filter :title_cont, :label => proc{I18n.t(:title_contains)}, :as => :string
+  filter :std_title_cont, :label => proc{I18n.t(:std_title_contains)}, :as => :string
+  filter :composer_cont, :label => proc{I18n.t(:composer_contains)}, :as => :string
+
+  filter :"source_rism_ids_cont", :label => proc{I18n.t(:filter_id)}, :as => :string
+  filter :"510c_cont", :label => proc{I18n.t(:filter_book_id)}, :as => :string
   
-  filter :"852a_facet_contains", :label => proc{I18n.t(:library_sigla_contains)}, :as => :string, if: proc { !is_selection_mode? }
+  filter :"852a_facet_cont", :label => proc{I18n.t(:library_sigla_contains)}, :as => :string, if: proc { !is_selection_mode? }
   # see See lib/active_admin_record_type_filter.rb
-  # The same as above, but when the lib siglum is forced and cannot be changes
+  # The same as above, but when the lib siglum is forced and cannot be changed
   filter :lib_siglum_with_integer,
     if: proc { is_selection_mode? == true && params.include?(:q) && params[:q].include?(:lib_siglum_with_integer)}, :as => :lib_siglum
   
-  filter :"852c_contains", :label => proc{I18n.t(:filter_shelf_mark)}, :as => :string
-  filter :"599a_contains", :label => proc{I18n.t(:internal_note_contains)}, :as => :string
+  filter :"852c_cont", :label => proc{I18n.t(:filter_shelf_mark)}, :as => :string
+
+  filter :has_internal_note_with_integer, as: :select, :label => proc{I18n.t(:filter_has_internal_notes)},
+    collection: proc{[["True", "has_internal_note:true"], ["False", "has_internal_note:false"]]}
+
+  filter :"599a_cont", :label => proc{I18n.t(:internal_note_contains)}, :as => :string
 
   # This filter is the "any field" one
-  filter :title_equals, :label => proc {I18n.t(:any_field_contains)}, :as => :string
+  filter :title_eq, :label => proc {I18n.t(:any_field_contains)}, :as => :string
   filter :updated_at, :label => proc{I18n.t(:updated_at)}, as: :date_range
   filter :created_at, :label => proc{I18n.t(:created_at)}, as: :date_range
+
+  filter :has_music_incipit_with_integer, as: :select, :label => proc{I18n.t(:filter_has_incipits)},
+  collection: proc{[["True", "has_music_incipit:true"], ["False", "has_music_incipit:false"]]}
+
   # This filter passes the value to the with() function in seach
   # see config/initializers/ransack.rb
   # Use it to filter sources by folder
   filter :id_with_integer, :label => proc {I18n.t(:is_in_folder)}, as: :select, 
          collection: proc{Folder.for_type("Source").collect {|c| [c.name, "folder_id:#{c.id}"]}}
+         
   # and for the wf_owner
-  filter :wf_owner_with_integer, :label => proc {I18n.t(:filter_owner)}, as: :select, 
-         collection: proc {
-           if current_user.has_any_role?(:editor, :admin)
-             User.sort_all_by_last_name.map{|u| [u.name, "wf_owner:#{u.id}"]}
-           else
-             [[current_user.name, "wf_owner:#{current_user.id}"]]
-           end
-         }
+  #filter :wf_owner_with_integer, :label => proc {I18n.t(:filter_owner)}, as: :select, 
+  #       collection: proc {
+  #         if current_user.has_any_role?(:editor, :admin)
+  #           User.all.map{|u| [u.name, "wf_owner:#{u.id}"]}.sort
+  #         else
+  #           [[current_user.name, "wf_owner:#{current_user.id}"]]
+  #         end
+  #       }
+
+  filter :wf_owner_with_integer, :label => proc {I18n.t(:filter_owner)}, :as => :flexdatalist, data_path: proc{list_for_filter_admin_users_path()}
 
   filter :"593a_filter_with_integer", :label => proc{I18n.t(:filter_source_type)}, as: :select, 
   collection: proc{@source_types.sort.collect {|k| [@editor_profile.get_label(k.camelize), "593a_filter:#{k}"]}}
@@ -305,7 +324,7 @@ ActiveAdmin.register Source do
   collection: proc{@source_types_b.sort.collect {|k| [@editor_profile.get_label(k.camelize), "593b_filter:#{k}"]}}
 
   filter :record_type_select_with_integer, as: :select, 
-  collection: proc{MarcSource::RECORD_TYPE_ORDER.collect {|k| [I18n.t("record_types." + k.to_s), "record_type:#{MarcSource::RECORD_TYPES[k]}"]}},
+  collection: proc{MarcSource::RECORD_TYPE_ORDER.collect {|k| ["[#{I18n.t('record_types_codes.' + MarcSource::RECORD_TYPES[k].to_s,  locale: :en)}] ".to_s + I18n.t("record_types." + k.to_s).to_s, "record_type:#{MarcSource::RECORD_TYPES[k]}"]}},
 	if: proc { !is_selection_mode? }, :label => proc {I18n.t(:filter_record_type)}
 
   # See lib/active_admin_record_type_filter.rb
@@ -341,18 +360,11 @@ ActiveAdmin.register Source do
     column (I18n.t :filter_shelf_mark), :shelf_mark_shelforder, sortable: :shelf_mark_shelforder do |element|
       element.shelf_mark
     end
-    if current_user.has_any_role?(:admin, :editor)
-      column "Level" do |element|
-        element.tag_rate
-      end
-    end
-
-    
+        
     active_admin_muscat_actions( self )
   end
   
   sidebar :actions, :only => :index do
-    render :partial => "activeadmin/filter_workaround"
     render :partial => "activeadmin/section_sidebar_index"
   end
   
@@ -376,24 +388,28 @@ ActiveAdmin.register Source do
     active_admin_user_wf( self, @item )
     active_admin_navigation_bar( self )
     active_admin_comments if !is_selection_mode?
+
+    active_adnin_create_list_for(self, InventoryItem, @item, composer: I18n.t(:filter_composer), title: I18n.t(:filter_title))
   end
   
   # 8.0.1 #1190, make the sidebar floating only if there are no holdings
   sidebar :actions, :class => "sidebar_tabs" , :only => :show, if: proc{ resource.holdings.empty? } do
     render :partial => "activeadmin/section_sidebar_show", :locals => { :item => @arbre_context.assigns[:item] }
+    render :partial => "activeadmin/section_sidebar_folder_actions", :locals => { :item => item }
   end
 
   # Same sidebar as above, but when holdings are present. This is quite a kludge since :class cannot
-  # be created conditiolally using a proc{ !resource.holdings.empty? }, so the whole sidebar block
+  # be created conditionally using a proc{ !resource.holdings.empty? }, so the whole sidebar block
   # has to be repeated with a different if: ... do
   sidebar :actions, :only => :show, if: proc{ !resource.holdings.empty? } do
     render :partial => "activeadmin/section_sidebar_show", :locals => { :item => @arbre_context.assigns[:item] }
+    render :partial => "activeadmin/section_sidebar_folder_actions", :locals => { :item => item }
   end
 
   sidebar I18n.t(:holding_records), :only => :show , if: proc{ !resource.holdings.empty? } do
     render :partial => "holdings/holdings_sidebar_show"#, :locals => { :item => @arbre_context.assigns[:item] }
   end
-  
+
   ##########
   ## Edit ##
   ##########

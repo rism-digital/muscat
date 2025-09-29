@@ -1,0 +1,347 @@
+
+:version:
+  :name: tag_config
+  :current: 0.1
+  :authors: ["Chad Thatcher", "Sandra Tuppen", "Laurent Pugin", "Rodolfo Zitellini"]
+
+# GND works
+:model: gnd_work
+:add_fake_tags: true
+:tags:
+  "000":  
+    :indicator: ""
+    :occurrences: "1"
+    :fields:
+    - - ""
+      - :no_browse: true
+  "001":  
+    :indicator: ""
+    :occurrences: "1"
+    :zero_padding: "14"
+    :fields:
+    - - ""
+      - :no_browse: true
+  "003":  
+    :indicator: ""
+    :occurrences: "1"
+    :fields:
+    - - ""
+      - :no_browse: true
+  "005":  
+    :indicator: ""
+    :occurrences: "1"
+    :fields:
+    - - ""
+      - :no_browse: true
+  "008":  
+    :indicator: ""
+    :occurrences: "1"
+    :fields:
+    - - ""
+      - :no_browse: true
+  "024":  
+    :indicator: "##"
+    :occurrences: "+"
+    :fields:
+    - - a
+      - :occurrences: "?"
+  "035":  
+    :indicator: "##"
+    :occurrences: "+"
+    :fields:
+    - - a
+      - :occurrences: "?"
+    - - z
+      - :occurrences: "?"
+    - - "9"
+      - :occurrences: "?"
+  "040":  
+    :indicator: "##"
+    :occurrences: "+"
+    :fields:
+    - - b
+      - :occurrences: "?"
+    - - e
+      - :occurrences: "?"
+  "043":  
+    :indicator: "##"
+    :occurrences: "*"
+    :fields:
+    - - c
+      - :occurrences: "?"
+  "065":  
+    :indicator: "##"
+    :occurrences: "*"
+    :fields:
+    - - "2"
+      - :occurrences: "?"
+    - - a
+      - :occurrences: "?"
+  "075":  
+    :indicator: "##"
+    :occurrences: "*"
+    :fields:
+    - - b
+      - :occurrences: "?"
+    - - "2"
+      - :occurrences: "?"
+  "079":  
+    :indicator: "##"
+    :occurrences: "*"
+    :fields:
+    - - a
+      - :occurrences: "?"
+    - - q
+      - :occurrences: "?"
+    - - u
+      - :occurrences: "?"
+  "100":  
+    :master: "0"
+    :indicator: "1#"
+    :occurrences: "?"
+    :fields:
+    - - "0"
+      - :occurrences: "?"  
+        #:foreign_class: GndWork
+        #:foreign_field: id
+    - - a
+      - :occurrences: "?"
+        #:foreign_class: ^0
+        #:foreign_field: full_name
+    - - d
+      - :occurrences: "?"
+    - - m
+      - :occurrences: "+"
+    - - n
+      - :occurrences: "+"
+    - - o
+      - :occurrences: "?"
+    - - p
+      - :occurrences: "+"
+    - - r
+      - :occurrences: "?"
+    - - t
+      - :occurrences: "?"
+  "130":  
+    :master: "0"
+    :indicator: "1#"
+    :occurrences: "?"
+    :fields:
+    - - "0"
+      - :occurrences: "?"  
+        #:foreign_class: GndWork
+        #:foreign_field: id
+    - - a
+      - :occurrences: "?"
+        #:foreign_class: ^0
+        #:foreign_field: full_name
+    - - d
+      - :occurrences: "?"
+    - - m
+      - :occurrences: "+"
+    - - n
+      - :occurrences: "+"
+    - - o
+      - :occurrences: "?"
+    - - p
+      - :occurrences: "+"
+    - - r
+      - :occurrences: "?"
+    - - t
+      - :occurrences: "?"
+  "377":  
+    :master: "0"
+    :indicator: "##"
+    :occurrences: "*"
+    :fields:
+    - - "2"
+      - :occurrences: "?"
+    - - a
+      - :occurrences: "?"
+  "380":  
+    :master: "0"
+    :indicator: "##"
+    :occurrences: "*"
+    :fields:
+    - - a
+      - :occurrences: "+"
+  "380":  
+    :master: "0"
+    :indicator: "##"
+    :occurrences: "*"
+    :fields:
+    - - "0"
+      - :occurrences: "?"  
+    - - "2"
+      - :occurrences: "+"
+    - - a
+      - :occurrences: "+"
+  "382":  
+    :master: "0"
+    :indicator: "##"
+    :occurrences: "*"
+    :fields:
+    - - "0"
+      - :occurrences: "?" 
+    - - "2"
+      - :occurrences: "?"
+    - - v
+      - :occurrences: "?"
+    - - n
+      - :occurrences: "?"
+    - - s
+      - :occurrences: "?"
+  "383":  
+    :indicator: "##"
+    :occurrences: "*"
+    :fields:
+    - - a
+      - :occurrences: "?"
+    - - b
+      - :occurrences: "?"
+    - - c
+      - :occurrences: "?"
+  "384":  
+    :indicator: "1#"
+    :occurrences: "*"
+    :fields:
+    - - a
+      - :occurrences: "?"
+  "400":  
+    :master: "0"
+    :indicator: "1#"
+    :occurrences: "*"
+    :fields:
+    - - "0"
+      - :occurrences: "?"  
+    - - a
+      - :occurrences: "?"
+    - - d
+      - :occurrences: "?"
+    - - m
+      - :occurrences: "+"
+    - - n
+      - :occurrences: "+"
+    - - p
+      - :occurrences: "+"
+    - - r
+      - :occurrences: "?"
+    - - o
+      - :occurrences: "?"
+    - - t
+      - :occurrences: "?"
+  "430":  
+    :indicator: "##"
+    :occurrences: "*"
+    :fields:
+    - - a
+      - :occurrences: "?"
+    - - m
+      - :occurrences: "+"
+    - - n
+      - :occurrences: "+"
+    - - p
+      - :occurrences: "+"
+  "500":  
+    :master: "0"
+    :indicator: "1#"
+    :occurrences: "*"
+    :fields:
+    - - "0"
+      - :occurrences: "?"  
+    - - a
+      - :occurrences: "?"
+    - - "d"
+      - :occurrences: "?"
+    - - "e"
+      - :occurrences: "?"
+    - - "4"
+      - :occurrences: "+"
+    - - i
+      - :occurrences: "?"
+    - - w
+      - :occurrences: "?"
+    - - "9"
+      - :occurrences: "+"
+    - - n
+      - :occurrences: "+"
+    - - m
+      - :occurrences: "+"
+    - - p
+      - :occurrences: "+"
+    - - r
+      - :occurrences: "?"
+  "530":  
+    :indicator: "##"
+    :occurrences: "*"
+    :fields:
+    - - "4"
+      - :occurrences: "+"
+    - - "9"
+      - :occurrences: "+"
+    - - a
+      - :occurrences: "?"
+    - - w
+      - :occurrences: "?"
+  "548":  
+    :indicator: "##"
+    :occurrences: "*"
+    :fields:
+    - - a
+      - :occurrences: "?"
+    - - b
+      - :occurrences: "?"
+    - - c
+      - :occurrences: "?"
+    - - "4"
+      - :occurrences: "+"
+    - - "9"
+      - :occurrences: "+"
+  "550":  
+    :indicator: "##"
+    :occurrences: "*"
+    :fields:
+    - - a
+      - :occurrences: "?"
+    - - g
+      - :occurrences: "?"
+    - - i
+      - :occurrences: "?"
+    - - '0'
+      - :occurrences: "?"
+    - - '4'
+      - :occurrences: "+"
+    - - '9'
+      - :occurrences: "+"
+  "667":  
+    :indicator: "##"
+    :occurrences: "*"
+    :fields:
+    - - "5"
+      - :occurrences: "?"
+  "670":  
+    :indicator: "##"
+    :occurrences: "*"
+    :fields:
+    - - a
+      - :occurrences: "?"
+    - - u
+      - :occurrences: "+"
+  "675":  
+    :indicator: "##"
+    :occurrences: "*"
+    :fields:
+    - - a
+      - :occurrences: "+"
+  "678":  
+    :indicator: "##"
+    :occurrences: "*"
+    :fields:
+    - - b
+      - :occurrences: "?"
+  "912":  
+    :indicator: "##"
+    :occurrences: "*"
+    :fields:
+    - - a
+      - :occurrences: "?"

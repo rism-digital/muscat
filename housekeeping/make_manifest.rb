@@ -88,7 +88,7 @@ OptionParser.new do |opts|
     options[:onlyadd] = b
   end
 
-  opts.on("-m", "--match-metadata [FILE]", "Pull the metadata from a CSV file, ID,BANNER,TYPE") do |b|
+  opts.on("-m", "--match-metadata [FILE]", "Pull the metadata from a CSV file, ID,BANNER($z),TYPE($x)") do |b|
     options[:csv] = b
   end
 
@@ -128,7 +128,7 @@ options[:nomuscat] = false if !options.include?(:nomuscat)
 IIIF_PATH = options[:path] if options.include?(:path)
 
 if options.include?(:csv)
-  if !File.exists?(options[:csv])
+  if !File.exist?(options[:csv])
     puts "The csv file does not exist: #{options[:csv]}"
     exit 1
   end
@@ -254,6 +254,13 @@ dirs.keys.each do |dir|
         next
       end
 
+      service = IIIF::Presentation::Resource.new(
+        '@context' => 'http://iiif.io/api/image/2/context.json', 
+        'profile' => 'http://iiif.io/api/image/2/level1.json', 
+        '@id' => image_url)
+
+        image_resource.service = service
+
       #print "."
       image.resource = image_resource
       
@@ -266,7 +273,7 @@ dirs.keys.each do |dir|
       # Some obnoxious servers block you after some requests
       # may also be a server/firewall combination
       # comment this if you are positive your server works
-      #sleep 0.1
+      #sleep 0.5
     end
     
     #puts manifest.to_json(pretty: true)

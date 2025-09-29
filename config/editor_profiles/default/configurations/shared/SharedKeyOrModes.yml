@@ -1,0 +1,138 @@
+--- !map:ActiveSupport::HashWithIndifferentAccess
+
+A:
+  label: records.a_major
+a:
+  label: records.a_minor
+A|x:
+  label: records.as_major
+a|x:
+  label: records.as_minor
+A|b:
+  label: records.af_major
+a|b:
+  label: records.af_minor
+B:
+  label: records.b_major
+b:
+  label: records.b_minor
+B|b:
+  label: records.bf_major
+b|b:
+  label: records.bf_minor
+C:
+  label: records.c_major
+c:
+  label: records.c_minor
+C|x:
+  label: records.cs_major
+c|x:
+  label: records.cs_minor
+C|b:
+  label: records.cf_major
+c|b:
+  label: records.cf_minor
+D:
+  label: records.d_major
+d:
+  label: records.d_minor
+D|x:
+  label: records.ds_major
+d|x:
+  label: records.ds_minor
+D|b:
+  label: records.df_major
+d|b:
+  label: records.df_minor
+E:
+  label: records.e_major
+e:
+  label: records.e_minor
+E|b:
+  label: records.ef_major
+e|b:
+  label: records.ef_minor
+F:
+  label: records.f_major
+f:
+  label: records.f_minor
+F|x:
+  label: records.fs_major
+f|x:
+  label: records.fs_minor
+G:
+  label: records.g_major
+g:
+  label: records.g_minor
+G|x:
+  label: records.gs_major
+g|x:
+  label: records.gs_minor
+G|b:
+  label: records.gf_major
+g|b:
+  label: records.gf_minor
+1t:
+  label: records.mode_1t
+2t:
+  label: records.mode_2t
+3t:
+  label: records.mode_3t
+4t:
+  label: records.mode_4t
+5t:
+  label: records.mode_5t
+6t:
+  label: records.mode_6t
+7t:
+  label: records.mode_7t
+8t:
+  label: records.mode_8t
+9t:
+  label: records.mode_9t
+10t:
+  label: records.mode_10t
+11t:
+  label: records.mode_11t
+12t:
+  label: records.mode_12t
+1tt:
+  label: records.mode_1tt
+2tt:
+  label: records.mode_2tt
+3tt:
+  label: records.mode_3tt
+4tt:
+  label: records.mode_4tt
+5tt:
+  label: records.mode_5tt
+6tt:
+  label: records.mode_6tt
+7tt:
+  label: records.mode_7tt
+8tt:
+  label: records.mode_8tt
+9tt:
+  label: records.mode_9tt
+10tt:
+  label: records.mode_10tt
+11tt:
+  label: records.mode_11tt
+12tt:
+  label: records.mode_12tt
+1byz:
+  label: records.octoechos1
+2byz:
+  label: records.octoechos2
+3byz:
+  label: records.octoechos3
+4byz:
+  label: records.octoechos4
+5byz:
+  label: records.octoechos5
+6byz:
+  label: records.octoechos6
+7byz:
+  label: records.octoechos7
+8byz:
+  label: records.octoechos8

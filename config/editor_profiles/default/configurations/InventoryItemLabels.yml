@@ -1,0 +1,585 @@
+--- !map:ActiveSupport::HashWithIndifferentAccess
+
+'000':
+  label: records.leader
+'001':
+  label: records.rism_id_number
+01_codes_artistic:
+  label: records.artistic_production
+02_codes_performing:
+  label: records.performance
+03_codes_technical:
+  label: records.technical_production
+04_codes_other:
+  label: records.other
+'031':
+  fields:
+    a:
+      label: records.work_number
+    b:
+      label: records.movement_number
+    c:
+      label: records.incipit_number
+    d:
+      label: records.title_movement_tempo
+    e:
+      label: records.role
+    g:
+      label: records.clef
+    m:
+      label: records.voice_instrument
+    n:
+      label: records.key_signature
+    o:
+      label: records.time_signature
+    p:
+      label: records.music_incipit
+    q:
+      label: records.general_note_incipits
+    r:
+      label: records.key_or_mode
+    s:
+      label: general.validity
+    t:
+      label: records.text_incipit
+    z:
+      label: records.scoring_in_movement
+  label: records.incipit
+'040':
+  fields:
+    a:
+      label: records.original_cataloging_agency
+    b:
+      label: records.language_of_cataloging
+    c:
+      label: records.transcribing_agency
+    d:
+      label: records.modifying_agency
+    e:
+      label: records.description_conventions
+  label: records.cataloging_source
+'041':
+  fields:
+    0#:
+      label: general.no
+    1#:
+      label: general.yes
+    a:
+      label: records.language_text
+    e:
+      label: records.language_libretto
+    h:
+      label: records.language_original_text
+    indicator:
+      label: records.translation
+  label: records.language_code
+'100':
+  fields:
+    a:
+      label: records.name
+    d:
+      label: records.life_dates
+    j:
+      label: records.attribution_qualifier
+  label: records.composer_author
+'240':
+  fields:
+    a:
+      label: records.standardized_title
+    k:
+      label: records.subheading
+    m:
+      label: records.scoring_summary
+    o:
+      label: records.arrangement_statement
+    p:
+      label: records.title_section_part
+    r:
+      label: records.key_or_mode
+  label: records.standardized_title
+'245':
+  fields:
+    a:
+      label: records.title_on_source
+  label: records.title_on_source
+'246':
+  fields:
+    a:
+      label: records.reconstructed_title
+  label: records.reconstructed_title
+'260':
+  fields:
+    '8':
+      label: records.material_group
+    a:
+      label: records.place
+    b:
+      label: records.publisher_copyist
+    c:
+      label: records.date
+    e:
+      label: records.location_printer
+    f:
+      label: records.name_printer
+  label: records.publishing_printing_production
+'300':
+  fields:
+    '8':
+      label: records.material_group
+    a:
+      label: records.format_extent
+    b:
+      label: records.other_physical_details
+    c:
+      label: records.dimensions
+  label: records.physical_description
+'383':
+  fields:
+    b:
+      label: records.opus_number
+  label: records.opus_number
+'500':
+  fields:
+    '8':
+      label: records.material_group
+    a:
+      label: records.general_note
+  label: records.general_note
+'593':
+  fields:
+    '8':
+      label: records.material_group
+    a:
+      label: records.source_type
+    b:
+      label: records.content_type
+  label: records.source_type
+'594':
+  fields:
+    b:
+      label: records.voice_instrument
+    c:
+      label: records.amount
+  label: records.total_scoring
+'599':
+  fields:
+    a:
+      label: records.local_notes_field
+  label: records.local_notes_field
+'650':
+  fields:
+    a:
+      label: records.subject_heading
+  label: records.subject_heading
+'690':
+  fields:
+    a:
+      label: records.catalog_works
+    n:
+      label: records.number_page
+  label: records.catalog_works
+'691':
+  fields:
+    a:
+      label: records.bibliographic_reference
+    n:
+      label: records.number_page
+  label: records.bibliographic_reference
+'700':
+  fields:
+    '4':
+      label: records.function
+    '8':
+      label: records.material_group
+    a:
+      label: records.name
+    d:
+      label: records.life_dates
+    j:
+      label: records.attribution_qualifier
+  label: records.additional_personal_name
+'710':
+  fields:
+    '4':
+      label: records.function
+    '8':
+      label: records.material_group
+    a:
+      label: records.institution
+    b:
+      label: records.department
+    c:
+      label: records.place
+    g:
+      label: records.attribution_qualifier
+  label: records.additional_institution
+'730':
+  fields:
+    a:
+      label: records.additional_title
+    g:
+      label: general.rule_type
+    k:
+      label: records.subheading
+    m:
+      label: records.scoring_summary
+    n:
+      label: records.catalog_opus_number
+    o:
+      label: records.arrangement_statement
+    r:
+      label: records.key_or_mode
+  label: records.additional_title
+'773':
+  fields:
+    w:
+      label: records.inventory_source
+    o:
+      label: records.inventory
+    n:
+      label: records.category_section
+    g:
+      label: records.number_page
+  label: records.inventory_source
+'775':
+  fields:
+    w:
+      label: records.later_entry
+    "4":
+      label: records.function
+  label: records.later_entry
+'786':
+  fields:
+    'a':
+      label: records.name
+    'd':
+      label: records.imprint
+    i:
+      label: records.identification_status
+    o:
+      label: records.rism_id_number
+    t:
+      label: records.title
+  label: records.identification_status
+'787':
+  fields:
+    "4":
+      label: records.relationship
+    n:
+      label: records.note
+    w:
+      label: records.rism_id_number
+  label: records.related_source
+'856':
+  fields:
+    u:
+      label: records.external_resource
+    x:
+      label: records.link_type
+    z:
+      label: records.note_external_resource
+  label: records.external_resource_uri
+'930':
+  fields:
+    a:
+      label: records.source
+    w:
+      label: records.identified_source
+    '4':
+      label: records.identification_status
+  label: records.identified_source
+'931':
+  fields:
+    a:
+      label: records.holding
+    w:
+      label: records.identified_holding
+  label: records.identified_holding
+'932':
+  fields:
+    a:
+      label: records.work
+    w:
+      label: records.identified_work
+  label: records.identified_work
+'981':
+  fields:
+    "0":
+      label: records.original_record
+    d:
+      label: records.date
+  label: records.duplicated_from
+"1st":
+  label: records.first_entry
+Alleged:
+  label: records.alleged
+Ascertained:
+  label: records.ascertained
+Autography:
+  label: records.autography
+Computer printout:
+  label: records.computer_printout
+Conjectural:
+  label: records.conjectural
+Digitized:
+  label: records.digitized_source
+Engraving:
+  label: records.engraving
+Facsimile:
+  label: records.facsimile
+"IIIF manifest (digitized source)":
+  label: records.iiif_manifest
+"IIIF manifest (other)":
+  label: records.iiif_manifest_other
+"Identified":
+  label: records.identified
+"Possibly identified":
+  label: records.possibly_identified
+Lithography:
+  label: records.lithography
+Misattributed:
+  label: records.misattributed
+Other:
+  label: records.other
+Photoreproductive process:
+  label: records.photoreproductive_process
+Reproduction:
+  label: records.reproduction
+Transparency:
+  label: records.transparency
+Typescript:
+  label: records.typescript
+Typography:
+  label: records.typography
+Verified:
+  label: general.verified
+arr:
+  label: records.arranger
+art:
+  label: records.artist
+asn:
+  label: records.associated_name
+aut:
+  label: records.author
+bnd:
+  label: records.binder
+bsl:
+  label: records.bookseller
+ccp:
+  label: records.conceptor
+chr:
+  label: records.choreographer
+clb:
+  label: records.contributor
+att:
+  label: records.composer_cross_reference
+cnd:
+  label: records.conductor
+cns:
+  label: records.censor
+com:
+  label: records.compiler
+cst:
+  label: records.costume_designer
+ctb:
+  label: records.co_composer
+dnc:
+  label: records.dancer
+dnr:
+  label: records.donor
+doc_abbr_dates:
+  label: records.dates
+doc_abbr_general:
+  label: records.general_abbreviations
+doc_abbr_keys:
+  label: records.keys
+doc_abbr_lang:
+  label: records.language_codes
+doc_abbr_modes:
+  label: records.ecclesiastical_modes
+doc_abbr_voices_instr:
+  label: records.terms_voices_instruments
+doc_abbr_voices_instr2:
+  label: general.rism_instrument_abbreviations
+doc_abbreviations:
+  label: records.abbreviations_terminology
+doc_added_entries:
+  label: records.added_entry_name
+doc_administration:
+  label: records.administration
+doc_aid:
+  label: records.aids
+doc_aid_liturgical_feasts:
+  label: records.liturgical_festivals
+doc_aid_locations:
+  label: records.location_on_source
+doc_aid_texts_sacred_works:
+  label: records.standard_texts_sacred_works
+doc_aid_titles_keywords:
+  label: records.standardized_titles_subject_headings
+doc_aid_transposing_instruments:
+  label: records.help_transposing_instruments
+doc_bibliographical_reference:
+  label: records.references
+doc_cat_authorities:
+  label: records.authorities
+doc_cat_collections:
+  label: records.cataloging_collection_convoluta
+doc_cat_templates:
+  label: records.templates
+doc_cataloguing:
+  label: records.general_cataloguing_guidelines
+doc_content:
+  label: records.content
+doc_date:
+  label: records.dates
+doc_diplomatic_title:
+  label: records.diplomatic_title
+doc_edit_functions:
+  label: records.basic_functions
+doc_edit_searching:
+  label: general.searching
+doc_edit_workflow:
+  label: general.workflow
+doc_editor:
+  label: general.using_muscat
+doc_digital_objects:
+  label: records.digital_objects
+doc_incipit:
+  label: records.incipits
+doc_institutions:
+  label: records.institutions
+doc_introduction:
+  label: records.introduction
+doc_library:
+  label: records.library_information
+doc_linkage:
+  label: records.linkage
+doc_main_entry_fields:
+  label: records.main_entry_fields
+doc_masks:
+  label: records.cataloging_musical_sources
+doc_name_variants:
+  label: records.name_variants
+doc_numbers:
+  label: records.numbers_code_fields
+doc_people:
+  label: records.people_institutions
+doc_performance:
+  label: records.performances
+doc_personal_names:
+  label: records.personal_names
+doc_physical_description:
+  label: records.material_description
+doc_provenance:
+  label: records.provenance
+doc_references:
+  label: records.references
+doc_relations:
+  label: records.relations
+doc_tag_index:
+  label: general.index_marc_fields
+doc_title:
+  label: records.title_content_description
+dpt:
+  label: records.depositor
+dsr:
+  label: records.designer
+dte:
+  label: records.dedicatee
+edit_administration:
+  label: records.administration
+edit_library:
+  label: records.library_information_relations
+edit_material:
+  label: records.material_description
+edit_names:
+  label: records.people_institutions
+edit_references:
+  label: records.references_and_notes
+edt:
+  label: records.editor
+egr:
+  label: records.engraver
+evp:
+  label: records.event_place
+fmo:
+  label: records.former_owner
+ill:
+  label: records.illustrator
+itr:
+  label: records.instrumentalist
+lbt:
+  label: records.librettist
+ltg:
+  label: records.lithographer
+lyr:
+  label: records.text_author
+oth:
+  label: records.other
+otm:
+  label: records.event_organizer
+pat:
+  label: records.patron
+pbl:
+  label: records.publisher
+ppm:
+  label: records.papermaker
+prd:
+  label: records.production_personnel
+prf:
+  label: records.performer
+prt:
+  label: records.printer
+led:
+  label: records.later_entry
+pub:
+  label: records.publisher
+scr:
+  label: records.copyist
+show_admin:
+  label: records.administration
+show_content:
+  label: records.content
+show_distribution:
+  label: records.distribution
+show_information:
+  label: records.further_information
+show_library:
+  label: records.library_information
+show_links:
+  label: records.related_titles
+show_material:
+  label: records.material_description
+show_references:
+  label: records.references
+show_resources:
+  label: records.related_resources
+show_summary:
+  label: records.summary
+show_terms:
+  label: records.index_terms
+trl:
+  label: records.translator
+unmatched:
+  label: general.unknown_fields
+edit_incipits:
+  label: records.incipits
+edit_links:
+  label: records.linkage
+voc:
+  label: records.vocalist
+"Print with autograph annotations":
+  label: records.print_with_autograph_annotations
+"Print with non-autograph annotations":
+  label: records.print_with_non_autograph_annotations
+"Additional manuscript material":
+  label: records.additional_manuscript_material
+Arr:
+  label: records.arrangement
+Excerpts:
+  label: records.excerpts
+Fragments:
+  label: records.fragments
+Sketches:
+  label: records.sketches

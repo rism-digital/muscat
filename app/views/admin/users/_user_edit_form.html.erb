@@ -23,7 +23,7 @@
          <%= f.input :notification_email %>
          <%= f.input :workgroups, as: :select, multiple: true, collection: Workgroup.all.sort_by {|w| w.name} %>
          <%= f.input :roles, as: :select, multiple: false, collection: Role.all %>
-         <%= f.input :preference_wf_stage, as: :select, multiple: false, collection: [:inprogress, :published, :deleted] %>
+         <%= f.input :preference_wf_stage, as: :select, multiple: false, collection: [:inprogress, :published] %>
        <% end %>
      <% end %>
 <% end %>

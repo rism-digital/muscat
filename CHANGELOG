@@ -1,6 +1,1388 @@
 Muscat Changelog
 ================
 
+v 11.7.0.1
+* Somewhere, there was a bug: Needs to return an object not string
+* Fix #1863, rename :work_catalogue to :work_catalog to avoid conflict with RO
+* Script to fix works
+* Fix #1864, add Argentina
+* FIx #1716, add readonly fields wirh override for editor and admin
+* Fix #1680, cleanup psmd link
+* Fix #1556, Allow new personal name creation from 700 $a in institution
+* Fix #1470, make sure 593 is not deleted when moved
+* Fix news to say guidelines exist in EN and DE
+* Update tribute.js to fix some long standing bugs
+* Mini changes to locales
+* The netmask for this release is 255.255.255.0
+
+v 11.7
+* Fix #1837, make the breadcrumbs preserve case
+* Bump thor from 1.3.2 to 1.4.0
+* Update autocomplete
+* Merge pull request #1840 from rism-digital/dependabot/bundler/thor-1.4.0
+* Bump nokogiri from 1.18.8 to 1.18.9
+* #1835 GND Editor Bigfix
+* Fix #1842, remove SB-SA
+* Fixed: Add north macedonia to the country list
+* Merge pull request #1843 from rism-digital/north-macedonia
+* Fix bug in WorkNode validation, add scoring and op no
+* Fix #1835. Add edit box and fix last missing translations
+* #1722 add button to copy PAE code
+* #1722 Add translations
+* Translate even more hardcoded stuff
+* Try to fix the width of the PAE box
+* Fix #1120, remove "magic" _all partials and obsolete support for them. Rename the only one.
+* Fix crash with MEI incipits
+* #1440 add new link buttons in 8 languages
+* Fix resizing of MEI files
+* Fix #1544, add all the relations!
+* Fix #1526, remove more tags when duplicating
+* #1786, add NotificationMatcher for Holding
+* Remove double 383
+* Script to fix incorrectly formatted B/I numbers
+* Script to fix the 510 $a
+* Bump activerecord from 7.2.2.1 to 7.2.2.2
+* Bump activestorage from 7.2.2.1 to 7.2.2.2
+* Make sure unnamed libraries don't crash all
+* Merge pull request #1841 from rism-digital/dependabot/bundler/nokogiri-1.18.9
+* Merge pull request #1845 from rism-digital/dependabot/bundler/activerecord-7.2.2.2
+* Merge pull request #1846 from rism-digital/dependabot/bundler/activestorage-7.2.2.2
+* #1848 more aggressive stripping of whitespace when loading marc
+* add "referring_relations" to concerns, and add script to purge whitespace
+* Fix #1849, change to date_of_creation
+* Reset searches in new tabs
+* Save per_page and purge ordering
+* Fix #1847, make nav links work on > 30 results
+* Script to fix the 043 in People
+* Validation rules for duplicated 031
+* Add the 031 validation to Works
+* #1575, aggressively strip whitespace all around muscat
+* #1844 Add tags in version diff
+* #1844 add compare versions mod
+* #1766, add "read only" option for subfield_secordary, and no_delete_override for tags
+* Do not validate links when saving - so the user can save and fix that error
+* #1852 add validation for URLs
+* Fix #1853, make delete and restore in versions only for admins
+* Script to migrate 852 into 773
+* Remove double 856 in works
+* #1851 and #1858, add migrations for new int fields
+* Fix #1859 add cool new search field!
+* Fix #1783, add wf_audit
+* Remove field 852 from InventoryItems, leave in the tag_config until update
+* #1784 Add possibility to move digital objects
+* Fix #1710, add option to merge holding records
+* Make sure only ONE do-link is moved
+* Fix DO migration
+* Fix #1854, limit "unpublish" to new records for cataloguers. They cannot unpub published records.
+* Sneakingly remove "deleted" from the user prefs
+* Fix #1860. add Project to Institution 368, upd. translations
+* Upd. translations
+
+
+v 11.6.3
+* Make the Person validation validate the correct field (551)
+* Make GND ordering costum
+* More mods to the GND test scrip, + cornetto fixes
+* GND: make a and d editable in 400
+* FIx WC label
+* Update gnd_work_100_de.html
+* Merge pull request #1814 from afaschon/patch-38
+* Fix #1811, add missing subfields
+* #1813 make tags not deletable
+* Merge pull request #1825 from afaschon/patch-47
+* Merge pull request #1824 from afaschon/patch-46
+* Merge pull request #1823 from afaschon/patch-45
+* Merge pull request #1822 from afaschon/patch-44
+* Merge pull request #1821 from afaschon/patch-43
+* Merge pull request #1820 from afaschon/patch-42
+* Merge pull request #1819 from afaschon/patch-41
+* Merge pull request #1818 from afaschon/patch-40
+* Merge pull request #1817 from afaschon/patch-39
+* Merge pull request #1826 from afaschon/patch-48
+* Merge pull request #1828 from afaschon/patch-50
+* Merge pull request #1827 from afaschon/patch-49
+* Fix #1790, add 856 $x
+* Fix #1829, add proper stored ID for autocomplete
+* Merge pull request #1833 from afaschon/patch-54
+* Merge pull request #1832 from afaschon/patch-53
+* Merge pull request #1831 from afaschon/patch-52
+* Merge pull request #1830 from afaschon/patch-51
+* Fix #1815, rename to Form of work
+* Enable DE guidelines
+* Properly set the hardcoded guideline versions
+* Fix #1836, enable table rendering
+
+v 11.6.2
+* Fix EDTF editing in Works
+* Merge pull request #1810 from afaschon/patch-37
+
+v 11.6.1
+* Fix #1808, invalid value in solr autocomplete
+
+v 11.6
+* Add action in publication to show work node list
+* Add sidebar with work catalogue info
+* Method for checking 024
+* Add work catalogue side bar with statistics
+* Don't load relations to speed up marc load
+* Mini script to get line dups
+* #1760 Add codes for 530
+* very quick and very dirty notificator for GND
+* #1756 Fix last issues
+* Fix 079
+* Make 079 $u read only
+* Use the COMMENT_EMAIL for to: if available
+* Bump net-imap from 0.5.6 to 0.5.7
+* Implement force_editor_ordering option in the frontend part
+* Make sure !force_editor_ordering is properly propagated
+* Remove person information for GND 100
+* Merge pull request #1763 from rism-digital/dependabot/bundler/net-imap-0.5.7
+* Fix #1762, add CMO
+* Fix #1720
+* #1739 align 773 to 774 on export
+* #1764: Add migration to smallint, add support and menu for more options on work catalogs
+* Make the folder option form more pretty
+* Add new translations for new actions
+* Properly order en.yml
+* Add proper menu for filtering Work Catalogues
+* Initial updates to scss and update AA to 3.3
+* Fix labels and translations
+* Make abilities more stringent
+* Make the work catalogue script more aggressive when reindexing
+* Make the work catalogue sortable
+* #1738 and #1765. Refactor wf_stage and user selection box, make deleted and deprecated optional
+* Fix GND work for new wf_stage selector, prepare for autocomplete
+* #1765 Initial setup for Work publication action in Publications
+* Make the folder reindexer reintex the items and NOT the folder items...
+* #1765 Add publication action to sidebar, make Reindex job generic
+* Update gnd_work_377_de.html
+* Merge pull request #1767 from afaschon/patch-12
+* Properly order en.yml
+* Make the "work catalogue status" editable directly in works for the authorized users
+* Add entry in the WF block
+* #1744 Make 008 editing more modular
+* Fix #1744, 008 in authority files
+* Make the same value have two labels for GND
+* Catalogue -> Catalog
+* Fix #1771, add repeatable fields for GND
+* Fix #1768, GND order and labels
+* Update gnd_work_380_de.html
+* Update gnd_work_384_de.html
+* Update gnd_work_667_de.html
+* Update gnd_work_130_de.html
+* Update gnd_work_670_de.html
+* Update gnd_work_675_de.html
+* Update gnd_work_912_de.html
+* Update gnd_work_913_de.html
+* Test: Switch to new AC
+* Update gems
+* Add ngram autocomplete field
+* Merge pull request #1774 from afaschon/patch-16
+* Merge pull request #1775 from afaschon/patch-17
+* Merge pull request #1776 from afaschon/patch-18
+* Merge pull request #1777 from afaschon/patch-19
+* Merge pull request #1778 from afaschon/patch-20
+* Merge pull request #1779 from afaschon/patch-21
+* Merge pull request #1780 from afaschon/patch-22
+* Merge pull request #1781 from afaschon/patch-23
+* Fix #1772 add new values
+* Fix part of #1773, make the user list not crash
+* Fix #1773, add presence for :name
+* Fix 1783, make changing wf_stage trigger a save
+* Force holdings to be published
+* Fix user selection
+* Fix #1782 add Armenian to 041
+* Make sure 040 $e is not included in GND
+* Make the Nosey more Nosey
+* Fix menu in selection_mode, use new method in AA 3.3
+* Open the guidelines in a new tab
+* Apply new AC to institution 710
+* Fix bug in siglum autocomplete
+* Make the GND nosey more nosey and more indented
+* Add debug stuff for nosey
+* Add default DE-588 values in 500 and 530
+* Fine-tune InventoryItem validation
+* Validate 031 in IIs
+* Expand the 593 options for II
+* Diplomatic script for #1791
+* Enable importmaps-rails to support ESM js packages
+* Add EDTF validation + initial inline errors
+* Fix 245 inventory item script, and make work dup script
+* Also make the old records obsolete
+* Also migrate the relations
+* Fix the foreign_class in 780 and 786 for Publication
+* Fix #1787, 382 refinements for GND
+* Update gnd_work_550_de.html
+* Update gnd_work_548_de.html
+* Update gnd_work_383_de.html
+* Merge pull request #1792 from afaschon/patch-24
+* Merge pull request #1793 from afaschon/patch-25
+* Merge pull request #1794 from afaschon/patch-26
+* More EDTF: make messages meaningful, make validation work
+* Update gnd_work_667_de.html
+* Update gnd_work_670_de.html
+* Merge pull request #1795 from afaschon/patch-27
+* Merge pull request #1796 from afaschon/patch-28
+* Fix #1788
+* Update gnd_work_550_de.html
+* Merge pull request #1797 from afaschon/patch-29
+* Update gnd_work_548_de.html
+* Merge pull request #1798 from afaschon/patch-31
+* Update gnd_work_383_de.html
+* Merge pull request #1799 from afaschon/patch-32
+* Update gnd_work_678_de.html
+* Merge pull request #1800 from afaschon/patch-33
+* Update gnd_work_382_de.html
+* Merge pull request #1801 from afaschon/patch-34
+* Fix #1802, minor GND changes
+* Remove unused js function OpenWindow
+* Basic HTML exporter
+* Add [] accessor to marc and marc_node to make stuff easier to navigate
+* Make edtf a bit better, add validation for 551 in person
+* Make the "owner" filter display a value
+* Make muscat complain even more!
+* #1804 Refactor link code, move url to a conf var, and fix links
+* #1042, align all 040 fields in preparation
+* Fix 040 script, make GND even more nosey, and locales
+* Do not add 040 anymore, it is included in the data
+* GND TEST! Force ordering of subtags
+* Make the megasave script accept more models
+* Update gnd_work_500_de.html
+* Update gnd_work_530_de.html
+* Merge pull request #1805 from afaschon/patch-35
+* Merge pull request #1806 from afaschon/patch-36
+* Some refinements for GND and 040 script
+* Move tu MUSCAT_URL
+* #1042 unify 040 across all models
+* Remove $b and $d defaults from editor conf
+* Add $e rismg in all default files #1042
+* #1042 adjust 040 script
+* Also adapt worknode
+* fix #1765, add validation
+* #1765 more stuff
+* Fix #1807, change labels
+* Update locales
+
+v 11.5
+* Bump passenger from 6.0.23 to 6.0.26
+* Scripts for ICCU dups and Corago
+* Add handy siglum-contains
+* Merge pull request #1718 from rism-digital/dependabot/bundler/passenger-6.0.26
+* Fix #1714, and some impros to the dup script
+* Script to fix duplicate items in 245
+* Update SourceLabels.yml
+* Add validation for orphan 773
+* #1725 Make the validator actually validate 773
+* Fix the 773 test script
+* It fails if there are the leading 0000
+* Bump rack from 3.1.10 to 3.1.12
+* Improve the un-000 script
+* Add handy diffy tool
+* Bump uri from 1.0.2 to 1.0.3
+* Merge pull request #1726 from rism-digital/dependabot/bundler/rack-3.1.12
+* Merge pull request #1727 from rism-digital/dependabot/bundler/uri-1.0.3
+* Merge pull request #1724 from rism-digital/jenniferward-patch-1
+* Remove obsolete code
+* Use MD
+* Fish non english GLs from legacy
+* Remove ap
+* Fix help for GND Works
+* Fix #1729, make $u untouchable
+* Fix #1730, add 910 to source
+* #1731 link to source show and not edit
+* Don't remove the guidelines backend just yet, add a permanent redirect
+* Fix fname cleaning
+* Unmake $t mandatory in gnd_work
+* GND: Switch to subfield_secondary
+* Update _work_nodes_help_show.en.md
+* Try to fix GND ids
+* Gnd: fix #1733
+* Bump nokogiri from 1.18.3 to 1.18.4
+* Merge pull request #1737 from rism-digital/dependabot/bundler/nokogiri-1.18.4
+* Merge pull request #1732 from rism-digital/jenniferward-patch-2
+* Switch GND autocomplete to subfield_secondary, match 100 and 130, reorder fields in 130
+* #1741 add and reorder fields
+* Add script to export marc records as html
+* Add obpa
+* Add the partittive Oberbegriff
+* Make sure gnd work tag config follows form options
+* Make sure that when exporting records, if a record is deleted it is actually skipped... Also print the correct name
+* GND Work order 382
+* Some minor fixes to GND, #1742
+* Change to Link to record in Gaspari online
+* Update marc 008 for authorities (position 14)
+* Merge pull request #1745 from rism-digital/lpugin-patch-1
+* Remove 056 from GND
+* Make Form autocomplete more verbose
+* Merge pull request #1746 from afaschon/patch-2
+* Merge pull request #1748 from afaschon/patch-3
+* Merge pull request #1749 from afaschon/patch-4
+* Merge pull request #1750 from afaschon/patch-5
+* Merge pull request #1751 from afaschon/patch-6
+* Merge pull request #1752 from afaschon/patch-7
+* Merge pull request #1753 from afaschon/patch-9
+* Merge pull request #1754 from afaschon/patch-10
+* Merge pull request #1755 from afaschon/patch-11
+* Apply RISM overrides to I-Bc stuff
+* Bump nokogiri from 1.18.4 to 1.18.8
+* Merge pull request #1759 from rism-digital/dependabot/bundler/nokogiri-1.18.8
+* Fix #1741
+* Fix #1756, add a huge amout of languages
+* Fix #1758, add "ara"
+* Add private collection fix #1735
+* Add proper linking to 596 #1721
+* Fix #1492 add rule for http
+* Update locales
+* Prepare landing page for release
+* Use the correct spelling for Guidelines in each language
+
+v 11.4.1
+* Backport: fix cyan
+
+v 11.4
+* After modifying non-marc authority files, show modified record
+* Display record owner for all non-marc authority files
+* Display wf_stage in place authority records
+* Fix Work Node relations non Work in notification
+* Remove duplicate 383 for Works
+* Fix #1629 protypens everywhere
+* Logger function for marc.import
+* Fix #1629 Polypens everywhere
+* Rename inventory_editor to inventory_cataloger
+* Fix *t28 protypen
+* Temp fix for #1701
+* Add InventoryItem box for Person and a new compact way to create them
+* Switch source to the compact decl form
+* Switch Liturgical Feast to the compact decl
+* More short forms
+* Mini-mods for CMO
+* Fix #1703 Switch to 240 for title
+* Fix #1702 GND Texts and translations
+* Fix more labels for #1702
+* Fix all the 040 $c
+* Uppercase CMO
+* Add 040 in CMO import
+* Fix nil in pub title
+* Fix nil in pub
+* Make sure che export script does not crash if a source was deleted
+* Remove the warning for 973 missing when exporting prints
+* Add source_id for holdings in 774
+* Push locales
+* Make the old migrations work in 2025
+* Rename doc files
+* Update links in README
+* More installation instructions
+* Remove the index, which does not work
+* Initial refactoring of validate_tags
+* Fix any_of to actually fail
+* Latest fixes for CMO
+* Fix publication default files
+* Create CMO sec lit
+* Make CMO script actually make proper lit
+* Better relation count
+* Fix the last protypens
+* Set a better name for the version
+* Open a new SOLR searcher to make commits visible after committing
+* Initial implementation for better link counting
+* Make sure all models will update links, and offer the possibility to suppress_update_count_trigger
+* Make foreign_links reindex all models
+* Remove unused publications_count_order
+* Add compact form to publication
+* Add Authorities counter to person
+* Reorder the boxes
+* Add compact form to institution
+* Add all the missing relation boxes
+* rename referring_objects_count to referring_objects_order to make ordering work
+* Implement the cool "authorities" column everywhere
+* Script to traverse all the relation tables and delete dead links
+* Add inventory to 593$b holding
+* Fix #921 and #1394, fix creation of holdings and fic 593$b in holdings
+* Make the record type visible in the old versions
+* Script to purge holdings attached to child records
+* Fix wrong controller in link box
+* Merge pull request #1698 from fjorba/display-wf-stage-in-place-authority-records
+* Merge pull request #1697 from fjorba/display-wf-owner-in-all-non-marc-authority-records
+* Merge pull request #1695 from fjorba/redirect-to-full-record-after-updating-non-marc-records
+* Fix #1687, remove tags
+* Fix #1686, remove 563 from libretto_edition_content
+* Fix #1603 add tag 490
+* Fix #1511, edit 026
+* Update locales
+* Update translations
+* Create DE text for #1701
+* Add simple exclusions to notifications
+* Move 490
+* Make sure sources_to_works is cleaned up
+* Remove old work node relations
+* Add box of links for publication
+* Make sure that when copying tags the models match
+* Bump net-imap from 0.5.1 to 0.5.6
+* Fix #1709, remove automatic default excapint, some small scripts
+* Make "mandatory" rules in an "any_of" group work in the backed validation
+* Add all the basic pieces for #1707, including autocomplete but missing labels
+* #1707 revert 505
+* Merge pull request #1711 from rism-digital/dependabot/bundler/net-imap-0.5.6
+* Fix #1272. add composite_volume for libretto_source and theoretica_source
+* Merge branch 'develop' of https://github.com/rism-digital/muscat into develop
+* Fix #1673 move 040
+* Fix #1617, add better message for holdings
+* Fix #1616 Add test for 588
+* Update the validator
+* Exclude subtags when they should be excluded...
+* Better 588 validation
+* This can never work!
+* Add scripts to fix 588
+* Rename script
+* Remove section in 690$xand add subfields to 691
+* Add missing locales
+* The infinite pursuit to perfect translations pt. 1
+* The infinite pursuit to perfect translations pt. 2
+* Merge pull request #1712 from rism-digital/develop-690-fix
+* Disable autocompletes for now
+* More locales
+* Update the correction map
+* Switch to array so duplicate entries work
+* Give 690 $x a more appropriate name
+* More translations
+* Bump rack from 3.1.8 to 3.1.10
+* Add option for hash
+* Use a regex for more clever siglum matching
+* Make the 588 validator very, very clever
+* Fix again mandatory fields
+* Update must_contain message
+* Add the 588 message
+* Fixes for GND
+* Sort holdings also by shelf_maek
+* Add 563 to the default tags
+* Make the appendix tag work as expected
+* Script to change cmp to att
+* Remove unused check in work, inhibit paper_trail
+* Make sure repeated tags and works work
+* Move digital objects to holdings
+* Fix #1689, switch cmp to att
+* Bump nokogiri from 1.17.1 to 1.18.3
+* Merge pull request #1713 from rism-digital/dependabot/bundler/rack-3.1.10
+* Merge pull request #1715 from rism-digital/dependabot/bundler/nokogiri-1.18.3
+* Fix DE help as in 79d1b6d
+
+v 11.3.1
+* 400 in WorkNode was removed
+* Cherry pick source_work_nodes_relations fix
+* Remove duplicate 383 for Works
+* Fix Werktiel
+
+v 11.3
+* Fix #1662, add new display for the WorkNode title
+* Add shelf_mark to holdings
+* Initial script for #1666
+* #1675 and #1663, add district and country to autocomplete, and add them to validates_uniqueness_of, make all valued null by default from AA so it works too
+* #1675 swap country and district in the list view
+* Fix mismatch in NotificationMatcher, remove mod trigger from MarcNode and remove obsolete column specification
+* Add composer to WorkNodes
+* Index composer for WN
+* Make ordering work in AA
+* Make WorkNode autocomplete match tokes in the middle of the phrase
+* #1676, map contains to cont
+* Make 024 mandatory #1677
+* #1677 add composer to autocomplete, fix labels
+* Remove all the deprecated fields from WorkNode, #1677
+* Add initial work node help (en and fr)
+* Add script to automate exports
+* Bump rails-html-sanitizer from 1.6.0 to 1.6.1
+* Merge pull request #1682 from rism-digital/dependabot/bundler/rails-html-sanitizer-1.6.1
+* Switch to dartsass-sprockets instead of sassc-rails
+* Merge branch 'develop' of https://github.com/rism-digital/muscat into develop
+* Update some of the gems
+* Update rails to 7.2 and ransack too
+* Update the rest of the gems
+* Fix deprecated deprecator
+* Switch all models to the new enum synthax
+* #1673 Make sure the shared labels don't override the labels for each model
+* #1674 add relators to 7x0
+* #1674 Use only 246 for title
+* Fix #1674 add all missing locales
+* Fix #1684 add 383 Numeric designation to Works, + minor goodies
+* Fix #1679, also fix display of superimposed labels
+* Fix #1508, remove duplicate 383
+* CMO Import
+* Use the jump tables to optimize relattion size
+* Preserve more CMO in notes
+* Bump actionpack from 7.2.2 to 7.2.2.1
+* Initial experimental logger for marc imports
+* Try to make logging more machine readable
+* Print logs...
+* Merge pull request #1688 from rism-digital/dependabot/bundler/actionpack-7.2.2.1
+* Use the proper tag for int note
+* Reindex while creating
+* Merge pull request #1678 from rism-digital/develop-work-node-help
+* #1677 Script to remove empty 024
+* #1677 Add more translations
+* #1677 extend all work_node tables
+* Fix migration #1677
+* Fix #1505 unify control fields
+* Fix #1498 add validation to 024 People
+* Fix roles for future inventory_editor
+* Add columns to work_node
+* #1614 Actually add the leaders
+* Add more debugging, but keep it out of 11.3
+* Update labels
+* Fix #1618, use built-inAnchored::Linker.auto_link instead of old URL helper
+* Merge pull request #1696 from rism-digital/HirschSt-patch-1
+
+v 11.2.2
+* Add script to check if 593 is missing
+* Fix #1670 add all missing backward links to Inventory Items
+* Fix #1668, take in account institutions without siglum (don't move 094 if there is none)
+* #1671 Inventareintrag instead of Inventarartikel
+* #1671 make key or mode shared, and remove all the references
+* #1671 remove 598
+* #1671 fix 852 missing label
+* Fix #1667, add missing label for $a
+* Fix #1672, restore AuthToken interface after upgrade to ActiveAdmin 3.2
+* Fix #1671, number all the numbers in different amounts
+
+v 11.2.1
+* Bump rexml from 3.3.6 to 3.3.9
+* Merge pull request #1659 from rism-digital/dependabot/bundler/rexml-3.3.9
+* Fix book_id and has_incipits (insert angel emoji here)
+* Fix #1217 remove {{brk}} from 031 anf 563
+* Fix #1665, arriving this week with 11.3!
+* Fix latest names
+* Make folder filtering actually work
+* Add some missing names coming from sec lit
+* Fix the last elusive names in inventory import
+
+v 11.2
+* Update Gemfile
+* Fix #1463 - > initial removal of composed_of
+* Updates for 7.1
+* Initial port to AA 3.2
+* Make logs less verbose on development mode
+* Gem fixes for 7.1
+* Make Source work with new preducates https://github.com/activeadmin/activeadmin/pull/8010
+* Fix more models for Ransack 4 and AA 3.2.2
+* Initial fix for DigitalObjects for Ransack 4
+* Gem updates for 7.1
+* Test: reimplementation of composed_of for cleaner class layout
+* Switch over to composed_of_reimplementation
+* Add index to item_id
+* Refine the composed_of impl
+* Migrate more defaults to 7.1, update sunspot, remove sunspot_rails
+* Finish migrating settings to 7.1
+* Better SQL escaping
+* Remove old init files
+* Increment results to 1k on all models
+* Experimental: copy results to clipboard
+* Revert jquery-ui to 6.0.1
+* Less ugly clipboard implementation
+* Add icon and "toastify" class to notify user
+* Hand made toastify is better
+* If set to index when importing records, tell Solr to commit them
+* Copy the edit link
+* Ditch Uglifier and use Terser for JS compression
+* Add i18n to record actions pulldown texts
+* Tell the model to be (sunspot) indexed, if requested
+* Add 008 to marc exports
+* Change # to | (no attempt to code)
+* Add additional created_at parameters
+* Remove duplicating code in institution and person to_external
+* Add created_at to work nodes too
+* Make sure belongs_to is optional by default
+* Merge pull request #1607 from rism-digital/develop-export-008
+* Merge pull request #1606 from fjorba/record-actions-add-i18n-deprecated-deleted
+* Merge pull request #1605 from fjorba/sunspot-commit-after-import-if-index
+* Merge pull request #1602 from fjorba/slow-down-worker-sleep-delay-on-development
+* Commit whitespace in Gemfile
+* Remove Turbolinks
+* Add xml-export script
+* Merge pull request #1608 from rism-digital/develop-export-script
+* Initial implementation of templates for Inventories
+* Remove obsolete utf8=✓ to url parameters
+* Initial scaffolding for InventoryItem
+* Make sure empty items do get shown on the top of the sorted lists
+* Very basic bringup ov InventoryItem
+* Add relations for InventoryItem
+* More pieces for linking
+* Fix InventoryItem saving
+* Add tell fields, proper labels
+* Fix views and links to delayed jobs
+* Fix linking to IIs
+* Fix validation for source inventory
+* Make 773 linking work, add colors and abbr names
+* Add abilities for inventory_item
+* Expeimental box to show IIs
+* Add comment for deprecated_ids
+* Some correct scripts
+* Generate extra basic inventories from the inventories project
+* Initial working version of the import script
+* Institution translation
+* Inventory catalogues to publication migration
+* Fix catalogue mapping
+* Properly convert revue titles
+* Add missing display_name
+* Add proper 650 links to inventory items
+* Fix Christan Bergen
+* Add more partials for formatting
+* Fix StandardTerms
+* Convert data from the XML FILES
+* Translate images
+* Add links to the single images
+* Fix missing inventories
+* Fix more manifests
+* Proper conversion of the summary section
+* Remove obsolete "_" id tag
+* Migrate inventory_item 852 to 691 for proper bibliography
+* Add incipits to inventory items, remove incipits from inventories
+* Add translations for Inventory items
+* Fix typo and more labels for IIs
+* Add label for links section
+* Fix labels in inventory view
+* Add InventoryItem2InventoryItem to preserve "later entry" 775 links
+* Add autocompletes and 775 selection
+* Skip unfinished inventories
+* Index RISM Book ids and add script to search them for inventories
+* Remove more empty 710
+* Add more translations
+* Reindex IIs
+* Add proper filtering and indexes
+* Preserve the HMI user
+* Add book_id filter
+* Add some filters for internal note and siglum
+* Add new matched institutions
+* Make 040 the same for everybody
+* Add more institutions
+* Mini script to detect ID collisions
+* Match even more institutions
+* Add some missing translations
+* Add has_incipit? filter for source
+* Fix label view, remove obsolete fix for #559
+* Merge pull request #1610 from fjorba/remove-utf8-check-from-urls
+* Fix #1624, add 910 to People
+* Fix #1623, add scoring to titles in works
+* Fix #1621, add Turkmenistan to people
+* Fix #1611, add XD-BO
+* Add translations
+* Restore tab-saving functionality with rails 7.1
+* #1590 add 094 to institutions
+* #1590 modify to_external
+* #1590 script to fix institutions
+* Fix #1620, return the current index of items
+* Use option parser for the export script
+* Process --legacy option
+* Don't have the search if we are using ajax
+* Merge pull request #1626 from rism-digital/develop-export-script
+* #1622, add validation to make sure the first group is never "Additional printed material"
+* Fix #1622 implement the backend part
+* Fix #1615 refactor holding name
+* Fix GND push
+* Make GND retrieve reqiests fail gracefully if the result is empty
+* Fix check_group validator
+* Remove country code from language file
+* Make hardcoded fields never enabled, use for 094
+* Make 094 readable only by editors
+* Add saudi arabia to ISO codes
+* Remove 110g, make sure indexing works with 094a
+* Add "Inventory" Content type and make sure it is selected in new records
+* Remove 560 from II
+* Merge pull request #1632 from rism-digital/ahankinson-patch-1
+* Merge pull request #1631 from rism-digital/country-codes-fix
+* Initial fix for triggers + editor_partial
+* Remove fields from Source Inventory
+* Remove subfield_hardcoded and consolitate all the functionality in the normal subfield partial
+* Some utility scripts
+* Marc21 view should have two spaces
+* De-pikadize with ease!
+* Make 094 closed by default, add validation
+* Make some records not creatable by hand
+* Former siglum -> former sigla
+* Add some missing locales
+* Fix email translation, and parse more pikado lines
+* Fix InventoryIOtem 593 and 93x
+* Add 240 as in Source for InventoryItem
+* Add 787 to inventories
+* Add all inventory missing tags
+* Add link to standard title from inventory item
+* Keep the 852s from inventories
+* Add option for compound validation rules, on the road to solve #1128
+* Add an index to wf_owner in sources
+* Implement "any_of" in the backend validator
+* Make backend validation messages a bit more friendly
+* Remove spurious percent char
+* Reorder locale files
+* Add all the missing keys
+* Add all the missing italian translations
+* Fix the fr localization
+* Fix keys in FR translation
+* Fix the DE translations
+* translate more missing de
+* Fix the spanish translation
+* Fix filter_textinipit
+* Fix pt
+* Fix pl
+* Fix Catalan
+* Lastly, fix EN and collect cookie
+* Remove old and unused Themefinder keys
+* Remove more unused keys
+* Remove even more unused stuff
+* Fix #1453 and #1637
+* Add some basic guidelines for the GND stuff
+* Fix #1638
+* Fix #1639
+* Fix #1640
+* Implement #1641
+* Fix #1642
+* Order the gnd translations
+* Fix #1643
+* Implement #1644
+* More stuff for the GND
+* Script to fix the Protypens
+* Make the backend valitation localized messages actually work
+* Script to fix ungrouped tags
+* Add the missing tags
+* Fix missing DEBUG
+* Fix #1616, all this mess for a - !
+* Move to console.warn
+* Add the temp string for must_match
+* Refine the validation rules
+* Fix #1645
+* Merge pull request #1635 from fjorba/remove-extra-percent-char
+* Fix #1646 reindex required for Publication sometimes, miracles happen and this time it is filtering the DOs
+* Fix #1560, remove Doubtful, we have no doubts here!
+* More Doubtful to remove
+* Merge branch 'develop' into develop-11.2
+* Fix #1543 add all the locales!
+* Fix #1499
+* Fix #1627 Add san marino
+* Fix #1614 Use to_external marc
+* #1613 Fix disappearing "select"
+* Fix typo in relationship name
+* #1613, make sure the filters are restored when a NEW window is opened and switched back (the filters were never set back to the originating * window)
+* Change all the filter names ##1613
+* #1613 remove obsolete filter_workaround
+* Fix more problems with select window, rename name to short_name for pub #1613
+* #1613 Rename name to full_name in institution
+* Fix #1613, make sure the deselection works and removes session[:select]
+* Avoid regeneration of ids
+* Possibly more fixes for #1613, tab saving not workling in new_window_select
+* Fix #1650 make exported 774 more fancy
+* Fix #1650, add $a composer and $t title
+* Add 667 with the pub src counter to Person
+* Fix #1636
+* Whew! that was a lot for a minor release
+
+v 11.1
+* Bump jquery-ui-rails from 6.0.1 to 7.0.0
+* Bump actionpack from 7.0.8.1 to 7.0.8.4
+* Add Saudi Arabia to Institution Country Codes list
+* Merge pull request #1601 from rism-digital/update-saudi-arabia
+* Merge pull request #1594 from rism-digital/dependabot/bundler/actionpack-7.0.8.4
+* Merge pull request #1574 from rism-digital/dependabot/bundler/jquery-ui-rails-7.0.0
+* Backport: better SQL escaping
+
+v 11
+* Add authority reference counters to secondary literature records
+* Merge branch 'develop' into add-new-counters-for-secondary-literature
+* Update Muscat saml SSO authentication to Rails 7
+* Update gems
+* Test for global session
+* Experimental: implement tab based saving
+* New experimental version with only one cookie
+* Fix raw marc text export
+* Add check for race condition
+* Test: don't clear the cookies on a tab deselect
+* Add the tab id when returning the tab store
+* Manage duplicate tabs
+* Update InstitutionLabels.yml
+* Keep tha last used search
+* Merge pull request #1555 from rism-digital/jenniferward-patch-1
+* Merge pull request #1534 from fjorba/single-sign-on-update-patch-for-rails-7
+* Merge pull request #1397 from fjorba/add-new-counters-for-secondary-literature
+* Fix #1553, missing label
+* Fix #1554, show "e" for each 856
+* Fix #1545, remove scr in 700 and 710
+* Fix #1500, remove unused and not shown field
+* Fix #1532, rename to "validity"
+* Fix #596, include all counters!
+* Merge branch 'develop' into develop-multitab
+* #1527, make filter clearing work
+* Allow for unsorted subfield_select_codes values
+* Basic user select implementation, for #1497
+* Better implementation using flexdatalist
+* Migrate to new user selection
+* Implement user selection for folder and comments
+* Fix double escaping of & in xml export
+* Fix #1567, add missing mandatory fields
+* Fix #1552, add attribution qualifiers
+* #1564 Update ARK resolver to the proper link
+* #1089 Rename all the labels! (first try)
+* Merge branch 'develop-user-select' into develop
+* Merge branch 'develop' into develop-multitab
+* Fix #1089 normalise all labels
+* #1550 add 377 language code in Works
+* Create 99 users
+* Ms to print test script
+* Add script to replace random strings in tags
+* #1571 initial implementation
+* Implement #1571 for standard term
+* #1571 Implement label for solr_terms
+* #1571 update Gemfile
+* #1571 Add counters for person 550
+* #1571 exclude 730 from 240
+* Update Gemfile
+* Use the unused title_d field in StandardTitle
+* SQL queries are already case insensitive...
+* Fix StandardTerm ac
+* Update app/assets/javascripts/tab_saver.js
+* Experimental: remove _d items from sources
+* Remove full_name_d from People and remove stale code
+* Fix #1551, add 590 work catalog note
+* Fix #1569, add $g and $i
+* #1349, show only publications with short_name
+* #1349, finetune ac length
+* #1570 Make items stored to force them to update on saving
+* Switch to another field for #1570
+* Switch to publication catalog of works AC for work
+* Fix #1576 add "fragment"
+* Fix #1573, add batch action to change user, make the list contain up to 1000 entries
+* Give the menu entry a proper name
+* Fix #1577, add $c
+* Update PublicationFormOptions.yml
+* Add more validation for Person
+* Prevent more empty publications
+* Bump rexml from 3.2.6 to 3.2.8
+* Add display_name to people
+* Update PersonLabels.yml
+* Merge pull request #1582 from rism-digital/suriname-correction
+* Merge pull request #1580 from rism-digital/dependabot/bundler/rexml-3.2.8
+* Merge pull request #1578 from rism-digital/jenniferward-patch-5
+* Merge pull request #1581 from fjorba/add-display-name-to-people
+* Disallow creation of works from 930 in source
+* Make 675 in Works not create new records
+* Move ISO country codes to a shared file
+* #1579 remove Benin
+* #1579 add tus in Publications
+* Fix benin for Institutions
+* Fix 930 autocomplete in sources
+* Fix the xml marc root in export
+* Remove the xml declaration by writing the root child and not the full document (not tested)
+* Merge pull request #1588 from rism-digital/develop-fix-marc-export
+* Fix #1587 add line breaks
+* Fix non-parallel XML export too
+* Experimental fix for #1586
+* #1586 better messages
+* Add I18n, make race condition less racey
+* #1586 refine messages
+* #1586 make all the editor error I18n with proper messages
+* #1586 properly trap ActionController::InvalidAuthenticityToken errors to generate 401s
+* Update Ms to Print script
+* Fix missing label to owner autocomplete
+* Fix #1593, 690 view
+* Fix #1592 add Bolivia to SecLit
+* Fix #1595, ignore punctuation in names
+* Fix #1595 no need to print the names
+* Fix #1081, migrate 856 y to z
+* #1575 Initial script
+* All the landing pages!
+* Update translations
+* Fix #1596 make 370 work repeatable
+
+v 10.2
+* Added work abilities for person_editors
+* Bump nokogiri from 1.16.0 to 1.16.2
+* Delete obsolete script
+* Update PersonLabels.yml
+* Update PublicationLabels.yml
+* Update InstitutionLabels.yml
+* Update SourceLabels.yml
+* Update WorkLabels.yml
+* Bump rails from 7.0.8 to 7.0.8.1
+* Update PublicationLabels.yml
+* Bump rack from 2.2.8 to 2.2.8.1
+* Fix marcxml export across models
+* Add validation for 670 in work and work weekly report
+* Fix all validation for work, fix 031 $t
+* Remove author name from exported versions
+* In Ruby 3, a file no longer exists, but exist
+* Merge pull request #1530 from fjorba/ruby3-file-exist
+* Merge pull request #1520 from rism-digital/dependabot/bundler/rack-2.2.8.1
+* Merge pull request #1519 from rism-digital/jenniferward-patch-6
+* Merge pull request #1518 from rism-digital/dependabot/bundler/rails-7.0.8.1
+* Merge pull request #1516 from rism-digital/jenniferward-patch-5
+* Merge pull request #1480 from rism-digital/dependabot/bundler/nokogiri-1.16.2
+* Merge pull request #1512 from rism-digital/jenniferward-patch-1
+* Merge pull request #1513 from rism-digital/jenniferward-patch-2
+* Merge pull request #1514 from rism-digital/jenniferward-patch-3
+* Merge pull request #1515 from rism-digital/jenniferward-patch-4
+* Merge pull request #1455 from rism-digital/abilities
+* Add missing folder help files for Catalan and Spanish
+* Merge branch 'develop' of https://github.com/rism-digital/muscat into develop
+* Merge pull request #1533 from fjorba/add-folders-help-ca-es
+* Remove unused captcha + configuration
+* Remove unused geo-browser
+* Fix #1517, add valitation to 024 in Work
+* Fix #1521, add 856 to work
+* Fix #1493, add validation for 856
+* Fix #1081, add validation to people, change $y to $z and make script to fix the mess
+* Fix #1529, make 430 non-linked
+* Fix #1522, migrate all 7xx to 5xx and script to fix the data
+* Add missing user help files for Catalan and Spanish
+* Fix #1531, filter by 690
+* Fix #1524, add new functions
+* Fix #1501, add $9 and $u to 670 in work and person
+* Fix #1522, move 530 to relations
+* Fix#1506, make sure all validations do run (learn to program, young Padawan)
+* Make the mail report a bit nicer
+* Make notifications for works work on each save
+* Initial implementation for #1532
+* #1532 fix de.yml
+* #1532, add label to show
+* Fix folder creation not working
+* Reverse #1081
+* Update Verovio to 4.1.0
+* #1532 Add status tags
+* Fix default error route
+* Fix filter label
+* Add status colors
+* Fix #1528, add the proper class to 774 (773 already was ok)
+* #1532, Switch dubious to doubtful, fix CA translation
+* #1532 fix CSS
+* Update locales
+* Fix #1539, make sure magnifying glass works in Works
+* Fix #1538, add growfields
+* Fix #1537, make relator codes non repeatable.
+* Fix #1524, arranger not arrangement
+* Fix #1540, add $c in 100, EXPERIMENTAL! if it works bad, revert
+* Fix ##1536
+* Merge pull request #1535 from fjorba/users-help-text-ca-es
+* Fix #1510
+* Bump rdoc from 6.6.2 to 6.6.3.1
+* #1528, make sure 774 does not user foreign_links
+* Make 981 duplicated_from only keep the original ID in the chain and the last 4
+* #1528 implement a new fix for this issue
+* Add script to fix the 981
+* Make better titles for Works
+* Hide move and add button for 981
+* Add specific filter for source ids
+* Merge pull request #1541 from rism-digital/dependabot/bundler/rdoc-6.6.3.1
+* Did I forget the changelog for 10.1?
+
+v 10.1
+* Fix some small issues
+* Fix record types crashing everything in PL language
+* Fix partials for reports
+* Fix table name
+* Fix the GND Work Editor permissions
+* Fix #1482
+* Add rescues
+* Fix #1483
+* Properly uncomment returns
+* Fix typo
+* Fix #1484, no doubts in muscat!
+* Add more filters to works, fix #1481
+* Implement "has incipit"
+* Make folder display more nice (is this an overkill?)
+* Fix #1485, move 775 to admin
+* Remove 775 from SUB, Fix #1486
+* Personal names: Move 667 to References and notes, Fix #1487
+* Move arounf 667
+
+v 10.0
+* Allow more options for import_from_marc.rb
+* Remove references to blacklight
+* Update paper_trail
+* Downgrade i18n to 3.9 so it works again, upgrade for another day
+* Add some workaround to ActiveAdmin global new box-sizing inherit.
+* Add gnd_works page with templates and partials
+* Add routes to the gnd_works page actions
+* Add editor profiles and marc related configuration for gnd works
+* Add the GndWork and GndMarcWork classes
+* Adjust the GND::Interface search and add retrieve
+* Remove unused code and xsl in the GND::Interface
+* Basic reloading of GND works
+* Initial autocomplete implementation
+* Activate editor validation, initial implementation for AC that preserves foreign value
+* Add files for GND work labels and show
+* Basic implementation of autocomplete through GND
+* Add limit to the SRU query and the gnd id to the label
+* Set a label for the instrument autocomplete
+* Refactor GND::Interface.search and implement autocomplete for instruments
+* Add master to 380 and adjust form options
+* Disallow new on gnd work 100
+* Adjust GND::Interface.search to return always a JSON object
+* Update autocomplete to the proper version for GND
+* Initial searching for people and works
+* Fix search for work node
+* Avoid a huge solr search if the gnd_id is nil
+* Use proper filter_form spacing
+* Make sure the search works without title
+* Make the GND editor work with unknown marc tags and subfields
+* Add wildcard for searches
+* Add label file for WorkNodes
+* Add default labels
+* Show default labels based on configuration
+* Sample labels for GND editor
+* Adapt the marc editor to properly validate GndWorks
+* Implement basic GND config
+* Add option not to show "unknown fields" warning
+* Make the autocompletes work
+* Experimental GND push
+* First functional implementation of GND saving
+* Better GND saving and proper flash message, create GND works
+* First functional GND with create capabilities.
+* Add some localization
+* Move all autocompletes to the inline_autocomplete
+* Allow import_from_marc to import other Marc types, and optional arguments
+* Restore Holding and Work to the valid models
+* Add read ability for gnd_work
+* Use the right permission
+* Merge a missing commit?
+* Make the application boot with ruby 3.2.2 and rails 6.1
+* Update jquery
+* Make Muscat boot with rails 7
+* Remove already commented out download_links.rb
+* Remove link to BL
+* FIXME temp removal of saml stuff
+* Allow items to be added and removed from folders
+* Add the sidebar view
+* Make fields in GND works all editable
+* Add $p and $n to title summary for GND node
+* Add more missing GND fields
+* Add field 130 for GND editor
+* Initial Autocomplete implementation fro Form in GND editor
+* Fix form autocomplete
+* Add "p" for gnd work 100
+* Save list of last created IDs
+* Make sure to save id only if there is an id
+* Extract author and title
+* Move current filter information at top of sidebar
+* Merge pull request #1160 from fjorba/import-from-marc-take-options
+* Add d-mbs matching scripts
+* Fix 700 in institutions
+* Make error message more clean
+* Implement #1445
+* Move db query from the viewer to a helper
+* Small refinements to make 7.0.5 run
+* Fix Holding view
+* Merge pull request #1448 from fjorba/sidebar-move-current-filters-at-top
+* Remove redundant "contains"
+* Remove "contains"
+* Re-add the missing routes for the GND editor
+* Change gnd interface settings
+* Fix bug when a new user is created the sidebar disappears if there is a validation failure
+* Fix sample application.rb
+* Test for adding prefix in to_xml
+* Change host in SRU
+* Update sru_spec.rb
+* Add option for exporting a list of records
+* Initial update to install doc
+* Update schema for 7.0
+* Fix #1459, add Ojibwa
+* Update it translations
+* Test with REXML
+* Add libxml-ruby
+* Use libxml in marc::to_xml
+* Add collection parameters to calls to marc::to_xml
+* Add `holdings/` prefix to merged `$3` in to_external
+* Adjust to_xml to return a single record for the marc SRU access
+* Fix #1460 add Jamaica
+* Merge pull request #1438 from fjorba/add-remove-items-from-folders-v2
+* Implement #1462 for testing
+* Format the new folder actions
+* Add labels for #1462
+* Make 981 non deletable, and a shiny new partial for show
+* Fixed: Missing replacement variable
+* Merge pull request #1465 from rism-digital/fixed-replacement-variable
+* #1462 implement duplication tracking in Work and Publication
+* Fix #1075, Add obl. 12°
+* Fix #1294, Search using magnifying glass in Secondary Lit
+* Fix #1387, remove 041 $e
+* Remove unused "columns" and "cols"
+* Remove unused col* from person
+* Remove col* from Institutions
+* Remove col* from Publication
+* Make Institution 700 nicer, fix IT translation
+* Fix #1464, Add growtext to 667 in authorities
+* Fix bluprint -> blueprint
+* Initial implementation of #702, add DOs to holdings and show them
+* #702 Title formatting enhancements
+* #702 make Holdings selectable
+* #702 Add locales
+* #589 initial implementation
+* Make the delete button automatically hide and show in the first group #589
+* Add a paperclip icon for Holdings with a DO
+* Make groups collapsable
+* Filter holdings by Source id
+* Make the comment more meaningful
+* Fix #1329, add 730 to indexed fields
+* Get master field from tag config, underscore model names
+* Display subfield in Marc editor
+* Create links to display Marc records in Marc and Marcxml
+* Change Marc to uppercase (MARC21 and MARCXML)
+* Change MARCXML icon to from "a" to </>
+* MARC21 view: update font and colors
+* Update app/views/marc/_show.html.erb
+* Add spaces around subfields via css
+* Draft installation instructions
+* Avoid sorting to avoid comparison errors between Holding and Source
+* Group relation tables in a new directory
+* Remove all the outdated do_* stuff
+* Extend sources_to_standard_titles table
+* Extend sources_to_standard_terms
+* Remaining Blacklight cleanup
+* Fix .xml download, what happened to this file??
+* Fix SRU xml generation
+* Temp fix for sru html
+* Extend sources_to_publications
+* Fix #1445, move group and rename
+* Extend sources_to_liturgical_feasts
+* Extend sources_to_places
+* Migrate fron CanCan (which is deprecated) to CanCanCan
+* Bump puma from 6.3.0 to 6.4.2
+* Refactor marc::to_xml to use a {} options parameters
+* Add a deprecatedIds parameter to the SRU interface
+* Merge commit 'a7e22e242fb5bb5836434b3a3a4f7edbbbf51396' into develop-deprecated-ids-option
+* Update rmagik
+* Merge pull request #1472 from rism-digital/dependabot/bundler/puma-6.4.2
+* Merge pull request #1469 from fjorba/make-marc-formats-visible
+* Merge pull request #1468 from fjorba/display-subfield-in-editor
+* Merge pull request #1474 from rism-digital/develop-blacklight-cleanup
+* Merge pull request #1456 from rism-digital/update-sru-interface
+* Merge pull request #1475 from rism-digital/develop-deprecated-ids-option
+* Extend holdings_to_institutions
+* Update bundler to fix "Calling `DidYouMean::SPELL_CHECKERS.merge!(error_name => spell_checker)' has been deprecated."
+* Clean up gemfile
+* Bump rails to 7.0.8
+* Update the remaining gems
+* Make sure the @tag is in the marc_config
+* Add 130 in tag configuration for standard_titles/ prefix, actually make the @tag check work
+* Extend holdings_to_people
+* Extend holdings_to_publications
+* Extend holdings_to_places
+* Extend institutions_to_institutions
+* Extend institutions_to_people
+* Extend institutions_to_publications
+* Remove unused institutions_to_standard_terms, which should have not existed in the first place
+* Extend people_to_institutions
+* Extend people_to_publications
+* Extend people_to_people
+* Drop unused tables
+* Estend publications_to_people and publications_to_institutions
+* Extend publications_to_places
+* Extend publications_to_standard_terms
+* Extend publications_to_publications
+* Initial Work relation extensions megacommit
+* Extend all work relations gigacommit
+* Reorder declarations in models
+* Make the maint record work for all models
+* Fix linking ad add a script to generate triggers
+* Revert strange stuff from marc_nodes
+* Fix the non-marc triggers
+* Add all the missing resave triggers
+* Add basic controller
+* Add script to resave all marc models
+* Turns out we need "daemons" gem after all (for delayed_job)
+* Extra basic data controller
+* Add a mini model and AA controller to manage tokens since we get this for free from ActiveAdmin
+* Basic 404s instead of a crash
+* Set a proper title
+* Fix MIME types
+* Always enable passenger
+* Fix #1467, Add a non-SRU MARC URL access
+* Hopefully make the resave script don't explode
+* Make the MIME types happy
+* Respond with 405 for unknown methods #1467
+* Add some eye-candy to the resave megascript
+* Even more candy for the eye
+* Fix typo and avoid crash...
+* TEST: try to make the script more silent
+* Fix stderr capture
+* Fix default empty indicator for 599 in to_external
+* Fix #1477, make MARC21 view use to_external not super elegant but does it for the moment
+* Clean up obsolete SOLR stuff
+* Make all tags end up in full text search
+* Fix manifest creation (missing profile)
+* Fix #1380 pull 599a also from holding record
+* Fix missing labels for 500 in People
+* #1344 Match default file in holdings
+* Initial changelog
+* Remove al last references to Blacklight opac
+* Put MARC21 view in a box, FIXME find a better solution
+* Escape $ in marc in a compatibile way to marcedit
+* Localize new views
+* Fix #1205 implement mapping for new fields
+* Fix various missing indexed fields
+* Fix ICCU link
+* Fix #1205 add OCLC
+* Change WorldCat URL
+* Fix wrong message in folders, add authentication
+* Improvements to Catalan and Spanish translations
+* Add two more missing index items
+* Fix "category" menu data not indexed
+* Merge pull request #1479 from fjorba/improve-ca-es-translations
+* Add the landing pages for 10
+* Update crontab
+* Refine cron scripts
+* Add RVM calls
+* Fix global var
+* Add missing work node relations, make Maint script return data
+* Fix messages in digital object actions
+* Last second fixed: localize record_type filter, add abbreviation to record_type filter menu
+
+v 9.4.2
+* Updated rspecs with task
+* Add DEL acronym for deleted records, unify translation files.
+* Fix #1436, implement missing leaders, fix existing ones.
+* Test implementation of MEI for works
+* Add description for work digital obj link
+* Test: Noto Sans Display
+* Clean up a bit the destroy callbacks
+* Fix division by 0 in SRU @ahankinson
+* Small script to fix the "disappearing" list view on test systems
+* Make better job for purging orphan items, put it in crontab
+* Purging stuff does not really work perfectly yet
+* Better purger implementation
+* Add Catalan locale to the list of js languages
+* Merge pull request #1442 from fjorba/unify-status-codes-translations
+* Merge pull request #1450 from fjorba/add-catalan-to-js-i18n
+* Merge pull request #1435 from rism-digital/develop-rspec
+
+v 9.4.1
+* Fix wrong relation in Work to composer
+* Fix sru sigla search
+* Fix #1444 add pat to relator codes
+* Merge pull request #1446 from rism-digital/fix_sru
+* Add Holding report to crontab, fix locales
+* Make Noto Sans 100% back everywhere
+* Make internal note 599 and 510 shown to everybody
+
+v 9.4
+* Updated sru index
+* Merge pull request #1421 from rism-digital/develop_sru_index2
+* Fix #1422 make the fix script better
+* Test: fix for focus jumping around
+* Editors should see all users in index
+* More scripts for CH duplicates
+* Added philipinnes to people countries
+* Update HoldingBasicLabels.yml
+* Update _help_text.en.md
+* Merge pull request #1427 from rism-digital/jenniferward-patch-3
+* Update en.yml
+* Merge pull request #1428 from rism-digital/jenniferward-patch-4
+* Fix old sru configuration
+* Fix pollini import
+* Merge pull request #1426 from rism-digital/jenniferward-patch-1
+* Merge pull request #1424 from rism-digital/develop_person_conutry
+* Merge pull request #1423 from rism-digital/develop_editor_abilities
+* Merge pull request #1431 from rism-digital/develop_sru
+* Finalize pollini, make incipits work
+* Bump puma from 5.6.4 to 5.6.7
+* Update translations
+* #1374 Initial modifications for Holding report
+* Fix the validator parts for non-Source models, #1374
+* Fix hardcoded urls in validator
+* Make the health report a bit nicer
+* Fix #1415 Implement template-based items for subfield_select_codes, implement list given in ticket
+* Fix #1414, add option to remove items from subfield_select_codes and implement ticket
+* Fix #1432, add new regex
+* Fix #1429, remove "fas" to follow MARC cose which uses Persioan
+* Fix #1425, make match not case sensitive
+* Fix #1416 Swith to Noto Sans for Muscat
+* Fix #1408 and #1434, initial refactor of exporter for raw muscat data and other models
+* Fix #1408, Fix #1434, implement raw marc and multiple different exported types
+* Fix #1430, add help for DOs
+* Add I18n for "help"
+* Fix #1406, translations will come
+* Fix #1409, strip data before validation also fix "new" for digital objects
+* Fix #888, delete comments when a resource il deleted
+* Finish implementation of ods import
+* Merge pull request #1433 from rism-digital/dependabot/bundler/puma-5.6.7
+* Show the user menu for users tha can see it
+* Fix interpolation variable in PL
+* Fix #1437, remove old 518$a autocomplete, add growfields
+
+v 9.3.1
+* Make id in html view clickable
+* Added 240m to sru
+* Fix #1356 Allow editors to view users
+* Fix current folder filder behaviour and create a couple more
+* In the folder filters, select only users with folders
+* Do not allow the creation of folders of users
+* Rename obsolete catalogues filter text to publications
+* Merge pull request #1398 from fjorba/filter-catalog-should-be-filter-publication
+* Merge pull request #1393 from fjorba/remove-folder-actions-for-users
+* Merge pull request #1395 from rism-digital/develop_abilities
+* Merge pull request #1390 from fjorba/add-new-folder-filters
+* Fix #1412 make the server validation correctly validate mandatory tags
+* Implement the exclusions as array to allow for duplicate keys
+* Fix #1246, make sure the focus is returned on the 031 $p textarea
+* Update gems to use new version of rails autocomplete
+* #1411 add 046, remove obsolete fields, make validation really work
+* #1411 add 370
+* #1411 add 530
+* Add translations for new work fields
+* Fix #1410, add proper collation
+* Fix #1369, add place in 710 $c for holdings too
+* Fix #1386 make 024 required in institutions
+* Fix #1418, properly link works
+* Microfix for the offended works
+* Add new window selection for 530 work
+* Updated sru index
+* Merge pull request #1421 from rism-digital/develop_sru_index2
+* #1422 make person_id work
+* Fix #1422 make the fix script better
+
+v 9.3
+* Implement $a and $b in institutions, v3 (thanks to fjorba!)
+* Fill in corporate name in institutions table
+* Bump rack from 2.2.6.2 to 2.2.6.4
+* Experimental: Pick 031t from the indexed values in Source and not anymore in Standard Tile
+* Fix #1354, Added some fields to CSV 
+* Catalan translation fixes and improvements
+* Merge pull request #1335 from fjorba/institutions-consider-subordinate-unit-v3
+* Merge pull request #1359 from fjorba/catalan-fixes-1
+* Escape data-scroll-target editor validation javascript element
+* Merge pull request #1361 from fjorba/escape-marc-editor-data-scroll-target
+* Merge pull request #1358 from rism-digital/develop_csv
+* Merge pull request #1343 from rism-digital/dependabot/bundler/rack-2.2.6.4
+* Bump nokogiri from 1.13.10 to 1.14.3
+* Merge pull request #1355 from rism-digital/dependabot/bundler/nokogiri-1.14.3
+* Remove unused pae field
+* Add 699 (local) tag for work tags
+* Adjust configuration for work tags
+* Add "incipit-replace" tag type
+* Make the "inline autocomplete" work with data from the backend, f.ex. data from 031t
+* Make the inline_autocomplete work as a target for autocomplete_extra
+* Remove new window search in incipits
+* Add 599 internal notes from the incipit correct script
+* Get notifications for Works, not WorkNodes
+* Fix link to BNF catalogue
+* Add support for duplicating a work
+* Merge pull request #1378 from rism-digital/develop-works-duplicate
+* Merge pull request #1364 from rism-digital/develop-works-add-tags
+* Merge pull request #1377 from rism-digital/fix-bnf-uri
+* Basic work tag filtering on Works
+* Aviod crash when the global note is not there
+* Add dome 650 scripts
+* Add validation exclusion support
+* Add exclusions to validation job
+* Update 710c label and translations
+* Switch to using Facets instead of Terms to get terms in a document
+* Fix #1369 add Place also to 710 Publication
+* Fix #1078 add script to dup 700 and 710
+* Add the Pollini importer
+* Update autocomplete gem and othe minor gems
+* #1078 fix 7x0 also on holding
+* #1078 push the complete version
+* #1078 Make the scrpt more clever not tu dup empty $4 and to preserve the position
+* Merge pull request #1379 from rism-digital/dependabot/bundler/jquery-rails-4.4.0
+* Add actual validation to 593!!
+* Validate institution between child and parent
+* Fix #1384, add Folder name in name and mail
+* Add docs for ValidationExclusions
+
+v 9.2.1
+* Merge #1378 to add duplication to works
+
 v 9.2
 * Add migration for utf8mb4_0900_as_cs
 * Collapse 031

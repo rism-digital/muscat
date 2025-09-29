@@ -8,10 +8,6 @@
 "026":
   layout:
     fields:
-    - - a
-    - - b
-    - - c
-    - - d
     - - e
 "028":
   layout:
@@ -20,15 +16,14 @@
       - editor_partial: subfield_indicator
     - - a
 "031":
-  new_window: standard_titles
-  new_window_field: title_equals
   layout:
     fields:
     - - u
       - hidden: true
     - - a
-      - editor_partial: subfield_hardcoded
-        value: "1"
+      - read_only: true
+        default: "1"
+        override_admin: true
     - - b
     - - c
     - - d
@@ -37,13 +32,11 @@
     - - t
       - growfield: true
         type: source_031t_solr
-        field: value
-        editor_partial: subfield_secondary
-        allow_new: true
-        #has_links_to: true
+        editor_partial: subfield_autocomplete
     - - r
       - editor_partial: subfield_select_codes
         codes_reference: "031r"
+        no_sort: true
     - - n
       - values:
         - "xF"
@@ -178,15 +171,20 @@
   layout:
     fields:
     - - a
-      - hidden: true
-    - - d
-      - hidden: true
+      - read_only: true
+        default: "DE-633"
     - - b
-      - cols: 2
-        editor_partial: subfield_select_codes
+      - editor_partial: subfield_select_codes
         select_label: "Language"
         codes_reference: "codes"
-    columns: 2
+    - - c
+      - read_only: true
+        default: "DE-633"
+    - - d
+      - read_only: true
+    - - e
+      - read_only: true
+        default: "rismg"
   tag_params:
     codes:
       - "eng"
@@ -199,21 +197,13 @@
   layout:
     fields:
     - - a
-      - cols: 2
-        editor_partial: subfield_select_codes
-        select_label: "Language"
-        codes_reference: "codes"
-    - - e
-      - cols: 2
-        editor_partial: subfield_select_codes
+      - editor_partial: subfield_select_codes
         select_label: "Language"
         codes_reference: "codes"
     - - h
-      - cols: 2
-        editor_partial: subfield_select_codes
+      - editor_partial: subfield_select_codes
         select_label: "Language"
         codes_reference: "codes"
-    columns: 2
   tag_params:
     codes:
       - "afr"
@@ -242,7 +232,6 @@
       - "enm"
       - "est"
       - "fao"
-      - "fas"
       - "fij"
       - "fin"
       - "fre"
@@ -281,9 +270,11 @@
       - "nds"
       - "nor"
       - "oci"
+      - "oji"
       - "per"
       - "pol"
       - "por"
+      - "roa"
       - "roh"
       - "rom"
       - "rum"
@@ -316,7 +307,7 @@
       - "zxx"
 "100":
   new_window: people
-  new_window_field: full_name_equals
+  new_window_field: full_name_eq
   layout:
     fields:
     - - a
@@ -324,26 +315,23 @@
         editor_partial: subfield_secondary
         allow_new: true
     - - d
-      - autocomplete_extra: life_dates
+      - autocomplete_extra: life_dates_order_s
     - - j
-      - cols: 2
-        editor_partial: subfield_select_codes
+      - editor_partial: subfield_select_codes
         codes_reference: "codes"
-    columns: 2
   tag_params:
     codes:
       - "Ascertained"
       - "Alleged"
       - "Conjectural"
-      - "Doubtful"
       - "Misattributed"
 "240":
   new_window: standard_titles
-  new_window_field: title_equals
+  new_window_field: title_eq
   layout:
     fields:
     - - a
-      - type: standard_title
+      - type: standard_title_no_730
         editor_partial: subfield_secondary
         allow_new: true
     - - o
@@ -355,6 +343,7 @@
     - - r
       - editor_partial: subfield_select_codes
         codes_reference: "240r"
+        no_sort: true
     - - m
   tag_params:
     240k:
@@ -451,6 +440,7 @@
     - - a
       - growfield: true
     - - b
+      - growfield: true
     - - c
 "340":
   layout:
@@ -482,11 +472,22 @@
         - "obl. 2°"
         - "obl. 4°"
         - "obl. 8°"
+        - "obl. 12°"
         editor_partial: subfield_select
 "383":
   layout:
     fields:
     - - b
+"490":
+  new_window: standard_titles
+  new_window_field: title_eq
+  layout:
+    fields:
+    - - a
+      - type: standard_title_no_730
+        editor_partial: subfield_secondary
+        allow_new: true
+    - - v
 "500":
   layout:
     fields:
@@ -550,17 +551,14 @@
   layout:
     fields:
     - - a
-      - values:
-        - "Composition date: "
-        - "First performance date: "
-        - "Performance date: "
-        editor_partial: subfield_autocomplete
+      - growfield: true
 "541":
   layout:
     fields:
     - - c
       - growfield: true
     - - a
+      - growfield: true
     - - d
     - - e
 "563":
@@ -583,6 +581,7 @@
   layout:
     fields:
     - - a
+      - growfield: true
 "593":
   layout:
     fields:
@@ -630,6 +629,10 @@
             - Print
           composite_volume:
             - Composite
+          inventory:
+            - Manuscript copy
+          inventory_edition:
+            - Print
         editor_partial: subfield_select
     - - b
       - values:
@@ -652,6 +655,10 @@
           - "Notated music"
           - "Libretto"
           - "Treatise"
+          inventory:
+          - "Inventory"
+          inventory_edition:
+          - "Inventory"
 "594":
   layout:
     fields:
@@ -689,11 +696,12 @@
     - - c
       - type: source
         editor_partial: subfield_secondary
-        only_new_window: true
+        allow_new: false
 "597":
   layout:
     fields:
     - - a
+      - growfield: true
 "598":
   layout:
     fields:
@@ -719,7 +727,7 @@
       - hidden: true
 "650":
   new_window: standard_terms
-  new_window_field: term_equals
+  new_window_field: term_eq
   layout:
     fields:
     - - a
@@ -728,7 +736,7 @@
         allow_new: true
 "651":
   new_window: places
-  new_window_field: name_equals
+  new_window_field: name_eq
   layout:
     fields:
     - - a
@@ -737,7 +745,7 @@
         allow_new: true
 "657":
   new_window: liturgical_feasts
-  new_window_field: name_equals
+  new_window_field: name_eq
   layout:
     fields:
     - - a
@@ -746,27 +754,27 @@
         allow_new: true
 "690":
   new_window: publications
-  new_window_field: name_equals
+  new_window_field: short_name_eq
   layout:
     fields:
     - - a
-      - type: publication
+      - type: publication_only_short_name
         editor_partial: subfield_secondary
         allow_new: false
     - - n
 "691":
   new_window: publications
-  new_window_field: name_equals
+  new_window_field: short_name_eq
   layout:
     fields:
     - - a
-      - type: publication
+      - type: publication_only_short_name
         editor_partial: subfield_secondary
         allow_new: false
     - - n
 "700":
   new_window: people
-  new_window_field: full_name_equals
+  new_window_field: full_name_eq
   layout:
     fields:
     - - a
@@ -774,7 +782,7 @@
         editor_partial: subfield_secondary
         allow_new: true
     - - d
-      - autocomplete_extra: life_dates
+      - autocomplete_extra: life_dates_order_s
     - - j
       - editor_partial: subfield_select_codes
         codes_reference: "codes"
@@ -787,11 +795,10 @@
       - "Ascertained"
       - "Alleged"
       - "Conjectural"
-      - "Doubtful"
       - "Misattributed"
     relator_codes:
       - scr
-      - cmp
+      - att
       - cns
       - arr
       - prf
@@ -818,16 +825,45 @@
       - oth
       - fmo
       - chr
+      - pat
+    relator_codes_edition:
+      remove:
+        - fmo
+        - scr
+    relator_codes_libretto_edition:
+      remove:
+        - fmo
+        - scr
+    relator_codes_theoretica_edition:
+      remove:
+        - fmo
+        - scr
+    relator_codes_edition_content:
+      remove:
+        - fmo
+        - scr
+    relator_codes_libretto_edition_content:
+      remove:
+        - fmo
+        - scr
+    relator_codes_theoretica_edition_content:
+      remove:
+        - fmo
+        - scr
 "710":
   new_window: institutions
-  new_window_field: name_equals
+  new_window_field: corporate_name_eq
   layout:
     fields:
     - - a
-      - type: institution
+      - type: institution_collate
         editor_partial: subfield_secondary
         allow_new: true
     - - b
+    - - c
+      - type: place
+        editor_partial: subfield_autocomplete
+        autocomplete_extra: place_order_s
     - - g
       - editor_partial: subfield_select_codes
         codes_reference: "codes"
@@ -840,7 +876,6 @@
       - "Ascertained"
       - "Alleged"
       - "Conjectural"
-      - "Doubtful"
       - "Misattributed"
     relator_codes:
       - pbl
@@ -861,9 +896,34 @@
       - oth
       - fmo
       - dpt
+      - pat
+    relator_codes_edition:
+      remove:
+        - fmo
+        - scr
+    relator_codes_libretto_edition:
+      remove:
+        - fmo
+        - scr
+    relator_codes_theoretica_edition:
+      remove:
+        - fmo
+        - scr
+    relator_codes_edition_content:
+      remove:
+        - fmo
+        - scr
+    relator_codes_libretto_edition_content:
+      remove:
+        - fmo
+        - scr
+    relator_codes_theoretica_edition_content:
+      remove:
+        - fmo
+        - scr
 "730":
   new_window: standard_titles
-  new_window_field: title_equals
+  new_window_field: title_eq
   layout:
     fields:
     - - a
@@ -973,13 +1033,16 @@
     - - '4'
       - hidden: true
 "775":
-  new_window: sources
+  #new_window: sources
   record_type_helper: get_allowed_record_type_775
+  tag_params:
+    no_delete_override: true
   layout:
     fields:
     - - w
       - type: source
         editor_partial: subfield_secondary
+        read_only: true
 "787":
   new_window: sources
   layout:
@@ -1008,7 +1071,7 @@
         editor_partial: subfield_secondary
         allow_new: true
     - - e
-      - autocomplete_extra: name
+      - autocomplete_extra: full_name
     - - b
     - - z
     - - c
@@ -1028,15 +1091,42 @@
       - "IIIF manifest (other)"
       - "Digitized"
       - "Other"
+    codes_edition:
+      - "IIIF manifest (other)"
+      - "Other"
+    codes_libretto_edition:
+      - "IIIF manifest (other)"
+      - "Other"
+    codes_theoretica_edition:
+      - "IIIF manifest (other)"
+      - "Other"
+    codes_edition_content:
+      - "IIIF manifest (other)"
+      - "Other"
+    codes_libretto_edition_content:
+      - "IIIF manifest (other)"
+      - "Other"
+    codes_theoretica_edition_content:
+      - "IIIF manifest (other)"
+      - "Other"
+"910":
+  layout:
+    fields:
+    - - a
+      - read_only: true
+    - - "0"
+      - hidden: true
+    - - u
+      - read_only: true
 "930":
   new_window: work_nodes
-  new_window_field: title_equals
+  new_window_field: title_eq
   layout:
     fields:
     - - a
       - type: work_node
         editor_partial: subfield_secondary
-        allow_new: true
+        allow_new: false
 "980":
   layout:
     fields:
@@ -1061,6 +1151,18 @@
     980c:
       - "examined"
       - "not_examined"
+"981":
+  tag_params:
+    read_only: true
+    no_delete: true
+    no_move: true
+  layout:
+    hide_add_button: true
+    fields:
+    - - "0"
+      - read_only: true
+    - - "d"
+      - read_only: true
 
 triggers:
   - notify_changes

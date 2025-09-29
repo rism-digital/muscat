@@ -1,48 +1,54 @@
 --- !map:Settings 
-"000": 
+"001":
   tag: tag_no_subfield
-  tag_params: 
-    editor_only: true
-  tag_header: none
-"001": 
-  tag: tag_no_subfield
-  tag_params: 
+  tag_params:
     read_only: true
     no_delete: true
-  tag_header: none
-"003": 
-  tag: tag_no_subfield
-  tag_params: 
-    read_only: true
-  tag_header: none
-"005": 
-  tag: tag_no_subfield
-  tag_params: 
-    read_only: true
   tag_header: none
 "020": 
   layout: 
     fields: 
     - - a
-      - cols: 4
-    columns: 4
 "022": 
   layout: 
     fields: 
     - - a
-      - cols: 4
-    columns: 4
+"040":
+  layout:
+    fields:
+    - - a
+      - read_only: true
+        default: "DE-633"
+    - - b
+      - editor_partial: subfield_select_codes
+        select_label: "Language"
+        codes_reference: "codes"
+    - - c
+      - read_only: true
+        default: "DE-633"
+    - - d
+      - read_only: true
+    - - e
+      - read_only: true
+        default: "rismg"
+  tag_params:
+    codes:
+      - "eng"
+      - "fre"
+      - "ger"
+      - "ita"
+      - "por"
+      - "spa"
 "041": 
   layout: 
     fields: 
     - - a
-      - cols: 2 
-        editor_partial: subfield_select_codes
+      - editor_partial: subfield_select_codes
         select_label: "Language"
-    columns: 2
   tag_params:
     codes:
       - "alb"
+      - 'arm'
       - "cat"
       - "cze"
       - "dan"
@@ -70,6 +76,7 @@
       - "nor"
       - "pol"
       - "por"
+      - "roa"
       - "rum"
       - "rus"
       - "slo"
@@ -77,19 +84,19 @@
       - "spa"
       - "srp"
       - "swe"
+      - "tur"
       - "ukr"
       - "wen"
       - "zho"
       - "zxx"
+      - "ara"
 
 "044": 
   layout: 
     fields: 
     - - a
-      - cols: 2 
-        editor_partial: subfield_select_codes
+      - editor_partial: subfield_select_codes
         select_label: "Country"
-    columns: 2
   tag_params:
     codes:
       - "XC-DZ"
@@ -99,10 +106,10 @@
       - "XE-AU"
       - "XA-AT"
       - "XA-BE"
-      - "XC-BJ"
       - "XD-BR"
       - "XA-BG"
       - "XB-KH"
+      - "XD-BO"
       - "XD-CA"
       - "XD-CL"
       - "XB-CN"
@@ -126,6 +133,7 @@
       - "XA-IE"
       - "XB-IL"
       - "XA-IT"
+      - "XD-JM"
       - "XB-JP"
       - "XB-KR"
       - "XA-LV"
@@ -151,7 +159,6 @@
       - "XA-ES"
       - "XA-SE"
       - "XA-CH"
-      - "XA-CH-VD"
       - "XB-SY"
       - "XD-TT"
       - "XB-TR"
@@ -165,6 +172,7 @@
 "100": 
   allow_new: true
   new_window: people
+  new_window_field: full_name_or_400a_cont
   layout: 
     fields: 
     - - a
@@ -175,19 +183,23 @@
   layout: 
     fields: 
     - - a
-      - cols: 4
-        trigger:
+      - trigger:
         - save:
           - referring_sources
-    columns: 4
+          - referring_holdings
+          - referring_people
+          - referring_institutions
+          - referring_works
 "240": 
   layout: 
     fields: 
     - - a
       - growfield: true
+      - trigger:
+        - save:
+          - referring_publications
     - - g
-      - cols: 1
-        values:
+      - values:
         # http://www.loc.gov/standards/valuelist/marcgt.html
         - "Bibliography"
         - "Catalog"
@@ -197,10 +209,10 @@
         - "Music edition"
         - "Other"
         - "Thematic catalog"
+        - "Work list"
         editor_partial: subfield_select
     - - h
-      - cols: 1
-        values:
+      - values:
         - "Article/chapter"
         - "Monograph"
         - "Periodical"
@@ -212,28 +224,21 @@
   layout: 
     fields: 
     - - a
-      - cols: 4
     - - b
-      - cols: 4
     - - c
-      - cols: 4
-    columns: 4
 "264": 
   layout: 
     fields: 
     - - c
-      - cols: 4
 "300": 
   layout: 
     fields: 
     - - a
-      - cols: 4
 "337": 
   layout: 
     fields: 
     - - a
-      - cols: 4
-        values:
+      - values:
         - "CD-ROM"
         - "E-book"
         - "Electronic resource"
@@ -250,11 +255,23 @@
     fields: 
     - - a
       - growfield: true
+"502": 
+  layout: 
+    fields: 
+    - - a
+"505": 
+  layout: 
+    fields: 
+    - - t
 "520": 
   layout: 
     fields: 
     - - a
-      - cols: 4
+"590": 
+  layout: 
+    fields: 
+    - - a
+      - growfield: true
 "599": 
   layout: 
     fields: 
@@ -281,6 +298,7 @@
 "700":
   allow_new: true
   new_window: people
+  new_window_field: full_name_or_400a_cont
   layout:
     fields: 
     - - a
@@ -293,18 +311,23 @@
     codes: 
     - aut
     - edt
-    - cmp
+    - att
     - asn
     - oth
 "710":
-  allow_new: true
   new_window: institutions
+  new_window_field: full_name_eq
   layout: 
-    fields: 
+    fields:
     - - a
       - type: institution
         editor_partial: subfield_secondary
+        allow_new: true
     - - b
+    - - c
+      - type: place
+        editor_partial: subfield_autocomplete
+        autocomplete_extra: place
     - - "4"
       - editor_partial: subfield_select_codes
         select_label: "Function"
@@ -344,3 +367,13 @@
     fields: 
     - - u
     - - z
+"981":
+  tag_params:
+    read_only: true
+    no_delete: true
+  layout:
+    fields:
+    - - "0"
+      - read_only: true
+    - - "d"
+      - read_only: true

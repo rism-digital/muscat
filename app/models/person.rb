@@ -3,7 +3,6 @@
 #
 # === Fields
 # * <tt>full_name</tt> - Full name of the person: Second name, Name
-# * <tt>full_name_d</tt> - Downcase with UTF chars stripped 
 # * <tt>life_dates</tt> - Dates in the form xxxx-xxxx
 # * <tt>birth_place</tt>
 # * <tt>gender</tt> - 0 = male, 1 = female
@@ -20,6 +19,9 @@ class Person < ApplicationRecord
   include ForeignLinks
   include MarcIndex
   include AuthorityMerge
+  include CommentsCleanup
+  include ComposedOfReimplementation
+  include ThroughAssociations
 
   # class variables for storing the user name and the event from the controller
   @last_user_save
@@ -27,7 +29,7 @@ class Person < ApplicationRecord
   @last_event_save
   attr_accessor :last_event_save
   
-  has_paper_trail :on => [:update, :destroy], :only => [:marc_source], :if => Proc.new { |t| VersionChecker.save_version?(t) }
+  has_paper_trail :on => [:update, :destroy], :only => [:marc_source, :wf_stage, :wf_audit], :if => Proc.new { |t| VersionChecker.save_version?(t) }
   
   def user_name
     user ? user.name : ''
@@ -37,47 +39,80 @@ class Person < ApplicationRecord
   has_many :works
   has_many :digital_object_links, :as => :object_link, :dependent => :delete_all
   has_many :digital_objects, through: :digital_object_links, foreign_key: "object_link_id"
+
   #has_and_belongs_to_many(:referring_sources, class_name: "Source", join_table: "sources_to_people")
   has_many :source_person_relations, class_name: "SourcePersonRelation"
   has_many :referring_sources, through: :source_person_relations, source: :source
 
-  has_and_belongs_to_many(:referring_institutions, class_name: "Institution", join_table: "institutions_to_people")
-  has_and_belongs_to_many(:referring_publications, class_name: "Publication", join_table: "publications_to_people")
-  has_and_belongs_to_many(:referring_holdings, class_name: "Holding", join_table: "holdings_to_people")
-  has_and_belongs_to_many(:referring_works, class_name: "Work", join_table: "works_to_people")
-  has_and_belongs_to_many :institutions, join_table: "people_to_institutions"
+  #has_and_belongs_to_many(:referring_institutions, class_name: "Institution", join_table: "institutions_to_people")
+  has_many :institution_person_relations, class_name: "InstitutionPersonRelation"
+  has_many :referring_institutions, through: :institution_person_relations, source: :institution
+
+  #has_and_belongs_to_many(:referring_holdings, class_name: "Holding", join_table: "holdings_to_people")
+  has_many :holding_person_relations, class_name: "HoldingPersonRelation"
+  has_many :referring_holdings, through: :holding_person_relations, source: :holding
+
+  #has_and_belongs_to_many(:referring_publications, class_name: "Publication", join_table: "publications_to_people")
+  has_many :publication_person_relations, class_name: "PublicationPersonRelation"
+  has_many :referring_publications, through: :publication_person_relations, source: :publication
+
+  #has_and_belongs_to_many(:referring_works, class_name: "Work", join_table: "works_to_people")
+  has_many :work_person_relations, class_name: "WorkPersonRelation"
+  has_many :referring_works, through: :work_person_relations, source: :work
+
+  has_many :inventory_item_person_relations, class_name: "InventoryItemPersonRelation"
+  has_many :referring_inventory_items, through: :inventory_item_person_relations, source: :inventory_item
+
+  #has_and_belongs_to_many :institutions, join_table: "people_to_institutions"
+  has_many :person_institution_relations
+  has_many :institutions, through: :person_institution_relations
+
+  #has_and_belongs_to_many :publications, join_table: "people_to_publications"
+  has_many :person_publication_relations
+  has_many :publications, through: :person_publication_relations
+
   #has_and_belongs_to_many :places, join_table: "people_to_places"
   has_many :person_place_relations
   has_many :places, through: :person_place_relations
 
-  has_and_belongs_to_many :publications, join_table: "people_to_publications"
+  #has_and_belongs_to_many(:referring_work_nodes, class_name: "WorkNode", join_table: "work_nodes_to_people")
+  has_many :work_node_person_relations, class_name: "WorkNodePersonRelation"
+  has_many :referring_work_nodes, through: :work_node_person_relations, source: :work_node
+
   has_many :folder_items, as: :item, dependent: :destroy
   has_many :delayed_jobs, -> { where parent_type: "Person" }, class_name: 'Delayed::Backend::ActiveRecord::Job', foreign_key: "parent_id"
   belongs_to :user, :foreign_key => "wf_owner"
   
   # People can link to themselves
   # This is the forward link
-  has_and_belongs_to_many(:people,
-    :class_name => "Person",
-    :foreign_key => "person_a_id",
-    :association_foreign_key => "person_b_id",
-    join_table: "people_to_people")
+#  has_and_belongs_to_many(:people,
+#    :class_name => "Person",
+#    :foreign_key => "person_a_id",
+#    :association_foreign_key => "person_b_id",
+#    join_table: "people_to_people")
   
   # This is the backward link
-  has_and_belongs_to_many(:referring_people,
-    :class_name => "Person",
-    :foreign_key => "person_b_id",
-    :association_foreign_key => "person_a_id",
-    join_table: "people_to_people")
+#  has_and_belongs_to_many(:referring_people,
+#    :class_name => "Person",
+#    :foreign_key => "person_b_id",
+#    :association_foreign_key => "person_a_id",
+#    join_table: "people_to_people")
+
+  has_many :person_relations, foreign_key: "person_a_id"
+  has_many :people, through: :person_relations, source: :person_b
+  # And this is the one coming back
+  has_many :referring_person_relations, class_name: "PersonRelation", foreign_key: "person_b_id"
+  has_many :referring_people, through: :referring_person_relations, source: :person_a
   
-  composed_of :marc, :class_name => "MarcPerson", :mapping => %w(marc_source to_marc)
+
+  composed_of_reimplementation :marc, :class_name => "MarcPerson", :mapping => %w(marc_source to_marc)
   
 #  validates_presence_of :full_name  
   validate :field_length
   
   #include NewIds
   
-  before_destroy :check_dependencies
+  before_destroy :check_dependencies, :cleanup_comments
   
   before_save :set_object_fields
   after_create :scaffold_marc, :fix_ids
@@ -87,11 +122,12 @@ class Person < ApplicationRecord
   attr_accessor :suppress_reindex_trigger
   attr_accessor :suppress_scaffold_marc_trigger
   attr_accessor :suppress_recreate_trigger
+  attr_accessor :suppress_update_count_trigger
 
   alias_attribute :id_for_fulltext, :id
 
-  enum wf_stage: [ :inprogress, :published, :deleted, :deprecated ]
-  enum wf_audit: [ :full, :abbreviated, :retro, :imported ]
+  enum :wf_stage, [ :inprogress, :published, :deleted, :deprecated ]
+  enum :wf_audit, [ :full, :abbreviated, :retro, :imported ]
 
   def after_initialize
     @last_user_save = nil
@@ -103,6 +139,10 @@ class Person < ApplicationRecord
     self.suppress_scaffold_marc_trigger = true
   end
   
+  def suppress_update_count
+    self.suppress_update_count_trigger = true
+  end
+
   def suppress_recreate
     self.suppress_recreate_trigger = true
   end 
@@ -212,7 +252,7 @@ class Person < ApplicationRecord
   end
 
   searchable :auto_index => false do |sunspot_dsl|
-    sunspot_dsl.integer :id
+    sunspot_dsl.integer :id, stored: true
     sunspot_dsl.text :id_text do
       id_for_fulltext
     end
@@ -224,8 +264,15 @@ class Person < ApplicationRecord
       full_name
     end
 
+    sunspot_dsl.string :full_name_autocomplete, :as => "full_name_autocomplete" do
+      full_name
+    end
+
+    sunspot_dsl.string :label, stored: true do
+      autocomplete_label(true)
+    end
+
     sunspot_dsl.text :full_name
-    sunspot_dsl.text :full_name_d
     
     sunspot_dsl.string :life_dates_order do
       life_dates
@@ -242,13 +289,23 @@ class Person < ApplicationRecord
     sunspot_dsl.time :updated_at
     sunspot_dsl.time :created_at
     
+    sunspot_dsl.text :text do |s|
+      s.marc.to_raw_text
+    end
+
     sunspot_dsl.join(:folder_id, :target => FolderItem, :type => :integer, 
               :join => { :from => :item_id, :to => :id })
 
     sunspot_dsl.integer :src_count_order, :stored => true do
-      referring_sources.size + referring_holdings.size
+      #referring_sources.size + referring_holdings.size
+      # Use the jump table directly
+      source_person_relations.size + holding_person_relations.size
     end
-    
+
+    sunspot_dsl.integer(:src_count_order, :stored => true) {through_associations_source_count}
+    sunspot_dsl.integer(:referring_objects_order, stored: true) {through_associations_exclude_source_count}
+    sunspot_dsl.integer(:total_obj_count_order, stored: true) {through_associations_total_count}
+
     MarcIndex::attach_marc_index(sunspot_dsl, self.to_s.downcase)
     
   end
@@ -268,7 +325,7 @@ class Person < ApplicationRecord
     self.id = marc_source_id if marc_source_id and marc_source_id != "__TEMP__"
 
     # std_title
-    self.full_name, self.full_name_d, self.life_dates = marc.get_full_name_and_dates
+    self.full_name, self.life_dates = marc.get_full_name_and_dates
     
     # alternate
     self.alternate_names, self.alternate_dates = marc.get_alternate_names_and_dates
@@ -280,16 +337,38 @@ class Person < ApplicationRecord
   end
   
   def field_length
-    self.life_dates = self.life_dates.truncate(24) if self.life_dates and self.life_dates.length > 24
-    self.full_name = self.full_name.truncate(128) if self.full_name and self.full_name.length > 128
+    self.life_dates = self.life_dates.truncate(24)&.strip if self.life_dates and self.life_dates.length > 24
+    self.full_name = self.full_name.truncate(128)&.strip if self.full_name and self.full_name.length > 128
   end
 
   def name
     return full_name
   end
   
-  def autocomplete_label
-    "#{full_name}" + (life_dates && !life_dates.empty? ? "  - #{life_dates}" : "")
+  def autocomplete_label(use_self = false)
+    #1540, does this slow things up too much?
+    #Since the autocomplete only gets the minimum fields
+    if use_self
+      pp = self
+    else
+      pp = Person.find(id)
+    end
+
+    pp.marc.load_source false
+    person_function = pp.marc.first_occurance("100", "c")
+
+    "#{full_name}" + 
+      (person_function && person_function.content && !person_function.content.empty? ? " (#{person_function.content})" : "") + 
+      (life_dates && !life_dates.empty? ? " - #{life_dates}" : "")
+  end
+
+  # If we define our own ransacker, we need this
+  def self.ransackable_attributes(auth_object = nil)
+    column_names + _ransackers.keys
+  end
+
+  def self.ransackable_associations(auth_object = nil)
+    reflect_on_all_associations.map { |a| a.name.to_s }
   end
 
   ransacker :"100d", proc{ |v| } do |parent| parent.table[:id] end
@@ -313,6 +392,13 @@ class Person < ApplicationRecord
   def indexable?
     self.marc.load_source false
     true
+  end
+
+  # We have a column for display name
+  # which is used by auto_link, so make
+  # sure we always have a value here
+  def display_name
+    super.presence || self.name
   end
 
 end

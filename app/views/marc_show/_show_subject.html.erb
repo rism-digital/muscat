@@ -11,9 +11,7 @@
 		<%- end %>
 	</th>
 	<td>
-		<% if opac %>
-			<%= link_to subject, search_catalog_path(:search_field => "subject", :q => subject) %>
-		<% elsif is_selection_mode?%>
+		<% if is_selection_mode?%>
 			<%= subject%>
 		<% else %>
 			<%= link_to subject, admin_standard_term_path(db_id) %>

@@ -69,9 +69,8 @@ module RISM
   # if the installation was previously in Muscat 2 with page)
   LEGACY_PAGES_URL = "/"
 
-  # Redirection from home site root url.  By default, the public
-  # search pages (served by Blacklight, that is, /catalog)
-  ROOT_REDIRECT = "/catalog"
+  # Redirection from home site root url. 
+  ROOT_REDIRECT = "/admin"
 
   # Record ids for each records type
   BASE_NEW_IDS = {
@@ -141,6 +140,14 @@ module RISM
   # Turn on or off collation of special chars for ordering
   CLEVER_ORDERING = true
 
+  # In some cases, only inprogress and published should remain in wf_stage
+  # Remove deleted and deprecated from the menu
+  REMOVE_DELETED_WF_STAGE = false
+
+  # In some remote places of Muscat, we harcode links
+  # Put the domain here so it works
+  MUSCAT_URL = "https://muscat.rism.info"
+
   # Supported devise authentication methods are:
   # - database_authenticatable (the default)
   # - saml_authenticatable, with trackable (which is already defined in User.rb
@@ -160,42 +167,53 @@ end
 
 module Muscat
   class Application < Rails::Application
-    # Settings in config/environments/* take precedence over those
-    # specified here.  Application configuration should go into files
-    # in config/initializers -- all .rb files in that directory are
-    # automatically loaded.
+    # Settings in config/environments/* take precedence over those specified here.
+    # Application configuration should go into files in config/initializers
+    # -- all .rb files in that directory are automatically loaded.
 
-    # Set Time.zone default to the specified zone and make Active
-    # Record auto-convert to this zone.  Run "rake -D time" for a list
-    # of tasks for finding time zone names. Default is UTC.
+    # Set Time.zone default to the specified zone and make Active Record auto-convert to this zone.
+    # Run "rake -D time" for a list of tasks for finding time zone names. Default is UTC.
     # config.time_zone = 'Central Time (US & Canada)'
+
+    config.load_defaults 7.1
+    config.active_support.cache_format_version = 7.1
+    # Make sure belongs_to is optional by default
+    config.active_record.belongs_to_required_by_default = false
 
     # Force validation of locales, this also silences the deprecation warning
     config.i18n.enforce_available_locales = true
-
-    # Force a default locale, other than :en
-    # config.i18n.default_locale = :de
-    # The default locale is :en and all translations from
-    # config/locales/*.rb,yml are auto loaded.
+    # The default locale is :en and all translations from config/locales/*.rb,yml are auto loaded.
     # config.i18n.load_path += Dir[Rails.root.join('my', 'locales', '*.{rb,yml}').to_s]
-    config.i18n.load_path += Dir[ (File.join(Rails.root, "config", "locales", 'marc_records', '*.{rb,yml}'))]
+    # config.i18n.default_locale = :de
+    config.i18n.load_path += Dir[ (File.join(Rails.root, "config", "locales", 'marc_records', '*.{yml}'))]
+    config.i18n.load_path += Dir[ (File.join(Rails.root, "config", "locales", 'gnd', '*.{yml}'))]
+    
     config.autoload_paths << "#{Rails.root}/lib"
-    config.eager_load_paths << Rails.root.join("lib")
+    config.eager_load_paths << Rails.root.join('lib')
+    config.eager_load_paths << "#{Rails.root}/app/models/relations"
+    
+    #config.autoload_lib(ignore: %w(assets tasks generators))
+
     config.active_job.queue_adapter = :delayed_job
-    # For 5.2: permit the loading of ActiveSupport::HashWithIndifferentAccess
-    config.active_record.yaml_column_permitted_classes = [ActiveSupport::HashWithIndifferentAccess]
+
+    config.active_record.yaml_column_permitted_classes = [ActiveSupport::HashWithIndifferentAccess, Time, Date, ActiveSupport::TimeWithZone, ActiveSupport::TimeZone]
+    
+    Paperclip::Attachment.default_options[:url] = "https://muscat.rism.info/system/:class/:attachment/:id_partition/:style/:filename"
+
+    # See what was loaded
+    #Rails.autoloaders.log!
+
+    overrides = "#{Rails.root}/app/overrides"
+    Rails.autoloaders.main.ignore(overrides)
+
+    config.to_prepare do
+      Dir.glob("#{overrides}/**/*_override.rb").sort.each do |override|
+        load override
+      end
+    end
   end
 end
 
 ##########################################################################
 
 REINDEX_PIDFILE = "#{Rails.root}/tmp/pids/muscat_reindex.pid"
-
-# Mime types for MEI files
-Mime::Type.register "application/xml", :mei
-
-# Mime types for TEI files
-Mime::Type.register "application/xml", :tei
-
-# Mime types for download of MARC records.
-Mime::Type.register "application/marc", :marc

@@ -1,0 +1,1 @@
+Les carpetes expiren després de sis mesos i aleshores s'esborren automàticament. Per renovar una carpeta feu clic a l'enllaç *Reestablir la data d'expiració*, que allargarà la data d'expiració sis mesos més. De tota manera, rebreu una notificació per correu abans no s'esborrin les carpetes.

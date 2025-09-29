@@ -1,7 +1,4 @@
 class User < ApplicationRecord
-  # Connects this user object to Blacklights Bookmarks.
-  include Blacklight::User
-
   has_and_belongs_to_many :workgroups
 
   has_many :sources, foreign_key: 'wf_owner'
@@ -18,8 +15,8 @@ class User < ApplicationRecord
   # Used to permit username or email login
   attr_writer :login
 
-  enum notification_type: [:every, :daily, :weekly ]
-  enum preference_wf_stage: [ :inprogress, :published, :deleted ]
+  enum :notification_type, [:every, :daily, :weekly ]
+  enum :preference_wf_stage, [ :inprogress, :published, :deleted ]
   scope :ordered, -> {
     joins(:workgroups).order("workgroup.name")
           
@@ -30,6 +27,8 @@ class User < ApplicationRecord
   validates_format_of :username, with: /[\p{Letter}\s]+/u, :multiline => true
   #/^[a-zA-ZÀ-ż0-9_\.]*$/, :multiline => true
   
+  validates :name, presence: true
+
   searchable :auto_index => false do
     integer :id
     text :name
@@ -153,11 +152,22 @@ class User < ApplicationRecord
   def self.sort_all_by_last_name
     res = {}
     User.all.each do |u|
-      res[u.id] = [I18n.transliterate(u.name.sub("Admin", "00admin").split(" ").last).downcase, u]
+      name = u.name&.empty? ? u.email : I18n.transliterate(u.name.sub("Admin", "00admin").split(" ").last).downcase
+      res[u.id] = [name, u]
     end
     return res.sort_by{|_key, value| value.first}.map {|e| e[1][1] }
   end
   
+  def self.filter_by_work_roles
+    res = {}
+    users = User.joins(:roles).where("roles.id": 1).or(Role.where("id": 2)).or(Role.where("id": 9))
+    users.each do |u|
+      name = u.name&.empty? ? u.email : I18n.transliterate(u.name.sub("Admin", "00admin").split(" ").last).downcase
+      res[u.id] = [name, u]
+    end
+    return res.sort_by{|_key, value| value.first}.map {|e| e[1][1] }.map{|u| [u.name, u.id]}
+  end
+
   # Find username OR email
   def self.find_for_database_authentication(warden_conditions)
     conditions = warden_conditions.dup
@@ -193,4 +203,10 @@ class User < ApplicationRecord
     user_create_strategy != :saml_authenticatable
     super
   end
+
+  # https://github.com/activeadmin/activeadmin/issues/7809
+  # In Non-marc models we can use the default
+  def self.ransackable_associations(_) = reflections.keys
+  def self.ransackable_attributes(_) = attribute_names - %w[token]
+
 end

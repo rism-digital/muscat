@@ -12,7 +12,7 @@ class Ability
       can :manage, :all
       can :reindex, [Publication, Institution, LiturgicalFeast, Person, Place, StandardTerm, StandardTitle, Folder]
       can :publish, [Folder]
-      can :unpublish, [Folder]
+      can :unpublish, :all
       can :resave, :all
 
     ##########
@@ -21,7 +21,7 @@ class Ability
 
     elsif user.has_role?(:editor)
       if user.has_role?(:person_editor)
-        can [:read, :create, :update, :destroy], [DigitalObject, DigitalObjectLink, Publication, Institution, LiturgicalFeast, Person, Place, StandardTerm, StandardTitle, Source, WorkNode, Holding]
+        can [:read, :create, :update, :destroy], [DigitalObject, DigitalObjectLink, Publication, Institution, LiturgicalFeast, Person, Place, StandardTerm, StandardTitle, Source, Work, WorkNode, Holding]
       elsif user.has_role?(:junior_editor)
         can [:read, :create, :update], [DigitalObject, DigitalObjectLink, Publication, Institution, LiturgicalFeast, Person, Place, StandardTerm, StandardTitle, Source, WorkNode, Holding]
       else
@@ -35,19 +35,23 @@ class Ability
         can [:read, :create, :update, :destroy], Work
       end
 
+      can [:read, :create, :update, :destroy], InventoryItem
+
       can :prepare_convert, Source
       can :convert_manuscript, Source
 
       can :manage, Folder#, :wf_owner => user.id
-      can :unpublish, [Folder]
+      can :unpublish, :all
       can [:read, :create, :destroy], ActiveAdmin::Comment
       can :read, ActiveAdmin::Page, :name => "Dashboard"
       can :read, ActiveAdmin::Page, :name => "guidelines"
       can :read, ActiveAdmin::Page, :name => "doc"
       can :read, ActiveAdmin::Page, :name => "Statistics"
       can :read, ActiveAdmin::Page, :name => "Compare Versions"
+      can :manage, ActiveAdmin::Page, :name => "gnd_works"
 
-      can [:read, :update], User, :id => user.id
+      can [:read], User
+      can [:update], User, :id => user.id
     
     ##############
     # Cataloguer #
@@ -61,6 +65,12 @@ class Ability
         # the general design of the role allows extensions alike for e.g. institudions
         can :update, Person
       end
+
+      if user.has_role?(:inventory_cataloger)
+        can :update, InventoryItem, :wf_owner => user.id
+        can [:read, :create], InventoryItem
+      end
+
       can :update, [Publication, Institution, LiturgicalFeast, Person, Place, StandardTerm, StandardTitle, Holding, WorkNode], :wf_owner => user.id
       can [:destroy, :update], [DigitalObject], :wf_owner => user.id
       # Users cannot delete their holdings anymore as of 8.2, sorry!
@@ -80,7 +90,7 @@ class Ability
       can [:publish], Folder do |folder|
         user.can_publish?(folder)
       end
-      cannot [:unpublish, :reindex], Folder
+      cannot [:unpublish, :reindex], :all
       can [:read, :create, :destroy], ActiveAdmin::Comment
       can [:update], ActiveAdmin::Comment, :author_id => user.id
       can [:read, :create], Source
@@ -96,6 +106,7 @@ class Ability
       can :read, ActiveAdmin::Page, :name => "Dashboard"
       can :read, ActiveAdmin::Page, :name => "guidelines"
       can :read, ActiveAdmin::Page, :name => "doc"
+      can :manage, ActiveAdmin::Page, :name => "gnd_works"
       can [:read, :update], User, :id => user.id
     
     #########

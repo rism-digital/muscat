@@ -40,6 +40,7 @@ FactoryBot.define do
 =500  #\#$aLiteratur: Faulstich, Nr. 425, Nr. 466; P. Wollny, in: SIM-Jb. 1995, S. 80-113
 =500  #\#$aBemerkung: Wahrscheinlich identisch mit verschollen BWV 227 (6)
 =541  #\#$a? - J. Christian Westphal - Voß-Buch (1830) - BB (jetzt Staatsbibliothek zu Berlin Preußischer Kulturbesitz) (1851)
+=588  #\#$asource
 =592  #\#$aa) W in überkröntem Schild - b) leer (oder nicht erkennbar)$801
 =599  #\#$aUrsprüngliche Namensansetzung: J. Franck [Berlin 1653]
 =650  00$aMotets$025240

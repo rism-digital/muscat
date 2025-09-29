@@ -1,6 +1,25 @@
 --- !map:Settings
 client:
+  "024":
+    tags:
+      "2": required
+      "a": required
   "100":
     tags:
-      a: mandatory
-
+      "a": mandatory
+  "551": 
+    tags:
+      "0": required
+      "i":
+        required_if:
+          "551": "0"
+  "670":
+    tags:
+      "w": required
+  "856":
+    tags:
+      u:
+        any_of:
+          - begins_with: "http"
+          - required
+      "z": required

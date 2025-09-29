@@ -12,9 +12,10 @@ else
 fi
 echo "Running in $RAILS_ENV mode"
 
+## Set to 1 to delete all the sources from solr
+## and recreate them.
 DELETE_SOURCES=0
 
-## Uncomment this to purge the sources!
 if [ $DELETE_SOURCES -eq 0 ]; then
     echo "Sources are not deleted from the index"
 else
@@ -38,6 +39,7 @@ bundle exec rake sunspot:reindex[,Work]
 bundle exec rake sunspot:reindex[,WorkNode]
 bundle exec rake sunspot:reindex[,FolderItem]
 bundle exec rake sunspot:reindex[,Holding]
+bundle exec rake sunspot:reindex[,InventoryItem]
 
 echo "Force a Solr commit"
 echo "Sunspot.commit" | bundle exec rails c

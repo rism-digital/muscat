@@ -8,6 +8,7 @@ group_order:
 groups: 
   edit_administration: 
     all_tags: 
+    - "040"
     - "001"
 
   edit_library: 

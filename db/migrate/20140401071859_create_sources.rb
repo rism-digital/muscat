@@ -14,8 +14,8 @@ class CreateSources < ActiveRecord::Migration[4.2]
       t.column :composer,           :string
       t.column :composer_d,         :string
 
-      t.column :title,              :string, { :limit => 256 }
-      t.column :title_d,            :string, { :limit => 256 }
+      t.column :title,              :string, :limit => 256 
+      t.column :title_d,            :string, :limit => 256 
 
       t.column :shelf_mark,         :string
       t.column :language,           :string, :limit => 16
@@ -26,10 +26,10 @@ class CreateSources < ActiveRecord::Migration[4.2]
       t.column :marc_source,        :text
 
       # this fields are kept for now - to be decided
-      t.column :wf_audit,           :string, { :limit => 16, :default => "unapproved" }
-      t.column :wf_stage,           :string, { :limit => 16, :default => "unpublished" }
+      t.column :wf_audit,           :string, :limit => 16, :default => "unapproved"
+      t.column :wf_stage,           :string, :limit => 16, :default => "unpublished"
       t.column :wf_notes,           :string
-      t.column :wf_owner,           :integer, { :default => 0 }
+      t.column :wf_owner,           :integer, :default => 0
       t.column :wf_version,         :integer, :default => 0
 
       t.column :created_at,         :datetime

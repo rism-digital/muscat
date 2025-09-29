@@ -8,6 +8,12 @@ var _child = null;
 var _object_model = null;
 
 function nonMarcDeselectSession() {
+
+	// NOTE! Make sure the tab is reselected
+	// to the parent window. This is because
+	// the visibilitychange event is not fired!
+	tab_saver_select();
+
 	$.ajax({
 		success: function(data) {},
 		data: {

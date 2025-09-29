@@ -1,15 +1,4 @@
 class ApplicationController < ActionController::Base
-  # Adds a few additional behaviors into the application controller
-  include Blacklight::Controller
-  layout 'blacklight'
-
-  # Adds a few additional behaviors into the application controller 
-   include Blacklight::Controller
-  # Please be sure to impelement current_user and user_session. Blacklight depends on 
-  # these methods in order to perform user specific actions. 
-
-  layout 'blacklight'
-
   # Prevent CSRF attacks by raising an exception.
   # For APIs, you may want to use :null_session instead.
   protect_from_forgery with: :exception
@@ -33,15 +22,19 @@ class ApplicationController < ActionController::Base
   end
 
   def prepare_exception_notifier
-    if current_user
-      request.env["exception_notifier.exception_data"] = {:current_user => current_user } 
-    else
-      request.env["exception_notifier.exception_data"] = {:current_user => "Not Logged In" } 
+    begin 
+      if current_user
+        request.env["exception_notifier.exception_data"] = {:current_user => current_user } 
+      else
+        request.env["exception_notifier.exception_data"] = {:current_user => "Not Logged In" } 
+      end
+    rescue
+      request.env["exception_notifier.exception_data"] = {:current_user => "Exception loading user" } 
     end
   end
 
   def auth_user
-    redirect_to "/admin/login" unless (user_signed_in? || RISM::ANONYMOUS_NAVIGATION || request.path == "/admin/login" || (defined?(saml_user_signed_in?) && saml_user_signed_in?))
+    redirect_to "/admin/login" unless (user_signed_in? || RISM::ANONYMOUS_NAVIGATION || request.path == "/admin/login" || (defined?(saml_user_signed_in?) && saml_user_signed_in?)) rescue nil
   end
   
   def test_version_warning
@@ -66,9 +59,15 @@ class ApplicationController < ActionController::Base
        format.json { head :conflict }
     end
   end
-  	
+  
+  rescue_from ActionController::InvalidAuthenticityToken do |exception|
+    respond_to do |format|
+      format.json { render :json => 'Unauthorized',  :status => 401 }
+    end
+  end
+
   def user_for_paper_trail
-   current_user.try :name
+   current_user.try :name rescue nil
   end
   
   def is_selection_mode?
@@ -126,7 +125,7 @@ class ApplicationController < ActionController::Base
     devise_parameter_sanitizer.permit :account_update, keys: added_attrs
   end
 
-  def restore_search_filters  
+  def restore_search_filters
   end
   
   def save_search_filters  
@@ -139,7 +138,7 @@ class ApplicationController < ActionController::Base
   def _locale_from_http_header 
     return "en" if !request.env || !request.env.include?('HTTP_ACCEPT_LANGUAGE')
     locale = request.env['HTTP_ACCEPT_LANGUAGE'].scan(/^[a-z]{2}/).first 
-    return locale if ["en", "fr", "it", "de", "es", "pt"].include?(locale)
+    return locale if ["en", "fr", "it", "de", "es", "pt", "pl", "ca"].include?(locale)
     "en"
   end 
 

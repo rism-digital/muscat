@@ -1,5 +1,7 @@
 class Holding < ApplicationRecord
   include ForeignLinks
+  include CommentsCleanup
+  include ComposedOfReimplementation
   resourcify
 
   # class variables for storing the user name and the event from the controller
@@ -8,27 +10,44 @@ class Holding < ApplicationRecord
   @last_event_save
   attr_accessor :last_event_save
   
-  has_paper_trail :on => [:update, :destroy], :only => [:marc_source], :if => Proc.new { |t| VersionChecker.save_version?(t) }
+  has_paper_trail :on => [:update, :destroy], :only => [:marc_source, :wf_stage, :wf_audit], :if => Proc.new { |t| VersionChecker.save_version?(t) }
 
-  has_and_belongs_to_many :institutions, join_table: "holdings_to_institutions"
+  has_many :digital_object_links, :as => :object_link, :dependent => :delete_all
+  has_many :digital_objects, through: :digital_object_links, foreign_key: "object_link_id"
+
+  #has_and_belongs_to_many :institutions, join_table: "holdings_to_institutions"
+  has_many :holding_institution_relations
+  has_many :institutions, through: :holding_institution_relations
+
+  #has_and_belongs_to_many :people, join_table: "holdings_to_people"
+  has_many :holding_person_relations
+  has_many :people, through: :holding_person_relations
+
+  #has_and_belongs_to_many :publications, join_table: "holdings_to_publications"
+  has_many :holding_publication_relations
+  has_many :publications, through: :holding_publication_relations
+
+  #has_and_belongs_to_many :places, join_table: "holdings_to_places"
+  has_many :holding_place_relations
+  has_many :places, through: :holding_place_relations
+
+  has_many :inventory_item_holding_relations, class_name: "InventoryItemHoldingRelation"
+  has_many :referring_inventory_items, through: :inventory_item_holding_relations, source: :inventory_item
+
   belongs_to :source
-	belongs_to :collection, {class_name: "Source", foreign_key: "collection_id"}
+	belongs_to :collection, class_name: "Source", foreign_key: "collection_id"
   has_many :folder_items, as: :item, dependent: :destroy
   belongs_to :user, :foreign_key => "wf_owner"
   
-  has_and_belongs_to_many :people, join_table: "holdings_to_people"
-  has_and_belongs_to_many :publications, join_table: "holdings_to_publications"
-  has_and_belongs_to_many :places, join_table: "holdings_to_places"
-	
-  composed_of :marc, :class_name => "MarcHolding", :mapping => %w(marc_source to_marc)
-  
+  composed_of_reimplementation :marc, :class_name => "MarcHolding", :mapping => %w(marc_source to_marc)
+
   before_destroy :check_collection_id, prepend: true
 
   before_save :set_object_fields
   after_create :scaffold_marc, :fix_ids
   after_save :update_links, :update_774, :reindex
   after_initialize :after_initialize
-  before_destroy :update_links
+  before_destroy :update_links, :cleanup_comments, :update_links
   
   
   attr_accessor :suppress_reindex_trigger
@@ -38,8 +57,8 @@ class Holding < ApplicationRecord
   attr_accessor :suppress_update_77x_trigger
 
   # Keep both inprogress and unpublished for compatibility with older versions
-  enum wf_stage: { unpublished: 0, inprogress: 0, published: 1, deleted: 2, deprecated: 3 }
-  enum wf_audit: [ :unapproved, :full, :abbreviated, :retro, :imported ]
+  enum :wf_stage, { unpublished: 0, inprogress: 0, published: 1, deleted: 2, deprecated: 3 }
+  enum :wf_audit, [ :unapproved, :full, :abbreviated, :retro, :imported ]
 
   def after_initialize
     @old_collection = nil
@@ -141,6 +160,7 @@ class Holding < ApplicationRecord
 
     # "Tell fields"
     self.lib_siglum = marc.get_lib_siglum
+    self.shelf_mark = marc.get_shelf_mark
     
     self.marc_source = self.marc.to_marc
   end
@@ -223,7 +243,10 @@ class Holding < ApplicationRecord
   end
 
   searchable :auto_index => false do |sunspot_dsl|
-    sunspot_dsl.integer :id
+    sunspot_dsl.integer :id, stored: true
+    sunspot_dsl.text :source_id do
+      source.id
+    end
     sunspot_dsl.string :lib_siglum_order do
       lib_siglum
     end
@@ -237,6 +260,10 @@ class Holding < ApplicationRecord
     sunspot_dsl.time :created_at
     sunspot_dsl.time :updated_at
     
+    sunspot_dsl.text :text do |s|
+      s.marc.to_raw_text
+    end
+
     MarcIndex::attach_marc_index(sunspot_dsl, self.to_s.downcase)
     
   end
@@ -255,6 +282,26 @@ class Holding < ApplicationRecord
 
   def get_shelfmark
     self.marc.get_shelf_mark
+  end
+
+  def creatable?
+    false
+  end
+
+  def formatted_title
+    return "#{lib_siglum} [#{id}]" if !source
+    return "#{lib_siglum} [#{id}] in (#{source.std_title} [#{source.id}])"if !source.composer || source.composer.empty?
+    return "#{lib_siglum} [#{id}] in (#{source.composer} [#{source.id}])" if !source.std_title || source.std_title.empty?
+    return "#{lib_siglum} [#{id}] in (#{source.composer} - #{source.std_title} [#{source.id}])"
+  end
+
+  # If we define our own ransacker, we need this
+  def self.ransackable_attributes(auth_object = nil)
+    column_names + _ransackers.keys
+  end
+
+  def self.ransackable_associations(auth_object = nil)
+    reflect_on_all_associations.map { |a| a.name.to_s }
   end
 
 end

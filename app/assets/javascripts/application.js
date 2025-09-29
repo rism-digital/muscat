@@ -11,8 +11,6 @@
 // about supported directives.
 //
 //= require jquery3
-//= require 'blacklight_advanced_search'
-
 
 //= require jquery-ui
 //= require jquery-ui/widgets/autocomplete
@@ -76,12 +74,12 @@
 //= require jquery-ui/widgets/tooltip
 
 //= require i18n
+
 // This is a must
-//= require i18n/translations
+// require i18n/translations
 
 //
-// Required by Blacklight
-//= require blacklight/blacklight
+//= require tab_saver
 //= require autocomplete_events
 //= require marc_json
 //= require jquery.blockUI
@@ -90,10 +88,12 @@
 //= require jquery.maskedinput
 //= require jquery.validate
 //= require jquery.autosize.min
+//= require jquery.flexdatalist
 //= require jquery.hotkeys
 //= require jquery.scrollTo.js
 //= require js.cookie
 //= require pae_incipit_render_ujs
+//= require edtf_subfield_ujs
 //= require textarea_autogrow_ujs
 //= require inline_autocomplete_ujs
 //= require marc_versioning_ujs
@@ -109,20 +109,13 @@
 //= require marc_editor_manipulation
 //= require job_progress_bar
 //= require modification_trigger_ujs.js
-//= require filter_workaround.js
 //= require cookieconsent.min.js
 //= require merge_authority.js
 //= require compare_versions_actions.js
+//= require clipboard.min.js
 
-// For blacklight_range_limit built-in JS, if you don't want it you don't need
-// this:
-// require 'blacklight_range_limit'
 //= require 'ekko-lightbox.min'
 
-
-// For blacklight_range_limit built-in JS, if you don't want it you don't need
-// this:
-//= require 'blacklight_range_limit'
 
 //= require tribute.min
 //= require tribute_load

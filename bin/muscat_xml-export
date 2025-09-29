@@ -1,0 +1,68 @@
+#!/bin/bash
+
+# Support macOS with homebrew
+READLINK=readlink
+if command -v greadlink; then
+READLINK=greadlink
+else
+READLINK=readlink
+fi
+
+BIN_DIR=`dirname "$($READLINK -f "$0")"`
+MUSCAT_ROOT=`dirname $BIN_DIR`
+LOGFILE=$MUSCAT_ROOT/log/muscat_xml-export_job.log
+
+EXPORTDIR=/data/export
+EXPORTDIR=.
+
+# Set RVM to the right path and version
+#RVM_CMD="/PATH_TO/.rvm/bin/rvm 3.2.2@rails7 do"
+
+if [ $# -eq 0 ]; then
+    echo "muscat_execute_job <param>"
+fi
+
+if [ -z "$1" ]; then
+    export RAILS_ENV=production
+else
+    if [ $1 == "production" ] || [ $1 == "development" ] || [ $1 == "test" ]; then
+        export RAILS_ENV=$1
+    else
+        echo "Invalid RAILS_ENV $1"
+        exit 1
+    fi
+fi
+
+cd $MUSCAT_ROOT
+
+DATE=`date`
+start=$SECONDS
+
+echo "Running $JOB_NAME in $RAILS_ENV mode at $DATE" >> $LOGFILE 2>&1
+echo "Start $JOB_NAME in $RAILS_ENV mode at $DATE" >> $MUSCAT_ROOT/log/"$JOB_NAME.log"
+
+
+$RVM_CMD bundle exec rails r housekeeping/export/xml-export.rb -s -m Source -f $EXPORTDIR/source-latest.xml >> $LOGFILE 2>&1
+$RVM_CMD bundle exec rails r housekeeping/export/xml-export.rb -s -m Person -f $EXPORTDIR/person-latest.xml >> $LOGFILE 2>&1
+$RVM_CMD bundle exec rails r housekeeping/export/xml-export.rb -s -m Institution -f $EXPORTDIR/institution-latest.xml >> $LOGFILE 2>&1
+$RVM_CMD bundle exec rails r housekeeping/export/xml-export.rb -s -m Publication -f $EXPORTDIR/publication-latest.xml >> $LOGFILE 2>&1
+
+$RVM_CMD bundle exec rails r housekeeping/export/xml-export.rb -l -s -m Source -f $EXPORTDIR/source-legacy-latest.xml >> $LOGFILE 2>&1
+$RVM_CMD bundle exec rails r housekeeping/export/xml-export.rb -l -s -m Person -f $EXPORTDIR/person-legacy-latest.xml >> $LOGFILE 2>&1
+$RVM_CMD bundle exec rails r housekeeping/export/xml-export.rb -l -s -m Institution -f $EXPORTDIR/institution-legacy-latest.xml >> $LOGFILE 2>&1
+$RVM_CMD bundle exec rails r housekeeping/export/xml-export.rb -l -s -m Publication -f $EXPORTDIR/publication-legacy-latest.xml >> $LOGFILE 2>&1
+
+gzip $EXPORTDIR/source-latest.xml >> $LOGFILE 2>&1
+gzip $EXPORTDIR/person-latest.xml >> $LOGFILE 2>&1
+gzip $EXPORTDIR/institution-latest.xml >> $LOGFILE 2>&1
+gzip $EXPORTDIR/publication-latest.xml >> $LOGFILE 2>&1
+
+gzip $EXPORTDIR/source-legacy-latest.xml >> $LOGFILE 2>&1
+gzip $EXPORTDIR/person-legacy-latest.xml >> $LOGFILE 2>&1
+gzip $EXPORTDIR/institution-legacy-latest.xml >> $LOGFILE 2>&1
+gzip $EXPORTDIR/publication-legacy-latest.xml >> $LOGFILE 2>&1
+
+end=$SECONDS
+duration=$(( end - start ))
+DATE=`date`
+echo "Finished at $DATE, duration $duration seconds" >> $LOGFILE 2>&1

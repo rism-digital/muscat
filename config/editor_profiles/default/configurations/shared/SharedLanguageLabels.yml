@@ -132,12 +132,16 @@ nor:
   label: languages.norwegian
 oci:
   label: languages.occitan
+oji:
+  label: languages.ojibwa
 per:
   label: languages.persian
 pol:
   label: languages.polish
 por:
   label: languages.portugese
+roa:
+  label: languages.romance_other
 roh:
   label: languages.romansh
 rom:

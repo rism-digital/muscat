@@ -95,10 +95,12 @@ en:
     norwegian: Norwegian
     occitan: Occitan
     oirat: Oirat
+    ojibwa: Ojibwa
     old_church_slavonic: Old Church Slavonic
     persian: Persian
     polish: Polish
     portugese: Portuguese
+    romance_other: Romance (Other)
     romani: Romani
     romanian: Romanian
     romansh: Romansh
@@ -145,12 +147,13 @@ en:
     austria_tyrol: 'Austria: Tyrol'
     austria_upper_austria: 'Austria: Upper Austria'
     austria_vienna: 'Austria: Vienna'
-    azerbiajan: Azerbaijan
+    azerbaijan: Azerbaijan
     bangladesh: Bangladesh
     belarus: Belarus
     belgium: Belgium
     benin: Benin
     bolivia: Bolivia
+    bosnia_and_herzegovina: Bosnia and Herzegovina
     bosnia_herzegovina: Bosnia and Herzegovina
     brazil: Brazil
     bulgaria: Bulgaria
@@ -173,6 +176,7 @@ en:
     germany: Germany
     germany_bavaria: 'Germany: Bavaria'
     germany_saxony: 'Germany: Saxony'
+    ghana: Ghana
     greece: Greece
     guatemala: Guatemala
     guinea: Guinea
@@ -188,11 +192,13 @@ en:
     israel: Israel
     italy: Italy
     italy_trentino_alto_adige: 'Italy: Trentino-Alto Adige'
+    jamaica: Jamaica
     japan: Japan
     korea: Korea, Republic of
     latvia: Latvia
-    lithuania: Lithuania
     lebanon: Lebanon
+    liechtenstein: Liechtenstein
+    lithuania: Lithuania
     luxembourg: Luxembourg
     malta: Malta
     mexico: Mexico
@@ -215,12 +221,14 @@ en:
     puerto_rico: Puerto Rico
     romania: Romania
     russian_federation: Russian Federation
+    san_marino: San Marino
     saudi_arabia: Saudi Arabia
     serbia: Serbia
     slovakia: Slovakia
     slovenia: Slovenia
     south_africa: South Africa
     spain: Spain
+    suriname: Suriname
     sweden: Sweden
     switzerland: Switzerland
     switzerland_vaud: 'Switzerland: Vaud'
@@ -229,6 +237,8 @@ en:
     tajikistan: Tajikistan
     trinidad_tobego: Trinidad and Tobago
     turkey: Turkey
+    turkmenistan: Turkmenistan
+    uganda: Uganda
     uk: United Kingdom
     ukraine: Ukraine
     uruguay: Uruguay
@@ -269,6 +279,9 @@ en:
     alleged: Alleged
     alternate_spelling: Alternate spelling
     alternative_work_title: Alternative work title
+    amount: Number
+    annex: Annex
+    appendix: Appendix
     archive: Archive
     arrangement: Arrangement
     arrangement_statement: Arrangement statement
@@ -299,6 +312,7 @@ en:
     baptismal_name: Baptismal name
     basic_functions: Basic functions
     basso_continuo: Basso continuo
+    beginning_or_single_date: Beginning or single date
     bf_major: B♭ major
     bf_minor: B♭ minor
     bibliography: Bibliography
@@ -338,6 +352,7 @@ en:
     cataloging_musical_sources: Cataloging musical sources
     cataloging_source: Cataloging source
     category: Category
+    category_section: Category/Section
     censor: Censor
     cf_major: C♭ major
     cf_minor: C♭ minor
@@ -354,6 +369,7 @@ en:
     collaborator: Collaborator
     collective_catalog: Collective catalog
     colophon: Colophon
+    contributing_project: Contributing project
     common_clefs: Common clefs
     compiler: Compiler
     composer: Composer
@@ -386,7 +402,7 @@ en:
     country_activity: Country of activity
     country_code: Country code
     country_of_publication: Country of publication
-    county_province: County or province
+    county_province: County, province, state
     creation_production_note: Creation/production note
     cs_major: C♯ major
     cs_minor: C♯ minor
@@ -399,12 +415,14 @@ en:
     date_time_last_transaction: Date and time of last transaction
     date_type: Date type
     dates: Dates
+    dates_of_publication: Dates of publication
     dedicatee: Dedicatee
     department: Department
     depositor: Depositor
     deprecated_fields: Obsolete fields (do not use)
     description: Description
     description_area: Description area
+    description_conventions: Description conventions
     description_summary: Description summary
     designer: Designer
     df_major: D♭ major
@@ -419,12 +437,12 @@ en:
     distributor: Distributor
     documentation_center: Documentation center
     donor: Donor
-    doubtful: Doubtful
     dramatic_roles_original: Dramatic role named, original spelling
     dramatic_roles_standardized: Dramatic role named, standardized
     ds_major: D♯ major
     ds_minor: D♯ minor
     dubious: Dubious
+    duplicated_from: Duplicated from
     e_major: E major
     e_minor: E minor
     earlier_heading: Earlier heading
@@ -436,18 +454,22 @@ en:
     ef_major: E♭ major
     ef_minor: E♭ minor
     encyclopedia: Encyclopedia
+    end: End
     end_period: End period
     engraver: Engraver
     engraving: Engraving
     event_organizer: Event organizer
     event_place: Event place
     excerpts: Excerpts
+    exemplar: Exemplar
     exemplars: Exemplars
+    expansion: Expansion
     extent: Extent
     extent_parts: Extent (parts)
     external_resource: External resource
     external_resource_uri: External resource URI
     external_resource_url: External resource URL
+    external_work_reference: External work reference
     f_major: F major
     f_minor: F minor
     f_minus_1: F-1
@@ -468,9 +490,12 @@ en:
     figured_bass_scores: Figured bass in scores and/or other parts
     fijian: Fijian
     fingerprint_identifier: Fingerprint identifier
+    first_entry: First entry
     first_second_group: First/second group
+    form_of_work: Form of work
     form_subdivision: Form subdivision
     format_extent: Format, extent
+    former_sigla: Former siglum
     former_owner: Former owner
     fragments: Fragments
     fs_major: F♯ major
@@ -510,11 +535,18 @@ en:
     heading_personal_name1: Heading-Personal name
     help_transposing_instruments: Help for transposing instruments
     history_institution: History of institution
+    holding: Holding
     holdings_location: Holdings, location, etc. fields
+    identification_status: Identification status
+    identified: Identified
+    identified_holding: Identified holding
+    identified_source: Identified source
+    identified_work: Identified work
     identity: Identity
     identity_area: Identity area
     iiif_manifest: "IIIF manifest (digitized source)"
     iiif_manifest_other: "IIIF manifest (other)"
+    iiif_manifest_nothing_more: IIIF manifest
     illustrator: Illustrator
     immediate_parent_body: Immediate parent body
     import: Import
@@ -522,10 +554,11 @@ en:
     incipit: Incipit
     incipit_number: Incipit number
     incipits: Incipits
+    includes_holdings_from: Includes holdings from
     index_terms: Index terms
     information_found: Information found
     initial: Initial
-    initial_entry: Initial entry
+    initial_entry: Initial entry in A/I
     initials: Initials
     insertions: Insertions
     inserts: Inserts
@@ -535,6 +568,10 @@ en:
     internal_note: Internal note
     introduction: Introduction
     invalid_standard_number: Canceled/invalid standard number or code
+    inventory: Inventory
+    inventory_item: Inventory item
+    inventory_number: Inventory number
+    inventory_source: Inventory source
     isbn: ISBN
     ismn: ISMN
     issn: ISSN
@@ -551,9 +588,10 @@ en:
     language_codes: Language codes
     language_libretto: Language of libretto
     language_note: Language note
-    language_of_cataloging: Language of cataloging
+    language_of_cataloging: Cataloging language
     language_original_text: Language of original text
     language_text: Language of text
+    later_entry: Later entry
     later_heading: Later heading
     latitude: Latitude
     leader: Leader
@@ -594,8 +632,10 @@ en:
     married_with: Married with
     material_description: Material description
     material_examined: Material examined
+    material_group: Material group
     material_held: Material held
     material_not_examined: Material not examined
+    material_type: Material type
     media_type: Media type
     mensural_clefs: Mensural clefs
     method_of_acquisition: Method of acquisition
@@ -641,6 +681,7 @@ en:
     name_family: Name of family
     name_of_part: Name of part/section of a work
     name_printer: Name of printer
+    name_titles_words: Titles and words associated with a name
     name_variant: Name variant
     name_variants: Name variants
     named_dramatic_roles: Named dramatic role
@@ -659,8 +700,10 @@ en:
     number: Number
     number_page: Number/page
     number_part_section: Number of part/section of a work
+    number_volume: Number/volume
     number_volume_part: Number of volume/part
     numbers_code_fields: Numbers and code fields
+    numeric_designation: Numeric designation
     octoechos1: 'Octoechos 1: Ēchos prōtos (First mode of Byzantine music)'
     octoechos2: 'Octoechos 2: Ēchos deuteros (Second mode of Byzantine music)'
     octoechos3: 'Octoechos 3: Ēchos tritos (Third mode of Byzantine music)'
@@ -673,12 +716,14 @@ en:
     octoechos8: 'Octoechos 8: Ēchos plagios tetartos (Fourth plagal mode of Byzantine
       music)'
     online_finding_aids: Online finding aids
+    online_resource: Online resource
     opera_houses_concert_halls: Opera houses and concert halls
     opus_number: Opus number
     opus_thematic_index_number: Opus/Thematic index number
     order_name: Order Name
     origin: Origin
     original_cataloging_agency: Original cataloging agency
+    original_record: Original record
     other: Other
     other_associated_place: Other associated place
     other_designation: Other designation
@@ -689,16 +734,18 @@ en:
     other_instruments: Other instruments
     other_life_dates: Other life dates
     other_physical_details: Other physical details
+    other_resource: Other resource
     other_searchform: Other Searchform
     other_shelfmark: Other shelfmark
     other_standard_identifier: Other standard identifier
     other_variant: Other variant
     papermaker: Papermaker
-    parallel_form: Paralell form of name
+    parallel_form: Parallel form of name
     parent_record: Parent record
     partial_autograph: Partial autograph
     parts_held: Parts held
     parts_held_extent: Parts held and extent
+    part_of_title: Part of title
     patron: Patron
     people: People
     people_institutions: People and institutions
@@ -706,12 +753,14 @@ en:
     performance: Performance
     performances: Performances
     performer: Performer
-    performer_note: Performer note
+    performer_note: Note on performance
+    periodical_or_series: Periodical or series
+    periodical_or_series_title: Periodical or series title
     person: Person
     person_name: Person name
     personal_name: Personal name
     personal_names: Personal names
-    photoreproductive_process: Photoreproductive process (bluprint)
+    photoreproductive_process: Photoreproductive process (blueprint)
     physical_description: Physical description
     physical_description_fields: Physical description, etc. fields
     place: Place
@@ -719,6 +768,7 @@ en:
     place_activity: Place of activity
     place_birth: Place of birth
     place_death: Place of death
+    place_of_creation: Place of creation
     place_of_residence: Place of residence/headquarters
     place_origin: Place of origin
     place_publication: Place of publication
@@ -727,6 +777,7 @@ en:
     plate_number: Plate number
     plucked_instruments: Plucked instruments
     possible_autograph_manuscript: Possible autograph manuscript
+    possibly_identified: Possibly identified
     postal_code: Postal code
     postal_place: Postal place
     preceding_entry: Preceding entry
@@ -735,11 +786,14 @@ en:
     print_with_non_autograph_annotations: Print with non-autograph annotations
     printer: Printer
     printing_technique: Printing technique
+    private_collection: Private collection
     production: Production
     production_personnel: Production personnel
     profession_or_function: Profession or function
+    project: Project
+    project_url: Project URL
     provenance: Provenance
-    provenance_notes: Provenance notes
+    provenance_notes: Provenance note
     pseudonym: Pseudonym
     public_note: Public note
     publisher: Publisher
@@ -750,6 +804,7 @@ en:
     qualifying_information: Qualifying information
     range_dates: Range of dates
     real_world_object_uri: Real world object URI
+    reconstructed_title: Reconstructed title
     record_actions: Record actions
     record_audit: Record audit
     record_origin: Record origin
@@ -774,7 +829,7 @@ en:
     relationship_designation: Relationship designation in $i or $4
     relationship_information: Relationship information
     religious_name: Religious name
-    religious_order: Religious order
+    religious_order: "Religious order/Title"
     reproduction: Reproduction
     research_institute: Research institute
     retrospective_conversion: Retrospective conversion
@@ -785,10 +840,11 @@ en:
     scribe: Scribe
     secondary_catalog_works: Secondary catalog of works
     secondary_literature: Secondary literature
+    serial_number: Serial number
     series: Series
     series_added_entry: Series added entry fields
     series_statement: Series statement fields
-    material_group: Material group
+    section: Section
     shelfmark: Shelfmark
     shelfmark_olim: Former shelfmark (olim)
     short_title: Short title
@@ -798,7 +854,7 @@ en:
     sister_of: Sister of
     sketches: Sketches
     solo_voice: Solo voice
-    soloist_instrument: Soloist intrument
+    soloist_instrument: Soloist instrument
     source: Source
     sources: Sources
     source_data_found: Source data found
@@ -871,8 +927,8 @@ en:
     typography: Typography
     uncategorized: Uncategorized
     unknown: Unknown
-    unparsed_fingerprint: Unparsed fingerprint
-    variant_ms_title: Variant title on manuscript
+    unparsed_fingerprint: Fingerprint
+    variant_ms_title: Variant title on source
     variant_source_title: Variant title on source
     variations: Variations
     verified: Verified
@@ -883,7 +939,18 @@ en:
     watermark_description: Watermark description
     woodwinds: Woodwinds
     work: Work
+    work_catalog: Work catalog
+    work_catalogs: Work catalogs
+    work_catalog_note: Work catalog note
+    work_list: Work list
+    work_node: External work reference (Work node)
     work_number: Work number
+    work_tag: Work revision tag
+    work_tag_incipit_needs_revision: incipit-needs-revision
+    work_tag_incipit_replace: incipit-replace
+    work_tag_needs_revision: needs-revision
+    work_tag_note: Tag note
+    work_tag_type: Tag type
     year: Year
     years_birth_death: Years of birth and death
   relations:
@@ -896,6 +963,24 @@ en:
     P60274: "Arranged as"
     P60194: "Insert in"
     P60183: "Insert"
+  relations_works:
+    P60250: "Has derivative"
+    P60305: "Is based on"
+    P60216: "Is expanded as"
+    P60294: "Is expanded version of"
+    P60274: "Is arranged as"
+    P60242: "Is arrangement of"
+    P60198: "Is complemented by"
+    P60313: "Undefined"
+  relations_institutions:
+    P50008: Hierarchical superior
+    P50010: Hierarchical subordinate
+    P50012: Predecessor of corporate body
+    P50016: Successor of corporate body
+    P50020: Founding family of corporate body
+    P50230: Corporate body member of corporate body
+    P50435: Corporate body member of family
+    P50301: Absorbed corporate body
   verovio:
     position: "Position"
     warning: "Warning"
@@ -965,10 +1050,20 @@ en:
     ERR_063_LIGATURE_PITCH: A ligature cannot have two consecutive notes with the same pitch.
     ERR_064_LIGATURE_DURATION: The duration in a ligature cannot be shorter than a semibreve.
     ERR_065_MREST_INVALID_MEASURE: A measure with a measure rest cannot include anything else.
+    ERR_066_EMPTY_CONTAINER: A grace group or a beam cannot be empty.
+  work_catalogue:
+    not_work_catalogue: Not work catalog
+    work_catalogue_alternate: Alternate
+    work_catalogue_complete: Completed
+    work_catalogue_in_preparation: Eligible
+    work_catalogue_partial: Partially completed
   rism_online:
     manuscript: "Manuscript"
     printed: "Printed"
     composite: "Composite Volume"
+    collection: "Collection"
+    item: "Item"
+    single_item: "Single item"
     apply_filters: "Apply filters"
     error_loading_results: "Error loading results"
     global_collection: "Global Collection"

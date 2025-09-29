@@ -92,6 +92,8 @@
       - :occurrences: "1"
     - - d
       - :occurrences: "?"
+    - - e
+      - :occurrences: "1"
   "043": 
     :master: c
     :indicator: "##"
@@ -99,6 +101,19 @@
     :fields: 
     - - c
       - :occurrences: "*"
+  "094":
+    :master: a
+    :indicator: "7#"
+    :occurrences: "*"
+    :fields:
+    - - a
+      - :occurrences: "1"
+    - - q
+      - :occurrences: "1"
+    - - z
+      - :occurrences: "*"
+    - - "2"
+      - :occurrences: "1"
   "110": 
     :master: a
     :indicator: "1#"
@@ -267,6 +282,7 @@
     :master: "0"
     :indicator: "1#"
     :occurrences: "*"
+    :relator_code: "4"
     :fields:
     - - "0"
       - :occurrences: "?"
@@ -284,21 +300,14 @@
         :foreign_field: life_dates
         :foreign_alternates: alternate_dates
         #:no_browse: true
-    - - "e"
-      - :occurrences: "*"
-    - - "t"
-      - :occurrences: "?"
     - - "4"
-      - :occurrences: "*"
-        :browse_inline: true
-        #:no_browse: true
-    - - "5"
       - :occurrences: "?"
-        :no_browse: true
+        :browse_inline: true
   "710": 
     :master: "0"
     :indicator: "1#"
     :occurrences: "*"
+    :relator_code: "4"
     :fields: 
     - - "0"
       - :occurrences: "?"

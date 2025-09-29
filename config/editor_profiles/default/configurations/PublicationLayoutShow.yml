@@ -37,17 +37,20 @@ groups:
       "710": marc_show/show_institution
   control: 
     all_tags: 
-    - "000"
+    - "040"
     - "001"
-    - "003"
-    - "005"
+
   notes: 
     all_tags: 
     - "500"
     - "502"
+#    - "505"
     - "599"
     - "856"
     - "520"
+    - "981"
+    - "590"
     all_tag_templates: 
       "856": marc_show/show_link
+      "981": marc_show/show_duplicated_from
  

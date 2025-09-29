@@ -1,37 +1,14 @@
 --- !map:Settings 
-"000": 
+"001":
   tag: tag_no_subfield
-  tag_params: 
-    editor_only: true
-  tag_header: none
-"001": 
-  tag: tag_no_subfield
-  tag_params: 
+  tag_params:
     read_only: true
     no_delete: true
-  tag_header: none
-"003": 
-  tag: tag_no_subfield
-  tag_params: 
-    read_only: true
-  tag_header: none
-"005": 
-  tag: tag_no_subfield
-  tag_params: 
-    read_only: true
-  tag_header: none
-"008": 
-  tag: tag_no_subfield
-  tag_params: 
-    maskedinput: 
-      definitions: "['~']='[|0-9]'"
-      mask: 999999a~~~~~~~~||||||||||||||||||||aaa|d
   tag_header: none
 "024": 
   layout: 
     fields: 
     - - a
-      - cols: 2
     - - "2"
       - values: 
         - "BNE"
@@ -42,45 +19,54 @@
         - "LC"
         - "NLP"
         - "NKC"
+        - "OCLC"
         - "ORCID"
         - "SWNL"
         - "VIAF"
         - "WKP"
+        - "CMO"
         default: "VIAF"
         editor_partial: subfield_select
-      - cols: 2
-    columns: 4
-
-"040": 
-  layout: 
-    fields: 
+"040":
+  layout:
+    fields:
     - - a
-      - cols: 2
-    - - c
-      - cols: 2
-    - - d
-      - cols: 2
+      - read_only: true
+        default: "DE-633"
     - - b
-      - cols: 2
-    columns: 4
+      - editor_partial: subfield_select_codes
+        select_label: "Language"
+        codes_reference: "codes"
+    - - c
+      - read_only: true
+        default: "DE-633"
+    - - d
+      - read_only: true
+    - - e
+      - read_only: true
+        default: "rismg"
+  tag_params:
+    codes:
+      - "eng"
+      - "fre"
+      - "ger"
+      - "ita"
+      - "por"
+      - "spa"
 "042": 
   layout: 
     fields: 
     - - a
-      - cols: 4
-        values:
-        - "individualized" 
-        - "not individualized"
+      - values:
+        - "differentiated" 
+        - "undifferentiated"
         editor_partial: subfield_select
-    columns: 4
 "043": 
   layout: 
     fields: 
     - - c
-      - cols: 2 
-        editor_partial: subfield_select_codes
+      - editor_partial: subfield_select_codes
         select_label: "Country"
-    columns: 2
   tag_params:
     codes:
       - "XC-DZ"
@@ -97,7 +83,6 @@
       - "XA-AT-4"
       - "XA-AT-9"
       - "XA-BE"
-      - "XC-BJ"
       - "XD-BR"
       - "XA-BG"
       - "XB-KH"
@@ -130,6 +115,7 @@
       - "XB-IL"
       - "XA-IT-32"
       - "XA-IT"
+      - "XD-JM"
       - "XB-JP"
       - "XB-KR"
       - "XA-LI"
@@ -146,6 +132,7 @@
       - "XD-NI"
       - "XA-NO"
       - "XD-PE"
+      - "XB-PH"
       - "XD-PY"
       - "XA-PL"
       - "XA-PT"
@@ -170,38 +157,41 @@
       - "XD-US"
       - "XD-UY"
       - "XD-VE"
-      - "XB-VN"
-      - "XB-TW"
       - "XB-GE"
+      - "XB-TM"
+      - "XB-TW"
+      - "XB-VN"
       - "XD-EC"
+      - "XD-BO"
 "100": 
   layout: 
     fields: 
     - - a
-      - cols: 2
-        trigger:
+      - trigger:
         - save:
           - referring_sources
+          - referring_holdings
+          - referring_people
+          - referring_institutions
+          - referring_publications
+          - referring_works
     - - c
-      - cols: 2
     - - d
-      - cols: 2
-        trigger:
+      - trigger:
         - save:
           - referring_sources
-    - - w
-      - cols: 2
+          - referring_holdings
+          - referring_people
+          - referring_institutions
+          - referring_publications
+          - referring_works
     - - y
-      - cols: 2
-    columns: 4
 "375": 
   layout: 
     fields: 
     - - a
-      - cols: 2 
-        editor_partial: subfield_select_codes
+      - editor_partial: subfield_select_codes
         select_label: "Gender"
-    columns: 2
   tag_params:
     codes:
       - male
@@ -211,14 +201,10 @@
   layout: 
     fields: 
     - - a
-      - cols: 2
     - - d
-      - cols: 2
     - - j
-      - cols: 2
-        editor_partial: subfield_select_codes
+      - editor_partial: subfield_select_codes
         select_label: "Type of Variant"
-    columns: 2
   tag_params:
     codes:
       - "bn"
@@ -231,21 +217,19 @@
       - "ub"
       - "xx"
       - "z"
-    columns: 4
 "500": 
-  allow_new: true
   new_window: people
   layout: 
     fields: 
     - - "a"
       - type: person
         editor_partial: subfield_secondary
+        allow_new: true
     - - d
       - autocomplete_extra: life_dates
     - - "i"
       - editor_partial: subfield_select_codes
         select_label: "Relationship"
-    columns: 4
   tag_params:
     codes:
       - brother of
@@ -258,21 +242,17 @@
       - related to
       - other
 "510": 
-  allow_new: true
   new_window: institutions
   layout: 
     fields: 
     - - "a"
       - type: institution
         editor_partial: subfield_secondary
-      - cols: 4
-    columns: 4
+        allow_new: true
 "549": 
   layout: 
     fields: 
     - - a
-      - cols: 2
-    columns: 2
 "550":
   layout: 
     fields: 
@@ -283,7 +263,7 @@
         allow_new: true
 "551": 
   new_window: places
-  new_window_field: name_equals
+  new_window_field: name_eq
   layout: 
     fields: 
     - - a
@@ -291,10 +271,8 @@
         editor_partial: subfield_secondary
         allow_new: true
     - - i
-      - cols: 2
-        editor_partial: subfield_select_codes
+      - editor_partial: subfield_select_codes
         select_label: "Type"
-    columns: 2
   tag_params:
     codes:
       - go
@@ -307,49 +285,57 @@
   layout: 
     fields: 
     - - a
-      - cols: 2
     - - b
-      - cols: 2
-    columns: 4
 "667": 
   layout: 
     fields: 
     - - a
-      - cols: 2
-    columns: 2
-"670": 
-  allow_new: true
+      - growfield: true
+"670":
   new_window: publications
+  new_window_field: short_name_eq
   layout: 
     fields: 
     - - "a"
       - type: publication
         editor_partial: subfield_secondary
-      - cols: 4
+        allow_new: false
+    - - "9"
     - - "b"
-      - cols: 2
-    columns: 4
+    - - "u"
 "678": 
   layout: 
     fields: 
     - - a
-      - cols: 2
-    columns: 4
+      - growfield: true
+    - - b
 "680": 
   layout: 
     fields: 
     - - a
-      - cols: 2
-    columns: 4
+      - growfield: true
 "856": 
   layout: 
     fields: 
     - - u
-      - cols: 2
-        unrestricted:
+      - unrestricted:
           - person_restricted
-    - - y
-      - cols: 2
-        unrestricted:
+    - - z
+      - unrestricted:
           - person_restricted
-    columns: 4
+    - - x
+      - editor_partial: subfield_select_codes
+        codes_reference: "codes"
+  tag_params:
+    codes:
+      - "Online Resource"
+      - "IIIF manifest"
+"910":
+  layout:
+    fields:
+    - - a
+      - read_only: true
+    - - "0"
+      - hidden: true
+    - - u
+      - read_only: true

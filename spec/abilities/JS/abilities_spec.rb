@@ -8,7 +8,7 @@ RSpec.describe "Abilities", :type => :feature, :js => true do
       FactoryBot.create(:person)
       Sunspot.index![Person]
       visit user_session_path
-      fill_in :user_email, :with => user.email
+      fill_in :user_login, :with => user.email
       fill_in :user_password, :with => user.password
       click_button('Login')
     end
@@ -24,7 +24,7 @@ RSpec.describe "Abilities", :type => :feature, :js => true do
       FactoryBot.create(:person)
       Sunspot.index![Person]
       visit user_session_path
-      fill_in :user_email, :with => user.email
+      fill_in :user_login, :with => user.email
       fill_in :user_password, :with => user.password
       click_button('Login')
       visit admin_people_path
@@ -43,7 +43,7 @@ RSpec.describe "Abilities", :type => :feature, :js => true do
       FactoryBot.create(:person)
       Sunspot.index![Person]
       visit user_session_path
-      fill_in :user_email, :with => user.email
+      fill_in :user_login, :with => user.email
       fill_in :user_password, :with => user.password
       click_button('Login')
       visit admin_people_path
@@ -62,7 +62,7 @@ RSpec.describe "Abilities", :type => :feature, :js => true do
       FactoryBot.create(:person)
       Sunspot.index![Person]
       visit user_session_path
-      fill_in :user_email, :with => user.email
+      fill_in :user_login, :with => user.email
       fill_in :user_password, :with => user.password
       click_button('Login')
       visit admin_people_path

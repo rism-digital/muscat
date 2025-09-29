@@ -1,8 +1,27 @@
 --- !map:Settings
 client:
+  "024":
+    tags:
+      a: required
+  "094":
+    tags:
+      "a":
+        required_if:
+          "094": "q"
   "110":
     tags:
       a: mandatory
   "368":
     tags:
       a: mandatory
+  "670":
+    tags:
+      "0": required
+  "856":
+    tags:
+      u:
+        any_of:
+          #- begins_with: "http"
+          - validate_url
+          - required
+      "z": required

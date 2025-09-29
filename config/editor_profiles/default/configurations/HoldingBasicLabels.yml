@@ -17,6 +17,19 @@
   label: records.technical_production
 04_codes_other:
   label: records.other
+'040':
+  fields:
+    a:
+      label: records.original_cataloging_agency
+    b:
+      label: records.language_of_cataloging
+    c:
+      label: records.transcribing_agency
+    d:
+      label: records.modifying_agency
+    e:
+      label: records.description_conventions
+  label: records.cataloging_source
 '300':
   fields:
     '8':
@@ -130,6 +143,8 @@
       label: records.institution
     b:
       label: records.department
+    c:
+      label: records.place
     g:
       label: records.attribution_qualifier
   label: records.additional_institution
@@ -178,8 +193,6 @@ Conjectural:
   label: records.conjectural
 Digitized:
   label: records.digitized_source
-Doubtful:
-  label: records.doubtful
 Engraving:
   label: records.engraving
 Facsimile:
@@ -224,7 +237,7 @@ chr:
   label: records.choreographer
 clb:
   label: records.contributor
-cmp:
+att:
   label: records.composer_cross_reference
 cnd:
   label: records.conductor

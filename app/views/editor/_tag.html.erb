@@ -6,10 +6,10 @@
     		field_leader = ""
 			field_settings = Hash.new if !field_settings
 		
-    		if @editor_profile.has_sub_label?(tag_name, subfield)
+    		#if @editor_profile.has_sub_label?(tag_name, subfield)
     			sub_label = @editor_profile.get_sub_label(tag_name, subfield, true)
     			field_label =  "#{sub_label}" if !sub_label.empty?
-    		end
+    		#end
     	-%>
     	<%- if (subfield != "__blank") -%>
     		<%- if !field_settings["hidden"] || !field_settings["hidden"]==true -%>

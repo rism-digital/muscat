@@ -2,6 +2,8 @@
 <% label = params.has_key?("select_label") ? params['select_label'] : "Select" %>
 <% codes_reference = params.include?("codes_reference") ? params["codes_reference"] : "codes"%>
 <% show_error = (!tag_params[codes_reference].include?(marc_subfield.content) && marc_subfield.content) ? "" : "" %>
+<% no_sort = params.include?("no_sort") ? params["no_sort"] : false %>
+<% default = params.include?("default") ? params["default"] : false %>
 
 <%
 if @editor_validation && @editor_validation.validate_subtag?(tag_name, subfield, @item)
@@ -12,6 +14,35 @@ if @editor_validation && @editor_validation.validate_subtag?(tag_name, subfield,
 else
 	validate_class = ""
 end
+
+  # Normally there is just one "codes" section with the codes
+  # (which can also have a specific name from the parameter)
+  code_values = tag_params[codes_reference]
+
+  # If this item has templates (i.e. Source), adding the template
+  # name to the codes will select specific codes for that template, ex
+  # "codes" -> "codes_theoretica_edition_content" for a specific set
+  # The set can be positive (add a new list) or negative (remove from
+  # the existing list). It cannot be both at the same time. This is
+  # handy if the difference is a couple items less than the default list.
+  if @item.respond_to? :get_record_type
+	template_codes = "#{codes_reference}_#{@item.get_record_type.to_s}"
+	if @item.respond_to?(:get_record_type) && tag_params.include?(template_codes)
+		# if there is an array parameter "removed", subtract the items in this
+		# array from the "default" items. This is the negative set
+		if tag_params[template_codes].include?("remove")
+			code_values = code_values - tag_params[template_codes]["remove"]
+		else
+			# otherwise just substitute the list with the elements specified
+			code_values = tag_params[template_codes]
+		end
+	end
+  end
+
+  # Values are sorted by default, but habe an option not to sort them
+  sorted_values = code_values
+  sorted_values = local_sorting(code_values, @editor_profile) if no_sort == false 
+
 %>
 
 <% if params["unrestricted"] && !(params["unrestricted"] & current_user.roles.pluck(:name)).empty?
@@ -22,10 +53,19 @@ end
 
 <select class="serialize_marc marc_editor_hotkey <%=validate_class%> <%=validate_marker%> <%=show_error%>" <%=name_tag%> data-tag="<%=tag_name%>" data-subfield="<%=subfield%>" width="100" <%=restricted %>>
 	<option value="">--- <%= label %> ---</option>
-	<% if !tag_params[codes_reference].include?(marc_subfield.content) && marc_subfield.content %>
+	<% if !sorted_values.include?(marc_subfield.content) && marc_subfield.content %>
 	<option value="<%= marc_subfield.content %>" selected><%= marc_subfield.content%></option>
 	<% end %>
-	<%- local_sorting(tag_params[codes_reference], @editor_profile).each do |code| %>
-    	<option value="<%= code -%>" <%= "selected" if marc_subfield.content == code %>><%= @editor_profile.get_label(code) -%></option>
+	<%- sorted_values.each do |code| %>
+		<% 
+			if code.is_a?(Hash)
+				label = I18n.t(code["label"])
+				code = code["code"]
+			else
+				label = @editor_profile.get_label(code)
+			end 
+		%>
+		<% is_selected = marc_subfield.content == code || default && code == default %>
+    	<option value="<%= code -%>" <%= "selected" if is_selected %>><%= label -%></option>
 	<%- end %>
 </select>

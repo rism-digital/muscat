@@ -1,5 +1,7 @@
 class DigitalObject < ApplicationRecord
   
+  include CommentsCleanup
+  include AutoStripStrings
 
   Paperclip.options[:content_type_mappings] = {
     :mei => "text/xml"
@@ -25,8 +27,10 @@ class DigitalObject < ApplicationRecord
     has_many :folder_items, as: :item, dependent: :destroy
     belongs_to :user, :foreign_key => "wf_owner"
 
-    enum attachment_type: [ :images, :incipits ]
+    enum :attachment_type, [ :images, :incipits ]
     
+    before_destroy :cleanup_comments
+
     # fake accessor for allowing to pass additional parameters when creating an object from an object
     # the params are then used to create the digital_object_link item
     attr_accessor :new_object_link_type
@@ -81,5 +85,41 @@ class DigitalObject < ApplicationRecord
       return false if id == nil || nr == nil
       return nr.strip == pae_nr.strip
     end
+
+
+  def self.incipits_for(model, id)
+    s = model.find(id)
+    incipits = {}
+
+    s.marc.each_by_tag("031") do |t|
+      subtags = [:a, :b, :c, :t]
+      vals = {}
+
+      subtags.each do |st|
+        v = t.fetch_first_by_tag(st)
+        vals[st] = v && v.content ? v.content : "x"
+      end
+
+      pae_nr = "#{vals[:a]}.#{vals[:b]}.#{vals[:c]}"
+      text = vals[:t] == "x" ? "" : " #{vals[:t]}"
+      incipits["#{pae_nr}#{text}"] = "#{s.id}:#{pae_nr}"
+    end
+    incipits
+  end
+
+  # https://github.com/activeadmin/activeadmin/issues/7809
+  # In Non-marc models we can use the default
+  # If we define our own ransacker, we need this
+  def self.ransackable_attributes(auth_object = nil)
+    column_names + _ransackers.keys
+  end
+
+  def self.ransackable_associations(auth_object = nil)
+    reflect_on_all_associations.map { |a| a.name.to_s }
+  end
+
+  def display_name
+    self.description
+  end
 
 end

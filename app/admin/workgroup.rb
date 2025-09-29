@@ -29,7 +29,6 @@ ActiveAdmin.register Workgroup do
     
     def show
       @workgroup = Workgroup.find(params[:id])
-      #@prev_item, @next_item, @prev_page, @next_page = Workgroup.near_items_as_ransack(params, @workgroup)
     end
     
     def index
@@ -62,7 +61,7 @@ ActiveAdmin.register Workgroup do
   ###########
   
   # Solr search all fields: "_equal"
-  filter :name_equals, :label => proc {I18n.t(:any_field_contains)}, :as => :string
+  filter :name_eq, :label => proc {I18n.t(:any_field_contains)}, :as => :string
   
   index :download_links => false do
     selectable_column
@@ -73,14 +72,13 @@ ActiveAdmin.register Workgroup do
              wg.show_libs.html_safe
        end
 
-    column (I18n.t :email), :email
+    column (I18n.t :filter_email), :email
 
     #column (I18n.t :filter_sources), :src_count
     actions
   end
   
   sidebar :actions, :only => :index do
-    render :partial => "activeadmin/filter_workaround"
     render :partial => "activeadmin/section_sidebar_index"
   end
   

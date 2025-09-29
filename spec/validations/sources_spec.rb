@@ -27,7 +27,7 @@ RSpec.describe Admin::SourcesController, type: :controller do
   end
 
   context "when 856$a is given" do 
-    it "then 856$x should be required" do
+    xit "then 856$x should be required" do
       skip "to be implemented"
     end
   end

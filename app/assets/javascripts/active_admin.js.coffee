@@ -66,6 +66,7 @@
 # This is a must
 #= require i18n/translations
 
+#= require tab_saver
 #= require autocomplete_events
 #= require marc_editor
 #= require marc_editor_validation
@@ -74,6 +75,7 @@
 #= require jquery.blockUI
 #= require jquery.cascade
 #= require jquery.dirtyFields
+#= require jquery.flexdatalist
 #= require jquery.maskedinput
 #= require jquery.validate
 #= require jquery.scrollTo.js
@@ -85,17 +87,16 @@
 #= require tag_header_events
 #= require section_sidebar_ujs
 #= require pae_incipit_render_ujs
+#= require edtf_subfield_ujs
 #= require textarea_autogrow_ujs
 #= require marc_versioning_ujs
 #= require marc_messages_ujs.js
-#### require blacklight_range_limit
 #= require editor_hotkeys
 #= require verovio_preload
 #= require new_window_select_ujs
 #= require new_window_select_non_marc
 #= require jsdiff.js
 #= require job_progress_bar
-#= require filter_workaround
 #= require merge_authority
 #= require compare_versions_actions
 
@@ -109,5 +110,6 @@
 
 #=require tribute.min
 #=require tribute_load
+#=require clipboard.min
 
 #= require jquery.highlight-within-textarea

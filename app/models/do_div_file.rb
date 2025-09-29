@@ -1,2 +1,0 @@
-class DoDivFile < ApplicationRecord
-end

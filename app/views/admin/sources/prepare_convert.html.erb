@@ -3,7 +3,7 @@
 <% tag_index = {} %>
 <% is_child = resource.parent_source != nil %>
 
-<% default_tags = ["035", "506", "541", "561", "591", "592", "852", "856"] %>
+<% default_tags = ["035", "506", "541", "561", "563", "591", "592", "852", "856"] %>
 <% default_relator_codes = {"700": ["fmo", "scr"], "710": ["fmo", "scr", "dpt"]} %>
 
 <h2>
@@ -66,6 +66,26 @@
         </div>
       </div>
     </div>
+  <% end %>
+
+  <% resource.digital_objects.images.each do |dob| %>
+
+  <input type="checkbox" id='<%="digital_object_#{dob.id}"%>' name='<%="digital_objects[#{dob.id}]"%>' checked />
+  <label id='<%="digital_object_#{dob.id}"%>'>Move this digital object to the holding record</label>
+
+  <div class="attributes_table">
+    <div class="panel">
+      <h3><%=dob.description%></h3>
+        <div class="panel_contents">
+          <table border="0" cellpadding="0" cellspacing="0">
+            <tr class="row" >
+                <th><%= dob.description %></th>
+                <td><%= link_to(image_tag(dob.attachment.url(:medium)), admin_digital_object_path(dob)) %></td>
+            </tr>
+          </table>
+        </div>
+    </div>
+  </div>
   <% end %>
 
   <div class="buttons">

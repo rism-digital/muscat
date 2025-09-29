@@ -1,12 +1,16 @@
 class CommentNotifications < ApplicationMailer
 
   def parse_comment(comment)
-    matches = comment.scan(/@[^ ]*/)
+    matches = comment.scan(/@[^{ \n@}]*/)
+
     [] if matches.empty?
     
     user_ids = matches.each.map do |name|
-      User.find_by_name(name.gsub("@", "").gsub("_", " ")).id rescue next
+      # Stip all punctuation except for the _
+      sanitized_name = name.gsub("_", " ").gsub(/[^\w\p{L}\s]/, "").strip.downcase
+      User.where('lower(name) = ?', sanitized_name).first.id rescue next
     end
+
     user_ids.compact
   end
 
@@ -50,11 +54,14 @@ class CommentNotifications < ApplicationMailer
       end
     end.compact
      
-    addresses << RISM::COMMENT_EMAIL if (RISM::COMMENT_EMAIL && RISM::COMMENT_EMAIL.is_a?(String))
+    #addresses << RISM::COMMENT_EMAIL if (RISM::COMMENT_EMAIL && RISM::COMMENT_EMAIL.is_a?(String))
+
+    to = RISM::DEFAULT_NOREPLY_EMAIL
+    to = RISM::COMMENT_EMAIL if (RISM::COMMENT_EMAIL && RISM::COMMENT_EMAIL.is_a?(String))
 
     return if addresses.empty?
 
-    mail(to: RISM::DEFAULT_NOREPLY_EMAIL,
+    mail(to: to,
         name: "Muscat",
         bcc: addresses,
         subject: "[Muscat] Comment on #{comment.resource_type} #{comment.resource_id}")

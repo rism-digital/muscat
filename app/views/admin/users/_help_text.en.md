@@ -112,9 +112,9 @@ work composer: "Bach, Albert*"
 
 ### Institutions
 
-- **name** _Authorized form of__institution name (110 $a)_
+- **name** _Authorized form of institution name (110 $a)_
 - **place** _Institution city (110 $c)_
-- **siglum** _Institution sigulm (110 $g)_
+- **siglum** _Institution siglum (110 $g)_
 - **address** _Institution address (371 $a)_
 - **alternates** _Alternate names (510 or 410)_
 - **notes** _Anything in the notes field (680 $a)_
@@ -131,5 +131,5 @@ With the &quot;Notification type&quot; drop-down selector, you can choose the fr
 
 - **every** Send a notification each time a source is saved (with a grace period of one hour to account for multiple saves)
 - **daily** A list of the modified sources is sent once a day
-- **title** A list of the modified sources is sent once a week
+- **weekly** A list of the modified sources is sent once a week
 - **off** Notifications are disabled

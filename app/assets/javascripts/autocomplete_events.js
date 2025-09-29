@@ -15,8 +15,22 @@ function autocomplete_selct(event, data)	{
   hidden.addClass(element_class);
   hidden.val(data.item[field]);
   hidden.data("status", "selected");
-		
-  input.removeClass("serialize_marc");
+	
+  // Normally we pass only the master field (i.e. $0)
+  // and the leave the linked foreign value to be saved
+  // with marc.import in the backend. This is because
+  // sometimes in the autocomplete we want to display
+  // more data than what is going to be in the field.
+  // In some cases we want both values, for example for
+  // GND where we do not do marc.import.
+  // Set preserve_foreign_value in the editor conf to
+  // do that
+  if (hidden.data("preserve-foreign-value") == true) {
+    input.addClass("serialize_marc");
+  } else {
+    input.removeClass("serialize_marc");
+  }
+  
   input.removeClass("new_autocomplete");
 		
   // Make the form dirty
@@ -93,6 +107,12 @@ function bind_autocomplete_events() {
   // in the hidden to "selected".
   $("#marc_editor_panel").on('autocompleteresponse', function(event, data) {
     var input = $(event.target); // Get the autocomplete id
+
+    // Wrong autocomplete! The inline-autocompletes do their own thing
+    if (input.hasClass("inline-autocomplete")) {
+      return;
+    }
+
     var toplevel_li = input.parents("li");
     var hidden = $(".autocomplete_target", toplevel_li);
 		
@@ -123,6 +143,11 @@ function bind_autocomplete_events() {
   $("#marc_editor_panel").on('autocompletechange', function(event, data) {
     var input = $(event.target); // Get the autocomplete id
 		
+    if (input.hasClass("inline-autocomplete")) {
+      return;
+    }
+
+
     // havigate up to the <li> and down to the hidden elem
     var toplevel_li = input.parents("li");
     var hidden = $(".autocomplete_target", toplevel_li);

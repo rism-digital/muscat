@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<TEI xmlns="http://www.tei-c.org/ns/1.0">
+  <teiHeader>
+    <fileDesc>
+      <titleStmt>
+        <title>The Feldkirch Inventory (1699), ed. Claudio Bacciagaluppi, 2011 (Historical Music Inventories, 3)</title>
+      </titleStmt>
+      <editionStmt>
+        <edition>After TEI P5.1</edition>
+        <respStmt>
+          <resp>Edited by <persName>Claudio Bacciagaluppi</persName>
+            <date when="2011-06">June 2011</date>
+          </resp>
+          <name>Université de Fribourg, Switzerland</name> 
+          <name>Swiss RISM Office</name>
+        </respStmt>
+      </editionStmt>
+      <publicationStmt>
+        <publisher><orgName xml:base="http://www.rism-ch.org">Swiss RISM Office</orgName>, Université de Fribourg, Switzerland</publisher>
+      </publicationStmt>
+      <sourceDesc>
+        <msDesc>
+          <msIdentifier>
+            <settlement>Feldkirch</settlement>
+            <repository>Staatsarchiv</repository>
+            <idno>Akt Nr. 269</idno>
+          </msIdentifier>
+          <head>
+            <title>Inventarium seu Catalogus</title>
+            <origPlace>Feldkirch</origPlace>
+            <origDate notBefore="1699">1699</origDate>
+          </head>
+          <msContents>
+<!-- "###" means: to be completed -->
+            <summary>In the city archive of Feldkirch, a music inventory of the parish church of St. Nikolaus from 1699 is preserved (A-FKsta, Akt Nr. 269). Some 240 items are entered on the 6 folios of the manuscript. Of these, approximately one third are prints and two thirds are manuscripts. A short list of nine musical instruments and a dozen items for the "Tafl Music" complete the contents of this remarkable source.<lb/>
+            The parish church of Feldkirch belonged until 1803 to the diocese of Chur. The town was a stronghold of Catholic reformation, hosting a Capuchin convent from 1605 and a Jesuit school from 1649. This may account for the thriving musical activity testified by the <ref target="http://in-dev.rism.digital/images/feldkirch">inventory</ref>, finished on 1 November 1699. The wording of the title, "à me … renovatus", suggests that there was an older inventory, which was supplanted by the present one. The Kantor signed the inventory with his initials, "M.J.C.Sch.r", Johann Caspar Scherer from Biberach, who in 1694 had applied for the post of preceptor in the town school and was granted citizenship in 1718 (A-FKsta, Akt 1242a; Hs. 18, Ratsprotokolle 1718–20, fol. 21r). This privilege was bound to the compiling of a new inventory, which is unfortunately lost.</summary>
+            <msItem><ab><metamark>Contents:</metamark>
+              <list>
+                <item><ref target="http://in-dev.rism.digital/images/feldkirch#z=2&amp;n=5&amp;i=/A_FKsta_Akt_Nr_269/pyr_A_FKsta_Akt_Nr_269_0001.tif&amp;y=125&amp;h=700&amp;w=773">fol. [1r]</ref> [printed music]</item>
+                <item><ref target="http://in-dev.rism.digital/images/feldkirch#z=2&amp;n=5&amp;i=/A_FKsta_Akt_Nr_269/pyr_A_FKsta_Akt_Nr_269_0004.tif&amp;y=94&amp;h=700&amp;w=773">fol. [2v]</ref> Missae Scriptae [ms. masses]</item>
+                <item><ref target="http://in-dev.rism.digital/images/feldkirch/###">fol. [3r]</ref> Varia Offertoria [ms. offertories]</item>
+                <item><ref target="http://in-dev.rism.digital/images/feldkirch#z=2&amp;n=5&amp;i=/A_FKsta_Akt_Nr_269/pyr_A_FKsta_Akt_Nr_269_0006.tif&amp;y=108&amp;h=700&amp;w=773">fol. [3v]</ref> Sonatae scriptae [ms. sonatas]</item>
+                <item><ref target="http://in-dev.rism.digital/images/feldkirch#z=2&amp;n=5&amp;i=/A_FKsta_Akt_Nr_269/pyr_A_FKsta_Akt_Nr_269_0006.tif&amp;y=108&amp;h=700&amp;w=773">fol. [3v]</ref> Mottetae Scriptae [ms. motets]</item>
+                <item><ref target="http://in-dev.rism.digital/images/feldkirch#z=2&amp;n=5&amp;i=/A_FKsta_Akt_Nr_269/pyr_A_FKsta_Akt_Nr_269_0006.tif&amp;y=108&amp;h=700&amp;w=773">fol. [3v]</ref> Hymni Ambros. Seu Te Deu[m] / Laudam[us] [etc.] [ms. Te Deum]</item>
+                <item><ref target="http://in-dev.rism.digital/images/feldkirch#z=2&amp;n=5&amp;i=/A_FKsta_Akt_Nr_269/pyr_A_FKsta_Akt_Nr_269_0006.tif&amp;y=108&amp;h=700&amp;w=773">fol. [3v]</ref> Psalmi Vespertini Scripti [ms. psalm collections]</item>
+                <item><ref target="http://in-dev.rism.digital/images/feldkirch#z=2&amp;n=5&amp;i=/A_FKsta_Akt_Nr_269/pyr_A_FKsta_Akt_Nr_269_0007.tif&amp;y=92&amp;h=700&amp;w=773">fol. [4r]</ref> Psalmi Scripti Separati [ms. settings of single psalms]</item>
+                <item><ref target="http://in-dev.rism.digital/images/feldkirch#z=2&amp;n=5&amp;i=/A_FKsta_Akt_Nr_269/pyr_A_FKsta_Akt_Nr_269_0007.tif&amp;y=92&amp;h=700&amp;w=773">fol. [4r]</ref> Antiphonae B.V.M. / Salve, Alma, Ave R[e]g[ina] / Regina coelj. [ms. Marian antiphons]</item>
+                <item><ref target="http://in-dev.rism.digital/images/feldkirch#z=2&amp;n=5&amp;i=/A_FKsta_Akt_Nr_269/pyr_A_FKsta_Akt_Nr_269_0008.tif&amp;y=323&amp;h=700&amp;w=773">fol. [4v]</ref> Lytaniae B.V.M. [ms. litanies]</item>
+                <item><ref target="http://in-dev.rism.digital/images/feldkirch#z=2&amp;n=5&amp;i=/A_FKsta_Akt_Nr_269/pyr_A_FKsta_Akt_Nr_269_0009.tif&amp;y=133&amp;h=700&amp;w=773">fol. [5r]</ref> Duo Asperges [ms. Asperges me]</item>
+               <item><ref target="http://in-dev.rism.digital/images/feldkirch#z=2&amp;n=5&amp;i=/A_FKsta_Akt_Nr_269/pyr_A_FKsta_Akt_Nr_269_0009.tif&amp;y=133&amp;h=700&amp;w=773">fol. [5r]</ref> De Sancto Sp[irit]u [ms. Veni Sancto Spiritu]</item>
+                <item><ref target="http://in-dev.rism.digital/images/feldkirch#z=2&amp;n=5&amp;i=/A_FKsta_Akt_Nr_269/pyr_A_FKsta_Akt_Nr_269_0009.tif&amp;y=133&amp;h=700&amp;w=773">fol. [5r]</ref> Tempore Quadragesimae / psalmi Miserere [ms. Miserere]</item>
+                <item><ref target="http://in-dev.rism.digital/images/feldkirch#z=2&amp;n=5&amp;i=/A_FKsta_Akt_Nr_269/pyr_A_FKsta_Akt_Nr_269_0010.tif&amp;y=141&amp;h=700&amp;w=773">fol. [5v]</ref> Instrumenta sind wie volgt [instruments]</item>
+                <item><ref target="http://in-dev.rism.digital/images/feldkirch#z=2&amp;n=5&amp;i=/A_FKsta_Akt_Nr_269/pyr_A_FKsta_Akt_Nr_269_0010.tif&amp;y=141&amp;h=700&amp;w=773">fol. [5v]</ref> Zu der Tafl Music gehörige / Musicalia [music pertaining to the Tafelmusic]</item>
+                <item><ref target="http://in-dev.rism.digital/images/feldkirch#z=2&amp;n=5&amp;i=/A_FKsta_Akt_Nr_269/pyr_A_FKsta_Akt_Nr_269_0010.tif&amp;y=141&amp;h=700&amp;w=773">fol. [5v]</ref> [signed:] M.J.C.Sch.r / m[anu] [prop]ria</item>
+                <item>fol. [6r] [void]</item>
+                <item><ref target="http://in-dev.rism.digital/images/feldkirch#z=2&amp;n=5&amp;i=/A_FKsta_Akt_Nr_269/pyr_A_FKsta_Akt_Nr_269_0011.tif&amp;y=351&amp;h=700&amp;w=773">fol. [6v]</ref> Inventarium / Seu / Catalogus musices librorum / ad chorum S. Nicolaj Veldkirchij / Spectantium 1mo Novembris / 1699 ordine Alphabetico / renovatus. [etc.]</item>
+                </list>
+             </ab></msItem>
+          </msContents>
+          <physDesc>
+            <objectDesc>
+              <supportDesc>
+                <extent>
+                  <measure type="pagesCount" n="12">[6] fols</measure>
+                  <measure type="pageDimensions" n="33.5 x 21 cm">33.5 x 21 cm (in folio)</measure>
+                </extent>
+                <foliation>No foliation.</foliation>
+              </supportDesc>
+            </objectDesc>
+            <handDesc>
+              <handNote>Scribe: [Johann Caspar Scherer]</handNote>
+            </handDesc>
+           </physDesc>
+          <additional>
+            <adminInfo>
+              <recordHist>
+                <source>
+                  <bibl>Images by courtesy of Mag. Christoph Volaucnik, © Stadtarchiv Feldkirch (Feldkirch, March 2011).<lb/></bibl>
+                  <bibl>Records compiled by: Claudio Bacciagaluppi (Fribourg, June 2011).</bibl>
+                </source>
+              </recordHist>
+            </adminInfo>
+            <listBibl>
+              <head>Essential bibliography:</head>
+              <bibl>Walter Pass, Das Musikalieninventar der Pfarrkirche St. Nikolaus in Feldkirch aus dem Jahre 1699, in: Montfort 20 (1968), p. 404-44.</bibl>
+              <bibl>Manfred A. Getzner, Kirchenmusik in Feldkirch. Festschrift zur Weihe der neuen Domorgel, Feldkirch 1976.</bibl>
+            </listBibl>
+          </additional>
+        </msDesc>
+      </sourceDesc>
+    </fileDesc>
+  </teiHeader>
+  <text>
+    <body><ab></ab></body>
+<!-- ### -->
+  </text>
+</TEI>

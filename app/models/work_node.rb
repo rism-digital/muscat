@@ -2,6 +2,8 @@ class WorkNode < ApplicationRecord
   include ForeignLinks
   include MarcIndex
   include AuthorityMerge
+  include CommentsCleanup
+  include ComposedOfReimplementation
 
   # class variables for storing the user name and the event from the controller
   @last_user_save
@@ -9,37 +11,39 @@ class WorkNode < ApplicationRecord
   @last_event_save
   attr_accessor :last_event_save
 
-  has_paper_trail :on => [:update, :destroy], :only => [:marc_source], :if => Proc.new { |t| VersionChecker.save_version?(t) }
-
+  has_paper_trail :on => [:update, :destroy], :only => [:marc_source, :wf_stage, :wf_audit], :if => Proc.new { |t| VersionChecker.save_version?(t) }
 
   resourcify
   belongs_to :person
-  has_and_belongs_to_many(:referring_sources, class_name: "Source", join_table: "sources_to_work_nodes")
-  has_and_belongs_to_many :publications, join_table: "work_nodes_to_publications"
-  has_and_belongs_to_many :standard_terms, join_table: "work_nodes_to_standard_terms"
-  has_and_belongs_to_many :standard_titles, join_table: "work_nodes_to_standard_titles"
-  has_and_belongs_to_many :liturgical_feasts, join_table: "work_nodes_to_liturgical_feasts"
-  has_and_belongs_to_many :institutions, join_table: "work_nodes_to_institutions"
-  has_and_belongs_to_many :people, join_table: "work_nodes_to_people"
+
+  #has_and_belongs_to_many(:referring_sources, class_name: "Source", join_table: "sources_to_work_nodes")
+  has_many :source_work_node_relations, class_name: "SourceWorkNodeRelation"
+  has_many :referring_sources, through: :source_work_node_relations, source: :source
+  
+  #has_and_belongs_to_many :people, join_table: "work_nodes_to_people"
+  has_many :work_node_person_relations
+  has_many :people, through: :work_node_person_relations
+
   has_many :folder_items, as: :item, dependent: :destroy
   has_many :delayed_jobs, -> { where parent_type: "WorkNode" }, class_name: 'Delayed::Backend::ActiveRecord::Job', foreign_key: "parent_id"
   belongs_to :user, :foreign_key => "wf_owner"
  
-  composed_of :marc, :class_name => "MarcWorkNode", :mapping => %w(marc_source to_marc)
+  composed_of_reimplementation :marc, :class_name => "MarcWorkNode", :mapping => %w(marc_source to_marc)
 
-  before_destroy :check_dependencies
+  before_destroy :check_dependencies, :cleanup_comments, :update_links
   
   attr_accessor :suppress_reindex_trigger
   attr_accessor :suppress_scaffold_marc_trigger
   attr_accessor :suppress_recreate_trigger
+  attr_accessor :suppress_update_count_trigger
 
   before_save :set_object_fields
   after_create :scaffold_marc, :fix_ids
   after_save :update_links, :reindex
   after_initialize :after_initialize
 
-  enum wf_stage: [ :inprogress, :published, :deleted, :deprecated ]
-  enum wf_audit: [ :basic, :minimal, :full ]
+  enum :wf_stage, [ :inprogress, :published, :deleted, :deprecated ]
+  enum :wf_audit, [ :basic, :minimal, :full ]
 
   alias_attribute :name, :title
   alias_attribute :id_for_fulltext, :id
@@ -54,6 +58,10 @@ class WorkNode < ApplicationRecord
     self.suppress_scaffold_marc_trigger = true
   end
   
+  def suppress_update_count
+    self.suppress_update_count_trigger = true
+  end
+
   def suppress_recreate
     self.suppress_recreate_trigger = true
   end 
@@ -130,7 +138,7 @@ class WorkNode < ApplicationRecord
   end
 
   searchable :auto_index => false do |sunspot_dsl|
-    sunspot_dsl.integer :id
+    sunspot_dsl.integer :id, stored: true
     sunspot_dsl.text :id_text do
       id_for_fulltext
     end
@@ -138,13 +146,17 @@ class WorkNode < ApplicationRecord
       title
     end
     sunspot_dsl.text :title
-    sunspot_dsl.text :title
     
     sunspot_dsl.integer :wf_owner
     sunspot_dsl.string :wf_stage
     sunspot_dsl.time :updated_at
     sunspot_dsl.time :created_at
     
+    sunspot_dsl.string :composer_order do
+      composer
+    end
+    sunspot_dsl.text :composer
+
     sunspot_dsl.join(:folder_id, :target => FolderItem, :type => :integer, 
               :join => { :from => :item_id, :to => :id })
 
@@ -152,6 +164,10 @@ class WorkNode < ApplicationRecord
       WorkNode.count_by_sql("select count(*) from sources_to_work_nodes where work_node_id = #{self[:id]}")
     end
     
+    sunspot_dsl.text :text do |s|
+      s.marc.to_raw_text
+    end
+
     MarcIndex::attach_marc_index(sunspot_dsl, "work_node")
   end
  
@@ -159,16 +175,33 @@ class WorkNode < ApplicationRecord
   def set_object_fields
     return if marc_source == nil
     self.title = marc.get_title
-    self.person = marc.get_composer
+    self.person = marc.get_composer # This sets the person id!
+    self.composer = marc.get_composer_name # and this caches the composer name
+    self.ext_number, self.ext_code = marc.get_ext_nr
 
     self.marc_source = self.marc.to_marc
   end
  
   def self.get_gnd(str)
     str.gsub!("\"", "")
-    GND::Interface.search(str, self.to_s)
+    GND::Interface.search({title: str}, 20)
   end
  
+  def autocomplete_label
+    return "#{self.title} (#{self.composer})" if self.title && self.composer
+    return self.title if self.title
+    "no title for #{self.id}"
+  end
+
+  # If we define our own ransacker, we need this
+  def self.ransackable_attributes(auth_object = nil)
+    column_names + _ransackers.keys
+  end
+
+  def self.ransackable_associations(auth_object = nil)
+    reflect_on_all_associations.map { |a| a.name.to_s }
+  end
+
   ransacker :"031t", proc{ |v| } do |parent| parent.table[:id] end
 
 end

@@ -1,8 +1,23 @@
 # Override collection_action so it is public
 # from activeadmin lib/active_admin/resource_dsl.rb
-require 'resource_dsl_extensions.rb'
+require 'patches/active_admin/resource_dsl.rb'
 
 MAX_FOLDER_ITEMS = 200000
+
+module ActiveAdmin
+
+  class ResourceDSL
+    
+    def collection_action(name, options = {}, &block)
+      action config.collection_actions, name, options, &block
+    end
+    
+    def member_action(name, options = {}, &block)
+      action config.member_actions, name, options, &block
+    end
+  end
+
+end
 
 # Extension module, see
 # https://github.com/gregbell/active_admin/wiki/Content-rendering-API
@@ -189,8 +204,52 @@ module FolderControllerActions
       
       @items_count = results.total_entries
       @save_path = send(link_function)
-    end 
-     
-  end
+    end
+
+    dsl.member_action :remove_item_from_folder, :method => :delete do
+      folder_id = params.permit(:folder_id)[:folder_id]
+      item_id = params.permit(:id)[:id]
+      if !folder_id
+        redirect_to resource_path(item_id), alert: "No Folder selected"
+      else
+        begin
+          f = Folder.find(folder_id)
+          if cannot?(:manage, f)
+            redirect_to resource_path(item_id), alert: "You are not authorized to remove items from #{f.name} #{f.id}"
+          else
+            f.remove_items([item_id])
+            redirect_to resource_path(item_id), notice: "Removed 1 element from folder #{f.name} #{f.id}"
+          end
+        rescue ActiveRecord::RecordNotFound
+          redirect_to collection_path, alert: "Folder #{folder_id} does not exist"
+        end
+      end
+    end
     
+    dsl.member_action :add_item_to_folder, method: :post do
+      folder_id = params.permit(:folder_id)[:folder_id]
+      model = params.permit(:model)[:model]
+      item_id = params.permit(:item_id)[:item_id]
+      item = model.constantize.find(item_id)
+      if !folder_id
+        redirect_to resource_path(item_id), alert: "No Folder selected"
+      else
+        begin
+          f = Folder.find(folder_id)
+          if cannot?(:manage, f)
+            redirect_to resource_path(item_id), alert: "You are not authorized to add items to #{f.name} #{f.id}"
+          else
+            f.add_items([item])
+            f.reload
+            f2 = Folder.find(f.id)
+            Sunspot.index f2.folder_items
+            Sunspot.commit
+            redirect_to resource_path(item), notice: I18n.t(:added, scope: :folders, name: f.name, count: 1)
+          end
+        rescue ActiveRecord::RecordNotFound
+          redirect_to collection_path, alert: "Folder #{folder_id} does not exist"
+        end
+      end
+    end
+  end
 end

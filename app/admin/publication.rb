@@ -3,6 +3,8 @@ ActiveAdmin.register Publication do
   include MergeControllerActions
   
   collection_action :autocomplete_publication_short_name, :method => :get
+  collection_action :autocomplete_publication_only_short_name, :method => :get
+  collection_action :autocomplete_publication_505t_sms, :method => :get
 
   menu :parent => "indexes_menu", :label => proc {I18n.t(:menu_publications)}
 
@@ -11,7 +13,7 @@ ActiveAdmin.register Publication do
   
   # Remove all action items
   config.clear_action_items!
-  config.per_page = [10, 30, 50, 100]
+  config.per_page = [10, 30, 50, 100, 1000]
 
   breadcrumb do
     active_admin_muscat_breadcrumb
@@ -29,7 +31,29 @@ ActiveAdmin.register Publication do
       item.user = current_user
     end
     autocomplete :publication, [:short_name, :author, :title], :display_value => :autocomplete_label , :extra_data => [:author, :date, :title]
+    autocomplete :publication, :only_short_name, :record_field => :short_name, :string_boundary => true, :display_value => :label, :getter_function => :get_autocomplete_title_with_count
+    autocomplete :publication, "505t_sms", :solr => true, :display_value => :label, :value_field => :"505t_sms"
 
+    def get_autocomplete_title_with_count(token,  options = {})
+
+      #sanit = ActiveRecord::Base.send(:sanitize_sql_like, token)
+
+      term_escaped = Regexp.escape(token)
+      search_term = "\\b#{term_escaped}.*\\b"
+
+      query = "SELECT `publications`.`id`, `publications`.`short_name`, `publications`.`author`, `publications`.`date`, `publications`.`title`,
+      COUNT(publications.id) as count \
+      FROM `publications` \
+      JOIN sources_to_publications AS stp on publications.id = stp.publication_id \
+      WHERE (publications.short_name REGEXP (?) \
+      or publications.author REGEXP (?) \
+      or publications.title REGEXP (?) ) \
+      and (publications.short_name != '') \
+      GROUP BY publications.id \
+      ORDER BY COUNT(publications.id) DESC LIMIT 20"
+      
+      return Publication.find_by_sql([query, search_term, search_term, search_term])
+    end
 
     def check_model_errors(object)
       return unless object.errors.any?
@@ -55,13 +79,13 @@ ActiveAdmin.register Publication do
       end
 
       @editor_profile = EditorConfiguration.get_show_layout @publication
-      @prev_item, @next_item, @prev_page, @next_page = Publication.near_items_as_ransack(params, @publication)
+      @prev_item, @next_item, @prev_page, @next_page, @nav_positions = Publication.near_items_as_ransack(params, @publication)
       
       @jobs = @publication.delayed_jobs
       
       respond_to do |format|
         format.html
-        format.xml { render :xml => @item.marc.to_xml(@item.updated_at, @item.versions) }
+        format.xml { render :xml => @item.marc.to_xml({ created_at: @item.created_at, updated_at: @item.updated_at, versions: @item.versions }) }
       end
     end
 
@@ -81,7 +105,7 @@ ActiveAdmin.register Publication do
 
     def index
       @results, @hits = Publication.search_as_ransack(params)
-      @categories = Source.get_terms("240g_sm")
+      @categories = Publication.get_terms("240g_sm")
 
       @editor_profile = EditorConfiguration.get_default_layout Publication
 
@@ -94,6 +118,18 @@ ActiveAdmin.register Publication do
     def new
       flash.now[:error] = I18n.t(params[:validation_error], term: params[:validation_term]) if params[:validation_error]
       @publication = Publication.new
+      converted = false
+
+      if params.include?(:upload)
+        file = params.require(:upload).fetch(:file)
+        ext = File.extname(file.original_filename)
+        if ext == ".bib" || ext == ".bibtex"
+          converted = Converters::BibtexImporter::bibtex2publication(file.read)
+        elsif ext == ".ris"
+          converted = Converters::RisImporter::ris2publication(file.read)
+        end
+      end
+
       if params[:existing_title] and !params[:existing_title].empty?
         # Check that the record does exist...
         begin
@@ -105,9 +141,17 @@ ActiveAdmin.register Publication do
         
         new_marc = MarcPublication.new(base_item.marc.marc_source)
         new_marc.reset_to_new
+        new_marc.insert_duplicated_from("981", base_item.id.to_s)
         @publication.marc = new_marc
       else
-        new_marc = MarcPublication.new(File.read(ConfigFilePath.get_marc_editor_profile_path("#{Rails.root}/config/marc/#{RISM::MARC}/publication/default.marc")))
+
+        if converted
+          marc_file = converted
+        else
+          marc_file = File.read(ConfigFilePath.get_marc_editor_profile_path("#{Rails.root}/config/marc/#{RISM::MARC}/publication/default.marc"))
+        end
+
+        new_marc = MarcPublication.new(marc_file)
         new_marc.load_source false # this will need to be fixed
         @publication.marc = new_marc
       end
@@ -131,15 +175,41 @@ ActiveAdmin.register Publication do
     return
   end
  
+  member_action :publish_works, method: :get do
+    job = Delayed::Job.enqueue(PublishItemsJob.new(params[:id], Publication, :referring_works, :publish))
+    redirect_to resource_path(params[:id]), notice: I18n.t(:publish_job, scope: :folders, id: job.id)
+  end
+
+  member_action :unpublish_works, method: :get do
+    job = Delayed::Job.enqueue(PublishItemsJob.new(params[:id], Publication, :referring_works, :unpublish))
+    redirect_to resource_path(params[:id]), notice: I18n.t(:publish_job, scope: :folders, id: job.id)
+  end
+
+  collection_action :work_catalogs  do
+    #doc_url = 'https://docs.google.com/spreadsheets/d/1Wh45W93lUZfcf2AOb2OLn9LcIvbY7b55QgmoJ87xAc0/export?exportFormat=csv'
+
+    csv_string = URI.open(WORK_CATALOG_DOC).read rescue nil
+    @csv_data = CSV.parse(csv_string, headers: true).map(&:to_hash) if csv_string
+
+    #ap @csv_data
+
+    @paginated = Kaminari.paginate_array(@csv_data)
+
+    @page_title = "Work Catalogs"
+  end
+
+  sidebar :custom, only: :work_catalogs do
+    "Sidebar contents"
+  end
 
   ###########
   ## Index ##
   ###########  
   
   # Solr search all fields: "_equal"
-  filter :name_equals, :label => proc {I18n.t(:any_field_contains)}, :as => :string
-  filter :"100a_or_700a_contains", :label => proc {I18n.t(:filter_author_or_editor)}, :as => :string
-  filter :title_contains, :label => proc {I18n.t(:filter_description)}, :as => :string
+  filter :short_name_eq, :label => proc {I18n.t(:any_field_contains)}, :as => :string
+  filter :"100a_or_700a_cont", :label => proc {I18n.t(:filter_author_or_editor)}, :as => :string
+  filter :title_cont, :label => proc {I18n.t(:filter_description)}, :as => :string
   
   #filter :"240g_contains", :label => proc {I18n.t(:filter_category_type)}, :as => :select,
   #  collection: proc{["Bibliography", "Catalog", "Collective catalogue", "Encyclopedia", "Music edition", "Other",
@@ -148,9 +218,9 @@ ActiveAdmin.register Publication do
   filter :"240g_with_integer", :label => proc{I18n.t(:"filter_category_type")}, as: :select,
     collection: proc{@categories.sort.collect {|k| [@editor_profile.get_label(k.to_s), "240g:#{k}"]}}
 
-  filter :"260b_contains", :label => proc {I18n.t(:filter_publisher)}, :as => :string
-  filter :"place_contains", :label => proc {I18n.t(:filter_place_of_publication)}, :as => :string
-  filter :"date_contains", :label => proc {I18n.t(:filter_date_of_publication)}, :as => :string
+  filter :"260b_cont", :label => proc {I18n.t(:filter_publisher)}, :as => :string
+  filter :"place_cont", :label => proc {I18n.t(:filter_place_of_publication)}, :as => :string
+  filter :"date_cont", :label => proc {I18n.t(:filter_date_of_publication)}, :as => :string
   filter :updated_at, :label => proc{I18n.t(:updated_at)}, as: :date_range
   filter :created_at, :label => proc{I18n.t(:created_at)}, as: :date_range
   # This filter passes the value to the with() function in seach
@@ -158,10 +228,11 @@ ActiveAdmin.register Publication do
   # Use it to filter sources by folder
   filter :id_with_integer, :label => proc {I18n.t(:is_in_folder)}, as: :select, 
          collection: proc{Folder.where(folder_type: "Publication").collect {|c| [c.name, "folder_id:#{c.id}"]}}
-  # work catalogue filter
-  filter :work_catalogue_with_integer, :label => proc{I18n.t(:work_catalogue)}, as: :select, 
-  collection: [["Yes", "work_catalogue:true"],["No", "work_catalogue:false"]], :if => proc{ current_user.has_any_role?(:admin) }
 
+  filter :wf_owner_with_integer, :label => proc {I18n.t(:filter_owner)}, :as => :flexdatalist, data_path: proc{list_for_filter_admin_users_path()}
+
+  filter :work_catalogue_with_integer, :label => proc{I18n.t(:work_catalogue)}, as: :select, 
+  collection: proc{Publication.work_catalogues.collect {|k,v| [I18n.t("work_catalogue_labels." + k), "work_catalogue:#{k}"]}}, :if => proc{ can?(:edit, Work) }
   
   index :download_links => false do
     selectable_column if !is_selection_mode?
@@ -171,17 +242,24 @@ ActiveAdmin.register Publication do
     column (I18n.t :filter_title_short), :short_name
     column (I18n.t :filter_title), :title
     column (I18n.t :filter_author), :author
-    column (I18n.t :work_catalogue), :work_catalogue if current_user.has_any_role?(:admin)
+    column (I18n.t :"work_catalog"), :work_catalogue, sortable: :work_catalogue_order do  |cat|
+      status_tag(cat.work_catalogue, label: I18n.t('work_catalogue_tags.' + (cat.work_catalogue != nil ? cat.work_catalogue : ""), locale: :en))
+    end if can?(:edit, Work)
     column (I18n.t :filter_sources), :src_count_order, sortable: :src_count_order do |element|
-			all_hits = @arbre_context.assigns[:hits]
-			active_admin_stored_from_hits(all_hits, element, :src_count_order)
+			active_admin_stored_from_hits(@arbre_context.assigns[:hits], element, :src_count_order)
+		end
+    column (I18n.t :filter_authorities), :referring_objects_order, sortable: :referring_objects_order do |element|
+			active_admin_stored_from_hits(@arbre_context.assigns[:hits], element, :referring_objects_order)
 		end
     active_admin_muscat_actions( self )
   end
   
   sidebar :actions, :only => :index do
-    render :partial => "activeadmin/filter_workaround"
     render :partial => "activeadmin/section_sidebar_index"
+  end
+
+  sidebar :imports, only: :index do
+    render :partial => "activeadmin/section_sidebar_publication_imports"
   end
   
   # Include the folder actions
@@ -191,7 +269,7 @@ ActiveAdmin.register Publication do
   ## Show ##
   ##########
   
-  show :title => proc{ active_admin_publication_show_title( @item.author, @item.title.truncate(60), @item.id) } do
+  show :title => proc{ active_admin_publication_show_title( @item.author, @item.title&.truncate(60), @item.id) } do
     # @item retrived by from the controller is not available there. We need to get it from the @arbre_context
     active_admin_navigation_bar( self )
     render('jobs/jobs_monitor')
@@ -205,53 +283,26 @@ ActiveAdmin.register Publication do
     ## Source box. Use the standard helper so it is the same everywhere
     active_admin_embedded_source_list(self, publication, !is_selection_mode? )
 
-    # Box for people referring to this publication
-    active_admin_embedded_link_list(self, publication, Person) do |context|
+    # This one cannot use the compact form
+    active_admin_embedded_link_list(self, publication, Holding) do |context|
       context.table_for(context.collection) do |cr|
         context.column "id", :id
-        context.column (I18n.t :filter_full_name), :full_name
-        context.column (I18n.t :filter_life_dates), :life_dates
-        context.column (I18n.t :filter_alternate_names), :alternate_names
+        context.column (I18n.t :filter_siglum), :lib_siglum
+        context.column (I18n.t :filter_source_name) {|hld| hld.source.std_title}
+        context.column (I18n.t :filter_source_composer) {|hld| hld.source.composer}
         if !is_selection_mode?
-          context.column "" do |person|
-            link_to "View", controller: :people, action: :show, id: person.id
+          context.column "" do |hold|
+            link_to I18n.t(:view_source), controller: :sources, action: :show, id: hold.source.id
           end
         end
       end
     end
-    
-    # Box for institutions referring to this publication
-    active_admin_embedded_link_list(self, publication, Institution) do |context|
-      context.table_for(context.collection) do |cr|
-        context.column "id", :id
-        context.column (I18n.t :filter_siglum), :siglum
-        context.column (I18n.t :filter_name), :name
-        context.column (I18n.t :filter_place), :place
-        if !is_selection_mode?
-          context.column "" do |ins|
-            link_to "View", controller: :institutions, action: :show, id: ins.id
-          end
-        end
-      end
-    end
-    
-    if !resource.get_items.empty?
-      panel I18n.t :filter_series_items do
-        search=Publication.solr_search do 
-          fulltext(params[:id], :fields=>['7600'])
-          paginate :page => params[:items_list_page], :per_page=>15
-          order_by(:date_order)
-        end
-        paginated_collection(search.results, param_name: 'items_list_page', download_links: false) do
-          table_for(collection, sortable: true) do
-            column :id do |p| link_to p.id, controller: :publications, action: :show, id: p.id end
-            column :author
-            column :title
-            column :date
-          end
-        end
-      end
-    end
+
+    active_adnin_create_list_for(self, Institution, publication, siglum: I18n.t(:filter_siglum), full_name: I18n.t(:filter_full_name), place: I18n.t(:filter_place))
+    active_adnin_create_list_for(self, InventoryItem, publication, composer: I18n.t(:filter_composer), title: I18n.t(:filter_title))
+    active_adnin_create_list_for(self, Person, publication, full_name: I18n.t(:filter_full_name), life_dates: I18n.t(:filter_life_dates), alternate_names: I18n.t(:filter_alternate_names))
+    active_adnin_create_list_for(self, Publication, publication, short_name: I18n.t(:filter_title_short), author: I18n.t(:filter_author), title: I18n.t(:filter_title))    
+    active_adnin_create_list_for(self, Work, publication, title: I18n.t(:filter_title))
 
     active_admin_user_wf( self, publication )
     active_admin_navigation_bar( self )
@@ -260,6 +311,17 @@ ActiveAdmin.register Publication do
   
   sidebar :actions, :only => :show do
     render :partial => "activeadmin/section_sidebar_show", :locals => { :item => publication }
+    if can?(:edit, Work) && !publication.referring_works.empty?
+      render :partial => "activeadmin/section_sidebar_publication", :locals => { :item => publication }
+    end
+  end
+
+  sidebar :statistics, :only => :show, if: proc{ item && item.work_catalogue } do
+    render :partial => "publications/work_statistics", :locals => { :item => publication }
+  end
+
+  sidebar :folders, :only => :show do
+    render :partial => "activeadmin/section_sidebar_folder_actions", :locals => { :item => publication }
   end
 
   ##########

@@ -11,7 +11,7 @@ class MarcHolding < Marc
         title = node.content.truncate(255)
       end
     end
-    title
+    title&.strip
   end
 
   def get_shelf_mark
@@ -22,7 +22,7 @@ class MarcHolding < Marc
         m = node.content
       end
     end
-    m
+    m.truncate(255)&.strip
   end
 
   def description
@@ -35,20 +35,35 @@ class MarcHolding < Marc
         end
       end
     end
+    
+    # Sould always be there
+    if node && node.foreign_object && node.foreign_object.full_name
+      res['name'] = node.foreign_object.full_name.truncate(90) # Avoid overflowing the box
+    else
+      res['name'] = 'UNNAMED LIBRARY'
+    end
+
     if res.length > 0
-      return "#{res['a']}#{" " + res['c'] if res['c']}#{" [" + res['q'] +"]" if res['q']}"
+      #return "#{res['a']}#{" " + res['c'] if res['c']}#{" [" + res['q'] +"]" if res['q']}"
+      res.to_a.join(" ")
+      out = "#{res['a']} (#{res['name']})" # library name + siglum
+      out += ": #{res['c']}" if res['c'] && res['c'] != "[no indication]" # Do we have a shelfmark?
+      out += " [#{res['q']}]" if res['q'] # scoring
+      return out&.strip
     else
       I18n.t(:holding_no_siglum)
     end
   end
 
   def digital_object?
-    node = first_occurance("856", "x")
-
-    return false if !node || !node.content
-    return true if node.content.start_with?("IIIF") || node.content.start_with?("Digitized")
+    each_by_tag("856") do |t|
+      tgs = t.fetch_all_by_tag("x")
+      tgs.each do |node|
+        next if !node || !node.content
+        return true if node.content.start_with?("IIIF") || node.content.start_with?("Digitized")
+      end
+    end
     false
-
   end
 
 end

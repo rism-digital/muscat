@@ -17,6 +17,10 @@ module Muscat
       copy_file "activeadmin_devise_sessions_new.html.erb", "app/views/active_admin/devise/sessions/new.html.erb"
     end
 
+    def copy_override
+      copy_file "saml_sessions_controller_override.rb", "app/overrides/controllers/devise/saml_sessions_controller_override.rb"
+    end
+
     def copy_initializer
       copy_file "devise_saml_authenticatable.rb", "config/initializers/devise_saml_authenticatable.rb"
     end

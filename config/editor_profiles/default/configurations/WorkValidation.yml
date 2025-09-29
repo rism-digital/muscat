@@ -1,6 +1,65 @@
 --- !map:Settings
 client:
+  "031":
+    tags:
+      "b": 
+        any_of:
+        - required_if: 
+            "031": "a"
+        - validate_031_dups
+      "c":
+        any_of:
+        - required_if: 
+            "031": "a"
+        - validate_031_dups
+  "046":
+    tags:
+      "k": validate_edtf
+  "024":
+    tags:
+      "2": required
+      "a": required
   "100":
     tags:
-      t: mandatory
-
+      "0": mandatory
+  "130":
+    tags:
+      "0": mandatory
+  "370":
+    tags:
+      "0": required
+  "380":
+    tags:
+      "0": required
+  "500":
+    tags:
+      "0": required
+  "510": 
+    tags:
+      "0": required
+      "4":
+        required_if:
+          "510": "0"
+  "530":
+    tags:
+      "0": required
+  "547":
+    tags:
+      "0": required
+  "670":
+    tags:
+      "w": required
+  "675":
+    tags:
+      "w": required
+  "690":
+    tags:
+      "0": mandatory
+      "n": mandatory
+  "691":
+    tags:
+      "0": required
+  "856":
+    tags:
+      "u": required
+      "z": required

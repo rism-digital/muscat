@@ -9,12 +9,12 @@ groups:
   codes:
     all_tags:
     - "024"
-    - "040"
     - "043"
     all_tag_templates:
       "024": marc_show/show_dnb_link
   identity:
     all_tags:
+    - "094"
     - "110"
     - "510"
     - "410"
@@ -39,11 +39,9 @@ groups:
     - "700"
     all_tag_templates:
       "856": marc_show/show_link
+      "700": marc_show/show_person
   control: 
     all_tags: 
-    - "000"
-    - "001"
-    - "003"
-    - "005"
-    - "008"
+    - "040"
     - "667"
+    - "001"

@@ -28,8 +28,16 @@ ActiveAdmin.register DigitalObject do
       @attachment_type = params.include?(:attachment_type) && params[:attachment_type] == "incipit" ? :incipit : :image
 
       if @attachment_type == :incipit
+        # We support only works and sources
+        if params[:digital_object][:new_object_link_type] != "Source" && params[:digital_object][:new_object_link_type] != "Work"
+          raise ArgumentError, "Unsupported model #{params[:digital_object][:new_object_link_type]}"
+        end
+
+        model = Source if params[:digital_object][:new_object_link_type] == "Source"
+        model = Work if params[:digital_object][:new_object_link_type] == "Work"
+
         begin
-          @incipits = Source.incipits_for(params[:digital_object][:new_object_link_id])
+          @incipits = DigitalObject.incipits_for(model, params[:digital_object][:new_object_link_id])
         rescue ActiveRecord::RecordNotFound
           flash[:error] = "Object does not exist"
           redirect_to collection_path
@@ -54,10 +62,13 @@ ActiveAdmin.register DigitalObject do
       # We get the incipit popup only if for the FIRST source
       # But we also prevent incipits to have more than one link to a source, so it should
       # never happen to find more.
-      if @digital_object.incipits? && @digital_object.digital_object_links.count > 0 && @digital_object.digital_object_links.first.object_link_type == "Source"
+      if @digital_object.incipits? && @digital_object.digital_object_links.count > 0 &&
+         (@digital_object.digital_object_links.first.object_link_type == "Source" ||
+            @digital_object.digital_object_links.first.object_link_type == "Work")
 
         begin
-          @incipits = Source.incipits_for(@digital_object.digital_object_links.first.object_link_id)
+          model = @digital_object.digital_object_links.first.object_link_type.constantize
+          @incipits = DigitalObject.incipits_for(model, @digital_object.digital_object_links.first.object_link_id)
         rescue ActiveRecord::RecordNotFound
           flash[:error] = "Object does not exist"
           redirect_to collection_path
@@ -111,8 +122,8 @@ ActiveAdmin.register DigitalObject do
         dol = DigitalObjectLink.new(object_link_type: params[:object_model], object_link_id: params[:object_id],
                                     user: current_user, digital_object_id: params[:id])
         dol.save!
-    
-        redirect_to resource_path(params[:id]), notice: "Item added successfully, #{params[:object_model]}: #{params[:object_id]}"
+        flash[:notice] = "Item added successfully, #{params[:object_model]}: #{params[:object_id]}"
+        redirect_to resource_path(params[:id])
       #rescue
       #  redirect_to resource_path(params[:id]), error: "Could not add, #{params[:object_model]}: #{params[:object_id]}"
       #end
@@ -127,16 +138,20 @@ ActiveAdmin.register DigitalObject do
     begin
       dol = DigitalObjectLink.find(params[:digital_object_link_id])
     rescue
-      redirect_to resource_path(params[:id]), error: "Could not find Digital Object Link #{params[:digital_object_link_id]}"
+      flash[:error] = "Could not find Digital Object Link #{params[:digital_object_link_id]}"
+      redirect_to resource_path(params[:id])
+      return
     end
     
     if can?(:destroy, dol)
       begin
         dol.delete
       rescue
-        redirect_to resource_path(params[:id]), error: "Could not delete link #{params[:digital_object_link_id]}"
+        flash[:error] = "Could not delete link #{params[:digital_object_link_id]}"
+        redirect_to resource_path(params[:id])
       end
-      redirect_to resource_path(params[:id]), notice: "Link deleted successfully"
+      flash[:notice] = "Link deleted successfully"
+      redirect_to resource_path(params[:id])
     else
       flash[:error] = "Operation not allowed"
       redirect_to collection_path
@@ -156,6 +171,8 @@ ActiveAdmin.register DigitalObject do
           collection: proc{{images: 0, incipits: 1}}
   filter :attachment_updated_at, :label => proc {I18n.t(:updated_at)}
   
+  filter :wf_owner, :label => proc {I18n.t(:filter_owner)}, :as => :flexdatalist, data_path: proc{list_for_filter_admin_users_path()}
+
   index :as => :grid, :download_links => false do |obj|
     div do
         if obj.images?
@@ -168,10 +185,13 @@ ActiveAdmin.register DigitalObject do
   end
   
   sidebar :actions, :only => :index do
-    render :partial => "activeadmin/filter_workaround"
     render :partial => "activeadmin/section_sidebar_index"
   end
   
+  sidebar :help, :only => [:index] do
+    render :partial => "digital_objects_help_show"
+  end
+
   ##########
   ## Show ##
   ##########
@@ -191,7 +211,9 @@ ActiveAdmin.register DigitalObject do
             end	
             column "ID" do |dol|
               if dol.object_link_id
-                link_to dol.object_link_id, controller: dol.object_link_type.pluralize.underscore.downcase.to_sym, action: :show, id: dol.object_link_id
+                # Holdings have no "show" page so the DOs are shown in the "edit" page
+                action = dol.object_link_type == "Holding" ? :edit : :show
+                link_to dol.object_link_id, controller: dol.object_link_type.pluralize.underscore.downcase.to_sym, action: action, id: dol.object_link_id
               else
                 "Object unattached"
               end
@@ -230,12 +252,16 @@ ActiveAdmin.register DigitalObject do
   
   sidebar :actions, :only => :show do
     render :partial => "activeadmin/section_sidebar_show", :locals => { :item => digital_object }
-    # You should not re-link incipit to multiple items
+
     if digital_object.images?
       render :partial => "activeadmin/section_sidebar_do_links", :locals => { :item => digital_object }
+    elsif digital_object.incipits?
+      render :partial => "activeadmin/section_sidebar_do_incipits", :locals => { :item => digital_object }
     end
+
+    render :partial => "activeadmin/section_sidebar_folder_actions", :locals => { :item => digital_object }
   end
-  
+
   ##########
   ## Edit ##
   ##########

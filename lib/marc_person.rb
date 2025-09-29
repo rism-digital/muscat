@@ -5,13 +5,11 @@ class MarcPerson < Marc
 
   def get_full_name_and_dates
     full_name = ""
-    full_name_d = ""
     dates = nil
 
     if node = first_occurance("100", "a")
       if node.content
         full_name = node.content.truncate(128)
-        full_name_d = node.content.downcase.truncate(128)
       end
     end
     
@@ -21,7 +19,7 @@ class MarcPerson < Marc
       end
     end
     
-    [full_name, full_name_d, dates]
+    [full_name&.strip, dates&.strip]
   end
   
   def get_alternate_names_and_dates
@@ -41,7 +39,7 @@ class MarcPerson < Marc
       end
     end
 
-    [names.join("\n"), dates]
+    [names.join("\n")&.strip, dates&.strip]
   end
 
   def get_gender_birth_place_and_source
@@ -67,28 +65,30 @@ class MarcPerson < Marc
       end
     end
 
-    [gender, birth_place, source]
+    [gender, birth_place&.strip, source&.strip]
   end
 
   
-  def to_external(updated_at = nil, versions = nil, holdings = false)
-    # cataloguing agency
-    _003_tag = first_occurance("003")
-    if !_003_tag
-      agency = MarcNode.new(@model, "003", RISM::AGENCY, "")
-      @root.children.insert(get_insert_position("003"), agency)
-    end
-  
-    if updated_at
-      last_transcation = updated_at.strftime("%Y%m%d%H%M%S") + ".0"
-      # 005 should not be there, if it is avoid duplicates
-      _005_tag = first_occurance("005")
-      if !_005_tag
-        @root.children.insert(get_insert_position("003"),
-            MarcNode.new(@model, "005", last_transcation, nil))
+  def to_external(created_at = nil, updated_at = nil, versions = nil, holdings = false, deprecated_ids = true)
+    super(created_at, updated_at, versions)
+    
+    new_leader = MarcNode.new("person", "000", "00000nz  a2200000nc 4500", "")
+    @root.children.insert(get_insert_position("000"), new_leader)
+
+    # Remove the 667...
+    by_tags("667").each {|t| t.destroy_yourself}
+
+    # and add just one counting the linked sources
+    if get_id && !get_id.empty?
+      parent_object = Person.find(get_id)
+      source_size = parent_object.referring_sources.where(wf_stage: 1).size rescue 0
+      if source_size > 0
+        n667 = MarcNode.new(@model, "667", "", "##")
+        n667.add_at(MarcNode.new(@model, "a", "Published sources: #{source_size}", nil), 0)
+        root.children.insert(get_insert_position("667"), n667)
       end
     end
-    by_tags("667").each {|t| t.destroy_yourself}
+
   end
  
   

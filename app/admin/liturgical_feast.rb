@@ -1,3 +1,5 @@
+include Triggers
+
 ActiveAdmin.register LiturgicalFeast do
   
   menu :parent => "indexes_menu", :label => proc {I18n.t(:menu_liturgical_feasts)}
@@ -8,7 +10,7 @@ ActiveAdmin.register LiturgicalFeast do
 
   # Remove all action items
   config.clear_action_items!
-  config.per_page = [10, 30, 50, 100]
+  config.per_page = [10, 30, 50, 100, 1000]
   
   collection_action :autocomplete_liturgical_feast_name, :method => :get
 
@@ -51,7 +53,7 @@ ActiveAdmin.register LiturgicalFeast do
         redirect_to admin_root_path, :flash => { :error => "#{I18n.t(:error_not_found)} (LiturgicalFeast #{params[:id]})" }
         return
       end
-      @prev_item, @next_item, @prev_page, @next_page = LiturgicalFeast.near_items_as_ransack(params, @liturgical_feast)
+      @prev_item, @next_item, @prev_page, @next_page, @nav_positions = LiturgicalFeast.near_items_as_ransack(params, @liturgical_feast)
       
       @jobs = @liturgical_feast.delayed_jobs
     end
@@ -68,9 +70,11 @@ ActiveAdmin.register LiturgicalFeast do
     # redirect update failure for preserving sidebars
     def update
       update! do |success,failure|
-        success.html { redirect_to collection_path }
+        success.html { redirect_to resource_path(params[:id]) }
         failure.html { redirect_back fallback_location: root_path, flash: { :error => "#{I18n.t(:error_saving)}" } }
       end
+      # Run the eventual triggers
+      execute_triggers_from_params(params, @liturgical_feast)
     end
     
     # redirect create failure for preserving sidebars
@@ -92,7 +96,7 @@ ActiveAdmin.register LiturgicalFeast do
   ###########
   
   # Solr search all fields: "_equal"
-  filter :name_equals, :label => proc {I18n.t(:any_field_contains)}, :as => :string
+  filter :name_eq, :label => proc {I18n.t(:any_field_contains)}, :as => :string
   
   # This filter passes the value to the with() function in seach
   # see config/initializers/ransack.rb
@@ -111,14 +115,15 @@ ActiveAdmin.register LiturgicalFeast do
     column (I18n.t :filter_name), :name
     column (I18n.t :filter_alternate_terms), :alternate_terms
     column (I18n.t :filter_sources), :src_count_order, sortable: :src_count_order do |element|
-			all_hits = @arbre_context.assigns[:hits]
-			active_admin_stored_from_hits(all_hits, element, :src_count_order)
+			active_admin_stored_from_hits(@arbre_context.assigns[:hits], element, :src_count_order)
+		end
+    column (I18n.t :filter_authorities), :referring_objects_order, sortable: :referring_objects_order do |element|
+			active_admin_stored_from_hits(@arbre_context.assigns[:hits], element, :referring_objects_order)
 		end
     active_admin_muscat_actions( self )
   end
   
   sidebar :actions, :only => :index do
-    render :partial => "activeadmin/filter_workaround"
     render :partial => "activeadmin/section_sidebar_index"
   end
   
@@ -136,8 +141,11 @@ ActiveAdmin.register LiturgicalFeast do
       row (I18n.t :filter_name) { |r| r.name }
       row (I18n.t :filter_alternate_terms) { |r| r.alternate_terms }
       row (I18n.t :filter_notes) { |r| r.notes } 
+      row (I18n.t :filter_owner) { |r| User.find_by(id: r.wf_owner).name rescue r.wf_owner }
     end
     active_admin_embedded_source_list( self, liturgical_feast, !is_selection_mode? )
+    active_adnin_create_list_for(self, Work, liturgical_feast, title: I18n.t(:filter_title), opus: I18n.t(:filter_opus), catalogue: I18n.t(:filter_catalog))
+
     active_admin_user_wf( self, liturgical_feast )
     active_admin_navigation_bar( self )
     active_admin_comments if !is_selection_mode?
@@ -147,13 +155,17 @@ ActiveAdmin.register LiturgicalFeast do
     render :partial => "activeadmin/section_sidebar_show", :locals => { :item => liturgical_feast }
   end
   
+  sidebar :folders, :only => :show do
+    render :partial => "activeadmin/section_sidebar_folder_actions", :locals => { :item => liturgical_feast }
+  end
+
   ##########
   ## Edit ##
   ##########
   
   form do |f|
     f.inputs do
-      f.input :name, :label => (I18n.t :filter_name)
+      f.input :name, :label => (I18n.t :filter_name), input_html: {data: {trigger: triggers_from_hash({save: ["referring_sources", "referring_works"]}) }}
       f.input :alternate_terms, :label => (I18n.t :filter_alternate_terms)
       f.input :notes, :label => (I18n.t :filter_notes)
       f.input :wf_stage, :label => (I18n.t :filter_wf_stage)

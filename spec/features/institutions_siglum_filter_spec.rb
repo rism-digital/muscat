@@ -14,13 +14,13 @@ RSpec.describe "Institutions siglum filter", :type => :feature, :js => true do
     end
     it "truncated search with '*' (eg. 'D-*') should return matched libraries" do
       visit admin_institutions_path
-      fill_in 'q_110g_facet_contains', with: 'D-*'
+      fill_in 'q_094a_facet_contains', with: 'D-*'
       find('input[name="commit"]').click
       expect(page.all("#index_table_institutions tbody tr").size).to eq 1
     end
     it "truncated search without truncation '*' (eg. 'D-') should return zero" do
       visit admin_institutions_path
-      fill_in 'q_110g_facet_contains', with: 'D-'
+      fill_in 'q_094a_facet_contains', with: 'D-'
       find('input[name="commit"]').click
       expect(page.all("#index_table_institutions tbody tr").size).to eq 0
     end

@@ -1,5 +1,11 @@
 require 'zip'
 
+# This can be called from the rails console
+# by passing a list of ids:
+# ids = [1001135576, ...]
+# ExportRecordsJob.new(:list, {id_list: ids}).perform
+# ExportRecordsJob.new(:folder, {id: 1234, email: "test@test.com", format: :xml, model: Source}).perform
+
 class ExportRecordsJob < ProgressJob::Base
     
   MAX_PROCESSES = 10
@@ -12,15 +18,24 @@ class ExportRecordsJob < ProgressJob::Base
 
     @format = :xml
     @extension = ".xml"
+
+    @model = @job_options.include?(:model) && @job_options[:model].is_a?(Class) ? @job_options[:model] : Source
+
     if @job_options.include?(:format)
       if @job_options[:format] == :csv
         @format = :csv
         @extension = ".csv"
+      elsif @job_options[:format] == :raw
+        @format = :raw
+        @extension = ".marc"
+      elsif @job_options[:format] == :raw_holdings
+        @format = :raw_holdings
+        @extension = ".marc"
       end
     end
 
     @controller = @job_options.include?(:controller) && @job_options[:controller]
-
+    @enquequed = false
   end
 
   def enqueue(job)
@@ -32,6 +47,10 @@ class ExportRecordsJob < ProgressJob::Base
       else
         throw "Cannot export folder without id"
       end
+
+      f = Folder.find(job.parent_id)
+      throw "Folder type (#{f.folder_type}) does not match model (#{@model.to_s})" if f.folder_type != @model.to_s
+
     end
 
     job.parent_type = @type.to_s
@@ -39,15 +58,22 @@ class ExportRecordsJob < ProgressJob::Base
 
   end
   
+  def before(job)
+    super
+    @enquequed = true
+  end
+
   def perform
-    update_stage("Starting export")
+    update_stage("Starting export") if @enquequed
 
     if @type == :folder
       # Note: a deleted folder will crash the job
       # We don't trap it so we have a log in the jobs
       @getter = FolderGetter.new(@job_options[:id])
+    elsif @type == :list
+      @getter = ListGetter.new(@job_options[:id_list])
     else
-      update_stage("Running query")
+      update_stage("Running query") if @enquequed
       @getter = CatalogGetter.new(@job_options[:search_params], @controller)
     end
 
@@ -65,7 +91,7 @@ class ExportRecordsJob < ProgressJob::Base
     File.unlink(EXPORT_PATH.join(filename + @extension))
 
     # Send the user a notification
-    ExportReadyNotification.notify(@job_options[:email], filename + ".zip").deliver_now
+    ExportReadyNotification.notify(@job_options[:email], filename + ".zip", @getter.get_name).deliver_now
 
   end
     
@@ -85,7 +111,7 @@ private
 
   def export_parallel
     max = @getter.get_item_count
-    update_progress_max(max)
+    update_progress_max(max) if @enquequed
 
     # Let's make enough tempfiles
     tempfiles = []
@@ -97,28 +123,28 @@ private
         if @format == :xml
           @getter.get_items_in_range(jobid, MAX_PROCESSES).each do |source_id|
             begin
-              source = Source.find(source_id)
+              source = @model.find(source_id)
             rescue ActiveRecord::RecordNotFound
               next
             end
 
-            tempfiles[jobid].write(source.marc.to_xml_record(nil, nil, true))
+            tempfiles[jobid].write(source.marc.to_xml_record({ holdings: true }).root.to_s)
 
             # We approximante the progress by having only one process write to it
             if jobid == 0
                 count += 1
-                update_stage_progress("Exported #{count * MAX_PROCESSES}/#{max}", step: 200) if count % 20 == 0 && jobid == 0
+                update_stage_progress("Exported #{count * MAX_PROCESSES}/#{max}", step: 200) if count % 20 == 0 && jobid == 0 && @enquequed
             end
             # Force a cleanup
             source = nil
           end
-        else
+        elsif @format == :csv
           headers = csv_headers
           header_mapper = lambda { |header| csv_headers[header] }
           CSV.open(tempfiles[jobid].path, "wb", headers: headers.keys, write_headers: jobid == 0 ? true : false, header_converters: header_mapper) do |csv|
             @getter.get_items_in_range(jobid, MAX_PROCESSES).each do |source_id|
               begin
-                source = Source.find(source_id)
+                source = @model.find(source_id)
               rescue ActiveRecord::RecordNotFound
                 next
               end
@@ -126,7 +152,28 @@ private
               csv << marc2csv(source)
               if jobid == 0
                 count += 1
-                update_stage_progress("Exported #{count * MAX_PROCESSES}/#{max}", step: 200) if count % 20 == 0 && jobid == 0
+                update_stage_progress("Exported #{count * MAX_PROCESSES}/#{max}", step: 200) if count % 20 == 0 && jobid == 0 && @enquequed
+              end
+              source = nil
+            end
+          end
+        elsif @format == :raw || @format == :raw_holdings
+          File.open(tempfiles[jobid].path, "w") do |file|
+            @getter.get_items_in_range(jobid, MAX_PROCESSES).each do |source_id|
+              begin
+                source = @model.find(source_id)
+              rescue ActiveRecord::RecordNotFound
+                next
+              end
+
+              holdings = @format == :raw_holdings ? true : false
+
+              source = @model.find(source_id)
+              file.write(source.marc.to_marc_external({ created_at: source.created_at, updated_at: source.updated_at, versions: nil, holdings: holdings }))
+              file.write("\n")
+              if jobid == 0
+                count += 1
+                update_stage_progress("Exported #{count}/#{@getter.get_item_count} [s]", step: 20) if count % 20 == 0 && @enquequed
               end
               source = nil
             end
@@ -138,7 +185,7 @@ private
     end
     ActiveRecord::Base.connection.reconnect!
 
-    update_stage("Finalizing export")
+    update_stage("Finalizing export") if @enquequed
 
     # Now concatenate the files together
     filename = create_filename
@@ -159,30 +206,41 @@ private
     count = 0
     filename = create_filename
 
-    update_progress_max(@getter.get_item_count)
+    update_progress_max(@getter.get_item_count) if @enquequed
 
     if @format == :xml
       File.open(EXPORT_PATH.join(filename + @extension), "w") do |file|
         file.write(xml_preamble)
 
         @getter.get_items.each do |source_id|
-          source = Source.find(source_id)
-          file.write(source.marc.to_xml_record(nil, nil, true))
+          source = @model.find(source_id)
+          file.write(source.marc.to_xml_record({ holdings: true }).root.to_s)
           count += 1
-          update_stage_progress("Exported #{count}/#{@getter.get_item_count} [s]", step: 20) if count % 20 == 0
+          update_stage_progress("Exported #{count}/#{@getter.get_item_count} [s]", step: 20) if count % 20 == 0 && @enquequed
         end
 
         file.write(xml_conclusion)
       end
-    else
+    elsif @format == :csv
       headers = csv_headers
       header_mapper = lambda { |header| csv_headers[header] }
       CSV.open(EXPORT_PATH.join(filename + @extension), "wb", headers: headers.keys, write_headers: true, header_converters: header_mapper) do |csv|
         @getter.get_items.each do |source_id|
-          source = Source.find(source_id)
+          source = @model.find(source_id)
             csv << marc2csv(source)
             count += 1
-            update_stage_progress("Exported #{count}/#{@getter.get_item_count} [s]", step: 20) if count % 20 == 0
+            update_stage_progress("Exported #{count}/#{@getter.get_item_count} [s]", step: 20) if count % 20 == 0 && @enquequed
+        end
+      end
+    elsif @format == :raw || @format == :raw_holdings
+      File.open(EXPORT_PATH.join(filename + @extension), "w") do |file|
+        @getter.get_items.each do |source_id|
+          source = @model.find(source_id)
+          holdings = @format == :raw_holdings ? true : false
+          file.write(source.marc.to_marc_external({ created_at: source.created_at, updated_at: source.updated_at, versions: nil, holdings: holdings }))
+          file.write("\n")
+          count += 1
+          update_stage_progress("Exported #{count}/#{@getter.get_item_count} [s]", step: 20) if count % 20 == 0 && @enquequed
         end
       end
     end
@@ -191,19 +249,20 @@ private
   end
 
   def create_filename
-    time = Time.now.strftime('%Y-%m-%d-%H%M')
-    filename = "export-#{time}-" + SecureRandom.hex(4)
+    time = Time.now.strftime('%Y-%m-%d')
+    name = @getter.get_name.gsub(/([^\p{L}\s\d\-_~,;:\[\]\(\).'])/, '').gsub(' ', '')
+    filename = "export-#{name}-#{time}-" + SecureRandom.hex(2)
   end
 
   def xml_preamble
     out = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n"
     out += "<!-- Exported from RISM Muscat (#{@type}) Date: #{Time.now.utc} -->\n"
-    out += "<marc:collection xmlns:marc=\"http://www.loc.gov/MARC21/slim\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xsi:schemaLocation=\"http://www.loc.gov/MARC21/slim http://www.loc.gov/standards/marcxml/schema/MARC21slim.xsd\">\n"
+    out += "<collection xmlns=\"http://www.loc.gov/MARC21/slim\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xsi:schemaLocation=\"http://www.loc.gov/MARC21/slim http://www.loc.gov/standards/marcxml/schema/MARC21slim.xsd\">\n"
     return out
   end
 
   def xml_conclusion
-    "</marc:collection>" 
+    "</collection>" 
   end
 
   # Few things are as asinine as the headers in CSV
@@ -336,6 +395,11 @@ private
     def get_items
       return @folder.folder_items.collect {|fi| fi.item.id}
     end
+
+    def get_name
+      return "Unnamed Folder" if !@folder.name
+      return @folder.name
+    end
   end
 
   class CatalogGetter
@@ -354,6 +418,32 @@ private
 
     def get_items
       return @results
+    end
+
+    def get_name
+      return "Untitled Search"
+    end
+  end
+
+  class ListGetter
+    def initialize(list)
+      @items = list
+    end
+
+    def get_item_count
+      @items.count
+    end
+
+    def get_items_in_range(slice, max_slices)
+      @items.in_groups(max_slices, false)[slice]
+    end
+
+    def get_items
+      return @items
+    end
+
+    def get_name
+      return "Source List"
     end
   end
 
