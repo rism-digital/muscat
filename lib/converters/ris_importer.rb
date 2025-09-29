@@ -83,6 +83,10 @@ module Converters
       extent = ris['NV'].reject(&:nil?).map(&:strip).reject(&:empty?)&.first
       new_marc.insert("300", a: extent) if extent
 
+      # also SE tag goes in 300
+      extent = ris['SE'].reject(&:nil?).map(&:strip).reject(&:empty?)&.first
+      new_marc.insert("300", a: extent) if extent
+
       urls = ris['UR'].reject(&:nil?).map(&:strip).reject(&:empty?)
       urls.each do |url|
         new_marc.insert("856", u: url, z: "Electronic resource")
