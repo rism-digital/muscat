@@ -122,7 +122,12 @@ ActiveAdmin.register Publication do
 
       if params.include?(:upload)
         file = params.require(:upload).fetch(:file)
-        converted = Converters::BibtexImporter::bibtex2publication(file.read)
+        ext = File.extname(file.original_filename)
+        if ext == ".bib" || ext == ".bibtex"
+          converted = Converters::BibtexImporter::bibtex2publication(file.read)
+        elsif ext == ".ris"
+          converted = Converters::RisImporter::ris2publication(file.read)
+        end
       end
 
       if params[:existing_title] and !params[:existing_title].empty?

@@ -85,10 +85,32 @@ module Converters
 
       urls = ris['UR'].reject(&:nil?).map(&:strip).reject(&:empty?)
       urls.each do |url|
-        new_marc.insert("856", u: url, x: "Electronic resource")
+        new_marc.insert("856", u: url, z: "Electronic resource")
       end
 
-      puts new_marc
+      links = ris['LK'].reject(&:nil?).map(&:strip).reject(&:empty?)
+      links.each do |url|
+        new_marc.insert("856", u: url, z: "Electronic resource")
+      end
+
+      serials = ris['SN'].reject(&:nil?).map(&:strip).reject(&:empty?)
+      serials.each do |serial|
+        
+        serial.split(";").each do |s|
+
+          if s&.strip&.gsub(/[^\dXx]/, '').length >= 10
+            new_marc.insert("020", a: s&.strip)
+          elsif s&.strip&.gsub(/[^\dXx]/, '').length == 8
+            new_marc.insert("022", a: s&.strip)
+          else
+            # just make an isbn
+            new_marc.insert("020", a: s&.strip)
+          end
+        end
+
+      end
+
+      return new_marc.to_marc
 
     end
   end
