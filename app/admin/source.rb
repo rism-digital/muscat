@@ -268,7 +268,14 @@ ActiveAdmin.register Source do
   end
 
   member_action :reorder_inventory_items, method: :post do
-    ap params.permit!
+    # items = JSON::parse(params.permit([:items]).fetch(:items, ""))
+    items = JSON.parse(params.permit(:items)[:items].presence || "[]")
+    #items.each do |i|
+    #  ii = InventoryItem.find(i["id"])
+    #  ii.update_column(:source_order, i["idx"])
+    #end
+    payload = items.map { |h| { id: h["id"].to_i, source_order: h["idx"].to_i, updated_at: Time.current } }
+    InventoryItem.upsert_all(payload)
   end
 
   #scope :all, :default => true 
