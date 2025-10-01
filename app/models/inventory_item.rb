@@ -164,6 +164,8 @@ class InventoryItem < ApplicationRecord
     self.composer = marc.get_composer
     self.title = marc.get_std_title
 
+    self.page_info = marc.get_page_info
+
     self.marc_source = self.marc.to_marc
   end
   
@@ -180,6 +182,8 @@ class InventoryItem < ApplicationRecord
 
     sunspot_dsl.text :title
     sunspot_dsl.text :composer
+
+    sunspot_dsl.text :page_info
 
     sunspot_dsl.string :title_order do |s|
       s.title

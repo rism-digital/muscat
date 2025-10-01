@@ -97,7 +97,6 @@
             moved = moveRelative($row, $input.val(), $btn.data('action'), $table);
 
         if (moved) {
-            console.log("urca");
             renumber($table);
             flashAndScroll($row);
         }

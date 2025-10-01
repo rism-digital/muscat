@@ -59,4 +59,8 @@ class MarcInventoryItem < Marc
     std_title&.strip
   end
 
+  def get_page_info
+    return first_occurance("773", "g")&.content
+  end
+  
 end

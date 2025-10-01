@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.2].define(version: 2025_09_02_083607) do
+ActiveRecord::Schema[7.2].define(version: 2025_10_01_111826) do
   create_table "active_admin_comments", id: :integer, charset: "utf8mb3", force: :cascade do |t|
     t.string "namespace"
     t.text "body"
@@ -242,6 +242,7 @@ ActiveRecord::Schema[7.2].define(version: 2025_09_02_083607) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "source_order", default: 0, null: false
+    t.string "page_info"
   end
 
   create_table "inventory_items_to_holdings", charset: "utf8mb3", force: :cascade do |t|
