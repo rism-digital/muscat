@@ -261,6 +261,16 @@ ActiveAdmin.register Source do
     end
   end
 
+  member_action :order_inventory_items do
+    
+    @inventory_items = resource.inventory_items
+
+  end
+
+  member_action :reorder_inventory_items, method: :post do
+    ap params.permit!
+  end
+
   #scope :all, :default => true 
   #scope :published do |sources|
   #  sources.where(:wf_stage => 'published')

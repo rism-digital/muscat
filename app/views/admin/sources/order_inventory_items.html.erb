@@ -1,0 +1,54 @@
+
+<div class="panel tab_panel" data-inventory-item-sortable-table>
+<h3 class="panel-title"><%= resource.title %></h3>
+
+<table id="inventory-table" class="index_table list_striped">
+
+    <% @inventory_items.each_with_index do |ii, idx| %>
+
+        <tr class="inv-row" data-row-id="<%= ii.id %>">
+            <td class="inv-index"><%= idx + 1 %></td>
+            <td class="inv-id"><%= ii.id %></td>
+            <td class="inv-composer"><%= ii.composer %></td>
+            <td><%= ii.title %></td>
+            <td class="reorder-cells">
+                <button type="button" class="reorder-btn move-up"   aria-label="Move up one">↑ Move Up</button>
+                <button type="button" class="reorder-btn move-down" aria-label="Move down one">↓ Move Down</button>
+                &nbsp;|&nbsp;
+                 <button type="button" class="reorder-btn goto"  data-action="goto"  aria-label="Move to position">Move to: </button>
+                <input
+                type="number"
+                class="reorder-input"
+                min="1"
+                max="<%= @inventory_items.size %>"
+                value="<%= idx + 1 %>"
+                aria-label="Target position"
+                data-input-for="<%= ii.id %>"
+                />
+                <!--
+                <button type="button" class="reorder-btn before" data-action="before" aria-label="Move before position">↑ Before</button>
+                <button type="button" class="reorder-btn after"  data-action="after"  aria-label="Move after position">↓ After</button>
+                -->
+            </td>
+        </tr>
+
+    <%end%>
+
+</table>
+
+</div>
+
+<!-- Hidden form that will be submitted (non-AJAX) -->
+<form id="commit-form"
+      action="/admin/sources/<%= resource.id %>/reorder_inventory_items"
+      method="post">
+  <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+  <input type="hidden" name="items" id="commit-items">
+</form>
+
+<button
+  type="button"
+  id="commit"
+  class="button commit-order"
+  data-source-id="<%= resource.id %>"
+  data-target="#inventory-table">Commit</button>

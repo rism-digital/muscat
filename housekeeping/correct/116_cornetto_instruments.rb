@@ -226,6 +226,27 @@ tsv = <<~TSV
 1001172346	S conc (1), A conc (1), T conc (1), B conc (1), S rip (cornetto) (1), A rip (a-trb) (1), T rip (t-trb) (1), B rip (b-trb) (1), vl (2), vla (2), vlne (1), org (1)	S conc (1), A conc (1), T conc (1), B conc (1), S rip (cnto) (1), A rip (a-trb) (1), T rip (t-trb) (1), B rip (b-trb) (1), vl (2), vla (2), vlne (1), org (1)
 TSV
 
+#TSV
+
+#tsv = <<~TSV
+
+def highlight_diff(str1, str2)
+  words1 = str1.split
+  words2 = str2.split
+  result = []
+
+  max_len = [words1.length, words2.length].max
+  max_len.times do |i|
+    if words1[i] == words2[i]
+      result << words2[i]
+    else
+      result << "**#{words1[i]}/#{words2[i]}**" if words2[i]
+    end
+  end
+
+  result.join(" ")
+end
+
 def diffize(model, id, marc1, marc2)
   
     lines1 = marc1.split("\n")
@@ -259,6 +280,11 @@ rows = CSV.parse(tsv, col_sep: "\t", headers: %i[rid old new])
 rows.each do |r|
 
   next if !r[:new]
+
+  n = highlight_diff(r[:old], r[:new])
+  s = Source.find(r[:rid])
+  puts "https://muscat.rism.info/admin/sources/#{s.id}\t#{s.id}\t#{s.lib_siglum}\t#{s.user.name}\t#{s.user.email}\t#{r[:old]}\t#{r[:new]}\t#{n}"
+  next
 
   pairs = r[:new].split(",")
               .map do |token|
