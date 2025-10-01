@@ -39,6 +39,8 @@ class Ability
 
       can :prepare_convert, Source
       can :convert_manuscript, Source
+      can :order_inventory_items, Source
+      can :do_reorder_inventory_items, Source
 
       can :manage, Folder#, :wf_owner => user.id
       can :unpublish, :all
@@ -69,6 +71,8 @@ class Ability
       if user.has_role?(:inventory_cataloger)
         can :update, InventoryItem, :wf_owner => user.id
         can [:read, :create], InventoryItem
+        can :reorder_inventory_items, Source
+        can :do_reorder_inventory_items, Source
       end
 
       can :update, [Publication, Institution, LiturgicalFeast, Person, Place, StandardTerm, StandardTitle, Holding, WorkNode], :wf_owner => user.id

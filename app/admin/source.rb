@@ -262,12 +262,15 @@ ActiveAdmin.register Source do
   end
 
   member_action :order_inventory_items do
-    
+    authorize! :order_inventory_items, resource
+
     @inventory_items = resource.inventory_items
 
   end
 
-  member_action :reorder_inventory_items, method: :post do
+  member_action :do_reorder_inventory_items, method: :post do
+    authorize! :do_reorder_inventory_items, resource
+
     # items = JSON::parse(params.permit([:items]).fetch(:items, ""))
     items = JSON.parse(params.permit(:items)[:items].presence || "[]")
     #items.each do |i|
@@ -276,6 +279,10 @@ ActiveAdmin.register Source do
     #end
     payload = items.map { |h| { id: h["id"].to_i, source_order: h["idx"].to_i, updated_at: Time.current } }
     InventoryItem.upsert_all(payload)
+
+    
+    redirect_to order_inventory_items_admin_source_path(resource.id), :flash => { :notice => "I did the thing!" }
+
   end
 
   #scope :all, :default => true 

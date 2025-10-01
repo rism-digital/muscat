@@ -49,7 +49,7 @@
 
 <!-- Hidden form that will be submitted (non-AJAX) -->
 <form id="commit-form"
-      action="/admin/sources/<%= resource.id %>/reorder_inventory_items"
+      action="/admin/sources/<%= resource.id %>/do_reorder_inventory_items"
       method="post">
   <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
   <input type="hidden" name="items" id="commit-items">
