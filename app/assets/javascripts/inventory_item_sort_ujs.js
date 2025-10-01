@@ -33,7 +33,7 @@
         if (!isElementVisible($row))
             $row[0]?.scrollIntoView({ behavior: 'smooth', block: 'center' });
 
-        setTimeout(() => $row.removeClass('just-moved'), 2000);
+        setTimeout(() => $row.removeClass('just-moved'), 5000);
     }
 
     function moveUpOne($row) {
