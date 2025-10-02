@@ -5,6 +5,7 @@
 <table id="inventory-table" class="index_table list_striped">
     <thead>
         <th>IDX</th>
+        <th>Orig idx</th>
         <th>ID</th>
         <th>773$g</th>
         <th>Composer</th>
@@ -13,11 +14,10 @@
     <tbody>
     <% @inventory_items.each_with_index do |ii, idx| %>
 
-
-
         <tr class="inv-row" data-row-id="<%= ii.id %>">
             <td class="inv-index"><%= idx + 1 %></td>
-            <td class="inv-id"><%= ii.id %></td>
+            <td class="inv-orig-idx"><%= ii.source_order + 1 %></td>
+            <td class="inv-id"><%= link_to(ii.id, admin_inventory_item_path(ii)) %></td>
             <td class="inv-pageinfo"><%= ii.page_info %></td>
             <td class="inv-composer"><%= ii.composer %></td>
             <td><%= ii.title %></td>

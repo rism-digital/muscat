@@ -6,6 +6,7 @@ end
 
 Source.where(record_type: [12, 13]).each do |s|
   
+=begin
   puts "Magic being applied to #{s.id}"
   s.inventory_items.each do |ii|
     #number = ii.page_info[/[0-9A-Za-z]+(?:[.,][0-9A-Za-z]+)*/]&.gsub(/[A-Za-z]/, '')
@@ -20,10 +21,11 @@ Source.where(record_type: [12, 13]).each do |s|
 
     ii.update_column(:source_order, high + low)
   end
-
+=end
   # Now set a sane number
   puts "Now set a sane number to #{s.id}"
-  s.inventory_items.order(source_order: :desc, id: :asc).each.with_index do |ii, idx|
+  s.inventory_items.order(id: :asc).each.with_index do |ii, idx|
+    puts "#{ii.id} #{idx}"
     ii.update_column(:source_order, idx)
   end
 

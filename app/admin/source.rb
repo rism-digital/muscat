@@ -264,7 +264,7 @@ ActiveAdmin.register Source do
   member_action :order_inventory_items do
     authorize! :order_inventory_items, resource
 
-    @inventory_items = resource.inventory_items
+    @inventory_items = resource.inventory_items.order(source_order: :asc)
 
   end
 

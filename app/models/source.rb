@@ -86,7 +86,7 @@ class Source < ApplicationRecord
 	has_many :collection_holdings, class_name: "Holding", foreign_key: "collection_id"
   
   # This is for associating IIs to their Inventory
-  has_many :inventory_items, -> { order(:source_order) }
+  has_many :inventory_items#, -> { order(:source_order) }
 
   # This is when an II references a source, like identitied src
   has_many :inventory_item_source_relations, class_name: "InventoryItemSourceRelation"
