@@ -646,8 +646,8 @@ de:
   new_inventory_item: Neuen Inventareintrag erstellen
   new_inventory_item_page: Neuer Inventareintrag
   no_action: Keine Aktion verfügbar
-  notation_copied: Notation kopiert
   not_set: "[nicht fest]"
+  notation_copied: Notation kopiert
   notifications:
     cadence: Kadenz der Benachrichtigung
     daily: Jeden Tag
@@ -810,9 +810,9 @@ de:
         one: Anzeige von <b>1</b> %{model}
         other: Anzeige <b>aller %{count}</b> %{model}
         zero: Keine(n) %{model} gefunden
+  work_catalog: Katalog der Werke
   work_catalog_publish: Verknüpfte Werke veröffentlichen
   work_catalog_unpublish: Veröffentlichung verknüpfter Werke aufheben
-  work_catalog: Katalog der Werke
   work_catalogue_labels:
     not_work_catalogue: Kein Werkverzeichnis
     work_catalogue_alternate: Alternativ

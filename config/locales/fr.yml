@@ -646,8 +646,8 @@ fr:
   new_inventory_item: Créer un nouvel élément d'inventaire
   new_inventory_item_page: Nouvel élément d'inventaire
   no_action: Aucune action possible
-  notation_copied: Notation copié
   not_set: "[not défini]"
+  notation_copied: Notation copié
   notifications:
     cadence: Cadence des notifications
     daily: Tous les jours
@@ -810,9 +810,9 @@ fr:
         one: Affichage de <b>1</b> %{model}
         other: Affichage des <b>%{count}</b> %{model}
         zero: "%{model} introuvable"
+  work_catalog: Catalogue d'œuvres
   work_catalog_publish: Publier les œuvres liées
   work_catalog_unpublish: Dépublier les œuvres liées
-  work_catalog: Catalogue d'œuvres
   work_catalogue_labels:
     not_work_catalogue: Pas de catalogue des œuvres
     work_catalogue_alternate: Alternatif

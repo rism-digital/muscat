@@ -646,8 +646,8 @@ ca:
   new_inventory_item: Crear un nou article d'inventari
   new_inventory_item_page: Nou article d'inventari
   no_action: Sense accions disponibles
-  notation_copied: Notació copiada
   not_set: "[not set]"
+  notation_copied: Notació copiada
   notifications:
     cadence: Freqüència de les notificacions
     daily: Cada dia
@@ -810,9 +810,9 @@ ca:
         one: Mostra <b>1</b> %{model}
         other: "%{model}, un <b>total de %{count}</b>"
         zero: No se n'ha trobat cap
+  work_catalog: Catàleg d'obres
   work_catalog_publish: Publica les obres enllaçades
   work_catalog_unpublish: Despublica les obres enllaçades
-  work_catalog: Catàleg d'obres
   work_catalogue_labels:
     not_work_catalogue: Sense catàleg d'obres
     work_catalogue_alternate: Alternatiu
