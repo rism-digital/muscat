@@ -223,6 +223,7 @@ de:
   authorization_tokens: Auth tokens
   available_templates: Verfügbare Vorlagen
   backend_validation:
+    031_incomplete: Die Nummerierung dieses 031 ist unvollständig ($a, $b oder $c fehlt)
     begin_with: Dieses Feld muss mit der richtigen Zeichenfolge beginnen
     check_group: Dieses Feld enthält einen ungültigen Wert in Bezug auf die Position in der Gruppe
     mandatory: Dieses Unterfeld ist obligatorisch
@@ -231,7 +232,9 @@ de:
     required: Dieses Feld ist erforderlich, wenn dieses Tag hinzugefügt wird
     required_if: Dieses Feld ist erforderlich, weil ein anderes vorhanden ist
     siglum_not_found: Das Siglum in einem oder mehreren 588-Feldern entspricht keinem vorhandenen Bestandsdatensatz
+    validate_031_dups: "Diese Incipit-Nummer wird bereits verwendet: $b oder $c sind doppelt vorhanden"
     validate_588_siglum: 'Geben Sie das Bibliothekssigel und die Signatur im Format ein: I-Bc Q.51'
+    validate_url: Die eingegebene URL ist ungültig
   basic_level: Basiskatalog
   body: Body
   btn_themefinder_reset: Zurücksetzen
@@ -254,6 +257,7 @@ de:
     rule: Regel
     show: Anzeigen
     similarity: Unterschiede
+    tags: Tags
     time_frame: Zeitrahmen
   composer_contains: Komponist
   connected_libraries: Bibliotheken
@@ -337,6 +341,7 @@ de:
   export_folder: Ordner als MARCXML exportieren
   export_folder_csv: Ordner als CSV exportieren
   export_folder_raw: Ordner als Muscat MARC exportieren
+  export_folder_raw_holdings: Ordner als Muscat MARC exportieren (Holding Records zusammenführen)
   failed: Fehlgeschlagen
   failed_at: Fehlgeschlagen am
   filter_address: Adresse
@@ -800,7 +805,10 @@ de:
     must_contain_message: Dieses Feld muss dem erforderlichen Muster entsprechen.
     name_uniqueness: Das Kürzel des Eintrages ist bereits vergeben.
     required_if_message: Dieses Feld muss ausgefüllt werden, da es obligatorisch ist in Anwesenheit von {0} ${1}
+    validate_031_dups: Diese Incipit-Nummer wird bereits verwendet
     validate_588_siglum: 'Geben Sie das Bibliothekssigel und die Signatur im Format ein: I-Bc Q.51'
+    validate_edtf: EDTF-Datum validieren
+    validate_url: Die eingegebene URL ist ungültig
     warning_message: Dieses Feld enthält üblicherweise einen Eintrag.
   validation_level_error: Die Fehler müssen vor dem Speichern behoben werden.
   validation_level_warning: Erneut speichern, um die Warnung(en) zu ignorieren.

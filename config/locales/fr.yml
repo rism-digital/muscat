@@ -223,6 +223,7 @@ fr:
   authorization_tokens: Auth tokens
   available_templates: Modèles disponibles
   backend_validation:
+    031_incomplete: La numérotation de ce 031 est incomplète (il manque $a, $b ou $c)
     begin_with: Ce champ doit commencer par la chaîne correcte
     check_group: Ce champ contient une valeur invalide par rapport à la position dans le groupe
     mandatory: Ce sous-champ est obligatoire
@@ -231,7 +232,9 @@ fr:
     required: Ce champ est requis lorsque cette étiquette est ajoutée
     required_if: Ce champ est requis car un autre est présent
     siglum_not_found: Le sigle dans un ou plusieurs champs 588 ne correspond à aucun enregistrement de fonds
+    validate_031_dups: "Ce numéro d'incipit est déjà utilisé : $b ou $c sont dupliqués"
     validate_588_siglum: 'Entrez le sigle de la bibliothèque et la cote selon le format : I-Bc Q.51'
+    validate_url: L'URL saisi n'est pas valide
   basic_level: Notice de base
   body: Contenu
   btn_themefinder_reset: Reset
@@ -254,6 +257,7 @@ fr:
     rule: Règle
     show: Afficher
     similarity: Différences
+    tags: Tags
     time_frame: Intervalle temporel
   composer_contains: Compositeur
   connected_libraries: Institutions
@@ -337,6 +341,7 @@ fr:
   export_folder: Exporter le dossier en MARCXML
   export_folder_csv: Exporter le dossier en CSV
   export_folder_raw: Exporter le dossier en Muscat MARC
+  export_folder_raw_holdings: Exporter le dossier au format Muscat MARC (en fusionnant les holding records)
   failed: Echec
   failed_at: Echec à
   filter_address: Adresse
@@ -800,7 +805,10 @@ fr:
     must_contain_message: Ce champ doit correspondre au modèle requis.
     name_uniqueness: Le nom abrégé de l'élément est déjà utilisé
     required_if_message: Ce champ doit être rempli car il est obligatoire en présence de {0} ${1}
+    validate_031_dups: Ce numéro d'incipit est déjà utilisé
     validate_588_siglum: 'Entrez le sigle de la bibliothèque et la cote selon le format : I-Bc Q.51'
+    validate_edtf: Valider la date EDTF
+    validate_url: L'URL saisi n'est pas valide
     warning_message: Une valeur devrait être présente pour ce champ
   validation_level_error: Il y a des erreurs à corriger avant d'enregistrer.
   validation_level_warning: Il y a des avertissements. Enregistrer à nouveau pour ignorer.

@@ -223,6 +223,7 @@ pl:
   authorization_tokens: Auth tokens
   available_templates: Dostępne szablony
   backend_validation:
+    031_incomplete: Numeracja tego 031 jest niekompletna (brakuje $a, $b lub $c)
     begin_with: To pole musi zaczynać się od prawidłowego ciągu znaków
     check_group: To pole zawiera nieprawidłową wartość względem pozycji w grupie
     mandatory: To podpole jest obowiązkowe
@@ -231,7 +232,9 @@ pl:
     required: To pole jest wymagane, gdy ten tag zostanie dodany
     required_if: To pole jest wymagane, ponieważ inne jest obecne
     siglum_not_found: Siglum w jednym lub kilku polach 588 nie odpowiada żadnemu rekordowi zasobów
+    validate_031_dups: "Ten numer incipitu jest już używany: $b lub $c są zduplikowane"
     validate_588_siglum: 'Wprowadź sygnaturę biblioteki i półkę według formatu: I-Bc Q.51'
+    validate_url: Wprowadzony adres URL jest nieprawidłowy
   basic_level: Rekord podstawowy
   body: Body
   btn_themefinder_reset: Wyzeruj
@@ -254,6 +257,7 @@ pl:
     rule: Reguła
     show: Pokaż
     similarity: Różnice
+    tags: Tagi
     time_frame: Ramy czasowe
   composer_contains: Kryterium kompozytora
   connected_libraries: Biblioteki
@@ -337,6 +341,7 @@ pl:
   export_folder: Wyeksportuj folder jako MARCXML
   export_folder_csv: Wyeksportuj folder jako CSV
   export_folder_raw: Wyeksportuj folder jako Muscat MARC
+  export_folder_raw_holdings: Eksportuj folder jako Muscat MARC (łącząc holding records)
   failed: Niepowodzenie
   failed_at: Niepowodzenie o godzinie …
   filter_address: Adres
@@ -800,7 +805,10 @@ pl:
     must_contain_message: To pole musi odpowiadać wymaganemu wzorcowi
     name_uniqueness: Skrócona nazwa wpisu została już pobrana
     required_if_message: Pole obowiązkowe, ponieważ pole {0} ${1} nie jest puste
+    validate_031_dups: Ten numer incipitu jest już używany
     validate_588_siglum: 'Wprowadź sygnaturę biblioteki i półkę według formatu: I-Bc Q.51'
+    validate_edtf: Sprawdź datę EDTF
+    validate_url: Wprowadzony adres URL jest nieprawidłowy
     warning_message: To pole powinno zawierać wartość
   validation_level_error: Wystąpiły błędy. Napraw je przed zapisaniem.
   validation_level_warning: Wystąpiły ostrzeżenia. Zapisz ponownie, by je skasować.

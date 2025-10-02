@@ -827,6 +827,7 @@ en:
     required_if_message: Field is mandatory because {0} ${1} is not empty
     validate_031_dups: This incipit number is already used
     validate_588_siglum: 'Enter the library siglum and shelfmark as in the format: I-Bc Q.51'
+    validate_edtf: Validate EDTF date
     validate_url: The entered URL is invalid
     warning_message: A value for this field should be provided
   validation_level_error: There are errors, please solve before saving

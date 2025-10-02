@@ -223,6 +223,7 @@ pt:
   authorization_tokens: Auth tokens
   available_templates: Modelos disponíveis
   backend_validation:
+    031_incomplete: A numeração deste 031 está incompleta (falta $a, $b ou $c)
     begin_with: Este campo deve começar com a string correta
     check_group: Este campo contém um valor inválido em relação à posição no grupo
     mandatory: Este subcampo é obrigatório
@@ -231,7 +232,9 @@ pt:
     required: Este campo é obrigatório quando esta tag é adicionada
     required_if: Este campo é obrigatório porque outro está presente
     siglum_not_found: O siglum em um ou mais campos 588 não corresponde a nenhum registro de acervo
+    validate_031_dups: "Este número de incipit já está em uso: $b ou $c estão duplicados"
     validate_588_siglum: 'Insira o siglum da biblioteca e a classificação no formato: I-Bc Q.51'
+    validate_url: O URL inserido não é válido
   basic_level: Registro básico
   body: Body
   btn_themefinder_reset: Reset
@@ -254,6 +257,7 @@ pt:
     rule: Regra
     show: Espectáculo
     similarity: Diferenças
+    tags: Tags
     time_frame: Período de tempo
   composer_contains: Compositor
   connected_libraries: Libraries
@@ -337,6 +341,7 @@ pt:
   export_folder: Exportar a pasta em MARCXML
   export_folder_csv: Exportar a pasta em CSV
   export_folder_raw: Exportar a pasta em Muscat MARC
+  export_folder_raw_holdings: Exportar a pasta como Muscat MARC (mesclando os holding records)
   failed: Falhou
   failed_at: Falhou em
   filter_address: Endereço
@@ -800,7 +805,10 @@ pt:
     must_contain_message: Este campo deve corresponder ao padrão requerido
     name_uniqueness: O nome abreviado do registro já está em uso
     required_if_message: Este campo deve ser preenchido, pois é obrigatório na presença de {0} ${1}
+    validate_031_dups: Este número de incipit já está em uso
     validate_588_siglum: 'Insira o siglum da biblioteca e a classificação no formato: I-Bc Q.51'
+    validate_edtf: Validar data EDTF
+    validate_url: O URL inserido não é válido
     warning_message: Um valor deve ser fornecido para este campo
   validation_level_error: Há erros, por favor resolva antes de salvar.
   validation_level_warning: Estes são avisos, salve novamente para ignorar.

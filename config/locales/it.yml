@@ -223,6 +223,7 @@ it:
   authorization_tokens: Auth tokens
   available_templates: Template disponibili
   backend_validation:
+    031_incomplete: La numerazione di questo 031 è incompleta (manca $a, $b o $c)
     begin_with: Questo campo deve iniziare con la stringa corretta
     check_group: Questo campo contiene un valore non valido rispetto alla posizione nel gruppo
     mandatory: Questo sotto-campo è obbligatorio
@@ -231,7 +232,9 @@ it:
     required: Questo campo è obbligatorio quando questo tag è aggiunto
     required_if: Questo campo è obbligatorio perché un altro è presente
     siglum_not_found: Il siglum in uno o più campi 588 non corrisponde a nessuna holding
+    validate_031_dups: "Questo numero di incipit è già utilizzato: $b o $c sono duplicati"
     validate_588_siglum: 'Inserisci il siglum della biblioteca e la collocazione secondo il formato: I-Bc Q.51'
+    validate_url: L'URL inserito non è valido
   basic_level: Record di base
   body: Contenuto
   btn_themefinder_reset: Reset
@@ -254,6 +257,7 @@ it:
     rule: Regola
     show: Mostra
     similarity: Differenza
+    tags: Tag
     time_frame: Intervallo di tempo
   composer_contains: Compositore
   connected_libraries: Biblioteche
@@ -337,6 +341,7 @@ it:
   export_folder: Esporta la cartella in MARCXML
   export_folder_csv: Esporta la cartella in CSV
   export_folder_raw: Esporta la cartella come Muscat MARC
+  export_folder_raw_holdings: Esporta cartella come Muscat MARC (unendo gli holding records)
   failed: Fallito
   failed_at: Data fallimento
   filter_address: Indirizzo
@@ -800,7 +805,10 @@ it:
     must_contain_message: Questo campo deve corrispondere al modello richiesto
     name_uniqueness: Il nome breve dell'elemento è già in uso
     required_if_message: Questo campo deve essere riempito poiché è obbligatorio in presenza di {0} ${1}
+    validate_031_dups: Questo numero di incipit è già utilizzato
     validate_588_siglum: 'Inserisci il siglum della biblioteca e la collocazione secondo il formato: I-Bc Q.51'
+    validate_edtf: Convalida data EDTF
+    validate_url: L'URL inserito non è valido
     warning_message: Questo campo dovrebbe contenere un valore
   validation_level_error: Sono presenti errori, correggerli prima di continuare
   validation_level_warning: Alcuni elementi richiedono attenzione, salvare ancora per procedere

@@ -223,6 +223,7 @@ ca:
   authorization_tokens: Auth tokens
   available_templates: Platilles disponibles
   backend_validation:
+    031_incomplete: La numeració d'aquest 031 és incompleta (falta $a, $b o $c)
     begin_with: Aquest camp ha de començar amb la cadena correcta
     check_group: Aquest camp conté un valor no vàlid en relació amb la posició al grup
     mandatory: Aquest subcamp és obligatori
@@ -231,7 +232,9 @@ ca:
     required: Aquest camp és obligatori quan s'afegeix aquesta etiqueta
     required_if: Aquest camp és obligatori perquè un altre és present
     siglum_not_found: El siglum en un o més camps 588 no coincideix amb cap registre de fons
+    validate_031_dups: "Aquest número d'íncipit ja s'està utilitzant: $b o $c estan duplicats"
     validate_588_siglum: 'Introduïu el siglum de la biblioteca i la signatura seguint el format: I-Bc Q.51'
+    validate_url: L'URL introduït no és vàlid
   basic_level: Registre bàsic
   body: Body
   btn_themefinder_reset: Restableix
@@ -254,6 +257,7 @@ ca:
     rule: Regla
     show: Mostra
     similarity: Diferències
+    tags: Tag
     time_frame: Període
   composer_contains: Compositor
   connected_libraries: Biblioteques
@@ -337,6 +341,7 @@ ca:
   export_folder: Exporta la carpeta en format MARCXML
   export_folder_csv: Exporta la carpeta en format CSV
   export_folder_raw: Exporta la carpeta en format Muscat MARC
+  export_folder_raw_holdings: Exportar la carpeta com a Muscat MARC (fusionant els holding records)
   failed: Error
   failed_at: Error a
   filter_address: Adreça
@@ -800,7 +805,10 @@ ca:
     must_contain_message: Aquest camp ha de coincidir amb el patró requerit
     name_uniqueness: Aquest nom abreujat ja s'utilitza
     required_if_message: El camp és obligatori en presència de {0} ${1}
+    validate_031_dups: Aquest número d'íncipit ja s'està utilitzant
     validate_588_siglum: 'Introduïu el siglum de la biblioteca i la signatura seguint el format: I-Bc Q.51'
+    validate_edtf: Validar la data EDTF
+    validate_url: L'URL introduït no és vàlid
     warning_message: Caldria que aquest camp tingués un valor
   validation_level_error: Hi ha errors. Resoleu-vos abans de desar-lo
   validation_level_warning: Hi ha advertiments. Els podeu ignorar tornant a desar-lo
