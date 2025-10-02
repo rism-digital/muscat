@@ -1,10 +1,5 @@
 ---
 ca:
-  source_converted_with_holding: "Font convertida a versió impresa, s’ha creat el holding %{holding_id}."
-  source_converted: "Font convertida a versió impresa"
-  source_not_manuscript: "La font no és un manuscrit ni una col·lecció de manuscrits"
-  convert_to_print_template: "Convertir a la plantilla per a una edició impresa"
-  unauthorized: "No autoritzat"
   Composer: Compositor
   Date: Data
   Images: Imatges
@@ -237,7 +232,7 @@ ca:
     required: Aquest camp és obligatori quan s'afegeix aquesta etiqueta
     required_if: Aquest camp és obligatori perquè un altre és present
     siglum_not_found: El siglum en un o més camps 588 no coincideix amb cap registre de fons
-    validate_031_dups: "Aquest número d'íncipit ja s'està utilitzant: $b o $c estan duplicats"
+    validate_031_dups: 'Aquest número d''íncipit ja s''està utilitzant: $b o $c estan duplicats'
     validate_588_siglum: 'Introduïu el siglum de la biblioteca i la signatura seguint el format: I-Bc Q.51'
     validate_url: L'URL introduït no és vàlid
   basic_level: Registre bàsic
@@ -268,6 +263,7 @@ ca:
   connected_libraries: Biblioteques
   controls: Controls
   convert_to_print: Converteix-lo a plantilla d'obra impresa
+  convert_to_print_template: Convertir a la plantilla per a una edició impresa
   cookies:
     dimiss: Acceptar and tancar
     link: Saber-ne més
@@ -769,6 +765,9 @@ ca:
   source:
     one: font
     other: fonts
+  source_converted: Font convertida a versió impresa
+  source_converted_with_holding: Font convertida a versió impresa, s’ha creat el holding %{holding_id}.
+  source_not_manuscript: La font no és un manuscrit ni una col·lecció de manuscrits
   standardterm:
     one: matèria
     other: matèries
@@ -788,6 +787,7 @@ ca:
   title_contains: Títol diplomàtic
   to_the_list: Torna a la llista
   unarchive: Desarxiva
+  unauthorized: No autoritzat
   ungrouped_tags: En aquest registres hi ha camps no agrupats
   unknown_tags: En aquestre hi ha camps desconeguts
   unloadable_record: 'Aquest registre no es pot carregar bé: es pot consultar però no editar. Poseu-vos en contacte amb l''administrador.'

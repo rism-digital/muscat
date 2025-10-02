@@ -1,10 +1,5 @@
 ---
 fr:
-  source_converted_with_holding: "Source convertie en version imprimée, holding %{holding_id} créé."
-  source_converted: "Source convertie en version imprimée"
-  source_not_manuscript: "La source n’est pas un manuscrit ou une collection de manuscrits"
-  convert_to_print_template: "Convertir dans le modèle pour une édition imprimée"
-  unauthorized: "Non autorisé"
   Composer: Compositeur
   Date: Date
   Images: Images
@@ -237,7 +232,7 @@ fr:
     required: Ce champ est requis lorsque cette étiquette est ajoutée
     required_if: Ce champ est requis car un autre est présent
     siglum_not_found: Le sigle dans un ou plusieurs champs 588 ne correspond à aucun enregistrement de fonds
-    validate_031_dups: "Ce numéro d'incipit est déjà utilisé : $b ou $c sont dupliqués"
+    validate_031_dups: 'Ce numéro d''incipit est déjà utilisé : $b ou $c sont dupliqués'
     validate_588_siglum: 'Entrez le sigle de la bibliothèque et la cote selon le format : I-Bc Q.51'
     validate_url: L'URL saisi n'est pas valide
   basic_level: Notice de base
@@ -268,6 +263,7 @@ fr:
   connected_libraries: Institutions
   controls: Contrôles
   convert_to_print: Convertir en modèle d'impression
+  convert_to_print_template: Convertir dans le modèle pour une édition imprimée
   cookies:
     dimiss: Accepter et fermer
     link: En savoir plus
@@ -769,6 +765,9 @@ fr:
   source:
     one: source
     other: sources
+  source_converted: Source convertie en version imprimée
+  source_converted_with_holding: Source convertie en version imprimée, holding %{holding_id} créé.
+  source_not_manuscript: La source n’est pas un manuscrit ou une collection de manuscrits
   standardterm:
     one: sujet
     other: sujets
@@ -788,6 +787,7 @@ fr:
   title_contains: Titre diplomatique
   to_the_list: Retourner à la liste
   unarchive: Désarchiver
+  unauthorized: Non autorisé
   ungrouped_tags: Ce titre contient des champs non groupés
   unknown_tags: Ce titre contient des champs non reconnus.
   unloadable_record: 'Ce titre présente un problème: il peut être visualisé mais pas édité. Merci de contacter l''administrateur.'

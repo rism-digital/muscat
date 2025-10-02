@@ -1,10 +1,5 @@
 ---
 de:
-  source_converted_with_holding: "Quelle wurde in Druckform konvertiert, Holding %{holding_id} erstellt."
-  source_converted: "Quelle wurde in Druckform konvertiert"
-  source_not_manuscript: "Die Quelle ist kein Manuskript oder keine Manuskriptsammlung"
-  convert_to_print_template: "In die Vorlage für eine Druckausgabe konvertieren"
-  unauthorized: "Nicht autorisiert"
   Composer: Komponist
   Date: Datum
   Images: Bilder
@@ -237,7 +232,7 @@ de:
     required: Dieses Feld ist erforderlich, wenn dieses Tag hinzugefügt wird
     required_if: Dieses Feld ist erforderlich, weil ein anderes vorhanden ist
     siglum_not_found: Das Siglum in einem oder mehreren 588-Feldern entspricht keinem vorhandenen Bestandsdatensatz
-    validate_031_dups: "Diese Incipit-Nummer wird bereits verwendet: $b oder $c sind doppelt vorhanden"
+    validate_031_dups: 'Diese Incipit-Nummer wird bereits verwendet: $b oder $c sind doppelt vorhanden'
     validate_588_siglum: 'Geben Sie das Bibliothekssigel und die Signatur im Format ein: I-Bc Q.51'
     validate_url: Die eingegebene URL ist ungültig
   basic_level: Basiskatalog
@@ -268,6 +263,7 @@ de:
   connected_libraries: Bibliotheken
   controls: Steuerung
   convert_to_print: In Druckvorlage umwandeln
+  convert_to_print_template: In die Vorlage für eine Druckausgabe konvertieren
   cookies:
     dimiss: Akzeptieren und schließen
     link: Mehr erfahren
@@ -769,6 +765,9 @@ de:
   source:
     one: Quelle
     other: Quellen
+  source_converted: Quelle wurde in Druckform konvertiert
+  source_converted_with_holding: Quelle wurde in Druckform konvertiert, Holding %{holding_id} erstellt.
+  source_not_manuscript: Die Quelle ist kein Manuskript oder keine Manuskriptsammlung
   standardterm:
     one: Schlagwort
     other: Schlagwörter
@@ -788,6 +787,7 @@ de:
   title_contains: Dipl. Titel
   to_the_list: Zurück zur Liste
   unarchive: Dearchivieren
+  unauthorized: Nicht autorisiert
   ungrouped_tags: Dieser Eintrag enthält Felder, die keiner Gruppe zugeteilt sind
   unknown_tags: Dieser Eintrag enthält falsch verwendete Felder.
   unloadable_record: 'Fehler beim Laden des Eintrags: Änderung nicht möglich, bitte einen Administrator kontaktieren.'

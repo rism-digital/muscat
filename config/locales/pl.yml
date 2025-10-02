@@ -1,10 +1,5 @@
 ---
 pl:
-  source_converted_with_holding: "Źródło zostało przekonwertowane na wersję drukowaną, utworzono holding %{holding_id}."
-  source_converted: "Źródło zostało przekonwertowane na wersję drukowaną"
-  source_not_manuscript: "Źródło nie jest rękopisem ani zbiorem rękopisów"
-  convert_to_print_template: "Konwertuj do szablonu wydania drukowanego"
-  unauthorized: "Brak autoryzacji"
   Composer: Kompozytor
   Date: Data
   Images: Obrazy
@@ -237,7 +232,7 @@ pl:
     required: To pole jest wymagane, gdy ten tag zostanie dodany
     required_if: To pole jest wymagane, ponieważ inne jest obecne
     siglum_not_found: Siglum w jednym lub kilku polach 588 nie odpowiada żadnemu rekordowi zasobów
-    validate_031_dups: "Ten numer incipitu jest już używany: $b lub $c są zduplikowane"
+    validate_031_dups: 'Ten numer incipitu jest już używany: $b lub $c są zduplikowane'
     validate_588_siglum: 'Wprowadź sygnaturę biblioteki i półkę według formatu: I-Bc Q.51'
     validate_url: Wprowadzony adres URL jest nieprawidłowy
   basic_level: Rekord podstawowy
@@ -268,6 +263,7 @@ pl:
   connected_libraries: Biblioteki
   controls: Sterowanie
   convert_to_print: Konwersja do szablonu wydruku
+  convert_to_print_template: Konwertuj do szablonu wydania drukowanego
   cookies:
     dimiss: Zaakceptuj i zamknij
     link: Dowiedz się więcej'
@@ -769,6 +765,9 @@ pl:
   source:
     one: Źródło
     other: Źródła
+  source_converted: Źródło zostało przekonwertowane na wersję drukowaną
+  source_converted_with_holding: Źródło zostało przekonwertowane na wersję drukowaną, utworzono holding %{holding_id}.
+  source_not_manuscript: Źródło nie jest rękopisem ani zbiorem rękopisów
   standardterm:
     one: Przedmiot
     other: Przedmioty
@@ -788,6 +787,7 @@ pl:
   title_contains: Tytuł dyplomatyczny
   to_the_list: Wróć do listy
   unarchive: Cofnij archiwizację
+  unauthorized: Brak autoryzacji
   ungrouped_tags: Rekord zawiera pola niezgrupowane.
   unknown_tags: Rekord zawiera pola nieznane.
   unloadable_record: 'Błędy wczytania rekordu: można go odczytywać, lecz nie edytować. Skontaktuj się z administratorem.'

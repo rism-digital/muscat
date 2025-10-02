@@ -1,10 +1,5 @@
 ---
 it:
-  source_converted_with_holding: "Fonte convertita in stampa, holding %{holding_id} creato."
-  source_converted: "Fonte convertita in stampa"
-  source_not_manuscript: "La fonte non è un manoscritto o una collezione di manoscritti"
-  convert_to_print_template: "Converti nel template per un’edizione a stampa"
-  unauthorized: "Non autorizzato"
   Composer: Compositore
   Date: Data
   Images: Immagini
@@ -237,7 +232,7 @@ it:
     required: Questo campo è obbligatorio quando questo tag è aggiunto
     required_if: Questo campo è obbligatorio perché un altro è presente
     siglum_not_found: Il siglum in uno o più campi 588 non corrisponde a nessuna holding
-    validate_031_dups: "Questo numero di incipit è già utilizzato: $b o $c sono duplicati"
+    validate_031_dups: 'Questo numero di incipit è già utilizzato: $b o $c sono duplicati'
     validate_588_siglum: 'Inserisci il siglum della biblioteca e la collocazione secondo il formato: I-Bc Q.51'
     validate_url: L'URL inserito non è valido
   basic_level: Record di base
@@ -268,6 +263,7 @@ it:
   connected_libraries: Biblioteche
   controls: Controlli
   convert_to_print: Convertire in template stampa
+  convert_to_print_template: Converti nel template per un’edizione a stampa
   cookies:
     dimiss: Accetta e chiudi
     link: Per saperne di più
@@ -769,6 +765,9 @@ it:
   source:
     one: fonte
     other: fonti
+  source_converted: Fonte convertita in stampa
+  source_converted_with_holding: Fonte convertita in stampa, holding %{holding_id} creato.
+  source_not_manuscript: La fonte non è un manoscritto o una collezione di manoscritti
   standardterm:
     one: soggetto
     other: soggetti
@@ -788,6 +787,7 @@ it:
   title_contains: Titolo diplomatico
   to_the_list: Ritorna all'indice
   unarchive: Disarchivia
+  unauthorized: Non autorizzato
   ungrouped_tags: Il record contiene campi non raggruppati
   unknown_tags: Il record contiene dei campi sconosciuti
   unloadable_record: 'Questa scheda ha avuto problemi nel caricamento: può essere consultata ma non modificata. Si prega di contattare un amministratore.'

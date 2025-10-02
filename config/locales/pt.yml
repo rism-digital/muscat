@@ -1,10 +1,5 @@
 ---
 pt:
-  source_converted_with_holding: "Fonte convertida para impressão, holding %{holding_id} criado."
-  source_converted: "Fonte convertida para impressão"
-  source_not_manuscript: "A fonte não é um manuscrito nem uma coleção de manuscritos"
-  convert_to_print_template: "Converter para o modelo de uma edição impressa"
-  unauthorized: "Não autorizado"
   Composer: Compositor
   Date: Data
   Images: Imagens
@@ -237,7 +232,7 @@ pt:
     required: Este campo é obrigatório quando esta tag é adicionada
     required_if: Este campo é obrigatório porque outro está presente
     siglum_not_found: O siglum em um ou mais campos 588 não corresponde a nenhum registro de acervo
-    validate_031_dups: "Este número de incipit já está em uso: $b ou $c estão duplicados"
+    validate_031_dups: 'Este número de incipit já está em uso: $b ou $c estão duplicados'
     validate_588_siglum: 'Insira o siglum da biblioteca e a classificação no formato: I-Bc Q.51'
     validate_url: O URL inserido não é válido
   basic_level: Registro básico
@@ -268,6 +263,7 @@ pt:
   connected_libraries: Libraries
   controls: Controles
   convert_to_print: Converter para modelo de impressão
+  convert_to_print_template: Converter para o modelo de uma edição impressa
   cookies:
     dimiss: Aceitar e Fechar
     link: Saiba mais
@@ -769,6 +765,9 @@ pt:
   source:
     one: fonte
     other: fontes
+  source_converted: Fonte convertida para impressão
+  source_converted_with_holding: Fonte convertida para impressão, holding %{holding_id} criado.
+  source_not_manuscript: A fonte não é um manuscrito nem uma coleção de manuscritos
   standardterm:
     one: assunto
     other: assuntos
@@ -788,6 +787,7 @@ pt:
   title_contains: Título diplomático
   to_the_list: Retornar à lista
   unarchive: Desarquivar
+  unauthorized: Não autorizado
   ungrouped_tags: Existem campos não agrupados neste registro
   unknown_tags: Existem alguns campos desconhecidos neste registro
   unloadable_record: 'Este registro teve problemas de carregamento: pode ser visto, mas não editado. Por favor, entre em contato com um administrador.'

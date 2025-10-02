@@ -1,10 +1,5 @@
 ---
 en:
-  source_converted_with_holding: "Source converted to print, holding %{holding_id} created."
-  source_converted: "Source converted to print"
-  source_not_manuscript: "Source is not a manuscript or manuscript collection"
-  convert_to_print_template: "Convert to print template"
-  unauthorized: "Unauthorized"
   Composer: Composer
   Date: Date
   Images: Images
@@ -268,6 +263,7 @@ en:
   connected_libraries: Libraries
   controls: Controls
   convert_to_print: Convert to print template
+  convert_to_print_template: Convert to print template
   cookies:
     dimiss: Accept and Close
     link: Learn more
@@ -784,6 +780,9 @@ en:
   source:
     one: source
     other: sources
+  source_converted: Source converted to print
+  source_converted_with_holding: Source converted to print, holding %{holding_id} created.
+  source_not_manuscript: Source is not a manuscript or manuscript collection
   standardterm:
     one: subject
     other: subjects
@@ -808,6 +807,7 @@ en:
   title_contains: Diplomatic title
   to_the_list: Return to the list
   unarchive: Un-archive
+  unauthorized: Unauthorized
   ungrouped_tags: There are ungrouped fields in this record
   unknown_tags: There are some unknown fields in this record
   unloadable_record: 'This record experienced loading errors: it can be viewed but not edited. Please contact an administrator.'

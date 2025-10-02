@@ -1,10 +1,5 @@
 ---
 es:
-  source_converted_with_holding: "Fuente convertida a versión impresa, holding %{holding_id} creado."
-  source_converted: "Fuente convertida a versión impresa"
-  source_not_manuscript: "La fuente no es un manuscrito ni una colección de manuscritos"
-  convert_to_print_template: "Convertir en la plantilla para una edición impresa"
-  unauthorized: "No autorizado"
   Composer: Compositor
   Date: Fecha
   Images: Imágenes
@@ -237,7 +232,7 @@ es:
     required: Este campo es obligatorio cuando se añade esta etiqueta
     required_if: Este campo es obligatorio porque otro está presente
     siglum_not_found: El siglum en uno o varios campos 588 no coincide con ningún registro de tenencia
-    validate_031_dups: "Este número de íncipit ya está en uso: $b o $c están duplicados"
+    validate_031_dups: 'Este número de íncipit ya está en uso: $b o $c están duplicados'
     validate_588_siglum: 'Introduzca el siglum de la biblioteca y la signatura siguiendo el formato: I-Bc Q.51'
     validate_url: La URL introducida no es válida
   basic_level: Registro básico
@@ -268,6 +263,7 @@ es:
   connected_libraries: Bibliotecas
   controls: Controles
   convert_to_print: Convertir en plantilla de impresión
+  convert_to_print_template: Convertir en la plantilla para una edición impresa
   cookies:
     dimiss: Aceptar y cerrar
     link: Aprender mas
@@ -769,6 +765,9 @@ es:
   source:
     one: fuente
     other: fuentes
+  source_converted: Fuente convertida a versión impresa
+  source_converted_with_holding: Fuente convertida a versión impresa, holding %{holding_id} creado.
+  source_not_manuscript: La fuente no es un manuscrito ni una colección de manuscritos
   standardterm:
     one: tema
     other: temas
@@ -788,6 +787,7 @@ es:
   title_contains: Título diplomático
   to_the_list: Volver a la lista
   unarchive: Desarchivar
+  unauthorized: No autorizado
   ungrouped_tags: Hay campos no agrupados en este registro
   unknown_tags: Hay algunos campos desconocidos en este registro
   unloadable_record: 'Este registro presenta errores de carga: puede ser leido pero no editado. Por favor, póngase en contacto con un administrador.'
