@@ -608,11 +608,13 @@ class Source < ApplicationRecord
   end
 
   def name
-    "#{composer} - #{std_title}"
+    #"#{composer} - #{std_title}"
+    [composer, std_title].reject(&:blank?).join(" - ")
   end
 
   def autocomplete_label
-    "#{self.id}: #{self.composer} - #{self.std_title}"
+    #"#{self.id}: #{self.composer} - #{self.std_title}"
+    "#{id}: #{[composer, std_title].reject(&:blank?).join(' - ')}"
   end
 
   def to_marcxml

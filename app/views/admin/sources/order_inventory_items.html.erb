@@ -1,6 +1,13 @@
 
-<div class="panel tab_panel" data-inventory-item-sortable-table>
+<div class="header-actions" style="margin-bottom: 1em;">
+  <%= link_to "← Back", edit_resource_path(resource), class: "button" %>
+</div>
 
+<p>
+  Showing <strong><%= @inventory_items.count %></strong> items
+</p>
+
+<div class="panel tab_panel" data-inventory-item-sortable-table>
 
 <table id="inventory-table" class="index_table list_striped">
     <thead>

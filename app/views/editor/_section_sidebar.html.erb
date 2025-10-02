@@ -87,6 +87,10 @@
 		<%= link_to("#{I18n.t :new_inventory_item}", new_admin_inventory_item_path(source_id: @item.id),
 			:class => "muscat_icon_link muscat_icon_link_new") %>
 	</li>
+	<li class="muscat_icon_link">
+		<%= link_to("#{I18n.t :order_inventory_items}", order_inventory_items_admin_source_path(@item),
+			:class => "muscat_icon_link muscat_icon_link_order") %>
+	</li>
 <%end%>	
 	
 	<li class="muscat_icon_separator"></li>

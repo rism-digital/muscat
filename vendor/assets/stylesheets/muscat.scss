@@ -453,8 +453,13 @@ table.muscat_index_header {
 }
 
 .reorder-btn:hover {
-  background: #e8e8e8;
+  background: #e8e8e8 !important;
 }
+
+// The above is overridden by this
+//button:not(.disabled):hover {
+//  background: #e8e8e8;
+//}
 
 .reorder-btn.before {
   background: #eef6ff;

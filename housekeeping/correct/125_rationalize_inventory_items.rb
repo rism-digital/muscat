@@ -25,7 +25,7 @@ Source.where(record_type: [12, 13]).each do |s|
   # Now set a sane number
   puts "Now set a sane number to #{s.id}"
   s.inventory_items.order(id: :asc).each.with_index do |ii, idx|
-    puts "#{ii.id} #{idx}"
+    #puts "#{ii.id} #{idx}"
     ii.update_column(:source_order, idx)
   end
 

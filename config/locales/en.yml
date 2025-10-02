@@ -665,6 +665,7 @@ en:
     rules: Rules
     weekly: Every week
   object: Object
+  order_inventory_items: Order inventory items
   person:
     one: person
     other: poeple
