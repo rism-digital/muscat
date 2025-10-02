@@ -1,5 +1,17 @@
 ---
 it:
+  order_items: Ordina gli elementi di
+  index: Indice
+  old_index: Indice precedente
+  controls: Controlli
+  move_up: Su
+  move_down: Giù
+  move_to: Vai a
+  go_back: Indietro
+  commit: Applica
+  inventory_items_show_count_html: <strong>%{count}</strong> elementi mostrati
+  inventory_item_order_success: Gli elementi sono stati riordinati
+  order_inventory_items: Ordina elementi inventario
   Composer: Compositore
   Date: Data
   Images: Immagini

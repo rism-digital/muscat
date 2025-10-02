@@ -1,5 +1,17 @@
 ---
 pl:
+  order_items: Porządkuj elementy dla
+  index: Indeks
+  old_index: Poprzedni indeks
+  controls: Sterowanie
+  move_up: Góra
+  move_down: Dół
+  move_to: Idź do
+  go_back: Wstecz
+  commit: Zastosuj
+  inventory_items_show_count_html: Wyświetlono <strong>%{count}</strong> elementów
+  inventory_item_order_success: Elementy zostały uporządkowane
+  order_inventory_items: Porządkuj elementy inwentarza
   Composer: Kompozytor
   Date: Data
   Images: Obrazy

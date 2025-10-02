@@ -1,5 +1,17 @@
 ---
 pt:
+  order_items: IteOrdenar itens para
+  index: Índice
+  old_index: Índice anterior
+  controls: Controles
+  move_up: Cima
+  move_down: Baixo
+  move_to: Ir para
+  go_back: Voltar
+  commit: Aplicar
+  inventory_items_show_count_html: <strong>%{count}</strong> itens exibidos
+  inventory_item_order_success: Os itens foram reordenados
+  order_inventory_items: Ordenar itens de inventário
   Composer: Compositor
   Date: Data
   Images: Imagens

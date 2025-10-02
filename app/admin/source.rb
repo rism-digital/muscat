@@ -282,7 +282,7 @@ ActiveAdmin.register Source do
     InventoryItem.upsert_all(payload)
 
     
-    redirect_to order_inventory_items_admin_source_path(resource.id), :flash => { :notice => "I did the thing!" }
+    redirect_to order_inventory_items_admin_source_path(resource.id), :flash => { :notice => I18n.t(:inventory_item_order_success)}
 
   end
 
