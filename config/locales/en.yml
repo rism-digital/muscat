@@ -1,6 +1,16 @@
 ---
 en:
+  order_items: Order items for
+  index: Index
+  old_index: Old index
+  controls: Controls
   Composer: Composer
+  move_up: Move up
+  move_down: Move down
+  move_to: Move to
+  go_back: Back
+  commit: Commit
+  inventory_items_show_count_html: Showing <strong>%{count}</strong> items
   Date: Date
   Images: Images
   Incipit: Incipit

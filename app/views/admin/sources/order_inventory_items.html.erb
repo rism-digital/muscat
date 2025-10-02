@@ -1,23 +1,23 @@
 
 <div class="header-actions" style="margin-bottom: 1em;">
-  <%= link_to "← Back", edit_resource_path(resource), class: "button" %>
+  <%= link_to "← #{I18n.t :go_back}", edit_resource_path(resource), class: "button" %>
 </div>
 
 <p>
-  Showing <strong><%= @inventory_items.count %></strong> items
+  <%= t('inventory_items_show_count_html', count: @inventory_items.count) %>
 </p>
 
 <div class="panel tab_panel" data-inventory-item-sortable-table>
 
 <table id="inventory-table" class="index_table list_striped">
     <thead>
-        <th>IDX</th>
-        <th>Orig idx</th>
+        <th><%= I18n.t :index %></th>
+        <th><%= I18n.t :old_index %></th>
         <th>ID</th>
         <th>773$g</th>
-        <th>Composer</th>
-        <th>Title</th>
-        <th class="controls-col">Controls</th>
+        <th><%= I18n.t :filter_composer %></th>
+        <th><%= I18n.t :filter_title %></th>
+        <th class="controls-col"><%= I18n.t :controls %></th>
     <tbody>
     <% @inventory_items.each_with_index do |ii, idx| %>
 
@@ -29,10 +29,10 @@
             <td class="inv-composer"><%= ii.composer %></td>
             <td><%= ii.title %></td>
             <td class="reorder-cells">
-                <button type="button" class="reorder-btn move-up"   aria-label="Move up one">↑ Move Up</button>
-                <button type="button" class="reorder-btn move-down" aria-label="Move down one">↓ Move Down</button>
+                <button type="button" class="reorder-btn move-up"   aria-label="Move up one">↑ <%= I18n.t :move_up %></button>
+                <button type="button" class="reorder-btn move-down" aria-label="Move down one">↓ <%= I18n.t :move_down %></button>
                 &nbsp;|&nbsp;
-                 <button type="button" class="reorder-btn goto"  data-action="goto"  aria-label="Move to position">Move to: </button>
+                 <button type="button" class="reorder-btn goto"  data-action="goto"  aria-label="Move to position"><%= I18n.t :move_to %>: </button>
                 <input
                 type="number"
                 class="reorder-input"
@@ -67,4 +67,4 @@
   id="commit"
   class="button commit-order"
   data-source-id="<%= resource.id %>"
-  data-target="#inventory-table">Commit</button>
+  data-target="#inventory-table"><%= I18n.t :commit %></button>
