@@ -1,17 +1,5 @@
 ---
 pt:
-  order_items: IteOrdenar itens para
-  index: Índice
-  old_index: Índice anterior
-  controls: Controles
-  move_up: Cima
-  move_down: Baixo
-  move_to: Ir para
-  go_back: Voltar
-  commit: Aplicar
-  inventory_items_show_count_html: <strong>%{count}</strong> itens exibidos
-  inventory_item_order_success: Os itens foram reordenados
-  order_inventory_items: Ordenar itens de inventário
   Composer: Compositor
   Date: Data
   Images: Imagens
@@ -253,6 +241,7 @@ pt:
   choose_folder: "(PLEASE CHOOSE ONE)"
   clipboard:
     copied: Resultados copiados para a área de transferência
+  commit: Aplicar
   compare_versions:
     date_message: Mostrar records modificados de %{date}.
     diff: Comparar
@@ -268,6 +257,7 @@ pt:
     time_frame: Período de tempo
   composer_contains: Compositor
   connected_libraries: Libraries
+  controls: Controles
   convert_to_print: Converter para modelo de impressão
   cookies:
     dimiss: Aceitar e Fechar
@@ -519,6 +509,7 @@ pt:
   from_existing_source: Criar a partir de uma fonte existente
   full_level: Registro completo
   gnd_not_found: A solicitação ao GND retornou um registro vazio.
+  go_back: Voltar
   go_to_top: Voltar ao início
   helpers:
     label:
@@ -550,10 +541,13 @@ pt:
     interval: Intervalo
     query_type: Tipo de Consulta
     refined_pitch: Contorno melódico fino
+  index: Índice
   institution:
     one: instituição
     other: institinstituiçõesutions
   internal_note_contains: Nota interna
+  inventory_item_order_success: Os itens foram reordenados
+  inventory_items_show_count_html: "<strong>%{count}</strong> itens exibidos"
   is_in_folder: Está na pasta
   is_part_of_collection: Esta %{class} %{id} faz parte de uma colecção, deve remover o 773 antes de o poder apagar
   job:
@@ -649,6 +643,9 @@ pt:
   menu_workgroups: Grupos de Trabalho
   menu_works: Materiais
   merge: Juntar
+  move_down: Baixo
+  move_to: Ir para
+  move_up: Cima
   muscat_reindexing: Muscat está a reindexar, os resultados da pesquisa podem estar incompletos
   new: Criar
   new_digital_object_image: Adicionar uma nova imagem
@@ -672,6 +669,9 @@ pt:
     rules: Regras
     weekly: Todas as semanas
   object: Objeto
+  old_index: Índice anterior
+  order_inventory_items: Ordenar itens de inventário
+  order_items: IteOrdenar itens para
   person:
     one: pessoa
     other: pessoas

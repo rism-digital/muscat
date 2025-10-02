@@ -1,16 +1,5 @@
 ---
 en:
-  order_items: Order items for
-  index: Index
-  old_index: Old index
-  controls: Controls
-  move_up: Move up
-  move_down: Move down
-  move_to: Move to
-  go_back: Back
-  commit: Commit
-  inventory_items_show_count_html: Showing <strong>%{count}</strong> items
-  inventory_item_order_success: Items were re-ordered
   Composer: Composer
   Date: Date
   Images: Images
@@ -255,6 +244,7 @@ en:
   choose_folder: "(Please choose one)"
   clipboard:
     copied: Results copied to clipboard
+  commit: Commit
   compare_versions:
     date_message: Showing modified records from %{date}.
     diff: Diff
@@ -271,6 +261,7 @@ en:
     time_frame: Time frame
   composer_contains: Composer
   connected_libraries: Libraries
+  controls: Controls
   convert_to_print: Convert to print template
   cookies:
     dimiss: Accept and Close
@@ -523,6 +514,7 @@ en:
   from_existing_source: Create from existing source
   full_level: Full record
   gnd_not_found: The request to GND returned an empty record
+  go_back: Back
   go_to_top: Back to the top
   helpers:
     label:
@@ -554,10 +546,13 @@ en:
     interval: Interval
     query_type: 'Query Type:'
     refined_pitch: Refined Pitch Contour
+  index: Index
   institution:
     one: institution
     other: institutions
   internal_note_contains: Internal note
+  inventory_item_order_success: Items were re-ordered
+  inventory_items_show_count_html: Showing <strong>%{count}</strong> items
   is_in_folder: Is in folder
   is_part_of_collection: This %{class} %{id} is part of a collection, please delete 773
   job:
@@ -653,6 +648,9 @@ en:
   menu_workgroups: Workgroups
   menu_works: Works
   merge: Merge
+  move_down: Move down
+  move_to: Move to
+  move_up: Move up
   muscat_reindexing: Muscat is reindexing, search results may be incomplete
   new: Create
   new_digital_object_image: Attach a new image
@@ -676,7 +674,9 @@ en:
     rules: Rules
     weekly: Every week
   object: Object
+  old_index: Old index
   order_inventory_items: Order inventory items
+  order_items: Order items for
   person:
     one: person
     other: poeple

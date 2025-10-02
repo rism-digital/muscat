@@ -1,17 +1,5 @@
 ---
 ca:
-  order_items: Ordenar els elements
-  index: Índex
-  old_index: Índex anterior
-  controls: Controls
-  move_up: Amunt
-  move_down: Avall
-  move_to: Anar a
-  go_back: Tornar
-  commit: Aplicar
-  inventory_items_show_count_html: S'han mostrat <strong>%{count}</strong> elements
-  inventory_item_order_success: Els elements s'han reordenat
-  order_inventory_items: Ordenar els elements de l'inventari
   Composer: Compositor
   Date: Data
   Images: Imatges
@@ -253,6 +241,7 @@ ca:
   choose_folder: "(Trieu-ne una)"
   clipboard:
     copied: Resultats copiats al portapapers
+  commit: Aplicar
   compare_versions:
     date_message: Registres modificats des de %{date}.
     diff: Comparació
@@ -268,6 +257,7 @@ ca:
     time_frame: Període
   composer_contains: Compositor
   connected_libraries: Biblioteques
+  controls: Controls
   convert_to_print: Converteix-lo a plantilla d'obra impresa
   cookies:
     dimiss: Acceptar and tancar
@@ -519,6 +509,7 @@ ca:
   from_existing_source: Crea-la a partir d'una font ja existent
   full_level: Registre complet
   gnd_not_found: La sol·licitud a GND ha retornat un registre buit.
+  go_back: Tornar
   go_to_top: Torna a dalt
   helpers:
     label:
@@ -550,10 +541,13 @@ ca:
     interval: Interval
     query_type: 'Tipus de cerca:'
     refined_pitch: Precisió de nota alta
+  index: Índex
   institution:
     one: institució
     other: institucions
   internal_note_contains: Nota interna
+  inventory_item_order_success: Els elements s'han reordenat
+  inventory_items_show_count_html: S'han mostrat <strong>%{count}</strong> elements
   is_in_folder: És a la carpeta
   is_part_of_collection: Aquest %{class} %{id} forma part d'una col·lecció, cal eliminar la 773
   job:
@@ -649,6 +643,9 @@ ca:
   menu_workgroups: Grups de treball
   menu_works: Obres
   merge: Fusiona'n
+  move_down: Avall
+  move_to: Anar a
+  move_up: Amunt
   muscat_reindexing: Muscat està reindexant. Els resultats poden ser incomplets
   new: Crea'n
   new_digital_object_image: Adjuntar-hi una imatge
@@ -672,6 +669,9 @@ ca:
     rules: Regles
     weekly: Cada setmana
   object: Objecte
+  old_index: Índex anterior
+  order_inventory_items: Ordenar els elements de l'inventari
+  order_items: Ordenar els elements
   person:
     one: persona
     other: persones

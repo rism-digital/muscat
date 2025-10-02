@@ -1,17 +1,5 @@
 ---
 es:
-  order_items: Ordenar elementos para
-  index: Índice
-  old_index: Índice anterior
-  controls: Controles
-  move_up: Arriba
-  move_down: Abajo
-  move_to: Ir a
-  go_back: Volver
-  commit: Aplicar
-  inventory_items_show_count_html: <strong>%{count}</strong> elementos mostrados
-  inventory_item_order_success: Los elementos han sido reordenados
-  order_inventory_items: Ordenar elementos del inventario
   Composer: Compositor
   Date: Fecha
   Images: Imágenes
@@ -253,6 +241,7 @@ es:
   choose_folder: "(Escoja una)"
   clipboard:
     copied: Resultados copiados al portapapeles
+  commit: Aplicar
   compare_versions:
     date_message: Mostrar los records modificados de %{date}.
     diff: Comparación
@@ -268,6 +257,7 @@ es:
     time_frame: Marco temporal
   composer_contains: Compositor
   connected_libraries: Bibliotecas
+  controls: Controles
   convert_to_print: Convertir en plantilla de impresión
   cookies:
     dimiss: Aceptar y cerrar
@@ -519,6 +509,7 @@ es:
   from_existing_source: Crear a partir de un registro existente
   full_level: Registro completo
   gnd_not_found: La solicitud a GND devolvió un registro vacío.
+  go_back: Volver
   go_to_top: Volver al principio
   helpers:
     label:
@@ -550,10 +541,13 @@ es:
     interval: Intervalo
     query_type: 'Tipo de búsqueda:'
     refined_pitch: Contorno de alturas refinado
+  index: Índice
   institution:
     one: institución
     other: instituciones
   internal_note_contains: Nota interna
+  inventory_item_order_success: Los elementos han sido reordenados
+  inventory_items_show_count_html: "<strong>%{count}</strong> elementos mostrados"
   is_in_folder: Está en la carpeta
   is_part_of_collection: Esta %{class} %{id} forma parte de una colección, debe eliminar la 773 antes de poder borrarla
   job:
@@ -649,6 +643,9 @@ es:
   menu_workgroups: Grupos de trabajo
   menu_works: Obras
   merge: Fusionar
+  move_down: Abajo
+  move_to: Ir a
+  move_up: Arriba
   muscat_reindexing: Muscat está reindexando, los resultados de la búsqueda pueden estar incompletos
   new: Crear
   new_digital_object_image: Añadir una nueva imagen
@@ -672,6 +669,9 @@ es:
     rules: Reglas
     weekly: Cada semana
   object: Objeto
+  old_index: Índice anterior
+  order_inventory_items: Ordenar elementos del inventario
+  order_items: Ordenar elementos para
   person:
     one: persona
     other: personas

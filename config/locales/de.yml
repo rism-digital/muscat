@@ -1,17 +1,5 @@
 ---
 de:
-  order_items: Ordne Elemente für
-  index: Index
-  old_index: Alter Index
-  controls: Steuerung
-  move_up: Hoch
-  move_down: Runter
-  move_to: Gehe zu
-  go_back: Zurück
-  commit: Anwenden
-  inventory_items_show_count_html: <strong>%{count}</strong> Elemente angezeigt
-  inventory_item_order_success: Die Elemente wurden neu geordnet
-  order_inventory_items: Inventarelemente ordnen
   Composer: Komponist
   Date: Datum
   Images: Bilder
@@ -253,6 +241,7 @@ de:
   choose_folder: "(Bitte wählen Sie eines)"
   clipboard:
     copied: Ergebnisse in die Zwischenablage kopiert
+  commit: Anwenden
   compare_versions:
     date_message: Geänderte Datensätze anzeigen von %{date}.
     diff: Vergleich
@@ -268,6 +257,7 @@ de:
     time_frame: Zeitrahmen
   composer_contains: Komponist
   connected_libraries: Bibliotheken
+  controls: Steuerung
   convert_to_print: In Druckvorlage umwandeln
   cookies:
     dimiss: Akzeptieren und schließen
@@ -519,6 +509,7 @@ de:
   from_existing_source: Erstellen aus vorhandener Quelle
   full_level: Vollkatalogisat
   gnd_not_found: Die Anfrage an GND ergab keinen Eintrag
+  go_back: Zurück
   go_to_top: Zurück zum Anfang
   helpers:
     label:
@@ -550,10 +541,13 @@ de:
     interval: Intervall
     query_type: 'Art der Anfrage:'
     refined_pitch: Melodisches Profil (fein)
+  index: Index
   institution:
     one: Institution
     other: Institutionen
   internal_note_contains: Interner Hinweis
+  inventory_item_order_success: Die Elemente wurden neu geordnet
+  inventory_items_show_count_html: "<strong>%{count}</strong> Elemente angezeigt"
   is_in_folder: Ist im Ordner
   is_part_of_collection: Diese %{class} %{id} ist Teil einer Sammlung, Sie müssen die 773 entfernen, bevor Sie sie löschen können
   job:
@@ -649,6 +643,9 @@ de:
   menu_workgroups: Benutzergruppen
   menu_works: Werktitel
   merge: Umhängen
+  move_down: Runter
+  move_to: Gehe zu
+  move_up: Hoch
   muscat_reindexing: Muscat wird neu indiziert, Suchergebnisse können unvollständig sein
   new: Erstellen
   new_digital_object_image: Neues Bild hinzufügen
@@ -672,6 +669,9 @@ de:
     rules: Regeln
     weekly: Jede Woche
   object: Objekt
+  old_index: Alter Index
+  order_inventory_items: Inventarelemente ordnen
+  order_items: Ordne Elemente für
   person:
     one: Person
     other: Personen

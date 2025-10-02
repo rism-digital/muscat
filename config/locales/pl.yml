@@ -1,17 +1,5 @@
 ---
 pl:
-  order_items: Porządkuj elementy dla
-  index: Indeks
-  old_index: Poprzedni indeks
-  controls: Sterowanie
-  move_up: Góra
-  move_down: Dół
-  move_to: Idź do
-  go_back: Wstecz
-  commit: Zastosuj
-  inventory_items_show_count_html: Wyświetlono <strong>%{count}</strong> elementów
-  inventory_item_order_success: Elementy zostały uporządkowane
-  order_inventory_items: Porządkuj elementy inwentarza
   Composer: Kompozytor
   Date: Data
   Images: Obrazy
@@ -253,6 +241,7 @@ pl:
   choose_folder: "(Proszę wybrać jeden.)"
   clipboard:
     copied: Wyniki skopiowane do schowka
+  commit: Zastosuj
   compare_versions:
     date_message: Wyświetlanie zmodyfikowanych rekordów z %{date}.
     diff: Porównaj
@@ -268,6 +257,7 @@ pl:
     time_frame: Ramy czasowe
   composer_contains: Kryterium kompozytora
   connected_libraries: Biblioteki
+  controls: Sterowanie
   convert_to_print: Konwersja do szablonu wydruku
   cookies:
     dimiss: Zaakceptuj i zamknij
@@ -519,6 +509,7 @@ pl:
   from_existing_source: Utwórz z istniejącego źródła
   full_level: Rekord pełny
   gnd_not_found: Żądanie do GND zwróciło pusty rekord.
+  go_back: Wstecz
   go_to_top: Powrót na górę
   helpers:
     label:
@@ -550,10 +541,13 @@ pl:
     interval: Interwał
     query_type: 'Rodzaj zapytania:'
     refined_pitch: Wyszukiwanie po linii melodycznej z wyłączeniem stosunków interwałowych
+  index: Indeks
   institution:
     one: Instytucja
     other: Instytucje
   internal_note_contains: Notatka wewnętrzna
+  inventory_item_order_success: Elementy zostały uporządkowane
+  inventory_items_show_count_html: Wyświetlono <strong>%{count}</strong> elementów
   is_in_folder: Jest w folderze …
   is_part_of_collection: Ta %{class} %{id} jest częścią kolekcji, musisz usunąć 773 przed jej usunięciem
   job:
@@ -649,6 +643,9 @@ pl:
   menu_workgroups: Grupy robocze
   menu_works: Dzieła
   merge: Scal
+  move_down: Dół
+  move_to: Idź do
+  move_up: Góra
   muscat_reindexing: Muscat reindeksuje, wyniki wyszukiwania mogą być niekompletne
   new: Utwórz
   new_digital_object_image: Dołącz nowy obraz
@@ -672,6 +669,9 @@ pl:
     rules: Regulamin
     weekly: Co tydzień
   object: Obiekt
+  old_index: Poprzedni indeks
+  order_inventory_items: Porządkuj elementy inwentarza
+  order_items: Porządkuj elementy dla
   person:
     one: Osoba
     other: Osoby
