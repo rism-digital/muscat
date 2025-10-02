@@ -71,7 +71,7 @@ class Ability
       if user.has_role?(:inventory_cataloger)
         can :update, InventoryItem, :wf_owner => user.id
         can [:read, :create], InventoryItem
-        can :reorder_inventory_items, Source
+        can :order_inventory_items, Source
         can :do_reorder_inventory_items, Source
       end
 
