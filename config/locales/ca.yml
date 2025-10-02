@@ -1,5 +1,10 @@
 ---
 ca:
+  source_converted_with_holding: "Font convertida a versió impresa, s’ha creat el holding %{holding_id}."
+  source_converted: "Font convertida a versió impresa"
+  source_not_manuscript: "La font no és un manuscrit ni una col·lecció de manuscrits"
+  convert_to_print_template: "Convertir a la plantilla per a una edició impresa"
+  unauthorized: "No autoritzat"
   Composer: Compositor
   Date: Data
   Images: Imatges

@@ -1,5 +1,10 @@
 ---
 de:
+  source_converted_with_holding: "Quelle wurde in Druckform konvertiert, Holding %{holding_id} erstellt."
+  source_converted: "Quelle wurde in Druckform konvertiert"
+  source_not_manuscript: "Die Quelle ist kein Manuskript oder keine Manuskriptsammlung"
+  convert_to_print_template: "In die Vorlage für eine Druckausgabe konvertieren"
+  unauthorized: "Nicht autorisiert"
   Composer: Komponist
   Date: Datum
   Images: Bilder

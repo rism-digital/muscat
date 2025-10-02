@@ -214,11 +214,11 @@ ActiveAdmin.register Source do
 
     if resource.record_type != MarcSource::RECORD_TYPES[:collection] && resource.record_type != MarcSource::RECORD_TYPES[:source]
       redirect_to action: :show
-      flash[:error] = "Source is not a manuscript or manuscript collection"
+      flash[:error] = I18n.t(:source_not_manuscript)
     end
 
 
-    @page_title = "Convert to print template"
+    @page_title = I18n.t(:convert_to_print_template)
 
   end
   
@@ -227,12 +227,12 @@ ActiveAdmin.register Source do
 
     if resource.record_type != MarcSource::RECORD_TYPES[:collection] && resource.record_type != MarcSource::RECORD_TYPES[:source]
       redirect_to action: :show
-      flash[:error] = "Source is not a manuscript or manuscript collection"
+      flash[:error] = I18n.t(:source_not_manuscript)
     end
 
     if !(@current_user.has_role?(:editor) || @current_user.has_role?(:admin))
       redirect_to action: :show
-      flash[:error] = "Unauthorized"
+      flash[:error] = I18n.t(:unauthorized)
     end
 
     param_tags = params.permit(:tag => {})[:tag]
@@ -255,9 +255,9 @@ ActiveAdmin.register Source do
 
     redirect_to action: :show
     if holding_id
-      flash[:message] = "Source converted to print, holding #{holding_id} created."
+      flash[:message] = I18n.t(:source_converted_with_holding, holding_id: holding_id)
     else
-      flash[:message] = "Source converted to print."
+      flash[:message] = I18n.t(:source_converted)
     end
   end
 

@@ -1,5 +1,10 @@
 ---
 en:
+  source_converted_with_holding: "Source converted to print, holding %{holding_id} created."
+  source_converted: "Source converted to print"
+  source_not_manuscript: "Source is not a manuscript or manuscript collection"
+  convert_to_print_template: "Convert to print template"
+  unauthorized: "Unauthorized"
   Composer: Composer
   Date: Date
   Images: Images

@@ -1,5 +1,10 @@
 ---
 it:
+  source_converted_with_holding: "Fonte convertita in stampa, holding %{holding_id} creato."
+  source_converted: "Fonte convertita in stampa"
+  source_not_manuscript: "La fonte non è un manoscritto o una collezione di manoscritti"
+  convert_to_print_template: "Converti nel template per un’edizione a stampa"
+  unauthorized: "Non autorizzato"
   Composer: Compositore
   Date: Data
   Images: Immagini

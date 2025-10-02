@@ -1,5 +1,10 @@
 ---
 pt:
+  source_converted_with_holding: "Fonte convertida para impressão, holding %{holding_id} criado."
+  source_converted: "Fonte convertida para impressão"
+  source_not_manuscript: "A fonte não é um manuscrito nem uma coleção de manuscritos"
+  convert_to_print_template: "Converter para o modelo de uma edição impressa"
+  unauthorized: "Não autorizado"
   Composer: Compositor
   Date: Data
   Images: Imagens

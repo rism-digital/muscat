@@ -1,5 +1,10 @@
 ---
 pl:
+  source_converted_with_holding: "Źródło zostało przekonwertowane na wersję drukowaną, utworzono holding %{holding_id}."
+  source_converted: "Źródło zostało przekonwertowane na wersję drukowaną"
+  source_not_manuscript: "Źródło nie jest rękopisem ani zbiorem rękopisów"
+  convert_to_print_template: "Konwertuj do szablonu wydania drukowanego"
+  unauthorized: "Brak autoryzacji"
   Composer: Kompozytor
   Date: Data
   Images: Obrazy
