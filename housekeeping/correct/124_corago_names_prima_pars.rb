@@ -115,7 +115,10 @@ def create_record(records)
 
   years_free = [principal_entry["DATA_NAS_LIBERA"], principal_entry["DATA_MOR_LIBERA"]].compact.join("-")
 
-  new_marc.insert("100", a: fullname, d: years, y: years_free)
+  # FIXME
+  #d: years
+  # For the moment do not insert the coded years
+  new_marc.insert("100", a: fullname, y: years_free)
 
   if principal_entry["LOC_NAS_R"]
     loc = principal_entry["LOC_NAS_R"].strip

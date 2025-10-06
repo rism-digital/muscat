@@ -413,6 +413,21 @@ table.muscat_index_header {
   border-radius: 5px;
 }
 
+#search_status_sidebar_section .clear_filters_btn {
+  border-radius: 4px;
+  display: inline-block;
+  font-size: 100%;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  line-height: 12px;
+  margin-right: 3px;
+  margin-top: 10px;
+  padding: 7px 16px 6px;
+  text-decoration: none;
+  -webkit-font-smoothing: antialiased;
+  background: #FFFFFF;
+  border: solid 1px #c7c7c7;
+  padding: 7px 16px 8px;
+}
 
 .list_striped tbody tr:nth-child(odd) {
   background-color: #f9f9f9;
@@ -494,3 +509,4 @@ table.muscat_index_header {
 .index_table.list_striped tbody tr {
   transition: background-color 0.3s ease; /* also fade hover/striping nicely */
 }
+

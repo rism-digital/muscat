@@ -6,7 +6,7 @@ module ActiveAdmin
         super :id => "footer"
         super :style => "text-align: left;"
          
-        tab = @arbre_context.assigns[:tab_id_for_footer] rescue tab = "global"
+        tab = controller.view_assigns["tab_id_for_footer"] rescue tab = "global"
 
         div do
           small "Muscat #{Date.today.year} #{Git::VERSION} (#{Git::REVISION}) |" 

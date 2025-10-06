@@ -61,6 +61,7 @@ class InventoryItem < ApplicationRecord
   composed_of_reimplementation :marc, :class_name => "MarcInventoryItem", :mapping => %w(marc_source to_marc)
 
   before_save :normalize_chars!, :set_object_fields
+  before_create :add_source_order
   after_create :scaffold_marc, :fix_ids
   after_save :update_links, :reindex
   after_initialize :after_initialize
@@ -102,6 +103,10 @@ class InventoryItem < ApplicationRecord
   
   def suppress_update_77x
     self.suppress_update_77x_trigger = true
+  end
+
+  def add_source_order
+    self.source_order = self.source.inventory_items.count
   end
 
   def fix_ids

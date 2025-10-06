@@ -70,7 +70,7 @@ ActiveAdmin.register_page "Dashboard" do
       limit = params[:dashboard_quantity].to_i
     end
 
-    @file = @arbre_context.assigns[:file]
+    @file = controller.view_assigns["file"]
     if @file
       panel I18n.t('dashboard.news') do
         render 'muscat_news/' + @file

@@ -268,13 +268,9 @@ ActiveAdmin.register DigitalObject do
   
   form :html => {:multipart => true} do |f|
     f.inputs do
-      is_incipit = f.object.new_record? ? @arbre_context.assigns[:attachment_type] == :incipit : f.object.incipits?
+      is_incipit = f.object.new_record? ? controller.view_assigns["attachment_type"] == :incipit : f.object.incipits?
       if is_incipit
-        if f.object.new_record?
-          f.input :description, label: I18n.t(:filter_incipit_number), as: :select, multiple: false, include_blank: false, collection: arbre_context.assigns[:incipits]
-        else
-          f.input :description, label: I18n.t(:filter_incipit_number), as: :select, multiple: false, include_blank: false, collection: arbre_context.assigns[:incipits]
-        end
+        f.input :description, label: I18n.t(:filter_incipit_number), as: :select, multiple: false, include_blank: false, collection: controller.view_assigns["incipits"]
         f.input :attachment, as: :file, :label => I18n.t(:filter_mei)
       else
         f.input :description, :label => I18n.t(:filter_description)
