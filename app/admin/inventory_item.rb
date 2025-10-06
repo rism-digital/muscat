@@ -231,7 +231,7 @@ ActiveAdmin.register InventoryItem do
   end
   
   sidebar :actions, :only => :show do
-    render("activeadmin/section_sidebar_show")
+    render :partial => "activeadmin/section_sidebar_show", :locals => { :item => inventory_item }
   end
 
   
