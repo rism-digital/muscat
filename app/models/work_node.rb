@@ -4,6 +4,7 @@ class WorkNode < ApplicationRecord
   include AuthorityMerge
   include CommentsCleanup
   include ComposedOfReimplementation
+  include NormalizeChars
 
   # class variables for storing the user name and the event from the controller
   @last_user_save
@@ -37,7 +38,7 @@ class WorkNode < ApplicationRecord
   attr_accessor :suppress_recreate_trigger
   attr_accessor :suppress_update_count_trigger
 
-  before_save :set_object_fields
+  before_save :normalize_chars!, :set_object_fields
   after_create :scaffold_marc, :fix_ids
   after_save :update_links, :reindex
   after_initialize :after_initialize

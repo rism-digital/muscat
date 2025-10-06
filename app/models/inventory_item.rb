@@ -2,6 +2,7 @@ class InventoryItem < ApplicationRecord
   include ForeignLinks
   include CommentsCleanup
   include ComposedOfReimplementation
+  include NormalizeChars
   resourcify
 
   # class variables for storing the user name and the event from the controller
@@ -59,7 +60,7 @@ class InventoryItem < ApplicationRecord
 
   composed_of_reimplementation :marc, :class_name => "MarcInventoryItem", :mapping => %w(marc_source to_marc)
 
-  before_save :set_object_fields
+  before_save :normalize_chars!, :set_object_fields
   after_create :scaffold_marc, :fix_ids
   after_save :update_links, :reindex
   after_initialize :after_initialize

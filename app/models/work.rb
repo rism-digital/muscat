@@ -5,6 +5,7 @@ class Work < ApplicationRecord
   include CommentsCleanup
   include ComposedOfReimplementation
   include ThroughAssociations
+  include NormalizeChars
   
   # class variables for storing the user name and the event from the controller
   @last_user_save
@@ -85,7 +86,7 @@ class Work < ApplicationRecord
   attr_accessor :suppress_scaffold_marc_trigger
   attr_accessor :suppress_recreate_trigger
 
-  before_save :set_object_fields
+  before_save :set_object_fields, :normalize_chars!
   after_create :scaffold_marc, :fix_ids
   after_save :update_links, :reindex
   after_initialize :after_initialize

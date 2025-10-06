@@ -14,6 +14,7 @@ class LiturgicalFeast < ApplicationRecord
   include CommentsCleanup
   include ThroughAssociations
   include AutoStripStrings
+  include NormalizeChars
   
   #has_and_belongs_to_many(:referring_sources, class_name: "Source", join_table: "sources_to_liturgical_feasts")
   has_many :source_liturgical_feast_relations, class_name: "SourceLiturgicalFeastRelation"
@@ -36,6 +37,7 @@ class LiturgicalFeast < ApplicationRecord
   before_destroy :check_dependencies, :cleanup_comments
   
   #before_create :generate_new_id
+  before_save :normalize_chars!
   after_save :reindex
   
   attr_accessor :suppress_reindex_trigger

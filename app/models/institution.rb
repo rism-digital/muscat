@@ -19,6 +19,7 @@ class Institution < ApplicationRecord
   include CommentsCleanup
   include ComposedOfReimplementation
   include ThroughAssociations
+  include NormalizeChars
 
   resourcify
   
@@ -107,6 +108,7 @@ class Institution < ApplicationRecord
   before_destroy :check_dependencies, :cleanup_comments, :update_links
   
   #before_create :generate_new_id
+  before_save :normalize_chars!
   after_save :update_links, :reindex
   after_create :scaffold_marc, :fix_ids, :update_workgroups
   after_initialize :after_initialize
