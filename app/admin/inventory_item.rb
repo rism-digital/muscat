@@ -47,6 +47,7 @@ ActiveAdmin.register InventoryItem do
       @editor_profile = EditorConfiguration.get_show_layout @item
       @editor_validation = EditorValidation.get_default_validation(@item)
       @page_title = "#{I18n.t(:edit)} #{@item.formatted_title}"
+      @total_items = @item.source.inventory_items.count
       
       # FIXME
       #if cannot?(:edit, @item)
@@ -146,6 +147,10 @@ ActiveAdmin.register InventoryItem do
       @parent_object_id = params[:source_id]
       @parent_object_type = "Source" #hardcoded for now
       
+      @total_items = source.inventory_items.count
+      @inventory_item.source_order = @total_items + 1
+      @inventory_item.source = source
+
       # Apply the right default file
       default_file = "default.marc"
       default_file = "inventory_edition_default.marc" if source.get_record_type == :inventory_edition
@@ -226,7 +231,7 @@ ActiveAdmin.register InventoryItem do
   end
   
   sidebar :actions, :only => :show do
-    render :partial => "activeadmin/section_sidebar_show", :locals => { :item => @arbre_context.assigns[:item] }
+    render("activeadmin/section_sidebar_show")
   end
 
   
@@ -235,9 +240,14 @@ ActiveAdmin.register InventoryItem do
   ##########
   
   sidebar :sections, :only => [:edit, :new, :update] do
-    render("editor/section_sidebar") # Calls a partial
+    render("editor/section_sidebar")
+  end
+
+  sidebar :inventory_info do
+    #@total_items = controller.view_assigns["total_items"]
+    render("inventory_info_sidebar")
   end
   
   form :partial => "editor/edit_wide"
-  
+
 end
