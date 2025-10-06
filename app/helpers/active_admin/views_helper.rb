@@ -171,13 +171,20 @@ module ActiveAdmin::ViewsHelper
   end
   
   # formats the string for the source show title
-  def active_admin_source_show_title( composer, std_title, id, record_type )
+  def active_admin_source_show_title( composer, std_title, id, record_type, wf_stage )
     record_type = record_type ? "#{I18n.t('record_types.' + record_type.to_s)} " : ""
-    return "#{record_type}[#{id}]" if !composer or std_title
-    return "#{record_type}[#{id}]" if composer.empty? and std_title.empty?
-    return "#{std_title} - #{record_type}[#{id}]" if composer.empty? and !std_title.empty?
-    return "#{composer} - #{record_type}[#{id}]" if (std_title.nil? or std_title.empty?)
-    return "#{composer} : #{std_title} - #{record_type}[#{id}]"
+    if !composer || std_title
+      title_display = "#{record_type}[#{id}]"
+    elsif composer.empty? && std_title.empty?
+      title_display = "#{record_type}[#{id}]"
+    elsif composer.empty? && !std_title.empty?
+      title_display = "#{std_title} - #{record_type}[#{id}]"
+    elsif std_title.nil? || std_title.empty?
+      title_display = "#{composer} - #{record_type}[#{id}]"
+    else
+      title_display = "#{composer} : #{std_title} - #{record_type}[#{id}]"
+    end
+    title_display += " #{get_wf_stage_tag(wf_stage)}"
   end
   
   # formats the string for the holding show title
@@ -189,20 +196,32 @@ module ActiveAdmin::ViewsHelper
   end
   
   # formats the string for the source show title
-  def active_admin_auth_show_title( val1, val2, id )
+  def active_admin_auth_show_title( val1, val2, id, wf_stage )
     val1 = "" if !val1
     val2 = "" if !val2
-    return "[#{id}]" if val1.empty? and val2.empty?
-    return "#{val2} - [#{id}]" if val1.empty? and !val2.empty?
-    return "#{val1} - [#{id}]" if (val2.nil? or val2.empty?)
-    return "#{val1} : #{val2} - [#{id}]"
+    if val1.empty? && val2.empty?
+      title_display = "[#{id}]"
+    elsif val1.empty? && !val2.empty?
+      title_display = "#{val2} - [#{id}]"
+    elsif val2.nil? || val2.empty?
+      title_display = "#{val1} - [#{id}]"
+    else
+      title_display = "#{val1} : #{val2} - [#{id}]"
+    end
+    title_display += " #{get_wf_stage_tag(wf_stage)}"
   end
  
-  def active_admin_publication_show_title( author, title, id )
-    return "[#{id}]" if author&.empty? and title&.empty?
-    return "#{title} [#{id}]" if author&.empty? and !title&.empty?
-    return "#{author} [#{id}]" if (title.nil? or title&.empty?)
-    return "#{author} : #{title} [#{id}]"
+  def active_admin_publication_show_title( author, title, id, wf_stage )
+    if author&.empty? && title&.empty?
+      title_display = "[#{id}]"
+    elsif author.empty? && !title&.empty?
+      title_display = "#{title} [#{id}]"
+    elsif title.nil? || title&.empty?
+      title_display = "#{author} [#{id}]"
+    else
+      title_display = "#{author} : #{title} [#{id}]"
+    end
+    title_display += " #{get_wf_stage_tag(wf_stage)}"
   end
   
   def active_admin_digital_object_show_title( description, id )

@@ -134,7 +134,7 @@ ActiveAdmin.register LiturgicalFeast do
   ## Show ##
   ##########
   
-  show do
+  show :title => proc{ active_admin_auth_show_title(@liturgical_feast.name, nil, @liturgical_feast.id, @liturgical_feast.wf_stage).html_safe } do
     active_admin_navigation_bar( self )
     render('jobs/jobs_monitor')
     attributes_table do
@@ -163,7 +163,7 @@ ActiveAdmin.register LiturgicalFeast do
   ## Edit ##
   ##########
   
-  form do |f|
+  form :title => proc{ active_admin_auth_show_title(I18n.t(:edit), @liturgical_feast.name, @liturgical_feast.id, @liturgical_feast.wf_stage).html_safe } do |f|
     f.inputs do
       f.input :name, :label => (I18n.t :filter_name), input_html: {data: {trigger: triggers_from_hash({save: ["referring_sources", "referring_works"]}) }}
       f.input :alternate_terms, :label => (I18n.t :filter_alternate_terms)
