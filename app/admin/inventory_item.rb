@@ -48,6 +48,7 @@ ActiveAdmin.register InventoryItem do
       @editor_validation = EditorValidation.get_default_validation(@item)
       @page_title = "#{I18n.t(:edit)} #{@item.formatted_title}"
       @total_items = @item.source.inventory_items.count
+      @display_position = @item.source_order + 1
       
       # FIXME
       #if cannot?(:edit, @item)
@@ -109,6 +110,9 @@ ActiveAdmin.register InventoryItem do
       @editor_validation = EditorValidation.get_default_validation(@inventory_item)
       @prev_item, @next_item, @prev_page, @next_page, @nav_positions = InventoryItem.near_items_as_ransack(params, @inventory_item)
 
+      @total_items = @item.source.inventory_items.count
+      @display_position = @item.source_order + 1
+
       @jobs = @inventory_item.delayed_jobs
 
       respond_to do |format|
@@ -148,7 +152,8 @@ ActiveAdmin.register InventoryItem do
       @parent_object_type = "Source" #hardcoded for now
       
       @total_items = source.inventory_items.count
-      @inventory_item.source_order = @total_items + 1
+      @inventory_item.source_order = @total_items
+      @display_position = @inventory_item.source_order + 1
       @inventory_item.source = source
 
       # Apply the right default file
@@ -233,7 +238,6 @@ ActiveAdmin.register InventoryItem do
   sidebar :actions, :only => :show do
     render :partial => "activeadmin/section_sidebar_show", :locals => { :item => inventory_item }
   end
-
   
   ##########
   ## Edit ##
@@ -243,11 +247,14 @@ ActiveAdmin.register InventoryItem do
     render("editor/section_sidebar")
   end
 
-  sidebar :inventory_info do
+  # Everyone gets this!
+  # It has to be here so it is shown in the right position
+  sidebar :inventory_info, except: [:index] do
     #@total_items = controller.view_assigns["total_items"]
     render("inventory_info_sidebar")
   end
-  
+
   form :partial => "editor/edit_wide"
+
 
 end
