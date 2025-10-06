@@ -57,7 +57,7 @@ groups:
     all_tags: 
     - "594"
     all_tag_templates: 
-      "594": marc_show/show_distribution_all
+      "594": marc_show/show_distribution
       
   show_material: 
     all_tags: 

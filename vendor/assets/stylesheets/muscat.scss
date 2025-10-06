@@ -391,6 +391,7 @@ body.index #sidebar {
     #search_status_sidebar_section { order: 1; }
     #filters_sidebar_section { order: 2; }
     #actions_sidebar_section { order: 3; }
+    #imports_sidebar_section { order: 4; }
 }
 
 table.muscat_index_header {
@@ -427,3 +428,85 @@ table.muscat_index_header {
   border: solid 1px #c7c7c7;
   padding: 7px 16px 8px;
 }
+
+.list_striped tbody tr:nth-child(odd) {
+  background-color: #f9f9f9;
+}
+
+.list_striped tbody tr:hover {background-color: #ddd;}
+
+.inv-orig-idx {
+  color:#999;
+}
+
+.reorder-cell {
+  white-space: nowrap;
+}
+
+.reorder-input {
+  width: 55px;
+  padding: 2px 4px;
+  font-size: 12px;
+  text-align: center;
+  margin-right: 4px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.reorder-btn {
+  display: inline-block;
+  font-size: 12px;
+  line-height: 1.2;
+  padding: 2px 6px;
+  margin: 0 2px;
+  border: 1px solid #aaa;
+  border-radius: 4px;
+  background: #f7f7f7;
+  color: #333;
+  cursor: pointer;
+  transition: background 0.15s ease, border-color 0.15s ease;
+}
+
+.reorder-btn:hover {
+  background: #e8e8e8 !important;
+}
+
+// The above is overridden by this
+//button:not(.disabled):hover {
+//  background: #e8e8e8;
+//}
+
+.reorder-btn.before {
+  background: #eef6ff;
+  border-color: #a8c8f0;
+  color: #0056b3;
+}
+
+.reorder-btn.goto {
+  background: #eef6ff;
+  border-color: #a8c8f0;
+  color: #0056b3;
+}
+
+.reorder-btn.after {
+  background: #eefaf2;
+  border-color: #9cd3b4;
+  color: #1b6d34;
+}
+
+.reorder-btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+/* highlight when moved */
+.just-moved {
+  background-color: #ffcccc !important; /* light red */
+  transition: background-color 5s ease; /* smooth fade over 5s */
+}
+
+/* at the end of the transition, we want to end up neutral */
+.index_table.list_striped tbody tr {
+  transition: background-color 0.3s ease; /* also fade hover/striping nicely */
+}
+

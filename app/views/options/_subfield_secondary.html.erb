@@ -6,6 +6,10 @@
 		marc_subfield_m = marc_subfield || MarcNode.new(@item.marc.get_model)
 	else
 		marc_subfield_m = marc_tag.fetch_first_by_tag(master) || MarcNode.new(@item.marc.get_model)
+		if marc_subfield_m&.content == "IMPORT-NEW"
+			marc_subfield_m.content = ""
+			force_new = true
+		end
 	end 
 
 	triggers = nil
@@ -20,7 +24,8 @@
 <%- field = params.has_key?("field") ? params['field'] : "id" %>
 <%- allow_new = params.has_key?("allow_new") ? params['allow_new'] : false %>
 
-<%- disabled =  params.has_key?("only_new_window") ? true : false %>
+<%- only_new_window = params.has_key?("only_new_window") ? true : false %>
+<%- read_only = params.has_key?("read_only") && !(@current_user.has_role?(:editor) || @current_user.has_role?(:admin)) ? true : false %>
 <%# validation plugin REQUIRES a name. Make it random as we never call it elsewhere %>
 <%- check_name = "confirmation_uniq_" + SecureRandom.hex(5)%>
 
@@ -46,7 +51,18 @@ end
 name_tag_subfield = "#{tag_name}#{subfield}"
 %>
 
-<input type="hidden" class="autocomplete_target serialize_marc <%=validate_class_master%>" data-tag="<%=tag_name%>" data-subfield="<%=master%>" data-field="<%=field%>" value="<%=marc_subfield_m.content %>" <%=name_tag_master%> data-allow-new="<%=allow_new%>" data-has-links-to="<%=has_links_to%>" data-preserve-foreign-value="<%=preserve_foreign_value%>">
+<%
+	# We need to import data, simulate the
+	# "confirm" checkbox
+	if force_new
+		validate_class_master = ""
+		hidden_serialize = ""
+	else
+		hidden_serialize = "serialize_marc"
+	end
+%>
+
+<input type="hidden" class="autocomplete_target <%=hidden_serialize%> <%=validate_class_master%>" data-tag="<%=tag_name%>" data-subfield="<%=master%>" data-field="<%=field%>" value="<%=marc_subfield_m.content %>" <%=name_tag_master%> data-allow-new="<%=allow_new%>" data-has-links-to="<%=has_links_to%>" data-preserve-foreign-value="<%=preserve_foreign_value%>">
 
 <%
 options = {
@@ -56,8 +72,10 @@ options = {
 	:"data-field"=>"#{tag_name}",
 	:"min-length" => 1
 }
+	## When we iport data show it as if the falidation is applied
+	options[:class] += " serialize_marc new_autocomplete" if force_new
 	options[:"data-trigger"] = triggers if triggers
-	options[:disabled] = "disabled" if disabled || @restricted=='disabled'
+	options[:disabled] = "disabled" if only_new_window || read_only || @restricted == 'disabled'
 %>
 
 <%
@@ -66,7 +84,15 @@ options = {
 %>
 <%= autocomplete_field_tag "#{tag_name}#{subfield}-#{SecureRandom.hex(5)}", marc_subfield.looked_up_content, ac_path, options %>
 
+<%if force_new %>
+<div class="checkbox_confirmation new_autocomplete">
+<% else %>
 <div class="checkbox_confirmation" style="display: none;">
-	<input class="creation_checkbox" type="checkbox" data-check="false" name="<%=check_name%>"/>
+<% end %>
+	<%if force_new%>
+		<input class="creation_checkbox" type="checkbox" data-check="true" name="<%=check_name%>" checked="true"/>
+	<% else %>
+		<input class="creation_checkbox" type="checkbox" data-check="false" name="<%=check_name%>"/>
+	<%end%>
 	<span id="<%=check_name%>-label">Confirm the insertion of a new value</span>
 </div>

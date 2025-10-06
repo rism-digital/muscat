@@ -13,6 +13,16 @@
         disabled = true
     end
 
+    # Special case: cataloguers cannot unpublish published records
+    if cannot?(:unpublish, @item) && (!@item.new_record? && @item.wf_stage == "published")
+        disabled = true
+    end
+
+    # Turn it back on for MY records that have been created in less than one hour
+    if !@item.new_record? && @item.created_at > 10.minute.ago && can?(:edit, @item)
+        disabled = false
+    end
+
 
     # unpublished shares the same enum value (0) as inprogress.
     # We keep the key in the enum so older versions can still be read,

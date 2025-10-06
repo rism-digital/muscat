@@ -12,7 +12,7 @@ class Ability
       can :manage, :all
       can :reindex, [Publication, Institution, LiturgicalFeast, Person, Place, StandardTerm, StandardTitle, Folder]
       can :publish, [Folder]
-      can :unpublish, [Folder]
+      can :unpublish, :all
       can :resave, :all
 
     ##########
@@ -39,9 +39,11 @@ class Ability
 
       can :prepare_convert, Source
       can :convert_manuscript, Source
+      can :order_inventory_items, Source
+      can :do_reorder_inventory_items, Source
 
       can :manage, Folder#, :wf_owner => user.id
-      can :unpublish, [Folder]
+      can :unpublish, :all
       can [:read, :create, :destroy], ActiveAdmin::Comment
       can :read, ActiveAdmin::Page, :name => "Dashboard"
       can :read, ActiveAdmin::Page, :name => "guidelines"
@@ -69,6 +71,8 @@ class Ability
       if user.has_role?(:inventory_cataloger)
         can :update, InventoryItem, :wf_owner => user.id
         can [:read, :create], InventoryItem
+        can :order_inventory_items, Source
+        can :do_reorder_inventory_items, Source
       end
 
       can :update, [Publication, Institution, LiturgicalFeast, Person, Place, StandardTerm, StandardTitle, Holding, WorkNode], :wf_owner => user.id
@@ -90,7 +94,7 @@ class Ability
       can [:publish], Folder do |folder|
         user.can_publish?(folder)
       end
-      cannot [:unpublish, :reindex], Folder
+      cannot [:unpublish, :reindex], :all
       can [:read, :create, :destroy], ActiveAdmin::Comment
       can [:update], ActiveAdmin::Comment, :author_id => user.id
       can [:read, :create], Source

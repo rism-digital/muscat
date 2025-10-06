@@ -1,0 +1,10 @@
+<%= render 'inventory_info_text'%>
+
+<%if !@item.new_record? && can?(:edit, InventoryItem)%>
+<ul>
+	<li class="muscat_icon_link">
+		<%= link_to("#{I18n.t :order_inventory_items}", order_inventory_items_admin_source_path(@item.source),
+			:class => "muscat_icon_link muscat_icon_link_order") %>
+	</li>
+</ul>
+<%end%>	

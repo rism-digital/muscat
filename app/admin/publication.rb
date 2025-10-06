@@ -118,6 +118,18 @@ ActiveAdmin.register Publication do
     def new
       flash.now[:error] = I18n.t(params[:validation_error], term: params[:validation_term]) if params[:validation_error]
       @publication = Publication.new
+      converted = false
+
+      if params.include?(:upload)
+        file = params.require(:upload).fetch(:file)
+        ext = File.extname(file.original_filename)
+        if ext == ".bib" || ext == ".bibtex"
+          converted = Converters::BibtexImporter::bibtex2publication(file.read)
+        elsif ext == ".ris"
+          converted = Converters::RisImporter::ris2publication(file.read)
+        end
+      end
+
       if params[:existing_title] and !params[:existing_title].empty?
         # Check that the record does exist...
         begin
@@ -132,7 +144,14 @@ ActiveAdmin.register Publication do
         new_marc.insert_duplicated_from("981", base_item.id.to_s)
         @publication.marc = new_marc
       else
-        new_marc = MarcPublication.new(File.read(ConfigFilePath.get_marc_editor_profile_path("#{Rails.root}/config/marc/#{RISM::MARC}/publication/default.marc")))
+
+        if converted
+          marc_file = converted
+        else
+          marc_file = File.read(ConfigFilePath.get_marc_editor_profile_path("#{Rails.root}/config/marc/#{RISM::MARC}/publication/default.marc"))
+        end
+
+        new_marc = MarcPublication.new(marc_file)
         new_marc.load_source false # this will need to be fixed
         @publication.marc = new_marc
       end
@@ -223,20 +242,24 @@ ActiveAdmin.register Publication do
     column (I18n.t :filter_title_short), :short_name
     column (I18n.t :filter_title), :title
     column (I18n.t :filter_author), :author
-    column (I18n.t :work_catalogue), :work_catalogue, sortable: :work_catalogue_order do  |cat|
+    column (I18n.t :"work_catalog"), :work_catalogue, sortable: :work_catalogue_order do  |cat|
       status_tag(cat.work_catalogue, label: I18n.t('work_catalogue_tags.' + (cat.work_catalogue != nil ? cat.work_catalogue : ""), locale: :en))
     end if can?(:edit, Work)
     column (I18n.t :filter_sources), :src_count_order, sortable: :src_count_order do |element|
-			active_admin_stored_from_hits(@arbre_context.assigns[:hits], element, :src_count_order)
+			active_admin_stored_from_hits(controller.view_assigns["hits"], element, :src_count_order)
 		end
     column (I18n.t :filter_authorities), :referring_objects_order, sortable: :referring_objects_order do |element|
-			active_admin_stored_from_hits(@arbre_context.assigns[:hits], element, :referring_objects_order)
+			active_admin_stored_from_hits(controller.view_assigns["hits"], element, :referring_objects_order)
 		end
     active_admin_muscat_actions( self )
   end
   
   sidebar :actions, :only => :index do
     render :partial => "activeadmin/section_sidebar_index"
+  end
+
+  sidebar :imports, only: :index do
+    render :partial => "activeadmin/section_sidebar_publication_imports"
   end
   
   # Include the folder actions
@@ -250,7 +273,7 @@ ActiveAdmin.register Publication do
     # @item retrived by from the controller is not available there. We need to get it from the @arbre_context
     active_admin_navigation_bar( self )
     render('jobs/jobs_monitor')
-    @item = @arbre_context.assigns[:item]
+    @item = controller.view_assigns["item"]
     if @item.marc_source == nil
       render :partial => "marc_missing"
     else

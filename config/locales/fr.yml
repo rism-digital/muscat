@@ -215,6 +215,7 @@ fr:
   add_person: Attacher une personne
   add_source: Attacher une source
   add_this_item_to_folder: Ajouter cet élément au dossier
+  add_work: Lier une œuvre
   any_field_contains: N'importe quel champ
   append_folder: Ajouter à un dossier existant
   archive: Archiver
@@ -222,6 +223,7 @@ fr:
   authorization_tokens: Auth tokens
   available_templates: Modèles disponibles
   backend_validation:
+    031_incomplete: La numérotation de ce 031 est incomplète (il manque $a, $b ou $c)
     begin_with: Ce champ doit commencer par la chaîne correcte
     check_group: Ce champ contient une valeur invalide par rapport à la position dans le groupe
     mandatory: Ce sous-champ est obligatoire
@@ -230,7 +232,9 @@ fr:
     required: Ce champ est requis lorsque cette étiquette est ajoutée
     required_if: Ce champ est requis car un autre est présent
     siglum_not_found: Le sigle dans un ou plusieurs champs 588 ne correspond à aucun enregistrement de fonds
+    validate_031_dups: 'Ce numéro d''incipit est déjà utilisé : $b ou $c sont dupliqués'
     validate_588_siglum: 'Entrez le sigle de la bibliothèque et la cote selon le format : I-Bc Q.51'
+    validate_url: L'URL saisi n'est pas valide
   basic_level: Notice de base
   body: Contenu
   btn_themefinder_reset: Reset
@@ -240,6 +244,7 @@ fr:
   choose_folder: "(Veuillez en choisir un)"
   clipboard:
     copied: Résultats copiés dans le presse-papiers
+  commit: Appliquer
   compare_versions:
     date_message: Affichage des records modifiés de %{date}.
     diff: Comparaison
@@ -252,10 +257,13 @@ fr:
     rule: Règle
     show: Afficher
     similarity: Différences
+    tags: Tags
     time_frame: Intervalle temporel
   composer_contains: Compositeur
   connected_libraries: Institutions
+  controls: Contrôles
   convert_to_print: Convertir en modèle d'impression
+  convert_to_print_template: Convertir dans le modèle pour une édition imprimée
   cookies:
     dimiss: Accepter et fermer
     link: En savoir plus
@@ -325,6 +333,7 @@ fr:
   duplicate: Dupliquer
   duplicate_confirm: Est-vous certain de vouloir dupliquer ce titre?
   edit: Modifier
+  engraving_incipit: Gravure de l'incipit...
   entry:
     one: entrée
     other: entrées
@@ -333,6 +342,7 @@ fr:
   export_folder: Exporter le dossier en MARCXML
   export_folder_csv: Exporter le dossier en CSV
   export_folder_raw: Exporter le dossier en Muscat MARC
+  export_folder_raw_holdings: Exporter le dossier au format Muscat MARC (en fusionnant les holding records)
   failed: Echec
   failed_at: Echec à
   filter_address: Adresse
@@ -505,6 +515,7 @@ fr:
   from_existing_source: Créer a partir d'une source
   full_level: Notice complète
   gnd_not_found: La demande à la GND a renvoyé un enregistrement vide.
+  go_back: Retour
   go_to_top: Retour en haut de la page
   helpers:
     label:
@@ -536,10 +547,13 @@ fr:
     interval: Interval
     query_type: 'Type de recherche:'
     refined_pitch: Contour mélodique fin
+  index: Index
   institution:
     one: institution
     other: institutions
   internal_note_contains: Note interne
+  inventory_item_order_success: Les éléments ont été réorganisés
+  inventory_items_show_count_html: "<strong>%{count}</strong> éléments affichés"
   is_in_folder: Est dans le dossier
   is_part_of_collection: Ce %{class} %{id} fait partie d'une collection, vous devez éliminer le 773 avant de pouvoir le supprimer.
   job:
@@ -566,6 +580,7 @@ fr:
   liturgicalfeast:
     one: fête liturgique
     other: fêtes liturgiques
+  loading: Chargement...
   logout:
     confirm: Il y a des fenêtres Muscat ouvertes. Si vous vous déconnectez, toutes les modifications non enregistrées seront perdues. Voulez-vous continuer ?
     generic_error: Vous vous êtes déconnecté de Muscat. Veuillez actualiser la page pour revenir à l'écran de connexion.
@@ -634,6 +649,9 @@ fr:
   menu_workgroups: Groupes
   menu_works: Oeuvres
   merge: Fusionner
+  move_down: Descendre
+  move_to: Aller à
+  move_up: Monter
   muscat_reindexing: Muscat réindexe, les résultats de recherche peuvent être incomplets.
   new: Créer
   new_digital_object_image: Attacher une nouvelle image
@@ -644,6 +662,7 @@ fr:
   new_inventory_item_page: Nouvel élément d'inventaire
   no_action: Aucune action possible
   not_set: "[not défini]"
+  notation_copied: Notation copié
   notifications:
     cadence: Cadence des notifications
     daily: Tous les jours
@@ -656,6 +675,9 @@ fr:
     rules: Règles
     weekly: Chaque semaine
   object: Object
+  old_index: Ancien index
+  order_inventory_items: Ordonner les éléments d’inventaire
+  order_items: Ordonner les éléments de
   person:
     one: personne
     other: personnes
@@ -743,6 +765,9 @@ fr:
   source:
     one: source
     other: sources
+  source_converted: Source convertie en version imprimée
+  source_converted_with_holding: Source convertie en version imprimée, holding %{holding_id} créé.
+  source_not_manuscript: La source n’est pas un manuscrit ou une collection de manuscrits
   standardterm:
     one: sujet
     other: sujets
@@ -762,6 +787,7 @@ fr:
   title_contains: Titre diplomatique
   to_the_list: Retourner à la liste
   unarchive: Désarchiver
+  unauthorized: Non autorisé
   ungrouped_tags: Ce titre contient des champs non groupés
   unknown_tags: Ce titre contient des champs non reconnus.
   unloadable_record: 'Ce titre présente un problème: il peut être visualisé mais pas édité. Merci de contacter l''administrateur.'
@@ -784,7 +810,10 @@ fr:
     must_contain_message: Ce champ doit correspondre au modèle requis.
     name_uniqueness: Le nom abrégé de l'élément est déjà utilisé
     required_if_message: Ce champ doit être rempli car il est obligatoire en présence de {0} ${1}
+    validate_031_dups: Ce numéro d'incipit est déjà utilisé
     validate_588_siglum: 'Entrez le sigle de la bibliothèque et la cote selon le format : I-Bc Q.51'
+    validate_edtf: Valider la date EDTF
+    validate_url: L'URL saisi n'est pas valide
     warning_message: Une valeur devrait être présente pour ce champ
   validation_level_error: Il y a des erreurs à corriger avant d'enregistrer.
   validation_level_warning: Il y a des avertissements. Enregistrer à nouveau pour ignorer.
@@ -806,9 +835,9 @@ fr:
         one: Affichage de <b>1</b> %{model}
         other: Affichage des <b>%{count}</b> %{model}
         zero: "%{model} introuvable"
+  work_catalog: Catalogue d'œuvres
   work_catalog_publish: Publier les œuvres liées
   work_catalog_unpublish: Dépublier les œuvres liées
-  work_catalogue: Catalogue d'œuvres
   work_catalogue_labels:
     not_work_catalogue: Pas de catalogue des œuvres
     work_catalogue_alternate: Alternatif

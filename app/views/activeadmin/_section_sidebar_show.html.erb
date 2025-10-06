@@ -104,6 +104,10 @@
 					<%= link_to("#{I18n.t :export_folder_raw}", send("export_folder_admin_#{model}_path", item, type: :raw),
 						:class => "muscat_icon_link muscat_icon_link_download") %>
 					</li>
+					<li class="muscat_icon_link">
+					<%= link_to("#{I18n.t :export_folder_raw_holdings}", send("export_folder_admin_#{model}_path", item, type: :raw_holdings),
+						:class => "muscat_icon_link muscat_icon_link_download") %>
+					</li>
 				<%- end %>
 			<%- end %>
 		<%- end %>

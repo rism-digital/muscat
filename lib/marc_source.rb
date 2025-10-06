@@ -118,7 +118,7 @@ class MarcSource < Marc
     # use join so the "-" is not placed if one of the two is missing
     std_title = [title, desc].compact.join(" - ")
 
-    std_title
+    std_title&.strip
   end
   
   # Get the composer value
@@ -128,12 +128,12 @@ class MarcSource < Marc
       person = node.foreign_object
       composer = person.full_name
     end
-    composer
+    composer&.strip
   end
 
   def get_siglum
     if node = first_occurance("852", "a")
-      return node.content
+      return node.content&.strip
     end
   end
     
@@ -163,13 +163,13 @@ class MarcSource < Marc
       end
     end
     
-    return [siglum.truncate(255), ms_no.truncate(255)]
+    return [siglum.truncate(255)&.strip, ms_no.truncate(255)&.strip]
   end
   
   # On RISM A/1 ms_no contains the OLD RISM ID, get it from 035
   def get_book_rism_id
     if node = first_occurance("035", "a")
-      return node.content
+      return node.content&.strip
     end
   end
 
@@ -185,7 +185,7 @@ class MarcSource < Marc
       ms_title += " #{node.content}" if node.content
     end
    
-    ms_title.truncate(255)
+    ms_title.truncate(255)&.strip
   end
   
   # Set miscallaneous values
@@ -219,7 +219,7 @@ class MarcSource < Marc
       end
     end
     
-    return [language.truncate(16), date_from, date_to]
+    return [language.truncate(16)&.strip, date_from, date_to]
 
   end
   
@@ -227,6 +227,12 @@ class MarcSource < Marc
     #load_source false if !@loaded
     first_occurance("001").content = "__TEMP__"
     by_tags("774").each {|t| t.destroy_yourself}
+
+    #1526 delete some additional fields
+    by_tags("588").each {|t| t.destroy_yourself}
+    by_tags("775").each {|t| t.destroy_yourself}
+    by_tags("599").each {|t| t.destroy_yourself}
+
   end
 
   def match_leader
@@ -452,32 +458,8 @@ class MarcSource < Marc
     end
     
     # Put back $2pe in 031, see #194
-    # If there is a digital object, 
-    each_by_tag("031") do |t|
-
-      # Export the MEI incipit link
-      if parent_object.digital_objects.incipits
-        vals = {}
-        [:a, :b, :c].each do |st|
-          v = t.fetch_first_by_tag(st)
-          vals[st] = v && v.content ? v.content : "x"
-        end
-        pae_nr = "#{vals[:a]}.#{vals[:b]}.#{vals[:c]}"
-
-        # Try to match it in the digital objects
-        parent_object.digital_objects.incipits.each do |incipit|
-          if incipit.match_pae_nr?(pae_nr)
-            t.add_at(MarcNode.new("source", "u", incipit.attachment.url, nil), 0)
-          end
-        end
-      end
-
-      t.add_at(MarcNode.new("source", "2", "pe", nil), 0)
-      t.sort_alphabetically
-    end
-
-    parent_object.digital_objects.incipits.each do |incipit|
-    end
+    # If there is a digital object,
+    _to_external_031!(parent_object)
 
     # copy 691$n to 035 to have the local B/I id with collections
     if parent_object.record_type == 8 && parent_object.id.to_s =~ /^993/

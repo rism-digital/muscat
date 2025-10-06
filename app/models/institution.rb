@@ -28,7 +28,7 @@ class Institution < ApplicationRecord
   @last_event_save
   attr_accessor :last_event_save
   
-  has_paper_trail :on => [:update, :destroy], :only => [:marc_source, :wf_stage], :if => Proc.new { |t| VersionChecker.save_version?(t) }
+  has_paper_trail :on => [:update, :destroy], :only => [:marc_source, :wf_stage, :wf_audit], :if => Proc.new { |t| VersionChecker.save_version?(t) }
   
   has_many :digital_object_links, :as => :object_link, :dependent => :delete_all
   has_many :digital_objects, through: :digital_object_links, foreign_key: "object_link_id"
@@ -349,6 +349,8 @@ class Institution < ApplicationRecord
   ransacker :"094a_facet", proc{ |v| } do |parent| parent.table[:id] end
   ransacker :"667a", proc{ |v| } do |parent| parent.table[:id] end
   ransacker :"has_siglum", proc{ |v| } do |parent| parent.table[:id] end
+  ransacker :"368a", proc{ |v| } do |parent| parent.table[:id] end
+
    
   def holdings
     ActiveSupport::Deprecation.new("12", 'Please use referring_holdings from institution')

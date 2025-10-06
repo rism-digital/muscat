@@ -14,6 +14,7 @@ class StandardTerm < ApplicationRecord
   include AuthorityMerge
   include CommentsCleanup
   include ThroughAssociations
+  include AutoStripStrings
 
   #has_and_belongs_to_many(:referring_sources, class_name: "Source", join_table: "sources_to_standard_terms")
   has_many :source_standard_term_relations, class_name: "SourceStandardTermRelation"

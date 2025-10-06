@@ -134,8 +134,7 @@ ActiveAdmin.register WorkNode do
     column (I18n.t :filter_composer), :composer, sortable: :composer_order
     column (I18n.t :filter_title), :title
     column (I18n.t :filter_sources), :src_count_order, sortable: :src_count_order do |element|
-			all_hits = @arbre_context.assigns[:hits]
-			active_admin_stored_from_hits(all_hits, element, :src_count_order)
+			active_admin_stored_from_hits(controller.view_assigns["hits"], element, :src_count_order)
 		end
     active_admin_muscat_actions( self )
   end
@@ -161,7 +160,7 @@ ActiveAdmin.register WorkNode do
     
     render('jobs/jobs_monitor')
     
-    @item = @arbre_context.assigns[:item]
+    @item = controller.view_assigns["item"]
     if @item.marc_source == nil
       render :partial => "marc/missing"
     else

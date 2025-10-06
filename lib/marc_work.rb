@@ -25,7 +25,7 @@ class MarcWork < Marc
 
     title += ", #{scoring}" if scoring
 
-    return "#{composer}" + [title, key, cat_no].join("; ")
+    return "#{composer}" + [title, key, cat_no].join("; ")&.strip
   end
 
   def get_opus
@@ -44,7 +44,7 @@ class MarcWork < Marc
     cat_n = cat_n.strip if cat_n
    
     cat_no = "#{cat_a} #{cat_n}".strip
-    cat_no = cat_no.empty? ? "" : cat_no
+    cat_no = cat_no.empty? ? "" : cat_no&.strip
   end 
 
   def get_composer
@@ -84,6 +84,8 @@ class MarcWork < Marc
     
     new_leader = MarcNode.new("work", "000", "00000nz  a2200000nc 4500", "")
     @root.children.insert(get_insert_position("000"), new_leader)
+
+     _to_external_031!(Work.find(get_id))
   end
 
 end

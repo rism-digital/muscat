@@ -191,3 +191,4 @@ gem 'rufo', group: :development
 
 gem 'diff-lcs'#, group: :development
 
+gem 'bibtex-ruby'

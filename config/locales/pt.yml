@@ -215,6 +215,7 @@ pt:
   add_person: Vincular Pessoa
   add_source: Vincular fonte
   add_this_item_to_folder: Adicionar este item à pasta
+  add_work: Vincular obra
   any_field_contains: Qualquer campo
   append_folder: Adicionar tudo a uma pasta existente
   archive: Arquivar
@@ -222,6 +223,7 @@ pt:
   authorization_tokens: Auth tokens
   available_templates: Modelos disponíveis
   backend_validation:
+    031_incomplete: A numeração deste 031 está incompleta (falta $a, $b ou $c)
     begin_with: Este campo deve começar com a string correta
     check_group: Este campo contém um valor inválido em relação à posição no grupo
     mandatory: Este subcampo é obrigatório
@@ -230,7 +232,9 @@ pt:
     required: Este campo é obrigatório quando esta tag é adicionada
     required_if: Este campo é obrigatório porque outro está presente
     siglum_not_found: O siglum em um ou mais campos 588 não corresponde a nenhum registro de acervo
+    validate_031_dups: 'Este número de incipit já está em uso: $b ou $c estão duplicados'
     validate_588_siglum: 'Insira o siglum da biblioteca e a classificação no formato: I-Bc Q.51'
+    validate_url: O URL inserido não é válido
   basic_level: Registro básico
   body: Body
   btn_themefinder_reset: Reset
@@ -240,6 +244,7 @@ pt:
   choose_folder: "(PLEASE CHOOSE ONE)"
   clipboard:
     copied: Resultados copiados para a área de transferência
+  commit: Aplicar
   compare_versions:
     date_message: Mostrar records modificados de %{date}.
     diff: Comparar
@@ -252,10 +257,13 @@ pt:
     rule: Regra
     show: Espectáculo
     similarity: Diferenças
+    tags: Tags
     time_frame: Período de tempo
   composer_contains: Compositor
   connected_libraries: Libraries
+  controls: Controles
   convert_to_print: Converter para modelo de impressão
+  convert_to_print_template: Converter para o modelo de uma edição impressa
   cookies:
     dimiss: Aceitar e Fechar
     link: Saiba mais
@@ -325,6 +333,7 @@ pt:
   duplicate: Duplicar
   duplicate_confirm: Tem certeza de que quer duplicar este registro?
   edit: Editar
+  engraving_incipit: Renderização do incipit...
   entry:
     one: registro
     other: registros
@@ -333,6 +342,7 @@ pt:
   export_folder: Exportar a pasta em MARCXML
   export_folder_csv: Exportar a pasta em CSV
   export_folder_raw: Exportar a pasta em Muscat MARC
+  export_folder_raw_holdings: Exportar a pasta como Muscat MARC (mesclando os holding records)
   failed: Falhou
   failed_at: Falhou em
   filter_address: Endereço
@@ -505,6 +515,7 @@ pt:
   from_existing_source: Criar a partir de uma fonte existente
   full_level: Registro completo
   gnd_not_found: A solicitação ao GND retornou um registro vazio.
+  go_back: Voltar
   go_to_top: Voltar ao início
   helpers:
     label:
@@ -536,10 +547,13 @@ pt:
     interval: Intervalo
     query_type: Tipo de Consulta
     refined_pitch: Contorno melódico fino
+  index: Índice
   institution:
     one: instituição
     other: institinstituiçõesutions
   internal_note_contains: Nota interna
+  inventory_item_order_success: Os itens foram reordenados
+  inventory_items_show_count_html: "<strong>%{count}</strong> itens exibidos"
   is_in_folder: Está na pasta
   is_part_of_collection: Esta %{class} %{id} faz parte de uma colecção, deve remover o 773 antes de o poder apagar
   job:
@@ -566,6 +580,7 @@ pt:
   liturgicalfeast:
     one: festa litúrgica
     other: festas litúrgicas
+  loading: Carregando...
   logout:
     confirm: Há janelas Muscat abertas. Se você sair, quaisquer alterações não salvas serão perdidas. Você deseja continuar?
     generic_error: Você saiu do Muscat. Por favor, atualize a página para retornar à tela de login.
@@ -634,6 +649,9 @@ pt:
   menu_workgroups: Grupos de Trabalho
   menu_works: Materiais
   merge: Juntar
+  move_down: Baixo
+  move_to: Ir para
+  move_up: Cima
   muscat_reindexing: Muscat está a reindexar, os resultados da pesquisa podem estar incompletos
   new: Criar
   new_digital_object_image: Adicionar uma nova imagem
@@ -644,6 +662,7 @@ pt:
   new_inventory_item_page: Novo item de inventário
   no_action: Nenhuma ação disponível
   not_set: "[não definido]"
+  notation_copied: Notação copiada
   notifications:
     cadence: Cadência de notificação
     daily: Todos os dias
@@ -656,6 +675,9 @@ pt:
     rules: Regras
     weekly: Todas as semanas
   object: Objeto
+  old_index: Índice anterior
+  order_inventory_items: Ordenar itens de inventário
+  order_items: IteOrdenar itens para
   person:
     one: pessoa
     other: pessoas
@@ -743,6 +765,9 @@ pt:
   source:
     one: fonte
     other: fontes
+  source_converted: Fonte convertida para impressão
+  source_converted_with_holding: Fonte convertida para impressão, holding %{holding_id} criado.
+  source_not_manuscript: A fonte não é um manuscrito nem uma coleção de manuscritos
   standardterm:
     one: assunto
     other: assuntos
@@ -762,6 +787,7 @@ pt:
   title_contains: Título diplomático
   to_the_list: Retornar à lista
   unarchive: Desarquivar
+  unauthorized: Não autorizado
   ungrouped_tags: Existem campos não agrupados neste registro
   unknown_tags: Existem alguns campos desconhecidos neste registro
   unloadable_record: 'Este registro teve problemas de carregamento: pode ser visto, mas não editado. Por favor, entre em contato com um administrador.'
@@ -784,7 +810,10 @@ pt:
     must_contain_message: Este campo deve corresponder ao padrão requerido
     name_uniqueness: O nome abreviado do registro já está em uso
     required_if_message: Este campo deve ser preenchido, pois é obrigatório na presença de {0} ${1}
+    validate_031_dups: Este número de incipit já está em uso
     validate_588_siglum: 'Insira o siglum da biblioteca e a classificação no formato: I-Bc Q.51'
+    validate_edtf: Validar data EDTF
+    validate_url: O URL inserido não é válido
     warning_message: Um valor deve ser fornecido para este campo
   validation_level_error: Há erros, por favor resolva antes de salvar.
   validation_level_warning: Estes são avisos, salve novamente para ignorar.
@@ -806,9 +835,9 @@ pt:
         one: Exibindo <b>1</b> %{model}
         other: Exibindo <b>todos %{count}</b> %{model}
         zero: Nenhum %{model} encontrado
+  work_catalog: Catálogo de obras
   work_catalog_publish: Publicar obras vinculadas
   work_catalog_unpublish: Anular publicação das obras vinculadas
-  work_catalogue: Catálogo de obras
   work_catalogue_labels:
     not_work_catalogue: Sem catálogo de obras
     work_catalogue_alternate: Alternativo

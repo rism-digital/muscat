@@ -37,7 +37,7 @@ class Source < ApplicationRecord
   @last_event_save
   attr_accessor :last_event_save
 
-  has_paper_trail :on => [:update, :destroy], :only => [:marc_source, :wf_stage], :if => Proc.new { |t| VersionChecker.save_version?(t) }
+  has_paper_trail :on => [:update, :destroy], :only => [:marc_source, :wf_stage, :wf_audit], :if => Proc.new { |t| VersionChecker.save_version?(t) }
 
   # include the override for group_values
   require 'muscat/adapters/active_record/base.rb'
@@ -86,7 +86,7 @@ class Source < ApplicationRecord
 	has_many :collection_holdings, class_name: "Holding", foreign_key: "collection_id"
   
   # This is for associating IIs to their Inventory
-  has_many :inventory_items
+  has_many :inventory_items#, -> { order(:source_order) }
 
   # This is when an II references a source, like identitied src
   has_many :inventory_item_source_relations, class_name: "InventoryItemSourceRelation"
@@ -136,6 +136,7 @@ class Source < ApplicationRecord
 
   enum :wf_stage, [ :inprogress, :published, :deleted, :deprecated ]
   enum :wf_audit, [ :full, :abbreviated, :retro, :imported ]
+  enum :validation_status, [ :validation_paseed, :validation_failed ]
 
   scope :by_shelf_mark_and_siglum, ->(shelf_mark, lib_siglum) {
     left_joins(:holdings)
@@ -607,11 +608,13 @@ class Source < ApplicationRecord
   end
 
   def name
-    "#{composer} - #{std_title}"
+    #"#{composer} - #{std_title}"
+    [composer, std_title].reject(&:blank?).join(" - ")
   end
 
   def autocomplete_label
-    "#{self.id}: #{self.composer} - #{self.std_title}"
+    #"#{self.id}: #{self.composer} - #{self.std_title}"
+    "#{id}: #{[composer, std_title].reject(&:blank?).join(' - ')}"
   end
 
   def to_marcxml
@@ -677,7 +680,7 @@ class Source < ApplicationRecord
     return [self.shelf_mark]
   end
 
-  def manuscript_to_print(tags)
+  def manuscript_to_print(tags, digital_objects)
     is_child = self.parent_source != nil
     holding = Holding.new
     holding_marc = MarcHolding.new(File.read(ConfigFilePath.get_marc_editor_profile_path("#{Rails.root}/config/marc/#{RISM::MARC}/holding/default.marc")))
@@ -701,16 +704,33 @@ class Source < ApplicationRecord
       self.marc.root.add_at(t588, self.marc.get_insert_position("588") )
     end
 
-    tags.each do |copy_tag, indexes|
+    # Purge the default 593 from holding only if we are copying over a new one
+    holding_marc.each_by_tag("593") {|t2| t2.destroy_yourself} if tags.include?("593")
 
-      # Purge 593 only if we are copying over a new one
-      holding_marc.each_by_tag("593") {|t2| t2.destroy_yourself} if copy_tag == "593"
+    # 593 in the holding is non-repeatable, we allow the user
+    # to move only one. 
+    moved593 = false
+
+    tags.each do |copy_tag, indexes|
 
       match = marc.by_tags(copy_tag)
 
       indexes.each do |i|
         match[i].copy_to(holding_marc)
-        match[i].destroy_yourself
+
+        if match[i].tag == "593"
+          # Make sure the default 593 is set in the Source
+          # And make sure it is saved in the source!
+          if moved593 == false
+            match[i]["a"]&.first&.content = "Print" if match[i]
+            match[i]["b"]&.first&.content = "Notated music"
+            # We move and preserve only one 593
+            moved593 = true
+          end
+        else
+          # All other tags are removed from the Source
+          match[i].destroy_yourself
+        end
       end
 
     end
@@ -724,15 +744,50 @@ class Source < ApplicationRecord
       holding.source = self
 
       holding.save
+
+      # Now move the digital objects
+      digital_objects.each do |doid|
+        begin
+          dol = DigitalObjectLink.where(digital_object_id: doid)
+        rescue ActiveRecord::RecordNotFound
+          next
+        end
+
+        # We can have multiple links
+        # and want to fix only the source ones
+        # 
+        # Also make sure that if a DO is linked
+        # more than once, only ONE gets moved
+        migrated = []
+
+        dol.each do |the_do|
+          next if the_do.object_link_type != "Source"
+          next if the_do.object_link_id.to_i != self.id
+          next if migrated.include?(doid)
+
+          the_do.object_link_id = holding.id
+          the_do.object_link_type = "Holding"
+          the_do.save
+
+          migrated << doid
+        end
+
+      end
+
     end
-    
+
     # Do some housekeeping here too
     if !is_child
       self.record_type = MarcSource::RECORD_TYPES[:edition]
     else
       self.record_type = MarcSource::RECORD_TYPES[:edition_content]
     end
+
+    # Here is a comment
+    # This comment is here so this line is not deleted again
+    # RZ from the past I'm looking ad YOU (RZ from the present here) 
     self.save
+    # did i say don't delete this??
 
     return holding.id
   end

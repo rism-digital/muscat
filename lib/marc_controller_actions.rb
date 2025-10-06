@@ -63,12 +63,31 @@ module MarcControllerActions
       
       @item.record_type = params[:record_type] if (@item.respond_to? :record_type)
       
-      # Some housekeeping, change owner and status
-      if params.has_key?(:record_status) &&
-          (current_user.has_role?(:cataloger) || current_user.has_role?(:editor) || current_user.has_role?(:admin))
-        @item.wf_stage = params[:record_status]
+      # Some housekeeping, change  status
+      # Also make sure that the status is not something creative
+      if params[:record_status].present? && 
+        %w[published inprogress].include?(params[:record_status]) &&
+        current_user.has_any_role?(:cataloger, :editor, :admin)
+
+        new_status = params[:record_status]
+
+        if current_user.has_any_role?(:editor, :admin)
+          # Editors/Admins can always change status
+          @item.wf_stage = new_status
+
+        elsif current_user.has_role?(:cataloger)
+          # Cataloguers can always publish
+          if new_status == "published"
+            @item.wf_stage = new_status
+
+          # Cataloguers can unpublish only if record is <10 min old
+          elsif @item.wf_stage == "published" && !@item.new_record? && @item.created_at > 10.minutes.ago
+            @item.wf_stage = new_status
+          end
+        end
       end
-      
+
+      # Change owner, if you are authorized
       if params.has_key?(:record_owner) &&
         (current_user.has_role?(:editor) || current_user.has_role?(:admin))
         new_user = User.find(params[:record_owner]) rescue new_user = nil
@@ -236,6 +255,11 @@ module MarcControllerActions
     
     dsl.member_action :marc_restore_version, method: :put do
       
+      if !current_user.has_role?(:admin)
+        redirect_to admin_root_path, :flash => { :error => I18n.t("active_admin.access_denied.message") }
+        return
+      end
+
       #Get the model we are working on
       model = self.class.resource_class
       @item = model.find(params[:id])
@@ -276,6 +300,11 @@ module MarcControllerActions
     
     dsl.member_action :marc_delete_version, method: :put do
       
+      if !current_user.has_role?(:admin)
+        redirect_to admin_root_path, :flash => { :error => I18n.t("active_admin.access_denied.message") }
+        return
+      end
+
       begin
         version = PaperTrail::Version.find( params[:version_id] )
       rescue ActiveRecord::RecordNotFound
@@ -324,7 +353,7 @@ module MarcControllerActions
       
       validator = MarcValidator.new(@item, current_user)
       validator.validate_tags
-      validator.validate_links
+      #validator.validate_links
       validator.validate_unknown_tags
       validator.validate_server_side
       if validator.has_errors

@@ -101,11 +101,7 @@ ActiveAdmin.register Person do
     end
 
     def index
-      person = Person.new
-      new_marc = MarcPerson.new(File.read(ConfigFilePath.get_marc_editor_profile_path("#{Rails.root}/config/marc/#{RISM::MARC}/person/default.marc")))
-      new_marc.load_source false # this will need to be fixed
-      person.marc = new_marc
-      @editor_profile = EditorConfiguration.get_default_layout person
+      @editor_profile = EditorConfiguration.get_default_layout Person
 
       # Get the terms for 550a, the "profession filter"
       @profession_types = Person.get_terms("550a_sms")
@@ -211,10 +207,10 @@ ActiveAdmin.register Person do
     column (I18n.t :filter_life_dates), :life_dates
     column (I18n.t :filter_owner) {|person| User.find(person.wf_owner).name rescue 0} if current_user.has_any_role?(:editor, :admin)
     column (I18n.t :filter_sources), :src_count_order, sortable: :src_count_order do |element|
-      active_admin_stored_from_hits(all_hits = @arbre_context.assigns[:hits], element, :src_count_order)
+      active_admin_stored_from_hits(controller.view_assigns["hits"], element, :src_count_order)
     end
     column (I18n.t :filter_authorities), :referring_objects_order, sortable: :referring_objects_order do |element|
-			active_admin_stored_from_hits(@arbre_context.assigns[:hits], element, :referring_objects_order)
+			active_admin_stored_from_hits(controller.view_assigns["hits"], element, :referring_objects_order)
 		end
     active_admin_muscat_actions( self )
   end
@@ -236,7 +232,7 @@ ActiveAdmin.register Person do
 
     render('jobs/jobs_monitor')
 
-    @item = @arbre_context.assigns[:item]
+    @item = controller.view_assigns["item"]
     if @item.marc_source == nil
       render :partial => "marc/missing"
     else

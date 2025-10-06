@@ -24,6 +24,12 @@ module ThroughAssociations
           .map(&:name).select { |n| (n.to_s.include?("source") || n.to_s.include?("holding")) && n.to_s.include?("relations") }
     end
 
+    def referring_relations
+      StandardTitle.reflect_on_all_associations(:has_many)
+      .select { |ref| ref.options[:through].present? }
+      .map(&:name).select { |n| n.to_s.include?("referring") }
+    end
+
   end
 
   def through_associations_total_count

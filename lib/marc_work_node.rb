@@ -4,7 +4,7 @@ class MarcWorkNode < Marc
   end
   
   def get_title
-    title = "", scoring = "", number = "", key = ""
+    title = ""
     tag100 = first_occurance("100")
     return "[unspecified]" if !tag100
     # title from $t
@@ -15,25 +15,16 @@ class MarcWorkNode < Marc
     #1662, emulate the GND title
     if node = tag100.fetch_first_by_tag("p")
       title = node.content.blank? ? title : "#{title}. #{node.content}"
-  end
-
-=begin
-    # See #1662, we are interested only in $t and $p
-    # scoring from repeated $m
-    if node = tag100.fetch_first_by_tag("m")
-        scoring = node.content.blank? ? "" : ", #{node.content}"
     end
-    # number from repeated $n
+
     if node = tag100.fetch_first_by_tag("n")
-        number = node.content.blank? ? "" : ", #{node.content}"
-    end
-    # key from $r
-    if node = tag100.fetch_first_by_tag("r")
-        key = node.content.blank? ? "" : " (#{node.content})"
+      title = node.content.blank? ? title : "#{title}; #{node.content}"
     end
 
-    return "#{title}#{scoring}#{number}#{key}"
-=end
+    if node = tag100.fetch_first_by_tag("m")
+      title = node.content.blank? ? title : "#{title}; #{node.content}"
+    end
+
     return title.truncate(255)
   end
 

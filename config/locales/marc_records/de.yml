@@ -787,6 +787,7 @@ de:
     production: Verlauf
     production_personnel: Produktionspersonal
     profession_or_function: Beruf oder Funktion
+    project: Projekt
     project_url: Projekt-URL
     provenance: Bestandsname
     provenance_notes: Provenienzvermerk
@@ -850,7 +851,7 @@ de:
     sister_of: Schwester von
     sketches: Skizzen
     solo_voice: Solostimme
-    soloist_instrument: Solistisches Instrument
+    soloist_instrument: Soloinstrument
     source: Quelle
     sources: Quellen
     source_data_found: Literaturnachweis
@@ -935,8 +936,8 @@ de:
     watermark_description: Wasserzeichen
     woodwinds: Holzblasinstrumente
     work: Werk
-    work_catalog: Work catalog
-    work_catalogs: Work catalogs
+    work_catalog: Werkkatalog
+    work_catalogs: Werkkatalog
     work_catalog_note: Bemerkung Werkverzeichnis
     work_list: Werkliste
     work_node: Externe Werk-Referenz (Work node)
@@ -961,13 +962,22 @@ de:
     P60183: "Einfügen"
   relations_works:
     P60250: "Hat Derivate"
-    P60305: "Hat Quelle"
+    P60305: "Basiert auf"
     P60216: "Wird erweitert als"
     P60294: "Ist erweiterte Version von"
     P60274: "Bearbeitung als"
     P60242: "Ist Anordnung von"
     P60198: "Wird ergänzt durch"
     P60313: "Nicht definiert"
+  relations_institutions:
+    P50008: Hierarchisch höher
+    P50010: Hierarchisch untergeordnet
+    P50012: Vorgänger der Körperschaft
+    P50016: Nachfolger der Körperschaft
+    P50020: Gründerfamilie der Körperschaft
+    P50230: Körperschaftsmitglied der Körperschaft
+    P50435: Corporate body member of family
+    P50301: Aufgenommene Körperschaft
   verovio:
     position: "Standort"
     warning: "Warnung"
@@ -1038,6 +1048,12 @@ de:
     ERR_064_LIGATURE_DURATION: Die Dauer einer Ligatur kann nicht kürzer als eine Semibrevis sein.
     ERR_065_MREST_INVALID_MEASURE: Ein Takt Pause kann nichts anderes enthalten.
     ERR_066_EMPTY_CONTAINER: Zwischen den Sonderzeichen für Gruppen von Vorschlagsnoten oder Balken müssen Noten stehen.
+  work_catalogue:
+    not_work_catalogue: Kein Werkverzeichnis
+    work_catalogue_alternate: Alternative
+    work_catalogue_complete: Abgeschlossen
+    work_catalogue_in_preparation: Geeignet
+    work_catalogue_partial: Teilweise abgeschlossen
   rism_online:
     manuscript: "Handschrift"
     printed: "Gedruckt"

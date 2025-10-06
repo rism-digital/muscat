@@ -23,7 +23,6 @@ groups:
     - "690"
     - "691"
     - '856'
-    - "852"
     - "041"
     all_tag_templates: 
       "100": marc_show/show_person

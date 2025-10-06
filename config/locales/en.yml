@@ -215,6 +215,7 @@ en:
   add_person: Link Person
   add_source: Link Source
   add_this_item_to_folder: Add this item to folder
+  add_work: Link Work
   any_field_contains: Any field
   append_folder: Add all to an existing folder
   archive: Archive
@@ -222,6 +223,7 @@ en:
   authorization_tokens: Auth tokens
   available_templates: Available templates
   backend_validation:
+    031_incomplete: The numbering of this 031 is incomplete ($a, $b or $c are missing)
     begin_with: This field must begin with the correct string
     check_group: This field contains an invalid value relative to the position in the group
     mandatory: This subfield is mandatory
@@ -230,7 +232,9 @@ en:
     required: This field is required when this tag is added
     required_if: This field is required because another one is present
     siglum_not_found: The siglum in one or more 588 fields does not match any holding record
+    validate_031_dups: 'This incipit number is already used: $b or $c are duplicated'
     validate_588_siglum: 'Enter the library siglum and shelfmark as in the format: I-Bc Q.51'
+    validate_url: The entered URL is invalid
   basic_level: Basic record
   body: Body
   btn_themefinder_reset: Reset
@@ -240,6 +244,7 @@ en:
   choose_folder: "(Please choose one)"
   clipboard:
     copied: Results copied to clipboard
+  commit: Commit
   compare_versions:
     date_message: Showing modified records from %{date}.
     diff: Diff
@@ -252,10 +257,13 @@ en:
     rule: Rule
     show: Show
     similarity: Difference
+    tags: Tags
     time_frame: Time frame
   composer_contains: Composer
   connected_libraries: Libraries
+  controls: Controls
   convert_to_print: Convert to print template
+  convert_to_print_template: Convert to print template
   cookies:
     dimiss: Accept and Close
     link: Learn more
@@ -325,6 +333,7 @@ en:
   duplicate: Duplicate
   duplicate_confirm: Are you sure you want to duplicate this record?
   edit: Edit
+  engraving_incipit: Engraving incipit...
   entry:
     one: entry
     other: entries
@@ -333,6 +342,7 @@ en:
   export_folder: Export Folder as MARCXML
   export_folder_csv: Export Folder as CSV
   export_folder_raw: Export Folder as Muscat MARC
+  export_folder_raw_holdings: Export Folder as Muscat MARC (merging holding records)
   failed: Failed
   failed_at: Failed At
   filter_address: Address
@@ -505,6 +515,7 @@ en:
   from_existing_source: Create from existing source
   full_level: Full record
   gnd_not_found: The request to GND returned an empty record
+  go_back: Back
   go_to_top: Back to the top
   helpers:
     label:
@@ -536,10 +547,13 @@ en:
     interval: Interval
     query_type: 'Query Type:'
     refined_pitch: Refined Pitch Contour
+  index: Index
   institution:
     one: institution
     other: institutions
   internal_note_contains: Internal note
+  inventory_item_order_success: Items were re-ordered
+  inventory_items_show_count_html: Showing <strong>%{count}</strong> items
   is_in_folder: Is in folder
   is_part_of_collection: This %{class} %{id} is part of a collection, please delete 773
   job:
@@ -566,6 +580,7 @@ en:
   liturgicalfeast:
     one: litrugical feast
     other: liturgical feasts
+  loading: Loading...
   logout:
     confirm: There are open Muscat windows. If you log out, any unsaved changes will be lost. Do you want to continue?
     generic_error: You have logged out of Muscat. Please refresh the page to return to the login screen.
@@ -634,6 +649,9 @@ en:
   menu_workgroups: Workgroups
   menu_works: Works
   merge: Merge
+  move_down: Move down
+  move_to: Move to
+  move_up: Move up
   muscat_reindexing: Muscat is reindexing, search results may be incomplete
   new: Create
   new_digital_object_image: Attach a new image
@@ -644,6 +662,7 @@ en:
   new_inventory_item_page: New inventory item
   no_action: No action available
   not_set: "[not set]"
+  notation_copied: Notation copied
   notifications:
     cadence: Notification cadence
     daily: Every day
@@ -656,6 +675,9 @@ en:
     rules: Rules
     weekly: Every week
   object: Object
+  old_index: Old index
+  order_inventory_items: Order inventory items
+  order_items: Order items for
   person:
     one: person
     other: poeple
@@ -758,6 +780,9 @@ en:
   source:
     one: source
     other: sources
+  source_converted: Source converted to print
+  source_converted_with_holding: Source converted to print, holding %{holding_id} created.
+  source_not_manuscript: Source is not a manuscript or manuscript collection
   standardterm:
     one: subject
     other: subjects
@@ -782,6 +807,7 @@ en:
   title_contains: Diplomatic title
   to_the_list: Return to the list
   unarchive: Un-archive
+  unauthorized: Unauthorized
   ungrouped_tags: There are ungrouped fields in this record
   unknown_tags: There are some unknown fields in this record
   unloadable_record: 'This record experienced loading errors: it can be viewed but not edited. Please contact an administrator.'
@@ -804,7 +830,10 @@ en:
     must_contain_message: This field must match the required pattern.
     name_uniqueness: Short name of entry is already taken
     required_if_message: Field is mandatory because {0} ${1} is not empty
+    validate_031_dups: This incipit number is already used
     validate_588_siglum: 'Enter the library siglum and shelfmark as in the format: I-Bc Q.51'
+    validate_edtf: Validate EDTF date
+    validate_url: The entered URL is invalid
     warning_message: A value for this field should be provided
   validation_level_error: There are errors, please solve before saving
   validation_level_warning: There are warnings, save again to override
@@ -826,9 +855,9 @@ en:
         one: Displaying <b>1</b> %{model}
         other: Displaying <b>all %{count}</b> %{model}
         zero: No %{model} found
+  work_catalog: Work catalog status
   work_catalog_publish: Publish linked works
   work_catalog_unpublish: Unpublish linked works
-  work_catalogue: Work catalog status
   work_catalogue_labels:
     not_work_catalogue: Not work catalog
     work_catalogue_alternate: Alternate

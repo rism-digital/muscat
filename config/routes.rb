@@ -6,6 +6,10 @@ Rails.application.routes.draw do
   devise_for :users, ActiveAdmin::Devise.config
   ActiveAdmin.routes(self)
   
+  # We need a post action for new in pubs to upload
+  # bibtex and other files
+  post "admin/publications/new" => "admin/publications#new"
+
   #scope ':locale', locale: I18n.locale do
   #  ActiveAdmin.routes(self)
   #end

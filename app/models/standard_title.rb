@@ -14,6 +14,7 @@ class StandardTitle < ApplicationRecord
   include AuthorityMerge
   include CommentsCleanup
   include ThroughAssociations
+  include AutoStripStrings
 
   #has_and_belongs_to_many(:referring_sources, class_name: "Source", join_table: "sources_to_standard_titles")
   has_many :source_standard_title_relations, class_name: "SourceStandardTitleRelation"

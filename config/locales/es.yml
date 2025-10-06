@@ -215,6 +215,7 @@ es:
   add_person: Vincular persona
   add_source: Vincular fuente
   add_this_item_to_folder: Añadir este elemento a la carpeta
+  add_work: Vincular obra
   any_field_contains: Cualquier campo
   append_folder: Añadir todo a una carpeta existente
   archive: Archivar
@@ -222,6 +223,7 @@ es:
   authorization_tokens: Auth tokens
   available_templates: Plantillas disponibles
   backend_validation:
+    031_incomplete: La numeración de este 031 está incompleta (falta $a, $b o $c)
     begin_with: Este campo debe comenzar con la cadena correcta
     check_group: Este campo contiene un valor no válido en relación con la posición en el grupo
     mandatory: Este subcampo es obligatorio
@@ -230,7 +232,9 @@ es:
     required: Este campo es obligatorio cuando se añade esta etiqueta
     required_if: Este campo es obligatorio porque otro está presente
     siglum_not_found: El siglum en uno o varios campos 588 no coincide con ningún registro de tenencia
+    validate_031_dups: 'Este número de íncipit ya está en uso: $b o $c están duplicados'
     validate_588_siglum: 'Introduzca el siglum de la biblioteca y la signatura siguiendo el formato: I-Bc Q.51'
+    validate_url: La URL introducida no es válida
   basic_level: Registro básico
   body: Body
   btn_themefinder_reset: Reiniciar
@@ -240,6 +244,7 @@ es:
   choose_folder: "(Escoja una)"
   clipboard:
     copied: Resultados copiados al portapapeles
+  commit: Aplicar
   compare_versions:
     date_message: Mostrar los records modificados de %{date}.
     diff: Comparación
@@ -252,10 +257,13 @@ es:
     rule: Regla
     show: Mostrar
     similarity: Diferencias
+    tags: Tag
     time_frame: Marco temporal
   composer_contains: Compositor
   connected_libraries: Bibliotecas
+  controls: Controles
   convert_to_print: Convertir en plantilla de impresión
+  convert_to_print_template: Convertir en la plantilla para una edición impresa
   cookies:
     dimiss: Aceptar y cerrar
     link: Aprender mas
@@ -325,6 +333,7 @@ es:
   duplicate: Duplicar
   duplicate_confirm: "¿Está seguro de que desea duplicar este registro?"
   edit: Editar
+  engraving_incipit: Renderizado del incipit...
   entry:
     one: entrada
     other: entradas
@@ -333,6 +342,7 @@ es:
   export_folder: Exportar la carpeta en formato MARCXML
   export_folder_csv: Exportar la carpeta en formato CSV
   export_folder_raw: Exportar la carpeta en formato Muscat MARC
+  export_folder_raw_holdings: Exportar la carpeta como Muscat MARC (fusionando los holding records)
   failed: Error
   failed_at: Error en
   filter_address: Dirección
@@ -505,6 +515,7 @@ es:
   from_existing_source: Crear a partir de un registro existente
   full_level: Registro completo
   gnd_not_found: La solicitud a GND devolvió un registro vacío.
+  go_back: Volver
   go_to_top: Volver al principio
   helpers:
     label:
@@ -536,10 +547,13 @@ es:
     interval: Intervalo
     query_type: 'Tipo de búsqueda:'
     refined_pitch: Contorno de alturas refinado
+  index: Índice
   institution:
     one: institución
     other: instituciones
   internal_note_contains: Nota interna
+  inventory_item_order_success: Los elementos han sido reordenados
+  inventory_items_show_count_html: "<strong>%{count}</strong> elementos mostrados"
   is_in_folder: Está en la carpeta
   is_part_of_collection: Esta %{class} %{id} forma parte de una colección, debe eliminar la 773 antes de poder borrarla
   job:
@@ -566,6 +580,7 @@ es:
   liturgicalfeast:
     one: festividad litúrgica
     other: festividades litúrgicas
+  loading: Cargando...
   logout:
     confirm: Hay ventanas de Muscat abiertas. Si cierra sesión, se perderán los cambios no guardados. ¿Desea continuar?
     generic_error: Se ha cerrado la sesión de Muscat. Por favor, actualice la página para volver a la pantalla de inicio de sesión.
@@ -634,6 +649,9 @@ es:
   menu_workgroups: Grupos de trabajo
   menu_works: Obras
   merge: Fusionar
+  move_down: Abajo
+  move_to: Ir a
+  move_up: Arriba
   muscat_reindexing: Muscat está reindexando, los resultados de la búsqueda pueden estar incompletos
   new: Crear
   new_digital_object_image: Añadir una nueva imagen
@@ -644,6 +662,7 @@ es:
   new_inventory_item_page: Nuevo artículo de inventario
   no_action: Sin acciones disponibles
   not_set: "[no se ha establecido]"
+  notation_copied: Notación copiada
   notifications:
     cadence: Cadencia de las notificaciones
     daily: Cada día
@@ -656,6 +675,9 @@ es:
     rules: Reglas
     weekly: Cada semana
   object: Objeto
+  old_index: Índice anterior
+  order_inventory_items: Ordenar elementos del inventario
+  order_items: Ordenar elementos para
   person:
     one: persona
     other: personas
@@ -743,6 +765,9 @@ es:
   source:
     one: fuente
     other: fuentes
+  source_converted: Fuente convertida a versión impresa
+  source_converted_with_holding: Fuente convertida a versión impresa, holding %{holding_id} creado.
+  source_not_manuscript: La fuente no es un manuscrito ni una colección de manuscritos
   standardterm:
     one: tema
     other: temas
@@ -762,6 +787,7 @@ es:
   title_contains: Título diplomático
   to_the_list: Volver a la lista
   unarchive: Desarchivar
+  unauthorized: No autorizado
   ungrouped_tags: Hay campos no agrupados en este registro
   unknown_tags: Hay algunos campos desconocidos en este registro
   unloadable_record: 'Este registro presenta errores de carga: puede ser leido pero no editado. Por favor, póngase en contacto con un administrador.'
@@ -784,7 +810,10 @@ es:
     must_contain_message: Este campo debe coincidir con el patrón requerido.
     name_uniqueness: El nombre corto del elemento ya está en uso
     required_if_message: Este campo debe ser rellenado ya que es obligatorio en presencia de {0} ${1}
+    validate_031_dups: Este número de íncipit ya está en uso
     validate_588_siglum: 'Introduzca el siglum de la biblioteca y la signatura siguiendo el formato: I-Bc Q.51'
+    validate_edtf: Validar fecha EDTF
+    validate_url: La URL introducida no es válida
     warning_message: Debería proveerse un valor para este campo
   validation_level_error: El registro tiene errores. Por favor, resuélvalos antes de guardar.
   validation_level_warning: El registro presenta advertencias. Si desea ignorarlas, pulse nuevamente en guardar.
@@ -806,9 +835,9 @@ es:
         one: Mostrando <b>1</b> %{model}
         other: Mostranto un <b> total de %{count}</b> %{model}
         zero: No se han encontrado %{model}
+  work_catalog: Catálogo de obras
   work_catalog_publish: Publicar las obras vinculadas
   work_catalog_unpublish: Despublicar las obras vinculadas
-  work_catalogue: Catálogo de obras
   work_catalogue_labels:
     not_work_catalogue: Sin catálogo de obras
     work_catalogue_alternate: Alternativo

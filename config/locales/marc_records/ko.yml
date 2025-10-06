@@ -787,6 +787,7 @@ ko:
     production: Production
     production_personnel: Production personnel
     profession_or_function: Profession or function
+    project: Project
     project_url: Project URL
     provenance: Provenance
     provenance_notes: Provenance note
@@ -850,7 +851,7 @@ ko:
     sister_of: Sister of
     sketches: Sketches
     solo_voice: Solo voice
-    soloist_instrument: Soloist intrument
+    soloist_instrument: Soloist instrument
     source: Source
     sources: Sources
     source_data_found: Source data found
@@ -961,13 +962,22 @@ ko:
     P60183: "Insert"
   relations_works:
     P60250: "Has derivative"
-    P60305: "Has source"
+    P60305: "Is based on"
     P60216: "Is expanded as"
     P60294: "Is expanded version of"
     P60274: "Is arranged as"
     P60242: "Is arrangement of"
     P60198: "Is complemented by"
     P60313: "Undefined"
+  relations_institutions:
+    P50008: Hierarchical superior
+    P50010: Hierarchical subordinate
+    P50012: Predecessor of corporate body
+    P50016: Successor of corporate body
+    P50020: Founding family of corporate body
+    P50230: Corporate body member of corporate body
+    P50435: Corporate body member of family
+    P50301: Absorbed corporate body
   verovio:
     position: "Position"
     warning: "Warning"
@@ -1038,6 +1048,12 @@ ko:
     ERR_064_LIGATURE_DURATION: The duration in a ligature cannot be shorter than a semibreve.
     ERR_065_MREST_INVALID_MEASURE: A measure with a measure rest cannot include anything else.
     ERR_066_EMPTY_CONTAINER: A grace group or a beam cannot be empty.
+  work_catalogue:
+    not_work_catalogue: Not work catalog
+    work_catalogue_alternate: Alternate
+    work_catalogue_complete: Completed
+    work_catalogue_in_preparation: Eligible
+    work_catalogue_partial: Partially completed
   rism_online:
     manuscript: "Manuscript"
     printed: "Printed"

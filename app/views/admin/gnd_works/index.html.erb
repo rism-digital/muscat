@@ -1,17 +1,17 @@
 <div class="panel tabpanel">
-	<h3>Description</h3>
+	<h3><%= I18n.t("gnd.description")%></h3>
 	<div class="panel_content">
-		This is the GND editor for works
+		<%= I18n.t("gnd.gnd_editor_title")%>
 	</div>
 </div>
 
 <% if @saved_ids && @saved_ids.count > 0 %>
 <div class="panel tabpanel">
-	<h3>Last 20 created Items</h3>
+	<h3><%= I18n.t("gnd.last_20_created_records")%> </h3>
 	<div class="panel_content">
 		<table>
-		<th>ID</th>
-		<th>Date created</td>
+		<th><%= I18n.t("gnd.gnd_id")%></th>
+		<th><%= I18n.t("gnd.date_created")%></td>
 		<th>&nbsp;</th>
 		<%@saved_ids.each do |item|%>
 		<% parsed_date = DateTime.parse(item["date"]).to_formatted_s(:long) rescue parsed_date = item[:date] %>
@@ -19,7 +19,7 @@
 				<td><%= item["id"] %></td>
 				<td><%= parsed_date %></td>
 				<td>
-					<a href="/admin/gnd_works/edit?id=<%=item["id"]%>">Edit</a>
+					<a href="/admin/gnd_works/edit?id=<%=item["id"]%>"><%= I18n.t("gnd.edit")%></a>
 			</tr>
 		<%end%>
 		</table>

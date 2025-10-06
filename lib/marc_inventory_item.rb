@@ -9,7 +9,7 @@ class MarcInventoryItem < Marc
       person = node.foreign_object
       composer = person.full_name
     end
-    composer
+    composer&.strip
   end
 
   def get_source_title
@@ -22,7 +22,7 @@ class MarcInventoryItem < Marc
       ms_title += " #{node.content}" if node.content
     end
    
-    ms_title.truncate(255)
+    ms_title.truncate(255)&.strip
   end
 
   # Standard title a' la source
@@ -56,7 +56,11 @@ class MarcInventoryItem < Marc
     
     # use join so the "-" is not placed if one of the two is missing
     std_title = [title, desc].compact.join(" - ")
-    std_title
+    std_title&.strip
   end
 
+  def get_page_info
+    return first_occurance("773", "g")&.content
+  end
+  
 end

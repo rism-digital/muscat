@@ -48,7 +48,7 @@ de:
     usage_identifier: Nutzungskennzeichen
     authorized_form: Ansetzungsform
     name: Name
-    birth_and_death_dates: Geburtsund Todesdaten
+    birth_and_death_dates: Lebensdaten
     birth_and_death_years: Lebensdaten
     instrumentation_hint: Besetzungshinweis
     numerical_identifier: Numerische Kennzeichnung
@@ -100,7 +100,7 @@ de:
     remark: Bemerkung
     continuous_counting: Fortlaufende Zählung
     cast_summary: Besetzungszusammenfassung
-    title_of_the_work: Title of the work
+    title_of_the_work: Werktitel
     person_name: Personenname
     dates_in_connection_with_a_name: Datumsangaben in Verbindung mit einem Namen
     function_name: Funktionsbezeichnung
@@ -151,6 +151,15 @@ de:
     total_number_performers: Gesamtzahl der Ausführenden
     total_number_ensembles: Gesamtzahl der Ensembles
     note: Bemerkung
+    biographical_historical_information: Biografische, geschichtliche und weitere Angaben
+    description: Beschreibung
+    gnd_editor_title: Dies ist der GND-Editor für Werke
+    last_20_created_records: Zuletzt erstellte 20 Einträge
+    gnd_id: GND-ID
+    date_created: Erstellungsdatum
+    edit: Bearbeiten
+    search: Suche
+    edit_gnd_record: GND-Datensatz bearbeiten
 
     anla: "Anlass"
     nach: "Nachfolger"

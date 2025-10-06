@@ -620,6 +620,35 @@ include ApplicationHelper
           puts "588 does not have a valid sigla #{tag} #{subtag}, #{rule}" if DEBUG
         end
       end
+    elsif rule == "validate_031_dups"
+        ## A 031 MAY but should not have an epty a, b or c
+        # if it is emmpty let it all fail and set an error
+        begin 
+          my_id = [marc_tag["a"].first.content, marc_tag["b"].first.content, marc_tag["c"].first.content].join(".")
+        rescue
+          add_error(tag, subtag, "031_incomplete")
+          puts "The current 031 is missimt $a, $b or $c #{tag} #{subtag}, #{rule}" if DEBUG
+          return
+        end
+
+        # Also other 031 can be empty
+        begin
+          all_ids = @marc["031"].map {|m31| [m31["a"].first.content, m31["b"].first.content, m31["c"].first.content].join(".")}
+          if all_ids.count(my_id) > 1
+            add_error("#{tag}-#{my_id}", subtag, rule)
+            puts "The current 031 id is duplicated #{tag} #{subtag}, #{rule}" if DEBUG
+          end
+        rescue
+          return
+        end
+      elsif rule == "validate_url"
+        http_regex = %r{\Ahttps?:\/\/(?:www\.)?[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b(?:[-a-zA-Z0-9()@:%_\+.~#?&\/=]*)\z}
+        if marc_subtag && marc_subtag.content
+          if !(marc_subtag.content =~ http_regex)
+            add_error(tag, subtag, rule)
+            puts "The URL in #{tag} #{subtag} is invalid [#{marc_subtag.content}], #{rule}" if DEBUG
+          end
+        end
     else
       puts rule.class
       puts "Unknown rule #{rule}" if rule != "mandatory"

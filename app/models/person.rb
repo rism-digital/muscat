@@ -29,7 +29,7 @@ class Person < ApplicationRecord
   @last_event_save
   attr_accessor :last_event_save
   
-  has_paper_trail :on => [:update, :destroy], :only => [:marc_source, :wf_stage], :if => Proc.new { |t| VersionChecker.save_version?(t) }
+  has_paper_trail :on => [:update, :destroy], :only => [:marc_source, :wf_stage, :wf_audit], :if => Proc.new { |t| VersionChecker.save_version?(t) }
   
   def user_name
     user ? user.name : ''
@@ -337,8 +337,8 @@ class Person < ApplicationRecord
   end
   
   def field_length
-    self.life_dates = self.life_dates.truncate(24) if self.life_dates and self.life_dates.length > 24
-    self.full_name = self.full_name.truncate(128) if self.full_name and self.full_name.length > 128
+    self.life_dates = self.life_dates.truncate(24)&.strip if self.life_dates and self.life_dates.length > 24
+    self.full_name = self.full_name.truncate(128)&.strip if self.full_name and self.full_name.length > 128
   end
 
   def name

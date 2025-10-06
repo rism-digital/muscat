@@ -1,6 +1,7 @@
 class DigitalObject < ApplicationRecord
   
   include CommentsCleanup
+  include AutoStripStrings
 
   Paperclip.options[:content_type_mappings] = {
     :mei => "text/xml"

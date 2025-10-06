@@ -10,7 +10,7 @@ class InventoryItem < ApplicationRecord
   @last_event_save
   attr_accessor :last_event_save
   
-  has_paper_trail :on => [:update, :destroy], :only => [:marc_source, :wf_stage], :if => Proc.new { |t| VersionChecker.save_version?(t) }
+  has_paper_trail :on => [:update, :destroy], :only => [:marc_source, :wf_stage, :wf_audit], :if => Proc.new { |t| VersionChecker.save_version?(t) }
 
   has_many :digital_object_links, :as => :object_link, :dependent => :delete_all
   has_many :digital_objects, through: :digital_object_links, foreign_key: "object_link_id"
@@ -60,6 +60,7 @@ class InventoryItem < ApplicationRecord
   composed_of_reimplementation :marc, :class_name => "MarcInventoryItem", :mapping => %w(marc_source to_marc)
 
   before_save :set_object_fields
+  before_create :add_source_order
   after_create :scaffold_marc, :fix_ids
   after_save :update_links, :reindex
   after_initialize :after_initialize
@@ -101,6 +102,10 @@ class InventoryItem < ApplicationRecord
   
   def suppress_update_77x
     self.suppress_update_77x_trigger = true
+  end
+
+  def add_source_order
+    self.source_order = self.source.inventory_items.count
   end
 
   def fix_ids
@@ -164,6 +169,8 @@ class InventoryItem < ApplicationRecord
     self.composer = marc.get_composer
     self.title = marc.get_std_title
 
+    self.page_info = marc.get_page_info
+
     self.marc_source = self.marc.to_marc
   end
   
@@ -180,6 +187,8 @@ class InventoryItem < ApplicationRecord
 
     sunspot_dsl.text :title
     sunspot_dsl.text :composer
+
+    sunspot_dsl.text :page_info
 
     sunspot_dsl.string :title_order do |s|
       s.title

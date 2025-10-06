@@ -150,6 +150,8 @@ XE-NZ:
   label: places.new_zealand
 XD-NI:
   label: places.nicaragua
+XA-MK:
+  label: places.north_macedonia
 XA-GB-NIR:
   label: places.northern_ireland
 XA-NO:
@@ -178,8 +180,6 @@ XA-RU:
   label: places.russian_federation
 XA-SM:
   label: places.san_marino
-SB-SA:
-  label: places.saudi_arabia
 XB-SA:
   label: places.saudi_arabia
 XA-SK:

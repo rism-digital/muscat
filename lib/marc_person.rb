@@ -19,7 +19,7 @@ class MarcPerson < Marc
       end
     end
     
-    [full_name, dates]
+    [full_name&.strip, dates&.strip]
   end
   
   def get_alternate_names_and_dates
@@ -39,7 +39,7 @@ class MarcPerson < Marc
       end
     end
 
-    [names.join("\n"), dates]
+    [names.join("\n")&.strip, dates&.strip]
   end
 
   def get_gender_birth_place_and_source
@@ -65,7 +65,7 @@ class MarcPerson < Marc
       end
     end
 
-    [gender, birth_place, source]
+    [gender, birth_place&.strip, source&.strip]
   end
 
   

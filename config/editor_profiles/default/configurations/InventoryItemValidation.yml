@@ -2,7 +2,7 @@
 client:
   "031":
     tags:
-      "a": mandatory
+      "a": required
       "b":
         required_if:
           "031": "a"
@@ -28,9 +28,6 @@ client:
   "650":
     tags:
       "0": mandatory
-  "852":
-    tags:
-      a: mandatory
   "700": 
     tags:
       "0": required
@@ -45,8 +42,8 @@ client:
           "710": "0"
   "856": 
     tags:
-      u:
-        begins_with: "http"
+      u: validate_url
+        #begins_with: "http"
       z:
         required_if:
           "856": "u"

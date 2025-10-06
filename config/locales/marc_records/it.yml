@@ -787,6 +787,7 @@ it:
     production: Produzione
     production_personnel: Personale alla produzione
     profession_or_function: Professione o funzione
+    project: Progetto
     project_url: URL del progetto
     provenance: Provenienza
     provenance_notes: Nota sulla provenienza
@@ -961,13 +962,22 @@ it:
     P60183: "Inserto"
   relations_works:
     P60250: "Opera derivata"
-    P60305: "Basata su"
+    P60305: "Si basa su"
     P60216: "Estesa come"
     P60294: "Versione estesa di"
     P60274: "Arrangiata come"
     P60242: "Arrangiamento di"
     P60198: "Complementare a"
     P60313: "Relazione indefinita"
+  relations_institutions:
+    P50008: Superiore gerarchico
+    P50010: Subalterno gerarchico
+    P50012: Ente predecessore
+    P50016: Ente successore
+    P50020: Famiglia fondatrice dell'ente
+    P50230: Ente membro dell'ente
+    P50435: Organismo aziendale membro della famiglia
+    P50301: Ente incorporato
   verovio:
     position: "Posizione"
     warning: "Attenzione"
@@ -1038,6 +1048,12 @@ it:
     ERR_064_LIGATURE_DURATION: La durata di una legatura non può essere inferiore a una semibreve.
     ERR_065_MREST_INVALID_MEASURE: Una battuta con una pausa per l'intera battuta non può includere altro.
     ERR_066_EMPTY_CONTAINER: Un gruppetto o una travatura non possono essere vuoti.
+  work_catalogue:
+    not_work_catalogue: Non un catalogo delle opere
+    work_catalogue_alternate: Catalogo alternativo
+    work_catalogue_complete: Completato
+    work_catalogue_in_preparation: Idoneo
+    work_catalogue_partial: Parzialmente processato
   rism_online:
     manuscript: "Manoscritto"
     printed: "A stampa"

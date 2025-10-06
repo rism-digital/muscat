@@ -787,6 +787,7 @@ pl:
     production: Produkcja
     production_personnel: Personel produkcyjny
     profession_or_function: Zawód lub funkcja
+    project: Projekt
     project_url: Adres URL projektu
     provenance: Pochodzenie
     provenance_notes: Uwaga o proweniencji
@@ -961,13 +962,22 @@ pl:
     P60183: "Wstawić"
   relations_works:
     P60250: "Posiada derywatywę"
-    P60305: "Posiada źródło"
+    P60305: "Jest oparte na"
     P60216: "Jest rozszerzony jako"
     P60294: "Jest rozszerzoną wersją"
     P60274: "Jest zaaranżowane jako"
     P60242: "Jest aranżacją"
     P60198: "Jest uzupełnione o"
     P60313: "Nieokreślony"
+  relations_institutions:
+    P50008: Hierarchicznie przełożony
+    P50010: Hierarchicznie podwładny
+    P50012: Poprzednik organizacji
+    P50016: Następca organizacji
+    P50020: Rodzina założycieli organizacji
+    P50230: Członek organizacji
+    P50435: Członek rodziny, będący częścią organizacji
+    P50301: Wchłonięta organizacja
   verovio:
     position: "Pozycja"
     warning: "Uwaga"
@@ -1038,6 +1048,12 @@ pl:
     ERR_064_LIGATURE_DURATION: Czas trwania ligatury nie może być krótszy niż semibrevis.
     ERR_065_MREST_INVALID_MEASURE: Miara taktu pustego nie może zawierać innych znaków.
     ERR_066_EMPTY_CONTAINER: Grupa ozdobników lub belkowanie nie mogą być puste.
+  work_catalogue:
+    not_work_catalogue: To nie jest katalog dzieł
+    work_catalogue_alternate: Alternatywne
+    work_catalogue_complete: Kompletne
+    work_catalogue_in_preparation: Kwalifikujące się
+    work_catalogue_partial: Częściowo kompletne
   rism_online:
     manuscript: "Rękopis"
     printed: "Druk"
