@@ -139,6 +139,7 @@ ActiveAdmin.register_page "Compare Versions" do
 
   sidebar I18n.t "compare_versions.options", :class => "sidebar_tabs", :only => [:index] do
     #@arbre_context.assigns[:test] to get variables from content
+    # NOW USE controller.view_assigns["test"]
 
     # no idea why the I18n.locale is not set by set_locale in the ApplicationController
     I18n.locale = session[:locale]
