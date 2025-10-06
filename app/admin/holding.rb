@@ -215,9 +215,10 @@ ActiveAdmin.register Holding do
     active_admin_comments if !is_selection_mode?
   end
   
-  sidebar :actions, :only => :show do
-    render :partial => "activeadmin/section_sidebar_show", :locals => { :item => @arbre_context.assigns[:item] }
-  end
+  # Do we even need a sidebar here??
+  #sidebar :actions, :only => :show do
+  #  render :partial => "activeadmin/section_sidebar_show", :locals => { :item => @arbre_context.assigns[:item] }
+  #end
 
   
   ##########
