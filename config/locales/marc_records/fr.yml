@@ -100,6 +100,7 @@ fr:
     persian: Persan
     polish: Polonais
     portugese: Portugais
+    romance_other: Langue romane (autre)
     romani: Romani
     romanian: Roumain
     romansh: Rhéto-roman
@@ -279,6 +280,8 @@ fr:
     alternate_spelling: Autres formes
     alternative_work_title: Titre alternatif
     amount: Nombre
+    annex: Annexe
+    appendix: Appendice
     archive: Archives
     arrangement: Arrangement
     arrangement_statement: Mention d'arrangement
@@ -419,6 +422,7 @@ fr:
     deprecated_fields: Champs obsolètes (ne pas utiliser)
     description: Description
     description_area: Description
+    description_conventions: Conventions de la description
     description_summary: Description brève
     designer: Décorateur
     df_major: Ré♭ majeur
@@ -459,6 +463,7 @@ fr:
     excerpts: Extraits
     exemplar: Exemplaire
     exemplars: Exemplaires
+    expansion: Expansion
     extent: Extension
     extent_parts: Extension (parties)
     external_resource: Ressource électronique externe
@@ -487,6 +492,7 @@ fr:
     fingerprint_identifier: Indentificateur d'empreintes
     first_entry: Première entrée
     first_second_group: Premier/deuxième groupe de caractères
+    form_of_work: Forme de l'œuvre
     form_subdivision: Subdivision de forme
     format_extent: Type de source, extension
     former_sigla: Ancien sigle
@@ -540,6 +546,7 @@ fr:
     identity_area: Identité
     iiif_manifest: "IIIF manifest (source numérisée)"
     iiif_manifest_other: "IIIF manifest (autre)"
+    iiif_manifest_nothing_more: Manifeste IIIF
     illustrator: Illustrateur
     immediate_parent_body: Corps du parent immédiat
     import: Dates importés
@@ -581,7 +588,7 @@ fr:
     language_codes: Codes de langue
     language_libretto: Langue du livret
     language_note: Note sur la langue
-    language_of_cataloging: Langue de catalogage
+    language_of_cataloging: Langage de catalogation
     language_original_text: Langue du texte original
     language_text: Langue du texte chanté
     later_entry: Entrée ultérieure
@@ -674,6 +681,7 @@ fr:
     name_family: Nom de famille
     name_of_part: Numéro de partie / section d'une œuvre
     name_printer: Imprimeur, imprimerie
+    name_titles_words: Titres et mots associés à un nom
     name_variant: Variantes du nom
     name_variants: Variantes du nom
     named_dramatic_roles: Personnages nommés
@@ -692,8 +700,10 @@ fr:
     number: Nombre
     number_page: Numéro/page
     number_part_section: Numéro de partie / section d'une œuvre
+    number_volume: Numéro/volume
     number_volume_part: Numéro du volume ou de la partie
     numbers_code_fields: Numéros et codes
+    numeric_designation: Désignation numérique
     octoechos1: 'Octoechos 1: Ēchos prōtos (premier mode dans la musique byzantine)'
     octoechos2: 'Octoechos 2: Ēchos deuteros (deuxième mode dans la musique byzantine)'
     octoechos3: 'Octoechos 3: Ēchos tritos (troisième mode dans la musique byzantine)'
@@ -703,6 +713,7 @@ fr:
     octoechos7: 'Octoechos 7: Ēchos barys (troisième mode plagal dans la musique byzantine)'
     octoechos8: 'Octoechos 8: Ēchos plagios tetartos (quatrième mode plagal dans la musique byzantine)'
     online_finding_aids: Instruments de recherche online
+    online_resource: Ressources en ligne
     opera_houses_concert_halls: Théâtres et salles de concert
     opus_number: No. de Opus
     opus_thematic_index_number: Numéro de opus / du catalogue des oeuvres
@@ -720,6 +731,7 @@ fr:
     other_instruments: Autres instruments
     other_life_dates: Autres dates
     other_physical_details: Autres détails du matériau
+    other_resource: Autres ressources
     other_searchform: Autre forme de recherche
     other_shelfmark: Autre cote
     other_standard_identifier: Référence d'authorité
@@ -739,6 +751,8 @@ fr:
     performances: Exécutions
     performer: Interprète
     performer_note: Remarque sur les interprètes
+    periodical_or_series: Revue ou série
+    periodical_or_series_title: Titre de la revue ou série
     person: Personne
     person_name: Nom de la personne
     personal_name: Nom de la personne
@@ -769,9 +783,12 @@ fr:
     print_with_non_autograph_annotations: Impression avec annotations pas autographes
     printer: Imprimeur
     printing_technique: Technique d'impression
+    private_collection: Collection Privée
     production: Production
     production_personnel: Personnel de réalisation
     profession_or_function: Profession ou fonction
+    project: Projet
+    project_url: URL du projet
     provenance: Provenance
     provenance_notes: Note de provenance
     pseudonym: Pseudonyme
@@ -816,13 +833,15 @@ fr:
     rism_id_number: No. RISM
     role: Personnage
     scoring_in_movement: Instrumentation du mouvement
-    scoring_summary: Instrumentation
+    scoring_summary: Instrumentation condensée
     scribe: Copiste / scribe
     secondary_catalog_works: Catalogue secondaire des oeuvres
     secondary_literature: Références
+    serial_number: Numéro de série
     series: Série
     series_added_entry: Champs de collection
     series_statement: Mentions de collection
+    section: Section
     shelfmark: Cote
     shelfmark_olim: Ancienne cote (olim)
     short_title: Titre abrégé
@@ -888,7 +907,7 @@ fr:
     title_variants: Variantes du titre
     titles_text_incipits: Titres / incipits du texte
     topical_term: Terme thématique
-    total_scoring: Instrumentation
+    total_scoring: Instrumentation complète
     transcribing_agency: Organisme de la transcription
     translation: Traduction
     translator: Traducteur
@@ -917,7 +936,10 @@ fr:
     watermark_description: Filigrane
     woodwinds: Bois
     work: Oeuvre
+    work_catalog: Catalogue des œuvres
+    work_catalogs: Catalogue des œuvres
     work_catalog_note: Note sur le catalogue des œuvres
+    work_list: Liste des œuvres
     work_node: Référence externe d'œuvre (Work node)
     work_number: Numéro de l'œuvre
     work_tag: Étiquette de révision
@@ -940,13 +962,22 @@ fr:
     P60183: "Insertion"
   relations_works:
     P60250: "A dérivé"
-    P60305: "A la source"
+    P60305: "Is based on"
     P60216: "Est élargi comme"
     P60294: "Est la version étendue de"
     P60274: "Est arrangé comme"
     P60242: "Est un arragement de"
     P60198: "Est complété par"
     P60313: "Indéfini"
+  relations_institutions:
+    P50008: Supérieur hiérarchique
+    P50010: Subordonné hiérarchique
+    P50012: Prédécesseur de la société
+    P50016: Successeur de la société
+    P50020: Famille fondatrice de la société
+    P50230: Membre corporatif de la société
+    P50435: Membre de la famille de la société
+    P50301: Corps sociétal absorbé
   verovio:
     position: "Position"
     warning: "Avertissement"
@@ -1017,6 +1048,12 @@ fr:
     ERR_064_LIGATURE_DURATION: La durée dans une ligature ne peut pas être plus courte qu'une semi-brève.
     ERR_065_MREST_INVALID_MEASURE: Une mesure avec une pause ne peut pas inclure autre chose.
     ERR_066_EMPTY_CONTAINER: Un groupe d'appoggiatures ou une liaison ne peut pas être vide.
+  work_catalogue:
+    not_work_catalogue: Pas catalogue d'œuvres
+    work_catalogue_alternate: Alternatif
+    work_catalogue_complete: Terminé
+    work_catalogue_in_preparation: Éligible
+    work_catalogue_partial: Partiellement terminé
   rism_online:
     manuscript: "Manuscrit"
     printed: "Imprimé"

@@ -67,6 +67,8 @@
       - :occurrences: "1"
     - - d
       - :occurrences: "?"
+    - - e
+      - :occurrences: "1"
   "042":
     :master: a
     :indicator: "##"
@@ -296,3 +298,5 @@
       - :occurrences: "?"
         :foreign_class: ^0
         :foreign_field: corporate_name
+    - - u
+      - :occurrences: "?"

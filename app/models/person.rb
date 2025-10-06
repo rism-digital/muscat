@@ -21,6 +21,7 @@ class Person < ApplicationRecord
   include AuthorityMerge
   include CommentsCleanup
   include ComposedOfReimplementation
+  include ThroughAssociations
 
   # class variables for storing the user name and the event from the controller
   @last_user_save
@@ -28,7 +29,7 @@ class Person < ApplicationRecord
   @last_event_save
   attr_accessor :last_event_save
   
-  has_paper_trail :on => [:update, :destroy], :only => [:marc_source], :if => Proc.new { |t| VersionChecker.save_version?(t) }
+  has_paper_trail :on => [:update, :destroy], :only => [:marc_source, :wf_stage, :wf_audit], :if => Proc.new { |t| VersionChecker.save_version?(t) }
   
   def user_name
     user ? user.name : ''
@@ -74,7 +75,9 @@ class Person < ApplicationRecord
   has_many :person_place_relations
   has_many :places, through: :person_place_relations
 
-  has_and_belongs_to_many(:referring_work_nodes, class_name: "WorkNode", join_table: "work_nodes_to_people")
+  #has_and_belongs_to_many(:referring_work_nodes, class_name: "WorkNode", join_table: "work_nodes_to_people")
+  has_many :work_node_person_relations, class_name: "WorkNodePersonRelation"
+  has_many :referring_work_nodes, through: :work_node_person_relations, source: :work_node
 
   has_many :folder_items, as: :item, dependent: :destroy
   has_many :delayed_jobs, -> { where parent_type: "Person" }, class_name: 'Delayed::Backend::ActiveRecord::Job', foreign_key: "parent_id"
@@ -119,6 +122,7 @@ class Person < ApplicationRecord
   attr_accessor :suppress_reindex_trigger
   attr_accessor :suppress_scaffold_marc_trigger
   attr_accessor :suppress_recreate_trigger
+  attr_accessor :suppress_update_count_trigger
 
   alias_attribute :id_for_fulltext, :id
 
@@ -135,6 +139,10 @@ class Person < ApplicationRecord
     self.suppress_scaffold_marc_trigger = true
   end
   
+  def suppress_update_count
+    self.suppress_update_count_trigger = true
+  end
+
   def suppress_recreate
     self.suppress_recreate_trigger = true
   end 
@@ -244,7 +252,7 @@ class Person < ApplicationRecord
   end
 
   searchable :auto_index => false do |sunspot_dsl|
-    sunspot_dsl.integer :id
+    sunspot_dsl.integer :id, stored: true
     sunspot_dsl.text :id_text do
       id_for_fulltext
     end
@@ -254,6 +262,14 @@ class Person < ApplicationRecord
 
     sunspot_dsl.string :full_name_ans, :as => "full_name_ans_s" do
       full_name
+    end
+
+    sunspot_dsl.string :full_name_autocomplete, :as => "full_name_autocomplete" do
+      full_name
+    end
+
+    sunspot_dsl.string :label, stored: true do
+      autocomplete_label(true)
     end
 
     sunspot_dsl.text :full_name
@@ -281,12 +297,14 @@ class Person < ApplicationRecord
               :join => { :from => :item_id, :to => :id })
 
     sunspot_dsl.integer :src_count_order, :stored => true do
-      referring_sources.size + referring_holdings.size
+      #referring_sources.size + referring_holdings.size
+      # Use the jump table directly
+      source_person_relations.size + holding_person_relations.size
     end
 
-    sunspot_dsl.integer :publications_count_order, :stored => true do
-      referring_publications.size
-    end
+    sunspot_dsl.integer(:src_count_order, :stored => true) {through_associations_source_count}
+    sunspot_dsl.integer(:referring_objects_order, stored: true) {through_associations_exclude_source_count}
+    sunspot_dsl.integer(:total_obj_count_order, stored: true) {through_associations_total_count}
 
     MarcIndex::attach_marc_index(sunspot_dsl, self.to_s.downcase)
     
@@ -319,24 +337,29 @@ class Person < ApplicationRecord
   end
   
   def field_length
-    self.life_dates = self.life_dates.truncate(24) if self.life_dates and self.life_dates.length > 24
-    self.full_name = self.full_name.truncate(128) if self.full_name and self.full_name.length > 128
+    self.life_dates = self.life_dates.truncate(24)&.strip if self.life_dates and self.life_dates.length > 24
+    self.full_name = self.full_name.truncate(128)&.strip if self.full_name and self.full_name.length > 128
   end
 
   def name
     return full_name
   end
   
-  def autocomplete_label
+  def autocomplete_label(use_self = false)
     #1540, does this slow things up too much?
     #Since the autocomplete only gets the minimum fields
-    pp = Person.find(id)
+    if use_self
+      pp = self
+    else
+      pp = Person.find(id)
+    end
+
     pp.marc.load_source false
     person_function = pp.marc.first_occurance("100", "c")
 
     "#{full_name}" + 
       (person_function && person_function.content && !person_function.content.empty? ? " (#{person_function.content})" : "") + 
-      (life_dates && !life_dates.empty? ? "  - #{life_dates}" : "")
+      (life_dates && !life_dates.empty? ? " - #{life_dates}" : "")
   end
 
   # If we define our own ransacker, we need this

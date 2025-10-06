@@ -8,10 +8,6 @@
 "026":
   layout:
     fields:
-    - - a
-    - - b
-    - - c
-    - - d
     - - e
 "028":
   layout:
@@ -175,13 +171,20 @@
   layout:
     fields:
     - - a
-      - hidden: true
-    - - d
-      - hidden: true
+      - read_only: true
+        default: "DE-633"
     - - b
       - editor_partial: subfield_select_codes
         select_label: "Language"
         codes_reference: "codes"
+    - - c
+      - read_only: true
+        default: "DE-633"
+    - - d
+      - read_only: true
+    - - e
+      - read_only: true
+        default: "rismg"
   tag_params:
     codes:
       - "eng"
@@ -312,7 +315,7 @@
         editor_partial: subfield_secondary
         allow_new: true
     - - d
-      - autocomplete_extra: life_dates
+      - autocomplete_extra: life_dates_order_s
     - - j
       - editor_partial: subfield_select_codes
         codes_reference: "codes"
@@ -475,6 +478,16 @@
   layout:
     fields:
     - - b
+"490":
+  new_window: standard_titles
+  new_window_field: title_eq
+  layout:
+    fields:
+    - - a
+      - type: standard_title_no_730
+        editor_partial: subfield_secondary
+        allow_new: true
+    - - v
 "500":
   layout:
     fields:
@@ -683,7 +696,7 @@
     - - c
       - type: source
         editor_partial: subfield_secondary
-        only_new_window: true
+        allow_new: false
 "597":
   layout:
     fields:
@@ -769,7 +782,7 @@
         editor_partial: subfield_secondary
         allow_new: true
     - - d
-      - autocomplete_extra: life_dates
+      - autocomplete_extra: life_dates_order_s
     - - j
       - editor_partial: subfield_select_codes
         codes_reference: "codes"
@@ -785,7 +798,7 @@
       - "Misattributed"
     relator_codes:
       - scr
-      - cmp
+      - att
       - cns
       - arr
       - prf
@@ -843,14 +856,14 @@
   layout:
     fields:
     - - a
-      - type: institution
+      - type: institution_collate
         editor_partial: subfield_secondary
         allow_new: true
     - - b
     - - c
       - type: place
         editor_partial: subfield_autocomplete
-        autocomplete_extra: place
+        autocomplete_extra: place_order_s
     - - g
       - editor_partial: subfield_select_codes
         codes_reference: "codes"
@@ -1020,13 +1033,16 @@
     - - '4'
       - hidden: true
 "775":
-  new_window: sources
+  #new_window: sources
   record_type_helper: get_allowed_record_type_775
+  tag_params:
+    no_delete_override: true
   layout:
     fields:
     - - w
       - type: source
         editor_partial: subfield_secondary
+        read_only: true
 "787":
   new_window: sources
   layout:
@@ -1055,7 +1071,7 @@
         editor_partial: subfield_secondary
         allow_new: true
     - - e
-      - autocomplete_extra: name
+      - autocomplete_extra: full_name
     - - b
     - - z
     - - c
@@ -1100,6 +1116,8 @@
       - read_only: true
     - - "0"
       - hidden: true
+    - - u
+      - read_only: true
 "930":
   new_window: work_nodes
   new_window_field: title_eq

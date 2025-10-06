@@ -49,18 +49,15 @@ module ForeignLinks
         end
       else
         # If we have an empty relation set, make sure no relations of this type are still on the DB
-        purge_foreign_items(foreign_class)
+        reindex_items += purge_foreign_items(foreign_class)
       end
     end
     
-    
-    # If this item was manipulated, update also the src count
-    # Unless the suppress_update_count is set
-    # Since now classes can link between eachother
-    # make sure this is updated only when it is a source
-    # that triggers the change. In other cases (like people linking to institutions)
-    # there is no such count field.
-    if self.is_a?(Source) && !self.suppress_update_count_trigger && reindex_items.size > 0
+    # For testing, reindex all the connected links
+    # The model should respond to suppress_update_count_trigger, if not
+    # just honor size.positive and ho on
+    if reindex_items.size.positive? &&
+        (!respond_to?(:suppress_update_count_trigger) || self.suppress_update_count_trigger)
       # just pass the minumum necessary information
       ids_hash = reindex_items.map {|i| {class: i.class, id: i.id}}
       job = Delayed::Job.enqueue(ReindexForeignRelationsJob.new(self.id, ids_hash))
@@ -128,7 +125,7 @@ module ForeignLinks
 
     reindex_items += new_items
     reindex_items += remove_items
-    
+
     # Delete or add to the DB relation
     relation.delete(remove_items)
     new_items.each do |ni|

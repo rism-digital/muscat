@@ -1,3 +1,5 @@
+@use "sass:color";
+
 .marc_guidelines {
     background: #fff;
     border: 1px solid $primary-color;
@@ -203,7 +205,7 @@ $diff-padding-width: 15px;
         background-color: #eee;
     }
     .modification_bar_content {
-        background-color: lighten($primary-color, 20%)
+        background-color: color.adjust($primary-color, $lightness: 20%, $space: hsl)
     }
     .marc_historic_view {
         margin-top: 30px;
@@ -363,6 +365,9 @@ h3 {
         a.muscat_icon_link_new {
             background: image-url("/images/marc-icons/new.png") no-repeat;
         }
+        a.muscat_icon_link_order {
+            background: image-url("/images/marc-icons/order.png") no-repeat;
+        }
         a.muscat_icon_link_note {
             background: image-url("/images/marc-icons/note.png") no-repeat;
         }
@@ -421,6 +426,17 @@ h3 {
     li.muscat_icon_separator {
          border-bottom: 3px solid #dfe1e2;
          margin-top: 6px;
+    }
+}
+
+.panel_contents {
+    .modification_bar {
+        border: #ccc 1px solid; 
+        width: 100%; 
+        background-color: #eee;
+    }
+    .modification_bar_content {
+        background-color: color.adjust($primary-color, $lightness: 20%, $space: hsl)
     }
 }
 

@@ -1,0 +1,9 @@
+<pre><code><%= h @data %></code></pre>
+
+<p>
+<% if @current_user %>
+<%=@current_user&.name %>
+<%else%>
+No user set
+<%end%>
+</p>

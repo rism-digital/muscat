@@ -36,15 +36,34 @@ module GND
         return result
     end
 
-    def self.push(marc_hash)
+    # Gets 1000 ids
+    def self.search_for_ids(params, times)
+        result = []
+        for o in 0..times do
+            xml = self.person_and_title_query(params, 100, 100 * o)
+            # Loop on each record in the result list
+            xml.xpath("//marc:record", NAMESPACE).each do |record|
+                marc = MarcWorkNode.new(nil, "work_node_gnd")
+                marc.load_from_xml(record)
+                # Some items do not have a 100 tag
+                next if !marc.first_occurance("100", "a")
+                
+                id = get_id(marc)
+                result << id
+            end
+        end
+        return result
+    end
+
+    def self.push(marc_hash, current_user = nil)
+        @current_user = current_user
         m = MarcGndWork.new
-        m.load_from_hash(marc_hash)
+        m.load_from_hash(marc_hash, force_editor_ordering: true)
 
         action = m.get_id == "__TEMP__" ? :create : :replace
-
+        
         # is this evil? maybe
-        xml = m.to_xml({}).gsub('<?xml version="1.0" encoding="UTF-8"?>', '')
-
+        xml = m.to_xml({authority: true, force_editor_ordering: true}).gsub('<?xml version="1.0" encoding="UTF-8"?>', '')
         return send_to_gnd(action, xml, m.get_id)
     end
 
@@ -52,11 +71,14 @@ module GND
     def self.send_to_gnd(action, xml, id=nil)
         server = SRU_PUSH_URL
         request_body = make_gnd_envelope(action, xml.to_s, id)
+
+        debug_body = make_gnd_envelope_sanitized(action, xml.to_s, id)
+        GndSaveNotification.notify("Saved XML", debug_body, @current_user).deliver_now
+
         call_result = nil
         diagnostic_messages = ""
         author = ""
         title = ""
-
         uri = URI.parse(server)
         post = Net::HTTP::Post.new(uri.path, 'Content-Type' => 'text/xml')
         server = Net::HTTP.new(uri.host, uri.port)
@@ -64,7 +86,6 @@ module GND
         server.start {|http|
             http.request(post, request_body) {|response|
                 if response.code == "200"
-            puts response.body
                     response_body = Nokogiri::XML(response.body)
 
                     # Get all the messages if any
@@ -120,6 +141,34 @@ module GND
     </soap:Envelope> 
         TEXT
         doc = Nokogiri::XML(xml,nil, 'UTF-8')
+        return doc.to_xml(indent: 2)
+    end
+
+    ## THIS IS ONLY FOR DEBUGGING THE GND STUFF!!!!
+    def self.make_gnd_envelope_sanitized(action, data, id=nil)
+        recordId = id ? "<ucp:recordIdentifier>gnd:gnd#{id}</ucp:recordIdentifier>" : ""
+        xml = <<-TEXT
+    <soap:Envelope xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/">
+        <soap:Body>
+        <ucp:updateRequest xmlns:ucp="http://www.loc.gov/zing/srw/update/" xmlns:srw="http://www.loc.gov/zing/srw/"  xmlns:diag="http://www.loc.gov/zing/srw/diagnostic/">
+            <srw:version>1.0</srw:version>
+            #{recordId}
+            <ucp:action>info:srw/action/1/#{action}</ucp:action>
+            <srw:record>
+            <srw:recordPacking>xml</srw:recordPacking>
+            <srw:recordSchema>MARC21-xml</srw:recordSchema>
+            <srw:recordData>
+            #{data}
+            </srw:recordData>
+            </srw:record>
+            <srw:extraRequestData>
+            <authenticationToken>REDACTED</authenticationToken>
+            </srw:extraRequestData>
+        </ucp:updateRequest>
+        </soap:Body>
+    </soap:Envelope> 
+        TEXT
+        doc = Nokogiri::XML(xml,nil, 'UTF-8')
         return doc.to_xml
     end
 
@@ -137,7 +186,7 @@ module GND
             marc.load_from_xml(record)
             result = marc
         end
-        return result
+        return result, xml
     end
 
     # Query the GND with the query parameters and return an XML document with the results
@@ -146,7 +195,7 @@ module GND
         # Code
         query += "BBG=#{auth}*"
         term.split.each do |word|
-            query += " and #{index}=" + ERB::Util.url_encode(word + "*")
+            query += " and #{index}=" + ERB::Util.url_encode(word)
         end
         # Code - See https://wiki.dnb.de/download/attachments/90411323/entitaetenCodes.pdf
         query += " and COD=#{code}" if !code.empty?
@@ -157,8 +206,8 @@ module GND
     end
 
     # Query the GND with the query parameters and return an XML document with the results
-    def self.person_and_title_query(params, limit = 30)
-        query = SRU_READ_URL_AUTH + "?version=1.1&operation=searchRetrieve&recordSchema=MARC21-xml&maximumRecords=#{limit}&query="
+    def self.person_and_title_query(params, limit = 30, offset = 0)
+        query = SRU_READ_URL_AUTH + "?version=1.1&operation=searchRetrieve&recordSchema=MARC21-xml&maximumRecords=#{limit}&startRecord=#{offset}&query="
         # We are searching the Work index
         query += "BBG=Tu*"
 
@@ -300,6 +349,8 @@ module GND
             return autocomplete_instrument(term, limit, options)
         elsif method == "form" 
             return autocomplete_form(term, limit, options)
+        elsif method == "title" 
+            return autocomplete_title(term, limit, options)
         end
         {}
     end
@@ -312,7 +363,7 @@ module GND
             item = {}
             node_001 = record.xpath("./marc:controlfield[@tag='001']", NAMESPACE).first
             next if !node_001
-            item[:id] = node_001.text
+            item[:id] = "(DE-101)#{node_001.text}"
             node_100a_val = record.xpath("./marc:datafield[@tag='100']/marc:subfield[@code='a']", NAMESPACE).first.text rescue "[missing]"
             item["person"] = node_100a_val
             node_100d_val = record.xpath("./marc:datafield[@tag='100']/marc:subfield[@code='d']", NAMESPACE).first.text rescue ""
@@ -333,7 +384,8 @@ module GND
             item = {}
             node_001 = record.xpath("./marc:controlfield[@tag='001']", NAMESPACE).first
             next if !node_001
-            item[:id] = node_001.text
+            #item[:id] = node_001.text
+            item[:id] = "(DE-101)#{node_001.text}"
             node_150a_val = record.xpath("./marc:datafield[@tag='150']/marc:subfield[@code='a']", NAMESPACE).first.text rescue "[missing]"
             item["instrument"] = node_150a_val
             item[:label] = "#{node_150a_val}"
@@ -345,15 +397,40 @@ module GND
 
     def self.autocomplete_form(term, limit, options)
         result = []
-        xml = self.query(term, "WOE", "Ts", "saz", limit)
+        xml = self.query(term, "WOE", "Ts", "saz", 500)
         
         # Loop on each record in the result list
         xml.xpath("//marc:record", NAMESPACE).each do |record|
             item = {}
             node_001 = record.xpath("./marc:controlfield[@tag='001']", NAMESPACE).first
             next if !node_001
-            item[:id] = node_001.text
+            #item[:id] = node_001.text
+            item[:id] = "(DE-101)#{node_001.text}"
             node_150a_val = record.xpath("./marc:datafield[@tag='150']/marc:subfield[@code='a']", NAMESPACE).first.text rescue "[missing]"
+            next if !node_150a_val&.downcase&.include?(term&.downcase)
+            item["form"] = node_150a_val
+            item[:label] = "#{node_150a_val}"
+            item[:label] += " – #{item[:id]}"
+            result << item
+        end
+        result
+    end
+
+    def self.autocomplete_title(term, limit, options)
+        result = []
+        xml = self.query(term, "WOE", "Tu", "wim", 500)
+        
+        ap xml
+
+        # Loop on each record in the result list
+        xml.xpath("//marc:record", NAMESPACE).each do |record|
+            item = {}
+            node_001 = record.xpath("./marc:controlfield[@tag='001']", NAMESPACE).first
+            next if !node_001
+            #item[:id] = node_001.text
+            item[:id] = "(DE-101)#{node_001.text}"
+            node_150a_val = record.xpath("./marc:datafield[@tag='150']/marc:subfield[@code='a']", NAMESPACE).first.text rescue "[missing]"
+            next if !node_150a_val&.downcase&.include?(term&.downcase)
             item["form"] = node_150a_val
             item[:label] = "#{node_150a_val}"
             item[:label] += " – #{item[:id]}"

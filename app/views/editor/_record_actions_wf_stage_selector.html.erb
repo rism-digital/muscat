@@ -1,0 +1,55 @@
+<% 
+    disabled = false
+    selected_stage =
+     if @item.new_record?
+       (current_user.preference_wf_stage == "published" && !@item.is_a?(Work)) ? "published" : "inprogress"
+     else
+       @item.wf_stage
+     end
+
+    # In Holdings, some magic needs to happen. They are always published
+    if @item.is_a? Holding
+        selected_stage = "published"
+        disabled = true
+    end
+
+    # Special case: cataloguers cannot unpublish published records
+    if cannot?(:unpublish, @item) && (!@item.new_record? && @item.wf_stage == "published")
+        disabled = true
+    end
+
+    # Turn it back on for MY records that have been created in less than one hour
+    if !@item.new_record? && @item.created_at > 10.minute.ago && can?(:edit, @item)
+        disabled = false
+    end
+
+
+    # unpublished shares the same enum value (0) as inprogress.
+    # We keep the key in the enum so older versions can still be read,
+    # but omit it from the UI's select box because inprogress is the
+    # preferred, clearer label.
+    wf_stages = @item.class.wf_stages.to_h.except("unpublished")
+
+    if defined?(RISM::REMOVE_DELETED_WF_STAGE) && RISM::REMOVE_DELETED_WF_STAGE
+        wf_stages = wf_stages.except("deleted", "deprecated")
+    end
+%>
+
+<tr>
+    <td>
+        <div class="grid_cell_header">
+            <%=I18n.t(:record_status)%>
+        </div>
+    </td>
+    <td colspan="3">
+        <div class="grid_cell">
+            <div style="vertical-align: bottom; background-color: transparent">
+
+                <%= select_tag :record_status, options_for_select(wf_stages.map { |k, v| [t("wf_stage.#{k}"), k] }, selected_stage),
+                    id: "record_status", class: "w-100", disabled: disabled
+                %>
+
+            </div>
+        </div>
+    </td>
+</tr>

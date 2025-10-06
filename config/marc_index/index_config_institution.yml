@@ -21,5 +21,8 @@ fields:
       :from_tag: "094"
       :from_subtag: "a"
       :as: "094a_facet_sm"
+    "368a":
+      :store: true
+      :type: string
     "580x":
     "667a":

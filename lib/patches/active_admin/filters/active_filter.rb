@@ -15,6 +15,14 @@ module ActiveAdmin
           rescue ActiveRecord::RecordNotFound
             "Folder not found #{value}"
           end
+        elsif part == "work_catalogue"
+          I18n.t("work_catalogue_labels." + value)
+        elsif part == "wf_owner"
+          begin
+            User.find(value).name
+          rescue ActiveRecord::RecordNotFound
+            "User not found #{value}"
+          end
         else
           "#{value}"
           # [#{part}] we used to print the filter name, do we need it?
@@ -24,12 +32,12 @@ module ActiveAdmin
       # Patch the values so we can show the template type
       def values
         condition_values = condition.values.map(&:value)
-        if related_class
+
+        if related_class && related_class != User
           related_class.where(related_primary_key => condition_values)
         else
           # "Clever" Rod-style patch
           condition_values.collect do |cv|
-
             if cv.include?(":")
               part, value = cv.split(":")
               make_muscat_filter(part, value)

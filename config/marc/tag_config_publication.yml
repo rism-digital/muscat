@@ -103,11 +103,26 @@
       - :occurrences: "?"
   "024":
     :master: a
-    :indicator: "##"
+    :indicator: "2#"
     :occurrences: "*"
     :fields:
     - - a
       - :occurrences: "?"
+  "040":
+    :master: a
+    :indicator: "##"
+    :occurrences: "1"
+    :fields:
+    - - a
+      - :occurrences: "1"
+    - - b
+      - :occurrences: "1"
+    - - c
+      - :occurrences: "1"
+    - - d
+      - :occurrences: "?"
+    - - e
+      - :occurrences: "1"
   "041":
     :master: a
     :indicator: ["0#", "1#"]
@@ -248,7 +263,6 @@
     :fields:
     - - a
       - :occurrences: "?"
-        :browse_helper: application_helper_link_http
     - - "5"
       - :occurrences: "?"
         :no_browse: true
@@ -259,6 +273,13 @@
     :fields:
     - - a
       - :occurrences: "?"
+  "505":
+    :master: t
+    :indicator: "##"
+    :occurrences: "?"
+    :fields:
+    - - t
+      - :occurrences: "*"
   "520":
     :master: a
     :indicator: "##"
@@ -430,7 +451,7 @@
         :no_show: true
     - - t
       - :occurrences: "?"
-        :foreign_class: ^0
+        :foreign_class: ^w
         :foreign_field: title
   "785":
     :master: "w"
@@ -444,7 +465,7 @@
         :no_show: true
     - - t
       - :occurrences: "?"
-        :foreign_class: ^0
+        :foreign_class: ^w
         :foreign_field: title
   "856":
     :master: u
@@ -453,7 +474,6 @@
     :fields:
     - - u
       - :occurrences: "*"
-        :browse_helper: application_helper_link_http
     - - z
       - :occurrences: "*"
   "981":

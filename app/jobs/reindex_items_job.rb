@@ -83,6 +83,7 @@ class ReindexItemsJob < ProgressJob::Base
     update_progress_max(items.count)
     progress = 1
     items.each do |item|
+      item = item.item if item.is_a?(FolderItem) 
       Sunspot.index item
       update_stage_progress("#{job_id}Reindexing records #{progress}/#{items.count}", step: 20) if progress % 20 == 0
       progress += 1

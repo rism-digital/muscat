@@ -11,28 +11,31 @@ class WorkNode < ApplicationRecord
   @last_event_save
   attr_accessor :last_event_save
 
-  has_paper_trail :on => [:update, :destroy], :only => [:marc_source], :if => Proc.new { |t| VersionChecker.save_version?(t) }
+  has_paper_trail :on => [:update, :destroy], :only => [:marc_source, :wf_stage, :wf_audit], :if => Proc.new { |t| VersionChecker.save_version?(t) }
 
   resourcify
   belongs_to :person
-  has_and_belongs_to_many(:referring_sources, class_name: "Source", join_table: "sources_to_work_nodes")
-  has_and_belongs_to_many :publications, join_table: "work_nodes_to_publications"
-  has_and_belongs_to_many :standard_terms, join_table: "work_nodes_to_standard_terms"
-  has_and_belongs_to_many :standard_titles, join_table: "work_nodes_to_standard_titles"
-  has_and_belongs_to_many :liturgical_feasts, join_table: "work_nodes_to_liturgical_feasts"
-  has_and_belongs_to_many :institutions, join_table: "work_nodes_to_institutions"
-  has_and_belongs_to_many :people, join_table: "work_nodes_to_people"
+
+  #has_and_belongs_to_many(:referring_sources, class_name: "Source", join_table: "sources_to_work_nodes")
+  has_many :source_work_node_relations, class_name: "SourceWorkNodeRelation"
+  has_many :referring_sources, through: :source_work_node_relations, source: :source
+  
+  #has_and_belongs_to_many :people, join_table: "work_nodes_to_people"
+  has_many :work_node_person_relations
+  has_many :people, through: :work_node_person_relations
+
   has_many :folder_items, as: :item, dependent: :destroy
   has_many :delayed_jobs, -> { where parent_type: "WorkNode" }, class_name: 'Delayed::Backend::ActiveRecord::Job', foreign_key: "parent_id"
   belongs_to :user, :foreign_key => "wf_owner"
  
   composed_of_reimplementation :marc, :class_name => "MarcWorkNode", :mapping => %w(marc_source to_marc)
 
-  before_destroy :check_dependencies, :cleanup_comments
+  before_destroy :check_dependencies, :cleanup_comments, :update_links
   
   attr_accessor :suppress_reindex_trigger
   attr_accessor :suppress_scaffold_marc_trigger
   attr_accessor :suppress_recreate_trigger
+  attr_accessor :suppress_update_count_trigger
 
   before_save :set_object_fields
   after_create :scaffold_marc, :fix_ids
@@ -55,6 +58,10 @@ class WorkNode < ApplicationRecord
     self.suppress_scaffold_marc_trigger = true
   end
   
+  def suppress_update_count
+    self.suppress_update_count_trigger = true
+  end
+
   def suppress_recreate
     self.suppress_recreate_trigger = true
   end 
@@ -131,7 +138,7 @@ class WorkNode < ApplicationRecord
   end
 
   searchable :auto_index => false do |sunspot_dsl|
-    sunspot_dsl.integer :id
+    sunspot_dsl.integer :id, stored: true
     sunspot_dsl.text :id_text do
       id_for_fulltext
     end
@@ -157,10 +164,6 @@ class WorkNode < ApplicationRecord
       WorkNode.count_by_sql("select count(*) from sources_to_work_nodes where work_node_id = #{self[:id]}")
     end
     
-    sunspot_dsl.integer :publications_count_order, :stored => true do 
-      WorkNode.count_by_sql("select count(*) from work_nodes_to_publications where work_node_id = #{self[:id]}")
-    end
-    
     sunspot_dsl.text :text do |s|
       s.marc.to_raw_text
     end
@@ -174,7 +177,7 @@ class WorkNode < ApplicationRecord
     self.title = marc.get_title
     self.person = marc.get_composer # This sets the person id!
     self.composer = marc.get_composer_name # and this caches the composer name
-
+    self.ext_number, self.ext_code = marc.get_ext_nr
 
     self.marc_source = self.marc.to_marc
   end

@@ -36,8 +36,10 @@ ActiveAdmin.register Person do
   # temporarily allow all parameters
   controller do
 
-    autocomplete :person, :full_name, :display_value => :autocomplete_label , :extra_data => [:life_dates]
-    autocomplete :person, "550a_sms", :solr => true, :display_value => :label
+    autocomplete :person, :full_name, :extra_data => [:life_dates_order_s], :solr_search => true,
+                 :search_field => :full_name_autocomplete, :order_field => :total_obj_count_order_is,
+                 :display_value => :label_ss, :value_field => :full_name_order_s
+    autocomplete :person, "550a_sms", :solr => true, :display_value => :label, :value_field => :"550a_sms"
 
     after_destroy :check_model_errors
     before_create do |item|
@@ -99,14 +101,10 @@ ActiveAdmin.register Person do
     end
 
     def index
-      person = Person.new
-      new_marc = MarcPerson.new(File.read(ConfigFilePath.get_marc_editor_profile_path("#{Rails.root}/config/marc/#{RISM::MARC}/person/default.marc")))
-      new_marc.load_source false # this will need to be fixed
-      person.marc = new_marc
-      @editor_profile = EditorConfiguration.get_default_layout person
+      @editor_profile = EditorConfiguration.get_default_layout Person
 
       # Get the terms for 550a, the "profession filter"
-      @profession_types = Source.get_terms("550a_sms")
+      @profession_types = Person.get_terms("550a_sms")
 
       @results, @hits = Person.search_as_ransack(params)
       index! do |format|
@@ -209,9 +207,11 @@ ActiveAdmin.register Person do
     column (I18n.t :filter_life_dates), :life_dates
     column (I18n.t :filter_owner) {|person| User.find(person.wf_owner).name rescue 0} if current_user.has_any_role?(:editor, :admin)
     column (I18n.t :filter_sources), :src_count_order, sortable: :src_count_order do |element|
-      all_hits = @arbre_context.assigns[:hits]
-      active_admin_stored_from_hits(all_hits, element, :src_count_order)
+      active_admin_stored_from_hits(controller.view_assigns["hits"], element, :src_count_order)
     end
+    column (I18n.t :filter_authorities), :referring_objects_order, sortable: :referring_objects_order do |element|
+			active_admin_stored_from_hits(controller.view_assigns["hits"], element, :referring_objects_order)
+		end
     active_admin_muscat_actions( self )
   end
 
@@ -232,7 +232,7 @@ ActiveAdmin.register Person do
 
     render('jobs/jobs_monitor')
 
-    @item = @arbre_context.assigns[:item]
+    @item = controller.view_assigns["item"]
     if @item.marc_source == nil
       render :partial => "marc/missing"
     else
@@ -240,36 +240,7 @@ ActiveAdmin.register Person do
     end
     active_admin_embedded_source_list( self, person, !is_selection_mode? )
 
-    # Box for publications referring to this person
-    active_admin_embedded_link_list(self, person, Publication) do |context|
-      context.table_for(context.collection) do |cr|
-        context.column "id", :id
-        context.column (I18n.t :filter_title_short), :short_name
-        context.column (I18n.t :filter_author), :author
-        context.column (I18n.t :filter_title), :title
-        if !is_selection_mode?
-          context.column "" do |publication|
-            link_to "View", controller: :publications, action: :show, id: publication.id
-          end
-        end
-      end
-    end
-
-    # Box for institutions referring to this person
-    active_admin_embedded_link_list(self, person, Institution) do |context|
-      context.table_for(context.collection) do |cr|
-        context.column "id", :id
-        context.column (I18n.t :filter_siglum), :siglum
-        context.column (I18n.t :filter_full_name), :full_name
-        context.column (I18n.t :filter_place), :place
-        if !is_selection_mode?
-          context.column "" do |ins|
-            link_to "View", controller: :institutions, action: :show, id: ins.id
-          end
-        end
-      end
-    end
-
+    # This one cannot use the compact form
     active_admin_embedded_link_list(self, person, Holding) do |context|
       context.table_for(context.collection) do |cr|
         context.column "id", :id
@@ -278,37 +249,18 @@ ActiveAdmin.register Person do
         context.column (I18n.t :filter_source_composer) {|hld| hld.source.composer}
         if !is_selection_mode?
           context.column "" do |hold|
-            link_to I18n.t(:view_source), controller: :holdings, action: :show, id: hold.id
+            link_to I18n.t(:view_source), controller: :sources, action: :show, id: hold.source.id
           end
         end
       end
     end
-
-    active_admin_embedded_link_list(self, person, Work) do |context|
-      context.table_for(context.collection) do |cr|
-        context.column "id", :id
-        context.column (I18n.t :filter_title), :title
-        if !is_selection_mode?
-          context.column "" do |work|
-            link_to "View", controller: :works, action: :show, id: work.id
-          end
-        end
-      end
-    end
-
-    active_admin_embedded_link_list(self, person, Person) do |context|
-      context.table_for(context.collection) do |cr|
-        context.column "id", :id
-        context.column (I18n.t :filter_full_name), :full_name
-        context.column (I18n.t :filter_life_dates), :life_dates
-        context.column (I18n.t :filter_alternate_names), :alternate_names
-        if !is_selection_mode?
-          context.column "" do |person|
-            link_to "View", controller: :people, action: :show, id: person.id
-          end
-        end
-      end
-    end
+    
+    active_adnin_create_list_for(self, Institution, person, siglum: I18n.t(:filter_siglum), full_name: I18n.t(:filter_full_name), place: I18n.t(:filter_place))
+    active_adnin_create_list_for(self, InventoryItem, person, composer: I18n.t(:filter_composer), title: I18n.t(:filter_title))
+    active_adnin_create_list_for(self, Person, person, full_name: I18n.t(:filter_full_name), life_dates: I18n.t(:filter_life_dates), alternate_names: I18n.t(:filter_alternate_names))
+    active_adnin_create_list_for(self, Publication, person, short_name: I18n.t(:filter_title_short), author: I18n.t(:filter_author), title: I18n.t(:filter_title))    
+    active_adnin_create_list_for(self, Work, person, title: I18n.t(:filter_title))
+    active_adnin_create_list_for(self, WorkNode, person, title: I18n.t(:filter_title))
 
     active_admin_digital_object( self, @item ) if !is_selection_mode?
     active_admin_user_wf( self, person )

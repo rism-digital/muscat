@@ -1,22 +1,24 @@
 class NotificationMatcher
 
-  ALLOWED_MODELS = ["source", "work", "institution"]
+  ALLOWED_MODELS = ["source", "work", "institution", "holding"]
 
   ALLOWED_PROPERTIES = {
     source: [:record_type, :std_title, :composer, :title, :shelf_mark, :lib_siglum, :follow],
     work: [:title, :form, :notes, :composer, :follow],
-    institution: [:siglum, :full_name, :address, :place, :comments, :alternates, :notes, :follow]
+    institution: [:siglum, :full_name, :address, :place, :comments, :alternates, :notes, :follow],
+    holding: [:lib_siglum, :shelf_mark]
   }
 
   SPECIAL_RULES = {
     source: [:lib_siglum, :record_type, :shelf_mark, :follow],
     work: [:composer, :follow],
-    institution: [:follow]
+    institution: [:follow],
+    holding: [:follow]
   }
 
   def initialize(object, user, limit_rules = nil)
-    if !object.is_a?(Source) && !object.is_a?(Work) && !object.is_a?(Institution) 
-      raise(ArgumentError, "NotificationMatcher can be applied only to Works, Sources and Institutions" )
+    if !object.is_a?(Source) && !object.is_a?(Work) && !object.is_a?(Institution) && !object.is_a?(Holding) 
+      raise(ArgumentError, "NotificationMatcher can be applied only to Works, Sources, Holdings and Institutions" )
     end
 
     @object = object
@@ -32,13 +34,22 @@ class NotificationMatcher
 
     rules = NotificationMatcher::parse_rules(user_notifications, @limit_rules)
 
+
     rules.each do |model, rule_groups|
       next if @object.class.to_s.downcase != model.downcase
 
+      # Process exclusions, for now only "matches" works
+      exclude = rule_groups.flatten.find { |item| item[:property] == "exclude" }&.dig(:pattern)
+      if exclude == "mine"
+        next if process_mine_exclusions
+      end
+
       rule_groups.each do |property_patterns|
+        # We need to purge the excludes
+        property_patterns.reject! { |h| h[:property] == "exclude" }
+
         partial_match = []
         property_patterns.each do |rule|
-          
           next if !allowed?(rule[:property])
           
           if special_case?(rule[:property])
@@ -47,7 +58,7 @@ class NotificationMatcher
             if @object.respond_to?(rule[:property])
               object_value = @object.send(rule[:property])
               if object_value
-                partial_match << "#{rule[:property]} #{rule[:pattern]}" if wildcard_match(object_value, rule[:pattern])
+                partial_match << "#{rule[:property]} #{rule[:pattern]}" if wildcard_match(object_value.to_s, rule[:pattern])
               end
             end
           end
@@ -127,6 +138,13 @@ class NotificationMatcher
     false
   end
 
+  def process_mine_exclusions()
+    # Was the last modification made by the same user?
+    last_user = @object.versions&.last&.whodunnit&.downcase
+    match_user = @user.name.downcase
+    return true if last_user == match_user
+    false
+  end
 
   def self.split_line(line)
     parts = line.strip.split(":")

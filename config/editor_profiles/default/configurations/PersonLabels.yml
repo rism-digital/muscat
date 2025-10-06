@@ -25,6 +25,8 @@
       label: records.transcribing_agency
     d:
       label: records.modifying_agency
+    e:
+      label: records.description_conventions
   label: records.cataloging_source
 '042':
   fields:
@@ -41,7 +43,7 @@
     a:
       label: records.heading_personal_name
     c:
-      label: records.religious_order
+      label: records.name_titles_words
     d:
       label: records.life_dates
     y:
@@ -116,6 +118,8 @@
   fields:
     a:
       label: records.additional_biographical_information
+    b:
+      label: records.expansion
   label: records.additional_biographical_information
 '680':
   fields:
@@ -133,6 +137,8 @@
   fields:
     a:
       label: records.institution
+    u:
+      label: records.project_url
   label: records.contributing_project
 administration:
   label: records.administration
@@ -240,3 +246,7 @@ xx:
   label: records.uncategorized
 z:
   label: records.alternate_spelling
+"IIIF manifest":
+  label: records.iiif_manifest_nothing_more
+"Online Resource":
+  label: records.online_resource

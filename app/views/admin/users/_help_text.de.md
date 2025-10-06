@@ -1,32 +1,142 @@
+## Verwendung von Benachrichtigungen
 
-      
-      <h3>Wie benutze ich Benachrichtigungen?</h3>
-      <p>Das Benachrichtigungsfeld ermöglicht das Einfügen einiger Suchmuster, die, wenn sie mit den gefundenen Daten übereinstimmen, eine Benachrichtigung an den Benutzer senden.<br>
-        Beispielsweise kann ein Suchkriterium erstellt werden, so dass jedes Mal, wenn eine Quelle in CH-BEl gespeichert wird, der Benutzer eine Benachrichtigung erhält:</p>
-        <pre>lib_siglum:CH-BEl</pre>
-        <b>Beachten Sie, dass nach dem Doppelpunkt kein Leerzeichen vorhanden ist. </b>Eine Regel pro Zeile wird separat ausgewertet:
-<pre>lib_siglum:CH-BEl
-composer:Bach</pre>
-          Bedeutet: Erstellen Sie eine Benachrichtigung für jede geänderte Quelle mit lib_siglum CH-BEl, erstellen Sie eine Benachrichtigung für jede geänderte Quelle mit dem Komponisten Bach.<br>
-          Regeln können Platzhalter enthalten:
-          <pre>lib_siglum:CH*</pre>
-          Erstellen Sie eine Benachrichtigung für jede Quelle mit einem lib_siglum, das mit CH beginnt.<br>
-          Derzeit ist das Benachrichtigungssystem nur für <b>Quellen</b> und für die folgenden Felder verfügbar:
-          <p>
-            <ul>
-              <li><b>std_title</b> <i>Standardtitel</i></li>
-              <li><b>composer</b> <i>Vollständiger Name des Komponisten</i></li>
-              <li><b>title</b> <i>Diplomatischer Titel</i></li>
-              <li><b>shelf_mark</b> <i>Bibliothekssigel</i></li>
-            </ul>
-          </p>
-          
-          Der Popup-Selektor unter dem Feld wählt die Häufigkeit, mit der die Benachrichtigungen erfolgen:
-          <p>
-            <ul>
-              <li><b>each</b> Senden Sie jedes Mal eine Benachrichtigung, wenn eine Quelle gespeichert wird (mit einer Kulanzzeit von einer Stunde, um mehrere Sicherungsvorgänge herauszufiltern)</li>
-              <li><b>daily</b> Eine Liste der geänderten Quellen wird jeden Tag gesendet</li>
-              <li><b>title</b> Eine Liste der geänderten Quellen wird jede Woche gesendet</li>
-              <li><b>keine Auswahl</b> Benachrichtigungen sind deaktiviert</li>
-            </ul>
-          </p>
+Per E-Mail-Benachrichtigungen können Sie sich benachrichtigen lassen, wenn Datensätze erstellt oder bearbeitet werden, die Ihren Suchregeln entsprechen.
+
+Geben Sie diese Regeln in das Benachrichtigungsfeld ein.
+
+Der Aufbau einer Regel besteht aus dem Feldnamen, gefolgt von einem Doppelpunkt und dann dem Suchbegriff. Beachten Sie, dass nach dem Doppelpunkt kein Leerzeichen steht. In diesem Beispiel wird eine Benachrichtigung generiert, wann immer ein Datensatz mit dem Bibliothekssigel CH-BEl gespeichert wird.
+
+```
+lib_siglum:CH-BEl
+```
+
+Geben Sie jede Regel in einer eigenen Zeile ein:
+
+```
+lib_siglum:CH-BEl
+composer:Bach
+```
+
+Das bedeutet, dass Sie für jede gespeicherte Quelle mit dem Bibliothekssigel CH-BEl eine Benachrichtigung erhalten und eine weitere Benachrichtigung für jede gespeicherte Quelle mit dem Komponisten Bach.
+
+Sie können Regeln kombinieren, indem Sie sie in derselben Zeile und durch ein Leerzeichen getrennt eingeben:
+
+```
+lib_siglum:CH* composer:Bach*
+```
+
+Dies findet Änderungen an allen Quellen, bei denen das Bibliothekssigel mit CH beginnt und der Komponist mit Bach beginnt.
+
+Regeln können in Ihrer Benachrichtigungsliste wiederholt werden, werden jedoch jeweils separat ausgewertet. Zum Beispiel:
+
+```
+lib_siglum:CH* composer:Bach*
+lib_siglum:CH*
+```
+
+In diesem Fall erhalten Sie Benachrichtigungen für alle CH-Quellen, die Bach als Komponisten enthalten, und zusätzlich Benachrichtigungen für alle CH-Quellen.
+
+### Suchkategorien
+
+Standardmäßig gelten die Regeln für Quellen. Sie können jedoch auch Benachrichtigungen für Normdateien erstellen, indem Sie dies am Anfang der Regelzeile angeben, gefolgt von einem Leerzeichen, zum Beispiel:
+
+```
+work composer:Bach*
+institution name:British*
+```
+
+Jede Regel kann nur eine Kategorie durchsuchen.
+
+### Platzhalter und Leerzeichen
+
+Regeln können Platzhalter enthalten, um Trunkierung zu ermöglichen:
+
+```
+lib_siglum:CH*
+```
+
+Dies erstellt eine Benachrichtigung für jede Quelle, bei der das Bibliothekssigel mit CH beginnt.
+
+Suchbegriffe, die Leerzeichen enthalten, müssen in Anführungszeichen gesetzt werden:
+
+```
+composer:"Bach, Johann Sebastian";
+```
+
+oder
+
+```
+composer:"Bach, Johann*";
+```
+
+Wenn die Anführungszeichen fehlen, wird nur nach dem ersten Wort gesucht, während die anderen ignoriert werden. Beachten Sie, dass der Feldname niemals in Anführungszeichen gesetzt werden darf.
+
+### Verfügbare Kategorien und Felder
+
+#### Quellen (Standard)
+
+- **lib\_siglum** _Bibliothekssigel (852 \$a)_
+- **shelf\_mark** _Bibliothekssignatur (852 \$c)_
+- **composer** _Komponist/Autor (100 \$a)_
+- **std\_title** _Standardisierter Titel (240 \$a)_
+- **title** _Titel der Quelle (245 \$a)_
+- **record\_type** _Vorlagentyp_:
+  - collection (übergeordnete Datensätze für Manuskripte, Libretti oder Traktate)
+  - source (Manuskripte, ohne Sammlungsdatensätze)
+  - edition (gedruckte Musikausgaben, ohne Teileinträge)
+  - edition\_content (Teileinträge in einer gedruckten Ausgabe)
+  - libretto\_source (handgeschriebene Libretti, ohne Sammlungsdatensätze)
+  - libretto\_edition (gedruckte Libretti, ohne Teileinträge)
+  - libretto\_edition\_content (Teileinträge in einem gedruckten Libretto)
+  - theoretica\_source (handgeschriebene Traktate, ohne Sammlungsdatensätze)
+  - theoretica\_edition (gedruckte Traktate, ohne Teileinträge)
+  - theoretica\_edition\_content (Teileinträge in einem gedruckten Traktat)
+  - composite\_volume (Konvolut)
+
+Beispiel:
+
+```
+record_type:edition lib_siglum:CH* composer:Bach* std_title:"6 Fugues";
+```
+
+### Werke
+
+- **composer** _Name des Komponisten (100 \$a)_
+- **title** _Werktitel (100 \$t)_
+
+Beispiel:
+
+```
+work composer:"Bach, Albert*"
+```
+
+### Institutionen
+
+- **name** _Bevorzugte Form des Institutionsnamens (110 \$a)_
+- **place** _Stadt der Institution (110 \$c)_
+- **siglum** _Bibliothekssigel (110 \$g)_
+- **address** _Adresse der Institution (371 \$a)_
+- **alternates** _Alternative Namen (510 oder 410)_
+- **notes** _Beliebiger Inhalt im Notizenfeld (680 \$a)_
+
+Beispiel:
+
+```
+institution name:Universitätsbibliothek*
+```
+
+### Benachrichtigungshäufigkeit
+
+Über das Dropdown-Menü „Kadenz der Benachrichtigung“ können Sie auswählen, wie häufig die Benachrichtigungen versendet werden:
+
+- **Jedes Mal, wenn ein passender Datensatz gespeichert wird**  
+  Sendet bei jedem Speichern einer Quelle eine Benachrichtigung (mit einer Karenzzeit von einer Stunde, um Mehrfachspeicherungen zusammenzufassen)
+
+- **Jeden Tag**  
+  Eine Liste der geänderten Quellen wird einmal täglich versendet
+
+- **Jede Woche**  
+  Eine Liste der geänderten Quellen wird einmal wöchentlich versendet
+
+- **Benachrichtigungen sind deaktiviert**  
+  Benachrichtigungen sind deaktiviert

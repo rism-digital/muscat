@@ -45,6 +45,19 @@
     z:
       label: records.scoring_in_movement
   label: records.incipit
+'040':
+  fields:
+    a:
+      label: records.original_cataloging_agency
+    b:
+      label: records.language_of_cataloging
+    c:
+      label: records.transcribing_agency
+    d:
+      label: records.modifying_agency
+    e:
+      label: records.description_conventions
+  label: records.cataloging_source
 '041':
   fields:
     0#:
@@ -221,6 +234,12 @@
   fields:
     w:
       label: records.inventory_source
+    o:
+      label: records.inventory
+    n:
+      label: records.category_section
+    g:
+      label: records.number_page
   label: records.inventory_source
 '775':
   fields:
@@ -251,27 +270,6 @@
     w:
       label: records.rism_id_number
   label: records.related_source
-'852':
-  fields:
-    a:
-      label: records.inventory
-    b:
-      label: records.department
-    c:
-      label: records.shelfmark
-    d:
-      label: records.category_section
-    e:
-      label: records.library
-    p:
-      label: records.number_page
-    q:
-      label: records.material_held
-    u:
-      label: general.uri
-    z:
-      label: records.provenance
-  label: records.inventory_number
 '856':
   fields:
     u:
@@ -373,7 +371,7 @@ chr:
   label: records.choreographer
 clb:
   label: records.contributor
-cmp:
+att:
   label: records.composer_cross_reference
 cnd:
   label: records.conductor
@@ -577,3 +575,11 @@ voc:
   label: records.print_with_non_autograph_annotations
 "Additional manuscript material":
   label: records.additional_manuscript_material
+Arr:
+  label: records.arrangement
+Excerpts:
+  label: records.excerpts
+Fragments:
+  label: records.fragments
+Sketches:
+  label: records.sketches

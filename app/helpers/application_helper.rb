@@ -11,6 +11,10 @@ module ApplicationHelper
   def institution_default_autocomplete
     autocomplete_institution_corporate_name_admin_institutions_path
   end
+
+  def institution_collate_default_autocomplete
+    autocomplete_institution_corporate_name_collate_admin_institutions_path
+  end
   
   def library_default_autocomplete
     autocomplete_institution_siglum_admin_institutions_path
@@ -72,10 +76,18 @@ module ApplicationHelper
     admin_gnd_works_autocomplete_gnd_works_form_path
   end
 
+  def gnd_work_title_default_autocomplete
+    admin_gnd_works_autocomplete_gnd_works_title_path
+  end
+
   def source_031t_solr_default_autocomplete
     autocomplete_source_031t_filter_sms_admin_sources_path
   end
 
+  def publication_505t_solr_default_autocomplete
+    autocomplete_publication_505t_sms_admin_publications_path
+  end
+  
   def holding_default_autocomplete
     autocomplete_intentory_item_id_admin_inventory_items_path
   end
@@ -83,20 +95,6 @@ module ApplicationHelper
   def inventory_item_default_autocomplete
   end
 
-  # Create a link for a page in a new window
-  def application_helper_link_http(value, node)
-    result = []
-    links = value.split("\n")
-    links.each do |link|
-      if link.match /(.*)(http:\/\/)([^\s]*)(.*)/
-        result << "#{$1}<a href=\"#{$2}#{$3}\" target=\"_blank\">#{$3}</a>#{$4}"
-      else
-        result << link
-      end
-    end
-    result.join("<br>")
-  end
-  
   # Link a manuscript by its RISM id
   def application_helper_link_source_id(value, subfield) # This could have never worked
       link_to( value, { :action => "show", :controller => "admin/sources", :id => value })
@@ -141,7 +139,7 @@ module ApplicationHelper
     elsif source.record_type == MarcSource::RECORD_TYPES[:edition_content]
       MarcSource::RECORD_TYPES[:edition]
     elsif source.record_type == MarcSource::RECORD_TYPES[:libretto_source] || source.record_type == MarcSource::RECORD_TYPES[:theoretica_source]
-      MarcSource::RECORD_TYPES[:collection]
+      [MarcSource::RECORD_TYPES[:collection], MarcSource::RECORD_TYPES[:composite_volume]]
     elsif source.record_type == MarcSource::RECORD_TYPES[:libretto_edition_content]
       MarcSource::RECORD_TYPES[:libretto_edition]
     elsif source.record_type == MarcSource::RECORD_TYPES[:theoretica_edition_content]

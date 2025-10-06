@@ -10,7 +10,7 @@ class InventoryItem < ApplicationRecord
   @last_event_save
   attr_accessor :last_event_save
   
-  has_paper_trail :on => [:update, :destroy], :only => [:marc_source], :if => Proc.new { |t| VersionChecker.save_version?(t) }
+  has_paper_trail :on => [:update, :destroy], :only => [:marc_source, :wf_stage, :wf_audit], :if => Proc.new { |t| VersionChecker.save_version?(t) }
 
   has_many :digital_object_links, :as => :object_link, :dependent => :delete_all
   has_many :digital_objects, through: :digital_object_links, foreign_key: "object_link_id"
@@ -60,10 +60,12 @@ class InventoryItem < ApplicationRecord
   composed_of_reimplementation :marc, :class_name => "MarcInventoryItem", :mapping => %w(marc_source to_marc)
 
   before_save :set_object_fields
+  before_create :add_source_order
   after_create :scaffold_marc, :fix_ids
   after_save :update_links, :reindex
   after_initialize :after_initialize
-  before_destroy :update_links, :cleanup_comments
+  
+  before_destroy :check_dependencies, :cleanup_comments, :update_links
   
   
   attr_accessor :suppress_reindex_trigger
@@ -100,6 +102,10 @@ class InventoryItem < ApplicationRecord
   
   def suppress_update_77x
     self.suppress_update_77x_trigger = true
+  end
+
+  def add_source_order
+    self.source_order = self.source.inventory_items.count
   end
 
   def fix_ids
@@ -161,7 +167,9 @@ class InventoryItem < ApplicationRecord
     self.id = marc_source_id if marc_source_id and marc_source_id != "__TEMP__"
     
     self.composer = marc.get_composer
-    self.title = marc.get_source_title
+    self.title = marc.get_std_title
+
+    self.page_info = marc.get_page_info
 
     self.marc_source = self.marc.to_marc
   end
@@ -174,11 +182,13 @@ class InventoryItem < ApplicationRecord
 
 
   searchable :auto_index => false do |sunspot_dsl|
-    sunspot_dsl.integer :id
+    sunspot_dsl.integer :id, stored: true
     sunspot_dsl.integer :source_id
 
     sunspot_dsl.text :title
     sunspot_dsl.text :composer
+
+    sunspot_dsl.text :page_info
 
     sunspot_dsl.string :title_order do |s|
       s.title

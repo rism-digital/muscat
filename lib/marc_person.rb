@@ -19,7 +19,7 @@ class MarcPerson < Marc
       end
     end
     
-    [full_name, dates]
+    [full_name&.strip, dates&.strip]
   end
   
   def get_alternate_names_and_dates
@@ -39,7 +39,7 @@ class MarcPerson < Marc
       end
     end
 
-    [names.join("\n"), dates]
+    [names.join("\n")&.strip, dates&.strip]
   end
 
   def get_gender_birth_place_and_source
@@ -65,13 +65,16 @@ class MarcPerson < Marc
       end
     end
 
-    [gender, birth_place, source]
+    [gender, birth_place&.strip, source&.strip]
   end
 
   
   def to_external(created_at = nil, updated_at = nil, versions = nil, holdings = false, deprecated_ids = true)
     super(created_at, updated_at, versions)
     
+    new_leader = MarcNode.new("person", "000", "00000nz  a2200000nc 4500", "")
+    @root.children.insert(get_insert_position("000"), new_leader)
+
     # Remove the 667...
     by_tags("667").each {|t| t.destroy_yourself}
 

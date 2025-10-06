@@ -4,14 +4,15 @@ class Work < ApplicationRecord
   include AuthorityMerge
   include CommentsCleanup
   include ComposedOfReimplementation
-
+  include ThroughAssociations
+  
   # class variables for storing the user name and the event from the controller
   @last_user_save
   attr_accessor :last_user_save
   @last_event_save
   attr_accessor :last_event_save
 
-  has_paper_trail :on => [:update, :destroy], :only => [:marc_source], :if => Proc.new { |t| VersionChecker.save_version?(t) }
+  has_paper_trail :on => [:update, :destroy], :only => [:marc_source, :wf_stage, :wf_audit], :if => Proc.new { |t| VersionChecker.save_version?(t) }
 
 
   resourcify
@@ -20,7 +21,7 @@ class Work < ApplicationRecord
   has_many :digital_objects, through: :digital_object_links, foreign_key: "object_link_id"
 
   #has_and_belongs_to_many(:referring_sources, class_name: "Source", join_table: "sources_to_works")
-  has_many :source_work_relations, class_name: "SourceWorkRelation"
+  has_many :source_work_relations, class_name: "SourceWorkRelation", dependent: :destroy
   has_many :referring_sources, through: :source_work_relations, source: :source
   
   has_many :inventory_item_work_relations, class_name: "InventoryItemWorkRelation"
@@ -78,7 +79,7 @@ class Work < ApplicationRecord
 
   composed_of_reimplementation :marc, :class_name => "MarcWork", :mapping => %w(marc_source to_marc)
 
-  before_destroy :check_dependencies, :cleanup_comments
+  before_destroy :check_dependencies, :cleanup_comments, :update_links
   
   attr_accessor :suppress_reindex_trigger
   attr_accessor :suppress_scaffold_marc_trigger
@@ -104,7 +105,7 @@ class Work < ApplicationRecord
   def suppress_scaffold_marc
     self.suppress_scaffold_marc_trigger = true
   end
-  
+
   def suppress_recreate
     self.suppress_recreate_trigger = true
   end 
@@ -181,7 +182,7 @@ class Work < ApplicationRecord
   end
 
   searchable :auto_index => false do |sunspot_dsl|
-    sunspot_dsl.integer :id
+    sunspot_dsl.integer :id, stored: true
     sunspot_dsl.text :id_text do
       id_for_fulltext
     end
@@ -221,16 +222,9 @@ class Work < ApplicationRecord
     sunspot_dsl.join(:folder_id, :target => FolderItem, :type => :integer, 
               :join => { :from => :item_id, :to => :id })
 
-    sunspot_dsl.integer :src_count_order, :stored => true do 
-      #self.marc.load_source false
-      #self.marc.root.fetch_all_by_tag("856").size
-      Work.count_by_sql("select count(*) from sources_to_works where work_id = #{self[:id]}")
-    end
-    
-    sunspot_dsl.integer :publications_count_order, :stored => true do 
-      Work.count_by_sql("select count(*) from works_to_publications where work_id = #{self[:id]}")
-    end
-    
+    sunspot_dsl.integer(:src_count_order, :stored => true) {through_associations_source_count}
+    sunspot_dsl.integer(:referring_objects_order, stored: true) {through_associations_exclude_source_count}
+        
     sunspot_dsl.boolean :has_music_incipit do |s|
       s.marc.has_incipits?
     end

@@ -12,6 +12,8 @@ class LiturgicalFeast < ApplicationRecord
   include ForeignLinks
   include AuthorityMerge
   include CommentsCleanup
+  include ThroughAssociations
+  include AutoStripStrings
   
   #has_and_belongs_to_many(:referring_sources, class_name: "Source", join_table: "sources_to_liturgical_feasts")
   has_many :source_liturgical_feast_relations, class_name: "SourceLiturgicalFeastRelation"
@@ -25,9 +27,6 @@ class LiturgicalFeast < ApplicationRecord
   has_many :delayed_jobs, -> { where parent_type: "LiturgicalFeast" }, class_name: 'Delayed::Backend::ActiveRecord::Job', foreign_key: "parent_id"
   belongs_to :user, :foreign_key => "wf_owner"
   
-  has_and_belongs_to_many(:referring_work_nodes, class_name: "WorkNode", join_table: "work_nodes_to_liturgical_feasts")
-
-
   validates_presence_of :name
   
   validates_uniqueness_of :name
@@ -40,6 +39,7 @@ class LiturgicalFeast < ApplicationRecord
   after_save :reindex
   
   attr_accessor :suppress_reindex_trigger
+  attr_accessor :suppress_update_count_trigger
 
   alias_attribute :id_for_fulltext, :id 
 
@@ -51,6 +51,10 @@ class LiturgicalFeast < ApplicationRecord
     self.suppress_reindex_trigger = true
   end
   
+  def suppress_update_count
+    self.suppress_update_count_trigger = true
+  end
+
   def reindex
     return if self.suppress_reindex_trigger == true
     self.index
@@ -76,9 +80,8 @@ class LiturgicalFeast < ApplicationRecord
     join(:folder_id, :target => FolderItem, :type => :integer, 
               :join => { :from => :item_id, :to => :id })
     
-    integer :src_count_order, :stored => true do 
-      LiturgicalFeast.count_by_sql("select count(*) from sources_to_liturgical_feasts where liturgical_feast_id = #{self[:id]}")
-    end
+    integer(:src_count_order, :stored => true) {through_associations_source_count}
+    integer(:referring_objects_order, stored: true) {through_associations_exclude_source_count}
   end
 
   # https://github.com/activeadmin/activeadmin/issues/7809

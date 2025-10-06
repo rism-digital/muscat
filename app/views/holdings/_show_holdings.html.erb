@@ -1,5 +1,5 @@
 <div class="panel_group_space"></div>
-  <% @item.holdings.sort_by(&:lib_siglum).each_with_index do |h, index| %>
+  <% @item.holdings.sort_by { |h| [h.lib_siglum.to_s, h.shelf_mark.to_s] }.each_with_index do |h, index| %>
     <div class="panel tag_container"><h3 id="holding_<%=h.id%>"> <%= " #{h.marc.description}" %>
 
       <a style="float: right; margin-top: -4px; margin-right: -5px" class="abutton ui-state-default marc_editor_button_left abutton-icon-solo ui-corner-all" href="#" data-header-button="toggle" title="Show/Hide"><span class="ui-icon ui-icon-triangle-1-w"></span>_</a>

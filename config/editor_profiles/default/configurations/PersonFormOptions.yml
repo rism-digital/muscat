@@ -1,31 +1,9 @@
 --- !map:Settings 
-"000": 
+"001":
   tag: tag_no_subfield
-  tag_params: 
-    editor_only: true
-  tag_header: none
-"001": 
-  tag: tag_no_subfield
-  tag_params: 
+  tag_params:
     read_only: true
     no_delete: true
-  tag_header: none
-"003": 
-  tag: tag_no_subfield
-  tag_params: 
-    read_only: true
-  tag_header: none
-"005": 
-  tag: tag_no_subfield
-  tag_params: 
-    read_only: true
-  tag_header: none
-"008": 
-  tag: tag_no_subfield
-  tag_params: 
-    maskedinput: 
-      definitions: "['~']='[|0-9]'"
-      mask: 999999a~~~~~~~~||||||||||||||||||||aaa|d
   tag_header: none
 "024": 
   layout: 
@@ -46,19 +24,27 @@
         - "SWNL"
         - "VIAF"
         - "WKP"
+        - "CMO"
         default: "VIAF"
         editor_partial: subfield_select
 "040":
   layout:
     fields:
     - - a
-      - hidden: true
-    - - d
-      - hidden: true
+      - read_only: true
+        default: "DE-633"
     - - b
       - editor_partial: subfield_select_codes
         select_label: "Language"
         codes_reference: "codes"
+    - - c
+      - read_only: true
+        default: "DE-633"
+    - - d
+      - read_only: true
+    - - e
+      - read_only: true
+        default: "rismg"
   tag_params:
     codes:
       - "eng"
@@ -322,6 +308,7 @@
     fields: 
     - - a
       - growfield: true
+    - - b
 "680": 
   layout: 
     fields: 
@@ -336,6 +323,13 @@
     - - z
       - unrestricted:
           - person_restricted
+    - - x
+      - editor_partial: subfield_select_codes
+        codes_reference: "codes"
+  tag_params:
+    codes:
+      - "Online Resource"
+      - "IIIF manifest"
 "910":
   layout:
     fields:
@@ -343,3 +337,5 @@
       - read_only: true
     - - "0"
       - hidden: true
+    - - u
+      - read_only: true

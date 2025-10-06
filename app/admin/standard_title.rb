@@ -92,7 +92,7 @@ ActiveAdmin.register StandardTitle do
     # redirect update failure for preserving sidebars
     def update
       update! do |success,failure|
-        success.html { redirect_to collection_path }
+        success.html { redirect_to resource_path(params[:id]) }
         failure.html { redirect_back fallback_location: root_path, flash: { :error => "#{I18n.t(:error_saving)}" } }
       end
 
@@ -147,8 +147,10 @@ ActiveAdmin.register StandardTitle do
     column (I18n.t :filter_variants), :alternate_terms
     column (I18n.t :menu_latin), :latin
     column (I18n.t :filter_sources), :src_count_order, sortable: :src_count_order do |element|
-			all_hits = @arbre_context.assigns[:hits]
-			active_admin_stored_from_hits(all_hits, element, :src_count_order)
+			active_admin_stored_from_hits(controller.view_assigns["hits"], element, :src_count_order)
+		end
+    column (I18n.t :filter_authorities), :referring_objects_order, sortable: :referring_objects_order do |element|
+			active_admin_stored_from_hits(controller.view_assigns["hits"], element, :referring_objects_order)
 		end
     active_admin_muscat_actions( self )
   end
@@ -173,22 +175,11 @@ ActiveAdmin.register StandardTitle do
       row (I18n.t :filter_record_type) { |r| r.typus }
       row (I18n.t :menu_latin) { |r| r.latin }
       row (I18n.t :filter_notes) { |r| r.notes }  
+      row (I18n.t :filter_owner) { |r| User.find_by(id: r.wf_owner).name rescue r.wf_owner }
     end
     active_admin_embedded_source_list( self, standard_title, !is_selection_mode? )
-
-    active_admin_embedded_link_list(self, standard_title, Work) do |context|
-      context.table_for(context.collection) do |cr|
-        column (I18n.t :filter_id), :id  
-        column (I18n.t :filter_title), :title
-        column "Opus", :opus
-        column "Catalogue", :catalogue
-        if !is_selection_mode?
-          context.column "" do |work|
-            link_to "View", controller: :works, action: :show, id: work.id
-          end
-        end
-      end
-    end
+    active_adnin_create_list_for(self, InventoryItem, standard_title, composer: I18n.t(:filter_composer), title: I18n.t(:filter_title))
+    active_adnin_create_list_for(self, Work, standard_title, title: I18n.t(:filter_title), opus: I18n.t(:filter_opus), catalogue: I18n.t(:filter_catalog))
 
     active_admin_user_wf( self, standard_title )
     active_admin_navigation_bar( self )

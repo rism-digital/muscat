@@ -27,12 +27,11 @@ module ActiveAdmin::ViewsHelper
   def active_admin_embedded_link_list(context, item, link_class, panel_title = nil, &block)
     current_page_name = link_class.to_s.downcase + "_list_page"
     current_page = params[current_page_name]
-    if link_class == Source && item.respond_to?("referring_sources") && item.respond_to?("referring_holdings")
-      c = Source.where(id: item.referring_sources.ids).or(Source.where(id: item.referring_holdings.pluck(:source_id)))
-    elsif link_class == Source && item.respond_to?("referring_sources") && item.is_a?(Institution)
-      c = Source.where(id: item.referring_sources.ids).or(Source.where(id: item.holdings.pluck(:source_id)))
-    elsif link_class == InventoryItem &&item.respond_to?("inventory_items") && item.is_a?(Source)
-      ap item
+    #if link_class == Source && item.respond_to?("referring_sources") && item.respond_to?("referring_holdings")
+    #  c = Source.where(id: item.referring_sources.ids).or(Source.where(id: item.referring_holdings.pluck(:source_id)))
+    #elsif link_class == Source && item.respond_to?("referring_sources") && item.is_a?(Institution)
+    #  c = Source.where(id: item.referring_sources.ids).or(Source.where(id: item.holdings.pluck(:source_id)))
+    if link_class == InventoryItem &&item.respond_to?("inventory_items") && item.is_a?(Source)
       c = item.inventory_items
     else
       c = item.send("referring_" + link_class.to_s.pluralize.underscore)
@@ -48,6 +47,23 @@ module ActiveAdmin::ViewsHelper
     end
   end 
  
+  def active_adnin_create_list_for(context, model, item, *fields)
+    controller_name = model.name.underscore.downcase.pluralize.to_sym
+    active_admin_embedded_link_list(context, item, model) do |context|
+      context.table_for(context.collection) do |cr|
+        context.column "id", :id
+        fields.first.each do |field, label|
+          context.column label, field
+        end
+        if !is_selection_mode?
+          context.column "" do |ti|
+            link_to "View", controller: controller_name, action: :show, id: ti.id
+          end
+        end
+      end
+    end
+  end
+
   def is_selection_mode?
     return params && params[:select].present?
   end
@@ -68,6 +84,7 @@ module ActiveAdmin::ViewsHelper
         context.row (I18n.t :filter_owner) { |r| r.user.name } if ( item.user )
         context.row (I18n.t :filter_wf_stage) { |r| I18n.t("wf_stage.#{r.wf_stage}") } if ( item.wf_stage )
         context.row (I18n.t :"general.validity") { |r| r.wf_audit.to_s.capitalize } if ( item.is_a?(Work) && item.wf_audit != "normal" ) # I know I know will be translated if needed, #1532
+        context.row (I18n.t 'helpers.label.folder.work_catalogue_status') { |r| I18n.t("work_catalogue_labels." + r.work_catalogue) } if ( item.is_a?(Publication) && item.work_catalogue && can?(:edit, Work) )
         context.row (I18n.t :created_at) { |r| I18n.localize(r.created_at ? r.created_at.localtime : "", :format => '%A %e %B %Y - %H:%M') }
         context.row (I18n.t :updated_at) { |r| I18n.localize(r.updated_at ? r.updated_at.localtime : "", :format => '%A %e %B %Y - %H:%M') }
       end
@@ -197,9 +214,9 @@ module ActiveAdmin::ViewsHelper
   def active_admin_publication_show_title( author, title, id, wf_stage )
     if author&.empty? && title&.empty?
       title_display = "[#{id}]"
-    elsif author.empty? && !title.empty?
+    elsif author.empty? && !title&.empty?
       title_display = "#{title} [#{id}]"
-    elsif title.nil? || title.empty?
+    elsif title.nil? || title&.empty?
       title_display = "#{author} [#{id}]"
     else
       title_display = "#{author} : #{title} [#{id}]"

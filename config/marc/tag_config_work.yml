@@ -108,6 +108,8 @@
       - :occurrences: "1"
     - - d
       - :occurrences: "?"
+    - - e
+      - :occurrences: "1"
   "046":
     :master: k
     :indicator: "##"
@@ -389,6 +391,10 @@
         :foreign_field: short_name
     - - n
       - :occurrences: "?"
+    - - s
+      - :occurrences: "?"
+    - - x
+      - :occurrences: "?"
   "691":
     :master: "0"
     :indicator: "#7"
@@ -421,7 +427,6 @@
     :fields:
     - - u
       - :occurrences: "*"
-        :browse_helper: application_helper_link_http
     - - z
       - :occurrences: "*"
   "981":

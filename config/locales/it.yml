@@ -60,6 +60,7 @@ it:
       welcome: Benvenuti in Active Admin. Questa è la pagina dashboard di default.
     delete: Rimuovi
     delete_confirmation: Sei sicuro di volerlo rimuovere?
+    delete_confirmation_description: Sei sicuro di voler eliminare questo elemento? %{description}
     delete_model: Rimuovi %{model}
     details: Dettagli %{model}
     devise:
@@ -213,6 +214,8 @@ it:
   add_item_to_folder: Aggiungi alla cartella
   add_person: Collega persona
   add_source: Collega fonte
+  add_this_item_to_folder: Aggiungi questo elemento alla cartella
+  add_work: Collega opera
   any_field_contains: Qualsiasi campo
   append_folder: Aggiungi a cartella
   archive: Archivia
@@ -220,12 +223,18 @@ it:
   authorization_tokens: Auth tokens
   available_templates: Template disponibili
   backend_validation:
-    required: Questo campo è obbligatorio quando questo tag è aggiunto
-    no_subtag: Questo campo è obbligatorio
-    mandatory: Questo sotto-campo è obbligatorio
-    required_if: Questo campo è obbligatorio perché un altro è presente
-    check_group: Questo campo contiene un valore non valido rispetto alla posizione nel gruppo
+    031_incomplete: La numerazione di questo 031 è incompleta (manca $a, $b o $c)
     begin_with: Questo campo deve iniziare con la stringa corretta
+    check_group: Questo campo contiene un valore non valido rispetto alla posizione nel gruppo
+    mandatory: Questo sotto-campo è obbligatorio
+    must_contain: Questo campo deve corrispondere al modello richiesto
+    no_subtag: Questo campo è obbligatorio
+    required: Questo campo è obbligatorio quando questo tag è aggiunto
+    required_if: Questo campo è obbligatorio perché un altro è presente
+    siglum_not_found: Il siglum in uno o più campi 588 non corrisponde a nessuna holding
+    validate_031_dups: 'Questo numero di incipit è già utilizzato: $b o $c sono duplicati'
+    validate_588_siglum: 'Inserisci il siglum della biblioteca e la collocazione secondo il formato: I-Bc Q.51'
+    validate_url: L'URL inserito non è valido
   basic_level: Record di base
   body: Contenuto
   btn_themefinder_reset: Reset
@@ -235,6 +244,7 @@ it:
   choose_folder: "(Selezionare una cartella)"
   clipboard:
     copied: I risultati sono stati copiati negli appunti
+  commit: Applica
   compare_versions:
     date_message: Mostra i record modificati dal %{date}.
     diff: Comparazione
@@ -247,10 +257,13 @@ it:
     rule: Regola
     show: Mostra
     similarity: Differenza
+    tags: Tag
     time_frame: Intervallo di tempo
   composer_contains: Compositore
   connected_libraries: Biblioteche
+  controls: Controlli
   convert_to_print: Convertire in template stampa
+  convert_to_print_template: Converti nel template per un’edizione a stampa
   cookies:
     dimiss: Accetta e chiudi
     link: Per saperne di più
@@ -305,6 +318,7 @@ it:
     - dicembre
   default_view: Default view
   delete: Cancella
+  delete_this_item_from_folder: Rimuovi questo elemento dalla cartella
   digital_object:
     one: Oggetto digitale
     other: Oggetti digitali
@@ -319,6 +333,7 @@ it:
   duplicate: Duplica
   duplicate_confirm: Sei sicuro di voler duplicare questo record?
   edit: Modifica
+  engraving_incipit: Rendering dell'incipit...
   entry:
     one: voce
     other: voci
@@ -327,6 +342,7 @@ it:
   export_folder: Esporta la cartella in MARCXML
   export_folder_csv: Esporta la cartella in CSV
   export_folder_raw: Esporta la cartella come Muscat MARC
+  export_folder_raw_holdings: Esporta cartella come Muscat MARC (unendo gli holding records)
   failed: Fallito
   failed_at: Data fallimento
   filter_address: Indirizzo
@@ -338,6 +354,7 @@ it:
   filter_attachment_type: Tipo di Oggetto Digitale
   filter_author: Autore
   filter_author_or_editor: Autore/Editore
+  filter_authorities: File di autorità
   filter_autograph_of: Autografo di
   filter_birth_place: Luogo di nascita
   filter_book_id: Identificatore RISM
@@ -479,7 +496,6 @@ it:
     folder_empty: La cartella è vuota
     folder_not_source: Solo le cartelle contenenti Fonti possono essere convalidate.
     items: Elementi
-    make_catalogue: Contrassegnare gli elementi come cataloghi di opere
     not_found: La cartella %{id} è inesistente
     one_month: Le seguenti cartelle saranno eliminate tra un mese, il %{date}
     one_week: Le seguenti cartelle saranno eliminate tra una settimana, il %{date}
@@ -488,6 +504,7 @@ it:
     reset_expiration: Ripristinare la data di scadenza
     resetted: La data di scadenza della cartella è ora %{date}
     save: Salva i risultati in una cartella
+    setting_catalogue_status: Impostazione dello stato del catalogo
     success: Cartella %{name} creata con %{count} oggetti.
     success_bg: Creata cartella %{name}, job %{job} in coda.
     tomorrow: Le seguenti cartelle saranno eliminate domani %{date}
@@ -498,7 +515,12 @@ it:
   from_existing_source: Crea a partire da una fonte già esistente
   full_level: Record completo
   gnd_not_found: La richiesta a GND ha restituito un record vuoto
+  go_back: Indietro
   go_to_top: Ritorna in cima
+  helpers:
+    label:
+      folder:
+        work_catalogue_status: Tipo di work catalogue
   hide_preview: Nascondi anteprima
   history_author: Autore
   history_date: Data
@@ -525,10 +547,13 @@ it:
     interval: Intervalli
     query_type: 'Tipo di ricerca:'
     refined_pitch: Contorno melodico accurato
+  index: Indice
   institution:
     one: istituzione
     other: istituzioni
   internal_note_contains: Nota interna
+  inventory_item_order_success: Gli elementi sono stati riordinati
+  inventory_items_show_count_html: "<strong>%{count}</strong> elementi mostrati"
   is_in_folder: È nella cartella
   is_part_of_collection: Questa %{class} %{id} è parte di una collezione, è necessario rimuovere il 773 prima di poterla cancellare
   job:
@@ -555,6 +580,7 @@ it:
   liturgicalfeast:
     one: festa liturgica
     other: feste liturgiche
+  loading: Caricamento...
   logout:
     confirm: Ci sono finestre di Muscat aperte. Se esci, eventuali modifiche non salvate andranno perse. Vuoi continuare?
     generic_error: Sei uscito da Muscat. Aggiorna la pagina per tornare alla schermata di accesso.
@@ -597,7 +623,7 @@ it:
   menu_contact: Contatti
   menu_folders: Cartelle
   menu_guidelines: Regole di catalogazione
-  menu_guidelines_top: Documentazione
+  menu_guidelines_top: Documentazione (EN)
   menu_help: Aiuto
   menu_holdings: Esemplari
   menu_home: Home
@@ -623,6 +649,9 @@ it:
   menu_workgroups: Gruppi
   menu_works: Composizioni
   merge: Riunisci
+  move_down: Giù
+  move_to: Vai a
+  move_up: Su
   muscat_reindexing: Muscat è in fase di reindicizzazione, i risultati della ricerca potrebbero essere incompleti
   new: Crea
   new_digital_object_image: Aggiungi una nuova immagine
@@ -633,6 +662,7 @@ it:
   new_inventory_item_page: Nuovo elemento d'inventario
   no_action: Nessuna azione
   not_set: "[vuoto]"
+  notation_copied: Notazione copiata
   notifications:
     cadence: Cadenza delle notifiche
     daily: Ogni giorno
@@ -645,6 +675,9 @@ it:
     rules: Regole
     weekly: Ogni settimana
   object: Oggetto
+  old_index: Indice precedente
+  order_inventory_items: Ordina elementi inventario
+  order_items: Ordina gli elementi di
   person:
     one: persona
     other: persone
@@ -722,6 +755,7 @@ it:
   sections: Sezioni
   select: Seleziona
   select_template: Seleziona un nuovo template
+  set_work_catalogue_status: Seleziona il tipo di work catalog
   show_all_groups: Mostra tutti i gruppi
   show_gnd: Ricerca GND
   show_history: Mostra lo storico
@@ -731,6 +765,9 @@ it:
   source:
     one: fonte
     other: fonti
+  source_converted: Fonte convertita in stampa
+  source_converted_with_holding: Fonte convertita in stampa, holding %{holding_id} creato.
+  source_not_manuscript: La fonte non è un manoscritto o una collezione di manoscritti
   standardterm:
     one: soggetto
     other: soggetti
@@ -750,6 +787,7 @@ it:
   title_contains: Titolo diplomatico
   to_the_list: Ritorna all'indice
   unarchive: Disarchivia
+  unauthorized: Non autorizzato
   ungrouped_tags: Il record contiene campi non raggruppati
   unknown_tags: Il record contiene dei campi sconosciuti
   unloadable_record: 'Questa scheda ha avuto problemi nel caricamento: può essere consultata ma non modificata. Si prega di contattare un amministratore.'
@@ -769,9 +807,13 @@ it:
     correct: Il record non contiene errori [200]
     insufficient_rights: L'utente non ha i diritti necessari per creare un record con questa biblioteca
     missing_message: Questo campo deve contenere un valore
-    must_contain_message: "Inserisci il siglum della biblioteca e la collocazione dell'edizione stampata consultata."
+    must_contain_message: Questo campo deve corrispondere al modello richiesto
     name_uniqueness: Il nome breve dell'elemento è già in uso
     required_if_message: Questo campo deve essere riempito poiché è obbligatorio in presenza di {0} ${1}
+    validate_031_dups: Questo numero di incipit è già utilizzato
+    validate_588_siglum: 'Inserisci il siglum della biblioteca e la collocazione secondo il formato: I-Bc Q.51'
+    validate_edtf: Convalida data EDTF
+    validate_url: L'URL inserito non è valido
     warning_message: Questo campo dovrebbe contenere un valore
   validation_level_error: Sono presenti errori, correggerli prima di continuare
   validation_level_warning: Alcuni elementi richiedono attenzione, salvare ancora per procedere
@@ -793,7 +835,16 @@ it:
         one: Risultato di ricerca <b>1</b> %{model}
         other: Risultati di ricerca <b> %{count}</b> %{model}%
         zero: Nessun %{model} trovato
-  work_catalogue: Catalogo di opere
+  work_catalog: Catalogo di opere
+  work_catalog_publish: Pubblica le opere collegate
+  work_catalog_unpublish: Annulla la pubblicazione delle opere collegate
+  work_catalogue_labels:
+    not_work_catalogue: Non è un catalogo delle opere
+    work_catalogue_alternate: Alternativo
+    work_catalogue_complete: Completo
+    work_catalogue_in_preparation: In preparazione
+    work_catalogue_partial: Parziale
+  work_catalogue_publication_warning: Per pubblicare le opere collegate, imposta lo stato del catalogo opere su 'Parziale', 'Completo' o 'Alternativo'.
   workgroups: Gruppi
   worknode:
     one: Work node

@@ -13,7 +13,7 @@
 <h3>Failed validations</h3>
 
 <%@validations.each do |id, errors|%>
-<b>Validation Result for: <a href="https://muscat.rism.info/admin/sources/<%=id%>"><%=id%></a></b>
+<b>Validation Result for: <a href="<%=RISM::MUSCAT_URL%>admin/sources/<%=id%>"><%=id%></a></b>
   <table>
   <% errors.each do |tag, subtags| %>
     <% subtags.each do |subtag, messages|  %>

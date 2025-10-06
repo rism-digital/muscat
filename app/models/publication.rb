@@ -24,13 +24,14 @@ class Publication < ApplicationRecord
   @last_event_save
   attr_accessor :last_event_save
 
-  has_paper_trail :on => [:update, :destroy], :only => [:marc_source, :wf_stage], :if => Proc.new { |t| VersionChecker.save_version?(t) }
+  has_paper_trail :on => [:update, :destroy], :only => [:marc_source, :wf_stage, :wf_audit, :work_catalogue], :if => Proc.new { |t| VersionChecker.save_version?(t) }
 
   include ForeignLinks
   include MarcIndex
   include AuthorityMerge
   include CommentsCleanup
   include ComposedOfReimplementation
+  include ThroughAssociations
   resourcify
 
   #has_and_belongs_to_many(:referring_sources, class_name: "Source", join_table: "sources_to_publications")
@@ -97,12 +98,10 @@ class Publication < ApplicationRecord
   has_many :referring_publication_relations, class_name: "PublicationRelation", foreign_key: "publication_b_id"
   has_many :referring_publications, through: :referring_publication_relations, source: :publication_a
 
-  has_and_belongs_to_many(:referring_work_nodes, class_name: "WorkNode", join_table: "work_nodes_to_publications")
-
   composed_of_reimplementation :marc, :class_name => "MarcPublication", :mapping => %w(marc_source to_marc)
 
   ##include NewIds
-  before_destroy :check_dependencies, :cleanup_comments
+  before_destroy :check_dependencies, :cleanup_comments, :update_links
 
   before_save :set_object_fields
   after_create :scaffold_marc, :fix_ids
@@ -112,12 +111,14 @@ class Publication < ApplicationRecord
   attr_accessor :suppress_reindex_trigger
   attr_accessor :suppress_recreate_trigger
   attr_accessor :suppress_scaffold_marc_trigger
+  attr_accessor :suppress_update_count_trigger
 
   alias_attribute :id_for_fulltext, :id
   alias_attribute :name, :short_name
 
   enum :wf_stage, [ :inprogress, :published, :deleted, :deprecated ]
   enum :wf_audit, [ :full, :abbreviated, :retro, :imported ]
+  enum :work_catalogue, [:not_work_catalogue, :work_catalogue_in_preparation, :work_catalogue_partial, :work_catalogue_complete, :work_catalogue_alternate]
 
   def after_initialize
     @last_user_save = nil
@@ -132,6 +133,10 @@ class Publication < ApplicationRecord
 
   def suppress_scaffold_marc
     self.suppress_scaffold_marc_trigger = true
+  end
+
+  def suppress_update_count
+    self.suppress_update_count_trigger = true
   end
 
   def update_links
@@ -205,7 +210,7 @@ class Publication < ApplicationRecord
   end
 
   searchable :auto_index => false do |sunspot_dsl|
-    sunspot_dsl.integer :id
+    sunspot_dsl.integer :id, stored: true
     sunspot_dsl.text :id_text do
       id_for_fulltext
     end
@@ -244,7 +249,12 @@ class Publication < ApplicationRecord
     sunspot_dsl.time :updated_at
     sunspot_dsl.time :created_at
 
-    sunspot_dsl.boolean :work_catalogue
+    # We could also use the enum value here (0...3)
+    # but using the symbol seems less obscure
+    sunspot_dsl.string :work_catalogue
+    sunspot_dsl.string :work_catalogue_order do
+      work_catalogue
+    end
 
     sunspot_dsl.join(:folder_id, :target => FolderItem, :type => :integer,
               :join => { :from => :item_id, :to => :id })
@@ -253,11 +263,9 @@ class Publication < ApplicationRecord
       s.marc.to_raw_text
     end
 
-    sunspot_dsl.integer :src_count_order, :stored => true do
-      (Publication.count_by_sql("select count(*) from sources_to_publications where publication_id = #{self[:id]}") +
-      Publication.count_by_sql("select count(*) from institutions_to_publications where publication_id = #{self[:id]}") +
-      Publication.count_by_sql("select count(*) from people_to_publications where publication_id = #{self[:id]}"))
-    end
+    sunspot_dsl.integer(:src_count_order, :stored => true) {through_associations_source_count}
+    sunspot_dsl.integer(:referring_objects_order, stored: true) {through_associations_exclude_source_count}
+
     MarcIndex::attach_marc_index(sunspot_dsl, self.to_s.downcase)
   end
 
@@ -341,6 +349,7 @@ class Publication < ApplicationRecord
 
   ransacker :"240g", proc{ |v| } do |parent| parent.table[:id] end
   ransacker :"260b", proc{ |v| } do |parent| parent.table[:id] end
+  ransacker :"505t", proc{ |v| } do |parent| parent.table[:id] end
   ransacker :"100a_or_700a", proc{ |v| } do |parent| parent.table[:id] end
-
+    
 end

@@ -17,5 +17,8 @@ fields:
       :store: true
       :type: text
     "260b":
+    "505t":
+      :store: true
+      :type: string
     "700a":
     "7600":

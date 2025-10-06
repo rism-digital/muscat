@@ -11,7 +11,7 @@ class MarcHolding < Marc
         title = node.content.truncate(255)
       end
     end
-    title
+    title&.strip
   end
 
   def get_shelf_mark
@@ -22,7 +22,7 @@ class MarcHolding < Marc
         m = node.content
       end
     end
-    m.truncate(255)
+    m.truncate(255)&.strip
   end
 
   def description
@@ -37,8 +37,10 @@ class MarcHolding < Marc
     end
     
     # Sould always be there
-    if node.foreign_object && node.foreign_object.full_name
+    if node && node.foreign_object && node.foreign_object.full_name
       res['name'] = node.foreign_object.full_name.truncate(90) # Avoid overflowing the box
+    else
+      res['name'] = 'UNNAMED LIBRARY'
     end
 
     if res.length > 0
@@ -47,7 +49,7 @@ class MarcHolding < Marc
       out = "#{res['a']} (#{res['name']})" # library name + siglum
       out += ": #{res['c']}" if res['c'] && res['c'] != "[no indication]" # Do we have a shelfmark?
       out += " [#{res['q']}]" if res['q'] # scoring
-      return out
+      return out&.strip
     else
       I18n.t(:holding_no_siglum)
     end

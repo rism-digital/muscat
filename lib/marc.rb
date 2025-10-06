@@ -58,8 +58,8 @@ class Marc
 
   # After a Marc file is loaded an parsed, read all the foreign references
   # and link them. In case they do not exist they will be created (upon saving the manuscript). 
-  def import(reindex = false, user = nil)
-    @root.import(false, reindex, user)
+  def import(reindex = false, user = nil, force_editor_ordering = false)
+    @root.import(false, reindex, user, force_editor_ordering)
   end
   
   # Creates a Marc object from the <tt>source</tt> field in the Source record
@@ -100,10 +100,33 @@ class Marc
       @root.children.insert(get_insert_position("003"), agency)
     end
 
+    _008_pos_32 = 'n'
+
+    #1744 adjust 040 and position 32
+    # only for auth files
+    if ["publication", "person", "institution"].include? @model
+      # NOTE 040 is included by default on all records, see #1042 and #1803
+      
+      _042_tag = first_occurance("042", "a")
+      if _042_tag
+        _008_pos_32 = 'a' if _042_tag && _042_tag.content == "differentiated"
+        _008_pos_32 = 'b' if _042_tag && _042_tag.content == "undifferentiated"
+      end
+
+    end
+
     # adding created at 008
     if created_at 
       created = created_at.strftime("%y%m%d")
       _008_content = "#{created}||||||||||||||||||||||||||||||||||"
+
+      if @model != "source"
+        _008_content[10] = 'z'
+        _008_content[14] = 'a'
+        _008_content[32] = _008_pos_32 # This will be changed based on 042
+        _008_content[39] = 'd'
+      end
+
       tag_008 = MarcNode.new(@model, "008", _008_content, nil)
       @root.children.insert(get_insert_position("008"), tag_008)
     end
@@ -113,8 +136,7 @@ class Marc
       # 005 should not be there, if it is avoid duplicates
       _005_tag = first_occurance("005")
       if !_005_tag
-        @root.children.insert(get_insert_position("003"),
-            MarcNode.new(@model, "005", last_transcation, nil))
+        @root.children.insert(get_insert_position("005"), MarcNode.new(@model, "005", last_transcation, nil))
       end
     end
 
@@ -127,6 +149,7 @@ class Marc
     # It would probably be wise to notify the user 
     if !@marc_configuration.has_tag? tag
       @results << "Tag #{tag} missing in the marc configuration"
+      marc_log ["PARSE", "NOT_CONFIGURED", "TAG=#{tag}"]
       return
     end
     
@@ -134,7 +157,7 @@ class Marc
     if @marc_configuration.is_tagless?(tag)
       if data =~ /^[\s]*(.+)$/
         content = $1
-        tag_group = @root << MarcNode.new(@model, tag, content, nil)
+        tag_group = @root << MarcNode.new(@model, tag, content&.strip, nil)
       end
     # normal fields
     else
@@ -156,8 +179,9 @@ class Marc
       
         # missing subtag 
         @results << "Subfield #{tag} $#{subtag} missing in the marc configuration" if !@marc_configuration.has_subfield? tag, subtag
-        
-        subtag = tag_group << MarcNode.new(@model, subtag, content, nil)
+        marc_log ["PARSE", "SUBTAG_NOT_CONFIGURED", "TAG=#{tag}", "SUBTAG=#{subtag}"] if !@marc_configuration.has_subfield? tag, subtag
+
+        subtag = tag_group << MarcNode.new(@model, subtag, content&.strip, nil)
       end
     end
   end
@@ -166,7 +190,8 @@ class Marc
   # This function by default uses marc_node.import to
   # create the relations with the foreign object and create
   # them in the DB. It will also call a reindex on them
-  def load_from_hash(hash, user: nil, resolve: true, dry_run: false)
+  def load_from_hash(hash, user: nil, resolve: true, dry_run: false, force_editor_ordering: false)
+    ap force_editor_ordering
     @root << MarcNode.new(@model, "000", hash['leader'], nil) if hash['leader']
     
     if hash['fields']
@@ -176,7 +201,7 @@ class Marc
         grouped_tags[k] = [] if !grouped_tags.has_key?(k)
         grouped_tags[k] << s
       end
-      
+
       grouped_tags.keys.sort.each do |tag_key|
         grouped_tags[tag_key].each do |toplevel|
           toplevel.each_pair do |tag, field|
@@ -207,7 +232,7 @@ class Marc
     end # if hash['fields']
     
     @loaded = true
-    import(true, user) if !dry_run # Import the data, ONLY when necessary
+    import(true, user, force_editor_ordering) if !dry_run # Import the data, ONLY when necessary
     @source = to_marc
     @source_id = first_occurance("001").content || nil rescue @source_id = nil
     # When importing externals are not resolved, do it here
@@ -542,10 +567,12 @@ class Marc
   
   def to_xml_record(options = {})
     # parse available options
-    created_at = options.has_key?(:created_at) ? options[:created_at] : nil
-    updated_at = options.has_key?(:updated_at) ? options[:updated_at] : nil
-    versions = options.has_key?(:versions) ? options[:versions] : nil
-    holdings = options.has_key?(:holdings) ? options[:holdings] : true
+    created_at = options.fetch(:created_at, nil)
+    updated_at = options.fetch(:updated_at, nil)
+    versions   = options.fetch(:versions, nil)
+    holdings   = options.fetch(:holdings, true)
+    authority  = options.fetch(:authority, false)
+
     # Temp fix to allow deprecated ids
     deprecated_ids = options.has_key?(:deprecated_ids) ? !(options[:deprecated_ids] == "false") : true
 
@@ -557,6 +584,7 @@ class Marc
     
     document = XML::Document.new()
     document.root = XML::Node.new("record")
+    document.root['type'] = "Authority" if authority
 
     for child in safe_marc.root.children
       document.root << child.to_xml_element(options)
@@ -567,17 +595,21 @@ class Marc
 
   # Accept the same parameters as the XML exporter
   def to_marc_external(options = {})
-    created_at = options.has_key?(:created_at) ? options[:created_at] : nil
-    updated_at = options.has_key?(:updated_at) ? options[:updated_at] : nil
-    versions = options.has_key?(:versions) ? options[:versions] : nil
-    holdings = options.has_key?(:holdings) ? options[:holdings] : true
+    created_at = options.fetch(:created_at, nil)
+    updated_at = options.fetch(:updated_at, nil)
+    versions = options.fetch(:versions, nil)
+    holdings =  options.fetch(:holdings, true)
+    sanitize = options.fetch(:sanitize, false)
 
     safe_marc = self.deep_copy
     safe_marc.root = @root.deep_copy
     safe_marc.to_external(created_at, updated_at, versions, holdings)
 
-    # Send back a sanitized version for HTML display
-    ERB::Util.html_escape(safe_marc.to_marc.gsub(DOLLAR_STRING, "{dollar}"))
+    marc_data = safe_marc.to_marc.gsub(DOLLAR_STRING, "{dollar}")
+    # Send back a sanitized version for HTML display?
+    marc_data = ERB::Util.html_escape(marc_data) if sanitize
+
+    return marc_data
   end
 
   # Export a dump of the contents
@@ -592,6 +624,20 @@ class Marc
     return words.join(" ")
   end
 
+  def insert(tag, subtags = {})
+    the_t = MarcNode.new(@model, tag, "", @marc_configuration.get_default_indicator(tag))
+
+    subtags.each do |stag, val|
+      next if !val
+      next if val.empty?
+      the_t.add_at(MarcNode.new(@model, stag.to_s, val, nil), 0 )
+    end
+
+    the_t.sort_alphabetically
+    @root.add_at(the_t, get_insert_position(tag))
+    return the_t
+  end
+  
   # Return all tags
   def all_tags( resolve = true )
     load_source( resolve ) unless @loaded
@@ -612,6 +658,11 @@ class Marc
     return tags
   end
   
+  # Shortcut for the above
+  def [](tag)
+    by_tags(tag)
+  end
+
   # Return an ordered list of the given tags
   def by_tags_with_order(tag_names)
     load_source unless @loaded
@@ -758,6 +809,12 @@ class Marc
   def has_incipits?
     by_tags(["031"]).any? do |st|
       st.fetch_all_by_tag("p").any? { |sst| sst&.content&.present? }
+    end
+  end
+
+  def has_link_to? auth
+    by_tags(["024"]).any? do |st|
+      st.fetch_all_by_tag("2").any? { |sst| (sst&.content == auth) }
     end
   end
 
@@ -1061,6 +1118,40 @@ class Marc
     end
 
     return out
+  end
+
+  def marc_log(list)
+    return if !defined?(:MARC_DEBUG)
+    return if !defined?(:MARC_LOG)
+    return if !$MARC_DEBUG
+
+    $MARC_LOG << ["MARC"] + list
+
+  end
+
+  def _to_external_031!(parent_object)
+    each_by_tag("031") do |t|
+
+      # Export the MEI incipit link
+      if parent_object.digital_objects.incipits
+        vals = {}
+        [:a, :b, :c].each do |st|
+          v = t.fetch_first_by_tag(st)
+          vals[st] = v && v.content ? v.content : "x"
+        end
+        pae_nr = "#{vals[:a]}.#{vals[:b]}.#{vals[:c]}"
+
+        # Try to match it in the digital objects
+        parent_object.digital_objects.incipits.each do |incipit|
+          if incipit.match_pae_nr?(pae_nr)
+            t.add_at(MarcNode.new("source", "u", incipit.attachment.url(:original, false), nil), 0)
+          end
+        end
+      end
+
+      t.add_at(MarcNode.new("source", "2", "pe", nil), 0)
+      t.sort_alphabetically
+    end
   end
 
 end

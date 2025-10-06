@@ -3,7 +3,7 @@
 class MarcNode
 
   include Enumerable
-  attr_reader :tag, :content, :indicator, :foreign_object, :parent, :diff, :diff_is_deleted
+  attr_reader :tag, :content, :raw_content, :indicator, :foreign_object, :parent, :diff, :diff_is_deleted, :model
   attr_writer :tag, :content, :indicator, :foreign_object, :foreign_field, :diff, :diff_is_deleted
   attr_accessor :foreign_host, :suppress_scaffold_links_trigger
   
@@ -22,12 +22,19 @@ class MarcNode
     #raise "Model does not exit in enviroment" if !ActiveRecord::Base.descendants.map(&:name).include?(model.to_s.capitalize)
     @model = model
     @marc_configuration = MarcConfigCache.get_configuration @model
+
+    # This is used during import of records
+    # Muscat will try to always create the missing links, as default using
+    # the master (generally $0) field, and fail if there is a problem.
+    # This is the default behaviour.
+    # In some case it is useful to try again using other fields, so this global
+    # variable can be set to FALSE (remember, default is true!).
+    @force_marc_creation = defined?(:MARC_FORCE_CREATION) ? $MARC_FORCE_CREATION : true
   end
   
   def suppress_scaffold_links
     self.suppress_scaffold_links_trigger = true
   end  
-  
   
   # Returns a copy of this object an all of its references
   def deep_copy
@@ -66,6 +73,7 @@ class MarcNode
               
           #raise NoMethodError, "Tag #{self.tag}: missing master (expected in $#{@marc_configuration.get_master( self.tag )}), tag contents: #{self.to_marc} "
           $stderr.puts "[#{@model} #{object_id}] Tag #{self.tag}: missing master (expected in $#{@marc_configuration.get_master( self.tag )}), tag contents: #{self.to_marc} "
+          marc_node_log ["MISSING_MASTER", "TAG=#{self.tag}", "SUBTAG=#{@marc_configuration.get_master( self.tag )}", "MODEL=#{@model}", "ID-#{object_id}", "DEBUG=#{self.to_marc}"]
           #self.destroy_yourself
           return
         end
@@ -123,9 +131,21 @@ class MarcNode
     if foreign_class = get_class(class_name)
       new_foreign_object = foreign_class.send("find_by_" + field_name, search_value)
       if !new_foreign_object
+
+        # We need to make sure id is valid!
+        if field_name == "id" && search_value.to_i == 0
+          marc_node_log ["LINK_BY_MASTER", "FORMAT_INVALID", "MODEL=#{foreign_class}", "ID=#{search_value}"]
+          # In nodmal operation muscat will try to create this item nevertheless
+          # this is the option to change this behaviour
+          return false if @force_marc_creation == false
+        end
+
         new_foreign_object = foreign_class.new
         new_foreign_object.send("#{field_name}=", search_value)
         new_foreign_object.send("wf_stage=", 'published')
+        marc_node_log ["LINK_BY_MASTER", "CREATE", "MODEL=#{foreign_class}", "ID=#{new_foreign_object.id}", "FIELD=#{field_name}", "VAL=#{search_value}"]
+      else
+        marc_node_log ["LINK_BY_MASTER", "MATCH", "MODEL=#{foreign_class}", "ID=#{new_foreign_object.id}", "FIELD=#{field_name}", "VAL=#{search_value}"]
       end
     end
     return new_foreign_object
@@ -141,10 +161,19 @@ class MarcNode
       nmasters.each do |nmaster|
         conditions[@marc_configuration.get_foreign_field(tag, nmaster.tag)] = nmaster.looked_up_content if !nmaster.looked_up_content.empty?
       end
+      # The imported fields are just... empty??
+      # Note normally muscat will go on and do its thing,
+      # returning here must be sxplicitly enabled
+      return false if @force_marc_creation == false && conditions.empty?
+
       new_foreign_object = foreign_class.send("where", conditions).first
       if !new_foreign_object
         new_foreign_object = foreign_class.new
         new_foreign_object.send("wf_stage=", 'published')
+        marc_node_log ["LINK_BY_ALL_FIELDS", "CREATE", "MODEL=#{foreign_class}", "ID=#{new_foreign_object.id}", "FIELDS=#{conditions}"]
+
+      else
+        marc_node_log ["LINK_BY_ALL_FIELDS", "MATCH", "MODEL=#{foreign_class}", "ID=#{new_foreign_object.id}", "FIELDS=#{conditions}"]
       end
     end
     return new_foreign_object
@@ -206,22 +235,47 @@ class MarcNode
     end
   end
   
+  def log_marc_value_changes(all_fields, tag, foreign_object)
+    all_fields.each do |nm|
+      next if !nm
+      next if !nm.content
+      ff = @marc_configuration&.get_foreign_field(tag, nm&.tag)
+      next if !ff
+      # Get the value in Muscat
+      db_val = foreign_object.send(ff) rescue db_val = nil
+      next if !db_val
+      if db_val.downcase != nm.content.downcase
+        marc_node_log [
+          "IMPORT",
+          "VALUE_CHANGE",
+          "MODEL=#{foreign_object.class}",
+          "ID=#{foreign_object.id}",
+          "TAG=#{tag}",
+          "SUBTAG=#{nm.tag}",
+          "IMPORT_VAL=#{nm.content}",
+          "DB_VAL=#{db_val.downcase}"
+        ]
+      end
+    end
+  end
+  
+
   # Once the Marc data is parsed to MarcNodes, it can be
   # inspected to create the relations with the external classes
   # ex. People. This function does this. If the tag has a $0 with an id
   # (the field is returned by get_master_foreign_subfield) it will try
   # to get the corrensponding object from the DB. If no id ($0) is present
   # it will try to look it up
-  def import(overwrite = false, reindex = false, user = nil)
+  def import(overwrite = false, reindex = false, user = nil, force_editor_ordering = false)
     foreign_associations = {}
     if parent == nil
       @children.each do |child|
         child.suppress_scaffold_links if self.suppress_scaffold_links_trigger == true
-        child_foreign_associations = child.import(overwrite, reindex, user)
+        child_foreign_associations = child.import(overwrite, reindex, user, force_editor_ordering)
         foreign_associations.merge!(child_foreign_associations) unless !child_foreign_associations
       end
     else
-      self.sort_alphabetically
+      self.sort_alphabetically if !force_editor_ordering
       
       # Before resolving the master fields, process the lightwheight link_to
       populate_links_to(self.tag)
@@ -235,11 +289,23 @@ class MarcNode
         add_master = false
         # will be used to check if we need to add a $_ db_master or not (for 004 we don't have one)
         add_db_master = true
-        # If we have a master subfield, fo the lookup using that
+        # If we have a master subfield, for the lookup using that
         if master
           master_field = @marc_configuration.get_foreign_field(tag, master.tag)
           self.foreign_object = find_or_new_foreign_object_by_foreign_field(@marc_configuration.get_foreign_class(tag, master.tag), master_field, master.looked_up_content)
-        # If we have no master subfiled but master is actually empty "" (e.g. 004) with holding records
+
+          # In this case, it means found_obj was not created
+          # because @force_marc_creation is false, try again
+          if !self.foreign_object && @force_marc_creation == false
+            # Try again, without using the master field
+            master_tag = @marc_configuration.get_master( self.tag )
+            self.foreign_object = find_or_new_foreign_object_by_all_foreign_fields( @marc_configuration.get_foreign_class(tag, master_tag), tag, nmasters )
+          end
+
+          # Use this to find ID collisions
+          log_marc_value_changes(nmasters, tag, self.foreign_object) if defined?(:MARC_DEBUG) && $MARC_DEBUG
+
+          # If we have no master subfiled but master is actually empty "" (e.g. 004) with holding records
         elsif !master && @marc_configuration.get_master( self.tag ) == ""
           add_db_master = false
           master_field = @marc_configuration.get_foreign_field(tag, "")
@@ -381,6 +447,10 @@ class MarcNode
     end
   end
   
+  def raw_content
+    return @content
+  end
+
   # Return the content of a foreign object non from the Marc data itself
   # but from the corresponding class
   def looked_up_content
@@ -444,6 +514,7 @@ class MarcNode
   def to_xml_element(options = {})
     # deprecated ids are missing the model prefix and are ambiguous
     deprecated_ids = options.has_key?(:deprecated_ids) ? !(options[:deprecated_ids] == "false") : true
+    force_editor_ordering = options.fetch(:force_editor_ordering, false)
     element = XML::Node.new('leader')
 
     # skip the $_ (db_id)
@@ -480,7 +551,11 @@ class MarcNode
         ind1 = " " if !ind1
         element["ind1"] = ind0.gsub(/[#\\]/," ")
         element["ind2"] = ind1.gsub(/[#\\]/," ")
-        for_every_child_sorted { |child| element << child.to_xml_element(options) }
+        if force_editor_ordering
+          @children.each { |child| element << child.to_xml_element(options) }
+        else
+          for_every_child_sorted { |child| element << child.to_xml_element(options) }
+        end
       end
     else
       #subfield
@@ -646,6 +721,11 @@ class MarcNode
     return matching_children  
   end
 
+  # Shortcut for the above
+  def [](tag)
+    fetch_all_by_tag(tag)
+  end
+
   def destroy_yourself
     @parent.destroy_child(self) if @parent
   end
@@ -656,6 +736,9 @@ class MarcNode
   
   # Add an element at specified position
   def add_at(child, index)
+    if child.model != @model && child.model
+      puts "#{caller.first.red}: MarcNode add_at() child model #{child.model&.cyan} is not the same as root model #{@model&.cyan} [#{child&.to_s.strip}]"
+    end
     @children.insert(index, child)
     child.parent = self
     return child
@@ -724,4 +807,12 @@ class MarcNode
     return str.gsub(/[\r\n]+/, single_space).gsub(/\n+/, single_space).gsub(/\r+/, single_space).gsub(/\$/, Marc::DOLLAR_STRING)
   end
   
+  def marc_node_log(list)
+    return if !defined?(:MARC_DEBUG)
+    return if !defined?(:MARC_LOG)
+    return if !$MARC_DEBUG
+
+    $MARC_LOG << ["MARC_NODE"] + list
+  end
+
 end

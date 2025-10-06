@@ -212,6 +212,11 @@ function _marc_editor_send_form(form_name, rails_model, redirect) {
 		parent_object_type: $('#parent_object_type').val(),
 		record_status: $('#record_status').val(),
 		record_owner: $('#record_owner').val(),
+		//force_editor_ordering is used only by GND, and it is
+		// hardcoded there. It can be added here if needed in the furure
+		// for other models
+		//force_editor_ordering: $('#force_editor_ordering').val(),
+		work_catalogue_status: $('#work_catalogue_status').val(),
 		triggers: JSON.stringify(triggers),
 		redirect: redirect
 	};
@@ -338,20 +343,19 @@ function _marc_editor_validate(source_form, destination, rails_model) {
 		return false
 }
 
-function _marc_editor_help( destination, help, title, rails_model ) {
+function _marc_editor_help( destination, help, title ) {
 
-	var url = "/admin/" + rails_model + "/marc_editor_help";
-	
+	var url = "/admin/editor_help_box/" + help
+
 	$.ajax({
 		success: function(data) {
+			$('#' + destination).html(data)
 			marc_editor_show_panel(destination);
 		},
 		data: {
-			help: help,
 			title: title,
-			marc_editor_dest: destination
 		},
-		dataType: 'script',
+		dataType: 'html',
 		timeout: 20000,
 		type: 'post',
 		url: url, 

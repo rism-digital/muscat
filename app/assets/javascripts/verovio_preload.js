@@ -166,7 +166,8 @@ function render_music(music, format, target, width) {
 			music: music, 
 			format: format, 
 			target: target, 
-			width: width});
+			width: width
+		});
 			
 		return;
 	}

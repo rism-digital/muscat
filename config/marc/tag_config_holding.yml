@@ -35,6 +35,21 @@
     :fields:
     - - a
       - :occurrences: "?"
+  "040":
+    :master: a
+    :indicator: "##"
+    :occurrences: "1"
+    :fields:
+    - - a
+      - :occurrences: "1"
+    - - b
+      - :occurrences: "1"
+    - - c
+      - :occurrences: "1"
+    - - d
+      - :occurrences: "?"
+    - - e
+      - :occurrences: "1"
   "300":
     :master: a
     :indicator: "##"
@@ -56,7 +71,6 @@
     :fields:
     - - a
       - :occurrences: "?"
-        :browse_helper: application_helper_link_http
     - - "8"
       - :occurrences: "?"
         :no_browse: true
@@ -276,7 +290,6 @@
     :fields:
     - - u
       - :occurrences: "*"
-        :browse_helper: application_helper_link_http
     - - x
       - :occurrences: "?"
     - - z

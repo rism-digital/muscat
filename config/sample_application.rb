@@ -140,6 +140,14 @@ module RISM
   # Turn on or off collation of special chars for ordering
   CLEVER_ORDERING = true
 
+  # In some cases, only inprogress and published should remain in wf_stage
+  # Remove deleted and deprecated from the menu
+  REMOVE_DELETED_WF_STAGE = false
+
+  # In some remote places of Muscat, we harcode links
+  # Put the domain here so it works
+  MUSCAT_URL = "https://muscat.rism.info"
+
   # Supported devise authentication methods are:
   # - database_authenticatable (the default)
   # - saml_authenticatable, with trackable (which is already defined in User.rb
@@ -190,6 +198,8 @@ module Muscat
 
     config.active_record.yaml_column_permitted_classes = [ActiveSupport::HashWithIndifferentAccess, Time, Date, ActiveSupport::TimeWithZone, ActiveSupport::TimeZone]
     
+    Paperclip::Attachment.default_options[:url] = "https://muscat.rism.info/system/:class/:attachment/:id_partition/:style/:filename"
+
     # See what was loaded
     #Rails.autoloaders.log!
 

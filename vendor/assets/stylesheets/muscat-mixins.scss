@@ -1,3 +1,5 @@
+@use "sass:color";
+
 
 // We redefine active admin before including the components
 // All modification are marked with /// (beginning or end of the line)
@@ -28,18 +30,18 @@
 }
 
 @mixin primary-gradient {
-  @include gradient(lighten($primary-color, 0%), darken($primary-color, 0%));///
-  border-bottom: 1px solid darken($primary-color, 11%);
+  @include gradient(color.adjust($primary-color, $lightness: 0%, $space: hsl), color.adjust($primary-color, $lightness: -0%, $space: hsl));///
+  border-bottom: 1px solid color.adjust($primary-color, $lightness: -11%, $space: hsl);
 }
 
 @mixin default-button {
   @include basic-button;
   ///@include gradient(lighten($primary-color, 15%), darken($primary-color, 12%));
-  background: lighten($primary-color, 0%);///
+  background: color.adjust($primary-color, $lightness: 0%, $space: hsl);///
   	@include text-shadow(#000);
   ///box-shadow: 0 1px 1px rgba(0,0,0,0.10), 0 1px 0 0px rgba(255,255,255, 0.2) inset;
   ///border: solid 1px #484e53;
-  border: solid 1px darken($primary-color, 5%);///
+  border: solid 1px color.adjust($primary-color, $lightness: -5%, $space: hsl);///
   @include border-colors(#616a71, #484e53, #363b3f);
   ///color: #efefef;
   color: #FFFFFF;///
@@ -47,13 +49,13 @@
   &:not(.disabled) {
     &:hover{
       ///@include gradient(lighten($primary-color, 18%), darken($primary-color, 9%));
-	  background: darken($primary-color, 10%);///
+	  background: color.adjust($primary-color, $lightness: -10%, $space: hsl);///
     }
 
     &:active {
       box-shadow: 0 1px 3px rgba(0,0,0,0.40) inset, 0 1px 0 0px #FFF;
       ///@include gradient(lighten($primary-color, 8%), darken($primary-color, 17%));
-	  background: lighten($primary-color, 5%);///
+	  background: color.adjust($primary-color, $lightness: 5%, $space: hsl);///
     }
   }
 }

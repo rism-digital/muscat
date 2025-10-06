@@ -1,5 +1,20 @@
 --- !map:Settings
 client:
+  "031":
+    tags:
+      "b": 
+        any_of:
+        - required_if: 
+            "031": "a"
+        - validate_031_dups
+      "c":
+        any_of:
+        - required_if: 
+            "031": "a"
+        - validate_031_dups
+  "046":
+    tags:
+      "k": validate_edtf
   "024":
     tags:
       "2": required

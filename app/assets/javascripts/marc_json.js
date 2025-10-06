@@ -84,26 +84,29 @@ function add_ordered(tag, marc_tag, json_marc) {
 	}
 }
 
-function order_subfields(fields) {
+function order_subfields(fields, force_editor_ordering) {
 	var keys = [];
 	var ordered_fields = [];
 	
 	// convert the keys to array
 	for (var key in fields) keys.push(key);
 	
-	keys.sort(function(a, b) {
-		a1 = isNumber(a.split("-")[0]) ? 'z' + a : a;
-		b1 = isNumber(b.split("-")[0]) ? 'z' + b : b;
-		
-		// is there a better way to do this
-		// on strings?
-		if (a1 > b1)
-			return 1;
-		if (a1 < b1)
-			return -1;
-		
-		return 0;
-	});
+	// Keep the fields ordered
+	if (!force_editor_ordering) {
+		keys.sort(function(a, b) {
+			a1 = isNumber(a.split("-")[0]) ? 'z' + a : a;
+			b1 = isNumber(b.split("-")[0]) ? 'z' + b : b;
+			
+			// is there a better way to do this
+			// on strings?
+			if (a1 > b1)
+				return 1;
+			if (a1 < b1)
+				return -1;
+			
+			return 0;
+		});
+	}
 	
 	// copy to array of hashes for subfields
 	for (var i = 0; i < keys.length; i++) { // it seems I cannot iterate on an array?
@@ -120,7 +123,7 @@ function order_subfields(fields) {
 	return ordered_fields;
 }
 
-function serialize_element( element, tag, json_marc, toplevel_groups) {
+function serialize_element( element, tag, json_marc, toplevel_groups, force_editor_ordering) {
 	//console.log(this);
 	
 	var subfields = [];
@@ -280,7 +283,7 @@ function serialize_element( element, tag, json_marc, toplevel_groups) {
 	} // End fixture for Grouping, ideally it will be moved
 	  // to its own function
 	
-	subfields = order_subfields(subfields_unordered);
+	subfields = order_subfields(subfields_unordered, force_editor_ordering);
 
 	// Build the JSON marc tag
 	marc_tag = {};
@@ -309,9 +312,15 @@ function serialize_element( element, tag, json_marc, toplevel_groups) {
 /* Serialize the pe form to marc-json */
 function serialize_marc_editor_form( form ) {
 
-	var json_marc = {};
+	let json_marc = {};
 	json_marc["fields"] = [];
-	toplevel_groups = [];
+	let toplevel_groups = [];
+	let force_editor_ordering = false;
+	
+	if ($("#force_editor_ordering") && $("#force_editor_ordering").val() == "True") {
+		force_editor_ordering = true;
+		console.log("Keep natural ordering of items from the editor")
+	}
 	
 	// Each group contents contain the <div> for each marc tag
 	//$(".marc_editor_group_contents", form).each(function (index, elem) {
@@ -343,7 +352,7 @@ function serialize_marc_editor_form( form ) {
 						return;
 					}
 				
-					serialize_element(this, marc_tag, json_marc, toplevel_groups);
+					serialize_element(this, marc_tag, json_marc, toplevel_groups, force_editor_ordering);
 				
 				});
 			})

@@ -10,7 +10,7 @@ class Holding < ApplicationRecord
   @last_event_save
   attr_accessor :last_event_save
   
-  has_paper_trail :on => [:update, :destroy], :only => [:marc_source], :if => Proc.new { |t| VersionChecker.save_version?(t) }
+  has_paper_trail :on => [:update, :destroy], :only => [:marc_source, :wf_stage, :wf_audit], :if => Proc.new { |t| VersionChecker.save_version?(t) }
 
   has_many :digital_object_links, :as => :object_link, :dependent => :delete_all
   has_many :digital_objects, through: :digital_object_links, foreign_key: "object_link_id"
@@ -47,7 +47,7 @@ class Holding < ApplicationRecord
   after_create :scaffold_marc, :fix_ids
   after_save :update_links, :update_774, :reindex
   after_initialize :after_initialize
-  before_destroy :update_links, :cleanup_comments
+  before_destroy :update_links, :cleanup_comments, :update_links
   
   
   attr_accessor :suppress_reindex_trigger
@@ -243,7 +243,7 @@ class Holding < ApplicationRecord
   end
 
   searchable :auto_index => false do |sunspot_dsl|
-    sunspot_dsl.integer :id
+    sunspot_dsl.integer :id, stored: true
     sunspot_dsl.text :source_id do
       source.id
     end

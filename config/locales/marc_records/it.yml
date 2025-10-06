@@ -100,6 +100,7 @@ it:
     persian: Persiano
     polish: Polacco
     portugese: Portoghese
+    romance_other: Altra lingua romanza
     romani: Romani
     romanian: Romeno
     romansh: Romancio
@@ -279,6 +280,8 @@ it:
     alternate_spelling: Ortografia alternativa
     alternative_work_title: Titolo alternativo dell'opera
     amount: Numero
+    annex: Appendice
+    appendix: Appendice
     archive: Archivio
     arrangement: Arrangiamento
     arrangement_statement: Arrangiamento
@@ -419,6 +422,7 @@ it:
     deprecated_fields: Campi obsoleti (non usare)
     description: Descrizione
     description_area: Descrizione
+    description_conventions: Convenzioni per la descrizione
     description_summary: Descrizione sommaria
     designer: Progettista
     df_major: Re♭ maggiore
@@ -459,6 +463,7 @@ it:
     excerpts: Estratti
     exemplar: Esemplare
     exemplars: Esemplari
+    expansion: Approfondimenti
     extent: Estensione
     extent_parts: Estensione (parti)
     external_resource: Localizzazione e accesso elettronico
@@ -487,9 +492,10 @@ it:
     fingerprint_identifier: Impronta
     first_entry: Prima notizia
     first_second_group: Primo/Secondo gruppo
+    form_of_work: Forma dell'opera
     form_subdivision: Suddivisione formale
     format_extent: Categoria di fonte, estensione
-    former_sigla: Sigle obsolete
+    former_sigla: Sigla obsoleta
     former_owner: Proprietario precedente
     fragments: Frammenti
     fs_major: Fa♯ maggiore
@@ -540,6 +546,7 @@ it:
     identity_area: Identità
     iiif_manifest: "IIIF manifest (fonte digitale)"
     iiif_manifest_other: "IIIF manifest (altro)"
+    iiif_manifest_nothing_more: Manifesto IIIF
     illustrator: Disegnatore
     immediate_parent_body: Istituzione immediatamente precedente
     import: Dati importati
@@ -581,7 +588,7 @@ it:
     language_codes: Codici lingue
     language_libretto: Lingua del libretto
     language_note: Nota sulla lingua
-    language_of_cataloging: Lingua della catalogazione
+    language_of_cataloging: Lingua di catalogazione
     language_original_text: Lingua del testo originale
     language_text: Lingua del testo cantato
     later_entry: Notizia successiva
@@ -674,6 +681,7 @@ it:
     name_family: Nome di famiglia
     name_of_part: Nome della parte o sezione di un'opera
     name_printer: Stampatore, stamperia
+    name_titles_words: Titoli ed altre parole associate con un nome
     name_variant: Varianti del nome
     name_variants: Varianti del nome
     named_dramatic_roles: Personaggi menzionati
@@ -692,8 +700,10 @@ it:
     number: Numero
     number_page: Numero/pagina
     number_part_section: Numero della parte/sezione di una composizione
+    number_volume: Numero/volume
     number_volume_part: Numero del volume/parte
     numbers_code_fields: Numeri e codici
+    numeric_designation: Numerazione identificativa
     octoechos1: 'Octoechos 1: Ēchos prōtos (primo modo nella musica bizantina)'
     octoechos2: 'Octoechos 2: Ēchos deuteros (secondo modo nella musica bizantina)'
     octoechos3: 'Octoechos 3: Ēchos tritos (terzo modo nella musica bizantina)'
@@ -703,6 +713,7 @@ it:
     octoechos7: 'Octoechos 7: Ēchos barys (terzo modo plagale nella musica bizantina)'
     octoechos8: 'Octoechos 8: Ēchos plagios tetartos (quarto modo plagale nella musica bizantina)'
     online_finding_aids: Strumenti di supporto alla ricerca online
+    online_resource: Risorsa in rete
     opera_houses_concert_halls: Teatri e sale da concerto
     opus_number: N.o d'opera
     opus_thematic_index_number: Numero d'opera / del catalogo delle opere
@@ -720,6 +731,7 @@ it:
     other_instruments: Altri strumenti
     other_life_dates: Altre date
     other_physical_details: Altri dettagli sul materiale
+    other_resource: Altra risorsa
     other_searchform: Altra forma di ricerca
     other_shelfmark: Altra segnatura
     other_standard_identifier: Riferimento autorità
@@ -739,6 +751,8 @@ it:
     performances: Esecuzioni
     performer: Interprete
     performer_note: Nota sull'esecuzione
+    periodical_or_series: Periodico o serie
+    periodical_or_series_title: Titolo del periodico o della serie
     person: Persona
     person_name: Nome di persona
     personal_name: Nome di persona
@@ -769,9 +783,12 @@ it:
     print_with_non_autograph_annotations: Stampa con annotazioni non autografe
     printer: Stampatore
     printing_technique: Tecnica di stampa
+    private_collection: Collezione Privata
     production: Produzione
     production_personnel: Personale alla produzione
     profession_or_function: Professione o funzione
+    project: Progetto
+    project_url: URL del progetto
     provenance: Provenienza
     provenance_notes: Nota sulla provenienza
     pseudonym: Pseudonimo
@@ -820,9 +837,11 @@ it:
     scribe: Copista
     secondary_catalog_works: Catalogo secondario delle opere
     secondary_literature: Bibliografia
+    serial_number: Numerazione progressiva
     series: Serie
     series_added_entry: Notizia secondaria sul titolo sovraordinato
     series_statement: Informazioni sul titolo sovraordinato
+    section: Sezione
     shelfmark: Segnatura
     shelfmark_olim: Segnatura antica (olim)
     short_title: Titolo breve
@@ -917,7 +936,10 @@ it:
     watermark_description: Filigrana
     woodwinds: Legni
     work: Opera
+    work_catalog: Catalogo delle opere
+    work_catalogs: Cataloghi delle opere
     work_catalog_note: Nota sul catalogo delle opere
+    work_list: Lista di opere
     work_node: Voce di autorità esterna (Work node)
     work_number: Numero dell'opera
     work_tag: Tag per il Work
@@ -940,13 +962,22 @@ it:
     P60183: "Inserto"
   relations_works:
     P60250: "Opera derivata"
-    P60305: "Basata su"
+    P60305: "Si basa su"
     P60216: "Estesa come"
     P60294: "Versione estesa di"
     P60274: "Arrangiata come"
     P60242: "Arrangiamento di"
     P60198: "Complementare a"
     P60313: "Relazione indefinita"
+  relations_institutions:
+    P50008: Superiore gerarchico
+    P50010: Subalterno gerarchico
+    P50012: Ente predecessore
+    P50016: Ente successore
+    P50020: Famiglia fondatrice dell'ente
+    P50230: Ente membro dell'ente
+    P50435: Organismo aziendale membro della famiglia
+    P50301: Ente incorporato
   verovio:
     position: "Posizione"
     warning: "Attenzione"
@@ -1017,6 +1048,12 @@ it:
     ERR_064_LIGATURE_DURATION: La durata di una legatura non può essere inferiore a una semibreve.
     ERR_065_MREST_INVALID_MEASURE: Una battuta con una pausa per l'intera battuta non può includere altro.
     ERR_066_EMPTY_CONTAINER: Un gruppetto o una travatura non possono essere vuoti.
+  work_catalogue:
+    not_work_catalogue: Non un catalogo delle opere
+    work_catalogue_alternate: Catalogo alternativo
+    work_catalogue_complete: Completato
+    work_catalogue_in_preparation: Idoneo
+    work_catalogue_partial: Parzialmente processato
   rism_online:
     manuscript: "Manoscritto"
     printed: "A stampa"

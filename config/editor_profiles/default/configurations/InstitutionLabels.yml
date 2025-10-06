@@ -56,7 +56,9 @@
       label: records.transcribing_agency
     d:
       label: records.modifying_agency
-  label: records.cataloging_agency
+    e:
+      label: records.description_conventions
+  label: records.cataloging_source
 '043':
   fields:
     c:
@@ -235,10 +237,14 @@ Performer:
   label: records.performer
 Printer:
   label: records.printer
+Project:
+  label: records.project
 Publisher:
   label: records.publisher
 Research institute:
   label: records.research_institute
+Private collection:
+  label: records.private_collection
 administration:
   label: records.administration
 arr:
@@ -261,7 +267,7 @@ chr:
   label: records.choreographer
 clb:
   label: records.collaborator
-cmp:
+att:
   label: records.composer
 cnd:
   label: records.conductor
@@ -381,3 +387,20 @@ t:
   label: records.immediate_parent_body
 Congress:
   label: records.congress
+
+"rdaa:P50008":
+  label: relations_institutions.P50008
+"rdaa:P50010":
+  label: relations_institutions.P50010
+"rdaa:P50012":
+  label: relations_institutions.P50012
+"rdaa:P50016":
+  label: relations_institutions.P50016
+"rdaa:P50020":
+  label: relations_institutions.P50020
+"rdaa:P50230":
+  label: relations_institutions.P50230
+"rdaa:P50435":
+  label: relations_institutions.P50435
+"rdaa:P50301":
+  label: relations_institutions.P50301

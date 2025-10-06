@@ -54,11 +54,14 @@ class CommentNotifications < ApplicationMailer
       end
     end.compact
      
-    addresses << RISM::COMMENT_EMAIL if (RISM::COMMENT_EMAIL && RISM::COMMENT_EMAIL.is_a?(String))
+    #addresses << RISM::COMMENT_EMAIL if (RISM::COMMENT_EMAIL && RISM::COMMENT_EMAIL.is_a?(String))
+
+    to = RISM::DEFAULT_NOREPLY_EMAIL
+    to = RISM::COMMENT_EMAIL if (RISM::COMMENT_EMAIL && RISM::COMMENT_EMAIL.is_a?(String))
 
     return if addresses.empty?
 
-    mail(to: RISM::DEFAULT_NOREPLY_EMAIL,
+    mail(to: to,
         name: "Muscat",
         bcc: addresses,
         subject: "[Muscat] Comment on #{comment.resource_type} #{comment.resource_id}")

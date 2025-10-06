@@ -213,11 +213,7 @@ class EditorConfiguration
   # Extracts from the configuration the file name of the helpfile for the specified tag.
   # Help files oare in <tt>public/help</tt>. Used from the editor view.
   def get_tag_extended_help(tag_name, model)
-    if options_config.include?(tag_name) && options_config[tag_name].include?("extended_help")
-      return EditorConfiguration.get_help_fname("#{options_config[tag_name]["extended_help"]}", model)
-    else
-      return EditorConfiguration.get_help_fname("#{tag_name}", model)
-    end
+    return "#{model.underscore}_#{tag_name}"
   end
   
   # gets the display partial for the specified tag from the configuration. Used so
@@ -282,6 +278,14 @@ class EditorConfiguration
   
   def get_triggers
     return options_config.include?("triggers") ? options_config["triggers"] : nil
+  end
+
+  # This is used for the GND editor
+  # where the MARC fields should not be ordered alphabetically
+  # but must come in the order in the editor
+  def force_editor_ordering?
+    return true if options_config.include?("force_editor_ordering") && options_config["force_editor_ordering"]
+    false
   end
 
   # Used to import unknown marc into muscat
@@ -487,31 +491,46 @@ class EditorConfiguration
     return nil
   end
     
-  # Gets the html file name.
-  def self.get_help_fname(name, model = "Source")
-    model = (model == "Source") ? "" : "#{model.underscore}_"
+  def self.get_help_file(item_name, legacy = false)
 
-    # Oh the humanity!
-    # Until we figure out what to do with the guidelines,
-    # keep this in a different place
-    if model == "gnd_work_"
-      fname = "/gnd_works_help/#{model}#{name}_#{I18n.locale.to_s}.html"
+    # GND works as usual work "indipendently"
+    if item_name.start_with? "gnd_work_"
+      fname = "/gnd_works_help/#{item_name}_#{I18n.locale.to_s}.html"
       return fname if File.exist?("#{Rails.root}/public#{fname}")
       return ""
     end
 
-    # translated version?
-    fname = ConfigFilePath.get_marc_editor_profile_path("/help/#{RISM::MARC}/#{model}#{name}_#{I18n.locale.to_s}.html")
-    #ap fname
-    return fname if File.exist?("#{Rails.root}/public#{fname}")
+    # Get the legacy translation
+    # It it is missing, return the new english file
+    if legacy
+      file = get_help_fname_legacy(item_name)
+      return file if !file.empty?
+    end 
+
+    file = ConfigFilePath.get_marc_editor_profile_path("/help/default/#{I18n.locale.to_s}/#{item_name}.md")
+    return file if File.exist?("#{Rails.root}/public#{file}")
+
     # english?
-    fname = ConfigFilePath.get_marc_editor_profile_path("/help/#{RISM::MARC}/#{model}#{name}_en.html")
-    return fname if File.exist?("#{Rails.root}/public#{fname}")
-    # nope...
+    file = ConfigFilePath.get_marc_editor_profile_path("/help/default/en/#{item_name}.md")
+    return file if File.exist?("#{Rails.root}/public#{file}")
+
+    # sorry
     return ""
   end
 
   private
+
+  def self.get_help_fname_legacy(item_name)
+    # Source items had no source_
+    clean_name = item_name.gsub("source_", "")
+
+    # translated version?
+    fname = ConfigFilePath.get_marc_editor_profile_path("/help_legacy/#{RISM::MARC}/#{clean_name}_#{I18n.locale.to_s}.html")
+    return fname if File.exist?("#{Rails.root}/public#{fname}")
+
+    # nope...
+    return ""
+  end
 
   # Get all the EditorConfigurations defined in config/editor_profiles/default/profiles.yml
   # and locals is config/editor_profiles/$EDITOR_PROFILE/profiles.yml

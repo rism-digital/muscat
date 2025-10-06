@@ -81,11 +81,15 @@
 	</li>
 <%end%>	
 	
-<%if @item.id && @item.respond_to?(:allow_inventory_items?) && @item.allow_inventory_items? %>
+<%if @item.id && @item.respond_to?(:allow_inventory_items?) && @item.allow_inventory_items? && can?(:create, InventoryItem)%>
 	<li class="muscat_icon_separator"></li>
 	<li class="muscat_icon_link">
 		<%= link_to("#{I18n.t :new_inventory_item}", new_admin_inventory_item_path(source_id: @item.id),
 			:class => "muscat_icon_link muscat_icon_link_new") %>
+	</li>
+	<li class="muscat_icon_link">
+		<%= link_to("#{I18n.t :order_inventory_items}", order_inventory_items_admin_source_path(@item),
+			:class => "muscat_icon_link muscat_icon_link_order") %>
 	</li>
 <%end%>	
 	
@@ -139,7 +143,7 @@
 
 	<li class="muscat_icon_separator"></li>
 	<li class="muscat_icon_link">
-		<a data-scroll-target="show_help" data-panel="marc_editor_help" data-help="edit_functions" data-help-title="<%= help_title -%>" href="#" class="muscat_icon_link muscat_icon_link_help"><%= help_title -%></a></li>
+		<a data-scroll-target="show_help" data-panel="marc_editor_help" data-help="using_functions" data-help-title="<%= help_title -%>" href="#" class="muscat_icon_link muscat_icon_link_help"><%= help_title -%></a></li>
 
 </ul>
 

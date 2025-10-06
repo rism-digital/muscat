@@ -62,11 +62,13 @@
       label: records.transcribing_agency
     d:
       label: records.modifying_agency
+    e:
+      label: records.description_conventions
   label: records.cataloging_source
 '046':
   fields:
     k:
-      label: records.beginning_or_single_date
+      label: records.date_of_creation
     l:
       label: records.end
     z:
@@ -111,8 +113,8 @@
 '380':
   fields:
     a:
-      label: records.subject_heading
-  label: records.subject_heading
+      label: records.form_of_work
+  label: records.form_of_work
 '383':
   fields:
     a:
@@ -220,6 +222,10 @@
       label: records.catalog_works
     n:
       label: records.number_page
+    s:
+      label: records.section
+    x:
+      label: records.appendix
   label: records.catalog_works
 '691':
   fields:
@@ -227,6 +233,10 @@
       label: records.secondary_catalog_works
     n:
       label: records.number_page
+    s:
+      label: records.section
+    x:
+      label: records.appendix
   label: records.secondary_catalog_works
 '699':
   fields:
@@ -385,7 +395,7 @@ brother of:
   label: records.brother_of
 child of:
   label: records.child_of
-cmp:
+att:
   label: records.composer_cross_reference
 ccp:
   label: records.conceptor
@@ -513,3 +523,5 @@ z:
   label: records.work_tag_incipit_needs_revision
 "incipit-replace":
   label: records.work_tag_incipit_replace
+"Appendix":
+  label: active_admin.status_tag.yes

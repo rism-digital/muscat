@@ -2,8 +2,8 @@ class CreatePeople < ActiveRecord::Migration[4.2]
   def self.up
     create_table(:people, :options => 'ENGINE=InnoDB DEFAULT CHARSET=utf8') do |t|
       
-      t.column :full_name,          :string, { :limit => 128, :null => false }
-      t.column :full_name_d,        :string, { :limit => 128 }
+      t.column :full_name,          :string, :limit => 128, :null => false
+      t.column :full_name_d,        :string, :limit => 128
       t.column :life_dates,         :string, :limit => 24
     
       t.column :birth_place,        :string, :limit => 128
@@ -15,10 +15,10 @@ class CreatePeople < ActiveRecord::Migration[4.2]
       t.column :comments,           :text
       t.column :marc_source,        :text
       
-      t.column :wf_audit,           :string, { :limit => 16, :default => "unapproved" }
-      t.column :wf_stage,           :string, { :limit => 16, :default => "unpublished" }
+      t.column :wf_audit,           :string, :limit => 16, :default => "unapproved"
+      t.column :wf_stage,           :string, :limit => 16, :default => "unpublished"
       t.column :wf_notes,           :string
-      t.column :wf_owner,           :integer, { :default => 0 }
+      t.column :wf_owner,           :integer, :default => 0
       t.column :wf_version,         :integer, :default => 0
      
       t.column :src_count,          :integer, :default => 0

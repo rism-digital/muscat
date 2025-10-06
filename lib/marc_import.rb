@@ -10,7 +10,7 @@ class MarcImport
     @source_file = source_file
     @model = model
     @options = options
-    @total_records = open(source_file) { |f| f.grep(/<record>/) }.size
+    @total_records = open(source_file) { |f| f.grep(/record /) }.size
     @import_results = Array.new
     @cnt = 0
     @start_time = Time.now
@@ -69,13 +69,20 @@ class MarcImport
       model = Object.const_get(@model).find_by_id(marc.get_id)
       if !model
         status = "created"
+
+        params = {:wf_owner => 1, :wf_stage => "published"}
+
         if @model == "Publication"
-          model = Object.const_get(@model).new(:id => marc.get_id, :name => marc.get_name, :author => marc.get_author, :journal=> marc.get_journal, :title => marc.get_title, :wf_owner => 1, :wf_stage => "published")
+          params += { name: marc.get_name, author: marc.get_author, journal: marc.get_journal, title: marc.get_title }
         elsif @model == "Source"
-          model = Object.const_get(@model).new(:id => marc.get_id, :lib_siglum => marc.get_siglum, :wf_owner => 1, :wf_stage => "published")
-        else
-          model = Object.const_get(@model).new(:id => marc.get_id, :wf_owner => 1, :wf_stage => "published")
+          params += {lib_siglum: marc.get_siglum}
         end
+
+        # Preserve the id, unless we specifically want to create new ones
+        params[:id] = marc.get_id unless @options.include?(:new_ids) && @options[:new_ids]
+
+        model = Object.const_get(@model).new(params)
+        puts model.id
       else
         status = "updated"
       end
@@ -118,6 +125,9 @@ class MarcImport
       else
         #$stderr.puts "No date information for #{model.id}"
       end
+
+      # Callback
+      marc = @options[:callback]&.call(marc, model, @options) if @options.include?(:callback)
 
       # Make internal format
       marc.to_internal
@@ -192,7 +202,8 @@ class MarcImport
 #        $stderr.puts "#{marc.to_marc}"
 #        puts e.backtrace.join("\n")
 #        end
-      print "\rStarted: " + @start_time.strftime("%Y-%m-%d %H:%M:%S").green + " -- Record #{@cnt} of #{@total_records} processed".yellow
+puts model.id
+      print "\rStarted: " + @start_time.strftime("%Y-%m-%d %H:%M:%S").green + " -- Record #{@cnt} of #{@total_records} processed\r\n".yellow
     #puts "Last offset: #{@total_records}, Last "+@model+" RISM ID: #{marc.first_occurance('001').content}"
     else
       $stderr.puts "Marc is not valid! #{buffer}"

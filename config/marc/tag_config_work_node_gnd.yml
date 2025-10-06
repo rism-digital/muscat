@@ -39,9 +39,9 @@
     :occurrences: "?"
     :fields:
     - - a
-      - :occurrences: "?"
+      - :occurrences: "*"
     - - d
-      - :occurrences: "?"
+      - :occurrences: "*"
     - - m
       - :occurrences: "?"
     - - n

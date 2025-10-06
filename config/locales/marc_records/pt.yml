@@ -100,6 +100,7 @@ pt:
     persian: Persa
     polish: Polonês
     portugese: Português
+    romance_other: Romance (Outro)
     romani: Romani
     romanian: Romeno
     romansh: Reto-romano
@@ -279,6 +280,8 @@ pt:
     alternate_spelling: Ortografia alternativa
     alternative_work_title: Título alternativo da obra
     amount: Número
+    annex: Anexo
+    appendix: Apêndice
     archive: Arquivo
     arrangement: Arranjo
     arrangement_statement: Menção de arranjo
@@ -419,6 +422,7 @@ pt:
     deprecated_fields: Campos obsoletos (não usam)
     description: Descrição
     description_area: Descrição
+    description_conventions: Convenções para as descrições
     description_summary: Síntese da descrição
     designer: Desenhador
     df_major: Ré bemol maior
@@ -459,6 +463,7 @@ pt:
     excerpts: Excertos
     exemplar: Exemplar
     exemplars: Materiais
+    expansion: Expansão
     extent: Extensão
     extent_parts: Extensão das partes
     external_resource: Recurso externo
@@ -487,6 +492,7 @@ pt:
     fingerprint_identifier: Identificador de impressão
     first_entry: Primeira entrada
     first_second_group: Primeiro/Segundo grupo
+    form_of_work: Forma da obra
     form_subdivision: Divisão da forma
     format_extent: Formato, extensão
     former_sigla: Antiga sigla
@@ -540,6 +546,7 @@ pt:
     identity_area: Identidade
     iiif_manifest: "Manifesto IIIF (fonte digitalizada)"
     iiif_manifest_other: "Manifesto IIIF (outro)"
+    iiif_manifest_nothing_more: Manifesto IIIF
     illustrator: Ilustrador
     immediate_parent_body: Progenitor imediato
     import: Importação
@@ -674,6 +681,7 @@ pt:
     name_family: Nome da família
     name_of_part: Nome da parte/seção da obra
     name_printer: Nome do impressor
+    name_titles_words: Títulos e palavras associados com um nome
     name_variant: Variante de nome
     name_variants: Variantes de nome
     named_dramatic_roles: Papéis dramáticos identificados
@@ -692,8 +700,10 @@ pt:
     number: Número
     number_page: Número/página
     number_part_section: Número de parte/seção de um trabalho
+    number_volume: Número/volume
     number_volume_part: Número de volume/parte
     numbers_code_fields: Números e campos de código
+    numeric_designation: Designação numérica
     octoechos1: 'Octoechos 1: Ēchos prōtos (Primeiro modo bizantino)'
     octoechos2: 'Octoechos 2: Ēchos deuteros (Segundo modo bizantino)'
     octoechos3: 'Octoechos 3: Ēchos tritos (Terceiro modo bizantino)'
@@ -703,6 +713,7 @@ pt:
     octoechos7: 'Octoechos 7: Ēchos barys (Terceiro modo bizantino plagal)'
     octoechos8: 'Octoechos 8: Ēchos plagios tetartos (Quarto modo bizantino plagal)'
     online_finding_aids: Instrumentos de pesquisa on-line
+    online_resource: Recursos online
     opera_houses_concert_halls: Teatros de ópera e salas de concerto
     opus_number: Número de opus
     opus_thematic_index_number: Número de índice Opus/Temático
@@ -720,6 +731,7 @@ pt:
     other_instruments: Outros instrumentos
     other_life_dates: Outras datas de vida
     other_physical_details: Outros detalhes físicos
+    other_resource: Outros recursos
     other_searchform: Outra forma de investigação
     other_shelfmark: Outro código
     other_standard_identifier: Outro identificador padronizado
@@ -739,6 +751,8 @@ pt:
     performances: Realizações
     performer: Intérprete
     performer_note: Nota sobre performance
+    periodical_or_series: Periodico ou série
+    periodical_or_series_title: Título da série ou periódico
     person: Pessoa
     person_name: Nome da pessoa
     personal_name: Nomes de pessoas
@@ -769,9 +783,12 @@ pt:
     print_with_non_autograph_annotations: Imprimir com anotações não autógrafos
     printer: Impressor(a)
     printing_technique: Técnica de impressão
+    private_collection: Coleção privada
     production: Produção
     production_personnel: Pessoal da produção
     profession_or_function: Profissão ou função
+    project: Projecto
+    project_url: URL do projeto
     provenance: Proveniência
     provenance_notes: Nota de proveniência
     pseudonym: Pseudónimo
@@ -820,9 +837,11 @@ pt:
     scribe: Copista
     secondary_catalog_works: Catálogo secundário de obras
     secondary_literature: Literatura secundária
+    serial_number: Número de série
     series: Séries
     series_added_entry: Informação secundária sobre título superordenado
     series_statement: Campos de declaração da série
+    section: Seção
     shelfmark: Código
     shelfmark_olim: Código antiguo (olim)
     short_title: Título abreviado
@@ -917,7 +936,10 @@ pt:
     watermark_description: Descrição de Marca de água
     woodwinds: Madeiras
     work: Obra
+    work_catalog: Catálogo da obra
+    work_catalogs: Catálogos de l'obras
     work_catalog_note: Nota no catálogo da obra
+    work_list: Lista de obras
     work_node: Referência externa de obra (Work Node)
     work_number: Número de obra
     work_tag: Etiqueta de revisão de trabalho
@@ -940,13 +962,22 @@ pt:
     P60183: "Inserir"
   relations_works:
     P60250: "Tem derivada"
-    P60305: "Tem origem"
+    P60305: "Está baseado em"
     P60216: "É expandido como"
     P60294: "É a versão expandida de"
     P60274: "Arranjado como"
     P60242: "É arrependimento de"
     P60198: "É complementado por"
     P60313: "Indefinido"
+  relations_institutions:
+    P50008: Hierarquia superior
+    P50010: Subsubordinado hierárquico
+    P50012: Predecessor de corpo corporativo
+    P50016: Sucessor do corpo corporativo
+    P50020: Família fundadora do corpo corporativo
+    P50230: Membro do corpo corporativo do corpo corporativo
+    P50435: Membro do corpo corporativo da família
+    P50301: Corpo corporativo absorvido
   verovio:
     position: "Posição"
     warning: "Aviso"
@@ -1017,6 +1048,12 @@ pt:
     ERR_064_LIGATURE_DURATION: A duração de uma ligatura não pode ser menor que um ponto e meio.
     ERR_065_MREST_INVALID_MEASURE: Uma medida com um repouso não pode incluir mais nada.
     ERR_066_EMPTY_CONTAINER: Uma apogiatura ou uma ligadura não podem ser eliminados.
+  work_catalogue:
+    not_work_catalogue: Não é catálogo das obras
+    work_catalogue_alternate: Alternativo
+    work_catalogue_complete: Concluído
+    work_catalogue_in_preparation: Elegível
+    work_catalogue_partial: Parcialmente concluído
   rism_online:
     manuscript: "Manuscrito"
     printed: "Impresso"

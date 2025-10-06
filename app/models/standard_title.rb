@@ -13,6 +13,8 @@ class StandardTitle < ApplicationRecord
   include ForeignLinks
   include AuthorityMerge
   include CommentsCleanup
+  include ThroughAssociations
+  include AutoStripStrings
 
   #has_and_belongs_to_many(:referring_sources, class_name: "Source", join_table: "sources_to_standard_titles")
   has_many :source_standard_title_relations, class_name: "SourceStandardTitleRelation"
@@ -24,8 +26,6 @@ class StandardTitle < ApplicationRecord
 
   has_many :inventory_item_standard_title_relations, class_name: "InventoryItemStandardTitleRelation"
   has_many :referring_inventory_items, through: :inventory_item_standard_title_relations, source: :inventory_item
-
-  has_and_belongs_to_many(:referring_work_nodes, class_name: "WorkNode", join_table: "work_nodes_to_standard_titles")
 
   has_many :folder_items, as: :item, dependent: :destroy
   has_many :delayed_jobs, -> { where parent_type: "StandardTitle" }, class_name: 'Delayed::Backend::ActiveRecord::Job', foreign_key: "parent_id"
@@ -41,6 +41,8 @@ class StandardTitle < ApplicationRecord
   after_save :reindex
   
   attr_accessor :suppress_reindex_trigger
+  attr_accessor :suppress_update_count_trigger
+
   alias_attribute :name, :title
   alias_attribute :id_for_fulltext, :id
   
@@ -52,6 +54,10 @@ class StandardTitle < ApplicationRecord
     self.suppress_reindex_trigger = true
   end
   
+  def suppress_update_count
+    self.suppress_update_count_trigger = true
+  end
+
   def reindex
     return if self.suppress_reindex_trigger == true
     self.index
@@ -113,6 +119,9 @@ class StandardTitle < ApplicationRecord
       end
       #StandardTitle.count_by_sql("select count(*) from sources_to_standard_titles where standard_title_id = #{self[:id]}")
     end
+    # Not this one!
+    #sunspot_dsl.integer(:src_count_order, :stored => true) {through_associations_source_count}
+    integer(:referring_objects_order, stored: true) {through_associations_exclude_source_count}
   end
   
   def get_typus

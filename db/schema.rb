@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.2].define(version: 2024_11_26_091706) do
+ActiveRecord::Schema[7.2].define(version: 2025_10_01_111826) do
   create_table "active_admin_comments", id: :integer, charset: "utf8mb3", force: :cascade do |t|
     t.string "namespace"
     t.text "body"
@@ -241,6 +241,8 @@ ActiveRecord::Schema[7.2].define(version: 2024_11_26_091706) do
     t.integer "wf_stage"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "source_order", default: 0, null: false
+    t.string "page_info"
   end
 
   create_table "inventory_items_to_holdings", charset: "utf8mb3", force: :cascade do |t|
@@ -423,7 +425,7 @@ ActiveRecord::Schema[7.2].define(version: 2024_11_26_091706) do
     t.datetime "updated_at", precision: nil
     t.text "marc_source", size: :medium
     t.integer "lock_version", default: 0, null: false
-    t.boolean "work_catalogue", default: false, null: false
+    t.integer "work_catalogue", limit: 2, default: 0, null: false
     t.index ["created_at"], name: "index_publications_on_created_at"
     t.index ["short_name"], name: "index_publications_on_short_name"
     t.index ["updated_at"], name: "index_publications_on_updated_at"
@@ -508,6 +510,7 @@ ActiveRecord::Schema[7.2].define(version: 2024_11_26_091706) do
     t.datetime "created_at", precision: nil
     t.datetime "updated_at", precision: nil
     t.integer "lock_version", default: 0, null: false
+    t.integer "validation_status", default: 0, null: false
     t.index ["created_at"], name: "index_sources_on_created_at"
     t.index ["lib_siglum"], name: "index_sources_on_lib_siglum"
     t.index ["record_type"], name: "index_sources_on_record_type"
@@ -598,9 +601,12 @@ ActiveRecord::Schema[7.2].define(version: 2024_11_26_091706) do
     t.index ["standard_title_id"], name: "index_sources_to_standard_titles_on_standard_title_id"
   end
 
-  create_table "sources_to_work_nodes", id: false, charset: "utf8mb3", force: :cascade do |t|
+  create_table "sources_to_work_nodes", id: { type: :bigint, unsigned: true }, charset: "utf8mb3", force: :cascade do |t|
     t.integer "source_id"
     t.integer "work_node_id"
+    t.string "marc_tag"
+    t.string "relator_code"
+    t.index ["marc_tag", "relator_code", "work_node_id", "source_id"], name: "unique_records", unique: true
     t.index ["source_id"], name: "index_sources_to_works_on_source_id"
     t.index ["work_node_id"], name: "index_sources_to_works_on_work_id"
   end
@@ -740,50 +746,20 @@ ActiveRecord::Schema[7.2].define(version: 2024_11_26_091706) do
     t.text "marc_source"
     t.integer "lock_version", default: 0, null: false
     t.string "composer"
+    t.string "ext_number"
+    t.string "ext_code"
     t.index ["title"], name: "index_works_on_title"
     t.index ["wf_stage"], name: "index_works_on_wf_stage"
   end
 
-  create_table "work_nodes_to_institutions", id: false, charset: "utf8mb3", force: :cascade do |t|
-    t.integer "work_node_id"
-    t.integer "institution_id"
-    t.index ["institution_id"], name: "index_works_to_institutions_on_institution_id"
-    t.index ["work_node_id"], name: "index_works_to_institutions_on_work_id"
-  end
-
-  create_table "work_nodes_to_liturgical_feasts", id: false, charset: "utf8mb3", force: :cascade do |t|
-    t.integer "work_node_id"
-    t.integer "liturgical_feast_id"
-    t.index ["liturgical_feast_id"], name: "index_works_to_liturgical_feasts_on_liturgical_feast_id"
-    t.index ["work_node_id"], name: "index_works_to_liturgical_feasts_on_work_id"
-  end
-
-  create_table "work_nodes_to_people", id: false, charset: "utf8mb3", force: :cascade do |t|
+  create_table "work_nodes_to_people", id: { type: :bigint, unsigned: true }, charset: "utf8mb3", force: :cascade do |t|
     t.integer "work_node_id"
     t.integer "person_id"
+    t.string "marc_tag"
+    t.string "relator_code"
+    t.index ["marc_tag", "relator_code", "work_node_id", "person_id"], name: "unique_records", unique: true
     t.index ["person_id"], name: "index_works_to_people_on_person_id"
     t.index ["work_node_id"], name: "index_works_to_people_on_work_id"
-  end
-
-  create_table "work_nodes_to_publications", charset: "utf8mb3", force: :cascade do |t|
-    t.integer "work_node_id"
-    t.integer "publication_id"
-    t.index ["publication_id"], name: "index_works_to_publications_on_publication_id"
-    t.index ["work_node_id"], name: "index_works_to_publications_on_work_id"
-  end
-
-  create_table "work_nodes_to_standard_terms", charset: "utf8mb3", force: :cascade do |t|
-    t.integer "work_node_id"
-    t.integer "standard_term_id"
-    t.index ["standard_term_id"], name: "index_works_to_standard_terms_on_standard_term_id"
-    t.index ["work_node_id"], name: "index_works_to_standard_terms_on_work_id"
-  end
-
-  create_table "work_nodes_to_standard_titles", charset: "utf8mb3", force: :cascade do |t|
-    t.integer "work_node_id"
-    t.integer "standard_title_id"
-    t.index ["standard_title_id"], name: "index_works_to_standard_titles_on_standard_title_id"
-    t.index ["work_node_id"], name: "index_works_to_standard_titles_on_work_id"
   end
 
   create_table "workgroups", id: :integer, charset: "utf8mb3", force: :cascade do |t|

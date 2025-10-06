@@ -1,7 +1,7 @@
 --- !map:Settings 
-"001": 
+"001":
   tag: tag_no_subfield
-  tag_params: 
+  tag_params:
     read_only: true
     no_delete: true
   tag_header: none
@@ -161,13 +161,20 @@
   layout:
     fields:
     - - a
-      - hidden: true
-    - - d
-      - hidden: true
+      - read_only: true
+        default: "DE-633"
     - - b
       - editor_partial: subfield_select_codes
         select_label: "Language"
         codes_reference: "codes"
+    - - c
+      - read_only: true
+        default: "DE-633"
+    - - d
+      - read_only: true
+    - - e
+      - read_only: true
+        default: "rismg"
   tag_params:
     codes:
       - "eng"
@@ -436,6 +443,7 @@
     fields: 
     - - a
       - values:
+        - Manuscript copy
         - Print
         - Print with autograph annotations
         - Print with non-autograph annotations
@@ -444,6 +452,10 @@
     - - b
       - values:
         - "Inventory"
+        - "Notated music"
+        - "Libretto"
+        - "Treatise"
+        - "Other"
         editor_partial: subfield_select
 "594":
   layout:
@@ -517,7 +529,7 @@
     relator_codes: 
       - fmo
       - scr
-      - cmp
+      - att
       - prf
       - dte
       - trl
@@ -670,6 +682,9 @@
     fields: 
     - - w
       - read_only: true
+    - - o
+    - - n
+    - - g
 "775":
   new_window: inventory_items
   layout:
@@ -720,12 +735,6 @@
       - "rdau:P60195"
       - "rdau:P60242"
       - "rdau:P60194"
-"852":
-  layout: 
-    fields: 
-    - - a
-    - - d
-    - - p
 "856": 
   layout: 
     fields: 

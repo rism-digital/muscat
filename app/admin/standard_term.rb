@@ -28,8 +28,7 @@ ActiveAdmin.register StandardTerm do
     
     autocomplete :standard_term, :term, :display_value => :label, :getter_function => :get_autocomplete_title_with_count
 
-    def get_autocomplete_title_with_count(token, options = {})
-
+    def get_autocomplete_title_with_count(token, options = {})      
       sanit = ActiveRecord::Base.send(:sanitize_sql_like, token) + "%"
 
       query = "SELECT `standard_terms`.`id`, `standard_terms`.`term`, count(standard_terms.id) AS count \
@@ -86,7 +85,7 @@ ActiveAdmin.register StandardTerm do
     # redirect update failure for preserving sidebars
     def update
       update! do |success,failure|
-        success.html { redirect_to collection_path }
+        success.html { redirect_to resource_path(params[:id]) }
         failure.html { redirect_back fallback_location: root_path, flash: { :error => "#{I18n.t(:error_saving)}" } }
       end
 
@@ -129,8 +128,10 @@ ActiveAdmin.register StandardTerm do
     column (I18n.t :filter_term), :term
     column (I18n.t :filter_alternate_terms), :alternate_terms
     column (I18n.t :filter_sources), :src_count_order, sortable: :src_count_order do |element|
-			all_hits = @arbre_context.assigns[:hits]
-			active_admin_stored_from_hits(all_hits, element, :src_count_order)
+			active_admin_stored_from_hits(controller.view_assigns["hits"], element, :src_count_order)
+		end
+    column (I18n.t :filter_authorities), :referring_objects_order, sortable: :referring_objects_order do |element|
+			active_admin_stored_from_hits(controller.view_assigns["hits"], element, :referring_objects_order)
 		end
     active_admin_muscat_actions( self )
   end
@@ -153,37 +154,12 @@ ActiveAdmin.register StandardTerm do
       row (I18n.t :filter_term) { |r| r.term }
       row (I18n.t :filter_alternate_terms) { |r| r.alternate_terms }
       row (I18n.t :filter_notes) { |r| r.notes }    
+      row (I18n.t :filter_owner) { |r| User.find_by(id: r.wf_owner).name rescue r.wf_owner }
     end
     active_admin_embedded_source_list( self, standard_term, !is_selection_mode? )
-    
-    # Box for publications referring to this standard_term
-    active_admin_embedded_link_list(self, standard_term, Publication) do |context|
-      context.table_for(context.collection) do |cr|
-        context.column "id", :id
-        context.column (I18n.t :filter_title_short), :short_name
-        context.column (I18n.t :filter_author), :author
-        context.column (I18n.t :filter_description), :description
-        if !is_selection_mode?
-          context.column "" do |publication|
-            link_to "View", controller: :publications, action: :show, id: publication.id
-          end
-        end
-      end
-    end 
-
-    active_admin_embedded_link_list(self, standard_term, Work) do |context|
-      context.table_for(context.collection) do |cr|
-        column (I18n.t :filter_id), :id  
-        column (I18n.t :filter_title), :title
-        column "Opus", :opus
-        column "Catalogue", :catalogue
-        if !is_selection_mode?
-          context.column "" do |work|
-            link_to "View", controller: :works, action: :show, id: work.id
-          end
-        end
-      end
-    end
+    active_adnin_create_list_for(self, InventoryItem, standard_term, composer: I18n.t(:filter_composer), title: I18n.t(:filter_title))
+    active_adnin_create_list_for(self, Publication, standard_term, short_name: I18n.t(:filter_title_short), author: I18n.t(:filter_author), description: I18n.t(:filter_description))
+    active_adnin_create_list_for(self, Work, standard_term, title: I18n.t(:filter_title), opus: I18n.t(:filter_opus), catalogue: I18n.t(:filter_catalog))
 
     active_admin_user_wf( self, standard_term )
     active_admin_navigation_bar( self )

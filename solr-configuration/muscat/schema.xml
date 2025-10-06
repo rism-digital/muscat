@@ -136,6 +136,7 @@
         <!-- index fields to sort alphanumerically. Useful for things like shelfmarks and folio numbers -->
         <dynamicField name="*_shelforder_s" type="text_alphanumeric_sort" indexed="true" stored="false" multiValued="false"/>
         <dynamicField name="*_ans_s" type="text_alphanumeric_sort" indexed="true" stored="false" multiValued="false"/>
+        <dynamicField name="*_autocomplete" type="autocomplete_text" indexed="true" stored="false" multiValued="false"/>
 
         <!-- END ADDED BY RZ FOR MUSCAT -->
     </fields>
@@ -166,6 +167,21 @@
                 <filter class="solr.WordDelimiterGraphFilterFactory" splitOnNumerics="0" preserveOriginal="1" />
             </analyzer>
         </fieldType>
+
+        <fieldType name="autocomplete_text" class="solr.TextField">
+            <analyzer type="index">
+              <tokenizer class="solr.StandardTokenizerFactory"/>
+              <filter class="solr.LowerCaseFilterFactory"/>
+              <filter class="solr.ASCIIFoldingFilterFactory"/> <!-- turns Händel → handel -->
+              <filter class="solr.EdgeNGramFilterFactory" minGramSize="2" maxGramSize="25" preserveOriginal="true"/>
+            </analyzer>
+            <analyzer type="query">
+              <tokenizer class="solr.StandardTokenizerFactory"/>
+              <filter class="solr.LowerCaseFilterFactory"/>
+              <filter class="solr.ASCIIFoldingFilterFactory"/>
+            </analyzer>
+          </fieldType>
+
         <!-- *** This fieldType is used by Sunspot! *** -->
         <fieldType name="boolean" class="solr.BoolField" omitNorms="true"/>
         <!-- *** This fieldType is used by Sunspot! *** -->

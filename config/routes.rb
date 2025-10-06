@@ -6,6 +6,10 @@ Rails.application.routes.draw do
   devise_for :users, ActiveAdmin::Devise.config
   ActiveAdmin.routes(self)
   
+  # We need a post action for new in pubs to upload
+  # bibtex and other files
+  post "admin/publications/new" => "admin/publications#new"
+
   #scope ':locale', locale: I18n.locale do
   #  ActiveAdmin.routes(self)
   #end
@@ -46,11 +50,14 @@ Rails.application.routes.draw do
   get 'admin/gnd_works/autocomplete_gnd_works_person' => 'admin/gnd_works#autocomplete_gnd_works_person'
   get 'admin/gnd_works/autocomplete_gnd_works_instrument' => 'admin/gnd_works#autocomplete_gnd_works_instrument'
   get 'admin/gnd_works/autocomplete_gnd_works_form' => 'admin/gnd_works#autocomplete_gnd_works_form'
+  get 'admin/gnd_works/autocomplete_gnd_works_title' => 'admin/gnd_works#autocomplete_gnd_works_title'
 
   # MarcXML endpoint
   get '/data/:model/:id' => "data#show"
   match '/data', :to => 'data#routing_error', via: :all
 
+  post 'admin/editor_help/:page', to: 'editor_help#render_page'
+  post 'admin/editor_help_box/:page', to: 'editor_help#render_page_in_box'
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

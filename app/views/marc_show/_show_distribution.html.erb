@@ -1,0 +1,16 @@
+<%
+	b_tag = tag.fetch_first_by_tag(:b)
+	c_tag = tag.fetch_first_by_tag(:c)
+	#next if !b_tag || !b_tag.content || b_tag.content == ""
+	content = b_tag&.content
+	content += " (#{c_tag.content})" if c_tag && c_tag.content #&& c_tag.content != "1"
+-%>
+<tr class="row">
+	<th>
+		<%= @editor_profile.get_label(tag.tag) %>
+	</th>
+	<td>
+		<%= content %>
+	</td>
+</tr>
+

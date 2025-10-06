@@ -1,31 +1,9 @@
 --- !map:Settings 
-"000": 
+"001":
   tag: tag_no_subfield
-  tag_params: 
-    editor_only: true
-  tag_header: none
-"001": 
-  tag: tag_no_subfield
-  tag_params: 
+  tag_params:
     read_only: true
     no_delete: true
-  tag_header: none
-"003": 
-  tag: tag_no_subfield
-  tag_params: 
-    read_only: true
-  tag_header: none
-"005": 
-  tag: tag_no_subfield
-  tag_params: 
-    read_only: true
-  tag_header: none
-008: 
-  tag: tag_no_subfield
-  tag_params: 
-    maskedinput: 
-      definitions: "['~']='[|0-9]'"
-      mask: 999999a~~~~~~~~||||||||||||||||||||aaa|d
   tag_header: none
 "024": 
   layout: 
@@ -65,13 +43,20 @@
   layout:
     fields:
     - - a
-      - hidden: true
-    - - d
-      - hidden: true
+      - read_only: true
+        default: "DE-633"
     - - b
       - editor_partial: subfield_select_codes
         select_label: "Language"
         codes_reference: "codes"
+    - - c
+      - read_only: true
+        default: "DE-633"
+    - - d
+      - read_only: true
+    - - e
+      - read_only: true
+        default: "rismg"
   tag_params:
     codes:
       - "eng"
@@ -100,6 +85,7 @@
         - "XA-AT-7"
         - "XA-AT-9"
         - "XB-AZ"
+        - "XD-AR"
         - "XB-BD"
         - "XA-BE"
         - "XA-BY"
@@ -153,6 +139,7 @@
         - "XA-MC"
         - "XA-MD"
         - "XA-ME"
+        - "XA-MK"
         - "XA-MT"
         - "XD-MX"
         - "XA-NL"
@@ -171,7 +158,6 @@
         - "XA-RO"
         - "XA-RS"
         - "XA-RU"
-        - "SB-SA"
         - "XB-SA"
         - "XA-SK"
         - "XA-SI"
@@ -220,7 +206,9 @@
   layout: 
     fields: 
     - - a
-      - trigger:
+      - read_only: true
+        override_admin: true
+        trigger:
         - save:
           - referring_sources
           - referring_holdings
@@ -229,11 +217,15 @@
           - referring_publications
           - referring_works
     - - b
-      - trigger:
+      - read_only: true
+        override_admin: true
+        trigger:
         - save:
           - referring_institutions
     - - c
-      - trigger:
+      - read_only: true
+        override_admin: true
+        trigger:
         - save:
           - referring_sources
           - referring_holdings
@@ -263,6 +255,8 @@
       - "Other"
       - "Printer"
       - "Research institute"
+      - "Private collection"
+      - "Project"
 "410": 
   layout: 
     fields: 
@@ -275,6 +269,8 @@
       - editor_partial: subfield_select_codes
         select_label: "Term"
     - - i
+      - editor_partial: subfield_select_codes
+        codes_reference: "510i"
   tag_params:
     codes:
       - "a" 
@@ -287,6 +283,15 @@
       - "n"
       - "r"
       - "t"
+    "510i":
+      - "rdaa:P50008"
+      - "rdaa:P50010"
+      - "rdaa:P50012"
+      - "rdaa:P50016"
+      - "rdaa:P50020"
+      - "rdaa:P50230"
+      - "rdaa:P50435"
+      - "rdaa:P50301"
 "551": 
   new_window: places
   layout: 
@@ -330,6 +335,7 @@
     - - a
       - type: person
         editor_partial: subfield_secondary
+        allow_new: true
     - - d
       - autocomplete_extra: life_dates
     - - "4"
@@ -339,7 +345,7 @@
   tag_params: 
     relator_codes: 
       - scr
-      - cmp
+      - att
       - cns
       - arr
       - prf

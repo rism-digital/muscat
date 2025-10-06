@@ -28,6 +28,9 @@ class ExportRecordsJob < ProgressJob::Base
       elsif @job_options[:format] == :raw
         @format = :raw
         @extension = ".marc"
+      elsif @job_options[:format] == :raw_holdings
+        @format = :raw_holdings
+        @extension = ".marc"
       end
     end
 
@@ -154,7 +157,7 @@ private
               source = nil
             end
           end
-        elsif @format == :raw
+        elsif @format == :raw || @format == :raw_holdings
           File.open(tempfiles[jobid].path, "w") do |file|
             @getter.get_items_in_range(jobid, MAX_PROCESSES).each do |source_id|
               begin
@@ -163,8 +166,10 @@ private
                 next
               end
 
+              holdings = @format == :raw_holdings ? true : false
+
               source = @model.find(source_id)
-              file.write(source.marc.to_marc_external({ created_at: source.created_at, updated_at: source.updated_at, versions: nil, holdings: false }))
+              file.write(source.marc.to_marc_external({ created_at: source.created_at, updated_at: source.updated_at, versions: nil, holdings: holdings }))
               file.write("\n")
               if jobid == 0
                 count += 1
@@ -227,11 +232,12 @@ private
             update_stage_progress("Exported #{count}/#{@getter.get_item_count} [s]", step: 20) if count % 20 == 0 && @enquequed
         end
       end
-    elsif @format == :raw
+    elsif @format == :raw || @format == :raw_holdings
       File.open(EXPORT_PATH.join(filename + @extension), "w") do |file|
         @getter.get_items.each do |source_id|
           source = @model.find(source_id)
-          file.write(source.marc.to_marc_external({ created_at: source.created_at, updated_at: source.updated_at, versions: nil, holdings: false }))
+          holdings = @format == :raw_holdings ? true : false
+          file.write(source.marc.to_marc_external({ created_at: source.created_at, updated_at: source.updated_at, versions: nil, holdings: holdings }))
           file.write("\n")
           count += 1
           update_stage_progress("Exported #{count}/#{@getter.get_item_count} [s]", step: 20) if count % 20 == 0 && @enquequed

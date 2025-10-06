@@ -100,6 +100,7 @@ ca:
     persian: Persa
     polish: Polonès
     portugese: Portuguès
+    romance_other: Llengua romànica (altra)
     romani: Romaní
     romanian: Romanès
     romansh: Romanx
@@ -279,6 +280,8 @@ ca:
     alternate_spelling: Ortografia alternativa
     alternative_work_title: Títol alternatiu
     amount: Número
+    annex: Annex
+    appendix: Apèndix
     archive: Arxiu
     arrangement: Arranjament
     arrangement_statement: Menció d'arranjament
@@ -419,6 +422,7 @@ ca:
     deprecated_fields: Camps obsolets (no els utilitzeu)
     description: Descripció
     description_area: Descripció
+    description_conventions: Description conventions
     description_summary: Breu descripció
     designer: Dissenyador
     df_major: Re♭ major
@@ -459,6 +463,7 @@ ca:
     excerpts: Extractes
     exemplar: Exemplar
     exemplars: Exemplars
+    expansion: Expansió
     extent: Extensió
     extent_parts: Extensió (particel·les)
     external_resource: Recurs extern
@@ -487,6 +492,7 @@ ca:
     fingerprint_identifier: Identificador de l'empremta
     first_entry: Primera entrada
     first_second_group: Primer/segon grup
+    form_of_work: Form of work
     form_subdivision: Subdivisió de forma
     format_extent: Format, extensió
     former_sigla: Sigla anterior
@@ -540,6 +546,7 @@ ca:
     identity_area: Identitat
     iiif_manifest: "Manifiest IIIF (font digitalitzada)"
     iiif_manifest_other: "Manifiest IIIF (altre)"
+    iiif_manifest_nothing_more: Manifest IIIF
     illustrator: Il·lustrador
     immediate_parent_body: Institució immediatament superior
     import: Importar
@@ -581,7 +588,7 @@ ca:
     language_codes: Codis d'idioma
     language_libretto: Llengua del llibret
     language_note: Nota de llengua
-    language_of_cataloging: Idioma de catalogació
+    language_of_cataloging: Llengua de catalogació
     language_original_text: Idioma del text original
     language_text: Llengua del text
     later_entry: Entrada posterior
@@ -674,6 +681,7 @@ ca:
     name_family: Cognom
     name_of_part: Número de part/secció d'una obra
     name_printer: Impressor
+    name_titles_words: Titles and words associated with a name
     name_variant: Variant del nom
     name_variants: Variants del nom
     named_dramatic_roles: Noms dels personatges
@@ -692,8 +700,10 @@ ca:
     number: Número
     number_page: Número/pàgina
     number_part_section: Número de part / secció d'una obra
+    number_volume: Número/Volum
     number_volume_part: Número de volum o part
     numbers_code_fields: Números i camps codificats
+    numeric_designation: Designació numèrica
     octoechos1: 'Octoechos 1: Ēchos prōtos (primer mode bizanti)'
     octoechos2: 'Octoechos 2: Ēchos deuteros (segon mode bizantí)'
     octoechos3: 'Octoechos 3: Ēchos tritos (tercer mode bizantí)'
@@ -703,6 +713,7 @@ ca:
     octoechos7: 'Octoechos 7: Ēchos barys (terceiro mode bizantí plagal)'
     octoechos8: 'Octoechos 8: Ēchos plagios tetartos (quart mode bizantí plagal)'
     online_finding_aids: Eines de cerca en línia
+    online_resource: Recursos en línia
     opera_houses_concert_halls: Teatres d'òpera i sales de concert
     opus_number: Número d'opus
     opus_thematic_index_number: Número d'opus o d'índex temàtic
@@ -720,6 +731,7 @@ ca:
     other_instruments: Altres instruments
     other_life_dates: Altres dates
     other_physical_details: Altres detalls físics
+    other_resource: Altres recursos
     other_searchform: Altra variant
     other_shelfmark: Altra signatura
     other_standard_identifier: Altre identificador estàndard
@@ -739,6 +751,8 @@ ca:
     performances: Interpretacions
     performer: Intèrpret
     performer_note: Nota sobre la interpretació
+    periodical_or_series: Revista o sèrie
+    periodical_or_series_title: Títol de la revista o sèrie
     person: Persona
     person_name: Nom personal
     personal_name: Nom personal
@@ -769,9 +783,12 @@ ca:
     print_with_non_autograph_annotations: Imprès amb anotacions no autògrafes
     printer: Impressor
     printing_technique: Tècnica d'impressió
+    private_collection: Private collection
     production: Producció
     production_personnel: Personal de producció
     profession_or_function: Professió o funció
+    project: Proyecto
+    project_url: Project URL
     provenance: Custòdia
     provenance_notes: Nota sobre la procedència
     pseudonym: Pseudònim
@@ -820,9 +837,11 @@ ca:
     scribe: Copista
     secondary_catalog_works: Catàleg secundari d'obres
     secondary_literature: Literatura secundària
+    serial_number: Número de sèrie
     series: Sèries
     series_added_entry: Entrades secundàries de col·lecció
     series_statement: Menció de col·lecció
+    section: Secció
     shelfmark: Signatura
     shelfmark_olim: Signatura anterior (olim)
     short_title: Títol abreujat
@@ -917,7 +936,10 @@ ca:
     watermark_description: Descripció de la filigrana
     woodwinds: Vent-fusta
     work: Obra
+    work_catalog: Catàleg de l'obra
+    work_catalogs: Catàleg de l'obra
     work_catalog_note: Nota sobre el catàleg de l'obra
+    work_list: Llista d'obres
     work_node: Referència externa d'obra (Work node)
     work_number: Número d'obra
     work_tag: Etiqueta de revisió per obra
@@ -940,13 +962,22 @@ ca:
     P60183: "Insert"
   relations_works:
     P60250: "Obra derivada"
-    P60305: "Té com a font"
+    P60305: "Is based on"
     P60216: "Desenvolupat com a"
     P60294: "Versió desenvolupada de"
     P60274: "Arranjat com a"
     P60242: "Arranjament de"
     P60198: "Completat per"
     P60313: "No definit"
+  relations_institutions:
+    P50008: Hierarchical superior
+    P50010: Hierarchical subordinate
+    P50012: Predecessor of corporate body
+    P50016: Successor of corporate body
+    P50020: Founding family of corporate body
+    P50230: Corporate body member of corporate body
+    P50435: Corporate body member of family
+    P50301: Absorbed corporate body
   verovio:
     position: "Posició"
     warning: "Avís"
@@ -1017,6 +1048,12 @@ ca:
     ERR_064_LIGATURE_DURATION: La duració en una lligadura no pot ser més curta que una rodona.
     ERR_065_MREST_INVALID_MEASURE: Un compàs de silenci no pot incloure res més.
     ERR_066_EMPTY_CONTAINER: Un ornament o una barra d'unió entre notes no poden estar buides.
+  work_catalogue:
+    not_work_catalogue: Not work catalog
+    work_catalogue_alternate: Alternatiu
+    work_catalogue_complete: Completat
+    work_catalogue_in_preparation: Eligible
+    work_catalogue_partial: En curs
   rism_online:
     manuscript: "Manuscrit"
     printed: "Imprès"

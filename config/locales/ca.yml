@@ -60,6 +60,7 @@ ca:
       welcome: Benvinguts a l'Active Admin. Aquesta és el tauler d'activitat per defecte.
     delete: Elimina
     delete_confirmation: Segur que voleu eliminar-lo?
+    delete_confirmation_description: Esteu segur que voleu suprimir aquest element? %{description}
     delete_model: Elimina %{model}
     details: Detalls de %{model}
     devise:
@@ -213,6 +214,8 @@ ca:
   add_item_to_folder: Afegiu-lo a la carpeta
   add_person: Vincula-hi una persona
   add_source: Vincula-hi una font
+  add_this_item_to_folder: Afegeix aquest element a la carpeta
+  add_work: Enllaçar obra
   any_field_contains: Qualsevol camp
   append_folder: Afegeix-los tots a una carpeta existent
   archive: Arxiva
@@ -220,12 +223,18 @@ ca:
   authorization_tokens: Auth tokens
   available_templates: Platilles disponibles
   backend_validation:
-    required: Aquest camp és obligatori quan s'afegeix aquesta etiqueta
-    no_subtag: Aquest camp és obligatori
-    mandatory: Aquest subcamp és obligatori
-    required_if: Aquest camp és obligatori perquè un altre és present
-    check_group: Aquest camp conté un valor no vàlid en relació amb la posició al grup
+    031_incomplete: La numeració d'aquest 031 és incompleta (falta $a, $b o $c)
     begin_with: Aquest camp ha de començar amb la cadena correcta
+    check_group: Aquest camp conté un valor no vàlid en relació amb la posició al grup
+    mandatory: Aquest subcamp és obligatori
+    must_contain: Aquest camp ha de coincidir amb el patró requerit
+    no_subtag: Aquest camp és obligatori
+    required: Aquest camp és obligatori quan s'afegeix aquesta etiqueta
+    required_if: Aquest camp és obligatori perquè un altre és present
+    siglum_not_found: El siglum en un o més camps 588 no coincideix amb cap registre de fons
+    validate_031_dups: 'Aquest número d''íncipit ja s''està utilitzant: $b o $c estan duplicats'
+    validate_588_siglum: 'Introduïu el siglum de la biblioteca i la signatura seguint el format: I-Bc Q.51'
+    validate_url: L'URL introduït no és vàlid
   basic_level: Registre bàsic
   body: Body
   btn_themefinder_reset: Restableix
@@ -235,6 +244,7 @@ ca:
   choose_folder: "(Trieu-ne una)"
   clipboard:
     copied: Resultats copiats al portapapers
+  commit: Aplicar
   compare_versions:
     date_message: Registres modificats des de %{date}.
     diff: Comparació
@@ -247,10 +257,13 @@ ca:
     rule: Regla
     show: Mostra
     similarity: Diferències
+    tags: Tag
     time_frame: Període
   composer_contains: Compositor
   connected_libraries: Biblioteques
+  controls: Controls
   convert_to_print: Converteix-lo a plantilla d'obra impresa
+  convert_to_print_template: Convertir a la plantilla per a una edició impresa
   cookies:
     dimiss: Acceptar and tancar
     link: Saber-ne més
@@ -305,6 +318,7 @@ ca:
     - desembre
   default_view: Visualització estàndard
   delete: Elimina
+  delete_this_item_from_folder: Suprimeix aquest element de la carpeta
   digital_object:
     one: objecte digital
     other: objectes digitals
@@ -319,6 +333,7 @@ ca:
   duplicate: Duplica
   duplicate_confirm: Segur que voleu duplicar aquest registre?
   edit: Edita
+  engraving_incipit: Renderització de l’incipit...
   entry:
     one: entada
     other: entrades
@@ -327,6 +342,7 @@ ca:
   export_folder: Exporta la carpeta en format MARCXML
   export_folder_csv: Exporta la carpeta en format CSV
   export_folder_raw: Exporta la carpeta en format Muscat MARC
+  export_folder_raw_holdings: Exportar la carpeta com a Muscat MARC (fusionant els holding records)
   failed: Error
   failed_at: Error a
   filter_address: Adreça
@@ -338,6 +354,7 @@ ca:
   filter_attachment_type: Tipus d'objecte digital
   filter_author: Autor
   filter_author_or_editor: Autor/editor
+  filter_authorities: Autoritats
   filter_autograph_of: Autògraf de
   filter_birth_place: Lloc de naixement
   filter_book_id: ID del llibre
@@ -479,7 +496,6 @@ ca:
     folder_empty: La carpeta està buida
     folder_not_source: Només es poden validar carpetes amb fonts
     items: Elements
-    make_catalogue: Marcar els elements per fer-ne un catàleg
     not_found: La carpeta %{id} no existeix
     one_month: Carpetes que s'esborraran el mes que ve, el %{date}
     one_week: Carpetes que s'esborraran la setmana que ve, el %{date}
@@ -488,6 +504,7 @@ ca:
     reset_expiration: Reestablir la data d'expiració
     resetted: La data de caducitat ha passat a ser %{date}
     save: Desa els resultats a una carpeta
+    setting_catalogue_status: Configuració de l'estat del catàleg
     success: Carpeta %{name} creada amb %{count} elements.
     success_bg: Carpeta %{name} creada, tasca %{job} pendent.
     tomorrow: Carpetes que s'esborraran demà %{date}
@@ -498,7 +515,12 @@ ca:
   from_existing_source: Crea-la a partir d'una font ja existent
   full_level: Registre complet
   gnd_not_found: La sol·licitud a GND ha retornat un registre buit.
+  go_back: Tornar
   go_to_top: Torna a dalt
+  helpers:
+    label:
+      folder:
+        work_catalogue_status: Estat del catàleg d'obres
   hide_preview: Oculta la vista prelimiar
   history_author: Autor
   history_date: Data
@@ -525,10 +547,13 @@ ca:
     interval: Interval
     query_type: 'Tipus de cerca:'
     refined_pitch: Precisió de nota alta
+  index: Índex
   institution:
     one: institució
     other: institucions
   internal_note_contains: Nota interna
+  inventory_item_order_success: Els elements s'han reordenat
+  inventory_items_show_count_html: S'han mostrat <strong>%{count}</strong> elements
   is_in_folder: És a la carpeta
   is_part_of_collection: Aquest %{class} %{id} forma part d'una col·lecció, cal eliminar la 773
   job:
@@ -555,6 +580,7 @@ ca:
   liturgicalfeast:
     one: festivitat litúrgica
     other: festivitats litúrguqyes
+  loading: Carregant...
   logout:
     confirm: Hi ha finestres Muscat obertes. Si tanques la sessió, es perdran els canvis no desats. Vols continuar?
     generic_error: T'has tancat la sessió de Muscat. Si us plau, actualitza la pàgina per tornar a la pantalla d'inici de sessió.
@@ -597,7 +623,7 @@ ca:
   menu_contact: Contacte
   menu_folders: Carpetes
   menu_guidelines: Guies de catalogació
-  menu_guidelines_top: Concrecions
+  menu_guidelines_top: Concrecions (EN)
   menu_help: Ajuda
   menu_holdings: Exemplars
   menu_home: Pagina d'inici
@@ -623,6 +649,9 @@ ca:
   menu_workgroups: Grups de treball
   menu_works: Obres
   merge: Fusiona'n
+  move_down: Avall
+  move_to: Anar a
+  move_up: Amunt
   muscat_reindexing: Muscat està reindexant. Els resultats poden ser incomplets
   new: Crea'n
   new_digital_object_image: Adjuntar-hi una imatge
@@ -633,6 +662,7 @@ ca:
   new_inventory_item_page: Nou article d'inventari
   no_action: Sense accions disponibles
   not_set: "[not set]"
+  notation_copied: Notació copiada
   notifications:
     cadence: Freqüència de les notificacions
     daily: Cada dia
@@ -645,6 +675,9 @@ ca:
     rules: Regles
     weekly: Cada setmana
   object: Objecte
+  old_index: Índex anterior
+  order_inventory_items: Ordenar els elements de l'inventari
+  order_items: Ordenar els elements
   person:
     one: persona
     other: persones
@@ -722,6 +755,7 @@ ca:
   sections: Seccions
   select: Selecciona
   select_template: Seleccioneu una plantilla
+  set_work_catalogue_status: Estableix l'estat del catàleg d'obres
   show_all_groups: Mostra totes les seccions
   show_gnd: Cerca al GND
   show_history: Historial de modificacions
@@ -731,6 +765,9 @@ ca:
   source:
     one: font
     other: fonts
+  source_converted: Font convertida a versió impresa
+  source_converted_with_holding: Font convertida a versió impresa, s’ha creat el holding %{holding_id}.
+  source_not_manuscript: La font no és un manuscrit ni una col·lecció de manuscrits
   standardterm:
     one: matèria
     other: matèries
@@ -750,6 +787,7 @@ ca:
   title_contains: Títol diplomàtic
   to_the_list: Torna a la llista
   unarchive: Desarxiva
+  unauthorized: No autoritzat
   ungrouped_tags: En aquest registres hi ha camps no agrupats
   unknown_tags: En aquestre hi ha camps desconeguts
   unloadable_record: 'Aquest registre no es pot carregar bé: es pot consultar però no editar. Poseu-vos en contacte amb l''administrador.'
@@ -769,9 +807,13 @@ ca:
     correct: El registre no té cap error de validació [200]
     insufficient_rights: L'usuari no té els drets necessaris per crear o actualtizar un registre d'aquesta biblioteca
     missing_message: Aquest camp ha de tenir un valor
-    must_contain_message: "Introduïu el sigle de la biblioteca i la signatura de l'edició impresa consultada."
+    must_contain_message: Aquest camp ha de coincidir amb el patró requerit
     name_uniqueness: Aquest nom abreujat ja s'utilitza
     required_if_message: El camp és obligatori en presència de {0} ${1}
+    validate_031_dups: Aquest número d'íncipit ja s'està utilitzant
+    validate_588_siglum: 'Introduïu el siglum de la biblioteca i la signatura seguint el format: I-Bc Q.51'
+    validate_edtf: Validar la data EDTF
+    validate_url: L'URL introduït no és vàlid
     warning_message: Caldria que aquest camp tingués un valor
   validation_level_error: Hi ha errors. Resoleu-vos abans de desar-lo
   validation_level_warning: Hi ha advertiments. Els podeu ignorar tornant a desar-lo
@@ -793,7 +835,16 @@ ca:
         one: Mostra <b>1</b> %{model}
         other: "%{model}, un <b>total de %{count}</b>"
         zero: No se n'ha trobat cap
-  work_catalogue: Catàleg d'obres
+  work_catalog: Catàleg d'obres
+  work_catalog_publish: Publica les obres enllaçades
+  work_catalog_unpublish: Despublica les obres enllaçades
+  work_catalogue_labels:
+    not_work_catalogue: Sense catàleg d'obres
+    work_catalogue_alternate: Alternatiu
+    work_catalogue_complete: Complet
+    work_catalogue_in_preparation: En preparació
+    work_catalogue_partial: Parcial
+  work_catalogue_publication_warning: Per publicar les obres enllaçades, estableix l'estat del catàleg d'obres a 'Parcial', 'Complet' o 'Alternatiu'.
   workgroups: Grups de treball
   worknode:
     one: work node

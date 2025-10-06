@@ -29,6 +29,19 @@
   label: records.performance
 03_codes_technical:
   label: records.technical_production
+'040':
+  fields:
+    a:
+      label: records.original_cataloging_agency
+    b:
+      label: records.language_of_cataloging
+    c:
+      label: records.transcribing_agency
+    d:
+      label: records.modifying_agency
+    e:
+      label: records.description_conventions
+  label: records.cataloging_source
 '041':
   fields:
     a:
@@ -139,7 +152,7 @@
     '4':
       label: records.function
     a:
-      label: records.name
+      label: records.additional_personal_name_lit
   label: records.additional_personal_name_lit
 '710':
   fields:
@@ -218,7 +231,7 @@ chr:
   label: records.choreographer
 clb:
   label: records.collaborator
-cmp:
+att:
   label: records.composer
 cnd:
   label: records.conductor
@@ -374,3 +387,5 @@ Other:
   label: records.other
 "Thematic catalog":
   label: records.thematic_catalog
+"Work list":
+  label: records.work_list

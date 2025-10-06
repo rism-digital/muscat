@@ -18,6 +18,8 @@ class Institution < ApplicationRecord
   include AuthorityMerge
   include CommentsCleanup
   include ComposedOfReimplementation
+  include ThroughAssociations
+
   resourcify
   
   # class variables for storing the user name and the event from the controller
@@ -26,7 +28,7 @@ class Institution < ApplicationRecord
   @last_event_save
   attr_accessor :last_event_save
   
-  has_paper_trail :on => [:update, :destroy], :only => [:marc_source], :if => Proc.new { |t| VersionChecker.save_version?(t) }
+  has_paper_trail :on => [:update, :destroy], :only => [:marc_source, :wf_stage, :wf_audit], :if => Proc.new { |t| VersionChecker.save_version?(t) }
   
   has_many :digital_object_links, :as => :object_link, :dependent => :delete_all
   has_many :digital_objects, through: :digital_object_links, foreign_key: "object_link_id"
@@ -71,9 +73,6 @@ class Institution < ApplicationRecord
   has_and_belongs_to_many :workgroups
   belongs_to :user, :foreign_key => "wf_owner"
   
-  has_and_belongs_to_many(:referring_work_nodes, class_name: "WorkNode", join_table: "work_nodes_to_institutions")
-
-
   composed_of_reimplementation :marc, :class_name => "MarcInstitution", :mapping => %w(marc_source to_marc)
 
 # OLD institutions_to_institutions
@@ -105,7 +104,7 @@ class Institution < ApplicationRecord
   
   #include NewIds
   
-  before_destroy :check_dependencies, :cleanup_comments
+  before_destroy :check_dependencies, :cleanup_comments, :update_links
   
   #before_create :generate_new_id
   after_save :update_links, :reindex
@@ -118,6 +117,7 @@ class Institution < ApplicationRecord
   attr_accessor :suppress_scaffold_marc_trigger
   attr_accessor :suppress_recreate_trigger
   attr_accessor :suppress_update_workgroups_trigger
+  attr_accessor :suppress_update_count_trigger
 
   alias_attribute :id_for_fulltext, :id
   alias_attribute :name, :full_name # activeadmin needs the name attribute
@@ -146,6 +146,10 @@ class Institution < ApplicationRecord
 	def suppress_update_workgroups
 		self.suppress_update_workgroups_trigger = true
 	end
+
+  def suppress_update_count
+    self.suppress_update_count_trigger = true
+  end
 
   def fix_ids
     #generate_new_id
@@ -251,7 +255,7 @@ class Institution < ApplicationRecord
   end
 
   searchable :auto_index => false do |sunspot_dsl|
-    sunspot_dsl.integer :id
+    sunspot_dsl.integer :id, stored: true
     sunspot_dsl.text :id_text do
       id_for_fulltext
     end
@@ -279,18 +283,24 @@ class Institution < ApplicationRecord
     sunspot_dsl.join(:folder_id, :target => FolderItem, :type => :integer, 
               :join => { :from => :item_id, :to => :id })
     
-    sunspot_dsl.integer :src_count_order, :stored => true do 
-      referring_sources.size + referring_holdings.size
-    end
-
-    sunspot_dsl.integer :publications_count_order, :stored => true do
-      referring_publications.size
-    end
+    sunspot_dsl.integer(:src_count_order, :stored => true) {through_associations_source_count}
+    sunspot_dsl.integer(:referring_objects_order, stored: true) {through_associations_exclude_source_count}
+    sunspot_dsl.integer(:total_obj_count_order, stored: true) {through_associations_total_count}
 
     sunspot_dsl.integer :wf_owner
     sunspot_dsl.string :wf_stage
     sunspot_dsl.time :updated_at
     sunspot_dsl.time :created_at
+
+
+    sunspot_dsl.string :full_name_autocomplete, :as => "corporate_name_autocomplete" do
+      full_name
+    end
+
+    sunspot_dsl.string :label, stored: true do
+      autocomplete_label_name
+    end
+
 
     sunspot_dsl.text :text do |s|
       s.marc.to_raw_text
@@ -339,6 +349,8 @@ class Institution < ApplicationRecord
   ransacker :"094a_facet", proc{ |v| } do |parent| parent.table[:id] end
   ransacker :"667a", proc{ |v| } do |parent| parent.table[:id] end
   ransacker :"has_siglum", proc{ |v| } do |parent| parent.table[:id] end
+  ransacker :"368a", proc{ |v| } do |parent| parent.table[:id] end
+
    
   def holdings
     ActiveSupport::Deprecation.new("12", 'Please use referring_holdings from institution')

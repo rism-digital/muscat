@@ -30,9 +30,9 @@ ActiveAdmin.register Source do
                  #params['q'] = {:std_title_contains => "[Holding]"} 
         end
     end
-    autocomplete :source, :id, {:display_value => :autocomplete_label , :extra_data => [:std_title, :composer], :exact_match => true, :solr => false}
-    autocomplete :source, "594b_sms", :solr => true, :display_value => :label
-    autocomplete :source, "031t_filter_sms", :solr => true, :display_value => :label
+    autocomplete :source, :id, {:display_value => :autocomplete_label , :extra_data => [:std_title, :composer], :exact_match => false, :solr => false}
+    autocomplete :source, "594b_sms", :solr => true, :display_value => :label, :value_field => :"594b_sms"
+    autocomplete :source, "031t_filter_sms", :solr => true, :display_value => :label, :value_field => :"031t_filter_sms"
 
     def check_model_errors(object)
       return unless object.errors.any?
@@ -172,7 +172,7 @@ ActiveAdmin.register Source do
         
         default_file_name = EditorConfiguration.get_source_default_file(params[:new_record_type])
         default_file = ConfigFilePath.get_marc_editor_profile_path("#{Rails.root}/config/marc/#{RISM::MARC}/source/#{default_file_name}.marc")
-        
+     
         if File.exist?(default_file)
           new_marc = MarcSource.new(File.read(default_file), MarcSource::RECORD_TYPES[params[:new_record_type].to_sym])
           new_marc.load_source false # this will need to be fixed
@@ -214,11 +214,11 @@ ActiveAdmin.register Source do
 
     if resource.record_type != MarcSource::RECORD_TYPES[:collection] && resource.record_type != MarcSource::RECORD_TYPES[:source]
       redirect_to action: :show
-      flash[:error] = "Source is not a manuscript or manuscript collection"
+      flash[:error] = I18n.t(:source_not_manuscript)
     end
 
 
-    @page_title = "Convert to print template"
+    @page_title = I18n.t(:convert_to_print_template)
 
   end
   
@@ -227,15 +227,17 @@ ActiveAdmin.register Source do
 
     if resource.record_type != MarcSource::RECORD_TYPES[:collection] && resource.record_type != MarcSource::RECORD_TYPES[:source]
       redirect_to action: :show
-      flash[:error] = "Source is not a manuscript or manuscript collection"
+      flash[:error] = I18n.t(:source_not_manuscript)
     end
 
     if !(@current_user.has_role?(:editor) || @current_user.has_role?(:admin))
       redirect_to action: :show
-      flash[:error] = "Unauthorized"
+      flash[:error] = I18n.t(:unauthorized)
     end
 
     param_tags = params.permit(:tag => {})[:tag]
+    param_dos = params.permit(:digital_objects => {})[:digital_objects]
+
 
     tags = {}
     param_tags.each do |k, v|
@@ -246,14 +248,42 @@ ActiveAdmin.register Source do
       end
     end
 
-    holding_id = resource.manuscript_to_print(tags)
+    # There can be no digital objects
+    dos = param_dos&.select { |_, v| v == "on" }&.keys || []
+
+    holding_id = resource.manuscript_to_print(tags, dos)
 
     redirect_to action: :show
     if holding_id
-      flash[:message] = "Source converted to print, holding #{holding_id} created."
+      flash[:message] = I18n.t(:source_converted_with_holding, holding_id: holding_id)
     else
-      flash[:message] = "Source converted to print."
+      flash[:message] = I18n.t(:source_converted)
     end
+  end
+
+  member_action :order_inventory_items do
+    authorize! :order_inventory_items, resource
+
+    @page_title = "#{I18n.t(:order_items)} #{resource.std_title} [#{resource.id}]: #{resource.title} "
+    @inventory_items = resource.inventory_items.order(source_order: :asc)
+
+  end
+
+  member_action :do_reorder_inventory_items, method: :post do
+    authorize! :do_reorder_inventory_items, resource
+
+    # items = JSON::parse(params.permit([:items]).fetch(:items, ""))
+    items = JSON.parse(params.permit(:items)[:items].presence || "[]")
+    #items.each do |i|
+    #  ii = InventoryItem.find(i["id"])
+    #  ii.update_column(:source_order, i["idx"])
+    #end
+    payload = items.map { |h| { id: h["id"].to_i, source_order: h["idx"].to_i, updated_at: Time.current } }
+    InventoryItem.upsert_all(payload)
+
+    
+    redirect_to order_inventory_items_admin_source_path(resource.id), :flash => { :notice => I18n.t(:inventory_item_order_success)}
+
   end
 
   #scope :all, :default => true 
@@ -355,13 +385,7 @@ ActiveAdmin.register Source do
     column (I18n.t :filter_shelf_mark), :shelf_mark_shelforder, sortable: :shelf_mark_shelforder do |element|
       element.shelf_mark
     end
-    if current_user.has_any_role?(:admin, :editor)
-      column "Level" do |element|
-        element.tag_rate
-      end
-    end
-
-    
+        
     active_admin_muscat_actions( self )
   end
   
@@ -382,7 +406,7 @@ ActiveAdmin.register Source do
   show :title => proc{ active_admin_source_show_title( @item.composer, @item.std_title, @item.id, @item.get_record_type, @item.wf_stage).html_safe } do
     # @item retrived by from the controller is not available there. We need to get it from the @arbre_context
     active_admin_navigation_bar( self )
-    @item = @arbre_context.assigns[:item]
+    @item = controller.view_assigns["item"]
     render :partial => "marc/show"
     active_admin_embedded_source_list( self, @item, !is_selection_mode? )
     active_admin_digital_object( self, @item ) if !is_selection_mode?
@@ -390,26 +414,12 @@ ActiveAdmin.register Source do
     active_admin_navigation_bar( self )
     active_admin_comments if !is_selection_mode?
 
-    # FIXME Experimental: box for InventoryItems
-    active_admin_embedded_link_list(self, @item, InventoryItem) do |context|
-      context.table_for(context.collection) do |cr|
-        context.column "id", :id
-        context.column (I18n.t :filter_composer), :composer
-        context.column (I18n.t :filter_title), :title
-        if !is_selection_mode?
-          context.column "" do |ii|
-            link_to "View", controller: :inventory_items, action: :show, id: ii.id
-          end
-        end
-      end
-    
-  end
-
+    active_adnin_create_list_for(self, InventoryItem, @item, composer: I18n.t(:filter_composer), title: I18n.t(:filter_title))
   end
   
   # 8.0.1 #1190, make the sidebar floating only if there are no holdings
   sidebar :actions, :class => "sidebar_tabs" , :only => :show, if: proc{ resource.holdings.empty? } do
-    render :partial => "activeadmin/section_sidebar_show", :locals => { :item => @arbre_context.assigns[:item] }
+    render :partial => "activeadmin/section_sidebar_show", :locals => { :item => item } #@arbre_context.assigns[:item]
     render :partial => "activeadmin/section_sidebar_folder_actions", :locals => { :item => item }
   end
 
@@ -417,12 +427,12 @@ ActiveAdmin.register Source do
   # be created conditionally using a proc{ !resource.holdings.empty? }, so the whole sidebar block
   # has to be repeated with a different if: ... do
   sidebar :actions, :only => :show, if: proc{ !resource.holdings.empty? } do
-    render :partial => "activeadmin/section_sidebar_show", :locals => { :item => @arbre_context.assigns[:item] }
+    render :partial => "activeadmin/section_sidebar_show", :locals => { :item => item } #@arbre_context.assigns[:item]
     render :partial => "activeadmin/section_sidebar_folder_actions", :locals => { :item => item }
   end
 
   sidebar I18n.t(:holding_records), :only => :show , if: proc{ !resource.holdings.empty? } do
-    render :partial => "holdings/holdings_sidebar_show"#, :locals => { :item => @arbre_context.assigns[:item] }
+    render :partial => "holdings/holdings_sidebar_show"
   end
 
   ##########

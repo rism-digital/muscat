@@ -280,6 +280,8 @@ en:
     alternate_spelling: Alternate spelling
     alternative_work_title: Alternative work title
     amount: Number
+    annex: Annex
+    appendix: Appendix
     archive: Archive
     arrangement: Arrangement
     arrangement_statement: Arrangement statement
@@ -420,6 +422,7 @@ en:
     deprecated_fields: Obsolete fields (do not use)
     description: Description
     description_area: Description area
+    description_conventions: Description conventions
     description_summary: Description summary
     designer: Designer
     df_major: D♭ major
@@ -460,6 +463,7 @@ en:
     excerpts: Excerpts
     exemplar: Exemplar
     exemplars: Exemplars
+    expansion: Expansion
     extent: Extent
     extent_parts: Extent (parts)
     external_resource: External resource
@@ -488,9 +492,10 @@ en:
     fingerprint_identifier: Fingerprint identifier
     first_entry: First entry
     first_second_group: First/second group
+    form_of_work: Form of work
     form_subdivision: Form subdivision
     format_extent: Format, extent
-    former_sigla: Former sigla
+    former_sigla: Former siglum
     former_owner: Former owner
     fragments: Fragments
     fs_major: F♯ major
@@ -541,6 +546,7 @@ en:
     identity_area: Identity area
     iiif_manifest: "IIIF manifest (digitized source)"
     iiif_manifest_other: "IIIF manifest (other)"
+    iiif_manifest_nothing_more: IIIF manifest
     illustrator: Illustrator
     immediate_parent_body: Immediate parent body
     import: Import
@@ -582,7 +588,7 @@ en:
     language_codes: Language codes
     language_libretto: Language of libretto
     language_note: Language note
-    language_of_cataloging: Language of cataloging
+    language_of_cataloging: Cataloging language
     language_original_text: Language of original text
     language_text: Language of text
     later_entry: Later entry
@@ -675,6 +681,7 @@ en:
     name_family: Name of family
     name_of_part: Name of part/section of a work
     name_printer: Name of printer
+    name_titles_words: Titles and words associated with a name
     name_variant: Name variant
     name_variants: Name variants
     named_dramatic_roles: Named dramatic role
@@ -693,6 +700,7 @@ en:
     number: Number
     number_page: Number/page
     number_part_section: Number of part/section of a work
+    number_volume: Number/volume
     number_volume_part: Number of volume/part
     numbers_code_fields: Numbers and code fields
     numeric_designation: Numeric designation
@@ -708,6 +716,7 @@ en:
     octoechos8: 'Octoechos 8: Ēchos plagios tetartos (Fourth plagal mode of Byzantine
       music)'
     online_finding_aids: Online finding aids
+    online_resource: Online resource
     opera_houses_concert_halls: Opera houses and concert halls
     opus_number: Opus number
     opus_thematic_index_number: Opus/Thematic index number
@@ -725,6 +734,7 @@ en:
     other_instruments: Other instruments
     other_life_dates: Other life dates
     other_physical_details: Other physical details
+    other_resource: Other resource
     other_searchform: Other Searchform
     other_shelfmark: Other shelfmark
     other_standard_identifier: Other standard identifier
@@ -744,6 +754,8 @@ en:
     performances: Performances
     performer: Performer
     performer_note: Note on performance
+    periodical_or_series: Periodical or series
+    periodical_or_series_title: Periodical or series title
     person: Person
     person_name: Person name
     personal_name: Personal name
@@ -774,9 +786,12 @@ en:
     print_with_non_autograph_annotations: Print with non-autograph annotations
     printer: Printer
     printing_technique: Printing technique
+    private_collection: Private collection
     production: Production
     production_personnel: Production personnel
     profession_or_function: Profession or function
+    project: Project
+    project_url: Project URL
     provenance: Provenance
     provenance_notes: Provenance note
     pseudonym: Pseudonym
@@ -829,6 +844,7 @@ en:
     series: Series
     series_added_entry: Series added entry fields
     series_statement: Series statement fields
+    section: Section
     shelfmark: Shelfmark
     shelfmark_olim: Former shelfmark (olim)
     short_title: Short title
@@ -838,7 +854,7 @@ en:
     sister_of: Sister of
     sketches: Sketches
     solo_voice: Solo voice
-    soloist_instrument: Soloist intrument
+    soloist_instrument: Soloist instrument
     source: Source
     sources: Sources
     source_data_found: Source data found
@@ -923,7 +939,10 @@ en:
     watermark_description: Watermark description
     woodwinds: Woodwinds
     work: Work
+    work_catalog: Work catalog
+    work_catalogs: Work catalogs
     work_catalog_note: Work catalog note
+    work_list: Work list
     work_node: External work reference (Work node)
     work_number: Work number
     work_tag: Work revision tag
@@ -946,13 +965,22 @@ en:
     P60183: "Insert"
   relations_works:
     P60250: "Has derivative"
-    P60305: "Has source"
+    P60305: "Is based on"
     P60216: "Is expanded as"
     P60294: "Is expanded version of"
     P60274: "Is arranged as"
-    P60242: "Is arragement of"
+    P60242: "Is arrangement of"
     P60198: "Is complemented by"
     P60313: "Undefined"
+  relations_institutions:
+    P50008: Hierarchical superior
+    P50010: Hierarchical subordinate
+    P50012: Predecessor of corporate body
+    P50016: Successor of corporate body
+    P50020: Founding family of corporate body
+    P50230: Corporate body member of corporate body
+    P50435: Corporate body member of family
+    P50301: Absorbed corporate body
   verovio:
     position: "Position"
     warning: "Warning"
@@ -1023,6 +1051,12 @@ en:
     ERR_064_LIGATURE_DURATION: The duration in a ligature cannot be shorter than a semibreve.
     ERR_065_MREST_INVALID_MEASURE: A measure with a measure rest cannot include anything else.
     ERR_066_EMPTY_CONTAINER: A grace group or a beam cannot be empty.
+  work_catalogue:
+    not_work_catalogue: Not work catalog
+    work_catalogue_alternate: Alternate
+    work_catalogue_complete: Completed
+    work_catalogue_in_preparation: Eligible
+    work_catalogue_partial: Partially completed
   rism_online:
     manuscript: "Manuscript"
     printed: "Printed"

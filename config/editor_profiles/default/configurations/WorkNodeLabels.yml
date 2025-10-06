@@ -62,6 +62,8 @@
       label: records.transcribing_agency
     d:
       label: records.modifying_agency
+    e:
+      label: records.description_conventions
   label: records.cataloging_source
 '042':
   fields:
@@ -339,8 +341,6 @@ brother of:
   label: records.brother_of
 child of:
   label: records.child_of
-cmp:
-  label: records.composer_cross_reference
 codes:
   label: records.numbers_code_fields
 confused with:

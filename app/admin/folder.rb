@@ -77,24 +77,24 @@ ActiveAdmin.register Folder do
   #end
   
   member_action :publish, method: :get do
-    job = Delayed::Job.enqueue(PublishFolderJob.new(params[:id]))
+    job = Delayed::Job.enqueue(PublishItemsJob.new(params[:id], Folder, :folder_items, :publish))
     redirect_to resource_path(params[:id]), notice: I18n.t(:publish_job, scope: :folders, id: job.id)
   end
  
   member_action :unpublish, method: :get do
-    job = Delayed::Job.enqueue(PublishFolderJob.new(params[:id], unpublish: true))
+    job = Delayed::Job.enqueue(PublishItemsJob.new(params[:id], Folder, :folder_items, :unpublish))
     redirect_to resource_path(params[:id]), notice: I18n.t(:unpublish_job, scope: :folders, id: job.id)
   end
  
-  member_action :make_catalogue, method: :get do
+  member_action :make_catalogue, method: :post do    
     # A bit contorted here: only work_editors can make a Publication into catalogs
-    if !can?(:edit, Work)
+    if !can?(:edit, Work) || !can?(:edit, Publication)
       redirect_to collection_path, :flash => {error: I18n.t(:"active_admin.access_denied.message")}
       return
     end
 
-    job = Delayed::Job.enqueue(MakePublicationsCataloguesFromFolder.new(params[:id]))
-    redirect_to resource_path(params[:id]), notice: I18n.t(:make_catalogue, scope: :folders, id: job.id)
+    job = Delayed::Job.enqueue(MakePublicationsCataloguesFromFolder.new(params[:id], params[:work_catalogue_option]))
+    redirect_to resource_path(params[:id]), notice: I18n.t(:setting_catalogue_status, scope: :folders, id: job.id)
   end
 
   member_action :reset_expiration, method: :get do
@@ -142,6 +142,7 @@ ActiveAdmin.register Folder do
       format = :xml if params[:type] == "xml"
       format = :csv if params[:type] == "csv"
       format = :raw if params[:type] == "raw"
+      format = :raw_holdings if params[:type] == "raw_holdings"
     end
 
     job = Delayed::Job.enqueue(ExportRecordsJob.new(:folder, {id: params[:id], email: current_user.email, format: format, model: model}))
@@ -270,6 +271,9 @@ ActiveAdmin.register Folder do
   
   sidebar :actions, :only => :show do
     render :partial => "activeadmin/section_sidebar_show", :locals => { :item => folder }
+    if folder.folder_type == "Publication" && (can? :edit, Work)
+      render :partial => "activeadmin/section_sidebar_work_catalogue_actions", :locals => { :item => folder }
+    end
   end
 
   sidebar :help, :only => [:show] do

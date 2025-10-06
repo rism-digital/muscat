@@ -1,12 +1,7 @@
 --- !map:Settings 
-"000": 
+"001":
   tag: tag_no_subfield
-  tag_params: 
-    editor_only: true
-  tag_header: none
-"001": 
-  tag: tag_no_subfield
-  tag_params: 
+  tag_params:
     read_only: true
     no_delete: true
   tag_header: none
@@ -178,13 +173,20 @@
   layout:
     fields:
     - - a
-      - hidden: true
-    - - d
-      - hidden: true
+      - read_only: true
+        default: "DE-633"
     - - b
       - editor_partial: subfield_select_codes
         select_label: "Language"
         codes_reference: "codes"
+    - - c
+      - read_only: true
+        default: "DE-633"
+    - - d
+      - read_only: true
+    - - e
+      - read_only: true
+        default: "rismg"
   tag_params:
     codes:
       - "eng"
@@ -197,7 +199,8 @@
   layout: 
     fields: 
     - - k
-    - - l
+      - editor_partial: subfield_edtf
+    #- - l
     - - z
 "100":
   new_window: people
@@ -534,7 +537,7 @@
     - asn
     - aut
     - ccp
-    - cmp
+    - att
     - ctb
     - dte
     - lbt
@@ -645,6 +648,15 @@
         editor_partial: subfield_secondary
         allow_new: false
     - - n
+    - - s
+      #- type: publication_505t_solr
+      #  editor_partial: subfield_autocomplete
+    - - x
+      - editor_partial: subfield_select_codes
+        codes_reference: "codes"
+  tag_params:
+      codes:
+      - "Appendix"
 "691": 
   new_window: publications
   new_window_field: short_name_eq
@@ -655,6 +667,15 @@
         editor_partial: subfield_secondary
         allow_new: false
     - - n
+    - - s
+      #- type: publication_505t_solr
+      #  editor_partial: subfield_autocomplete
+    - - x
+      - editor_partial: subfield_select_codes
+        codes_reference: "codes"
+  tag_params:
+      codes:
+      - "Appendix"
 "699": 
   layout: 
     fields:

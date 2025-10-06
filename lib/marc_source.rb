@@ -118,7 +118,7 @@ class MarcSource < Marc
     # use join so the "-" is not placed if one of the two is missing
     std_title = [title, desc].compact.join(" - ")
 
-    std_title
+    std_title&.strip
   end
   
   # Get the composer value
@@ -128,12 +128,12 @@ class MarcSource < Marc
       person = node.foreign_object
       composer = person.full_name
     end
-    composer
+    composer&.strip
   end
 
   def get_siglum
     if node = first_occurance("852", "a")
-      return node.content
+      return node.content&.strip
     end
   end
     
@@ -163,13 +163,13 @@ class MarcSource < Marc
       end
     end
     
-    return [siglum.truncate(255), ms_no.truncate(255)]
+    return [siglum.truncate(255)&.strip, ms_no.truncate(255)&.strip]
   end
   
   # On RISM A/1 ms_no contains the OLD RISM ID, get it from 035
   def get_book_rism_id
     if node = first_occurance("035", "a")
-      return node.content
+      return node.content&.strip
     end
   end
 
@@ -185,7 +185,7 @@ class MarcSource < Marc
       ms_title += " #{node.content}" if node.content
     end
    
-    ms_title.truncate(255)
+    ms_title.truncate(255)&.strip
   end
   
   # Set miscallaneous values
@@ -219,7 +219,7 @@ class MarcSource < Marc
       end
     end
     
-    return [language.truncate(16), date_from, date_to]
+    return [language.truncate(16)&.strip, date_from, date_to]
 
   end
   
@@ -227,6 +227,12 @@ class MarcSource < Marc
     #load_source false if !@loaded
     first_occurance("001").content = "__TEMP__"
     by_tags("774").each {|t| t.destroy_yourself}
+
+    #1526 delete some additional fields
+    by_tags("588").each {|t| t.destroy_yourself}
+    by_tags("775").each {|t| t.destroy_yourself}
+    by_tags("599").each {|t| t.destroy_yourself}
+
   end
 
   def match_leader
@@ -419,6 +425,26 @@ class MarcSource < Marc
 
     generate_subentry_title # Add $a to 774s if they are there
 
+    # When a 774 points to a holding record, we need to add the
+    # source_id of that holding to the 774. Also take care
+    # of new ids!
+    if record_type == RECORD_TYPES[:composite_volume]
+        each_by_tag("774") do |node|
+          begin
+            is_holding = node.fetch_first_by_tag("4")
+            if is_holding && is_holding&.content == "holding"
+              holding_id = node.fetch_first_by_tag("w")&.content
+              holding = Holding.find(holding_id)
+              full_id = deprecated_ids ? holding.source.id : "sources/#{holding.source.id}"
+              node.add(MarcNode.new("source", "o", full_id, nil))
+            end
+          rescue
+            puts "#{get_id}: Could not load holding information for #{node.to_s}"
+            next
+          end
+        end
+    end
+
     # 240 to 130 when 100 is not present
     if by_tags("100").count == 0
       each_by_tag("240") do |t|
@@ -432,32 +458,8 @@ class MarcSource < Marc
     end
     
     # Put back $2pe in 031, see #194
-    # If there is a digital object, 
-    each_by_tag("031") do |t|
-
-      # Export the MEI incipit link
-      if parent_object.digital_objects.incipits
-        vals = {}
-        [:a, :b, :c].each do |st|
-          v = t.fetch_first_by_tag(st)
-          vals[st] = v && v.content ? v.content : "x"
-        end
-        pae_nr = "#{vals[:a]}.#{vals[:b]}.#{vals[:c]}"
-
-        # Try to match it in the digital objects
-        parent_object.digital_objects.incipits.each do |incipit|
-          if incipit.match_pae_nr?(pae_nr)
-            t.add_at(MarcNode.new("source", "u", incipit.attachment.url, nil), 0)
-          end
-        end
-      end
-
-      t.add_at(MarcNode.new("source", "2", "pe", nil), 0)
-      t.sort_alphabetically
-    end
-
-    parent_object.digital_objects.incipits.each do |incipit|
-    end
+    # If there is a digital object,
+    _to_external_031!(parent_object)
 
     # copy 691$n to 035 to have the local B/I id with collections
     if parent_object.record_type == 8 && parent_object.id.to_s =~ /^993/
@@ -474,6 +476,9 @@ class MarcSource < Marc
     end
    
     # Add 040 if not exists; if 040$a!=DE-633 then add 040$c
+    # NOTE 040 is now added in all Muscat records
+    # see #1803 and #1042
+=begin
     if by_tags("040").count == 0
         n040 = MarcNode.new(@model, "040", "", "##")
         n040.add_at(MarcNode.new(@model, "a", RISM::AGENCY, nil), 0)
@@ -491,6 +496,7 @@ class MarcSource < Marc
         end
       end
     end
+=end
 
     #340 Add a 594 with $a
     scorings = []
@@ -509,7 +515,9 @@ class MarcSource < Marc
     # Add $a to 773
     if node = root.fetch_first_by_tag("773")
       source = parent_object.parent_source
-      node.add_at(MarcNode.new(@model, "a", source.name, nil), 0) if source
+      node.add_at(MarcNode.new(@model, "a", source.composer, nil), 0) if source
+      node.add_at(MarcNode.new(@model, "t", source.std_title, nil), 0) if source
+      node.sort_alphabetically
     end
 
     # Feeding 240$n workcatalog number from 690$a/$n and 383$b
@@ -548,12 +556,16 @@ class MarcSource < Marc
 
     # Adding digital object links to 500 with new records
     #TODO whe should drop the dublet entries in 500 with Digital Object Link prefix for older records
-    if !parent_object.digital_objects.images.empty?# && parent_object.id >= 1001000000
+    if !parent_object.digital_objects.images.empty?
       parent_object.digital_objects.images.each do |image|
-        # FIXME we should use the domain name from application.rb instead
-        next if !image || !image.attachment || !image.attachment.path #in come cases the image was reoved
-        path = image.attachment.path.gsub("/path/to/the/digital/objects/directory/", "http://muscat.rism.info/")
-        content = "#{image.description + ': ' rescue nil}#{path}"
+        next unless image&.attachment&.path  # skip if missing
+
+        relative_path = image.attachment.path.sub(%r{.*?/system/}, 'system/')
+        url = "#{RISM::MUSCAT_URL}/#{relative_path}"
+
+        description = image.description ? "#{image.description}: " : ""
+        content = "#{description}#{url}"
+
         n500 = MarcNode.new(@model, "500", "", "##")
         n500.add_at(MarcNode.new(@model, "a", content, nil), 0)
         root.children.insert(get_insert_position("500"), n500)
@@ -629,6 +641,19 @@ class MarcSource < Marc
       source_title = t4&.content == "holding" ? "#{source.id}: #{source.std_title}" : source.std_title
       t.add_at(MarcNode.new(@model, "t", source_title, nil), 0)
       t.add_at(MarcNode.new(@model, "a", source.composer, nil), 0) if source.composer && !source.composer.empty?
+      t.sort_alphabetically
+    end
+  end
+
+  def generate_parent_title
+    # There should be only 1 773 but alas...
+    each_by_tag("773") do |t|
+      w = t.fetch_first_by_tag("w")
+  
+      raise "773 does not match source_id" if w.to_i != source_id
+
+      t.add_at(MarcNode.new(@model, "t", parent_source.std_title, nil), 0)
+      t.add_at(MarcNode.new(@model, "a", parent_source.composer, nil), 0) if parent_source.composer && parent_source.composer.empty?
       t.sort_alphabetically
     end
   end

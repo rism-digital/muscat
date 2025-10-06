@@ -7,6 +7,7 @@ ActiveAdmin.register_page "gnd_works" do
     autocomplete :gnd_works, "person", :gnd => true, :display_value => :label, :extra_data => [:life_dates]
     autocomplete :gnd_works, "instrument", :gnd => true, :display_value => :label
     autocomplete :gnd_works, "form", :gnd => true, :display_value => :label
+    autocomplete :gnd_works, "title", :gnd => true, :display_value => :label
 
     MAX_SAVED_IDS_SIZE = 20
 
@@ -35,7 +36,7 @@ ActiveAdmin.register_page "gnd_works" do
 
     def edit
       @item = GndWork.new
-      marc = GND::Interface.retrieve(params[:id])
+      marc, xml = GND::Interface.retrieve(params[:id])
       if !marc
         redirect_to request.referer, :flash => { :error => "#{I18n.t(:gnd_not_found)} (GND id #{params[:id]})" }
         return
@@ -95,7 +96,7 @@ ActiveAdmin.register_page "gnd_works" do
     def marc_editor_save
       marc_hash = JSON.parse params[:marc]
 
-      result, messages, author, title = GND::Interface.push(marc_hash)
+      result, messages, author, title = GND::Interface.push(marc_hash, current_user)
       path = admin_gnd_works_path
 
       session[:gnd_message] = "GND Response: " + messages

@@ -60,6 +60,7 @@ pl:
       welcome: Witamy w części produkcyjnej. Domyślna strona panelu użytkownika.
     delete: Usuń
     delete_confirmation: Czy na pewno to usunąć?
+    delete_confirmation_description: Czy na pewno to usunąć? %{description}
     delete_model: Usuń %{model}
     details: "%{model} Szczegóły"
     devise:
@@ -213,6 +214,8 @@ pl:
   add_item_to_folder: Dodaj do folderu
   add_person: Powiąż osobę
   add_source: Powiąż źródło
+  add_this_item_to_folder: Dodaj ten element do folderu
+  add_work: Połącz utwór
   any_field_contains: Dowolne pole
   append_folder: Dodaj wszystko do istniejącego folderu
   archive: Zarchiwizuj
@@ -220,12 +223,18 @@ pl:
   authorization_tokens: Auth tokens
   available_templates: Dostępne szablony
   backend_validation:
-    required: To pole jest wymagane, gdy ten tag zostanie dodany
-    no_subtag: To pole jest obowiązkowe
-    mandatory: To podpole jest obowiązkowe
-    required_if: To pole jest wymagane, ponieważ inne jest obecne
-    check_group: To pole zawiera nieprawidłową wartość względem pozycji w grupie
+    031_incomplete: Numeracja tego 031 jest niekompletna (brakuje $a, $b lub $c)
     begin_with: To pole musi zaczynać się od prawidłowego ciągu znaków
+    check_group: To pole zawiera nieprawidłową wartość względem pozycji w grupie
+    mandatory: To podpole jest obowiązkowe
+    must_contain: To pole musi odpowiadać wymaganemu wzorcowi
+    no_subtag: To pole jest obowiązkowe
+    required: To pole jest wymagane, gdy ten tag zostanie dodany
+    required_if: To pole jest wymagane, ponieważ inne jest obecne
+    siglum_not_found: Siglum w jednym lub kilku polach 588 nie odpowiada żadnemu rekordowi zasobów
+    validate_031_dups: 'Ten numer incipitu jest już używany: $b lub $c są zduplikowane'
+    validate_588_siglum: 'Wprowadź sygnaturę biblioteki i półkę według formatu: I-Bc Q.51'
+    validate_url: Wprowadzony adres URL jest nieprawidłowy
   basic_level: Rekord podstawowy
   body: Body
   btn_themefinder_reset: Wyzeruj
@@ -235,6 +244,7 @@ pl:
   choose_folder: "(Proszę wybrać jeden.)"
   clipboard:
     copied: Wyniki skopiowane do schowka
+  commit: Zastosuj
   compare_versions:
     date_message: Wyświetlanie zmodyfikowanych rekordów z %{date}.
     diff: Porównaj
@@ -247,10 +257,13 @@ pl:
     rule: Reguła
     show: Pokaż
     similarity: Różnice
+    tags: Tagi
     time_frame: Ramy czasowe
   composer_contains: Kryterium kompozytora
   connected_libraries: Biblioteki
+  controls: Sterowanie
   convert_to_print: Konwersja do szablonu wydruku
+  convert_to_print_template: Konwertuj do szablonu wydania drukowanego
   cookies:
     dimiss: Zaakceptuj i zamknij
     link: Dowiedz się więcej'
@@ -305,6 +318,7 @@ pl:
     - grudzień
   default_view: Default view
   delete: Usuń
+  delete_this_item_from_folder: Usuń ten element z folderu
   digital_object:
     one: Obiekt cyfrowy
     other: Obiekty cyfrowe
@@ -319,6 +333,7 @@ pl:
   duplicate: Powiel
   duplicate_confirm: Czy na pewno powielić ten rekord?
   edit: Edytuj
+  engraving_incipit: Renderowanie incipitu...
   entry:
     one: Wpis
     other: Wpisy
@@ -327,6 +342,7 @@ pl:
   export_folder: Wyeksportuj folder jako MARCXML
   export_folder_csv: Wyeksportuj folder jako CSV
   export_folder_raw: Wyeksportuj folder jako Muscat MARC
+  export_folder_raw_holdings: Eksportuj folder jako Muscat MARC (łącząc holding records)
   failed: Niepowodzenie
   failed_at: Niepowodzenie o godzinie …
   filter_address: Adres
@@ -338,6 +354,7 @@ pl:
   filter_attachment_type: Typ obiektu cyfrowego
   filter_author: Autor
   filter_author_or_editor: Autor / Edytor
+  filter_authorities: Autorytety
   filter_autograph_of: Autograf autorstwa
   filter_birth_place: Miejsce urodzenia
   filter_book_id: ID książki
@@ -479,7 +496,6 @@ pl:
     folder_empty: Folder nie zawiera pozycji.
     folder_not_source: Można zatwierdzać tylko foldery zawierające źródła.
     items: Pozycje
-    make_catalogue: Oznacz pozycje jako katalogi robocze
     not_found: Folder %{id} nie istnieje.
     one_month: Następujące foldery zostaną usunięte w ciągu jednego miesiąca w dniu %{date}
     one_week: Następujące foldery zostaną usunięte za tydzień w dniu %{date}
@@ -488,6 +504,7 @@ pl:
     reset_expiration: Resetuj datę wygaśnięcia
     resetted: Data wygaśnięcia folderu teraz to %{date}
     save: Zapisz wyniki w folderze
+    setting_catalogue_status: Ustawianie statusu katalogu
     success: Utworzono folder %{name} zawierający %{count} pozycji.
     success_bg: Folder %{name} utworzony, zadanie %{job} zakolejkowane.
     tomorrow: Następujące foldery zostaną usunięte jutro %{date}
@@ -498,7 +515,12 @@ pl:
   from_existing_source: Utwórz z istniejącego źródła
   full_level: Rekord pełny
   gnd_not_found: Żądanie do GND zwróciło pusty rekord.
+  go_back: Wstecz
   go_to_top: Powrót na górę
+  helpers:
+    label:
+      folder:
+        work_catalogue_status: Status katalogu dzieł
   hide_preview: Ukryj podgląd
   history_author: Autor
   history_date: Data
@@ -525,10 +547,13 @@ pl:
     interval: Interwał
     query_type: 'Rodzaj zapytania:'
     refined_pitch: Wyszukiwanie po linii melodycznej z wyłączeniem stosunków interwałowych
+  index: Indeks
   institution:
     one: Instytucja
     other: Instytucje
   internal_note_contains: Notatka wewnętrzna
+  inventory_item_order_success: Elementy zostały uporządkowane
+  inventory_items_show_count_html: Wyświetlono <strong>%{count}</strong> elementów
   is_in_folder: Jest w folderze …
   is_part_of_collection: Ta %{class} %{id} jest częścią kolekcji, musisz usunąć 773 przed jej usunięciem
   job:
@@ -555,6 +580,7 @@ pl:
   liturgicalfeast:
     one: Święto liturgiczne
     other: Święta liturgiczne
+  loading: Ładowanie..
   logout:
     confirm: Są otwarte okna Muscat. Jeśli wylogujesz się, wszelkie niezapisane zmiany zostaną utracone. Czy chcesz kontynuować?
     generic_error: Wylogowałeś się z Muscat. Odśwież stronę, aby wrócić do ekranu logowania.
@@ -597,7 +623,7 @@ pl:
   menu_contact: Kontakt
   menu_folders: Foldery
   menu_guidelines: Wskazówki do katalogowania
-  menu_guidelines_top: Wskazówki
+  menu_guidelines_top: Wskazówki (EN)
   menu_help: Pomoc
   menu_holdings: Egzemplarz
   menu_home: Strona główna
@@ -623,6 +649,9 @@ pl:
   menu_workgroups: Grupy robocze
   menu_works: Dzieła
   merge: Scal
+  move_down: Dół
+  move_to: Idź do
+  move_up: Góra
   muscat_reindexing: Muscat reindeksuje, wyniki wyszukiwania mogą być niekompletne
   new: Utwórz
   new_digital_object_image: Dołącz nowy obraz
@@ -633,6 +662,7 @@ pl:
   new_inventory_item_page: Nowy element inwentarza
   no_action: Brak dostępnego działania
   not_set: "[nie ustawiony]"
+  notation_copied: Notacja skopiowana
   notifications:
     cadence: Kadencja powiadomień
     daily: Codziennie
@@ -645,6 +675,9 @@ pl:
     rules: Regulamin
     weekly: Co tydzień
   object: Obiekt
+  old_index: Poprzedni indeks
+  order_inventory_items: Porządkuj elementy inwentarza
+  order_items: Porządkuj elementy dla
   person:
     one: Osoba
     other: Osoby
@@ -722,6 +755,7 @@ pl:
   sections: Sekcje
   select: Wybierz
   select_template: Wybierz nowy szablon
+  set_work_catalogue_status: Ustaw status katalogu dzieł
   show_all_groups: Pokaż wszystkie sekcje
   show_gnd: Wyszukiwanie w Search
   show_history: Pokaż historię modyfikacji
@@ -731,6 +765,9 @@ pl:
   source:
     one: Źródło
     other: Źródła
+  source_converted: Źródło zostało przekonwertowane na wersję drukowaną
+  source_converted_with_holding: Źródło zostało przekonwertowane na wersję drukowaną, utworzono holding %{holding_id}.
+  source_not_manuscript: Źródło nie jest rękopisem ani zbiorem rękopisów
   standardterm:
     one: Przedmiot
     other: Przedmioty
@@ -750,6 +787,7 @@ pl:
   title_contains: Tytuł dyplomatyczny
   to_the_list: Wróć do listy
   unarchive: Cofnij archiwizację
+  unauthorized: Brak autoryzacji
   ungrouped_tags: Rekord zawiera pola niezgrupowane.
   unknown_tags: Rekord zawiera pola nieznane.
   unloadable_record: 'Błędy wczytania rekordu: można go odczytywać, lecz nie edytować. Skontaktuj się z administratorem.'
@@ -769,9 +807,13 @@ pl:
     correct: Brak błędów zatwierdzenia rekordu [200]
     insufficient_rights: Użytkownik ma niewystarczające uprawnienia do utworzenia / zaktualizowania rekordu tej biblioteki
     missing_message: To pole jest obowiązkowe
-    must_contain_message: "Wprowadź siglum biblioteki i sygnaturę skonsultowanego wydania drukowanego."
+    must_contain_message: To pole musi odpowiadać wymaganemu wzorcowi
     name_uniqueness: Skrócona nazwa wpisu została już pobrana
     required_if_message: Pole obowiązkowe, ponieważ pole {0} ${1} nie jest puste
+    validate_031_dups: Ten numer incipitu jest już używany
+    validate_588_siglum: 'Wprowadź sygnaturę biblioteki i półkę według formatu: I-Bc Q.51'
+    validate_edtf: Sprawdź datę EDTF
+    validate_url: Wprowadzony adres URL jest nieprawidłowy
     warning_message: To pole powinno zawierać wartość
   validation_level_error: Wystąpiły błędy. Napraw je przed zapisaniem.
   validation_level_warning: Wystąpiły ostrzeżenia. Zapisz ponownie, by je skasować.
@@ -793,7 +835,16 @@ pl:
         one: Wyświetlany <b>1</b> %{model}
         other: Wyświetlane <b>wszystkie %{count}</b> %{model}
         zero: Nie znaleziono %{model}
-  work_catalogue: Katalog dzieł
+  work_catalog: Katalog dzieł
+  work_catalog_publish: Opublikuj powiązane dzieła
+  work_catalog_unpublish: Cofnij publikację powiązanych dzieł
+  work_catalogue_labels:
+    not_work_catalogue: Brak katalogu dzieł
+    work_catalogue_alternate: Alternatywny
+    work_catalogue_complete: Kompletny
+    work_catalogue_in_preparation: W przygotowaniu
+    work_catalogue_partial: Częściowy
+  work_catalogue_publication_warning: Aby opublikować powiązane dzieła, ustaw status katalogu dzieł na 'Częściowy', 'Kompletny' lub 'Alternatywny'.
   workgroups: Grupy robocze
   worknode:
     one: Work node

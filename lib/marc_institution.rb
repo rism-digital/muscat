@@ -23,7 +23,7 @@ class MarcInstitution < Marc
         place = node.content
       end
     end
-    [full_name, place]
+    [full_name&.strip, place&.strip]
   end
 
   def get_corporate_name_and_subordinate_unit
@@ -37,7 +37,7 @@ class MarcInstitution < Marc
     if node = first_occurance("110", "b")
       subordinate_unit = node.content.truncate(255) if node.content
     end
-    [corporate_name, subordinate_unit]
+    [corporate_name&.strip, subordinate_unit&.strip]
   end
 
   def get_address_and_url
@@ -55,13 +55,13 @@ class MarcInstitution < Marc
         url = node.content.truncate(24)
       end
     end
-    [address, url]
+    [address&.strip, url&.strip]
   end
 
   def get_siglum
     if node = first_occurance("094", "a")
       if node.content
-        node.content.truncate(32)
+        node.content.truncate(32)&.strip
       end
     end
   end
@@ -70,6 +70,9 @@ class MarcInstitution < Marc
     super(created_at, updated_at, versions)
     parent_object = Institution.find(get_id)
     
+    new_leader = MarcNode.new("institution", "000", "00000nz  a2200000nc 4500", "")
+    @root.children.insert(get_insert_position("000"), new_leader)
+
     by_tags("667").each {|t| t.destroy_yourself}
 
     source_size = parent_object.referring_sources.where(wf_stage: 1).size + parent_object.holdings.size rescue 0

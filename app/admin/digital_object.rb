@@ -28,9 +28,7 @@ ActiveAdmin.register DigitalObject do
       @attachment_type = params.include?(:attachment_type) && params[:attachment_type] == "incipit" ? :incipit : :image
 
       if @attachment_type == :incipit
-        # @incipits = Source.incipits_for(params[:digital_object][:new_object_link_id])
         # We support only works and sources
-
         if params[:digital_object][:new_object_link_type] != "Source" && params[:digital_object][:new_object_link_type] != "Work"
           raise ArgumentError, "Unsupported model #{params[:digital_object][:new_object_link_type]}"
         end
@@ -38,15 +36,13 @@ ActiveAdmin.register DigitalObject do
         model = Source if params[:digital_object][:new_object_link_type] == "Source"
         model = Work if params[:digital_object][:new_object_link_type] == "Work"
 
-        #begin
+        begin
           @incipits = DigitalObject.incipits_for(model, params[:digital_object][:new_object_link_id])
-          ap @incipits
-        #rescue ActiveRecord::RecordNotFound
-        #  flash[:error] = "Object does not exist"
-        #  redirect_to collection_path
-        #end
+        rescue ActiveRecord::RecordNotFound
+          flash[:error] = "Object does not exist"
+          redirect_to collection_path
+        end
 
-        ap @incipits
         if @incipits.empty?
           flash[:error] = "Object contains no incipits"
           redirect_to collection_path
@@ -72,7 +68,7 @@ ActiveAdmin.register DigitalObject do
 
         begin
           model = @digital_object.digital_object_links.first.object_link_type.constantize
-          @incipits = model.incipits_for(@digital_object.digital_object_links.first.object_link_id)
+          @incipits = DigitalObject.incipits_for(model, @digital_object.digital_object_links.first.object_link_id)
         rescue ActiveRecord::RecordNotFound
           flash[:error] = "Object does not exist"
           redirect_to collection_path
@@ -256,10 +252,13 @@ ActiveAdmin.register DigitalObject do
   
   sidebar :actions, :only => :show do
     render :partial => "activeadmin/section_sidebar_show", :locals => { :item => digital_object }
-    # You should not re-link incipit to multiple items
+
     if digital_object.images?
       render :partial => "activeadmin/section_sidebar_do_links", :locals => { :item => digital_object }
+    elsif digital_object.incipits?
+      render :partial => "activeadmin/section_sidebar_do_incipits", :locals => { :item => digital_object }
     end
+
     render :partial => "activeadmin/section_sidebar_folder_actions", :locals => { :item => digital_object }
   end
 
@@ -269,13 +268,9 @@ ActiveAdmin.register DigitalObject do
   
   form :html => {:multipart => true} do |f|
     f.inputs do
-      is_incipit = f.object.new_record? ? @arbre_context.assigns[:attachment_type] == :incipit : f.object.incipits?
+      is_incipit = f.object.new_record? ? controller.view_assigns["attachment_type"] == :incipit : f.object.incipits?
       if is_incipit
-        if f.object.new_record?
-          f.input :description, label: I18n.t(:filter_incipit_number), as: :select, multiple: false, include_blank: false, collection: arbre_context.assigns[:incipits]
-        else
-          f.input :description, label: I18n.t(:filter_incipit_number), as: :select, multiple: false, include_blank: false, collection: arbre_context.assigns[:incipits]
-        end
+        f.input :description, label: I18n.t(:filter_incipit_number), as: :select, multiple: false, include_blank: false, collection: controller.view_assigns["incipits"]
         f.input :attachment, as: :file, :label => I18n.t(:filter_mei)
       else
         f.input :description, :label => I18n.t(:filter_description)

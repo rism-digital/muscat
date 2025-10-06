@@ -1,0 +1,3 @@
+**Work nodes** działają jako oznaczone etykietami łącza między źródłami w Muscat a zewnętrznymi autorytetami dotyczącymi dzieł (np. dzieła GND) i grupują źródła dzielące to samo odniesienie. Służą jako proxy dla danych autorytetowych przechowywanych w Muscat, ułatwiając zarządzanie połączeniami z zewnętrznym zestawem danych autorytetowych.
+
+**Work nodes** nie są eksportowane jako dane autorytetowe, a ich identyfikatory nie są widoczne zewnętrznie. Jednakże **Work nodes** są wymienione w rekordach źródłowych wskazujących na nie za pomocą niestandardowego pola Marc 930, wraz z identyfikatorem dzieła z zewnętrznego zestawu danych autorytetowych (np. identyfikatorem GND).

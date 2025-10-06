@@ -83,18 +83,10 @@
   "026":
     :master: a
     :indicator: "##"
-    :occurrences: "?"
+    :occurrences: "*"
     :fields:
-    - - a
-      - :occurrences: "1"
-    - - b
-      - :occurrences: "1"
-    - - c
-      - :occurrences: "1"
-    - - d
-      - :occurrences: "?"
     - - e
-      - :occurrences: "1"
+      - :occurrences: "?"
   "028":
     :master: a
     :indicator: ["20", "30"]
@@ -174,8 +166,12 @@
       - :occurrences: "1"
     - - b
       - :occurrences: "1"
+    - - c
+      - :occurrences: "1"
     - - d
       - :occurrences: "?"
+    - - e
+      - :occurrences: "1"
   "041":
     :master: a
     :indicator: ["0#", "1#"]
@@ -308,6 +304,23 @@
     :fields:
     - - b
       - :occurrences: "?"
+  "490":
+    :master: "0"
+    :indicator: "1#"
+    :occurrences: "*"
+    :fields:
+    - - "0"
+      - :occurrences: "?"
+        :foreign_class: StandardTitle
+        :foreign_field: id
+        :no_show: true
+    - - a
+      - :occurrences: "?"
+        :foreign_class: ^0
+        :foreign_field: title
+      - :occurrences: "?"
+    - - v
+      - :occurrences: "?"
   "500":
     :master: a
     :indicator: "##"
@@ -315,7 +328,6 @@
     :fields:
     - - a
       - :occurrences: "?"
-        :browse_helper: application_helper_link_http
     - - "8"
       - :occurrences: "?"
         :no_browse: true
@@ -484,7 +496,10 @@
     - - b
       - :occurrences: "?"
     - - c
-      - :occurrences: "?"
+      - :occurrences: "1"
+        :foreign_class: Source
+        :foreign_field: id
+        :browse_helper: application_helper_link_source_id
   "597":
     :master: a
     :indicator: "##"
@@ -787,7 +802,6 @@
     :fields:
     - - u
       - :occurrences: "?"
-        :browse_helper: application_helper_link_http
     - - x
       - :occurrences: "?"
     - - z
@@ -810,6 +824,8 @@
       - :occurrences: "?"
         :foreign_class: ^0
         :foreign_field: corporate_name
+    - - u
+      - :occurrences: "?"
   "930":
     :master: "0"
     :indicator: "1#"
@@ -844,3 +860,16 @@
       - :occurrences: "1"
     - - d
       - :occurrences: "1"
+  # This is not used in sources
+  # we need it to export holdings
+  # that are merged in the source
+  # in to_external
+  "973":
+    :master: "u"
+    :indicator: "##"
+    :occurrences: "?"
+    :fields:
+    - - "u"
+      - :occurrences: "?"
+        :foreign_class: Source
+        :foreign_field: id

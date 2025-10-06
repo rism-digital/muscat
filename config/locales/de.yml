@@ -60,6 +60,7 @@ de:
       welcome: Willkommen in Active Admin. Dies ist die Standard-Übersichtsseite.
     delete: Löschen
     delete_confirmation: Wollen Sie dieses Element wirklich löschen?
+    delete_confirmation_description: Wollen Sie dieses Element wirklich löschen? %{description}
     delete_model: "%{model} löschen"
     details: "%{model} Details"
     devise:
@@ -213,6 +214,8 @@ de:
   add_item_to_folder: Zum Ordner hinzufügen
   add_person: Person verlinken
   add_source: Quelle verlinken
+  add_this_item_to_folder: Dieses Element zum Ordner hinzufügen
+  add_work: Werk verknüpfen
   any_field_contains: Irgendein Feld
   append_folder: Zu Ordner hinzufügen
   archive: Archivieren
@@ -220,12 +223,18 @@ de:
   authorization_tokens: Auth tokens
   available_templates: Verfügbare Vorlagen
   backend_validation:
-    required: Dieses Feld ist erforderlich, wenn dieses Tag hinzugefügt wird
-    no_subtag: Dieses Feld ist obligatorisch
-    mandatory: Dieses Unterfeld ist obligatorisch
-    required_if: Dieses Feld ist erforderlich, weil ein anderes vorhanden ist
-    check_group: Dieses Feld enthält einen ungültigen Wert in Bezug auf die Position in der Gruppe
+    031_incomplete: Die Nummerierung dieses 031 ist unvollständig ($a, $b oder $c fehlt)
     begin_with: Dieses Feld muss mit der richtigen Zeichenfolge beginnen
+    check_group: Dieses Feld enthält einen ungültigen Wert in Bezug auf die Position in der Gruppe
+    mandatory: Dieses Unterfeld ist obligatorisch
+    must_contain: Dieses Feld muss dem erforderlichen Muster entsprechen
+    no_subtag: Dieses Feld ist obligatorisch
+    required: Dieses Feld ist erforderlich, wenn dieses Tag hinzugefügt wird
+    required_if: Dieses Feld ist erforderlich, weil ein anderes vorhanden ist
+    siglum_not_found: Das Siglum in einem oder mehreren 588-Feldern entspricht keinem vorhandenen Bestandsdatensatz
+    validate_031_dups: 'Diese Incipit-Nummer wird bereits verwendet: $b oder $c sind doppelt vorhanden'
+    validate_588_siglum: 'Geben Sie das Bibliothekssigel und die Signatur im Format ein: I-Bc Q.51'
+    validate_url: Die eingegebene URL ist ungültig
   basic_level: Basiskatalog
   body: Body
   btn_themefinder_reset: Zurücksetzen
@@ -235,6 +244,7 @@ de:
   choose_folder: "(Bitte wählen Sie eines)"
   clipboard:
     copied: Ergebnisse in die Zwischenablage kopiert
+  commit: Anwenden
   compare_versions:
     date_message: Geänderte Datensätze anzeigen von %{date}.
     diff: Vergleich
@@ -247,10 +257,13 @@ de:
     rule: Regel
     show: Anzeigen
     similarity: Unterschiede
+    tags: Tags
     time_frame: Zeitrahmen
   composer_contains: Komponist
   connected_libraries: Bibliotheken
+  controls: Steuerung
   convert_to_print: In Druckvorlage umwandeln
+  convert_to_print_template: In die Vorlage für eine Druckausgabe konvertieren
   cookies:
     dimiss: Akzeptieren und schließen
     link: Mehr erfahren
@@ -305,6 +318,7 @@ de:
     - Dezember
   default_view: Default view
   delete: Löschen
+  delete_this_item_from_folder: Dieses Element aus dem Ordner löschen
   digital_object:
     one: Digitales Objekt
     other: Digitale Objekte
@@ -319,6 +333,7 @@ de:
   duplicate: Kopieren
   duplicate_confirm: Wollen Sie diesen Titel wirklich duplizieren?
   edit: Bearbeiten
+  engraving_incipit: Rendering des Incipits...
   entry:
     one: Eintrag
     other: Einträge
@@ -327,6 +342,7 @@ de:
   export_folder: Ordner als MARCXML exportieren
   export_folder_csv: Ordner als CSV exportieren
   export_folder_raw: Ordner als Muscat MARC exportieren
+  export_folder_raw_holdings: Ordner als Muscat MARC exportieren (Holding Records zusammenführen)
   failed: Fehlgeschlagen
   failed_at: Fehlgeschlagen am
   filter_address: Adresse
@@ -338,6 +354,7 @@ de:
   filter_attachment_type: Digitaler Objekttyp
   filter_author: Autor
   filter_author_or_editor: Autor/Herausgeber
+  filter_authorities: Normdaten
   filter_autograph_of: Autograph von
   filter_birth_place: Geburtsort
   filter_book_id: Buch-ID
@@ -479,7 +496,6 @@ de:
     folder_empty: Ordner enthält keine Elemente
     folder_not_source: Nur Ordner, die Quellen enthalten, können validiert werden
     items: Einträge
-    make_catalogue: Artikel als Arbeitskataloge kennzeichnen
     not_found: Ordner %{id} existiert nicht
     one_month: Die folgenden Ordner werden in einem Monat am %{date} gelöscht
     one_week: Die folgenden Ordner werden in einer Woche am %{date} gelöscht
@@ -488,6 +504,7 @@ de:
     reset_expiration: Verfallsdatum zurücksetzen
     resetted: Das Ablaufdatum des Ordners ist jetzt %{date}
     save: In Ordner speichern
+    setting_catalogue_status: Festlegen des Katalogstatus
     success: Ordner %{name} generiert aus %{count} Datensätzen.
     success_bg: Ordner %{name} erstellt, Auftrag %{job} in Warteschleife.
     tomorrow: Die folgenden Ordner werden morgen %{date} gelöscht
@@ -498,7 +515,12 @@ de:
   from_existing_source: Erstellen aus vorhandener Quelle
   full_level: Vollkatalogisat
   gnd_not_found: Die Anfrage an GND ergab keinen Eintrag
+  go_back: Zurück
   go_to_top: Zurück zum Anfang
+  helpers:
+    label:
+      folder:
+        work_catalogue_status: Werkverzeichnis-Status
   hide_preview: Vorschau verbergen
   history_author: Bearbeiter
   history_date: Datum
@@ -525,10 +547,13 @@ de:
     interval: Intervall
     query_type: 'Art der Anfrage:'
     refined_pitch: Melodisches Profil (fein)
+  index: Index
   institution:
     one: Institution
     other: Institutionen
   internal_note_contains: Interner Hinweis
+  inventory_item_order_success: Die Elemente wurden neu geordnet
+  inventory_items_show_count_html: "<strong>%{count}</strong> Elemente angezeigt"
   is_in_folder: Ist im Ordner
   is_part_of_collection: Diese %{class} %{id} ist Teil einer Sammlung, Sie müssen die 773 entfernen, bevor Sie sie löschen können
   job:
@@ -555,6 +580,7 @@ de:
   liturgicalfeast:
     one: Liturgisches Fest
     other: Liturgische Feste
+  loading: Wird geladen...
   logout:
     confirm: Es gibt offene Muscat-Fenster. Wenn Sie sich abmelden, gehen nicht gespeicherte Änderungen verloren. Möchten Sie fortfahren?
     generic_error: Sie haben sich von Muscat abgemeldet. Bitte aktualisieren Sie die Seite, um zum Anmeldebildschirm zurückzukehren.
@@ -623,6 +649,9 @@ de:
   menu_workgroups: Benutzergruppen
   menu_works: Werktitel
   merge: Umhängen
+  move_down: Runter
+  move_to: Gehe zu
+  move_up: Hoch
   muscat_reindexing: Muscat wird neu indiziert, Suchergebnisse können unvollständig sein
   new: Erstellen
   new_digital_object_image: Neues Bild hinzufügen
@@ -633,6 +662,7 @@ de:
   new_inventory_item_page: Neuer Inventareintrag
   no_action: Keine Aktion verfügbar
   not_set: "[nicht fest]"
+  notation_copied: Notation kopiert
   notifications:
     cadence: Kadenz der Benachrichtigung
     daily: Jeden Tag
@@ -645,6 +675,9 @@ de:
     rules: Regeln
     weekly: Jede Woche
   object: Objekt
+  old_index: Alter Index
+  order_inventory_items: Inventarelemente ordnen
+  order_items: Ordne Elemente für
   person:
     one: Person
     other: Personen
@@ -722,6 +755,7 @@ de:
   sections: Sektionen
   select: Auswählen
   select_template: Auswahl der Vorlage
+  set_work_catalogue_status: Werkverzeichnis-Status festlegen
   show_all_groups: Alle Blöcke anzeigen
   show_gnd: GND Suche
   show_history: Änderungsgeschichte
@@ -731,6 +765,9 @@ de:
   source:
     one: Quelle
     other: Quellen
+  source_converted: Quelle wurde in Druckform konvertiert
+  source_converted_with_holding: Quelle wurde in Druckform konvertiert, Holding %{holding_id} erstellt.
+  source_not_manuscript: Die Quelle ist kein Manuskript oder keine Manuskriptsammlung
   standardterm:
     one: Schlagwort
     other: Schlagwörter
@@ -750,6 +787,7 @@ de:
   title_contains: Dipl. Titel
   to_the_list: Zurück zur Liste
   unarchive: Dearchivieren
+  unauthorized: Nicht autorisiert
   ungrouped_tags: Dieser Eintrag enthält Felder, die keiner Gruppe zugeteilt sind
   unknown_tags: Dieser Eintrag enthält falsch verwendete Felder.
   unloadable_record: 'Fehler beim Laden des Eintrags: Änderung nicht möglich, bitte einen Administrator kontaktieren.'
@@ -769,9 +807,13 @@ de:
     correct: Der Eintrag enthält keine Validierungsfehler. [200]
     insufficient_rights: Der Anwender hat nicht die Berechtigung, für dieses Sigel einen Titel zu erstellen/zu ändern.
     missing_message: Dieses Feld muss zwingend ausgefüllt werden.
-    must_contain_message: "Geben Sie das Bibliothekssiglum und die Signatur der konsultierten Druckausgabe ein."
+    must_contain_message: Dieses Feld muss dem erforderlichen Muster entsprechen.
     name_uniqueness: Das Kürzel des Eintrages ist bereits vergeben.
     required_if_message: Dieses Feld muss ausgefüllt werden, da es obligatorisch ist in Anwesenheit von {0} ${1}
+    validate_031_dups: Diese Incipit-Nummer wird bereits verwendet
+    validate_588_siglum: 'Geben Sie das Bibliothekssigel und die Signatur im Format ein: I-Bc Q.51'
+    validate_edtf: EDTF-Datum validieren
+    validate_url: Die eingegebene URL ist ungültig
     warning_message: Dieses Feld enthält üblicherweise einen Eintrag.
   validation_level_error: Die Fehler müssen vor dem Speichern behoben werden.
   validation_level_warning: Erneut speichern, um die Warnung(en) zu ignorieren.
@@ -793,7 +835,16 @@ de:
         one: Anzeige von <b>1</b> %{model}
         other: Anzeige <b>aller %{count}</b> %{model}
         zero: Keine(n) %{model} gefunden
-  work_catalogue: Katalog der Werke
+  work_catalog: Katalog der Werke
+  work_catalog_publish: Verknüpfte Werke veröffentlichen
+  work_catalog_unpublish: Veröffentlichung verknüpfter Werke aufheben
+  work_catalogue_labels:
+    not_work_catalogue: Kein Werkverzeichnis
+    work_catalogue_alternate: Alternativ
+    work_catalogue_complete: Vollständig
+    work_catalogue_in_preparation: In Vorbereitung
+    work_catalogue_partial: Teilweise
+  work_catalogue_publication_warning: Um verknüpfte Werke zu veröffentlichen, setzen Sie den Werkkatalog-Status auf 'Teilweise', 'Vollständig' oder 'Alternativ'.
   workgroups: Benutzergruppen
   worknode:
     one: Work node

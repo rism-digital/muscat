@@ -21,7 +21,7 @@
     e:
       label: records.unparsed_fingerprint
   label: records.fingerprint_identifier
-028:
+'028':
   fields:
     indicator:
       label: records.publisher_plate_number
@@ -97,7 +97,13 @@
       label: records.original_cataloging_agency
     b:
       label: records.language_of_cataloging
-  label: records.cataloging_agency
+    c:
+      label: records.transcribing_agency
+    d:
+      label: records.modifying_agency
+    e:
+      label: records.description_conventions
+  label: records.cataloging_source
 '041':
   fields:
     0#:
@@ -189,6 +195,13 @@
     b:
       label: records.opus_number
   label: records.opus_number
+'490':
+  fields:
+    a:
+      label: records.periodical_or_series_title
+    v:
+      label: records.number_volume
+  label: records.periodical_or_series
 '500':
   fields:
     '8':
@@ -317,7 +330,7 @@
     b:
       label: general.rism_series_number
     c:
-      label: records.reference_record_id
+      label: records.rism_id_number
   label: general.rism_series_a_b_references
 '597':
   fields:
@@ -490,6 +503,8 @@
   fields:
     a:
       label: records.institution
+    u:
+      label: records.project_url
   label: records.contributing_project
 '930':
   fields:
@@ -681,7 +696,7 @@ chr:
   label: records.choreographer
 clb:
   label: records.contributor
-cmp:
+att:
   label: records.composer_cross_reference
 cnd:
   label: records.conductor

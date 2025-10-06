@@ -1,0 +1,17 @@
+<% options = Publication.work_catalogues.keys.map do |key| [I18n.t("work_catalogue_labels." + key), key] end %>
+
+<tr>
+    <td>
+        <div class="grid_cell_header">
+            <%=I18n.t('helpers.label.folder.work_catalogue_status')%>
+        </div>
+    </td>
+    <td colspan="3">
+        <div class="grid_cell">
+            <div style="vertical-align: bottom; background-color: transparent">
+                 <%= select_tag "work_catalogue_status", options_for_select(options, @item.work_catalogue) %>
+            </div>
+        </div>
+    </td>
+   
+</tr>

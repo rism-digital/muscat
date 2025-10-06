@@ -7,19 +7,6 @@ Code in provided inline, in the future it can be moved out
 used for _tag_header partial
 
 */
-
-
-    
-    // adjust the link when a help file is loaded in the editor
-    // because we then want the interal link to load their content
-    // through marc_editor_show_help (and not using #anchors)
-    function adjust_editor_help_links() { 
-        $('a[data-help-internal]').click(function(e){
-            e.preventDefault();
-            var title = $(this).text();
-            marc_editor_show_help($(this).data("help-internal"), title);
-        });
-    }
 	
 	function tag_header_toggle(elem) {
 		var tag_container = elem.parents(".tag_container");
@@ -198,13 +185,12 @@ used for _tag_header partial
     	$.ajax({
     		success: function(data) {
                 help_div.children(".help_content").html(data);
-                adjust_editor_help_links();
                 help_div.fadeIn('fast');
     		},
     		dataType: 'html',
     		timeout: 1000, 
-    		type: 'get',
-    		url: elem.data("help")
+    		type: 'post',
+    		url: "/admin/editor_help/" + elem.data("help") //elem.data("help")
     	});
 	}
 	
