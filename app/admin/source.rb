@@ -406,7 +406,7 @@ ActiveAdmin.register Source do
   show :title => proc{ active_admin_source_show_title( @item.composer, @item.std_title, @item.id, @item.get_record_type) } do
     # @item retrived by from the controller is not available there. We need to get it from the @arbre_context
     active_admin_navigation_bar( self )
-    @item = @arbre_context.assigns[:item]
+    @item = controller.view_assigns["item"]
     render :partial => "marc/show"
     active_admin_embedded_source_list( self, @item, !is_selection_mode? )
     active_admin_digital_object( self, @item ) if !is_selection_mode?

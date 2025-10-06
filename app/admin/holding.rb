@@ -204,7 +204,7 @@ ActiveAdmin.register Holding do
   show :title => proc{ active_admin_holding_show_title(@item) } do
     # @item retrived by from the controller is not available there. We need to get it from the @arbre_context
     active_admin_navigation_bar( self )
-    @item = @arbre_context.assigns[:item]
+    @item = controller.view_assigns["item"]
     if @item.marc_source == nil
       render :partial => "marc_missing"
     else

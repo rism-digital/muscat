@@ -232,7 +232,7 @@ ActiveAdmin.register Person do
 
     render('jobs/jobs_monitor')
 
-    @item = @arbre_context.assigns[:item]
+    @item = controller.view_assigns["item"]
     if @item.marc_source == nil
       render :partial => "marc/missing"
     else
