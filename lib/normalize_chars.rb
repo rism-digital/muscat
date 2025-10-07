@@ -66,6 +66,8 @@ module NormalizeChars
 =end
 
     self.class.columns_hash.each do |attr_name, col|
+      next if !self[attr_name]
+      
       if col.type == :string || col.type == :text
         #self[attr_name] = value&.strip if value.respond_to?(:strip)
 
@@ -75,8 +77,6 @@ module NormalizeChars
             self[attr_name] = value.gsub(bad_char, good_char)
           end
         end
-            ap attr_name
-            ap self[attr_name]
       end
     end
 #    NORMALIZE_CHARS.each do |good_char, bad_chars|
