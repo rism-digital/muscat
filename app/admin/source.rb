@@ -264,7 +264,7 @@ ActiveAdmin.register Source do
   member_action :order_inventory_items do
     authorize! :order_inventory_items, resource
 
-    @page_title = "#{I18n.t(:order_items)} #{resource.std_title} [#{resource.id}]: #{resource.title} "
+    @page_title = "#{I18n.t(:order_items)} #{resource.std_title} [#{resource.id}]"
     @inventory_items = resource.inventory_items.order(source_order: :asc)
 
   end
