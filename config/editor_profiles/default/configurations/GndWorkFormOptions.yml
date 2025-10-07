@@ -192,6 +192,7 @@ force_editor_ordering: true
         - "XA-VA"
         - "XD-VE"
         - "XB-VN"
+        - "XC-TN"
 "065": 
   layout: 
     fields:
