@@ -44,7 +44,7 @@ class Holding < ApplicationRecord
 
   before_destroy :check_collection_id, prepend: true
 
-  before_save :normalize_chars!, :set_object_fields
+  before_save  :set_object_fields, :normalize_chars!
   after_create :scaffold_marc, :fix_ids
   after_save :update_links, :update_774, :reindex
   after_initialize :after_initialize

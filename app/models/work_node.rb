@@ -38,7 +38,7 @@ class WorkNode < ApplicationRecord
   attr_accessor :suppress_recreate_trigger
   attr_accessor :suppress_update_count_trigger
 
-  before_save :normalize_chars!, :set_object_fields
+  before_save :set_object_fields, :normalize_chars!
   after_create :scaffold_marc, :fix_ids
   after_save :update_links, :reindex
   after_initialize :after_initialize

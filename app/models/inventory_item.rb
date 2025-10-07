@@ -60,7 +60,7 @@ class InventoryItem < ApplicationRecord
 
   composed_of_reimplementation :marc, :class_name => "MarcInventoryItem", :mapping => %w(marc_source to_marc)
 
-  before_save :normalize_chars!, :set_object_fields
+  before_save :set_object_fields, :normalize_chars!
   before_create :add_source_order
   after_create :scaffold_marc, :fix_ids
   after_save :update_links, :reindex

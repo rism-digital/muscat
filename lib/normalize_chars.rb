@@ -49,6 +49,7 @@ module NormalizeChars
   }.freeze
 
   def normalize_chars!
+=begin
     if self.respond_to? :marc_source
       normalized = self.marc_source
     elsif self.respond_to? :name
@@ -60,12 +61,30 @@ module NormalizeChars
     else
       return
     end
+
     return if normalized.nil?
-    NORMALIZE_CHARS.each do |good_char, bad_chars|
-      bad_chars.each do |bad_char|
-        normalized.gsub!(bad_char, good_char)
+=end
+
+    self.class.columns_hash.each do |attr_name, col|
+      if col.type == :string || col.type == :text
+        #self[attr_name] = value&.strip if value.respond_to?(:strip)
+
+        NORMALIZE_CHARS.each do |good_char, bad_chars|
+          bad_chars.each do |bad_char|
+            value = self[attr_name]
+            self[attr_name] = value.gsub(bad_char, good_char)
+          end
+        end
+            ap attr_name
+            ap self[attr_name]
       end
     end
-    normalized
+#    NORMALIZE_CHARS.each do |good_char, bad_chars|
+#      bad_chars.each do |bad_char|
+#        normalized.gsub!(bad_char, good_char)
+#      end
+#    end
+    ""
   end
+
 end
