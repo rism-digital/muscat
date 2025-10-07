@@ -9,6 +9,12 @@ module Converters
         book: "Monograph",
       }
 
+      human_readable_type = {
+        phdthesis: "Dissertation",
+        mastersthesis: "Master's thesis",
+        dissertation: "Dissertation"
+      }
+
       bib = BibTeX.parse(bibtex_string)
 
       # Only do the first one
@@ -62,8 +68,20 @@ module Converters
 
       new_marc.insert("260", a: first_b.fetch(:address, ""), b: first_b.fetch(:publisher, ""), c: first_b.fetch(:year, ""))
       new_marc.insert("300", a: first_b.pages) if first_b[:pages]
-      new_marc.insert("760", a: first_b.series) if first_b[:series]
+
+      # Try to concatenate the 760
+      if first_b[:series] || first_b[:journal]
+        t760 = [first_b[:journal], first_b[:series]].compact.join(", ")
+        new_marc.insert("760", t: t760, g: first_b&.volume)
+      end
       
+      # Add school and stuff for dissertations
+      if [:dissertation, :mastersthesis, :phdthesis].include?(first_b&.type)
+        type = human_readable_type[first_b&.type]
+        a502 = [first_b[:school], type].compact.join(", ")
+        new_marc.insert("502", a: a502)
+      end
+
       new_marc.insert("020", a: first_b.isbn) if first_b[:isbn]
       new_marc.insert("022", a: first_b.issn) if first_b[:issn]
       new_marc.insert("024", a: first_b.ismn) if first_b[:ismn]
