@@ -311,6 +311,8 @@ ActiveAdmin.register Source do
   
   filter :"852c_cont", :label => proc{I18n.t(:filter_shelf_mark)}, :as => :string
 
+  filter :"028a_cont", :label => proc{I18n.t(:"records.publisher_plate_number")}, :as => :string
+
   filter :has_internal_note_with_integer, as: :select, :label => proc{I18n.t(:filter_has_internal_notes)},
     collection: proc{[["True", "has_internal_note:true"], ["False", "has_internal_note:false"]]}
 
