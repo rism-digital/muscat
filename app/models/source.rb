@@ -838,6 +838,7 @@ class Source < ApplicationRecord
 
   ransacker :"852a_facet", proc{ |v| } do |parent| parent.table[:id] end
   ransacker :"852c", proc{ |v| } do |parent| parent.table[:id] end
+  ransacker :"028a", proc{ |v| } do |parent| parent.table[:id] end
   ransacker :"510c", proc{ |v| } do |parent| parent.table[:id] end
   ransacker :"593a_filter", proc{ |v| } do |parent| parent.table[:id] end
   ransacker :"593b_filter", proc{ |v| } do |parent| parent.table[:id] end

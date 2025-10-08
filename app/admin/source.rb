@@ -264,7 +264,7 @@ ActiveAdmin.register Source do
   member_action :order_inventory_items do
     authorize! :order_inventory_items, resource
 
-    @page_title = "#{I18n.t(:order_items)} #{resource.std_title} [#{resource.id}]: #{resource.title} "
+    @page_title = "#{I18n.t(:order_items)} #{resource.std_title} [#{resource.id}]"
     @inventory_items = resource.inventory_items.order(source_order: :asc)
 
   end
@@ -310,6 +310,8 @@ ActiveAdmin.register Source do
     if: proc { is_selection_mode? == true && params.include?(:q) && params[:q].include?(:lib_siglum_with_integer)}, :as => :lib_siglum
   
   filter :"852c_cont", :label => proc{I18n.t(:filter_shelf_mark)}, :as => :string
+
+  filter :"028a_cont", :label => proc{I18n.t(:"records.publisher_plate_number")}, :as => :string
 
   filter :has_internal_note_with_integer, as: :select, :label => proc{I18n.t(:filter_has_internal_notes)},
     collection: proc{[["True", "has_internal_note:true"], ["False", "has_internal_note:false"]]}
