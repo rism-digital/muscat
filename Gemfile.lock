@@ -194,7 +194,6 @@ GEM
     drb (2.2.3)
     erb (5.0.2)
     erubi (1.13.1)
-    eventmachine (1.2.7)
     exception_notification (5.0.1)
       actionmailer (>= 7.1, < 9)
       activesupport (>= 7.1, < 9)
@@ -212,9 +211,6 @@ GEM
       faraday (>= 1, < 3)
     faraday-net_http (3.4.1)
       net-http (>= 0.5.0)
-    faye-websocket (0.11.3)
-      eventmachine (>= 0.12.0)
-      websocket-driver (>= 0.5.1)
     ffi (1.17.2-arm64-darwin)
     ffi (1.17.2-x86_64-linux-gnu)
     formtastic (5.0.0)
@@ -326,15 +322,6 @@ GEM
       net-imap
       net-pop
       net-smtp
-    mailcatcher (0.10.0)
-      eventmachine (~> 1.0)
-      faye-websocket (~> 0.11.1)
-      mail (~> 2.3)
-      net-smtp
-      rack (~> 2.2)
-      sinatra (~> 3.2)
-      sqlite3 (~> 1.3)
-      thin (~> 1.8)
     marcel (1.0.4)
     matrix (0.4.3)
     method_source (1.1.0)
@@ -345,8 +332,6 @@ GEM
     mini_mime (1.1.5)
     minitar (1.1.0)
     minitest (5.25.5)
-    mustermann (3.0.4)
-      ruby2_keywords (~> 0.0.1)
     mysql2 (0.5.6)
     needleman_wunsch_aligner (1.0.4)
     net-http (0.6.0)
@@ -400,9 +385,6 @@ GEM
       nio4r (~> 2.0)
     racc (1.8.1)
     rack (2.2.20)
-    rack-protection (3.2.0)
-      base64 (>= 0.1.0)
-      rack (~> 2.2, >= 2.2.4)
     rack-session (1.0.2)
       rack (< 3)
     rack-test (2.2.0)
@@ -538,11 +520,6 @@ GEM
       rexml (~> 3.2, >= 3.2.5)
       rubyzip (>= 1.2.2, < 4.0)
       websocket (~> 1.0)
-    sinatra (3.2.0)
-      mustermann (~> 3.0)
-      rack (~> 2.2, >= 2.2.4)
-      rack-protection (= 3.2.0)
-      tilt (~> 2.0)
     solargraph (0.57.0)
       backport (~> 1.2)
       benchmark (~> 0.4)
@@ -597,10 +574,6 @@ GEM
       climate_control
     terser (1.2.6)
       execjs (>= 0.3.0, < 3)
-    thin (1.8.2)
-      daemons (~> 1.0, >= 1.0.9)
-      eventmachine (~> 1.0, >= 1.0.4)
-      rack (>= 1, < 3)
     thor (1.4.0)
     tilt (2.6.1)
     timeout (0.4.3)
@@ -675,7 +648,6 @@ DEPENDENCIES
   kt-paperclip
   libxml-ruby
   listen
-  mailcatcher (~> 0.10.0)
   mysql2
   needleman_wunsch_aligner (= 1.0.4)
   paper_trail

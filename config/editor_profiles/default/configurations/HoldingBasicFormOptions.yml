@@ -195,18 +195,18 @@
       - ppm
       - prt
       - asn
-"852": 
-  allow_new: true
+"852":
   new_window: institutions
-  layout: 
-    fields: 
+  layout:
+    fields:
     - - a
       - type: library
         editor_partial: subfield_secondary
+        allow_new: true
+    - - e
+      - autocomplete_extra: corporate_name
     - - b
     - - z
-    - - q
-      - growfield: true
     - - c
       - growfield: true
     - - d

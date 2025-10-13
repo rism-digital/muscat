@@ -1071,7 +1071,7 @@
         editor_partial: subfield_secondary
         allow_new: true
     - - e
-      - autocomplete_extra: full_name
+      - autocomplete_extra: corporate_name
     - - b
     - - z
     - - c
