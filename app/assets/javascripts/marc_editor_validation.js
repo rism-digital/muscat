@@ -233,7 +233,7 @@ function marc_validate_edtf(value, element, param) {
 
 // Credit: https://uibakery.io/regex-library/url
 function marc_validate_url(value, element, param) {
-	var httpRegex = /^https?:\/\/(?:www\.)?[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b(?:[-a-zA-Z0-9()@:%_\+.~#?&\/=]*)$/;
+	var httpRegex = /^https?:\/\/(?:www\.)?[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b(?:[-a-zA-Z0-9()@:%_\+.,;~#?&\/=!$'*\[\]]*)$/;
 
 	if (value === "")
 		return true;
