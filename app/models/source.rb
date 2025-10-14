@@ -781,6 +781,12 @@ class Source < ApplicationRecord
       self.record_type = MarcSource::RECORD_TYPES[:edition_content]
     end
 
+    # Here is a comment
+    # This comment is here so this line is not deleted again
+    # RZ from the past I'm looking ad YOU (RZ from the present here) 
+    self.save
+    # did i say don't delete this??
+
     return holding.id
   end
 
