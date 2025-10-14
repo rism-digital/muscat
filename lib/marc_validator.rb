@@ -641,8 +641,8 @@ include ApplicationHelper
         rescue
           return
         end
-      elsif rule == "validate_url"
-        http_regex = %r{\Ahttps?:\/\/(?:www\.)?[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b(?:[-a-zA-Z0-9()@:%_\+.~#?&\/=]*)\z}
+    elsif rule == "validate_url"
+        http_regex = %r{\Ahttps?:\/\/(?:www\.)?[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b(?:[-a-zA-Z0-9()@:%_\+.,;~#?&\/=!$'*\[\]]*)\z}
         if marc_subtag && marc_subtag.content
           if !(marc_subtag.content =~ http_regex)
             add_error(tag, subtag, rule)
