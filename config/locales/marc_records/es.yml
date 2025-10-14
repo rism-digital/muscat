@@ -36,6 +36,7 @@ es:
   languages:
     albanian: Albano
     afrikaans: Afrikáans
+    asturian: Asturiano
     arabic: Árabe
     aragonese: Aragonés
     armenian: Armenio
@@ -48,6 +49,7 @@ es:
     catalan: Catalán
     celtic_other: Céltico (otros)
     chinese: Chino
+    corsican: Corso
     cree: Cree
     creoles_pidgins_other: Creoles y Pidgins (otros)
     croatian: Croata
@@ -66,11 +68,13 @@ es:
     french_old: Francés, antiguo (ca. 842-1300)
     friulian: Friulano
     gallician: Galego
+    georgian: Georgiano
     german: Alemán
     german_old_high: Alemán culto antiguo (aprox. 750-1050)
     germanic: Germánico
     greek_ancient: Griego, Antiguo (hasta 1453)
     greek_modern: Griego moderno (1453-)
+    guarani: Guaraní
     hebrew: Hebreo
     hungarian: Húngaro
     icelandic: Islandés
@@ -125,8 +129,10 @@ es:
     tibetan: Tibetano
     tsimshian: Tsimshian
     turkish: Turco
+    twi: Twi
     ukrainian: Ucraniano
     upper_sorbian: 'Sorbio, Alto Sorbio'
+    urdu: Urdu
     vietnamese: Vietnamita
     welsh: Galés
     west_frisian: Frisón occidental

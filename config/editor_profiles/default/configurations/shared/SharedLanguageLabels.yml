@@ -4,6 +4,8 @@ afr:
   label: languages.afrikaans
 alb:
   label: languages.albanian
+ast:
+  label: languages.asturian
 art:
   label: languages.artificial
 ara:
@@ -30,6 +32,8 @@ chi:
   label: languages.chinese
 chu:
   label: languages.old_church_slavonic
+cos:
+  label: languages.corsican
 cre:
   label: languages.cree
 crp:
@@ -72,6 +76,8 @@ fur:
   label: languages.friulian
 gem:
   label: languages.germanic
+geo:
+  label: languages.georgian
 ger:
   label: languages.german
 gez:
@@ -88,6 +94,8 @@ grc:
   label: languages.greek_ancient
 gre:
   label: languages.greek_modern
+grn:
+  label: languages.guarani
 gsw:
   label: languages.swiss_german
 heb:
@@ -186,10 +194,14 @@ tsi:
   label: languages.tsimshian
 tur:
   label: languages.turkish
+twi:
+  label: languages.twi
 ukr:
   label: languages.ukrainian
 und:
   label: general.undetermined
+urd:
+  label: languages.urdu
 vie:
   label: languages.vietnamese
 wel:
