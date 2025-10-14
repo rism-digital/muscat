@@ -1,6 +1,11 @@
 Muscat Changelog
 ================
 
+v 11.7.0.2
+* Add back save that was deleted
+* Add grace period for unpublish
+* #1852 add more unescaped chars to the regex
+
 v 11.7.0.1
 * Somewhere, there was a bug: Needs to return an object not string
 * Fix #1863, rename :work_catalogue to :work_catalog to avoid conflict with RO
