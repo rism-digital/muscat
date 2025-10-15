@@ -159,6 +159,15 @@ ActiveAdmin.register Source do
           return
         end
         
+        # We need to restrict this for the moment for Inventories
+        if (base_item.record_type == MarcSource::RECORD_TYPES[:inventory] ||
+           base_item.record_type == MarcSource::RECORD_TYPES[:inventory_edition]) &&
+           cannot?(:create, InventoryItem)
+          
+           # Sorry! nice try tho
+          redirect_to admin_source_path(base_item), :flash => { :error => I18n.t(:"active_admin.access_denied.message") }
+        end
+
         new_marc = MarcSource.new(base_item.marc.marc_source, base_item.record_type)
         # Reset the basic fields to default values
         new_marc.reset_to_new
