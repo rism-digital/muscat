@@ -15,6 +15,7 @@ class StandardTerm < ApplicationRecord
   include CommentsCleanup
   include ThroughAssociations
   include AutoStripStrings
+  include NormalizeChars
 
   #has_and_belongs_to_many(:referring_sources, class_name: "Source", join_table: "sources_to_standard_terms")
   has_many :source_standard_term_relations, class_name: "SourceStandardTermRelation"
@@ -43,6 +44,7 @@ class StandardTerm < ApplicationRecord
   before_destroy :check_dependencies, :cleanup_comments
   
   #before_create :generate_new_id
+  before_save :normalize_chars!
   after_save :reindex
   
   attr_accessor :suppress_reindex_trigger

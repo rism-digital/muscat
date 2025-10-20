@@ -46,6 +46,7 @@ class Source < ApplicationRecord
   include Template
   include CommentsCleanup
   include ComposedOfReimplementation
+  include NormalizeChars
 
   resourcify
 
@@ -123,7 +124,7 @@ class Source < ApplicationRecord
   before_destroy :check_dependencies, :check_parent, prepend: true
   before_destroy :update_links_for_destroy, :cleanup_comments
 
-  before_save :set_object_fields, :save_updated_at
+  before_save :normalize_chars!, :set_object_fields, :save_updated_at
   after_create :fix_ids
   after_initialize :after_initialize
   after_save :update_links, :reindex

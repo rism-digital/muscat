@@ -32,6 +32,7 @@ class Publication < ApplicationRecord
   include CommentsCleanup
   include ComposedOfReimplementation
   include ThroughAssociations
+  include NormalizeChars
   resourcify
 
   #has_and_belongs_to_many(:referring_sources, class_name: "Source", join_table: "sources_to_publications")
@@ -103,7 +104,7 @@ class Publication < ApplicationRecord
   ##include NewIds
   before_destroy :check_dependencies, :cleanup_comments, :update_links
 
-  before_save :set_object_fields
+  before_save :normalize_chars!, :set_object_fields
   after_create :scaffold_marc, :fix_ids
   after_initialize :after_initialize
   after_save :update_links, :reindex
