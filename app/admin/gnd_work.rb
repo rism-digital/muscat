@@ -39,7 +39,7 @@ ActiveAdmin.register_page "gnd_works" do
       @item = GndWork.new
       marc, xml = GND::Interface.retrieve(params[:id])
       if !marc
-        redirect_to request.referer, :flash => { :error => "#{I18n.t(:gnd_not_found)} (GND id #{params[:id]})" }
+        redirect_to admin_gnd_works_path, :flash => { :error => "#{I18n.t(:gnd_not_found)} (GND id #{params[:id]})" }
         return
       end
 
