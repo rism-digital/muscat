@@ -38,7 +38,9 @@ include ApplicationHelper
   end
 
   def validate_tags
-    @rules.each do |tag, tag_rules|
+    # Note: it can be possible that there is no validation to do
+    # If there are no rules... do nothing
+    @rules&.each do |tag, tag_rules|
       # 1. Determine mandatory subtags
       mandatory_subtags = extract_mandatory_subtags(tag, tag_rules)
       

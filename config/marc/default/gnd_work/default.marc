@@ -1,9 +1,10 @@
 =001 __TEMP__
 =003 DE-101
 =008 220922n||aznnnaabn           | ana    |c
-=040 ##$aDE-14$bger$cDE-14$9DE-576
-=042 ##$agnd4
+=040 ##$aDE-14$bger$cDE-14$erda$9r:DE-576
+=042 ##$agnd3
 =075 ##$bu$2gndgen
 =075 ##$bwim$2gndspec
 =079 ##$qm$qf
 =100 1#
+=667 ## $aRISM NFDI4Culture$5DE-14

@@ -315,7 +315,7 @@
       - :occurrences: "+"
   "667":  
     :indicator: "##"
-    :occurrences: "*"
+    :occurrences: "+"
     :fields:
     - - "5"
       - :occurrences: "?"
