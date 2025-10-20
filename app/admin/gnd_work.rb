@@ -46,7 +46,7 @@ ActiveAdmin.register_page "gnd_works" do
       @item.marc = marc
       @editor_profile = EditorConfiguration.get_default_layout @item
       @editor_profile.add_fake_config(@item.marc)
-      @editor_validation = EditorValidation.get_default_validation(@item)
+      @editor_validation = false #EditorValidation.get_default_validation(@item)
       render 'edit', layout: "active_admin" 
     end
 
