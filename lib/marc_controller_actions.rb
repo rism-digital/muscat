@@ -255,7 +255,7 @@ module MarcControllerActions
     
     dsl.member_action :marc_restore_version, method: :put do
       
-      if !current_user.has_role?(:admin)
+      if !(current_user.has_role?(:admin) || current_user.has_role?(:editor))
         redirect_to admin_root_path, :flash => { :error => I18n.t("active_admin.access_denied.message") }
         return
       end
