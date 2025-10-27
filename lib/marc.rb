@@ -275,8 +275,8 @@ class Marc
       tag_group = @root << MarcNode.new(@model, tag, nil, ind)
       datafield.xpath("marc:subfield", namespace).each do |subfield|
         code = subfield[:code]
-        value = subfield.text.gsub(DOLLAR_STRING, "$").gsub(/'/, "&apos;").unicode_normalize.gsub(/\u0098/, "").gsub(/\u009C/, "")
-
+        value = subfield.text.gsub(DOLLAR_STRING, "$").unicode_normalize.gsub(/\u0098/, "").gsub(/\u009C/, "")
+          #.gsub(/'/, "&apos;")
           #doc = doc.to_s.gsub(/'/, "&apos;").unicode_normalize
           #doc = doc.gsub(/\u0098/, "").gsub(/\u009C/, "")
 
