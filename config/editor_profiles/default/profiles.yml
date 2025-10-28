@@ -64,6 +64,33 @@
     show: true
   :validation: "PersonValidation"
 
+# Configuration for place
+- :id: DefaultPlace
+  :name: Default Place
+  :model: place
+  :labels: 
+  - PlaceLabels
+  :options: 
+  - PlaceFormOptions
+  :layout: 
+  - PlaceLayoutDefault
+  :filter: 
+    default: true
+###
+- :id: ShowPlace
+  :name: Show Place
+  :model: place
+  :labels: 
+  - PlaceLabels
+  :options: 
+  - PlaceFormOptions
+  :layout: 
+  - PlaceLayoutShow
+  :filter:
+    show_all: false
+    show: true
+  :validation: "PlaceValidation"
+
 # Configuration for institution
 - :id: DefaultInstitution
   :name: Institution

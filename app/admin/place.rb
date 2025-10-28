@@ -46,16 +46,35 @@ ActiveAdmin.register Place do
       params.permit!
     end
 
+    def edit
+      @item = Place.find(params[:id])
+      @show_history = true if params[:show_history]
+      @editor_profile = EditorConfiguration.get_default_layout @item
+      @editor_validation = EditorValidation.get_default_validation(@item)
+      @page_title = "#{I18n.t(:edit)} #{@editor_profile.name} [#{@item.id}]"
+
+      if cannot?(:edit, @item)
+        redirect_to admin_place_path(@item), :flash => { :error => I18n.t(:"active_admin.access_denied.message") }
+      end
+    end
+
     def show
       begin
-        @place = Place.find(params[:id])
+        @item = @place = Place.find(params[:id])
       rescue ActiveRecord::RecordNotFound
         redirect_to admin_root_path, :flash => { :error => "#{I18n.t(:error_not_found)} (Place #{params[:id]})" }
         return
       end
+      @editor_profile = EditorConfiguration.get_show_layout @place
+      @editor_validation = EditorValidation.get_default_validation(@place)
       @prev_item, @next_item, @prev_page, @next_page, @nav_positions = Place.near_items_as_ransack(params, @place)
 
       @jobs = @place.delayed_jobs
+
+      respond_to do |format|
+        format.html
+        format.xml { render :xml => @item.marc.to_xml({ created_at: @item.created_at, updated_at: @item.updated_at, versions: @item.versions }) }
+      end
     end
 
     def index
@@ -193,22 +212,14 @@ ActiveAdmin.register Place do
   ## Edit ##
   ##########
 
-  form do |f|
-    f.inputs do
-      f.input :name, :label => (I18n.t :filter_name), input_html: {data: {trigger: triggers_from_hash({save: ["referring_sources", "referring_holdings", "referring_people", "referring_institutions", "referring_publications", "referring_works"]}) }}
-      f.input :alternate_terms, :label => (I18n.t :filter_alternate_terms)
-      f.input :topic, :label => (I18n.t :filter_topic)
-      f.input :sub_topic, :label => (I18n.t :filter_sub_topic)
-      f.input :country, :label => (I18n.t :filter_country), :as => :string # otherwise country-select assumed
-      f.input :district, :label => (I18n.t :filter_district)
-      f.input :notes, :label => (I18n.t :filter_notes)
-      f.input :wf_stage, :label => (I18n.t :filter_wf_stage)
-      f.input :lock_version, :as => :hidden
-    end
+  form :partial => "editor/edit_wide"
+
+  sidebar :sections, :only => [:edit, :new, :update] do
+    render("editor/section_sidebar") # Calls a partial
   end
 
-  sidebar :actions, :only => [:edit, :new, :update] do
-    render :partial => "activeadmin/section_sidebar_edit", :locals => { :item => place }
-  end
+  #sidebar :actions, :only => [:edit, :new, :update] do
+  #  render :partial => "activeadmin/section_sidebar_edit", :locals => { :item => place }
+  #end
 
 end

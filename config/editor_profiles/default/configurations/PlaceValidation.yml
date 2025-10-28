@@ -1,0 +1,9 @@
+--- !map:Settings
+client:
+  "024":
+    tags:
+      "2": required
+      "a": required
+  "151":
+    tags:
+      "a": mandatory

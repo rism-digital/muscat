@@ -1,0 +1,252 @@
+--- !map:ActiveSupport::HashWithIndifferentAccess
+
+'000':
+  label: records.leader
+'001':
+  label: records.rism_id_number
+'003':
+  label: records.control_number_identifier
+'005':
+  label: records.date_time_last_transaction
+'024':
+  fields:
+    '2':
+      label: records.source_number_code
+    a:
+      label: records.standard_number_code
+  label: records.other_standard_identifier
+'040':
+  fields:
+    a:
+      label: records.original_cataloging_agency
+    b:
+      label: records.language_of_cataloging
+    c:
+      label: records.transcribing_agency
+    d:
+      label: records.modifying_agency
+    e:
+      label: records.description_conventions
+  label: records.cataloging_source
+'042':
+  fields:
+    a:
+      label: records.authentication_code
+  label: records.authentication_code
+'043':
+  fields:
+    c:
+      label: records.nationality
+  label: records.nationality
+'100':
+  fields:
+    a:
+      label: records.heading_personal_name
+    c:
+      label: records.name_titles_words
+    d:
+      label: records.life_dates
+    y:
+      label: records.other_life_dates
+  label: records.heading_personal_name
+'370':
+  fields:
+    a:
+      label: records.place_birth
+  label: records.associated_place
+'375':
+  fields:
+    a:
+      label: records.gender
+  label: records.gender
+'400':
+  fields:
+    a:
+      label: records.name_variant
+    d:
+      label: records.life_dates
+    j:
+      label: records.type_name_variant
+  label: records.name_variant
+'500':
+  fields:
+    a:
+      label: records.name
+    d:
+      label: records.life_dates
+    i:
+      label: records.type_relationship
+    y:
+      label: records.type_relationship
+  label: records.related_personal_name
+'510':
+  fields:
+    a:
+      label: records.institution
+  label: records.related_institution
+'550':
+  fields:
+    a:
+      label: records.profession_or_function
+    i:
+      label: records.type
+  label: records.profession_or_function
+'551':
+  fields:
+    a:
+      label: records.place
+    i:
+      label: records.type
+  label: records.related_place
+'667':
+  fields:
+    a:
+      label: records.internal_note
+  label: records.internal_note
+'670':
+  fields:
+    a:
+      label: records.source_data_found
+    b:
+      label: records.information_found
+    u:
+      label: general.uri
+    "9":
+      label: general.source_citation
+  label: records.source_data_found
+'678':
+  fields:
+    a:
+      label: records.additional_biographical_information
+    b:
+      label: records.expansion
+  label: records.additional_biographical_information
+'680':
+  fields:
+    a:
+      label: records.general_note_personal
+  label: records.general_note_personal
+'856':
+  fields:
+    u:
+      label: records.external_resource_url
+    z:
+      label: records.note_external_resource
+  label: records.external_resource
+'910':
+  fields:
+    a:
+      label: records.institution
+    u:
+      label: records.project_url
+  label: records.contributing_project
+administration:
+  label: records.administration
+bn:
+  label: records.nickname
+brother of:
+  label: records.brother_of
+child of:
+  label: records.child_of
+codes:
+  label: records.numbers_code_fields
+confused with:
+  label: records.confused_with
+control:
+  label: records.control_fields
+da:
+  label: records.pseudonym
+do:
+  label: records.religious_name
+doc_abbreviations:
+  label: records.abbreviations
+doc_aid:
+  label: records.aide
+doc_cataloguing_collections:
+  label: records.cataloging_collection_convoluta
+doc_edit_functions:
+  label: records.basic_functions
+doc_edit_workflow:
+  label: general.workflow
+doc_editor:
+  label: general.editor_help
+doc_introduction:
+  label: records.introduction
+doc_masks:
+  label: records.cataloging_forms
+doc_tag_index:
+  label: general.marc_tag_index
+doc_templates:
+  label: records.templates
+dv:
+  label: records.other_variant
+ee:
+  label: records.married_name
+ef:
+  label: records.name_family
+father of:
+  label: records.father_of
+female:
+  label: general.female
+ff:
+  label: records.personal_name
+gg:
+  label: records.birth_name
+go:
+  label: records.place_birth
+ha:
+  label: records.place_origin
+in:
+  label: records.initials
+main_person:
+  label: records.main_entry_fields
+male:
+  label: general.male
+married to:
+  label: records.married_to
+mo:
+  label: records.monogram
+mother of:
+  label: records.mother_of
+notes:
+  label: records.note_fields
+other:
+  label: records.other
+places:
+  label: records.countries_places
+po:
+  label: records.postal_place
+references:
+  label: records.references_and_notes
+related to:
+  label: records.related_to
+relations:
+  label: records.relations
+sister of:
+  label: records.sister_of
+so:
+  label: records.place_death
+subject:
+  label: records.subject_access_fields
+tn:
+  label: records.baptismal_name
+ub:
+  label: records.translation
+unknown:
+  label: records.unknown
+variants:
+  label: records.name_variants
+wl:
+  label: records.country_active
+wo:
+  label: records.place_active
+wr:
+  label: records.region_active
+xx:
+  label: records.uncategorized
+z:
+  label: records.alternate_spelling
+"IIIF manifest":
+  label: records.iiif_manifest_nothing_more
+"Online Resource":
+  label: records.online_resource
