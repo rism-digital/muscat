@@ -49,8 +49,7 @@ class Place < ApplicationRecord
 
 
   #validates_presence_of :name
-
-  validates_uniqueness_of :name, scope: [:country, :district]
+  #validates_uniqueness_of :name, scope: [:country, :district]
 
   #include NewIds
 
@@ -133,7 +132,13 @@ class Place < ApplicationRecord
     new_marc = MarcPlace.new(File.read(ConfigFilePath.get_marc_editor_profile_path("#{Rails.root}/config/marc/#{RISM::MARC}/place/default.marc")))
     new_marc.load_source true
     
-    new_marc.insert("151", a: self.name)
+    new_marc.insert("151", a: self.name&.strip)
+    new_marc.insert("370", c: self.country&.strip, f: self.district&.strip) if self.country || self.district
+    new_marc.insert("678", a: self.notes&.strip) if self.notes && !self.notes.empty?
+    
+    self.alternate_terms&.split("\n")&.each do |term|
+      new_marc.insert("451", a: term.strip)
+    end
 
     if self.id != nil
       new_marc.set_id self.id
@@ -189,9 +194,10 @@ class Place < ApplicationRecord
     # this is done in create(), and we can read it from after_create callback
     self.id = marc_source_id if marc_source_id and marc_source_id != "__TEMP__"
 
-    # std_title
     self.name = marc.get_place_name
-    
+    self.country = marc.get_place_country
+    self.district = marc.get_place_district
+
     self.marc_source = self.marc.to_marc
   end
 

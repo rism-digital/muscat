@@ -67,6 +67,15 @@
     :fields:
     - - a
       - :occurrences: "?"
+  "370":
+    :master: c
+    :indicator: "##"
+    :occurrences: "1"
+    :fields:
+    - - c
+      - :occurrences: "?"
+    - - f
+      - :occurrences: "?"
   "451":
     :master: a
     :indicator: "##"
