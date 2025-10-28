@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.2].define(version: 2025_10_01_111826) do
+ActiveRecord::Schema[7.2].define(version: 2025_10_28_083417) do
   create_table "active_admin_comments", id: :integer, charset: "utf8mb3", force: :cascade do |t|
     t.string "namespace"
     t.text "body"
@@ -404,6 +404,7 @@ ActiveRecord::Schema[7.2].define(version: 2025_10_01_111826) do
     t.text "sub_topic"
     t.string "viaf"
     t.string "gnd"
+    t.text "marc_source"
     t.index ["name"], name: "index_places_on_name"
     t.index ["wf_stage"], name: "index_places_on_wf_stage"
   end
