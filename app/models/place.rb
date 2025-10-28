@@ -17,6 +17,13 @@ class Place < ApplicationRecord
   include ComposedOfReimplementation
   include ThroughAssociations
 
+  @last_user_save
+  attr_accessor :last_user_save
+  @last_event_save
+  attr_accessor :last_event_save
+
+  has_paper_trail :on => [:update, :destroy], :only => [:marc_source, :wf_stage, :wf_audit], :if => Proc.new { |t| VersionChecker.save_version?(t) }
+
   #has_and_belongs_to_many(:referring_sources, class_name: "Source", join_table: "sources_to_places")
   has_many :source_place_relations, class_name: "SourcePlaceRelation"
   has_many :referring_sources, through: :source_place_relations, source: :source
