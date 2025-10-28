@@ -400,10 +400,6 @@ ActiveRecord::Schema[7.2].define(version: 2025_10_28_083417) do
     t.datetime "updated_at", precision: nil
     t.integer "lock_version", default: 0, null: false
     t.text "alternate_terms"
-    t.text "topic"
-    t.text "sub_topic"
-    t.string "viaf"
-    t.string "gnd"
     t.text "marc_source"
     t.index ["name"], name: "index_places_on_name"
     t.index ["wf_stage"], name: "index_places_on_wf_stage"

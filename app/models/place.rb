@@ -134,7 +134,7 @@ class Place < ApplicationRecord
     
     new_marc.insert("151", a: self.name&.strip)
     new_marc.insert("370", c: self.country&.strip, f: self.district&.strip) if self.country || self.district
-    new_marc.insert("678", a: self.notes&.strip) if self.notes && !self.notes.empty?
+    new_marc.insert("667", a: self.notes&.strip) if self.notes && !self.notes.empty?
     
     self.alternate_terms&.split("\n")&.each do |term|
       new_marc.insert("451", a: term.strip)
@@ -165,8 +165,7 @@ class Place < ApplicationRecord
 
     text :notes
     text :alternate_terms
-    text :topic
-    text :sub_topic
+
     string :district_order do
       district
     end
