@@ -30,7 +30,7 @@ class MarcPlace < Marc
 
     # and add just one counting the linked sources
     if get_id && !get_id.empty?
-      parent_object = Person.find(get_id)
+      parent_object = Place.find(get_id)
       source_size = parent_object.referring_sources.where(wf_stage: 1).size rescue 0
       if source_size > 0
         n667 = MarcNode.new(@model, "667", "", "##")
