@@ -85,34 +85,24 @@ ActiveAdmin.register Place do
       end
     end
 
-    # redirect update failure for preserving sidebars
-    def update
-      update! do |success,failure|
-        success.html { redirect_to resource_path(params[:id]) }
-        failure.html { redirect_back fallback_location: root_path, flash: { :error => "#{I18n.t(:error_saving)}" } }
-      end
-      # Run the eventual triggers
-      execute_triggers_from_params(params, @place)
-    end
+    def new
+      @place = Place.new
 
-    # redirect create failure for preserving sidebars
-    def create
-      create! do |success,failure|
-        failure.html { redirect_back fallback_location: root_path, flash: { :error => "#{I18n.t(:error_saving)}" } }
-      end
-    end
-  
-    def save_resource(object)
-      nullable_strings = %i(country district notes alternate_terms topic sub_topic viaf gnd)
-      nullable_strings.each do |attribute|
-        next unless object.public_send(attribute).blank?
-  
-        object.public_send(:"#{attribute}=", nil)
-      end
-      super
+      new_marc = MarcPlace.new(File.read(ConfigFilePath.get_marc_editor_profile_path("#{Rails.root}/config/marc/#{RISM::MARC}/place/default.marc")))
+      new_marc.load_source false # this will need to be fixed
+      @place.marc = new_marc
+
+      @editor_profile = EditorConfiguration.get_default_layout @place
+      # Since we have only one default template, no need to change the title
+      #@page_title = "#{I18n.t('active_admin.new_model', model: active_admin_config.resource_label)} - #{@editor_profile.name}"
+      #To transmit correctly @item we need to have @source initialized
+      @item = @place
     end
 
   end
+
+  # Include the MARC extensions
+  include MarcControllerActions
 
   member_action :reindex, method: :get do
     job = Delayed::Job.enqueue(ReindexItemsJob.new(params[:id], Place, :referring_sources))
@@ -161,16 +151,14 @@ ActiveAdmin.register Place do
 
   show do
     active_admin_navigation_bar( self )
+
     render('jobs/jobs_monitor')
-    attributes_table do
-      row (I18n.t :filter_name) { |r| r.name }
-      row (I18n.t :filter_alternate_terms) { |r| r.alternate_terms }
-      row (I18n.t :filter_topic) { |r| r.topic }
-      row (I18n.t :filter_sub_topic) { |r| r.sub_topic }
-      row (I18n.t :filter_country) { |r| r.country }
-      row (I18n.t :filter_district) { |r| r.district }    
-      row (I18n.t :filter_notes) { |r| r.notes }    
-      row (I18n.t :filter_owner) { |r| User.find_by(id: r.wf_owner).name rescue r.wf_owner }
+
+    @item = controller.view_assigns["item"]
+    if @item.marc_source == nil
+      render :partial => "marc/missing"
+    else
+      render :partial => "marc/show"
     end
 
     active_admin_embedded_source_list( self, place, !is_selection_mode? )
