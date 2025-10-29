@@ -11,6 +11,7 @@ module GND
     SRU_PUSH_URL = "https://devel.dnb.de/sru_ru/"
     SRU_READ_URL_AUTH = "https://services.dnb.de/sru/authorities"
     SRU_READ_URL = "https://services.dnb.de/sru/cbs-appr"
+    MAGIC_READ_URL = "https://d-nb.info/gnd/" #/about/marcxml"
 
     #SRU_READ_URL_AUTH = "https://devel.dnb.de/sru/cbs-appr"
     #SRU_READ_URL = "https://devel.dnb.de/sru/cbs-appr"
@@ -23,6 +24,7 @@ module GND
         xml.xpath("//marc:record", NAMESPACE).each do |record|
             marc = MarcWorkNode.new(nil, "work_node_gnd")
             marc.load_from_xml(record)
+            marc.to_internal
             # Some items do not have a 100 tag
             next if !marc.first_occurance("100", "a")
             
@@ -45,6 +47,7 @@ module GND
             xml.xpath("//marc:record", NAMESPACE).each do |record|
                 marc = MarcWorkNode.new(nil, "work_node_gnd")
                 marc.load_from_xml(record)
+                marc.to_internal
                 # Some items do not have a 100 tag
                 next if !marc.first_occurance("100", "a")
                 
@@ -62,6 +65,9 @@ module GND
 
         action = m.get_id == "__TEMP__" ? :create : :replace
         
+        # Transform articles into gnd articles
+        m.to_external
+
         # is this evil? maybe
         xml = m.to_xml({authority: true, force_editor_ordering: true}).gsub('<?xml version="1.0" encoding="UTF-8"?>', '')
         return send_to_gnd(action, xml, m.get_id)
@@ -175,15 +181,16 @@ module GND
     # Retrieve a single GND record using the GND Id
     def self.retrieve(id)
         result = nil
-        query = SRU_READ_URL + "?version=1.1&operation=searchRetrieve&recordSchema=MARC21-xml&query=idn%3D#{id}"
+        #query = SRU_READ_URL + "?version=1.1&operation=searchRetrieve&recordSchema=MARC21-xml&query=idn%3D#{id}"
+        query = MAGIC_READ_URL + id + "/about/marcxml"
         query_result = URI.open(query) rescue nil
         # Load the results
         xml = Nokogiri::XML(query_result)
-       
         # Loop on each record in the result list
         xml.xpath("//marc:record", NAMESPACE).each do |record|
             marc = GndWork.new(nil, "gnd_work")
             marc.load_from_xml(record)
+            marc.to_internal
             result = marc
         end
         return result, xml
@@ -408,8 +415,10 @@ module GND
             item[:id] = "(DE-101)#{node_001.text}"
             node_150a_val = record.xpath("./marc:datafield[@tag='150']/marc:subfield[@code='a']", NAMESPACE).first.text rescue "[missing]"
             next if !node_150a_val&.downcase&.include?(term&.downcase)
+            node_150g_val = record.xpath("./marc:datafield[@tag='150']/marc:subfield[@code='g']", NAMESPACE).first.text rescue ""
             item["form"] = node_150a_val
             item[:label] = "#{node_150a_val}"
+            item[:label] += " (#{node_150g_val})" if !node_150g_val.empty?
             item[:label] += " – #{item[:id]}"
             result << item
         end
@@ -420,8 +429,6 @@ module GND
         result = []
         xml = self.query(term, "WOE", "Tu", "wim", 500)
         
-        ap xml
-
         # Loop on each record in the result list
         xml.xpath("//marc:record", NAMESPACE).each do |record|
             item = {}
