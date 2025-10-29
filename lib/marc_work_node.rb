@@ -56,9 +56,35 @@ class MarcWorkNode < Marc
     tag100.add_at(MarcNode.new("work_node", "0", person.id, nil), 0)
   end
 
+  def to_internal
+
+    un_gnd("100", "t")
+    un_gnd("400", "t")
+    un_gnd("500", "t")
+
+  end
+
   def to_external(created_at = nil, updated_at = nil, versions = nil, holdings = false, deprecated_ids = true)
     super(created_at, updated_at, nil, holdings)
     # nothing specific to do - this is used ony for deprecating works
   end
   
+private
+
+  def unwrap_and_mark(line)
+    # Find:  U+0098 <article> U+009C <spaces> <next word>
+    # Make:  <article> <spaces> @<next word>
+    line.gsub(/\u{0098}(\p{L}[\p{L}’']*)\u{009C}(\s*)(?=\p{L})/u) do
+      "#{$1}#{$2}@"
+    end
+  end
+
+  def un_gnd(tag, subtag)
+    self[tag].each do |t|
+      t[subtag].each do |tt|
+        tt.content = unwrap_and_mark(tt.content) if tt && tt.content
+      end
+    end
+  end
+
 end
