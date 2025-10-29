@@ -9,18 +9,26 @@ groups:
   main_place: 
     all_tags: 
     - "151"
+    - "043"
     - "370"
+    - "034"
   codes: 
     all_tags: 
     - "024"
   variants:
     all_tags:
     - "451"
+    - "551"
   references:
     all_tags:
     - "667"
     - "678"
     - "680"
+    - "670"
+    - "675"
+    - "856"
+    - "910"
+    - "981"
   control: 
     all_tags:
     - "040" 

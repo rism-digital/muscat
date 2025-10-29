@@ -27,6 +27,11 @@
         - "CMO"
         default: "VIAF"
         editor_partial: subfield_select
+"034": 
+  layout: 
+    fields: 
+    - - f
+    - - d
 "040":
   layout:
     fields:
@@ -53,7 +58,124 @@
       - "ita"
       - "por"
       - "spa"
-
+"043": 
+  layout: 
+    fields: 
+    - - c
+      - editor_partial: subfield_select_codes
+        select_label: "Country"
+  tag_params:
+    codes:
+        - "XA-AD"
+        - "XA-AL"
+        - "XC-DZ"
+        - "XA-AT"
+        - "XA-AT-2"
+        - "XA-AT-3"
+        - "XA-AT-4"
+        - "XA-AT-5"
+        - "XA-AT-6"
+        - "XA-AT-7"
+        - "XA-AT-9"
+        - "XB-AZ"
+        - "XD-AR"
+        - "XB-BD"
+        - "XA-BE"
+        - "XA-BY"
+        - "XA-BA"
+        - "XD-BO"
+        - "XD-BR"
+        - "XA-BG"
+        - "XB-KH"
+        - "XD-CA"
+        - "XD-CL"
+        - "XB-CN"
+        - "XD-CO"
+        - "XD-CR"
+        - "XA-HR"
+        - "XD-CU"
+        - "XA-CZ"
+        - "XA-DK"
+        - "XD-EC"
+        - "XC-EG"
+        - "XA-EE"
+        - "XA-FI"
+        - "XA-FR"
+        - "XB-GE"
+        - "XC-GH"
+        - "XC-GN"
+        - "XD-GT"
+        - "XA-DE"
+        - "XA-DE-BY"
+        - "XA-DE-SN"
+        - "XA-GR"
+        - "XD-HN"
+        - "XB-HK"
+        - "XA-HU"
+        - "XA-IS"
+        - "XB-IN"
+        - "XB-ID"
+        - "XB-IR"
+        - "XB-IQ"
+        - "XA-IE"
+        - "XB-IL"
+        - "XA-IT"
+        - "XA-IT-32"
+        - "XD-JM"
+        - "XB-JP"
+        - "XB-KR"
+        - "XA-LV"
+        - "XB-LB"
+        - "XA-LI"
+        - "XA-LT"
+        - "XA-LU"
+        - "XA-MC"
+        - "XA-MD"
+        - "XA-ME"
+        - "XA-MK"
+        - "XA-MT"
+        - "XD-MX"
+        - "XA-NL"
+        - "XE-NZ"
+        - "XD-NI"
+        - "XA-GB-NIR"
+        - "XA-NO"
+        - "XB-PK"
+        - "XE-PG"
+        - "XD-PY"
+        - "XD-PE"
+        - "XB-PH"
+        - "XA-PL"
+        - "XA-PT"
+        - "XD-PR"
+        - "XA-RO"
+        - "XA-RS"
+        - "XA-RU"
+        - "XB-SA"
+        - "XA-SK"
+        - "XA-SI"
+        - "XC-ZA"
+        - "XA-ES"
+        - "XA-SE"
+        - "XA-CH"
+        - "XA-CH-VD"
+        - "XA-SM"
+        - "XB-SY"
+        - "XB-TW"
+        - "XB-TJ"
+        - "XD-TT"
+        - "XB-TR"
+        - "XB-TM"
+        - "XC-UG"
+        - "XA-UA"
+        - "XA-GB"
+        - "XD-US"
+        - "XD-UY"
+        - "XB-UZ"
+        - "XA-VA"
+        - "XD-VE"
+        - "XB-VN"
+        - "XC-TN"
 "151": 
   layout: 
     fields: 
@@ -70,8 +192,13 @@
   layout: 
     fields: 
     - - c
+    - - e
     - - f
 "451": 
+  layout: 
+    fields: 
+    - - a
+"551": 
   layout: 
     fields: 
     - - a
@@ -80,6 +207,26 @@
     fields: 
     - - a
       - growfield: true
+"670": 
+  new_window: publications
+  layout: 
+    fields: 
+    - - "a"
+      - type: publication
+        editor_partial: subfield_secondary
+        allow_new: false
+    - - "9"
+    - - "b"
+    - - "u"
+"675": 
+  new_window: publications
+  new_window_field: short_name_eq
+  layout: 
+    fields: 
+    - - "a"
+      - type: publication
+        allow_new: false
+        editor_partial: subfield_secondary
 "678": 
   layout: 
     fields: 
@@ -90,3 +237,28 @@
     fields: 
     - - a
       - growfield: true
+"856": 
+  layout: 
+    fields: 
+    - - u
+    - - z
+      - growfield: true
+"910":
+  layout:
+    fields:
+    - - a
+      - read_only: true
+    - - "0"
+      - hidden: true
+    - - u
+      - read_only: true
+"981":
+  tag_params:
+    read_only: true
+    no_delete: true
+  layout:
+    fields:
+    - - "0"
+      - read_only: true
+    - - "d"
+      - read_only: true

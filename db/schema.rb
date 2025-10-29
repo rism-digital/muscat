@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.2].define(version: 2025_10_28_083417) do
+ActiveRecord::Schema[7.2].define(version: 2025_10_29_085112) do
   create_table "active_admin_comments", id: :integer, charset: "utf8mb3", force: :cascade do |t|
     t.string "namespace"
     t.text "body"
@@ -403,6 +403,20 @@ ActiveRecord::Schema[7.2].define(version: 2025_10_28_083417) do
     t.text "marc_source"
     t.index ["name"], name: "index_places_on_name"
     t.index ["wf_stage"], name: "index_places_on_wf_stage"
+  end
+
+  create_table "places_to_institutions", charset: "utf8mb3", force: :cascade do |t|
+    t.integer "place_id"
+    t.integer "institution_id"
+    t.string "marc_tag"
+    t.string "relator_code"
+  end
+
+  create_table "places_to_publications", charset: "utf8mb3", force: :cascade do |t|
+    t.integer "place_id"
+    t.integer "publication_id"
+    t.string "marc_tag"
+    t.string "relator_code"
   end
 
   create_table "publications", id: :integer, charset: "utf8mb3", force: :cascade do |t|

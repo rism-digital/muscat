@@ -52,6 +52,14 @@ class Place < ApplicationRecord
   has_many :delayed_jobs, -> { where parent_type: "Place" }, class_name: 'Delayed::Backend::ActiveRecord::Job', foreign_key: "parent_id"
   belongs_to :user, :foreign_key => "wf_owner"
 
+  #has_and_belongs_to_many :institutions, join_table: "people_to_institutions"
+  has_many :place_institution_relations
+  has_many :institutions, through: :place_institution_relations
+
+  #has_and_belongs_to_many :publications, join_table: "people_to_publications"
+  has_many :place_publication_relations
+  has_many :publications, through: :place_publication_relations
+
   composed_of_reimplementation :marc, :class_name => "MarcPlace", :mapping => %w(marc_source to_marc)
 
 
@@ -128,8 +136,8 @@ class Place < ApplicationRecord
   def update_links
     return if self.suppress_recreate_trigger == true
 
-    allowed_relations = ["institutions", "people", "places", "publications"]
-    ####recreate_links(marc, allowed_relations)
+    allowed_relations = ["institutions", "publications"]
+    recreate_links(marc, allowed_relations)
   end
 
   def scaffold_marc
