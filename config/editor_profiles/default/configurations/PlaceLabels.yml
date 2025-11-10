@@ -15,6 +15,17 @@
     a:
       label: records.standard_number_code
   label: records.other_standard_identifier
+'034':
+  fields:
+    d:
+      label: records.westernmost_longitude
+    e:
+      label: records.easternmost_longitude
+    f:
+      label: records.northernmost_latitude
+    g:
+      label: records.southernmost_latitude
+  label: records.location
 '040':
   fields:
     a:
@@ -35,30 +46,38 @@
   label: records.authentication_code
 '043':
   fields:
+    "2":
+      label: records.authority_agency
+    b:
+      label: records.local_rism_code_for_country
     c:
-      label: records.nationality
-  label: records.nationality
-'100':
+      label: records.geographic_area_code
+  label: records.geographic_area_code
+'151':
   fields:
     a:
-      label: records.heading_personal_name
-    c:
-      label: records.name_titles_words
-    d:
-      label: records.life_dates
-    y:
-      label: records.other_life_dates
-  label: records.heading_personal_name
+      label: records.geographic_name
+    g:
+      label: records.language_of_name
+  label: records.geographic_name
 '370':
   fields:
-    a:
-      label: records.place_birth
+    "0":
+      label: records.relationship_code
+    "4":
+      label: records.authority_agency
+    c:
+      label: records.associated_country
+    f:
+      label: records.other_associated_place
   label: records.associated_place
-'375':
+'451':
   fields:
     a:
-      label: records.gender
-  label: records.gender
+      label: records.geographic_name
+    g:
+      label: records.language_of_name
+  label: records.alternate_geographic_name
 '400':
   fields:
     a:

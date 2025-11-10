@@ -62,6 +62,8 @@
   layout: 
     fields:
     - - "2"
+      - read_only: true
+        default: "rismg"
     - - b
     - - c
       - editor_partial: subfield_select_codes

@@ -225,6 +225,12 @@ class MarcConfig
   # but can be repeated because of multiple groups
   def multiples_allowed?(tag, subtag = "")
     disable_multiple = false
+
+    # Fail. This is a programming error here
+    if !@tag_config[tag]
+      throw "Tag #{tag} is not configured in tag_config, but references in Layout config"
+    end
+
     if subtag.empty?
         occurrences = @tag_config[tag][:occurrences]
         disable_multiple = @tag_config[tag][:disable_multiple] rescue disable_multiple = false
