@@ -1,7 +1,6 @@
 <% tag_params = @editor_profile.options_config[tag_name]["tag_params"] %>
 <% label = params.has_key?("select_label") ? params['select_label'] : "Select" %>
 <% codes_reference = params.include?("codes_reference") ? params["codes_reference"] : "codes"%>
-<% show_error = (!tag_params[codes_reference].include?(marc_subfield.content) && marc_subfield.content) ? "" : "" %>
 <% no_sort = params.include?("no_sort") ? params["no_sort"] : false %>
 <% default = params.include?("default") ? params["default"] : false %>
 
@@ -17,8 +16,16 @@ end
 
   # Normally there is just one "codes" section with the codes
   # (which can also have a specific name from the parameter)
-  code_values = tag_params[codes_reference]
+  #
+  # In Muscat 12 we can call a helper to get the shared codes, like 041
+  # Which are the same for all
+  if params.include?("shared_codes")
+  	code_values = SharedCodes::get(params["shared_codes"])
+  else
+  	code_values = tag_params[codes_reference]
+  end
 
+  # Note: this does not work with the SharedCodes
   # If this item has templates (i.e. Source), adding the template
   # name to the codes will select specific codes for that template, ex
   # "codes" -> "codes_theoretica_edition_content" for a specific set
@@ -27,7 +34,7 @@ end
   # handy if the difference is a couple items less than the default list.
   if @item.respond_to? :get_record_type
 	template_codes = "#{codes_reference}_#{@item.get_record_type.to_s}"
-	if @item.respond_to?(:get_record_type) && tag_params.include?(template_codes)
+	if @item.respond_to?(:get_record_type) && tag_params && tag_params.include?(template_codes)
 		# if there is an array parameter "removed", subtract the items in this
 		# array from the "default" items. This is the negative set
 		if tag_params[template_codes].include?("remove")
@@ -51,7 +58,7 @@ end
            restricted = @restricted
         end %>
 
-<select class="serialize_marc marc_editor_hotkey <%=validate_class%> <%=validate_marker%> <%=show_error%>" <%=name_tag%> data-tag="<%=tag_name%>" data-subfield="<%=subfield%>" width="100" <%=restricted %>>
+<select class="serialize_marc marc_editor_hotkey <%=validate_class%> <%=validate_marker%>" <%=name_tag%> data-tag="<%=tag_name%>" data-subfield="<%=subfield%>" width="100" <%=restricted %>>
 	<option value="">--- <%= label %> ---</option>
 	<% if !sorted_values.include?(marc_subfield.content) && marc_subfield.content %>
 	<option value="<%= marc_subfield.content %>" selected><%= marc_subfield.content%></option>

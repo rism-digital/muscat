@@ -45,52 +45,7 @@
     - - a
       - editor_partial: subfield_select_codes
         select_label: "Language"
-  tag_params:
-    codes:
-      - "alb"
-      - 'arm'
-      - "cat"
-      - "cze"
-      - "dan"
-      - "dut"
-      - "eng"
-      - "est"
-      - "fin"
-      - "fre"
-      - "frr"
-      - "fry"
-      - "ger"
-      - "grc"
-      - "gre" 
-      - "gsw"
-      - "heb"
-      - "hrv"
-      - "hun"
-      - "ice"
-      - "ita"
-      - "jpn"
-      - "kor"
-      - "lat"
-      - "lav"
-      - "lit"
-      - "nor"
-      - "pol"
-      - "por"
-      - "roa"
-      - "rum"
-      - "rus"
-      - "slo"
-      - "slv"
-      - "spa"
-      - "srp"
-      - "swe"
-      - "tur"
-      - "ukr"
-      - "wen"
-      - "zho"
-      - "zxx"
-      - "ara"
-
+        shared_codes: language_codes_041
 "044": 
   layout: 
     fields: 
