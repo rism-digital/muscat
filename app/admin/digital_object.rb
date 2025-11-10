@@ -184,9 +184,9 @@ ActiveAdmin.register DigitalObject do
     a truncate(obj.description), :href => admin_digital_object_path(obj)
   end
   
-  sidebar :actions, :only => :index do
-    render :partial => "activeadmin/section_sidebar_index"
-  end
+  #sidebar :actions, :only => :index do
+    #render :partial => "activeadmin/section_sidebar_index"
+  #end
   
   sidebar :help, :only => [:index] do
     render :partial => "digital_objects_help_show"

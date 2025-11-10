@@ -18,6 +18,7 @@ class DigitalObject < ApplicationRecord
       #path: "#{RISM::DIGITAL_OBJECT_PATH}/system/:class/:attachment/:id_partition/:style/:filename"
 		
 		validates_presence_of :description
+    validates_presence_of :attachment
 		validates_attachment :attachment, content_type: { content_type: ["image/jpg", "image/jpeg", "image/png", "text/xml", "application/xml"] }
   
     before_post_process :skip_for_mei
