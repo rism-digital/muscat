@@ -22,7 +22,7 @@
     - - b
       - editor_partial: subfield_select_codes
         select_label: "Language"
-        codes_reference: "codes"
+        shared_codes: "languages_040"
     - - c
       - read_only: true
         default: "DE-633"
@@ -31,14 +31,6 @@
     - - e
       - read_only: true
         default: "rismg"
-  tag_params:
-    codes:
-      - "eng"
-      - "fre"
-      - "ger"
-      - "ita"
-      - "por"
-      - "spa"
 "041": 
   layout: 
     fields: 
