@@ -61,7 +61,11 @@
     :fields: 
     - - d
       - :occurrences: "1"
+    - - e
+      - :occurrences: "1"
     - - f
+      - :occurrences: "1"
+    - - g
       - :occurrences: "1"
   "040":
     :master: a
@@ -82,8 +86,21 @@
     :master: c
     :indicator: "##"
     :occurrences: "*"
-    :fields: 
+    :fields:
+    - - "2"
+      - :occurrences: "*"
+    - - b
+      - :occurrences: "*"
     - - c
+      - :occurrences: "*"
+  "075": 
+    :master: a
+    :indicator: "##"
+    :occurrences: "*"
+    :fields:
+    - - a
+      - :occurrences: "*"
+    - - b
       - :occurrences: "*"
   "151":
     :master: a
@@ -91,15 +108,19 @@
     :occurrences: "1"
     :fields:
     - - a
-      - :occurrences: "?"
+      - :occurrences: "1"
+    - - g
+      - :occurrences: "1"
   "370":
     :master: c
     :indicator: "##"
     :occurrences: "1"
     :fields:
-    - - c
+    - - "0"
       - :occurrences: "?"
-    - - e
+    - - "4"
+      - :occurrences: "?"
+    - - c
       - :occurrences: "?"
     - - f
       - :occurrences: "?"
@@ -110,55 +131,9 @@
     :fields:
     - - a
       - :occurrences: "?"
-  "551":
-    :master: a
-    :indicator: "##"
-    :occurrences: "1"
-    :fields:
-    - - a
+    - - g
       - :occurrences: "?"
   "667":
-    :master: a
-    :indicator: "##"
-    :occurrences: "*"
-    :fields:
-    - - a
-      - :occurrences: "?"
-  "670": 
-    :master: "0"
-    :indicator: "1#"
-    :occurrences: "*"
-    :fields: 
-    - - "0"
-      - :occurrences: "?"
-        :foreign_class: Publication
-        :foreign_field: id
-        :no_show: true
-    - - a
-      - :occurrences: "?"
-        :foreign_class: ^0
-        :foreign_field: short_name
-    - - b
-      - :occurrences: "?"
-    - - u
-      - :occurrences: "*"
-    - - "9"
-      - :occurrences: "?"
-  "675":
-    :master: "w"
-    :indicator: "##"
-    :occurrences: "*"
-    :fields:
-    - - w
-      - :occurrences: "?"
-        :foreign_class: Publication
-        :foreign_field: id
-        :no_show: true
-    - - a
-      - :occurrences: "?"
-        :foreign_class: ^w
-        :foreign_field: short_name
-  "678":
     :master: a
     :indicator: "##"
     :occurrences: "*"
@@ -172,38 +147,3 @@
     :fields:
     - - a
       - :occurrences: "?"
-  "856":
-    :master: u
-    :indicator: "##"
-    :occurrences: "*"
-    :fields:
-    - - u
-      - :occurrences: "?"
-    - - z
-      - :occurrences: "?"
-  "910":
-    :master: "0"
-    :indicator: "2#"
-    :relator_code: "4"
-    :occurrences: "*"
-    :fields:
-    - - "0"
-      - :occurrences: "?"
-        :foreign_class: Institution
-        :foreign_field: id
-        :no_show: true
-    - - a
-      - :occurrences: "?"
-        :foreign_class: ^0
-        :foreign_field: corporate_name
-    - - u
-      - :occurrences: "?"
-  "981":
-    :master: ""
-    :indicator: "##"
-    :occurrences: "*"
-    :fields:
-    - - "0"
-      - :occurrences: "1"
-    - - d
-      - :occurrences: "1"

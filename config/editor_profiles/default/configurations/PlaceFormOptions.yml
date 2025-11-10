@@ -60,7 +60,9 @@
       - "spa"
 "043": 
   layout: 
-    fields: 
+    fields:
+    - - "2"
+    - - b
     - - c
       - editor_partial: subfield_select_codes
         select_label: "Country"
@@ -176,6 +178,11 @@
         - "XD-VE"
         - "XB-VN"
         - "XC-TN"
+"075": 
+  layout: 
+    fields: 
+    - - a
+    - - b
 "151": 
   layout: 
     fields: 
@@ -188,46 +195,20 @@
           - referring_institutions
           - referring_publications
           - referring_works
+    - - g
 "370": 
   layout: 
     fields: 
+    - - "0"
+    - - "4"
     - - c
-    - - e
     - - f
 "451": 
   layout: 
     fields: 
     - - a
-"551": 
-  layout: 
-    fields: 
-    - - a
+    - - g
 "667": 
-  layout: 
-    fields: 
-    - - a
-      - growfield: true
-"670": 
-  new_window: publications
-  layout: 
-    fields: 
-    - - "a"
-      - type: publication
-        editor_partial: subfield_secondary
-        allow_new: false
-    - - "9"
-    - - "b"
-    - - "u"
-"675": 
-  new_window: publications
-  new_window_field: short_name_eq
-  layout: 
-    fields: 
-    - - "a"
-      - type: publication
-        allow_new: false
-        editor_partial: subfield_secondary
-"678": 
   layout: 
     fields: 
     - - a
@@ -237,28 +218,3 @@
     fields: 
     - - a
       - growfield: true
-"856": 
-  layout: 
-    fields: 
-    - - u
-    - - z
-      - growfield: true
-"910":
-  layout:
-    fields:
-    - - a
-      - read_only: true
-    - - "0"
-      - hidden: true
-    - - u
-      - read_only: true
-"981":
-  tag_params:
-    read_only: true
-    no_delete: true
-  layout:
-    fields:
-    - - "0"
-      - read_only: true
-    - - "d"
-      - read_only: true
