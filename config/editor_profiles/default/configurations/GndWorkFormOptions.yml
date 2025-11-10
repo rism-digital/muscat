@@ -914,6 +914,9 @@ force_editor_ordering: true
   layout: 
     fields: 
     - - a
+      - type: gnd_work_keys
+        preserve_foreign_value: true
+        editor_partial: subfield_secondary
       #- editor_partial: subfield_select_codes
       #  codes_reference: "384r"
   tag_params:

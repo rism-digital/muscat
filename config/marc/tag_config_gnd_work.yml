@@ -202,9 +202,14 @@
     - - c
       - :occurrences: "?"
   "384":  
+    :master: "0"
     :indicator: "1#"
     :occurrences: "*"
     :fields:
+    - - "0"
+      - :occurrences: "?"  
+        :foreign_class: GndWork
+        :foreign_field: id
     - - a
       - :occurrences: "?"
   "400":  

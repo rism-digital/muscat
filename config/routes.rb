@@ -51,6 +51,8 @@ Rails.application.routes.draw do
   get 'admin/gnd_works/autocomplete_gnd_works_instrument' => 'admin/gnd_works#autocomplete_gnd_works_instrument'
   get 'admin/gnd_works/autocomplete_gnd_works_form' => 'admin/gnd_works#autocomplete_gnd_works_form'
   get 'admin/gnd_works/autocomplete_gnd_works_title' => 'admin/gnd_works#autocomplete_gnd_works_title'
+  get 'admin/gnd_works/autocomplete_gnd_works_keys' => 'admin/gnd_works#autocomplete_gnd_works_keys'
+
 
   # MarcXML endpoint
   get '/data/:model/:id' => "data#show"
