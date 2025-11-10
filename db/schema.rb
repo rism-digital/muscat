@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.2].define(version: 2025_10_29_085112) do
+ActiveRecord::Schema[7.2].define(version: 2025_11_10_100740) do
   create_table "active_admin_comments", id: :integer, charset: "utf8mb3", force: :cascade do |t|
     t.string "namespace"
     t.text "body"
@@ -713,6 +713,7 @@ ActiveRecord::Schema[7.2].define(version: 2025_10_29_085112) do
     t.string "whodunnit"
     t.text "object", size: :long
     t.datetime "created_at", precision: nil
+    t.index ["event", "item_type"], name: "index_versions_on_event_and_item_type"
     t.index ["item_id"], name: "index_versions_on_item_id"
     t.index ["item_type", "item_id"], name: "index_versions_on_item_type_and_item_id"
   end
