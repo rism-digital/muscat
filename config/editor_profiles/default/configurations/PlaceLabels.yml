@@ -53,6 +53,13 @@
     c:
       label: records.geographic_area_code
   label: records.geographic_area_code
+'075':
+  fields:
+    a:
+      label: records.type_of_entity_term
+    b:
+      label: records.type_of_entity_code
+  label: records.type_of_entity
 '151':
   fields:
     a:

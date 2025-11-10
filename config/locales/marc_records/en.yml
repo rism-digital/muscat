@@ -935,6 +935,9 @@ en:
     type_designer: Type designer
     type_institution: Type of institution
     type_name_variant: Type of name variant
+    type_of_entity: Type of entity
+    type_of_entity_code: Type of entity code
+    type_of_entity_term: Type of entity term
     type_of_jurisdiction: Type of jurisdiction
     type_publication: Type of publication
     type_relationship: Type of relationship
