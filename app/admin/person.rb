@@ -161,7 +161,8 @@ ActiveAdmin.register Person do
 
   filter :"043c_cont", :label => proc {I18n.t(:filter_person_043c)}, as: :select,
     collection: proc {
-      @editor_profile.options_config["043"]["tag_params"]["codes"].map{|e| [@editor_profile.get_label(e), e]}.sort_by{|k,v| k}
+      #@editor_profile.options_config["043"]["tag_params"]["codes"].map{|e| [@editor_profile.get_label(e), e]}.sort_by{|k,v| k}
+      SharedCodes::get("country_codes_043").map{|e| [@editor_profile.get_label(e), e]}.sort_by{|k,v| k}
     }
   filter :"551a_cont", :label => proc {I18n.t(:filter_person_551a)}, :as => :string
   filter :"100d_birthdate_cont", :label => proc {I18n.t(:filter_person_100d_birthdate)}, :as => :string
