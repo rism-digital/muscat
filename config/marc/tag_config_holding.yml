@@ -289,14 +289,11 @@
     :occurrences: "*"
     :fields:
     - - u
-      - :occurrences: "*"
+      - :occurrences: "?"
     - - x
       - :occurrences: "?"
     - - z
-      - :occurrences: "*"
-    - - "8"
       - :occurrences: "?"
-        :no_browse: true
   "973":
     :master: "u"
     :indicator: "##"
