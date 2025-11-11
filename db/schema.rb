@@ -10,10 +10,10 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.2].define(version: 2025_11_10_100740) do
-  create_table "active_admin_comments", id: :integer, charset: "utf8mb3", force: :cascade do |t|
+ActiveRecord::Schema[7.2].define(version: 2025_11_11_134058) do
+  create_table "active_admin_comments", id: :integer, charset: "utf8mb4", collation: "utf8mb4_unicode_ci", force: :cascade do |t|
     t.string "namespace"
-    t.text "body"
+    t.text "body", size: :medium
     t.string "resource_id", null: false
     t.string "resource_type", null: false
     t.integer "author_id"
@@ -408,6 +408,13 @@ ActiveRecord::Schema[7.2].define(version: 2025_11_10_100740) do
   create_table "places_to_institutions", charset: "utf8mb3", force: :cascade do |t|
     t.integer "place_id"
     t.integer "institution_id"
+    t.string "marc_tag"
+    t.string "relator_code"
+  end
+
+  create_table "places_to_places", charset: "utf8mb3", force: :cascade do |t|
+    t.integer "place_a_id"
+    t.integer "place_b_id"
     t.string "marc_tag"
     t.string "relator_code"
   end

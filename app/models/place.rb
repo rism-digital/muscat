@@ -60,6 +60,12 @@ class Place < ApplicationRecord
   has_many :place_publication_relations
   has_many :publications, through: :place_publication_relations
 
+  has_many :place_relations, foreign_key: "place_a_id"
+  has_many :places, through: :place_relations, source: :place_b
+  # And this is the one coming back
+  has_many :referring_place_relations, class_name: "PlaceRelation", foreign_key: "place_b_id"
+  has_many :referring_places, through: :referring_place_relations, source: :place_a
+
   composed_of_reimplementation :marc, :class_name => "MarcPlace", :mapping => %w(marc_source to_marc)
 
 
@@ -136,7 +142,7 @@ class Place < ApplicationRecord
   def update_links
     return if self.suppress_recreate_trigger == true
 
-    allowed_relations = ["institutions", "publications"]
+    allowed_relations = ["institutions", "publications", "places"]
     recreate_links(marc, allowed_relations)
   end
 
