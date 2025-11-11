@@ -161,6 +161,11 @@ de:
     search: Suche
     edit_gnd_record: GND-Datensatz bearbeiten
 
+    abku: Abkürzung
+    nafr: Name, früherer
+    nasp: Name, späterer
+    tmzu: Titel mit Titelzusatz
+
     anla: "Anlass"
     nach: "Nachfolger"
     vorg: "Vorgänger"

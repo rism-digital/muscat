@@ -445,6 +445,14 @@ datj:
 dats:
   label: gnd.dats
 
+abku:
+    label: gnd.abku
+nafr:
+    label: gnd.nafr
+nasp:
+    label: gnd.nasp
+tmzu:
+    label: gnd.tmzu
 
 aar:
   label: gnd.aar
