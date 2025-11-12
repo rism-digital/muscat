@@ -149,22 +149,7 @@ class StandardTitle < ApplicationRecord
     #sunspot_dsl.integer(:src_count_order, :stored => true) {through_associations_source_count}
     integer(:referring_objects_order, stored: true) {through_associations_exclude_source_count}
   end
-  
-  def get_typus
-    res = Array.new(3)
-    if (Source.solr_search do with("240a_filter", title) end).total > 0 || self.referring_sources.size > 0
-      res[0] = "standard"
-    end
-    res[1] = (Source.solr_search do with("730a_filter", title) end).total > 0 ? "additional" : nil
-    res[2] = (Source.solr_search do with("031t_filter", title) end).total > 0 ? "text" : nil
-    return res.compact.join(", ")
-  end
-#	def get_indexed_terms
-#    solr = Sunspot.session.get_connection
-#    response = solr.get 'terms', :params => {:"terms.fl" => "240a_shingle_sms", :"terms.limit" => 1, :"terms.prefix" => self.title}
-#    response["terms"]["240a_shingle_sms"][1]
-#	end 
-	 
+  	 
   def name
     return title
   end
