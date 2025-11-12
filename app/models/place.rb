@@ -153,12 +153,12 @@ class Place < ApplicationRecord
     new_marc = MarcPlace.new(File.read(ConfigFilePath.get_marc_editor_profile_path("#{Rails.root}/config/marc/#{RISM::MARC}/place/default.marc")))
     new_marc.load_source true
     
-    new_marc.insert("151", a: self.name&.strip)
-    new_marc.insert("370", c: self.country&.strip, f: self.district&.strip) if self.country || self.district
-    new_marc.insert("667", a: self.notes&.strip) if self.notes && !self.notes.empty?
+    new_marc.add_tag_with_subfields("151", a: self.name&.strip)
+    new_marc.add_tag_with_subfields("370", c: self.country&.strip, f: self.district&.strip) if self.country || self.district
+    new_marc.add_tag_with_subfields("667", a: self.notes&.strip) if self.notes && !self.notes.empty?
     
     self.alternate_terms&.split("\n")&.each do |term|
-      new_marc.insert("451", a: term.strip)
+      new_marc.add_tag_with_subfields("451", a: term.strip)
     end
 
     if self.id != nil

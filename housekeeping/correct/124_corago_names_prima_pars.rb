@@ -1,7 +1,7 @@
 # Augh maximus
 unless Marc.instance_methods.include?(:insert)
   module MarcInsertBackportInstance
-    def insert(tag, subtags = {})
+    def add_tag_with_subfields(tag, subtags = {})
       the_t = MarcNode.new(@model, tag, "", @marc_configuration.get_default_indicator(tag))
 
       subtags.each do |stag, val|
@@ -76,12 +76,12 @@ def update_record(all_records, found_id = nil)
     #puts "Add variant #{fullname} to #{p.id}" if !found
     puts "VARIANT\t#{p.id}\t#{r["COD_RESP"]}\t#{p.name}\t#{fullname}" if !found
 
-    p.marc.insert("400", a: fullname, j: "xx")
+    p.marc.add_tag_with_subfields("400", a: fullname, j: "xx")
     r["COD_RESP"]
   end
 
     if alt_ids.any?
-    p.marc.insert("667", a: "Alternate Corago ids: " + alt_ids.join(", "))
+    p.marc.add_tag_with_subfields("667", a: "Alternate Corago ids: " + alt_ids.join(", "))
   end
 
   p.paper_trail_event = "Add CORAGO ID #{principal_entry["COD_RESP"]}"
@@ -103,8 +103,8 @@ def create_record(records)
   person.marc = new_marc
 
 
-  new_marc.insert("040", a: "DE-633", b: "ita", c: "DE-633", e: "rismg")
-  new_marc.insert("024", a: principal_entry["COD_RESP"], "2": "CORAGO")
+  new_marc.add_tag_with_subfields("040", a: "DE-633", b: "ita", c: "DE-633", e: "rismg")
+  new_marc.add_tag_with_subfields("024", a: principal_entry["COD_RESP"], "2": "CORAGO")
 
   fullname = [principal_entry["COGNOME"]&.strip, principal_entry["NOME"]&.strip].compact.join(", ")
   fullname = "#{fullname} #{principal_entry["PREFISSO"]&.strip}" if principal_entry["PREFISSO"]
@@ -118,15 +118,15 @@ def create_record(records)
   # FIXME
   #d: years
   # For the moment do not insert the coded years
-  new_marc.insert("100", a: fullname, y: years_free)
+  new_marc.add_tag_with_subfields("100", a: fullname, y: years_free)
 
   if principal_entry["LOC_NAS_R"]
     loc = principal_entry["LOC_NAS_R"].strip
     plz = @the_place_map.fetch(loc.to_sym, loc)
     if plz.include?("?")
-      new_marc.insert("680", a: plz)
+      new_marc.add_tag_with_subfields("680", a: plz)
     else
-      new_marc.insert("551", a: plz, i: "go")
+      new_marc.add_tag_with_subfields("551", a: plz, i: "go")
     end
   end
 
@@ -134,18 +134,18 @@ def create_record(records)
     loc = principal_entry["LOC_MOR_R"].strip
     plz = @the_place_map.fetch(loc.to_sym, loc)
     if plz.include?("?")
-      new_marc.insert("680", a: plz)
+      new_marc.add_tag_with_subfields("680", a: plz)
     else
-      new_marc.insert("551", a: principal_entry["LOC_MOR_R"].strip, i: "so")
+      new_marc.add_tag_with_subfields("551", a: principal_entry["LOC_MOR_R"].strip, i: "so")
     end
   end
 
   if principal_entry["NOTE_WEB"]
-    new_marc.insert("680", a: principal_entry["NOTE_WEB"].strip)
+    new_marc.add_tag_with_subfields("680", a: principal_entry["NOTE_WEB"].strip)
   end
 
   if principal_entry["BIOGRAFIA"]
-    new_marc.insert("680", a: principal_entry["BIOGRAFIA"].strip)
+    new_marc.add_tag_with_subfields("680", a: principal_entry["BIOGRAFIA"].strip)
   end
 
 
@@ -153,12 +153,12 @@ def create_record(records)
     fullname = [r["COGNOME"]&.strip, r["NOME"]&.strip].compact.join(", ")
     fullname = "#{fullname} #{r["PREFISSO"]&.strip}" if r["PREFISSO"]
     
-    new_marc.insert("400", a: fullname, j: "xx")
+    new_marc.add_tag_with_subfields("400", a: fullname, j: "xx")
     r["COD_RESP"]
   end
 
   if alt_ids.any?
-    new_marc.insert("667", a: "Alternate Corago ids: " + alt_ids.join(", "))
+    new_marc.add_tag_with_subfields("667", a: "Alternate Corago ids: " + alt_ids.join(", "))
   end
 
   #ap Date.parse(principal_entry["DATA_NAS_IND"])

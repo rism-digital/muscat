@@ -37,9 +37,9 @@ module Converters
         id = p ? p&.id&.to_s : "IMPORT-NEW"
         
         if idx == 0
-          t = new_marc.insert("100", a: aa.to_s, "0": id)
+          t = new_marc.add_tag_with_subfields("100", a: aa.to_s, "0": id)
         else
-          t = new_marc.insert("700", a: aa.to_s, "4": "aut", "0": id)
+          t = new_marc.add_tag_with_subfields("700", a: aa.to_s, "4": "aut", "0": id)
         end
 
       end
@@ -49,7 +49,7 @@ module Converters
         p = Person.where(full_name: aa.to_s).first
         id = p ? p&.id&.to_s : "IMPORT-NEW"
         
-        new_marc.insert("700", a: aa.to_s, "4": "edt", "0": id)
+        new_marc.add_tag_with_subfields("700", a: aa.to_s, "4": "edt", "0": id)
       end
 
       titles = ris['TI'].reject(&:nil?).map(&:strip).reject(&:empty?)
@@ -58,7 +58,7 @@ module Converters
       add_titles = []
       titles.each_with_index do |tit, idx|
         if idx == 0
-          new_marc.insert("240", a: tit, h: type_map[type&.to_sym])
+          new_marc.add_tag_with_subfields("240", a: tit, h: type_map[type&.to_sym])
         else
           add_titles << tit
         end
@@ -69,7 +69,7 @@ module Converters
       add_titles += ris['T3'].reject(&:nil?).map(&:strip).reject(&:empty?)
       add_titles += ris['BT'].reject(&:nil?).map(&:strip).reject(&:empty?)
 
-      add_tag = new_marc.insert("730", a: add_titles.shift)
+      add_tag = new_marc.add_tag_with_subfields("730", a: add_titles.shift)
       add_titles.each do |t|
         add_tag.add_at(MarcNode.new(@model, "a", t, nil))
       end
@@ -78,23 +78,23 @@ module Converters
       year = ris['PY'].reject(&:nil?).map(&:strip).reject(&:empty?)&.first
       place = ris['CY'].reject(&:nil?).map(&:strip).reject(&:empty?)&.first
       
-      new_marc.insert("260", a: place, b: pub, c: year)
+      new_marc.add_tag_with_subfields("260", a: place, b: pub, c: year)
 
       extent = ris['NV'].reject(&:nil?).map(&:strip).reject(&:empty?)&.first
-      new_marc.insert("300", a: extent) if extent
+      new_marc.add_tag_with_subfields("300", a: extent) if extent
 
       # also SE tag goes in 300
       extent = ris['SE'].reject(&:nil?).map(&:strip).reject(&:empty?)&.first
-      new_marc.insert("300", a: extent) if extent
+      new_marc.add_tag_with_subfields("300", a: extent) if extent
 
       urls = ris['UR'].reject(&:nil?).map(&:strip).reject(&:empty?)
       urls.each do |url|
-        new_marc.insert("856", u: url, z: "Electronic resource")
+        new_marc.add_tag_with_subfields("856", u: url, z: "Electronic resource")
       end
 
       links = ris['LK'].reject(&:nil?).map(&:strip).reject(&:empty?)
       links.each do |url|
-        new_marc.insert("856", u: url, z: "Electronic resource")
+        new_marc.add_tag_with_subfields("856", u: url, z: "Electronic resource")
       end
 
       serials = ris['SN'].reject(&:nil?).map(&:strip).reject(&:empty?)
@@ -103,12 +103,12 @@ module Converters
         serial.split(";").each do |s|
 
           if s&.strip&.gsub(/[^\dXx]/, '').length >= 10
-            new_marc.insert("020", a: s&.strip)
+            new_marc.add_tag_with_subfields("020", a: s&.strip)
           elsif s&.strip&.gsub(/[^\dXx]/, '').length == 8
-            new_marc.insert("022", a: s&.strip)
+            new_marc.add_tag_with_subfields("022", a: s&.strip)
           else
             # just make an isbn
-            new_marc.insert("020", a: s&.strip)
+            new_marc.add_tag_with_subfields("020", a: s&.strip)
           end
         end
 

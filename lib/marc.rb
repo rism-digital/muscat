@@ -625,7 +625,7 @@ class Marc
     return words.join(" ")
   end
 
-  def insert(tag, subtags = {})
+  def add_tag_with_subfields(tag, subtags = {})
     the_t = MarcNode.new(@model, tag, "", @marc_configuration.get_default_indicator(tag))
 
     subtags.each do |stag, val|

@@ -43,9 +43,9 @@ module Converters
           id = p ? p&.id&.to_s : "IMPORT-NEW"
           
           if idx == 0
-            t = new_marc.insert("100", a: aa.to_s, "0": id)
+            t = new_marc.add_tag_with_subfields("100", a: aa.to_s, "0": id)
           else
-            t = new_marc.insert("700", a: aa.to_s, "4": "aut", "0": id)
+            t = new_marc.add_tag_with_subfields("700", a: aa.to_s, "4": "aut", "0": id)
           end
 
         end
@@ -57,34 +57,34 @@ module Converters
           p = Person.where(full_name: aa.to_s).first
           id = p ? p&.id&.to_s : "IMPORT-NEW"
           
-          new_marc.insert("700", a: aa.to_s, "4": "edt", "0": id)
+          new_marc.add_tag_with_subfields("700", a: aa.to_s, "4": "edt", "0": id)
         end
       end
 
-      new_marc.insert("210", a: first_b.key) if first_b.key
+      new_marc.add_tag_with_subfields("210", a: first_b.key) if first_b.key
 
       h240 = type_map.fetch(first_b&.type, nil)
-      new_marc.insert("240", a: first_b.title, h: h240) if first_b[:title]
+      new_marc.add_tag_with_subfields("240", a: first_b.title, h: h240) if first_b[:title]
 
-      new_marc.insert("260", a: first_b.fetch(:address, ""), b: first_b.fetch(:publisher, ""), c: first_b.fetch(:year, ""))
-      new_marc.insert("300", a: first_b.pages) if first_b[:pages]
+      new_marc.add_tag_with_subfields("260", a: first_b.fetch(:address, ""), b: first_b.fetch(:publisher, ""), c: first_b.fetch(:year, ""))
+      new_marc.add_tag_with_subfields("300", a: first_b.pages) if first_b[:pages]
 
       # Try to concatenate the 760
       if first_b[:series] || first_b[:journal]
         t760 = [first_b[:journal], first_b[:series]].compact.join(", ")
-        new_marc.insert("760", t: t760, g: first_b&.volume)
+        new_marc.add_tag_with_subfields("760", t: t760, g: first_b&.volume)
       end
       
       # Add school and stuff for dissertations
       if [:dissertation, :mastersthesis, :phdthesis].include?(first_b&.type)
         type = human_readable_type[first_b&.type]
         a502 = [first_b[:school], type].compact.join(", ")
-        new_marc.insert("502", a: a502)
+        new_marc.add_tag_with_subfields("502", a: a502)
       end
 
-      new_marc.insert("020", a: first_b.isbn) if first_b[:isbn]
-      new_marc.insert("022", a: first_b.issn) if first_b[:issn]
-      new_marc.insert("024", a: first_b.ismn) if first_b[:ismn]
+      new_marc.add_tag_with_subfields("020", a: first_b.isbn) if first_b[:isbn]
+      new_marc.add_tag_with_subfields("022", a: first_b.issn) if first_b[:issn]
+      new_marc.add_tag_with_subfields("024", a: first_b.ismn) if first_b[:ismn]
 
       return new_marc.to_marc.force_encoding("UTF-8")
     end
