@@ -174,7 +174,6 @@ ActiveAdmin.register StandardTitle do
     attributes_table do
       row (I18n.t :filter_title) { |r| r.title }
       row (I18n.t :filter_variants) { |r| r.alternate_terms }
-      row (I18n.t :filter_record_type) { |r| r.typus }
       row (I18n.t :menu_latin) { |r| r.latin }
       row (I18n.t :filter_notes) { |r| r.notes }  
       row (I18n.t :filter_owner) { |r| User.find_by(id: r.wf_owner).name rescue r.wf_owner }
@@ -210,7 +209,6 @@ ActiveAdmin.register StandardTitle do
       end
       f.input :latin, :label => (I18n.t :menu_latin) 
       f.input :alternate_terms, :label => (I18n.t :filter_variants)
-      #f.input :typus, :label => (I18n.t :filter_record_type) 
       f.input :notes, :label => (I18n.t :filter_notes) 
       f.input :wf_stage, :label => (I18n.t :filter_wf_stage)
       f.input :lock_version, :as => :hidden
