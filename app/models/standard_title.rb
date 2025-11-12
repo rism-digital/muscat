@@ -63,6 +63,22 @@ class StandardTitle < ApplicationRecord
     self.index
   end
 
+  def get_source_standard_counts
+    @is_standard ||= (Source.solr_search do with("240a_filter", self.title) end).total        
+    return @is_standard
+  end
+
+  def get_source_additional_counts
+    @is_additional ||= (Source.solr_search do with("730a_filter", self.title) end).total
+    return @is_additional
+  end
+
+  def get_source_text_counts
+    @is_text ||= (Source.solr_search do with("031t_filter", self.title) end).total
+    return @is_text
+  end
+
+
   searchable :auto_index => false do
     integer :id
     text :id_text do
@@ -84,19 +100,28 @@ class StandardTitle < ApplicationRecord
       alternate_terms
     end
 		
-    text :typus
+    string :title_type_order, :stored => true do
+      [
+        ("standard"   if get_source_standard_counts > 0 || referring_sources.any?),
+        ("additional" if get_source_additional_counts > 0),
+        ("text"       if get_source_text_counts > 0)
+      ].compact.join(", ")
+    end
     
 
-    boolean :is_standard, :stored => true do |st|
-      (Source.solr_search do with("240a_filter", st.title) end).total > 0
+    boolean :is_standard, :stored => true do
+      #(Source.solr_search do with("240a_filter", st.title) end).total > 0
+      (get_source_standard_counts > 0)
     end
 
-    boolean :is_additional, :stored => true do |st|
-      (Source.solr_search do with("730a_filter", st.title) end).total > 0
+    boolean :is_additional, :stored => true do
+      #(Source.solr_search do with("730a_filter", st.title) end).total > 0
+      (get_source_additional_counts > 0)
     end
 
-    boolean :is_text, :stored => true do |st|
-      (Source.solr_search do with("031t_filter", st.title) end).total > 0
+    boolean :is_text, :stored => true do
+      #(Source.solr_search do with("031t_filter", st.title) end).total > 0
+      (get_source_text_counts > 0)
     end
 
     join(:folder_id, :target => FolderItem, :type => :integer, 
@@ -108,14 +133,15 @@ class StandardTitle < ApplicationRecord
         puts "StandardTitle #{id_for_fulltext} has a nil .title"
         0
       else
-        s = Source.solr_search do 
-          any_of do
-            with("031t_filter", tit)
-            with("240a_filter", tit)
-            with("730a_filter", tit)
-          end
-        end
-        s.total
+        #s = Source.solr_search do 
+        #  any_of do
+        #    with("031t_filter", tit)
+        #    with("240a_filter", tit)
+        #    with("730a_filter", tit)
+        #  end
+        #end
+        #s.total
+        get_source_standard_counts + get_source_additional_counts + get_source_text_counts
       end
       #StandardTitle.count_by_sql("select count(*) from sources_to_standard_titles where standard_title_id = #{self[:id]}")
     end
@@ -162,6 +188,6 @@ class StandardTitle < ApplicationRecord
   ransacker :"is_text", proc{ |v| } do |parent| parent.table[:id] end
   ransacker :"is_standard", proc{ |v| } do |parent| parent.table[:id] end
   ransacker :"is_additional", proc{ |v| } do |parent| parent.table[:id] end  
-
+  ransacker :"title_type_order", proc{ |v| } do |parent| parent.table[:id] end
 
 end
