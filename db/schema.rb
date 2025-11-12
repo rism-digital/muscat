@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.2].define(version: 2025_11_11_134058) do
+ActiveRecord::Schema[7.2].define(version: 2025_11_12_142522) do
   create_table "active_admin_comments", id: :integer, charset: "utf8mb4", collation: "utf8mb4_unicode_ci", force: :cascade do |t|
     t.string "namespace"
     t.text "body", size: :medium
@@ -665,7 +665,6 @@ ActiveRecord::Schema[7.2].define(version: 2025_11_11_134058) do
     t.datetime "created_at", precision: nil
     t.datetime "updated_at", precision: nil
     t.integer "lock_version", default: 0, null: false
-    t.string "typus"
     t.text "alternate_terms"
     t.text "sub_topic"
     t.string "viaf"
@@ -723,33 +722,6 @@ ActiveRecord::Schema[7.2].define(version: 2025_11_11_134058) do
     t.index ["event", "item_type"], name: "index_versions_on_event_and_item_type"
     t.index ["item_id"], name: "index_versions_on_item_id"
     t.index ["item_type", "item_id"], name: "index_versions_on_item_type_and_item_id"
-  end
-
-  create_table "work_incipits", id: :integer, charset: "utf8mb3", force: :cascade do |t|
-    t.integer "work_id"
-    t.string "nr_work"
-    t.string "movement"
-    t.string "excerpt"
-    t.string "heading"
-    t.string "role"
-    t.string "clef"
-    t.string "instrument_voice"
-    t.string "key_signature"
-    t.string "time_signature"
-    t.text "general_note"
-    t.string "key_mode"
-    t.string "validity"
-    t.string "code"
-    t.text "notation"
-    t.text "text_incipit"
-    t.text "public_note"
-    t.string "incipit_digest"
-    t.string "incipit_human"
-    t.integer "wf_audit", default: 0
-    t.integer "wf_stage", default: 0
-    t.integer "wf_owner", default: 0
-    t.datetime "created_at", precision: nil
-    t.datetime "updated_at", precision: nil
   end
 
   create_table "work_nodes", id: :integer, charset: "utf8mb3", force: :cascade do |t|
