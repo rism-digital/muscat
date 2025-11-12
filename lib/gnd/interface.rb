@@ -12,7 +12,8 @@ module GND
     SRU_READ_URL_AUTH = "https://services.dnb.de/sru/authorities"
     SRU_READ_URL = "https://services.dnb.de/sru/cbs-appr"
     MAGIC_READ_URL = "https://d-nb.info/gnd/" #/about/marcxml"
-
+    #SRU_PUSH_URL = "https://services.dnb.de/sru_ru/"
+    
     #SRU_READ_URL_AUTH = "https://devel.dnb.de/sru/cbs-appr"
     #SRU_READ_URL = "https://devel.dnb.de/sru/cbs-appr"
 
