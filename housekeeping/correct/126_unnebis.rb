@@ -166,7 +166,7 @@ rows.each do |r|
    h.marc["856"].each do |t|
     #if t["z"].first.content.strip == "NEBIS"
     if t["u"].first.content.strip == r[1].strip
-      t["z"].first.content = "Swisscovery"
+      t["z"].first.content = "Library catalogue record"
       t["u"].first.content = new_url
     end
   end
