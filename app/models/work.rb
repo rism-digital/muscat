@@ -61,23 +61,11 @@ class Work < ApplicationRecord
   has_many :delayed_jobs, -> { where parent_type: "Work" }, class_name: 'Delayed::Backend::ActiveRecord::Job', foreign_key: "parent_id"
   belongs_to :user, :foreign_key => "wf_owner"
 
-#  has_and_belongs_to_many(:works,
-#    :class_name => "Work",
-#    :foreign_key => "work_a_id",
-#    :association_foreign_key => "work_b_id",
-#    join_table: "works_to_works")
-  
-#  # This is the backward link
-#  has_and_belongs_to_many(:referring_works,
-#    :class_name => "Work",
-#    :foreign_key => "work_b_id",
-#    :association_foreign_key => "work_a_id",
-#    join_table: "works_to_works")
-
-  has_many :work_relations, foreign_key: "work_a_id"
-  has_many :works, through: :work_relations, source: :work_b
-  has_many :referring_work_relations, class_name: "WorkRelation", foreign_key: "work_b_id"
-  has_many :referring_works, through: :referring_work_relations, source: :work_a
+  generate_self_relations
+  #has_many :work_relations, foreign_key: "work_a_id"
+  #has_many :works, through: :work_relations, source: :work_b
+  #has_many :referring_work_relations, class_name: "WorkRelation", foreign_key: "work_b_id"
+  #has_many :referring_works, through: :referring_work_relations, source: :work_a
 
   composed_of_reimplementation :marc, :class_name => "MarcWork", :mapping => %w(marc_source to_marc)
 

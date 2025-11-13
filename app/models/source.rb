@@ -46,6 +46,7 @@ class Source < ApplicationRecord
   include Template
   include CommentsCleanup
   include ComposedOfReimplementation
+  include HasReferringRelations
 
   resourcify
 
@@ -105,13 +106,14 @@ class Source < ApplicationRecord
   belongs_to :user, :foreign_key => "wf_owner"
   
   # source-to-source many-to-many relation
+  generate_self_relations
   # We need to switch to has_many to use an intermediate model
   # This is the forward relationship
-  has_many :source_relations, foreign_key: "source_a_id"
-  has_many :sources, through: :source_relations, source: :source_b
+  #has_many :source_relations, foreign_key: "source_a_id"
+  #has_many :sources, through: :source_relations, source: :source_b
   # And this is the one coming back, i.e. sources pointing to this one from 775
-  has_many :referring_source_relations, class_name: "SourceRelation", foreign_key: "source_b_id"
-  has_many :referring_sources, through: :referring_source_relations, source: :source_a
+  #has_many :referring_source_relations, class_name: "SourceRelation", foreign_key: "source_b_id"
+  #has_many :referring_sources, through: :referring_source_relations, source: :source_a
 
   #composed_of :marc, :class_name => "MarcSource", :mapping => [%w(marc_source to_marc), %w(record_type record_type)]
   composed_of_reimplementation :marc, class_name: "MarcSource", mapping: [%w(marc_source to_marc), %w(record_type record_type)]

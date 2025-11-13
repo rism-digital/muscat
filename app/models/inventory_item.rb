@@ -2,6 +2,7 @@ class InventoryItem < ApplicationRecord
   include ForeignLinks
   include CommentsCleanup
   include ComposedOfReimplementation
+  include HasReferringRelations
   resourcify
 
   # class variables for storing the user name and the event from the controller
@@ -51,11 +52,12 @@ class InventoryItem < ApplicationRecord
   belongs_to :user, :foreign_key => "wf_owner"
   
   # Inventory items pointing to IIs
-  has_many :inventory_item_relations, foreign_key: "inventory_item_a_id"
-  has_many :inventory_items, through: :inventory_item_relations, source: :inventory_item_b
+  generate_self_relations
+#  has_many :inventory_item_relations, foreign_key: "inventory_item_a_id"
+#  has_many :inventory_items, through: :inventory_item_relations, source: :inventory_item_b
   # And this is the one coming back, i.e. inventory_item pointing to this one from 775
-  has_many :referring_inventory_item_relations, class_name: "InventoryItemRelation", foreign_key: "inventory_item_b_id"
-  has_many :referring_inventory_items, through: :referring_inventory_item_relations, source: :inventory_item_a
+#  has_many :referring_inventory_item_relations, class_name: "InventoryItemRelation", foreign_key: "inventory_item_b_id"
+#  has_many :referring_inventory_items, through: :referring_inventory_item_relations, source: :inventory_item_a
 
   composed_of_reimplementation :marc, :class_name => "MarcInventoryItem", :mapping => %w(marc_source to_marc)
 
