@@ -1,5 +1,5 @@
 # Hand made simple replacement to composed_of
-# As of rails 7, the falues are frozen and the "marc"
+# As of rails 7, the values are frozen and the "marc"
 # variable cannot be modified. https://github.com/rails/rails/pull/46377
 #
 # The easiest way is to simply expand the composed_of, like this:

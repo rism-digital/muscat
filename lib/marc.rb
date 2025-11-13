@@ -628,10 +628,11 @@ class Marc
   def add_tag_with_subfields(tag, subtags = {})
     the_t = MarcNode.new(@model, tag, "", @marc_configuration.get_default_indicator(tag))
 
+    # A subtag val can also be an array for repeated sts
     subtags.each do |stag, val|
-      next if !val
-      next if val.empty?
-      the_t.add_at(MarcNode.new(@model, stag.to_s, val, nil), 0 )
+      Array(val).compact.reject(&:empty?).reverse.each do |subval|
+        the_t.add_at(MarcNode.new(@model, stag.to_s, subval, nil), 0)
+      end
     end
 
     the_t.sort_alphabetically
