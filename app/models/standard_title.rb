@@ -15,7 +15,10 @@ class StandardTitle < ApplicationRecord
   include CommentsCleanup
   include ThroughAssociations
   include AutoStripStrings
+  include HasReferringRelations
 
+  referring_relations_for :source, :work, :inventory_item
+=begin
   #has_and_belongs_to_many(:referring_sources, class_name: "Source", join_table: "sources_to_standard_titles")
   has_many :source_standard_title_relations, class_name: "SourceStandardTitleRelation"
   has_many :referring_sources, through: :source_standard_title_relations, source: :source
@@ -26,7 +29,7 @@ class StandardTitle < ApplicationRecord
 
   has_many :inventory_item_standard_title_relations, class_name: "InventoryItemStandardTitleRelation"
   has_many :referring_inventory_items, through: :inventory_item_standard_title_relations, source: :inventory_item
-
+=end
   has_many :folder_items, as: :item, dependent: :destroy
   has_many :delayed_jobs, -> { where parent_type: "StandardTitle" }, class_name: 'Delayed::Backend::ActiveRecord::Job', foreign_key: "parent_id"
   belongs_to :user, :foreign_key => "wf_owner"

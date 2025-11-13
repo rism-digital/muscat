@@ -4,6 +4,8 @@ class WorkNode < ApplicationRecord
   include AuthorityMerge
   include CommentsCleanup
   include ComposedOfReimplementation
+  include HasReferringRelations
+  resourcify
 
   # class variables for storing the user name and the event from the controller
   @last_user_save
@@ -13,13 +15,14 @@ class WorkNode < ApplicationRecord
 
   has_paper_trail :on => [:update, :destroy], :only => [:marc_source, :wf_stage, :wf_audit], :if => Proc.new { |t| VersionChecker.save_version?(t) }
 
-  resourcify
   belongs_to :person
 
+  referring_relations_for :source
+=begin
   #has_and_belongs_to_many(:referring_sources, class_name: "Source", join_table: "sources_to_work_nodes")
   has_many :source_work_node_relations, class_name: "SourceWorkNodeRelation"
   has_many :referring_sources, through: :source_work_node_relations, source: :source
-  
+=end
   #has_and_belongs_to_many :people, join_table: "work_nodes_to_people"
   has_many :work_node_person_relations
   has_many :people, through: :work_node_person_relations

@@ -32,8 +32,11 @@ class Publication < ApplicationRecord
   include CommentsCleanup
   include ComposedOfReimplementation
   include ThroughAssociations
+  include HasReferringRelations
   resourcify
 
+  referring_relations_for :source, :institution, :person, :holding, :work, :inventory_item
+=begin
   #has_and_belongs_to_many(:referring_sources, class_name: "Source", join_table: "sources_to_publications")
   has_many :source_publication_relations, class_name: "SourcePublicationRelation"
   has_many :referring_sources, through: :source_publication_relations, source: :source
@@ -57,6 +60,7 @@ class Publication < ApplicationRecord
   #has_and_belongs_to_many(:referring_inventory_items, class_name: "InventoryItem", join_table: "inentory_items_to_publications")
   has_many :inventory_item_publication_relations, class_name: "InventoryItemPublicationRelation"
   has_many :referring_inventory_items, through: :inventory_item_publication_relations, source: :inventory_item
+=end
 
   #has_and_belongs_to_many :people, join_table: "publications_to_people"
   has_many :publication_person_relations

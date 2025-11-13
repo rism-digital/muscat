@@ -22,6 +22,8 @@ class Person < ApplicationRecord
   include CommentsCleanup
   include ComposedOfReimplementation
   include ThroughAssociations
+  include HasReferringRelations
+  resourcify
 
   # class variables for storing the user name and the event from the controller
   @last_user_save
@@ -40,6 +42,9 @@ class Person < ApplicationRecord
   has_many :digital_object_links, :as => :object_link, :dependent => :delete_all
   has_many :digital_objects, through: :digital_object_links, foreign_key: "object_link_id"
 
+  referring_relations_for :source, :institution, :holding, :publication, :work, :inventory_item, :work_node
+
+=begin
   #has_and_belongs_to_many(:referring_sources, class_name: "Source", join_table: "sources_to_people")
   has_many :source_person_relations, class_name: "SourcePersonRelation"
   has_many :referring_sources, through: :source_person_relations, source: :source
@@ -63,6 +68,11 @@ class Person < ApplicationRecord
   has_many :inventory_item_person_relations, class_name: "InventoryItemPersonRelation"
   has_many :referring_inventory_items, through: :inventory_item_person_relations, source: :inventory_item
 
+  #has_and_belongs_to_many(:referring_work_nodes, class_name: "WorkNode", join_table: "work_nodes_to_people")
+  has_many :work_node_person_relations, class_name: "WorkNodePersonRelation"
+  has_many :referring_work_nodes, through: :work_node_person_relations, source: :work_node
+=end
+
   #has_and_belongs_to_many :institutions, join_table: "people_to_institutions"
   has_many :person_institution_relations
   has_many :institutions, through: :person_institution_relations
@@ -74,10 +84,6 @@ class Person < ApplicationRecord
   #has_and_belongs_to_many :places, join_table: "people_to_places"
   has_many :person_place_relations
   has_many :places, through: :person_place_relations
-
-  #has_and_belongs_to_many(:referring_work_nodes, class_name: "WorkNode", join_table: "work_nodes_to_people")
-  has_many :work_node_person_relations, class_name: "WorkNodePersonRelation"
-  has_many :referring_work_nodes, through: :work_node_person_relations, source: :work_node
 
   has_many :folder_items, as: :item, dependent: :destroy
   has_many :delayed_jobs, -> { where parent_type: "Person" }, class_name: 'Delayed::Backend::ActiveRecord::Job', foreign_key: "parent_id"

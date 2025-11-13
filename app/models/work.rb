@@ -5,7 +5,9 @@ class Work < ApplicationRecord
   include CommentsCleanup
   include ComposedOfReimplementation
   include ThroughAssociations
-  
+  include HasReferringRelations
+  resourcify
+
   # class variables for storing the user name and the event from the controller
   @last_user_save
   attr_accessor :last_user_save
@@ -14,19 +16,19 @@ class Work < ApplicationRecord
 
   has_paper_trail :on => [:update, :destroy], :only => [:marc_source, :wf_stage, :wf_audit], :if => Proc.new { |t| VersionChecker.save_version?(t) }
 
-
-  resourcify
   belongs_to :composer, class_name: "Person", foreign_key: "person_id"
   has_many :digital_object_links, :as => :object_link, :dependent => :delete_all
   has_many :digital_objects, through: :digital_object_links, foreign_key: "object_link_id"
 
+  referring_relations_for :source, :inventory_item
+=begin
   #has_and_belongs_to_many(:referring_sources, class_name: "Source", join_table: "sources_to_works")
   has_many :source_work_relations, class_name: "SourceWorkRelation", dependent: :destroy
   has_many :referring_sources, through: :source_work_relations, source: :source
   
   has_many :inventory_item_work_relations, class_name: "InventoryItemWorkRelation"
   has_many :referring_inventory_items, through: :inventory_item_work_relations, source: :inventory_item
-
+=end
   #has_and_belongs_to_many :publications, join_table: "works_to_publications"
   has_many :work_publication_relations
   has_many :publications, through: :work_publication_relations

@@ -19,7 +19,7 @@ class Institution < ApplicationRecord
   include CommentsCleanup
   include ComposedOfReimplementation
   include ThroughAssociations
-
+  include HasReferringRelations
   resourcify
   
   # class variables for storing the user name and the event from the controller
@@ -33,6 +33,9 @@ class Institution < ApplicationRecord
   has_many :digital_object_links, :as => :object_link, :dependent => :delete_all
   has_many :digital_objects, through: :digital_object_links, foreign_key: "object_link_id"
 
+  referring_relations_for :source, :holding, :person, :publication, :work, :inventory_item
+
+=begin
   #has_and_belongs_to_many(:referring_sources, class_name: "Source", join_table: "sources_to_institutions")
   has_many :source_institution_relations, class_name: "SourceInstitutionRelation"
   has_many :referring_sources, through: :source_institution_relations, source: :source
@@ -55,6 +58,7 @@ class Institution < ApplicationRecord
 
   has_many :inventory_item_institution_relations, class_name: "InventoryItemInstitutionRelation"
   has_many :referring_inventory_items, through: :inventory_item_institution_relations, source: :inventory_item
+=end
 
   #has_and_belongs_to_many :people, join_table: "institutions_to_people"
   has_many :institution_person_relations

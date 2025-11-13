@@ -15,7 +15,10 @@ class StandardTerm < ApplicationRecord
   include CommentsCleanup
   include ThroughAssociations
   include AutoStripStrings
+  include HasReferringRelations
 
+  referring_relations_for :source, :publication, :work, :inventory_item
+=begin
   #has_and_belongs_to_many(:referring_sources, class_name: "Source", join_table: "sources_to_standard_terms")
   has_many :source_standard_term_relations, class_name: "SourceStandardTermRelation"
   has_many :referring_sources, through: :source_standard_term_relations, source: :source
@@ -31,6 +34,7 @@ class StandardTerm < ApplicationRecord
   #has_and_belongs_to_many(:referring_inventory_items, class_name: "InventoryItem", join_table: "inventory_items_to_standard_terms")
   has_many :inventory_item_standard_term_relations, class_name: "InventoryItemStandardTermRelation"
   has_many :referring_inventory_items, through: :inventory_item_standard_term_relations, source: :inventory_item
+=end
 
   has_many :folder_items, as: :item, dependent: :destroy
   has_many :delayed_jobs, -> { where parent_type: "StandardTerm" }, class_name: 'Delayed::Backend::ActiveRecord::Job', foreign_key: "parent_id"

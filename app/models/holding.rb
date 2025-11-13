@@ -2,6 +2,7 @@ class Holding < ApplicationRecord
   include ForeignLinks
   include CommentsCleanup
   include ComposedOfReimplementation
+  include HasReferringRelations
   resourcify
 
   # class variables for storing the user name and the event from the controller
@@ -31,8 +32,9 @@ class Holding < ApplicationRecord
   has_many :holding_place_relations
   has_many :places, through: :holding_place_relations
 
-  has_many :inventory_item_holding_relations, class_name: "InventoryItemHoldingRelation"
-  has_many :referring_inventory_items, through: :inventory_item_holding_relations, source: :inventory_item
+  referring_relations_for :inventory_item
+  #has_many :inventory_item_holding_relations, class_name: "InventoryItemHoldingRelation"
+  #has_many :referring_inventory_items, through: :inventory_item_holding_relations, source: :inventory_item
 
   belongs_to :source
 	belongs_to :collection, class_name: "Source", foreign_key: "collection_id"

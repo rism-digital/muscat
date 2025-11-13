@@ -16,6 +16,8 @@ class Place < ApplicationRecord
   include AutoStripStrings
   include ComposedOfReimplementation
   include ThroughAssociations
+  include HasReferringRelations
+  resourcify
 
   @last_user_save
   attr_accessor :last_user_save
@@ -24,6 +26,9 @@ class Place < ApplicationRecord
 
   has_paper_trail :on => [:update, :destroy], :only => [:marc_source, :wf_stage, :wf_audit], :if => Proc.new { |t| VersionChecker.save_version?(t) }
 
+  referring_relations_for :source, :person, :institution, :publication, :holding, :work
+
+=begin
   #has_and_belongs_to_many(:referring_sources, class_name: "Source", join_table: "sources_to_places")
   has_many :source_place_relations, class_name: "SourcePlaceRelation"
   has_many :referring_sources, through: :source_place_relations, source: :source
@@ -47,6 +52,7 @@ class Place < ApplicationRecord
   #has_and_belongs_to_many(:referring_works, class_name: "Work", join_table: "works_to_places")
   has_many :work_place_relations, class_name: "WorkPlaceRelation"
   has_many :referring_works, through: :work_place_relations, source: :work
+=end
 
   has_many :folder_items, as: :item, dependent: :destroy
   has_many :delayed_jobs, -> { where parent_type: "Place" }, class_name: 'Delayed::Backend::ActiveRecord::Job', foreign_key: "parent_id"

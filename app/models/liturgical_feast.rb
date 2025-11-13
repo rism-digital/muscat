@@ -14,7 +14,11 @@ class LiturgicalFeast < ApplicationRecord
   include CommentsCleanup
   include ThroughAssociations
   include AutoStripStrings
+  include HasReferringRelations
   
+  referring_relations_for :source, :work
+
+=begin
   #has_and_belongs_to_many(:referring_sources, class_name: "Source", join_table: "sources_to_liturgical_feasts")
   has_many :source_liturgical_feast_relations, class_name: "SourceLiturgicalFeastRelation"
   has_many :referring_sources, through: :source_liturgical_feast_relations, source: :source
@@ -22,6 +26,7 @@ class LiturgicalFeast < ApplicationRecord
   #has_and_belongs_to_many(:referring_works, class_name: "Work", join_table: "works_to_liturgical_feasts")
   has_many :work_liturgical_feast_relations, class_name: "WorkLiturgicalFeastRelation"
   has_many :referring_works, through: :work_liturgical_feast_relations, source: :work
+=end
 
   has_many :folder_items, as: :item, dependent: :destroy
   has_many :delayed_jobs, -> { where parent_type: "LiturgicalFeast" }, class_name: 'Delayed::Backend::ActiveRecord::Job', foreign_key: "parent_id"
