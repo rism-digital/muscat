@@ -4,6 +4,8 @@ force_editor_ordering: true
   tag: tag_no_subfield
   tag_params: 
     editor_only: true
+    read_only: true
+    no_delete: true
   tag_header: none
 "001": 
   tag: tag_no_subfield
