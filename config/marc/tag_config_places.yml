@@ -116,17 +116,17 @@
     :indicator: "##"
     :occurrences: "1"
     :fields:
-    - - "0"
-      - :occurrences: "?"
-        :foreign_class: Place
-        :foreign_field: id
-        :no_show: true
+    #- - "0"
+    #  - :occurrences: "?"
+    #    :foreign_class: Place
+    #    :foreign_field: id
+    #    :no_show: true
     - - "4"
       - :occurrences: "?"
     - - c
       - :occurrences: "?"
-        :foreign_class: ^0
-        :foreign_field: name
+     #   :foreign_class: ^0
+     #   :foreign_field: name
     - - f
       - :occurrences: "?"
   "451":

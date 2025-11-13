@@ -88,8 +88,8 @@
     - - "4"
     - - c
       - type: place
-        editor_partial: subfield_secondary
-        allow_new: false
+        #editor_partial: subfield_secondary
+        #allow_new: false
     - - f
 "451": 
   layout: 
