@@ -122,8 +122,7 @@ ActiveAdmin.register StandardTerm do
   
   index :download_links => false do
     selectable_column if !is_selection_mode?
-    column (I18n.t :filter_wf_stage) {|term| status_tag(term.wf_stage,
-      label: I18n.t('status_codes.' + (term.wf_stage != nil ? term.wf_stage : ""), locale: :en))} 
+    column((I18n.t :filter_wf_stage), sortable: :wf_stage) {|i| active_admin_wf_stage_column(self, i)}
     column (I18n.t :filter_id), :id  
     column (I18n.t :filter_term), :term
     column (I18n.t :filter_alternate_terms), :alternate_terms

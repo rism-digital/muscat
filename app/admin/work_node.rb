@@ -128,8 +128,7 @@ ActiveAdmin.register WorkNode do
   
   index :download_links => false do
     selectable_column if !is_selection_mode?
-    column (I18n.t :filter_wf_stage) {|work_node| status_tag(work_node.wf_stage,
-      label: I18n.t('status_codes.' + (work_node.wf_stage != nil ? work_node.wf_stage : ""), locale: :en))} 
+    column((I18n.t :filter_wf_stage), sortable: :wf_stage) {|i| active_admin_wf_stage_column(self, i)} 
     column (I18n.t :filter_id), :id  
     column (I18n.t :filter_composer), :composer, sortable: :composer_order
     column (I18n.t :filter_title), :title

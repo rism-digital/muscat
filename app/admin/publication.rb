@@ -236,8 +236,7 @@ ActiveAdmin.register Publication do
   
   index :download_links => false do
     selectable_column if !is_selection_mode?
-    column (I18n.t :filter_wf_stage) {|cat| status_tag(cat.wf_stage,
-      label: I18n.t('status_codes.' + (cat.wf_stage != nil ? cat.wf_stage : ""), locale: :en))}  
+    column((I18n.t :filter_wf_stage), sortable: :wf_stage) {|i| active_admin_wf_stage_column(self, i)} 
     column (I18n.t :filter_id), :id    
     column (I18n.t :filter_title_short), :short_name
     column (I18n.t :filter_title), :title

@@ -151,10 +151,10 @@ module Muscat
             # Fields used for order by convention always end with _order
             # In some cases it is a duplicate field stored in the DB
             # So in that case we append the _order here
-            if field != "id"
+            if !(field == "id" || field == "wf_stage")
               field = field + "_order" if !field.ends_with?("_order") && !field.ends_with?("_shelforder") && !field.ends_with?("_ans")
             end
-
+            
             order = { :field => field.underscore.to_sym, :order => order.to_sym }
           end
 

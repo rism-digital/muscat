@@ -193,8 +193,11 @@ ActiveAdmin.register Person do
 
   index :download_links => false do
     selectable_column if !is_selection_mode?
-    column (I18n.t :filter_wf_stage) {|person| status_tag(person.wf_stage,
-      label: I18n.t('status_codes.' + (person.wf_stage != nil ? person.wf_stage : ""), locale: :en))}
+    column((I18n.t :filter_wf_stage), sortable: :wf_stage) {|i| active_admin_wf_stage_column(self, i)}
+      
+      #status_tag(person.wf_stage,
+      #label: I18n.t('status_codes.' + (person.wf_stage != nil ? person.wf_stage : ""), locale: :en))
+    #end
     column (I18n.t :filter_id), :id
 
     if defined?(RISM::CLEVER_ORDERING) && RISM::CLEVER_ORDERING == true

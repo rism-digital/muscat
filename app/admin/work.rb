@@ -209,8 +209,7 @@ ActiveAdmin.register Work do
 
   index :download_links => false do
     selectable_column if !is_selection_mode?
-    column (I18n.t :filter_wf_stage) {|work| status_tag(work.wf_stage,
-      label: I18n.t('status_codes.' + (work.wf_stage != nil ? work.wf_stage : ""), locale: :en))} 
+    column((I18n.t :filter_wf_stage), sortable: :wf_stage) {|i| active_admin_wf_stage_column(self, i)}
 
     column (I18n.t :"general.validity") do |work| 
       if work.wf_audit != nil && !work.wf_audit.empty? && work.wf_audit != "normal"

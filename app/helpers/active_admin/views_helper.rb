@@ -412,4 +412,11 @@ module ActiveAdmin::ViewsHelper
     return s.join(' ')
   end
 
+  def active_admin_wf_stage_column(context, item)
+    context.status_tag(
+      item.wf_stage,
+      label: I18n.t("status_codes.#{item.wf_stage}", locale: :en)
+    )
+  end
+
 end

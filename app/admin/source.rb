@@ -376,8 +376,8 @@ ActiveAdmin.register Source do
   
   index :download_links => false do
     selectable_column if !is_selection_mode?
-    column (I18n.t :filter_wf_stage) {|source| status_tag(source.wf_stage,
-      label: I18n.t('status_codes.' + (source.wf_stage != nil ? source.wf_stage : ""), locale: :en))} 
+    column((I18n.t :filter_wf_stage), sortable: :wf_stage) {|i| active_admin_wf_stage_column(self, i)}
+
     column (I18n.t :filter_record_type_short) {|source| status_tag(source.get_record_type.to_s, 
       label: I18n.t('record_types_codes.' + (source.record_type != nil ? source.record_type.to_s : ""), locale: :en))} 
     column (I18n.t :filter_id), :id  
