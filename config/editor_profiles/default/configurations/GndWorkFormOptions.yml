@@ -398,8 +398,6 @@ force_editor_ordering: true
 "400":
   layout: 
     fields:
-    - - "4"
-      - editor_partial: subfield_select_codes
     - - t
     - - a
     - - d
@@ -408,6 +406,8 @@ force_editor_ordering: true
     - - n
     - - p
     - - r
+    - - "4"
+      - editor_partial: subfield_select_codes
     - - "9"
       - default: "v:"
   tag_params:
@@ -419,8 +419,6 @@ force_editor_ordering: true
 "430": 
   layout: 
     fields:
-    - - "4"
-      - editor_partial: subfield_select_codes
     - - a
     - - f
     - - m
@@ -429,6 +427,8 @@ force_editor_ordering: true
     - - r
       - editor_partial: subfield_select_codes
         codes_reference: "430r"
+    - - "4"
+      - editor_partial: subfield_select_codes
   tag_params:
         codes:
         - abku
