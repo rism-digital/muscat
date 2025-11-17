@@ -233,6 +233,8 @@ g-2:
       label: gnd.part_title
     "9":
       label: gnd.remarks
+    "4":
+      label: gnd.relationship_code
 
 '430':
   label: gnd.work_relationship
@@ -249,7 +251,9 @@ g-2:
       label: gnd.part_title
     r:
       label: gnd.key_mode
-
+    "4":
+      label: gnd.relationship_code
+      
 '500':
   label: gnd.relationship
   fields:
