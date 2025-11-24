@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.2].define(version: 2025_11_12_142522) do
+ActiveRecord::Schema[7.2].define(version: 2025_11_24_080437) do
   create_table "active_admin_comments", id: :integer, charset: "utf8mb4", collation: "utf8mb4_unicode_ci", force: :cascade do |t|
     t.string "namespace"
     t.text "body", size: :medium
@@ -401,6 +401,7 @@ ActiveRecord::Schema[7.2].define(version: 2025_11_12_142522) do
     t.integer "lock_version", default: 0, null: false
     t.text "alternate_terms"
     t.text "marc_source"
+    t.json "hierarchy"
     t.index ["name"], name: "index_places_on_name"
     t.index ["wf_stage"], name: "index_places_on_wf_stage"
   end
