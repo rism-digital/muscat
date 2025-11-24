@@ -1,0 +1,18 @@
+columns do
+  column do
+    panel "TGN Results" do
+      if results.is_a? Array and results.size > 0
+        table_for results.map do
+          column ("Subject") {|row| row[:subject]}
+          column ("Term") {|row| row[:term] }
+          column ("Description") {|row| row[:description] }
+          column ("Type") {|row| row[:type] }
+          column ("Parents") {|row| row[:parents] }
+          column ("") {|row| link_to("Create", "tgn_create?id=#{row[:subject]}")}
+        end
+      else
+        text_node("The selected query returned no results")
+      end
+    end
+  end
+end

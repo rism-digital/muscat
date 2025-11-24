@@ -1,0 +1,17 @@
+<ul>
+  <li class="muscat_icon_separator"></li>
+  <li class="muscat_icon_link">
+  </li>
+</ul>
+
+<%= form_tag("/admin/places/tgn_search", method: "get", class: "filter_form") do %>
+  <div class="filter_form">
+      <div class="string input optional stringish filter_form_field filter_string">
+        <%= label_tag("q", I18n.t("query")) %>
+        <%= text_field_tag("q", @query) %>
+      </div>
+    <div class="buttons">
+      <%= submit_tag("Search and Create from Getty") %>
+    </div>
+  </div>
+<% end %>

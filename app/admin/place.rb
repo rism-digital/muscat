@@ -104,6 +104,21 @@ ActiveAdmin.register Place do
   # Include the MARC extensions
   include MarcControllerActions
 
+  collection_action :tgn_search, method: :get do
+    begin
+      params.require(:q)
+      begin
+        @results = TgnClient::search(params[:q])
+      rescue Faraday::ConnectionFailed
+        ## inform user here
+      end
+      
+    rescue ActionController::ParameterMissing
+      @results = nil
+    end
+    render 'tgn_results', layout: "active_admin", locals: { results: @results }
+  end
+
   member_action :reindex, method: :get do
     job = Delayed::Job.enqueue(ReindexItemsJob.new(params[:id], Place, :referring_sources))
     redirect_to resource_path(params[:id]), notice: "Reindex Job started #{job.id}"
@@ -140,6 +155,7 @@ ActiveAdmin.register Place do
 
   sidebar :actions, :only => :index do
     render :partial => "activeadmin/section_sidebar_index"
+    render partial: "tgn_search_actions"
   end
 
   # Include the folder actions
