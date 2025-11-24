@@ -79,7 +79,11 @@ module GettyTGN
     end
 
     def self.extract_pref_label(subject)
-        subject.at_xpath('./label')&.text
+      # Guess what? There can be more than one prefLabel
+      # Try to get one that has some text
+      subject.xpath('./prefLabel')
+          .map(&:text)
+          .find { |t| t.strip.present? }
     end
 
     def self.extract_parent_string(subject)
@@ -99,9 +103,9 @@ module GettyTGN
       return nil unless lat && long
 
       {
-        lat: lat.to_f,
-        long: long.to_f,
-        alt: alt&.to_f
+        lat: lat.to_s,
+        long: long.to_s,
+        alt: alt&.to_s
       }
     end
   end
@@ -180,4 +184,20 @@ class TgnClient
 
   end
 
+end
+
+class TgnConverter
+  def self.to_place_marc(record)
+    
+    new_marc = MarcPlace.new(File.read(ConfigFilePath.get_marc_editor_profile_path("#{Rails.root}/config/marc/#{RISM::MARC}/place/default.marc")))
+    new_marc.load_source false
+
+    new_marc.add_tag_with_subfields("151", a: record[:name])
+    new_marc.add_tag_with_subfields("024", a: record[:id], "2": "TGN")
+
+    new_marc.add_tag_with_subfields("034", d: record[:coordinates][:lat],  e: record[:coordinates][:lat], 
+                                           f: record[:coordinates][:long],  g: record[:coordinates][:long])
+
+    return new_marc.to_marc.force_encoding("UTF-8")
+  end
 end

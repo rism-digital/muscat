@@ -11,21 +11,8 @@
     - - a
     - - "2"
       - values: 
-        - "BNE"
-        - "BNF"
-        - "DNB"
-        - "ICCU"
-        - "ISNI"
-        - "LC"
-        - "NLP"
-        - "NKC"
-        - "OCLC"
-        - "ORCID"
-        - "SWNL"
-        - "VIAF"
-        - "WKP"
-        - "CMO"
-        default: "VIAF"
+        - "TGN"
+        default: "TGN"
         editor_partial: subfield_select
 "034": 
   layout: 

@@ -87,8 +87,17 @@ ActiveAdmin.register Place do
 
     def new
       @place = Place.new
+      converted = false
 
-      new_marc = MarcPlace.new(File.read(ConfigFilePath.get_marc_editor_profile_path("#{Rails.root}/config/marc/#{RISM::MARC}/place/default.marc")))
+      if params.include?(:tgn_id)
+        tgn_id = params.fetch(:tgn_id).gsub("tgn:", "")
+        rec = TgnClient::get_tgn(tgn_id)
+        converted = TgnConverter::to_place_marc(rec)
+      end
+
+      marc_file = converted || File.read(ConfigFilePath.get_marc_editor_profile_path("#{Rails.root}/config/marc/#{RISM::MARC}/place/default.marc"))
+      
+      new_marc = MarcPlace.new(marc_file)
       new_marc.load_source false # this will need to be fixed
       @place.marc = new_marc
 
