@@ -8,7 +8,14 @@ columns do
           column ("Description") {|row| row[:description] }
           column ("Type") {|row| row[:type] }
           column ("Parents") {|row| row[:parents] }
-          column ("") {|row| link_to("Pull", "new?tgn_id=#{row[:subject]}")}
+          column ("In Muscat") {|row| row[:in_muscat] }
+          column ("") {|row| 
+            if row[:in_muscat]
+              ""
+            else
+              link_to("Pull", "new?tgn_id=#{row[:subject]}")
+            end
+            }
         end
       else
         text_node("The selected query returned no results")

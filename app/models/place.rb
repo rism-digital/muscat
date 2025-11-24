@@ -224,6 +224,7 @@ class Place < ApplicationRecord
     self.name = marc.get_place_name
     self.country = marc.get_place_country
     self.district = marc.get_place_district
+    self.tgn_id = marc.get_tgn_id
 
     self.marc_source = self.marc.to_marc
   end

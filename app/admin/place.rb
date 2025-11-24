@@ -125,6 +125,18 @@ ActiveAdmin.register Place do
     rescue ActionController::ParameterMissing
       @results = nil
     end
+
+    # Map these to Muscat-ids if possible
+    @results.each do |r|
+      sanit_id = r[:subject].gsub("tgn:", "")
+      begin
+        ids = Place.where(tgn_id: sanit_id)
+        r[:in_muscat] = ids.count > 0 ? true : false
+      rescue ActiveRecord::RecordNotFound
+        r[:in_muscat] = false
+      end
+    end
+
     render 'tgn_results', layout: "active_admin", locals: { results: @results }
   end
 
