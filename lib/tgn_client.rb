@@ -3,7 +3,7 @@ require 'json'
 
 module GettyTGN
 
-  class Parser
+  class TGNMetadata
     NS = {
       rdf:  "http://www.w3.org/1999/02/22-rdf-syntax-ns#",
       rdfs: "http://www.w3.org/2000/01/rdf-schema#",
@@ -14,7 +14,6 @@ module GettyTGN
     }
 
     def self.map_parents(parents, place_string)
-      
       values_block = parents.map { |u| "<#{u}>" }.join("\n")
 
       query = <<~SPARQL
@@ -35,31 +34,24 @@ module GettyTGN
       client = SPARQL::Client.new("http://vocab.getty.edu/sparql")
       results = client.query(query)
 
-      results.each do |r|
-        puts r[:uri]
-        puts r[:prefLabel]
-
-      end
-
-
       ordered_labels = place_string.split(",").map(&:strip)
 
-      # Build a lookup for speed
-      #result_lookup = results.index_by { |r| r[:prefLabel].to_s }
+      used_up = []
 
       ordered = ordered_labels.map do |label|
-        #row = result_lookup[label]
         row = results.find do |r|
-          r[:prefLabel].to_s.downcase.include?(label.downcase)
+          r[:prefLabel].to_s.casecmp?(label) && used_up.exclude?(r[:uri].to_s)
         end
         next unless row   # skip if missing
 
+        used_up << row[:uri].to_s
+
         { id: row[:uri].to_s, label: row[:prefLabel].to_s }
       end.compact
-      ap ordered
+      return ordered
     end
 
-    def self.parse(xml)
+    def self.get_metadata_from_xml(xml)
       doc = Nokogiri::XML(xml)
       doc.remove_namespaces! # optional but makes XPath easier
 
@@ -67,15 +59,14 @@ module GettyTGN
 
       subject = doc.at_xpath("//Subject")
 
-      map_parents(extract_place_type_preferred(subject, doc), extract_parent_string(subject))
+      parents_ordered = map_parents(extract_place_type_preferred(subject, doc), extract_parent_string(subject))
 
       {
         id: extract_id(subject),
-        pref_label: extract_pref_label(subject),
-        parent_string: extract_parent_string(subject),
-        place_type_preferred: extract_place_type_preferred(subject, doc),
+        name: extract_pref_label(subject),
+        hierarchy_string: extract_parent_string(subject),
+        hierarchy: parents_ordered,
         coordinates: extract_coordinates(doc),
-        broader: extract_broader(subject),
       }
     end
 
@@ -88,9 +79,7 @@ module GettyTGN
     end
 
     def self.extract_pref_label(subject)
-      # skos:prefLabel
-      subject.at_xpath('./prefLabel[@xml:lang="en"]')&.text ||
-        subject.at_xpath('./prefLabel')&.text
+        subject.at_xpath('./label')&.text
     end
 
     def self.extract_parent_string(subject)
@@ -98,15 +87,8 @@ module GettyTGN
     end
 
     def self.extract_place_type_preferred(subject, doc)
-      # gvp:placeTypePreferred → @rdf:resource to AAT URI
       uri = subject.xpath("//broaderPreferredExtended/@resource", NS).map(&:value)
-
       return uri
-
-    end
-
-    def self.extract_broader(subject)
-      subject.xpath("./broader/@rdf:resource", NS).map(&:value)
     end
 
     def self.extract_coordinates(doc)
@@ -127,46 +109,7 @@ end
 
 class TgnClient
   BASE_URL = "https://vocab.getty.edu/tgn"
-
   ENDPOINT = "https://vocab.getty.edu/sparql"
-
-  def self.parents_for(tgn_id)
-    client = SPARQL::Client.new(ENDPOINT)
-
-    query = <<~SPARQL
-      PREFIX gvp: <http://vocab.getty.edu/ontology#>
-      PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
-      PREFIX dct: <http://purl.org/dc/elements/1.1/>
-      PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
-
-      SELECT DISTINCT ?ancestor ?label ?id (COALESCE(COUNT(?mid), 0) AS ?depth)
-      WHERE {
-        VALUES ?place { <http://vocab.getty.edu/tgn/#{tgn_id}> }
-
-        # Get all ancestors (unordered)
-        ?place gvp:broaderPreferredExtended ?ancestor .
-
-        # Intermediate nodes ancestor -> place for depth calculation
-        OPTIONAL { ?ancestor gvp:broaderPreferred+ ?mid . }
-
-        # Metadata
-        ?ancestor dct:identifier ?id .
-        ?ancestor skos:prefLabel ?label .
-        FILTER(LANG(?label) = "en")
-      }
-      GROUP BY ?ancestor ?label ?id
-      ORDER BY ?depth
-    SPARQL
-
-    client.query(query).map do |row|
-      {
-        uri: row[:ancestor].to_s,
-        id: row[:id].to_s,
-        label: row[:label].to_s,
-        depth: row[:depth].to_i
-      }
-    end
-  end
 
   
   def self.get_tgn(tgn_id)
@@ -185,7 +128,7 @@ class TgnClient
 
     #p response.body
 
-    ap GettyTGN::Parser.parse(response.body)
+    return GettyTGN::TGNMetadata.get_metadata_from_xml(response.body)
 
   end
 
@@ -230,10 +173,10 @@ class TgnClient
       req.params["luceneIndex"] = "Brief"
       req.params["indexDataset"] = "TGN"
     end
-ap response
+
     raise "Getty lookup failed (#{response.status})" unless response.success?
 
-    ap brute_parse_tng(response.body)
+    return brute_parse_tng(response.body)
 
   end
 
