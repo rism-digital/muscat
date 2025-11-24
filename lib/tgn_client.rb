@@ -133,7 +133,7 @@ class TgnClient
   end
 
   # This is not nice, but works for now
-  def self.brute_parse_tng(html)
+  def self.brute_parse_tgn(html)
     doc  = Nokogiri::HTML(html)
 
     rows = []
@@ -176,7 +176,7 @@ class TgnClient
 
     raise "Getty lookup failed (#{response.status})" unless response.success?
 
-    return brute_parse_tng(response.body)
+    return brute_parse_tgn(response.body)
 
   end
 
