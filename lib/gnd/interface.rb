@@ -61,8 +61,10 @@ module GND
 
     def self.push(marc_hash, current_user = nil)
         @current_user = current_user
+        # We need to make sure marc will not create stuff
+        $MARC_FORCE_CREATION = false
         m = MarcGndWork.new
-        m.load_from_hash(marc_hash, force_editor_ordering: true)
+        m.load_from_hash(marc_hash, resolve: false, force_editor_ordering: true)
 
         action = m.get_id == "__TEMP__" ? :create : :replace
         

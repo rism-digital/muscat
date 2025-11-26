@@ -6,6 +6,16 @@ class GndWork < MarcGndWork
   attr_accessor :marc_source
   #composed_of :marc, :class_name => "MarcGndWork", :mapping => %w(marc_source to_marc)
 
+  def self.find(a)
+    nil
+    #return []
+  end
+
+  def self.find_by_id(a)
+    nil
+    #return {id: a}
+  end
+
   def self.wf_stages 
     { inprogress: 0, published: 1 }
   end

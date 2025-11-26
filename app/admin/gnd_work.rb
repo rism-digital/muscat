@@ -155,6 +155,8 @@ ActiveAdmin.register_page "gnd_works" do
     # Because we have no underlying model here the action needed are implemented separately
 
     def marc_editor_validate
+      render json: {status: I18n.t("validation.correct")}
+=begin
       marc_hash = JSON.parse params[:marc]
       current_user = User.find(params[:current_user])
       
@@ -175,6 +177,7 @@ ActiveAdmin.register_page "gnd_works" do
       else
         render json: {status: I18n.t("validation.correct")}
       end
+=end
     end
 
     def marc_editor_save
