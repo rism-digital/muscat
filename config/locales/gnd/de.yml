@@ -66,14 +66,14 @@ de:
     opus_number: Opus-Zahl
     catalogue_number: Werkverzeichnisnummer
     musical_key: Tonart
-    variant_name: Abweichender Name
+    variant_name: Abweichender Titel eines nicht-anonymen Werks
     composer: Komponist
-    work_relationship: Abweichender Werktitel
+    work_relationship: Abweichender Titel eines anonymen Werks
     id_of_authority_record: IDN des Normdatensatzes oder Standardnummer
     relation_code: Beziehungscode
     control_field: Kontrollunterfeld
     additional_remark: Bemerkungen
-    relationship: Personenbeziehung
+    relationship: Beziehung zu einer Person oder einem nicht-anonymen Werk
     temporal_relationship: Zeitbeziehung
     time: Zeit
     historical_relationship_code: Zeitbeziehungs-Code
@@ -92,7 +92,7 @@ de:
     previous_name_form: Bisherige Ansetzungsform PND, GKD, SWD (NW)
     entity_identification_previous_database: Entitätenkennzeichnung der Vorgänger-Normdatenbank (NW)
     record_id: IDN des Normdatensatzes oder Standardnummer (NW)
-    unit_title_relationship: Einheitstitel – Beziehung
+    unit_title_relationship: Beziehung zu einem anonymen Werk
     gnd_specific_coding: Normdatenspezifische Codierung
     source: Quelle
     partial_title_of_the_work: Teiltitel des Werkes
