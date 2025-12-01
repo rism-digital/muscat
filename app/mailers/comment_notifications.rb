@@ -43,11 +43,11 @@ class CommentNotifications < ApplicationMailer
         user.notification_email
       else
         # If the user is disabled AND it has no
-        # notification email, try to get the workgrups defaul one(s)
+        # notification email, try to get the workgrups default one(s)
         if user.disabled?
           user.get_workgroups_emails
         else
-          # The user is not disable and it has no default
+          # The user is not disabled and it has no default
           # email sink, use the normal email
           user.email if user.email
         end
