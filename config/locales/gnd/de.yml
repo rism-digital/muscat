@@ -160,6 +160,14 @@ de:
     edit: Bearbeiten
     search: Suche
     edit_gnd_record: GND-Datensatz bearbeiten
+    original_cataloging_agency: "Original-Katalogisierungsstelle"
+    cataloging_language: "Katalogisierungssprache"
+    transcribing_agency: "Übertragungsstelle"
+    modifying_agency: "Bearbeitungsstelle"
+    description_conventions: "Beschreibungsfestlegungen"
+    isil_of_union_editorial_office: "ISIL der Verbundredaktion"
+    cataloging_source: "Katalogisierungsquelle"
+
 
     abku: Abkürzung
     nafr: Name, früherer

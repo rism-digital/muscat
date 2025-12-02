@@ -56,16 +56,16 @@ force_editor_ordering: true
 "040": 
   layout: 
     fields: 
-    - - b
-      - read_only: true
-    - - e
-    - - "9"
-      - read_only: true
     - - a
+      - read_only: true
+    - - b
       - read_only: true
     - - c
       - read_only: true
     - - d
+      - read_only: true
+    - - e
+    - - "9"
       - read_only: true
   tag_params: 
     no_delete: true

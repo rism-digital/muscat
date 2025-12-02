@@ -91,6 +91,22 @@ G-5:
 g-2:
   label: records.g_minus_2_octave
 
+'040':
+  fields:
+    a:
+      label: gnd.original_cataloging_agency
+    b:
+      label: gnd.cataloging_language
+    c:
+      label: gnd.transcribing_agency
+    d:
+      label: gnd.modifying_agency
+    e:
+      label: gnd.description_conventions
+    "9":
+      label: gnd.isil_of_union_editorial_office
+  label: gnd.cataloging_source
+
 '042':
   label: gnd.cataloging_level
 
