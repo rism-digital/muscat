@@ -3,6 +3,108 @@ require 'json'
 
 module GettyTGN
 
+
+THE_STATIC_MAP = {
+    "tgn:1000061" => "XA-AD",
+    "tgn:7006417" => "XA-AL",
+    "tgn:1000062" => "XA-AT",
+    "tgn:7006664" => "XA-BA",
+    "tgn:1000063" => "XA-NL",
+    "tgn:7006413" => "XA-BG",
+    "tgn:7006657" => "XA-BY",
+    "tgn:7011731" => "XA-CH",
+    "tgn:1001780" => "XA-CZ",
+    "tgn:7000084" => "XA-DE",
+    "tgn:1000066" => "XA-DK",
+    "tgn:7006540" => "XA-EE",
+    "tgn:1000095" => "XA-ES",
+    "tgn:1000069" => "XA-FI",
+    "tgn:1000070" => "XA-FR",
+    "tgn:1000172" => "XA-GB",
+    "tgn:7008591" => "XA-GB-NIR",
+    "tgn:1000074" => "XA-GR",
+    "tgn:7006663" => "XA-HR",
+    "tgn:7006278" => "XA-HU",
+    "tgn:1000078" => "XA-IE",
+    "tgn:1000077" => "XA-IS",
+    "tgn:1000080" => "XA-IT",
+    "tgn:7003515" => "XA-LI",
+    "tgn:7006542" => "XA-LT",
+    "tgn:7003514" => "XA-LU",
+    "tgn:7006541" => "XA-LV",
+    "tgn:7005758" => "XA-MC",
+    "tgn:7006656" => "XA-MD",
+    "tgn:7015657" => "XA-ME",
+    "tgn:7006667" => "XA-MK",
+    "tgn:7005729" => "XA-MT",
+    "tgn:1000088" => "XA-NO",
+    "tgn:7006366" => "XA-PL",
+    "tgn:1000090" => "XA-PT",
+    "tgn:1000091" => "XA-RO",
+    "tgn:7006669" => "XA-RS",
+    "tgn:7002435" => "XA-RU",
+    "tgn:7006670" => "XA-SI",
+    "tgn:7011765" => "XA-SK",
+    "tgn:7005699" => "XA-SM",
+    "tgn:1000097" => "XA-SE",
+    "tgn:7006660" => "XA-UA",
+    "tgn:7001168" => "XA-VA",
+    "tgn:7006651" => "XB-AM",
+    "tgn:7006646" => "XB-AZ",
+    "tgn:1000105" => "XB-PK",
+    "tgn:1000141" => "XB-TW",
+    "tgn:7006653" => "XB-GE",
+    "tgn:1000116" => "XB-ID",
+    "tgn:1000119" => "XB-IL",
+    "tgn:7000198" => "XB-IN",
+    "tgn:1000118" => "XB-IQ",
+    "tgn:7000231" => "XB-IR",
+    "tgn:1000120" => "XB-JP",
+    "tgn:1000109" => "XB-KH",
+    "tgn:7000299" => "XB-KR",
+    "tgn:1000126" => "XB-LB",
+    "tgn:1000135" => "XB-PH",
+    "tgn:1000137" => "XB-SA",
+    "tgn:1000140" => "XB-SY",
+    "tgn:7014835" => "XB-TJ",
+    "tgn:7006659" => "XB-TM",
+    "tgn:1000144" => "XB-TR",
+    "tgn:7006661" => "XB-UZ",
+    "tgn:1000145" => "XB-VN",
+    "tgn:7016752" => "XC-DZ",
+    "tgn:1000201" => "XC-EG",
+    "tgn:1000166" => "XC-GH",
+    "tgn:7006160" => "XE-PG",
+    "tgn:1000205" => "XC-TN",
+    "tgn:1000206" => "XC-UG",
+    "tgn:1000198" => "XC-ZA",
+    "tgn:7006477" => "XD-AR",
+    "tgn:1000046" => "XD-BO",
+    "tgn:1000047" => "XD-BR",
+    "tgn:7005685" => "XD-CA",
+    "tgn:1000049" => "XD-CL",
+    "tgn:1000050" => "XD-CO",
+    "tgn:7005364" => "XD-CR",
+    "tgn:7004624" => "XD-CU",
+    "tgn:1000051" => "XD-EC",
+    "tgn:7005493" => "XD-GT",
+    "tgn:7005346" => "XD-HN",
+    "tgn:7005556" => "XD-JM",
+    "tgn:7005560" => "XD-MX",
+    "tgn:7005562" => "XD-NI",
+    "tgn:1000056" => "XD-PE",
+    "tgn:1000055" => "XD-PY",
+    "tgn:7015386" => "XD-SR",
+    "tgn:1000143" => "XD-US",
+    "tgn:1000058" => "XD-UY",
+    "tgn:1000059" => "XD-VE",
+    "tgn:7000490" => "XE-AU",
+    "tgn:1000226" => "XE-NZ",
+    "tgn:7004543" => "XB-HK",
+    "tgn:7004643" => "XD-PR",
+    "tgn:7004787" => "XD-TT"
+  }
+
   class TGNMetadata
     NS = {
       rdf:  "http://www.w3.org/1999/02/22-rdf-syntax-ns#",
@@ -61,12 +163,20 @@ module GettyTGN
 
       parents_ordered = map_parents(extract_place_type_preferred(subject, doc), extract_parent_string(subject))
 
+      # try to het the nation
+
+      country = THE_STATIC_MAP.map {|k,v|
+        full_id = k.sub("tgn:", "http://vocab.getty.edu/tgn/")
+        {k => v} if parents_ordered.any? { |h| h[:id] == full_id }
+      }.compact&.first
+
       {
         id: extract_id(subject),
         name: extract_pref_label(subject),
         hierarchy_string: extract_parent_string(subject),
         hierarchy: parents_ordered,
         coordinates: extract_coordinates(doc),
+        country: country
       }
     end
 
@@ -176,6 +286,7 @@ class TgnClient
       req.params["q"] = query
       req.params["luceneIndex"] = "Brief"
       req.params["indexDataset"] = "TGN"
+      req.params["limit"] = 300
     end
 
     raise "Getty lookup failed (#{response.status})" unless response.success?
@@ -197,6 +308,17 @@ class TgnConverter
 
     new_marc.add_tag_with_subfields("034", d: record[:coordinates][:lat],  e: record[:coordinates][:lat], 
                                            f: record[:coordinates][:long],  g: record[:coordinates][:long])
+
+    if record[:country] != nil
+      new_marc.add_tag_with_subfields("043", "2": "rismg", c: record[:country].values.first)
+      new_marc.add_tag_with_subfields("043", "2": "TGN", b: record[:country].keys.first)
+    end
+
+    record[:hierarchy].each do |item|
+      new_marc.add_tag_with_subfields("370", "4": "TGN", c: item[:id], f: item[:label])
+    end
+
+
 
     return new_marc.to_marc.force_encoding("UTF-8")
   end
