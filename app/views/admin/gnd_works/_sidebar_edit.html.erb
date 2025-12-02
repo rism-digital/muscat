@@ -9,3 +9,11 @@
     <a href="/admin/gnd_works" class="muscat_icon_link muscat_icon_link_cancel"><%=(I18n.t :cancel)%></a>
   </li>
 </ul>
+<ul>
+<li class="muscat_icon_link" id="validation_errors" hidden>
+  <span style="color:red"><%= I18n.t(:validation_level_error)%></span>
+</li>
+<li class="muscat_icon_link" id="validation_warnings" hidden>
+  <span style="color:orange"><%= I18n.t(:validation_level_warning)%></span>
+</li>
+</ul>

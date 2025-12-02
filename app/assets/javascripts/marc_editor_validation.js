@@ -223,7 +223,7 @@ function marc_validate_gnd_warn_default(value, element, param) {
 		marc_validate_add_warnings(element);
 		return true;
 	}
-	return false;
+	return true;
 }
 
 function marc_validate_edtf(value, element, param) {

@@ -62,6 +62,7 @@ class EditorValidation
         return false
       end
     elsif conf.is_a? Hash
+      return true if conf&.keys&.first == "gnd_warn_default"
     end
   end
 
