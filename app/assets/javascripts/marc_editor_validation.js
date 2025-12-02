@@ -14,7 +14,8 @@ const SIMPLE_RULE_MAP = {
 const PARAMETRIC_RULES = [
 	"required_if",
 	"begins_with",
-	"must_contain"
+	"must_contain",
+	"gnd_warn_default"
 ]
 
 function marc_validate_has_warnings() {
@@ -214,6 +215,15 @@ function marc_validate_must_contain(value, element, param) {
 		return true;
 
 	return value.includes(param);
+}
+
+// This is for GND to altert users if they touch stuff that should not be touched
+function marc_validate_gnd_warn_default(value, element, param) {
+	if (!value.includes(param)) {
+		marc_validate_add_warnings(element);
+		return true;
+	}
+	return false;
 }
 
 function marc_validate_edtf(value, element, param) {
@@ -634,6 +644,9 @@ function marc_editor_init_validation(form, validation_conf) {
 			$.validator.format(I18n.t("validation.validate_edtf")));	
 	$.validator.addMethod("validate_031_dups", marc_validate_031_duplicates,
 			$.validator.format(I18n.t("validation.validate_031_dups")));
+
+	$.validator.addMethod("gnd_warn_default", marc_validate_gnd_warn_default,
+			$.validator.format(I18n.t("validation.gnd_warn_default_message")));
 
 	$.validator.addMethod("validate_url", marc_validate_url,
 			$.validator.format(I18n.t("validation.validate_url")));

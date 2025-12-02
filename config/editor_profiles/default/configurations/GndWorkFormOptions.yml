@@ -59,7 +59,6 @@ force_editor_ordering: true
     - - b
       - read_only: true
     - - e
-      - read_only: true
     - - "9"
       - read_only: true
     - - a
@@ -427,8 +426,6 @@ force_editor_ordering: true
     - - r
       - editor_partial: subfield_select_codes
         codes_reference: "430r"
-    - - "4"
-      - editor_partial: subfield_select_codes
   tag_params:
         codes:
         - abku

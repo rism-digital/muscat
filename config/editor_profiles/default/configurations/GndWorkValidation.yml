@@ -4,3 +4,7 @@ client:
 #    tags:
 #      a: required, warning
 #      '4': required
+  "040":
+    tags:
+      e: 
+        gnd_warn_default: "rda"
