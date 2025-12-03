@@ -91,7 +91,7 @@ ActiveAdmin.register Place do
 
       if params.include?(:tgn_id)
         tgn_id = params.fetch(:tgn_id).gsub("tgn:", "")
-        rec = TgnClient::get_tgn(tgn_id)
+        rec = TgnClient::pull_from_tgn(tgn_id)
         converted = TgnConverter::to_place_marc(rec)
       end
 
