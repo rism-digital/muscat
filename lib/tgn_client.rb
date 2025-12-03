@@ -2,8 +2,6 @@ require 'net/http'
 require 'json'
 
 module GettyTGN
-
-
 THE_STATIC_MAP = {
     "tgn:1000061" => "XA-AD",
     "tgn:7006417" => "XA-AL",
@@ -107,77 +105,44 @@ THE_STATIC_MAP = {
 end
 
 class TgnClient
+
   def self.pull_from_tgn(id)
-    query = <<~SPARQL
-      PREFIX tgn: <http://vocab.getty.edu/tgn/>
-      PREFIX foaf: <http://xmlns.com/foaf/0.1/>
-      PREFIX wgs:  <http://www.w3.org/2003/01/geo/wgs84_pos#>
-
-      SELECT ?place ?lat ?long ?label
-      WHERE {
-        VALUES ?place { tgn:#{id} }
-
-        OPTIONAL { ?place foaf:focus/wgs:lat  ?lat . }
-        OPTIONAL { ?place foaf:focus/wgs:long ?long . }
-         
-        OPTIONAL {
-          ?place skos:prefLabel ?labelEn .
-          FILTER(LANGMATCHES(LANG(?labelEn), "en"))
-        }
-
-        OPTIONAL {
-          SELECT ?place ?labelNonEn
-          WHERE {
-            ?place skos:prefLabel ?labelNonEn .
-            FILTER(!LANGMATCHES(LANG(?labelNonEn), "en"))
-          }
-          ORDER BY (IF(LANG(?labelNonEn) = "", 0, 1)) LCASE(STR(?labelNonEn))
-          LIMIT 1
-        }
-
-        BIND(COALESCE(?labelEn, ?labelNonEn) AS ?label)
-      }
-    SPARQL
-
-    client = SPARQL::Client.new("http://vocab.getty.edu/sparql")
-    results = client.query(query)
-
-    return nil if results.count < 1
-    r = results[0] # what if more than one?
-
-    parents_ordered = self.get_hierarchy(id)
-    # try to het the nation
-
-    country = GettyTGN::THE_STATIC_MAP.map {|k,v|
-      full_id = k.sub("tgn:", "http://vocab.getty.edu/tgn/")
-      {k => v} if parents_ordered.any? { |h| h[:id] == full_id }
-    }.compact&.first
-
-    {
-      id: id,
-      name: r[:label]&.to_s,
-      hierarchy: parents_ordered,
-      coordinates: {lat: r[:lat]&.to_s, long: r[:long]&.to_s},
-      country: country
-    }
-
-  end
-
-  def self.get_hierarchy(id)
     query = <<~SPARQL
       PREFIX gvp: <http://vocab.getty.edu/ontology#>
       PREFIX xl:  <http://www.w3.org/2008/05/skos-xl#>
       PREFIX tgn: <http://vocab.getty.edu/tgn/>
 
       SELECT ?place ?placeLabel ?placeType
-            ?ancestor ?ancestorLabel ?ancestorType
+            ?ancestor ?ancestorLabel ?ancestorType ?lat ?long
             (MIN(?d) AS ?level)
       WHERE {
         VALUES ?place { tgn:#{id} } # Little Marton
 
         # Place label/type
-        ?place gvp:prefLabelGVP/xl:literalForm ?placeLabel .
+        #?place gvp:prefLabelGVP/xl:literalForm ?placeLabel .
         ?place gvp:placeTypePreferred/gvp:prefLabelGVP/xl:literalForm ?placeType .
+
+        # Get some info on the original place
+        OPTIONAL { ?place foaf:focus/wgs:lat  ?lat . }
+        OPTIONAL { ?place foaf:focus/wgs:long ?long . }
+
+        # Try to get a working label for this place
+        OPTIONAL {
+          ?place skos:prefLabel ?placeLabelEn .
+          FILTER(LANGMATCHES(LANG(?placeLabelEn), "en"))
+        }
+
+        OPTIONAL {
+          SELECT ?place ?placeLabelNonEn
+          WHERE {
+            ?place skos:prefLabel ?placeLabelNonEn .
+            FILTER(!LANGMATCHES(LANG(?placeLabelNonEn), "en"))
+          }
+          ORDER BY (IF(LANG(?placeLabelNonEn) = "", 0, 1)) LCASE(STR(?placeLabelNonEn))
+          LIMIT 1
+        }
+
+        BIND(COALESCE(?placeLabelEn, ?placeLabelNonEn) AS ?placeLabel)
 
         # Any ancestor including self (0 steps)
         ?place gvp:broaderPreferred* ?ancestor .
@@ -219,14 +184,14 @@ class TgnClient
           GROUP BY ?place ?ancestor
         }
       }
-      GROUP BY ?place ?placeLabel ?placeType ?ancestor ?ancestorLabel ?ancestorType
+      GROUP BY ?place ?placeLabel ?placeType ?ancestor ?ancestorLabel ?ancestorType ?lat ?long
       ORDER BY ?level
     SPARQL
 
     client = SPARQL::Client.new("http://vocab.getty.edu/sparql")
     results = client.query(query)
 
-    return results.map do |r|
+    parents_ordered = results.map do |r|
       next if r[:level] == 0 # Skip ourselves
 
       {
@@ -235,6 +200,22 @@ class TgnClient
         type: r[:ancestorType]&.to_s
       }
     end
+
+    place = results[0] #this on is ourselves
+
+    country = GettyTGN::THE_STATIC_MAP.map {|k,v|
+      full_id = k.sub("tgn:", "http://vocab.getty.edu/tgn/")
+      {k => v} if parents_ordered.any? { |h| h[:id] == full_id }
+    }.compact&.first
+
+    {
+      id: id,
+      name: place[:placeLabel]&.to_s,
+      hierarchy: parents_ordered,
+      coordinates: {lat: place[:lat]&.to_s, long: place[:long]&.to_s},
+      country: country
+    }
+
   end
 
   # This is not nice, but works for now
@@ -308,8 +289,6 @@ class TgnConverter
     record[:hierarchy].each do |item|
       new_marc.add_tag_with_subfields("370", "4": "TGN", c: item[:id], f: item[:label])
     end
-
-
 
     return new_marc.to_marc.force_encoding("UTF-8")
   end
