@@ -153,16 +153,89 @@ THE_STATIC_MAP = {
       return ordered
     end
 
+    def self.get_hierarchy(id)
+      query = <<~SPARQL
+        PREFIX gvp: <http://vocab.getty.edu/ontology#>
+        PREFIX xl:  <http://www.w3.org/2008/05/skos-xl#>
+        PREFIX tgn: <http://vocab.getty.edu/tgn/>
+
+        SELECT ?place ?placeLabel ?placeType
+              ?ancestor ?ancestorLabel ?ancestorType
+              (MIN(?d) AS ?level)
+        WHERE {
+          VALUES ?place { tgn:#{id} } # Little Marton
+
+          # Place label/type
+          ?place gvp:prefLabelGVP/xl:literalForm ?placeLabel .
+          ?place gvp:placeTypePreferred/gvp:prefLabelGVP/xl:literalForm ?placeType .
+
+          # Any ancestor including self (0 steps)
+          ?place gvp:broaderPreferred* ?ancestor .
+
+          # Ancestor label/type
+          #?ancestor gvp:prefLabelGVP/xl:literalForm ?ancestorLabel .
+          ?ancestor gvp:placeTypePreferred/gvp:prefLabelGVP/xl:literalForm ?ancestorType .
+
+          # Try to get the English label
+          # Or any other label
+          OPTIONAL {
+            ?ancestor skos:prefLabel ?labelEn .
+            FILTER(LANGMATCHES(LANG(?labelEn), "en"))
+          }
+
+          OPTIONAL {
+            SELECT ?ancestor ?labelNonEn
+            WHERE {
+              ?ancestor skos:prefLabel ?labelNonEn .
+              FILTER(!LANGMATCHES(LANG(?labelNonEn), "en"))
+            }
+            ORDER BY (IF(LANG(?labelNonEn) = "", 0, 1)) LCASE(STR(?labelNonEn))
+            LIMIT 1
+          }
+
+        BIND(COALESCE(?labelEn, ?labelNonEn) AS ?ancestorLabel)
+
+          # Compute distance (# of broaderPreferred hops) to ancestor
+          {
+            SELECT ?place ?ancestor (COUNT(?mid) AS ?d)
+            WHERE {
+              VALUES ?place { tgn:#{id} }
+              ?place gvp:broaderPreferred* ?ancestor .
+              OPTIONAL {
+                ?place gvp:broaderPreferred+ ?mid .
+                ?mid   gvp:broaderPreferred* ?ancestor .
+              }
+            }
+            GROUP BY ?place ?ancestor
+          }
+        }
+        GROUP BY ?place ?placeLabel ?placeType ?ancestor ?ancestorLabel ?ancestorType
+        ORDER BY ?level
+      SPARQL
+
+      client = SPARQL::Client.new("http://vocab.getty.edu/sparql")
+      results = client.query(query)
+
+      return results.map do |r|
+        next if r[:level] == 0 # Skip ourselves
+
+        {
+          id: r[:ancestor]&.to_s,
+          label: r[:ancestorLabel]&.to_s,
+          type: r[:ancestorType]&.to_s
+        }
+      end
+    end
+
     def self.get_metadata_from_xml(xml)
       doc = Nokogiri::XML(xml)
       doc.remove_namespaces! # optional but makes XPath easier
 
-      #puts xml
-
       subject = doc.at_xpath("//Subject")
+      id = extract_id(subject)
 
-      parents_ordered = map_parents(extract_place_type_preferred(subject, doc), extract_parent_string(subject))
-
+      #parents_ordered = map_parents(extract_place_type_preferred(subject, doc), extract_parent_string(subject))
+      parents_ordered = get_hierarchy(id)
       # try to het the nation
 
       country = THE_STATIC_MAP.map {|k,v|
@@ -224,7 +297,6 @@ end
 class TgnClient
   BASE_URL = "https://vocab.getty.edu/tgn"
   ENDPOINT = "https://vocab.getty.edu/sparql"
-
   
   def self.get_tgn(tgn_id)
     url = "https://vocab.getty.edu/tgn/#{tgn_id}.rdf"
@@ -239,8 +311,6 @@ class TgnClient
     end
 
     response = conn.get
-
-    #p response.body
 
     return GettyTGN::TGNMetadata.get_metadata_from_xml(response.body)
 
