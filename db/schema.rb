@@ -11,9 +11,9 @@
 # It's strongly recommended that you check this file into your version control system.
 
 ActiveRecord::Schema[7.2].define(version: 2025_12_04_085324) do
-  create_table "active_admin_comments", id: :integer, charset: "utf8mb4", collation: "utf8mb4_unicode_ci", force: :cascade do |t|
+  create_table "active_admin_comments", id: :integer, charset: "utf8mb3", force: :cascade do |t|
     t.string "namespace"
-    t.text "body", size: :medium
+    t.text "body"
     t.string "resource_id", null: false
     t.string "resource_type", null: false
     t.integer "author_id"
@@ -696,7 +696,7 @@ ActiveRecord::Schema[7.2].define(version: 2025_12_04_085324) do
     t.string "username"
     t.string "notification_email"
     t.boolean "disabled", default: false, null: false
-    t.index ["email"], name: "index_users_on_email"
+    t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
     t.index ["username"], name: "index_users_on_username", unique: true
   end
