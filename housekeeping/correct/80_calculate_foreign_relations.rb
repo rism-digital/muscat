@@ -7,7 +7,7 @@ MAPPING = {
     "LiturgicalFeast.name":         "LiturgicalFeast.name.nil", #not marc!
     "Person.full_name":             "Person.100.a",
     "Person.life_dates":            "Person.100.d",
-    "Place.name":                   "Place.name.nil", #not marc!
+    "Place.name":                   "Place.151.a", #not marc!
     "Publication.short_name":       "Publication.210.a",
     "Publication.title":            "Publication.240.a",
     "StandardTerm.term":            "StandardTerm.term.nil", #not marc
@@ -16,7 +16,7 @@ MAPPING = {
     "WorkNode.title":               ["WorkNode.100.t", "WorkNode.100.m", "WorkNode.100.n", "WorkNode.100.r", "WorkNode.100.p"], #there is more than one!
 }
 
-marc_models = ["source", "holding", "person", "institution", "publication", "work", "work_node"]
+marc_models = ["source", "holding", "person", "institution", "publication", "work", "work_node", "place"]
 all_foreign_links = []
 model_tag_map = {}
 model_non_marc = {}

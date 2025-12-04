@@ -152,3 +152,12 @@
     :fields:
     - - a
       - :occurrences: "?"
+  "970":
+    :master: a
+    :indicator: "##"
+    :occurrences: "?"
+    :fields:
+    - - a
+      - :occurrences: "+"
+    - - b
+      - :occurrences: "+"

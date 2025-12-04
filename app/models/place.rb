@@ -161,7 +161,7 @@ class Place < ApplicationRecord
     new_marc.load_source true
     
     new_marc.add_tag_with_subfields("151", a: self.name&.strip)
-    new_marc.add_tag_with_subfields("370", c: self.country&.strip, f: self.district&.strip) if self.country || self.district
+    new_marc.add_tag_with_subfields("970", a: self.country&.strip, b: self.district&.strip) if self.country || self.district
     new_marc.add_tag_with_subfields("667", a: self.notes&.strip) if self.notes && !self.notes.empty?
     
     self.alternate_terms&.split("\n")&.each do |term|
@@ -225,7 +225,8 @@ class Place < ApplicationRecord
     self.country = marc.get_place_country
     self.district = marc.get_place_district
     self.tgn_id = marc.get_tgn_id
-
+    self.hierarchy = marc.get_hierarchy
+      
     self.marc_source = self.marc.to_marc
   end
 

@@ -201,7 +201,7 @@ class TgnClient
       }
     end
 
-    place = results[0] #this on is ourselves
+    place = results[0] # this is us
 
     country = GettyTGN::THE_STATIC_MAP.map {|k,v|
       full_id = k.sub("tgn:", "http://vocab.getty.edu/tgn/")
@@ -260,8 +260,8 @@ class TgnClient
       req.params["indexDataset"] = "TGN"
       req.params["limit"] = 300
     end
-
-    raise "Getty lookup failed (#{response.status})" unless response.success?
+ap response
+    #raise "Getty lookup failed (#{response.status})" unless response.success?
 
     return brute_parse_tgn(response.body)
 

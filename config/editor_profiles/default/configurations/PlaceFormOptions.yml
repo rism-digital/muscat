@@ -98,3 +98,8 @@
     fields: 
     - - a
       - growfield: true
+"970": 
+  layout: 
+    fields: 
+    - - a
+    - - b

@@ -16,7 +16,7 @@ class MarcPlace < Marc
   def get_place_district
     #self["370"]&.first["f"]&.first&.content
 
-    self["370"]&.first&.[]("f")&.first&.content
+    self["970"]&.first&.[]("f")&.first&.content
   end
 
   def get_tgn_id
@@ -28,6 +28,10 @@ class MarcPlace < Marc
     ""
   end
   
+  def get_hierarchy
+    return ""
+  end
+
   def to_external(created_at = nil, updated_at = nil, versions = nil, holdings = false, deprecated_ids = true)
     super(created_at, updated_at, versions)
     
