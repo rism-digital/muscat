@@ -7,7 +7,7 @@ def delete_024_tgn(marc)
 end
 
 name = ARGV[0]
-=begin
+
 CSV::foreach(name) do |line|
   tgn = line[0]&.gsub("tgn/", "")
   muscat = line[1]
@@ -25,17 +25,19 @@ CSV::foreach(name) do |line|
     next
   end
 
-  if p.tgn_id && p.tgn_id != tgn
-    puts "TGN Id changed for #{muscat}, was #{p.tgn_id} will be #{tgn.to_i}"
-    delete_024_tgn(p.marc)
-    p.marc.add_tag_with_subfields("024", a: tgn, "2": "TGN")
-  elsif !p.tgn_id
-    p.marc.add_tag_with_subfields("024", a: tgn, "2": "TGN")
+  if p.tgn_id && !p.tgn_id.empty? && p.tgn_id != tgn
+    #puts "TGN Id changed for #{muscat}, was #{p.tgn_id} will be #{tgn.to_i}"
+    #delete_024_tgn(p.marc)
+    #p.marc.add_tag_with_subfields("024", a: tgn, "2": "TGN")
+  elsif !p.tgn_id || p.tgn_id.empty?
+    puts "Pull #{tgn}"
+    rec = TgnClient::pull_from_tgn(tgn)
+    TgnConverter::to_place_marc(rec, p.marc)
+    #p.marc.add_tag_with_subfields("024", a: tgn, "2": "TGN")
   end
 
   p.save
 end
-=end
 
 def change_tag(item, tag, subtag, old, new)
   item.marc[tag].each do |t|
@@ -46,6 +48,8 @@ def change_tag(item, tag, subtag, old, new)
     end
   end
 end
+
+exit 1
 
 dup_tgn_ids = Place.where.not(tgn_id: nil)
                    .group(:tgn_id)
