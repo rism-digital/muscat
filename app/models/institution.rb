@@ -324,8 +324,10 @@ class Institution < ApplicationRecord
   end
   
   def autocomplete_label_name
-    sigla = siglum != nil && !siglum.empty? ? " [#{siglum}]" : ""
-    "#{full_name}#{sigla}"
+    parts = [full_name]
+    parts << " (#{place})"  if place.present?
+    parts << " [#{siglum}]" if siglum.present?
+    parts.join
   end
  
   def self.ransackable_attributes(auth_object = nil)
