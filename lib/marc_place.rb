@@ -10,13 +10,13 @@ class MarcPlace < Marc
   def get_place_country
     #self["370"]&.first["c"]&.first&.content
 
-    self["370"]&.first&.[]("c")&.first&.content
+    self["970"]&.first&.[]("a")&.first&.content
   end
 
   def get_place_district
     #self["370"]&.first["f"]&.first&.content
 
-    self["970"]&.first&.[]("f")&.first&.content
+    self["970"]&.first&.[]("b")&.first&.content
   end
 
   def get_tgn_id

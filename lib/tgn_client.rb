@@ -270,10 +270,12 @@ ap response
 end
 
 class TgnConverter
-  def self.to_place_marc(record)
+  def self.to_place_marc(record, new_marc = nil)
     
-    new_marc = MarcPlace.new(File.read(ConfigFilePath.get_marc_editor_profile_path("#{Rails.root}/config/marc/#{RISM::MARC}/place/default.marc")))
-    new_marc.load_source false
+    if !new_marc
+      new_marc = MarcPlace.new(File.read(ConfigFilePath.get_marc_editor_profile_path("#{Rails.root}/config/marc/#{RISM::MARC}/place/default.marc")))
+      new_marc.load_source false
+    end
 
     new_marc.add_tag_with_subfields("151", a: record[:name])
     new_marc.add_tag_with_subfields("024", a: record[:id], "2": "TGN")

@@ -1,6 +1,127 @@
 Muscat Changelog
 ================
 
+v 12.0
+
+* Add a clear button at top when a filter is active
+* Update all the gems!
+* No need to create a person in the index view
+* #1865 Add _to_external_031 to export DO links in $u
+* More corago stuff
+* Add grace period for unpublish
+* #1868 Initial impl of the BibTex importer
+* #1868 add css
+* Manage empty author
+* #1868 parse edt
+* Bump rack from 2.2.17 to 2.2.18
+* More coragoization
+* Mini RIS parser
+* #1868, Uploader for RIS files
+* #1868 manage SE field
+* Initial stuff for #1851
+* #1851, add script to create source_order, and migration for page info
+* Initial commit of order
+* Make the fade slower
+* Add some abilities
+* Fix permission for inventory_catalogers
+* More finessing of II list
+* Add link and icon, fix labels in sources
+* Sort keys
+* Add translations
+* Add all the translations
+* Normalize translations
+* Add all missing translations
+* Add more nissing translations
+* Reorder translations
+* Add back line that was deleted
+* Add checks in the backend to avoid creativity
+* Add II info box
+* Use proper sidebar
+* Remove redundate @arbre_context.assigns in sidebar, remove sidebar from holding show
+* Remove @arbre_context.assigns[:item] and use controller.view_assigns["item"]
+* Move hits to controller.view_assigns["hits"]
+* Remove the last arbre_context.assigns
+* Add source_order when creating, fix display
+* Only add $y to corago names
+* Merge pull request #1871 from rism-digital/dependabot/bundler/rack-2.2.18
+* Merge branch 'develop-prs' into clear-filters-button-at-top-when-active
+* Merge pull request #1838 from fjorba/clear-filters-button-at-top-when-active
+* Fix #1868, parse thesis info
+* Fix #1873, add Tunisia
+* Use standard title for inventory infobox
+* Format title in the II order page
+* Bump rack from 2.2.18 to 2.2.19
+* Add plate number search
+* Merge pull request #1874 from rism-digital/dependabot/bundler/rack-2.2.19
+* Bump rack from 2.2.19 to 2.2.20
+* Change default DE institution for GND editor
+* Merge pull request #1876 from rism-digital/dependabot/bundler/rack-2.2.20
+* Remove mailcatcher installed by default
+* Make 852 the same in Source and Holding
+* #1852 add more unescaped chars to the regex
+* Remove validation for Gnd work
+* Use a and not t in 530
+* Temp fix: make sure normal cataloguers cannot duplicate inventories!
+* Fixes for GND: remove validation, make 667 default, fix 040
+* Make sure editor validation is completely disabled for GND editor
+* Fix #1882, make versions restorable by editors
+* Places: scaffold more marc, remove unused columns
+* More fine tuning of Places marc
+* Make show + controller actions work for Places
+* Add Place linking tables
+* Fix various GND bits + bobs
+* Also normalize WorkNode GND marc
+* Add autocomplete for 384
+* Fix #1884, add index to versions
+* Add support for shared code lists
+* Switch contries to new shared codes
+* Add missing Suriname
+* Also move the GND 377 $a long list
+* Add label for type of entity
+* Switch all editors to shared langs in 040
+* Use shared labels for 040
+* Fix #1883, validate attachment
+* 370 $0 should be relationship
+* Make parts on 856 in holdings not repeatable
+* Add linkling stuff for places
+* GND: Add menu items for 400 and 430
+* Rename Marc.insert to add_tag_with_subfields
+* Make "typus" searchable in Standard Titles
+* Remove unused functions
+* Remove old typus
+* Drop unused work_incipits and typus
+* Bring back leader for GND
+* Unlink 370 in places
+* Make add_tag_with_subfields accept repeated subtags
+* Switch to a concern for referring_ relations
+* Clean up self relations
+* Add labels for 400 and 430 $4
+* Streamline the code to show wf_status, make it sortable
+* Move $4 to make GND happy (will GND ever be happy?)
+* Experimental stuff for Getty TGN
+* Add migration for JSON data
+* TNG Getter prototype
+* Properly name stuff
+* Minimal stuff to integrate TGN stuff into Muscat
+* Direct Getty Place to Muscat Place conversion
+* Avoid duplicates, if possible, when pulling from TGN
+* Fix 384 in GND
+* Update gnd_work_380_de.html
+* Fix #1889, handle nil-ness
+* Merge pull request #1890 from afaschon/patch-55
+* Update gnd_work_400_de.html
+* Update gnd_work_430_de.html
+* Merge pull request #1891 from afaschon/patch-56
+* Merge pull request #1892 from afaschon/patch-57
+* Fix #1893, change labels
+* Try to map TGN nations to Muscat codes
+* Bring back validation to GND, add validation to 040
+* Make the GND warning more pretty
+* Fix #1894 add labels
+* Much better SPARQL TGN query
+* Drop hackish xml parser and use sparql
+* Reduce everything to one query
+
 v 11.7.0.2
 * Add back save that was deleted
 * Add grace period for unpublish
