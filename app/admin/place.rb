@@ -162,8 +162,10 @@ ActiveAdmin.register Place do
     selectable_column if !is_selection_mode?
     column (I18n.t :filter_id), :id  
     column (I18n.t :filter_name), :name
-    column (I18n.t :filter_district), :district
-    column (I18n.t :filter_country), :country
+    #column (I18n.t :filter_district), :district
+    #column (I18n.t :filter_country), :country
+    column (I18n.t :filter_tgn_id), :tgn_id
+    column (I18n.t :filter_hierarchy), :hierarchy
     column (I18n.t :filter_sources), :src_count_order, sortable: :src_count_order do |element|
 			active_admin_stored_from_hits(controller.view_assigns["hits"], element, :src_count_order)
 		end

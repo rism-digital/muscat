@@ -29,7 +29,10 @@ class MarcPlace < Marc
   end
   
   def get_hierarchy
-    return ""
+    self["370"].map do |t|
+      tt = t["f"].first
+      tt.content if tt && tt.content && !tt.content.empty?
+    end.compact.join(", ")
   end
 
   def to_external(created_at = nil, updated_at = nil, versions = nil, holdings = false, deprecated_ids = true)

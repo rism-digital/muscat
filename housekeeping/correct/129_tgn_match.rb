@@ -30,8 +30,12 @@ CSV::foreach(name) do |line|
     #delete_024_tgn(p.marc)
     #p.marc.add_tag_with_subfields("024", a: tgn, "2": "TGN")
   elsif !p.tgn_id || p.tgn_id.empty?
-    puts "Pull #{tgn}"
+    puts "Pull #{tgn} for #{p.id}"
     rec = TgnClient::pull_from_tgn(tgn)
+    if !rec
+      puts "Could not pull record #{tgn} muscat id: #{p.id}".magenta
+      next
+    end
     TgnConverter::to_place_marc(rec, p.marc)
     #p.marc.add_tag_with_subfields("024", a: tgn, "2": "TGN")
   end

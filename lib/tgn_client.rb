@@ -116,7 +116,7 @@ class TgnClient
             ?ancestor ?ancestorLabel ?ancestorType ?lat ?long
             (MIN(?d) AS ?level)
       WHERE {
-        VALUES ?place { tgn:#{id} } # Little Marton
+        VALUES ?place { tgn:#{id} }
 
         # Place label/type
         #?place gvp:prefLabelGVP/xl:literalForm ?placeLabel .
@@ -191,26 +191,34 @@ class TgnClient
     client = SPARQL::Client.new("http://vocab.getty.edu/sparql")
     results = client.query(query)
 
+    # mmmmmmh?
+    return nil if results[0].count == 0
+
     parents_ordered = results.map do |r|
-      next if r[:level] == 0 # Skip ourselves
+      next if r[:level]&.to_i == 0 # Skip ourselves
+
+      # Skip "World"
+      next if r[:ancestor].to_s == "http://vocab.getty.edu/tgn/7029392"
 
       {
         id: r[:ancestor]&.to_s,
         label: r[:ancestorLabel]&.to_s,
         type: r[:ancestorType]&.to_s
       }
-    end
+    end.compact
 
-    place = results[0] # this is us
+    place = results[0] # this is uss
 
     country = GettyTGN::THE_STATIC_MAP.map {|k,v|
       full_id = k.sub("tgn:", "http://vocab.getty.edu/tgn/")
       {k => v} if parents_ordered.any? { |h| h[:id] == full_id }
     }.compact&.first
 
+    
     {
       id: id,
       name: place[:placeLabel]&.to_s,
+      place_lang: place[:placeLabel]&.language,
       hierarchy: parents_ordered,
       coordinates: {lat: place[:lat]&.to_s, long: place[:long]&.to_s},
       country: country
@@ -260,7 +268,7 @@ class TgnClient
       req.params["indexDataset"] = "TGN"
       req.params["limit"] = 300
     end
-ap response
+
     #raise "Getty lookup failed (#{response.status})" unless response.success?
 
     return brute_parse_tgn(response.body)
@@ -277,7 +285,13 @@ class TgnConverter
       new_marc.load_source false
     end
 
-    new_marc.add_tag_with_subfields("151", a: record[:name])
+    # Purge all the old values
+    new_marc.by_tags("151").each {|t2| t2.destroy_yourself}
+
+    # Try to match the language in which the item comes
+    lang = Iso639[record[:place_lang]]&.alpha3_bibliographic
+
+    new_marc.add_tag_with_subfields("151", a: record[:name], g: lang)
     new_marc.add_tag_with_subfields("024", a: record[:id], "2": "TGN")
 
     new_marc.add_tag_with_subfields("034", d: record[:coordinates][:lat],  e: record[:coordinates][:lat], 
@@ -289,7 +303,7 @@ class TgnConverter
     end
 
     record[:hierarchy].each do |item|
-      new_marc.add_tag_with_subfields("370", "4": "TGN", c: item[:id], f: item[:label])
+      new_marc.add_tag_with_subfields("370", "4": item[:type], c: item[:id], f: item[:label])
     end
 
     return new_marc.to_marc.force_encoding("UTF-8")
