@@ -131,6 +131,7 @@ GEM
     awesome_print (1.9.2)
     backport (1.2.0)
     base64 (0.3.0)
+    bcp47_spec (0.2.1)
     bcrypt (3.1.20)
     benchmark (0.5.0)
     bibtex-ruby (6.2.0)
@@ -276,6 +277,7 @@ GEM
       pp (>= 0.6.0)
       rdoc (>= 4.0.0)
       reline (>= 0.4.2)
+    iso639 (1.3.3)
     jaro_winkler (1.6.1)
     jbuilder (2.14.1)
       actionview (>= 7.0.0)
@@ -312,6 +314,7 @@ GEM
     language_server-protocol (3.17.0.5)
     latex-decode (0.4.0)
     libxml-ruby (5.0.5)
+    link_header (0.0.8)
     lint_roller (1.1.0)
     listen (3.9.0)
       rb-fsevent (~> 0.10, >= 0.10.3)
@@ -340,6 +343,8 @@ GEM
     needleman_wunsch_aligner (1.0.4)
     net-http (0.6.0)
       uri
+    net-http-persistent (4.0.6)
+      connection_pool (~> 2.2, >= 2.2.4)
     net-imap (0.5.12)
       date
       net-protocol
@@ -441,10 +446,19 @@ GEM
       ffi (~> 1.0)
     rbs (3.9.5)
       logger
+    rdf (3.3.4)
+      bcp47_spec (~> 0.2)
+      bigdecimal (~> 3.1, >= 3.1.5)
+      link_header (~> 0.0, >= 0.0.8)
+      logger (~> 1.5)
+      ostruct (~> 0.6)
+      readline (~> 0.0)
     rdoc (6.15.1)
       erb
       psych (>= 4.0.0)
       tsort
+    readline (0.0.4)
+      reline
     redcarpet (3.6.1)
     regexp_parser (2.11.3)
     reline (0.6.2)
@@ -557,6 +571,9 @@ GEM
       ruby-progressbar
     sort_alphabetical (1.1.0)
       unicode_utils (>= 1.2.2)
+    sparql-client (3.3.0)
+      net-http-persistent (~> 4.0, >= 4.0.2)
+      rdf (~> 3.3)
     sprockets (4.2.2)
       concurrent-ruby (~> 1.0)
       logger
@@ -647,6 +664,7 @@ DEPENDENCIES
   i18n-tasks (~> 1.0.14)
   iiif-presentation
   importmap-rails (~> 2.1)
+  iso639
   jbuilder (~> 2.12)
   jquery-rails (~> 4.5)
   jquery-ui-rails (~> 6.0.1)!
@@ -683,6 +701,7 @@ DEPENDENCIES
   solargraph
   solr_wrapper
   sort_alphabetical
+  sparql-client (~> 3.3)
   sqlite3
   sunspot_rails (~> 2.7.1)
   terser
