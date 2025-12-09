@@ -144,14 +144,14 @@ class TgnClient
 
         BIND(COALESCE(?placeLabelEn, ?placeLabelNonEn) AS ?placeLabel)
 
-OPTIONAL {
-  SELECT ?place (GROUP_CONCAT(DISTINCT STR(?l); separator=" | ") AS ?placeLabelsAll)
-  WHERE {
-    VALUES ?place { tgn:#{id} }
-    ?place rdfs:label ?l .
-  }
-  GROUP BY ?place
-}
+        OPTIONAL {
+          SELECT ?place (GROUP_CONCAT(DISTINCT STR(?l); separator=" | ") AS ?placeLabelsAll)
+          WHERE {
+            VALUES ?place { tgn:#{id} }
+            ?place rdfs:label ?l .
+          }
+          GROUP BY ?place
+        }
 
         # Any ancestor including self (0 steps)
         ?place gvp:broaderPreferred* ?ancestor .
@@ -330,11 +330,11 @@ class TgnConverter
       new_marc.add_tag_with_subfields("370", "4": item[:type], c: item[:id], f: item[:label])
       # Save the coutry
       legacy_country = item[:label] if item[:type] == "nations"
-      legacy_district = item[:label] if item[:type] == "provinces" || item[:type].include?("regions")
+      legacy_district = item[:label] if item[:type] == "provinces" || item[:type] == "prefectures" || item[:type].include?("regions")
     end
 
-    if !legacy_country.empty? || legacy_district.empty
-      new_marc.add_tag_with_subfields("970", a: legacy_country, c: legacy_district)
+    if !legacy_country.empty? || legacy_district.empty?
+      new_marc.add_tag_with_subfields("970", a: legacy_country, b: legacy_district)
     end
 
     record[:alternate_names].each do |alt|

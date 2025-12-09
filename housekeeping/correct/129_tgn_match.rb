@@ -6,6 +6,8 @@ def delete_024_tgn(marc)
   end
 end
 
+Place.find_each {|p| p.scaffold_marc; p.save if p.changed?}
+
 name = ARGV[0]
 
 CSV::foreach(name) do |line|
