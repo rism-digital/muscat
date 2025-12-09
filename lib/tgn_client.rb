@@ -112,7 +112,7 @@ class TgnClient
       PREFIX xl:  <http://www.w3.org/2008/05/skos-xl#>
       PREFIX tgn: <http://vocab.getty.edu/tgn/>
 
-      SELECT ?place ?placeLabel ?placeType
+      SELECT ?place ?placeLabel ?placeType ?placeLabelsAll
             ?ancestor ?ancestorLabel ?ancestorType ?lat ?long
             (MIN(?d) AS ?level)
       WHERE {
@@ -143,6 +143,15 @@ class TgnClient
         }
 
         BIND(COALESCE(?placeLabelEn, ?placeLabelNonEn) AS ?placeLabel)
+
+OPTIONAL {
+  SELECT ?place (GROUP_CONCAT(DISTINCT STR(?l); separator=" | ") AS ?placeLabelsAll)
+  WHERE {
+    VALUES ?place { tgn:#{id} }
+    ?place rdfs:label ?l .
+  }
+  GROUP BY ?place
+}
 
         # Any ancestor including self (0 steps)
         ?place gvp:broaderPreferred* ?ancestor .
@@ -184,7 +193,7 @@ class TgnClient
           GROUP BY ?place ?ancestor
         }
       }
-      GROUP BY ?place ?placeLabel ?placeType ?ancestor ?ancestorLabel ?ancestorType ?lat ?long
+      GROUP BY ?place ?placeLabel ?placeType ?ancestor ?ancestorLabel ?ancestorType ?lat ?long ?placeLabelsAll
       ORDER BY ?level
     SPARQL
 
@@ -214,14 +223,19 @@ class TgnClient
       {k => v} if parents_ordered.any? { |h| h[:id] == full_id }
     }.compact&.first
 
-    
+    alt_labels = []
+    if place[:placeLabelsAll]&.to_s
+      alt_labels = place[:placeLabelsAll].to_s.split(/\s*\|\s*/).map(&:strip).reject(&:empty?).reject { |v| v == place[:placeLabel]&.to_s }
+    end
+
     {
       id: id,
       name: place[:placeLabel]&.to_s,
       place_lang: place[:placeLabel]&.language,
       hierarchy: parents_ordered,
       coordinates: {lat: place[:lat]&.to_s, long: place[:long]&.to_s},
-      country: country
+      country: country,
+      alternate_names: alt_labels
     }
 
   end
@@ -237,7 +251,10 @@ class TgnClient
 
     # Each row is inside many <tbody> tags, each containing a single <tr>
     table.css("tbody tr").each do |tr|
-    tds = tr.css("td").map { |td| td.text.strip }
+      tds = tr.css("td").map { |td| td.text.strip }
+
+      # Skip stuff like Canyon and railway stations
+      next if !tds[4].include?("inhabited places")
 
       row_hash = {
         subject:     tds[0],  # e.g. "tgn:7003127"
@@ -299,11 +316,29 @@ class TgnConverter
 
     if record[:country] != nil
       new_marc.add_tag_with_subfields("043", "2": "rismg", c: record[:country].values.first)
-      new_marc.add_tag_with_subfields("043", "2": "TGN", b: record[:country].keys.first)
+      # Country id, do we need this?
+      #new_marc.add_tag_with_subfields("043", "2": "TGN", b: record[:country].keys.first)
     end
+
+    # Purge the legacy district and country
+    new_marc.by_tags("970").each {|t2| t2.destroy_yourself}
+
+    legacy_country = ""
+    legacy_district = ""
 
     record[:hierarchy].each do |item|
       new_marc.add_tag_with_subfields("370", "4": item[:type], c: item[:id], f: item[:label])
+      # Save the coutry
+      legacy_country = item[:label] if item[:type] == "nations"
+      legacy_district = item[:label] if item[:type] == "provinces" || item[:type].include?("regions")
+    end
+
+    if !legacy_country.empty? || legacy_district.empty
+      new_marc.add_tag_with_subfields("970", a: legacy_country, c: legacy_district)
+    end
+
+    record[:alternate_names].each do |alt|
+      new_marc.add_tag_with_subfields("451", a: alt)
     end
 
     return new_marc.to_marc.force_encoding("UTF-8")

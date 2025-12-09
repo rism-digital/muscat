@@ -522,6 +522,7 @@ en:
       folder:
         work_catalogue_status: Work catalog status
   hide_preview: Hide preview
+  hierarchy: Hierarchy
   history_author: Author
   history_date: Date
   history_delete: Delete
@@ -767,6 +768,7 @@ en:
   save_and_continue: Save and continue editing
   save_and_exit: Save and close
   search_sources: Search Sources
+  search_tgn: Search Getty TGN
   sections: Sections
   select: Select
   select_template: Select new template
@@ -797,6 +799,7 @@ en:
     published: PUB
   std_title_contains: Standardized title
   switch_language: Switch language
+  tgn_id: Getty TGN id
   this_file_language: English
   time:
     formats:

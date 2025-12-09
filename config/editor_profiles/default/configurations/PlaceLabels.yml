@@ -166,6 +166,13 @@
     u:
       label: records.project_url
   label: records.contributing_project
+'970':
+  fields:
+    a:
+      label: records.legacy_country
+    b:
+      label: records.legacy_district
+  label: records.legacy_country_district
 administration:
   label: records.administration
 bn:

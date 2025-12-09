@@ -186,6 +186,8 @@ class Place < ApplicationRecord
     end
     text :name
 
+    integer :tgn_id
+
     string :country_order do
       country
     end

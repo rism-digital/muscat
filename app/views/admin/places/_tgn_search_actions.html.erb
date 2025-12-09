@@ -7,7 +7,7 @@
 <%= form_tag("/admin/places/tgn_search", method: "get", class: "filter_form") do %>
   <div class="filter_form">
       <div class="string input optional stringish filter_form_field filter_string">
-        <%= label_tag("q", I18n.t("query")) %>
+        <%= label_tag("q", I18n.t("search_tgn")) %>
         <%= text_field_tag("q", @query) %>
       </div>
     <div class="buttons">
