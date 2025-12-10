@@ -316,7 +316,8 @@ class TgnConverter
     "autonomous cities",
     "krays",
     "departments",
-    "autonomous communities"
+    "autonomous communities",
+    "autonomous republics"
   ].freeze
 
   def self.to_place_marc(record, new_marc = nil)
@@ -335,8 +336,8 @@ class TgnConverter
     new_marc.add_tag_with_subfields("151", a: record[:name], g: lang)
     new_marc.add_tag_with_subfields("024", a: record[:id], "2": "TGN")
 
-    new_marc.add_tag_with_subfields("034", d: record[:coordinates][:lat],  e: record[:coordinates][:lat], 
-                                           f: record[:coordinates][:long],  g: record[:coordinates][:long])
+    new_marc.add_tag_with_subfields("034", d: record[:coordinates][:long],  e: record[:coordinates][:long], 
+                                           f: record[:coordinates][:lat],  g: record[:coordinates][:lat])
 
     if record[:country] != nil
       new_marc.add_tag_with_subfields("043", "2": "rismg", c: record[:country].values.first)
