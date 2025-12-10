@@ -317,7 +317,9 @@ class TgnConverter
     "krays",
     "departments",
     "autonomous communities",
-    "autonomous republics"
+    "autonomous republics",
+    "occupied territories",
+    "communes"
   ].freeze
 
   def self.to_place_marc(record, new_marc = nil)
@@ -360,7 +362,7 @@ class TgnConverter
       legacy_district = item[:label] if DISTRICTS_KEYWORDS.any? { |kw| item[:type].include?(kw) }
     end
 
-    if !legacy_country.empty? || legacy_district.empty?
+    if legacy_country.present? || legacy_district.present?
       new_marc.add_tag_with_subfields("970", a: legacy_country, b: legacy_district)
     end
 
