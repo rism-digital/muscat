@@ -54,7 +54,9 @@
   layout: 
     fields: 
     - - a
+      - read_only: true
     - - b
+      - read_only: true
 "151": 
   layout: 
     fields: 
@@ -75,11 +77,11 @@
   layout: 
     fields: 
     - - "4"
+      - read_only: true
     - - c
-      - type: place
-        #editor_partial: subfield_secondary
-        #allow_new: false
+      - read_only: true
     - - f
+      - read_only: true
 "451": 
   layout: 
     fields: 

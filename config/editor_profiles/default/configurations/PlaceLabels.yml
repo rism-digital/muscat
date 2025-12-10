@@ -223,6 +223,8 @@ female:
   label: general.female
 ff:
   label: records.personal_name
+geodata:
+  label: records.geodata
 gg:
   label: records.birth_name
 go:

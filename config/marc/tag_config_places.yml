@@ -88,20 +88,20 @@
     :occurrences: "*"
     :fields:
     - - "2"
-      - :occurrences: "*"
+      - :occurrences: "?"
     - - b
-      - :occurrences: "*"
+      - :occurrences: "?"
     - - c
-      - :occurrences: "*"
+      - :occurrences: "?"
   "075": 
     :master: a
     :indicator: "##"
     :occurrences: "*"
     :fields:
     - - a
-      - :occurrences: "*"
+      - :occurrences: "?"
     - - b
-      - :occurrences: "*"
+      - :occurrences: "?"
   "151":
     :master: a
     :indicator: "##"
@@ -158,6 +158,6 @@
     :occurrences: "?"
     :fields:
     - - a
-      - :occurrences: "+"
+      - :occurrences: "?"
     - - b
-      - :occurrences: "+"
+      - :occurrences: "?"

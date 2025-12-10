@@ -105,7 +105,6 @@ THE_STATIC_MAP = {
 end
 
 class TgnClient
-
   def self.pull_from_tgn(id)
     query = <<~SPARQL
       PREFIX gvp: <http://vocab.getty.edu/ontology#>
@@ -295,6 +294,28 @@ class TgnClient
 end
 
 class TgnConverter
+  DISTRICTS_KEYWORDS = [
+    "regions", 
+    "states", 
+    "provinces", 
+    "prefectures", 
+    "counties", 
+    "oblasts", 
+    "voivodeships", 
+    "arrondissements", 
+    "national districts", 
+    "special cities", 
+    "boroughs", 
+    "cantons", 
+    "municipalities", 
+    "localities",
+    "first level subdivisions",
+    "autonomous cities",
+    "krays",
+    "departments",
+    "autonomous communities"
+  ].freeze
+
   def self.to_place_marc(record, new_marc = nil)
     
     if !new_marc
@@ -330,15 +351,24 @@ class TgnConverter
       new_marc.add_tag_with_subfields("370", "4": item[:type], c: item[:id], f: item[:label])
       # Save the coutry
       legacy_country = item[:label] if item[:type] == "nations"
-      legacy_district = item[:label] if item[:type] == "provinces" || item[:type] == "prefectures" || item[:type].include?("regions")
+      legacy_district = item[:type] if DISTRICTS_KEYWORDS.any? { |kw| item[:type].include?(kw) }
     end
 
     if !legacy_country.empty? || legacy_district.empty?
       new_marc.add_tag_with_subfields("970", a: legacy_country, b: legacy_district)
     end
 
+    existing = new_marc["451"].flat_map { |t| Array(t["a"]) }
+      .map { |tt| tt&.content.to_s.strip.downcase }
+      .compact
+      .to_set
+
     record[:alternate_names].each do |alt|
+      norm = alt.to_s.strip.downcase
+      next if existing.include?(norm)
+
       new_marc.add_tag_with_subfields("451", a: alt)
+      existing.add(norm) # Make sure we don't add dups
     end
 
     return new_marc.to_marc.force_encoding("UTF-8")

@@ -1,3 +1,4 @@
+<% if @current_user.has_role?(:admin) %>
 <ul>
   <li class="muscat_icon_separator"></li>
   <li class="muscat_icon_link">
@@ -15,3 +16,4 @@
     </div>
   </div>
 <% end %>
+<%end%>
