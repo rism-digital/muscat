@@ -233,7 +233,7 @@ ha:
   label: records.place_origin
 in:
   label: records.initials
-main_person:
+main_place:
   label: records.main_entry_fields
 male:
   label: general.male
