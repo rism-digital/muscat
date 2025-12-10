@@ -111,7 +111,7 @@ class TgnClient
       PREFIX xl:  <http://www.w3.org/2008/05/skos-xl#>
       PREFIX tgn: <http://vocab.getty.edu/tgn/>
 
-      SELECT ?place ?placeLabel ?placeType ?placeLabelsAll
+      SELECT ?place ?placeLabel ?placeType ?placeTypeCode ?placeLabelsAll
             ?ancestor ?ancestorLabel ?ancestorType ?lat ?long
             (MIN(?d) AS ?level)
       WHERE {
@@ -120,6 +120,7 @@ class TgnClient
         # Place label/type
         #?place gvp:prefLabelGVP/xl:literalForm ?placeLabel .
         ?place gvp:placeTypePreferred/gvp:prefLabelGVP/xl:literalForm ?placeType .
+        ?place gvp:placeTypePreferred ?placeTypeCode .
 
         # Get some info on the original place
         OPTIONAL { ?place foaf:focus/wgs:lat  ?lat . }
@@ -192,7 +193,7 @@ class TgnClient
           GROUP BY ?place ?ancestor
         }
       }
-      GROUP BY ?place ?placeLabel ?placeType ?ancestor ?ancestorLabel ?ancestorType ?lat ?long ?placeLabelsAll
+      GROUP BY ?place ?placeLabel ?placeType ?placeTypeCode ?ancestor ?ancestorLabel ?ancestorType ?lat ?long ?placeLabelsAll
       ORDER BY ?level
     SPARQL
 
@@ -204,7 +205,7 @@ class TgnClient
 
     parents_ordered = results.map do |r|
       next if r[:level]&.to_i == 0 # Skip ourselves
-
+        
       # Skip "World"
       next if r[:ancestor].to_s == "http://vocab.getty.edu/tgn/7029392"
 
@@ -234,7 +235,9 @@ class TgnClient
       hierarchy: parents_ordered,
       coordinates: {lat: place[:lat]&.to_s, long: place[:long]&.to_s},
       country: country,
-      alternate_names: alt_labels
+      alternate_names: alt_labels,
+      type: place[:placeType]&.to_s,
+      type_code: place[:placeTypeCode]&.to_s
     }
 
   end
@@ -341,6 +344,8 @@ class TgnConverter
       #new_marc.add_tag_with_subfields("043", "2": "TGN", b: record[:country].keys.first)
     end
 
+    new_marc.add_tag_with_subfields("075", a: record[:type], b: record[:type_code])
+
     # Purge the legacy district and country
     new_marc.by_tags("970").each {|t2| t2.destroy_yourself}
 
@@ -351,7 +356,7 @@ class TgnConverter
       new_marc.add_tag_with_subfields("370", "4": item[:type], c: item[:id], f: item[:label])
       # Save the coutry
       legacy_country = item[:label] if item[:type] == "nations"
-      legacy_district = item[:type] if DISTRICTS_KEYWORDS.any? { |kw| item[:type].include?(kw) }
+      legacy_district = item[:label] if DISTRICTS_KEYWORDS.any? { |kw| item[:type].include?(kw) }
     end
 
     if !legacy_country.empty? || legacy_district.empty?

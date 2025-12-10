@@ -532,6 +532,7 @@ en:
     general_note_incipits: General note for music incipit
     general_note_institution: General note
     general_note_personal: General note
+    geodata: Geographic information
     geographic_area_code: Geographic area code
     geographic_name: Geographic name
     geographic_subdivision: Geographic subdivision
@@ -606,6 +607,9 @@ en:
     later_heading: Later heading
     latitude: Latitude
     leader: Leader
+    legacy_country: Country
+    legacy_country_district: Country and District (please only fill these)
+    legacy_district: District
     library: Library
     library_information: Library information
     library_information_relations: Library information and relations
