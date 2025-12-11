@@ -124,6 +124,9 @@ include ApplicationHelper
   
       when "required_if"
         validate_required_if_rule(tag, subtag, marc_subtag, value)
+      
+      when "must_be_different"
+        validate_must_be_different(tag, subtag, marc_subtag, value)
 
       when "must_contain"
         validate_must_contain_rule(tag, subtag, marc_subtag, value)
@@ -202,6 +205,21 @@ include ApplicationHelper
       if marc_subtag.nil? || marc_subtag.content.blank?
         add_error(tag, subtag, "required_if-#{other_tag}#{other_subtag}")
         puts "Missing #{tag} #{subtag}, required_if-#{other_tag}#{other_subtag}" if DEBUG
+      end
+    end
+  end
+
+  def validate_must_be_different(tag, subtag, marc_subtag, rules)
+    rules.each do |other_tag, other_subtag|
+      other_marc_tag = @marc.first_occurance(other_tag)
+      next unless other_marc_tag  # If not there, rule doesn't apply
+      other_marc_subtag = other_marc_tag.fetch_first_by_tag(other_subtag)
+      next unless other_marc_subtag&.content  # If no content, rule doesn't apply
+  
+      # Now we check if the current subtag is missing
+      if marc_subtag.content == other_marc_subtag.content
+        add_error(tag, subtag, "must_be_different-#{other_tag}#{other_subtag}")
+        puts "Missing #{tag} #{subtag}, must_be_different-#{other_tag}#{other_subtag}" if DEBUG
       end
     end
   end

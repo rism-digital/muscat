@@ -235,6 +235,7 @@ en:
     validate_031_dups: 'This incipit number is already used: $b or $c are duplicated'
     validate_588_siglum: 'Enter the library siglum and shelfmark as in the format: I-Bc Q.51'
     validate_url: The entered URL is invalid
+    must_be_different: This may not be identical to the other value in the tag
   basic_level: Basic record
   body: Body
   btn_themefinder_reset: Reset
@@ -838,6 +839,7 @@ en:
     validate_edtf: Validate EDTF date
     validate_url: The entered URL is invalid
     warning_message: A value for this field should be provided
+    must_be_different_message: This may not be identical to the other value in the tag
   validation_level_error: There are errors, please solve before saving
   validation_level_warning: There are warnings, save again to override
   view_source: View Source

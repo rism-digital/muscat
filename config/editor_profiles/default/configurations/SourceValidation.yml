@@ -21,9 +21,13 @@ client:
         #  "031": "a"
   "041":
     tags:
-      a:
-        required_if:
-          "041": "h"
+      "a": 
+        any_of:
+        - required_if: 
+            "041": "h"
+        - must_be_different:
+            "041": "h"
+
   "100":
     tag_overrides:
       exclude:

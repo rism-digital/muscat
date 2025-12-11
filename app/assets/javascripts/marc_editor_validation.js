@@ -15,6 +15,7 @@ const PARAMETRIC_RULES = [
 	"required_if",
 	"begins_with",
 	"must_contain",
+	"must_be_different",
 	"gnd_warn_default"
 ]
 
@@ -357,6 +358,37 @@ function marc_validate_mandatory(value, element) {
 	return true;
 }
 
+// This is kinda lazily copied from required_if
+function marc_validate_must_be_different(value, element, param) {
+	var dep_tag = param[0];
+	var dep_subtag = param[1];
+	
+	var valid = true;
+	var tag = $(element).data("tag");
+	var toplevel;
+	
+	if (tag == dep_tag) {
+		toplevel = $(element).parents(".tag_toplevel_container");
+	} else {
+		toplevel = $("#marc_editor_panel");
+	}
+	
+	var selector;
+	if (dep_subtag == "control") {
+		selector = '.serialize_marc[data-tag=' + dep_tag + ']';
+	} else {
+		selector = '.serialize_marc[data-tag=' + dep_tag + '][data-subfield=' + dep_subtag + ']';
+	}
+
+	$(selector, toplevel).each(function() {
+		if ($(this).val().trim() == value.trim()) {
+			valid = false;
+		}
+	});
+
+	return valid;
+}
+
 function marc_validate_required_if(value, element, param) {
 	// Note! We can validaye just one of the required_if fields
 	var dep_tag = param[0];
@@ -630,26 +662,19 @@ function marc_editor_init_validation(form, validation_conf) {
 	// Add validator methods
 	$.validator.addMethod("presence", marc_validate_presence, I18n.t("validation.missing_message"));
 	$.validator.addMethod("mandatory", marc_validate_mandatory, I18n.t("validation.missing_message"));
-	$.validator.addMethod("required_if", marc_validate_required_if, 
-			$.validator.format(I18n.t("validation.required_if_message")));
-	$.validator.addMethod("begins_with", marc_validate_begins_with, 
-			$.validator.format(I18n.t("validation.begins_with_message")));
-	$.validator.addMethod("check_group", marc_validate_check_group,
-			$.validator.format(I18n.t("validation.check_group_message")));
-	$.validator.addMethod("must_contain", marc_validate_must_contain,
-			$.validator.format(I18n.t("validation.must_contain_message")));
-	$.validator.addMethod("validate_588_siglum", marc_validate_588_siglum,
-			$.validator.format(I18n.t("validation.validate_588_siglum")));
-	$.validator.addMethod("validate_edtf", marc_validate_edtf,
-			$.validator.format(I18n.t("validation.validate_edtf")));	
-	$.validator.addMethod("validate_031_dups", marc_validate_031_duplicates,
-			$.validator.format(I18n.t("validation.validate_031_dups")));
 
-	$.validator.addMethod("gnd_warn_default", marc_validate_gnd_warn_default,
-			$.validator.format(I18n.t("validation.gnd_warn_default_message")));
+	$.validator.addMethod("required_if", marc_validate_required_if, 	$.validator.format(I18n.t("validation.required_if_message")));
+	$.validator.addMethod("begins_with", marc_validate_begins_with, 	$.validator.format(I18n.t("validation.begins_with_message")));
+	$.validator.addMethod("check_group", marc_validate_check_group,		$.validator.format(I18n.t("validation.check_group_message")));
+	$.validator.addMethod("must_contain", marc_validate_must_contain,	$.validator.format(I18n.t("validation.must_contain_message")));
+	$.validator.addMethod("validate_588_siglum", marc_validate_588_siglum,	$.validator.format(I18n.t("validation.validate_588_siglum")));
+	$.validator.addMethod("validate_edtf", marc_validate_edtf,			$.validator.format(I18n.t("validation.validate_edtf")));	
+	$.validator.addMethod("validate_031_dups", marc_validate_031_duplicates,	$.validator.format(I18n.t("validation.validate_031_dups")));
+	$.validator.addMethod("must_be_different", marc_validate_must_be_different, 	$.validator.format(I18n.t("validation.must_be_different_message")));
 
-	$.validator.addMethod("validate_url", marc_validate_url,
-			$.validator.format(I18n.t("validation.validate_url")));
+	$.validator.addMethod("gnd_warn_default", marc_validate_gnd_warn_default,	$.validator.format(I18n.t("validation.gnd_warn_default_message")));
+
+	$.validator.addMethod("validate_url", marc_validate_url,	$.validator.format(I18n.t("validation.validate_url")));
 
 	// New creation: this is not configurable, it is used to make sure the
 	// "confirm create new" checkbox is selected for new items
