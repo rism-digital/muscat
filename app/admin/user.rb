@@ -29,6 +29,9 @@ ActiveAdmin.register User do
     else
       users = []
     end
+
+    users.reject! {|u| u[:name] == "Admin"}
+    
     respond_to do |format|
         format.json { render json: users  }
     end
