@@ -88,8 +88,8 @@
   layout: 
     fields: 
     - - a
-      - read_only: true
-        override_admin: true
+      - #read_only: true
+        #override_admin: true
         trigger:
         - save:
           - referring_sources
@@ -99,14 +99,14 @@
           - referring_publications
           - referring_works
     - - b
-      - read_only: true
-        override_admin: true
+      - #read_only: true
+        #override_admin: true
         trigger:
         - save:
           - referring_institutions
     - - c
-      - read_only: true
-        override_admin: true
+      - #read_only: true
+        #override_admin: true
         trigger:
         - save:
           - referring_sources
