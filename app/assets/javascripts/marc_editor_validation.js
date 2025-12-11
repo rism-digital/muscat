@@ -367,6 +367,10 @@ function marc_validate_must_be_different(value, element, param) {
 	var tag = $(element).data("tag");
 	var toplevel;
 	
+	// Skip empty values
+	if (value.trim() === "")
+		return true;
+
 	if (tag == dep_tag) {
 		toplevel = $(element).parents(".tag_toplevel_container");
 	} else {
@@ -381,7 +385,10 @@ function marc_validate_must_be_different(value, element, param) {
 	}
 
 	$(selector, toplevel).each(function() {
-		if ($(this).val().trim() == value.trim()) {
+		if ($(this).val().trim() === "")
+			return;
+
+		if ($(this).val().trim() === value.trim()) {
 			valid = false;
 		}
 	});
