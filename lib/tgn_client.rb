@@ -319,7 +319,9 @@ class TgnConverter
     "autonomous communities",
     "autonomous republics",
     "occupied territories",
-    "communes"
+    "communes",
+    "local councils",
+    "governorates"
   ].freeze
 
   def self.to_place_marc(record, new_marc = nil)

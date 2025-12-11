@@ -65,10 +65,10 @@ force_editor_ordering: true
     - - d
       - read_only: true
     - - e
-      - editor_partial: "subfield_hardcoded"
-        maintain_incoming_value: false
-        never_enable: true
-        value: "rda"
+      #- editor_partial: "subfield_hardcoded"
+      #  maintain_incoming_value: false
+      #  never_enable: true
+      #  value: "rda"
     - - "9"
       - read_only: true
   tag_params: 
