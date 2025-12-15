@@ -540,7 +540,7 @@ en:
   holding_mover:
     missing_source_id: Please enter a source ID
     missing_source: Source does not exist
-    not_edition: Plese select an edition source
+    not_edition: Please select an edition source
     correctly_moved: Holding correctly moved
     move_holding_to: Move Holding to
     Move Holding to: Holding actions

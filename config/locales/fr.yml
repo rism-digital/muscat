@@ -227,6 +227,7 @@ fr:
     begin_with: Ce champ doit commencer par la chaîne correcte
     check_group: Ce champ contient une valeur invalide par rapport à la position dans le groupe
     mandatory: Ce sous-champ est obligatoire
+    must_be_different: Ceci ne peut pas être identique à l’autre valeur dans le champ
     must_contain: Ce champ ne correspond pas au modèle requis
     no_subtag: Ce champ est obligatoire
     required: Ce champ est requis lorsque cette étiquette est ajoutée
@@ -522,6 +523,7 @@ fr:
       folder:
         work_catalogue_status: Statut du catalogue des œuvres
   hide_preview: Masquer l'aperçu
+  hierarchy: Hiérarchie
   history_author: Auteur
   history_date: Date
   history_delete: Supprimer
@@ -535,6 +537,14 @@ fr:
   holding_missing: Cette source imprimée n'a pas encore des copies attachées. Veuillez ajouter le sigle de votre bibliothèque, la cote et d'autres informations spécifiques à cet exemplaire à cette fiche en cliquant sur le bouton "%{new_holding}" à droite.
   holding_missing_alert: Cette source imprimée n'a pas encore des copies attachées. Veuillez ajouter le sigle de votre bibliothèque, la cote et d'autres informations spécifiques à cet exemplaire à cette fiche en cliquant sur le bouton "%{new_holding}" à droite après avoir enregistré.
   holding_missing_show: Cette source imprimée n'a pas encore des copies attachées. Veuillez ajouter le sigle de votre bibliothèque, la cote et d'autres informations spécifiques à cet exemplaire à cette fiche en entrant en mode édition et en cliquant sur le bouton "%{new_holding}" à droite.
+  holding_mover:
+    Move Holding to: Action sur l’exemplaire
+    correctly_moved: Exemplaire correctement déplacé
+    missing_source: La source n’existe pas
+    missing_source_id: Veuillez saisir un identifiant de source
+    move: Déplacer
+    move_holding_to: Déplacer l’exemplaire vers
+    not_edition: Veuillez sélectionner une source de type édition
   holding_no_siglum: Copie sans cote
   holding_records: Copie
   imported_level: Notice importée
@@ -752,6 +762,7 @@ fr:
   save_and_continue: Enregistrer et continuer
   save_and_exit: Enregistrer et terminer
   search_sources: Chercher des sources
+  search_tgn: Rechercher dans le TGN de Getty
   sections: Sections
   select: Sélectionner
   select_template: Choisir un modèle
@@ -777,6 +788,7 @@ fr:
   status: Statut
   std_title_contains: Titre standardisé
   switch_language: Changer de langue
+  tgn_id: Identifiant TGN Getty
   this_file_language: Français
   time:
     formats:
@@ -807,6 +819,7 @@ fr:
     correct: L'enregistrement ne contient aucune erreur [200]
     insufficient_rights: L'utilisateur ne dispose pas des droits nécessaires pour créer un enregistrement avec cette bibliothèque.
     missing_message: Une valeur dans ce champ est nécessaire
+    must_be_different_message: Ceci ne peut pas être identique à l’autre valeur du champ
     must_contain_message: Ce champ doit correspondre au modèle requis.
     name_uniqueness: Le nom abrégé de l'élément est déjà utilisé
     required_if_message: Ce champ doit être rempli car il est obligatoire en présence de {0} ${1}

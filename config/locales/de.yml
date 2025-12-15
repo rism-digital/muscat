@@ -227,6 +227,7 @@ de:
     begin_with: Dieses Feld muss mit der richtigen Zeichenfolge beginnen
     check_group: Dieses Feld enthält einen ungültigen Wert in Bezug auf die Position in der Gruppe
     mandatory: Dieses Unterfeld ist obligatorisch
+    must_be_different: Dies darf nicht mit dem anderen Wert im Feld identisch sein
     must_contain: Dieses Feld muss dem erforderlichen Muster entsprechen
     no_subtag: Dieses Feld ist obligatorisch
     required: Dieses Feld ist erforderlich, wenn dieses Tag hinzugefügt wird
@@ -522,6 +523,7 @@ de:
       folder:
         work_catalogue_status: Werkverzeichnis-Status
   hide_preview: Vorschau verbergen
+  hierarchy: Hierarchie
   history_author: Bearbeiter
   history_date: Datum
   history_delete: Löschen
@@ -535,6 +537,14 @@ de:
   holding_missing: Dieser Musikdruck enthält noch keinen Nachweis. Bitte fügen Sie diesem Datensatz Ihr Bibliothekssigel, Ihre Signatur und andere exemplarspezifische Informationen hinzu, indem Sie auf die Schaltfläche "%{new_holding}" auf der rechten Seite klicken.
   holding_missing_alert: Dieser Musikdruck enthält noch keinen Nachweis. Bitte fügen Sie diesem Datensatz Ihr Bibliothekssigel, Ihre Signatur und andere exemplarspezifische Informationen hinzu, indem Sie auf die Schaltfläche "%{new_holding}" auf der rechten Seite klicken.
   holding_missing_show: Dieser Musikdruck enthält noch keinen Nachweis. Bitte fügen Sie diesem Datensatz Ihr Bibliothekssigel, Ihre Signatur und andere exemplarspezifische Informationen hinzu, indem Sie diesen Datensatz bearbeiten und auf die Schaltfläche "%{new_holding}" auf der rechten Seite klicken.
+  holding_mover:
+    Move Holding to: Aktionen am Exemplar
+    correctly_moved: Exemplar korrekt verschoben
+    missing_source: Die Quelle existiert nicht
+    missing_source_id: Bitte geben Sie eine Quellen-ID ein
+    move: Verschieben
+    move_holding_to: Exemplar verschieben nach
+    not_edition: Bitte wählen Sie eine Editionsquelle aus
   holding_no_siglum: Unmarkierte Kopie
   holding_records: Exemplarinformation
   imported_level: Fremdeinspielung
@@ -752,6 +762,7 @@ de:
   save_and_continue: Speichern und weiter bearbeiten
   save_and_exit: Speichern und verlassen
   search_sources: Quellensuche
+  search_tgn: Im Getty TGN suchen
   sections: Sektionen
   select: Auswählen
   select_template: Auswahl der Vorlage
@@ -777,6 +788,7 @@ de:
   status: Status
   std_title_contains: Einordnungstitel
   switch_language: Sprache ändern
+  tgn_id: Getty TGN id
   this_file_language: Deutsch
   time:
     formats:
@@ -807,6 +819,7 @@ de:
     correct: Der Eintrag enthält keine Validierungsfehler. [200]
     insufficient_rights: Der Anwender hat nicht die Berechtigung, für dieses Sigel einen Titel zu erstellen/zu ändern.
     missing_message: Dieses Feld muss zwingend ausgefüllt werden.
+    must_be_different_message: Dies darf nicht mit dem anderen Wert im Feld identisch sein
     must_contain_message: Dieses Feld muss dem erforderlichen Muster entsprechen.
     name_uniqueness: Das Kürzel des Eintrages ist bereits vergeben.
     required_if_message: Dieses Feld muss ausgefüllt werden, da es obligatorisch ist in Anwesenheit von {0} ${1}

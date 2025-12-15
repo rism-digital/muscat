@@ -178,7 +178,7 @@ ActiveAdmin.register Place do
 
   sidebar :actions, :only => :index do
     render :partial => "activeadmin/section_sidebar_index"
-    render partial: "tgn_search_actions"
+    render partial: "tgn_search_actions" if current_user.has_role?(:editor) || current_user.has_role?(:admin)
   end
 
   # Include the folder actions

@@ -188,6 +188,7 @@ ActiveAdmin.register Holding do
 
     if source.allow_holding?
       resource.source_id = source_id
+      resource.paper_trail_event = "holding_moved"
       resource.save
       redirect_to edit_resource_path(resource), notice: t('holding_mover.correctly_moved')
     else

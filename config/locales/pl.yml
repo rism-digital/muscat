@@ -227,6 +227,7 @@ pl:
     begin_with: To pole musi zaczynać się od prawidłowego ciągu znaków
     check_group: To pole zawiera nieprawidłową wartość względem pozycji w grupie
     mandatory: To podpole jest obowiązkowe
+    must_be_different: To nie może być identyczne z inną wartością w polu
     must_contain: To pole musi odpowiadać wymaganemu wzorcowi
     no_subtag: To pole jest obowiązkowe
     required: To pole jest wymagane, gdy ten tag zostanie dodany
@@ -522,6 +523,7 @@ pl:
       folder:
         work_catalogue_status: Status katalogu dzieł
   hide_preview: Ukryj podgląd
+  hierarchy: Hierarchia
   history_author: Autor
   history_date: Data
   history_delete: Usuń
@@ -535,6 +537,14 @@ pl:
   holding_missing: This printed source does not have any holdings attached yet. Please add your library siglum, shelfmark, and other copy-specific information to this record by clicking the "%{new_holding}" button on the right.
   holding_missing_alert: This printed source does not have any holdings attached yet. Please add your library siglum, shelfmark, and other copy-specific information to this record by clicking the "%{new_holding}" button on the right after you save.
   holding_missing_show: This printed source does not have any holdings attached yet. Please add your library siglum, shelfmark, and other copy-specific information to this record by editinf this record and clicking the "%{new_holding}" button on the right.
+  holding_mover:
+    Move Holding to: Działania na egzemplarzu
+    correctly_moved: Egzemplarz został poprawnie przeniesiony
+    missing_source: Źródło nie istnieje
+    missing_source_id: Proszę wprowadzić identyfikator źródła
+    move: Przenieść
+    move_holding_to: Przenieść egzemplarz do
+    not_edition: Proszę wybrać źródło edycji
   holding_no_siglum: Egzemplarz bez siglum
   holding_records: Informacje o egzemplarzu
   imported_level: Rekord zaimportowany
@@ -752,6 +762,7 @@ pl:
   save_and_continue: Zapisz i kontynuuj edycję
   save_and_exit: Zapisz i zamknij
   search_sources: Przeszukuj źródła
+  search_tgn: Wyszukaj w Getty TGN
   sections: Sekcje
   select: Wybierz
   select_template: Wybierz nowy szablon
@@ -777,6 +788,7 @@ pl:
   status: Status
   std_title_contains: Znormalizowany tytuł
   switch_language: Zmień język
+  tgn_id: Getty TGN id
   this_file_language: Angielski
   time:
     formats:
@@ -807,6 +819,7 @@ pl:
     correct: Brak błędów zatwierdzenia rekordu [200]
     insufficient_rights: Użytkownik ma niewystarczające uprawnienia do utworzenia / zaktualizowania rekordu tej biblioteki
     missing_message: To pole jest obowiązkowe
+    must_be_different_message: To nie może być identyczne z inną wartością w polu
     must_contain_message: To pole musi odpowiadać wymaganemu wzorcowi
     name_uniqueness: Skrócona nazwa wpisu została już pobrana
     required_if_message: Pole obowiązkowe, ponieważ pole {0} ${1} nie jest puste

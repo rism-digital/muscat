@@ -227,6 +227,7 @@ pt:
     begin_with: Este campo deve começar com a string correta
     check_group: Este campo contém um valor inválido em relação à posição no grupo
     mandatory: Este subcampo é obrigatório
+    must_be_different: Isto não pode ser idêntico ao outro valor no campo
     must_contain: Este campo deve corresponder ao padrão requerido
     no_subtag: Este campo é obrigatório
     required: Este campo é obrigatório quando esta tag é adicionada
@@ -522,6 +523,7 @@ pt:
       folder:
         work_catalogue_status: Estado do catálogo de obras
   hide_preview: Ocultar previsualização
+  hierarchy: Hierarquia
   history_author: Autor
   history_date: Data
   history_delete: Apagar
@@ -535,6 +537,14 @@ pt:
   holding_missing: This printed source does not have any holdings attached yet. Please add your library siglum, shelfmark, and other copy-specific information to this record by clicking the "%{new_holding}" button on the right.
   holding_missing_alert: This printed source does not have any holdings attached yet. Please add your library siglum, shelfmark, and other copy-specific information to this record by clicking the "%{new_holding}" button on the right after you save.
   holding_missing_show: This printed source does not have any holdings attached yet. Please add your library siglum, shelfmark, and other copy-specific information to this record by editinf this record and clicking the "%{new_holding}" button on the right.
+  holding_mover:
+    Move Holding to: Ações sobre o exemplar
+    correctly_moved: Exemplar movido corretamente
+    missing_source: A fonte não existe
+    missing_source_id: Por favor, insira um ID da fonte
+    move: Mover
+    move_holding_to: Mover o exemplar para
+    not_edition: Por favor, selecione uma fonte de edição
   holding_no_siglum: Materia sem sigla
   holding_records: Informação do exemplar
   imported_level: Registro importado
@@ -752,6 +762,7 @@ pt:
   save_and_continue: Salvar e continuar editando
   save_and_exit: Salvar e Fechar
   search_sources: Buscar fontes
+  search_tgn: Pesquisar no Getty TGN
   sections: Seções
   select: Selecionar
   select_template: Selecionar novo modelo
@@ -777,6 +788,7 @@ pt:
   status: Estado
   std_title_contains: Título uniforme
   switch_language: Mudar de idioma
+  tgn_id: Getty TGN id
   this_file_language: English
   time:
     formats:
@@ -807,6 +819,7 @@ pt:
     correct: O registro não tem erros de validação [200]
     insufficient_rights: O usuário não tem concessão para criar/atualizar um registro para esta instituição
     missing_message: Um valor neste campo é obrigatório
+    must_be_different_message: Isto não pode ser idêntico ao outro valor no campo
     must_contain_message: Este campo deve corresponder ao padrão requerido
     name_uniqueness: O nome abreviado do registro já está em uso
     required_if_message: Este campo deve ser preenchido, pois é obrigatório na presença de {0} ${1}

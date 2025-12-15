@@ -227,6 +227,7 @@ es:
     begin_with: Este campo debe comenzar con la cadena correcta
     check_group: Este campo contiene un valor no válido en relación con la posición en el grupo
     mandatory: Este subcampo es obligatorio
+    must_be_different: Esto no puede ser idéntico al otro valor del campo
     must_contain: Este campo debe coincidir con el patrón requerido
     no_subtag: Este campo es obligatorio
     required: Este campo es obligatorio cuando se añade esta etiqueta
@@ -522,6 +523,7 @@ es:
       folder:
         work_catalogue_status: Estado del catálogo de obras
   hide_preview: Ocultar vista preliminar
+  hierarchy: Jerarquía
   history_author: Autor
   history_date: Fecha
   history_delete: Borrar
@@ -535,7 +537,15 @@ es:
   holding_missing: A esta edición impresa no se le ha añadido aún ningún registro de ejemplar. Por favor, agregue a este registro la sigla de su repositorio, la signatura y otra información específica de la copia por medio del botón “%{new_holding}” de la derecha.
   holding_missing_alert: A esta edición impresa no se le ha añadido aún ningún registro de ejemplar. Por favor, agregue a este registro la sigla de su repositorio, la signatura y otra información específica de la copia por medio del botón “%{new_holding}” de la derecha.
   holding_missing_show: A esta edición impresa no se le ha añadido aún ningún registro de ejemplar. Por favor, agregue la sigla de su repositorio, la signatura y otra información específica de la copia editando este registro y haciendo click en “%{new_holding}”, a la derecha.
-  holding_no_siglum: EJEMPLAR SIN SIGLA
+  holding_mover:
+    Move Holding to: Acciones sobre el ejemplar
+    correctly_moved: Ejemplar movido correctamente
+    missing_source: La fuente no existe
+    missing_source_id: Por favor, introduzca un ID de la fuente
+    move: Mover
+    move_holding_to: Mover el ejemplar a
+    not_edition: Por favor, seleccione una fuente de edición
+  holding_no_siglum: Ejemplar sin sigla
   holding_records: Información del ejemplar
   imported_level: Registro importado
   incipit_search:
@@ -752,6 +762,7 @@ es:
   save_and_continue: Guardar y continuar editando
   save_and_exit: Guardar y cerrar
   search_sources: Búsqueda de fuentes
+  search_tgn: Buscar en Getty TGN
   sections: Secciones
   select: Seleccionar
   select_template: Seleccione una plantilla
@@ -777,6 +788,7 @@ es:
   status: Estado
   std_title_contains: Título uniforme
   switch_language: Cambiar idioma
+  tgn_id: Getty TGN id
   this_file_language: Español
   time:
     formats:
@@ -807,6 +819,7 @@ es:
     correct: El registro no presenta errores de validación [200]
     insufficient_rights: El usuario no tiene los derechos necesarios para crear/actualizar un registro de este repositorio
     missing_message: Este campo debe contener un valor
+    must_be_different_message: Esto no puede ser idéntico al otro valor del campo
     must_contain_message: Este campo debe coincidir con el patrón requerido.
     name_uniqueness: El nombre corto del elemento ya está en uso
     required_if_message: Este campo debe ser rellenado ya que es obligatorio en presencia de {0} ${1}
@@ -838,6 +851,7 @@ es:
   work_catalog: Catálogo de obras
   work_catalog_publish: Publicar las obras vinculadas
   work_catalog_unpublish: Despublicar las obras vinculadas
+  work_catalogue: 'TRME '
   work_catalogue_labels:
     not_work_catalogue: Sin catálogo de obras
     work_catalogue_alternate: Alternativo

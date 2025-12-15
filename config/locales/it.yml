@@ -227,6 +227,7 @@ it:
     begin_with: Questo campo deve iniziare con la stringa corretta
     check_group: Questo campo contiene un valore non valido rispetto alla posizione nel gruppo
     mandatory: Questo sotto-campo è obbligatorio
+    must_be_different: Questo non può essere identico all’altro valore nel campo
     must_contain: Questo campo deve corrispondere al modello richiesto
     no_subtag: Questo campo è obbligatorio
     required: Questo campo è obbligatorio quando questo tag è aggiunto
@@ -522,6 +523,7 @@ it:
       folder:
         work_catalogue_status: Tipo di work catalogue
   hide_preview: Nascondi anteprima
+  hierarchy: Gerarchia
   history_author: Autore
   history_date: Data
   history_delete: Elimina
@@ -535,6 +537,14 @@ it:
   holding_missing: Questa fonte stampata non ha ancora nessun esemplare allegato. Per favore, aggiungi la sigla della tua biblioteca, la segnatura e altre informazioni specifiche su questa copia in questo record cliccando il pulsante "%{new_holding}" sulla destra.
   holding_missing_alert: Questa fonte stampata non ha ancora nessun esemplare allegato. Per favore, aggiungi la sigla della tua biblioteca, la segnatura e altre informazioni specifiche su questa copia in questo record cliccando il pulsante "%{new_holding}" sulla destra dopo aver salvato
   holding_missing_show: Questa fonte stampata non ha ancora nessun esemplare allegato. Per favore, aggiungi la sigla della tua biblioteca, la segnatura e altre informazioni specifiche su questa copia in questo record entrando nella modalità di modifica e cliccando il pulsante "%{new_holding}" sulla destra.
+  holding_mover:
+    Move Holding to: Azioni sull’esemplare
+    correctly_moved: Esemplare spostato correttamente
+    missing_source: La fonte non esiste
+    missing_source_id: Inserire l'ID della fonte
+    move: Sposta
+    move_holding_to: Sposta l'esemplare in
+    not_edition: Selezionare solamente materiale a stampa (edition)
   holding_no_siglum: Esemplare senza sigla di biblioteca
   holding_records: Esemplari
   imported_level: Record importato
@@ -752,6 +762,7 @@ it:
   save_and_continue: Salva e continua
   save_and_exit: Salva ed esci
   search_sources: Cerca fonti
+  search_tgn: Cerca nel Getty TGN
   sections: Sezioni
   select: Seleziona
   select_template: Seleziona un nuovo template
@@ -777,6 +788,7 @@ it:
   status: Stato
   std_title_contains: Titolo standard
   switch_language: Cambia lingua
+  tgn_id: Getty TGN id
   this_file_language: Italiano
   time:
     formats:
@@ -807,6 +819,7 @@ it:
     correct: Il record non contiene errori [200]
     insufficient_rights: L'utente non ha i diritti necessari per creare un record con questa biblioteca
     missing_message: Questo campo deve contenere un valore
+    must_be_different_message: Questo non può essere identico all’altro valore nel campo
     must_contain_message: Questo campo deve corrispondere al modello richiesto
     name_uniqueness: Il nome breve dell'elemento è già in uso
     required_if_message: Questo campo deve essere riempito poiché è obbligatorio in presenza di {0} ${1}
