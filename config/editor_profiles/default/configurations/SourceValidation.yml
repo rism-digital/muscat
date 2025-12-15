@@ -111,6 +111,7 @@ client:
     tags:
       a: required
       b: required
+      c: not_record_id
   "650":
     tag_overrides:
       exclude:
@@ -146,7 +147,10 @@ client:
   "787": 
     tags:
       "n": required
-      "w": required
+      "w":
+        any_of:
+          - required
+          - not_record_id
       "4": required
   "773":
     tag_overrides:
@@ -164,6 +168,9 @@ client:
         - inventory_edition
     tags:
       'w': mandatory
+  "775":
+    tags:
+      "w": not_record_id
   "852":
     tag_overrides:
       exclude:

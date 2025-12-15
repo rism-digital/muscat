@@ -9,6 +9,7 @@ const SIMPLE_RULE_MAP = {
 	"validate_edtf": { validate_edtf: true },
 	"validate_031_dups": { validate_031_dups: true },
 	"validate_url": { validate_url: true },
+	"not_record_id": {not_record_id: true},
 }
 
 const PARAMETRIC_RULES = [
@@ -242,6 +243,13 @@ function marc_validate_edtf(value, element, param) {
 	return result;
 }
 
+function marc_validate_not_record_id(value, element, param) {
+	const record_id = $('#id').val();
+	const isDifferent = String(record_id) !== String(value);
+
+	return isDifferent;
+}
+
 // Credit: https://uibakery.io/regex-library/url
 function marc_validate_url(value, element, param) {
 	var httpRegex = /^https?:\/\/(?:www\.)?[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b(?:[-a-zA-Z0-9()@:%_\+.,;~#?&\/=!$'*\[\]]*)$/;
@@ -346,13 +354,13 @@ function marc_validate_mandatory(value, element) {
 */
 
 	if (value.trim() == "") {
-			if (validate_level == "warning") {
-				marc_validate_add_warnings(element);
-				return true;
-			} else {
-				return false;
-			}
+		if (validate_level == "warning") {
+			marc_validate_add_warnings(element);
+			return true;
+		} else {
+			return false;
 		}
+	}
 	
 	// Value is present
 	return true;
@@ -670,14 +678,15 @@ function marc_editor_init_validation(form, validation_conf) {
 	$.validator.addMethod("presence", marc_validate_presence, I18n.t("validation.missing_message"));
 	$.validator.addMethod("mandatory", marc_validate_mandatory, I18n.t("validation.missing_message"));
 
-	$.validator.addMethod("required_if", marc_validate_required_if, 	$.validator.format(I18n.t("validation.required_if_message")));
-	$.validator.addMethod("begins_with", marc_validate_begins_with, 	$.validator.format(I18n.t("validation.begins_with_message")));
-	$.validator.addMethod("check_group", marc_validate_check_group,		$.validator.format(I18n.t("validation.check_group_message")));
-	$.validator.addMethod("must_contain", marc_validate_must_contain,	$.validator.format(I18n.t("validation.must_contain_message")));
+	$.validator.addMethod("required_if",	marc_validate_required_if,		$.validator.format(I18n.t("validation.required_if_message")));
+	$.validator.addMethod("begins_with",	marc_validate_begins_with, 		$.validator.format(I18n.t("validation.begins_with_message")));
+	$.validator.addMethod("check_group",	marc_validate_check_group,		$.validator.format(I18n.t("validation.check_group_message")));
+	$.validator.addMethod("must_contain",	marc_validate_must_contain,		$.validator.format(I18n.t("validation.must_contain_message")));
 	$.validator.addMethod("validate_588_siglum", marc_validate_588_siglum,	$.validator.format(I18n.t("validation.validate_588_siglum")));
-	$.validator.addMethod("validate_edtf", marc_validate_edtf,			$.validator.format(I18n.t("validation.validate_edtf")));	
+	$.validator.addMethod("validate_edtf",		 marc_validate_edtf,		$.validator.format(I18n.t("validation.validate_edtf")));	
 	$.validator.addMethod("validate_031_dups", marc_validate_031_duplicates,	$.validator.format(I18n.t("validation.validate_031_dups")));
-	$.validator.addMethod("must_be_different", marc_validate_must_be_different, 	$.validator.format(I18n.t("validation.must_be_different_message")));
+	$.validator.addMethod("must_be_different", marc_validate_must_be_different, $.validator.format(I18n.t("validation.must_be_different_message")));
+	$.validator.addMethod("not_record_id", 	   marc_validate_not_record_id,		$.validator.format(I18n.t("validation.not_record_id")));	
 
 	$.validator.addMethod("gnd_warn_default", marc_validate_gnd_warn_default,	$.validator.format(I18n.t("validation.gnd_warn_default_message")));
 

@@ -224,109 +224,6 @@ include ApplicationHelper
     end
   end
 
-=begin
-  def validate_tags
-
-    @rules.each do |tag, tag_rules|
-      #mandatory =  tag_rules["tags"].has_value? "mandatory"
-      # Mandatory tags are tags that need to be there entirely
-      # In the editor leaving a tag emply will remove it
-      # Some tags have to be there for some templates.
-      # Extract all the pertinent mandatory tags, exluding the ones
-      # not for this template
-      mandatory = tag_rules["tags"].map {|st, v| 
-        if @exclusions && @exclusions.exclude_from_tag?(tag, st, @object)
-          puts "Downgrate #{tag} #{st} to non mandatory because of static exclusions" if DEBUG
-          next
-        end
-        st if v == "mandatory" && !is_subtag_excluded(tag, st)
-      }.compact
-      
-      marc_tags = @marc.by_tags(tag)
-      
-      if marc_tags.count == 0
-        # This tag has to be there if "mandatory"
-        if mandatory.count > 0
-          #@errors[tag] = "mandatory"
-          add_error(tag, nil, I18n.t('validation.missing_message'))
-          puts "Missing #{tag}, mandatory" if DEBUG
-        end
-        next
-      end
-      
-      tag_rules["tags"].each do |subtag, rule|
-        
-        if @exclusions && @exclusions.exclude_from_tag?(tag, subtag, @object)
-          puts "Skip #{tag} #{subtag} because of static exclusions" if DEBUG
-          next
-        end
-
-        # The validation is per subtag basis
-        # THis means that a whole tag, i.e. 856
-        # can be missing and validation will pass
-        # For a whole tag to be there - no matter the contents
-        # the "mandatory" rule above is used
-        # Here we validate the contents of the tag, i.e. $a, $b etc
-        # The subtags will trigger validation error if missing
-        # when required
-        
-        if is_subtag_excluded(tag, subtag)
-          puts "Skip #{tag} #{subtag} because of tag_overrides" if DEBUG
-          next
-        end
-        
-        marc_tags.each_with_index do |marc_tag, index|
-          marc_subtag = marc_tag.fetch_first_by_tag(subtag)
-          #ap marc_subtag
-          
-          if rule.is_a? String
-            validate_string_tag(rule, marc_tag, marc_subtag, tag, subtag)         
-          elsif rule.is_a? Hash
-            if rule.has_key?("any_of")
-              rule["any_of"].each do |subrule|
-                ap subrule
-                validate_string_tag(subrule, marc_tag, marc_subtag, tag, subtag)
-              end
-            elsif rule.has_key?("begins_with")
-              subst = rule["begins_with"]
-              if marc_subtag && marc_subtag.content && !marc_subtag.content.start_with?(subst)
-                add_error(tag, subtag, "begin_with:#{subst}")
-                puts "#{tag} #{subtag} should begin with #{subst}" if DEBUG
-              end
-
-            elsif rule.has_key?("required_if")
-              # This is another hash! gotta love json
-              rule["required_if"].each do |other_tag, other_subtag|
-                # Try to get this other tag first
-                # the validation passes if it is not there
-                other_marc_tag = @marc.first_occurance(other_tag)
-                if other_marc_tag
-                  other_marc_subtag = other_marc_tag.fetch_first_by_tag(other_subtag)
-                  # The other subtag is there. see if we have the subtag 
-                  # that is required bu the "other" one
-                  if other_marc_subtag && other_marc_subtag.content
-                    # if it is not here raise an error
-                    if !marc_subtag || !marc_subtag.content
-                      #@errors["#{tag}#{subtag}"] = "required_if-#{other_tag}#{other_subtag}"
-                      add_error(tag, subtag, "required_if-#{other_tag}#{other_subtag}")
-                      puts "Missing #{tag} #{subtag}, required_if-#{other_tag}#{other_subtag}" if DEBUG
-                    end
-                  end
-                end
-              end
-            end
-          end
-        
-        end
-      
-      end
-    
-    end
-  
-  end
-=end
-
-
   def validate_links
     @marc.all_tags.each do |marctag|
       
@@ -601,7 +498,13 @@ include ApplicationHelper
           if options.fetch(:translate, true)
             message = "no_subtag" if subtag == "no_subtag"
             sanit_message = message.split("-").first.split(":").first
-            loc_message = I18n.t("backend_validation." + sanit_message) + " [#{message}]"
+            label = "backend_validation." + sanit_message
+            if I18n.exists?(label)
+              loc_message = I18n.t(label) + " [#{message}]"
+            else
+              # This happens in some backend-generatet errors
+              loc_message = message
+            end
           end
           output += "#{@object.id}\t#{tag}\t#{subtag}\t#{loc_message}\n"
         end
@@ -669,6 +572,13 @@ include ApplicationHelper
             puts "The URL in #{tag} #{subtag} is invalid [#{marc_subtag.content}], #{rule}" if DEBUG
           end
         end
+    elsif rule == "not_record_id"
+      return if !@marc.respond_to? :get_id
+
+      if @marc.get_id&.to_s&.strip == marc_subtag.content&.to_s&.strip
+          add_error(tag, subtag, rule)
+          puts "The ID for tag #{tag} cannot be the record id #{@object.id}" if DEBUG
+      end
     else
       puts rule.class
       puts "Unknown rule #{rule}" if rule != "mandatory"
@@ -756,8 +666,10 @@ include ApplicationHelper
   end
 
   def validate_links_to_self
-    ["773", "787"].each do |t|
-      val = @marc.first_occurance(t, "w")
+    {"773": "w", "787": "w", "775": "w", "596": "c"}.each do |tag, st|
+      t = tag.to_s
+      val = @marc.first_occurance(t.to_s, st)
+
       next if (!val || !val.content)
       next if !@marc.get_id
 

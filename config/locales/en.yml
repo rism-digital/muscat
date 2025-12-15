@@ -236,6 +236,7 @@ en:
     validate_588_siglum: 'Enter the library siglum and shelfmark as in the format: I-Bc Q.51'
     validate_url: The entered URL is invalid
     must_be_different: This cannot be identical to the other value in the field
+    not_record_id: This cannot be the same ID as the current record
   basic_level: Basic record
   body: Body
   btn_themefinder_reset: Reset
@@ -848,6 +849,7 @@ en:
     validate_url: The entered URL is invalid
     warning_message: A value for this field should be provided
     must_be_different_message: This cannot be identical to the other value in the field
+    not_record_id: This cannot be the same ID as the current record
   validation_level_error: There are errors, please solve before saving
   validation_level_warning: There are warnings, save again to override
   view_source: View Source
