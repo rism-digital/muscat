@@ -10,6 +10,7 @@ groups:
   main_person: 
     all_tags: 
     - "100"
+    - "678"
     - "042"
     - "375"   
     - "043"
@@ -40,7 +41,6 @@ groups:
   references:
     all_tags:
     - "670"
-    - "678"
     - "680"
     - "856"
     - "667"

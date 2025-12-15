@@ -83,6 +83,7 @@
           - referring_publications
           - referring_works
     - - y
+      - read_only: true
 "375": 
   layout: 
     fields: 

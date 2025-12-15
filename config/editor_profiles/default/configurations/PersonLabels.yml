@@ -117,10 +117,10 @@
 '678':
   fields:
     a:
-      label: records.additional_biographical_information
+      label: records.other_life_dates
     b:
       label: records.expansion
-  label: records.additional_biographical_information
+  label: records.other_life_dates
 '680':
   fields:
     a:
