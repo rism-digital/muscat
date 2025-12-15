@@ -1,0 +1,10 @@
+Move Holding to
+
+<%= form_tag(move_to_admin_holding_path, method: "get") do %>
+    <%= autocomplete_field_tag "new_source", "", autocomplete_source_id_admin_sources_path %>
+
+    <div class="buttons">
+      <%= submit_tag(I18n.t("holding_mover.move"), data: { confirm: I18n.t("active_admin.batch_actions.default_confirmation") }) %>
+    </div>
+  </div>
+<% end %>

@@ -224,6 +224,7 @@ ActiveAdmin.register Source do
     if resource.record_type != MarcSource::RECORD_TYPES[:collection] && resource.record_type != MarcSource::RECORD_TYPES[:source]
       redirect_to action: :show
       flash[:error] = I18n.t(:source_not_manuscript)
+      return
     end
 
 
@@ -237,11 +238,13 @@ ActiveAdmin.register Source do
     if resource.record_type != MarcSource::RECORD_TYPES[:collection] && resource.record_type != MarcSource::RECORD_TYPES[:source]
       redirect_to action: :show
       flash[:error] = I18n.t(:source_not_manuscript)
+      return
     end
 
     if !(@current_user.has_role?(:editor) || @current_user.has_role?(:admin))
       redirect_to action: :show
       flash[:error] = I18n.t(:unauthorized)
+      return
     end
 
     param_tags = params.permit(:tag => {})[:tag]

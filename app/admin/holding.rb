@@ -165,6 +165,37 @@ ActiveAdmin.register Holding do
   
   end
 
+  member_action :move_to, method: :get do
+    if !(@current_user.has_role?(:editor) || @current_user.has_role?(:admin))
+      redirect_to action: :show
+      flash[:error] = I18n.t(:unauthorized)
+      return
+    end
+
+    source_id = params.fetch(:new_source, nil)
+
+    if !source_id || source_id.empty?
+      redirect_to edit_resource_path(resource), alert: t('holding_mover.missing_source_id')
+      return
+    end
+
+    begin
+      source = Source.find(source_id)
+    rescue ActiveRecord::RecordNotFound
+      redirect_to edit_resource_path(resource), alert: t('holding_mover.missing_source')
+      return
+    end
+
+    if source.allow_holding?
+      resource.source_id = source_id
+      resource.save
+      redirect_to edit_resource_path(resource), notice: t('holding_mover.correctly_moved')
+    else
+      redirect_to edit_resource_path(resource), alert: t('holding_mover.not_edition')
+    end
+
+  end
+
   # Include the folder actions
   include FolderControllerActions
   
@@ -229,6 +260,10 @@ ActiveAdmin.register Holding do
     render("editor/section_sidebar") # Calls a partial
   end
   
+  sidebar :holding_actions, :only => [:edit] do
+    render("editor/holding_actions_sidebar") # Calls a partial
+  end
+
   form :partial => "editor/edit_wide"
   
 end

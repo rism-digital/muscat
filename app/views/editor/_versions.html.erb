@@ -16,6 +16,9 @@
 			<% if @item.respond_to?(:record_type) %>
 				<th><%=(I18n.t :filter_record_type_short)%></th>
 			<% end %>
+			<% if @item.respond_to?(:source_id) %>
+				<th><%=(I18n.t :filter_source_id)%></th>
+			<% end %>
 			<th><%=(I18n.t :history_modification)%></th>
 			<th></th>
 		</tr>
@@ -26,6 +29,7 @@
 			<% delete_path =  send(link_function_delete, @item.id, {version_id: version.id}) %>
 			<% old_wf_stage = old_item.wf_stage %>
 			<% old_record_type = @item.respond_to?(:record_type) ? old_item.record_type : nil %>
+			<% old_source_id = @item.respond_to?(:source_id) ? old_item.source_id : nil %>
 			
 			<tr class="<%= cycle('even', 'odd') -%>" id="person_50036437">
 				<td class="col"><%= I18n.localize(version.created_at.localtime, :format => '%A %e %B %Y - %H:%M') -%></td>
@@ -34,6 +38,10 @@
 				<td class="col"><%= old_wf_stage %></td>
 				<% if old_record_type %>
 					<td class="col"><%= I18n.t('record_types_codes.' + old_record_type.to_s) %></td>
+				<% end %>
+
+				<% if old_source_id %>
+					<td class="col"><%= old_source_id %></td>
 				<% end %>
 
 				<td class="col">
