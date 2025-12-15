@@ -17,6 +17,8 @@ Person.find_each do |p|
     save = true
   end
 
+  # Should we disable paper trail?
+  p.paper_trail_event = "Move 100$y to 678$a"
   p.save if save
   puts p.id if save
 end
