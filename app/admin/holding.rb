@@ -257,11 +257,12 @@ ActiveAdmin.register Holding do
   ##########
   
   sidebar :sections, :only => [:edit, :new, :update] do
-    render("editor/section_sidebar") # Calls a partial
+    render("editor/section_sidebar")
   end
   
-  sidebar :holding_actions, :only => [:edit] do
-    render("editor/holding_actions_sidebar") # Calls a partial
+
+  sidebar :holding_actions, :only => [:edit], if: proc{current_user.has_role?(:editor) || current_user.has_role?(:admin)} do
+    render("editor/holding_actions_sidebar")
   end
 
   form :partial => "editor/edit_wide"
