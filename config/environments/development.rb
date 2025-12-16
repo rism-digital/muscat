@@ -6,9 +6,19 @@ module Kernel
   alias :oldputs :puts
   def puts (s)
     # Do whatever you want here, including nothing
-    oldputs(caller_locations.first.to_s + ": " + s)
+    oldputs("PUTS"  + caller_locations.first.to_s + ": " + s)
   end
 end
+
+module APWithCaller
+  def ap(*args)
+    loc = caller_locations(1, 1).first
+    prefix = "#{loc.path}:#{loc.lineno}: "
+    args.each { |arg| super("#{prefix}#{arg.inspect}") }
+  end
+end
+
+Kernel.prepend(APWithCaller)
 =end
 
 Rails.application.configure do

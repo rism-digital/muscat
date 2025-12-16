@@ -191,7 +191,6 @@ class Marc
   # create the relations with the foreign object and create
   # them in the DB. It will also call a reindex on them
   def load_from_hash(hash, user: nil, resolve: true, dry_run: false, force_editor_ordering: false)
-    ap force_editor_ordering
     @root << MarcNode.new(@model, "000", hash['leader'], nil) if hash['leader']
     
     if hash['fields']
