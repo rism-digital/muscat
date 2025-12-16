@@ -14,9 +14,21 @@ client:
   "368":
     tags:
       a: mandatory
+  "580": 
+    tags:
+      "0":
+        any_of:
+          - required
+          - not_record_id
   "670":
     tags:
       "0": required
+  "710": 
+    tags:
+      "0":
+        any_of:
+          - required
+          - not_record_id
   "856":
     tags:
       u:

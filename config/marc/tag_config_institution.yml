@@ -236,7 +236,7 @@
     - - x
       - :occurrences: "?"
         :foreign_class: ^0
-        :foreign_field: siglum
+        :foreign_field: name
   "667": 
     :master: a
     :indicator: "1#"
