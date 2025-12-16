@@ -49,6 +49,9 @@ else
 	validate_marker = ""
 end
 name_tag_subfield = "#{tag_name}#{subfield}"
+# In the case the same subfield is used for master and display
+# Only one needs to be validated
+validate_class_subfield += "_bis" if validate_class_subfield == validate_class_master
 %>
 
 <%
