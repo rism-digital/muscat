@@ -106,6 +106,7 @@ ActiveAdmin.register Place do
       #@page_title = "#{I18n.t('active_admin.new_model', model: active_admin_config.resource_label)} - #{@editor_profile.name}"
       #To transmit correctly @item we need to have @source initialized
       @item = @place
+      @editor_validation = EditorValidation.get_default_validation(@item)
     end
 
   end

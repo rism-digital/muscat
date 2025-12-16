@@ -4,7 +4,7 @@ class MarcPlace < Marc
   end
 
   def get_place_name
-    self["151"]&.first["a"]&.first&.content
+    self["151"]&.first&.[]("a")&.first&.content
   end
   
   def get_place_country
