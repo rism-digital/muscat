@@ -3,7 +3,7 @@
  * It uses the Webassembly (WASM) version
  */
 
- const verovioServer = 'https://www.verovio.org/javascript/4.1.0';
+ const verovioServer = 'https://www.verovio.org/javascript/5.7.0';
 
  /////////////////////////////
  // WASM
@@ -13,7 +13,7 @@
 
  self.verovio.module.onRuntimeInitialized = function() {
      self.vrvToolkit = new verovio.toolkit();
-     console.log(`Verovio (WASM) ${self.vrvToolkit.getVersion()}`); // works!
+     console.log(`Verovio (WASM) ${self.vrvToolkit.getVersion()}`);
      self.postMessage(["loaded", false, {}]);
  }
  
@@ -27,27 +27,27 @@
     let params = event.data[2];
      
     if (!vrvToolkit) {
-        postMessage(["error", ticket, {"error": "The verovio-toolkit has not finished loading yet!"}]);
+        self.postMessage(["error", target, {"error": "The verovio-toolkit has not finished loading yet!"}]);
         return;
     }
 
     if (messageType == "renderMusic") {
-        vrvToolkit.setOptions( params["options"] );
-        vrvToolkit.loadData(params["music"]);
+        self.vrvToolkit.setOptions( params["options"] );
+        self.vrvToolkit.loadData(params["music"]);
         let svg = vrvToolkit.renderToSVG(1, {});
     
-        postMessage([messageType + "-ok", target, svg]);
+        self.postMessage([messageType + "-ok", target, svg]);
     } else if (messageType == "validatePAE") {
-        let validation = vrvToolkit.validatePAE(params["music"]);
+        let validation = self.vrvToolkit.validatePAE(params["music"]);
 
-        postMessage([messageType + "-ok", target, validation]);
+        self.postMessage([messageType + "-ok", target, validation]);
 
     } else if (messageType == "renderMEI") {
-        vrvToolkit.setOptions( params["options"] );
-        let svg = vrvToolkit.renderData(params["music"], {});
-        postMessage([messageType + "-ok", target, svg]);
+        self.vrvToolkit.setOptions( params["options"] );
+        let svg = self.vrvToolkit.renderData(params["music"], {});
+        self.postMessage([messageType + "-ok", target, svg]);
     } else {
-        postMessage(["unrecognized-" + messageType]);
+        self.postMessage(["unrecognized-" + messageType]);
     }
 
  

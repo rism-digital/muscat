@@ -88,7 +88,7 @@ function populateMessages(validation) {
 	if (validation.hasOwnProperty("data")) {
 		let data = validation["data"];
 		
-		for (var i = 0; i < data.length; i++) {
+		for (let i = 0; i < data.length; i++) {
 			let i18n_text = "";
 			
 			if (data[i]["value"]) {
@@ -149,17 +149,17 @@ worker.onmessage = function(event) {
 function finalize_verovio () {
 	verovio_loaded = true;
 	
-	for (var i = 0; i < deferred_render_data.length; i++) {
-	    data = deferred_render_data[i];
-		render_music(data.music, data.format, data.target, data.width);
-	}
+	deferred_render_data.forEach(data => {
+    	render_music(data.music, data.format, data.target, data.width);
+  	});
+
+	deferred_render_data = [];
 }
 
 // This is the helper function to call to render 
 // an incipit into a target div. It will do the preloading
 // in the background
-function render_music(music, format, target, width) {	
-	var width = typeof width !== 'undefined' ? width : 720;
+function render_music(music, format, target, width = 720) {	
 	
 	if (verovio_loaded == false) {
 		deferred_render_data.push({
