@@ -121,6 +121,30 @@ v 12.0
 * Much better SPARQL TGN query
 * Drop hackish xml parser and use sparql
 * Reduce everything to one query
+* Merge pull request #1895 from afaschon/patch-58
+* Mini tag mover
+* Initial script to add TGN
+* Incipit counter!
+* Script to extract fields from models
+* Add place in institution autocomplete
+* Add new gems for Places
+* Fix place labels
+* Fix  #1886, make 110 in institution RW again
+* Validate 041 $a and $h
+* Hide admin from the menu tribute
+* Fix #1896 Validation for identical values
+* Add action to move holdings
+* Fix #1888, make muscat super mad
+* #1747, script to fix + modifications
+* Update Verovio to 5.7 + some updates in the JS code
+* Warning msg when there are no exemplars
+* Make place 970 open by default
+Remove annoying ap
+* Make sure people cannot link to themselves
+* Make 040 $9 editable in GND
+* Make read_only fields fillable by the GND javascript helper
+* Make sure only one error is displayed in autocomplete fields where master and subfield are the same marc subtag
+
 
 v 11.7.0.2
 * Add back save that was deleted
