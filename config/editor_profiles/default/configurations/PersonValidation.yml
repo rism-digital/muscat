@@ -7,6 +7,18 @@ client:
   "100":
     tags:
       "a": mandatory
+  "500": 
+    tags:
+      "0":
+        any_of:
+          - required
+          - not_record_id
+      "i":
+        required_if:
+          "500": "0"
+  "510": 
+    tags:
+      "0": required
   "551": 
     tags:
       "0": required
