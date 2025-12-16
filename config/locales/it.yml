@@ -230,6 +230,7 @@ it:
     must_be_different: Questo non può essere identico all’altro valore nel campo
     must_contain: Questo campo deve corrispondere al modello richiesto
     no_subtag: Questo campo è obbligatorio
+    not_record_id: Questo non può essere lo stesso ID del record attuale
     required: Questo campo è obbligatorio quando questo tag è aggiunto
     required_if: Questo campo è obbligatorio perché un altro è presente
     siglum_not_found: Il siglum in uno o più campi 588 non corrisponde a nessuna holding
@@ -671,6 +672,7 @@ it:
   new_inventory_item: Crea nuovo elemento d'inventario
   new_inventory_item_page: Nuovo elemento d'inventario
   no_action: Nessuna azione
+  no_holdings_yet: Nessun esemplare presente
   not_set: "[vuoto]"
   notation_copied: Notazione copiata
   notifications:
@@ -822,6 +824,7 @@ it:
     must_be_different_message: Questo non può essere identico all’altro valore nel campo
     must_contain_message: Questo campo deve corrispondere al modello richiesto
     name_uniqueness: Il nome breve dell'elemento è già in uso
+    not_record_id: Questo non può essere lo stesso ID del record attuale
     required_if_message: Questo campo deve essere riempito poiché è obbligatorio in presenza di {0} ${1}
     validate_031_dups: Questo numero di incipit è già utilizzato
     validate_588_siglum: 'Inserisci il siglum della biblioteca e la collocazione secondo il formato: I-Bc Q.51'

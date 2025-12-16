@@ -230,6 +230,7 @@ pl:
     must_be_different: To nie może być identyczne z inną wartością w polu
     must_contain: To pole musi odpowiadać wymaganemu wzorcowi
     no_subtag: To pole jest obowiązkowe
+    not_record_id: Ten identyfikator nie może być taki sam jak identyfikator bieżącego rekordu
     required: To pole jest wymagane, gdy ten tag zostanie dodany
     required_if: To pole jest wymagane, ponieważ inne jest obecne
     siglum_not_found: Siglum w jednym lub kilku polach 588 nie odpowiada żadnemu rekordowi zasobów
@@ -671,6 +672,7 @@ pl:
   new_inventory_item: Utwórz nowy element inwentarza
   new_inventory_item_page: Nowy element inwentarza
   no_action: Brak dostępnego działania
+  no_holdings_yet: Brak egzemplarza
   not_set: "[nie ustawiony]"
   notation_copied: Notacja skopiowana
   notifications:
@@ -822,6 +824,7 @@ pl:
     must_be_different_message: To nie może być identyczne z inną wartością w polu
     must_contain_message: To pole musi odpowiadać wymaganemu wzorcowi
     name_uniqueness: Skrócona nazwa wpisu została już pobrana
+    not_record_id: Ten identyfikator nie może być taki sam jak identyfikator bieżącego rekordu
     required_if_message: Pole obowiązkowe, ponieważ pole {0} ${1} nie jest puste
     validate_031_dups: Ten numer incipitu jest już używany
     validate_588_siglum: 'Wprowadź sygnaturę biblioteki i półkę według formatu: I-Bc Q.51'

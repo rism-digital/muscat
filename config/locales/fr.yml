@@ -230,6 +230,7 @@ fr:
     must_be_different: Ceci ne peut pas être identique à l’autre valeur dans le champ
     must_contain: Ce champ ne correspond pas au modèle requis
     no_subtag: Ce champ est obligatoire
+    not_record_id: Cet identifiant ne peut pas être le même que celui de l’enregistrement actuel
     required: Ce champ est requis lorsque cette étiquette est ajoutée
     required_if: Ce champ est requis car un autre est présent
     siglum_not_found: Le sigle dans un ou plusieurs champs 588 ne correspond à aucun enregistrement de fonds
@@ -671,6 +672,7 @@ fr:
   new_inventory_item: Créer un nouvel élément d'inventaire
   new_inventory_item_page: Nouvel élément d'inventaire
   no_action: Aucune action possible
+  no_holdings_yet: Aucun exemplaire présent
   not_set: "[not défini]"
   notation_copied: Notation copié
   notifications:
@@ -822,6 +824,7 @@ fr:
     must_be_different_message: Ceci ne peut pas être identique à l’autre valeur du champ
     must_contain_message: Ce champ doit correspondre au modèle requis.
     name_uniqueness: Le nom abrégé de l'élément est déjà utilisé
+    not_record_id: Cet identifiant ne peut pas être le même que celui de l’enregistrement actuel
     required_if_message: Ce champ doit être rempli car il est obligatoire en présence de {0} ${1}
     validate_031_dups: Ce numéro d'incipit est déjà utilisé
     validate_588_siglum: 'Entrez le sigle de la bibliothèque et la cote selon le format : I-Bc Q.51'

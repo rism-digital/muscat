@@ -230,6 +230,7 @@ ca:
     must_be_different: Això no pot ser idèntic a l’altre valor del camp
     must_contain: Aquest camp ha de coincidir amb el patró requerit
     no_subtag: Aquest camp és obligatori
+    not_record_id: Aquest no pot ser el mateix ID que el registre actual
     required: Aquest camp és obligatori quan s'afegeix aquesta etiqueta
     required_if: Aquest camp és obligatori perquè un altre és present
     siglum_not_found: El siglum en un o més camps 588 no coincideix amb cap registre de fons
@@ -671,6 +672,7 @@ ca:
   new_inventory_item: Crear un nou article d'inventari
   new_inventory_item_page: Nou article d'inventari
   no_action: Sense accions disponibles
+  no_holdings_yet: Encara no hi ha cap possessió
   not_set: "[not set]"
   notation_copied: Notació copiada
   notifications:
@@ -822,6 +824,7 @@ ca:
     must_be_different_message: Això no pot ser idèntic a l’altre valor del camp
     must_contain_message: Aquest camp ha de coincidir amb el patró requerit
     name_uniqueness: Aquest nom abreujat ja s'utilitza
+    not_record_id: Aquest no pot ser el mateix ID que el registre actual
     required_if_message: El camp és obligatori en presència de {0} ${1}
     validate_031_dups: Aquest número d'íncipit ja s'està utilitzant
     validate_588_siglum: 'Introduïu el siglum de la biblioteca i la signatura seguint el format: I-Bc Q.51'

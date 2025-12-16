@@ -230,6 +230,7 @@ de:
     must_be_different: Dies darf nicht mit dem anderen Wert im Feld identisch sein
     must_contain: Dieses Feld muss dem erforderlichen Muster entsprechen
     no_subtag: Dieses Feld ist obligatorisch
+    not_record_id: Diese ID darf nicht mit der aktuellen Datensatz-ID identisch sein
     required: Dieses Feld ist erforderlich, wenn dieses Tag hinzugefügt wird
     required_if: Dieses Feld ist erforderlich, weil ein anderes vorhanden ist
     siglum_not_found: Das Siglum in einem oder mehreren 588-Feldern entspricht keinem vorhandenen Bestandsdatensatz
@@ -671,6 +672,7 @@ de:
   new_inventory_item: Neuen Inventareintrag erstellen
   new_inventory_item_page: Neuer Inventareintrag
   no_action: Keine Aktion verfügbar
+  no_holdings_yet: Kein Exemplar vorhanden
   not_set: "[nicht fest]"
   notation_copied: Notation kopiert
   notifications:
@@ -822,6 +824,7 @@ de:
     must_be_different_message: Dies darf nicht mit dem anderen Wert im Feld identisch sein
     must_contain_message: Dieses Feld muss dem erforderlichen Muster entsprechen.
     name_uniqueness: Das Kürzel des Eintrages ist bereits vergeben.
+    not_record_id: Diese ID darf nicht mit der aktuellen Datensatz-ID identisch sein
     required_if_message: Dieses Feld muss ausgefüllt werden, da es obligatorisch ist in Anwesenheit von {0} ${1}
     validate_031_dups: Diese Incipit-Nummer wird bereits verwendet
     validate_588_siglum: 'Geben Sie das Bibliothekssigel und die Signatur im Format ein: I-Bc Q.51'

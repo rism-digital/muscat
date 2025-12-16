@@ -230,6 +230,7 @@ es:
     must_be_different: Esto no puede ser idéntico al otro valor del campo
     must_contain: Este campo debe coincidir con el patrón requerido
     no_subtag: Este campo es obligatorio
+    not_record_id: Este identificador no puede ser el mismo que el del registro actual
     required: Este campo es obligatorio cuando se añade esta etiqueta
     required_if: Este campo es obligatorio porque otro está presente
     siglum_not_found: El siglum en uno o varios campos 588 no coincide con ningún registro de tenencia
@@ -671,6 +672,7 @@ es:
   new_inventory_item: Crear nuevo artículo de inventario
   new_inventory_item_page: Nuevo artículo de inventario
   no_action: Sin acciones disponibles
+  no_holdings_yet: Ningún ejemplar presente
   not_set: "[no se ha establecido]"
   notation_copied: Notación copiada
   notifications:
@@ -822,6 +824,7 @@ es:
     must_be_different_message: Esto no puede ser idéntico al otro valor del campo
     must_contain_message: Este campo debe coincidir con el patrón requerido.
     name_uniqueness: El nombre corto del elemento ya está en uso
+    not_record_id: Este identificador no puede ser el mismo que el del registro actual
     required_if_message: Este campo debe ser rellenado ya que es obligatorio en presencia de {0} ${1}
     validate_031_dups: Este número de íncipit ya está en uso
     validate_588_siglum: 'Introduzca el siglum de la biblioteca y la signatura siguiendo el formato: I-Bc Q.51'
@@ -851,7 +854,6 @@ es:
   work_catalog: Catálogo de obras
   work_catalog_publish: Publicar las obras vinculadas
   work_catalog_unpublish: Despublicar las obras vinculadas
-  work_catalogue: 'TRME '
   work_catalogue_labels:
     not_work_catalogue: Sin catálogo de obras
     work_catalogue_alternate: Alternativo
