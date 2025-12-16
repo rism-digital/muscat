@@ -54,7 +54,7 @@
 <%- else %>
   
   <% if read_only %>
-    <input class="subfield_entry <%=autocomplete_extra_class%>"  disabled="disabled" size="<%= params['width'] -%>" type="text" value="<%= h content %>"/>
+    <input class="subfield_entry read_only_input <%=autocomplete_extra_class%>"  disabled="disabled" size="<%= params['width'] -%>" type="text" value="<%= h content %>"/>
     <input type="hidden" class="serialize_marc" data-tag="<%=tag_name%>" data-subfield="<%=subfield%>" value="<%= h content %>"/>
                   
     <% else %>

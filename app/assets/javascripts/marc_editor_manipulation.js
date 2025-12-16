@@ -58,8 +58,17 @@
     for (code in data){
       let subfield = _marc_editor_find_tag_element(block, target, code);
   
+      var read_only_input = subfield.siblings('.read_only_input');
+
       subfield.val(data[code]);
       subfield.css("background-color", "#ffffb3");
+
+      // Special case for read-only values, used for GND stuff
+      if (read_only_input.length) {
+        read_only_input.val(data[code]);
+        read_only_input.css("background-color", "#ffffb3");
+      }
+
     }
   }
   

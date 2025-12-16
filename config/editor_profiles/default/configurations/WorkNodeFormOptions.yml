@@ -70,13 +70,15 @@
         - save:
           - referring_sources
     - - t
-      - trigger:
-        - save:
-          - referring_sources
+      - read_only: true
+      #- trigger:
+      #  - save:
+      #    - referring_sources
     - - p
-      - trigger:
-        - save:
-          - referring_sources
+      - read_only: true
+      #- trigger:
+      #  - save:
+      #    - referring_sources
   tag_params:
       100r:
       - "A"
