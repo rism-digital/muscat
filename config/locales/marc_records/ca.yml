@@ -40,6 +40,7 @@ ca:
     aragonese: Aragonès
     armenian: Armeni
     artificial: Artificial (altres)
+    asturian: Asturià
     australian: Llengües australianes
     basque: Basc
     bengali: Bengalí
@@ -48,6 +49,7 @@ ca:
     catalan: Català
     celtic_other: Cèltic (altres)
     chinese: Xinès
+    corsican: Cors
     cree: Cree
     creoles_pidgins_other: Creoles i pidgins (altres)
     croatian: Croat
@@ -66,11 +68,13 @@ ca:
     french_old: Francès antic (ca. 842-1300)
     friulian: Friülès
     gallician: Gallec
+    georgian: Georgià
     german: Alemany
     german_old_high: Alemany culte antic (aprox. 750-1050)
     germanic: Germànic
     greek_ancient: Grec antic (fins el 1453)
     greek_modern: Grec modern (1453-)
+    guarani: Guaraní
     hebrew: Hebreu
     hungarian: Hongarès
     icelandic: Islandès
@@ -125,8 +129,10 @@ ca:
     tibetan: Tibetà
     tsimshian: Tsimshian
     turkish: Turc
+    twi: Twi
     ukrainian: Ucraïnès
     upper_sorbian: 'Sòrab, Alt Sòrab'
+    urdu: Urdú
     vietnamese: Vietnamita
     welsh: Gal·lès
     west_frisian: Frisó occidental
@@ -236,7 +242,7 @@ ca:
     taiwan: Taiwan (província de Xina)
     tajikistan: Tadjikistan
     trinidad_tobego: Trinitat i Tobago
-    tunisia: Tunisia
+    tunisia: Tunísia
     turkey: Turquia
     turkmenistan: Turkmenistan
     uganda: Uganda
@@ -279,6 +285,7 @@ ca:
     aids: Assistència
     alleged: Suposat
     alternate_spelling: Ortografia alternativa
+    alternate_geographic_name: Nom geogràfic alternatiu
     alternative_work_title: Títol alternatiu
     amount: Número
     annex: Annex
@@ -423,7 +430,7 @@ ca:
     deprecated_fields: Camps obsolets (no els utilitzeu)
     description: Descripció
     description_area: Descripció
-    description_conventions: Description conventions
+    description_conventions: Convencions de descripció
     description_summary: Breu descripció
     designer: Dissenyador
     df_major: Re♭ major
@@ -447,6 +454,7 @@ ca:
     e_major: Mi major
     e_minor: Mi menor
     earlier_heading: Encapçalament anterior
+    easternmost_longitude: Longitud límit Est
     ecclesiastical_modes: Modes eclesiàstics
     edition: Edició
     edition_imprint_fields: Peu d'impremta
@@ -493,7 +501,7 @@ ca:
     fingerprint_identifier: Identificador de l'empremta
     first_entry: Primera entrada
     first_second_group: Primer/segon grup
-    form_of_work: Form of work
+    form_of_work: Forma d'obra
     form_subdivision: Subdivisió de forma
     format_extent: Format, extensió
     former_sigla: Sigla anterior
@@ -524,6 +532,8 @@ ca:
     general_note_incipits: Nota general per als íncipits musicals
     general_note_institution: Nota general
     general_note_personal: Nota general
+    geodata: Geographic information
+    geographic_area_code: Codi d'àrea geogràfica
     geographic_name: Nom geogràfic
     geographic_subdivision: Subdivisió geogràfica
     gf_major: Sol♭ major
@@ -590,12 +600,16 @@ ca:
     language_libretto: Llengua del llibret
     language_note: Nota de llengua
     language_of_cataloging: Llengua de catalogació
+    language_of_name: Llengua del nom
     language_original_text: Idioma del text original
     language_text: Llengua del text
     later_entry: Entrada posterior
     later_heading: Encapçalament posterior
     latitude: Latitud
     leader: Capçalera
+    legacy_country: País
+    legacy_country_district: Country and District (please only fill these)
+    legacy_district: District
     library: Biblioteca
     library_information: Informació de la biblioteca
     library_information_relations: Informació de la biblioteca i relacions
@@ -617,6 +631,7 @@ ca:
     local_note_field: Nota local
     local_notes_field: Notes locals
     local_number: Número local
+    local_rism_code_for_country: Codi local RISM de territori
     location: Lloc
     location_and_address: Lloc i adreça
     location_insertion: Ubicació de la inserció
@@ -682,7 +697,7 @@ ca:
     name_family: Cognom
     name_of_part: Número de part/secció d'una obra
     name_printer: Impressor
-    name_titles_words: Titles and words associated with a name
+    name_titles_words: Títols i altres paraules associats a un nom
     name_variant: Variant del nom
     name_variants: Variants del nom
     named_dramatic_roles: Noms dels personatges
@@ -691,6 +706,7 @@ ca:
     nickname: Pseudònim
     no_linguistic_content: Sense contingut lingüístic
     non_migrated_bound: Non-migrated bound with value from 563
+    northernmost_latitude: Latitud límit Nord
     not_applicable: No aplicable
     notated_music: Música notada
     note: Nota
@@ -784,12 +800,12 @@ ca:
     print_with_non_autograph_annotations: Imprès amb anotacions no autògrafes
     printer: Impressor
     printing_technique: Tècnica d'impressió
-    private_collection: Private collection
+    private_collection: Col·lecció privada
     production: Producció
     production_personnel: Personal de producció
     profession_or_function: Professió o funció
     project: Proyecto
-    project_url: Project URL
+    project_url: URL del projecte
     provenance: Custòdia
     provenance_notes: Nota sobre la procedència
     pseudonym: Pseudònim
@@ -824,6 +840,7 @@ ca:
     relation: Relació
     relations: Relacions
     relationship: Relació
+    relationship_code: Codi de relació
     relationship_designation: Designació de la relació al $i o $4
     relationship_information: Informació de la relació
     religious_name: Nom religiós
@@ -853,6 +870,7 @@ ca:
     sketches: Esbossos
     solo_voice: Veu solista
     soloist_instrument: Instrument solista
+    southernmost_latitude: Latitud límit Sud
     source: Font
     sources: Fonts
     source_data_found: Font desconeguda
@@ -918,6 +936,9 @@ ca:
     type_designer: Tipògraf
     type_institution: Tipus d'institució
     type_name_variant: Tipus de variant de nom
+    type_of_entity: Tipus d'entitat
+    type_of_entity_code: Codi de tipus d'entitat
+    type_of_entity_term: Terme de tipus d'entitat
     type_of_jurisdiction: Tipus de jurisdicció
     type_publication: Tipus de publicació
     type_relationship: Tipus de relació
@@ -935,6 +956,7 @@ ca:
     voice_instrument: Veu/instrument
     volume_year_page: Volum, any, pàgina
     watermark_description: Descripció de la filigrana
+    westernmost_longitude: Longitud límit Oest
     woodwinds: Vent-fusta
     work: Obra
     work_catalog: Catàleg de l'obra
@@ -963,7 +985,7 @@ ca:
     P60183: "Insert"
   relations_works:
     P60250: "Obra derivada"
-    P60305: "Is based on"
+    P60305: "Basat en"
     P60216: "Desenvolupat com a"
     P60294: "Versió desenvolupada de"
     P60274: "Arranjat com a"
@@ -971,14 +993,14 @@ ca:
     P60198: "Completat per"
     P60313: "No definit"
   relations_institutions:
-    P50008: Hierarchical superior
-    P50010: Hierarchical subordinate
-    P50012: Predecessor of corporate body
-    P50016: Successor of corporate body
-    P50020: Founding family of corporate body
-    P50230: Corporate body member of corporate body
-    P50435: Corporate body member of family
-    P50301: Absorbed corporate body
+    P50008: Superior jeràrquic
+    P50010: Subordinat jeràrquic
+    P50012: Entitat anterior
+    P50016: Entitat posterior
+    P50020: Família fundadora de l'entitat
+    P50230: Membre de l'entitat
+    P50435: Membre de la família de l'entitat
+    P50301: Entitat absorbida
   verovio:
     position: "Posició"
     warning: "Avís"
@@ -1050,10 +1072,10 @@ ca:
     ERR_065_MREST_INVALID_MEASURE: Un compàs de silenci no pot incloure res més.
     ERR_066_EMPTY_CONTAINER: Un ornament o una barra d'unió entre notes no poden estar buides.
   work_catalogue:
-    not_work_catalogue: Not work catalog
+    not_work_catalogue: No és un catàleg d'obres
     work_catalogue_alternate: Alternatiu
     work_catalogue_complete: Completat
-    work_catalogue_in_preparation: Eligible
+    work_catalogue_in_preparation: Elegible
     work_catalogue_partial: En curs
   rism_online:
     manuscript: "Manuscrit"

@@ -145,7 +145,6 @@ v 12.0
 * Make read_only fields fillable by the GND javascript helper
 * Make sure only one error is displayed in autocomplete fields where master and subfield are the same marc subtag
 
-
 v 11.7.0.2
 * Add back save that was deleted
 * Add grace period for unpublish

@@ -40,6 +40,7 @@ es:
     aragonese: Aragonés
     armenian: Armenio
     artificial: Artificial (otros)
+    asturian: Asturian
     australian: Idiomas australianos
     basque: Vasco
     bengali: Bengalí
@@ -48,6 +49,7 @@ es:
     catalan: Catalán
     celtic_other: Céltico (otros)
     chinese: Chino
+    corsican: Corsican
     cree: Cree
     creoles_pidgins_other: Creoles y Pidgins (otros)
     croatian: Croata
@@ -66,11 +68,13 @@ es:
     french_old: Francés, antiguo (ca. 842-1300)
     friulian: Friulano
     gallician: Galego
+    georgian: Georgian
     german: Alemán
     german_old_high: Alemán culto antiguo (aprox. 750-1050)
     germanic: Germánico
     greek_ancient: Griego, Antiguo (hasta 1453)
     greek_modern: Griego moderno (1453-)
+    guarani: Guarani
     hebrew: Hebreo
     hungarian: Húngaro
     icelandic: Islandés
@@ -125,8 +129,10 @@ es:
     tibetan: Tibetano
     tsimshian: Tsimshian
     turkish: Turco
+    twi: Twi
     ukrainian: Ucraniano
     upper_sorbian: 'Sorbio, Alto Sorbio'
+    urdu: Urdu
     vietnamese: Vietnamita
     welsh: Galés
     west_frisian: Frisón occidental
@@ -236,7 +242,7 @@ es:
     taiwan: Taiwán (Provincia de China)
     tajikistan: Tayikistán
     trinidad_tobego: Trinidad y Tobago
-    tunisia: Tunisia
+    tunisia: Túnez
     turkey: Turquía
     turkmenistan: Turkmenistán
     uganda: Uganda
@@ -279,6 +285,7 @@ es:
     aids: Asistencia
     alleged: Supuesta
     alternate_spelling: Ortografía alternativa
+    alternate_geographic_name: Nombre geográfico alternativo
     alternative_work_title: Título alternativo
     amount: Número
     annex: Anexo
@@ -447,6 +454,7 @@ es:
     e_major: Mi Mayor
     e_minor: Mi menor
     earlier_heading: El encabezamiento anterior
+    easternmost_longitude: Longitud más al este
     ecclesiastical_modes: Modos eclesiásticos
     edition: Edición
     edition_imprint_fields: Campos para los datos editoriales
@@ -524,6 +532,8 @@ es:
     general_note_incipits: Nota general
     general_note_institution: Nota general
     general_note_personal: Nota general
+    geodata: Información geográfica
+    geographic_area_code: Código geográfico de área
     geographic_name: Nombre geográfico
     geographic_subdivision: Subdivisión geográfica
     gf_major: Sol bemol Mayor
@@ -590,12 +600,16 @@ es:
     language_libretto: Idioma del libreto
     language_note: Nota de idioma
     language_of_cataloging: Idioma de catalogación
+    language_of_name: Idioma del nombre
     language_original_text: Idioma del texto original
     language_text: Idioma del texto
     later_entry: Entrada posterior
     later_heading: El encabezamiento posterios
     latitude: Latitud
     leader: Líder
+    legacy_country: País
+    legacy_country_district: País y Distrito (por favor, rellene estos)
+    legacy_district: Distrito
     library: Repositorio
     library_information: Información del repositorio
     library_information_relations: Información del repositorio y sus relaciones
@@ -617,6 +631,7 @@ es:
     local_note_field: Campo de nota local
     local_notes_field: Campo de notas locales
     local_number: Número local
+    local_rism_code_for_country: Código local RISM para país/ciudad/ciudad
     location: Lugar
     location_and_address: Ubicación y dirección
     location_insertion: Ubiación de la inserción
@@ -691,6 +706,7 @@ es:
     nickname: Apodo
     no_linguistic_content: Sin contenido lingüístico
     non_migrated_bound: Non-migrated bound with value from 563
+    northernmost_latitude: Latitud más al norte
     not_applicable: No se aplica
     notated_music: Música notada
     note: Nota
@@ -824,6 +840,7 @@ es:
     relation: Relación
     relations: Relaciones
     relationship: Relación
+    relationship_code: Código de relación
     relationship_designation: Designación de la relación en $i o $4
     relationship_information: Información de la relación
     religious_name: Nombre religioso
@@ -853,6 +870,7 @@ es:
     sketches: Bosquejos
     solo_voice: Voz solista
     soloist_instrument: Instrumento solista
+    southernmost_latitude: Latitud más al sur
     source: Fuente
     sources: Fuentes
     source_data_found: Fuente de los datos encontrados
@@ -918,6 +936,9 @@ es:
     type_designer: Fundidor
     type_institution: Tipo de institución
     type_name_variant: Tipo de variante de nombre
+    type_of_entity: Tipo de entidad
+    type_of_entity_code: Tipo de código de entidad
+    type_of_entity_term: Tipo de término de entidad
     type_of_jurisdiction: Tipo de jurisdicción
     type_publication: Tipo de publicación
     type_relationship: Tipo de relación
@@ -935,6 +956,7 @@ es:
     voice_instrument: Voz/instrumento
     volume_year_page: Volumen, año, página
     watermark_description: Descripción de las filigranas
+    westernmost_longitude: Longitud más al oeste
     woodwinds: Vientos-madera
     work: Obra
     work_catalog: Catálogos de trabajo

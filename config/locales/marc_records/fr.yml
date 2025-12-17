@@ -40,6 +40,7 @@ fr:
     aragonese: Aragonais
     armenian: Arménien
     artificial: Artificiel (autre)
+    asturian: Asturian
     australian: Langues australiennes
     basque: Basque
     bengali: Bengali
@@ -48,6 +49,7 @@ fr:
     catalan: Catalan
     celtic_other: Celtique (autre)
     chinese: Chinois
+    corsican: Corsican
     cree: Cri
     creoles_pidgins_other: Langues créoles et pidgins (autres)
     croatian: Croate
@@ -66,11 +68,13 @@ fr:
     french_old: Français, ancien (ca. 842-1300)
     friulian: Friulano
     gallician: Galician
+    georgian: Georgian
     german: Allemand
     german_old_high: Allemand, ancien haut (vers 750-1050)
     germanic: Germanique
     greek_ancient: Grec ancien (jusqu'en 1453)
     greek_modern: Grec moderne (1453-)
+    guarani: Guarani
     hebrew: Hébraïque
     hungarian: Hongrois
     icelandic: Islandais
@@ -125,8 +129,10 @@ fr:
     tibetan: Tibétain
     tsimshian: Tsimshian
     turkish: Turque
+    twi: Twi
     ukrainian: Ukrainien
     upper_sorbian: 'Sorabe, Sorabe supérieur'
+    urdu: Urdu
     vietnamese: Vietnamien
     welsh: Gallois
     west_frisian: Frison occidental
@@ -279,6 +285,7 @@ fr:
     aids: Aide
     alleged: Présumé
     alternate_spelling: Autres formes
+    alternate_geographic_name: Alternate geographic name
     alternative_work_title: Titre alternatif
     amount: Nombre
     annex: Annexe
@@ -447,6 +454,7 @@ fr:
     e_major: Mi majeur
     e_minor: Mi mineur
     earlier_heading: Rubrique précédente
+    easternmost_longitude: Easternmost longitude
     ecclesiastical_modes: Modes ecclésiastiques
     edition: Edition
     edition_imprint_fields: Champs pour les données d'édition
@@ -524,6 +532,8 @@ fr:
     general_note_incipits: Remarque générale
     general_note_institution: Remarque générale
     general_note_personal: Remarque générale
+    geodata: Geographic information
+    geographic_area_code: Geographic area code
     geographic_name: Nom géographique
     geographic_subdivision: Subdivision géographique
     gf_major: Sol♭ majeur
@@ -590,12 +600,16 @@ fr:
     language_libretto: Langue du livret
     language_note: Note sur la langue
     language_of_cataloging: Langage de catalogation
+    language_of_name: Language of name
     language_original_text: Langue du texte original
     language_text: Langue du texte chanté
     later_entry: Entrée ultérieure
     later_heading: Rubrique ultérieure
     latitude: Latitude
     leader: Guide
+    legacy_country: Pays
+    legacy_country_district: Country and District (please only fill these)
+    legacy_district: District
     library: Bibliothèque
     library_information: Bibliothèque
     library_information_relations: Bibliothèque et relations
@@ -617,6 +631,7 @@ fr:
     local_note_field: Note locale
     local_notes_field: Note non publique
     local_number: No. local
+    local_rism_code_for_country: Local RISM code for country / city / town
     location: Lieu
     location_and_address: Lieu et adresse
     location_insertion: Remarque sur l'endroit de l'insertion
@@ -691,6 +706,7 @@ fr:
     nickname: Surnom
     no_linguistic_content: Sans contenu linguistique
     non_migrated_bound: Non-migrated bound with value from 563
+    northernmost_latitude: Northernmost latitude
     not_applicable: Non applicable
     notated_music: Musique notée
     note: Note
@@ -824,6 +840,7 @@ fr:
     relation: Relation
     relations: Relations
     relationship: Relation
+    relationship_code: Relationship code
     relationship_designation: Désignation de la relation en $i ou 4
     relationship_information: Informations sur les relations
     religious_name: Nom d'ordre
@@ -853,6 +870,7 @@ fr:
     sketches: Esquisses
     solo_voice: Voix seule
     soloist_instrument: Instrument soliste
+    southernmost_latitude: Southernmost latitude
     source: Source
     sources: Sources
     source_data_found: Source des données
@@ -918,6 +936,9 @@ fr:
     type_designer: Créateur de caractères
     type_institution: Type d'institution
     type_name_variant: Description de la variante du nom
+    type_of_entity: Type of entity
+    type_of_entity_code: Type of entity code
+    type_of_entity_term: Type of entity term
     type_of_jurisdiction: Type de juridiction
     type_publication: Type de publication
     type_relationship: Relation
@@ -935,6 +956,7 @@ fr:
     voice_instrument: Voix/instrument
     volume_year_page: Volume, année, page
     watermark_description: Filigrane
+    westernmost_longitude: Westernmost longitude
     woodwinds: Bois
     work: Oeuvre
     work_catalog: Catalogue des œuvres

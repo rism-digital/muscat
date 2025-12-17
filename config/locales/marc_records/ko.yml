@@ -40,6 +40,7 @@ ko:
     aragonese: Aragonese
     armenian: Armenian
     artificial: Artificial (other)
+    asturian: Asturian
     australian: Australian languages
     basque: Basque
     bengali: Bengali
@@ -48,6 +49,7 @@ ko:
     catalan: Catalan
     celtic_other: Celtic (other)
     chinese: Chinese
+    corsican: Corsican
     cree: Cree
     creoles_pidgins_other: Creoles and Pidgins (other)
     croatian: Croatian
@@ -66,11 +68,13 @@ ko:
     french_old: French, Old (ca. 842-1300)
     friulian: Friulian
     gallician: Galician
+    georgian: Georgian
     german: German
     german_old_high: German, Old High (ca. 750-1050)
     germanic: Germanic
     greek_ancient: Greek, Ancient (to 1453)
     greek_modern: Greek, Modern (1453-)
+    guarani: Guarani
     hebrew: Hebrew
     hungarian: Hungarian
     icelandic: Icelandic
@@ -125,8 +129,10 @@ ko:
     tibetan: Tibetan
     tsimshian: Tsimshian
     turkish: Turkish
+    twi: Twi
     ukrainian: Ukrainian
     upper_sorbian: 'Sorbian: Upper Sorbian'
+    urdu: Urdu
     vietnamese: Vietnamese
     welsh: Welsh
     west_frisian: West Frisian
@@ -279,6 +285,7 @@ ko:
     aids: Aids
     alleged: Alleged
     alternate_spelling: Alternate spelling
+    alternate_geographic_name: Alternate geographic name
     alternative_work_title: Alternative work title
     amount: Number
     annex: Annex
@@ -447,6 +454,7 @@ ko:
     e_major: E major
     e_minor: E minor
     earlier_heading: Earlier heading
+    easternmost_longitude: Easternmost longitude
     ecclesiastical_modes: Ecclesiastical modes
     edition: Edition
     edition_imprint_fields: Edition, imprint, etc. fields
@@ -524,6 +532,8 @@ ko:
     general_note_incipits: General note for music incipit
     general_note_institution: General note
     general_note_personal: General note
+    geodata: Geographic information
+    geographic_area_code: Geographic area code
     geographic_name: Geographic name
     geographic_subdivision: Geographic subdivision
     gf_major: G♭ major
@@ -590,12 +600,16 @@ ko:
     language_libretto: Language of libretto
     language_note: Language note
     language_of_cataloging: Cataloging language
+    language_of_name: Language of name
     language_original_text: Language of original text
     language_text: Language of text
     later_entry: Later entry
     later_heading: Later heading
     latitude: Latitude
     leader: Leader
+    legacy_country: Country
+    legacy_country_district: Country and District (please only fill these)
+    legacy_district: District
     library: Library
     library_information: Library information
     library_information_relations: Library information and relations
@@ -617,6 +631,7 @@ ko:
     local_note_field: Local note field
     local_notes_field: Local notes field
     local_number: Local number
+    local_rism_code_for_country: Local RISM code for country / city / town
     location: Location
     location_and_address: Location and address
     location_insertion: Location of insertion
@@ -691,6 +706,7 @@ ko:
     nickname: Nickname
     no_linguistic_content: No linguistic content
     non_migrated_bound: Non-migrated bound with value from 563
+    northernmost_latitude: Northernmost latitude
     not_applicable: Not applicable
     notated_music: Notated music
     note: Note
@@ -824,6 +840,7 @@ ko:
     relation: Relation
     relations: Relations
     relationship: Relationship
+    relationship_code: Relationship code
     relationship_designation: Relationship designation in $i or $4
     relationship_information: Relationship information
     religious_name: Religious name
@@ -853,6 +870,7 @@ ko:
     sketches: Sketches
     solo_voice: Solo voice
     soloist_instrument: Soloist instrument
+    southernmost_latitude: Southernmost latitude
     source: Source
     sources: Sources
     source_data_found: Source data found
@@ -918,6 +936,9 @@ ko:
     type_designer: Type designer
     type_institution: Type of institution
     type_name_variant: Type of name variant
+    type_of_entity: Type of entity
+    type_of_entity_code: Type of entity code
+    type_of_entity_term: Type of entity term
     type_of_jurisdiction: Type of jurisdiction
     type_publication: Type of publication
     type_relationship: Type of relationship
@@ -935,6 +956,7 @@ ko:
     voice_instrument: Voice/instrument
     volume_year_page: Volume, year, page
     watermark_description: Watermark description
+    westernmost_longitude: Westernmost longitude
     woodwinds: Woodwinds
     work: Work
     work_catalog: Work catalog

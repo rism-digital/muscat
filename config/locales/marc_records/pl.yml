@@ -40,6 +40,7 @@ pl:
     aragonese: Aragoński
     armenian: Armeński
     artificial: Sztuczny (inne)
+    asturian: Asturyjski
     australian: Języki australijskie
     basque: Baskijski
     bengali: Bengali
@@ -48,6 +49,7 @@ pl:
     catalan: Kataloński
     celtic_other: Celtycki (inny)
     chinese: Chiński
+    corsican: Korsykański
     cree: Kri
     creoles_pidgins_other: Kreolski i Pidgin (inne)
     croatian: Chorwacki
@@ -66,11 +68,13 @@ pl:
     french_old: Starofrancuski (ok. 842-1300)
     friulian: Friulski
     gallician: Galicyjski
+    georgian: Gruziński
     german: Niemiecki
     german_old_high: Staro-wysoko-niemiecki (ok. 750-1050)
     germanic: Germański
     greek_ancient: Grecki, historyczny (do 1453 r.)
     greek_modern: Grecki, współczesny (1453-)
+    guarani: Guarani
     hebrew: Hebrajski
     hungarian: Węgierski
     icelandic: Islandzki
@@ -125,8 +129,10 @@ pl:
     tibetan: Tybetański
     tsimshian: Tsimshiański
     turkish: Turecki
+    twi: Twi
     ukrainian: Ukraiński
     upper_sorbian: 'Górnołużycki'
+    urdu: Urdu
     vietnamese: Wietnamska
     welsh: Walijski
     west_frisian: Zchodniofryzyjski
@@ -236,7 +242,7 @@ pl:
     taiwan: Tajwan (prowincja Chin)
     tajikistan: Tadżykistan
     trinidad_tobego: Trynidad i Tobago
-    tunisia: Tunisia
+    tunisia: Tunezja
     turkey: Turcja
     turkmenistan: Turkmenistan
     uganda: Uganda
@@ -279,6 +285,7 @@ pl:
     aids: Pomoce
     alleged: Rzekomy
     alternate_spelling: Alternatywna pisownia
+    alternate_geographic_name: Alternatywna nazwa geograficzna
     alternative_work_title: Alternatywny tytuł dzieła
     amount: Liczba
     annex: Dodatek
@@ -447,6 +454,7 @@ pl:
     e_major: E-dur
     e_minor: e-moll
     earlier_heading: Wcześniejsza pozycja
+    easternmost_longitude: Najbardziej wysunięta na wschód długość geograficzna
     ecclesiastical_modes: Skale kościelne
     edition: Edycja
     edition_imprint_fields: Edycja, stopka wydawnicza itp. pola
@@ -524,6 +532,8 @@ pl:
     general_note_incipits: Uwaga ogólna
     general_note_institution: Uwaga ogólna
     general_note_personal: Uwaga ogólna
+    geodata: Informacje geograficzne
+    geographic_area_code: Numer kierunkowy
     geographic_name: Nazwa geograficzna
     geographic_subdivision: Dalszy podział geograficzny
     gf_major: Ges-dur
@@ -590,12 +600,16 @@ pl:
     language_libretto: Język libretta
     language_note: Uwaga o języku
     language_of_cataloging: Język katalogowania
+    language_of_name: Język nazwy
     language_original_text: Język tekstu oryginalnego
     language_text: Język tekstu
     later_entry: Późniejszy wpis
     later_heading: Późniejsza pozycja
     latitude: Szerokość geograficzna
     leader: Leader
+    legacy_country: Kraj
+    legacy_country_district: Kraj i Region (proszę wypełnić tylko te dane)
+    legacy_district: Region
     library: Biblioteka
     library_information: Informacje o bibliotece
     library_information_relations: Informacje o bibliotece i powiązaniach
@@ -617,6 +631,7 @@ pl:
     local_note_field: Pole uwagi lokalnej
     local_notes_field: Pole uwag wewnętrznych
     local_number: Numer kontrolny
+    local_rism_code_for_country: Wewnętrzny kod RISM dla państwa/miasta/miasteczka
     location: Lokalizacja
     location_and_address: Lokalizacja i adres
     location_insertion: Lokalizacja wstawienia
@@ -691,6 +706,7 @@ pl:
     nickname: Przezwisko
     no_linguistic_content: Brak zawartości językowej
     non_migrated_bound: Non-migrated bound with value from 563
+    northernmost_latitude: Najbardziej wysunięta na północ długość geograficzna
     not_applicable: Nie dotyczy
     notated_music: Notacja muzyczna
     note: Notatka
@@ -824,6 +840,7 @@ pl:
     relation: Relacja
     relations: Relacje
     relationship: Relacja
+    relationship_code: Kod powiązania
     relationship_designation: Oznaczenie relacji w $i lub $4
     relationship_information: Informacje o relacjach
     religious_name: Imię z wyznania
@@ -853,6 +870,7 @@ pl:
     sketches: Szkice
     solo_voice: Głos solowy
     soloist_instrument: Instrument solowy
+    southernmost_latitude: Najbardziej wysunięta na południe długość geograficzna
     source: Źródło
     sources: Źródła
     source_data_found: Odnalezione źródło danych
@@ -918,6 +936,9 @@ pl:
     type_designer: Projektant kroju pisma
     type_institution: Rodzaj instytucji
     type_name_variant: Typ alternatywnej nazwy osoby
+    type_of_entity: Typ podmiotu
+    type_of_entity_code: Typ kodu podmiotu
+    type_of_entity_term: Typ terminu podmiotu
     type_of_jurisdiction: Rodzaj jurysdykcji
     type_publication: Rodzaj publikacji
     type_relationship: Rodzaj relacji
@@ -935,6 +956,7 @@ pl:
     voice_instrument: Głos/instrument
     volume_year_page: Wolumen, rok, strona
     watermark_description: Opis znaku wodnego
+    westernmost_longitude: Najbardziej wysunięta na zachód długość geograficzna
     woodwinds: Instrumenty dęte drewniane
     work: Dzieło
     work_catalog: Katalog dzieł

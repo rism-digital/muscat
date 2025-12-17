@@ -40,6 +40,7 @@ de:
     aragonese: Aragonesisch
     armenian: Armenisch
     artificial: Kunstsprache (andere)
+    asturian: Asturisch
     australian: Australische Sprachen
     basque: Baskisch
     bengali: Bengalisch
@@ -48,6 +49,7 @@ de:
     catalan: Katalanisch
     celtic_other: Keltisch (andere)
     chinese: Chinesisch
+    corsican: Korsisch
     cree: Cree
     creoles_pidgins_other: Kreolisch und Kauderwelsch (andere)
     croatian: Kroatisch
@@ -66,11 +68,13 @@ de:
     french_old: Französisch, alt (ca. 842-1300)
     friulian: Furlanisch
     gallician: Galizisch
+    georgian: Georgisch
     german: Deutsch
     german_old_high: Althochdeutsch (ca. 750-1050)
     germanic: Germanisch
     greek_ancient: Altgriechisch (bis 1453)
     greek_modern: Neugriechisch (1453-)
+    guarani: Guarani
     hebrew: Hebräisch
     hungarian: Ungarisch
     icelandic: Isländisch
@@ -125,8 +129,10 @@ de:
     tibetan: Tibetanisch
     tsimshian: Tsimshian
     turkish: Türkisch
+    twi: Twi
     ukrainian: Ukrainisch
     upper_sorbian: 'Sorbisch, Obersorbisch'
+    urdu: Urdu
     vietnamese: Vietnamesisch
     welsh: Walisisch
     west_frisian: Westfriesisch
@@ -236,7 +242,7 @@ de:
     taiwan: Taiwan (Provinz von China)
     tajikistan: Tadschikistan
     trinidad_tobego: Trinidad und Tobago
-    tunisia: Tunisia
+    tunisia: Tunesien
     turkey: Türkei
     turkmenistan: Turkmenistan
     uganda: Uganda
@@ -279,6 +285,7 @@ de:
     aids: Arbeitshilfen
     alleged: Angeblich
     alternate_spelling: Andere Schreibweise
+    alternate_geographic_name: Alternativer geografischer Name
     alternative_work_title: Alternativer Werktitel
     amount: Anzahl
     annex: Anhang
@@ -447,6 +454,7 @@ de:
     e_major: E-Dur
     e_minor: e-Moll
     earlier_heading: Frühere Überschrift
+    easternmost_longitude: Östlicher Längengrad
     ecclesiastical_modes: Kirchentonarten
     edition: Edition
     edition_imprint_fields: Ausgabe- und Impressumsfelder
@@ -524,6 +532,8 @@ de:
     general_note_incipits: Kommentar zum Musikincipit
     general_note_institution: Allgemeine Fußnote
     general_note_personal: Externe Bemerkungen
+    geodata: Geographische Informationen
+    geographic_area_code: Geografische Gebietsnummer
     geographic_name: Geographischer Name
     geographic_subdivision: Geographische Unterteilung
     gf_major: Ges-Dur
@@ -590,12 +600,16 @@ de:
     language_libretto: Sprachcode von Libretti
     language_note: Sprachenvermerk
     language_of_cataloging: Katalogisierungsspache
+    language_of_name: Sprache des Namens
     language_original_text: Sprachcode des Originaltextes
     language_text: Sprachcode
     later_entry: Späterer Eintrag
     later_heading: Spätere Überschrift
     latitude: Breitengrad
     leader: Leader
+    legacy_country: Land
+    legacy_country_district: Land und Bezirk (bitte nur diese ausfüllen)
+    legacy_district: Bezirk
     library: Bibliothek
     library_information: Besitzerangaben
     library_information_relations: Besitzerangaben und Verlinkung
@@ -617,6 +631,7 @@ de:
     local_note_field: Lokale Bemerkungen
     local_notes_field: Interne Fussnoten
     local_number: Lokale Nummer
+    local_rism_code_for_country: Lokaler RISM-Code für Land / Stadt / Ort
     location: Ort
     location_and_address: Adresse
     location_insertion: Stelle der Einlage im Hauptwerk
@@ -691,6 +706,7 @@ de:
     nickname: Beiname
     no_linguistic_content: ohne Sprache
     non_migrated_bound: Non-migrated bound with value from 563
+    northernmost_latitude: Nördlicher Breitengrad
     not_applicable: Nicht zutreffend
     notated_music: Notenmaterial
     note: Hinweis
@@ -824,6 +840,7 @@ de:
     relation: Bedeutung
     relations: Beziehungen
     relationship: Beziehung
+    relationship_code: Informationen zur Beziehung
     relationship_designation: Beziehungsbezeichnung in $i oder $4
     relationship_information: Informationen zur Beziehung
     religious_name: Ordensname
@@ -853,6 +870,7 @@ de:
     sketches: Skizzen
     solo_voice: Solostimme
     soloist_instrument: Soloinstrument
+    southernmost_latitude: Südlicher Breitengrad
     source: Quelle
     sources: Quellen
     source_data_found: Literaturnachweis
@@ -918,6 +936,9 @@ de:
     type_designer: Schriftentwerfer
     type_institution: Typ der Körperschaft
     type_name_variant: Art der Namensvariante
+    type_of_entity: Entitätentyp
+    type_of_entity_code: Entitätencode
+    type_of_entity_term: Art des Entitätenbegriffs
     type_of_jurisdiction: Art der Gerichtsbarkeit
     type_publication: Ausgabeform
     type_relationship: Beziehung
@@ -935,6 +956,7 @@ de:
     voice_instrument: Besetzung
     volume_year_page: Jahrgang, Seite
     watermark_description: Wasserzeichen
+    westernmost_longitude: Westlicher Längengrad
     woodwinds: Holzblasinstrumente
     work: Werk
     work_catalog: Werkkatalog

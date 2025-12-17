@@ -40,6 +40,7 @@ pt:
     aragonese: Aragonês
     armenian: Arménio
     artificial: Artificial (outro)
+    asturian: Asturiense
     australian: Línguas australianas
     basque: Basco
     bengali: Bengalês
@@ -48,6 +49,7 @@ pt:
     catalan: Catalão
     celtic_other: Celtic (outro)
     chinese: Chinês
+    corsican: Corso
     cree: Cri
     creoles_pidgins_other: Crioles e Pidgins (Outro)
     croatian: Croata
@@ -66,11 +68,13 @@ pt:
     french_old: Francês, antigo (ca. 842-1300)
     friulian: Friulano
     gallician: Galego
+    georgian: Georgiano
     german: Alemão
     german_old_high: Alemão, antigo (ca. 750-1050)
     germanic: Alemão
     greek_ancient: Grego antigo (até 1453)
     greek_modern: Grego moderno (1453-)
+    guarani: Guarani
     hebrew: Hebraico
     hungarian: Húngaro
     icelandic: Islandês
@@ -125,8 +129,10 @@ pt:
     tibetan: Tibetano
     tsimshian: Tsimshian
     turkish: Turco
+    twi: Twi
     ukrainian: Ucraniano
     upper_sorbian: 'Sorábio, Alto Sorábio'
+    urdu: Urdu
     vietnamese: Vietnamita
     welsh: Galês
     west_frisian: Frisão ocidental
@@ -236,7 +242,7 @@ pt:
     taiwan: Taiwan (Província da China)
     tajikistan: Tajiquistão
     trinidad_tobego: Trinidad e Tobago
-    tunisia: Tunisia
+    tunisia: Tunísia
     turkey: Turquia
     turkmenistan: Turquemenistão
     uganda: Uganda
@@ -279,6 +285,7 @@ pt:
     aids: Ajudas
     alleged: Suposta
     alternate_spelling: Ortografia alternativa
+    alternate_geographic_name: Alternate geographic name
     alternative_work_title: Título alternativo da obra
     amount: Número
     annex: Anexo
@@ -447,6 +454,7 @@ pt:
     e_major: Mi maior
     e_minor: Mi menor
     earlier_heading: Título anterior
+    easternmost_longitude: Easternmost longitude
     ecclesiastical_modes: Modos eclesiásticos ocidentais
     edition: Edição
     edition_imprint_fields: Campos edição, imprimir, etc.
@@ -524,6 +532,8 @@ pt:
     general_note_incipits: Nota geral
     general_note_institution: Nota geral
     general_note_personal: Nota geral
+    geodata: Informação geográfica
+    geographic_area_code: Geographic area code
     geographic_name: Nome geográfico
     geographic_subdivision: Repartição geográfica
     gf_major: Sol bemol maior
@@ -590,12 +600,16 @@ pt:
     language_libretto: Idioma do libreto
     language_note: Nota de idioma
     language_of_cataloging: Idioma de catalogação
+    language_of_name: Language of name
     language_original_text: Idioma do texto original
     language_text: Idioma do texto
     later_entry: Entrada posterior
     later_heading: Título posterior
     latitude: Latitude
     leader: Líder
+    legacy_country: País
+    legacy_country_district: País e município (por favor, apenas preencha estes)
+    legacy_district: Município
     library: Instituição
     library_information: Informação da instituição
     library_information_relations: Informação da instituição e relações
@@ -617,6 +631,7 @@ pt:
     local_note_field: Campo de nota local
     local_notes_field: Campo de nota local
     local_number: Número local
+    local_rism_code_for_country: Local RISM code for country / city / town
     location: Local
     location_and_address: Local e endereço
     location_insertion: Localização da inserção
@@ -691,6 +706,7 @@ pt:
     nickname: Apelido
     no_linguistic_content: Sem conteúdo linguístico
     non_migrated_bound: Valor não migrado do campo 563 (Encadernado com)
+    northernmost_latitude: Northernmost latitude
     not_applicable: Não aplicável
     notated_music: Escrita musical
     note: Nota
@@ -824,6 +840,7 @@ pt:
     relation: Relação
     relations: Relacionamentos
     relationship: Relação
+    relationship_code: Relationship code
     relationship_designation: Designação da relação em $i ou $4
     relationship_information: Informação sobre a relação
     religious_name: Nome religioso
@@ -853,6 +870,7 @@ pt:
     sketches: Esboços
     solo_voice: Voz solista
     soloist_instrument: Instrumento solista
+    southernmost_latitude: Southernmost latitude
     source: Fonte
     sources: Fontes
     source_data_found: Fonte dos dados encontrados
@@ -918,6 +936,9 @@ pt:
     type_designer: Tipógrafo
     type_institution: Tipo de instituição
     type_name_variant: Tipo de variante de nome
+    type_of_entity: Tipo de entidade
+    type_of_entity_code: Código do tipo de entidade
+    type_of_entity_term: Termo para o tipo de entidade
     type_of_jurisdiction: Tipo de jurisdição
     type_publication: Tipo de publicação
     type_relationship: Tipo de relação
@@ -935,6 +956,7 @@ pt:
     voice_instrument: Voz/instrumento
     volume_year_page: Volume, ano, página
     watermark_description: Descrição de Marca de água
+    westernmost_longitude: Westernmost longitude
     woodwinds: Madeiras
     work: Obra
     work_catalog: Catálogo da obra
