@@ -247,6 +247,9 @@ function marc_validate_not_record_id(value, element, param) {
 	const record_id = $('#id').val();
 	const isDifferent = String(record_id) !== String(value);
 
+	if (String(value) === "")
+		return true;
+
 	return isDifferent;
 }
 
