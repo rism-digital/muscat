@@ -574,8 +574,16 @@ include ApplicationHelper
         end
     elsif rule == "not_record_id"
       return if !@marc.respond_to? :get_id
+      return if !marc_subtag
+      return if !marc_subtag.content
 
-      if @marc.get_id&.to_s&.strip == marc_subtag.content&.to_s&.strip
+      record_id = @marc.get_id&.to_s&.strip
+      subtag_id = marc_subtag&.content&.to_s&.strip
+
+      return if record_id.nil? || record_id.empty?
+      return if subtag_id.nil? || subtag_id.empty?
+
+      if record_id == subtag_id
           add_error(tag, subtag, rule)
           puts "The ID for tag #{tag} cannot be the record id #{@object.id}" if DEBUG
       end
