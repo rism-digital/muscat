@@ -75,7 +75,7 @@ class MarcNode
           # Silence this particular error here
           # FIXME THIS SHOULD BE FIXED NOT THE HEAD BURIED IN SAND
           # but we will never fix it so
-          if self.tag != "596" && @marc_configuration.get_master( self.tag ) != "c"
+          if self.tag.to_s != "596" && @marc_configuration.get_master( self.tag ) != "c" && (object_id && object_id&.to_i < 1001359596) 
             $stderr.puts "[#{@model} #{object_id}] Tag #{self.tag}: missing master (expected in $#{@marc_configuration.get_master( self.tag )}), tag contents: #{self.to_marc} "
           end
           # Write all the errors in the log, even the one above
