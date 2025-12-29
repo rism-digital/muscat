@@ -259,8 +259,9 @@ function marc_validate_url(value, element, param) {
 
 	if (value === "")
 		return true;
-
-	return httpRegex.test(value);
+	
+	let sanit = value.replace(/\u00A0/g, " ").trim();
+	return httpRegex.test(sanit);
 }
 
 function marc_validate_588_siglum(value, element, param) {

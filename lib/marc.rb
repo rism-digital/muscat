@@ -8,6 +8,8 @@ class Marc
 
   include ApplicationHelper
   include Comparable
+
+  using AggressivelyStrip
   
 ##  attr_reader :all_foreign_associations
   attr_accessor :root, :results, :suppress_scaffold_links_trigger
@@ -157,7 +159,7 @@ class Marc
     if @marc_configuration.is_tagless?(tag)
       if data =~ /^[\s]*(.+)$/
         content = $1
-        tag_group = @root << MarcNode.new(@model, tag, content&.strip, nil)
+        tag_group = @root << MarcNode.new(@model, tag, content&.aggressively_strip&.strip, nil)
       end
     # normal fields
     else
@@ -181,7 +183,7 @@ class Marc
         @results << "Subfield #{tag} $#{subtag} missing in the marc configuration" if !@marc_configuration.has_subfield? tag, subtag
         marc_log ["PARSE", "SUBTAG_NOT_CONFIGURED", "TAG=#{tag}", "SUBTAG=#{subtag}"] if !@marc_configuration.has_subfield? tag, subtag
 
-        subtag = tag_group << MarcNode.new(@model, subtag, content&.strip, nil)
+        subtag = tag_group << MarcNode.new(@model, subtag, content&.aggressively_strip&.strip, nil)
       end
     end
   end
@@ -217,8 +219,9 @@ class Marc
               tag_group = @root << MarcNode.new(@model, tag, nil, ind)
               field['subfields'].each do | pos |
                 pos.each_pair do |code, value|
-                  value.gsub!(DOLLAR_STRING, "$")
-                  tag_group << MarcNode.new(@model, code, value.strip, nil)
+                  # Convert unicode spaces to strippable spaces
+                  value = value.gsub(DOLLAR_STRING, "$").aggressively_strip.strip
+                  tag_group << MarcNode.new(@model, code, value, nil)
                 end
               end
             else
@@ -280,7 +283,7 @@ class Marc
           #doc = doc.to_s.gsub(/'/, "&apos;").unicode_normalize
           #doc = doc.gsub(/\u0098/, "").gsub(/\u009C/, "")
 
-        tag_group << MarcNode.new(@model, code, value.strip, nil)
+        tag_group << MarcNode.new(@model, code, value.aggressively_strip.strip, nil)
       end
     end
 

@@ -1,6 +1,6 @@
 class MarcValidator
 include ApplicationHelper
-  
+using AggressivelyStrip
 
   # test example:
   # MarcValidator.new(Source.first, nil, nil, nil, ValidationExclusion.new(Source)).validate_tags
@@ -566,8 +566,10 @@ include ApplicationHelper
         end
     elsif rule == "validate_url"
         http_regex = %r{\Ahttps?:\/\/(?:www\.)?[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b(?:[-a-zA-Z0-9()@:%_\+.,;~#?&\/=!$'*\[\]]*)\z}
+        
         if marc_subtag && marc_subtag.content
-          if !(marc_subtag.content =~ http_regex)
+          # Strip does not strip the unicode flavour of space
+          if !(marc_subtag.content.aggressively_strip.strip =~ http_regex)
             add_error(tag, subtag, rule)
             puts "The URL in #{tag} #{subtag} is invalid [#{marc_subtag.content}], #{rule}" if DEBUG
           end
