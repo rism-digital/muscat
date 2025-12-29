@@ -72,7 +72,13 @@ class MarcNode
           end
               
           #raise NoMethodError, "Tag #{self.tag}: missing master (expected in $#{@marc_configuration.get_master( self.tag )}), tag contents: #{self.to_marc} "
-          $stderr.puts "[#{@model} #{object_id}] Tag #{self.tag}: missing master (expected in $#{@marc_configuration.get_master( self.tag )}), tag contents: #{self.to_marc} "
+          # Silence this particular error here
+          # FIXME THIS SHOULD BE FIXED NOT THE HEAD BURIED IN SAND
+          # but we will never fix it so
+          if self.tag != "596" && @marc_configuration.get_master( self.tag ) != "c"
+            $stderr.puts "[#{@model} #{object_id}] Tag #{self.tag}: missing master (expected in $#{@marc_configuration.get_master( self.tag )}), tag contents: #{self.to_marc} "
+          end
+          # Write all the errors in the log, even the one above
           marc_node_log ["MISSING_MASTER", "TAG=#{self.tag}", "SUBTAG=#{@marc_configuration.get_master( self.tag )}", "MODEL=#{@model}", "ID-#{object_id}", "DEBUG=#{self.to_marc}"]
           #self.destroy_yourself
           return
