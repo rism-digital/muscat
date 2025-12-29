@@ -567,9 +567,16 @@ using AggressivelyStrip
     elsif rule == "validate_url"
         http_regex = %r{\Ahttps?:\/\/(?:www\.)?[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b(?:[-a-zA-Z0-9()@:%_\+.,;~#?&\/=!$'*\[\]]*)\z}
         
+        def http_url?(input)
+          uri = URI.parse(input.to_s)
+          uri.is_a?(URI::HTTP) && %w[http https].include?(uri.scheme)
+        rescue URI::InvalidURIError
+          false
+        end
+
         if marc_subtag && marc_subtag.content
           # Strip does not strip the unicode flavour of space
-          if !(marc_subtag.content.aggressively_strip.strip =~ http_regex)
+          if !(http_url?(marc_subtag.content.aggressively_strip.strip))
             add_error(tag, subtag, rule)
             puts "The URL in #{tag} #{subtag} is invalid [#{marc_subtag.content}], #{rule}" if DEBUG
           end

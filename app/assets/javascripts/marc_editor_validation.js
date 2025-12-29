@@ -259,9 +259,16 @@ function marc_validate_url(value, element, param) {
 
 	if (value === "")
 		return true;
-	
-	let sanit = value.replace(/\u00A0/g, " ").trim();
-	return httpRegex.test(sanit);
+
+	try {
+		const u = new URL(String(value));
+		return u.protocol === "http:" || u.protocol === "https:";
+	} catch {
+		return false;
+	}
+
+	//let sanit = value.replace(/\u00A0/g, " ").trim();
+	//return httpRegex.test(sanit);
 }
 
 function marc_validate_588_siglum(value, element, param) {
