@@ -25,6 +25,7 @@ gem 'coffee-rails'#, '~> 5.0'
 # A runtime can be used with node.js: apt-get install nodejs
 # See https://github.com/sstephenson/execjs#readme for more supported runtimes
 # gem 'mini_racer', platforms: :ruby
+gem 'mini_racer'
 
 # Use importmaps for ESM javascript modules
 gem "importmap-rails", "~> 2.1"
