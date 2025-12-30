@@ -1,6 +1,5 @@
 class MarcValidator
 include ApplicationHelper
-include UglyUriValidation
 using AggressivelyStrip
 
   # test example:
@@ -567,9 +566,16 @@ using AggressivelyStrip
         end
     elsif rule == "validate_url"
         
+        def http_url?(input)
+          uri = URI.parse(input.to_s)
+          uri.is_a?(URI::HTTP) && %w[http https].include?(uri.scheme)
+        rescue URI::InvalidURIError
+          false
+        end
+        
         if marc_subtag && marc_subtag.content
           # Strip does not strip the unicode flavour of space
-          if !(parse_http_url_with_js?(marc_subtag.content.aggressively_strip.strip))
+          if !(http_url?(marc_subtag.content.aggressively_strip.strip))
             add_error(tag, subtag, rule)
             puts "The URL in #{tag} #{subtag} is invalid [#{marc_subtag.content}], #{rule}" if DEBUG
           end
