@@ -29,7 +29,7 @@ editor_profile = EditorConfiguration.get_show_layout item
             %>
             <tr <%= count % 2 == 0 ? "style='background-color: #f0f0f0;'".html_safe : "style='background-color: #fafafa;'".html_safe %> >
                 <th class="diff_header"><%= label %></th>
-                <td class="diff_tag"><%= "[#{tag.tag}#{subfield.tag}]"%></td>
+                <td class="diff_tag"><%= "[#{tag.tag}$#{subfield.tag}]"%></td>
                 <td class="diff_contents"><%=diff.format_as(:html).html_safe%></td>
             </tr>
             <%count += 1%>

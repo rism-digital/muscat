@@ -5,6 +5,7 @@ ActiveAdmin.register InventoryItem do
   menu :parent => "indexes_menu", :label => proc {I18n.t(:menu_inventory_items)}, :if => proc{ can?(:update, InventoryItem)}
 
   config.clear_action_items!
+  config.per_page = [10, 30, 50, 100, 1000]
   # Remove mass-delete action
   batch_action :destroy, false
 
