@@ -4,7 +4,31 @@
 		groups << group
   	end
 -%>
-<div id="<%= render_panel -%>" class="panel-hidable" data-editor-model="<%= model %>" style="display: <%= @show_history ? "none" : "block" -%>;">
+
+<% rk = @item.class.model_name.route_key %>
+<% endpoints = {
+  save:     public_send("marc_editor_save_admin_#{rk}_path"),
+  preview:  public_send("marc_editor_preview_admin_#{rk}_path"),
+  summary:  public_send("marc_editor_summary_show_admin_#{rk}_path"),
+  version:  public_send("marc_editor_version_admin_#{rk}_path"),
+  diff:     public_send("marc_editor_version_diff_admin_#{rk}_path"),
+  validate: public_send("marc_editor_validate_admin_#{rk}_path"),
+  pr:       public_send("create_pull_request_admin_#{rk}_path"),
+} %>
+
+<div
+  id="<%= render_panel -%>"
+  class="panel-hidable"
+  style="display: <%= @show_history ? "none" : "block" -%>;"
+  data-editor-model="<%= model %>"
+
+  data-marc-config="<%= {
+    model: rk,
+    currentUserId: current_user&.id,
+    endpoints: endpoints
+  }.to_json %>"
+>
+
 	<%# we don't want the form to be submitted directly (with enter for example), so the 'onSubmit return false %>
 	<%- @editor_profile.layout_config[:marc_editor_group_links] = [] -%>
 	<%- @editor_profile.layout_config[:marc_editor_unknown_tag_links] = "" -%>

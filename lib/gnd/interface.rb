@@ -92,6 +92,7 @@ module GND
         post = Net::HTTP::Post.new(uri.path, 'Content-Type' => 'text/xml')
         server = Net::HTTP.new(uri.host, uri.port)
         server.use_ssl = true
+        ##server.verify_mode = OpenSSL::SSL::VERIFY_NONE
         server.start {|http|
             http.request(post, request_body) {|response|
                 if response.code == "200"

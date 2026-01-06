@@ -1,4 +1,19 @@
-// --- shared helpers (drop-in) ------------------------------------
+function marc_editor_config(panel_name) {
+  const $root = $("#" + panel_name);
+  const raw = $root.attr("data-marc-config");
+
+  if (!raw) throw new Error("Missing data-marc-config on #" + panel_name);
+
+  // Cache parsed config on the element so you don't JSON.parse repeatedly
+  let cfg = $root.data("marcConfigParsed");
+  if (!cfg) {
+    cfg = JSON.parse(raw);
+    $root.data("marcConfigParsed", cfg);
+  }
+  return cfg;
+}
+
+// --- shared helpers
 
 function marc_editor_block(sidebarMessage) {
   $('#main_content').block({ message: "" });
@@ -10,11 +25,64 @@ function marc_editor_unblock() {
   $('#sections_sidebar_section').unblock();
 }
 
-// Preflight now returns a Promise that resolves to:
+function marc_editor_ask_pr_message_dialog(opts) {
+  opts = opts || {};
+  const title = opts.title || "Create Pull Request";
+  const label = opts.label || "Message";
+  const initial = opts.initial || "";
+
+  return new Promise((resolve) => {
+    const id = "pr_message_dialog_runtime";
+    let $dlg = $("#" + id);
+
+    // Create/inject once (or recreate if you prefer)
+    if (!$dlg.length) {
+      $dlg = $(`
+        <div id="${id}" style="display:none;">
+          <label for="${id}_text" style="display:block; margin-bottom:6px;">${label}</label>
+          <textarea id="${id}_text" rows="6" style="width:100%; box-sizing:border-box;"></textarea>
+        </div>
+      `).appendTo("body");
+    }
+
+    const $txt = $("#" + id + "_text");
+    $txt.val(initial);
+
+    $dlg.dialog({
+      modal: true,
+      title: title,
+      width: 520,
+      closeOnEscape: true,
+      buttons: {
+        Cancel: function () {
+          $(this).dialog("close");
+          resolve(null);
+        },
+        "Create PR": function () {
+          const msg = ($txt.val() || "").trim();
+          $(this).dialog("close");
+          resolve(msg);
+        }
+      },
+      open: function () {
+        // focus textarea when dialog opens
+        setTimeout(() => $txt.trigger("focus"), 0);
+      },
+      close: function () {
+        // Destroy the jQuery UI wrapper & remove DOM node (clean!)
+        $dlg.dialog("destroy");
+        $dlg.remove();
+      }
+    });
+  });
+}
+
+
+// Returns a Promise that resolves to:
 //   { ok: true }
 //   { ok: false, reason: 'warnings' }
 //   { ok: false, reason: 'invalid', form_valid, backend_validation }
-function marc_editor_preflight($form) {
+function marc_editor_validate_form($form) {
   const already_warnings = marc_validate_has_warnings();
 
   marc_validate_hide_warnings();
@@ -86,15 +154,18 @@ function marc_editor_post_json(opts) {
 
 var savedNr = 0;
 
-function _marc_editor_send_form(form_name, rails_model, redirect) {
+function _marc_editor_send_form(panel_name, rails_model, redirect) {
   marc_editor_holding_warning();
 
   savedNr++;
   redirect = redirect || false;
 
-  const $form = $('form', "#" + form_name);
+  const $form = $('form', "#" + panel_name);
+  const cfg = marc_editor_config(panel_name);
 
-  return marc_editor_preflight($form).then(function (pre) {
+  console.log(cfg)
+
+  return marc_editor_validate_form($form).then(function (pre) {
     if (!pre.ok) {
       if (pre.reason === 'warnings') return;
 
@@ -109,7 +180,6 @@ function _marc_editor_send_form(form_name, rails_model, redirect) {
 
     const json_marc = serialize_marc_editor_form($form);
     const triggers = marc_editor_get_triggers();
-    const url = "/admin/" + rails_model + "/marc_editor_save";
 
     const req_data = {
       marc: JSON.stringify(json_marc),
@@ -130,7 +200,7 @@ function _marc_editor_send_form(form_name, rails_model, redirect) {
     }
 
     return marc_editor_post_json({
-      url: url,
+      url: cfg.endpoints.save,
       data: req_data,
       busyText: "Saving...",
       errorKey: "marc_editor.error_save",
@@ -169,65 +239,52 @@ function _marc_editor_send_form(form_name, rails_model, redirect) {
   });
 }
 
-/*
-function _marc_editor_create_pull_request(form_name, rails_model, redirect) {
-  const $form = $('form', "#" + form_name);
+function _marc_editor_create_pull_request(panel_name, rails_model, redirect) {
+  const $form = $('form', "#" + panel_name);
+  const cfg = marc_editor_config(panel_name);
 
-  const pre = marc_editor_preflight($form);
-  console.log(pre);
-  if (!pre.ok) return; // warnings or invalid -> stop
-
-  const json_marc = serialize_marc_editor_form($form);
-  const url = "/admin/" + rails_model + "/create_pull_request";
-
-  const req_data = {
-    marc: JSON.stringify(json_marc),
-    id: $('#id').val()
-  };
-
-  return marc_editor_post_json({
-    url: url,
-    data: req_data,
-    busyText: "Pulling...",
-    errorKey: "marc_editor.error_save"
-  });
-}
-  */
- function _marc_editor_create_pull_request(form_name, rails_model, redirect) {
-  const $form = $('form', "#" + form_name);
-
-  return marc_editor_preflight($form).then(function (pre) {
+  return marc_editor_validate_form($form).then(function (pre) {
     if (!pre.ok) return; // warnings or invalid -> stop
 
-    const json_marc = serialize_marc_editor_form($form);
-    const url = "/admin/" + rails_model + "/create_pull_request";
+    // IMPORTANT: return this promise so the outer chain waits for it
+    return marc_editor_ask_pr_message_dialog({ title: "Pull request message" })
+      .then(function (message) {
+        if (message === null)
+          return;
 
-    const req_data = {
-      marc: JSON.stringify(json_marc),
-      id: $('#id').val()
-    };
+        message = (message || "").trim();
+        if (!message) { 
+          alert("Message required"); 
+          return; 
+        }
 
-    return marc_editor_post_json({
-      url: url,
-      data: req_data,
-      busyText: "Pulling...",
-      errorKey: "marc_editor.error_save"
-    });
+        const json_marc = serialize_marc_editor_form($form);
+
+        const req_data = {
+          marc: JSON.stringify(json_marc),
+          id: $('#id').val(),
+          message: message,
+        };
+
+        return marc_editor_post_json({
+          url: cfg.endpoints.pr,
+          data: req_data,
+          busyText: "Pulling...",
+          errorKey: "marc_editor.error_save"
+        });
+      });
   });
 }
+
 
 function _marc_editor_validate(source_form, destination, rails_model) {
   const form = $('form', "#" + source_form);
   const json_marc = serialize_marc_editor_form(form);
-  const url = "/admin/" + rails_model + "/marc_editor_validate";
 
-  // Prefer a data attr if you can add it; fallback to old parsing
-  const currentUser =
-    $('#current_user').data('user-id') ||
-    ($('#current_user').find('a').attr('href') || '').split("/")[3];
+  const cfg = marc_editor_config(source_form);
 
   return $.ajax({
-    url: url,
+    url: cfg.endpoints.validate,
     type: 'post',
     dataType: 'json',
     timeout: 60000,
@@ -237,7 +294,7 @@ function _marc_editor_validate(source_form, destination, rails_model) {
       marc_editor_dest: destination,
       id: $('#id').val(),
       record_type: $('#record_type').val(),
-      current_user: currentUser
+      current_user: cfg.currentUserId
     }
   })
   .then(
@@ -267,4 +324,147 @@ function _marc_editor_validate(source_form, destination, rails_model) {
       return false;
     }
   );
+}
+
+function _marc_editor_preview( source_form, destination, rails_model ) {
+	var form = $('form', "#" + source_form);
+	var json_marc = serialize_marc_editor_form(form);
+	
+	const cfg = marc_editor_config(source_form)
+	
+	$.ajax({
+		success: function(data) {
+			marc_editor_show_panel(destination);
+		},
+		data: {
+			marc: JSON.stringify(json_marc), 
+			marc_editor_dest: destination, 
+			id: $('#id').val()
+		},
+		dataType: 'script',
+		timeout: 20000,
+		type: 'post',
+		url: cfg.endpoints.preview, 
+		error: function (jqXHR, textStatus, errorThrown) {
+			_generic_editor_alert("marc_editor.error_preview", jqXHR.status, textStatus, errorThrown)
+		}
+	});
+}
+
+function _marc_editor_help( destination, help, title ) {
+
+	var url = "/admin/editor_help_box/" + help
+
+	$.ajax({
+		success: function(data) {
+			$('#' + destination).html(data)
+			marc_editor_show_panel(destination);
+		},
+		data: {
+			title: title,
+		},
+		dataType: 'html',
+		timeout: 20000,
+		type: 'post',
+		url: url, 
+		error: function (jqXHR, textStatus, errorThrown) {
+			_generic_editor_alert("marc_editor.error_help", jqXHR.status, textStatus, errorThrown)
+		}
+	});
+}
+
+function _marc_editor_version_view( version_id, destination, rails_model ) {	
+	const cfg = marc_editor_config("marc_editor_panel");
+	$("#" + destination).block({message: ""});
+	
+	$.ajax({
+		success: function(data) {
+			//marc_editor_show_panel(destination);
+			$("#" + destination).unblock();
+		},
+		data: {
+			marc_editor_dest: destination, 
+			version_id: version_id
+		},
+		dataType: 'script',
+		timeout: 20000,
+		type: 'post',
+		url: cfg.endpoints.version, 
+		error: function (jqXHR, textStatus, errorThrown) {
+			_generic_editor_alert("marc_editor.error_version", jqXHR.status, textStatus, errorThrown)
+		}
+	});
+}
+
+function _marc_editor_embedded_holding(destination, rails_model, id ) {	
+	url = "/admin/holdings/render_embedded";
+	
+	$.ajax({
+		success: function(data) {
+		},
+		data: {
+			marc_editor_dest: destination,
+			object_id: id,
+		},
+		dataType: 'script',
+		timeout: 20000,
+		type: 'post',
+		url: url, 
+		error: function (jqXHR, textStatus, errorThrown) {
+			_generic_editor_alert("marc_editor.error_holding", jqXHR.status, textStatus, errorThrown)
+		}
+	});
+}
+
+function _marc_editor_summary_view(destination, rails_model, id ) {	
+	const cfg = marc_editor_config("marc_editor_panel");
+	
+	$.ajax({
+		success: function(data) {
+		},
+		data: {
+			marc_editor_dest: destination,
+			object_id: id
+		},
+		dataType: 'script',
+		timeout: 20000,
+		type: 'post',
+		url: cfg.endpoints.summary, 
+		error: function (jqXHR, textStatus, errorThrown) {
+			_generic_editor_alert("marc_editor.error_summary", jqXHR.status, textStatus, errorThrown)
+		}
+	});
+}
+
+function _marc_editor_version_diff( version_id, destination, rails_model ) {	
+	const cfg = marc_editor_config("marc_editor_panel");
+	$("#" + destination).block({message: ""});
+	
+	$.ajax({
+		success: function(data) {
+			//marc_editor_show_panel(destination);
+			$("#" + destination).unblock();
+            $(".subfield_diff_content").each(function() {
+		        $(this).html( diffString( $(this).children('.diff_old').html(), $(this).children('.diff_new').html() ) );
+	        });
+            $('#marc_editor_historic_view .panel').each(function(){
+                if($(this).find(".version_diff").length == 0){
+                    $(this).hide();
+                }
+            });
+            
+            
+		},
+		data: {
+			marc_editor_dest: destination, 
+			version_id: version_id
+		},
+		dataType: 'script',
+		timeout: 20000,
+		type: 'post',
+		url: cfg.endpoints.diff, 
+		error: function (jqXHR, textStatus, errorThrown) {
+			_generic_editor_alert("marc_editor.error_diff", jqXHR.status, textStatus, errorThrown)
+		}
+	});
 }

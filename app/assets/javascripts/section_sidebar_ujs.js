@@ -50,7 +50,11 @@ var init_sidebar_actions = function () {
 		if (tname == "show_toplevel") {
 			// Show a specific toplevel panel
 			show_toplevel(panel);
-			marc_editor_validate();
+
+			// In validation, we want to jump to the top too
+			if ($(this).data("action") == "validate")
+				marc_editor_validate();
+
 			// Save the full view
 			marc_editor_set_last_tab("full", "full");
 		} else if (tname == "action") {
