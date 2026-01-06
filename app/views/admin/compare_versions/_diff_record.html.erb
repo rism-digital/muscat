@@ -2,7 +2,7 @@
 <%-
 count = 0
 item.marc.all_tags.each do |tag|
-editor_profile = EditorConfiguration.get_show_layout Source.first#item
+editor_profile = EditorConfiguration.get_show_layout(item.is_a?(PullRequest) ? item.item : item)
 
     tag = tag.diff if tag.diff && tag.diff.diff_is_deleted 
     is_inserted_tag = (!tag.diff && !tag.diff_is_deleted) 
