@@ -13,6 +13,10 @@ function marc_editor_set_dirty() {
 	$("#page_title").append("*");
 }
 
+function marc_editor_is_dirty() {
+	return marc_editor_form_changed;
+}
+
 function marc_editor_update_group_toolbar(event, ui) {
 	// We only care about material groups here
 	if (!ui.item.hasClass("inner_group_dt"))

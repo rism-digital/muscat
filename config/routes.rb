@@ -45,8 +45,16 @@ Rails.application.routes.draw do
   get 'admin/gnd_works/new' => 'admin/gnd_works#new'
   get 'admin/gnd_works/edit' => 'admin/gnd_works#edit'
   get 'admin/gnd_works/search' => 'admin/gnd_works#search'
-  post 'admin/gnd_works/marc_editor_validate' => 'admin/gnd_works#marc_editor_validate'
-  post 'admin/gnd_works/marc_editor_save' => 'admin/gnd_works#marc_editor_save'
+  
+  post 'admin/gnd_works/marc_editor_validate', to: 'admin/gnd_works#marc_editor_validate', as: :marc_editor_validate_admin_gnd_works
+  post 'admin/gnd_works/marc_editor_save', to: 'admin/gnd_works#marc_editor_save', as: :marc_editor_save_admin_gnd_works
+  # We need these "routes to nothing" to maintain compatibility with the editor. These are unimplemented for GND Work
+  post "admin/gnd_works/marc_editor_preview", to: ->(_env) { [204, {}, [""]] }, as: :marc_editor_preview_admin_gnd_works
+  post "admin/gnd_works/marc_editor_summary_show", to: ->(_env) { [204, {}, [""]] }, as: :marc_editor_summary_show_admin_gnd_works
+  post "admin/gnd_works/marc_editor_version", to: ->(_env) { [204, {}, [""]] }, as: :marc_editor_version_admin_gnd_works
+  post "admin/gnd_works/marc_editor_version_diff", to: ->(_env) { [204, {}, [""]] }, as: :marc_editor_version_diff_admin_gnd_works
+  post "admin/gnd_works/marc_editor_create_pull_request", to: ->(_env) { [204, {}, [""]] }, as: :marc_editor_create_pull_request_admin_gnd_works
+
   get 'admin/gnd_works/autocomplete_gnd_works_person' => 'admin/gnd_works#autocomplete_gnd_works_person'
   get 'admin/gnd_works/autocomplete_gnd_works_instrument' => 'admin/gnd_works#autocomplete_gnd_works_instrument'
   get 'admin/gnd_works/autocomplete_gnd_works_form' => 'admin/gnd_works#autocomplete_gnd_works_form'

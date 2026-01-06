@@ -248,6 +248,11 @@ function _marc_editor_create_pull_request(panel_name, rails_model, redirect) {
   const $form = $('form', "#" + panel_name);
   const cfg = marc_editor_config(panel_name);
 
+  if (!marc_editor_is_dirty()) {
+    alert("There are no modifications to submit");
+    return;
+  }
+
   return marc_editor_validate_form($form).then(function (pre) {
     if (!pre.ok) return; // warnings or invalid -> stop
 

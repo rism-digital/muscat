@@ -363,7 +363,7 @@ module MarcControllerActions
       end
     end
 
-    dsl.collection_action :create_pull_request, :method => :post do
+    dsl.collection_action :marc_editor_create_pull_request, :method => :post do
       # Get the model we are working on
       model = self.class.resource_class  
       marc_klass = "Marc#{model.to_s}".constantize 

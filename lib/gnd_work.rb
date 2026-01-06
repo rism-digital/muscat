@@ -6,6 +6,8 @@ class GndWork < MarcGndWork
   attr_accessor :marc_source
   #composed_of :marc, :class_name => "MarcGndWork", :mapping => %w(marc_source to_marc)
 
+  extend ActiveModel::Naming
+
   def self.find(a)
     nil
     #return []

@@ -12,6 +12,7 @@ ActiveAdmin.register PullRequest do
         render(partial: "admin/compare_versions/diff_record", locals: { :item => resource })
       end
     end
+    active_admin_comments
   end
 
 
