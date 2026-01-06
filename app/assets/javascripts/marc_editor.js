@@ -115,7 +115,7 @@ function _generic_editor_alert(text, status, textStatus, errorThrown) {
 // Serialize marc to JSON and do an ajax call to save it
 // Ajax sends back and URL to redirect to or an error
 var savedNr = 0;
-function _marc_editor_send_form(form_name, rails_model, redirect) {
+function _marc_editor_send_form_OLD(form_name, rails_model, redirect) {
 
 	// Before saving, if this is a new edition
 	// nag the user with an alert to remember
@@ -124,7 +124,7 @@ function _marc_editor_send_form(form_name, rails_model, redirect) {
 
 	savedNr++;
 	redirect = redirect || false;
-	form = $('form', "#" + form_name);
+	let form = $('form', "#" + form_name);
 	
 	// Warning level works like this: first time it shows warnings
 	// second time it passes. See if warning are present so
@@ -222,7 +222,7 @@ function _marc_editor_send_form(form_name, rails_model, redirect) {
 	};
 
 	// Fill up record_audit only if needed
-	if ($('#record_audit') != undefined) {
+	if ($('#record_audit').length) {
 		req_data["record_audit"] = $('#record_audit').val()
 	}
 
@@ -230,8 +230,8 @@ function _marc_editor_send_form(form_name, rails_model, redirect) {
 		success: function(data) {
 			window.onbeforeunload = false;
 			// just reload the edit page
-			new_url = data.redirect;
-			window.location.href = new_url;
+			//window.location.href = data.redirect;
+			window.location.assign(data.redirect);
 		},
 		async: true,
 		data: req_data,
@@ -279,6 +279,93 @@ function _marc_editor_send_form(form_name, rails_model, redirect) {
 	});
 }
 
+function _marc_editor_create_pull_request_OLD(form_name, rails_model, redirect) {
+
+	let form = $('form', "#" + form_name);
+	
+	// Warning level works like this: first time it shows warnings
+	// second time it passes. See if warning are present so
+	// if this is the second load it will pass
+	var already_warnings = marc_validate_has_warnings();
+	marc_validate_hide_warnings(); // Delete all the old warnings
+	marc_validate_reset_warnings(); // Reset all the warnings if the user fixed them
+	// Warnings will be re-drawn if needed
+	
+	// Delete the "errors" message
+	$("#validation_errors").hide();
+	
+	// .valid() triggers form validation
+	// it also populates the warning hash
+	var form_valid = form.valid();
+
+	// Warning in the validation on a new validation (i.e. no 
+	// warnings already there)
+	if (marc_validate_has_warnings()) {
+		$('#main_content').unblock();
+		$('#sections_sidebar_section').unblock();
+		$("#validation_warnings").show();
+		
+		marc_validate_show_warnings();
+		// If the form is valid AND it is the first submission
+		// after something changed in the editor, inhibit submit
+		// if the form is INVALID submit is ALWAYS blocked,
+		// see below
+		if (form_valid && !already_warnings) {
+			return; // Give the user a chance to resubmit
+		}
+	} else {
+		$("#validation_warnings").hide();
+	}
+
+	// Run the validation on the server side
+	var backend_validation = marc_editor_validate();
+
+	if (!form_valid || !backend_validation) {
+		$('#main_content').unblock();
+		$('#sections_sidebar_section').unblock();
+		$("#validation_errors").show();
+		
+		return;
+	}
+	
+	var json_marc = serialize_marc_editor_form(form);
+
+	var url = "/admin/" + rails_model + "/create_pull_request";
+		
+	// A bit of hardcoded stuff
+	// block the main editor and sidebar
+	$('#main_content').block({ message: "" });
+	$('#sections_sidebar_section').block({ message: "Pulling..." });
+	
+	var req_data = {
+		marc: JSON.stringify(json_marc),
+		id: $('#id').val(), 
+	};
+
+	$.ajax({
+		success: function(data) {
+			window.onbeforeunload = false;
+			// just reload the edit page
+			window.location.assign(data.redirect);
+		},
+		async: true,
+		data: req_data,
+		dataType: 'json',
+		timeout: 20000,
+		type: 'post',
+		url: url, 
+		error: function (jqXHR, textStatus, errorThrown) {
+			console.log(jqXHR);
+			_generic_editor_alert("marc_editor.error_save", jqXHR.status, textStatus, errorThrown)
+
+			$('#main_content').unblock();
+			$('#sections_sidebar_section').unblock();
+
+		}
+	});
+}
+
+
 function _marc_editor_preview( source_form, destination, rails_model ) {
 	var form = $('form', "#" + source_form);
 	var json_marc = serialize_marc_editor_form(form);
@@ -304,7 +391,7 @@ function _marc_editor_preview( source_form, destination, rails_model ) {
 	});
 }
 
-function _marc_editor_validate(source_form, destination, rails_model) {
+function _marc_editor_validate_OLD(source_form, destination, rails_model) {
     var form = $('form', "#" + source_form);
     var json_marc = serialize_marc_editor_form(form);
     var url = "/admin/" + rails_model + "/marc_editor_validate";
@@ -511,6 +598,10 @@ function marc_editor_version_view(version) {
 
 function marc_editor_version_diff(version) {
 	_marc_editor_version_diff(version, 'marc_editor_historic_view', marc_editor_get_model());
+}
+
+function marc_editor_pull_request() {
+	_marc_editor_create_pull_request('marc_editor_panel', marc_editor_get_model())
 }
 
 function marc_editor_show_tab_in_panel(tab_name, panel_name) {

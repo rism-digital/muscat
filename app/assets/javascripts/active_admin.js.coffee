@@ -69,6 +69,7 @@
 #= require tab_saver
 #= require autocomplete_events
 #= require marc_editor
+#= require marc_editor_actions
 #= require marc_editor_validation
 #= require marc_editor_manipulation
 #= require marc_json

@@ -171,7 +171,10 @@ module VersionChecker
   def self.get_diff_with_next(id)
     item1, item2 = get_item_and_next(id)
     return nil if !item1 || !item2
-  
+    diff_items(item1, item2)
+  end
+
+  def self.diff_items(item1, item2)
     aligner = MarcFieldAligner.new( item1.marc.all_tags(false), item2.marc.all_tags(false) )
     alignment = aligner.get_optimal_alignment
     tags = set_tag_diff(alignment[0], alignment[1])

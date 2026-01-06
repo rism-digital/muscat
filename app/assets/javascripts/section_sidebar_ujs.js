@@ -70,6 +70,8 @@ var init_sidebar_actions = function () {
 			// the preview panel requires AJAX to get the data so we defer action to this function
 			// if it succeeds it will display the marc_editor_help panel
 			marc_editor_show_help(help, $(this).data("help-title"));
+		} else if (tname == "pull_request") {
+			marc_editor_pull_request();
 		} else {
 			// This is for showing/hiding subtabs in marc
 			marc_editor_set_last_tab(tname, panel);

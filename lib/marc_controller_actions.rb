@@ -363,6 +363,27 @@ module MarcControllerActions
       end
     end
 
+    dsl.collection_action :create_pull_request, :method => :post do
+      # Get the model we are working on
+      model = self.class.resource_class  
+      marc_klass = "Marc#{model.to_s}".constantize 
+
+      # Parse and create new marc
+      marc_hash = JSON.parse(params[:marc])
+      new_marc = marc_klass.new()
+      new_marc.load_from_hash(marc_hash, user: current_user)
+
+      # Find the item we are referring to...
+      item = model.find(params[:id])
+
+      pl = PullRequest.new(item: item, marc_source: new_marc.to_marc)
+      pl.save
+
+      respond_to do |format|
+        format.js { render :json => { :redirect => "/admin/pull_requests" }.to_json }
+      end
+
+    end
  
   end
   
