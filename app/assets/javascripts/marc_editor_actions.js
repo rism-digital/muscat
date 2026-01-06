@@ -54,15 +54,20 @@ function marc_editor_ask_pr_message_dialog(opts) {
       width: 520,
       closeOnEscape: true,
       buttons: {
+        "Create PR": function () {
+          const msg = ($txt.val() || "").trim();
+          if (!msg) {
+            alert("Message required");
+            return;
+          }
+          $(this).dialog("close");
+          resolve(msg);
+        },
         Cancel: function () {
           $(this).dialog("close");
           resolve(null);
         },
-        "Create PR": function () {
-          const msg = ($txt.val() || "").trim();
-          $(this).dialog("close");
-          resolve(msg);
-        }
+
       },
       open: function () {
         // focus textarea when dialog opens

@@ -376,7 +376,9 @@ module MarcControllerActions
       # Find the item we are referring to...
       item = model.find(params[:id])
 
-      pl = PullRequest.new(item: item, marc_source: new_marc.to_marc)
+      message = params.fetch(:message, "")
+
+      pl = PullRequest.new(item: item, marc_source: new_marc.to_marc, message: message )
       pl.save
 
       respond_to do |format|

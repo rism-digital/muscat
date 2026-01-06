@@ -21,6 +21,7 @@ ActiveAdmin.register PullRequest do
     column :id
     column :item_type
     column :item
+    column :message
     column :created_at
 
     actions
