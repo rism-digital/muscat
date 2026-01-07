@@ -7,6 +7,8 @@ ActiveAdmin.register PullRequest do
     # Sim is always set to 0-100 to indicate the difference
     #sim = 100 - VersionChecker.get_similarity_with_next(version.id)
     
+    h4 resource.message
+
     panel I18n.t("compare_versions.modified_records") do
       div class: "diff" do
         render(partial: "admin/compare_versions/diff_record", locals: { :item => resource })
