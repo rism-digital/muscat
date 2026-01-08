@@ -313,8 +313,6 @@ GEM
       terrapin (>= 0.6.0, < 2.0)
     language_server-protocol (3.17.0.5)
     latex-decode (0.4.0)
-    libv8-node (24.12.0.1-arm64-darwin)
-    libv8-node (24.12.0.1-x86_64-linux)
     libxml-ruby (5.0.5)
     link_header (0.0.8)
     lint_roller (1.1.0)
@@ -339,8 +337,6 @@ GEM
       mime-types-data (~> 3.2025, >= 3.2025.0507)
     mime-types-data (3.2025.0916)
     mini_mime (1.1.5)
-    mini_racer (0.19.2)
-      libv8-node (~> 24.12.0.1)
     minitar (1.1.0)
     minitest (5.26.1)
     mysql2 (0.5.6)
@@ -615,7 +611,7 @@ GEM
       unicode-emoji (~> 4.1)
     unicode-emoji (4.1.0)
     unicode_utils (1.4.0)
-    uri (1.0.3)
+    uri (1.0.4)
     useragent (0.16.11)
     warden (1.2.9)
       rack (>= 2.0.9)
@@ -677,7 +673,6 @@ DEPENDENCIES
   kt-paperclip
   libxml-ruby
   listen
-  mini_racer
   mysql2
   needleman_wunsch_aligner (= 1.0.4)
   paper_trail
