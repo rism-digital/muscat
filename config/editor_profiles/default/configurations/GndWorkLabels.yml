@@ -161,6 +161,9 @@ g-2:
       label: gnd.key_mode
     t:
       label: gnd.work_title
+    "9":
+      label: gnd.remarks
+
 
 '130':
   label: gnd.preferred_title

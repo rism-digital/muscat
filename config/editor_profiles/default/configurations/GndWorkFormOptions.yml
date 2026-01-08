@@ -130,6 +130,7 @@ force_editor_ordering: true
       #- editor_partial: subfield_select_codes
       #  codes_reference: "100r"
     - - "9"
+      - default: "v:"
   tag_params:
       100r:
       - "A"
