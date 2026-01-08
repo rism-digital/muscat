@@ -3,6 +3,12 @@ ActiveAdmin.register PullRequest do
   show do
 
     tags, wf_stages = VersionChecker.diff_items(resource.item, resource)
+    tags.each {|t| 
+        t.each {|st|
+       # ap st.diff.content == st.content
+      }
+    }
+
     resource.marc.load_from_array(tags)
     # Sim is always set to 0-100 to indicate the difference
     #sim = 100 - VersionChecker.get_similarity_with_next(version.id)

@@ -6,6 +6,7 @@ class CreatePullRequests < ActiveRecord::Migration[7.2]
       t.integer :wf_owner
       t.integer :wf_stage
       t.text :marc_source
+      t.text :original_marc
       t.text :message
 
       t.timestamps

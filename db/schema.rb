@@ -508,6 +508,7 @@ ActiveRecord::Schema[7.2].define(version: 2026_01_05_094416) do
     t.integer "wf_owner"
     t.integer "wf_stage"
     t.text "marc_source"
+    t.text "original_marc"
     t.text "message"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
