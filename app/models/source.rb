@@ -810,6 +810,11 @@ class Source < ApplicationRecord
     true
   end
 
+  def prepare_marc_for_index!
+    marc.load_source(false)
+    self
+  end
+
   def check_parent
     if source_id
       errors.add :base, I18n.t(:is_part_of_collection, class: self.class.model_name.human, id: self.id)

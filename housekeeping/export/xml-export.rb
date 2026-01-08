@@ -6,11 +6,24 @@ puts ""
 
 require 'optparse'
 
+def validate_options!(options)
+  has_i = options[:ids]&.any?
+  has_d = !options[:folder].nil?
+
+  # -i must have -m
+  if has_i && has_d
+    puts "Please specify -d --folder or -i --ids (or nothing for full export)"
+    return false
+  end
+  true
+end
+
 # Default options
 @options = {
-    :model_name => 'Source',
-    :filename => "./export.xml",
-    :legacy => false
+    model_name: 'Source',
+    filename: "./export.xml",
+    legacy: false,
+    ids: [],
 }
 
 OptionParser.new do |opts|
@@ -19,7 +32,24 @@ OptionParser.new do |opts|
   opts.on('-f', '--file FILE', 'Filename') { |v| @options[:filename] = v }
   opts.on("-l", "--legacy", "Enable legacy mode") { @options[:legacy] = true }
   opts.on("-s", "--silent", "Don't print the progressbar") { @options[:silent] = true }
+  opts.on("-d", "--folder ID", "Export a folder by its id") { |v| @options[:folder] = v }
+  opts.on("-i", "--ids IDS", "One or more IDs (space-separated)") do |v|
+    # consume following args until next option (starts with '-') or end
+    @options[:ids] << v
+    while ARGV.first && ARGV.first !~ /\A-/
+      token = ARGV.shift
+      begin
+        @options[:ids] << token
+      rescue ArgumentError
+        raise OptionParser::InvalidArgument, "Invalid ID: #{token.inspect}"
+      end
+    end
+  end
 end.parse!
+
+if validate_options!(@options) == false
+  exit 1
+end
 
 # Retrieve the class
 model = @options[:model_name].classify.constantize
@@ -29,7 +59,20 @@ published_only = (@options[:model_name] == "Source") ? {:wf_stage => 1} : {}
 deprecated_ids = (@options[:legacy]) ? "true" : "false"
 
 # list of ids
-items = model.where(published_only).order(:id).pluck(:id)
+if !@options[:folder].nil?
+  begin
+    folder = Folder.find(@options[:folder])
+  rescue ActiveRecord::RecordNotFound
+    puts "Folder not found"
+    exit 1
+  end
+  model = folder.folder_type.constantize
+  items = folder.folder_items.map {|fi| fi.item_id}.compact
+elsif @options[:ids]&.any?
+  items = @options[:ids]
+else
+  items = model.where(published_only).order(:id).pluck(:id)
+end
 
 file = File.open(@options[:filename], "w")
 file.write("<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<collection xmlns=\"http://www.loc.gov/MARC21/slim\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xsi:schemaLocation=\"http://www.loc.gov/MARC21/slim http://www.loc.gov/standards/marcxml/schema/MARC21slim.xsd\">\n")

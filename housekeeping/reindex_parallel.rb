@@ -26,7 +26,11 @@ results = Parallel.map(0..@parallel_jobs - 1, in_processes: @parallel_jobs) do |
     e_count = 0
     while current_limit < limit
         begin
-            Sunspot.index(Source.order(:id).limit(@batch_size).offset(offset + current_limit).select(&:force_marc_load?))
+            #Sunspot.index(Source.order(:id).limit(@batch_size).offset(offset + current_limit).select(&:force_marc_load?))
+
+            batch = Source.order(:id).limit(@batch_size).offset(offset + current_limit).to_a
+            batch.each(&:prepare_marc_for_index!)
+            Sunspot.index(batch)
         rescue => e
             puts "OOPS: #{e.exception}"
             e_count += 1
