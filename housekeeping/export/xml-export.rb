@@ -20,9 +20,9 @@ end
 
 # Default options
 @options = {
-    :model_name => 'Source',
-    :filename => "./export.xml",
-    :legacy => false,
+    model_name: 'Source',
+    filename: "./export.xml",
+    legacy: false,
     ids: [],
 }
 

@@ -124,6 +124,7 @@ module UrlChecker
   end
 end
 
+=begin
 File.open("URLs.tsv", "w") do |file|
 
 pb = ProgressBar.new(Source.count)
@@ -142,4 +143,30 @@ Source.find_each do |s|
   pb.increment!
 
 end
+end
+=end
+
+mutex = Mutex.new
+
+File.open("URLs.tsv", "w") do |file|
+
+  check_items = ->(batch) do
+    payload = ""
+    batch.each do |s|
+      s.marc.load_source false
+      s.marc["856"].each do |tt|
+        tt["u"].each do |ttt|
+          if ttt && ttt.content
+            r = UrlChecker.check(ttt.content)
+            payload += [s.id, ttt.content, r[:category], r[:message], r[:status], "\n"].join("\t")
+          end
+        end
+      end
+    end
+    mutex.synchronize { file.write(payload) }
+  end
+
+  results = Parallelizator.new( Source, check_items, backend: :threads, mode: :batch, jobs: 16).run
+  file.flush
+  puts Parallelizator.summarize(results)
 end
