@@ -95,22 +95,12 @@ class MarcNode
           dependants.each do |dep|
             dep_field = @marc_configuration.get_foreign_field(self.tag, dep)
             dep_tag = fetch_first_by_tag(dep)
-            value = (master.foreign_object ? master.foreign_object.[](dep_field.intern) : nil)
-            
-            # For PSMD. If the foreign_fields contains a dot "."
-            # It means we are following a relatio, eg
-            # work.person.full_name. In this case call all the
-            # methods to get the data. It is the same as in
-            # looked_up_content.
-            if master.foreign_object && dep_field.match(/\./)
-              fields = dep_field.split('.')
-              value = master.foreign_object.send(fields[0])
-              (1..fields.count - 1).each {|n| value = value.send(fields[n]) }
-            end
+            value = (master.foreign_object ? master.foreign_object.read_attribute(dep_field) : nil)
             
             if !dep_tag
               # the tag is missing in the source
               dep_tag = add(MarcNode.new(@model, dep, value, nil)) unless value.nil? or value.empty?
+              ap dep_tag
             else
               # update its value
               dep_tag.content = value unless value.nil? or value.empty?
@@ -135,7 +125,7 @@ class MarcNode
   def find_or_new_foreign_object_by_foreign_field(class_name, field_name, search_value)
     new_foreign_object = nil
     if foreign_class = get_class(class_name)
-      new_foreign_object = foreign_class.send("find_by_" + field_name, search_value)
+      new_foreign_object = foreign_class.find_by(field_name => search_value) #.send("find_by_" + field_name, search_value)
       if !new_foreign_object
 
         # We need to make sure id is valid!
@@ -147,8 +137,10 @@ class MarcNode
         end
 
         new_foreign_object = foreign_class.new
-        new_foreign_object.send("#{field_name}=", search_value)
-        new_foreign_object.send("wf_stage=", 'published')
+        #new_foreign_object.send("#{field_name}=", search_value)
+        new_foreign_object.write_attribute(field_name, search_value)
+        #new_foreign_object.send("wf_stage=", 'published')
+        new_foreign_object.wf_stage = "published"
         marc_node_log ["LINK_BY_MASTER", "CREATE", "MODEL=#{foreign_class}", "ID=#{new_foreign_object.id}", "FIELD=#{field_name}", "VAL=#{search_value}"]
       else
         marc_node_log ["LINK_BY_MASTER", "MATCH", "MODEL=#{foreign_class}", "ID=#{new_foreign_object.id}", "FIELD=#{field_name}", "VAL=#{search_value}"]
@@ -175,7 +167,7 @@ class MarcNode
       new_foreign_object = foreign_class.send("where", conditions).first
       if !new_foreign_object
         new_foreign_object = foreign_class.new
-        new_foreign_object.send("wf_stage=", 'published')
+        new_foreign_object.wf_stage = 'published'
         marc_node_log ["LINK_BY_ALL_FIELDS", "CREATE", "MODEL=#{foreign_class}", "ID=#{new_foreign_object.id}", "FIELDS=#{conditions}"]
 
       else
@@ -192,9 +184,9 @@ class MarcNode
         if dep_tag = fetch_first_by_tag(dep)
           dep_field = @marc_configuration.get_foreign_field( self.tag, dep)
           if self.foreign_object.new_record? or overwrite
-            self.foreign_object.send("#{dep_field}=", dep_tag.content)
+            self.foreign_object.write_attribute(dep_field, dep_tag.content) #.send("#{dep_field}=", dep_tag.content)
           else
-            dep_tag.content = self.foreign_object.[](dep_field.intern)
+            dep_tag.content = self.foreign_object.read_attribute(dep_field)
           end
           # dep_tag.set_foreign_object
         end
@@ -223,8 +215,10 @@ class MarcNode
       
       # Does not exist, create a new one
       link = link_class.new
-      link.send("wf_stage=", 'published')
-      link.send("#{field}=", tag.content)
+      #link.send("wf_stage=", 'published')
+      link.wf_stage = 'published'
+      #link.send("#{field}=", tag.content)
+      link.write_attribute(field, tag.content)
 
       # Link was not reindexed so it would not immediately show up in the list
       # This was done to save a bit of time when saving
@@ -422,7 +416,9 @@ class MarcNode
     if parent.foreign_object == nil
       db_node = parent.fetch_first_by_tag(parent.get_master_foreign_subfield.tag)
       begin
-        parent.foreign_object = foreign_class.constantize.send("find", db_node.content)
+        #parent.foreign_object = foreign_class.constantize.send("find", db_node.content)
+        klass = foreign_class.constantize
+        parent.foreign_object = klass.find(db_node.content)
       rescue => e
         $stderr.puts "MarcNode set_foreign_object error".red
         $stderr.puts e.exception.to_s.blue
@@ -461,18 +457,7 @@ class MarcNode
   # but from the corresponding class
   def looked_up_content
     if @foreign_object and @foreign_field
-      value = @foreign_object.[](@foreign_field.intern)
-      
-      # For PSMD. If the foreign_filed contains a dot "."
-      # it means it is a relation that has to be resolved.
-      # work.person.full_name. See resolve_externals above.
-      if @foreign_field.match(/\./)
-        fields = @foreign_field.split('.')
-        value = @foreign_object.send(fields[0])
-        (1..fields.count - 1).each {|n| value = value.send(fields[n])}
-      end
-      
-      return value
+      return @foreign_object.read_attribute(@foreign_field)      
     else
       return @content
     end
@@ -483,7 +468,7 @@ class MarcNode
     out = String.new
     # skip the $_ tags (db_id)
     #return "" if tag == "_" and no_db_id
-    value = looked_up_content # if looked_up_content
+    value = looked_up_content
     if @tag =~ /^[\d\w]$/
       # subfield
       if value
@@ -526,7 +511,7 @@ class MarcNode
     # skip the $_ (db_id)
     #return "" if tag == "_"
     out = String.new
-    content = looked_up_content if looked_up_content
+    content = looked_up_content
     if @tag =~ /^[\d]{3,3}$/
       if @tag.to_i == 0
         #control tag
@@ -601,7 +586,7 @@ class MarcNode
   # Export to JSON
   def to_json
     out = Array.new
-    content = looked_up_content if looked_up_content
+    content = looked_up_content
     if @tag =~ /^[\d]{3,3}$/
       if tag.to_i < 10
         #control

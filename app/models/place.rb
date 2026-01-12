@@ -209,7 +209,7 @@ class Place < ApplicationRecord
 
   end
 
-    def set_object_fields
+  def set_object_fields
     # This is called always after we tried to add MARC
     # if it was suppressed we do not update it as it
     # will be nil
