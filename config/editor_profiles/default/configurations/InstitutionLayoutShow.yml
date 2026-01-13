@@ -38,8 +38,9 @@ groups:
     - "710"
     - "700"
     all_tag_templates:
+      "551": marc_show/show_auto_tag
       "856": marc_show/show_link
-      "700": marc_show/show_person
+      "700": marc_show/show_auto_tag
   control: 
     all_tags: 
     - "040"

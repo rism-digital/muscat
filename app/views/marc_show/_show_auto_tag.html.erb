@@ -18,13 +18,16 @@ relators.compact!
 tag.for_every_child_sorted do |subfield|
   next unless subfield
 
+  # Skip groups
+  next if subfield.tag == "8"
+
   foreign = @item.marc.config.is_foreign?(tag.tag, subfield.tag)
 
   if foreign
     text = subfield.looked_up_content&.to_s
     next if text.blank?
 
-    parts << if subfield.foreign_object && master&.tag != subfield.tag
+    parts << if subfield.foreign_object && (master&.tag != subfield.tag || tag.children.count == 1)
         link_to(text, [:admin, subfield.foreign_object])
     #elsif master&.tag == subfield.tag && subfield&.content
         # Pretty print the master ID
@@ -52,7 +55,6 @@ tag_content = safe_join(parts.compact, ", ")
 		<%- end %>
 	</th>
 	<td valign="top">
-
 		<%= tag_content %>
 	</td>
 </tr>
