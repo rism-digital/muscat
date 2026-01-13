@@ -206,7 +206,7 @@ class Place < ApplicationRecord
     end
 
     sunspot_dsl.string :label, stored: true do
-      name
+      [name, district, country].compact.join(", ")
     end
 
     sunspot_dsl.join(:folder_id, :target => FolderItem, :type => :integer, 
