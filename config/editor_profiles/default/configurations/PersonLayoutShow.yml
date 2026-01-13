@@ -16,7 +16,7 @@ groups:
     - "043"
     all_tag_templates:
       "375": marc_show/show_gender  
-      "043": marc_show/show_subfield_concat
+      "043": marc_show/show_auto_tag
   codes: 
     all_tags: 
     - "024"
@@ -26,7 +26,7 @@ groups:
     all_tags:
     - "400"
     all_tag_templates:
-      "400": people/show_indicator
+      "400": marc_show/show_auto_tag
   relations:
     all_tags:
     - "500"
@@ -35,9 +35,10 @@ groups:
     - "551"
     - "910"
     all_tag_templates:
-      "500": people/show_related_person
-      "510": marc_show/show_institution
-      "551": people/show_subfield_concat
+      "500": marc_show/show_auto_tag
+      "510": marc_show/show_auto_tag
+      "550": marc_show/show_auto_tag
+      "551": marc_show/show_auto_tag
   references:
     all_tags:
     - "670"
@@ -45,7 +46,8 @@ groups:
     - "856"
     - "667"
     all_tag_templates:
-      "856": people/show_link
+      "670": marc_show/show_auto_tag
+      "856": marc_show/show_link
   control: 
     all_tags: 
     - "040"
