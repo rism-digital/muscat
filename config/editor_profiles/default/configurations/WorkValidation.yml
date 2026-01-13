@@ -14,7 +14,11 @@ client:
         - validate_031_dups
   "046":
     tags:
-      "k": validate_edtf
+      "k": 
+        any_of:
+        - required_if: 
+            "046": "z"
+        - validate_edtf
   "024":
     tags:
       "2": required
