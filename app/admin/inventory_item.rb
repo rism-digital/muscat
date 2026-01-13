@@ -227,7 +227,7 @@ ActiveAdmin.register InventoryItem do
     active_admin_navigation_bar( self )
     @item = controller.view_assigns["item"]
     if @item.marc_source == nil
-      render :partial => "marc_missing"
+      render :partial => "missing"
     else
       render :partial => "marc/show"
     end
