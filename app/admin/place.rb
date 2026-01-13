@@ -24,7 +24,10 @@ ActiveAdmin.register Place do
   # temporarily allow all parameters
   controller do
 
-    autocomplete :place, :name, :display_value => :autocomplete_label, :extra_data => [:country, :district]
+    #autocomplete :place, :name, :display_value => :autocomplete_label, :extra_data => [:country, :district]
+    autocomplete :place, :name, :extra_data => [:country_order_s, :district_order_s], :solr_search => true,
+                 :search_field => :name_autocomplete, :order_field => :total_obj_count_order_is,
+                 :display_value => :label_ss, :value_field => :name_order_s
 
     after_destroy :check_model_errors
     before_create do |item|

@@ -176,36 +176,47 @@ class Place < ApplicationRecord
     self.save!
   end
 
-  searchable :auto_index => false do
-    integer :id
-    text :id_text do
+  searchable :auto_index => false do |sunspot_dsl|
+    sunspot_dsl.integer :id, stored: true
+    sunspot_dsl.text :id_text do
       id_for_fulltext
     end
-    string :name_order do
+    sunspot_dsl.string :name_order do
       name
     end
-    text :name
+    sunspot_dsl.text :name
 
-    integer :tgn_id
+    sunspot_dsl.integer :tgn_id
 
-    string :country_order do
+    sunspot_dsl.string :country_order do
       country
     end
-    text :country
+    sunspot_dsl.text :country
 
-    text :notes
-    text :alternate_terms
+    sunspot_dsl.text :notes
+    sunspot_dsl.text :alternate_terms
 
-    string :district_order do
+    sunspot_dsl.string :district_order do
       district
     end
-    text :district
+    sunspot_dsl.text :district
 
-    join(:folder_id, :target => FolderItem, :type => :integer, 
+    sunspot_dsl.string :name_autocomplete, :as => "name_autocomplete" do
+      name
+    end
+
+    sunspot_dsl.string :label, stored: true do
+      name
+    end
+
+    sunspot_dsl.join(:folder_id, :target => FolderItem, :type => :integer, 
               :join => { :from => :item_id, :to => :id })
     
-    integer(:src_count_order, :stored => true) {through_associations_source_count}
-    integer(:referring_objects_order, stored: true) {through_associations_exclude_source_count}
+    sunspot_dsl.integer(:src_count_order, :stored => true) {through_associations_source_count}
+    sunspot_dsl.integer(:referring_objects_order, stored: true) {through_associations_exclude_source_count}
+    sunspot_dsl.integer(:total_obj_count_order, stored: true) {through_associations_total_count}
+
+    #MarcIndex::attach_marc_index(sunspot_dsl, self.to_s.downcase)
 
   end
 
