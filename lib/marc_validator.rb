@@ -321,6 +321,42 @@ using AggressivelyStrip
     add_error("multiple-773", nil, "773: More than one", "773_error") if count > 1
   end
 
+  def validate_template_harmony
+    return if !@object.respond_to? :parent_source
+    return if !@object.parent_source
+
+    if @object.record_type == MarcSource::RECORD_TYPES[:edition_content] && @object.parent_source.record_type != MarcSource::RECORD_TYPES[:edition]
+      add_error("template-harmony", nil, "Wrong parent template: SUB can only link to EDT", "parent_template_error_SUB-EDT")
+    end
+
+    if @object.record_type == MarcSource::RECORD_TYPES[:libretto_edition_content] && @object.parent_source.record_type != MarcSource::RECORD_TYPES[:libretto_edition]
+      add_error("template-harmony", nil, "Wrong parent template: LEC can only link to LED", "parent_template_error_LEC-LED")
+    end
+
+        if @object.record_type == MarcSource::RECORD_TYPES[:theoretica_edition_content] && @object.parent_source.record_type != MarcSource::RECORD_TYPES[:theoretica_edition]
+      add_error("template-harmony", nil, "Wrong parent template: TEC can only link to TED", "parent_template_error_TEC-TED")
+    end
+
+
+    if @object.record_type == MarcSource::RECORD_TYPES[:collection] && @object.parent_source.record_type != MarcSource::RECORD_TYPES[:composite_volume]
+      add_error("template-harmony", nil, "Wrong parent template: COL can only link to CMP", "parent_template_error_COL-CPM")
+    end
+    
+    if @object.record_type == MarcSource::RECORD_TYPES[:source] && ![MarcSource::RECORD_TYPES[:composite_volume],
+     MarcSource::RECORD_TYPES[:collection]].include?(@object.parent_source.record_type)
+      add_error("template-harmony", nil, "Wrong parent template: MSR can only link to COL or CMP", "parent_template_error_MSR-COL-CMP")
+    end
+    
+    if @object.record_type == MarcSource::RECORD_TYPES[:libretto_source] && @object.parent_source.record_type != MarcSource::RECORD_TYPES[:collection]
+      add_error("template-harmony", nil, "Wrong parent template: LSR can only link to COL", "parent_template_error_LSR-COL")
+    end
+
+    if @object.record_type == MarcSource::RECORD_TYPES[:theoretica_source] && @object.parent_source.record_type != MarcSource::RECORD_TYPES[:collection]
+      add_error("template-harmony", nil, "Wrong parent template: TSR can only link to COL", "parent_template_error_TSR-COL")
+    end
+
+  end
+
   def validate_dates
     
     @marc.each_by_tag("260") do |marctag|
