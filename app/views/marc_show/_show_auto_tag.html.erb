@@ -25,6 +25,8 @@ tag.for_every_child_sorted do |subfield|
 
   if foreign
     text = subfield.looked_up_content&.to_s
+    text = subfield.foreign_object&.name if subfield.foreign_object.respond_to? :name
+    text = subfield.foreign_object&.autocomplete_label if subfield.foreign_object.respond_to? :autocomplete_label
     next if text.blank?
 
     parts << if subfield.foreign_object && (master&.tag != subfield.tag || tag.children.count == 1)

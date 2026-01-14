@@ -567,7 +567,7 @@ using AggressivelyStrip
     elsif rule == "validate_url"
         
         def http_url?(input)
-          uri = URI.parse(input.to_s)
+          uri = URI.parse(URI::DEFAULT_PARSER.escape(input.to_s))
           uri.is_a?(URI::HTTP) && %w[http https].include?(uri.scheme)
         rescue URI::InvalidURIError
           false
