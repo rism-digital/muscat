@@ -38,7 +38,8 @@ tag.for_every_child_sorted do |subfield|
   elsif relators.include?(subfield.tag)
     text = subfield.content&.to_s
     next if text.blank?
-    parts << "#{@editor_profile.get_label(text)} [#{text}]"
+    span = content_tag(:span, "[#{text}]", style: "color:#6b7280; font-size: 0.95em;")
+    parts << safe_join([@editor_profile.get_label(text), span], " ")
   else
     text = subfield.content&.to_s
     next if text.blank?
