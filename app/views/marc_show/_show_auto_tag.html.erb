@@ -1,0 +1,63 @@
+
+<%
+parts = []
+master = tag.get_master_foreign_subfield
+relators = []
+relators << @item.marc.config.get_relator_code_tag(tag.tag)
+
+# Quite a hack, try to see if we can translate the codes here
+@editor_profile.each_subfield_for(tag.tag) do |subfield, field_settings|
+    next if !field_settings
+    if field_settings.has_key?('editor_partial') && field_settings['editor_partial'] == "subfield_select_codes"
+        relators << subfield
+    end
+end
+
+relators.compact!
+
+tag.for_every_child_sorted do |subfield|
+  next unless subfield
+
+  # Skip groups
+  next if subfield.tag == "8"
+
+  foreign = @item.marc.config.is_foreign?(tag.tag, subfield.tag)
+
+  if foreign
+    text = subfield.looked_up_content&.to_s
+    text = subfield.foreign_object&.name if subfield.foreign_object.respond_to? :name
+    text = subfield.foreign_object&.autocomplete_label if subfield.foreign_object.respond_to? :autocomplete_label
+    next if text.blank?
+
+    parts << if subfield.foreign_object && (master&.tag != subfield.tag || tag.children.count == 1)
+        link_to(text, [:admin, subfield.foreign_object])
+    #elsif master&.tag == subfield.tag && subfield&.content
+        # Pretty print the master ID
+    #    "(#{subfield.foreign_object.model_name.route_key}/#{subfield.content})"
+    end
+  elsif relators.include?(subfield.tag)
+    text = subfield.content&.to_s
+    next if text.blank?
+    span = content_tag(:span, "[#{text}]", style: "color:#6b7280; font-size: 0.95em;")
+    parts << safe_join([@editor_profile.get_label(text), span], " ")
+  else
+    text = subfield.content&.to_s
+    next if text.blank?
+    text = Anchored::Linker.auto_link(text).html_safe if text.match("(http|https)://")
+    parts << ERB::Util.h(text)
+  end
+end
+
+tag_content = safe_join(parts.compact, ", ")
+%>
+
+<tr class="row">
+	<th valign="top">
+		<% if (no_label == false) -%>
+			<%= @editor_profile.get_label(tag.tag) + " (#{tag.tag})"%>
+		<%- end %>
+	</th>
+	<td valign="top">
+		<%= tag_content %>
+	</td>
+</tr>

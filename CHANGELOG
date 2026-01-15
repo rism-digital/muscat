@@ -1,8 +1,55 @@
 Muscat Changelog
 ================
 
-v 12.0
+v 12.1
+* Make the validation a bit more robust
+* #1852, be more aggressive when removing whitespace
+* Shitch to full URI parsing, imperfect but better #1852
+* Hide the 596 error
+* Try a different solution for URI validation, collect no points and go straight to jail
+* Have the report point to /edit
+* Bump uri from 1.0.3 to 1.0.4
+* Make inventory items have an item selector, make the diff view use $subfield
+* Make export script export folders or list of ids
+* Update gnd_work_100_de.html
+* Update gnd_work_400_de.html
+* Make parallel more generic
+* Try to better optimize the indexer
+* Update gnd_work_670_de.html
+* Merge pull request #1897 from rism-digital/dependabot/bundler/uri-1.0.4
+* Merge pull request #1899 from afaschon/patch-59
+* Merge pull request #1900 from afaschon/patch-60
+* Merge pull request #1901 from afaschon/patch-61
+* Update gems
+* Fix #1898
+* Optimize the URL checker
+* Remove redundant partials in people
+* Remove more redundant partials
+* Refine the autotag
+* Switch place to fancy autocomplete, fix #1908
+* Make the person label more fancy
+* Fix #1907, add checks for field 046
+* Fix #1906, add missing label
+* Add GND description text, in DE only
+* Restore country and district in index
+* Escape the URIs so the validator is happy
+* Make the brackets ligher and smaller
+* Make sure the auto_tag test does not bleed in production
+* Update gnd_work_100_de.html
+* Update gnd_work_040_de.html
+* Fix #1910, add validation for mismatched templates in parents, de-shoenbergize Muscat, refactor the messages in the report
+* Add script for #1904
+* Print condensed info for the validation report
+* Merge pull request #1913 from afaschon/patch-63
+* Merge pull request #1914 from afaschon/patch-64
+* Add xx to 400$j when it is missing #1904
+* Add "RISM Staff" status tag in comments
+* Make the user matcher for users more matchy
+* Fix #1911, user table spacing, with a tad of (clever?) css
+* Fix #1896 make 041 subtags non repeatable
+* Fix bibtex import with only one author
 
+v 12.0
 * Add a clear button at top when a filter is active
 * Update all the gems!
 * No need to create a person in the index view

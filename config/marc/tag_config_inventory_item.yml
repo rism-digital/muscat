@@ -90,9 +90,9 @@
     :occurrences: "*"
     :fields:
     - - a
-      - :occurrences: "*"
+      - :occurrences: "?"
     - - h
-      - :occurrences: "*"
+      - :occurrences: "?"
   "100":
     :master: "0"
     :indicator: "1#"

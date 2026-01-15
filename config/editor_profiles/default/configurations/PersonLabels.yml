@@ -130,6 +130,8 @@
   fields:
     u:
       label: records.external_resource_url
+    x:
+      label: records.link_type
     z:
       label: records.note_external_resource
   label: records.external_resource

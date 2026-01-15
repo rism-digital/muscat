@@ -16,17 +16,19 @@ class MuscatCheckup
 
       @limit_unknown_tags = true
 
-      @skip_validation = (options.include?(:skip_validation) && options[:skip_validation] == true)
-      @skip_dates = (options.include?(:skip_dates) && options[:skip_dates] == true)
-      @skip_links = (options.include?(:skip_links) && options[:skip_links] == true)
-      @skip_unknown_tags = (options.include?(:skip_unknown_tags) && options[:skip_unknown_tags] == true)
-      @skip_holdings = (options.include?(:skip_holdings) && options[:skip_holdings] == true)
-      @skip_dead_774 = (options.include?(:skip_dead_774) && options[:skip_dead_774] == true)
-      @skip_dead_773 = (options.include?(:skip_dead_773) && options[:skip_dead_773] == true)
-      @skip_parent_institution = (options.include?(:skip_parent_institution) && options[:skip_parent_institution] == true)
-      @skip_588_validation = (options.include?(:skip_588_validation) && options[:skip_588_validation] == true)
-      @skip_validate_work_status = (options.include?(:skip_validate_work_status) && options[:skip_validate_work_status] == true)
-      @debug_logger = options.include?(:logger) ? options[:logger] : nil
+      @skip_validation          = options[:skip_validation] == true
+      @skip_dates               = options[:skip_dates] == true
+      @skip_links               = options[:skip_links] == true
+      @skip_unknown_tags        = options[:skip_unknown_tags] == true
+      @skip_holdings            = options[:skip_holdings] == true
+      @skip_dead_774            = options[:skip_dead_774] == true
+      @skip_dead_773            = options[:skip_dead_773] == true
+      @skip_parent_institution  = options[:skip_parent_institution] == true
+      @skip_588_validation      = options[:skip_588_validation] == true
+      @skip_validate_work_status = options[:skip_validate_work_status] == true
+      @skip_parent_check         = options[:skip_parent_check] == true
+
+      @debug_logger = options[:logger]
 
       # These are relevant only for Sources
       @skip_holdings = true if @model != Source
@@ -161,16 +163,17 @@ class MuscatCheckup
 
     begin
       validator = MarcValidator.new(record, nil, false, @debug_logger, @validation_exclusions)
-      validator.validate_tags if !@skip_validation
-      validator.validate_dates if !@skip_dates
-      validator.validate_links if !@skip_links
-      validator.validate_unknown_tags if !@skip_unknown_tags
-      validator.validate_holdings if !@skip_holdings
-      validator.validate_dead_774_links if !@skip_dead_774
-      validator.validate_dead_773_links if !@skip_dead_773
+      validator.validate_tags               if !@skip_validation
+      validator.validate_dates              if !@skip_dates
+      validator.validate_links              if !@skip_links
+      validator.validate_unknown_tags       if !@skip_unknown_tags
+      validator.validate_holdings           if !@skip_holdings
+      validator.validate_dead_774_links     if !@skip_dead_774
+      validator.validate_dead_773_links     if !@skip_dead_773
       validator.validate_parent_institution if !@skip_parent_institution
-      validator.validate_588 if !@skip_588_validation
-      validator.validate_work_status if !@skip_validate_work_status
+      validator.validate_588                if !@skip_588_validation
+      validator.validate_work_status        if !@skip_validate_work_status
+      validator.validate_template_harmony   if !@skip_parent_check
       return validator.get_errors
     rescue Exception => e
       puts e.message

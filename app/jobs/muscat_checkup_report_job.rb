@@ -16,8 +16,9 @@ class MuscatCheckupReportJob < ApplicationJob
     logger = Logger.new(File.new("#{Rails.root}/log/#{file_name}", 'w'))
     logger.datetime_format = 
     logger.formatter = proc do |severity, datetime, progname, msg|
-      time = datetime.utc.strftime('%Y-%m-%d %H:%M:%SZ')
-      "[#{time}] [#{'%8s' % severity}] #{msg}\n"
+      #time = datetime.utc.strftime('%Y-%m-%d %H:%M:%SZ')
+      #"[#{time}] [#{'%8s' % severity}] #{msg}\n"
+      "#{msg}\n"
     end
 
     # Run the checkup function

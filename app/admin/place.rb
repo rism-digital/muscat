@@ -24,7 +24,10 @@ ActiveAdmin.register Place do
   # temporarily allow all parameters
   controller do
 
-    autocomplete :place, :name, :display_value => :autocomplete_label, :extra_data => [:country, :district]
+    #autocomplete :place, :name, :display_value => :autocomplete_label, :extra_data => [:country, :district]
+    autocomplete :place, :name, :extra_data => [:country_order_s, :district_order_s], :solr_search => true,
+                 :search_field => :name_autocomplete, :order_field => :total_obj_count_order_is,
+                 :display_value => :label_ss, :value_field => :name_order_s
 
     after_destroy :check_model_errors
     before_create do |item|
@@ -163,8 +166,8 @@ ActiveAdmin.register Place do
     selectable_column if !is_selection_mode?
     column (I18n.t :filter_id), :id  
     column (I18n.t :filter_name), :name
-    #column (I18n.t :filter_district), :district
-    #column (I18n.t :filter_country), :country
+    column (I18n.t :filter_district), :district
+    column (I18n.t :filter_country), :country
     column (I18n.t :tgn_id), :tgn_id
     column (I18n.t :hierarchy), :hierarchy
     column (I18n.t :filter_sources), :src_count_order, sortable: :src_count_order do |element|

@@ -62,7 +62,7 @@ module UrlChecker
           redirect_chain: redirect_chain
         ) if redirects > max_redirects
 
-        uri = uri.merge(location) # handles relative redirects
+        uri = uri.merge(URI::DEFAULT_PARSER.escape(location)) # handles relative redirects
         next
       when 400..499
         return Result.new(
@@ -153,6 +153,7 @@ File.open("URLs.tsv", "w") do |file|
   check_items = ->(batch) do
     payload = ""
     batch.each do |s|
+      next if !s.marc_source.include?("=856")
       s.marc.load_source false
       s.marc["856"].each do |tt|
         tt["u"].each do |ttt|
@@ -166,7 +167,7 @@ File.open("URLs.tsv", "w") do |file|
     mutex.synchronize { file.write(payload) }
   end
 
-  results = Parallelizator.new( Source, check_items, backend: :threads, mode: :batch, jobs: 16).run
+  results = Parallelizator.new( Source, check_items, backend: :threads, mode: :batch, batch_size: 100, jobs: 32, where_sql: "marc_source like '%=856%'").run
   file.flush
   puts Parallelizator.summarize(results)
 end
