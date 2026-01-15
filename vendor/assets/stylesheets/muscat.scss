@@ -520,9 +520,14 @@ table.muscat_index_header {
 /* Force the long usernames and emails
    to break so the table fits
  */
-#index_table_users td.col-username,
-#index_table_users td.col-email {
+#index_table_users td,
+#index_table_users td {
   overflow-wrap: anywhere;
   word-break: break-word;
   white-space: normal;
 }
+
+/* For specific columns use
+#index_table_users td.col-username,
+#index_table_users td.col-email
+*/
