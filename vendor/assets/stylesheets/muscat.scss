@@ -510,3 +510,19 @@ table.muscat_index_header {
   transition: background-color 0.3s ease; /* also fade hover/striping nicely */
 }
 
+/* USER TABLE SPACING */
+#index_table_users {
+  width: 100% !important;
+  max-width: 100%;
+  table-layout: fixed;
+}
+
+/* Force the long usernames and emails
+   to break so the table fits
+ */
+#index_table_users td.col-username,
+#index_table_users td.col-email {
+  overflow-wrap: anywhere;
+  word-break: break-word;
+  white-space: normal;
+}
