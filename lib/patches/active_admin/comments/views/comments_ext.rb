@@ -48,6 +48,11 @@ module ActiveAdmin
         # Then the old rendering function is called
         def build_comment(comment)
           comment.body =  Anchored::Linker.auto_link(comment.body).html_safe
+
+          if comment.author.has_role?(:admin) || comment.author.has_role?(:editor)
+            status_tag(:warning, label: "RISM Staff")
+          end
+
           old_build_comment(comment)
         end
 
