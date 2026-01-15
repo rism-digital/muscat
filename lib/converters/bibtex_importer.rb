@@ -37,7 +37,13 @@ module Converters
       new_marc.each_by_tag("760") {|t2| t2.destroy_yourself}
 
       if first_b[:author]
-        first_b.author.each_with_index do |aa, idx|
+        authors = case (a = first_b[:author])
+          when BibTeX::Names then a.to_a
+          when BibTeX::Value then [a]
+          else                    Array(a)
+          end
+
+        authors.each_with_index do |aa, idx|
 
           p = Person.where(full_name: aa.to_s).first
           id = p ? p&.id&.to_s : "IMPORT-NEW"
@@ -52,7 +58,12 @@ module Converters
       end
 
       if first_b[:editor]
-        first_b.editor.each_with_index do |aa|
+        editors = case (a = first_b[:editor])
+          when BibTeX::Names then a.to_a
+          when BibTeX::Value then [a]
+          else                    Array(a)
+          end
+        editors.each_with_index do |aa|
 
           p = Person.where(full_name: aa.to_s).first
           id = p ? p&.id&.to_s : "IMPORT-NEW"
