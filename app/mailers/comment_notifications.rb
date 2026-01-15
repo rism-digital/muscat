@@ -5,13 +5,18 @@ class CommentNotifications < ApplicationMailer
 
     [] if matches.empty?
     
-    user_ids = matches.each.map do |name|
+    normalized_sql = "LOWER(TRIM(REGEXP_REPLACE(REPLACE(name,'_',' '),'[^[:alnum:]_[:space:]]','')))"
+
+    return matches.map do |name|
       # Stip all punctuation except for the _
       sanitized_name = name.gsub("_", " ").gsub(/[^\w\p{L}\s]/, "").strip.downcase
-      User.where('lower(name) = ?', sanitized_name).first.id rescue next
-    end
+      # Match on the sanitized string, this works as it was always
+      # if it is nil, then try to match by sanitizing the db column
+      # We want both so we can keep the current expected functionality as is
+      User.where("lower(name) = ?", sanitized_name).pick(:id) ||
+        User.where("#{normalized_sql} = ?", sanitized_name).pick(:id)
+    end.compact
 
-    user_ids.compact
   end
 
   def new_comment(comment)
