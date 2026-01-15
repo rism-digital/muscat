@@ -37,3 +37,23 @@ Person.find_each do |p|
   end
 
 end
+
+Person.find_each do |p|
+  saveme = false
+  p.marc["400"].each do |t|
+    if t["j"].count == 0
+      t.add_at(MarcNode.new("person", "j", "xx", nil), 0 )
+      t.sort_alphabetically
+      saveme = true
+    end
+  end
+
+  if saveme
+   # p.paper_trail_event = "Change 400$j to xx from [#{codes_str}]"
+    puts "#{p.id} Add 400$j xx"
+    PaperTrail.request(enabled: false) do
+      p.save
+    end
+  end
+
+end
