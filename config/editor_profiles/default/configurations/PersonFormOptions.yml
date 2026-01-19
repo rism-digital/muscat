@@ -25,6 +25,7 @@
         - "VIAF"
         - "WKP"
         - "CMO"
+        - "CORAGO"
         default: "VIAF"
         editor_partial: subfield_select
 "040":
