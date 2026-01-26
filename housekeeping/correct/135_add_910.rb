@@ -1,4 +1,3 @@
-#!/usr/bin/env ruby
 # frozen_string_literal: true
 
 require "optparse"
@@ -52,11 +51,11 @@ f.folder_items.each do |fi|
   end
 
   if skip
-    puts "SKIP not adding duplicate #{i.id}"
+    puts "SKIP item #{s.id} not adding duplicate #{i.id}"
     next
   end
 
-  s.marc.add_tag_with_subfields("910", "0": i.id.to_s)
+  s.marc.add_tag_with_subfields("910", "0": i.id.to_s, u: url)
   s.marc.import
   s.save
 
