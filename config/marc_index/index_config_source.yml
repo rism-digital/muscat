@@ -11,15 +11,6 @@ config:
 
 fields:  
   "001":
-  "008_date1":
-      :from_tag: 008
-      :index_helper: :marc_helper_get_008_date1
-  "008_date2":
-      :from_tag: 008
-      :index_helper: :marc_helper_get_008_date2
-  "008_language":
-      :from_tag: 008
-      :index_helper: :marc_helper_get_008_language
   "028a":
   "031p":
       :store: true

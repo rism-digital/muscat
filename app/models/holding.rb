@@ -205,7 +205,7 @@ class Holding < ApplicationRecord
     
     # do we have a parent manuscript?
     parent_manuscript_id = marc.first_occurance("973", "u")
-    
+
     # NOTE we evaluate the strings prefixed by 00000
     # as the field may contain legacy values
     
