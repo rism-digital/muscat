@@ -365,12 +365,65 @@ no_add = %w(
 990071086
 )
 
+snexcl = %w(
+991007083
+1000000509
+990060295
+990048474
+990049111
+992002583
+990000190
+991011887
+991017417
+1000000105
+1000000322
+1000000424
+990018032
+1000000107
+1000000497
+1000000161
+1000000439
+1000000534
+990058711
+1000000440
+1000000461
+1000000517
+991007024
+992007102
+1000000430
+1000000496
+1000000281
+1000000305
+1000000313
+1000000436
+1000000484
+1000000507
+1000000512
+1000000513
+1000000516
+1000000527
+1000000531
+1000000532
+1000000533
+992004527
+1000000101
+1000000106
+1000000182
+1000000185
+1000000482
+1000000501
+1000000505
+1000000097
+1000000494)
+
 ugo = Institution.find(40009305).referring_sources
 
 #multiple 260 but all sn
 #990038359
 #990052757
 #992007178
+
+bar = ProgressBar.new(ugo.count)
 
 m = []
 ugo.each do |s|
@@ -385,7 +438,7 @@ ugo.each do |s|
     if t["b"].count == 0
       t.add_at(MarcNode.new("source", "b", "[s.n.]", nil), 0 )
     else
-      t["b"].first.content = "[s.n.]"
+      t["b"].first.content = "[s.n.]" if !snexcl.include?(s.id.to_s)
     end
 
     if t["c"].count == 0
@@ -396,7 +449,7 @@ ugo.each do |s|
   end
 
   if s.marc["260"].count == 0
-    s.marc.add_tag_with_subfields("260", b: "[s.n.]", c: "[s.d.]")
+    s.marc.add_tag_with_subfields("260", b: "[s.n.]", c: "[s.d.]", "8": "01")
   end
 
   # now nuke the 710
@@ -404,11 +457,29 @@ ugo.each do |s|
     t.destroy_yourself if t["0"].first.content.to_s == "40009305"
   end
 
-puts s.marc
-puts
+#puts s.marc
+#puts
 
-puts s.id if s.marc["260"].count > 1
+#puts s.id if s.marc["260"].count > 1
 
+  s.paper_trail_event = "Remove institution 40009305 s.n."
+  s.save
+
+  bar.increment!
+end
+
+bar = ProgressBar.new(no_add.count)
+
+no_add.each do |id|
+  s = Source.find(id)
+
+  s.marc["710"].each do |t|
+    t.destroy_yourself if t["0"].first.content.to_s == "40009305"
+  end
+
+  s.paper_trail_event = "Remove institution 40009305 s.n."
+  s.save
+  bar.increment!
 end
 
 #ap m.compact.sort.uniq
