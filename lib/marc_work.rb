@@ -4,7 +4,11 @@ class MarcWork < Marc
   end
   
   def get_title
-    composer, title, scoring, number, key = ""
+    composer = ""
+    title = "" 
+    scoring = "" 
+    key = ""
+
     if node = first_occurance("100", "a")
       composer = node.content.blank? ? "" : "#{node.content}:"
     end
