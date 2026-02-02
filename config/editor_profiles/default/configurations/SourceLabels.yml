@@ -119,6 +119,15 @@
     indicator:
       label: records.translation
   label: records.language_code
+'046':
+  fields:
+    k:
+      label: records.date_of_creation
+    l:
+      label: records.end
+    z:
+      label: records.public_note
+  label: records.date_of_creation
 04_codes_other:
   label: records.other
 '100':

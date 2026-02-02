@@ -278,6 +278,7 @@ groups:
   edit_material:
     all_tags:
     - '593'
+    - '046'
     - '260'
     - '300'
     - '590'
