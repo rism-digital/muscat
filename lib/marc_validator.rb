@@ -486,11 +486,11 @@ using AggressivelyStrip
         end
       end
 
-    # All works for a publication with work_catalogue 2, 3 or 4 are published
-    # eg. work is unpublished, should not be attached to finished catalogs!
+    # All works for a publication with work_catalogue 3 (work_catalogue_complete) are published
+    # ie. work is unpublished, should not be attached to finished catalogs!
     else 
       @object.publications.each do |p|
-        if p.work_catalogue != "not_work_catalogue" &&  p.work_catalogue != "work_catalogue_in_preparation"
+        if p.work_catalogue == "work_catalogue_complete"
           add_error("record", "work", "Work unpublished but attached to a completed catalog (wc=#{p.work_catalogue})", "work_unpublished_in_catalog")
         end
       end
