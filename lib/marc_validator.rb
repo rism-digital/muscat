@@ -474,7 +474,11 @@ using AggressivelyStrip
     # No work is published unless belonging to a publication with work_catalogue 2, 3 or 4
     if @object.wf_stage == "published"
       
-      @object.publications.each do |p|
+      #@object.publications.each do |p|
+      @object.work_publication_relations.includes(:publication).each do |rel|
+        p = rel.publication
+        # We want to skip literature, which are not work catalogs to begin with, #1918
+        next unless rel.marc_tag == "690" || rel.marc_tag == "691"
 
         if p.wf_stage != "published" 
           add_error("record", "work", "Published work is attached to an unpublished publication", "work_to_unpublished_publication")
