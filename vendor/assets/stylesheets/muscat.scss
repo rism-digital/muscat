@@ -510,24 +510,29 @@ table.muscat_index_header {
   transition: background-color 0.3s ease; /* also fade hover/striping nicely */
 }
 
-/* USER TABLE SPACING */
-#index_table_users {
-  width: 100% !important;
-  max-width: 100%;
-  table-layout: fixed;
+/* Flex layout for content + sidebar */
+#active_admin_content.with_sidebar {
+  display: flex;
+  gap: 16px;
+  align-items: flex-start;
 }
 
-/* Force the long usernames and emails
-   to break so the table fits
- */
-#index_table_users td,
-#index_table_users td {
-  overflow-wrap: anywhere;
-  word-break: break-word;
-  white-space: normal;
+/* Main column should be allowed to shrink (prevents sidebar squeeze/overflow issues) */
+#main_content_wrapper {
+  flex: 1 1 auto;
+  min-width: 0;
+  padding-left: 0 !important; /* disables AA “reserved sidebar space” trick */
 }
 
-/* For specific columns use
-#index_table_users td.col-username,
-#index_table_users td.col-email
-*/
+/* Sidebar stays fixed width */
+#sidebar {
+  flex: 0 0 270px;     /* don't grow, don't shrink, base = 270px */
+  width: 270px;        /* optional but clear */
+  margin-left: 0 !important;
+  float: none !important; /* recommended if AA float rules exist */
+}
+
+/* Disable AA legacy spacing */
+#main_content {
+  margin-right: 0 !important;
+}
