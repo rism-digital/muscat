@@ -31,10 +31,6 @@ class Ability
       end
       #can [:read], Folder
 
-      if user.has_role?(:work_editor)
-        can [:read, :create, :update, :destroy], Work
-      end
-
       can [:read, :create, :update, :destroy], InventoryItem
 
       can :prepare_convert, Source
@@ -73,6 +69,12 @@ class Ability
         can [:read, :create], InventoryItem
         can :order_inventory_items, Source
         can :do_reorder_inventory_items, Source
+      end
+
+      can [:read], Work
+      if user.has_role?(:work_cataloger)
+        can :update, Work, :wf_owner => user.id
+        can [:create], Work
       end
 
       can :update, [Publication, Institution, LiturgicalFeast, Person, Place, StandardTerm, StandardTitle, Holding, WorkNode], :wf_owner => user.id

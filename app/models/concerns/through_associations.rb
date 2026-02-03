@@ -25,7 +25,7 @@ module ThroughAssociations
     end
 
     def referring_relations
-      StandardTitle.reflect_on_all_associations(:has_many)
+      reflect_on_all_associations(:has_many)
       .select { |ref| ref.options[:through].present? }
       .map(&:name).select { |n| n.to_s.include?("referring") }
     end

@@ -231,7 +231,7 @@ ActiveAdmin.register Publication do
 
   filter :wf_owner_with_integer, :label => proc {I18n.t(:filter_owner)}, :as => :flexdatalist, data_path: proc{list_for_filter_admin_users_path()}
 
-  filter :work_catalogue_with_integer, :label => proc{I18n.t(:work_catalogue)}, as: :select, 
+  filter :work_catalogue_with_integer, :label => proc{I18n.t(:work_catalog)}, as: :select, 
   collection: proc{Publication.work_catalogues.collect {|k,v| [I18n.t("work_catalogue_labels." + k), "work_catalogue:#{k}"]}}, :if => proc{ can?(:edit, Work) }
   
   index :download_links => false do

@@ -255,6 +255,18 @@ class Publication < ApplicationRecord
       s.marc.to_raw_text
     end
 
+    # All this stuff here is for the work_catalog view
+
+    sunspot_dsl.string(:wc_composer_name_order, stored: true) {|s| s.get_catalog_composer_tag_val("a")}
+    sunspot_dsl.text(:wc_composer_name) {|s| s.get_catalog_composer_tag_val("a")}
+    sunspot_dsl.string(:wc_composer_dates_order, stored: true) { |s| s.get_catalog_composer_tag_val("d")}
+    sunspot_dsl.integer(:wc_composer_id_order, stored: true) { |s| s.get_catalog_composer_tag_val("0")}
+
+    sunspot_dsl.string(:wc_catalog_url_order, stored: true) {|s| s.marc["856"].map {|t| t["u"]&.first&.content}.compact&.first}
+
+    sunspot_dsl.integer(:wc_works_count_order, stored: true) {|s| s.referring_works.count}
+    sunspot_dsl.integer(:wc_sources_count_order, stored: true) {|s| s.referring_sources.count}
+
     sunspot_dsl.integer(:src_count_order, :stored => true) {through_associations_source_count}
     sunspot_dsl.integer(:referring_objects_order, stored: true) {through_associations_exclude_source_count}
 
@@ -328,6 +340,24 @@ class Publication < ApplicationRecord
 
   def getter_function_autocomplete_label(query_row)    
     autocomplete_label(query_row)
+  end
+
+  def get_catalog_composer_tag_val(subtag)
+    cmp = get_catalog_composer_tag
+    return cmp[subtag]&.first&.content if cmp
+    return nil
+  end
+
+  def get_catalog_composer_tag
+    return @_catalog_composer_tag if defined?(@_catalog_composer_tag)
+
+    @_catalog_composer_tag = nil
+    marc["700"].each do |t|
+      t["4"].each do |tt|
+        @_catalog_composer_tag = t if tt&.content == "att"
+      end
+    end
+    return @_catalog_composer_tag
   end
 
   # If we define our own ransacker, we need this

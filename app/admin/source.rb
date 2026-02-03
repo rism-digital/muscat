@@ -14,7 +14,7 @@ ActiveAdmin.register Source do
   menu :priority => 10, :label => proc {I18n.t(:menu_sources)}
 
   breadcrumb do
-    active_admin_muscat_breadcrumb
+   active_admin_muscat_breadcrumb
   end
 
   # See permitted parameters documentation:
