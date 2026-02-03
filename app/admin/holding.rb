@@ -20,7 +20,7 @@ ActiveAdmin.register Holding do
     before_create do |item|
       item.user = current_user
     end
-    
+  
     def action_methods
       return super - ['new', 'edit', 'destroy'] if is_selection_mode?
       super

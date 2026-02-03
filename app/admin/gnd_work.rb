@@ -2,6 +2,11 @@ ActiveAdmin.register_page "gnd_works" do
   menu :parent => "indexes_menu", priority: 24, label: proc{ I18n.t("active_admin.gnd_works") }, :if => proc{ current_user.has_role?(:admin) || current_user.has_role?(:gnd_work_editor)}
   
   controller do
+
+    before_action do
+      authorize! :use, :gnd_editor
+    end
+
     # These need to be manually added to the routes
     # The display_value label is included in the hash returned by the GND::Interface and is not a method of the model
     autocomplete :gnd_works, "person", :gnd => true, :display_value => :label, :extra_data => [:life_dates]

@@ -14,6 +14,7 @@ class Ability
       can :publish, [Folder]
       can :unpublish, :all
       can :resave, :all
+      can :use, :gnd_editor
 
     ##########
     # Editor #
@@ -30,6 +31,8 @@ class Ability
         can :update, Person, :wf_owner => user.id
       end
       #can [:read], Folder
+
+      can :use, :gnd_editor
 
       can [:read, :create, :update, :destroy], InventoryItem
 
@@ -76,6 +79,8 @@ class Ability
         can :update, Work, :wf_owner => user.id
         can [:create], Work
       end
+
+      can :use, :gnd_editor if user.has_role? :gnd_work_editor
 
       can :update, [Publication, Institution, LiturgicalFeast, Person, Place, StandardTerm, StandardTitle, Holding, WorkNode], :wf_owner => user.id
       can [:destroy, :update], [DigitalObject], :wf_owner => user.id

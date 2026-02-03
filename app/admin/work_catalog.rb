@@ -1,5 +1,5 @@
 ActiveAdmin.register Publication, as: "WorkCatalog" do
-  menu :parent => "indexes_menu", :label => proc {I18n.t(:menu_publications)}
+  menu :parent => "indexes_menu", :label => proc {I18n.t(:work_catalog)}, :if => proc{ can?(:edit, Work) }
 
   # Remove mass-delete action
   batch_action :destroy, false
@@ -66,11 +66,7 @@ ActiveAdmin.register Publication, as: "WorkCatalog" do
     end
 
   end
-      
-  sidebar :custom, only: :work_catalogs do
-    "Sidebar contents"
-  end
-
+  
   ###########
   ## Index ##
   ###########  
@@ -79,13 +75,6 @@ ActiveAdmin.register Publication, as: "WorkCatalog" do
   filter :"100a_or_700a_cont", :label => proc {I18n.t(:filter_author_or_editor)}, :as => :string
   filter :title_cont, :label => proc {I18n.t(:filter_description)}, :as => :string
   
-  #filter :"240g_contains", :label => proc {I18n.t(:filter_category_type)}, :as => :select,
-  #  collection: proc{["Bibliography", "Catalog", "Collective catalogue", "Encyclopedia", "Music edition", "Other",
-  #    "Thematic catalog", "Work catalog"] }
-
-  #filter :"240g_with_integer", :label => proc{I18n.t(:"filter_category_type")}, as: :select,
-  #  collection: proc{@categories.sort.collect {|k| [@editor_profile.get_label(k.to_s), "240g:#{k}"]}}
-
   filter :"260b_cont", :label => proc {I18n.t(:filter_publisher)}, :as => :string
   filter :"place_cont", :label => proc {I18n.t(:filter_place_of_publication)}, :as => :string
   filter :"date_cont", :label => proc {I18n.t(:filter_date_of_publication)}, :as => :string
@@ -103,10 +92,12 @@ ActiveAdmin.register Publication, as: "WorkCatalog" do
   collection: proc{Publication.work_catalogues.collect {|k,v| [I18n.t("work_catalogue_labels." + k), "work_catalogue:#{k}"]}}, :if => proc{ can?(:edit, Work) }
   
 
-  index :download_links => false do
+  index title: I18n.t(:work_catalog), :download_links => false do
     selectable_column if !is_selection_mode?
     column((I18n.t :filter_wf_stage), sortable: :wf_stage) {|i| active_admin_wf_stage_column(self, i)} 
-    column (I18n.t :filter_id), :id
+    column (I18n.t :filter_id), :id, sortable: :id do |c|
+      link_to c.id, admin_publication_path(c.id)
+    end
 
     column (I18n.t :filter_composer), :wc_composer_name_order, sortable: :wc_composer_name_order do |element|
 			name = active_admin_stored_from_hits(controller.view_assigns["hits"], element, :wc_composer_name_order)
@@ -145,7 +136,7 @@ ActiveAdmin.register Publication, as: "WorkCatalog" do
     column (I18n.t :filter_title), :title
     column (I18n.t :filter_date), :date
     
-    active_admin_muscat_actions( self )
+    #active_admin_muscat_actions( self )
   end
   
 end
