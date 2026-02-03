@@ -257,6 +257,13 @@ class Publication < ApplicationRecord
 
     # All this stuff here is for the work_catalog view
 
+    sunspot_dsl.boolean(:wc_catalog, stored: true) do |s|
+      targets = ["Catalog of works", "Thematic catalog"]
+      Array(s.marc["240"]).any? do |t|
+        targets.include?(t["g"]&.first&.content)
+      end
+    end
+
     sunspot_dsl.string(:wc_composer_name_order, stored: true) {|s| s.get_catalog_composer_tag_val("a")}
     sunspot_dsl.text(:wc_composer_name) {|s| s.get_catalog_composer_tag_val("a")}
     sunspot_dsl.string(:wc_composer_dates_order, stored: true) { |s| s.get_catalog_composer_tag_val("d")}
@@ -267,9 +274,13 @@ class Publication < ApplicationRecord
     sunspot_dsl.integer(:wc_works_count_order, stored: true) {|s| s.referring_works.count}
     sunspot_dsl.integer(:wc_sources_count_order, stored: true) {|s| s.referring_sources.count}
 
+    sunspot_dsl.string(:wc_notes_order, stored: true) {|s| s.get_catalog_note_tags}
+    sunspot_dsl.text(:wc_notes, stored: true) {|s| s.get_catalog_note_tags}
+
     sunspot_dsl.integer(:src_count_order, :stored => true) {through_associations_source_count}
     sunspot_dsl.integer(:referring_objects_order, stored: true) {through_associations_exclude_source_count}
 
+    
     MarcIndex::attach_marc_index(sunspot_dsl, self.to_s.downcase)
   end
 
@@ -358,6 +369,15 @@ class Publication < ApplicationRecord
       end
     end
     return @_catalog_composer_tag
+  end
+
+  def get_catalog_note_tags
+    return @_catalog_note_tags if defined?(@_catalog_note_tags)
+
+    @_catalog_note_tags = marc["599"].map do |t|
+      t["a"]&.first&.content
+    end.compact.join("; ")
+    return @_catalog_note_tags
   end
 
   # If we define our own ransacker, we need this

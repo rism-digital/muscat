@@ -49,7 +49,8 @@ ActiveAdmin.register Publication, as: "WorkCatalog" do
 
       # We need to only show the work catalogs
       params[:q] ||= {}
-      params[:q]["240g_with_integer"] = "240g:Catalog of works"
+      #params[:q]["240g_with_integer"] = "240g:Catalog of works"
+      params[:q]["wc_catalog_with_integer"] = "wc_catalog:true"
 
       @results, @hits = Publication.search_as_ransack(params)
       @categories = Publication.get_terms("240g_sm")
@@ -129,6 +130,10 @@ ActiveAdmin.register Publication, as: "WorkCatalog" do
     column (I18n.t :filter_url), :wc_catalog_url_order, sortable: :wc_catalog_url_order do |element|
 			url = active_admin_stored_from_hits(controller.view_assigns["hits"], element, :wc_catalog_url_order)
       status_tag(url.blank? ? :no : :yes)
+		end
+
+    column (I18n.t :notes), :wc_notes_order, sortable: :wc_notes_order do |element|
+			active_admin_stored_from_hits(controller.view_assigns["hits"], element, :wc_notes_order)
 		end
 
     column (I18n.t :filter_title_short), :short_name
