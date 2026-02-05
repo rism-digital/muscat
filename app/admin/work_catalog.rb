@@ -96,9 +96,11 @@ ActiveAdmin.register Publication, as: "WorkCatalog" do
   index title: I18n.t(:work_catalog), :download_links => false do
     selectable_column if !is_selection_mode?
     column((I18n.t :filter_wf_stage), sortable: :wf_stage) {|i| active_admin_wf_stage_column(self, i)} 
-    column (I18n.t :filter_id), :id, sortable: :id do |c|
+    column "ID", :id, sortable: :id do |c|
       link_to c.id, admin_publication_path(c.id)
     end
+
+    column (I18n.t :filter_title_short), :short_name
 
     column (I18n.t :filter_composer), :wc_composer_name_order, sortable: :wc_composer_name_order do |element|
 			name = active_admin_stored_from_hits(controller.view_assigns["hits"], element, :wc_composer_name_order)
@@ -115,9 +117,19 @@ ActiveAdmin.register Publication, as: "WorkCatalog" do
 			active_admin_stored_from_hits(controller.view_assigns["hits"], element, :wc_composer_dates_order)
 		end
 
-    column (I18n.t :"work_catalog"), :work_catalogue, sortable: :work_catalogue_order do  |cat|
+    column "CAT", :work_catalogue, sortable: :work_catalogue_order do  |cat|
       status_tag(cat.work_catalogue, label: I18n.t('work_catalogue_tags.' + (cat.work_catalogue != nil ? cat.work_catalogue : ""), locale: :en))
     end
+
+    column "INCIP", :wc_has_incipits_order, sortable: :wc_has_incipits_order do |element|
+			gnd = active_admin_stored_from_hits(controller.view_assigns["hits"], element, :wc_has_incipits_order)
+      status_tag(gnd)
+		end
+
+    column "GND", :wc_gnd_links_order, sortable: :wc_gnd_links_order do |element|
+			gnd = active_admin_stored_from_hits(controller.view_assigns["hits"], element, :wc_gnd_links_order)
+      status_tag(gnd)
+		end
 
     column (I18n.t :menu_works), :wc_works_count_order, sortable: :wc_works_count_order do |element|
 			active_admin_stored_from_hits(controller.view_assigns["hits"], element, :wc_works_count_order)
@@ -127,19 +139,19 @@ ActiveAdmin.register Publication, as: "WorkCatalog" do
 			active_admin_stored_from_hits(controller.view_assigns["hits"], element, :wc_sources_count_order)
 		end
 
-    column (I18n.t :filter_url), :wc_catalog_url_order, sortable: :wc_catalog_url_order do |element|
+    column "URL", :wc_catalog_url_order, sortable: :wc_catalog_url_order do |element|
 			url = active_admin_stored_from_hits(controller.view_assigns["hits"], element, :wc_catalog_url_order)
       status_tag(url.blank? ? :no : :yes)
 		end
 
-    column (I18n.t :notes), :wc_notes_order, sortable: :wc_notes_order do |element|
+    column (I18n.t :filter_notes), :wc_notes_order, sortable: :wc_notes_order do |element|
 			active_admin_stored_from_hits(controller.view_assigns["hits"], element, :wc_notes_order)
 		end
 
-    column (I18n.t :filter_title_short), :short_name
-    column (I18n.t :filter_author), :author
-    column (I18n.t :filter_title), :title
-    column (I18n.t :filter_date), :date
+    
+    #column (I18n.t :filter_author), :author
+    #column (I18n.t :filter_title), :title
+    #column (I18n.t :filter_date), :date
     
     #active_admin_muscat_actions( self )
   end

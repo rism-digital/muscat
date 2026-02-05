@@ -277,10 +277,21 @@ class Publication < ApplicationRecord
     sunspot_dsl.string(:wc_notes_order, stored: true) {|s| s.get_catalog_note_tags}
     sunspot_dsl.text(:wc_notes, stored: true) {|s| s.get_catalog_note_tags}
 
+    sunspot_dsl.string(:wc_gnd_links_order, stored: true) do |s|
+      #total = s.referring_works.count
+      #with_links = s.referring_works.where("link_status > 0").count
+
+      #(total == 0 || with_links == 0) ? "none" : (with_links == total ? "all" : "some")
+      (s.works_statistics[:dnb] == 0 ) ? "none" : (s.works_statistics[:dnb] == 100 ? "all" : "some")
+    end
+
+    sunspot_dsl.string(:wc_has_incipits_order, stored: true) do |s|
+      (s.works_statistics[:incipits] == 0 ) ? "none" : (s.works_statistics[:incipits] == 100 ? "all" : "some")
+    end
+
     sunspot_dsl.integer(:src_count_order, :stored => true) {through_associations_source_count}
     sunspot_dsl.integer(:referring_objects_order, stored: true) {through_associations_exclude_source_count}
 
-    
     MarcIndex::attach_marc_index(sunspot_dsl, self.to_s.downcase)
   end
 
@@ -378,6 +389,27 @@ class Publication < ApplicationRecord
       t["a"]&.first&.content
     end.compact.join("; ")
     return @_catalog_note_tags
+  end
+
+  # This is slowwww
+  def works_statistics
+    return @_work_statistics if defined?(@_work_statistics)
+    @_work_statistics = { :incipits => 0, :dnb => 0  }
+
+    return @_work_statistics if (referring_works.size == 0)
+    incipits = 0
+    dnb = 0
+    referring_works.each do |w|
+      w.marc.load_source false
+      incipits += 1 if w.marc.has_incipits?
+      dnb += 1 if w.marc.has_link_to?("DNB")
+    end
+    @_work_statistics[:incipits] = (incipits * 100 / referring_works.size)
+    @_work_statistics[:dnb] = (dnb * 100 / referring_works.size)
+    ap dnb
+    ap referring_works.size
+    ap @_work_statistics
+    @_work_statistics
   end
 
   # If we define our own ransacker, we need this
