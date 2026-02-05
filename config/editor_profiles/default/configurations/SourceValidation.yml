@@ -75,6 +75,9 @@ client:
         - composite_volume
     tags:
       a: required
+  "490":
+    tags:
+      "0": mandatory
   "510":
     tags:
       a: required
