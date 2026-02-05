@@ -393,23 +393,23 @@ class Publication < ApplicationRecord
 
   # This is slowwww
   def works_statistics
-    return @_work_statistics if defined?(@_work_statistics)
-    @_work_statistics = { :incipits => 0, :dnb => 0  }
+    return @works_statistics if defined?(@works_statistics)
 
-    return @_work_statistics if (referring_works.size == 0)
-    incipits = 0
-    dnb = 0
-    referring_works.each do |w|
-      w.marc.load_source false
-      incipits += 1 if w.marc.has_incipits?
-      dnb += 1 if w.marc.has_link_to?("DNB")
+    works = referring_works.to_a
+    return @works_statistics = { incipits: 0, dnb: 0 } if works.empty?
+
+    totals = works.reduce({ incipits: 0, dnb: 0 }) do |acc, w|
+      w.marc.load_source(false)
+      acc[:incipits] += 1 if w.marc.has_incipits?
+      acc[:dnb]      += 1 if w.marc.has_link_to?("DNB")
+      acc
     end
-    @_work_statistics[:incipits] = (incipits * 100 / referring_works.size)
-    @_work_statistics[:dnb] = (dnb * 100 / referring_works.size)
-    ap dnb
-    ap referring_works.size
-    ap @_work_statistics
-    @_work_statistics
+
+    n = works.length
+    @works_statistics = {
+      incipits: (totals[:incipits] * 100 / n),
+      dnb:      (totals[:dnb] * 100 / n)
+    }
   end
 
   # If we define our own ransacker, we need this
