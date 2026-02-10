@@ -104,6 +104,7 @@ de:
     persian: Persisch
     polish: Polnisch
     portugese: Portugiesisch
+    quechua: Ketschua
     romance_other: Romanisch (Andere)
     romani: Romani
     romanian: Rumänisch
@@ -532,7 +533,7 @@ de:
     general_note_incipits: Kommentar zum Musikincipit
     general_note_institution: Allgemeine Fußnote
     general_note_personal: Externe Bemerkungen
-    geodata: Geographische Informationen
+    geodata: Geografische Informationen
     geographic_area_code: Geografische Gebietsnummer
     geographic_name: Geographischer Name
     geographic_subdivision: Geographische Unterteilung
