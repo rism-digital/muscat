@@ -7,6 +7,7 @@ ActiveAdmin.register Place do
 
   # Remove mass-delete action
   batch_action :destroy, false
+  include MergeControllerActions
 
   # Remove all action items
   config.clear_action_items!
@@ -164,6 +165,7 @@ ActiveAdmin.register Place do
 
   index :download_links => false do
     selectable_column if !is_selection_mode?
+    column((I18n.t :filter_wf_stage), sortable: :wf_stage) {|i| active_admin_wf_stage_column(self, i)}
     column (I18n.t :filter_id), :id  
     column (I18n.t :filter_name), :name
     column (I18n.t :filter_district), :district

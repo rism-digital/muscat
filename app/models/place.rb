@@ -12,6 +12,7 @@
 class Place < ApplicationRecord
   include ForeignLinks
   include CommentsCleanup
+  include AuthorityMerge
   include ThroughAssociations
   include AutoStripStrings
   include ComposedOfReimplementation
