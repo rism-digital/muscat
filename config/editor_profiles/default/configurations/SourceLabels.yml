@@ -524,6 +524,8 @@
   fields:
     a:
       label: records.work
+    "4":
+      label: records.relationship
   label: records.work
 '980':
   fields:

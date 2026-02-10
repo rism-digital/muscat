@@ -1031,6 +1031,8 @@
       - hidden: true
     - - a
       - read_only: true
+    - - "4"
+      - read_only: true
       #- type: work
         #editor_partial: subfield_secondary
         #allow_new: false
