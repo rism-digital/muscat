@@ -21,29 +21,21 @@
                 data: res.values.map{|i| i[1]}
               } 
             %>
-<div style="height: 60%; margin-right: auto">
-  <canvas id="status_bar"/>
-</div>
-
-<%= javascript_tag do %>
-  var data = <%= dta.to_json.html_safe %>
-  var pie =  new Chart($("#status_bar"), {
-    type: 'bar', 
-    data: data,
-    options: {
-        barValueSpacing: 20,
-        scales: {
-        yAxes: [{
+<% options = {
+  barValueSpacing: 20,
+  scales: {
+    yAxes: [
+      {
         ticks: {
-                  min: 0,
-                  }
-                  }]
-                  }
-    }    
-    
-    });
-<% end %>
-
+          min: 0
+        }
+      }
+    ]
+  }
+} %>
+<div style="height: 60%; margin-right: auto">
+  <canvas id="status_bar" data-chart='<%= dta.to_json %>' data-chart-type="bar" data-chart-options='<%= options.to_json %>'/>
+</div>
 
 
 

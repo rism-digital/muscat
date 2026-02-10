@@ -46,6 +46,27 @@ ActiveAdmin.register_page "Statistics" do
       @statistic_sources = Statistics::Spreadsheet.new(stats_source)
       stats_holdings = Statistics::User.holdings_by_month(@from_date.beginning_of_month, @to_date, users)
       @statistic_holdings = Statistics::Spreadsheet.new(stats_holdings)
+
+      sigla_scope =
+        if @workgroup.present?
+          Workgroup.where(:id => @workgroup).take&.institutions&.where.not(:siglum => nil) || Institution.none
+        else
+          Institution.where.not(:siglum => nil)
+        end
+      sigla_sources = Statistics::Institution.sources_per_date(@from_date, @to_date, sigla_scope)
+      sigla_sheet = Statistics::Spreadsheet.new(sigla_sources)
+      sigla_pie = sigla_sheet.to_pie(:siglum, :limit => 12)
+      sigla_label = "Count of siglum between #{@from_date.localtime.strftime('%Y-%m')} - #{@to_date.localtime.strftime('%Y-%m')}"
+      @sigla_pie_data = {
+        labels: sigla_pie.keys,
+        datasets: [
+          {
+            label: sigla_label,
+            data: sigla_pie.values
+          }.merge(helpers.sigla_pie_colors)
+        ]
+      }
+      @sigla_pie_chart_id = "sigla_pie"
     end
   end
 
@@ -77,7 +98,7 @@ ActiveAdmin.register_page "Statistics" do
    div do
      tabs do
        tab "Sigla" do
-          render :partial => 'statistics/sigla_pie'
+          render :partial => 'statistics/sigla_pie', locals: {data: controller.view_assigns["sigla_pie_data"], chart_id: controller.view_assigns["sigla_pie_chart_id"]}
        end
        tab "Overall Publishing/Unpublishing" do
           render :partial => 'statistics/status_bar'
