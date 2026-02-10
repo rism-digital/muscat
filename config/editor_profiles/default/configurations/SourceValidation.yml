@@ -77,7 +77,7 @@ client:
       a: required
   "490":
     tags:
-      "0": mandatory
+      "0": required
   "510":
     tags:
       a: required

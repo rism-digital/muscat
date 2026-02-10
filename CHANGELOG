@@ -1,6 +1,39 @@
 Muscat Changelog
 ================
 
+v 12.2
+* Remove unused 008 stuff from marc
+* Script to add 910
+* Make -u work
+* Delete redundant exporter, use the one in housekeeping/export
+* The script for #1916
+* Make manifests more complete, update solargaph
+* s.n. script ready for testing
+* Adapt pollini import for generic work
+* Allow for un-published works for alternated and incomplete catalogues
+* Merge pull request #1919 from rism-digital/lpugin-patch-2
+* Fix #1918, skip actual literature that is not a work catalog linked to works
+* Fix #1151, add EDTF 046 on sources
+* Fix #1915, align Institution 670 labels to the other auth files
+* Better table spacing, sidebar now moving properly
+* Add work_catalog view, add work_cataloger role
+* Better authorisation for all
+* Index is_wc
+* Add validation for 490
+* Add index for GND and INCIPITS
+* Refactor to mke the statistic function a bit cleaner
+* Bump faraday from 2.13.4 to 2.14.1
+* Refactor pies, brownies and various baked goods in Muscat
+* #1928 add support for 931 + script
+* Merge pull request #1927 from rism-digital/dependabot/bundler/faraday-2.14.1
+* Miniscrtipt to export places
+* Add rel code for 931 #1928
+* Add view for relator codes in people
+* Fix #1929
+* Fix #1922, catalogers canno unpub records
+* Fix #1921, add merge opt for places
+* Fix #1866, move digital objects to 856
+
 v 12.1
 * Make the validation a bit more robust
 * #1852, be more aggressive when removing whitespace
