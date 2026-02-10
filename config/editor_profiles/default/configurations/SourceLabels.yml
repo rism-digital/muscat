@@ -1142,3 +1142,9 @@ voc:
   label: records.manuscript_copy_with_autograph_annotations
 "Additional printed material":
   label: records.additional_printed_material
+excerpts:
+  label: records.excerpts
+fragments:
+  label: records.fragments
+sketches:
+  label: records.sketches
