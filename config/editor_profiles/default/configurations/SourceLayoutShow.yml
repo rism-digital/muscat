@@ -30,9 +30,9 @@ groups:
     - "490"
     - "001"
     all_tag_templates: 
-      "100": marc_show/show_person
-      "246": marc_show/show_title_variant  
-      "930": marc_show/show_work_node
+      "100": marc_show/show_auto_tag
+      "930": marc_show/show_auto_tag
+      "931": marc_show/show_auto_tag
       "001": marc_show/show_rism_id
 
   show_library: 
@@ -77,9 +77,9 @@ groups:
     - "856"
     subfield_grouping: 8
     all_tag_templates: 
-      "260": marc_show/show_subfield_concat
-      "700": marc_show/show_person
-      "710": marc_show/show_institution 
+      "260": marc_show/show_auto_tag
+      "700": marc_show/show_auto_tag
+      "710": marc_show/show_auto_tag 
       "856": marc_show/show_link
 
   show_information: 
@@ -115,10 +115,9 @@ groups:
     - "651"
     all_tag_templates: 
       "026": marc_show/show_fingerprint
-      "700": marc_show/show_person
-      "710": marc_show/show_institution
-      "752": marc_show/show_place
-      "650": marc_show/show_subject
+      "700": marc_show/show_auto_tag
+      "710": marc_show/show_auto_tag
+      "650": marc_show/show_auto_tag
     ungrouped_tags:
       "700": 8
       "710": 8
@@ -141,7 +140,7 @@ groups:
     - "510"
     - "910"
     all_tag_templates: 
-      "510": marc_show/show_subfield_concat
+      "510": marc_show/show_auto_tag
       "981": marc_show/show_duplicated_from
     
   show_links: 

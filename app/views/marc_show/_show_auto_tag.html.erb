@@ -15,6 +15,8 @@ end
 
 relators.compact!
 
+# Make sure we display the link only once
+linked = false
 tag.for_every_child_sorted do |subfield|
   next unless subfield
 
@@ -22,6 +24,9 @@ tag.for_every_child_sorted do |subfield|
   next if subfield.tag == "8"
 
   foreign = @item.marc.config.is_foreign?(tag.tag, subfield.tag)
+
+  # Never make links in selection mode
+  linked = true if is_selection_mode?
 
   if foreign
     text = subfield.looked_up_content&.to_s
@@ -31,11 +36,16 @@ tag.for_every_child_sorted do |subfield|
     next if text.blank?
 
     parts << if subfield.foreign_object && (master&.tag != subfield.tag || tag.children.count == 1)
-        link_to(text, [:admin, subfield.foreign_object])
+        if !linked
+          link_to(text, [:admin, subfield.foreign_object])
+        else
+          text
+        end
     #elsif master&.tag == subfield.tag && subfield&.content
         # Pretty print the master ID
     #    "(#{subfield.foreign_object.model_name.route_key}/#{subfield.content})"
     end
+    linked = true
   elsif relators.include?(subfield.tag)
     text = subfield.content&.to_s
     next if text.blank?
