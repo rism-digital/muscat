@@ -253,7 +253,7 @@ class Source < ApplicationRecord
   def update_links
     return if self.suppress_recreate_trigger == true
 
-    allowed_relations = ["people", "standard_titles", "standard_terms", "institutions", "publications", "liturgical_feasts", "places", "holdings", "sources", "work_nodes"]
+    allowed_relations = ["people", "standard_titles", "standard_terms", "institutions", "publications", "liturgical_feasts", "places", "holdings", "sources", "work_nodes", "works"]
     recreate_links(marc, allowed_relations)
 
     # update the parent manuscript when having 773/774 relationships

@@ -632,7 +632,7 @@ class Marc
 
     # A subtag val can also be an array for repeated sts
     subtags.each do |stag, val|
-      Array(val).compact.reject(&:empty?).reverse.each do |subval|
+      Array(val).compact.filter_map { |v| s = v&.to_s&.strip; s unless s.nil? || s.empty? }.reverse.each do |subval|
         the_t.add_at(MarcNode.new(@model, stag.to_s, subval, nil), 0)
       end
     end

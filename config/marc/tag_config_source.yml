@@ -824,7 +824,6 @@
   "910":
     :master: "0"
     :indicator: "2#"
-    :relator_code: "4"
     :occurrences: "*"
     :fields:
     - - "0"
@@ -852,6 +851,23 @@
       - :occurrences: "?"
         :foreign_class: ^0
         :foreign_field: title
+  "931":
+    :master: "0"
+    :indicator: "1#"
+    :relator_code: "4"
+    :occurrences: "*"
+    :fields:
+    - - "0"
+      - :occurrences: "?"
+        :foreign_class: Work
+        :foreign_field: id
+        :no_show: true
+    - - a
+      - :occurrences: "?"
+        :foreign_class: ^0
+        :foreign_field: title
+    - - "4"
+      - :occurrences: "?"
   "980":
     :master: ""
     :indicator: "##"

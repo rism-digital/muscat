@@ -1024,6 +1024,18 @@
       - type: work_node
         editor_partial: subfield_secondary
         allow_new: false
+"931":
+  layout:
+    fields:
+    - - "0"
+      - hidden: true
+    - - a
+      - read_only: true
+      #- type: work
+        #editor_partial: subfield_secondary
+        #allow_new: false
+  tag_params: 
+    no_delete: true
 "980":
   layout:
     fields:

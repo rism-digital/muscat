@@ -520,6 +520,11 @@
     a:
       label: records.work_node
   label: records.work_node
+'931':
+  fields:
+    a:
+      label: records.work
+  label: records.work
 '980':
   fields:
     a:
