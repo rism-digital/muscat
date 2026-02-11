@@ -114,6 +114,10 @@ body.active_admin {
     .status_tag.warning { background: #e29b20; }
     .status_tag.deleted { background: #d45f53; }
 
+    .status_tag.all { background: #096d39; }
+    .status_tag.some { background: #f6789e; }
+    .status_tag.none { background: #aea5a5;; }
+
     .status_tag.work_links { 
       width: 82px;
       display: inline-block; 
