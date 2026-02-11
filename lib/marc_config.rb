@@ -228,7 +228,7 @@ class MarcConfig
 
     # Fail. This is a programming error here
     if !@tag_config[tag]
-      throw "Tag #{tag} is not configured in tag_config, but references in Layout config"
+      throw "Tag #{tag} is not configured in tag_config, but referenced in Layout config"
     end
 
     if subtag.empty?
