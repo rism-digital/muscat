@@ -17,9 +17,8 @@ class ModificationDigestJob < ApplicationJob
       results = {}
       total_results = 0
       
-      [Source, Work, Institution].each do |model|
+      [Source, Work, Institution, Holding, Person].each do |model|
         model.where(("updated_at" + "> ?"), @days.days.ago).order("updated_at DESC").each do |s|
-        
           matcher = NotificationMatcher.new(s, user)
 
           matcher.get_matches.each do |match|

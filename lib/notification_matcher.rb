@@ -1,11 +1,12 @@
 class NotificationMatcher
 
-  ALLOWED_MODELS = ["source", "work", "institution", "holding"]
+  ALLOWED_MODELS = ["source", "work", "institution", "holding", "person"]
 
   ALLOWED_PROPERTIES = {
     source: [:record_type, :std_title, :composer, :title, :shelf_mark, :lib_siglum, :follow],
     work: [:title, :form, :notes, :composer, :follow],
     institution: [:siglum, :full_name, :address, :place, :comments, :alternates, :notes, :follow],
+    person: [:full_name, :lide_dates, :birth_place, :alternate_names, :alternate_dates, :display_name, :follow],
     holding: [:lib_siglum, :shelf_mark]
   }
 
@@ -13,12 +14,13 @@ class NotificationMatcher
     source: [:lib_siglum, :record_type, :shelf_mark, :follow],
     work: [:composer, :follow],
     institution: [:follow],
+    person: [:follow],
     holding: [:follow]
   }
 
   def initialize(object, user, limit_rules = nil)
-    if !object.is_a?(Source) && !object.is_a?(Work) && !object.is_a?(Institution) && !object.is_a?(Holding) 
-      raise(ArgumentError, "NotificationMatcher can be applied only to Works, Sources, Holdings and Institutions" )
+    if !object.is_a?(Source) && !object.is_a?(Work) && !object.is_a?(Institution) && !object.is_a?(Holding) && !object.is_a?(Person) 
+      raise(ArgumentError, "NotificationMatcher can be applied only to Works, Sources, Holdings, Institutions and People" )
     end
 
     @object = object
