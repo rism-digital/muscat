@@ -33,8 +33,8 @@ groups:
     - "250"
 
     all_tag_templates:
-      "650": marc_show/show_subject
-      "710": marc_show/show_institution
+      "650": marc_show/show_auto_tag
+      "710": marc_show/show_auto_tag
   control: 
     all_tags: 
     - "040"
