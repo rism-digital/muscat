@@ -196,12 +196,12 @@
       - editor_partial: subfield_select_codes
         select_label: "Language"
         shared_codes: "language_codes_041"
-"046": 
-  layout: 
-    fields: 
-    - - k
-      - editor_partial: subfield_edtf
-    - - z
+#"046": 
+#  layout: 
+#    fields: 
+#    - - k
+#      - editor_partial: subfield_edtf
+#    - - z
 "100":
   new_window: people
   new_window_field: full_name_eq
