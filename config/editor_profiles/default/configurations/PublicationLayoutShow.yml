@@ -18,8 +18,8 @@ groups:
     - "780"
     - "785"
     all_tag_templates:
-      "100": marc_show/show_person
-      "700": marc_show/show_person
+      "100": marc_show/show_auto_tag
+      "700": marc_show/show_auto_tag
       "780": marc_show/show_related_publication
       "785": marc_show/show_related_publication
   subject:
