@@ -35,6 +35,9 @@ v 12.2
 * Fix #1866, move digital objects to 856
 * Use show_auto_tag all around source
 * Add labels for relator codes in sources to work
+* Hide 046 EDTF date
+* Add hard-coded admin user sink
+* Nosey Muscat: Add notifications for People
 
 v 12.1
 * Make the validation a bit more robust
