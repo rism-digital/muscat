@@ -185,6 +185,20 @@ ActiveAdmin.register Publication do
     redirect_to resource_path(params[:id]), notice: I18n.t(:publish_job, scope: :folders, id: job.id)
   end
 
+  member_action :reown_works do
+    if !(@current_user.has_role?(:editor) || @current_user.has_role?(:admin))
+      redirect_to action: :show
+      flash[:error] = I18n.t(:unauthorized)
+      return
+    end
+
+    pub = Publication.find(params[:id])
+
+    job = Delayed::Job.enqueue(ChangeOwnerJob.new(params[:id], Publication, :referring_works, pub.wf_owner))
+    redirect_to resource_path(params[:id]), notice: I18n.t(:change_owner, scope: :folders, id: job.id)
+
+  end
+
   collection_action :work_catalogs  do
     #doc_url = 'https://docs.google.com/spreadsheets/d/1Wh45W93lUZfcf2AOb2OLn9LcIvbY7b55QgmoJ87xAc0/export?exportFormat=csv'
 
@@ -317,6 +331,10 @@ ActiveAdmin.register Publication do
 
   sidebar :statistics, :only => :show, if: proc{ item && item.work_catalogue } do
     render :partial => "publications/work_statistics", :locals => { :item => publication }
+  end
+
+  sidebar :work_actions, only: :show, if: proc{ current_user.has_any_role?(:editor, :admin) } do
+    render :partial => "publications/work_actions"
   end
 
   sidebar :folders, :only => :show do
