@@ -6,7 +6,7 @@ class NotificationMatcher
     source: [:record_type, :std_title, :composer, :title, :shelf_mark, :lib_siglum, :follow],
     work: [:title, :form, :notes, :composer, :follow],
     institution: [:siglum, :full_name, :address, :place, :comments, :alternates, :notes, :follow],
-    person: [:full_name, :lide_dates, :birth_place, :alternate_names, :alternate_dates, :display_name, :follow],
+    person: [:full_name, :life_dates, :birth_place, :alternate_names, :alternate_dates, :display_name, :follow],
     holding: [:lib_siglum, :shelf_mark]
   }
 
