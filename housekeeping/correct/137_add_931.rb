@@ -1,5 +1,5 @@
 # Pass 1: add the 931
-=begin
+
 pb = ProgressBar.new(SourceWorkRelation.count)
 SourceWorkRelation.find_each do |wr|
   
@@ -22,13 +22,15 @@ SourceWorkRelation.find_each do |wr|
   #puts "#{s.marc.get_id} DONE"
 
 end
-=end
+
 
 pb = ProgressBar.new(SourceWorkRelation.select(:source_id).distinct.count)
 SourceWorkRelation.select(:source_id).distinct.each do |s|
   ss = Source.find(s.source_id)
   begin
+  PaperTrail.request(enabled: false) do
     ss.save
+  end
   rescue ActiveRecord::RecordNotFound
     puts "oopsie"
   end
