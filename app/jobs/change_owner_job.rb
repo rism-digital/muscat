@@ -57,14 +57,16 @@ class ChangeOwnerJob < ProgressJob::Base
       end
 
       if fi.wf_owner != 0 && fi.wf_owner != 1 && fi.user.name
+        # First time?
         if !found
           fi.marc.add_tag_with_subfields("667", a: "Original cataloger: #{fi.user.name}")
-        else
-          today = Date.today.strftime('%Y-%m-%d')
-          fi.marc.add_tag_with_subfields("667", a: "Owner change #{today}. previous: #{fi.user.name}")
         end
       end
-      
+
+      # Always add the current transition
+      today = Date.today.strftime('%Y-%m-%d')
+      fi.marc.add_tag_with_subfields("667", a: "Owner change #{today}. to: #{user.name}")
+
       if  PaperTrail.request.enabled_for_model?(fi.class) 
         fi.paper_trail_event = "Change user to #{user.name}"
       end

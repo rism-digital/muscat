@@ -294,7 +294,7 @@ class Person < ApplicationRecord
       # Use the jump table directly
       source_person_relations.size + holding_person_relations.size
     end
-
+    
     sunspot_dsl.integer(:src_count_order, :stored => true) {through_associations_source_count}
     sunspot_dsl.integer(:referring_objects_order, stored: true) {through_associations_exclude_source_count}
     sunspot_dsl.integer(:total_obj_count_order, stored: true) {through_associations_total_count}
