@@ -7,10 +7,10 @@ class MarcPerson < Marc
     full_name = ""
     dates = nil
 
-    if node = first_occurance("100", "a")
-      if node.content
-        full_name = node.content.truncate(128)
-      end
+    # Should never be more than one
+    self["100"].each do |t|
+      name = t["a"].map {|tt| tt.content}&.first
+      full_name = ([name] + t["c"].map {|tt| tt.content}.compact).join(", ").truncate(255)
     end
     
     if node = first_occurance("100", "d")
