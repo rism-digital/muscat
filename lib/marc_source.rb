@@ -233,6 +233,9 @@ class MarcSource < Marc
     by_tags("775").each {|t| t.destroy_yourself}
     by_tags("599").each {|t| t.destroy_yourself}
 
+    #1933 Also delete links to works!
+    by_tags("931").each {|t| t.destroy_yourself}
+
   end
 
   def match_leader
