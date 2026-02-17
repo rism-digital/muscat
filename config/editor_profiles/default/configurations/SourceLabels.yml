@@ -655,7 +655,7 @@ Typography:
 Var:
   label: records.variations
 Verified:
-  label: general.verified
+  label: records.verified
 aid_best:
   label: general.rism_best_practices
 aid_dates:

@@ -352,7 +352,7 @@ Typescript:
 Typography:
   label: records.typography
 Verified:
-  label: general.verified
+  label: records.verified
 arr:
   label: records.arranger
 art:

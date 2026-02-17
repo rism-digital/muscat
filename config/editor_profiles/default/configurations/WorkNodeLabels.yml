@@ -330,7 +330,7 @@ G-5:
 Misattributed:
   label: records.misattributed
 Verified:
-  label: general.verified
+  label: records.verified
 administration:
   label: records.administration
 asn:

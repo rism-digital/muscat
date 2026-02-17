@@ -382,7 +382,7 @@ Misattributed:
 "rdau:P60313":
   label: relations_works.P60313
 Verified:
-  label: general.verified
+  label: records.verified
 administration:
   label: records.administration
 arr:
