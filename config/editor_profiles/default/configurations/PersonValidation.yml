@@ -7,6 +7,14 @@ client:
   "100":
     tags:
       "a": mandatory
+  "400":
+    tags:
+      "a":
+        required_if:
+          "400": "j"
+      "j":
+        required_if:
+          "400": "a"
   "500": 
     tags:
       "0":
@@ -27,6 +35,10 @@ client:
           "551": "0"
   "670":
     tags:
+      b:
+        required_if:
+          "670": "w"
+      "u": validate_url
       "w": required
   "856": 
     tags:
