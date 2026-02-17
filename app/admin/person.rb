@@ -88,6 +88,9 @@ ActiveAdmin.register Person do
         redirect_to admin_root_path, :flash => { :error => "#{I18n.t(:error_not_found)} (Person #{params[:id]})" }
         return
       end
+
+      @top_siglas = @person.libraries_top_sigla
+
       @editor_profile = EditorConfiguration.get_show_layout @person
       @editor_validation = EditorValidation.get_default_validation(@person)
       @prev_item, @next_item, @prev_page, @next_page, @nav_positions = Person.near_items_as_ransack(params, @person)

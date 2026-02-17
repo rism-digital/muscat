@@ -394,5 +394,39 @@ class Person < ApplicationRecord
     super.presence || self.name
   end
 
+  def libraries_top_sigla(limit: 5)
+    sql = <<~SQL
+      WITH counts AS (
+        SELECT
+          NULLIF(TRIM(s.lib_siglum), '') AS siglum_norm,
+          COUNT(*) AS cnt
+        FROM sources_to_people ps
+        JOIN sources s ON s.id = ps.source_id
+        WHERE ps.person_id = ?
+        GROUP BY NULLIF(TRIM(s.lib_siglum), '')
+      ),
+      ranked AS (
+        SELECT
+          COALESCE(siglum_norm, 'Print') AS siglum,
+          cnt,
+          ROW_NUMBER() OVER (
+            ORDER BY cnt DESC, COALESCE(siglum_norm, 'Print')
+          ) AS rn
+        FROM counts
+      )
+      SELECT siglum, cnt
+      FROM ranked
+      WHERE rn <= ?
+      ORDER BY cnt DESC, siglum
+    SQL
+
+    sanitized = ActiveRecord::Base.send(:sanitize_sql_array, [sql, self.id, limit])
+    rows = ActiveRecord::Base.connection.select_all(sanitized).to_a
+
+    rows.each_with_object({}) do |r, h|
+      h[r["siglum"]] = r["cnt"].to_i
+    end
+  end
+
 end
 
