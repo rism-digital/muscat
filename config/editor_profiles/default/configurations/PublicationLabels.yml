@@ -195,6 +195,8 @@
   fields:
     u:
       label: records.external_resource_url
+    x:
+      label: records.link_type
     z:
       label: records.note_external_resource
   label: records.external_resource
@@ -389,3 +391,7 @@ Other:
   label: records.thematic_catalog
 "Work list":
   label: records.work_list
+"IIIF manifest":
+  label: records.iiif_manifest_nothing_more
+"Online Resource":
+  label: records.online_resource

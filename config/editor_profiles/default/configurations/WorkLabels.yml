@@ -278,6 +278,8 @@
   fields:
     u:
       label: records.external_resource_url
+    x:
+      label: records.link_type
     z:
       label: records.note_external_resource
   label: records.external_resource
@@ -525,3 +527,7 @@ z:
   label: records.work_tag_incipit_replace
 "Appendix":
   label: active_admin.status_tag.yes
+"IIIF manifest":
+  label: records.iiif_manifest_nothing_more
+"Online Resource":
+  label: records.online_resource

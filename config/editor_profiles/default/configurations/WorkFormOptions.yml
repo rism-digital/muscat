@@ -687,7 +687,13 @@
     fields: 
     - - u
     - - z
-      - growfield: true
+    - - x
+      - editor_partial: subfield_select_codes
+        codes_reference: "codes"
+  tag_params:
+    codes:
+      - "Online Resource"
+      - "IIIF manifest"
 "981":
   tag_params:
     read_only: true
