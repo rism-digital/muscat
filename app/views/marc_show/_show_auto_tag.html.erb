@@ -1,5 +1,5 @@
-
 <%
+marc_configuration = MarcConfigCache.get_configuration @item.class.to_s.downcase
 parts = []
 master = tag.get_master_foreign_subfield
 relators = []
@@ -32,12 +32,12 @@ tag.for_every_child_sorted do |subfield|
     text = subfield.looked_up_content&.to_s
     #text = subfield.foreign_field&.to_s
     #text = subfield.foreign_object&.name if subfield.foreign_object.respond_to? :name
-    #text = subfield.foreign_object&.autocomplete_label if subfield.foreign_object.respond_to? :autocomplete_label
+    text = subfield.foreign_object&.autocomplete_label if subfield.foreign_object.is_a?(Place)
     next if text.blank?
 
     parts << if subfield.foreign_object && (master&.tag != subfield.tag || tag.children.count == 1)
         if !linked
-          link_to(text, [:admin, subfield.foreign_object])
+          link_to(text.strip, [:admin, subfield.foreign_object])
         else
           text
         end
@@ -60,6 +60,7 @@ tag.for_every_child_sorted do |subfield|
 end
 
 tag_content = safe_join(parts.compact, ", ")
+tag_content += tag.content if marc_configuration.is_tagless?(tag.tag)
 %>
 
 <tr class="row">
@@ -72,3 +73,4 @@ tag_content = safe_join(parts.compact, ", ")
 		<%= tag_content %>
 	</td>
 </tr>
+
