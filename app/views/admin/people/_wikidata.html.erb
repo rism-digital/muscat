@@ -1,0 +1,19 @@
+<% if @current_user.has_role?(:admin) %>
+<ul>
+  <li class="muscat_icon_separator"></li>
+  <li class="muscat_icon_link">
+  </li>
+</ul>
+
+<%= form_tag("/admin/people/new", method: "get", class: "filter_form") do %>
+  <div class="filter_form">
+      <div class="string input optional stringish filter_form_field filter_string">
+        <%= label_tag("q", I18n.t("wikidata")) %>
+        <%= text_field_tag("wikidata_id", @query) %>
+      </div>
+    <div class="buttons">
+      <%= submit_tag("Pull from Wikidata") %>
+    </div>
+  </div>
+<% end %>
+<%end%>

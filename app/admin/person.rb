@@ -121,8 +121,26 @@ ActiveAdmin.register Person do
 
     def new
       @person = Person.new
+      converted = false
 
-      new_marc = MarcPerson.new(File.read(ConfigFilePath.get_marc_editor_profile_path("#{Rails.root}/config/marc/#{RISM::MARC}/person/default.marc")))
+      if params.include?(:wikidata_id)
+        wikidata_id = params.fetch(:wikidata_id)
+        begin
+          converted = Wikidata::Connector.get_person(wikidata_id)
+        rescue Wikidata::Client::ItemNotFound => r
+          puts "#{q} not found"
+          puts r.message
+        end
+      end
+
+      if converted
+        marc_file = converted
+      else
+        marc_file = File.read(ConfigFilePath.get_marc_editor_profile_path("#{Rails.root}/config/marc/#{RISM::MARC}/person/default.marc"))
+      end
+
+      new_marc = MarcPerson.new(marc_file)
+      
       new_marc.load_source false # this will need to be fixed
       @person.marc = new_marc
 
@@ -227,6 +245,7 @@ ActiveAdmin.register Person do
 
   sidebar :actions, :only => :index do
     render :partial => "activeadmin/section_sidebar_index"
+    render partial: "wikidata"
   end
 
   # Include the folder actions

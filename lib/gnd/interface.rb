@@ -185,7 +185,7 @@ module GND
     def self.retrieve(id)
         result = nil
         #query = SRU_READ_URL + "?version=1.1&operation=searchRetrieve&recordSchema=MARC21-xml&query=idn%3D#{id}"
-        query = MAGIC_READ_URL + id + "/about/marcxml"
+        query = "#{MAGIC_READ_URL}#{id.to_s}/about/marcxml"
         query_result = URI.open(query) rescue nil
         # Load the results
         xml = Nokogiri::XML(query_result)
