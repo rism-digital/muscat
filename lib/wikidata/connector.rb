@@ -92,7 +92,7 @@ module Wikidata
         new_marc.add_tag_with_subfields("375", a: data[:gender])
       end
 
-      new_marc.add_tag_with_subfields("024", a: data[:qid], "2": "WIKIDATA")
+      new_marc.add_tag_with_subfields("024", a: data[:qid], "2": "WKP")
 
       data[:identifiers].each do |type, ids|
         next if type == "rism" #wha??
