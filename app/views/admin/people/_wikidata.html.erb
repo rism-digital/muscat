@@ -5,7 +5,7 @@
   </li>
 </ul>
 
-<%= form_tag("/admin/people/new", method: "get", class: "filter_form") do %>
+<%= form_tag("/admin/people/new_from_wikidata", method: "get", class: "filter_form") do %>
   <div class="filter_form">
       <div class="string input optional stringish filter_form_field filter_string">
         <%= label_tag("q", I18n.t("wikidata")) %>

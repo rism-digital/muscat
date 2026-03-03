@@ -123,14 +123,23 @@ ActiveAdmin.register Person do
       @person = Person.new
       converted = false
 
-      if params.include?(:wikidata_id)
-        wikidata_id = params.fetch(:wikidata_id)
-        begin
-          converted = Wikidata::Connector.get_person(wikidata_id)
-        rescue Wikidata::Client::ItemNotFound => r
-          puts "#{q} not found"
-          puts r.message
+      if params.include?(:wikidata_job)
+        wikidata_job = params.fetch(:wikidata_job)
+        
+        job_output = DelayedJobOutput.where(delayed_job_id: wikidata_job)
+
+        unless job_output.first
+          redirect_to admin_people_path, :flash => { :error => "Job crashed" }
+          return
         end
+
+        if job_output.first.status != "ok"
+          msg =  job_output.first.output
+          redirect_to admin_people_path, :flash => { :error => "Person is already in RISM: #{msg}" }
+          return
+        end
+        converted = job_output.first.output
+
       end
 
       if converted
@@ -164,6 +173,12 @@ ActiveAdmin.register Person do
   member_action :resave, method: :get do
     job = Delayed::Job.enqueue(SaveItemsJob.new(params[:id], Person, :referring_sources))
     redirect_to resource_path(params[:id]), notice: "Save Job started #{job.id}"
+  end
+
+  collection_action :new_from_wikidata, method: :get do
+    qid = params[:wikidata_id]
+    job= Delayed::Job.enqueue(WikidataFetcherJob.new(qid))
+    @jobid = job.id
   end
 
   ###########

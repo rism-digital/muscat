@@ -1,0 +1,52 @@
+<%# locals:
+    - poll_url: (string) required
+    - redirect_url: (string) optional
+    - poll_interval_ms: (integer) optional, default 1000
+    - title: (string)
+%>
+<% poll_interval_ms ||= 1000 %>
+<% title || "Please wait while loading…"%>
+
+<div
+  class="job-wait"
+  data-job-wait
+  data-poll-url="<%= poll_url %>"
+  data-redirect-url="<%= redirect_url %>"
+  data-poll-interval-ms="<%= poll_interval_ms %>"
+>
+  <div class="job-wait__card">
+    <div class="job-wait__title"><%= title %></div>
+
+    <div class="job-wait__barber" aria-hidden="true"></div>
+
+    <div class="job-wait__meta">
+      <span class="job-wait__status" data-job-wait-status>Starting…</span>
+      <span class="job-wait__percent" data-job-wait-percent></span>
+    </div>
+
+    <div class="job-wait__error" data-job-wait-error style="display:none;"></div>
+  </div>
+</div>
+
+<style>
+  .job-wait { max-width: 520px; margin: 24px auto; padding: 0 12px; }
+  .job-wait__card { border: 1px solid #ddd; border-radius: 10px; padding: 16px; background: #fff; }
+  .job-wait__title { font-size: 16px; font-weight: 600; margin-bottom: 12px; }
+  .job-wait__meta { margin-top: 10px; font-size: 13px; color: #444; }
+  .job-wait__percent { margin-left: 8px; }
+  .job-wait__error { margin-top: 12px; color: #b00020; font-size: 13px; }
+
+  .job-wait__barber {
+    width: 64px;
+    height: 64px;
+    margin: 40px auto;
+    border-radius: 50%;
+    border: 6px solid #e5e5e5;   /* light grey ring */
+    border-top: 6px solid #9e9e9e; /* darker grey segment */
+    animation: job-wait-spin 0.8s linear infinite;
+  }
+
+  @keyframes job-wait-spin {
+    to { transform: rotate(360deg); }
+  }
+</style>

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.2].define(version: 2025_12_04_085324) do
+ActiveRecord::Schema[7.2].define(version: 2026_03_03_085242) do
   create_table "active_admin_comments", id: :integer, charset: "utf8mb3", force: :cascade do |t|
     t.string "namespace"
     t.text "body"
@@ -32,6 +32,15 @@ ActiveRecord::Schema[7.2].define(version: 2025_12_04_085324) do
     t.boolean "active"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "delayed_job_outputs", charset: "utf8mb3", force: :cascade do |t|
+    t.integer "delayed_job_id", null: false
+    t.text "output"
+    t.string "status"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["delayed_job_id"], name: "index_delayed_job_outputs_on_delayed_job_id"
   end
 
   create_table "delayed_jobs", id: :integer, charset: "utf8mb3", force: :cascade do |t|
@@ -407,21 +416,21 @@ ActiveRecord::Schema[7.2].define(version: 2025_12_04_085324) do
     t.index ["wf_stage"], name: "index_places_on_wf_stage"
   end
 
-  create_table "places_to_institutions", charset: "utf8mb3", force: :cascade do |t|
+  create_table "places_to_institutions", charset: "utf8mb4", collation: "utf8mb4_unicode_ci", force: :cascade do |t|
     t.integer "place_id"
     t.integer "institution_id"
     t.string "marc_tag"
     t.string "relator_code"
   end
 
-  create_table "places_to_places", charset: "utf8mb3", force: :cascade do |t|
+  create_table "places_to_places", charset: "utf8mb4", collation: "utf8mb4_unicode_ci", force: :cascade do |t|
     t.integer "place_a_id"
     t.integer "place_b_id"
     t.string "marc_tag"
     t.string "relator_code"
   end
 
-  create_table "places_to_publications", charset: "utf8mb3", force: :cascade do |t|
+  create_table "places_to_publications", charset: "utf8mb4", collation: "utf8mb4_unicode_ci", force: :cascade do |t|
     t.integer "place_id"
     t.integer "publication_id"
     t.string "marc_tag"
