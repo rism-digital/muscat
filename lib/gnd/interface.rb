@@ -407,8 +407,8 @@ module GND
 
     def self.autocomplete_form(term, limit, options)
         result = []
-        xml = self.query(term, "WOE", "Ts", "saz", 500)
-        
+        xml = self.query(term + "*", "WOE", "Ts", "saz", 500)
+
         # Loop on each record in the result list
         xml.xpath("//marc:record", NAMESPACE).each do |record|
             item = {}

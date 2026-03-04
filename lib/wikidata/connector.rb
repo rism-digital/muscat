@@ -61,17 +61,9 @@ module Wikidata
       # Make sure this person does not already exist in Muscat
       if data.dig(:identifiers, "rism").present?
         id = data[:identifiers]["rism"]&.first&.gsub("people/", "")
-
-        p = nil
-        begin
-          p = Person.find(id)
-        rescue ActiveRecord::RecordNotFound
-        end
-
-        if p
-          #raise RecordInRISM
-        end
-
+        pres = Person.where(id: id)
+        p = pres.first
+        raise(RecordInRISM, "#{p.full_name} (#{p.id})") if p
       end
 
       new_marc = MarcPerson.new(File.read(ConfigFilePath.get_marc_editor_profile_path("#{Rails.root}/config/marc/#{RISM::MARC}/person/default.marc")))
