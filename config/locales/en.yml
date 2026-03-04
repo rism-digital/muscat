@@ -578,6 +578,7 @@ en:
     not_set: "[No status set]"
     ok: Job ended successfully
     running_jobs: Running Jobs Cannot be Deleted.
+    waiting: "Waiting for job to start…"
   lib_siglum: Library Siglum
   library:
     one: library
@@ -896,3 +897,10 @@ en:
   worknode:
     one: work node
     other: work nodes
+  wikidata:
+    new: "Create new from Wikidata record"
+    wait: "Requesting data from Wikidata, please wait…"
+    RecordInRISM: "Person already present: %{msg}"
+    InvalidQid: "Invalid Wikidata Q-id: %{msg}"
+    ItemNotFound: "Wikidata Q-id not found: %{msg}"
+    ConnectionError: "Error connecting to Wikidata: %{msg}"

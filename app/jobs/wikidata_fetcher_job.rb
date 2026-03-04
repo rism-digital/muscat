@@ -5,18 +5,27 @@ class WikidataFetcherJob < ProgressJob::Base
   end
 
   def perform
+    message = 'succeeded'
     update_progress_max(100)
     update_stage_progress("Fetching #{@qid} from Wikidata", step: 10)
 
     begin
       output = Wikidata::Connector.get_person(@qid)
       status = "ok"
-    rescue Wikidata::Connector::RecordInRISM => e
+    rescue Wikidata::Connector::RecordInRISM,
+          Wikidata::Client::InvalidQid,
+          Wikidata::Client::ConnectionError,
+          Wikidata::Client::ItemNotFound => e
+
       output = e.message
-      status = "RecordInRISM"
+      status = e.class.name.demodulize
+      message = 'error'
     end
     
     update_stage_progress('Data fetched', step: 80)
+
+    # Delete the old ones too
+    DelayedJobOutput.where("created_at < ?", 6.hours.ago).delete_all
 
     DelayedJobOutput.create!(
       delayed_job_id: @job.id,
@@ -25,7 +34,7 @@ class WikidataFetcherJob < ProgressJob::Base
     )
     
     # 'succeeded' signals the backed it can go on
-    update_stage_progress('succeeded', step: 10)
+    update_stage_progress(message, step: 10)
 
     # Give time to the fronted to stop
     sleep(5)

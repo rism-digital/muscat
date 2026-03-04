@@ -134,8 +134,9 @@ ActiveAdmin.register Person do
         end
 
         if job_output.first.status != "ok"
-          msg =  job_output.first.output
-          redirect_to admin_people_path, :flash => { :error => "Person is already in RISM: #{msg}" }
+          msg = job_output.first.output
+          status = job_output.first.status
+          redirect_to admin_people_path, :flash => { :error => I18n.t("wikidata." + status, msg: msg) }
           return
         end
         converted = job_output.first.output

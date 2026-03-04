@@ -11,6 +11,8 @@ require "uri"
 module Wikidata
   class Client
     class ItemNotFound < StandardError; end
+    class InvalidQid < StandardError; end
+    class ConnectionError < StandardError; end
 
     BASE_URL  = "https://www.wikidata.org/w/rest.php/wikibase/v1/entities/items".freeze
     USER_AGENT = "rism-digital (info@rism.digital)".freeze
@@ -35,8 +37,13 @@ module Wikidata
       req["User-Agent"] = USER_AGENT
 
       res = http.request(req)
+
+      if res.is_a?(Net::HTTPNotFound)
+        raise ItemNotFound, qid
+      end
+
       unless res.is_a?(Net::HTTPSuccess)
-        raise ItemNotFound, "Wikidata request failed (#{qid}): HTTP #{res.code} #{res.message}"
+        raise ConnectionError, "HTTP #{res.code} #{res.message} (#{qid})"
       end
 
       JSON.parse(res.body)
@@ -45,7 +52,7 @@ module Wikidata
     private
 
     def validate_qid!(qid)
-      raise ArgumentError, "qid must look like Q123" unless qid.to_s.match?(/\AQ\d+\z/)
+      raise InvalidQid, qid unless qid.to_s.match?(/\AQ\d+\z/)
     end
   end
 end

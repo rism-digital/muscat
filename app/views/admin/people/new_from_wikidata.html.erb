@@ -2,5 +2,5 @@
   poll_url: "/progress-job/#{@jobid}",
   redirect_url: new_admin_person_path(wikidata_job: @jobid),
   poll_interval_ms: 1000,
-  title: "Requesting data from Wikidata, please wait..."
+  title: I18n.t("wikidata.wait")
 %>

@@ -25,7 +25,13 @@
     </div>
 
     <div class="job-wait__error" data-job-wait-error style="display:none;"></div>
+    <div class="buttons" data-job-wait-actions style="display:none; margin-top: 12px;">
+      <button type="button" class="job-wait__back" data-job-wait-back>
+        Back
+      </button>
+    </div>
   </div>
+
 </div>
 
 <style>
@@ -49,4 +55,20 @@
   @keyframes job-wait-spin {
     to { transform: rotate(360deg); }
   }
+
+  /* stop animation */
+  .job-wait__barber.stopped {
+    animation: none;
+  }
+  /* error state */
+  .job-wait__barber.error {
+    border: 6px solid #f3d6d6;
+    border-top: 6px solid #c62828;
+  }
+  /* success state */
+  .job-wait__barber.ok {
+    border: 6px solid #d6f3dc;
+    border-top: 6px solid #2e7d32;
+  }
+
 </style>
