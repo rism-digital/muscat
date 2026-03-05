@@ -326,6 +326,9 @@ class Person < ApplicationRecord
     # varia
     self.gender, self.birth_place, self.source = marc.get_gender_birth_place_and_source
 
+    # Wikidata id, to avoid duplicates
+    self.wikidata_id = marc.get_wikidata_id
+
     self.marc_source = self.marc.to_marc
   end
   

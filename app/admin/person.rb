@@ -178,6 +178,22 @@ ActiveAdmin.register Person do
 
   collection_action :new_from_wikidata, method: :get do
     qid = params[:wikidata_id]
+
+    # Do some sanity checks
+    # Is the QID well formed?
+    unless qid.to_s.match?(/\AQ\d+\z/)
+      redirect_to admin_people_path, :flash => { :error => I18n.t("wikidata.InvalidQid", msg: qid)}
+      return
+    end 
+    
+    # Do we alreay dave it in Muscat?
+    ps = Person.where(wikidata_id: qid)
+    if ps.count > 0
+      redirect_to admin_people_path, :flash => { :error => I18n.t("wikidata.qid_exists", qid: qid, person: "#{ps.first.full_name.to_s} (#{ps.first.id})") }
+      return
+    end
+
+    # Ok onto the job!
     job= Delayed::Job.enqueue(WikidataFetcherJob.new(qid))
     @jobid = job.id
   end

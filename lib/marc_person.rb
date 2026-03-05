@@ -68,7 +68,15 @@ class MarcPerson < Marc
     [gender, birth_place&.strip, source&.strip]
   end
 
-  
+  def get_wikidata_id
+    self["024"].each do |t|
+      if t["2"]&.first&.content == "WKP"
+        return t["a"]&.first&.content
+      end
+    end
+    nil
+  end
+
   def to_external(created_at = nil, updated_at = nil, versions = nil, holdings = false, deprecated_ids = true)
     super(created_at, updated_at, versions)
     
