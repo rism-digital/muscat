@@ -210,8 +210,8 @@ force_editor_ordering: true
     - - n
     - - p
     - - r
-      - editor_partial: subfield_select_codes
-        codes_reference: "130r"
+    #  - editor_partial: subfield_select_codes
+    #    codes_reference: "130r"
   tag_params:
       130r:
       - "A"

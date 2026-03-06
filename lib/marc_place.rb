@@ -25,7 +25,7 @@ class MarcPlace < Marc
         return t["a"]&.first&.content&.to_s
       end
     end
-    ""
+    nil
   end
   
   def get_hierarchy
@@ -33,6 +33,12 @@ class MarcPlace < Marc
       tt = t["f"].first
       tt.content if tt && tt.content && !tt.content.empty?
     end.compact.join(", ")
+  end
+
+  def get_alternate_terms
+    self["451"].map do |t|
+      t["a"].map {|tt| tt&.content}
+    end.flatten.compact.join("\n")
   end
 
   def to_external(created_at = nil, updated_at = nil, versions = nil, holdings = false, deprecated_ids = true)

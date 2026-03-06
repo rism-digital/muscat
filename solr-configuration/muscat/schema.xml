@@ -136,7 +136,7 @@
         <!-- index fields to sort alphanumerically. Useful for things like shelfmarks and folio numbers -->
         <dynamicField name="*_shelforder_s" type="text_alphanumeric_sort" indexed="true" stored="false" multiValued="false"/>
         <dynamicField name="*_ans_s" type="text_alphanumeric_sort" indexed="true" stored="false" multiValued="false"/>
-        <dynamicField name="*_autocomplete" type="autocomplete_text" indexed="true" stored="false" multiValued="false"/>
+        <dynamicField name="*_autocomplete" type="autocomplete_text" indexed="true" stored="false" multiValued="true"/>
 
         <!-- END ADDED BY RZ FOR MUSCAT -->
     </fields>

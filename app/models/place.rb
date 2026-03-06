@@ -202,12 +202,14 @@ class Place < ApplicationRecord
     end
     sunspot_dsl.text :district
 
-    sunspot_dsl.string :name_autocomplete, :as => "name_autocomplete" do
-      name
+    sunspot_dsl.string :name_autocomplete, :multiple => true, :as => "name_autocomplete" do
+      (alternate_terms.split("\n") << name).compact.reject(&:empty?)
     end
 
     sunspot_dsl.string :label, stored: true do
-      [name, district, country].compact.join(", ")
+      #tgn = tgn_id.present? : "(tgn#{tgn_id})" ? nil
+      #[name, district, country, tgn].compact.join(", ")
+      autocomplete_label
     end
 
     sunspot_dsl.join(:folder_id, :target => FolderItem, :type => :integer, 
@@ -221,7 +223,7 @@ class Place < ApplicationRecord
 
   end
 
-    def set_object_fields
+  def set_object_fields
     # This is called always after we tried to add MARC
     # if it was suppressed we do not update it as it
     # will be nil
@@ -240,12 +242,17 @@ class Place < ApplicationRecord
     self.district = marc.get_place_district
     self.tgn_id = marc.get_tgn_id
     self.hierarchy = marc.get_hierarchy
+    self.alternate_terms = marc.get_alternate_terms
       
     self.marc_source = self.marc.to_marc
   end
 
   def autocomplete_label
-    [self.name&.strip, self.district&.strip, self.country&.strip].compact.reject(&:empty?).join(", ")
+    tgn = self.tgn_id.present? ? "(tgn#{tgn_id})" : nil
+    alt_places = alternate_terms.split("\n").compact.reject(&:empty?).first(4).join(", ")
+    alternates = alt_places.empty? ? nil : "[#{alt_places}]"
+    names = [self.name&.strip, self.district&.strip, self.country&.strip].compact.reject(&:empty?).join(", ")
+    [names, tgn, alternates].join(" ")
   end
 
   # https://github.com/activeadmin/activeadmin/issues/7809
