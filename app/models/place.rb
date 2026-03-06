@@ -249,8 +249,13 @@ class Place < ApplicationRecord
 
   def autocomplete_label
     tgn = self.tgn_id.present? ? "(tgn#{tgn_id})" : nil
-    alt_places = alternate_terms.split("\n").compact.reject(&:empty?).first(4).join(", ")
-    alternates = alt_places.empty? ? nil : "[#{alt_places}]"
+
+    alts = alternate_terms.to_s.split("\n").reject(&:empty?)
+    alt_places = alts.first(4)
+    alt_places << … if alts.size > 4 # We are fancy and use … instead of ...!
+
+    alternates = alt_places.empty? ? nil : "[#{alt_places.join(', ')}]"
+
     names = [self.name&.strip, self.district&.strip, self.country&.strip].compact.reject(&:empty?).join(", ")
     [names, tgn, alternates].join(" ")
   end
