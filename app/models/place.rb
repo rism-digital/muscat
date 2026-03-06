@@ -252,7 +252,7 @@ class Place < ApplicationRecord
 
     alts = alternate_terms.to_s.split("\n").reject(&:empty?)
     alt_places = alts.first(4)
-    alt_places << … if alts.size > 4 # We are fancy and use … instead of ...!
+    alt_places << "…" if alts.size > 4 # We are fancy and use … instead of ...!
 
     alternates = alt_places.empty? ? nil : "[#{alt_places.join(', ')}]"
 
