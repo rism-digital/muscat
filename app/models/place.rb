@@ -260,6 +260,14 @@ class Place < ApplicationRecord
     [names, tgn, alternates].join(" ")
   end
 
+  def formatted_label_for(property_sym)
+    if property_sym == :name
+      autocomplete_label
+    else
+      self[property_sym]
+    end
+  end
+
   # https://github.com/activeadmin/activeadmin/issues/7809
   # In Non-marc models we can use the default
   def self.ransackable_associations(_) = reflections.keys

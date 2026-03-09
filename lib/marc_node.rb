@@ -461,7 +461,14 @@ class MarcNode
   # but from the corresponding class
   def looked_up_content
     if @foreign_object and @foreign_field
-      value = @foreign_object.[](@foreign_field.intern)
+      # old
+      #value = @foreign_object.[](@foreign_field.intern)
+      # new
+      value = if @foreign_object&.respond_to?(:formatted_label_for)
+        @foreign_object.formatted_label_for(@foreign_field.to_sym)
+      else
+        @foreign_object&.[](@foreign_field.to_sym)
+      end
       
       # For PSMD. If the foreign_filed contains a dot "."
       # it means it is a relation that has to be resolved.
