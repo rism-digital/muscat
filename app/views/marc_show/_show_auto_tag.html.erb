@@ -1,5 +1,5 @@
 <%
-marc_configuration = MarcConfigCache.get_configuration @item.class.to_s.downcase
+marc_configuration = MarcConfigCache.get_configuration @item.class.to_s.underscore
 parts = []
 master = tag.get_master_foreign_subfield
 relators = []
