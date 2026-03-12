@@ -99,18 +99,7 @@ class MarcNode
             dep_field = @marc_configuration.get_foreign_field(self.tag, dep)
             dep_tag = fetch_first_by_tag(dep)
             value = (master.foreign_object ? master.foreign_object.[](dep_field.intern) : nil)
-            
-            # For PSMD. If the foreign_fields contains a dot "."
-            # It means we are following a relatio, eg
-            # work.person.full_name. In this case call all the
-            # methods to get the data. It is the same as in
-            # looked_up_content.
-            if master.foreign_object && dep_field.match(/\./)
-              fields = dep_field.split('.')
-              value = master.foreign_object.send(fields[0])
-              (1..fields.count - 1).each {|n| value = value.send(fields[n]) }
-            end
-            
+                        
             if !dep_tag
               # the tag is missing in the source
               dep_tag = add(MarcNode.new(@model, dep, value, nil)) unless value.nil? or value.empty?
@@ -472,16 +461,7 @@ class MarcNode
       else
         @foreign_object&.[](@foreign_field.to_sym)
       end
-      
-      # For PSMD. If the foreign_filed contains a dot "."
-      # it means it is a relation that has to be resolved.
-      # work.person.full_name. See resolve_externals above.
-      if @foreign_field.match(/\./)
-        fields = @foreign_field.split('.')
-        value = @foreign_object.send(fields[0])
-        (1..fields.count - 1).each {|n| value = value.send(fields[n])}
-      end
-      
+            
       return value
     else
       return @content
@@ -513,11 +493,12 @@ class MarcNode
             ind1 = indicator[1,1]
           end
       		out += "=#{@tag}  #{ind0}#{ind1}"
-      		@children.each { |child| out += child.to_marc() }
+      		@children.each { |child| out += child.to_marc }
+          out += "$#{Marc::IMPORTED_MARKER}" if @imported
       		out += "\r\n"
         end
       else
-        @children.each { |child| out += child.to_marc() }       
+        @children.each { |child| out += child.to_marc }       
       end
     end
 
