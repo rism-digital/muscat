@@ -300,6 +300,23 @@ class Institution < ApplicationRecord
       (i.siglum && !i.siglum.empty?) == true
     end
 
+    sunspot_dsl.text :museum_not_museum do |i|
+      editor_profile = EditorConfiguration.get_default_layout Institution
+      cfg = editor_profile.labels_config
+      
+      vals = i.marc["368"].map {|t| t["a"].map {|help| help&.content}.compact}.flatten.compact
+      next if vals.empty?
+
+      res = vals.map do |val|
+        next nil if !cfg.include?(val)
+
+        I18n.available_locales.filter_map do |locale|
+          I18n.t(cfg[val][:label], locale: locale, default: nil)
+        end.compact.join(" ").strip
+      end.join(" ").strip
+      res
+    end
+
     MarcIndex::attach_marc_index(sunspot_dsl, self.to_s.downcase)
     
   end
