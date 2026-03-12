@@ -206,6 +206,8 @@ g-2:
       label: gnd.instrument_singular
     n:
       label: gnd.count_anzahl
+    p:
+      label: gnd.alternative_besetzung
     s:
       label: gnd.total_number_performers
     t:
