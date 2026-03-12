@@ -5,6 +5,21 @@
     return;
   }
 
+  function debounce(fn, wait) {
+    var timeout;
+
+    return function() {
+      clearTimeout(timeout);
+      timeout = setTimeout(fn, wait);
+    };
+  }
+
+  function observeAttributeTables() {
+    $(window).on("resize", debounce(function() {
+      renderAll(document);
+    }, 500));
+  }
+
   function buildPae($element) {
     var clef = $element.data("clef") || "";
     var keysig = $element.data("keysig") || "";
@@ -26,7 +41,7 @@
 
     var $table = $element.parents("." + parent_class).first();
     if ($table.length) {
-      return Math.max($table.width() - 250, 100);
+      return Math.max($table.width() - 140, 100);
     }
 
     return Math.max($element.width(), 100);
@@ -34,15 +49,16 @@
 
   function renderElement(element) {
     var $element = $(element);
+    var width = renderWidth($element);
+    var lastWidth = parseInt($element.data("lastRenderedWidth") || "", 10);
 
-    if ($element.data("music-rendered")) {
+    if ($element.data("musicRendered") === true && lastWidth === width) {
       return;
     }
 
     var type = $element.data("render-type");
     var source;
-    var width = renderWidth($element);
-console.log(width)
+
     if (type === "mei") {
       source = $element.data("render-source");
     } else if (type === "pae") {
@@ -55,8 +71,10 @@ console.log(width)
       return;
     }
 
-    window.render_music(source, type, $element, width);
-    $element.data("music-rendered", true);
+    window.render_music(source, type, element, width);
+
+    $element.data("musicRendered", true);
+    $element.data("lastRenderedWidth", width);
   }
 
   function renderAll(context) {
@@ -82,12 +100,14 @@ console.log(width)
   function boot() {
     bindToggle();
     renderAll(document);
+    observeAttributeTables();
   }
 
   $(document).ready(boot);
 
   $(document).on("turbolinks:load", function() {
     renderAll(document);
+    observeAttributeTables();
   });
 
 })(window, document, window.jQuery);

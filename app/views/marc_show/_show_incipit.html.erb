@@ -1,114 +1,116 @@
 <%-
-	random_string = SecureRandom.hex
+  random_string = SecureRandom.hex
 
-	number_a = tag.fetch_first_by_tag('a')
-	number_b = tag.fetch_first_by_tag('b')	
-	number_c = tag.fetch_first_by_tag('c')	
+  number_a = tag.fetch_first_by_tag("a")
+  number_b = tag.fetch_first_by_tag("b")
+  number_c = tag.fetch_first_by_tag("c")
 
-	tag_g = tag.fetch_first_by_tag(:g)
-	clef = (tag_g && tag_g.content) ? tag_g.content.html_safe : ""
-	
-	tag_r = tag.fetch_first_by_tag(:r)
-	key_or_mode = (tag_r && tag_r.content) ? tag_r.content.html_safe : ""
+  tag_g = tag.fetch_first_by_tag(:g)
+  clef = (tag_g && tag_g.content) ? tag_g.content : ""
 
-	tag_n = tag.fetch_first_by_tag(:n)
-	key = (tag_n && tag_n.content) ? tag_n.content.html_safe : ""
+  tag_r = tag.fetch_first_by_tag(:r)
+  key_or_mode = (tag_r && tag_r.content) ? tag_r.content : ""
 
-	tag_o = tag.fetch_first_by_tag(:o)
-	time = (tag_o && tag_o.content) ? tag_o.content.html_safe : ""
+  tag_n = tag.fetch_first_by_tag(:n)
+  key = (tag_n && tag_n.content) ? tag_n.content : ""
 
-	tag_p = tag.fetch_first_by_tag(:p)
-	notation = (tag_p && tag_p.content) ? tag_p.content.html_safe : ""
+  tag_o = tag.fetch_first_by_tag(:o)
+  time = (tag_o && tag_o.content) ? tag_o.content : ""
 
-	last_tag = ""
-	skip = ["a", "b", "c", "g", "n", "o", "p"]	
+  tag_p = tag.fetch_first_by_tag(:p)
+  notation = (tag_p && tag_p.content) ? tag_p.content : ""
 
-	## ! for testing, reatime rendering with verovio
-	 incipit_number = "#{(number_a ? number_a.content : "x")}.#{(number_b ? number_b.content : "x")}.#{(number_c ? number_c.content : "x")}"
-	 	 incipit_number_for_id = "#{(number_a ? number_a.content : "x")}#{(number_b ? number_b.content : "x")}#{(number_c ? number_c.content : "x")}"
-	 image_render_div = "incipit_#{incipit_number_for_id}#{@item.id}"
+  last_tag = ""
+  skip = ["a", "b", "c", "g", "n", "o", "p"]
 
-	 mei_incipit = nil
-%>
+  incipit_number = "#{(number_a ? number_a.content : "x")}.#{(number_b ? number_b.content : "x")}.#{(number_c ? number_c.content : "x")}"
+  incipit_number_for_id = "#{(number_a ? number_a.content : "x")}#{(number_b ? number_b.content : "x")}#{(number_c ? number_c.content : "x")}"
+  image_render_div = "incipit_#{incipit_number_for_id}#{@item.id}"
+
+  mei_incipit = nil
+-%>
 
 <tr class="row">
-	<th><%= @editor_profile.get_sub_label(tag.tag, "a") %></th>
-	<td><%= incipit_number %></td>
+  <th><%= @editor_profile.get_sub_label(tag.tag, "a") %></th>
+  <td><%= incipit_number %></td>
 </tr>
 
 <% tag.children do |subfield| -%>
-	<% next if (skip.include?(subfield.tag) || !@item.marc.config.show_in_browse?(tag.tag, subfield.tag)) -%>
-	<%= render :partial => "marc/show_subfield", :locals => { :tag => tag, :subfield => subfield, 
-		:no_label => (last_tag == tag.tag + subfield.tag) } %>
-	<%- last_tag = tag.tag + subfield.tag %>
+  <% next if skip.include?(subfield.tag) || !@item.marc.config.show_in_browse?(tag.tag, subfield.tag) -%>
+  <%= render partial: "marc/show_subfield", locals: {
+    tag: tag,
+    subfield: subfield,
+    no_label: (last_tag == tag.tag + subfield.tag)
+  } %>
+  <%- last_tag = tag.tag + subfield.tag %>
 <% end -%>
 
-<% label = [:g, :r, :n, :o, :p].collect {|s|
-		subfield = tag.fetch_first_by_tag(s)
-		value = !subfield ? I18n.t(:not_set) : subfield.content
-		"<b>#{@editor_profile.get_sub_label(tag.tag, s)}</b>: #{value}".html_safe
-	}.join("<br>".html_safe)
+<%
+  label = [:g, :r, :n, :o, :p].collect { |s|
+    subfield = tag.fetch_first_by_tag(s)
+    value = !subfield ? I18n.t(:not_set) : subfield.content
+    "<b>#{@editor_profile.get_sub_label(tag.tag, s)}</b>: #{ERB::Util.h(value)}".html_safe
+  }.join("<br>".html_safe)
 %>
 
-<% 
-	if @item.respond_to? :digital_objects
-		# Loop through the digital objects to see if we have a MEI incipit
-		# MEI incipits have the priority over normal ones 
-		mei_incipit = nil
-		@item.digital_objects.incipits.each do |obj|
-			mei_incipit = obj.attachment.url if obj.match_pae_nr?(incipit_number)
-		end
-	end 
+<%
+  if @item.respond_to?(:digital_objects)
+    @item.digital_objects.incipits.each do |obj|
+      mei_incipit = obj.attachment.url if obj.match_pae_nr?(incipit_number)
+    end
+  end
 %>
 
-<% if mei_incipit %>
-	<tr class="row">
-	<td></td>
-		<td>
-			<%= link_to "Download MEI File", mei_incipit.html_safe%>
-			<div id="<%= image_render_div %>"><%=I18n.t(:loading)%>. <img src="/images/spinner_small.gif" /></div>
-		</td>
-	<tr>
-	<script type="text/javascript">
-		render_music("<%=mei_incipit%>", "mei", $("#" + "<%=image_render_div%>"), $("#" + "<%=image_render_div%>").width());
-	</script>
+<% if mei_incipit.present? %>
+  <tr class="row">
+    <td></td>
+    <td>
+      <%= link_to "Download MEI File", mei_incipit %>
+      <div
+        id="<%= image_render_div %>"
+        class="js-music-render"
+        data-render-music="true"
+        data-render-type="mei"
+        data-render-source="<%= mei_incipit %>"
+        data-width-parent="attributes_table">
+        <%= I18n.t(:loading) %>. <img src="/images/spinner_small.gif" />
+      </div>
+    </td>
+  </tr>
 <% else %>
-	<%	if (tag_p && tag_p.content ) || (tag_g && tag_g.content ) || (tag_n && tag_n.content ) || (tag_o && tag_o.content ) %>
-	<tr class="row">
-		<td></td>
-		<td>
-			<a onclick="javascript:show_hide_pae('<%=random_string%>');">PAE Code</a>
+  <% if tag_p&.content.present? || tag_g&.content.present? || tag_n&.content.present? || tag_o&.content.present? %>
+    <tr class="row">
+      <td></td>
+      <td>
+        <a href="#"
+           class="js-toggle-pae"
+           data-toggle-target="<%= random_string %>">
+          PAE Code
+        </a>
 
-				<div class="icon-button">
-					<span class="icon-copy copy_to_clipboard" data-clipboard-text="<%= notation %>"></span>
-					<span id="clipboard-message" class="clipboard-message status_tag ok"><%= I18n.t(:notation_copied)%></>
-				</div>
+        <div class="icon-button">
+          <span class="icon-copy copy_to_clipboard" data-clipboard-text="<%= notation %>"></span>
+          <span class="clipboard-message status_tag ok"><%= I18n.t(:notation_copied) %></span>
+        </div>
 
-			<span id="<%= random_string %>"  style="display:none"><%= label.html_safe %></span></p>
-			<div id="<%= image_render_div %>"><img src="/images/spinner_small.gif" />&nbsp;<%=I18n.t(:engraving_incipit)%></div>
-		</td>
-	<tr>
+        <div id="<%= random_string %>" class="pae-details" style="display:none">
+          <%= label %>
+        </div>
 
-
-	<script type="text/javascript">
-
-		var pae = "@clef:<%= clef %>\n";
-		pae = pae + "@keysig:<%= key %>\n";
-		pae = pae + "@key:<%= key_or_mode %>\n";
-		pae = pae + "@timesig:<%= time %>\n";
-		pae = pae + "@data: <%= notation %>";
-		render_music(pae, 'pae', $("#" + "<%=image_render_div%>"), $("#" + "<%=image_render_div%>").width());
-
-		function show_hide_pae(id) {
-			row = $("#" + id)
-			if (row.is(":hidden")) {
-				row.show();
-			} else {
-				row.hide();
-			}
-		}
-
-	</script>
-		
-	<% end -%>
+        <div
+          id="<%= image_render_div %>"
+          class="js-music-render"
+          data-render-music="true"
+          data-render-type="pae"
+          data-clef="<%= clef %>"
+          data-keysig="<%= key %>"
+          data-key="<%= key_or_mode %>"
+          data-timesig="<%= time %>"
+          data-notation="<%= notation %>"
+          data-width-parent="attributes_table">
+          <img src="/images/spinner_small.gif" />&nbsp;<%= I18n.t(:engraving_incipit) %>
+        </div>
+      </td>
+    </tr>
+  <% end -%>
 <% end %>
