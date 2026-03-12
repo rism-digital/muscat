@@ -5,7 +5,7 @@ class MarcNode
   include Enumerable
   attr_reader :tag, :content, :raw_content, :indicator, :foreign_object, :parent, :diff, :diff_is_deleted, :model
   attr_writer :tag, :content, :indicator, :foreign_object, :foreign_field, :diff, :diff_is_deleted
-  attr_accessor :foreign_host, :suppress_scaffold_links_trigger
+  attr_accessor :foreign_host, :suppress_scaffold_links_trigger, :imported
   
   def initialize(model, tag = nil, content = nil, indicator = nil)
     @tag = tag
@@ -30,6 +30,9 @@ class MarcNode
     # In some case it is useful to try again using other fields, so this global
     # variable can be set to FALSE (remember, default is true!).
     @force_marc_creation = defined?(:MARC_FORCE_CREATION) ? $MARC_FORCE_CREATION : true
+
+    # Read-only non touchable tags
+    @imported = false
   end
   
   def suppress_scaffold_links
@@ -486,10 +489,9 @@ class MarcNode
   end
   
   # Export to text Marc format
-  def to_marc(no_db_id = false)
+  def to_marc()
     out = String.new
-    # skip the $_ tags (db_id)
-    #return "" if tag == "_" and no_db_id
+
     value = looked_up_content # if looked_up_content
     if @tag =~ /^[\d\w]$/
       # subfield
@@ -511,12 +513,11 @@ class MarcNode
             ind1 = indicator[1,1]
           end
       		out += "=#{@tag}  #{ind0}#{ind1}"
-          #for_every_child_sorted { |child| out += child.to_marc(no_db_id) }
-      		@children.each { |child| out += child.to_marc(no_db_id) }
+      		@children.each { |child| out += child.to_marc() }
       		out += "\r\n"
         end
       else
-        @children.each { |child| out += child.to_marc(no_db_id) }       
+        @children.each { |child| out += child.to_marc() }       
       end
     end
 
