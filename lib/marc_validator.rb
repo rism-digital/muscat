@@ -333,7 +333,7 @@ using AggressivelyStrip
       add_error("template-harmony", nil, "Wrong parent template: LEC can only link to LED", "parent_template_error_LEC-LED")
     end
 
-        if @object.record_type == MarcSource::RECORD_TYPES[:theoretica_edition_content] && @object.parent_source.record_type != MarcSource::RECORD_TYPES[:theoretica_edition]
+    if @object.record_type == MarcSource::RECORD_TYPES[:theoretica_edition_content] && @object.parent_source.record_type != MarcSource::RECORD_TYPES[:theoretica_edition]
       add_error("template-harmony", nil, "Wrong parent template: TEC can only link to TED", "parent_template_error_TEC-TED")
     end
 
@@ -347,12 +347,14 @@ using AggressivelyStrip
       add_error("template-harmony", nil, "Wrong parent template: MSR can only link to COL or CMP", "parent_template_error_MSR-COL-CMP")
     end
     
-    if @object.record_type == MarcSource::RECORD_TYPES[:libretto_source] && @object.parent_source.record_type != MarcSource::RECORD_TYPES[:collection]
-      add_error("template-harmony", nil, "Wrong parent template: LSR can only link to COL", "parent_template_error_LSR-COL")
+    if @object.record_type == MarcSource::RECORD_TYPES[:libretto_source] &&
+        ![MarcSource::RECORD_TYPES[:collection], MarcSource::RECORD_TYPES[:composite_volume] ].include?(@object.parent_source&.record_type)
+      add_error("template-harmony", nil, "Wrong parent template: LSR can only link to COL or CMP", "parent_template_error_LSR-COL")
     end
 
-    if @object.record_type == MarcSource::RECORD_TYPES[:theoretica_source] && @object.parent_source.record_type != MarcSource::RECORD_TYPES[:collection]
-      add_error("template-harmony", nil, "Wrong parent template: TSR can only link to COL", "parent_template_error_TSR-COL")
+    if @object.record_type == MarcSource::RECORD_TYPES[:theoretica_source] &&
+        ![MarcSource::RECORD_TYPES[:collection], MarcSource::RECORD_TYPES[:composite_volume] ].include?(@object.parent_source&.record_type)
+      add_error("template-harmony", nil, "Wrong parent template: TSR can only link to COL or CMP", "parent_template_error_TSR-COL")
     end
 
   end
