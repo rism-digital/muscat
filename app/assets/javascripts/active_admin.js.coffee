@@ -116,3 +116,5 @@
 #= require jquery.highlight-within-textarea
 #= require inventory_item_sort_ujs
 #= require job_wait
+
+#= require show_incipit_renderer
