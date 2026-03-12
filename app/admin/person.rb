@@ -97,7 +97,11 @@ ActiveAdmin.register Person do
 
       @source_profile = EditorConfiguration.get_show_layout Source.first
       @codes = @person.source_person_relations.group(:relator_code).select("relator_code AS code, COUNT(*) AS count").order("count DESC")
-#.where(marc_tag: "700")
+
+      @holdings_profile = EditorConfiguration.get_show_layout Holding.first
+      @holdings_codes = @person.holding_person_relations.group(:relator_code).select("relator_code AS code, COUNT(*) AS count").order("count DESC")
+
+    #.where(marc_tag: "700")
       @jobs = @person.delayed_jobs
 
       respond_to do |format|
@@ -316,7 +320,7 @@ ActiveAdmin.register Person do
       end
     end
     
-    panel I18n.t("records.relationship_code"), :class => "muscat_panel"  do
+    panel I18n.t("records.relationship_code") + " (Sources)", :class => "muscat_panel"  do
       if controller.view_assigns["codes"].any?
         profile = controller.view_assigns["source_profile"]
         table_for controller.view_assigns["codes"] do
@@ -325,6 +329,18 @@ ActiveAdmin.register Person do
         end
       else
         "There are no sources with relator codes"
+      end
+    end
+
+    panel I18n.t("records.relationship_code") + " (Holdings)", :class => "muscat_panel"  do
+      if controller.view_assigns["holdings_codes"].any?
+        profile = controller.view_assigns["holdings_profile"]
+        table_for controller.view_assigns["holdings_codes"] do
+          column(:code) {|row| row.code.nil? ? I18n.t("records.composer_author") + " (100)" : profile.get_label(row.code)}
+          column(:count) { |row| row.read_attribute(:count) }
+        end
+      else
+        "There are no holdings with relator codes"
       end
     end
 
