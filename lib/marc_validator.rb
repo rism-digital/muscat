@@ -211,15 +211,14 @@ using AggressivelyStrip
 
   def validate_must_be_different(tag, subtag, marc_subtag, rules)
     rules.each do |other_tag, other_subtag|
-      other_marc_tag = @marc.first_occurance(other_tag)
-      next unless other_marc_tag  # If not there, rule doesn't apply
-      other_marc_subtag = other_marc_tag.fetch_first_by_tag(other_subtag)
+
+      other_marc_subtag = marc_subtag.fetch_first_by_tag(other_subtag)
       next unless other_marc_subtag&.content  # If no content, rule doesn't apply
   
       # Now we check if the current subtag is missing
       if marc_subtag.content == other_marc_subtag.content
-        add_error(tag, subtag, "must_be_different-#{other_tag}#{other_subtag}")
-        puts "Missing #{tag} #{subtag}, must_be_different-#{other_tag}#{other_subtag}" if DEBUG
+        add_error(tag, subtag, "uniq_val_in_tag-#{other_tag}#{other_subtag}")
+        puts "Missing #{tag} #{subtag}, uniq_val_in_tag-#{other_tag}#{other_subtag}" if DEBUG
       end
     end
   end
