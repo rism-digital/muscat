@@ -11,6 +11,8 @@ class Marc
 
   using AggressivelyStrip
   
+  IMPORTED_MARKER = '_'
+
 ##  attr_reader :all_foreign_associations
   attr_accessor :root, :results, :suppress_scaffold_links_trigger
 
@@ -176,6 +178,11 @@ class Marc
         subtag  = $1
         content = $2
         record  = $3
+
+        if subtag == IMPORTED_MARKER
+          tag_group.imported = true
+          next
+        end
         
         content.gsub!(DOLLAR_STRING, "$")
       
