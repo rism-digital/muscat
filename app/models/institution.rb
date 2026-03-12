@@ -300,6 +300,8 @@ class Institution < ApplicationRecord
       (i.siglum && !i.siglum.empty?) == true
     end
 
+    # This is mostly for fun
+    # #1859, add the translated value of 386 $a
     sunspot_dsl.text :museum_not_museum do |i|
       editor_profile = EditorConfiguration.get_default_layout Institution
       cfg = editor_profile.labels_config
