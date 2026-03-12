@@ -62,6 +62,7 @@
     - - p
       - editor_partial: subfield_pae
     - - q
+      - growfield: true
     - - z
   tag_params:
     031r:
