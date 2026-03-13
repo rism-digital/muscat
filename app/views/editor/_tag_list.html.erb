@@ -10,9 +10,15 @@
 <dl class="marc_editor_tag_block <%= (@item.marc.config.multiples_allowed? tag_name) ? "sortable" : "" %>" data-tag="<%= tag_name %>">
 
 <%- tags.each do |marc_tag| %>
+
 	<dt class="tag_toplevel_container" data-tag="<%= tag_name %>">
-		<%= render :partial => "editor/tag_dt",
-			:locals => { :tag_name => tag_name, :marc_tag => marc_tag } %>
+		<%if marc_tag.imported?%>
+			<%= render :partial => "editor/tag_imported",
+				:locals => { :tag_name => tag_name, :marc_tag => marc_tag } %>
+		<%else%>
+			<%= render :partial => "editor/tag_dt",
+				:locals => { :tag_name => tag_name, :marc_tag => marc_tag } %>
+		<%end%>
 	</dt>
 <%- end -%>
 </dl>

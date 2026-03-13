@@ -226,6 +226,11 @@ class Marc
               tag_group = @root << MarcNode.new(@model, tag, nil, ind)
               field['subfields'].each do | pos |
                 pos.each_pair do |code, value|
+                  if code == IMPORTED_MARKER
+                    tag_group.imported = true
+                    next
+                  end
+
                   # Convert unicode spaces to strippable spaces
                   value = value.gsub(DOLLAR_STRING, "$").aggressively_strip.strip
                   tag_group << MarcNode.new(@model, code, value, nil)

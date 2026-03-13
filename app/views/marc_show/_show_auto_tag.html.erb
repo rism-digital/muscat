@@ -70,6 +70,9 @@ tag_content += tag.content if marc_configuration.is_tagless?(tag.tag)
 		<%- end %>
 	</th>
 	<td valign="top">
+    <%if tag.imported?%>
+      <span class="status_tag warning">IMP</span>
+    <%end%>
 		<%= tag_content %>
 	</td>
 </tr>

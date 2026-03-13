@@ -5,7 +5,7 @@ class MarcNode
   include Enumerable
   attr_reader :tag, :content, :raw_content, :indicator, :foreign_object, :parent, :diff, :diff_is_deleted, :model
   attr_writer :tag, :content, :indicator, :foreign_object, :foreign_field, :diff, :diff_is_deleted
-  attr_accessor :foreign_host, :suppress_scaffold_links_trigger, :imported
+  attr_accessor :foreign_host, :suppress_scaffold_links_trigger
   
   def initialize(model, tag = nil, content = nil, indicator = nil)
     @tag = tag
@@ -788,6 +788,14 @@ class MarcNode
     # different tags, order by tag
     return -1 if tag < other.tag
     return 1 if tag > other.tag
+  end
+
+  def imported?
+    @imported == true
+  end
+
+  def imported=(value)
+    @imported = value
   end
 
   alias length size

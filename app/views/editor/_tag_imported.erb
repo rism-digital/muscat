@@ -1,0 +1,34 @@
+<div class="tag_container" data-tag="<%= tag_name %>" >
+
+<table  class="tag_header" border="0" cellspacing="0" cellpadding="0">
+    <tr>
+        <th class="col col-label">
+            <%= @editor_profile.get_label(marc_tag.tag) -%> (<%= marc_tag.tag %>)
+        </th>
+    </tr>
+</table>
+
+ <table class="tag_grid" cellpadding="0" cellspacing="0">
+    <tr><th width="25%"></th><th width="75%"></th></tr>
+
+    <% marc_tag.children.each do |subfield| %>
+    <%
+        sub_label = @editor_profile.get_sub_label(tag_name, subfield.tag, true)
+        field_label =  "#{sub_label}" if !sub_label.empty?
+    %>
+        <tr>
+            <td>
+                <div class="grid_cell_header">
+                    <%= field_label %>
+                </div>
+            </td>
+
+            <td>
+                <%= subfield.content%>
+                <input type="hidden" class="serialize_marc" data-tag="<%=marc_tag.tag%>" data-subfield="<%=subfield.tag%>" value="<%= h(subfield.content) %>"/>
+            </td>
+        </tr>
+    <%end%>
+ </table>
+ <input type="hidden" class="serialize_marc" data-tag="<%=marc_tag.tag%>" data-subfield="<%= Marc::IMPORTED_MARKER%>" data-imported="true" value="from-editor"/>
+ </div>
