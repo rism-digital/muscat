@@ -4,32 +4,20 @@ class MarcWork < Marc
   end
   
   def get_title
-    composer = ""
-    title = "" 
-    scoring = "" 
-    key = ""
+    composer = first_occurance("100", "a")&.content.to_s.strip
+    title = first_occurance("130", "a")&.content.to_s.strip
+    key = first_occurance("130", "r")&.content.to_s.strip
+    cat_no = get_catalogue.to_s.strip
 
-    if node = first_occurance("100", "a")
-      composer = node.content.blank? ? "" : "#{node.content}:"
-    end
+    scoring = first_occurance("130", "m")&.content.to_s.strip
+    scoring = scoring.truncate(50) unless scoring.empty?
 
-    if node = first_occurance("130", "a")
-      title = node.content.blank? ? " [without title]" : " #{node.content}"
-    end
+    main = "#{composer}: #{title}"
+    main += ", #{scoring}" unless scoring.blank?
 
-    if node = first_occurance("130", "r")
-      key = node.content.blank? ? "" : " #{node.content}"
-    end
+    extras = [key, cat_no].reject(&:blank?)
 
-    cat_no = get_catalogue
-
-    node = first_occurance("130", "m")
-    scoring = node.content.truncate(50) if node && node.content
-    scoring = scoring.strip if scoring
-
-    title += ", #{scoring}" if scoring
-
-    return "#{composer}" + [title, key, cat_no].join("; ")&.strip
+    [main, *extras].join("; ")
   end
 
   def get_opus
