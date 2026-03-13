@@ -261,6 +261,7 @@ en:
     similarity: Difference
     tags: Tags
     time_frame: Time frame
+    no_recent_version: The last save did not create a snapshot
   composer_contains: Composer
   connected_libraries: Libraries
   controls: Controls

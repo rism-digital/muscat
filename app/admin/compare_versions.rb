@@ -57,36 +57,41 @@ ActiveAdmin.register_page "Compare Versions" do
           end
 
           items.each do |s|
-            sim = -1 # -1 means new record
+            sim = 0
+            status = :modified
 
-            if !s.versions.empty?
+            if s.versions.empty?
+              status = :new_record
+            else
               if !params.include?(:time_frame ) || params[:time_frame] == "day"
                 version = s.versions.last
               else
                 version = s.versions.where("created_at > ?", 7.days.ago).first
               end
               
-              if version
-                tags, wf_stages = VersionChecker.get_diff_with_next(version.id)
-                s.marc.load_from_array(tags)
-                # Sim is always set to 0-100 to indicate the difference
-                sim = 100 - VersionChecker.get_similarity_with_next(version.id)
+              if !version
+                status = :no_recent_version  
+                version = s.versions.last
               end
+             
+              tags, wf_stages = VersionChecker.get_diff_with_next(version.id)
+              s.marc.load_from_array(tags)
+              # Sim is always set to 0-100 to indicate the difference
+              sim = 100 - VersionChecker.get_similarity_with_next(version.id)
+
             end
 
             classes = [helpers.cycle("odd", "even")]
             tr(class: classes.flatten.join(" ")) do
-              
+                td { link_to("#{model.to_s} #{s.id}", polymorphic_path([:admin, s])) }
+
               if model == Source
-                td { link_to(s.id, admin_source_path(s)) }
                 td { s.composer rescue "" }
                 td { s.std_title rescue "" }
               elsif model == Institution
-                td { link_to(s.id, admin_institution_path(s)) }
                 td { s.name rescue "" }
                 td { s.siglum rescue "" }
               elsif model == Work
-                td { link_to(s.id, admin_work_path(s)) }
                 td { s.person.name rescue "" }
                 td { s.title rescue "" }
               end
@@ -95,9 +100,12 @@ ActiveAdmin.register_page "Compare Versions" do
 
               td do
                 div(id: "marc_editor_history", style: "text-align: center") do
-                  if sim == -1
-                    status_tag(:published, label: I18n.t("compare_versions.new_record"))
+                  if status == :new_record
+                    status_tag(:published, label: I18n.t("compare_versions.new_record"))                    
                   else
+                    if status == :no_recent_version
+                      span(I18n.t("compare_versions.no_recent_version"))
+                    end
                     div(class: "modification_bar") do
                       div(class: "modification_bar_content version_modification", style: "width: #{sim}%") do
                         "&nbsp".html_safe
@@ -108,7 +116,7 @@ ActiveAdmin.register_page "Compare Versions" do
               end
 
               td do
-                if sim > -1
+                if status == :modified
                 changed = ->(sf) { sf.diff.nil? || sf.content != sf.diff.content || sf.diff_is_deleted }
 
                 s.marc.all_tags
