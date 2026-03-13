@@ -90,7 +90,7 @@
 
         <div class="icon-button">
           <span class="icon-copy copy_to_clipboard" data-clipboard-text="<%= notation %>"></span>
-          <span class="clipboard-message status_tag ok"><%= I18n.t(:notation_copied) %></span>
+          <span id="clipboard-message" class="clipboard-message status_tag ok"><%= I18n.t(:notation_copied) %></span>
         </div>
 
         <div id="<%= random_string %>" class="pae-details" style="display:none">
