@@ -540,3 +540,15 @@ table.muscat_index_header {
 #main_content {
   margin-right: 0 !important;
 }
+
+.tag_box.imported {
+  border: 2px solid orange;
+  padding: 10px;
+}
+
+.tag_box.imported legend {
+  color: orange;
+  font-weight: bold;
+  padding: 0 8px;
+  width: auto;
+}

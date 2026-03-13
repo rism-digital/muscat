@@ -68,7 +68,7 @@
         <a class="abutton ui-state-default marc_editor_button_left abutton-icon-solo ui-corner-all" href="#" data-header-button="add-from-empty" title="Add tag"><span class="ui-icon ui-icon-plus"></span>_</a>
         <%- end -%>	
 
-        <%- if !no_delete && !empty_header -%>
+        <%- if !no_delete && !empty_header && !imported -%>
 		<a class="abutton ui-state-default marc_editor_button_left abutton-icon-solo ui-corner-all" href="#" data-header-button="delete" title="Delete"><span class="ui-icon ui-icon-trash"></span>_</a>
 	    <% end %>
 
