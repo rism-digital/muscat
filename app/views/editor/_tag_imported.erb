@@ -17,8 +17,10 @@
                 </td>
 
                 <td>
-                    <%= subfield.content%>
-                    <input type="hidden" class="serialize_marc" data-tag="<%=marc_tag.tag%>" data-subfield="<%=subfield.tag%>" value="<%= h(subfield.content) %>"/>
+                    <div class="grid_cell_imported">
+                        <%= subfield.content%>
+                        <input type="hidden" class="serialize_marc" data-tag="<%=marc_tag.tag%>" data-subfield="<%=subfield.tag%>" value="<%= h(subfield.content) %>"/>
+                    </div>
                 </td>
             </tr>
         <%end%>
