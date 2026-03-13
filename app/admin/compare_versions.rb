@@ -116,7 +116,7 @@ ActiveAdmin.register_page "Compare Versions" do
               end
 
               td do
-                if status == :modified
+                if status == :modified || status == :no_recent_version
                 changed = ->(sf) { sf.diff.nil? || sf.content != sf.diff.content || sf.diff_is_deleted }
 
                 s.marc.all_tags
