@@ -44,7 +44,15 @@ function marc_editor_init_tags( id ) {
 	window.onunload = marc_editor_cleanp;
 	
 	$(".sortable").sortable({
+		items: "dt:not(.not_sortable)",
 		handle: ".sortable-button",
+		start: function(event, ui) {
+			$(this).addClass("sorting-active");
+		},
+
+		stop: function(event, ui) {
+			$(this).removeClass("sorting-active");
+		},
 		update: function( event, ui ) {marc_editor_update_group_toolbar(event, ui)}
 	});
 
