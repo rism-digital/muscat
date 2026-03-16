@@ -23,20 +23,19 @@
 
       // "protected" fields are the fields that can be overwritten
       // only when creating a record (i.e 100)
-      if (!($.inArray(datafield.tag, protected_fields))) {
+      if (protected_fields.includes(datafield.tag)) {
         if (/\/new#$/.test(self.location.href)) {
           _marc_editor_overwrite_tag(datafield.tag, current_json_tag)
         }
       // All the other fields. Is the tag collapsed (no instances of a tag)?
       // If there is already a field overwrite it
-      } else if (_marc_editor_count_tag(datafield.tag) != 0 && allow_multiple == false) {
-        _marc_editor_overwrite_tag(datafield.tag, current_json_tag)
+      // RZ DO NOT OVERWRITE TAGS ALWAYS APPEND A FRESH ONE
+      //} else if (_marc_editor_count_tag(datafield.tag) != 0 && allow_multiple == false) {
+        // _marc_editor_overwrite_tag(datafield.tag, current_json_tag)
       } else {
         // if we allow multiples, then we can append the fields
         _marc_editor_create_new_tag(datafield.tag, current_json_tag)
       }
-
-
     }
   }
 
@@ -48,15 +47,16 @@
       ".marc_editor_hotkey[data-field='" + tag + "'][data-subfield='" + subtag + "']"
     ].join(",")
   
-    return block.find(filters).first();
+    return block.find(filters);
   }
   
+  // Do we need this?
   function _marc_editor_overwrite_tag(target, data) {
     block = $(".marc_editor_tag_block[data-tag='" + target + "']")
     var model = $("#marc_editor_panel").attr("data-editor-model");
   
     for (code in data){
-      let subfield = _marc_editor_find_tag_element(block, target, code);
+      let subfield = _marc_editor_find_tag_element(block, target, code).first();
   
       var read_only_input = subfield.siblings('.read_only_input');
 
@@ -72,6 +72,7 @@
     }
   }
   
+/* is this ever used??
   function _marc_editor_append_tag(target, data) {
     block = $(".marc_editor_tag_block[data-tag='" + target + "']")
     placeholder = block.parents(".tag_group").children(".tag_placeholders_toplevel").children(".tag_placeholders");
@@ -86,16 +87,21 @@
     block.append(new_dt)
     new_dt.show()
   }
-  
+  */
+
   function _marc_editor_create_new_tag(target, data) {
     field = $(".tag_placeholders[data-tag='"+ target +"']")
     placeholder = field.parents(".tag_group").children(".tag_placeholders_toplevel").children(".tag_placeholders")
     parent_dl = field.parents(".tag_group").children(".marc_editor_tag_block");
     new_dt = placeholder.clone();
     for (code in data){
-      subfield = _marc_editor_find_tag_element(new_dt, target, code);
-      subfield.val(data[code]);
-      subfield.css("background-color", "#ffffb3"); 
+      subfields = _marc_editor_find_tag_element(new_dt, target, code);
+      // In some autocompletes we have two fields with the same subfield
+      subfields.each(function () {
+        var value = data[code] === "IMPORT-NEW" ? "" : data[code];
+        $(this).val(value);
+        $(this).css("background-color", "#ffffb3");
+      });
     }
     new_dt.toggleClass('tag_placeholders tag_toplevel_container');
     parent_dl.append(new_dt);
