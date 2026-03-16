@@ -8,6 +8,8 @@ module Wikidata
       module_function
 
       PID_GND  = "P227"
+      PID_LC   = "P244"
+      PID_BNG   = "P268"
       PID_VIAF = "P214"
       PID_SBN  = "P396"
       PID_RISM = "P5504"
@@ -16,7 +18,9 @@ module Wikidata
         {
           "DNB"  => ids(item_json, PID_GND),
           "VIAF" => ids(item_json, PID_VIAF),
-          "ICCU"  => ids(item_json, PID_SBN),
+          "ICCU" => ids(item_json, PID_SBN),
+          "LC"   => ids(item_json, PID_LC),
+          "BNF"  => ids(item_json, PID_BNF),
           "rism" => ids(item_json, PID_RISM)
         }.delete_if { |_k, v| v.empty? }
       end
