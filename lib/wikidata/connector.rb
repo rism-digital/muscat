@@ -95,7 +95,7 @@ module Wikidata
 
       new_marc.by_tags("400").each {|t2| t2.destroy_yourself}  if data[:occupations].any?
       data[:aliases].each do |alternate|
-        new_marc.add_tag_with_subfields("400", a: alternate, j: "z")
+        new_marc.add_tag_with_subfields("400", a: alternate, j: "xx")
       end
 
       new_marc.by_tags("550").each {|t2| t2.destroy_yourself}  if data[:occupations].any?
