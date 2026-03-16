@@ -19,9 +19,8 @@ module Wikidata
       # - prefer rank=="preferred"
       # - otherwise first statement
       def best_statement(item_json, pid)
-        stmts = statements(item_json, pid).select { |s| s.is_a?(Hash) }
-        preferred = stmts.select { |s| s["rank"] == "preferred" }
-        (preferred.any? ? preferred : stmts).first
+        stmts = statements(item_json, pid).select { |s| s.is_a?(Hash) && s["rank"] != "deprecated" }
+        stmts.find { |s| s["rank"] == "preferred" } || stmts.first
       end
 
       # In your REST output, wikibase-item and many identifier values are strings in value.content.
