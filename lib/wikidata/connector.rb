@@ -16,7 +16,7 @@ module Wikidata
 
   class RecordInRISM < StandardError; end
 
-    def self.get_person(qid, lang: "en", include_all_place_aliases: false)
+    def self.get_person(qid, format: :marc, skip_in_rism: false, lang: "en", include_all_place_aliases: false)
       client = Client.new
       #begin
         person_item = client.get_item(qid)
@@ -53,13 +53,13 @@ module Wikidata
       out[:family_name] = resolve_external_qid(out[:family_name_qid], lang) if out[:family_name_qid]
       out[:given_name] = resolve_external_qid(out[:given_name_qid], lang) if out[:given_name_qid]
 
-      return wikidata2marc(out)
+      return wikidata2marc(out, format, skip_in_rism)
     end
 
-    def self.wikidata2marc(data)
+    def self.wikidata2marc(data, format, skip_in_rism)
 
       # Make sure this person does not already exist in Muscat
-      if data.dig(:identifiers, "rism").present?
+      if data.dig(:identifiers, "rism").present? && skip_in_rism == false
         id = data[:identifiers]["rism"]&.first&.gsub("people/", "")
         pres = Person.where(id: id)
         p = pres.first
@@ -121,7 +121,11 @@ module Wikidata
         new_marc.add_tag_with_subfields("678", a: dates)
       end
 
-      return new_marc.to_marc.force_encoding("UTF-8")
+      if format == :marc
+        return new_marc.to_marc.force_encoding("UTF-8")
+      else
+        return new_marc.to_json
+      end
     end
 
     def self.find_muscat_place(wikidata_place)

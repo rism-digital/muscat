@@ -116,7 +116,7 @@
 
 //= require 'ekko-lightbox.min'
 
-
+//= require wikidata_interface
 //= require tribute.min
 //= require tribute_load
 

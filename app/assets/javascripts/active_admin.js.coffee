@@ -101,7 +101,7 @@
 #= require compare_versions_actions
 
 #= require gnd_interface.js
-#= require viaf_interface.js
+#= require wikidata_interface
 #= require modification_trigger_ujs.js
 
 #= require diva/diva.min.js

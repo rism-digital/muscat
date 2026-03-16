@@ -1,6 +1,6 @@
-<div id="viaf-form" class="panel-hidable" style="display:none;>">
-  <div class="panel tab_panel" name="Viaf">
-    <h3>Viaf</h3>
+<div id="wikidata-form" class="panel-hidable" style="display:none;>">
+  <div class="panel tab_panel" name="wikidata">
+    <h3><%=I18n.t("wikidata.merge_from_wikidata")%></h3>
     <div class="marc_editor_panel_content">
       <table>
         <colgroup>
@@ -10,12 +10,12 @@
         <tr>
           <td>
             <div class="tag_content_collapsable">
-              <input style="margin-top:6px; width:70%;" class="subfield_entry serialize_marc" type="text" id="viaf_input" value="<%= @item.name %>">
+              <input style="margin-top:6px; width:70%;" class="subfield_entry serialize_marc" type="text" id="wikidata_input">
             </div>
           </td>
           <td>
-            <div class "buttons">
-              <input name="commit" type="submit" value="Search" id="viaf_button">
+            <div class="buttons">
+              <input name="commit" type="submit" value="<%= I18n.t(:merge)%>" id="wikidata_button">
             </div>
           </td>
         </tr>
@@ -27,7 +27,6 @@
     <p><img style="display: block;margin-left: auto; margin-right: auto;width:48px;height:48px;" src="/images/gears.svg"/>
     </p>
   </div>
-  <table id="viaf_table" class="index_table index" locale="<%= I18n.locale %>" > 
-  </table>
+
 </div>
 

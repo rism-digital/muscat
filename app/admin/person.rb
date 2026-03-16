@@ -24,12 +24,6 @@ ActiveAdmin.register Person do
   collection_action :autocomplete_person_full_name, :method => :get
   collection_action :autocomplete_person_550a_sms, :method => :get
 
-  collection_action :viaf, method: :get do
-    respond_to do |format|
-        format.json { render json: Person.get_viaf(params[:viaf_input])  }
-    end
-  end
-
   # See permitted parameters documentation:
   # https://github.com/gregbell/active_admin/blob/master/docs/2-resource-customization.md#setting-up-strong-parameters
   #
@@ -201,6 +195,19 @@ ActiveAdmin.register Person do
     job= Delayed::Job.enqueue(WikidataFetcherJob.new(qid))
     @jobid = job.id
   end
+
+  collection_action :wikidata_merge, method: :get do
+    qid = params[:wikidata_id].to_s
+
+    if qid !~ /\AQ\d+\z/
+      render json: { ok: false, error: I18n.t("wikidata.InvalidQid", msg: qid) }, status: :unprocessable_entity
+      return
+    end
+
+    data = Wikidata::Connector.get_person(qid, format: :json, skip_in_rism: true)
+    render json: { ok: true, data: data }
+  end
+
 
   ###########
   ## Index ##

@@ -59,10 +59,10 @@
 	</li>
 
 
-<% if @item.class.respond_to?("get_viaf") %>
+<% if @item.class.respond_to?("get_wikidata?") %>
 	<li class="muscat_icon_separator"></li>
 	<li class="muscat_icon_link">
-		<a id="viaf-sidebar" href="#" class="muscat_icon_link muscat_icon_link_viaf"><%= (I18n.t :show_viaf)%></a>
+		<a id="wikidata-sidebar" href="#" class="muscat_icon_link muscat_icon_link_viaf"><%= (I18n.t("wikidata.merge_button"))%></a>
 	</li>
 <% end %>
 

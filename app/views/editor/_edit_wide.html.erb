@@ -17,8 +17,8 @@
 	<%= render :partial => "editor/versions" -%>
 <% end %>
 
-<% if @item.class.respond_to?("get_viaf")%>
-  <%= render :partial => "editor/viaf_form" %>
+<% if @item.class.respond_to?("get_wikidata?")%>
+  <%= render :partial => "editor/wikidata_form" %>
 <% end %>
 
 <% if @item.class.respond_to?("get_gnd")%>

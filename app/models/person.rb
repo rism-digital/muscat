@@ -377,9 +377,8 @@ class Person < ApplicationRecord
   ransacker :"667a", proc{ |v| } do |parent| parent.table[:id] end
 	ransacker :"full_name_or_400a", proc{ |v| } do |parent| parent.table[:id] end
 
-  def self.get_viaf(str)
-    str.gsub!("\"", "")
-    Viaf::Interface.search(str, self.to_s)
+  def self.get_wikidata?
+    true
   end
 
   # rake sunspot:reindex calls indexable? to make sure this is an idexable record
