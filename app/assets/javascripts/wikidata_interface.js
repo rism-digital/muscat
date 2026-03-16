@@ -24,7 +24,7 @@ var show_wikidata_actions = function () {
 
       success: function(response) {
         var data = response.data || response;
-        _marc_editor_update_from_json(data, ["001", "040", "100"], true);
+        _marc_editor_update_from_json(data, ["001", "040", "024", "100"], true);
         marc_editor_show_panel("marc_editor_panel");
       },
 
