@@ -89,10 +89,87 @@
   }
   */
 
+  // All this mess is so we can avoid duplicates
+  function _marc_editor_normalize_tag_data(data) {
+    let normalized = {};
+
+    for (const code in data) {
+      normalized[code] = (data[code] === "IMPORT-NEW" ? "" : String(data[code]));
+    }
+
+    return normalized;
+  }
+  
+  function _marc_editor_extract_tag_data(block, tag) {
+    let extracted = {};
+
+    let fields = block.find([
+      ".marc_editor_hotkey[data-field='" + tag + "'][data-subfield]",
+      ".marc_editor_hotkey[data-tag='" + tag + "'][data-subfield]",
+      "input.subfield_entry[data-tag='" + tag + "'][data-subfield]",
+      "input[type='text'][data-field='" + tag + "'][data-subfield]",
+      "input[type='text'][data-tag='" + tag + "'][data-subfield]",
+      "select[data-field='" + tag + "'][data-subfield]",
+      "select[data-tag='" + tag + "'][data-subfield]",
+      "textarea[data-field='" + tag + "'][data-subfield]",
+      "textarea[data-tag='" + tag + "'][data-subfield]"
+    ].join(","));
+
+    fields.each(function () {
+      let subtag = $(this).attr("data-subfield");
+
+      // keep first logical field per subtag
+      if (!(subtag in extracted)) {
+        extracted[subtag] = String($(this).val() || "");
+      }
+    });
+
+    return extracted;
+  }
+
+  function _marc_editor_same_tag_data(a, b) {
+    let a_keys = Object.keys(a).sort();
+    let b_keys = Object.keys(b).sort();
+
+    if (a_keys.length !== b_keys.length) return false;
+
+    for (let i = 0; i < a_keys.length; i++) {
+      if (a_keys[i] !== b_keys[i]) return false;
+      if (a[a_keys[i]] !== b[b_keys[i]]) return false;
+    }
+
+    return true;
+  }
+
+  function _marc_editor_has_exact_duplicate_tag(parent_dl, tag, data) {
+    let incoming = _marc_editor_normalize_tag_data(data);
+    let existing_blocks = parent_dl.children(".tag_toplevel_container[data-tag='" + tag + "']");
+
+    let found = false;
+
+    existing_blocks.each(function () {
+      let existing = _marc_editor_extract_tag_data($(this), tag);
+
+      if (_marc_editor_same_tag_data(existing, incoming)) {
+        found = true;
+        return false; // break .each()
+      }
+    });
+
+    return found;
+  }
+  // end of all the mess to avoid duplicates
+
+
   function _marc_editor_create_new_tag(target, data) {
     field = $(".tag_placeholders[data-tag='"+ target +"']")
     placeholder = field.parents(".tag_group").children(".tag_placeholders_toplevel").children(".tag_placeholders")
     parent_dl = field.parents(".tag_group").children(".marc_editor_tag_block");
+    
+    if (_marc_editor_has_exact_duplicate_tag(parent_dl, target, data)) {
+      return;
+    }
+
     new_dt = placeholder.clone();
     for (code in data){
       subfields = _marc_editor_find_tag_element(new_dt, target, code);
