@@ -906,5 +906,5 @@ en:
     ItemNotFound: "Wikidata QID not found: %{msg}"
     ConnectionError: "Error connecting to Wikidata: %{msg}"
     qid_exists: "The Wikidata QID %{qid} is already in Muscat: %{person}"
-    merge_from_wikidata: Merge from Wikidata QID into this record
-    merge_button: Merge from Wikidata
+    merge_from_wikidata: Enter Wikidata ID
+    merge_button: Import from Wikidata

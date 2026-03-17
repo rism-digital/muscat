@@ -199,13 +199,26 @@ ActiveAdmin.register Person do
 
   collection_action :wikidata_merge, method: :get do
     qid = params[:wikidata_id].to_s
+    skip = not (ActiveModel::Type::Boolean.new.cast(params[:new]))
 
     if qid !~ /\AQ\d+\z/
       render json: { ok: false, error: I18n.t("wikidata.InvalidQid", msg: qid) }, status: :unprocessable_entity
       return
     end
 
-    data = Wikidata::Connector.get_person(qid, format: :json, skip_in_rism: true)
+    ps = Person.where(wikidata_id: qid)
+    if ps.count > 0
+      render json: { ok: false, error: I18n.t("wikidata.qid_exists", qid: qid, person: "#{ps.first.full_name.to_s} (#{ps.first.id})") }, status: :unprocessable_entity
+      return
+    end
+
+    begin
+      data = Wikidata::Connector.get_person(qid, format: :json, skip_in_rism: skip)
+    rescue Wikidata::Connector::RecordInRISM => e
+      render json: { ok: false, error: I18n.t("wikidata.RecordInRISM", msg: e.message) }, status: :unprocessable_entity
+      return
+    end
+
     render json: { ok: true, data: data }
   end
 
@@ -289,7 +302,7 @@ ActiveAdmin.register Person do
 
   sidebar :actions, :only => :index do
     render :partial => "activeadmin/section_sidebar_index"
-    render partial: "wikidata"
+    #render partial: "wikidata"
   end
 
   # Include the folder actions

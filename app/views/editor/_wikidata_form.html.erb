@@ -1,7 +1,13 @@
+
+
 <div id="wikidata-form" class="panel-hidable" style="display:none;>">
+  
   <div class="panel tab_panel" name="wikidata">
     <h3><%=I18n.t("wikidata.merge_from_wikidata")%></h3>
     <div class="marc_editor_panel_content">
+      <p>
+        <%= render "shared/wikidata_help" %>
+      </p>
       <table>
         <colgroup>
           <col span="1" style="width: 80%;">
@@ -26,6 +32,7 @@
   <div id="loader" style="display: none;">
     <p><img style="display: block;margin-left: auto; margin-right: auto;width:48px;height:48px;" src="/images/gears.svg"/>
     </p>
+    <small>Muscat is hard at work please wait a minute or two...</small>
   </div>
 
 </div>

@@ -8,11 +8,12 @@ var show_wikidata_actions = function () {
   function searchWikidata() {
     var term = $("#wikidata_input").val();
     var model = $("#marc_editor_panel").attr("data-editor-model");
+    const isNew = $("body").hasClass("new");
 
     $.ajax({
       type: "GET",
       url: "/admin/" + model + "/wikidata_merge.json",
-      data: { wikidata_id: term },
+      data: { wikidata_id: term, new: isNew },
 
       beforeSend: function() {
         $("#loader").show();
