@@ -199,7 +199,7 @@ ActiveAdmin.register Person do
 
   collection_action :wikidata_merge, method: :get do
     qid = params[:wikidata_id].to_s
-    skip = not (ActiveModel::Type::Boolean.new.cast(params[:new]))
+    skip = !(ActiveModel::Type::Boolean.new.cast(params[:new]))
 
     if qid !~ /\AQ\d+\z/
       render json: { ok: false, error: I18n.t("wikidata.InvalidQid", msg: qid) }, status: :unprocessable_entity
