@@ -9,7 +9,7 @@ module Wikidata
 
       PID_GND  = "P227"
       PID_LC   = "P244"
-      PID_BNG   = "P268"
+      PID_BNF  = "P268"
       PID_VIAF = "P214"
       PID_SBN  = "P396"
       PID_RISM = "P5504"
