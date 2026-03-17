@@ -25,8 +25,6 @@ groups:
     - '856'
     - "041"
     all_tag_templates: 
-      "100": marc_show/show_auto_tag
-      "246": marc_show/show_title_variant  
       "856": marc_show/show_link
       "690": marc_show/show_69x_url
       "691": marc_show/show_69x_url
@@ -35,9 +33,6 @@ groups:
     all_tags: 
     - '700'
     - '710'
-    all_tag_templates: 
-      "700": marc_show/show_auto_tag
-      "710": marc_show/show_auto_tag 
 
   edit_material:
     all_tags:
