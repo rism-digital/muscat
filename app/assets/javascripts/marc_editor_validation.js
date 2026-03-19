@@ -251,6 +251,8 @@ function marc_validate_calendar(value, element, param){
 	if (/julian|gregorian|ju|gr/i.test(value)) {
 		return false;
 	}
+
+	return true;
 }
 
 function marc_validate_not_record_id(value, element, param) {
