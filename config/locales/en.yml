@@ -853,6 +853,7 @@ en:
     warning_message: A value for this field should be provided
     must_be_different_message: This cannot be identical to the other value in the field
     not_record_id: This cannot be the same ID as the current record
+    validate_calendar: Please make sure the dates follow the correct calendar
   validation_level_error: There are errors, please solve before saving
   validation_level_warning: There are warnings, save again to override
   view_source: View Source

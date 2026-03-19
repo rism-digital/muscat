@@ -21,6 +21,13 @@ module Wikidata
       PID_DATE_OF_BIRTH = "P569"
       PID_DATE_OF_DEATH = "P570"
 
+      QID_GREGORIAN = "Q1985727"
+      QID_JULIAN = "Q1985786"
+
+      def extract_qid(input)
+        input.to_s[/Q\d+/]
+      end
+
       # Extract raw Wikidata time strings for birth/death.
       #
       # Returns:
@@ -31,11 +38,16 @@ module Wikidata
         b = Base.best_statement(item_json, PID_DATE_OF_BIRTH)
         d = Base.best_statement(item_json, PID_DATE_OF_DEATH)
 
-        date_b = time_string_from_statement(b)
-        date_d = time_string_from_statement(d)
+        date_b, type_b = time_string_from_statement(b)
+        date_d, type_d = time_string_from_statement(d)
 
         return nil if date_b.nil? && date_d.nil?
-        { date_b: date_b, date_d: date_d }
+        {
+          date_b: date_b, 
+          date_d: date_d, 
+          type_b: type_b,
+          type_d: type_d,
+        }
       end
 
       # Convert {date_b:, date_d:} to a RISM 100$d life-date string.
@@ -59,11 +71,13 @@ module Wikidata
         b_tok = token_from_time_string(date_b)
         d_tok = token_from_time_string(date_d)
 
-        return nil if b_tok.nil? && d_tok.nil?
-        return "#{b_tok}*" if b_tok && d_tok.nil?
-        return "#{d_tok}+" if d_tok && b_tok.nil?
+        extra = [date_hash[:type_b].to_s, date_hash[:type_d].to_s].join(", ")
 
-        "#{b_tok}-#{d_tok}"
+        return nil if b_tok.nil? && d_tok.nil?
+        return "#{b_tok}* (#{extra})" if b_tok && d_tok.nil?
+        return "#{d_tok}+ (#{extra})" if d_tok && b_tok.nil?
+
+        "#{b_tok}-#{d_tok} (#{extra})"
       end
 
       # ---- internals ----
@@ -73,8 +87,12 @@ module Wikidata
         content = Base.value_content_hash(statement)
         return nil unless content.is_a?(Hash)
 
-        t = content["time"]
-        t.is_a?(String) ? t : nil
+        calendar_qid = extract_qid(content["calendarmodel"])
+        calendar = :unknown
+        calendar = :gregorian if calendar_qid == QID_GREGORIAN
+        calendar = :julian if calendar_qid == QID_JULIAN
+
+        return content["time"].to_s, calendar      
       end
 
       # Converts a Wikidata time string into a RISM token without "*" / "+".

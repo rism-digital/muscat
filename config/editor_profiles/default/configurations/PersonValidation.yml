@@ -7,6 +7,7 @@ client:
   "100":
     tags:
       "a": mandatory
+      "d": validate_calendar
   "400":
     tags:
       "a":
@@ -40,6 +41,9 @@ client:
           "670": "w"
       "u": validate_url
       "w": required
+  "678":
+    tags:
+      "a": validate_calendar
   "856": 
     tags:
       u:

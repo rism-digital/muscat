@@ -207,7 +207,7 @@ ActiveAdmin.register Person do
     end
 
     ps = Person.where(wikidata_id: qid)
-    if ps.count > 0
+    if ps.count > 0 && skip == false
       render json: { ok: false, error: I18n.t("wikidata.qid_exists", qid: qid, person: "#{ps.first.full_name.to_s} (#{ps.first.id})") }, status: :unprocessable_entity
       return
     end
