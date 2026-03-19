@@ -83,7 +83,6 @@
 //= require autocomplete_events
 //= require marc_json
 //= require jquery.blockUI
-//= require jquery.cascade
 //= require jquery.dirtyFields
 //= require jquery.maskedinput
 //= require jquery.validate

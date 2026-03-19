@@ -73,7 +73,6 @@
 #= require marc_editor_manipulation
 #= require marc_json
 #= require jquery.blockUI
-#= require jquery.cascade
 #= require jquery.dirtyFields
 #= require jquery.flexdatalist
 #= require jquery.maskedinput
