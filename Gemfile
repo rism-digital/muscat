@@ -150,11 +150,10 @@ group :test do
   gem 'rspec-rails', '~> 3.5'
   gem 'factory_bot_rails'
   gem 'capybara'
-  gem 'selenium-webdriver'
+  #gem 'selenium-webdriver'
   gem 'database_cleaner'
   gem 'generator_spec'
-  # Use sqlite3 for testing db
-  gem 'sqlite3'
+  #gem 'sqlite3'
 end
 
 # This gem is used in subfield_select_codes
