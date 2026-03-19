@@ -207,7 +207,6 @@ ActiveAdmin.setup do |config|
   #config.register_javascript 'marc_editor.js'
   #config.register_javascript 'marc_json.js'
   #config.register_javascript 'jquery.blockUI.js'
-  #config.register_javascript 'jquery.cascade.js'
   #config.register_javascript 'jquery.dirtyFields.js'
   #config.register_javascript 'jquery.maskedinput.js'
   #config.register_javascript 'jquery.validate.js'
