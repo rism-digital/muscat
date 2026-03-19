@@ -552,3 +552,11 @@ table.muscat_index_header {
   padding: 0 8px;
   width: auto;
 }
+
+.sorting-active dt {
+  opacity: 0.4;
+  transition: opacity 0.15s;
+}
+.sorting-active .ui-sortable-helper {
+  opacity: 1;
+}

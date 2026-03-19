@@ -76,7 +76,7 @@ group :development do
     gem 'puma'
 end
 
-gem 'devise'
+gem 'devise', '~> 5.0'
 gem 'devise-i18n'
 #gem 'devise_saml_authenticatable', require: false
 
