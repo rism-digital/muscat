@@ -30,7 +30,7 @@ rows.each do |r|
     fixyfixy(the_t, r[:a], r[:b]) if the_t
     ap the_t
     puts "--"
-    PORDENONE if !the_t
+    #PORDENONE if !the_t
   else
     fixyfixy(s.marc["596"].first, r[:a], r[:b])
   end
