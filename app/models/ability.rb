@@ -40,6 +40,7 @@ class Ability
       can :convert_manuscript, Source
       can :order_inventory_items, Source
       can :do_reorder_inventory_items, Source
+      can :move_to, Holding
 
       can :manage, Folder#, :wf_owner => user.id
       can :unpublish, :all
