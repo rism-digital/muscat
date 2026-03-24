@@ -69,7 +69,7 @@ ActiveAdmin.register Place do
         redirect_to admin_root_path, :flash => { :error => "#{I18n.t(:error_not_found)} (Place #{params[:id]})" }
         return
       end
-      @editor_profile = EditorConfiguration.get_show_layout @place
+      @show_profile = EditorConfiguration.get_show_layout @place
       @editor_validation = EditorValidation.get_default_validation(@place)
       @prev_item, @next_item, @prev_page, @next_page, @nav_positions = Place.near_items_as_ransack(params, @place)
 
@@ -183,7 +183,7 @@ ActiveAdmin.register Place do
     if @item.marc_source == nil
       render :partial => "marc/missing"
     else
-      render :partial => "marc/show", locals: {item: @item}
+      render :partial => "marc/show", locals: {item: @item, editor_profile: controller.view_assigns["show_profile"]}
     end
 
     active_admin_embedded_source_list( self, place, !is_selection_mode? )

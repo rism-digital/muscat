@@ -78,7 +78,7 @@ ActiveAdmin.register Publication do
         return
       end
 
-      @editor_profile = EditorConfiguration.get_show_layout @publication
+      @show_profile = EditorConfiguration.get_show_layout @publication
       @prev_item, @next_item, @prev_page, @next_page, @nav_positions = Publication.near_items_as_ransack(params, @publication)
       
       @jobs = @publication.delayed_jobs
@@ -290,7 +290,7 @@ ActiveAdmin.register Publication do
     if @item.marc_source == nil
       render :partial => "missing"
     else
-      render :partial => "marc/show", locals: {item: @item}
+      render :partial => "marc/show", locals: {item: @item, editor_profile: controller.view_assigns["show_profile"]}
     end
     
     ## Source box. Use the standard helper so it is the same everywhere

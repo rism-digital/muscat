@@ -240,7 +240,7 @@ ActiveAdmin.register Holding do
     if @item.marc_source == nil
       render :partial => "missing"
     else
-      render :partial => "marc/show", locals: {item: @item}
+      render :partial => "marc/show", locals: {item: @item, editor_profile: controller.view_assigns["show_profile"]}
     end
     active_admin_user_wf( self, holding )
     active_admin_navigation_bar( self )

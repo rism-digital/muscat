@@ -107,7 +107,7 @@ ActiveAdmin.register InventoryItem do
         redirect_to admin_root_path, :flash => { :error => "#{I18n.t(:error_not_found)} (Inventory Item #{params[:id]})" }
         return
       end
-      @editor_profile = EditorConfiguration.get_show_layout @inventory_item
+      @show_profile = EditorConfiguration.get_show_layout @inventory_item
       @editor_validation = EditorValidation.get_default_validation(@inventory_item)
       @prev_item, @next_item, @prev_page, @next_page, @nav_positions = InventoryItem.near_items_as_ransack(params, @inventory_item)
 
@@ -229,7 +229,7 @@ ActiveAdmin.register InventoryItem do
     if @item.marc_source == nil
       render :partial => "missing"
     else
-      render :partial => "marc/show", locals: {item: @item}
+      render :partial => "marc/show", locals: {item: @item, editor_profile: controller.view_assigns["show_profile"]}
     end
     active_admin_user_wf( self, inventory_item )
     active_admin_navigation_bar( self )

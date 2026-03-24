@@ -70,7 +70,7 @@ ActiveAdmin.register Work do
         redirect_to admin_root_path, :flash => { :error => "#{I18n.t(:error_not_found)} (Work #{params[:id]})" }
         return
       end
-      @editor_profile = EditorConfiguration.get_show_layout @work
+      @show_profile = EditorConfiguration.get_show_layout @work
       @prev_item, @next_item, @prev_page, @next_page, @nav_positions = Work.near_items_as_ransack(params, @work)
       
       @jobs = @work.delayed_jobs
@@ -260,7 +260,7 @@ ActiveAdmin.register Work do
     if @item.marc_source == nil
       render :partial => "marc/missing"
     else
-      render :partial => "marc/show", locals: {item: @item}
+      render :partial => "marc/show", locals: {item: @item, editor_profile: controller.view_assigns["show_profile"]}
     end
     active_admin_embedded_source_list( self, work, !is_selection_mode? )
     

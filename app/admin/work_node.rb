@@ -70,7 +70,7 @@ ActiveAdmin.register WorkNode do
         redirect_to admin_root_path, :flash => { :error => "#{I18n.t(:error_not_found)} (WorkNode #{params[:id]})" }
         return
       end
-      @editor_profile = EditorConfiguration.get_show_layout @work_node
+      @show_profile = EditorConfiguration.get_show_layout @work_node
       @prev_item, @next_item, @prev_page, @next_page, @nav_positions = WorkNode.near_items_as_ransack(params, @work_node)
       
       @jobs = @work_node.delayed_jobs
@@ -163,7 +163,7 @@ ActiveAdmin.register WorkNode do
     if @item.marc_source == nil
       render :partial => "marc/missing"
     else
-      render :partial => "marc/show", locals: {item: @item}
+      render :partial => "marc/show", locals: {item: @item, editor_profile: controller.view_assigns["show_profile"]}
     end
     active_admin_embedded_source_list( self, work_node, !is_selection_mode? )
     active_admin_user_wf( self, work_node )

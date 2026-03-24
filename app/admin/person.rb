@@ -85,7 +85,7 @@ ActiveAdmin.register Person do
 
       @top_siglas = @person.libraries_top_sigla
 
-      @editor_profile = EditorConfiguration.get_show_layout @person
+      @show_profile = EditorConfiguration.get_show_layout @person
       @editor_validation = EditorValidation.get_default_validation(@person)
       @prev_item, @next_item, @prev_page, @next_page, @nav_positions = Person.near_items_as_ransack(params, @person)
 
@@ -273,7 +273,7 @@ ActiveAdmin.register Person do
     if @item.marc_source == nil
       render :partial => "marc/missing"
     else
-      render :partial => "marc/show", locals: {item: @item}
+      render :partial => "marc/show", locals: {item: @item, editor_profile: controller.view_assigns["show_profile"]}
     end
     active_admin_embedded_source_list( self, person, !is_selection_mode? )
 

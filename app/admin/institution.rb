@@ -71,7 +71,7 @@ ActiveAdmin.register Institution do
         redirect_to admin_root_path, :flash => { :error => "#{I18n.t(:error_not_found)} (Institution #{params[:id]})" }
         return
       end
-      @editor_profile = EditorConfiguration.get_show_layout @institution
+      @show_profile = EditorConfiguration.get_show_layout @institution
       @prev_item, @next_item, @prev_page, @next_page, @nav_positions = Institution.near_items_as_ransack(params, @institution)
 
       @jobs = @institution.delayed_jobs
@@ -196,7 +196,7 @@ ActiveAdmin.register Institution do
     if @item.marc_source == nil
       render :partial => "marc/missing"
     else
-      render :partial => "marc/show", locals: {item: @item}
+      render :partial => "marc/show", locals: {item: @item, editor_profile: controller.view_assigns["show_profile"]}
     end
 
     active_admin_embedded_source_list( self, institution, !is_selection_mode? )

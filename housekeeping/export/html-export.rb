@@ -78,7 +78,7 @@ File.open("marc_recs.html", "w") do |file|
 			@item = s
 			@editor_profile = EditorConfiguration.get_show_layout @item
 			
-      raw_record = renderer.render(partial: "marc/show", assigns: {editor_profile: @editor_profile, item: @item})
+      raw_record = renderer.render(partial: "marc/show", assigns: {editor_profile: @editor_profile, item: @item}, locals: {item: @item})
       clean_record = crudely_minify_html(raw_record)
 
 			#file.write(ApplicationController.renderer.render(partial: "marc/show", assigns: {editor_profile: @editor_profile, item: @item}))
