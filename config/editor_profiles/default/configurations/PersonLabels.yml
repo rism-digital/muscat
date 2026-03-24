@@ -114,6 +114,11 @@
     "9":
       label: general.source_citation
   label: records.source_data_found
+'675':
+  fields:
+    a:
+      label: general.source_citation
+  label: records.source_data_not_found
 '678':
   fields:
     a:

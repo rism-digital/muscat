@@ -29,6 +29,7 @@ groups:
   references:
     all_tags:
     - "670"
+    - "675"
     - "680"
     - "856"
     - "667"

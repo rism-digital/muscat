@@ -1,3 +1,5 @@
+=begin
+# It seems we should keep ] and move to 675
 Person.find_each do |ps|
   save = false
 
@@ -14,6 +16,7 @@ Person.find_each do |ps|
     ps.save
   end
 end
+=end
 
 Person.find_each do |ps|
   save = false

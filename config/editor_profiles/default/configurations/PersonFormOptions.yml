@@ -202,6 +202,15 @@
     - - "9"
     - - "b"
     - - "u"
+"675":
+  new_window: publications
+  new_window_field: short_name_eq
+  layout: 
+    fields: 
+    - - "a"
+      - type: publication
+        editor_partial: subfield_secondary
+        allow_new: false
 "678": 
   layout: 
     fields: 
