@@ -150,21 +150,6 @@ ActiveAdmin.register Holding do
   
   end
   
-  collection_action :render_embedded, method: :post do    
-    @item = Holding.find(params[:object_id] )#params[:object_id] )
-    
-    begin
-      @item.marc.load_source(true)
-    rescue ActiveRecord::RecordNotFound
-      puts "Could not properly load MarcHolding #{@item.id}"
-    end
-    
-    @editor_profile = EditorConfiguration.get_show_layout @item
-    
-    render :template => 'marc_show/show_preview', :locals => {:holdings => true }
-  
-  end
-
   member_action :move_to, method: :get do
     if !(@current_user.has_role?(:editor) || @current_user.has_role?(:admin))
       redirect_to action: :show
