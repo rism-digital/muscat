@@ -1,13 +1,18 @@
-
-
-<div id="wikidata-form" class="panel-hidable" style="display:none;>">
-  
-  <div class="panel tab_panel" name="wikidata">
-    <h3><%=I18n.t("wikidata.merge_from_wikidata")%></h3>
+<div
+  id="<%= panel_id %>"
+  class="panel-hidable external-fetch-panel"
+  style="display:none;"
+  data-sidebar="#<%= sidebar_id %>"
+  data-endpoint="<%= endpoint %>"
+  data-input-param="<%= input_param %>"
+  data-target-panel="<%= target_panel %>"
+  data-protected-tags='<%= protected_tags.to_json %>'
+>
+  <div class="panel tab_panel" name="external_fetch">
+    <h3><%= title %></h3>
     <div class="marc_editor_panel_content">
-      <p>
-        <%= render "shared/wikidata_help" %>
-      </p>
+      <p><%= render help_partial %></p>
+
       <table>
         <colgroup>
           <col span="1" style="width: 80%;">
@@ -16,12 +21,21 @@
         <tr>
           <td>
             <div class="tag_content_collapsable">
-              <input style="margin-top:6px; width:70%;" class="subfield_entry serialize_marc" type="text" id="wikidata_input">
+              <input
+                style="margin-top:6px; width:70%;"
+                class="subfield_entry serialize_marc external-fetch-input"
+                type="text"
+              >
             </div>
           </td>
           <td>
             <div class="buttons">
-              <input name="commit" type="submit" value="<%= I18n.t(:merge)%>" id="wikidata_button">
+              <input
+                name="commit"
+                type="button"
+                value="<%= I18n.t(:merge) %>"
+                class="external-fetch-button"
+              >
             </div>
           </td>
         </tr>
@@ -29,11 +43,10 @@
     </div>
   </div>
 
-  <div id="loader" style="display: none;">
-    <p><img style="display: block;margin-left: auto; margin-right: auto;width:48px;height:48px;" src="/images/gears.svg"/>
+  <div class="loader" style="display:none;">
+    <p>
+      <img style="display:block; margin-left:auto; margin-right:auto; width:48px; height:48px;" src="/images/gears.svg"/>
     </p>
     <small>Muscat is hard at work please wait a minute or two...</small>
   </div>
-
 </div>
-

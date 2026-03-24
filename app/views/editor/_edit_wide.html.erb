@@ -18,7 +18,16 @@
 <% end %>
 
 <% if @item.class.respond_to?("get_wikidata?")%>
-  <%= render :partial => "editor/wikidata_form" %>
+	<%= render partial: "editor/wikidata_form", locals: {
+	panel_id: "wikidata-fetch-form",
+	sidebar_id: "wikidata-sidebar",
+	endpoint: "wikidata_merge",
+	input_param: "wikidata_id",
+	target_panel: "marc_editor_panel",
+	protected_tags: ["001", "040", "042", "100"],
+	title: I18n.t("wikidata.merge_from_wikidata"),
+	help_partial: "shared/wikidata_help"
+	} %>
 <% end %>
 
 <% if @item.class.respond_to?("get_gnd")%>

@@ -1,34 +1,35 @@
-var show_wikidata_actions = function () {
+function initExternalFetchPanel($panel) {
+  var endpoint = $panel.data("endpoint");
+  var inputParam = $panel.data("input-param") || "id";
+  var targetPanel = $panel.data("target-panel") || "marc_editor_panel";
+  var protectedTags = $panel.data("protected-tags") || [];
+  var sidebarSelector = $panel.data("sidebar");
 
-  $("#wikidata-sidebar").click(function(){
-    marc_editor_show_panel("wikidata-form");
-    $('#wikidata-form').children('div.tab_panel').show();
-  });
+  var $input = $panel.find(".external-fetch-input");
+  var $button = $panel.find(".external-fetch-button");
+  var $loader = $panel.find(".loader");
 
-  function searchWikidata() {
-    var term = $("#wikidata_input").val();
-    var model = $("#marc_editor_panel").attr("data-editor-model");
-    const isNew = $("body").hasClass("new");
+  function searchExternalSource() {
+    var term = $input.val();
+    var model = $("#" + targetPanel).attr("data-editor-model");
+    var isNew = $("body").hasClass("new");
+
+    if (!term) return;
+
+    var requestData = { new: isNew };
+    requestData[inputParam] = term;
 
     $.ajax({
       type: "GET",
-      url: "/admin/" + model + "/wikidata_merge.json",
-      data: { wikidata_id: term, new: isNew },
-
-      beforeSend: function() {
-        $("#loader").show();
-      },
-
-      complete: function() {
-        $("#loader").hide();
-      },
-
+      url: "/admin/" + model + "/" + endpoint + ".json",
+      data: requestData,
+      beforeSend: function() { $loader.show(); },
+      complete: function() { $loader.hide(); },
       success: function(response) {
         var data = response.data || response;
-        _marc_editor_update_from_json(data, ["001", "040", "042", "100"], true);
-        marc_editor_show_panel("marc_editor_panel");
+        _marc_editor_update_from_json(data, protectedTags, true);
+        marc_editor_show_panel(targetPanel);
       },
-
       error: function(jqXHR, textStatus, errorThrown) {
         var message = "Request failed";
 
@@ -50,17 +51,28 @@ var show_wikidata_actions = function () {
     });
   }
 
-  $("#wikidata_button").click(function(){ 
-    searchWikidata()
-  })
+  if (sidebarSelector) {
+    $(sidebarSelector).on("click", function() {
+      marc_editor_show_panel($panel.attr("id"));
+      $panel.children("div.tab_panel").show();
+    });
+  }
 
-  $('#wikidata_input').keydown(function (e) {
-    var keyCode = e.keyCode || e.which;
-    if (keyCode == 13) { 
-      searchWikidata()
-    }
+  $button.on("click", function(e) {
+    e.preventDefault();
+    searchExternalSource();
   });
 
-};
+  $input.on("keydown", function(e) {
+    if ((e.keyCode || e.which) === 13) {
+      e.preventDefault();
+      searchExternalSource();
+    }
+  });
+}
 
-$(document).ready(show_wikidata_actions);
+$(document).ready(function() {
+  $(".external-fetch-panel").each(function() {
+    initExternalFetchPanel($(this));
+  });
+});
