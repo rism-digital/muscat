@@ -91,15 +91,7 @@ ActiveAdmin.register Place do
 
     def new
       @place = Place.new
-      converted = false
-
-      if params.include?(:tgn_id)
-        tgn_id = params.fetch(:tgn_id).gsub("tgn:", "")
-        rec = TgnClient::pull_from_tgn(tgn_id)
-        converted = TgnConverter::to_place_marc(rec)
-      end
-
-      marc_file = converted || File.read(ConfigFilePath.get_marc_editor_profile_path("#{Rails.root}/config/marc/#{RISM::MARC}/place/default.marc"))
+      marc_file = File.read(ConfigFilePath.get_marc_editor_profile_path("#{Rails.root}/config/marc/#{RISM::MARC}/place/default.marc"))
       
       new_marc = MarcPlace.new(marc_file)
       new_marc.load_source false # this will need to be fixed
@@ -117,33 +109,6 @@ ActiveAdmin.register Place do
 
   # Include the MARC extensions
   include MarcControllerActions
-
-  collection_action :tgn_search, method: :get do
-    begin
-      params.require(:q)
-      begin
-        @results = TgnClient::search(params[:q])
-      rescue Faraday::ConnectionFailed
-        ## inform user here
-      end
-      
-    rescue ActionController::ParameterMissing
-      @results = nil
-    end
-
-    # Map these to Muscat-ids if possible
-    @results.each do |r|
-      sanit_id = r[:subject].gsub("tgn:", "")
-      begin
-        ids = Place.where(tgn_id: sanit_id)
-        r[:in_muscat] = ids.count > 0 ? true : false
-      rescue ActiveRecord::RecordNotFound
-        r[:in_muscat] = false
-      end
-    end
-
-    render 'tgn_results', layout: "active_admin", locals: { results: @results }
-  end
 
   member_action :reindex, method: :get do
     job = Delayed::Job.enqueue(ReindexItemsJob.new(params[:id], Place, :referring_sources))
@@ -200,7 +165,6 @@ ActiveAdmin.register Place do
 
   sidebar :actions, :only => :index do
     render :partial => "activeadmin/section_sidebar_index"
-    render partial: "tgn_search_actions" if current_user.has_role?(:editor) || current_user.has_role?(:admin)
   end
 
   # Include the folder actions

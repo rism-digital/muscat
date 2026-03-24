@@ -381,6 +381,6 @@ class TgnConverter
       existing.add(norm) # Make sure we don't add dups
     end
 
-    return new_marc.to_marc.force_encoding("UTF-8")
+    return new_marc#.to_marc.force_encoding("UTF-8")
   end
 end
