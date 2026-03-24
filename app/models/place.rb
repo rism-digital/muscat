@@ -268,6 +268,10 @@ class Place < ApplicationRecord
     end
   end
 
+  def self.get_tgn?
+    true
+  end
+
   # https://github.com/activeadmin/activeadmin/issues/7809
   # In Non-marc models we can use the default
   def self.ransackable_associations(_) = reflections.keys

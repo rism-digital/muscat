@@ -30,6 +30,19 @@
 	} %>
 <% end %>
 
+<% if @item.class.respond_to?("get_tgn?")%>
+	<%= render partial: "editor/external_fetch_panel", locals: {
+	panel_id: "tgn-fetch-form",
+	sidebar_id: "tgn-sidebar",
+	endpoint: "tgn_merge",
+	input_param: "tgn_id",
+	target_panel: "marc_editor_panel",
+	protected_tags: ["001", "970", "151"],
+	title: I18n.t("tgn.merge_from_tgn"),
+	help_partial: "shared/wikidata_help"
+	} %>
+<% end %>
+
 <% if @item.class.respond_to?("get_gnd")%>
   <%= render :partial => "editor/gnd_form" %>
 <% end %>

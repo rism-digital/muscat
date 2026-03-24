@@ -150,6 +150,22 @@ ActiveAdmin.register Place do
     redirect_to resource_path(params[:id]), notice: "Reindex Job started #{job.id}"
   end
 
+  collection_action :tgn_merge, method: :get do
+
+    tgn_id = params.fetch(:tgn_id).gsub("tgn:", "")
+    rec = TgnClient::pull_from_tgn(tgn_id)
+    converted = TgnConverter::to_place_marc(rec)
+
+
+    #ps = Person.where(wikidata_id: qid)
+    #if ps.count > 0 && skip == false
+    #  render json: { ok: false, error: I18n.t("wikidata.qid_exists", qid: qid, person: "#{ps.first.full_name.to_s} (#{ps.first.id})") }, status: :unprocessable_entity
+    #  return
+    #end
+
+    render json: { ok: true, data: converted.to_json }
+  end
+
   ###########
   ## Index ##
   ###########
