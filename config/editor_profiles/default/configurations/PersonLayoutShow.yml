@@ -14,9 +14,6 @@ groups:
     - "042"
     - "375"   
     - "043"
-    all_tag_templates:
-      "375": marc_show/show_gender  
-      "043": marc_show/show_auto_tag
   codes: 
     all_tags: 
     - "024"
@@ -25,8 +22,6 @@ groups:
   variants:
     all_tags:
     - "400"
-    all_tag_templates:
-      "400": marc_show/show_auto_tag
   relations:
     all_tags:
     - "500"
@@ -34,11 +29,6 @@ groups:
     - "550" 
     - "551"
     - "910"
-    all_tag_templates:
-      "500": marc_show/show_auto_tag
-      "510": marc_show/show_auto_tag
-      "550": marc_show/show_auto_tag
-      "551": marc_show/show_auto_tag
   references:
     all_tags:
     - "670"
@@ -47,7 +37,6 @@ groups:
     - "856"
     - "667"
     all_tag_templates:
-      "670": marc_show/show_auto_tag
       "856": marc_show/show_link
   control: 
     all_tags: 
