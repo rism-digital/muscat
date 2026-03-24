@@ -18,7 +18,7 @@
 <% end %>
 
 <% if @item.class.respond_to?("get_wikidata?")%>
-	<%= render partial: "editor/wikidata_form", locals: {
+	<%= render partial: "editor/external_fetch_panel", locals: {
 	panel_id: "wikidata-fetch-form",
 	sidebar_id: "wikidata-sidebar",
 	endpoint: "wikidata_merge",
