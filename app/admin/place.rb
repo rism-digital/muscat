@@ -122,11 +122,11 @@ ActiveAdmin.register Place do
     converted = TgnConverter::to_place_marc(rec)
 
 
-    #ps = Person.where(wikidata_id: qid)
-    #if ps.count > 0 && skip == false
-    #  render json: { ok: false, error: I18n.t("wikidata.qid_exists", qid: qid, person: "#{ps.first.full_name.to_s} (#{ps.first.id})") }, status: :unprocessable_entity
-    #  return
-    #end
+    ps = Place.where(tgn_id: tgn_id)
+    if ps.count > 0
+      render json: { ok: false, error: I18n.t("tgn.exists", id: tgn_id, place: "#{ps.first.name.to_s} (#{ps.first.id})") }, status: :unprocessable_entity
+      return
+    end
 
     render json: { ok: true, data: converted.to_json }
   end

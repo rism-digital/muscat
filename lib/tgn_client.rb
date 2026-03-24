@@ -197,7 +197,7 @@ class TgnClient
       ORDER BY ?level
     SPARQL
 
-    client = SPARQL::Client.new("http://vocab.getty.edu/sparql")
+    client = SPARQL::Client.new("https://vocab.getty.edu/sparql")
     results = client.query(query)
 
     # mmmmmmh?
@@ -207,7 +207,7 @@ class TgnClient
       next if r[:level]&.to_i == 0 # Skip ourselves
         
       # Skip "World"
-      next if r[:ancestor].to_s == "http://vocab.getty.edu/tgn/7029392"
+      next if r[:ancestor].to_s == "https://vocab.getty.edu/tgn/7029392"
 
       {
         id: r[:ancestor]&.to_s,
@@ -219,7 +219,7 @@ class TgnClient
     place = results[0] # this is uss
 
     country = GettyTGN::THE_STATIC_MAP.map {|k,v|
-      full_id = k.sub("tgn:", "http://vocab.getty.edu/tgn/")
+      full_id = k.sub("tgn:", "https://vocab.getty.edu/tgn/")
       {k => v} if parents_ordered.any? { |h| h[:id] == full_id }
     }.compact&.first
 
