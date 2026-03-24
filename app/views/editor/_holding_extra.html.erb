@@ -4,13 +4,12 @@
 
 <div id="source_preview_for_holding">
 <%
-    item = @item
     ep = @editor_profile
     @item = item.source
     @editor_profile = EditorConfiguration.get_show_layout item.source
     %>
-    <%= render(:partial =>  "marc/show", :locals => {:holdings => true } ) %>
-    <%@item = item
+    <%= render(:partial: "marc/show", locals: {item: item.source } ) %>
+    <%
     @editor_profile = ep
     %>
 </div>

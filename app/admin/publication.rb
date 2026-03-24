@@ -290,7 +290,7 @@ ActiveAdmin.register Publication do
     if @item.marc_source == nil
       render :partial => "missing"
     else
-      render :partial => "marc/show"
+      render :partial => "marc/show", locals: {item: @item}
     end
     
     ## Source box. Use the standard helper so it is the same everywhere

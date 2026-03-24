@@ -427,7 +427,7 @@ ActiveAdmin.register Source do
     # @item retrived by from the controller is not available there. We need to get it from the @arbre_context
     active_admin_navigation_bar( self )
     @item = controller.view_assigns["item"]
-    render :partial => "marc/show"
+    render :partial => "marc/show", locals: {item: @item}
     active_admin_embedded_source_list( self, @item, !is_selection_mode? )
     active_admin_digital_object( self, @item ) if !is_selection_mode?
     active_admin_user_wf( self, @item )

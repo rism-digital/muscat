@@ -229,7 +229,7 @@ ActiveAdmin.register InventoryItem do
     if @item.marc_source == nil
       render :partial => "missing"
     else
-      render :partial => "marc/show"
+      render :partial => "marc/show", locals: {item: @item}
     end
     active_admin_user_wf( self, inventory_item )
     active_admin_navigation_bar( self )

@@ -183,7 +183,7 @@ ActiveAdmin.register Place do
     if @item.marc_source == nil
       render :partial => "marc/missing"
     else
-      render :partial => "marc/show"
+      render :partial => "marc/show", locals: {item: @item}
     end
 
     active_admin_embedded_source_list( self, place, !is_selection_mode? )

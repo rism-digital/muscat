@@ -26,7 +26,7 @@
 
 	<%= render :partial => (group_config["template"] && !@diff ? group_config["template"] : "marc/show_group" ), 
 		:locals => { 
-			:item => @item, 
+			:item => item, 
 			:group => group, 
 			:holdings => holdings_resolved } %>
 				
@@ -34,20 +34,20 @@
 <%end%>
 
 <!-- if we are rendering the holdings box via ajax, we can render the DOs in the same box -->
-<% if holdings_resolved && @item.digital_objects.images.size > 0 %>
+<% if holdings_resolved && item.digital_objects.images.size > 0 %>
 	<%= render "admin/digital_objects/digital_objects_embedded_panel" %>
 <% end %>
 
-<% if @item.class == Source && @item.holdings.count > 0 %>
-  	<%= render :partial => "holdings/show_holdings" %> 
+<% if item.class == Source && item.holdings.count > 0 %>
+  	<%= render :partial => "holdings/show_holdings", :locals => { :item => item }  %> 
 <% end %>
 
 	<div class="panel_group_space"></div>
 
-<% if !@diff && !holdings_resolved && @item.respond_to?(:get_iiif_tags)%>
+<% if !@diff && !holdings_resolved && item.respond_to?(:get_iiif_tags)%>
 	
 	<%= render :partial => "marc_show/show_iiif", 
-		:locals => { :item => @item } %>
+		:locals => { :item => item } %>
 
 <% end %>
 
