@@ -3,7 +3,7 @@ Person.find_each do |ps|
 
   ps.marc["670"].each do |t|
     st = t["b"]&.first&.content
-    if st == "0" || st == "]"
+    if st == "0" # NO! || st == "]"
       ps.marc.add_tag_with_subfields("675", "0": t["w"].first.content)
       t.destroy_yourself
       save = true
