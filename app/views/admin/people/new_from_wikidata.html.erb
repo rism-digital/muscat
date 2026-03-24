@@ -1,6 +1,0 @@
-<%= render "jobs/job_wait",
-  poll_url: "/progress-job/#{@jobid}",
-  redirect_url: new_admin_person_path(wikidata_job: @jobid),
-  poll_interval_ms: 1000,
-  title: I18n.t("wikidata.wait")
-%>

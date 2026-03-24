@@ -119,34 +119,8 @@ ActiveAdmin.register Person do
 
     def new
       @person = Person.new
-      converted = false
 
-      if params.include?(:wikidata_job)
-        wikidata_job = params.fetch(:wikidata_job)
-        
-        job_output = DelayedJobOutput.where(delayed_job_id: wikidata_job)
-
-        unless job_output.first
-          redirect_to admin_people_path, :flash => { :error => "Job crashed" }
-          return
-        end
-
-        if job_output.first.status != "ok"
-          msg = job_output.first.output
-          status = job_output.first.status
-          redirect_to admin_people_path, :flash => { :error => I18n.t("wikidata." + status, msg: msg) }
-          return
-        end
-        converted = job_output.first.output
-
-      end
-
-      if converted
-        marc_file = converted
-      else
-        marc_file = File.read(ConfigFilePath.get_marc_editor_profile_path("#{Rails.root}/config/marc/#{RISM::MARC}/person/default.marc"))
-      end
-
+      marc_file = File.read(ConfigFilePath.get_marc_editor_profile_path("#{Rails.root}/config/marc/#{RISM::MARC}/person/default.marc"))
       new_marc = MarcPerson.new(marc_file)
       
       new_marc.load_source false # this will need to be fixed
@@ -173,28 +147,6 @@ ActiveAdmin.register Person do
   member_action :resave, method: :get do
     job = Delayed::Job.enqueue(SaveItemsJob.new(params[:id], Person, :referring_sources))
     redirect_to resource_path(params[:id]), notice: "Save Job started #{job.id}"
-  end
-
-  collection_action :new_from_wikidata, method: :get do
-    qid = params[:wikidata_id]
-
-    # Do some sanity checks
-    # Is the QID well formed?
-    unless qid.to_s.match?(/\AQ\d+\z/)
-      redirect_to admin_people_path, :flash => { :error => I18n.t("wikidata.InvalidQid", msg: qid)}
-      return
-    end 
-    
-    # Do we alreay dave it in Muscat?
-    ps = Person.where(wikidata_id: qid)
-    if ps.count > 0
-      redirect_to admin_people_path, :flash => { :error => I18n.t("wikidata.qid_exists", qid: qid, person: "#{ps.first.full_name.to_s} (#{ps.first.id})") }
-      return
-    end
-
-    # Ok onto the job!
-    job= Delayed::Job.enqueue(WikidataFetcherJob.new(qid))
-    @jobid = job.id
   end
 
   collection_action :wikidata_merge, method: :get do
@@ -302,7 +254,6 @@ ActiveAdmin.register Person do
 
   sidebar :actions, :only => :index do
     render :partial => "activeadmin/section_sidebar_index"
-    #render partial: "wikidata"
   end
 
   # Include the folder actions
