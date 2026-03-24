@@ -1,9 +1,9 @@
-<% if @item.parent_source || @item.child_sources.count > 0 || @item.get_initial_entries.count > 0 || @item.collection_holdings.count > 0 %>
+<% if item.parent_source || item.child_sources.count > 0 || item.get_initial_entries.count > 0 || item.collection_holdings.count > 0 %>
 	<div class="panel">
 		<h3><%= group[:title] %></h3>
 		<div class="panel_contents">
 			<div class="attributes_table">
-			<% if @item.parent_source %>
+			<% if item.parent_source %>
 				<table border="0" cellpadding="0" cellspacing="0">
 					<tr class="row">
 						<th>
@@ -11,31 +11,31 @@
 						</th>
 						<td valign="top">
 							<% if is_selection_mode? %>
-								<%= @item.parent_source.id.to_s%>
+								<%= item.parent_source.id.to_s%>
 							<% else %>
-								<%= application_helper_link_source_id(@item.parent_source.id, "").html_safe %>
+								<%= application_helper_link_source_id(item.parent_source.id, "").html_safe %>
 							<% end %>
-							<%= " #{@item.parent_source.composer}" if @item.parent_source.composer != "" %><%= ": " if (@item.parent_source.composer != "" && @item.parent_source.std_title)%><i><%= "#{@item.parent_source.std_title}" if @item.parent_source.std_title %></i>
+							<%= " #{item.parent_source.composer}" if item.parent_source.composer != "" %><%= ": " if (item.parent_source.composer != "" && item.parent_source.std_title)%><i><%= "#{item.parent_source.std_title}" if item.parent_source.std_title %></i>
 						</td>
 					</tr>
 				</table>
 			<% end %>
-			<% if @item.child_sources.count > 0 || @item.collection_holdings.count > 0 %>
+			<% if item.child_sources.count > 0 || item.collection_holdings.count > 0 %>
 				<table border="0" cellpadding="0" cellspacing="0">
 				<% 
 				count = 0
-				total_items = @item.marc.by_tags("774").count
+				total_items = item.marc.by_tags("774").count
 				title = editor_profile.get_label("774") + " (#{total_items})"
-				@item.marc.each_by_tag("774") do |link|
+				item.marc.each_by_tag("774") do |link|
 					link_id = link.fetch_first_by_tag("w")
 					link_type = link.fetch_first_by_tag("4")
 					next if !link_id || !link_id.content
 					holding_link = true if link_type && link_type.content && link_type.content == "holding"
 					if holding_link
-						holding = @item.get_collection_holding(link_id.content.to_i)
+						holding = item.get_collection_holding(link_id.content.to_i)
 						child = holding.source if holding && holding.source
 					else
-						child = @item.get_child_source(link_id.content.to_i)
+						child = item.get_child_source(link_id.content.to_i)
 					end
 					%>
 					<% if child%>
@@ -65,7 +65,7 @@
 				<% end %>
 				</table>
 			<% end %>
-			<% if @item.get_initial_entries.count > 0 %>
+			<% if item.get_initial_entries.count > 0 %>
 				<table border="0" cellpadding="0" cellspacing="0">
 					<tr class="row">
 						<th>
@@ -73,11 +73,11 @@
 						</th>
 						<td valign="top">
 							<% if is_selection_mode? %>
-								<%= @item.sources.first.id.to_s%>
+								<%= item.sources.first.id.to_s%>
 							<% else %>
-								<%= application_helper_link_source_id(@item.sources.first.id, "").html_safe %>
+								<%= application_helper_link_source_id(item.sources.first.id, "").html_safe %>
 							<% end %>
-							<%= " #{@item.sources.first.composer}" if @item.sources.first.composer != "" %><%= ": " if (@item.sources.first.composer != "" && @item.sources.first.std_title)%><i><%= "#{@item.sources.first.std_title}" if @item.sources.first.std_title %></i>
+							<%= " #{item.sources.first.composer}" if item.sources.first.composer != "" %><%= ": " if (item.sources.first.composer != "" && item.sources.first.std_title)%><i><%= "#{item.sources.first.std_title}" if item.sources.first.std_title %></i>
 						</td>
 					</tr>
 				</table>

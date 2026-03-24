@@ -31,7 +31,7 @@
 
 
 		<% if @item.is_a? Holding %>
-			<%= render "editor/holding_extra" %>
+			<%= render partial: "editor/holding_extra", locals: {item: @item, editor_profile: @editor_profile} %>
 		<% end %>
 
 		<%= render "holdings/list_holdings" %>
