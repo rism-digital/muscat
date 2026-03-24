@@ -30,17 +30,17 @@
 							</table>
 							<%- end %>
 							<%- if !@diff %>
-								<%= render :partial => "marc/show_tags", :locals => { :item => item, :tags => subfield_group_tags, :templates => group[:tag_templates] } %>
+								<%= render partial: "marc/show_tags", locals: { item: item, editor_profile: editor_profile, tags: subfield_group_tags, templates: group[:tag_templates] } %>
 							<%- else %>
-								<%= render :partial => "marc/show_diff_tags", :locals => { :item => item, :tags => subfield_group_tags } %>
+								<%= render partial: "marc/show_diff_tags", locals: { item: item, editor_profile: editor_profile, tags: subfield_group_tags } %>
 							<%- end %>
 						<%- end %>
 					<%- end %>
 				<%- else %>			
 					<%- if !@diff %>
-						<%= render :partial => "marc/show_tags", :locals => { :item => item, :tags => tags, :templates => group[:tag_templates] } %>
+						<%= render partial: "marc/show_tags", locals: { item: item, editor_profile: editor_profile, tags: tags, templates: group[:tag_templates] } %>
 					<%- else %>
-						<%= render :partial => "marc/show_diff_tags", :locals => { :item => item, :tags => tags } %>
+						<%= render partial: "marc/show_diff_tags", locals: { item: item, tags: tags } %>
 					<%- end %>
 				<%- end %>
 			</div>

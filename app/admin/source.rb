@@ -51,29 +51,31 @@ ActiveAdmin.register Source do
     
     def show
       begin
-        @item = Source.find(params[:id])
+        @source = Source.find(params[:id])
       rescue ActiveRecord::RecordNotFound
         redirect_to admin_root_path, :flash => { :error => "#{I18n.t(:error_not_found)} (Source #{params[:id]})" }
         return
       end
 
+      @item = @source
+
       # Try to load the MARC object.
       begin
-        @item.marc.load_source true
+        @source.marc.load_source true
       rescue ActiveRecord::RecordNotFound
         # If resolving the remote objects fails, it means
         # Something went wrong saving the source, like a DB falure
         # continue to show the page so the user does not panic, and
         # show an error message. Also send a mail to the administrators
         flash[:error] = I18n.t(:unloadable_record)
-        AdminNotifications.notify("Source #{@item.id} seems unloadable, please check", @item).deliver_now
+        AdminNotifications.notify("Source #{@source.id} seems unloadable, please check", @source).deliver_now
       end
       
-      @editor_profile = EditorConfiguration.get_show_layout @item
-      @prev_item, @next_item, @prev_page, @next_page, @nav_positions = Source.near_items_as_ransack(params, @item)
+      @show_profile = EditorConfiguration.get_show_layout @source
+      @prev_item, @next_item, @prev_page, @next_page, @nav_positions = Source.near_items_as_ransack(params, @source)
       
-      if @item.get_record_type == :edition || @item.get_record_type == :libretto_edition || @item.get_record_type == :theoretica_edition || @item.get_record_type == :inventory_edition
-        if @item.holdings.empty?
+      if @source.get_record_type == :edition || @source.get_record_type == :libretto_edition || @source.get_record_type == :theoretica_edition || @source.get_record_type == :inventory_edition
+        if @source.holdings.empty?
           flash.now[:error] = I18n.t(:holding_missing_show, new_holding: I18n.t(:new_holding))
         end
       end
@@ -423,18 +425,17 @@ ActiveAdmin.register Source do
   ## Show ##
   ##########
   
-  show :title => proc{ active_admin_source_show_title( @item.composer, @item.std_title, @item.id, @item.get_record_type) } do
+  show :title => proc{ active_admin_source_show_title( @source.composer, @source.std_title, @source.id, @source.get_record_type) } do
     # @item retrived by from the controller is not available there. We need to get it from the @arbre_context
     active_admin_navigation_bar( self )
-    @item = controller.view_assigns["item"]
-    render :partial => "marc/show", locals: {item: @item}
-    active_admin_embedded_source_list( self, @item, !is_selection_mode? )
-    active_admin_digital_object( self, @item ) if !is_selection_mode?
-    active_admin_user_wf( self, @item )
+    render partial:  "marc/show", locals: {item: resource, editor_profile: controller.view_assigns["show_profile"]}
+    active_admin_embedded_source_list( self, resource, !is_selection_mode? )
+    active_admin_digital_object( self, resource ) if !is_selection_mode?
+    active_admin_user_wf( self, resource )
     active_admin_navigation_bar( self )
     active_admin_comments if !is_selection_mode?
 
-    active_adnin_create_list_for(self, InventoryItem, @item, composer: I18n.t(:filter_composer), title: I18n.t(:filter_title))
+    active_adnin_create_list_for(self, InventoryItem, resource, composer: I18n.t(:filter_composer), title: I18n.t(:filter_title))
   end
   
   # 8.0.1 #1190, make the sidebar floating only if there are no holdings

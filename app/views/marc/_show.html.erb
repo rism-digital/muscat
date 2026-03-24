@@ -1,7 +1,7 @@
 <%- 
 # if these two parameters do not exist, make them false as default
 	holdings_resolved = holdings rescue holdings_resolved = false
-	layout_config = @editor_profile.layout_config
+	layout_config = editor_profile.layout_config
 -%>	
 
 <% if @diff && @wf_stages %>
@@ -14,7 +14,7 @@
     <% layout_config["group_order"].each do |group_name|
 	group_config = layout_config["groups"][group_name]
 	group = { 
-		:title => @editor_profile.get_label(group_name), 
+		:title => editor_profile.get_label(group_name), 
 		:tags => group_config["all_tags"], 
 		:tag_templates => group_config["all_tag_templates"], 
 		:subfield_grouping => group_config["subfield_grouping"],
@@ -25,10 +25,11 @@
 	<% next if @diff && !group_config["all_tags"] %>
 
 	<%= render :partial => (group_config["template"] && !@diff ? group_config["template"] : "marc/show_group" ), 
-		:locals => { 
-			:item => item, 
-			:group => group, 
-			:holdings => holdings_resolved } %>
+		locals: { 
+			item: item, 
+			editor_profile: editor_profile,
+			group: group, 
+			holdings: holdings_resolved } %>
 				
     <%- end -%>
 <%end%>

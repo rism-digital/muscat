@@ -31,7 +31,7 @@
 -%>
 
 <tr class="row">
-  <th><%= @editor_profile.get_sub_label(tag.tag, "a") %></th>
+  <th><%= editor_profile.get_sub_label(tag.tag, "a") %></th>
   <td><%= incipit_number %></td>
 </tr>
 
@@ -39,6 +39,7 @@
   <% next if skip.include?(subfield.tag) || !item.marc.config.show_in_browse?(tag.tag, subfield.tag) -%>
   <%= render partial: "marc/show_subfield", locals: {
     item: item,
+    editor_profile: editor_profile,
     tag: tag,
     subfield: subfield,
     no_label: (last_tag == tag.tag + subfield.tag)
@@ -50,7 +51,7 @@
   label = [:g, :r, :n, :o, :p].collect { |s|
     subfield = tag.fetch_first_by_tag(s)
     value = !subfield ? I18n.t(:not_set) : subfield.content
-    "<b>#{@editor_profile.get_sub_label(tag.tag, s)}</b>: #{ERB::Util.h(value)}".html_safe
+    "<b>#{editor_profile.get_sub_label(tag.tag, s)}</b>: #{ERB::Util.h(value)}".html_safe
   }.join("<br>".html_safe)
 %>
 

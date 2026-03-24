@@ -6,7 +6,7 @@ relators = []
 relators << item.marc.config.get_relator_code_tag(tag.tag)
 
 # Quite a hack, try to see if we can translate the codes here
-@editor_profile.each_subfield_for(tag.tag) do |subfield, field_settings|
+editor_profile.each_subfield_for(tag.tag) do |subfield, field_settings|
     next if !field_settings
     if field_settings.has_key?('editor_partial') && field_settings['editor_partial'] == "subfield_select_codes"
         relators << subfield
@@ -50,7 +50,7 @@ tag.for_every_child_sorted do |subfield|
     text = subfield.content&.to_s
     next if text.blank?
     span = content_tag(:span, "[#{text}]", style: "color:#6b7280; font-size: 0.95em;")
-    parts << safe_join([@editor_profile.get_label(text), span], " ")
+    parts << safe_join([editor_profile.get_label(text), span], " ")
   else
     text = subfield.content&.to_s
     next if text.blank?
@@ -66,7 +66,7 @@ tag_content += tag.content if marc_configuration.is_tagless?(tag.tag)
 <tr class="row">
 	<th valign="top">
 		<% if (no_label == false) -%>
-			<%= @editor_profile.get_label(tag.tag) + " (#{tag.tag})"%>
+			<%= editor_profile.get_label(tag.tag) + " (#{tag.tag})"%>
 		<%- end %>
 	</th>
 	<td valign="top">

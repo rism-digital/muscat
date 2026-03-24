@@ -3,13 +3,5 @@
 <% end %>
 
 <div id="source_preview_for_holding">
-<%
-    ep = @editor_profile
-    @item = item.source
-    @editor_profile = EditorConfiguration.get_show_layout item.source
-    %>
-    <%= render(:partial: "marc/show", locals: {item: item.source } ) %>
-    <%
-    @editor_profile = ep
-    %>
+    <%= render(partial: "marc/show", locals: {item: item.source, editor_profile: EditorConfiguration.get_show_layout(item.source) } ) %>
 </div>
