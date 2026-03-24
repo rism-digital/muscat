@@ -30,7 +30,7 @@ de:
     url: URL
     using_muscat: Editor Hilfe
     validity: Gültigkeit
-    when_to_input_new_record: Wann soll einen neuen Eintrag erstellt werden (Musikdrucke)
+    when_to_input_new_record: Wann soll ein neuer Eintrag erstellt werden (Musikdrucke)
     workflow: Workflow
     'yes': 'Ja'
   languages:
@@ -960,6 +960,7 @@ de:
     westernmost_longitude: Westlicher Längengrad
     woodwinds: Holzblasinstrumente
     work: Werk
+    works: Werk
     work_catalog: Werkkatalog
     work_catalogs: Werkkatalog
     work_catalog_note: Bemerkung Werkverzeichnis
@@ -1008,14 +1009,14 @@ de:
     clef: "Schlüssel"
     keysig: "Akzidentien"
     timesig: "Metrum"
-    ERR_001_EMPTY: Geben Sie einen verschlüsselten Incipit ein.
+    ERR_001_EMPTY: Geben Sie ein verschlüsseltes Incipit ein.
     ERR_004_KEY_SPACE: Dem Wechsel der Tonart muss ein Leerzeichen folgen.
     ERR_005_CLEF_SPACE: Dem Wechsel des Notenschlüssels muss ein Leerzeichen folgen.
     ERR_006_TIMESIG_SPACE: Dem Taktartwechsel muss ein Leerzeichen folgen.
     ERR_007_REP_EMPTY: Geben Sie die zu wiederholenden Noten ein.
     ERR_008_REP_MARKER: Kennzeichnen Sie das Ende der wiederholten Figur mit "!" vor dem "f".
     ERR_009_REP_OPEN: Schließen Sie die wiederholte Figur mit '!' vor dem Taktende ab.
-    ERR_010_REP_UNUSED: Die zur Wiederholung markierte Figurl ist nicht wiederholt worden. Kennzeichnen Sie die Wiederholung mit einem "f".
+    ERR_010_REP_UNUSED: Die zur Wiederholung markierte Figur ist nicht wiederholt worden. Kennzeichnen Sie die Wiederholung mit einem "f".
     ERR_011_REP_NO_FIGURE: Damit die Figur wiederholt werden kann, muss auf '!' ein 'f' folgen.
     ERR_012_REP_NOT_BEGIN: Um den Takt zu wiederholen, muss dem "i" ein Taktstrich vorangestellt werden.
     ERR_013_REP_NO_CONTENT: "i' ist ohne zu wiederholenden Inhalt vorhanden."
