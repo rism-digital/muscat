@@ -1,64 +1,37 @@
-<%-
+<%
+  content = []
+  group = []
+  root = tag.parent
 
-  mapping = {
-    "BNF": "http://ark.bnf.fr/",
-    "DNB": "http://d-nb.info/gnd/",
-    "MBZ": "https://musicbrainz.org/work/",
-    "VIAF": "http://viaf.org/viaf/",
-    "ICCU": "http://id.sbn.it/bid/",
-    "WKP": "https://www.wikidata.org/wiki/",
-    "BNE": " https://datos.bne.es/entidad/",
-    "ISNI": "https://isni.org/isni/",
-    "LC": "https://lccn.loc.gov/",
-    "ORCID": "https://orcid.org/",
-    "NLP": "https://dbn.bn.org.pl/descriptor-details/",
-    "OCLC": "https://entities.oclc.org/worldcat/entity/",
-    "CMO": "https://corpus-musicae-ottomanicae.de/receive/"
-  }
+  root.each_by_tag(tag.tag) { |t| group << t }
 
-  content = Array.new
-  group=Array.new
-  root=tag.parent
-  root.each_by_tag(tag.tag) do |t| group<< t end
   group.each do |t|
     a_tag = t.fetch_first_by_tag("a")
     two_tag = t.fetch_first_by_tag("2")
-    if a_tag && two_tag && a_tag.content && two_tag.content
-      if two_tag.content && mapping.include?(two_tag.content.to_sym)
-        content << link_to("#{two_tag.content}: " + a_tag.content, mapping[two_tag.content.to_sym] + a_tag.content, :target => "_blank") if (a_tag && a_tag.content)
-      else
-        content << "#{two_tag.content}: #{a_tag.content}"
-      end
-=begin
-      if two_tag.content == "BNF"
-        content << link_to("BNF: " + a_tag.content, "https://data.bnf.fr/ark:/12148/cb"+a_tag.content, :target => "_blank") if (a_tag && a_tag.content)
-      elsif two_tag.content == "DNB"
-        content << link_to("DNB: " + a_tag.content, "http://d-nb.info/gnd/"+a_tag.content, :target => "_blank") if (a_tag && a_tag.content)
-      elsif two_tag.content == "MBZ"
-        content << link_to("MBZ: " + a_tag.content, "https://musicbrainz.org/work/"+a_tag.content, :target => "_blank") if (a_tag && a_tag.content)
-      elsif two_tag.content == "VIAF"
-        content << link_to("VIAF: " + a_tag.content, "http://viaf.org/viaf/"+a_tag.content, :target => "_blank") if (a_tag && a_tag.content)
-      elsif two_tag.content == "ICCU"
-        content << link_to("ICCU: " + a_tag.content, "https://opac.sbn.it/opacsbn/opac/iccu/scheda_authority.jsp?bid=IT%5cICCU%5c"+a_tag.content, :target => "_blank") if (a_tag && a_tag.content)
-      elsif two_tag.content == "WKP"
-        content << link_to("Wikidata: " + a_tag.content, "https://www.wikidata.org/wiki/"+a_tag.content, :target => "_blank") if (a_tag && a_tag.content)
-      else
-        content << "#{two_tag.content}: #{a_tag.content}"
-      end
-=end
+
+    next unless a_tag&.content && two_tag&.content
+
+    identifier = two_tag.content.strip
+    id_value   = a_tag.content.strip
+    url        = IdentifierLink.generate_url(identifier, id_value)
+
+    if url
+      content << link_to("#{identifier}: #{id_value}", url, target: "_blank")
+    else
+      content << "#{identifier}: #{id_value}"
     end
   end
--%>
+%>
 
-<% if tag==group.first %>
+<% if tag == group.first %>
   <tr class="row">
-	<th valign="top">
-		<% if (no_label == false) -%>
-			<%= @editor_profile.get_label(tag.tag) %>
-		<%- end %>
-	</th>
-	<td valign="top">
-    <%= content.uniq.join(', ').html_safe %>
-	</td>
+    <th valign="top">
+      <% unless no_label %>
+        <%= @editor_profile.get_label(tag.tag) %>
+      <% end %>
+    </th>
+    <td valign="top">
+      <%= content.uniq.join(", ").html_safe %>
+    </td>
   </tr>
-<%end%>
+<% end %>
