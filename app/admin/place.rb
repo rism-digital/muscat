@@ -120,10 +120,10 @@ ActiveAdmin.register Place do
     tgn_id = params.fetch(:tgn_id).gsub("tgn:", "")
     rec = TgnClient::pull_from_tgn(tgn_id)
     converted = TgnConverter::to_place_marc(rec)
-
+    is_new = (ActiveModel::Type::Boolean.new.cast(params[:new]))
 
     ps = Place.where(tgn_id: tgn_id)
-    if ps.count > 0
+    if ps.count > 0 && is_new
       render json: { ok: false, error: I18n.t("tgn.exists", id: tgn_id, place: "#{ps.first.name.to_s} (#{ps.first.id})") }, status: :unprocessable_entity
       return
     end

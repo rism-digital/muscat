@@ -781,7 +781,6 @@ en:
   save_and_continue: Save and continue editing
   save_and_exit: Save and close
   search_sources: Search Sources
-  search_tgn: Search Getty TGN
   sections: Sections
   select: Select
   select_template: Select new template
@@ -812,7 +811,6 @@ en:
     published: PUB
   std_title_contains: Standardized title
   switch_language: Switch language
-  tgn_id: Getty TGN id
   this_file_language: English
   time:
     formats:
@@ -909,3 +907,7 @@ en:
     qid_exists: "The Wikidata QID %{qid} is already in Muscat: %{person}"
     merge_from_wikidata: Enter Wikidata ID
     merge_button: Import from Wikidata
+  tgn:
+    merge_button: Import from Getty TGN
+    exists: "The Getty TGN id %{id} is already in Muscat: %{place}"
+    merge_from_tgn: Enter Getty TGN ID
