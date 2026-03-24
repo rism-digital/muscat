@@ -34,15 +34,6 @@ ActiveRecord::Schema[7.2].define(version: 2026_03_05_083720) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "delayed_job_outputs", charset: "utf8mb3", force: :cascade do |t|
-    t.integer "delayed_job_id", null: false
-    t.text "output"
-    t.string "status"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["delayed_job_id"], name: "index_delayed_job_outputs_on_delayed_job_id"
-  end
-
   create_table "delayed_jobs", id: :integer, charset: "utf8mb3", force: :cascade do |t|
     t.integer "priority", default: 0, null: false
     t.integer "attempts", default: 0, null: false
