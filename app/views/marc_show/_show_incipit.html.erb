@@ -25,7 +25,7 @@
 
   incipit_number = "#{(number_a ? number_a.content : "x")}.#{(number_b ? number_b.content : "x")}.#{(number_c ? number_c.content : "x")}"
   incipit_number_for_id = "#{(number_a ? number_a.content : "x")}#{(number_b ? number_b.content : "x")}#{(number_c ? number_c.content : "x")}"
-  image_render_div = "incipit_#{incipit_number_for_id}#{@item.id}"
+  image_render_div = "incipit_#{incipit_number_for_id}#{item.id}"
 
   mei_incipit = nil
 -%>
@@ -36,8 +36,9 @@
 </tr>
 
 <% tag.children do |subfield| -%>
-  <% next if skip.include?(subfield.tag) || !@item.marc.config.show_in_browse?(tag.tag, subfield.tag) -%>
+  <% next if skip.include?(subfield.tag) || !item.marc.config.show_in_browse?(tag.tag, subfield.tag) -%>
   <%= render partial: "marc/show_subfield", locals: {
+    item: item,
     tag: tag,
     subfield: subfield,
     no_label: (last_tag == tag.tag + subfield.tag)
@@ -54,8 +55,8 @@
 %>
 
 <%
-  if @item.respond_to?(:digital_objects)
-    @item.digital_objects.incipits.each do |obj|
+  if item.respond_to?(:digital_objects)
+    item.digital_objects.incipits.each do |obj|
       mei_incipit = obj.attachment.url if obj.match_pae_nr?(incipit_number)
     end
   end

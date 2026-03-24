@@ -19,7 +19,7 @@
 			<div class="attributes_table">
 				<%- 
 				if group[:subfield_grouping]
-					subfield_group_values = @item.marc.all_values_for_tags_with_subtag(group[:tags], group[:subfield_grouping])
+					subfield_group_values = item.marc.all_values_for_tags_with_subtag(group[:tags], group[:subfield_grouping])
 					subfield_group_values.each do |subfield_group|
 						subfield_group_tags = item.marc.by_tags_with_subtag(group[:tags], group[:subfield_grouping], subfield_group)
 						unless subfield_group_tags.empty? 
@@ -30,17 +30,17 @@
 							</table>
 							<%- end %>
 							<%- if !@diff %>
-								<%= render :partial => "marc/show_tags", :locals => { :tags => subfield_group_tags, :templates => group[:tag_templates] } %>
+								<%= render :partial => "marc/show_tags", :locals => { :item => item, :tags => subfield_group_tags, :templates => group[:tag_templates] } %>
 							<%- else %>
-								<%= render :partial => "marc/show_diff_tags", :locals => { :tags => subfield_group_tags } %>
+								<%= render :partial => "marc/show_diff_tags", :locals => { :item => item, :tags => subfield_group_tags } %>
 							<%- end %>
 						<%- end %>
 					<%- end %>
 				<%- else %>			
 					<%- if !@diff %>
-						<%= render :partial => "marc/show_tags", :locals => { :tags => tags, :templates => group[:tag_templates] } %>
+						<%= render :partial => "marc/show_tags", :locals => { :item => item, :tags => tags, :templates => group[:tag_templates] } %>
 					<%- else %>
-						<%= render :partial => "marc/show_diff_tags", :locals => { :tags => tags } %>
+						<%= render :partial => "marc/show_diff_tags", :locals => { :item => item, :tags => tags } %>
 					<%- end %>
 				<%- end %>
 			</div>

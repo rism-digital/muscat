@@ -1,7 +1,7 @@
 <%
     tag0 = tag.fetch_first_by_tag("0").content rescue tag0 = "not set"
     tagd = tag.fetch_first_by_tag("d").content rescue tagd = "not set"
-	view_link_function = "admin_#{@item.class.to_s.underscore.downcase}_path"
+	view_link_function = "admin_#{item.class.to_s.underscore.downcase}_path"
 -%>
 <tr class="row">
 	<th valign="top">

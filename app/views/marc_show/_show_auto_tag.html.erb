@@ -1,9 +1,9 @@
 <%
-marc_configuration = MarcConfigCache.get_configuration @item.class.to_s.underscore
+marc_configuration = MarcConfigCache.get_configuration item.class.to_s.underscore
 parts = []
 master = tag.get_master_foreign_subfield
 relators = []
-relators << @item.marc.config.get_relator_code_tag(tag.tag)
+relators << item.marc.config.get_relator_code_tag(tag.tag)
 
 # Quite a hack, try to see if we can translate the codes here
 @editor_profile.each_subfield_for(tag.tag) do |subfield, field_settings|
@@ -23,7 +23,7 @@ tag.for_every_child_sorted do |subfield|
   # Skip groups
   next if subfield.tag == "8"
 
-  foreign = @item.marc.config.is_foreign?(tag.tag, subfield.tag)
+  foreign = item.marc.config.is_foreign?(tag.tag, subfield.tag)
 
   # Never make links in selection mode
   linked = true if is_selection_mode?
