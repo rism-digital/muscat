@@ -1,0 +1,16 @@
+<% if @item.digital_objects.images.size > 0 %>
+    <%= render "admin/digital_objects/digital_objects_embedded_panel" %>
+<% end %>
+
+<div id="source_preview_for_holding">
+<%
+    item = @item
+    ep = @editor_profile
+    @item = item.source
+    @editor_profile = EditorConfiguration.get_show_layout item.source
+    %>
+    <%= render(:partial =>  "marc/show", :locals => {:holdings => true } ) %>
+    <%@item = item
+    @editor_profile = ep
+    %>
+</div>
