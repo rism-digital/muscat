@@ -1,27 +1,54 @@
 class NotificationMatcher
 
-  ALLOWED_MODELS = ["source", "work", "institution", "holding", "person"]
+  ALLOWED_MODELS = [
+    "source", 
+    "work", 
+    "institution", 
+    "holding", 
+    "person",
+    "inventory_item",
+    "liturgical_feast",
+    "place",
+    "publication",
+    "standard_terms",
+    "standard_titles",
+    "work_node"
+  ]
 
   ALLOWED_PROPERTIES = {
-    source: [:record_type, :std_title, :composer, :title, :shelf_mark, :lib_siglum, :follow],
-    work: [:title, :form, :notes, :composer, :follow],
-    institution: [:siglum, :full_name, :address, :place, :comments, :alternates, :notes, :follow],
-    person: [:full_name, :life_dates, :birth_place, :alternate_names, :alternate_dates, :display_name, :follow],
-    holding: [:lib_siglum, :shelf_mark]
+    source: [:record_type, :std_title, :composer, :title, :shelf_mark, :lib_siglum, :follow, :owner],
+    work: [:title, :form, :notes, :composer, :follow, :owner],
+    institution: [:siglum, :full_name, :address, :place, :comments, :alternates, :notes, :follow, :owner],
+    person: [:full_name, :life_dates, :birth_place, :alternate_names, :alternate_dates, :display_name, :follow, :owner],
+    holding: [:lib_siglum, :shelf_mark, :follow, :owner],
+    inventory_item: [:source_id, :title, :composer, :page_info, :follow, :owner],
+    liturgical_feast: [:name, :notes, :alternate_terms, :viaf, :gnd, :follow, :owner],
+    place: [:name, :country, :district, :notes, :alternate_terms, :hierarchy, :tgn_id, :follow, :owner],
+    publication: [:short_name, :author, :title, :journal, :volume, :place, :date, :pages, :work_catalogue, :follow, :owner],
+    standard_terms: [:term, :alternate_terms, :notes, :sub_topic, :viaf, :gnd, :follow, :owner],
+    standard_titles: [:title, :notes, :alternate_terms, :sub_topic, :viaf, :gnd, :latin, :follow, :owner],
+    work_node: [:person_id, :title, :form, :notes, :composer, :ext_number, :ext_code, :follow, :owner]
   }
 
   SPECIAL_RULES = {
-    source: [:lib_siglum, :record_type, :shelf_mark, :follow],
-    work: [:composer, :follow],
-    institution: [:follow],
-    person: [:follow],
-    holding: [:follow]
+    source: [:lib_siglum, :record_type, :shelf_mark, :follow, :owner],
+    work: [:composer, :follow, :owner],
+    institution: [:follow, :owner],
+    person: [:follow, :owner],
+    holding: [:follow, :owner],
+    inventory_item: [:follow, :owner],
+    liturgical_feast: [:follow, :owner],
+    place: [:follow, :owner],
+    publication: [:follow, :owner],
+    standard_terms: [:follow, :owner],
+    standard_titles: [:follow, :owner],
+    work_node: [:follow, :owner]
   }
 
   def initialize(object, user, limit_rules = nil)
-    if !object.is_a?(Source) && !object.is_a?(Work) && !object.is_a?(Institution) && !object.is_a?(Holding) && !object.is_a?(Person) 
-      raise(ArgumentError, "NotificationMatcher can be applied only to Works, Sources, Holdings, Institutions and People" )
-    end
+    #if !object.is_a?(Source) && !object.is_a?(Work) && !object.is_a?(Institution) && !object.is_a?(Holding) && !object.is_a?(Person) 
+    #  raise(ArgumentError, "NotificationMatcher can be applied only to Works, Sources, Holdings, Institutions and People" )
+    #end
 
     @object = object
     @user = user
@@ -35,7 +62,6 @@ class NotificationMatcher
 ##    return false if !@object.is_a?(Source) && !@object.is_a?(Work) # This should not happen! 
 
     rules = NotificationMatcher::parse_rules(user_notifications, @limit_rules)
-
 
     rules.each do |model, rule_groups|
       next if @object.class.to_s.downcase != model.downcase
@@ -134,6 +160,21 @@ class NotificationMatcher
         return false if !@object.user || !@object.user.name
         user_name = @object.user.name.downcase
         return true if user_name == pattern.downcase
+      end
+    elsif property == "owner"
+      return false if !@object.respond_to?(:user) || !@object.user
+
+      owner = @object.user
+
+      # numeric, match by ID
+      if pattern.to_s.match?(/^\d+$/)
+        return owner.id == pattern.to_i
+      elsif pattern.include?("@")
+        # contains @, match by email
+        return owner.email && owner.email.downcase == pattern.downcase
+      else
+        # otherwise match by name
+        return owner.name && owner.name.downcase == pattern.downcase
       end
     end
 
@@ -242,31 +283,50 @@ class NotificationMatcher
       end
     end
 
-    if !single_tokens.empty? && ALLOWED_MODELS.include?(single_tokens[0]) 
-      model = single_tokens[0]
+    # Determine if a model was explicitly provided
+    explicit_model =
+      if !single_tokens.empty? && ALLOWED_MODELS.include?(single_tokens[0])
+        single_tokens[0]
+      else
+        nil
+      end
+
+    # If no explicit model:
+    # * and this is a pure "follow" rule, apply to all models
+    # * otherwise default to "source" (original behavior)
+    if explicit_model.nil? &&
+      !rules.empty? &&
+      rules.all? { |r| r[:property].to_s == "follow" }
+      model = :all
     else
-      model = "source"
+      model = explicit_model || "source"
     end
+
     return model, rules
   end
 
   def self.parse_rules(rule_queries, limit = nil)
-
     return {} if limit && limit >= rule_queries.count
-    
+
     rule_queries = [rule_queries[limit]] if limit
 
     rules = {}
     rule_queries.each do |l|
-
       line = l.strip
       model, rules_line = parse_line(line)
 
-      rules[model] = [] if !rules[model]
-      rules[model] << rules_line
-
+      if model == :all
+        ALLOWED_MODELS.each do |m|
+          rules[m] ||= []
+          rules[m] << rules_line
+        end
+      else
+        rules[model] ||= []
+        rules[model] << rules_line
+      end
     end
-    return rules
+
+    rules
   end
   
   def allowed?(field)
