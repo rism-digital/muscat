@@ -9,7 +9,7 @@
 <% end %>
 
 <% if params[:view] == "MARC21" %>
-	<%= render partial: "marc/show_raw" %>
+	<%= render partial: "marc/show_raw", locals: { item: item, editor_profile: editor_profile} %>
 <%else%>
     <% layout_config["group_order"].each do |group_name|
 	group_config = layout_config["groups"][group_name]
