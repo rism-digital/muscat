@@ -14,6 +14,7 @@ Enter separate rules on separate lines:
 
 ```
 lib_siglum:CH-BEl
+
 composer:Bach
 ```
 
@@ -31,6 +32,7 @@ Rules can be repeated in your notification list, but they will be evaluated sepa
 
 ```
 lib_siglum:CH* composer:Bach*
+
 lib_siglum:CH*
 ```
 
@@ -44,7 +46,9 @@ By default, rules apply to **sources**. You can also create alerts for other rec
 
 ```
 work composer:Bach*
+
 institution full_name:British*
+
 person full_name:"Bach, Johann Sebastian"
 ```
 
@@ -88,7 +92,9 @@ Examples:
 
 ```
 follow:username
+
 source follow:username
+
 person follow:username
 ```
 
@@ -112,16 +118,19 @@ notice that only the _full user name_ can be used here.
 
 The `owner` field matches the owner of a record:
 
-- If the value is a number → matches owner ID  
-- If the value contains `@` → matches owner email  
-- Otherwise → matches owner name  
+- If the value is a number it matches owner ID  
+- If the value contains `@` it matches owner email  
+- Otherwise it matches owner name  
 
 Examples:
 
 ```
 owner:123
+
 owner:editor@example.org
-owner:Jane Smith
+
+owner:"Jane Smith"
+
 work owner:editor@example.org
 ```
 
