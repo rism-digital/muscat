@@ -38,6 +38,9 @@ client:
   "500":
     tags:
       "0": required
+      "4":
+        required_if:
+          "500": "0"
   "510": 
     tags:
       "0": required
