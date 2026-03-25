@@ -14,7 +14,6 @@ Enter separate rules on separate lines:
 
 ```
 lib_siglum:CH-BEl
-
 composer:Bach
 ```
 
@@ -28,35 +27,27 @@ lib_siglum:CH* composer:Bach*
 
 This will find changes to all sources with both library sigla beginning with CH and composer beginning with Bach.
 
-Rules can be repeated in your notification list, but they will be evaluated separately. For example:
+Rules can be repeated with your notification list but they will be evaluated separately. For example:
 
 ```
 lib_siglum:CH* composer:Bach*
-
 lib_siglum:CH*
 ```
 
 In this case, you will receive notifications for all CH sources containing Bach as the composer, plus notifications for all CH sources.
 
----
+### Search categories
 
-## Search categories
-
-By default, rules apply to **sources**. You can also create alerts for other record categories by specifying the category at the beginning of the rule line followed by a space, such as:
+By default, rules apply to sources. You can also create alerts for authority files by specifying it at the beginning of the rule line followed by a space, such as:
 
 ```
 work composer:Bach*
-
-institution full_name:British*
-
-person full_name:"Bach, Johann Sebastian"
+institution name:British*
 ```
 
-Each rule line can only search one category.
+Each rule can only search one category.
 
----
-
-## Wildcards and spaces
+### Wildcards and spaces
 
 Rules can include wildcards to allow for truncation:
 
@@ -69,219 +60,76 @@ This creates a notification for each source with a library siglum beginning with
 Search terms containing spaces must be enclosed in quotation marks:
 
 ```
-composer:"Bach, Johann Sebastian"
+composer:"Bach, Johann Sebastian";
 ```
 
 or
 
 ```
-composer:"Bach, Johann*"
+composer:"Bach, Johann*";
 ```
 
-If the quotation marks are missing, only the first word will be searched and the others ignored. The field name must never be enclosed in quotes.
+If the quotation marks are missing, only the first word will be searched, and the others ignored. Note that the field name must never be enclosed in quotes.
 
----
+### Available categories and fields
 
-## Special fields
+#### Sources (default)
 
-### follow
+* **lib\_siglum** _Library siglum (852 $a)_
+* **shelf\_mark** _Library shelf mark (852 $c)_
+* **composer** _Composer/author (100 $a)_
+* **std\_title** _Standardized title (240 $a)_
+* **title** _Title on source (245 $a)_
+* **record\_type** _template type_:
+    * collection (parent records for manuscripts, libretti, or treatises)
+    * source (manuscripts, excluding collection records)
+    * edition (printed music editions, excluding individual entries)
+    * edition\_content (individual entries within a printed edition)
+    * libretto\_source (handwritten libretti, excluding collection records)
+    * libretto\_edition (printed libretti, excluding individual entries)
+    * libretto\_edition\_content (individual entries in a printed libretto)
+    * theoretica\_source (handwritten treatises, excluding collection records)
+    * theoretica\_edition (printed treatises, excluding individual entries) 
+    * theoretica\_edition\_content (individual entries in a printed treatise)
+    * composite\_volume
 
-The `follow` field matches the user who most recently edited the record. If no version information is available, it falls back to the record owner/creator.
-
-Examples:
-
-```
-follow:username
-
-source follow:username
-
-person follow:username
-```
-
-If no category is specified, `follow` applies to **all record categories**:
-
-```
-follow:"Some User"
-```
-
-If a category is specified, only that category is searched:
+Example:
 
 ```
-source follow:"Some Other User"
+record_type:edition lib_siglum:CH* composer:Bach* std_title:"6 Fugues";
 ```
-
-notice that only the _full user name_ can be used here.
-
----
-
-### owner
-
-The `owner` field matches the owner of a record:
-
-- If the value is a number it matches owner ID  
-- If the value contains `@` it matches owner email  
-- Otherwise it matches owner name  
-
-Examples:
-
-```
-owner:123
-
-owner:editor@example.org
-
-owner:"Jane Smith"
-
-work owner:editor@example.org
-```
-
----
-
-## Available categories and fields
-
-### Sources (default)
-
-- lib_siglum  
-- shelf_mark  
-- composer  
-- std_title  
-- title  
-- record_type  
-- follow  
-- owner  
 
 ### Works
 
-- composer  
-- title  
-- form  
-- notes  
-- follow  
-- owner  
+- **composer** _Composer name (100 $a)_
+- **title** _Title of work (100 $t)_
+
+Example:
+
+```
+work composer: "Bach, Albert*"
+```
 
 ### Institutions
 
-- full_name  
-- place  
-- siglum  
-- address  
-- alternates  
-- notes  
-- comments  
-- follow  
-- owner  
+- **name** _Authorized form of institution name (110 $a)_
+- **place** _Institution city (110 $c)_
+- **siglum** _Institution siglum (110 $g)_
+- **address** _Institution address (371 $a)_
+- **alternates** _Alternate names (510 or 410)_
+- **notes** _Anything in the notes field (680 $a)_
 
-### People
+Example:
 
-- full_name  
-- display_name  
-- life_dates  
-- birth_place  
-- alternate_names  
-- alternate_dates  
-- follow  
-- owner  
+```
+institution name:Universitätsbibliothek*
+```
 
-### Holdings
+### Notification frequency
 
-- lib_siglum  
-- shelf_mark  
-- follow  
-- owner  
+With the &quot;Notification type&quot; drop-down selector, you can choose the frequency with which the notifications are made:
 
-### Inventory items
-
-- source_id  
-- title  
-- composer  
-- page_info  
-- follow  
-- owner  
-
-### Liturgical feasts
-
-- name  
-- notes  
-- alternate_terms  
-- viaf  
-- gnd  
-- follow  
-- owner  
-
-### Places
-
-- name  
-- country  
-- district  
-- notes  
-- alternate_terms  
-- hierarchy  
-- tgn_id  
-- follow  
-- owner  
-
-### Publications
-
-- short_name  
-- author  
-- title  
-- journal  
-- volume  
-- place  
-- date  
-- pages  
-- work_catalogue  
-- follow  
-- owner  
-
-### Standard terms
-
-- term  
-- alternate_terms  
-- notes  
-- sub_topic  
-- viaf  
-- gnd  
-- follow  
-- owner  
-
-### Standard titles
-
-- title  
-- notes  
-- alternate_terms  
-- sub_topic  
-- viaf  
-- gnd  
-- latin  
-- follow  
-- owner  
-
-### Work nodes
-
-- person_id  
-- title  
-- form  
-- notes  
-- composer  
-- ext_number  
-- ext_code  
-- follow  
-- owner  
-
----
-
-## Notification frequency
-
-- every — notification on each save (with ~1 hour grouping)
-- daily — daily summary
-- weekly — weekly summary
-- off — notifications disabled
-
----
-
-## Notes
-
-- Each rule line is evaluated separately  
-- Multiple fields on one line are combined with AND  
-- Separate lines behave as separate searches  
-- Default category is source, except follow, which can apply to all categories
+- **every** Send a notification each time a source is saved (with a grace period of one hour to account for multiple saves)
+- **daily** A list of the modified sources is sent once a day
+- **weekly** A list of the modified sources is sent once a week
+- **off** Notifications are disabled
