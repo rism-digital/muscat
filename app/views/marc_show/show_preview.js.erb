@@ -1,3 +1,4 @@
 <% render_panel = params[:marc_editor_dest] %>
 
 $('#<%= render_panel %>').html("<%= escape_javascript(render(partial:  "marc/show", locals: {item: @item, editor_profile: @editor_profile, is_embedded: false } )) -%>");
+window.renderAllMusic && window.renderAllMusic($("#<%= j params[:marc_editor_dest] %>"));

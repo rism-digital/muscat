@@ -103,6 +103,10 @@
     observeAttributeTables();
   }
 
+  window.renderAllMusic = function(context) {
+    renderAll(context);
+  };
+
   $(document).ready(boot);
 
   $(document).on("turbolinks:load", function() {
