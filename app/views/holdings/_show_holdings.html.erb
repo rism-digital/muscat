@@ -14,7 +14,7 @@
 
     </h3>
     <div id="holding_records_div-<%=h.id%>" class="tag_content_collapsable" style="display: none; padding: 10px;">
-      <%= render(partial: "marc/show", locals: {item: h, editor_profile: EditorConfiguration.get_show_layout(h), holdings: true } ) %>
+      <%= render(partial: "marc/show", locals: {item: h, editor_profile: EditorConfiguration.get_show_layout(h), is_embedded: true } ) %>
     </div>
 </div>
 <% end %>

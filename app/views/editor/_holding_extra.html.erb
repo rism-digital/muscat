@@ -3,5 +3,6 @@
 <% end %>
 
 <div id="source_preview_for_holding">
-    <%= render(partial: "marc/show", locals: {item: item.source, editor_profile: EditorConfiguration.get_show_layout(item.source) } ) %>
+    <h2><%=I18n.t(:source_summary)%></h2>
+    <%= render(partial: "marc/show", locals: {item: item.source, editor_profile: EditorConfiguration.get_show_layout(item.source), is_embedded: true } ) %>
 </div>

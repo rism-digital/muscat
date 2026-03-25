@@ -911,3 +911,4 @@ en:
     merge_button: Import from Getty TGN
     exists: "The Getty TGN id %{id} is already in Muscat: %{place}"
     merge_from_tgn: Enter Getty TGN ID
+  source_summary: Source summary

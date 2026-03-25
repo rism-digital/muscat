@@ -12,7 +12,7 @@
 <%- unless tags.empty? %>
 
 	<div class="panel panel_group">
-		<%if !holdings%>
+		<%if hide_title == false%>
 		<h3><%= group[:title] %></h3>
 		<%end%>
 		<div class="panel_contents">
