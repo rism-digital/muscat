@@ -146,7 +146,12 @@ client:
           "700": "0"
   "710": 
     tags:
-      "0": required
+      "0":
+        any_of:
+          - required
+          - required_if:
+              "260": "b"
+              "unless_val": "[s.n.]"
       "4":
         required_if:
           "710": "0"

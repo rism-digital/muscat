@@ -427,18 +427,52 @@ function marc_validate_must_be_different(value, element, param) {
 	return valid;
 }
 
+/**
+ * Validates that the current field is required depending on the presence
+ * and values of other MARC fields.
+ *
+ * Behavior:
+ * - Looks for all fields matching a given tag/subtag (dep_tag, dep_subtag).
+ * - If the current field has a value, validation always passes.
+ * - If the current field is empty:
+ *     - It is considered valid only if ALL matching dependent fields are:
+ *         - empty, or
+ *         - equal to a specified exempt value (e.g. "[s.n.]").
+ *     - If ANY matching dependent field is non-empty and not equal to the
+ *       exempt value, validation fails (the current field becomes required).
+ *
+ * Additional notes:
+ * - When validating within the same tag, the search is scoped to that tag instance;
+ *   otherwise, the entire editor is searched.
+ * - The "unless_val" parameter allows defining a special value that bypasses
+ *   the requirement (e.g. skip requirement if another field contains "[s.n.]").
+ 
+ * For example:
+ * - required_if:
+ *   "260": "b"
+ *   "unless_val": "[s.n.]"
+ *
+ * The current field is required if any 260$b subfield has a non-empty
+ * value, except when all such values are "[s.n.]". If 260$b is either
+ * empty or only contains "[s.n.]", the requirement is not enforced.
+ */
 function marc_validate_required_if(value, element, param) {
-	// Note! We can validaye just one of the required_if fields
+	// Note! We can validate just one of the required_if fields
 	var dep_tag = param[0];
 	var dep_subtag = param[1];
 	
+	var more = "";
+	var more_val = "";
+
+	// But we can have extra params
+	if (param.length > 2) {
+		more = param[2];
+		more_val = param[3];
+	}
+
 	var valid = true;
 	var tag = $(element).data("tag");
 	var toplevel;
-	
-	// We need at least an occurance of def_tag
-	// tag with a valid value. This means we
-	// try to get it from the editor and see
 	
 	// There is a catch: if it is the same tag
 	// as us, search inside this tag, else
@@ -462,12 +496,15 @@ function marc_validate_required_if(value, element, param) {
 		selector = '.serialize_marc[data-tag=' + dep_tag + '][data-subfield=' + dep_subtag + ']';
 	}
 
+	// All matching fields must be exempt if this field is empty
 	$(selector, toplevel).each(function() {
-		if ($(this).val() != "") {
-			// The value of the other field is set
-			// it makes the validated field mandatory
-			if (value.trim() == "")
+		const other_val = ($(this).val() || "").trim();
+
+		if (other_val !== "" && (value || "").trim() === "") {
+			if (!(more === "unless_val" && other_val === more_val)) {
 				valid = false;
+				return false; // break
+			}
 		}
 	});
 
@@ -515,14 +552,18 @@ function marc_editor_create_parameters(rule_name, rule_contents) {
 	//  required_if:
     //      "031": "a"
 	//      "032": "b"
+	// But other params can be passed to the validator
+	//  required_if:
+    //      "031": "a"
+	//      "unless_val": "[s.n.]"
 	// It will not work in any case as it needs a different
 	// implementation of the validator
     if (rule_contents instanceof Object) {
     	const entries = Object.entries(rule_contents);
 
         if (entries.length > 0) {
-            // Use only the first key-value pair, the others are ignored
-            rule_contents = entries[0];
+            // Flatten the array so we can have multilple values
+            rule_contents = entries.flat(1)
         } else {
 			// Let it die if the configuration in wrong+
             throw new Error(`Please check the configuration for rule ${rule_name}`);

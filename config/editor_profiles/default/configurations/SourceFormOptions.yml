@@ -329,9 +329,15 @@
     fields:
     - - a
     - - b
+      - values:
+        - "[s.n.]"
+        editor_partial: subfield_autocomplete
     - - c
     - - e
     - - f
+      - values:
+        - "[s.n.]"
+        editor_partial: subfield_autocomplete
 "300":
   layout:
     fields:
