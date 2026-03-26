@@ -44,11 +44,20 @@ using AggressivelyStrip
       # 1. Determine mandatory subtags
       mandatory_subtags = extract_mandatory_subtags(tag, tag_rules)
       
+
       # 2. Check if the entire tag is missing when mandatory
       marc_tags = @marc.by_tags(tag)
       # This tag has to be there if "mandatory"
       next if entire_tag_missing_when_mandatory?(tag, marc_tags, mandatory_subtags)
       
+      # We have a required if pointing to us
+      # i.e. 260 makes 710 (us) mandatory.
+      # We must add an "empty" 710 to trigger the validation
+      required_if_others = extract_required_if_other(tag, tag_rules)
+      if required_if_others && required_if_others.any? && marc_tags.empty?
+        marc_tags << MarcNode.new("", tag, "", "##")
+      end
+
       # 3. Validate each subtag rule
       validate_subtags_for_tag(tag, tag_rules, marc_tags)
     end
@@ -68,6 +77,40 @@ using AggressivelyStrip
     end.compact
   end
   
+  # Get the tags configured for the required_if
+  # To see if if it is another tah
+  # i.e. 710 required by 260
+  def extract_required_if_tags(obj, tags = [])
+
+    case obj
+    when Hash
+      obj.each do |key, value|
+        if key == "required_if" && value.is_a?(Hash)
+          value.each_key do |k|
+            tags << k unless k == "unless_val"
+          end
+        else
+          extract_required_if_tags(value, tags)
+        end
+      end
+    when Array
+      obj.each do |item|
+        extract_required_if_tags(item, tags)
+      end
+    end
+
+    tags
+  end
+
+  def extract_required_if_other(tag, tag_rules)
+    required_tags = extract_required_if_tags tag_rules["tags"]
+    return nil if required_tags.nil? || required_tags.empty?
+
+    # Return only if different than us
+    # We can have multiple rules
+    return required_tags - [tag.to_s.strip]
+  end
+
   def entire_tag_missing_when_mandatory?(tag, marc_tags, mandatory_subtags)
     if marc_tags.empty? && mandatory_subtags.any?
       add_error(tag, nil, I18n.t('validation.missing_message'))
@@ -104,7 +147,7 @@ using AggressivelyStrip
       validate_string_tag(rule, marc_tag, marc_subtag, tag, subtag)
       return
     end
-  
+
     # If rule is a Hash, check sub-keys
     if rule.is_a?(Hash)
       validate_subtag_hash_rule(tag, subtag, rule, marc_tag, marc_subtag)
@@ -139,31 +182,9 @@ using AggressivelyStrip
   
   def validate_any_of_rules(tag, subtag, subrules, marc_tag, marc_subtag)
     subrules.to_a.each do |subrule|
-      # If it does not pass, the whole any_of fails
-      if !subrule_passes?(subrule, tag, subtag, marc_tag, marc_subtag)
-        break
-      end
+      validate_single_subrule(subrule, tag, subtag, marc_tag, marc_subtag)
     end
   
-  end
-
-  def subrule_passes?(subrule, tag, subtag, marc_tag, marc_subtag)
-    old_error_count = @errors.size
-  
-    # Attempt validation
-    validate_single_subrule(subrule, tag, subtag, marc_tag, marc_subtag)
-  
-    new_error_count = @errors.size
-    # If no new errors => we consider it "passed"
-    passed = (new_error_count == old_error_count)
-  
-    # Optional: if you *don't* want partial errors from each attempt,
-    # you could revert any newly added errors. For example:
-    # unless passed
-    #   @errors = @errors.take(old_error_count)
-    # end
-  
-    passed
   end
 
   def validate_single_subrule(subrule, tag, subtag, marc_tag, marc_subtag)
@@ -195,14 +216,23 @@ using AggressivelyStrip
   end
   
   def validate_required_if_rule(tag, subtag, marc_subtag, required_if_rules)
-    required_if_rules.each do |other_tag, other_subtag|
+    # Extract the eventual unless rule and remove it
+    unless_val = required_if_rules["unless_val"]
+    new_h = required_if_rules.reject { |k, _| k == "unless_val" }
+
+    new_h.each do |other_tag, other_subtag|
       other_marc_tag = @marc.first_occurance(other_tag)
       next unless other_marc_tag  # If not there, rule doesn't apply
       other_marc_subtag = other_marc_tag.fetch_first_by_tag(other_subtag)
       next unless other_marc_subtag&.content  # If no content, rule doesn't apply
-  
+
       # Now we check if the current subtag is missing
       if marc_subtag.nil? || marc_subtag.content.blank?
+        # We skip it. Unless val is set
+        # For example if 260 is s.n and 710 is empty it is ok
+        next if other_marc_subtag&.content.strip == unless_val
+
+        # Guep. no, error
         add_error(tag, subtag, "required_if-#{other_tag}#{other_subtag}")
         puts "Missing #{tag} #{subtag}, required_if-#{other_tag}#{other_subtag}" if DEBUG
       end
@@ -557,7 +587,14 @@ using AggressivelyStrip
   private
   
   def validate_string_tag(rule, marc_tag, marc_subtag, tag, subtag)
-    if rule == "required" || rule == "required, warning" || rule == "mandatory"
+    if rule == "required" || rule == "required, warning" 
+      # Make sure we have subtags
+      if marc_tag.all_children.count > 0 && (!marc_subtag || !marc_subtag.content)
+        #@errors["#{tag}#{subtag}"] = rule
+        add_error(tag, subtag, rule) if (!@validation.is_warning?(tag, subtag) || @show_warnings)
+        puts "Missing #{tag} #{subtag}, #{rule}" if DEBUG
+      end
+    elsif rule == "mandatory"
       if !marc_subtag || !marc_subtag.content
         #@errors["#{tag}#{subtag}"] = rule
         add_error(tag, subtag, rule) if (!@validation.is_warning?(tag, subtag) || @show_warnings)
