@@ -230,7 +230,7 @@ using AggressivelyStrip
       if marc_subtag.nil? || marc_subtag.content.blank?
         # We skip it. Unless val is set
         # For example if 260 is s.n and 710 is empty it is ok
-        next if other_marc_subtag&.content.strip == unless_val
+        next if other_marc_subtag&.content&.to_s&.strip == unless_val
 
         # Guep. no, error
         add_error(tag, subtag, "required_if-#{other_tag}#{other_subtag}")
