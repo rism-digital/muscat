@@ -693,7 +693,6 @@
   tag_params:
     codes:
       - "Online Resource"
-      - "IIIF manifest"
 "981":
   tag_params:
     read_only: true
