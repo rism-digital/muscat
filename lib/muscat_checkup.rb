@@ -176,7 +176,7 @@ class MuscatCheckup
       validator.validate_588                if !@skip_588_validation
       validator.validate_work_status        if !@skip_validate_work_status
       validator.validate_template_harmony   if !@skip_parent_check
-      validation.validate_person_codes      if !@skip_validate_person_codes
+      validator.validate_person_codes      if !@skip_validate_person_codes
       return validator.get_errors
     rescue Exception => e
       puts e.message
