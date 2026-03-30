@@ -173,6 +173,9 @@ using AggressivelyStrip
 
       when "must_contain"
         validate_must_contain_rule(tag, subtag, marc_subtag, value)
+
+      when "validate_calendar"
+        validate_calendar(tag, subtag, marc_subtag, value)
       else
         # Unknown rule or custom logic
         puts "Unknown rule key: #{key} => #{value.inspect}" if DEBUG
@@ -215,6 +218,13 @@ using AggressivelyStrip
     end
   end
   
+  def marc_validate_calendar(tag, subtag, marc_subtag, substring)
+    if marc_subtag && marc_subtag.content && marc_subtag.content.match?(/julian|gregorian|ju|gr/i)
+        add_error(tag, subtag, "marc_validate_calendar:#{marc_subtag.content}")
+        puts "#{tag} #{subtag} Contains #{marc_subtag.content}, marc_validate_calendar" if DEBUG
+    end
+  end
+
   def validate_required_if_rule(tag, subtag, marc_subtag, required_if_rules)
     # Extract the eventual unless rule and remove it
     unless_val = required_if_rules["unless_val"]
@@ -293,7 +303,7 @@ using AggressivelyStrip
 
         subtag = unresolved_tag.fetch_first_by_tag(foreign_subtag.tag) # get the first
         if subtag && subtag.content
-          if subtag.content != foreign_subtag.content
+          if subtag.content != foreign_subtag.looked_up_content
             add_error(marctag.tag, foreign_subtag.tag, "foreign-tag: different unresolved value: #{subtag.content} from: ##{foreign_subtag.foreign_object.class}:#{foreign_subtag.foreign_object.id}", "link_error")
           end
         else
@@ -551,7 +561,7 @@ using AggressivelyStrip
         next
       end
 
-      pc = Person.with_identifier(code, id)
+      pc = Person.with_identifier(code, id).where.not(id: @object.id)
       if pc.count > 0
         recs = pc.map(&:id).compact.join(", ")
         add_error("record", "person", "Code #{code}:#{id} is used in other #{pc.count} objects [#{recs}]", "validate_person_codes_not_unique)")
