@@ -18,6 +18,7 @@ class Place < ApplicationRecord
   include ComposedOfReimplementation
   include ThroughAssociations
   include HasReferringRelations
+  using AggressivelyStrip
   resourcify
 
   @last_user_save
@@ -257,7 +258,7 @@ class Place < ApplicationRecord
     alternates = alt_places.empty? ? nil : "[#{alt_places.join(', ')}]"
 
     names = [self.name&.strip, self.district&.strip, self.country&.strip].compact.reject(&:empty?).join(", ")
-    [names, tgn, alternates].join(" ").strip
+    [names, tgn, alternates].join(" ").aggressively_strip
   end
 
   def formatted_label_for(property_sym)
