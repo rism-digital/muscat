@@ -34,8 +34,12 @@ PATH=/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin
 40  01  *  *  sun muscat PATH_TO/muscat/bin/muscat_execute_job MuscatMaintenanceJob production "Work, :silent"
 50  01  *  *  sun muscat PATH_TO/muscat/bin/muscat_execute_job MuscatMaintenanceJob production "WorkNode, :silent"
 
+# These one make sure linked fields have the proper values, and send an email
 00  03  *  *  sun muscat PATH_TO/muscat/bin/muscat_execute_job MuscatMaintenanceJob production Holding
 00  04  *  *  sun muscat PATH_TO/muscat/bin/muscat_execute_job MuscatMaintenanceJob production
+
+# These validate records and send an email
 00  07  *  *  sun muscat PATH_TO/muscat/bin/muscat_execute_job MuscatCheckupReportJob production
 00  08  *  *  sun muscat PATH_TO/muscat/bin/muscat_execute_job MuscatCheckupReportJob production Holding
 10  08  *  *  sun muscat PATH_TO/muscat/bin/muscat_execute_job MuscatCheckupReportJob production Work
+30  08  *  *  sun muscat PATH_TO/muscat/bin/muscat_execute_job MuscatCheckupReportJob production Person
