@@ -534,6 +534,32 @@ using AggressivelyStrip
 
   end
 
+  def validate_person_codes
+    return if !@object.is_a?(Person)
+
+    @object.marc["024"].each do |t|
+      code = t["2"]&.first&.content
+      id = t["a"]&.first&.content
+
+      if !code
+        add_error("record", "person", "024 without code (#{t.to_s.strip})", "validate_person_codes_no_code")
+        next
+      end
+
+      if !id
+        add_error("record", "person", "024 without id (#{t.to_s.strip})", "validate_person_codes_no_id")
+        next
+      end
+
+      pc = Person.with_identifier(code, id)
+      if pc.count > 0
+        recs = pc.map(&:id).compact.join(", ")
+        add_error("record", "person", "Code #{code}:#{id} is used in other #{pc.count} objects [#{recs}]", "validate_person_codes_not_unique)")
+      end
+    end
+
+  end
+
   def validate
     validate_tags
     validate_dates
@@ -545,6 +571,7 @@ using AggressivelyStrip
     validate_parent_institution
     validate_588
     validate_work_status
+    validate_person_codes
     return @errors
   end
 

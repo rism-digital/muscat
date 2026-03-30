@@ -341,6 +341,7 @@ module MarcControllerActions
       validator.validate_tags
       #validator.validate_links
       validator.validate_unknown_tags
+      validator.validate_person_codes if @item.is_a? Person
       validator.validate_server_side
       if validator.has_errors
         render json: {status: validator.to_s(translate: true)}

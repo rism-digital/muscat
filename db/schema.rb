@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.2].define(version: 2026_03_30_083959) do
+ActiveRecord::Schema[7.2].define(version: 2026_03_30_103207) do
   create_table "active_admin_comments", id: :integer, charset: "utf8mb3", force: :cascade do |t|
     t.string "namespace"
     t.text "body"
@@ -345,6 +345,7 @@ ActiveRecord::Schema[7.2].define(version: 2026_03_30_083959) do
     t.integer "lock_version", default: 0, null: false
     t.string "display_name"
     t.string "wikidata_id"
+    t.json "identifiers"
     t.index ["full_name"], name: "index_people_on_full_name"
     t.index ["wf_stage"], name: "index_people_on_wf_stage"
   end

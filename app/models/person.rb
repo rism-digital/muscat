@@ -97,12 +97,15 @@ class Person < ApplicationRecord
 #  has_many :referring_person_relations, class_name: "PersonRelation", foreign_key: "person_b_id"
 #  has_many :referring_people, through: :referring_person_relations, source: :person_a
   
-
   composed_of_reimplementation :marc, :class_name => "MarcPerson", :mapping => %w(marc_source to_marc)
   
 #  validates_presence_of :full_name  
   validate :field_length
   
+  scope :with_identifier, ->(code, value) {
+    where("identifiers->>? = ?", "$.#{code.to_s.downcase}", value.to_s)
+  }
+
   #include NewIds
   
   before_destroy :check_dependencies, :cleanup_comments
@@ -328,6 +331,7 @@ class Person < ApplicationRecord
 
     # Wikidata id, to avoid duplicates
     self.wikidata_id = marc.get_wikidata_id
+    self.identifiers = marc.get_all_identifiers
 
     self.marc_source = self.marc.to_marc
   end

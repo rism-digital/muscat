@@ -25,8 +25,9 @@ class MuscatCheckup
       @skip_dead_773            = options[:skip_dead_773] == true
       @skip_parent_institution  = options[:skip_parent_institution] == true
       @skip_588_validation      = options[:skip_588_validation] == true
-      @skip_validate_work_status = options[:skip_validate_work_status] == true
-      @skip_parent_check         = options[:skip_parent_check] == true
+      @skip_validate_work_status  = options[:skip_validate_work_status] == true
+      @skip_parent_check          = options[:skip_parent_check] == true
+      @skip_validate_person_codes = options[:skip_validate_person_codes] == true
 
       @debug_logger = options[:logger]
 
@@ -35,6 +36,7 @@ class MuscatCheckup
       @skip_dead_774 = true if @model != Source
       @skip_dead_773 = true if @model != Source
       @skip_parent_institution = true if @model != Source
+      @skip_validate_person_codes = true if @model != Person
 
       # Generate the exclusion matcher
       @validation_exclusions = (options.include?(:process_exclusions) && options[:process_exclusions] == true) ? ValidationExclusion.new(@model) : nil
@@ -174,6 +176,7 @@ class MuscatCheckup
       validator.validate_588                if !@skip_588_validation
       validator.validate_work_status        if !@skip_validate_work_status
       validator.validate_template_harmony   if !@skip_parent_check
+      validation.validate_person_codes      if !@skip_validate_person_codes
       return validator.get_errors
     rescue Exception => e
       puts e.message

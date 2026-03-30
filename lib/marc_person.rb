@@ -77,6 +77,21 @@ class MarcPerson < Marc
     nil
   end
 
+  def get_all_identifiers
+    result = {}
+
+    self["024"]&.each do |t|
+      key = t["2"]&.first&.content&.downcase
+      value = t["a"]&.first&.content
+
+      next unless key && value
+
+      result[key] = value
+    end
+
+    result
+  end
+
   def to_external(created_at = nil, updated_at = nil, versions = nil, holdings = false, deprecated_ids = true)
     super(created_at, updated_at, versions)
     
