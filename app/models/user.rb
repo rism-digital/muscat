@@ -8,7 +8,7 @@ class User < ApplicationRecord
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
 	# remove :recoverable
-  devise *([:rememberable, :trackable, :validatable] + Array(RISM::AUTHENTICATION_METHODS) + [authentication_keys: [:login]])
+  devise *([:rememberable, :trackable, :validatable, :recoverable] + Array(RISM::AUTHENTICATION_METHODS) + [authentication_keys: [:login]])
 
   # Used by saml_authenticatable devise strategy to avoid password validation
   attr_accessor :user_create_strategy
