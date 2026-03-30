@@ -95,8 +95,6 @@
     - - d
       - :occurrences: "?"
         :browse_inline: true
-    - - y
-      - :occurrences: "?"
   "375":
     :master: a
     :indicator: "##"
