@@ -1,7 +1,7 @@
 FILENAME="unloadable.log"
 File.write(FILENAME, Time.now.to_s, mode: 'w')
 
-models = [Holding, Institution, InventoryItem, Person, Publication, Source, Work, WorkNode, StandardTitle, StandardTerm, LiturgicalFeast]
+models = [StandardTitle, StandardTerm, LiturgicalFeast, Person, Publication, Institution, InventoryItem, WorkNode, Holding, Source, Work]
 
 @fast_mode = false
 skip_source = false
@@ -114,8 +114,7 @@ models.each do |model|
 
     end_model_time = Time.now
     all_items += total_items - unsavable_items
-    puts
-    puts "Saved #{total_items - unsavable_items} #{model.to_s.pluralize} in #{end_model_time - begin_model_time}"
+    puts "Saved #{total_items - unsavable_items} #{model.to_s.pluralize} in #{(end_model_time - begin_model_time).round}s"
 
 end
 
