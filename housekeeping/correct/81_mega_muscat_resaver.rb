@@ -109,6 +109,7 @@ models.each do |model|
 
     end_model_time = Time.now
     all_items += total_items - unsavable_items
+    puts
     puts "Saved #{total_items - unsavable_items} #{model.to_s.pluralize} in #{end_model_time - begin_model_time}"
 
 end
