@@ -13,7 +13,6 @@ class MuscatCheckup
     @all_items = options.fetch(:limit, @model.count)
     @folder = options[:folder]
 
-    @limit_unknown_tags = true
     @debug_logger = options[:logger]
 
     @skip_validation            = options[:skip_validation] == true
@@ -45,15 +44,11 @@ class MuscatCheckup
       end
   end
 
-  def run_parallel()    
+  def validate_parallel
     String.disable_colorization true
-    
-    if @folder
-      @limit_unknown_tags = false
-      results = validate_folder
-    else
-      results = validate_items
-    end
+
+    limit_unknown_tags = !@folder
+    results = @folder ? validate_folder : validate_items
 
     # Extract and separate the errors and validations
     total_errors = {}
@@ -62,10 +57,10 @@ class MuscatCheckup
       total_errors.merge!(r[:errors])
       total_validations.merge!(r[:validations])
     end
-    
-    foreign_tag_errors, unknown_tags = postprocess_results!(total_validations)
-    return total_errors, total_validations, foreign_tag_errors, unknown_tags
-    
+        
+    filtered_validations, foreign_tag_errors, unknown_tags = postprocess_results(total_validations, limit_unknown_tags: limit_unknown_tags)
+    return total_errors, filtered_validations, foreign_tag_errors, unknown_tags
+
   end
   
   private
@@ -178,7 +173,7 @@ class MuscatCheckup
       validator.validate_588                if !@skip_588_validation
       validator.validate_work_status        if !@skip_validate_work_status
       validator.validate_template_harmony   if !@skip_parent_check
-      validator.validate_person_codes      if !@skip_validate_person_codes
+      validator.validate_person_codes       if !@skip_validate_person_codes
       return validator.get_errors
     rescue Exception => e
       puts e.message
@@ -187,38 +182,61 @@ class MuscatCheckup
     
   end
   
-  def postprocess_results!(validations)
+  def postprocess_results(validations, limit_unknown_tags: true, unknown_tag_limit: UNKNOWN_TAG_LIMIT)
     foreign_tag_errors = Set.new
     unknown_tags = {}
 
-    validations.delete_if do |id, errors|
-      errors.delete_if do |tag, subtags|
-        subtags.delete_if do |subtag, messages|
-          messages.delete_if do |message|
-            if message.include?("foreign-tag: different unresolved value:") ||
-              message.include?("foreign-tag: tag not present in unresolved")
-              # Keep the error but make the message smaller
-              foreign_tag_errors.add(tag + subtag + " " + message.gsub("foreign-tag: different unresolved value:", "old val:"))
+    filtered_validations = validations.each_with_object({}) do |(id, errors), filtered_errors|
+      kept_tags = errors.each_with_object({}) do |(tag, subtags), kept_subtags_by_tag|
+        kept_subtags = subtags.each_with_object({}) do |(subtag, messages), kept_messages_by_subtag|
+          kept_messages = messages.reject do |message|
+            if foreign_tag_message?(message)
+              foreign_tag_errors.add("#{tag}#{subtag} #{normalize_foreign_tag_message(message)}")
               true
-            elsif message.include?("Unknown tag in layout") || message.include?("mandatory") || message.include?("required")
-              key = "#{tag}-#{subtag}: #{message}"
-              if unknown_tags.key?(key)
-                unknown_tags[key][:count] = unknown_tags[key][:count] + 1
-                unknown_tags[key][:items] << id if unknown_tags[key][:items].count < UNKNOWN_TAG_LIMIT || @limit_unknown_tags == false
-              else
-                unknown_tags[key] = {count: 1, items: [id]}
-              end
+            elsif unknown_tag_message?(message)
+              add_unknown_tag(unknown_tags, id, tag, subtag, message, limit_unknown_tags: limit_unknown_tags, unknown_tag_limit: unknown_tag_limit)
               true
+            else
+              false
             end
           end
-          true if messages.length == 0
+
+          kept_messages_by_subtag[subtag] = kept_messages unless kept_messages.empty?
         end
-        true if subtags.length == 0
+
+        kept_subtags_by_tag[tag] = kept_subtags unless kept_subtags.empty?
       end
-      true if errors.length == 0
+
+      filtered_errors[id] = kept_tags unless kept_tags.empty?
     end
-    
-    [foreign_tag_errors.to_a, unknown_tags]
+
+    [filtered_validations, foreign_tag_errors.to_a, unknown_tags]
+  end
+
+  def foreign_tag_message?(message)
+    message.include?("foreign-tag: different unresolved value:") ||
+      message.include?("foreign-tag: tag not present in unresolved")
+  end
+
+  def normalize_foreign_tag_message(message)
+    message.gsub("foreign-tag: different unresolved value:", "old val:")
+  end
+
+  def unknown_tag_message?(message)
+    message.include?("Unknown tag in layout") ||
+      message.include?("mandatory") ||
+      message.include?("required")
+  end
+
+  def add_unknown_tag(unknown_tags, id, tag, subtag, message, limit_unknown_tags:, unknown_tag_limit:)
+    key = "#{tag}-#{subtag}: #{message}"
+
+    unknown_tags[key] ||= { count: 0, items: [] }
+    unknown_tags[key][:count] += 1
+
+    if !limit_unknown_tags || unknown_tags[key][:items].length < unknown_tag_limit
+      unknown_tags[key][:items] << id
+    end
   end
   
   def print_record_type(item)

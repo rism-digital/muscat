@@ -174,8 +174,6 @@ using AggressivelyStrip
       when "must_contain"
         validate_must_contain_rule(tag, subtag, marc_subtag, value)
 
-      when "validate_calendar"
-        validate_calendar(tag, subtag, marc_subtag, value)
       else
         # Unknown rule or custom logic
         puts "Unknown rule key: #{key} => #{value.inspect}" if DEBUG
@@ -710,6 +708,8 @@ using AggressivelyStrip
           add_error(tag, subtag, rule)
           puts "The ID for tag #{tag} cannot be the record id #{@object.id}" if DEBUG
       end
+    elsif rule == "validate_calendar"
+        validate_calendar(tag, subtag, marc_subtag, value)
     else
       puts rule.class
       puts "Unknown rule #{rule}" if rule != "mandatory"

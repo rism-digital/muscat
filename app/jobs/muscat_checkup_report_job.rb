@@ -22,7 +22,7 @@ class MuscatCheckupReportJob < ApplicationJob
     end
 
     # Run the checkup function
-    total_errors, total_validations, foreign_tag_errors, unknown_tags = MuscatCheckup.new(model: @model, logger: logger, process_exclusions: true).run_parallel
+    total_errors, total_validations, foreign_tag_errors, unknown_tags = MuscatCheckup.new(model: @model, logger: logger, process_exclusions: true).validate_parallel
 
     end_time = Time.now
     message = "#{@model.to_s} report started at #{begin_time.to_s}, (execution time: #{end_time - begin_time} seconds)"
