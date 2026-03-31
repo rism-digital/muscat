@@ -216,13 +216,6 @@ using AggressivelyStrip
     end
   end
   
-  def marc_validate_calendar(tag, subtag, marc_subtag, substring)
-    if marc_subtag && marc_subtag.content && marc_subtag.content.match?(/julian|gregorian|ju|gr/i)
-        add_error(tag, subtag, "marc_validate_calendar:#{marc_subtag.content}")
-        puts "#{tag} #{subtag} Contains #{marc_subtag.content}, marc_validate_calendar" if DEBUG
-    end
-  end
-
   def validate_required_if_rule(tag, subtag, marc_subtag, required_if_rules)
     # Extract the eventual unless rule and remove it
     unless_val = required_if_rules["unless_val"]
@@ -709,7 +702,10 @@ using AggressivelyStrip
           puts "The ID for tag #{tag} cannot be the record id #{@object.id}" if DEBUG
       end
     elsif rule == "validate_calendar"
-        validate_calendar(tag, subtag, marc_subtag, value)
+      if marc_subtag && marc_subtag.content && marc_subtag.content.match?(/julian|gregorian|ju|gr/i)
+          add_error(tag, subtag, "marc_validate_calendar:#{marc_subtag.content}")
+          puts "#{tag} #{subtag} Contains #{marc_subtag.content}, marc_validate_calendar" if DEBUG
+      end
     else
       puts rule.class
       puts "Unknown rule #{rule}" if rule != "mandatory"

@@ -88,7 +88,6 @@ en:
         title: Forgot your password?
       sign_up:
         submit: Sign up
-        tiitle: Sign up
         title: Sign up
       subdomain:
         title: Subdomain
@@ -591,7 +590,7 @@ en:
   linked_object: Linked Object
   links: Links
   liturgicalfeast:
-    one: litrugical feast
+    one: liturgical feast
     other: liturgical feasts
   loading: Loading...
   logout:
@@ -674,7 +673,7 @@ en:
   new_inventory_item: Create new inventory item
   new_inventory_item_page: New inventory item
   no_action: No action available
-  no_holdings_yet: No holdigs yet
+  no_holdings_yet: No holdings yet
   not_set: "[not set]"
   notation_copied: Notation copied
   notifications:
@@ -694,7 +693,7 @@ en:
   order_items: Order items for
   person:
     one: person
-    other: poeple
+    other: people
   place:
     one: place
     other: places
@@ -709,7 +708,7 @@ en:
   ransack:
     predicates:
       with_integer: is
-  recent_changes: Lastest modifications
+  recent_changes: Latest modifications
   record_actions: Record Actions
   record_audit: Record Origin
   record_label: Attribution Certainty
@@ -851,7 +850,7 @@ en:
     warning_message: A value for this field should be provided
     must_be_different_message: This cannot be identical to the other value in the field
     not_record_id: This cannot be the same ID as the current record
-    validate_calendar: Please make sure the dates follows the correct calendar
+    validate_calendar: Please make sure the dates follow the correct calendar
   validation_level_error: There are errors, please solve before saving
   validation_level_warning: There are warnings, save again to override
   view_source: View Source
