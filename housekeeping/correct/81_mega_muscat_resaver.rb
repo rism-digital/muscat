@@ -1,10 +1,11 @@
 FILENAME="unloadable.log"
 File.write(FILENAME, Time.now.to_s, mode: 'w')
 
-models = [Holding, Institution, InventoryItem, Person, Publication, Source, Work, WorkNode]
+models = [Holding, Institution, InventoryItem, Person, Publication, Source, Work, WorkNode, StandardTitle, StandardTerm, LiturgicalFeast]
 
 @fast_mode = false
 skip_source = false
+crash_on_error = false
 
 model_names = []
 
@@ -14,6 +15,8 @@ ARGV.each do |arg|
     @fast_mode = true
   when "--skip-source"
     skip_source = true
+  when "--crash-on-error"
+    crash_on_error = true
   else
     model_names << arg
   end
@@ -89,11 +92,13 @@ models.each do |model|
                     item.save
                     saved_items += 1
                 end
-            rescue
+            rescue =>e
                 #puts "Could not save #{model.to_s} #{item.id}"
                 File.write(FILENAME, "Could not save #{model.to_s} #{item.id}", mode: 'a+')
                 unsavable_items += 1
                 all_unsaved += 1
+                # Sometimes we need to crash for debug reasons
+                throw e if crash_on_error
             ensure
                 # Set back to original
                 $stdout = old_stdout
