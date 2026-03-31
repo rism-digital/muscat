@@ -3,19 +3,36 @@ File.write(FILENAME, Time.now.to_s, mode: 'w')
 
 models = [Holding, Institution, InventoryItem, Person, Publication, Source, Work, WorkNode]
 
-
 @fast_mode = false
-if ARGV.count > 1 && ARGV.last == "--fast"
-  @fast_mode = true
-  ARGV.pop # remove the last item, bad I know...
+skip_source = false
+
+model_names = []
+
+ARGV.each do |arg|
+  case arg
+  when "--fast"
+    @fast_mode = true
+  when "--skip-source"
+    skip_source = true
+  else
+    model_names << arg
+  end
+end
+
+if @fast_mode
   puts "Fast mode on (all suppress_* enabled)".cyan
 end
 
-if !ARGV.empty?
-    
-    models = ARGV.map {|v| v.constantize}
-    puts "Resaving only #{ARGV}".yellow
-    #models = [ARGV[0].constantize]
+if model_names.any?
+  if skip_source
+    abort "--skip-source cannot be used together with explicit models"
+  end
+
+  models = model_names.map(&:constantize)
+  puts "Resaving only #{model_names}".yellow
+elsif skip_source
+  models = models.reject { |m| m == Source }
+  puts "Resaving all models except Source".yellow
 end
 
 begin_time = Time.now
