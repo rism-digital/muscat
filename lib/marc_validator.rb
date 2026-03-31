@@ -555,7 +555,7 @@ using AggressivelyStrip
       pc = Person.with_identifier(code, id).where.not(id: @object.id)
       if pc.count > 0
         recs = pc.map(&:id).compact.join(", ")
-        add_error("record", "person", "Code #{code}:#{id} is used in other #{pc.count} objects [#{recs}]", "validate_person_codes_not_unique)")
+        add_error("record", "person", "Code #{code}:#{id} is used in other #{pc.count} objects [#{recs}]", "validate_person_codes_not_unique")
       end
     end
 
