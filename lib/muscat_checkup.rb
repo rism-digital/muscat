@@ -7,38 +7,42 @@ class MuscatCheckup
   UNKNOWN_TAG_LIMIT = 100
 
   def initialize(options = {})
-      @model = options.include?(:model) && options[:model].is_a?(Class) ? options[:model] : Source
+    @model = options[:model].is_a?(Class) ? options[:model] : Source
 
-      @parallel_jobs = options.include?(:jobs) ? options[:jobs] : 10
-      @all_items = options.include?(:limit) ? options[:limit] : @model.all.count
-      @folder = options.include?(:folder) ? options[:folder] : nil
+    @parallel_jobs = options.fetch(:jobs, 10)
+    @all_items = options.fetch(:limit, @model.count)
+    @folder = options[:folder]
 
-      @limit_unknown_tags = true
+    @limit_unknown_tags = true
+    @debug_logger = options[:logger]
 
-      @skip_validation          = options[:skip_validation] == true
-      @skip_dates               = options[:skip_dates] == true
-      @skip_links               = options[:skip_links] == true
-      @skip_unknown_tags        = options[:skip_unknown_tags] == true
-      @skip_holdings            = options[:skip_holdings] == true
-      @skip_dead_774            = options[:skip_dead_774] == true
-      @skip_dead_773            = options[:skip_dead_773] == true
-      @skip_parent_institution  = options[:skip_parent_institution] == true
-      @skip_588_validation      = options[:skip_588_validation] == true
-      @skip_validate_work_status  = options[:skip_validate_work_status] == true
-      @skip_parent_check          = options[:skip_parent_check] == true
-      @skip_validate_person_codes = options[:skip_validate_person_codes] == true
+    @skip_validation            = options[:skip_validation] == true
+    @skip_dates                 = options[:skip_dates] == true
+    @skip_links                 = options[:skip_links] == true
+    @skip_unknown_tags          = options[:skip_unknown_tags] == true
+    @skip_holdings              = options[:skip_holdings] == true
+    @skip_dead_774              = options[:skip_dead_774] == true
+    @skip_dead_773              = options[:skip_dead_773] == true
+    @skip_parent_institution    = options[:skip_parent_institution] == true
+    @skip_588_validation        = options[:skip_588_validation] == true
+    @skip_validate_work_status  = options[:skip_validate_work_status] == true
+    @skip_parent_check          = options[:skip_parent_check] == true
+    @skip_validate_person_codes = options[:skip_validate_person_codes] == true
 
-      @debug_logger = options[:logger]
+    # These are relevant only for Sources
+    if @model != Source
+      @skip_holdings = true
+      @skip_dead_774 = true
+      @skip_dead_773 = true
+      @skip_parent_institution = true
+    end
 
-      # These are relevant only for Sources
-      @skip_holdings = true if @model != Source
-      @skip_dead_774 = true if @model != Source
-      @skip_dead_773 = true if @model != Source
-      @skip_parent_institution = true if @model != Source
-      @skip_validate_person_codes = true if @model != Person
+    @skip_validate_person_codes = true if @model != Person
 
-      # Generate the exclusion matcher
-      @validation_exclusions = (options.include?(:process_exclusions) && options[:process_exclusions] == true) ? ValidationExclusion.new(@model) : nil
+    @validation_exclusions =
+      if options[:process_exclusions] == true
+        ValidationExclusion.new(@model)
+      end
   end
 
   def run_parallel()    
