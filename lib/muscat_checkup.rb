@@ -11,7 +11,6 @@ class MuscatCheckup
 
       @parallel_jobs = options.include?(:jobs) ? options[:jobs] : 10
       @all_items = options.include?(:limit) ? options[:limit] : @model.all.count
-      @limit = @all_items / @parallel_jobs
       @folder = options.include?(:folder) ? options[:folder] : nil
 
       @limit_unknown_tags = true
@@ -42,9 +41,7 @@ class MuscatCheckup
       @validation_exclusions = (options.include?(:process_exclusions) && options[:process_exclusions] == true) ? ValidationExclusion.new(@model) : nil
   end
 
-  def run_parallel()
-    begin_time = Time.now
-    
+  def run_parallel()    
     String.disable_colorization true
     
     if @folder
@@ -124,23 +121,24 @@ class MuscatCheckup
   end
 
   def validate_items
-    results = Parallel.map(0..@parallel_jobs, in_processes: @parallel_jobs) do |jobid|
+    batch_size = (@all_items.to_f / @parallel_jobs).ceil
+
+    Parallel.map(0...@parallel_jobs, in_processes: @parallel_jobs) do |jobid|
       errors = {}
       validations = {}
-      offset = @limit * jobid
 
-      @model.order(:id).limit(@limit).offset(offset).select(:id).each do |sid|
-        s = @model.find(sid.id)
-        
-        e, v = load_and_validate_item(s)
+      offset = batch_size * jobid
+
+      records = @model.order(:id).limit(batch_size).offset(offset)
+
+      records.each do |record|
+        e, v = load_and_validate_item(record)
         errors.merge!(e)
         validations.merge!(v)
-        
-        s = nil
       end
-      {errors: errors, validations: validations}
+
+      { errors: errors, validations: validations }
     end
-    results
   end
 
   def validate_folder
@@ -220,11 +218,8 @@ class MuscatCheckup
   end
   
   def print_record_type(item)
-    if item.respond_to?(:get_record_type)
-      return item.get_record_type.to_s
-    else
-      return "none"
-    end
+    return "none" unless item.respond_to?(:get_record_type)
+    item.get_record_type&.to_s || "none"
   end
 
 end
