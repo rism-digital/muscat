@@ -195,3 +195,5 @@ gem "sparql-client", "~> 3.3"
 
 # We use this to map TGN languages to 041
 gem 'iso639'
+
+#gem "ruby-openai"
