@@ -1,6 +1,138 @@
 Muscat Changelog
 ================
 
+v 12.3
+* Fixing bugs one nanosecond after the release!
+* Work owner updater
+* Fix #1934, make differentiated default in 042 person
+* Fix #1938, add title to person name, needs resave
+* Fix #1933, delete 931
+* Change message in change owner job
+* Fix #1945, add 856 $x to publications, harmonize all the 856, don't do drugs and muscat kids!
+* Fix #1944, add *all* the validations
+* #1942 Use SQL for this....
+* Fix #1939, fix "verified" translation, *git push of disapproval*
+* Bump rack from 3.2.4 to 3.2.5
+* Merge pull request #1946 from rism-digital/dependabot/bundler/rack-3.2.5
+* Use auto_tag for all "normal" tags
+* Make auto_tag work with control fields
+* Bump nokogiri from 1.18.10 to 1.19.1
+* Merge pull request #1950 from rism-digital/dependabot/bundler/nokogiri-1.19.1
+* #1585 Initial Wikidata connector
+* GND push to production
+* Make the Wikidata fetcher a background job, initial version
+* Fix the wikidata connector + gnd search for instrument
+* Make the wikidata puller more pretty, manage errors and translations
+* Add wikidata_id on People for sneaky editors
+* In foreign links, make deletion of stale links safer
+* make places index alternater. NOTE NEEDS NEW SOLR CONF
+* Use … when there are more than 4 alt places
+* Place deduplicator
+* Add some magic to marc: Make the looked_up_content use a formatted label, if available, instead of the model's property
+* Strip whitespace in all models
+* Add alternative_besetzung 382 $p
+* Fix #1948, add growfield
+* Add UJS incipit renderer
+* #1949 make the PAE show resize
+* #1953 Template harmony
+* Add imported property and clean up to_marc
+* Remove the last to pieces of code for PSMD
+* Make _ a constant
+* Fix #1951, make 041 validate in the same tag
+* A museum is not a museum
+* Fix #1955 and #1859, I'm bored
+* Fix #1952, add holdings box
+* Use underscore in auto_tag
+* Update Verovio to 6.1.0
+* Fix clipboard message
+* Manage case when a version is not snapshotted
+* Fix super ugly and wrong title genration for work!
+* Show the proper message
+* Basic "imported" tags
+* Make imported tags more visible in the editor
+* Strip more stuff more aggressively
+* Make non sortable imported tags
+* Fix the editor manipulation
+* Transform the old VIAF interface into a Wikidata interface for Person
+* Make alt spelling xx (uncategorised)
+* Translate more identifiers
+* Fix BNF identifier
+* Make the validation work in person in new (!!!)
+* Fix inventory item show blowing up
+* Bump devise from 4.9.4 to 5.0.3
+* Refactor the editor manipulation code
+* Add script to fix 596
+* Remove unused js cascade
+* Merge pull request #1957 from rism-digital/dependabot/bundler/devise-5.0.3
+* Devise 5.0 implodes ActiveAdmin
+* Bump json from 2.18.1 to 2.19.2
+* Update ActiveAdmin to 3.5.0 and devise to 5.0
+* Merge pull request #1958 from rism-digital/dependabot/bundler/json-2.19.2
+* Give gems a refresher
+* Make warning for calendar
+* Make sure editors can move holdings
+* Bump activestorage from 7.2.3 to 7.2.3.1
+* Bump actionview from 7.2.3 to 7.2.3.1
+* Bump activesupport from 7.2.3 to 7.2.3.1
+* Make the wikidata connector generic
+* Rename files so they are not tied to wikidata
+* Remove old wikidata puller for people
+* Remove fetcher job
+* Remove delayed job output model
+* Rollback delayed job output
+* Initial working prototype of the tgn puller
+* Remove old TGN search
+* Fix protected tags
+* Merge pull request #1959 from rism-digital/dependabot/bundler/activestorage-7.2.3.1
+* Merge pull request #1960 from rism-digital/dependabot/bundler/actionview-7.2.3.1
+* Merge pull request #1961 from rism-digital/dependabot/bundler/activesupport-7.2.3.1
+* Make sure there are no dups and use HTTPs
+* Add help + translations for TGN puller
+* Script for #1926
+* #1504 Add 675 + script
+* Refactor the DNB link partial
+* Remove redundant show_gender partial
+* #1504 and #1926, kill ]
+* Start removing old .js.erb partials, render source preview in holding without JS
+* Remove @item from all marc show partials to make the show rendering pure
+* Remove more @item from the show tree, move all renders to item:
+* Migrate sources to new editor_profile
+* Migrate all records to the non global editor_profile
+* Remove now unused holding render_embedded and _marc_editor_embedded_holding
+* Remove unused summary view for holdings
+* Add validation too 500 $4 in works
+* Update the Notification Matcher + update the docs
+* rename holdings to is_embedded, make source view in holding record clearer
+* Fix show_raw
+* Do not show embedded view in preview
+* Temp fix: render music in preview
+* Collapse people 675 on one line
+* #1920 Add facy rules for validation
+* Remove IIIF Manifest from Work 856
+* #1920 implement this in the backend
+* Make the comparison more safe
+* Update gnd_work_382_de.html
+* Merge pull request #1962 from afaschon/patch-65
+* Update gnd_work_670_de.html
+* Merge pull request #1963 from afaschon/patch-66
+* Update gnd_work_100_de.html
+* Make "catalogue" in works case sensitive
+* Merge pull request #1964 from afaschon/patch-67
+* Fix #1747, drop completely $y
+* Fix #1930, check for duplicate identifiers in 024, also play with JSON columns
+* Use looked_up_contento for matching, add validate_calendar
+* Add validation for Person
+* Clean up the Muscat Checkup
+* Refactor and make the validation result function pure, rename run_parallel into validate_parallel
+* Fix typos and the marc validator
+* Refactor param parsing + add --skip-sources
+* Add Standard Title, Term and Liturgical Feast to the megasaver
+* Order the models so the auth files are odrered first
+* Make passwords longer
+* Update rack
+* Update mcp
+
+
 v 12.2
 * Remove unused 008 stuff from marc
 * Script to add 910
