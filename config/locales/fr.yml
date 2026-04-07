@@ -853,13 +853,13 @@ fr:
     published: Publié (PUB)
   wikidata:
     ConnectionError: 'Erreur de connexion à Wikidata : %{msg}'
-    InvalidQid: 'QID Wikidata invalide : %{msg}
+    InvalidQid: 'QID Wikidata invalide : %{msg}'
     ItemNotFound: 'QID Wikidata introuvable : %{msg}'
     RecordInRISM: 'Personne déjà présente : %{msg}'
     merge_button: Importer depuis Wikidata
     merge_from_wikidata: Saisir l’identifiant Wikidata
     new: Créer un nouvel enregistrement à partir de Wikidata
-    qid_exists: 'Le QID Wikidata %{qid} est déjà présent dans Muscat : %{person}
+    qid_exists: 'Le QID Wikidata %{qid} est déjà présent dans Muscat : %{person}'
     wait: Demande de données à Wikidata, veuillez patienter…
   will_paginate:
     models:

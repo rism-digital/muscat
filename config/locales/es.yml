@@ -859,7 +859,7 @@ es:
     merge_button: Importar desde Wikidata
     merge_from_wikidata: Introducir ID Wikidata
     new: Crear nuevo a partir del registro de Wikidata
-    qid_exists: 'El QID de Wikidata %{qid} ya existe en Muscat: %{person}
+    qid_exists: 'El QID de Wikidata %{qid} ya existe en Muscat: %{person}'
     wait: Solicitando datos de Wikidata, por favor espere…
   will_paginate:
     models:
