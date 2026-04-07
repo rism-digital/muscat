@@ -829,7 +829,6 @@ fr:
     cannot_link_to_self: La création d'un lien en soi n'est pas autorisée (%{id}).
     check_group_message: Le premier groupe de matériel ne peut pas être "Matériel imprimé supplémentaire"
     correct: L'enregistrement ne contient aucune erreur [200]
-    gnd_warn_default_message: 'TRME '
     insufficient_rights: L'utilisateur ne dispose pas des droits nécessaires pour créer un enregistrement avec cette bibliothèque.
     missing_message: Une valeur dans ce champ est nécessaire
     must_be_different_message: Ceci ne peut pas être identique à l’autre valeur du champ

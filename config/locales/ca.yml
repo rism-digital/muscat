@@ -220,7 +220,7 @@ ca:
   append_folder: Afegeix-los tots a una carpeta existent
   archive: Arxiva
   archive_unarchive: Arxiva / Desarxiva
-  are_you_sure: 'TRME '
+  are_you_sure: Esteu segur?
   authorization_tokens: Auth tokens
   available_templates: Platilles disponibles
   backend_validation:
@@ -244,7 +244,7 @@ ca:
   cancel: Cancel·la
   cannot_create_source: No esteu autoritzats a crear aquest tipus de font
   cannot_update_source: No esteu autoritzats a editar aquest tipus de font
-  change_owner: 'TRME '
+  change_owner: Canviar el propietari
   choose_folder: "(Trieu-ne una)"
   clipboard:
     copied: Resultats copiats al portapapers
@@ -256,7 +256,7 @@ ca:
     hide: Amaga
     modified_records: Registres modificats
     new_record: Nou registre
-    no_recent_version: TRME The last save did not create a snapshot
+    no_recent_version: L'últim desament no ha creat una instantània
     no_records: Amb aquestes opcions seleccionades no hi surt cap registre
     options: Opcions
     rule: Regla
@@ -493,7 +493,7 @@ ca:
   folders:
     added: S'han afegit %{count} elements a la carpeta %{name}.
     added_bg: Elements afegits a la carpeta, tasca %{job} pendent.
-    change_owner: 'TRME '
+    change_owner: Canviar el propietari
     delete_now: 'S''han esborrat aquestes carpetes:'
     expires: Expira el
     expiring_folders: Les teves carpetes de Muscat expiraran aviat.
@@ -520,15 +520,6 @@ ca:
     validation_started: 'Rebreu un correu a %{email} quan hagi acabat la validació (tasca de validació: %{job}).'
   from_existing_source: Crea-la a partir d'una font ja existent
   full_level: Registre complet
-  gnd:
-    composer: 'TRME '
-    date_created: 'TRME '
-    description: 'TRME '
-    edit: 'TRME '
-    edit_gnd_record: 'TRME '
-    gnd_id: 'TRME '
-    last_20_created_records: 'TRME '
-    work_title: 'TRME '
   gnd_not_found: La sol·licitud a GND ha retornat un registre buit.
   go_back: Tornar
   go_to_top: Torna a dalt
@@ -591,7 +582,7 @@ ca:
     not_set: "[Sense estat]"
     ok: Tasca finalitzada
     running_jobs: No es poden eliminar les tasques que s'estan executant.
-    waiting: TRME Waiting for job to start…
+    waiting: Esperant l’inici del procés…
   lib_siglum: Sigla de biblioteca
   library:
     one: biblioteca
@@ -795,7 +786,7 @@ ca:
   source_converted: Font convertida a versió impresa
   source_converted_with_holding: Font convertida a versió impresa, s’ha creat el holding %{holding_id}.
   source_not_manuscript: La font no és un manuscrit ni una col·lecció de manuscrits
-  source_summary: TRME Source summary
+  source_summary: Resum de la font
   standardterm:
     one: matèria
     other: matèries
@@ -806,9 +797,9 @@ ca:
   std_title_contains: Títol uniforme
   switch_language: Canvi d'idioma
   tgn:
-    exists: 'TRME The Getty TGN id %{id} is already in Muscat: %{place}'
-    merge_button: TRME Import from Getty TGN
-    merge_from_tgn: TRME Enter Getty TGN ID
+    exists: 'L’identificador Getty TGN %{id} ja existeix a Muscat: %{place}'
+    merge_button: Importa des de Getty TGN
+    merge_from_tgn: Introdueix l’identificador Getty TGN
   tgn_id: Getty TGN id
   this_file_language: Català
   time:
@@ -838,7 +829,6 @@ ca:
     cannot_link_to_self: No podeu crear un enllaça al mateix registre (%{id}).
     check_group_message: El primer grup de material no pot ser "Material imprès suplementari".
     correct: El registre no té cap error de validació [200]
-    gnd_warn_default_message: 'TRME '
     insufficient_rights: L'usuari no té els drets necessaris per crear o actualtizar un registre d'aquesta biblioteca
     missing_message: Aquest camp ha de tenir un valor
     must_be_different_message: Això no pot ser idèntic a l’altre valor del camp
@@ -848,7 +838,7 @@ ca:
     required_if_message: El camp és obligatori en presència de {0} ${1}
     validate_031_dups: Aquest número d'íncipit ja s'està utilitzant
     validate_588_siglum: 'Introduïu el siglum de la biblioteca i la signatura seguint el format: I-Bc Q.51'
-    validate_calendar: TRME Please make sure the dates follow the correct calendar
+    validate_calendar: Assegureu-vos que les dates segueixen el calendari correcte
     validate_edtf: Validar la data EDTF
     validate_url: L'URL introduït no és vàlid
     warning_message: Caldria que aquest camp tingués un valor
@@ -862,15 +852,15 @@ ca:
     inprogress: No publicat (UNP)
     published: Publicat (PUB)
   wikidata:
-    ConnectionError: 'TRME Error connecting to Wikidata: %{msg}'
-    InvalidQid: 'TRME Invalid Wikidata QID: %{msg}'
-    ItemNotFound: 'TRME Wikidata QID not found: %{msg}'
-    RecordInRISM: 'TRME Person already present: %{msg}'
-    merge_button: TRME Import from Wikidata
-    merge_from_wikidata: TRME Enter Wikidata ID
-    new: TRME Create new from Wikidata record
-    qid_exists: 'TRME The Wikidata QID %{qid} is already in Muscat: %{person}'
-    wait: TRME Requesting data from Wikidata, please wait…
+    ConnectionError: 'Error en connectar amb Wikidata: %{msg}'
+    InvalidQid: 'QID de Wikidata no vàlid: %{msg}'
+    ItemNotFound: 'QID de Wikidata no trobat: %{msg}'
+    RecordInRISM: 'Persona ja present: %{msg}'
+    merge_button: Importa des de Wikidata
+    merge_from_wikidata: Introdueix l’identificador Wikidata
+    new: Crea un nou registre des de Wikidata
+    qid_exists: 'El QID de Wikidata %{qid} ja existeix a Muscat: %{person}'
+    wait: Sol·licitant dades de Wikidata, espereu…
   will_paginate:
     models:
       person:

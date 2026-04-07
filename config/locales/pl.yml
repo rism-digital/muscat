@@ -220,7 +220,7 @@ pl:
   append_folder: Dodaj wszystko do istniejącego folderu
   archive: Zarchiwizuj
   archive_unarchive: Zarchiwizuj / cofnij archiwizację
-  are_you_sure: 'TRME '
+  are_you_sure: Czy na pewno?
   authorization_tokens: Auth tokens
   available_templates: Dostępne szablony
   backend_validation:
@@ -244,7 +244,7 @@ pl:
   cancel: Anuluj
   cannot_create_source: Nie masz uprawnienia do utworzenia tego rodzaju źródła.
   cannot_update_source: Nie masz uprawnienia do edycji tego rodzaju źródła.
-  change_owner: 'TRME '
+  change_owner: Zmień właściciela
   choose_folder: "(Proszę wybrać jeden.)"
   clipboard:
     copied: Wyniki skopiowane do schowka
@@ -256,7 +256,7 @@ pl:
     hide: ukryj
     modified_records: Zmodyfikowane rekordy
     new_record: Nowy rekord
-    no_recent_version: TRME The last save did not create a snapshot
+    no_recent_version: Ostatni zapis nie utworzył migawki
     no_records: Nie ma żadnych rekordów do pokazania przy aktualnie wybranych opcjach
     options: Opcje
     rule: Reguła
@@ -493,7 +493,7 @@ pl:
   folders:
     added: Do foldera %{name} dodano %{count} pozycji.
     added_bg: Pozycje dodane do foldera, zadanie %{job} zakolejkowane.
-    change_owner: 'TRME '
+    change_owner: Zmień właściciela
     delete_now: 'Następujące foldery zostały usunięte:'
     expires: Wygasa
     expiring_folders: Twoje foldery Muscat wkrótce wygasną.
@@ -520,15 +520,6 @@ pl:
     validation_started: 'Na adres %{e-mail} zostanie wysłana wiadomość z informacją o zatwierdzeniu (Validation job id: %{job}).'
   from_existing_source: Utwórz z istniejącego źródła
   full_level: Rekord pełny
-  gnd:
-    composer: 'TRME '
-    date_created: 'TRME '
-    description: 'TRME '
-    edit: 'TRME '
-    edit_gnd_record: 'TRME '
-    gnd_id: 'TRME '
-    last_20_created_records: 'TRME '
-    work_title: 'TRME '
   gnd_not_found: Żądanie do GND zwróciło pusty rekord.
   go_back: Wstecz
   go_to_top: Powrót na górę
@@ -591,7 +582,7 @@ pl:
     not_set: Nie ustawiono statusu.
     ok: Zadanie ukończone pomyślnie
     running_jobs: Nie można usuwać bieżących zadań.
-    waiting: TRME Waiting for job to start…
+    waiting: Oczekiwanie na rozpoczęcie zadania…
   lib_siglum: Siglum
   library:
     one: Biblioteka
@@ -795,7 +786,7 @@ pl:
   source_converted: Źródło zostało przekonwertowane na wersję drukowaną
   source_converted_with_holding: Źródło zostało przekonwertowane na wersję drukowaną, utworzono holding %{holding_id}.
   source_not_manuscript: Źródło nie jest rękopisem ani zbiorem rękopisów
-  source_summary: TRME Source summary
+  source_summary: Podsumowanie źródła
   standardterm:
     one: Przedmiot
     other: Przedmioty
@@ -806,9 +797,9 @@ pl:
   std_title_contains: Znormalizowany tytuł
   switch_language: Zmień język
   tgn:
-    exists: 'TRME The Getty TGN id %{id} is already in Muscat: %{place}'
-    merge_button: TRME Import from Getty TGN
-    merge_from_tgn: TRME Enter Getty TGN ID
+    exists: 'Identyfikator Getty TGN %{id} już istnieje w Muscat: %{place}'
+    merge_button: Importuj z Getty TGN
+    merge_from_tgn: Wprowadź identyfikator Getty TGN
   tgn_id: Getty TGN id
   this_file_language: Angielski
   time:
@@ -838,7 +829,6 @@ pl:
     cannot_link_to_self: Tworzenie samego linku nie jest dozwolone (%{id}).
     check_group_message: Pierwsza grupa materiałów nie może być "Dodatkowe źródło drukowane".
     correct: Brak błędów zatwierdzenia rekordu [200]
-    gnd_warn_default_message: 'TRME '
     insufficient_rights: Użytkownik ma niewystarczające uprawnienia do utworzenia / zaktualizowania rekordu tej biblioteki
     missing_message: To pole jest obowiązkowe
     must_be_different_message: To nie może być identyczne z inną wartością w polu
@@ -848,7 +838,7 @@ pl:
     required_if_message: Pole obowiązkowe, ponieważ pole {0} ${1} nie jest puste
     validate_031_dups: Ten numer incipitu jest już używany
     validate_588_siglum: 'Wprowadź sygnaturę biblioteki i półkę według formatu: I-Bc Q.51'
-    validate_calendar: TRME Please make sure the dates follow the correct calendar
+    validate_calendar: Upewnij się, że daty są zgodne z właściwym kalendarzem
     validate_edtf: Sprawdź datę EDTF
     validate_url: Wprowadzony adres URL jest nieprawidłowy
     warning_message: To pole powinno zawierać wartość
@@ -862,15 +852,15 @@ pl:
     inprogress: Nieopublikowane (UNP)
     published: Opublikowane (PUB)
   wikidata:
-    ConnectionError: 'TRME Error connecting to Wikidata: %{msg}'
-    InvalidQid: 'TRME Invalid Wikidata QID: %{msg}'
-    ItemNotFound: 'TRME Wikidata QID not found: %{msg}'
-    RecordInRISM: 'TRME Person already present: %{msg}'
-    merge_button: TRME Import from Wikidata
-    merge_from_wikidata: TRME Enter Wikidata ID
-    new: TRME Create new from Wikidata record
-    qid_exists: 'TRME The Wikidata QID %{qid} is already in Muscat: %{person}'
-    wait: TRME Requesting data from Wikidata, please wait…
+    ConnectionError: 'Błąd połączenia z Wikidata: %{msg}'
+    InvalidQid: 'Nieprawidłowy QID Wikidata: %{msg}'
+    ItemNotFound: 'Nie znaleziono QID Wikidata: %{msg}'
+    RecordInRISM: 'Osoba już istnieje: %{msg}'
+    merge_button: Importuj z Wikidata
+    merge_from_wikidata: Wprowadź identyfikator Wikidata
+    new: Utwórz nowy rekord z Wikidata
+    qid_exists: 'QID Wikidata %{qid} już istnieje w Muscat: %{person}'
+    wait: Pobieranie danych z Wikidata, proszę czekać…
   will_paginate:
     models:
       person:
