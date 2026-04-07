@@ -220,6 +220,7 @@ fr:
   append_folder: Ajouter à un dossier existant
   archive: Archiver
   archive_unarchive: Archiver / désarchiver
+  are_you_sure: Êtes-vous sûr ?
   authorization_tokens: Auth tokens
   available_templates: Modèles disponibles
   backend_validation:
@@ -243,6 +244,7 @@ fr:
   cancel: Annuler
   cannot_create_source: Vous n'êtes pas autorisé à créer ce type de source
   cannot_update_source: Vous n'êtes pas autorisé à traiter ce type de source
+  change_owner: Changer de propriétaire
   choose_folder: "(Veuillez en choisir un)"
   clipboard:
     copied: Résultats copiés dans le presse-papiers
@@ -254,6 +256,7 @@ fr:
     hide: Cacher
     modified_records: Records modifiés
     new_record: Nouvel record
+    no_recent_version: La dernière sauvegarde n'a pas créé de snapshot
     no_records: Il n'y a aucun record à afficher avec les options sélectionnés
     options: Options
     rule: Règle
@@ -490,6 +493,7 @@ fr:
   folders:
     added: "%{count} éléments ajoutés au dossier %{name}."
     added_bg: Eléments ajoutés au dossier, tâche %{job} ajoutée à la queue.
+    change_owner: Changer de propriétaire
     delete_now: 'Les dossiers suivants ont été supprimés :'
     expires: Expire le
     expiring_folders: Vos dossiers Muscat expireront bientôt
@@ -578,6 +582,7 @@ fr:
     not_set: "[sans statut]"
     ok: Tâche accomplie
     running_jobs: Une tâche en cours ne peut être supprimée.
+    waiting: En attente du démarrage de la tâche…
   lib_siglum: Sigle de bibliothèque
   library:
     one: bibliothèque
@@ -780,7 +785,8 @@ fr:
     other: sources
   source_converted: Source convertie en version imprimée
   source_converted_with_holding: Source convertie en version imprimée, holding %{holding_id} créé.
-  source_not_manuscript: La source n’est pas un manuscrit ou une collection de manuscrits
+  source_not_manuscript: La source n'est pas un manuscrit ou une collection de manuscrits
+  source_summary: Résumé de la source
   standardterm:
     one: sujet
     other: sujets
@@ -790,6 +796,10 @@ fr:
   status: Statut
   std_title_contains: Titre standardisé
   switch_language: Changer de langue
+  tgn:
+    exists: 'L’identifiant Getty TGN %{id} est déjà présent dans Muscat : %{place}'
+    merge_button: Importer depuis Getty TGN
+    merge_from_tgn: Saisir l’identifiant Getty TGN
   tgn_id: Identifiant TGN Getty
   this_file_language: Français
   time:
@@ -819,6 +829,7 @@ fr:
     cannot_link_to_self: La création d'un lien en soi n'est pas autorisée (%{id}).
     check_group_message: Le premier groupe de matériel ne peut pas être "Matériel imprimé supplémentaire"
     correct: L'enregistrement ne contient aucune erreur [200]
+    gnd_warn_default_message: 'TRME '
     insufficient_rights: L'utilisateur ne dispose pas des droits nécessaires pour créer un enregistrement avec cette bibliothèque.
     missing_message: Une valeur dans ce champ est nécessaire
     must_be_different_message: Ceci ne peut pas être identique à l’autre valeur du champ
@@ -828,6 +839,7 @@ fr:
     required_if_message: Ce champ doit être rempli car il est obligatoire en présence de {0} ${1}
     validate_031_dups: Ce numéro d'incipit est déjà utilisé
     validate_588_siglum: 'Entrez le sigle de la bibliothèque et la cote selon le format : I-Bc Q.51'
+    validate_calendar: Veuillez vous assurer que les dates suivent le calendrier correct
     validate_edtf: Valider la date EDTF
     validate_url: L'URL saisi n'est pas valide
     warning_message: Une valeur devrait être présente pour ce champ
@@ -840,6 +852,16 @@ fr:
     deprecated: Obsolète
     inprogress: Non publié (UNP)
     published: Publié (PUB)
+  wikidata:
+    ConnectionError: 'Erreur de connexion à Wikidata : %{msg}'
+    InvalidQid: 'QID Wikidata invalide : %{msg}
+    ItemNotFound: 'QID Wikidata introuvable : %{msg}'
+    RecordInRISM: 'Personne déjà présente : %{msg}'
+    merge_button: Importer depuis Wikidata
+    merge_from_wikidata: Saisir l’identifiant Wikidata
+    new: Créer un nouvel enregistrement à partir de Wikidata
+    qid_exists: 'Le QID Wikidata %{qid} est déjà présent dans Muscat : %{person}
+    wait: Demande de données à Wikidata, veuillez patienter…
   will_paginate:
     models:
       person:

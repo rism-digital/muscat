@@ -220,6 +220,7 @@ pt:
   append_folder: Adicionar tudo a uma pasta existente
   archive: Arquivar
   archive_unarchive: Arquivar / desarquivar
+  are_you_sure: 'TRME '
   authorization_tokens: Auth tokens
   available_templates: Modelos disponíveis
   backend_validation:
@@ -243,6 +244,7 @@ pt:
   cancel: Cancelar
   cannot_create_source: O usuário não tem autorização para criar este tipo de fonte
   cannot_update_source: O usuário não tem autorização para editar este tipo de fonte
+  change_owner: 'TRME '
   choose_folder: "(PLEASE CHOOSE ONE)"
   clipboard:
     copied: Resultados copiados para a área de transferência
@@ -254,6 +256,7 @@ pt:
     hide: Esconder
     modified_records: Records modificados
     new_record: Novo record
+    no_recent_version: TRME The last save did not create a snapshot
     no_records: Não há records para mostrar com as opções actualmente seleccionadas
     options: Opções
     rule: Regra
@@ -490,6 +493,7 @@ pt:
   folders:
     added: Adicionados %{count}  itens na Pasta %{name}.
     added_bg: Itens adicionados à pasta, trabalho %{job} na fila.
+    change_owner: 'TRME '
     delete_now: 'As seguintes pastas foram eliminadas:'
     expires: Expira em
     expiring_folders: Your Muscat folders will expire soon
@@ -516,6 +520,15 @@ pt:
     validation_started: 'Um e-mail será enviado para %{email} com a validação terminada (Validação id do trabalho: %{job})'
   from_existing_source: Criar a partir de uma fonte existente
   full_level: Registro completo
+  gnd:
+    composer: 'TRME '
+    date_created: 'TRME '
+    description: 'TRME '
+    edit: 'TRME '
+    edit_gnd_record: 'TRME '
+    gnd_id: 'TRME '
+    last_20_created_records: 'TRME '
+    work_title: 'TRME '
   gnd_not_found: A solicitação ao GND retornou um registro vazio.
   go_back: Voltar
   go_to_top: Voltar ao início
@@ -578,6 +591,7 @@ pt:
     not_set: "[Nenhum estado determinado]"
     ok: Trabalho realizada com sucesso
     running_jobs: Trabalhos em execução não podem ser excluídos.
+    waiting: TRME Waiting for job to start…
   lib_siglum: Sigla da Instituição
   library:
     one: biblioteca
@@ -781,6 +795,7 @@ pt:
   source_converted: Fonte convertida para impressão
   source_converted_with_holding: Fonte convertida para impressão, holding %{holding_id} criado.
   source_not_manuscript: A fonte não é um manuscrito nem uma coleção de manuscritos
+  source_summary: TRME Source summary
   standardterm:
     one: assunto
     other: assuntos
@@ -790,6 +805,10 @@ pt:
   status: Estado
   std_title_contains: Título uniforme
   switch_language: Mudar de idioma
+  tgn:
+    exists: 'TRME The Getty TGN id %{id} is already in Muscat: %{place}'
+    merge_button: TRME Import from Getty TGN
+    merge_from_tgn: TRME Enter Getty TGN ID
   tgn_id: Getty TGN id
   this_file_language: English
   time:
@@ -819,6 +838,7 @@ pt:
     cannot_link_to_self: A criação de uma ligação em si não é permitida (%{id}).
     check_group_message: O primeiro grupo de material não pode ser "Material impresso adicional".
     correct: O registro não tem erros de validação [200]
+    gnd_warn_default_message: 'TRME '
     insufficient_rights: O usuário não tem concessão para criar/atualizar um registro para esta instituição
     missing_message: Um valor neste campo é obrigatório
     must_be_different_message: Isto não pode ser idêntico ao outro valor no campo
@@ -828,6 +848,7 @@ pt:
     required_if_message: Este campo deve ser preenchido, pois é obrigatório na presença de {0} ${1}
     validate_031_dups: Este número de incipit já está em uso
     validate_588_siglum: 'Insira o siglum da biblioteca e a classificação no formato: I-Bc Q.51'
+    validate_calendar: TRME Please make sure the dates follow the correct calendar
     validate_edtf: Validar data EDTF
     validate_url: O URL inserido não é válido
     warning_message: Um valor deve ser fornecido para este campo
@@ -840,6 +861,16 @@ pt:
     deprecated: Descontinuado
     inprogress: Não publicado (UNP)
     published: Publicado (PUB)
+  wikidata:
+    ConnectionError: 'TRME Error connecting to Wikidata: %{msg}'
+    InvalidQid: 'TRME Invalid Wikidata QID: %{msg}'
+    ItemNotFound: 'TRME Wikidata QID not found: %{msg}'
+    RecordInRISM: 'TRME Person already present: %{msg}'
+    merge_button: TRME Import from Wikidata
+    merge_from_wikidata: TRME Enter Wikidata ID
+    new: TRME Create new from Wikidata record
+    qid_exists: 'TRME The Wikidata QID %{qid} is already in Muscat: %{person}'
+    wait: TRME Requesting data from Wikidata, please wait…
   will_paginate:
     models:
       person:

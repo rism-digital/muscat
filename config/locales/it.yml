@@ -220,6 +220,7 @@ it:
   append_folder: Aggiungi a cartella
   archive: Archivia
   archive_unarchive: Archivia / disarchivia
+  are_you_sure: Sei sicuro?
   authorization_tokens: Auth tokens
   available_templates: Template disponibili
   backend_validation:
@@ -243,6 +244,7 @@ it:
   cancel: Annulla
   cannot_create_source: Non sei autorizzato a creare questo tipo di fonte
   cannot_update_source: Non sei autorizzato a modificare questo tipo di fonte
+  change_owner: Modifica il proprietario
   choose_folder: "(Selezionare una cartella)"
   clipboard:
     copied: I risultati sono stati copiati negli appunti
@@ -254,6 +256,7 @@ it:
     hide: Nascondi
     modified_records: Record modificati
     new_record: Nuovo record
+    no_recent_version: L'ultimo salvataggio non ha creato uno snapshot
     no_records: Non ci sono record da mostrare con le opzioni attualmente selezionate
     options: Opzioni
     rule: Regola
@@ -490,6 +493,7 @@ it:
   folders:
     added: Aggiunti %{count} elementi alla cartella %{name}.
     added_bg: Aggiunti elementi, job %{job} in coda.
+    change_owner: Modifica il proprietario
     delete_now: 'Le seguenti cartelle sono state eliminate:'
     expires: Scade il
     expiring_folders: Le tue cartelle Muscat scadranno presto
@@ -578,6 +582,7 @@ it:
     not_set: "[Nessuno stato]"
     ok: Processo terminato con successo
     running_jobs: I processi correntemente in esecuzione non possono essere cancellati.
+    waiting: In attesa dell’avvio del processo…
   lib_siglum: Sigla della biblioteca
   library:
     one: biblioteca
@@ -781,6 +786,7 @@ it:
   source_converted: Fonte convertita in stampa
   source_converted_with_holding: Fonte convertita in stampa, holding %{holding_id} creato.
   source_not_manuscript: La fonte non è un manoscritto o una collezione di manoscritti
+  source_summary: Contenuto della fonte
   standardterm:
     one: soggetto
     other: soggetti
@@ -790,6 +796,10 @@ it:
   status: Stato
   std_title_contains: Titolo standard
   switch_language: Cambia lingua
+  tgn:
+    exists: 'L’ID Getty TGN %{id} è già presente in Muscat: %{place}'
+    merge_button: Importa da Getty TGN
+    merge_from_tgn: Inserisci l’ID Getty TGN
   tgn_id: Getty TGN id
   this_file_language: Italiano
   time:
@@ -828,6 +838,7 @@ it:
     required_if_message: Questo campo deve essere riempito poiché è obbligatorio in presenza di {0} ${1}
     validate_031_dups: Questo numero di incipit è già utilizzato
     validate_588_siglum: 'Inserisci il siglum della biblioteca e la collocazione secondo il formato: I-Bc Q.51'
+    validate_calendar: Assicurarsi che le date seguano il calendario corretto (Gregoriano al posto di Giuliano)
     validate_edtf: Convalida data EDTF
     validate_url: L'URL inserito non è valido
     warning_message: Questo campo dovrebbe contenere un valore
@@ -840,6 +851,16 @@ it:
     deprecated: Rigettato
     inprogress: In elaborazione (UNP)
     published: Pubblicato (PUB)
+  wikidata:
+    ConnectionError: 'Errore di connessione a Wikidata: %{msg}'
+    InvalidQid: 'QID Wikidata non valido: %{msg}'
+    ItemNotFound: 'QID Wikidata non trovato: %{msg}'
+    RecordInRISM: 'Persona già presente: %{msg}'
+    merge_button: Importa da Wikidata
+    merge_from_wikidata: Inserisci l'ID Wikidata
+    new: Crea nuovo da record Wikidata
+    qid_exists: 'Il QID Wikidata %{qid} è già presente in Muscat: %{person}'
+    wait: Richiesta dati da Wikidata, attendere…
   will_paginate:
     models:
       person:
