@@ -815,6 +815,7 @@ en:
     exists: 'The Getty TGN id %{id} is already in Muscat: %{place}'
     merge_button: Import from Getty TGN
     merge_from_tgn: Enter Getty TGN ID
+  tgn_id: Getty TGN id
   this_file_language: English
   time:
     formats:

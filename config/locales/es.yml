@@ -220,7 +220,7 @@ es:
   append_folder: Añadir todo a una carpeta existente
   archive: Archivar
   archive_unarchive: Archivar / desarchivar
-  are_you_sure: ¿Estás seguro?
+  are_you_sure: "¿Estás seguro?"
   authorization_tokens: Auth tokens
   available_templates: Plantillas disponibles
   backend_validation:
