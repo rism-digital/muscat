@@ -204,7 +204,7 @@ class Place < ApplicationRecord
     sunspot_dsl.text :district
 
     sunspot_dsl.string :name_autocomplete, :multiple => true, :as => "name_autocomplete" do
-      (alternate_terms.split("\n") << name).compact.reject(&:empty?)
+      ((alternate_terms&.split("\n") || []) << name).compact.reject(&:empty?)
     end
 
     sunspot_dsl.string :label, stored: true do
