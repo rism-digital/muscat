@@ -127,13 +127,15 @@ class MuscatCheckup
       validations = {}
 
       offset = batch_size * jobid
-
-      records = @model.order(:id).limit(batch_size).offset(offset)
-
-      records.each do |record|
-        e, v = load_and_validate_item(record)
+      
+      @model.order(:id).limit(batch_size).offset(offset).select(:id).each do |sid|
+        s = @model.find(sid.id)
+        
+        e, v = load_and_validate_item(s)
         errors.merge!(e)
         validations.merge!(v)
+        
+        s = nil
       end
 
       { errors: errors, validations: validations }
