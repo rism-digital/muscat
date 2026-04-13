@@ -470,14 +470,16 @@ function marc_validate_required_if(value, element, param) {
 		more_val = param[3];
 	}
 
+	var current_val = (value || "").trim();
 	var valid = true;
-	var tag = $(element).data("tag");
+	var current_tag = $(element).data("tag");
+	var current_subtag = $(element).data("subfield");
 	var toplevel;
 	
-	// There is a catch: if it is the same tag
+	// There is a catch: if the dependency is in the same tag
 	// as us, search inside this tag, else
 	// find the first one in the whole tree
-	if (tag == dep_tag) {
+	if (current_tag == dep_tag) {
 		toplevel = $(element).parents(".tag_toplevel_container");
 	} else {
 		toplevel = $("#marc_editor_panel");
@@ -489,25 +491,65 @@ function marc_validate_required_if(value, element, param) {
 	// in hidden tags that are entirely missing
 	// from the editing page at the moment of
 	// verification.
-	var selector;
+	var dep_selector;
 	if (dep_subtag == "control") {
-		selector = '.serialize_marc[data-tag=' + dep_tag + ']';
+		dep_selector = '.serialize_marc[data-tag="' + dep_tag + '"]';
 	} else {
-		selector = '.serialize_marc[data-tag=' + dep_tag + '][data-subfield=' + dep_subtag + ']';
+		dep_selector = '.serialize_marc[data-tag="' + dep_tag + '"][data-subfield="' + dep_subtag + '"]';
 	}
 
-	// All matching fields must be exempt if this field is empty
-	$(selector, toplevel).each(function() {
+	// First check whether the dependency actually makes
+	// this field required. If no matching dependency field
+	// is filled, or if all filled dependency fields are exempt,
+	// then this field is valid even if empty.
+	var required = false;
+	$(dep_selector, toplevel).each(function() {
 		const other_val = ($(this).val() || "").trim();
 
-		if (other_val !== "" && (value || "").trim() === "") {
+		if (other_val !== "") {
 			if (!(more === "unless_val" && other_val === more_val)) {
-				valid = false;
-				return false; // break
+				required = true;
+				return false;
 			}
 		}
 	});
 
+	// If the dependency is not active, this field is not required
+	if (!required) {
+		return true;
+	}
+
+	// If this very field is filled, then we are fine
+	if (current_val !== "") {
+		return true;
+	}
+
+	// There is another catch: if we have multiple copies
+	// of the same tag/subtag, only one of them must be filled.
+	// So if one 710 is filled, the other empty 710s should
+	// not complain.
+	var same_selector;
+	if (current_subtag) {
+		same_selector = '.serialize_marc[data-tag="' + current_tag + '"][data-subfield="' + current_subtag + '"]';
+	} else {
+		same_selector = '.serialize_marc[data-tag="' + current_tag + '"]';
+	}
+
+	// .serialize_marc again lets us inspect all matching fields,
+	// including ones that may currently live in placeholders.
+	// This way "required_if" behaves like "at least one required"
+	// across repeated occurrences of the same field.
+	var has_any_filled = false;
+	$(same_selector, $("#marc_editor_panel")).each(function() {
+		const same_val = ($(this).val() || "").trim();
+
+		if (same_val !== "") {
+			has_any_filled = true;
+			return false;
+		}
+	});
+
+	valid = has_any_filled;
 	return valid;
 }
 

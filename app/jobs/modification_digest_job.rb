@@ -13,7 +13,7 @@ class ModificationDigestJob < ApplicationJob
     
     User.where(notification_type: @period).each do |user|
       # get the last modified sources
-      
+
       results = {}
       total_results = 0
       
