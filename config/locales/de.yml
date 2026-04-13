@@ -552,6 +552,7 @@ de:
     not_edition: Bitte wählen Sie eine Editionsquelle aus
   holding_no_siglum: Unmarkierte Kopie
   holding_records: Exemplarinformation
+  import: Importieren
   imported_level: Fremdeinspielung
   incipit_search:
     anchor: Suche nur den Anfang

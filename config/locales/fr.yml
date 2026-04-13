@@ -552,6 +552,7 @@ fr:
     not_edition: Veuillez sélectionner une source de type édition
   holding_no_siglum: Copie sans cote
   holding_records: Copie
+  import: Importe
   imported_level: Notice importée
   incipit_search:
     anchor: Au début uniquement

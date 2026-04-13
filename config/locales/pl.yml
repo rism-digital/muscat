@@ -552,6 +552,7 @@ pl:
     not_edition: Proszę wybrać źródło edycji
   holding_no_siglum: Egzemplarz bez siglum
   holding_records: Informacje o egzemplarzu
+  import: Importuj
   imported_level: Rekord zaimportowany
   incipit_search:
     anchor: Wyszukaj tylko początek

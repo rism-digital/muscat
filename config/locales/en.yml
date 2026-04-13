@@ -548,6 +548,7 @@ en:
     not_edition: Please select an edition source
   holding_no_siglum: Holding without siglum
   holding_records: Exemplar Information
+  import: Import
   imported_level: Imported record
   incipit_search:
     anchor: Search only beginning

@@ -552,6 +552,7 @@ es:
     not_edition: Por favor, seleccione una fuente de edición
   holding_no_siglum: Ejemplar sin sigla
   holding_records: Información del ejemplar
+  import: importa
   imported_level: Registro importado
   incipit_search:
     anchor: Buscar sólo en el comienzo

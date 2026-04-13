@@ -552,6 +552,7 @@ it:
     not_edition: Selezionare solamente materiale a stampa (edition)
   holding_no_siglum: Esemplare senza sigla di biblioteca
   holding_records: Esemplari
+  import: Importa
   imported_level: Record importato
   incipit_search:
     anchor: Ricerca solo nell'inizio

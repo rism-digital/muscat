@@ -552,6 +552,7 @@ ca:
     not_edition: Si us plau, seleccioneu una font d’edició
   holding_no_siglum: Exemplars sense sigla de biblioteca
   holding_records: Exemplars
+  import: importa
   imported_level: Registre importat
   incipit_search:
     anchor: Cercar només al principi
