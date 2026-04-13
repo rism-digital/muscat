@@ -119,10 +119,11 @@ module Wikidata
       if from || to
         from_type = data.dig(:wikidata_dates, :type_b)
         to_type = data.dig(:wikidata_dates, :type_d)
-        extra = [from_type.to_s, to_type.to_s].join(", ")
+        extra = [from_type.to_s, to_type.to_s].compact.reject(&:blank?).join(", ").strip
+        extra = " (#{extra})" if !extra.blank?
 
         new_marc.by_tags("678").each {|t2| t2.destroy_yourself}
-        new_marc.add_tag_with_subfields("678", a: "#{dates} (#{extra})")
+        new_marc.add_tag_with_subfields("678", a: "#{dates}#{extra}")
       end
 
       if format == :marc

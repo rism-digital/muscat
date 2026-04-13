@@ -71,13 +71,14 @@ module Wikidata
         b_tok = token_from_time_string(date_b)
         d_tok = token_from_time_string(date_d)
 
-        extra = [date_hash[:type_b].to_s, date_hash[:type_d].to_s].join(", ")
+        extra = [date_hash[:type_b].to_s, date_hash[:type_d].to_s].compact.reject(&:blank?).join(", ").strip
+        extra = " (#{extra})" if !extra.blank?
 
         return nil if b_tok.nil? && d_tok.nil?
-        return "#{b_tok}* (#{extra})" if b_tok && d_tok.nil?
-        return "#{d_tok}+ (#{extra})" if d_tok && b_tok.nil?
+        return "#{b_tok}*#{extra}" if b_tok && d_tok.nil?
+        return "#{d_tok}+#{extra}" if d_tok && b_tok.nil?
 
-        "#{b_tok}-#{d_tok} (#{extra})"
+        "#{b_tok}-#{d_tok}#{extra}"
       end
 
       # ---- internals ----
@@ -89,7 +90,7 @@ module Wikidata
 
         calendar_qid = extract_qid(content["calendarmodel"])
         calendar = :unknown
-        calendar = :gregorian if calendar_qid == QID_GREGORIAN
+        calendar = "" if calendar_qid == QID_GREGORIAN
         calendar = :julian if calendar_qid == QID_JULIAN
 
         return content["time"].to_s, calendar      
@@ -103,10 +104,11 @@ module Wikidata
         return nil unless year
 
         # YYYY-00-00 -> century start + "p"
-        if month.nil? && day.nil?
-          century_start = (year / 100) * 100
-          return "#{century_start}p"
-        end
+        # NOTE just use the given year
+        #if month.nil? && day.nil?
+        #  century_start = (year / 100) * 100
+        #  return "#{century_start}p"
+        #end
 
         # YYYY-MM-00 -> year + "c"
         if month && day.nil?
