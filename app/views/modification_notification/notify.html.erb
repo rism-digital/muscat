@@ -1,19 +1,35 @@
-<h3>Modification report for <%= @total_results %> item(s)</h3>
+<h3 style="margin-bottom: 16px; font-family: Arial, sans-serif;">
+  Modification report for <%= @total_results %> item(s)
+</h3>
 
 <% @results.each do |model, criterias| %>
   <% criterias.each do |criteria, items| %>
-    <p>
-      <b><%= items.count %> <%= model %>(s) matched the pattern:</b>
-      <code><%= criteria %></code>
-    </p>
 
-    <% items.each_with_index do |item, index| %>
-      <div>
-        <p style="font-family: arial; font-size: 12px;">
-          <strong><%= index + 1 %></strong>&nbsp;
-          <%= render_modification_item(item) %>
-        </p>
-      </div>
-    <% end %>
+    <!-- Section header -->
+    <div style="margin-top: 20px; margin-bottom: 8px; font-family: Arial, sans-serif;">
+      <strong>
+        <%= items.count %> <%= model.underscore.humanize.pluralize(items.count) %> matched:
+      </strong><br>
+      <code style="background:#f4f4f4; padding:2px 4px;">
+        <%= criteria %>
+      </code>
+    </div>
+
+    <!-- Items table -->
+    <table cellpadding="0" cellspacing="0" border="0" style="font-family: Arial, sans-serif; font-size: 12px; width: 100%; border-collapse: collapse;">
+      <tbody>
+        <% items.each_with_index do |item, index| %>
+          <tr>
+            <td valign="top" style="padding: 4px 6px 4px 0; width: 30px;">
+              <strong><%= index + 1 %>.</strong>
+            </td>
+            <td style="padding: 4px 0;">
+              <%= render_modification_item(item) %>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+
   <% end %>
 <% end %>
