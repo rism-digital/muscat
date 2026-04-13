@@ -1,42 +1,19 @@
-<h3>Modification report for <%=@total_results%> items(s)</h3>
-<p>
+<h3>Modification report for <%= @total_results %> item(s)</h3>
 
 <% @results.each do |model, criterias| %>
-	<% criterias.each do |criteria, items| %>
+  <% criterias.each do |criteria, items| %>
+    <p>
+      <b><%= items.count %> <%= model %>(s) matched the pattern:</b>
+      <code><%= criteria %></code>
+    </p>
 
-		<b><%=items.count%> <%=model%>(s) matched the pattern:</b> <code><%=criteria%></code><br>
-		<% count = 1 %>
-		<% items.each do |item| %>
-
-			<%if @total_results < 100 %>
-			<div style="padding-top: 5px">
-			<%end%>
-				<p style="font-family:arial; font-size:12px;">
-				<strong><%=count%></strong>&nbsp;
-				<%if item.is_a? Source %>
-					<%composer = !item.composer.empty? ? item.composer : "n.a."%>
-					<%title = !item.std_title.empty? ? item.std_title : "none"%>
-					<a href="<%=RISM::MUSCAT_URL%>/admin/sources/<%=item.id%>"><%=item.id%></a> (<%= I18n.t('record_types_codes.' + (item.record_type != nil ? item.record_type.to_s : ""))%>), <b><%=composer%>:</b> <i><%=title%></i> [created: <%=item.created_at%>, modified: <%=item.updated_at%>]
-
-				<%elsif item.is_a? Institution %>
-					<a href="<%=RISM::MUSCAT_URL%>/admin/institutions/<%=item.id%>"><%=item.id%></a>, <%=item.siglum%>, <%=item.name%> [created: <%=item.created_at%>, modified: <%=item.updated_at%>]
-				<%elsif item.is_a? Person %>
-					<a href="<%=RISM::MUSCAT_URL%>/admin/people/<%=item.id%>"><%=item.id%></a>, <%=item.full_name%>, <%=item.life_dates%> [created: <%=item.created_at%>, modified: <%=item.updated_at%>]
-
-				<%elsif item.is_a? Holding %>
-					<a href="<%=RISM::MUSCAT_URL%>/admin/holdings/<%=item.id%>/edit"><%=item.id%></a>, <%=item.lib_siglum%>, part of: <%=item.source_id%> [created: <%=item.created_at%>, modified: <%=item.updated_at%>]
-				<%elsif item.is_a? Work%>
-					<a href="<%=RISM::MUSCAT_URL%>/admin/works/<%=item.id%>"><%=item.id%></a>, <%=item.title%> [created: <%=item.created_at%>, modified: <%=item.updated_at%>]
-				<% else %>	
-					<%= item.inspect.to_s%> [created: <%=item.created_at%>, modified: <%=item.updated_at%>]
-				<%end%>
-				</p>
-			</div>
-
-			<% count += 1 %>
-		<% end %>
-
-		<p>
-	<%end%>
-<%end%>
-
+    <% items.each_with_index do |item, index| %>
+      <div>
+        <p style="font-family: arial; font-size: 12px;">
+          <strong><%= index + 1 %></strong>&nbsp;
+          <%= render_modification_item(item) %>
+        </p>
+      </div>
+    <% end %>
+  <% end %>
+<% end %>
