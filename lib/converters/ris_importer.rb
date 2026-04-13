@@ -9,7 +9,7 @@ module Converters
       }
 
 
-      ris = RISParser::parse(ris_string)&.first
+      ris = RISParser::parse(ris_string.force_encoding("UTF-8"))&.first
 
       return false if !ris
 
