@@ -27,10 +27,10 @@ CSV::foreach(name) do |line|
     next
   end
 
-  if p.tgn_id && !p.tgn_id.empty? && p.tgn_id != tgn
+  #if p.tgn_id && !p.tgn_id.empty? && p.tgn_id != tgn
     #puts "TGN Id changed for #{muscat}, was #{p.tgn_id} will be #{tgn.to_i}"
     delete_024_tgn(p.marc)
-  end
+  #end
   # Just add the tag
   p.marc.add_tag_with_subfields("024", a: tgn, "2": "TGN")
 =begin
