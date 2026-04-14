@@ -154,8 +154,9 @@ class NotificationMatcher
       composer = @object.person.name
       return wildcard_match(composer, pattern)
     elsif property == "follow"
-      if !@object.versions.empty? && @object.versions.last && @object.versions.last.whodunnit
-        return true if @object.versions.last.whodunnit.downcase == pattern.downcase
+      last_ver = @object.versions.last
+      if last_ver && last_ver.whodunnit
+        return true if last_ver.whodunnit.downcase == pattern.downcase
       else
         return false if !@object.user || !@object.user.name
         user_name = @object.user.name.downcase
