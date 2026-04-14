@@ -188,6 +188,9 @@ class Place < ApplicationRecord
     sunspot_dsl.text :name
 
     sunspot_dsl.integer :tgn_id
+    sunspot_dsl.string :tgn_id_order do
+      tgn_id
+    end
 
     sunspot_dsl.string :country_order do
       country
