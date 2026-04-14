@@ -435,7 +435,7 @@ using AggressivelyStrip
 
   def validate_unknown_tags
     @unknown_tags = []
-      @editor_profile.each_tag_not_in_layout(@object) do |t|
+      @editor_profile.each_tag_not_in_layout(@object, @marc) do |t|
         add_error(t, "unknown-tag", "Unknown tag in layout", "unknown_tag_error")
       end
   end
@@ -468,11 +468,11 @@ using AggressivelyStrip
 
   def validate_588
     return if !@object.respond_to?(:holdings) || @object.holdings.count == 0
-    return if @object.marc.by_tags("588").count == 0
+    return if @marc.by_tags("588").count == 0
 
     holdings_sigla = @object.holdings.map(&:lib_siglum)
 
-    @object.marc.each_by_tag("588") do |t|
+    @marc.each_by_tag("588") do |t|
       # There should be only one of these...
       t.fetch_all_by_tag("a").map(&:content).compact.each do |content|
         # Extract the first chunk as the siglum
@@ -534,7 +534,7 @@ using AggressivelyStrip
   def validate_person_codes
     return if !@object.is_a?(Person)
 
-    @object.marc["024"].each do |t|
+    @marc["024"].each do |t|
       code = t["2"]&.first&.content
       id = t["a"]&.first&.content
 
