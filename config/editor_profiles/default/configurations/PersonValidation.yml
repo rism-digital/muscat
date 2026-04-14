@@ -10,7 +10,10 @@ client:
         any_of:
           - mandatory
           - validate_person_name
-      "d": validate_calendar
+      "d":
+        any_of:
+          - validate_calendar
+          - validate_person_dates
   "400":
     tags:
       "a":

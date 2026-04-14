@@ -95,10 +95,10 @@ class MuscatCheckup
       $stdout = old_stdout
       $stderr = old_stderr
       new_stdout.rewind
-      
+
       res = validate_record(s)
       validations[s.id] = res if res && !res.empty?
-    rescue
+    rescue Exception => e
       ## Exit the capture
       $stdout = old_stdout
       $stderr = old_stderr
@@ -110,9 +110,12 @@ class MuscatCheckup
         new_stdout.string.each_line do |line|
           next if line.strip.empty?
           @debug_logger.error("record_exception #{s.id} #{print_record_type(s)} no_tag no_subtag #{line.strip}") if @debug_logger
-
         end
       end
+
+      puts e.message
+      puts e.backtrace.first(5).join("\n")
+      @debug_logger.error(e.backtrace.first(5).join("\n")) if @debug_logger
 
       new_stdout.rewind
     end
@@ -179,9 +182,12 @@ class MuscatCheckup
       return validator.get_errors
     rescue Exception => e
       puts e.message
+      puts e.backtrace.first(5).join("\n")
       @debug_logger.error("validation_exception #{record.id} #{print_record_type(record)} no_tag no_subtagtag #{e.message}") if @debug_logger
+      @debug_logger.error(e.backtrace.first(5).join("\n")) if @debug_logger
     end
     
+      return ""
   end
   
   def postprocess_results(validations, limit_unknown_tags: true, unknown_tag_limit: UNKNOWN_TAG_LIMIT)

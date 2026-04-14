@@ -706,8 +706,10 @@ using AggressivelyStrip
           add_error(tag, subtag, "marc_validate_calendar:#{marc_subtag.content}")
           puts "#{tag} #{subtag} Contains #{marc_subtag.content}, marc_validate_calendar" if DEBUG
       end
+    # Do nothing, just silence the warning for these
     elsif rule == "validate_edtf"
-      # Do nothing, just silence the warning
+    elsif rule == "validate_person_dates"
+    elsif rule == "validate_person_name"
     else
       puts rule.class
       puts "Unknown rule #{rule}" if rule != "mandatory"

@@ -11,7 +11,8 @@ const SIMPLE_RULE_MAP = {
 	"validate_url": { validate_url: true },
 	"not_record_id": {not_record_id: true},
 	"validate_calendar": {"validate_calendar": true},
-	"validate_person_name": {"validate_person_name": true}
+	"validate_person_name": {"validate_person_name": true},
+	"validate_person_dates": {"validate_person_dates": true}
 }
 
 const PARAMETRIC_RULES = [
@@ -267,6 +268,31 @@ function marc_validate_person_name(value, element, param) {
 	}
 	
 	return true;
+}
+
+const LifeDatesValidator = (() => {
+  const YEAR = String.raw`\d{1,4}`;
+  const YEAR_SUFFIX = String.raw`(?:a|p|c)?`;
+  const CENTURY = String.raw`\d{1,2}\.sc`;
+  const PART = String.raw`(?:${YEAR}${YEAR_SUFFIX}|${CENTURY})`;
+
+  const REGEX = new RegExp(
+    String.raw`^(?:${PART}(?:\*|\+)?|${PART}-${PART}|\d{1,2}\/\d{1,2})$`
+  );
+
+  function valid(value) {
+    if (value == null) return false;
+    return REGEX.test(String(value).trim());
+  }
+
+  return { valid };
+})();
+
+function marc_validate_person_dates(value, element, param) {
+	if (value === "")
+		return true;
+
+	return LifeDatesValidator.valid(value);
 }
 
 function marc_validate_not_record_id(value, element, param) {
@@ -811,6 +837,8 @@ function marc_editor_init_validation(form, validation_conf) {
 	$.validator.addMethod("validate_url", 		marc_validate_url,				$.validator.format(I18n.t("validation.validate_url")));
 	$.validator.addMethod("validate_calendar", 	marc_validate_calendar,			$.validator.format(I18n.t("validation.validate_calendar")));
 	$.validator.addMethod("validate_person_name", 	marc_validate_person_name,	$.validator.format(I18n.t("validation.validate_person_name")));
+	$.validator.addMethod("validate_person_dates", 	marc_validate_person_dates,	$.validator.format(I18n.t("validation.validate_person_dates")));
+
 
 	// New creation: this is not configurable, it is used to make sure the
 	// "confirm create new" checkbox is selected for new items

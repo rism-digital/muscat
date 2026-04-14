@@ -843,6 +843,8 @@ de:
     validate_edtf: EDTF-Datum validieren
     validate_url: Die eingegebene URL ist ungültig
     warning_message: Dieses Feld enthält üblicherweise einen Eintrag.
+    validate_person_name: "Vergewissern Sie sich, dass der Name in der richtigen Reihenfolge eingegeben wurde: in der Regel <i>Nachname, Vorname</i>"
+    validate_person_dates: NOOOOOOOOOOOOOOOO
   validation_level_error: Die Fehler müssen vor dem Speichern behoben werden.
   validation_level_warning: Erneut speichern, um die Warnung(en) zu ignorieren.
   view_source: Quelle anzeigen
