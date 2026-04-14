@@ -6,13 +6,18 @@ client:
       "a": required
   "100":
     tags:
-      "a": mandatory
+      "a": 
+        any_of:
+          - mandatory
+          - validate_person_name
       "d": validate_calendar
   "400":
     tags:
       "a":
-        required_if:
-          "400": "j"
+        any_of:
+          - validate_person_name
+          - required_if:
+              "400": "j"
       "j":
         required_if:
           "400": "a"

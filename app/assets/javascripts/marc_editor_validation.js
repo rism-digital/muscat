@@ -10,7 +10,8 @@ const SIMPLE_RULE_MAP = {
 	"validate_031_dups": { validate_031_dups: true },
 	"validate_url": { validate_url: true },
 	"not_record_id": {not_record_id: true},
-	"validate_calendar": {"validate_calendar": true}
+	"validate_calendar": {"validate_calendar": true},
+	"validate_person_name": {"validate_person_name": true}
 }
 
 const PARAMETRIC_RULES = [
@@ -56,10 +57,12 @@ function marc_validate_show_warnings() {
 		var element = warningList[warn];
 		_marc_validate_highlight(element, "warning", "");
 		
+		var message = $(element).data('message') || I18n.t('validation.warning_message');
+
 		var label = $( "<label>" )
 		.attr( "id", element.name + "-warning" )
 		.addClass("warning")
-		.html(I18n.t("validation.warning_message"));
+		.html(message);
 		label.insertAfter( element );
 	}
 }
@@ -252,6 +255,17 @@ function marc_validate_calendar(value, element, param){
 		return false;
 	}
 
+	return true;
+}
+
+function marc_validate_person_name(value, element, param) {
+	const pattern = /^\s*[^,]+,\s*[^,]+\s*$/;
+
+	if (value != "" && !pattern.test(value)) {
+		$(element).data('message', I18n.t("validation.validate_person_name"));
+		marc_validate_add_warnings(element);
+	}
+	
 	return true;
 }
 
@@ -796,6 +810,7 @@ function marc_editor_init_validation(form, validation_conf) {
 	$.validator.addMethod("gnd_warn_default", 	marc_validate_gnd_warn_default,	$.validator.format(I18n.t("validation.gnd_warn_default_message")));
 	$.validator.addMethod("validate_url", 		marc_validate_url,				$.validator.format(I18n.t("validation.validate_url")));
 	$.validator.addMethod("validate_calendar", 	marc_validate_calendar,			$.validator.format(I18n.t("validation.validate_calendar")));
+	$.validator.addMethod("validate_person_name", 	marc_validate_person_name,	$.validator.format(I18n.t("validation.validate_person_name")));
 
 	// New creation: this is not configurable, it is used to make sure the
 	// "confirm create new" checkbox is selected for new items

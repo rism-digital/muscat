@@ -858,6 +858,7 @@ en:
     validate_edtf: Validate EDTF date
     validate_url: The entered URL is invalid
     warning_message: A value for this field should be provided
+    validate_person_name: "Double-check that the name is entered in the appropriate order: usually <i>Surname, Forename</i>"
   validation_level_error: There are errors, please solve before saving
   validation_level_warning: There are warnings, save again to override
   view_source: View Source
