@@ -47,16 +47,8 @@ TURN THIS ON TO GET TGN DATA
     #p.marc.add_tag_with_subfields("024", a: tgn, "2": "TGN")
   end
 =end
-  p.save
-end
-
-def change_tag(item, tag, subtag, old, new)
-  item.marc[tag].each do |t|
-    tt = t[subtag]&.first
-    if tt && tt.content.to_s == old.to_s
-      puts "#{item.class} #{item.id} change #{tag} $#{subtag} #{old} to #{new}"
-      tt.content = new.to_s 
-    end
+  PaperTrail.request(enabled: false) do
+    p.save
   end
 end
 
