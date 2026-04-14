@@ -169,7 +169,7 @@ using AggressivelyStrip
         validate_required_if_rule(tag, subtag, marc_subtag, value)
       
       when "must_be_different"
-        validate_must_be_different(tag, subtag, marc_subtag, value)
+        validate_must_be_different(tag, subtag, marc_tag, marc_subtag, value)
 
       when "must_contain"
         validate_must_contain_rule(tag, subtag, marc_subtag, value)
@@ -240,10 +240,17 @@ using AggressivelyStrip
     end
   end
 
-  def validate_must_be_different(tag, subtag, marc_subtag, rules)
+  def validate_must_be_different(tag, subtag, marc_tag, marc_subtag, rules)
+    if !marc_subtag
+      puts "#{tag} #{subtag} #{@object.id} validate_must_be_different marc_subtag == nil"
+    end
+
+    # No tag, we don't care
+    return if !marc_subtag
+
     rules.each do |other_tag, other_subtag|
 
-      other_marc_subtag = marc_subtag.fetch_first_by_tag(other_subtag)
+      other_marc_subtag = marc_tag.fetch_first_by_tag(other_subtag)
       next unless other_marc_subtag&.content  # If no content, rule doesn't apply
   
       # Now we check if the current subtag is missing
@@ -455,15 +462,8 @@ using AggressivelyStrip
     return if !@object.is_a?(Source)
     return if !@object.parent_source
 
-    # The two libraries must match, so report if one is missing
-    parent_id = nil
-    source_id = nil
-
-    parent_relations = SourceInstitutionRelation.where(source_id: @object.parent_source, marc_tag: "852")
-    parent_id = parent_relations.first.institution_id if !parent_relations.empty?
-
-    source_relations = SourceInstitutionRelation.where(source_id: @object.id, marc_tag: "852")
-    source_id = source_relations.first.institution_id if !source_relations.empty?
+    parent_id = SourceInstitutionRelation.where(source_id: @object.parent_source, marc_tag: "852").pick(:institution_id)
+    source_id = SourceInstitutionRelation.where(source_id: @object.id, marc_tag: "852").pick(:institution_id)
 
     if parent_id != source_id
       add_error("record", "institution", "Child institution differes from parent (c=#{source_id} p=#{parent_id})", "parent_institution_error")

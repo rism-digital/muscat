@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.2].define(version: 2026_03_30_103207) do
+ActiveRecord::Schema[7.2].define(version: 2026_04_14_070211) do
   create_table "active_admin_comments", id: :integer, charset: "utf8mb3", force: :cascade do |t|
     t.string "namespace"
     t.text "body"
@@ -550,6 +550,7 @@ ActiveRecord::Schema[7.2].define(version: 2026_03_30_103207) do
     t.string "relator_code"
     t.index ["institution_id"], name: "index_sources_to_institutions_on_institution_id"
     t.index ["marc_tag", "relator_code", "source_id", "institution_id"], name: "unique_records", unique: true
+    t.index ["source_id", "marc_tag", "institution_id"], name: "index_sti_on_source_marc_institution"
     t.index ["source_id"], name: "index_sources_to_institutions_on_source_id"
   end
 
@@ -674,6 +675,7 @@ ActiveRecord::Schema[7.2].define(version: 2026_03_30_103207) do
     t.string "viaf"
     t.string "gnd"
     t.boolean "latin"
+    t.index ["id"], name: "id"
     t.index ["title"], name: "index_standard_titles_on_title"
     t.index ["wf_stage"], name: "index_standard_titles_on_wf_stage"
   end
