@@ -59,7 +59,7 @@ tag.for_every_child_sorted do |subfield|
   end
 end
 
-tag_content = safe_join(parts.compact, ", ")
+tag_content = safe_join(parts.compact, "; ")
 tag_content += tag.content if marc_configuration.is_tagless?(tag.tag)
 %>
 
