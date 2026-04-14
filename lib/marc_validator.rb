@@ -241,10 +241,6 @@ using AggressivelyStrip
   end
 
   def validate_must_be_different(tag, subtag, marc_tag, marc_subtag, rules)
-    if !marc_subtag
-      puts "#{tag} #{subtag} #{@object.id} validate_must_be_different marc_subtag == nil"
-    end
-
     # No tag, we don't care
     return if !marc_subtag
 

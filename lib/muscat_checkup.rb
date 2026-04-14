@@ -66,60 +66,73 @@ class MuscatCheckup
   private
 
   def load_and_validate_item(s)
-    # Capture all the puts from the inner classes
-    old_stdout = $stdout
-    old_stderr = $stderr
-
     errors = {}
     validations = {}
 
-    begin
-      ## Capture STDOUT and STDERR
-      ## Only for the marc loading!
-      new_stdout = StringIO.new
-      $stdout = new_stdout
-      $stderr = new_stdout
-      
-      s.marc.load_source true
-      
-      errors[s.id] = new_stdout.string if !new_stdout.string.strip.empty?
-      if !new_stdout.string.strip.empty? && @debug_logger
-        new_stdout.string.each_line do |line|
-          next if line.strip.empty?
-          @debug_logger.error("record_error #{s.id} #{print_record_type(s)} no_tag no_subtag #{line.strip}") if @debug_logger
+    phase = :load
 
-        end
-      end
-
-      # Set back to original
-      $stdout = old_stdout
-      $stderr = old_stderr
-      new_stdout.rewind
-
-      res = validate_record(s)
-      validations[s.id] = res if res && !res.empty?
-    rescue Exception => e
-      ## Exit the capture
-      $stdout = old_stdout
-      $stderr = old_stderr
-      
-      errors[s.id] = new_stdout.string if !new_stdout.string.strip.empty?
-      #@debug_logger.error(new_stdout.string) if @debug_logger
-
-      if !new_stdout.string.strip.empty? && @debug_logger
-        new_stdout.string.each_line do |line|
-          next if line.strip.empty?
-          @debug_logger.error("record_exception #{s.id} #{print_record_type(s)} no_tag no_subtag #{line.strip}") if @debug_logger
-        end
-      end
-
-      puts e.message
-      puts e.backtrace.first(5).join("\n")
-      @debug_logger.error(e.backtrace.first(5).join("\n")) if @debug_logger
-
-      new_stdout.rewind
+    result, output, exception = capture_stdout_and_stderr do
+      s.marc.load_source(true)
+      phase = :validate
+      validate_record(s)
     end
-    return errors, validations
+
+    unless output.strip.empty?
+      errors[s.id] = output
+      log_output_lines(output, s, exception ? "record_exception_#{phase}" : "record_error")
+    end
+
+    if exception
+      append_exception(errors, s.id, exception)
+      @debug_logger.error("[#{phase}] #{exception.backtrace.first(2).join("\n")}") if @debug_logger
+      puts "[#{phase}] #{exception.backtrace.first(2).join("\n")}" # Also print the message on the stdout sink 
+    elsif result.present?
+      validations[s.id] = result
+    end
+
+    [errors, validations]
+  end
+
+  def capture_stdout_and_stderr
+    old_stdout = $stdout
+    old_stderr = $stderr
+    buffer = StringIO.new
+
+    result = nil
+    exception = nil
+
+    begin
+      $stdout = buffer
+      $stderr = buffer
+      result = yield
+    rescue => e
+      exception = e
+    ensure
+      $stdout = old_stdout
+      $stderr = old_stderr
+    end
+
+    [result, buffer.string, exception]
+  end
+
+  def append_exception(errors, id, exception)
+    backtrace = exception.backtrace.first(2).join("\n")
+
+    errors[id] ||= ""
+    errors[id] << "\n" unless errors[id].empty?
+    errors[id] << exception.message
+    errors[id] << "\n"
+    errors[id] << backtrace
+  end
+
+  def log_output_lines(output, s, prefix)
+    return if output.strip.empty?
+    return unless @debug_logger
+
+    output.each_line do |line|
+      next if line.strip.empty?
+      @debug_logger.error("#{prefix} #{s.id} #{print_record_type(s)} no_tag no_subtag #{line.strip}")
+    end
   end
 
   def validate_items
@@ -164,30 +177,21 @@ class MuscatCheckup
   end
 
   def validate_record(record)
-
-    begin
-      validator = MarcValidator.new(record, nil, false, @debug_logger, @validation_exclusions)
-      validator.validate_tags               if !@skip_validation
-      validator.validate_dates              if !@skip_dates
-      validator.validate_links              if !@skip_links
-      validator.validate_unknown_tags       if !@skip_unknown_tags
-      validator.validate_holdings           if !@skip_holdings
-      validator.validate_dead_774_links     if !@skip_dead_774
-      validator.validate_dead_773_links     if !@skip_dead_773
-      validator.validate_parent_institution if !@skip_parent_institution
-      validator.validate_588                if !@skip_588_validation
-      validator.validate_work_status        if !@skip_validate_work_status
-      validator.validate_template_harmony   if !@skip_parent_check
-      validator.validate_person_codes       if !@skip_validate_person_codes
-      return validator.get_errors
-    rescue Exception => e
-      puts e.message
-      puts e.backtrace.first(5).join("\n")
-      @debug_logger.error("validation_exception #{record.id} #{print_record_type(record)} no_tag no_subtagtag #{e.message}") if @debug_logger
-      @debug_logger.error(e.backtrace.first(5).join("\n")) if @debug_logger
-    end
-    
-      return ""
+    # if something is wrong, let the validator throw and it will be caught by the logger
+    validator = MarcValidator.new(record, nil, false, @debug_logger, @validation_exclusions)
+    validator.validate_tags               if !@skip_validation
+    validator.validate_dates              if !@skip_dates
+    validator.validate_links              if !@skip_links
+    validator.validate_unknown_tags       if !@skip_unknown_tags
+    validator.validate_holdings           if !@skip_holdings
+    validator.validate_dead_774_links     if !@skip_dead_774
+    validator.validate_dead_773_links     if !@skip_dead_773
+    validator.validate_parent_institution if !@skip_parent_institution
+    validator.validate_588                if !@skip_588_validation
+    validator.validate_work_status        if !@skip_validate_work_status
+    validator.validate_template_harmony   if !@skip_parent_check
+    validator.validate_person_codes       if !@skip_validate_person_codes
+    return validator.get_errors
   end
   
   def postprocess_results(validations, limit_unknown_tags: true, unknown_tag_limit: UNKNOWN_TAG_LIMIT)
