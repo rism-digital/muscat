@@ -154,14 +154,17 @@ class NotificationMatcher
       composer = @object.person.name
       return wildcard_match(composer, pattern)
     elsif property == "follow"
-      last_ver = @object.versions.last
-      if last_ver && last_ver.whodunnit
-        return true if last_ver.whodunnit.downcase == pattern.downcase
-      else
-        return false if !@object.user || !@object.user.name
-        user_name = @object.user.name.downcase
-        return true if user_name == pattern.downcase
-      end
+
+      last_author =
+        if @object.respond_to?(:last_version_author)
+          @object.last_version_author.presence
+        else
+          @object.versions.last&.whodunnit.presence
+        end ||
+        (@object.respond_to?(:current_user_name) ? @object.current_user_name : @object&.user&.name&.downcase)
+
+      return true if last_author&.downcase == pattern.downcase
+
     elsif property == "owner"
       return false if !@object.respond_to?(:user) || !@object.user
 

@@ -16,7 +16,6 @@ class Place < ApplicationRecord
   include ThroughAssociations
   include AutoStripStrings
   include ComposedOfReimplementation
-  include ThroughAssociations
   include HasReferringRelations
   using AggressivelyStrip
   resourcify
