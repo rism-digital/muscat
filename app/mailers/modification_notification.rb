@@ -1,10 +1,11 @@
 class ModificationNotification < ApplicationMailer
 
-  def notify(user, total_results = 0, results = {})
+  def notify(user, total_results = 0, results = {}, time_msg = "")
     
     @total_results = total_results
     @results = results
     @user = user
+    @time_msg = time_msg
     
     return if !@user || !@user.email
 

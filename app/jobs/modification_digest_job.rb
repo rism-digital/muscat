@@ -12,6 +12,8 @@ class ModificationDigestJob < ApplicationJob
     set_period(args[0]) if !args.empty?
     
     User.where(notification_type: @period).each do |user|
+      begin_time = Time.now
+
       # get the last modified sources
 
       results = {}
@@ -33,7 +35,11 @@ class ModificationDigestJob < ApplicationJob
       end
 
       if !results.empty?
-        ModificationNotification.notify(user, total_results, results).deliver_now
+        end_time = Time.now
+        duration = (end_time - begin_time).to_i
+        human_readable = format("%02d:%02d:%02d", duration / 3600, (duration % 3600) / 60, duration % 60)
+        time_msg = "It took Muscat #{duration} seconds to generate this report, in human time #{human_readable}"
+        ModificationNotification.notify(user, total_results, results, time_msg).deliver_now
       end
     end
   end
