@@ -11,6 +11,10 @@ ActiveAdmin.register User do
 
 	controller do
 
+    def scoped_collection
+      super.left_joins(:roles)
+    end
+
 	  def update
 	    if params[:user][:password].blank? && params[:user][:password_confirmation].blank?
 	      params[:user].delete("password")
@@ -56,6 +60,10 @@ ActiveAdmin.register User do
   filter :username
   filter :name
   filter :email
+  filter :roles_id_in,
+       as: :select,
+       label: I18n.t(:roles),
+       collection: -> { Role.order(:name).pluck(:name, :id) }
   filter :current_sign_in_at
   filter :sign_in_count
   filter :created_at
@@ -69,8 +77,8 @@ ActiveAdmin.register User do
     column I18n.t(:workgroups) do |user|
          user.get_workgroups.join(", ")
     end
-    column I18n.t(:roles) do |user|
-         user.get_roles.join(", ")
+    column I18n.t(:roles), sortable: 'roles.name' do |user|
+      user.get_roles.join(", ")
     end
     column :created_at
     #column (I18n.t :filter_sources) do |user|
