@@ -72,7 +72,7 @@ class MuscatCheckup
     phase = :load
 
     result, output, exception = capture_stdout_and_stderr do
-      s.marc.load_source(true)
+      #s.marc.load_source(true)
       phase = :validate
       validate_record(s)
     end
@@ -143,7 +143,7 @@ class MuscatCheckup
       validations = {}
 
       offset = batch_size * jobid
-      
+=begin
       @model.order(:id).limit(batch_size).offset(offset).select(:id).each do |sid|
         s = @model.find(sid.id)
         
@@ -152,6 +152,16 @@ class MuscatCheckup
         validations.merge!(v)
         
         s = nil
+      end
+=end
+      ids = @model.order(:id).limit(batch_size).offset(offset).pluck(:id)
+
+      ids.each_slice(1000) do |slice|
+        @model.where(id: slice).order(:id).each do |s|
+          e, v = load_and_validate_item(s)
+          errors.merge!(e)
+          validations.merge!(v)
+        end
       end
 
       { errors: errors, validations: validations }
