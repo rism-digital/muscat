@@ -1,6 +1,38 @@
 Muscat Changelog
 ================
 
+v 12.3.1
+* Update addressable
+* Update rack-session
+* Fix place reindexing (just after the release...)
+* Fix the checkup script so it does not blow up
+* Unbork che Muscat Checkup (thanks subtle api changes)
+* Fix corner cases with the new unless_ validation
+* Fix encoding issue with RIS importer
+* Don't show "gregorian" for gregorian dates, and fix year padding for unknown dates
+* Helper for modification notification with all auth files
+* Make the modification notificationa  bit more clear
+* Silence the "edtf" rule
+* Try to optimize the Checkup job, fix undefined method 'fetch_first_by_tag'
+* Add time to modification report
+* Try to optimize the modification matcher
+* Add a name validator for People
+* Optimize the Modification digest to load users via sql
+* Refactor the Checkup report to catch and print exceptions
+* Make the TGN script remove old ids
+* Properly order TGN id in place
+* Avoid loading marc in sources two times when validating
+* Add human readable time to checkup report
+* Change separator in the auto_tag
+* Make roles sortable and searchable in user
+* Add more items to user list
+* Make the guest role more restricted
+* Show Work Node identifier in list
+* Guests should see works
+* Make only the last version restorable
+* Add Doc page for guests
+* Add index in versions
+
 v 12.3
 * Fixing bugs one nanosecond after the release!
 * Work owner updater
