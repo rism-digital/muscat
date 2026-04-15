@@ -7,7 +7,7 @@ ActiveAdmin.register User do
 
   # Remove all action items
   config.clear_action_items!
-	
+	config.per_page = [10, 30, 50, 100, 1000]
 
 	controller do
 
