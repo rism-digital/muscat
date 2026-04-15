@@ -132,6 +132,8 @@ ActiveAdmin.register WorkNode do
     column (I18n.t :filter_id), :id  
     column (I18n.t :filter_composer), :composer, sortable: :composer_order
     column (I18n.t :filter_title), :title
+    column (I18n.t :"records.standard_number_code"), :ext_number, sortable: :ext_number_order
+    column (I18n.t :"records.source_number_code"), :ext_code, sortable: :ext_code_order
     column (I18n.t :filter_sources), :src_count_order, sortable: :src_count_order do |element|
 			active_admin_stored_from_hits(controller.view_assigns["hits"], element, :src_count_order)
 		end

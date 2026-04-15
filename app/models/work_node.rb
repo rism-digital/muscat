@@ -160,6 +160,13 @@ class WorkNode < ApplicationRecord
     end
     sunspot_dsl.text :composer
 
+    sunspot_dsl.string :ext_code_order, stored: true do
+      ext_code
+    end
+    sunspot_dsl.string :ext_number_order, stored: true do
+      ext_number
+    end
+
     sunspot_dsl.join(:folder_id, :target => FolderItem, :type => :integer, 
               :join => { :from => :item_id, :to => :id })
 
