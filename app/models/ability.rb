@@ -127,9 +127,11 @@ class Ability
 
     elsif user.has_role? :guest
       can [:read, :create], ActiveAdmin::Comment
-      can :read, :all
+      can :read, [DigitalObject, DigitalObjectLink, Publication, Institution, LiturgicalFeast, Person, Place, StandardTerm, StandardTitle, Source, Work, WorkNode, Holding, InventoryItem]
       can :read, ActiveAdmin::Page, :name => "Dashboard"
       can :read, User, :id => user.id
+      cannot :update, :all
+      cannot :delete, :all
       cannot :read, ActiveAdmin::Page, :name => "Statistics"
       cannot :read, Workgroup
     end
