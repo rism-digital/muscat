@@ -136,8 +136,6 @@ class Ability
       cannot :read, Workgroup
     end
     
-    
-
   end
   
 end
