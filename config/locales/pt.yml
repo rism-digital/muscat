@@ -830,7 +830,6 @@ pt:
     cannot_link_to_self: A criação de uma ligação em si não é permitida (%{id}).
     check_group_message: O primeiro grupo de material não pode ser "Material impresso adicional".
     correct: O registro não tem erros de validação [200]
-    gnd_warn_default_message: 'TRME '
     insufficient_rights: O usuário não tem concessão para criar/atualizar um registro para esta instituição
     missing_message: Um valor neste campo é obrigatório
     must_be_different_message: Isto não pode ser idêntico ao outro valor no campo
