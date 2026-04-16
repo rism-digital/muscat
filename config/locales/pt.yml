@@ -830,6 +830,7 @@ pt:
     cannot_link_to_self: A criação de uma ligação em si não é permitida (%{id}).
     check_group_message: O primeiro grupo de material não pode ser "Material impresso adicional".
     correct: O registro não tem erros de validação [200]
+    gnd_warn_default_message: 'TRME '
     insufficient_rights: O usuário não tem concessão para criar/atualizar um registro para esta instituição
     missing_message: Um valor neste campo é obrigatório
     must_be_different_message: Isto não pode ser idêntico ao outro valor no campo
@@ -841,6 +842,8 @@ pt:
     validate_588_siglum: 'Insira o siglum da biblioteca e a classificação no formato: I-Bc Q.51'
     validate_calendar: Certifique-se de que as datas seguem o calendário correto
     validate_edtf: Validar data EDTF
+    validate_person_name: "Verifique se o nome está inserido na ordem correta: normalmente <i>Sobrenome, Nome</i>"
+    validate_person_dates: "Certifique-se de que as datas seguem as diretrizes"
     validate_url: O URL inserido não é válido
     warning_message: Um valor deve ser fornecido para este campo
   validation_level_error: Há erros, por favor resolva antes de salvar.

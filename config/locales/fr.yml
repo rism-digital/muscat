@@ -841,6 +841,8 @@ fr:
     validate_588_siglum: 'Entrez le sigle de la bibliothèque et la cote selon le format : I-Bc Q.51'
     validate_calendar: Veuillez vous assurer que les dates suivent le calendrier correct
     validate_edtf: Valider la date EDTF
+    validate_person_name: "Vérifiez que le nom est saisi dans l’ordre approprié : généralement <i>Nom, Prénom</i>"
+    validate_person_dates: "Veuillez vous assurer que les dates respectent les directives"
     validate_url: L'URL saisi n'est pas valide
     warning_message: Une valeur devrait être présente pour ce champ
   validation_level_error: Il y a des erreurs à corriger avant d'enregistrer.

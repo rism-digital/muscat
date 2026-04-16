@@ -841,6 +841,8 @@ ca:
     validate_588_siglum: 'Introduïu el siglum de la biblioteca i la signatura seguint el format: I-Bc Q.51'
     validate_calendar: Assegureu-vos que les dates segueixen el calendari correcte
     validate_edtf: Validar la data EDTF
+    validate_person_name: "Comproveu que el nom està introduït en l’ordre correcte: normalment <i>Cognom, Nom</i>"
+    validate_person_dates: "Assegureu-vos que les dates segueixen les directrius"
     validate_url: L'URL introduït no és vàlid
     warning_message: Caldria que aquest camp tingués un valor
   validation_level_error: Hi ha errors. Resoleu-vos abans de desar-lo

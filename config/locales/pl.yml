@@ -841,6 +841,8 @@ pl:
     validate_588_siglum: 'Wprowadź sygnaturę biblioteki i półkę według formatu: I-Bc Q.51'
     validate_calendar: Upewnij się, że daty są zgodne z właściwym kalendarzem
     validate_edtf: Sprawdź datę EDTF
+    validate_person_name: "Sprawdź, czy imię i nazwisko są wprowadzone w odpowiedniej kolejności: zazwyczaj <i>Nazwisko, Imię</i>"
+    validate_person_dates: "Upewnij się, że daty są zgodne z wytycznymi"
     validate_url: Wprowadzony adres URL jest nieprawidłowy
     warning_message: To pole powinno zawierać wartość
   validation_level_error: Wystąpiły błędy. Napraw je przed zapisaniem.
