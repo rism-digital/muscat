@@ -1,6 +1,11 @@
 Muscat Changelog
 ================
 
+v 12.3.2
+* Fix #1968, more ZIP api changes
+* JSON client for our installation on TGN
+* Add more missing translations
+
 v 12.3.1
 * Update addressable
 * Update rack-session
