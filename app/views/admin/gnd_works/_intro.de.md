@@ -27,4 +27,4 @@ Um einen bestehenden GND-Werknormsatz zu bearbeiten, muss dieser zunächst von d
 
 Liegt ein Werknormsatz noch in älterer Form (RAK) vor, muss dieser in einen RDA-Normsatz umgewandelt werden, indem man gemäß der Hilfetexte alle Felder korrekt ausfüllt.
 
-Tauchen beim Anlegen oder Bearbeiten von GND-Werknormsätzen Schwierigkeiten auf, dann kontaktieren Sie bitte Mailadresse XY.
+Tauchen beim Anlegen oder Bearbeiten von GND-Werknormsätzen Schwierigkeiten auf, dann kontaktieren Sie bitte Mailadresse gnd-editor@rism.digital.
