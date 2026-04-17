@@ -23,6 +23,34 @@ const PARAMETRIC_RULES = [
 	"gnd_warn_default"
 ]
 
+const RECORD_TYPES = {
+  unspecified: 0,
+  collection: 1,
+  source: 2,
+  edition_content: 3,
+  libretto_source: 4,
+  libretto_edition: 5,
+  theoretica_source: 6,
+  theoretica_edition: 7,
+  edition: 8,
+  libretto_edition_content: 9,
+  theoretica_edition_content: 10,
+  composite_volume: 11,
+  inventory: 12,
+  inventory_edition: 13
+};
+
+function isManuscript(recordType) {
+  return (
+    recordType === RECORD_TYPES.collection ||
+    recordType === RECORD_TYPES.libretto_source ||
+    recordType === RECORD_TYPES.theoretica_source ||
+    recordType === RECORD_TYPES.source || 
+	recordType === RECORD_TYPES.inventory ||
+	recordType === RECORD_TYPES.composite_volume
+  );
+}
+
 function marc_validate_has_warnings() {
 	return hasNewWarnings;
 }
@@ -467,6 +495,52 @@ function marc_validate_must_be_different(value, element, param) {
 	return valid;
 }
 
+// This is the function to parse the params for required_if
+function parseRequiredIfParams(params) {
+  const allowedOptionKeys = new Set(["unless_val", "except", "only"]);
+
+  const result = {
+    dep_tag: null,
+    dep_subtag: null,
+    options: {
+      unless_val: null,
+      except: null,
+      only: null
+    },
+    has: {
+      unless_val: false,
+      except: false,
+      only: false
+    }
+  };
+
+  for (let i = 0; i < params.length; i++) {
+    const current = params[i];
+
+    if (/^\d+$/.test(current)) {
+      if (result.dep_tag === null) {
+        result.dep_tag = current;
+        result.dep_subtag = params[i + 1] ?? null;
+        i += 1;
+        continue;
+      }
+    }
+
+    if (allowedOptionKeys.has(current)) {
+      result.options[current] = params[i + 1] ?? null;
+      result.has[current] = true;
+      i += 1;
+    }
+  }
+
+  if (result.dep_tag === null || result.dep_subtag === null) {
+    throw new Error("Missing dep_tag/dep_subtag entry");
+  }
+
+  return result;
+}
+
+
 /**
  * Validates that the current field is required depending on the presence
  * and values of other MARC fields.
@@ -498,24 +572,23 @@ function marc_validate_must_be_different(value, element, param) {
  */
 function marc_validate_required_if(value, element, param) {
 	// Note! We can validate just one of the required_if fields
-	var dep_tag = param[0];
-	var dep_subtag = param[1];
+
+	const params = parseRequiredIfParams(param)
+	const recordType = Number($("#record_type").val());
+
+	// Skip manuscripts if so configured	
+	if (params.has.except && params.options.except === "manuscript" && isManuscript(recordType))
+		return true;
+
+	var dep_tag = params.dep_tag;
+	var dep_subtag = params.dep_subtag;
 	
-	var more = "";
-	var more_val = "";
-
-	// But we can have extra params
-	if (param.length > 2) {
-		more = param[2];
-		more_val = param[3];
-	}
-
 	var current_val = (value || "").trim();
 	var valid = true;
 	var current_tag = $(element).data("tag");
 	var current_subtag = $(element).data("subfield");
 	var toplevel;
-	
+
 	// There is a catch: if the dependency is in the same tag
 	// as us, search inside this tag, else
 	// find the first one in the whole tree
@@ -547,7 +620,7 @@ function marc_validate_required_if(value, element, param) {
 		const other_val = ($(this).val() || "").trim();
 
 		if (other_val !== "") {
-			if (!(more === "unless_val" && other_val === more_val)) {
+			if (!(params.has.unless_val && other_val === params.options.unless_val)) {
 				required = true;
 				return false;
 			}

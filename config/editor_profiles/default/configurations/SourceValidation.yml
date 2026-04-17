@@ -152,6 +152,7 @@ client:
           - required_if:
               "260": "b"
               "unless_val": "[s.n.]"
+              "except": "manuscript"
       "4":
         required_if:
           "710": "0"
