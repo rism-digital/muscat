@@ -588,6 +588,18 @@ class Source < ApplicationRecord
     return false
   end
 
+  def is_manuscript?
+    if  (self.record_type == MarcSource::RECORD_TYPES[:source] ||
+         self.record_type == MarcSource::RECORD_TYPES[:collection] ||
+         self.record_type == MarcSource::RECORD_TYPES[:libretto_source] ||
+         self.record_type == MarcSource::RECORD_TYPES[:theoretica_source] || 
+         self.record_type == MarcSource::RECORD_TYPES[:inventory] || 
+         self.record_type == MarcSource::RECORD_TYPES[:composite_volume])
+      return true
+    end
+    return false
+  end
+
   def fix_ids
     #generate_new_id
     # If there is no marc, do not add the id

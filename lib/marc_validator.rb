@@ -219,7 +219,10 @@ using AggressivelyStrip
   def validate_required_if_rule(tag, subtag, marc_subtag, required_if_rules)
     # Extract the eventual unless rule and remove it
     unless_val = required_if_rules["unless_val"]
+    except = required_if_rules["except"]
     new_h = required_if_rules.reject { |k, _| k == "unless_val" }
+
+    return if except == "manuscript" && @object.is_manuscript?
 
     new_h.each do |other_tag, other_subtag|
       other_marc_tag = @marc.first_occurance(other_tag)
