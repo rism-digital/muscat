@@ -128,7 +128,7 @@ $i should be the relationship name (e.g., "inhabited places"); $4 should be the 
     record["ancestor_pairs"].each do |id, label, aid, type|
       c = type == "nation" ? label : nil
       f = type != "nation" ? label : nil
-      new_marc.add_tag_with_subfields("370", "2": "tgn", c: c, f: f, i: type, u: "https://vocab.getty.edu/tgn/#{id}")
+      new_marc.add_tag_with_subfields("370", "2": "tgn", c: c, f: f, i: type, u: id)
     end
 
     # Alt names
