@@ -76,11 +76,13 @@
 "370": 
   layout: 
     fields: 
-    - - "4"
+    - - "2"
       - read_only: true
     - - c
       - read_only: true
     - - f
+      - read_only: true
+    - - i
       - read_only: true
 "451": 
   layout: 

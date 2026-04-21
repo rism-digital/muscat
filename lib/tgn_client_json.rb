@@ -106,14 +106,29 @@ class TgnClientJson
     # Purge the legacy district and country
     new_marc.by_tags("970").each {|t2| t2.destroy_yourself}
 
+=begin
+The $c is for the country so the current practice of storing the place type URI is not correct. This should only be filled out with a value of a "nation" record (since that is what Getty calls a sovereign state; it calls "England" a country, but we don't want that.)
+
+The $f is for the place name if it is not a country.
+
+$2 should be `tgn` if it comes from TGN.
+
+$u should be the URL to the record in Getty
+
+$i should be the relationship name (e.g., "inhabited places"); $4 should be the AAT URI for the place type
+        [2] [
+            [0] 7008136,
+            [1] "Greater London",
+            [2] 83061,
+            [3] "metropolitan area"
+        ],
+=end
 
 
-    record["ancestor_pairs"].each do |id, label|
-      #new_marc.add_tag_with_subfields("370", "4": item[:type], c: item[:id], f: item[:label])
-      new_marc.add_tag_with_subfields("370", c: id, f: label)
-      # Save the coutry
-      #legacy_country = item[:label] if item[:type] == "nations"
-      #legacy_district = item[:label] if DISTRICTS_KEYWORDS.any? { |kw| item[:type].include?(kw) }
+    record["ancestor_pairs"].each do |id, label, aid, type|
+      c = type == "nation" ? label : nil
+      f = type != "nation" ? label : nil
+      new_marc.add_tag_with_subfields("370", "2": "tgn", c: c, f: f, i: type, u: "https://vocab.getty.edu/tgn/#{id}")
     end
 
     # Alt names
