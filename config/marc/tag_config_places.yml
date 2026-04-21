@@ -82,17 +82,17 @@
       - :occurrences: "?"
     - - e
       - :occurrences: "1"
-  "043": 
-    :master: c
-    :indicator: "##"
-    :occurrences: "*"
-    :fields:
-    - - "2"
-      - :occurrences: "?"
-    - - b
-      - :occurrences: "?"
-    - - c
-      - :occurrences: "?"
+#  "043": 
+#    :master: c
+#    :indicator: "##"
+#    :occurrences: "*"
+#    :fields:
+#    - - "2"
+#      - :occurrences: "?"
+#    - - b
+#      - :occurrences: "?"
+#    - - c
+#      - :occurrences: "?"
   "075": 
     :master: a
     :indicator: "##"

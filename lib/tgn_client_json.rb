@@ -38,6 +38,7 @@ class TgnClientJson
   #    }
   def fetch_marc_place(place_id)
     raw = fetch_place_json(place_id)
+    ap raw
     place2marc(raw)
   end
 
@@ -94,7 +95,7 @@ class TgnClientJson
     new_marc.add_tag_with_subfields("034", d: record["lon"],  e: record["lon"], 
                                            f: record["lat"],  g: record["lat"])
 
-    ## FIXME country
+    ## We decided to remove 043
     #if record[:country] != nil
     #  new_marc.add_tag_with_subfields("043", "2": "rismg", c: record[:country].values.first)
     #end

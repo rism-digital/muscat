@@ -343,11 +343,12 @@ class TgnConverter
     new_marc.add_tag_with_subfields("034", d: record[:coordinates][:long],  e: record[:coordinates][:long], 
                                            f: record[:coordinates][:lat],  g: record[:coordinates][:lat])
 
-    if record[:country] != nil
-      new_marc.add_tag_with_subfields("043", "2": "rismg", c: record[:country].values.first)
-      # Country id, do we need this?
-      #new_marc.add_tag_with_subfields("043", "2": "TGN", b: record[:country].keys.first)
-    end
+    # We decided to remove completely 043
+    #if record[:country] != nil
+    #  new_marc.add_tag_with_subfields("043", "2": "rismg", c: record[:country].values.first)
+    #  # Country id, do we need this?
+    #  #new_marc.add_tag_with_subfields("043", "2": "TGN", b: record[:country].keys.first)
+    #end
 
     new_marc.add_tag_with_subfields("075", a: record[:type], b: record[:type_code])
 

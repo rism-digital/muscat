@@ -39,17 +39,17 @@
     - - e
       - read_only: true
         default: "rismg"
-"043": 
-  layout: 
-    fields:
-    - - "2"
-      - read_only: true
-        default: "rismg"
-    - - b
-    - - c
-      - editor_partial: subfield_select_codes
-        select_label: "Country"
-        shared_codes: "country_codes_043"
+#"043": 
+#  layout: 
+#    fields:
+#    - - "2"
+#      - read_only: true
+#        default: "rismg"
+#    - - b
+#    - - c
+#      - editor_partial: subfield_select_codes
+#        select_label: "Country"
+#        shared_codes: "country_codes_043"
 "075": 
   layout: 
     fields: 
