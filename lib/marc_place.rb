@@ -30,9 +30,9 @@ class MarcPlace < Marc
   
   def get_hierarchy
     self["370"].map do |t|
-      tt = t["f"].first
-      tt.content if tt && tt.content && !tt.content.empty?
-    end.compact.join(", ")
+      node = t["f"]&.first || t["c"]&.first
+      node&.content.to_s.strip
+    end.reject(&:empty?).join(", ")
   end
 
   def get_alternate_terms
