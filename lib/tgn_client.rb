@@ -363,7 +363,7 @@ class TgnConverter
 
       c = item[:type] == "nations" ? item[:label] : nil
       f = item[:type] != "nations" ? item[:label] : nil
-      new_marc.add_tag_with_subfields("370", "2": "tgn", c: c, f: f, i: item[:type], u: "https://vocab.getty.edu/tgn/#{item[:id]}")
+      new_marc.add_tag_with_subfields("370", "2": "tgn", c: c, f: f, i: item[:type], u: item[:id])
 
 
       # Save the coutry
