@@ -84,6 +84,8 @@
       - read_only: true
     - - i
       - read_only: true
+    - - u
+      - read_only: true
 "451": 
   layout: 
     fields: 

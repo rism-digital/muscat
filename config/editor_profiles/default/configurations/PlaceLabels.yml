@@ -77,6 +77,8 @@
       label: records.associated_country
     f:
       label: records.other_associated_place
+    u:
+      label: records.url
   label: records.associated_place
 '451':
   fields:
