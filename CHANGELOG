@@ -1,6 +1,16 @@
 Muscat Changelog
 ================
 
+v 12.3.3
+* Fix 260/710 in Manuscript
+* Add backend validation for 260/710
+* Properly display PAE in show
+* Remove 043 from places which is unused for now
+* Fix 370 in places
+* Fix legacy importer
+* Make sure get_hierarchy in places pulls from f and c
+* Update the GND intro text
+
 v 12.3.2
 * Fix #1968, more ZIP api changes
 * JSON client for our installation on TGN
