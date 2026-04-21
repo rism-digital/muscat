@@ -359,7 +359,13 @@ class TgnConverter
     legacy_district = ""
 
     record[:hierarchy].each do |item|
-      new_marc.add_tag_with_subfields("370", "4": item[:type], c: item[:id], f: item[:label])
+      #new_marc.add_tag_with_subfields("370", "4": item[:type], c: item[:id], f: item[:label])
+
+      c = item[:type] == "nation" ? item[:label] : nil
+      f = item[:type] != "nation" ? item[:label] : nil
+      new_marc.add_tag_with_subfields("370", "2": "tgn", c: c, f: f, i: item[:type], u: "https://vocab.getty.edu/tgn/#{item[:id]}")
+
+
       # Save the coutry
       legacy_country = item[:label] if item[:type] == "nations"
       legacy_district = item[:label] if DISTRICTS_KEYWORDS.any? { |kw| item[:type].include?(kw) }
