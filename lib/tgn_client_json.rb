@@ -36,9 +36,9 @@ class TgnClientJson
   #      label: "...",
   #      raw: {...}
   #    }
-  def fetch_marc_place(place_id)
+  def fetch_marc_place(place_id, marc = nil)
     raw = fetch_place_json(place_id)
-    place2marc(raw)
+    place2marc(raw, marc)
   end
 
   private
