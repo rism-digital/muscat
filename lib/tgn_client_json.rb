@@ -38,7 +38,6 @@ class TgnClientJson
   #    }
   def fetch_marc_place(place_id)
     raw = fetch_place_json(place_id)
-    ap raw
     place2marc(raw)
   end
 
