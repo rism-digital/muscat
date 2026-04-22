@@ -677,10 +677,6 @@ function marc_validate_024(value, element, param) {
 	var aVal = $.trim($a.val() || "");
 	var sf2Val = $.trim($sf2.val() || "");
 
-console.log($a);
-console.log(aVal);
-console.log(sf2Val);
-
 	// If either is empty, no validation here
 	// let the "required" rule get mad
 	if (aVal === "") {
@@ -691,17 +687,16 @@ console.log(sf2Val);
 		return true;
 	}
 
-
-
 	// $a must not begin with http
 	if (/^http/i.test(aVal)) {
 		return false;
 	}
 
-	// BNF => $a must start with ark:/
+	/* Maybe in the future
 	if (sf2Val === "BNF" && !/^ark:\//i.test(aVal)) {
 		return false;
 	}
+	*/
 
 	// WKP => $a must start with Q
 	if (sf2Val === "WKP" && !/^Q/.test(aVal)) {
