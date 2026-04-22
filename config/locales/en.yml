@@ -860,6 +860,7 @@ en:
     warning_message: A value for this field should be provided
     validate_person_name: "Double-check that the name is entered in the appropriate order: usually <i>Surname, Forename</i>"
     validate_person_dates: Please make sure the dates follows the guidelines
+    validate_024: "Please make sure the ID is well formed (for BNF it must start with ark:/, for WikiData with Q) and should not be an URL."
   validation_level_error: There are errors, please solve before saving
   validation_level_warning: There are warnings, save again to override
   view_source: View Source

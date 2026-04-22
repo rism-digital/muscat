@@ -3,7 +3,10 @@ client:
   "024":
     tags:
       "2": required
-      "a": required
+      "a":
+        any_of:
+          - required
+          - validate_024
   "100":
     tags:
       "a": 

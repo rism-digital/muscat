@@ -12,7 +12,8 @@ const SIMPLE_RULE_MAP = {
 	"not_record_id": {not_record_id: true},
 	"validate_calendar": {"validate_calendar": true},
 	"validate_person_name": {"validate_person_name": true},
-	"validate_person_dates": {"validate_person_dates": true}
+	"validate_person_dates": {"validate_person_dates": true},
+	"validate_024": {"validate_024": true}
 }
 
 const PARAMETRIC_RULES = [
@@ -666,6 +667,50 @@ function marc_validate_required_if(value, element, param) {
 	return valid;
 }
 
+function marc_validate_024(value, element, param) {
+	var $a = $(element);
+
+	// Find the surrounding repeating subfield block, then locate subfield 2
+	var $container = $a.closest(".tag_toplevel_container");
+	var $sf2 = $container.find('[data-tag="024"][data-subfield="2"]');
+
+	var aVal = $.trim($a.val() || "");
+	var sf2Val = $.trim($sf2.val() || "");
+
+console.log($a);
+console.log(aVal);
+console.log(sf2Val);
+
+	// If either is empty, no validation here
+	// let the "required" rule get mad
+	if (aVal === "") {
+		return true;
+	}
+
+	if (sf2Val === "") {
+		return true;
+	}
+
+
+
+	// $a must not begin with http
+	if (/^http/i.test(aVal)) {
+		return false;
+	}
+
+	// BNF => $a must start with ark:/
+	if (sf2Val === "BNF" && !/^ark:\//i.test(aVal)) {
+		return false;
+	}
+
+	// WKP => $a must start with Q
+	if (sf2Val === "WKP" && !/^Q/.test(aVal)) {
+		return false;
+	}
+
+	return true;
+}
+
 // #1622, the first group cannot be "Additional printed material"
 function marc_validate_check_group(value, element, param) {
 
@@ -911,7 +956,7 @@ function marc_editor_init_validation(form, validation_conf) {
 	$.validator.addMethod("validate_calendar", 	marc_validate_calendar,			$.validator.format(I18n.t("validation.validate_calendar")));
 	$.validator.addMethod("validate_person_name", 	marc_validate_person_name,	$.validator.format(I18n.t("validation.validate_person_name")));
 	$.validator.addMethod("validate_person_dates", 	marc_validate_person_dates,	$.validator.format(I18n.t("validation.validate_person_dates")));
-
+	$.validator.addMethod("validate_024", 		marc_validate_024,				$.validator.format(I18n.t("validation.validate_024")));
 
 	// New creation: this is not configurable, it is used to make sure the
 	// "confirm create new" checkbox is selected for new items
