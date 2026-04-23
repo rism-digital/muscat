@@ -27,26 +27,20 @@ CSV::foreach(name) do |line|
     next
   end
 
-  #if p.tgn_id && !p.tgn_id.empty? && p.tgn_id != tgn
-    #puts "TGN Id changed for #{muscat}, was #{p.tgn_id} will be #{tgn.to_i}"
     delete_024_tgn(p.marc)
-  #end
-  # Just add the tag
-  p.marc.add_tag_with_subfields("024", a: tgn, "2": "TGN")
-=begin
-TURN THIS ON TO GET TGN DATA
-    #p.marc.add_tag_with_subfields("024", a: tgn, "2": "TGN")
-  elsif !p.tgn_id || p.tgn_id.empty?
+
+
     puts "Pull #{tgn} for #{p.id}"
-    rec = TgnClient::pull_from_tgn(tgn)
-    if !rec
-      puts "Could not pull record #{tgn} muscat id: #{p.id}".magenta
+
+    #p.marc.add_tag_with_subfields("024", a: tgn, "2": "TGN")
+
+    begin
+      TgnClientJson.new.fetch_marc_place(tgn, p.marc)
+    rescue
+      puts "Could not pull #{tgn}"
       next
     end
-    TgnConverter::to_place_marc(rec, p.marc)
-    #p.marc.add_tag_with_subfields("024", a: tgn, "2": "TGN")
-  end
-=end
+
   PaperTrail.request(enabled: false) do
     p.save
   end
