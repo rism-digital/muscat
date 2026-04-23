@@ -84,11 +84,14 @@ class TgnClientJson
 
     # Purge all the old values
     new_marc.by_tags("151").each {|t2| t2.destroy_yourself}
+    new_marc.by_tags("034").each {|t2| t2.destroy_yourself}
+    new_marc.by_tags("370").each {|t2| t2.destroy_yourself}
 
     # Try to match the language in which the item comes
     lang = Iso639[record[:place_lang]]&.alpha3_bibliographic
 
     new_marc.add_tag_with_subfields("151", a: record["preferred_term"], g: lang)
+    # 024 should not be there
     new_marc.add_tag_with_subfields("024", a: record["tgn_id"], "2": "TGN")
 
     new_marc.add_tag_with_subfields("034", d: record["lon"],  e: record["lon"], 
