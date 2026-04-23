@@ -29,13 +29,11 @@ CSV::foreach(name) do |line|
 
     delete_024_tgn(p.marc)
 
-
-    puts "Pull #{tgn} for #{p.id}"
-
     #p.marc.add_tag_with_subfields("024", a: tgn, "2": "TGN")
 
     begin
       TgnClientJson.new.fetch_marc_place(tgn, p.marc)
+      puts "Pulled #{tgn} for #{p.id}"
     rescue
       puts "Could not pull #{tgn}"
       next
