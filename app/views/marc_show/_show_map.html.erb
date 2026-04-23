@@ -20,6 +20,15 @@ lat = tag.fetch_first_by_tag(:f).content rescue "[NO VALUE GIVEN]"
 
 </tr>
 
+<tr class="row">
+  <th>Latitude</th>
+  <td><%= lat %></td>
+</tr>
+<tr class="row">
+  <th>Longitude</th>
+  <td><%= lng %></td>
+</tr>
+
 <script>
   $(document).ready(function() {
     var map = L.map('map').setView([<%=lat %>, <%=lng %>], 13);
