@@ -205,6 +205,11 @@ class Place < ApplicationRecord
     end
     sunspot_dsl.text :district
 
+    sunspot_dsl.text :hierarchy
+    sunspot_dsl.string :hierarchy_order do
+      hierarchy
+    end
+
     sunspot_dsl.string :name_autocomplete, :multiple => true, :as => "name_autocomplete" do
       ((alternate_terms&.split("\n") || []) << name).compact.reject(&:empty?)
     end
