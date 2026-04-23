@@ -21,11 +21,11 @@ lat = tag.fetch_first_by_tag(:f).content rescue "[NO VALUE GIVEN]"
 </tr>
 
 <tr class="row">
-  <th>Latitude</th>
+  <th><%=I18n.t("records.latitude")%></th>
   <td><%= lat %></td>
 </tr>
 <tr class="row">
-  <th>Longitude</th>
+  <th><%=I18n.t("records.longitude")%></th>
   <td><%= lng %></td>
 </tr>
 
