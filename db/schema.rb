@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.2].define(version: 2026_04_14_070211) do
+ActiveRecord::Schema[7.2].define(version: 2026_05_07_064844) do
   create_table "active_admin_comments", id: :integer, charset: "utf8mb3", force: :cascade do |t|
     t.string "namespace"
     t.text "body"
@@ -243,6 +243,8 @@ ActiveRecord::Schema[7.2].define(version: 2026_04_14_070211) do
     t.datetime "updated_at", null: false
     t.integer "source_order", default: 0, null: false
     t.string "page_info"
+    t.index ["source_id", "source_order", "id"], name: "index_inventory_items_on_source_id_source_order_id"
+    t.index ["source_id"], name: "index_inventory_items_on_source_id"
   end
 
   create_table "inventory_items_to_holdings", charset: "utf8mb3", force: :cascade do |t|
@@ -285,6 +287,7 @@ ActiveRecord::Schema[7.2].define(version: 2026_04_14_070211) do
     t.integer "source_id"
     t.string "marc_tag"
     t.string "relator_code"
+    t.index ["inventory_item_id", "marc_tag"], name: "index_inventory_items_to_sources_on_inventory_item_id_marc_tag"
   end
 
   create_table "inventory_items_to_standard_terms", charset: "utf8mb3", force: :cascade do |t|
