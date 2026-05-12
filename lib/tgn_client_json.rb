@@ -90,7 +90,7 @@ class TgnClientJson
     # Try to match the language in which the item comes
     lang = Iso639[record[:place_lang]]&.alpha3_bibliographic
 
-    new_marc.add_tag_with_subfields("151", a: record["preferred_term"], g: lang)
+    new_marc.add_tag_with_subfields("151", a: record["label"], g: lang)
     # 024 should not be there
     new_marc.add_tag_with_subfields("024", a: record["tgn_id"], "2": "TGN")
 
@@ -126,11 +126,21 @@ $i should be the relationship name (e.g., "inhabited places"); $4 should be the 
         ],
 =end
 
+    record["ancestor_pairs"].each do |place|
+      id    = place["tgn_id"]
+      label = place["label"]
+      type  = place["place_type_label"]
 
-    record["ancestor_pairs"].each do |id, label, aid, type|
-      c = type == "nation" ? label : nil
-      f = type != "nation" ? label : nil
-      new_marc.add_tag_with_subfields("370", "2": "tgn", c: c, f: f, i: type, u: "https://vocab.getty.edu/tgn/#{id}")
+      is_nation = type == "primary political entities"
+
+      new_marc.add_tag_with_subfields(
+        "370",
+        "2": "tgn",
+        c: is_nation ? label : nil,
+        f: is_nation ? nil : label,
+        i: type,
+        u: "https://vocab.getty.edu/tgn/#{id}"
+      )
     end
 
     # Alt names
