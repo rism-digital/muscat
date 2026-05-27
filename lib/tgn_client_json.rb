@@ -126,12 +126,17 @@ $i should be the relationship name (e.g., "inhabited places"); $4 should be the 
         ],
 =end
 
+    country = nil
+    district = nil
+
     record["ancestor_pairs"].each do |place|
       id    = place["tgn_id"]
       label = place["label"]
       type  = place["place_type_label"]
 
       is_nation = type == "primary political entities"
+      country = label if is_nation
+      district = label if type == "first level subdivisions (political entities)"
 
       new_marc.add_tag_with_subfields(
         "370",
@@ -141,6 +146,10 @@ $i should be the relationship name (e.g., "inhabited places"); $4 should be the 
         i: type,
         u: "https://vocab.getty.edu/tgn/#{id}"
       )
+    end
+
+    if country.present? || district.present?
+      new_marc.add_tag_with_subfields("970", a: country, b: district)
     end
 
     # Alt names
