@@ -840,7 +840,7 @@
   "930":
     :master: "0"
     :indicator: "1#"
-    :occurrences: "?"
+    :occurrences: "*"
     :fields:
     - - "0"
       - :occurrences: "?"
