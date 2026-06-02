@@ -46,6 +46,9 @@ class InventoryItem < ApplicationRecord
   has_many :inventory_item_work_relations
   has_many :works, through: :inventory_item_work_relations
 
+  has_many :inventory_item_work_node_relations
+  has_many :work_nodes, through: :inventory_item_work_node_relations
+
   belongs_to :source
   has_many :folder_items, as: :item, dependent: :destroy
   has_many :delayed_jobs, -> { where parent_type: "InventoryItem" }, class_name: 'Delayed::Backend::ActiveRecord::Job', foreign_key: "parent_id"
@@ -133,7 +136,7 @@ class InventoryItem < ApplicationRecord
   def update_links
     return if self.suppress_recreate_trigger == true
     
-    allowed_relations = ["sources", "holdings", "works", "institutions", "publications", "people", "places", "standard_titles", "standard_terms", "inventory_items"]
+    allowed_relations = ["sources", "holdings", "works", "work_nodes", "institutions", "publications", "people", "places", "standard_titles", "standard_terms", "inventory_items"]
     recreate_links(marc, allowed_relations)
   end
   

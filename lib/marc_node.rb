@@ -716,6 +716,25 @@ class MarcNode
     return matching_children  
   end
 
+  def change_tag(new_tag)
+    @tag = new_tag.to_s
+
+    if @marc_configuration.has_tag?(@tag)
+      @indicator = @marc_configuration.is_tagless?(@tag) ? nil : @marc_configuration.get_default_indicator(@tag)
+    end
+
+    clear_foreign_object_cache
+    self
+  end
+
+  def clear_foreign_object_cache
+    @foreign_object = nil
+    @foreign_field = nil
+    @foreign_host = false
+    @children.each(&:clear_foreign_object_cache)
+    self
+  end
+
   # Shortcut for the above
   def [](tag)
     fetch_all_by_tag(tag)

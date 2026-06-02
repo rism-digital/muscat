@@ -738,6 +738,28 @@ class Marc
     @root.each_by_tag(tag, node, &block)
   end
 
+  def change_tag(from_tag, to_tag)
+    load_source(false) unless @loaded
+
+    from_tag = from_tag.to_s
+    to_tag = to_tag.to_s
+
+    raise ArgumentError, "Tag #{from_tag} is not configured for #{@model}" if !@marc_configuration.has_tag?(from_tag)
+    raise ArgumentError, "Tag #{to_tag} is not configured for #{@model}" if !@marc_configuration.has_tag?(to_tag)
+
+    return [] if from_tag == to_tag
+
+    changed_tags = by_tags([from_tag])
+    changed_tags.each { |marc_tag| marc_tag.change_tag(to_tag) }
+
+    changed_tags.each(&:destroy_yourself)
+    changed_tags.each do |marc_tag|
+      @root.add_at(marc_tag, get_insert_position(marc_tag.tag))
+    end
+
+    changed_tags
+  end
+
   def change_authority_links(old_auth, new_auth)
     return [] if old_auth.class != new_auth.class
     
@@ -1073,4 +1095,3 @@ class Marc
 
 end
  
-
