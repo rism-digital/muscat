@@ -102,6 +102,10 @@ class Person < ApplicationRecord
 #  validates_presence_of :full_name  
   validate :field_length
   
+  # Make json attribute compatible with both MySQL and MariaDB, see
+  # https://github.com/rails/rails/issues/44997
+  attribute :identifiers, :json
+
   scope :with_identifier, ->(code, value) {
     where("identifiers->>? = ?", "$.#{code.to_s.downcase}", value.to_s)
   }
