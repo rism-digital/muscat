@@ -44,6 +44,13 @@ class MarcNode
     Marshal.load(Marshal.dump(self))
   end
   
+  # This is when copying stuff between two different marc
+  # types. Ex. Holding to Source.
+  # DO NOT USE unless you know what you are doing.
+  def force_model(new_model)
+    @model = new_model
+  end
+
   # Try to get the external references for this object
   def resolve_externals
     # Do nothing if the master tag is missing but optional

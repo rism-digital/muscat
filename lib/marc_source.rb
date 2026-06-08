@@ -606,6 +606,7 @@ class MarcSource < Marc
           id = "holdings/#{holding.id}"
         end
         holding.marc.all_tags.each do |tag|
+          tag.force_model @model # This is evil, use with caution
           tag.add_at(MarcNode.new(@model, "3", id, nil), 0)
           @root.add_at(tag, get_insert_position(tag.tag)) if tag.tag != "001"
         end
