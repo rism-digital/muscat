@@ -10,7 +10,7 @@ ActiveAdmin.register User do
 	config.per_page = [10, 30, 50, 100, 1000]
 
   order_by(:role_sort_name) do |order_clause|
-    "MIN(roles.name) #{order_clause.order}"
+    "role_sort_name #{order_clause.order}"
   end
 
 	controller do
@@ -26,7 +26,21 @@ ActiveAdmin.register User do
     def scoped_collection
       super
         .left_joins(:roles)
-        .select("users.*, MIN(roles.name) AS role_sort_name")
+        .select(<<~SQL.squish)
+          users.*,
+          COALESCE(
+            MIN(
+              CASE roles.name
+                WHEN 'admin' THEN 1
+                WHEN 'editor' THEN 2
+                WHEN 'cataloger' THEN 4
+                WHEN 'guest' THEN 5
+                ELSE 6
+              END
+            ),
+            0
+          ) AS role_sort_name
+        SQL
         .group("users.id")
     end
 
