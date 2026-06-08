@@ -1,4 +1,4 @@
-class AddIndexesToInventoryItems < ActiveRecord::Migration[7.1]
+class AddIndexesToInventoryItems < ActiveRecord::Migration[7.2]
   def change
     add_index :inventory_items,
               :source_id,
