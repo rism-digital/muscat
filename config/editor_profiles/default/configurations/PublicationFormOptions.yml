@@ -125,7 +125,7 @@
     - - a
       - type: person
         editor_partial: subfield_secondary
-        allow_new: true
+        #allow_new: true
 "210": 
   layout: 
     fields: 
@@ -251,7 +251,7 @@
     - - a
       - type: person
         editor_partial: subfield_secondary
-        allow_new: true
+        #allow_new: true
     - - "4"
       - editor_partial: subfield_select_codes
   tag_params: 

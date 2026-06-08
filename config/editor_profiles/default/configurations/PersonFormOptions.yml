@@ -121,7 +121,7 @@
     - - "a"
       - type: person
         editor_partial: subfield_secondary
-        allow_new: true
+        #allow_new: true
     - - d
       - autocomplete_extra: life_dates
     - - "i"
@@ -157,7 +157,7 @@
       - type: person_550a_solr
         field: value
         editor_partial: subfield_secondary
-        allow_new: true
+        #allow_new: true
 "551": 
   new_window: places
   new_window_field: name_eq

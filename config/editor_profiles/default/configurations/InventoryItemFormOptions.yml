@@ -194,7 +194,7 @@
     - - a
       - type: person
         editor_partial: subfield_secondary
-        allow_new: true
+        #allow_new: true
     - - d
       - autocomplete_extra: life_dates
     - - j
@@ -401,7 +401,7 @@
     - - a
       - type: person
         editor_partial: subfield_secondary
-        allow_new: true
+        #allow_new: true
     - - d
       - autocomplete_extra: life_dates
     - - j
