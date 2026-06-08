@@ -2,7 +2,8 @@
 
 # A real example:
 # rails r housekeeping/correct/131_extract_fields.rb --columns wf_stage,record_type --marc 100a,100d,100j,852a,852e,852b,852z,852c,852d,240a,240o,240k,240r,240m,520a,561a,700a,700d,700j,7004,260c,300a,590a --export-sigla CH-ZUkao CH.ods
-
+# Compact version
+# rails r housekeeping/correct/131_extract_fields.rb --columns wf_stage,record_type --marc 100,852,240,520a,561a,700,260c,300a,590a --export-sigla CH-ZUkao CH-ZUkao.ods
 require "optparse"
 
 def matches_tag?(marc, tag, subtag, value)
@@ -64,17 +65,56 @@ def expand_marc_fields(fields, default_config, config_by_tag = {})
   end
 end
 
-def marc_values_for(marc, tag, subtag)
+def route_key_for(model)
+  model_class = model.is_a?(Class) ? model : model.to_s.safe_constantize
+  return model_class.model_name.route_key if model_class
+
+  model.to_s.underscore.pluralize
+end
+
+def record_url(model, id, base_url)
+  "#{base_url}/#{route_key_for(model)}/#{id}"
+end
+
+def linked_master_subtag?(marc, tag, subtag)
+  return false if subtag.nil?
+
+  config = marc.instance_variable_get(:@marc_configuration)
+  return false if config.nil? || !config.has_tag?(tag.to_s)
+  return false if config.get_master(tag.to_s).to_s != subtag.to_s
+
+  foreign_class = config.get_subtag_attribute(tag.to_s, subtag.to_s, :foreign_class)
+  foreign_class && !foreign_class.to_s.start_with?("^")
+end
+
+def linked_master_url(marc, tag, subtag, id, base_url)
+  config = marc.instance_variable_get(:@marc_configuration)
+  foreign_class = config.get_subtag_attribute(tag.to_s, subtag.to_s, :foreign_class)
+  record_url(foreign_class, id, base_url)
+end
+
+def marc_value_for_subtag(marc, tag, subtag, st, base_url)
+  return nil if st.nil? || st.content.nil?
+
+  if linked_master_subtag?(marc, tag, subtag)
+    id = st.content.to_s.strip
+    id.empty? ? st.content : linked_master_url(marc, tag, subtag, id, base_url)
+  else
+    st.content
+  end
+end
+
+def marc_values_for(marc, tag, subtag, base_url)
   values = []
 
   marc[tag.to_s].each do |tt|
     if subtag
       tt[subtag.to_s].each do |st|
-        values << st.content if st && st.content
+        values << marc_value_for_subtag(marc, tag, subtag, st, base_url)
       end
     elsif tt.has_children?
       tt.children.each do |st|
-        values << st.content if st && st.content
+        values << marc_value_for_subtag(marc, tag, st.tag, st, base_url)
       end
     elsif tt.content
       values << tt.content
@@ -113,6 +153,10 @@ parser = OptionParser.new do |o|
 
   o.on("--export-sigla SIGLUM", "Export sources and holdings referring to the institution siglum") do |v|
     opts[:export_sigla] = v.strip
+  end
+
+  o.on("--rism-online-links", "Use https://rism.online links instead of https://muscat.rism.info/admin") do
+    opts[:rism_online_links] = true
   end
 
   o.on("--tag-filter TAG:ID", "Single tag filter (e.g. 650a:50007446). Can be given only once.") do |v|
@@ -158,6 +202,8 @@ if ARGV.any?
   warn "Error: unexpected arguments: #{ARGV.join(", ")}\n\n#{parser}"
   exit 1
 end
+
+base_url = opts[:rism_online_links] ? "https://rism.online" : "https://muscat.rism.info/admin"
 
 if opts[:model]
   klass = opts[:model].to_s.classify.safe_constantize
@@ -223,7 +269,7 @@ items.each do |export_item|
   row = table.row
 
   row.cell(item.id.to_s)
-  row.cell("https://muscat.rism.info/admin/#{route}/#{item.id.to_s}")
+  row.cell("#{base_url}/#{route}/#{item.id.to_s}")
 
   opts[:columns].each do |c| 
     val = value_for(item, c.to_s)
@@ -242,7 +288,7 @@ items.each do |export_item|
       marc = item.marc
     end
 
-    row.cell(marc_values_for(marc, tag, subtag).join("\n"))
+    row.cell(marc_values_for(marc, tag, subtag, base_url).join("\n"))
   end
 
 end
