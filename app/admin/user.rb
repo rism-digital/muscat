@@ -109,6 +109,8 @@ ActiveAdmin.register User do
     column I18n.t(:roles), sortable: "role_sort_name" do |user|
       user.get_roles.join(", ")
     end
+    column :sign_in_count
+    column :current_sign_in_at
     column :created_at
     #column (I18n.t :filter_sources) do |user|
     #  user.sources_size_per_month(Time.now - 1.month, Time.now)
