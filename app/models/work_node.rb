@@ -17,7 +17,7 @@ class WorkNode < ApplicationRecord
 
   belongs_to :person
 
-  referring_relations_for :source
+  referring_relations_for :source, :inventory_item
 =begin
   #has_and_belongs_to_many(:referring_sources, class_name: "Source", join_table: "sources_to_work_nodes")
   has_many :source_work_node_relations, class_name: "SourceWorkNodeRelation"

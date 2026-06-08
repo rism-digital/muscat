@@ -168,6 +168,8 @@ ActiveAdmin.register WorkNode do
       render :partial => "marc/show", locals: {item: @item, editor_profile: controller.view_assigns["show_profile"]}
     end
     active_admin_embedded_source_list( self, work_node, !is_selection_mode? )
+    active_adnin_create_list_for(self, InventoryItem, work_node, title: I18n.t(:filter_title), composer: I18n.t(:filter_composer))
+
     active_admin_user_wf( self, work_node )
     active_admin_navigation_bar( self )
     active_admin_comments if !is_selection_mode?
