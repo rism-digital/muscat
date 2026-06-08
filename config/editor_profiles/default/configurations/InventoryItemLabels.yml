@@ -284,8 +284,8 @@
     a:
       label: records.work_node
     w:
-      label: records.identified_work_node
-  label: records.identified_work_node
+      label: records.work_node
+  label: records.work_node
 '931':
   fields:
     a:
