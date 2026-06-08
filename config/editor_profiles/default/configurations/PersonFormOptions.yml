@@ -198,7 +198,9 @@
         editor_partial: subfield_secondary
         allow_new: false
     - - "9"
+      - growfield: tr
     - - "b"
+      - growfield: tr
     - - "u"
 "675":
   new_window: publications
@@ -227,6 +229,7 @@
       - unrestricted:
           - person_restricted
     - - z
+      - growfield: tr
       - unrestricted:
           - person_restricted
     - - x
