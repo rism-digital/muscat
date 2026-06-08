@@ -9,10 +9,25 @@ ActiveAdmin.register User do
   config.clear_action_items!
 	config.per_page = [10, 30, 50, 100, 1000]
 
+  order_by(:role_sort_name) do |order_clause|
+    "MIN(roles.name) #{order_clause.order}"
+  end
+
 	controller do
 
+    def apply_sorting(chain)
+      if params[:order].to_s.match?(/\Aroles(?:\.|_)name_/)
+        params[:order] = params[:order].to_s.sub(/\Aroles(?:\.|_)name_/, "role_sort_name_")
+      end
+
+      super
+    end
+
     def scoped_collection
-      super.left_joins(:roles)
+      super
+        .left_joins(:roles)
+        .select("users.*, MIN(roles.name) AS role_sort_name")
+        .group("users.id")
     end
 
 	  def update
@@ -77,7 +92,7 @@ ActiveAdmin.register User do
     column I18n.t(:workgroups) do |user|
          user.get_workgroups.join(", ")
     end
-    column I18n.t(:roles), sortable: 'roles.name' do |user|
+    column I18n.t(:roles), sortable: "role_sort_name" do |user|
       user.get_roles.join(", ")
     end
     column :created_at
