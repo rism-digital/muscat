@@ -18,10 +18,70 @@ def matches_tag?(marc, tag, subtag, value)
   false
 end
 
-def split_tag_subtag(str)
+def split_tag_subtag(str, require_subtag: false)
   s = str.to_s.strip
-  m = s.match(/\A(\d{3})([0-9a-z])\z/i) or raise ArgumentError, "Invalid tag/subtag: #{str.inspect}"
+  m = s.match(/\A(\d{3})([0-9a-z])?\z/i) or raise ArgumentError, "Invalid tag/subtag: #{str.inspect}"
+
+  if require_subtag && m[2].nil?
+    raise ArgumentError, "Invalid tag/subtag: #{str.inspect}"
+  end
+
   [m[1], m[2]]
+end
+
+def configured_subtags_for(config, tag)
+  subtags = []
+  Array(config).compact.each do |single_config|
+    next if !single_config.has_tag?(tag.to_s) || single_config.is_tagless?(tag.to_s)
+
+    single_config.each_subtag(tag.to_s) do |subtag|
+      subtag_name = subtag[0].to_s
+      subtags << subtag_name if !subtags.include?(subtag_name)
+    end
+  end
+
+  subtags
+end
+
+def expand_marc_fields(fields, default_config, config_by_tag = {})
+  fields.flat_map do |field|
+    tag, subtag = split_tag_subtag(field)
+
+    if subtag
+      [{ header: "#{tag}#{subtag}", tag: tag, subtag: subtag }]
+    else
+      config = config_by_tag.fetch(tag, default_config)
+      configs = Array(config).compact
+
+      if configs.any? { |single_config| single_config.has_tag?(tag) && single_config.is_tagless?(tag) }
+        [{ header: tag, tag: tag, subtag: nil }]
+      else
+        configured_subtags_for(config, tag).map do |configured_subtag|
+          { header: "#{tag}#{configured_subtag}", tag: tag, subtag: configured_subtag }
+        end
+      end
+    end
+  end
+end
+
+def marc_values_for(marc, tag, subtag)
+  values = []
+
+  marc[tag.to_s].each do |tt|
+    if subtag
+      tt[subtag.to_s].each do |st|
+        values << st.content if st && st.content
+      end
+    elsif tt.has_children?
+      tt.children.each do |st|
+        values << st.content if st && st.content
+      end
+    elsif tt.content
+      values << tt.content
+    end
+  end
+
+  values.compact
 end
 
 def value_for(record, path)
@@ -43,7 +103,7 @@ parser = OptionParser.new do |o|
     opts[:columns] = v.split(",").map { _1.strip }.reject(&:empty?)
   end
 
-  o.on("--marc LIST", "Comma-separated MARC tags/subfields (e.g. 031a,650a)") do |v|
+  o.on("--marc LIST", "Comma-separated MARC tags/subfields; bare tags expand to configured subfields (e.g. 031a,650a,700)") do |v|
     opts[:marc] = v.split(",").map { _1.strip }.reject(&:empty?)
   end
 
@@ -61,6 +121,12 @@ parser = OptionParser.new do |o|
     tag, id_str = v.strip.split(":", 2)
 
     if tag.to_s.empty? || id_str.to_s.empty? || id_str !~ /\A\d+\z/
+      raise OptionParser::InvalidArgument, "Invalid --tag-filter #{v.inspect} (expected TAG:ID, e.g. 650a:50007446)"
+    end
+
+    begin
+      split_tag_subtag(tag, require_subtag: true)
+    rescue ArgumentError
       raise OptionParser::InvalidArgument, "Invalid --tag-filter #{v.inspect} (expected TAG:ID, e.g. 650a:50007446)"
     end
 
@@ -105,6 +171,8 @@ if opts[:model]
   export_name = opts[:model]
   item_count = klass.count
   items = klass.find_each
+  default_marc_config = MarcConfigCache.get_configuration(klass.name.underscore)
+  marc_config_by_tag = {}
 else
   institutions = Institution.where(siglum: opts[:export_sigla]).to_a
 
@@ -119,7 +187,13 @@ else
     institution.referring_sources.to_a + institution.referring_holdings.to_a
   end
   item_count = items.count
+  source_marc_config = MarcConfigCache.get_configuration("source")
+  holding_marc_config = MarcConfigCache.get_configuration("holding")
+  default_marc_config = source_marc_config
+  marc_config_by_tag = { "852" => [source_marc_config, holding_marc_config] }
 end
+
+marc_fields = expand_marc_fields(opts[:marc], default_marc_config, marc_config_by_tag)
 
 sheet = RODF::Spreadsheet.new
 table = sheet.table("#{export_name} export")
@@ -128,13 +202,13 @@ header = table.row
 header.cell ("ID")
 header.cell ("Link")
 opts[:columns].each {|c| header.cell(c.to_s)}
-opts[:marc].each {|c| header.cell(c.to_s)}
+marc_fields.each {|c| header.cell(c[:header])}
 
 pb = ProgressBar.new(item_count)
 items.each do |export_item|
   pb.increment!
 
-  # When exporting holdings, used with --ecport-sigla
+  # When exporting holdings, used with --export-sigla.
   if opts[:export_sigla] && export_item.is_a?(Holding)
     item = export_item.source
   else
@@ -142,7 +216,7 @@ items.each do |export_item|
   end
 
   if opts.include? :tag_filter
-    tag, subtag = split_tag_subtag(opts[:tag_filter][:tag])
+    tag, subtag = split_tag_subtag(opts[:tag_filter][:tag], require_subtag: true)
     next if !matches_tag?(item.marc, tag, subtag, opts[:tag_filter][:value])
   end
 
@@ -156,9 +230,10 @@ items.each do |export_item|
     row.cell(val)
   end
 
-  opts[:marc].each do |c| 
-    tag, subtag = split_tag_subtag(c)
-    
+  marc_fields.each do |field| 
+    tag = field[:tag]
+    subtag = field[:subtag]
+
     # We need to pull the 852, if specified by the user, from the holding
     # Maybe other items too?
     if opts[:export_sigla] && tag == "852" && export_item.is_a?(Holding)
@@ -167,14 +242,7 @@ items.each do |export_item|
       marc = item.marc
     end
 
-    i = []
-    marc[tag.to_s].each do |tt|
-      tt[subtag.to_s].each do |st|
-        i << st.content if st && st.content
-      end
-    end
-
-    row.cell(i.compact.join("\n"))
+    row.cell(marc_values_for(marc, tag, subtag).join("\n"))
   end
 
 end
