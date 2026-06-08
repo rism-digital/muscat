@@ -1,5 +1,8 @@
 # frozen_string_literal: true
 
+# A real example:
+# rails r housekeeping/correct/131_extract_fields.rb --columns wf_stage,record_type --marc 100a,100d,100j,852a,852e,852b,852z,852c,852d,240a,240o,240k,240r,240m,520a,561a,700a,700d,700j,7004,260c,300a,590a --export-sigla CH-ZUkao CH.ods
+
 require "optparse"
 
 def matches_tag?(marc, tag, subtag, value)
@@ -34,7 +37,7 @@ opts = {
 }
 
 parser = OptionParser.new do |o|
-  o.banner = "Usage: ./mything [options] FILE\n\nExamples:\n  ./mything --model Institution --columns title,address,notes --marc 031a,031b,650a,651b file.out\n  ./mything --export-sigla D-B --columns title --marc 031a,852a file.out"
+  o.banner = "Usage: [options] FILE\n\nExamples:\n  --model Institution --columns title,address,notes --marc 031a,031b,650a,651b file.out\n  ./mything --export-sigla D-B --columns title --marc 031a,852a file.out"
 
   o.on("--columns LIST", "Comma-separated columns (e.g. title,address,notes)") do |v|
     opts[:columns] = v.split(",").map { _1.strip }.reject(&:empty?)
@@ -131,6 +134,7 @@ pb = ProgressBar.new(item_count)
 items.each do |export_item|
   pb.increment!
 
+  # When exporting holdings, used with --ecport-sigla
   if opts[:export_sigla] && export_item.is_a?(Holding)
     item = export_item.source
   else
@@ -155,6 +159,8 @@ items.each do |export_item|
   opts[:marc].each do |c| 
     tag, subtag = split_tag_subtag(c)
     
+    # We need to pull the 852, if specified by the user, from the holding
+    # Maybe other items too?
     if opts[:export_sigla] && tag == "852" && export_item.is_a?(Holding)
       marc = export_item.marc
     else
