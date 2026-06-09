@@ -16,6 +16,27 @@ end
 f = Folder.new(:name => "Places to delete " + DateTime.now.to_s, :folder_type => "Place", wf_owner: 1)
 f.save
 
+=begin
+# This is what you need to count the duplicate places
+dup_tgn_ids = Place.where.not(tgn_id: [nil, ""])
+                   .group(:tgn_id)
+                   .having("COUNT(*) > 1")
+                   .pluck(:tgn_id)
+
+tgn_to_place_ids = Place.where(tgn_id: dup_tgn_ids)
+                        .group_by(&:tgn_id)
+                        .transform_values { |places| places.map { |p| "#{p.id} (#{p.name})" } }
+#                        .transform_values { |places| places.map(&:id) }
+
+tgn_to_place_ids.each do |tgn, ids|
+
+        puts ([tgn] << ids).join("\t")
+
+end
+
+exit 1
+=end
+
 dup_tgn_ids = Place.where.not(tgn_id: nil)
                    .group(:tgn_id)
                    .having("COUNT(*) > 1")
