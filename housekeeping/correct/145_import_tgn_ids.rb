@@ -42,7 +42,7 @@ CSV::foreach(name) do |line|
   end
 
   if old && old.to_s.strip == tgn.to_s.strip
-    #output_tsv_line muscat, tgn, "UNCHANGED"
+    output_tsv_line muscat, tgn, "UNCHANGED"
     next
   end
 
