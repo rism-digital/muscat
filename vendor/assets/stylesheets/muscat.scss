@@ -560,3 +560,18 @@ table.muscat_index_header {
 .sorting-active .ui-sortable-helper {
   opacity: 1;
 }
+
+tr.disabled-user td {
+  color: #999;
+}
+tr.editor-user td {
+  color: #085be0;
+}
+
+tr.admin-user td {
+  color: #c00404;
+}
+
+tr.guest-user td {
+  color: #058f31;
+}

@@ -97,9 +97,27 @@ ActiveAdmin.register User do
   filter :sign_in_count
   filter :created_at
 
-  index :download_links => false do
+  index download_links: false,
+    row_class: ->(user) do
+      return 'disabled-user' if user.disabled?
+      return 'admin-user' if user.has_role? :admin
+      return 'editor-user' if user.has_role? :editor
+      return 'guest-user' if user.has_role? :guest
+    end do
+
     selectable_column
     id_column
+    
+    column :status do |user|
+      user.disabled?
+        status_tag(user.disabled? ? 'DIS' : 'ACT',
+             class: user.disabled? ? 'deleted' : 'ok')
+    end
+
+    column :active do |user|
+      user.active?
+    end
+
     column :username
     column :name
     column :email
@@ -115,10 +133,6 @@ ActiveAdmin.register User do
     #column (I18n.t :filter_sources) do |user|
     #  user.sources_size_per_month(Time.now - 1.month, Time.now)
     #end
-
-    column :active do |user|
-      user.active?
-    end
 
     column :disabled do |user|
       user.disabled?
