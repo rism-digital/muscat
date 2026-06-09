@@ -102,10 +102,11 @@ ActiveAdmin.register Workgroup do
       row (I18n.t :filter_name) { |r| r.name }
       row (I18n.t :filter_pattern) { |r| r.libpatterns }
       row I18n.t(:connected_libraries) do |n|
-        workgroup.show_libs.html_safe
+        workgroup.show_libs(max: 100).html_safe
       end
-      
-     row :email  
+      row :personal_default
+      row :owner_user
+      row :email  
     end
   end
   

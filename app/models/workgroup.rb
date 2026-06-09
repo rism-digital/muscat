@@ -39,9 +39,12 @@ class Workgroup < ApplicationRecord
     end
   end
 
-  def show_libs
-    libs = self.get_institutions.map(&:siglum)
-    return libs.size > 4 ? "#{libs[0..4].join(', ')} [ ... #{libs.size - 5} more]" : libs.join(', ')
+  def show_libs(max: 10)
+    libs = get_institutions.map(&:siglum)
+
+    return libs.join(", ") if libs.size <= max
+
+    "#{libs.first(max).join(', ')} [ ... #{libs.size - max} more]"
   end
 
   def self.ransackable_associations(_) = reflections.keys
