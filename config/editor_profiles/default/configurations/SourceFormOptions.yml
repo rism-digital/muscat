@@ -973,7 +973,7 @@
     - - a
       - type: library
         editor_partial: subfield_secondary
-        allow_new: true
+        #allow_new: true
     - - e
       - autocomplete_extra: corporate_name
     - - b
