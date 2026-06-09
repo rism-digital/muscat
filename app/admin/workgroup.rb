@@ -27,18 +27,6 @@ ActiveAdmin.register Workgroup do
       params.permit!
     end
     
-    def show
-      @workgroup = Workgroup.find(params[:id])
-    end
-    
-    def index
-      #@results = Workgroup.search_as_ransack(params)
-      
-      index! do |format|
-        #@workgroups = @results
-        format.html
-      end
-    end
     # redirect update failure for preserving sidebars
     def update
       update! do |success,failure|
