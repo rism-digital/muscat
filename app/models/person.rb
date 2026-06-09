@@ -349,21 +349,42 @@ class Person < ApplicationRecord
     return full_name
   end
   
+  def primary_reference_types(limit = 2)
+    refs = {
+      "Sources"         => referring_sources.count,
+      "Institutions"    => referring_institutions.count,
+      "Holdings"        => referring_holdings.count,
+      "Publications"    => referring_publications.count,
+      "Works"           => referring_works.count,
+      "Inventory Items" => referring_inventory_items.count,
+      "Work Nodes"      => referring_work_nodes.count
+    }
+
+    refs
+      .reject { |_, count| count.zero? }
+      .sort_by { |_, count| -count }
+      .first(limit)
+      .map(&:first)
+      .join("/")
+  end
+
   def autocomplete_label(use_self = false)
     #1540, does this slow things up too much?
     #Since the autocomplete only gets the minimum fields
-    if use_self
-      pp = self
-    else
-      pp = Person.find(id)
-    end
+    pp = use_self ? self : Person.find(id)
 
-    pp.marc.load_source false
+    pp.marc.load_source(false)
     person_function = pp.marc.first_occurance("100", "c")
 
-    "#{full_name}" + 
-      (person_function && person_function.content && !person_function.content.empty? ? " (#{person_function.content})" : "") + 
-      (life_dates && !life_dates.empty? ? " - #{life_dates}" : "")
+    parts = [full_name]
+
+    parts << "(#{person_function.content})" if person_function&.content.present?
+    parts << "- #{life_dates}" if life_dates.present?
+
+    refs = pp.primary_reference_types
+    parts << " -- #{refs}" if refs.present?
+
+    parts.join(" ")
   end
 
   # If we define our own ransacker, we need this
