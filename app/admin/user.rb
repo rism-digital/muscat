@@ -108,10 +108,11 @@ ActiveAdmin.register User do
     selectable_column
     id_column
     
-    column :status do |user|
-      user.disabled?
-        status_tag(user.disabled? ? 'DIS' : 'ENA',
-             class: user.disabled? ? 'deleted' : 'ok')
+    column :status, sortable: :disabled do |user|
+      status_tag(
+        user.disabled? ? 'DIS' : 'ENA',
+        class: user.disabled? ? 'deleted' : 'ok'
+      )
     end
 
     column :active do |user|
@@ -133,11 +134,7 @@ ActiveAdmin.register User do
     #column (I18n.t :filter_sources) do |user|
     #  user.sources_size_per_month(Time.now - 1.month, Time.now)
     #end
-
-    column :disabled do |user|
-      user.disabled?
-    end
-
+    #
     actions
   end
   
