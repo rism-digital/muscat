@@ -1,0 +1,6 @@
+config:
+    :version: 2.0
+    :model: place
+
+fields:
+    "024a":

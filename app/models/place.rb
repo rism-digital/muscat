@@ -227,7 +227,7 @@ class Place < ApplicationRecord
     sunspot_dsl.integer(:referring_objects_order, stored: true) {through_associations_exclude_source_count}
     sunspot_dsl.integer(:total_obj_count_order, stored: true) {through_associations_total_count}
 
-    #MarcIndex::attach_marc_index(sunspot_dsl, self.to_s.downcase)
+    MarcIndex::attach_marc_index(sunspot_dsl, self.to_s.downcase)
 
   end
 
