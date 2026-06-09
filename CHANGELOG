@@ -2,7 +2,6 @@ Muscat Changelog
 ================
 
 v 12.4
-
 * #1966 initial impl
 * Switch to the new TGN JSON backend
 * Do not validate ark:/
