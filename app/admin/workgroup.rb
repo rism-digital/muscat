@@ -62,7 +62,17 @@ ActiveAdmin.register Workgroup do
   
   # Solr search all fields: "_equal"
   filter :name_eq, :label => proc {I18n.t(:any_field_contains)}, :as => :string
-  
+
+    scope :all, default: true
+
+  scope "Personal defaults" do |workgroups|
+    workgroups.where(personal_default: true)
+  end
+
+  scope "Shared workgroups" do |workgroups|
+    workgroups.where(personal_default: false)
+  end
+
   index :download_links => false do
     selectable_column
     column (I18n.t :filter_id), :id  

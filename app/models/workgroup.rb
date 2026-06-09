@@ -1,31 +1,36 @@
 class Workgroup < ApplicationRecord
 
-    has_and_belongs_to_many :users
-    has_and_belongs_to_many :institutions
-    after_save :change_institutions
-    validates_presence_of :name 
-    before_destroy :check_dependencies
-    has_many :sources, :through => :users
+  has_and_belongs_to_many :users
+  has_and_belongs_to_many :institutions
+  after_save :change_institutions
+  validates_presence_of :name 
+  before_destroy :check_dependencies
+  has_many :sources, :through => :users
 
-    searchable :auto_index => false do
-      integer :id
-      text :name
-    end
+  belongs_to :owner_user, class_name: "User", optional: true
+  validates :owner_user_id, uniqueness: true, allow_nil: true
+
+  searchable :auto_index => false do
+    integer :id
+    text :name
+  end
    
+  scope :shared, -> { where(personal_default: false) }
+
   def get_institutions
     self.institutions.map {|lib| lib}
   end
 
   def check_dependencies
-    if self.users.size > 0
-      errors.add :base, "The workgroup could not be deleted because it is used"
-      return false
+    if users.exists?
+      errors.add(:base, "The workgroup could not be deleted because it is used")
+      throw(:abort)
     end
   end
 
   def change_institutions
     self.institutions.delete_all
-    pattern_list=self.libpatterns.split(",")
+    pattern_list = self.libpatterns&.split(",")
     if libpatterns
       pattern_list.each do |pattern|
         self.institutions << Institution.where("siglum REGEXP ?", pattern.gsub("*", "").strip)

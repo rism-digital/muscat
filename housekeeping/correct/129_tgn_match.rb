@@ -1,47 +1,23 @@
-def delete_024_tgn(marc)
-  marc["024"].each do |t|
-    if t["2"]&.first&.content == "TGN"
-      t.destroy_yourself
-    end
-  end
+def output_tsv_line(*args)
+  puts CSV.generate_line(args, col_sep: "\t")
 end
 
-#Place.find_each {|p| p.scaffold_marc; p.save if p.changed?}
+Place.find_each do |p|
+  next if p.tgn_id.blank?
 
-name = ARGV[0]
-
-CSV::foreach(name) do |line|
-  tgn = line[0]&.gsub("tgn/", "")
-  muscat = line[1]
-
-  next if !muscat
-  next if muscat.empty?
-
-  next if !tgn
-  next if tgn.empty?
+  old_name = p.name
 
   begin
-    p = Place.find(muscat)
-  rescue ActiveRecord::RecordNotFound
-    puts "-> #{muscat} was deleted".red
+    TgnClientJson.new.fetch_marc_place(p.tgn_id, p.marc)
+  rescue
+    output_tsv_line p.id, p.tgn_id, "ERROR"
     next
   end
 
-    delete_024_tgn(p.marc)
+  p.paper_trail_event = "Pulled Place data from TGN #{p.tgn_id}"
+  p.save
 
-    #p.marc.add_tag_with_subfields("024", a: tgn, "2": "TGN")
-
-    begin
-      TgnClientJson.new.fetch_marc_place(tgn, p.marc)
-      puts "Pulled #{tgn} for #{p.id}"
-    rescue
-      puts "Could not pull #{tgn}"
-      next
-    end
-
-  PaperTrail.request(enabled: false) do
-    p.save
-  end
+  output_tsv_line p.id, p.tgn_id, "PULLED", old_name, p.name
 end
 
 # see 138_deduplicate places

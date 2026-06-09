@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.2].define(version: 2026_06_02_142333) do
+ActiveRecord::Schema[7.2].define(version: 2026_06_09_111343) do
   create_table "active_admin_comments", id: :integer, charset: "utf8mb3", force: :cascade do |t|
     t.string "namespace"
     t.text "body"
@@ -775,7 +775,10 @@ ActiveRecord::Schema[7.2].define(version: 2026_06_02_142333) do
     t.datetime "updated_at", precision: nil
     t.string "libpatterns"
     t.string "email"
+    t.boolean "personal_default", default: false, null: false
+    t.integer "owner_user_id"
     t.index ["email"], name: "index_workgroups_on_email"
+    t.index ["owner_user_id"], name: "index_workgroups_on_owner_user_id", unique: true
   end
 
   create_table "works", id: :integer, charset: "utf8mb3", force: :cascade do |t|
@@ -879,4 +882,6 @@ ActiveRecord::Schema[7.2].define(version: 2026_06_02_142333) do
     t.index ["work_a_id"], name: "index_works_to_works_on_work_a_id"
     t.index ["work_b_id"], name: "index_works_to_works_on_work_b_id"
   end
+
+  add_foreign_key "workgroups", "users", column: "owner_user_id"
 end
