@@ -1,6 +1,54 @@
 Muscat Changelog
 ================
 
+v 12.4
+
+* #1966 initial impl
+* Switch to the new TGN JSON backend
+* Do not validate ark:/
+* Index hierarchy in Place
+* Update the TGN pull script for the new JSON server
+* Add lat/log to view, FIXME next step is to fix JS
+* Add labels for 382 $e in GND
+* Make sure residual stuff is not there
+* Miniscript to order inventory items
+* #1973 Add migrations for index
+* Add legacy district/country
+* Make person identifiers json column compatible both with MySQL and MariaDB
+* Update gnd_work_380_de.html
+* Update gnd_work_382_de.html
+* Fix #1956, make 930 (worknode) in source repeatable
+* Add Inventories to WorkNodes + migrations, add change_tag() function to migrate tags in marc
+* Add option to export a library, sources and holdings
+* Add some docs and examples to export script
+* Add option to include full fields to export script
+* Automatically add links to auth files
+* Merge pull request #1980 from afaschon/patch-68
+* Merge pull request #1982 from afaschon/patch-69
+* Merge pull request #1979 from fjorba/make-json-mariadb-compatible
+* Avoid duplicates due to role joins in users
+* Order by admin, editor, cataloger, guest
+* Add sign in count + last sign in
+* #1973 Add proper variation version
+* #1984, People should not be creatable anymore from editor
+* Fix #1985, small mods to editor conf
+* Fix #1981, change label for 382 $e
+* Fix #1986, add force_model to silence warning when exporting sources (in this case, it is ok)
+* Migrate 930 in inventory items to 932
+* Add WorkNode link in 930 for Inventory Item
+* Add link box for IIs in WorkNodes
+* Make users colored
+* Fix #1977, users could create new siglas (but why??)
+* Script to import only TGN ids
+* Script to safely delete imported TGN ids
+* Fix dedup script
+* Add "default workgroup" so we don't need to create ad-hoc wgs
+* Add script to migrate workgroups
+* Create default WGs for each person
+* Show more/better workgroups
+* Add some more items to the user show
+* Fix #1970, add index config for place
+
 v 12.3.3
 * Fix 260/710 in Manuscript
 * Add backend validation for 260/710
