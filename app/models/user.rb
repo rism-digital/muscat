@@ -4,12 +4,8 @@ class User < ApplicationRecord
   has_many :sources, foreign_key: 'wf_owner'
   has_many :folders, foreign_key: 'wf_owner'
 
-  has_one :default_workgroup,
-          -> { where(personal_default: true) },
-          class_name: "Workgroup",
-          foreign_key: :owner_user_id,
-          dependent: :destroy
-
+  # Default workgroup for each user
+  has_one :default_workgroup, -> { where(personal_default: true) }, class_name: "Workgroup", foreign_key: :owner_user_id, dependent: :destroy
   after_create :create_default_workgroup!
   # We need to unlink by hand the default workgroup
   before_destroy :unlink_default_workgroup, prepend: true
@@ -230,9 +226,11 @@ class User < ApplicationRecord
 
   private
 
+  # When a user is created, a special WG for them in created too
+  # for the personal siglas
   def create_default_workgroup!
     wg = Workgroup.create!(
-      name: "Default workgroup for #{username.presence || email}",
+      name: "Default for #{username.presence || email}",
       personal_default: true,
       owner_user: self
     )
@@ -240,6 +238,7 @@ class User < ApplicationRecord
     workgroups << wg
   end
 
+  # We need to clean up here the default wg
   def unlink_default_workgroup
     return unless default_workgroup
 

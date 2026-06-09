@@ -110,7 +110,7 @@ ActiveAdmin.register User do
     
     column :status do |user|
       user.disabled?
-        status_tag(user.disabled? ? 'DIS' : 'ACT',
+        status_tag(user.disabled? ? 'DIS' : 'ENA',
              class: user.disabled? ? 'deleted' : 'ok')
     end
 

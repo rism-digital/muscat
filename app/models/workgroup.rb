@@ -7,16 +7,17 @@ class Workgroup < ApplicationRecord
   before_destroy :check_dependencies
   has_many :sources, :through => :users
 
+  # to implement "Default workgroup for users"
   belongs_to :owner_user, class_name: "User", optional: true
   validates :owner_user_id, uniqueness: true, allow_nil: true
+  # These are the normal non shared workgroups
+  scope :shared, -> { where(personal_default: false) }
 
   searchable :auto_index => false do
     integer :id
     text :name
   end
    
-  scope :shared, -> { where(personal_default: false) }
-
   def get_institutions
     self.institutions.map {|lib| lib}
   end
