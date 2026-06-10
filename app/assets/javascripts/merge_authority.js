@@ -28,7 +28,9 @@ var merge = function () {
       open: function(event, ui) {
         return $('body').trigger('modal_dialog:after_open', [form]);
       },
-      dialogClass: 'active_admin_dialog',
+      classes: {
+        "ui-dialog": "active_admin_dialog"
+      },
       buttons: {
         OK: function() {
           $.ajax({
