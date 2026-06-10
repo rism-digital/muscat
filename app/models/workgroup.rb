@@ -23,6 +23,8 @@ class Workgroup < ApplicationRecord
   end
 
   def check_dependencies
+    return if personal_default?
+    
     if users.exists?
       errors.add(:base, "The workgroup could not be deleted because it is used")
       throw(:abort)

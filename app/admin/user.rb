@@ -82,6 +82,37 @@ ActiveAdmin.register User do
     end
   end
 
+  # Button to add a default wg to the user
+  action_item :create_default_workgroup, only: [:show, :edit] do
+    if authorized?(:admin, User) && resource.default_workgroup.blank?
+      link_to "Create personal default Workgroup",
+              create_default_workgroup_admin_user_path(resource),
+              method: :post
+    end
+  end
+
+  # And the implementation of the above
+  member_action :create_default_workgroup, method: :post do
+    authorize! :admin, User
+
+    user = User.find(params[:id])
+
+    if user.default_workgroup.present?
+      redirect_to resource_path(user), alert: "User already has a personal default workgroup"
+      next
+    end
+
+    workgroup = Workgroup.create!(
+      name: "Default for #{user.username.presence || user.email}",
+      personal_default: true,
+      owner_user: user
+    )
+
+    user.workgroups << workgroup
+
+    redirect_to resource_path(user), notice: "Personal default workgroup created"
+  end
+
   ###########
   ## Index ##
   ###########
