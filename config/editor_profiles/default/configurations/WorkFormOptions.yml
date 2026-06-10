@@ -202,7 +202,7 @@
     - - a
       - type: person
         editor_partial: subfield_secondary
-        #allow_new: true
+        allow_new: true
       - trigger:
         - save:
           - referring_works
@@ -510,7 +510,7 @@
     - - a
       - type: person
         editor_partial: subfield_secondary
-        #allow_new: true
+        allow_new: true
     - - "j"
       - editor_partial: subfield_select_codes
         codes_reference: "codes"
