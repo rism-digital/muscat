@@ -4,7 +4,7 @@
 # TODO: Add String.intern to convert all tags to symbols
 
 class Marc
-  require 'xml'
+  require 'libxml-ruby'
 
   include ApplicationHelper
   include Comparable
@@ -560,7 +560,7 @@ class Marc
     if (collection)
       # wrap the record (document root) into a collection element and make the namespace not default
       record = document.root
-      collection = XML::Node.new("collection")
+      collection = LibXML::XML::Node.new("collection")
       document.root = collection
       document.root << record
       ns_name = 'marc'
@@ -597,8 +597,8 @@ class Marc
     safe_marc.root = @root.deep_copy
     safe_marc.to_external(created_at, updated_at, versions, holdings, deprecated_ids)
     
-    document = XML::Document.new()
-    document.root = XML::Node.new("record")
+    document = LibXML::XML::Document.new()
+    document.root = LibXML::XML::Node.new("record")
     document.root['type'] = "Authority" if authority
 
     for child in safe_marc.root.children

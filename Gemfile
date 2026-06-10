@@ -120,8 +120,7 @@ gem 'rails-i18n'
 
 gem 'gruff'
 
-# These need to be loaded in production too
-gem 'solr_wrapper'#, '>= 0.3'
+# Saml auth plugin
 #gem 'ruby-saml-idp'
 
 gem 'rsolr'#, '>= 1.0'

@@ -517,7 +517,7 @@ class MarcNode
     # deprecated ids are missing the model prefix and are ambiguous
     deprecated_ids = options.has_key?(:deprecated_ids) ? !(options[:deprecated_ids] == "false") : true
     force_editor_ordering = options.fetch(:force_editor_ordering, false)
-    element = XML::Node.new('leader')
+    element = LibXML::XML::Node.new('leader')
 
     # skip the $_ (db_id)
     #return "" if tag == "_"
