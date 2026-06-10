@@ -47,6 +47,12 @@ v 12.4
 * Show more/better workgroups
 * Add some more items to the user show
 * Fix #1970, add index config for place
+* Remove redundant controller code
+* Try to specify where a name is used
+* Add button to add default wg
+* Show which workgroups are used by which users
+* Have the worknodes search for GND ids using the json colunm
+* #1984, postponed to 13.0
 
 v 12.3.3
 * Fix 260/710 in Manuscript
