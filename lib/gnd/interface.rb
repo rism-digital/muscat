@@ -294,7 +294,8 @@ module GND
             tag500.each_by_tag("0") do |t0|
                 if t0.content and t0.content.start_with?("https://d-nb.info/gnd/")
                     id = t0.content.gsub(/https:\/\/d-nb.info\/gnd\//, "")
-                    id = "DNB:#{id}"
+                    # We need this when using the SOLR backend
+                    #id = "DNB:#{id}"
                     # retrieve the person pointing to it in Muscat (if any)
                     gnd_person_id = id
                     break
@@ -340,12 +341,17 @@ module GND
     # returns the Muscat person with the given DNB id
     def self.find_person(gnd_id)
         return nil if !gnd_id
+=begin
         # make a solr search through field 024a
         query = Person.solr_search do 
             with("024a", gnd_id) if gnd_id
             paginate :page => 1, :per_page => Person.all.count
         end
         return (query.results and !query.results.empty?) ? query.results[0] : nil
+=end
+        # Since we have the identifiers as json we can use the scope here
+        Person.with_identifier("dnb", gnd_id).first
+
     end
     
     ##########################

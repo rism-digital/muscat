@@ -382,7 +382,7 @@ class Person < ApplicationRecord
     parts << "- #{life_dates}" if life_dates.present?
 
     refs = pp.primary_reference_types
-    parts << " -- #{refs}" if refs.present?
+    parts << " [#{refs}]" if refs.present?
 
     parts.join(" ")
   end
