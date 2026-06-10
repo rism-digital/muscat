@@ -268,6 +268,10 @@ class Person < ApplicationRecord
       full_name
     end
 
+    sunspot_dsl.text :full_name_search, :as  => "full_name_search_text" do
+      full_name
+    end
+
     sunspot_dsl.string :label, stored: true do
       autocomplete_label(true)
     end
@@ -405,6 +409,7 @@ class Person < ApplicationRecord
   ransacker :"551a", proc{ |v| } do |parent| parent.table[:id] end
   ransacker :"667a", proc{ |v| } do |parent| parent.table[:id] end
 	ransacker :"full_name_or_400a", proc{ |v| } do |parent| parent.table[:id] end
+  ransacker :full_name_search, proc{ |v| } do |parent| parent.table[:id] end
 
   def self.get_wikidata?
     true

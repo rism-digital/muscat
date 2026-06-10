@@ -183,6 +183,7 @@ ActiveAdmin.register Person do
   #filter :id_eq, :label => proc {I18n.t(:filter_id)}
   #filter :full_name_contains, :label => proc {I18n.t(:filter_full_name)}, :as => :string
 	filter :full_name_or_400a_cont, :label => proc {I18n.t(:filter_full_name)}, :as => :string
+  filter :full_name_search_cont, :label => proc {I18n.t(:filter_full_name_but_more_cool)}
   filter :"100d_cont", :label => proc {I18n.t(:filter_person_100d)}, :as => :string
   filter :"375a_cont", :label => proc {I18n.t(:filter_person_375a)}, :as => :select,
   # FIXME locale not read

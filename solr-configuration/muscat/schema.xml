@@ -137,7 +137,7 @@
         <dynamicField name="*_shelforder_s" type="text_alphanumeric_sort" indexed="true" stored="false" multiValued="false"/>
         <dynamicField name="*_ans_s" type="text_alphanumeric_sort" indexed="true" stored="false" multiValued="false"/>
         <dynamicField name="*_autocomplete" type="autocomplete_text" indexed="true" stored="false" multiValued="true"/>
-
+        <dynamicField name="*_search_text" type="text_name_search" indexed="true" stored="false" multiValued="false"/>
         <!-- END ADDED BY RZ FOR MUSCAT -->
     </fields>
     <types>
@@ -208,6 +208,21 @@
 
         <!-- ADDED BY RZ FOR MUSCAT -->
         <fieldType name="text_alphanumeric_sort" class="solr.ICUCollationField" locale="" numeric="true" strength="secondary" alternate="shifted" sortMissingLast="false" />       
+        
+
+        <fieldType name="text_name_search" class="solr.TextField" positionIncrementGap="100">
+            <analyzer type="index">
+                <tokenizer class="solr.StandardTokenizerFactory"/>
+                <filter class="solr.ICUFoldingFilterFactory"/>
+                <filter class="solr.LowerCaseFilterFactory"/>
+            </analyzer>
+
+            <analyzer type="query">
+                <tokenizer class="solr.StandardTokenizerFactory"/>
+                <filter class="solr.ICUFoldingFilterFactory"/>
+                <filter class="solr.LowerCaseFilterFactory"/>
+            </analyzer>
+        </fieldType>
         <!-- END ADDED BY RZ FOR MUSCAT -->
 
     </types>
