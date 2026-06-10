@@ -185,8 +185,14 @@ ActiveAdmin.register User do
       row :username
       row :name
       row :email
-      row I18n.t(:workgroups) do |n|
-             user.workgroups.map(&:name).join(", ").html_safe
+      row I18n.t(:workgroups) do |user|
+        safe_join(
+          user.workgroups.map do |wg|
+            label = wg.personal_default? ? "#{wg.name} **" : wg.name
+            link_to(label, admin_workgroup_path(wg))
+          end,
+          ", ".html_safe
+        )
       end
       row I18n.t(:roles) do |user|
            user.get_roles.join(", ")

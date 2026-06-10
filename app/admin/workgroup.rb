@@ -96,6 +96,9 @@ ActiveAdmin.register Workgroup do
       row :owner_user
       row :email  
     end
+    
+    active_adnin_create_list_for(self, User, workgroup, username: "User", name: "Name", email: "Email")
+
   end
   
   sidebar :actions, :only => :show do
