@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.2].define(version: 2026_06_09_111343) do
+ActiveRecord::Schema[7.2].define(version: 2026_06_11_120000) do
   create_table "active_admin_comments", id: :integer, charset: "utf8mb3", force: :cascade do |t|
     t.string "namespace"
     t.text "body"
@@ -398,6 +398,46 @@ ActiveRecord::Schema[7.2].define(version: 2026_06_09_111343) do
     t.index ["marc_tag", "relator_code", "person_id", "publication_id"], name: "unique_records", unique: true
     t.index ["person_id"], name: "index_people_to_publications_on_person_id"
     t.index ["publication_id"], name: "index_people_to_publications_on_publication_id"
+  end
+
+  create_table "permission_group_abilities", charset: "utf8mb3", force: :cascade do |t|
+    t.integer "permission_group_id", null: false
+    t.string "action", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["action"], name: "idx_pg_abilities_action"
+    t.index ["permission_group_id", "action"], name: "idx_pg_abilities_group_action", unique: true
+  end
+
+  create_table "permission_group_items", charset: "utf8mb3", force: :cascade do |t|
+    t.integer "permission_group_id", null: false
+    t.string "item_type", null: false
+    t.integer "item_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["item_type", "item_id"], name: "idx_pg_items_item"
+    t.index ["permission_group_id", "item_type", "item_id"], name: "idx_pg_items_group_item", unique: true
+  end
+
+  create_table "permission_group_memberships", charset: "utf8mb3", force: :cascade do |t|
+    t.integer "permission_group_id", null: false
+    t.integer "user_id", null: false
+    t.boolean "manager", default: false, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["permission_group_id", "user_id"], name: "idx_pg_members_group_user", unique: true
+    t.index ["user_id"], name: "idx_pg_members_user"
+  end
+
+  create_table "permission_groups", charset: "utf8mb3", force: :cascade do |t|
+    t.string "name", null: false
+    t.text "description"
+    t.boolean "active", default: true, null: false
+    t.integer "owner_user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["name"], name: "index_permission_groups_on_name"
+    t.index ["owner_user_id"], name: "index_permission_groups_on_owner_user_id"
   end
 
   create_table "places", id: :integer, charset: "utf8mb3", force: :cascade do |t|

@@ -3,6 +3,9 @@ class User < ApplicationRecord
 
   has_many :sources, foreign_key: 'wf_owner'
   has_many :folders, foreign_key: 'wf_owner'
+  has_many :permission_group_memberships, dependent: :destroy
+  has_many :permission_groups, through: :permission_group_memberships
+  has_many :owned_permission_groups, class_name: "PermissionGroup", foreign_key: :owner_user_id
 
   # Default workgroup for each user
   has_one :default_workgroup, -> { where(personal_default: true) }, class_name: "Workgroup", foreign_key: :owner_user_id, dependent: :destroy

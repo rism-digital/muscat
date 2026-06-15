@@ -39,6 +39,7 @@ class Holding < ApplicationRecord
   belongs_to :source
 	belongs_to :collection, class_name: "Source", foreign_key: "collection_id"
   has_many :folder_items, as: :item, dependent: :destroy
+  has_many :permission_group_items, as: :item, dependent: :destroy
   belongs_to :user, :foreign_key => "wf_owner"
   
   composed_of_reimplementation :marc, :class_name => "MarcHolding", :mapping => %w(marc_source to_marc)

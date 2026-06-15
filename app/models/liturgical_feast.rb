@@ -29,6 +29,7 @@ class LiturgicalFeast < ApplicationRecord
 =end
 
   has_many :folder_items, as: :item, dependent: :destroy
+  has_many :permission_group_items, as: :item, dependent: :destroy
   has_many :delayed_jobs, -> { where parent_type: "LiturgicalFeast" }, class_name: 'Delayed::Backend::ActiveRecord::Job', foreign_key: "parent_id"
   belongs_to :user, :foreign_key => "wf_owner"
   

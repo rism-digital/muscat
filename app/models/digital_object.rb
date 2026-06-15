@@ -26,6 +26,7 @@ class DigitalObject < ApplicationRecord
 
     has_many :digital_object_links, :dependent => :delete_all
     has_many :folder_items, as: :item, dependent: :destroy
+    has_many :permission_group_items, as: :item, dependent: :destroy
     belongs_to :user, :foreign_key => "wf_owner"
 
     enum :attachment_type, [ :images, :incipits ]

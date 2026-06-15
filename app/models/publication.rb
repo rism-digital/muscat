@@ -79,6 +79,7 @@ class Publication < ApplicationRecord
   has_many :standard_terms, through: :publication_standard_term_relations
 
   has_many :folder_items, as: :item, dependent: :destroy
+  has_many :permission_group_items, as: :item, dependent: :destroy
   has_many :delayed_jobs, -> { where parent_type: "Publication" }, class_name: 'Delayed::Backend::ActiveRecord::Job', foreign_key: "parent_id"
   belongs_to :user, :foreign_key => "wf_owner"
 

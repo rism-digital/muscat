@@ -102,6 +102,7 @@ class Source < ApplicationRecord
   has_many :work_nodes, through: :source_work_node_relations
 
   has_many :folder_items, as: :item, dependent: :destroy
+  has_many :permission_group_items, as: :item, dependent: :destroy
   has_many :folders, through: :folder_items, foreign_key: "item_id"
   belongs_to :user, :foreign_key => "wf_owner"
   

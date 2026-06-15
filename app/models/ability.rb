@@ -132,7 +132,20 @@ class Ability
       cannot :read, ActiveAdmin::Page, :name => "Statistics"
       cannot :read, Workgroup
     end
+
+    apply_permission_group_rules(user)
     
+  end
+
+  private
+
+  def apply_permission_group_rules(user)
+    PermissionGroup.grants_for(user).each do |(item_type, action), item_ids|
+      item_class = item_type.safe_constantize
+      next unless item_class
+
+      can action, item_class, id: item_ids
+    end
   end
   
 end
