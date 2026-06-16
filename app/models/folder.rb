@@ -1,10 +1,28 @@
 class Folder < ApplicationRecord
   include AutoStripStrings
+
+  FOLDERABLE_TYPES = %w[
+    Holding
+    Institution
+    InventoryItem
+    LiturgicalFeast
+    Person
+    Place
+    Publication
+    Source
+    StandardTerm
+    StandardTitle
+    User
+    Work
+    WorkNode
+  ].freeze
   
   has_many :folder_items, :dependent => :delete_all
   has_many :permission_group_items, as: :item, dependent: :destroy
   has_many :delayed_jobs, -> { where parent_type: "folder" }, class_name: 'Delayed::Backend::ActiveRecord::Job', foreign_key: "parent_id"
   belongs_to :user, :foreign_key => "wf_owner"
+
+  validates :folder_type, inclusion: { in: FOLDERABLE_TYPES }
   
   scope :for_user_and_type,   ->(user, type){ where(folder_type: type, wf_owner: user) }
   scope :for_type,   ->(type){ where(folder_type: type) }
@@ -24,19 +42,34 @@ class Folder < ApplicationRecord
 
   # Get the content of the folder
   def content
-    return folder_type.constantize.where(id: folder_items.pluck(:item_id))
+    model = folder_model
+    return [] unless model
+
+    model.where(id: folder_items.pluck(:item_id))
   end
 
   def is_published?
-    relation = folder_type.pluralize.underscore.downcase
-    #if folder_type == "Source"
-    return false if folder_items.joins("INNER JOIN #{relation} ON folder_items.item_id = #{relation}.id").where("#{relation}.wf_stage = 0").count > 0
-    #else
-    #  content.pluck(:wf_stage).each do |e| 
-    #    return false if e == "inprogress"
-    #  end
-    #end
-    return true
+    model = folder_model
+    return false unless model
+    return true unless model.column_names.include?("wf_stage")
+
+    join_sql = "INNER JOIN #{model.quoted_table_name} ON #{FolderItem.quoted_table_name}.item_id = #{model.quoted_table_name}.id"
+
+    !folder_items
+      .joins(join_sql)
+      .where(item_type: model.name)
+      .where(model.table_name => { wf_stage: 0 })
+      .exists?
+  end
+
+  def folder_model
+    self.class.folder_model_for(folder_type)
+  end
+
+  def self.folder_model_for(type)
+    return nil unless FOLDERABLE_TYPES.include?(type.to_s)
+
+    type.to_s.safe_constantize
   end
 
   # Adds an item to the current folder. The type of the item must match the item type

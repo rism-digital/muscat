@@ -336,8 +336,12 @@ module ActiveAdmin::ViewsHelper
   def dashboard_get_referring_comments(limit, days = 7)
     sanitized_name = current_user.name.gsub(" ", "_")
     user_name = "@#{sanitized_name}"
+    user_name_like = "%#{ActiveRecord::Base.sanitize_sql_like(user_name)}%"
 
-    ActiveAdmin::Comment.where(("updated_at > ? AND namespace = 'admin'"), days.days.ago).where("body LIKE '%#{user_name}%'").limit(limit)
+    ActiveAdmin::Comment
+      .where(("updated_at > ? AND namespace = 'admin'"), days.days.ago)
+      .where("body LIKE ?", user_name_like)
+      .limit(limit)
   end
 
   def dashboard_get_my_comments(limit, days = 7)
