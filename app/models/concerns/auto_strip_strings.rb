@@ -2,6 +2,7 @@
 # and trailing is always automatically removed
 
 module AutoStripStrings
+  using AggressivelyStrip
   extend ActiveSupport::Concern
 
   included do
@@ -14,7 +15,7 @@ module AutoStripStrings
     self.class.columns_hash.each do |attr_name, col|
       if col.type == :string
         value = self[attr_name]
-        self[attr_name] = value&.strip if value.respond_to?(:strip)
+        self[attr_name] = value&.aggressively_strip if value.respond_to?(:aggressively_strip)
       end
     end
   end

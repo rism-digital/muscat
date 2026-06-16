@@ -7,10 +7,10 @@ class MarcPerson < Marc
     full_name = ""
     dates = nil
 
-    if node = first_occurance("100", "a")
-      if node.content
-        full_name = node.content.truncate(128)
-      end
+    # Should never be more than one
+    self["100"].each do |t|
+      name = t["a"].map {|tt| tt.content}&.first
+      full_name = ([name] + t["c"].map {|tt| tt.content}.compact).join(", ").truncate(255)
     end
     
     if node = first_occurance("100", "d")
@@ -68,7 +68,30 @@ class MarcPerson < Marc
     [gender, birth_place&.strip, source&.strip]
   end
 
-  
+  def get_wikidata_id
+    self["024"].each do |t|
+      if t["2"]&.first&.content == "WKP"
+        return t["a"]&.first&.content
+      end
+    end
+    nil
+  end
+
+  def get_all_identifiers
+    result = {}
+
+    self["024"]&.each do |t|
+      key = t["2"]&.first&.content&.downcase
+      value = t["a"]&.first&.content
+
+      next unless key && value
+
+      result[key] = value
+    end
+
+    result
+  end
+
   def to_external(created_at = nil, updated_at = nil, versions = nil, holdings = false, deprecated_ids = true)
     super(created_at, updated_at, versions)
     
@@ -88,6 +111,11 @@ class MarcPerson < Marc
         root.children.insert(get_insert_position("667"), n667)
       end
     end
+
+    # Compress all 675
+    list675 = by_tags("675").map {|t| t["a"]&.first&.content}.compact.join("; ")
+    by_tags("675").each {|t| t.destroy_yourself}
+    self.add_tag_with_subfields("675", a: list675)
 
   end
  

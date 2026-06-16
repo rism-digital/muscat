@@ -3,4 +3,8 @@ class Role < ApplicationRecord
   belongs_to :resource, :polymorphic => true
   
   scopify
+
+  def self.ransackable_attributes(_auth_object = nil)
+    attribute_names
+  end
 end

@@ -104,6 +104,7 @@ it:
     persian: Persiano
     polish: Polacco
     portugese: Portoghese
+    quechua: Quechua
     romance_other: Altra lingua romanza
     romani: Romani
     romanian: Romeno
@@ -129,7 +130,7 @@ it:
     tibetan: Tibetano
     tsimshian: Tsimshian
     turkish: Turco
-    twi: Twi
+    twi: Ci
     ukrainian: Ucraino
     upper_sorbian: 'Sorabo superiore'
     urdu: Urdu
@@ -959,6 +960,7 @@ it:
     westernmost_longitude: Massima longitudine ovest
     woodwinds: Legni
     work: Opera
+    works: Opere
     work_catalog: Catalogo delle opere
     work_catalogs: Cataloghi delle opere
     work_catalog_note: Nota sul catalogo delle opere

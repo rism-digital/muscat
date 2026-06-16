@@ -84,7 +84,7 @@ class ExportRecordsJob < ProgressJob::Base
     end
     
     # Compress it so the user soes not faint
-    Zip::File.open(EXPORT_PATH.join(filename + '.zip'), Zip::File::CREATE) do |zipfile|
+    Zip::File.open(EXPORT_PATH.join(filename + '.zip'), create: true) do |zipfile|
         zipfile.add(filename + @extension, EXPORT_PATH.join(filename + @extension))
     end
       

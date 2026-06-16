@@ -54,23 +54,36 @@ var show_gnd_actions = function () {
     }
   }
 
-  function draw_row_gnd( rowData ) {
-    var message = I18n.t("select")
+  function draw_row_gnd(rowData) {
+    const message = I18n.t("select");
 
-    var label = rowData["label"];
-    var link = rowData["link"];
-    var description = rowData["description"];
-    var marcData = rowData["marc"];
-    var noSelectMsg = rowData["noSelectMsg"];
-    var selectRow = (noSelectMsg == "") ? '<a class="data" id="gnd_data" href="#" data-gnd=\'' + JSON.stringify( marcData ) + '\'>' + message + '</a>' : '[' + noSelectMsg + ']'
+    const label = rowData.label;
+    const link = rowData.link;
+    const description = rowData.description;
+    const marcData = rowData.marc;
+    const noSelectMsg = rowData.noSelectMsg;
 
+    const $row = $("<tr>");
 
-    var row = $( "<tr>" );
-    row.append( $( "<td><a target=\"_blank\" href=\"" + link + "\">" + label + "</a></td>" ) );
-    for(let i = 0; i < description.length; i++) row.append($("<td>" + description[i] + "</td>"));
-    row.append( $( '<td>' + selectRow + '</td>' ) );
-    row.append( $( "</tr>" ) );
-    $gnd_table.append(row); 
+    $row.append($("<td>").append(
+      $("<a>", { target: "_blank", href: link, text: label })
+    ));
+
+    for (let i = 0; i < description.length; i++) {
+      $row.append($("<td>", { text: description[i] })); // text, not HTML
+    }
+
+    const $selectCell = $("<td>");
+    if (noSelectMsg === "") {
+      const $a = $("<a>", { class: "data", href: "#", text: message });
+      $a.data("gnd", marcData); // stores the object safely (no HTML serialization)
+      $selectCell.append($a);
+    } else {
+      $selectCell.text(`[${noSelectMsg}]`);
+    }
+
+    $row.append($selectCell);
+    $gnd_table.append($row);
   }
 };
 

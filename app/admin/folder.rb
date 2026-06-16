@@ -62,7 +62,7 @@ ActiveAdmin.register Folder do
     end
     
     def permitted_params
-      params.permit!
+      params.permit(folder: [:name])
     end
     
   end
@@ -125,7 +125,12 @@ ActiveAdmin.register Folder do
       return
     end
 
-    model = f.folder_type.constantize
+    model = f.folder_model
+
+    if !model
+      redirect_to resource_path(params[:id]), :flash => {error: "Folder type is not supported"}
+      return
+    end
 
     if !f.folder_items || f.folder_items.empty?
       redirect_to resource_path(params[:id]), :flash => {error:I18n.t(:folder_empty, scope: :folders)}

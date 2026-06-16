@@ -135,7 +135,15 @@
                         color: $form-label-color;
                         margin-top: 5px;
                         padding-left: 3px;
-                    }			
+                    }
+                    
+                    * .grid_cell_imported { 
+                        font-size: 1.0em;
+                        font-weight: bold;
+                        margin-top: 5px;
+                        padding-left: 3px;
+                    }	
+
 					* .error {
 						border-color: red;
 					}

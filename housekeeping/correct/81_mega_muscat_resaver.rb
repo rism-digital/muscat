@@ -1,21 +1,41 @@
 FILENAME="unloadable.log"
 File.write(FILENAME, Time.now.to_s, mode: 'w')
 
-models = [Holding, Institution, InventoryItem, Person, Publication, Source, Work, WorkNode]
-
+models = [StandardTitle, StandardTerm, LiturgicalFeast, Person, Publication, Institution, InventoryItem, WorkNode, Holding, Source, Work]
 
 @fast_mode = false
-if ARGV.count > 1 && ARGV.last == "--fast"
-  @fast_mode = true
-  ARGV.pop # remove the last item, bad I know...
+skip_source = false
+crash_on_error = false
+
+model_names = []
+
+ARGV.each do |arg|
+  case arg
+  when "--fast"
+    @fast_mode = true
+  when "--skip-source"
+    skip_source = true
+  when "--crash-on-error"
+    crash_on_error = true
+  else
+    model_names << arg
+  end
+end
+
+if @fast_mode
   puts "Fast mode on (all suppress_* enabled)".cyan
 end
 
-if !ARGV.empty?
-    
-    models = ARGV.map {|v| v.constantize}
-    puts "Resaving only #{ARGV}".yellow
-    #models = [ARGV[0].constantize]
+if model_names.any?
+  if skip_source
+    abort "--skip-source cannot be used together with explicit models"
+  end
+
+  models = model_names.map(&:constantize)
+  puts "Resaving only #{model_names}".yellow
+elsif skip_source
+  models = models.reject { |m| m == Source }
+  puts "Resaving all models except Source".yellow
 end
 
 begin_time = Time.now
@@ -72,11 +92,13 @@ models.each do |model|
                     item.save
                     saved_items += 1
                 end
-            rescue
+            rescue =>e
                 #puts "Could not save #{model.to_s} #{item.id}"
                 File.write(FILENAME, "Could not save #{model.to_s} #{item.id}", mode: 'a+')
                 unsavable_items += 1
                 all_unsaved += 1
+                # Sometimes we need to crash for debug reasons
+                throw e if crash_on_error
             ensure
                 # Set back to original
                 $stdout = old_stdout
@@ -92,7 +114,7 @@ models.each do |model|
 
     end_model_time = Time.now
     all_items += total_items - unsavable_items
-    puts "Saved #{total_items - unsavable_items} #{model.to_s.pluralize} in #{end_model_time - begin_model_time}"
+    puts "Saved #{total_items - unsavable_items} #{model.to_s.pluralize} in #{(end_model_time - begin_model_time).round}s"
 
 end
 

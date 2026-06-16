@@ -204,8 +204,12 @@ g-2:
   fields:
     a:
       label: gnd.instrument_singular
+    e:
+      label: gnd.number_of_similar_ensembles
     n:
       label: gnd.count_anzahl
+    p:
+      label: gnd.alternative_besetzung
     s:
       label: gnd.total_number_performers
     t:

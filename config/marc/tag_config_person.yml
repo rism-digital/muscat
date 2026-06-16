@@ -95,8 +95,6 @@
     - - d
       - :occurrences: "?"
         :browse_inline: true
-    - - y
-      - :occurrences: "?"
   "375":
     :master: a
     :indicator: "##"
@@ -235,6 +233,20 @@
       - :occurrences: "*"
     - - "9"
       - :occurrences: "?"
+  "675":
+    :master: "0"
+    :indicator: "##"
+    :occurrences: "*"
+    :fields:
+    - - "0"
+      - :occurrences: "?"
+        :foreign_class: Publication
+        :foreign_field: id
+        :no_show: true
+    - - a
+      - :occurrences: "?"
+        :foreign_class: ^0
+        :foreign_field: short_name
   "678":
     :master: a
     :indicator: "##"
@@ -280,6 +292,8 @@
     :occurrences: "*"
     :fields:
     - - u
+      - :occurrences: "?"
+    - - x
       - :occurrences: "?"
     - - z
       - :occurrences: "?"

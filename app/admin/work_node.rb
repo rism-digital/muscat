@@ -70,7 +70,7 @@ ActiveAdmin.register WorkNode do
         redirect_to admin_root_path, :flash => { :error => "#{I18n.t(:error_not_found)} (WorkNode #{params[:id]})" }
         return
       end
-      @editor_profile = EditorConfiguration.get_show_layout @work_node
+      @show_profile = EditorConfiguration.get_show_layout @work_node
       @prev_item, @next_item, @prev_page, @next_page, @nav_positions = WorkNode.near_items_as_ransack(params, @work_node)
       
       @jobs = @work_node.delayed_jobs
@@ -132,6 +132,8 @@ ActiveAdmin.register WorkNode do
     column (I18n.t :filter_id), :id  
     column (I18n.t :filter_composer), :composer, sortable: :composer_order
     column (I18n.t :filter_title), :title
+    column (I18n.t :"records.standard_number_code"), :ext_number, sortable: :ext_number_order
+    column (I18n.t :"records.source_number_code"), :ext_code, sortable: :ext_code_order
     column (I18n.t :filter_sources), :src_count_order, sortable: :src_count_order do |element|
 			active_admin_stored_from_hits(controller.view_assigns["hits"], element, :src_count_order)
 		end
@@ -163,9 +165,11 @@ ActiveAdmin.register WorkNode do
     if @item.marc_source == nil
       render :partial => "marc/missing"
     else
-      render :partial => "marc/show"
+      render :partial => "marc/show", locals: {item: @item, editor_profile: controller.view_assigns["show_profile"]}
     end
     active_admin_embedded_source_list( self, work_node, !is_selection_mode? )
+    active_adnin_create_list_for(self, InventoryItem, work_node, title: I18n.t(:filter_title), composer: I18n.t(:filter_composer))
+
     active_admin_user_wf( self, work_node )
     active_admin_navigation_bar( self )
     active_admin_comments if !is_selection_mode?

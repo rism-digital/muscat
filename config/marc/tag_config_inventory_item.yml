@@ -457,28 +457,13 @@
     :fields:
     - - "w"
       - :occurrences: "?"
-        :foreign_class: Source
+        :foreign_class: WorkNode
         :foreign_field: id
     - - a
       - :occurrences: "?"
         :foreign_class: ^w
         :foreign_field: title
-    - - "4"
-      - :occurrences: "1"
   "931":
-    :master: "w"
-    :indicator: "##"
-    :occurrences: "*"
-    :fields:
-    - - "w"
-      - :occurrences: "?"
-        :foreign_class: Holding
-        :foreign_field: id
-    - - a
-      - :occurrences: "?"
-        :foreign_class: ^w
-        :foreign_field: lib_siglum
-  "932":
     :master: "w"
     :indicator: "##"
     :occurrences: "*"
@@ -491,6 +476,34 @@
       - :occurrences: "?"
         :foreign_class: ^w
         :foreign_field: title
+  "932":
+    :master: "w"
+    :indicator: "##"
+    :occurrences: "*"
+    :fields:
+    - - "w"
+      - :occurrences: "?"
+        :foreign_class: Source
+        :foreign_field: id
+    - - a
+      - :occurrences: "?"
+        :foreign_class: ^w
+        :foreign_field: title
+    - - "4"
+      - :occurrences: "1"
+  "933":
+    :master: "w"
+    :indicator: "##"
+    :occurrences: "*"
+    :fields:
+    - - "w"
+      - :occurrences: "?"
+        :foreign_class: Holding
+        :foreign_field: id
+    - - a
+      - :occurrences: "?"
+        :foreign_class: ^w
+        :foreign_field: lib_siglum
   "981":
     :master: ""
     :indicator: "##"

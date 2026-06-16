@@ -114,6 +114,10 @@ body.active_admin {
     .status_tag.warning { background: #e29b20; }
     .status_tag.deleted { background: #d45f53; }
 
+    .status_tag.all { background: #096d39; }
+    .status_tag.some { background: #f6789e; }
+    .status_tag.none { background: #aea5a5;; }
+
     .status_tag.work_links { 
       width: 82px;
       display: inline-block; 
@@ -510,24 +514,64 @@ table.muscat_index_header {
   transition: background-color 0.3s ease; /* also fade hover/striping nicely */
 }
 
-/* USER TABLE SPACING */
-#index_table_users {
-  width: 100% !important;
-  max-width: 100%;
-  table-layout: fixed;
+/* Flex layout for content + sidebar */
+#active_admin_content.with_sidebar {
+  display: flex;
+  gap: 16px;
+  align-items: flex-start;
 }
 
-/* Force the long usernames and emails
-   to break so the table fits
- */
-#index_table_users td,
-#index_table_users td {
-  overflow-wrap: anywhere;
-  word-break: break-word;
-  white-space: normal;
+/* Main column should be allowed to shrink (prevents sidebar squeeze/overflow issues) */
+#main_content_wrapper {
+  flex: 1 1 auto;
+  min-width: 0;
+  padding-left: 0 !important; /* disables AA “reserved sidebar space” trick */
 }
 
-/* For specific columns use
-#index_table_users td.col-username,
-#index_table_users td.col-email
-*/
+/* Sidebar stays fixed width */
+#sidebar {
+  flex: 0 0 270px;     /* don't grow, don't shrink, base = 270px */
+  width: 270px;        /* optional but clear */
+  margin-left: 0 !important;
+  float: none !important; /* recommended if AA float rules exist */
+}
+
+/* Disable AA legacy spacing */
+#main_content {
+  margin-right: 0 !important;
+}
+
+.tag_box.imported {
+  border: 2px solid orange;
+  padding: 10px;
+}
+
+.tag_box.imported legend {
+  color: orange;
+  font-weight: bold;
+  padding: 0 8px;
+  width: auto;
+}
+
+.sorting-active dt {
+  opacity: 0.4;
+  transition: opacity 0.15s;
+}
+.sorting-active .ui-sortable-helper {
+  opacity: 1;
+}
+
+tr.disabled-user td {
+  color: #999;
+}
+tr.editor-user td {
+  color: #085be0;
+}
+
+tr.admin-user td {
+  color: #c00404;
+}
+
+tr.guest-user td {
+  color: #058f31;
+}

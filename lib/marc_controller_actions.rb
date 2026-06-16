@@ -180,20 +180,6 @@ module MarcControllerActions
      
       render :template => 'marc_show/show_preview'
     end
-
-    ###################
-    ## Summary show ##
-    ###################
-    
-    dsl.collection_action :marc_editor_summary_show, :method => :post do
-      
-      @item = Source.find( params[:object_id] )
-      
-      @item.marc.load_source(true)
-      @editor_profile = EditorConfiguration.get_show_layout @item
-      
-      render :template => 'marc_show/show_preview'
-    end
     
     ##################
     ## View version ##
@@ -355,6 +341,7 @@ module MarcControllerActions
       validator.validate_tags
       #validator.validate_links
       validator.validate_unknown_tags
+      validator.validate_person_codes if @item.is_a? Person
       validator.validate_server_side
       if validator.has_errors
         render json: {status: validator.to_s(translate: true)}

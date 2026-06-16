@@ -30,6 +30,9 @@ class MarcNode
     # In some case it is useful to try again using other fields, so this global
     # variable can be set to FALSE (remember, default is true!).
     @force_marc_creation = defined?(:MARC_FORCE_CREATION) ? $MARC_FORCE_CREATION : true
+
+    # Read-only non touchable tags
+    @imported = false
   end
   
   def suppress_scaffold_links
@@ -41,6 +44,13 @@ class MarcNode
     Marshal.load(Marshal.dump(self))
   end
   
+  # This is when copying stuff between two different marc
+  # types. Ex. Holding to Source.
+  # DO NOT USE unless you know what you are doing.
+  def force_model(new_model)
+    @model = new_model
+  end
+
   # Try to get the external references for this object
   def resolve_externals
     # Do nothing if the master tag is missing but optional
@@ -95,8 +105,8 @@ class MarcNode
           dependants.each do |dep|
             dep_field = @marc_configuration.get_foreign_field(self.tag, dep)
             dep_tag = fetch_first_by_tag(dep)
-            value = (master.foreign_object ? master.foreign_object.read_attribute(dep_field) : nil)
-            
+            value = (master.foreign_object ? master.foreign_object.[](dep_field.intern) : nil)
+                        
             if !dep_tag
               # the tag is missing in the source
               dep_tag = add(MarcNode.new(@model, dep, value, nil)) unless value.nil? or value.empty?
@@ -457,18 +467,26 @@ class MarcNode
   # but from the corresponding class
   def looked_up_content
     if @foreign_object and @foreign_field
-      return @foreign_object.read_attribute(@foreign_field)      
+      # old
+      #value = @foreign_object.[](@foreign_field.intern)
+      # new
+      value = if @foreign_object&.respond_to?(:formatted_label_for)
+        @foreign_object.formatted_label_for(@foreign_field.to_sym)
+      else
+        @foreign_object&.[](@foreign_field.to_sym)
+      end
+            
+      return value
     else
       return @content
     end
   end
   
   # Export to text Marc format
-  def to_marc(no_db_id = false)
+  def to_marc()
     out = String.new
-    # skip the $_ tags (db_id)
-    #return "" if tag == "_" and no_db_id
-    value = looked_up_content
+
+    value = looked_up_content # if looked_up_content
     if @tag =~ /^[\d\w]$/
       # subfield
       if value
@@ -489,12 +507,12 @@ class MarcNode
             ind1 = indicator[1,1]
           end
       		out += "=#{@tag}  #{ind0}#{ind1}"
-          #for_every_child_sorted { |child| out += child.to_marc(no_db_id) }
-      		@children.each { |child| out += child.to_marc(no_db_id) }
+      		@children.each { |child| out += child.to_marc }
+          out += "$#{Marc::IMPORTED_MARKER}" if @imported
       		out += "\r\n"
         end
       else
-        @children.each { |child| out += child.to_marc(no_db_id) }       
+        @children.each { |child| out += child.to_marc }       
       end
     end
 
@@ -506,7 +524,7 @@ class MarcNode
     # deprecated ids are missing the model prefix and are ambiguous
     deprecated_ids = options.has_key?(:deprecated_ids) ? !(options[:deprecated_ids] == "false") : true
     force_editor_ordering = options.fetch(:force_editor_ordering, false)
-    element = XML::Node.new('leader')
+    element = LibXML::XML::Node.new('leader')
 
     # skip the $_ (db_id)
     #return "" if tag == "_"
@@ -712,6 +730,25 @@ class MarcNode
     return matching_children  
   end
 
+  def change_tag(new_tag)
+    @tag = new_tag.to_s
+
+    if @marc_configuration.has_tag?(@tag)
+      @indicator = @marc_configuration.is_tagless?(@tag) ? nil : @marc_configuration.get_default_indicator(@tag)
+    end
+
+    clear_foreign_object_cache
+    self
+  end
+
+  def clear_foreign_object_cache
+    @foreign_object = nil
+    @foreign_field = nil
+    @foreign_host = false
+    @children.each(&:clear_foreign_object_cache)
+    self
+  end
+
   # Shortcut for the above
   def [](tag)
     fetch_all_by_tag(tag)
@@ -784,6 +821,14 @@ class MarcNode
     # different tags, order by tag
     return -1 if tag < other.tag
     return 1 if tag > other.tag
+  end
+
+  def imported?
+    @imported == true
+  end
+
+  def imported=(value)
+    @imported = value
   end
 
   alias length size

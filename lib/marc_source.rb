@@ -233,6 +233,9 @@ class MarcSource < Marc
     by_tags("775").each {|t| t.destroy_yourself}
     by_tags("599").each {|t| t.destroy_yourself}
 
+    #1933 Also delete links to works!
+    by_tags("931").each {|t| t.destroy_yourself}
+
   end
 
   def match_leader
@@ -554,8 +557,7 @@ class MarcSource < Marc
       end
     end
 
-    # Adding digital object links to 500 with new records
-    #TODO whe should drop the dublet entries in 500 with Digital Object Link prefix for older records
+    # Adding digital object links to 856 with new records, #1866
     if !parent_object.digital_objects.images.empty?
       parent_object.digital_objects.images.each do |image|
         next unless image&.attachment&.path  # skip if missing
@@ -563,12 +565,7 @@ class MarcSource < Marc
         relative_path = image.attachment.path.sub(%r{.*?/system/}, 'system/')
         url = "#{RISM::MUSCAT_URL}/#{relative_path}"
 
-        description = image.description ? "#{image.description}: " : ""
-        content = "#{description}#{url}"
-
-        n500 = MarcNode.new(@model, "500", "", "##")
-        n500.add_at(MarcNode.new(@model, "a", content, nil), 0)
-        root.children.insert(get_insert_position("500"), n500)
+        add_tag_with_subfields("856", u: url, y: image.description, q: image.attachment_content_type, "7": 0)
       end
     end
    
@@ -609,6 +606,7 @@ class MarcSource < Marc
           id = "holdings/#{holding.id}"
         end
         holding.marc.all_tags.each do |tag|
+          tag.force_model @model # This is evil, use with caution
           tag.add_at(MarcNode.new(@model, "3", id, nil), 0)
           @root.add_at(tag, get_insert_position(tag.tag)) if tag.tag != "001"
         end

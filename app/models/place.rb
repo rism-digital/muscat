@@ -12,11 +12,12 @@
 class Place < ApplicationRecord
   include ForeignLinks
   include CommentsCleanup
+  include AuthorityMerge
   include ThroughAssociations
   include AutoStripStrings
   include ComposedOfReimplementation
-  include ThroughAssociations
   include HasReferringRelations
+  using AggressivelyStrip
   resourcify
 
   @last_user_save
@@ -187,6 +188,9 @@ class Place < ApplicationRecord
     sunspot_dsl.text :name
 
     sunspot_dsl.integer :tgn_id
+    sunspot_dsl.string :tgn_id_order do
+      tgn_id
+    end
 
     sunspot_dsl.string :country_order do
       country
@@ -201,12 +205,19 @@ class Place < ApplicationRecord
     end
     sunspot_dsl.text :district
 
-    sunspot_dsl.string :name_autocomplete, :as => "name_autocomplete" do
-      name
+    sunspot_dsl.text :hierarchy
+    sunspot_dsl.string :hierarchy_order do
+      hierarchy
+    end
+
+    sunspot_dsl.string :name_autocomplete, :multiple => true, :as => "name_autocomplete" do
+      ((alternate_terms&.split("\n") || []) << name).compact.reject(&:empty?)
     end
 
     sunspot_dsl.string :label, stored: true do
-      [name, district, country].compact.join(", ")
+      #tgn = tgn_id.present? : "(tgn#{tgn_id})" ? nil
+      #[name, district, country, tgn].compact.join(", ")
+      autocomplete_label
     end
 
     sunspot_dsl.join(:folder_id, :target => FolderItem, :type => :integer, 
@@ -216,7 +227,7 @@ class Place < ApplicationRecord
     sunspot_dsl.integer(:referring_objects_order, stored: true) {through_associations_exclude_source_count}
     sunspot_dsl.integer(:total_obj_count_order, stored: true) {through_associations_total_count}
 
-    #MarcIndex::attach_marc_index(sunspot_dsl, self.to_s.downcase)
+    MarcIndex::attach_marc_index(sunspot_dsl, self.to_s.downcase)
 
   end
 
@@ -239,12 +250,34 @@ class Place < ApplicationRecord
     self.district = marc.get_place_district
     self.tgn_id = marc.get_tgn_id
     self.hierarchy = marc.get_hierarchy
+    self.alternate_terms = marc.get_alternate_terms
       
     self.marc_source = self.marc.to_marc
   end
 
   def autocomplete_label
-    [self.name&.strip, self.district&.strip, self.country&.strip].compact.reject(&:empty?).join(", ")
+    tgn = self.tgn_id.present? ? "(tgn#{tgn_id})" : nil
+
+    alts = alternate_terms.to_s.split("\n").reject(&:empty?)
+    alt_places = alts.first(4)
+    alt_places << "…" if alts.size > 4 # We are fancy and use … instead of ...!
+
+    alternates = alt_places.empty? ? nil : "[#{alt_places.join(', ')}]"
+
+    names = [self.name&.strip, self.district&.strip, self.country&.strip].compact.reject(&:empty?).join(", ")
+    [names, tgn, alternates].join(" ").aggressively_strip
+  end
+
+  def formatted_label_for(property_sym)
+    if property_sym == :name
+      autocomplete_label
+    else
+      self[property_sym]
+    end
+  end
+
+  def self.get_tgn?
+    true
   end
 
   # https://github.com/activeadmin/activeadmin/issues/7809

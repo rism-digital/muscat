@@ -1,0 +1,4 @@
+Search for the place on Getty TGN: <a href="https://www.getty.edu/research/tools/vocabularies/tgn" target="_blank" rel="noopener noreferrer">https://www.getty.edu/research/tools/vocabularies/tgn"</a>
+
+Find the place you need (cities are generally inhabited place) and copy the id in brackets, for example 7004847 (for <a href="https://www.getty.edu/vow/TGNFullDisplay?find=Bologna&place=&nation=&prev_page=1&english=Y&subjectid=7004847" target="_blank" rel="noopener noreferrer">Bologna</a>).<br>
+Copy this identifier and paste it into the box. Click Merge to import the data from TGN into your record.

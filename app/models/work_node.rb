@@ -17,7 +17,7 @@ class WorkNode < ApplicationRecord
 
   belongs_to :person
 
-  referring_relations_for :source
+  referring_relations_for :source, :inventory_item
 =begin
   #has_and_belongs_to_many(:referring_sources, class_name: "Source", join_table: "sources_to_work_nodes")
   has_many :source_work_node_relations, class_name: "SourceWorkNodeRelation"
@@ -159,6 +159,13 @@ class WorkNode < ApplicationRecord
       composer
     end
     sunspot_dsl.text :composer
+
+    sunspot_dsl.string :ext_code_order, stored: true do
+      ext_code
+    end
+    sunspot_dsl.string :ext_number_order, stored: true do
+      ext_number
+    end
 
     sunspot_dsl.join(:folder_id, :target => FolderItem, :type => :integer, 
               :join => { :from => :item_id, :to => :id })

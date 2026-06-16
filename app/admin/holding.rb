@@ -20,7 +20,7 @@ ActiveAdmin.register Holding do
     before_create do |item|
       item.user = current_user
     end
-    
+  
     def action_methods
       return super - ['new', 'edit', 'destroy'] if is_selection_mode?
       super
@@ -150,21 +150,6 @@ ActiveAdmin.register Holding do
   
   end
   
-  collection_action :render_embedded, method: :post do    
-    @item = Holding.find(params[:object_id] )#params[:object_id] )
-    
-    begin
-      @item.marc.load_source(true)
-    rescue ActiveRecord::RecordNotFound
-      puts "Could not properly load MarcHolding #{@item.id}"
-    end
-    
-    @editor_profile = EditorConfiguration.get_show_layout @item
-    
-    render :template => 'marc_show/show_preview', :locals => {:holdings => true }
-  
-  end
-
   member_action :move_to, method: :get do
     if !(@current_user.has_role?(:editor) || @current_user.has_role?(:admin))
       redirect_to action: :show
@@ -240,7 +225,7 @@ ActiveAdmin.register Holding do
     if @item.marc_source == nil
       render :partial => "missing"
     else
-      render :partial => "marc/show"
+      render :partial => "marc/show", locals: {item: @item, editor_profile: controller.view_assigns["show_profile"]}
     end
     active_admin_user_wf( self, holding )
     active_admin_navigation_bar( self )

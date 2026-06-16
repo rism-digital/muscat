@@ -220,6 +220,7 @@ es:
   append_folder: Añadir todo a una carpeta existente
   archive: Archivar
   archive_unarchive: Archivar / desarchivar
+  are_you_sure: "¿Estás seguro?"
   authorization_tokens: Auth tokens
   available_templates: Plantillas disponibles
   backend_validation:
@@ -243,6 +244,7 @@ es:
   cancel: Cancelar
   cannot_create_source: Ud. no está autorizado para crear este tipo de fuente
   cannot_update_source: Ud. no está autorizado para editar este tipo de fuente
+  change_owner: Cambiar propietario
   choose_folder: "(Escoja una)"
   clipboard:
     copied: Resultados copiados al portapapeles
@@ -254,6 +256,7 @@ es:
     hide: Ocultar
     modified_records: Records modificados
     new_record: Nuevo record
+    no_recent_version: El último guardado no creó una instantánea
     no_records: No hay records que mostrar con las opciones seleccionadas actualmente
     options: Opciones
     rule: Regla
@@ -490,6 +493,7 @@ es:
   folders:
     added: Se han añadido %{count} ítems a la carpeta %{name}.
     added_bg: Se han añadido los ítems a la carpeta, tarea %{job} pendiente.
+    change_owner: Cambiar propietario
     delete_now: 'Se han eliminado las siguientes carpetas:'
     expires: Expira el
     expiring_folders: Sus carpetas de Muscat expirarán pronto.
@@ -548,6 +552,7 @@ es:
     not_edition: Por favor, seleccione una fuente de edición
   holding_no_siglum: Ejemplar sin sigla
   holding_records: Información del ejemplar
+  import: importa
   imported_level: Registro importado
   incipit_search:
     anchor: Buscar sólo en el comienzo
@@ -578,6 +583,7 @@ es:
     not_set: "[Estado aún no disponible]"
     ok: Tarea completada con éxito
     running_jobs: Las tareas pendientes no se puden borrar.
+    waiting: Esperando que la tarea se inicie…
   lib_siglum: Sigla del repositorio
   library:
     one: repositorio
@@ -781,6 +787,7 @@ es:
   source_converted: Fuente convertida a versión impresa
   source_converted_with_holding: Fuente convertida a versión impresa, holding %{holding_id} creado.
   source_not_manuscript: La fuente no es un manuscrito ni una colección de manuscritos
+  source_summary: Resumen de la fuente
   standardterm:
     one: tema
     other: temas
@@ -790,6 +797,10 @@ es:
   status: Estado
   std_title_contains: Título uniforme
   switch_language: Cambiar idioma
+  tgn:
+    exists: 'El ID Getty TGN %{id} ya existe en Muscat: %{place}'
+    merge_button: Importar desde Getty TGN
+    merge_from_tgn: Introducir ID Getty TGN
   tgn_id: Getty TGN id
   this_file_language: Español
   time:
@@ -828,7 +839,10 @@ es:
     required_if_message: Este campo debe ser rellenado ya que es obligatorio en presencia de {0} ${1}
     validate_031_dups: Este número de íncipit ya está en uso
     validate_588_siglum: 'Introduzca el siglum de la biblioteca y la signatura siguiendo el formato: I-Bc Q.51'
+    validate_calendar: Asegúrese de que las fechas sigan el calendario correcto
     validate_edtf: Validar fecha EDTF
+    validate_person_name: "Verifique que el nombre esté introducido en el orden correcto: normalmente <i>Apellido, Nombre</i>"
+    validate_person_dates: "Asegúrese de que las fechas sigan las directrices"
     validate_url: La URL introducida no es válida
     warning_message: Debería proveerse un valor para este campo
   validation_level_error: El registro tiene errores. Por favor, resuélvalos antes de guardar.
@@ -840,6 +854,16 @@ es:
     deprecated: Descartado
     inprogress: En progreso (UNP)
     published: Publicado (PUB)
+  wikidata:
+    ConnectionError: 'Error al conectar con Wikidata: %{msg}'
+    InvalidQid: 'QID de Wikidata no válido: %{msg}'
+    ItemNotFound: 'QID de Wikidata no encontrado: %{msg}'
+    RecordInRISM: 'Persona ya presente: %{msg}'
+    merge_button: Importar desde Wikidata
+    merge_from_wikidata: Introducir ID Wikidata
+    new: Crear nuevo a partir del registro de Wikidata
+    qid_exists: 'El QID de Wikidata %{qid} ya existe en Muscat: %{person}'
+    wait: Solicitando datos de Wikidata, por favor espere…
   will_paginate:
     models:
       person:

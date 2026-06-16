@@ -14,26 +14,20 @@ class Ability
       can :publish, [Folder]
       can :unpublish, :all
       can :resave, :all
+      can :use, :gnd_editor
 
     ##########
     # Editor #
     ##########
 
     elsif user.has_role?(:editor)
-      if user.has_role?(:person_editor)
-        can [:read, :create, :update, :destroy], [DigitalObject, DigitalObjectLink, Publication, Institution, LiturgicalFeast, Person, Place, StandardTerm, StandardTitle, Source, Work, WorkNode, Holding]
-      elsif user.has_role?(:junior_editor)
-        can [:read, :create, :update], [DigitalObject, DigitalObjectLink, Publication, Institution, LiturgicalFeast, Person, Place, StandardTerm, StandardTitle, Source, WorkNode, Holding]
-      else
-        can [:read, :create, :update, :destroy], [DigitalObject, DigitalObjectLink, Publication, Institution, LiturgicalFeast, Place, StandardTerm, StandardTitle, Source, Work, WorkNode, Holding]
-        can [:read, :create], Person
-        can :update, Person, :wf_owner => user.id
-      end
+
+      can [:read, :create, :update, :destroy], [DigitalObject, DigitalObjectLink, Publication, Institution, LiturgicalFeast, Place, StandardTerm, StandardTitle, Source, Work, WorkNode, Holding]
+      can [:read, :create], Person
+      can :update, Person, :wf_owner => user.id
       #can [:read], Folder
 
-      if user.has_role?(:work_editor)
-        can [:read, :create, :update, :destroy], Work
-      end
+      can :use, :gnd_editor
 
       can [:read, :create, :update, :destroy], InventoryItem
 
@@ -41,6 +35,7 @@ class Ability
       can :convert_manuscript, Source
       can :order_inventory_items, Source
       can :do_reorder_inventory_items, Source
+      can :move_to, Holding
 
       can :manage, Folder#, :wf_owner => user.id
       can :unpublish, :all
@@ -74,6 +69,14 @@ class Ability
         can :order_inventory_items, Source
         can :do_reorder_inventory_items, Source
       end
+
+      can [:read], Work
+      if user.has_role?(:work_cataloger)
+        can :update, Work, :wf_owner => user.id
+        can [:create], Work
+      end
+
+      can :use, :gnd_editor if user.has_role? :gnd_work_editor
 
       can :update, [Publication, Institution, LiturgicalFeast, Person, Place, StandardTerm, StandardTitle, Holding, WorkNode], :wf_owner => user.id
       can [:destroy, :update], [DigitalObject], :wf_owner => user.id
@@ -119,15 +122,17 @@ class Ability
 
     elsif user.has_role? :guest
       can [:read, :create], ActiveAdmin::Comment
-      can :read, :all
+      can :read, [DigitalObject, DigitalObjectLink, Publication, Institution, LiturgicalFeast, Person, Place, StandardTerm, StandardTitle, Source, Work, WorkNode, Holding, InventoryItem]
       can :read, ActiveAdmin::Page, :name => "Dashboard"
+      can :read, ActiveAdmin::Page, :name => "guidelines"
+      can :read, ActiveAdmin::Page, :name => "doc"
       can :read, User, :id => user.id
+      cannot :update, :all
+      cannot :delete, :all
       cannot :read, ActiveAdmin::Page, :name => "Statistics"
       cannot :read, Workgroup
     end
     
-    
-
   end
   
 end

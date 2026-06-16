@@ -119,6 +119,15 @@
     indicator:
       label: records.translation
   label: records.language_code
+'046':
+  fields:
+    k:
+      label: records.date_of_creation
+    l:
+      label: records.end
+    z:
+      label: records.public_note
+  label: records.date_of_creation
 04_codes_other:
   label: records.other
 '100':
@@ -511,6 +520,13 @@
     a:
       label: records.work_node
   label: records.work_node
+'931':
+  fields:
+    a:
+      label: records.work
+    "4":
+      label: records.relationship
+  label: records.work
 '980':
   fields:
     a:
@@ -639,7 +655,7 @@ Typography:
 Var:
   label: records.variations
 Verified:
-  label: general.verified
+  label: records.verified
 aid_best:
   label: general.rism_best_practices
 aid_dates:
@@ -1126,3 +1142,9 @@ voc:
   label: records.manuscript_copy_with_autograph_annotations
 "Additional printed material":
   label: records.additional_printed_material
+excerpts:
+  label: records.excerpts
+fragments:
+  label: records.fragments
+sketches:
+  label: records.sketches

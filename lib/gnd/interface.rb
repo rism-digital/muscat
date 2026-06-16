@@ -8,11 +8,11 @@ module GND
     require 'open-uri'
     require 'net/http'
 
-    SRU_PUSH_URL = "https://devel.dnb.de/sru_ru/"
+    #SRU_PUSH_URL = "https://devel.dnb.de/sru_ru/"
     SRU_READ_URL_AUTH = "https://services.dnb.de/sru/authorities"
     SRU_READ_URL = "https://services.dnb.de/sru/cbs-appr"
     MAGIC_READ_URL = "https://d-nb.info/gnd/" #/about/marcxml"
-    #SRU_PUSH_URL = "https://services.dnb.de/sru_ru/"
+    SRU_PUSH_URL = "https://services.dnb.de/sru_ru/"
     
     #SRU_READ_URL_AUTH = "https://devel.dnb.de/sru/cbs-appr"
     #SRU_READ_URL = "https://devel.dnb.de/sru/cbs-appr"
@@ -186,7 +186,7 @@ module GND
     def self.retrieve(id)
         result = nil
         #query = SRU_READ_URL + "?version=1.1&operation=searchRetrieve&recordSchema=MARC21-xml&query=idn%3D#{id}"
-        query = MAGIC_READ_URL + id + "/about/marcxml"
+        query = "#{MAGIC_READ_URL}#{id.to_s}/about/marcxml"
         query_result = URI.open(query) rescue nil
         # Load the results
         xml = Nokogiri::XML(query_result)
@@ -295,7 +295,8 @@ module GND
             tag500.each_by_tag("0") do |t0|
                 if t0.content and t0.content.start_with?("https://d-nb.info/gnd/")
                     id = t0.content.gsub(/https:\/\/d-nb.info\/gnd\//, "")
-                    id = "DNB:#{id}"
+                    # We need this when using the SOLR backend
+                    #id = "DNB:#{id}"
                     # retrieve the person pointing to it in Muscat (if any)
                     gnd_person_id = id
                     break
@@ -341,12 +342,17 @@ module GND
     # returns the Muscat person with the given DNB id
     def self.find_person(gnd_id)
         return nil if !gnd_id
+=begin
         # make a solr search through field 024a
         query = Person.solr_search do 
             with("024a", gnd_id) if gnd_id
             paginate :page => 1, :per_page => Person.all.count
         end
         return (query.results and !query.results.empty?) ? query.results[0] : nil
+=end
+        # Since we have the identifiers as json we can use the scope here
+        Person.with_identifier("dnb", gnd_id).first
+
     end
     
     ##########################
@@ -408,8 +414,8 @@ module GND
 
     def self.autocomplete_form(term, limit, options)
         result = []
-        xml = self.query(term, "WOE", "Ts", "saz", 500)
-        
+        xml = self.query(term + "*", "WOE", "Ts", "saz", 500)
+
         # Loop on each record in the result list
         xml.xpath("//marc:record", NAMESPACE).each do |record|
             item = {}

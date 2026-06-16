@@ -44,11 +44,20 @@ using AggressivelyStrip
       # 1. Determine mandatory subtags
       mandatory_subtags = extract_mandatory_subtags(tag, tag_rules)
       
+
       # 2. Check if the entire tag is missing when mandatory
       marc_tags = @marc.by_tags(tag)
       # This tag has to be there if "mandatory"
       next if entire_tag_missing_when_mandatory?(tag, marc_tags, mandatory_subtags)
       
+      # We have a required if pointing to us
+      # i.e. 260 makes 710 (us) mandatory.
+      # We must add an "empty" 710 to trigger the validation
+      required_if_others = extract_required_if_other(tag, tag_rules)
+      if required_if_others && required_if_others.any? && marc_tags.empty?
+        marc_tags << MarcNode.new("", tag, "", "##")
+      end
+
       # 3. Validate each subtag rule
       validate_subtags_for_tag(tag, tag_rules, marc_tags)
     end
@@ -68,6 +77,40 @@ using AggressivelyStrip
     end.compact
   end
   
+  # Get the tags configured for the required_if
+  # To see if if it is another tah
+  # i.e. 710 required by 260
+  def extract_required_if_tags(obj, tags = [])
+
+    case obj
+    when Hash
+      obj.each do |key, value|
+        if key == "required_if" && value.is_a?(Hash)
+          value.each_key do |k|
+            tags << k unless k == "unless_val"
+          end
+        else
+          extract_required_if_tags(value, tags)
+        end
+      end
+    when Array
+      obj.each do |item|
+        extract_required_if_tags(item, tags)
+      end
+    end
+
+    tags
+  end
+
+  def extract_required_if_other(tag, tag_rules)
+    required_tags = extract_required_if_tags tag_rules["tags"]
+    return nil if required_tags.nil? || required_tags.empty?
+
+    # Return only if different than us
+    # We can have multiple rules
+    return required_tags - [tag.to_s.strip]
+  end
+
   def entire_tag_missing_when_mandatory?(tag, marc_tags, mandatory_subtags)
     if marc_tags.empty? && mandatory_subtags.any?
       add_error(tag, nil, I18n.t('validation.missing_message'))
@@ -104,7 +147,7 @@ using AggressivelyStrip
       validate_string_tag(rule, marc_tag, marc_subtag, tag, subtag)
       return
     end
-  
+
     # If rule is a Hash, check sub-keys
     if rule.is_a?(Hash)
       validate_subtag_hash_rule(tag, subtag, rule, marc_tag, marc_subtag)
@@ -126,10 +169,11 @@ using AggressivelyStrip
         validate_required_if_rule(tag, subtag, marc_subtag, value)
       
       when "must_be_different"
-        validate_must_be_different(tag, subtag, marc_subtag, value)
+        validate_must_be_different(tag, subtag, marc_tag, marc_subtag, value)
 
       when "must_contain"
         validate_must_contain_rule(tag, subtag, marc_subtag, value)
+
       else
         # Unknown rule or custom logic
         puts "Unknown rule key: #{key} => #{value.inspect}" if DEBUG
@@ -139,31 +183,9 @@ using AggressivelyStrip
   
   def validate_any_of_rules(tag, subtag, subrules, marc_tag, marc_subtag)
     subrules.to_a.each do |subrule|
-      # If it does not pass, the whole any_of fails
-      if !subrule_passes?(subrule, tag, subtag, marc_tag, marc_subtag)
-        break
-      end
+      validate_single_subrule(subrule, tag, subtag, marc_tag, marc_subtag)
     end
   
-  end
-
-  def subrule_passes?(subrule, tag, subtag, marc_tag, marc_subtag)
-    old_error_count = @errors.size
-  
-    # Attempt validation
-    validate_single_subrule(subrule, tag, subtag, marc_tag, marc_subtag)
-  
-    new_error_count = @errors.size
-    # If no new errors => we consider it "passed"
-    passed = (new_error_count == old_error_count)
-  
-    # Optional: if you *don't* want partial errors from each attempt,
-    # you could revert any newly added errors. For example:
-    # unless passed
-    #   @errors = @errors.take(old_error_count)
-    # end
-  
-    passed
   end
 
   def validate_single_subrule(subrule, tag, subtag, marc_tag, marc_subtag)
@@ -195,31 +217,45 @@ using AggressivelyStrip
   end
   
   def validate_required_if_rule(tag, subtag, marc_subtag, required_if_rules)
-    required_if_rules.each do |other_tag, other_subtag|
+    # Extract the eventual unless rule and remove it
+    unless_val = required_if_rules["unless_val"]
+    except = required_if_rules["except"]
+    new_h = required_if_rules.reject { |k, _| k == "unless_val" }
+
+    return if except == "manuscript" && @object.is_manuscript?
+
+    new_h.each do |other_tag, other_subtag|
       other_marc_tag = @marc.first_occurance(other_tag)
       next unless other_marc_tag  # If not there, rule doesn't apply
       other_marc_subtag = other_marc_tag.fetch_first_by_tag(other_subtag)
       next unless other_marc_subtag&.content  # If no content, rule doesn't apply
-  
+
       # Now we check if the current subtag is missing
       if marc_subtag.nil? || marc_subtag.content.blank?
+        # We skip it. Unless val is set
+        # For example if 260 is s.n and 710 is empty it is ok
+        next if other_marc_subtag&.content&.to_s&.strip == unless_val
+
+        # Guep. no, error
         add_error(tag, subtag, "required_if-#{other_tag}#{other_subtag}")
         puts "Missing #{tag} #{subtag}, required_if-#{other_tag}#{other_subtag}" if DEBUG
       end
     end
   end
 
-  def validate_must_be_different(tag, subtag, marc_subtag, rules)
+  def validate_must_be_different(tag, subtag, marc_tag, marc_subtag, rules)
+    # No tag, we don't care
+    return if !marc_subtag
+
     rules.each do |other_tag, other_subtag|
-      other_marc_tag = @marc.first_occurance(other_tag)
-      next unless other_marc_tag  # If not there, rule doesn't apply
-      other_marc_subtag = other_marc_tag.fetch_first_by_tag(other_subtag)
+
+      other_marc_subtag = marc_tag.fetch_first_by_tag(other_subtag)
       next unless other_marc_subtag&.content  # If no content, rule doesn't apply
   
       # Now we check if the current subtag is missing
       if marc_subtag.content == other_marc_subtag.content
-        add_error(tag, subtag, "must_be_different-#{other_tag}#{other_subtag}")
-        puts "Missing #{tag} #{subtag}, must_be_different-#{other_tag}#{other_subtag}" if DEBUG
+        add_error(tag, subtag, "uniq_val_in_tag-#{other_tag}#{other_subtag}")
+        puts "Missing #{tag} #{subtag}, uniq_val_in_tag-#{other_tag}#{other_subtag}" if DEBUG
       end
     end
   end
@@ -264,7 +300,7 @@ using AggressivelyStrip
 
         subtag = unresolved_tag.fetch_first_by_tag(foreign_subtag.tag) # get the first
         if subtag && subtag.content
-          if subtag.content != foreign_subtag.content
+          if subtag.content != foreign_subtag.looked_up_content
             add_error(marctag.tag, foreign_subtag.tag, "foreign-tag: different unresolved value: #{subtag.content} from: ##{foreign_subtag.foreign_object.class}:#{foreign_subtag.foreign_object.id}", "link_error")
           end
         else
@@ -333,7 +369,7 @@ using AggressivelyStrip
       add_error("template-harmony", nil, "Wrong parent template: LEC can only link to LED", "parent_template_error_LEC-LED")
     end
 
-        if @object.record_type == MarcSource::RECORD_TYPES[:theoretica_edition_content] && @object.parent_source.record_type != MarcSource::RECORD_TYPES[:theoretica_edition]
+    if @object.record_type == MarcSource::RECORD_TYPES[:theoretica_edition_content] && @object.parent_source.record_type != MarcSource::RECORD_TYPES[:theoretica_edition]
       add_error("template-harmony", nil, "Wrong parent template: TEC can only link to TED", "parent_template_error_TEC-TED")
     end
 
@@ -347,12 +383,14 @@ using AggressivelyStrip
       add_error("template-harmony", nil, "Wrong parent template: MSR can only link to COL or CMP", "parent_template_error_MSR-COL-CMP")
     end
     
-    if @object.record_type == MarcSource::RECORD_TYPES[:libretto_source] && @object.parent_source.record_type != MarcSource::RECORD_TYPES[:collection]
-      add_error("template-harmony", nil, "Wrong parent template: LSR can only link to COL", "parent_template_error_LSR-COL")
+    if @object.record_type == MarcSource::RECORD_TYPES[:libretto_source] &&
+        ![MarcSource::RECORD_TYPES[:collection], MarcSource::RECORD_TYPES[:composite_volume] ].include?(@object.parent_source&.record_type)
+      add_error("template-harmony", nil, "Wrong parent template: LSR can only link to COL or CMP", "parent_template_error_LSR-COL")
     end
 
-    if @object.record_type == MarcSource::RECORD_TYPES[:theoretica_source] && @object.parent_source.record_type != MarcSource::RECORD_TYPES[:collection]
-      add_error("template-harmony", nil, "Wrong parent template: TSR can only link to COL", "parent_template_error_TSR-COL")
+    if @object.record_type == MarcSource::RECORD_TYPES[:theoretica_source] &&
+        ![MarcSource::RECORD_TYPES[:collection], MarcSource::RECORD_TYPES[:composite_volume] ].include?(@object.parent_source&.record_type)
+      add_error("template-harmony", nil, "Wrong parent template: TSR can only link to COL or CMP", "parent_template_error_TSR-COL")
     end
 
   end
@@ -400,7 +438,7 @@ using AggressivelyStrip
 
   def validate_unknown_tags
     @unknown_tags = []
-      @editor_profile.each_tag_not_in_layout(@object) do |t|
+      @editor_profile.each_tag_not_in_layout(@object, @marc) do |t|
         add_error(t, "unknown-tag", "Unknown tag in layout", "unknown_tag_error")
       end
   end
@@ -423,15 +461,8 @@ using AggressivelyStrip
     return if !@object.is_a?(Source)
     return if !@object.parent_source
 
-    # The two libraries must match, so report if one is missing
-    parent_id = nil
-    source_id = nil
-
-    parent_relations = SourceInstitutionRelation.where(source_id: @object.parent_source, marc_tag: "852")
-    parent_id = parent_relations.first.institution_id if !parent_relations.empty?
-
-    source_relations = SourceInstitutionRelation.where(source_id: @object.id, marc_tag: "852")
-    source_id = source_relations.first.institution_id if !source_relations.empty?
+    parent_id = SourceInstitutionRelation.where(source_id: @object.parent_source, marc_tag: "852").pick(:institution_id)
+    source_id = SourceInstitutionRelation.where(source_id: @object.id, marc_tag: "852").pick(:institution_id)
 
     if parent_id != source_id
       add_error("record", "institution", "Child institution differes from parent (c=#{source_id} p=#{parent_id})", "parent_institution_error")
@@ -440,11 +471,11 @@ using AggressivelyStrip
 
   def validate_588
     return if !@object.respond_to?(:holdings) || @object.holdings.count == 0
-    return if @object.marc.by_tags("588").count == 0
+    return if @marc.by_tags("588").count == 0
 
     holdings_sigla = @object.holdings.map(&:lib_siglum)
 
-    @object.marc.each_by_tag("588") do |t|
+    @marc.each_by_tag("588") do |t|
       # There should be only one of these...
       t.fetch_all_by_tag("a").map(&:content).compact.each do |content|
         # Extract the first chunk as the siglum
@@ -474,7 +505,11 @@ using AggressivelyStrip
     # No work is published unless belonging to a publication with work_catalogue 2, 3 or 4
     if @object.wf_stage == "published"
       
-      @object.publications.each do |p|
+      #@object.publications.each do |p|
+      @object.work_publication_relations.includes(:publication).each do |rel|
+        p = rel.publication
+        # We want to skip literature, which are not work catalogs to begin with, #1918
+        next unless rel.marc_tag == "690" || rel.marc_tag == "691"
 
         if p.wf_stage != "published" 
           add_error("record", "work", "Published work is attached to an unpublished publication", "work_to_unpublished_publication")
@@ -486,15 +521,41 @@ using AggressivelyStrip
         end
       end
 
-    # All works for a publication with work_catalogue 2, 3 or 4 are published
-    # eg. work is unpublished, should not be attached to finished catalogs!
+    # All works for a publication with work_catalogue 3 (work_catalogue_complete) are published
+    # ie. work is unpublished, should not be attached to finished catalogs!
     else 
       @object.publications.each do |p|
-        if p.work_catalogue != "not_work_catalogue" &&  p.work_catalogue != "work_catalogue_in_preparation"
+        if p.work_catalogue == "work_catalogue_complete"
           add_error("record", "work", "Work unpublished but attached to a completed catalog (wc=#{p.work_catalogue})", "work_unpublished_in_catalog")
         end
       end
 
+    end
+
+  end
+
+  def validate_person_codes
+    return if !@object.is_a?(Person)
+
+    @marc["024"].each do |t|
+      code = t["2"]&.first&.content
+      id = t["a"]&.first&.content
+
+      if !code
+        add_error("record", "person", "024 without code (#{t.to_s.strip})", "validate_person_codes_no_code")
+        next
+      end
+
+      if !id
+        add_error("record", "person", "024 without id (#{t.to_s.strip})", "validate_person_codes_no_id")
+        next
+      end
+
+      pc = Person.with_identifier(code, id).where.not(id: @object.id)
+      if pc.count > 0
+        recs = pc.map(&:id).compact.join(", ")
+        add_error("record", "person", "Code #{code}:#{id} is used in other #{pc.count} objects [#{recs}]", "validate_person_codes_not_unique")
+      end
     end
 
   end
@@ -510,6 +571,7 @@ using AggressivelyStrip
     validate_parent_institution
     validate_588
     validate_work_status
+    validate_person_codes
     return @errors
   end
 
@@ -552,7 +614,14 @@ using AggressivelyStrip
   private
   
   def validate_string_tag(rule, marc_tag, marc_subtag, tag, subtag)
-    if rule == "required" || rule == "required, warning" || rule == "mandatory"
+    if rule == "required" || rule == "required, warning" 
+      # Make sure we have subtags
+      if marc_tag.all_children.count > 0 && (!marc_subtag || !marc_subtag.content)
+        #@errors["#{tag}#{subtag}"] = rule
+        add_error(tag, subtag, rule) if (!@validation.is_warning?(tag, subtag) || @show_warnings)
+        puts "Missing #{tag} #{subtag}, #{rule}" if DEBUG
+      end
+    elsif rule == "mandatory"
       if !marc_subtag || !marc_subtag.content
         #@errors["#{tag}#{subtag}"] = rule
         add_error(tag, subtag, rule) if (!@validation.is_warning?(tag, subtag) || @show_warnings)
@@ -631,6 +700,15 @@ using AggressivelyStrip
           add_error(tag, subtag, rule)
           puts "The ID for tag #{tag} cannot be the record id #{@object.id}" if DEBUG
       end
+    elsif rule == "validate_calendar"
+      if marc_subtag && marc_subtag.content && marc_subtag.content.match?(/julian|gregorian|ju|gr/i)
+          add_error(tag, subtag, "marc_validate_calendar:#{marc_subtag.content}")
+          puts "#{tag} #{subtag} Contains #{marc_subtag.content}, marc_validate_calendar" if DEBUG
+      end
+    # Do nothing, just silence the warning for these
+    elsif rule == "validate_edtf"
+    elsif rule == "validate_person_dates"
+    elsif rule == "validate_person_name"
     else
       puts rule.class
       puts "Unknown rule #{rule}" if rule != "mandatory"

@@ -1,6 +1,6 @@
 Der GND-Editor in Muscat
 
-Der GND-Editor ist das Ergebnis einer Kooperation zwischen RISM, der GND und NFDI4Culture. Mit dem GND-Editor können aus Muscat heraus 1) neue Werknormsätze (Werke der Musik) in der GND angelegt und 2) bestehende bearbeitet werden.
+Der GND-Editor ist das Ergebnis einer Kooperation zwischen RISM, der GND und NFDI4Culture. Mit dem GND-Editor können aus Muscat heraus 1) neue Werknormsätze (Werke der Musik) in der GND angelegt und 2) bearbeitet werden.
 
 1\. Anlegen eines neuen Werknormsatzes
 
@@ -23,8 +23,10 @@ Mit erfolgreichem Abspeichern eines Datensatzes wird sofort eine GND-ID generier
 
 2\. Bearbeiten eines bestehenden Werknormsatzes
 
-Um einen bestehenden GND-Werknormsatz zu bearbeiten, muss dieser zunächst von der GND nach Muscat importiert werden. Dies ist über die Funktion „GND-Datensatz bearbeiten" (rechte Spalte) möglich. Dazu ist die Eingabe der Identifikationsnummer des betreffenden GND-Satzes in die Suchmaske erforderlich. Die GND-ID eines Werkes kann man über die oben genannten Tools suchen.
+Über den GND-Editor in Muscat ist es auch möglich Werknormsätze aus der GND zu bearbeiten - diese Möglichkeit soll aber nur auf Datensätze angewendet werden, die von den Nutzenden selbst angelegt wurden, und keinesfalls auf bestehende Datensätze
 
-Liegt ein Werknormsatz noch in älterer Form (RAK) vor, muss dieser in einen RDA-Normsatz umgewandelt werden, indem man gemäß der Hilfetexte alle Felder korrekt ausfüllt.
+Um einen selbst angelegten GND-Werknormsatz zu bearbeiten, muss dieser zunächst von der GND nach Muscat importiert werden. Dies ist über die Funktion „GND-Datensatz bearbeiten" (rechte Spalte) möglich. Dazu ist die Eingabe der Identifikationsnummer des betreffenden GND-Satzes in die Suchmaske erforderlich. Die GND-ID eines Werkes kann man über die oben genannten Tools suchen.
 
-Tauchen beim Anlegen oder Bearbeiten von GND-Werknormsätzen Schwierigkeiten auf, dann kontaktieren Sie bitte Mailadresse XY.
+Außerdem ermöglicht die Ansicht „Zuletzt erstellte Einträge" den Zugriff auf die selbst angelegten Werknormsätze.
+
+Tauchen beim Anlegen oder Bearbeiten von GND-Werknormsätzen Schwierigkeiten auf, dann kontaktieren Sie bitte <gnd-editor@rism.digital>.

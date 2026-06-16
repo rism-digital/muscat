@@ -14,7 +14,7 @@ class Work < ApplicationRecord
   @last_event_save
   attr_accessor :last_event_save
 
-  has_paper_trail :on => [:update, :destroy], :only => [:marc_source, :wf_stage, :wf_audit], :if => Proc.new { |t| VersionChecker.save_version?(t) }
+  has_paper_trail :on => [:update, :destroy], :only => [:marc_source, :wf_stage, :wf_audit, :wf_owner], :if => Proc.new { |t| VersionChecker.save_version?(t) }
 
   belongs_to :composer, class_name: "Person", foreign_key: "person_id"
   has_many :digital_object_links, :as => :object_link, :dependent => :delete_all

@@ -24,12 +24,6 @@ ActiveAdmin.register Person do
   collection_action :autocomplete_person_full_name, :method => :get
   collection_action :autocomplete_person_550a_sms, :method => :get
 
-  collection_action :viaf, method: :get do
-    respond_to do |format|
-        format.json { render json: Person.get_viaf(params[:viaf_input])  }
-    end
-  end
-
   # See permitted parameters documentation:
   # https://github.com/gregbell/active_admin/blob/master/docs/2-resource-customization.md#setting-up-strong-parameters
   #
@@ -88,10 +82,20 @@ ActiveAdmin.register Person do
         redirect_to admin_root_path, :flash => { :error => "#{I18n.t(:error_not_found)} (Person #{params[:id]})" }
         return
       end
-      @editor_profile = EditorConfiguration.get_show_layout @person
+
+      @top_siglas = @person.libraries_top_sigla
+
+      @show_profile = EditorConfiguration.get_show_layout @person
       @editor_validation = EditorValidation.get_default_validation(@person)
       @prev_item, @next_item, @prev_page, @next_page, @nav_positions = Person.near_items_as_ransack(params, @person)
 
+      @source_profile = EditorConfiguration.get_show_layout Source.first
+      @codes = @person.source_person_relations.group(:relator_code).select("relator_code AS code, COUNT(*) AS count").order("count DESC")
+
+      @holdings_profile = EditorConfiguration.get_show_layout Holding.first
+      @holdings_codes = @person.holding_person_relations.group(:relator_code).select("relator_code AS code, COUNT(*) AS count").order("count DESC")
+
+    #.where(marc_tag: "700")
       @jobs = @person.delayed_jobs
 
       respond_to do |format|
@@ -116,11 +120,14 @@ ActiveAdmin.register Person do
     def new
       @person = Person.new
 
-      new_marc = MarcPerson.new(File.read(ConfigFilePath.get_marc_editor_profile_path("#{Rails.root}/config/marc/#{RISM::MARC}/person/default.marc")))
+      marc_file = File.read(ConfigFilePath.get_marc_editor_profile_path("#{Rails.root}/config/marc/#{RISM::MARC}/person/default.marc"))
+      new_marc = MarcPerson.new(marc_file)
+      
       new_marc.load_source false # this will need to be fixed
       @person.marc = new_marc
 
       @editor_profile = EditorConfiguration.get_default_layout @person
+      @editor_validation = EditorValidation.get_default_validation(@person)
       # Since we have only one default template, no need to change the title
       #@page_title = "#{I18n.t('active_admin.new_model', model: active_admin_config.resource_label)} - #{@editor_profile.name}"
       #To transmit correctly @item we need to have @source initialized
@@ -142,6 +149,32 @@ ActiveAdmin.register Person do
     redirect_to resource_path(params[:id]), notice: "Save Job started #{job.id}"
   end
 
+  collection_action :wikidata_merge, method: :get do
+    qid = params[:wikidata_id].to_s
+    skip = !(ActiveModel::Type::Boolean.new.cast(params[:new]))
+
+    if qid !~ /\AQ\d+\z/
+      render json: { ok: false, error: I18n.t("wikidata.InvalidQid", msg: qid) }, status: :unprocessable_entity
+      return
+    end
+
+    ps = Person.where(wikidata_id: qid)
+    if ps.count > 0 && skip == false
+      render json: { ok: false, error: I18n.t("wikidata.qid_exists", qid: qid, person: "#{ps.first.full_name.to_s} (#{ps.first.id})") }, status: :unprocessable_entity
+      return
+    end
+
+    begin
+      data = Wikidata::Connector.get_person(qid, format: :json, skip_in_rism: skip)
+    rescue Wikidata::Connector::RecordInRISM => e
+      render json: { ok: false, error: I18n.t("wikidata.RecordInRISM", msg: e.message) }, status: :unprocessable_entity
+      return
+    end
+
+    render json: { ok: true, data: data }
+  end
+
+
   ###########
   ## Index ##
   ###########
@@ -150,6 +183,7 @@ ActiveAdmin.register Person do
   #filter :id_eq, :label => proc {I18n.t(:filter_id)}
   #filter :full_name_contains, :label => proc {I18n.t(:filter_full_name)}, :as => :string
 	filter :full_name_or_400a_cont, :label => proc {I18n.t(:filter_full_name)}, :as => :string
+  filter :full_name_search_cont, :label => proc {I18n.t(:filter_full_name_but_more_cool)}
   filter :"100d_cont", :label => proc {I18n.t(:filter_person_100d)}, :as => :string
   filter :"375a_cont", :label => proc {I18n.t(:filter_person_375a)}, :as => :select,
   # FIXME locale not read
@@ -240,7 +274,7 @@ ActiveAdmin.register Person do
     if @item.marc_source == nil
       render :partial => "marc/missing"
     else
-      render :partial => "marc/show"
+      render :partial => "marc/show", locals: {item: @item, editor_profile: controller.view_assigns["show_profile"]}
     end
     active_admin_embedded_source_list( self, person, !is_selection_mode? )
 
@@ -259,6 +293,30 @@ ActiveAdmin.register Person do
       end
     end
     
+    panel I18n.t("records.relationship_code") + " (Sources)", :class => "muscat_panel"  do
+      if controller.view_assigns["codes"].any?
+        profile = controller.view_assigns["source_profile"]
+        table_for controller.view_assigns["codes"] do
+          column(:code) {|row| row.code.nil? ? I18n.t("records.composer_author") + " (100)" : profile.get_label(row.code)}
+          column(:count) { |row| row.read_attribute(:count) }
+        end
+      else
+        "There are no sources with relator codes"
+      end
+    end
+
+    panel I18n.t("records.relationship_code") + " (Holdings)", :class => "muscat_panel"  do
+      if controller.view_assigns["holdings_codes"].any?
+        profile = controller.view_assigns["holdings_profile"]
+        table_for controller.view_assigns["holdings_codes"] do
+          column(:code) {|row| row.code.nil? ? I18n.t("records.composer_author") + " (100)" : profile.get_label(row.code)}
+          column(:count) { |row| row.read_attribute(:count) }
+        end
+      else
+        "There are no holdings with relator codes"
+      end
+    end
+
     active_adnin_create_list_for(self, Institution, person, siglum: I18n.t(:filter_siglum), full_name: I18n.t(:filter_full_name), place: I18n.t(:filter_place))
     active_adnin_create_list_for(self, InventoryItem, person, composer: I18n.t(:filter_composer), title: I18n.t(:filter_title))
     active_adnin_create_list_for(self, Person, person, full_name: I18n.t(:filter_full_name), life_dates: I18n.t(:filter_life_dates), alternate_names: I18n.t(:filter_alternate_names))

@@ -27,7 +27,13 @@ client:
             "041": "h"
         - must_be_different:
             "041": "h"
-
+  "046":
+    tags:
+      "k": 
+        any_of:
+        - required_if: 
+            "046": "z"
+        - validate_edtf
   "100":
     tag_overrides:
       exclude:
@@ -69,6 +75,9 @@ client:
         - composite_volume
     tags:
       a: required
+  "490":
+    tags:
+      "0": required
   "510":
     tags:
       a: required
@@ -137,7 +146,13 @@ client:
           "700": "0"
   "710": 
     tags:
-      "0": required
+      "0":
+        any_of:
+          - required
+          - required_if:
+              "260": "b"
+              "unless_val": "[s.n.]"
+              "except": "manuscript"
       "4":
         required_if:
           "710": "0"

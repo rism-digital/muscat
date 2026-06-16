@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.2].define(version: 2026_01_05_094416) do
+ActiveRecord::Schema[7.2].define(version: 2026_06_09_111343) do
   create_table "active_admin_comments", id: :integer, charset: "utf8mb3", force: :cascade do |t|
     t.string "namespace"
     t.text "body"
@@ -243,6 +243,8 @@ ActiveRecord::Schema[7.2].define(version: 2026_01_05_094416) do
     t.datetime "updated_at", null: false
     t.integer "source_order", default: 0, null: false
     t.string "page_info"
+    t.index ["source_id", "source_order", "id"], name: "index_inventory_items_on_source_id_source_order_id"
+    t.index ["source_id"], name: "index_inventory_items_on_source_id"
   end
 
   create_table "inventory_items_to_holdings", charset: "utf8mb3", force: :cascade do |t|
@@ -285,6 +287,7 @@ ActiveRecord::Schema[7.2].define(version: 2026_01_05_094416) do
     t.integer "source_id"
     t.string "marc_tag"
     t.string "relator_code"
+    t.index ["inventory_item_id", "marc_tag"], name: "index_inventory_items_to_sources_on_inventory_item_id_marc_tag"
   end
 
   create_table "inventory_items_to_standard_terms", charset: "utf8mb3", force: :cascade do |t|
@@ -301,6 +304,13 @@ ActiveRecord::Schema[7.2].define(version: 2026_01_05_094416) do
     t.string "relator_code"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "inventory_items_to_work_nodes", charset: "utf8mb3", force: :cascade do |t|
+    t.integer "inventory_item_id"
+    t.integer "work_node_id"
+    t.string "marc_tag"
+    t.string "relator_code"
   end
 
   create_table "inventory_items_to_works", charset: "utf8mb3", force: :cascade do |t|
@@ -344,6 +354,8 @@ ActiveRecord::Schema[7.2].define(version: 2026_01_05_094416) do
     t.datetime "updated_at", precision: nil
     t.integer "lock_version", default: 0, null: false
     t.string "display_name"
+    t.string "wikidata_id"
+    t.json "identifiers"
     t.index ["full_name"], name: "index_people_on_full_name"
     t.index ["wf_stage"], name: "index_people_on_wf_stage"
   end
@@ -502,18 +514,6 @@ ActiveRecord::Schema[7.2].define(version: 2026_01_05_094416) do
     t.index ["standard_term_id"], name: "index_publications_to_standard_terms_on_standard_term_id"
   end
 
-  create_table "pull_requests", charset: "utf8mb3", force: :cascade do |t|
-    t.string "item_type"
-    t.integer "item_id"
-    t.integer "wf_owner"
-    t.integer "wf_stage"
-    t.text "marc_source"
-    t.text "original_marc"
-    t.text "message"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
   create_table "roles", id: :integer, charset: "utf8mb3", force: :cascade do |t|
     t.string "name"
     t.integer "resource_id"
@@ -560,6 +560,7 @@ ActiveRecord::Schema[7.2].define(version: 2026_01_05_094416) do
     t.string "relator_code"
     t.index ["institution_id"], name: "index_sources_to_institutions_on_institution_id"
     t.index ["marc_tag", "relator_code", "source_id", "institution_id"], name: "unique_records", unique: true
+    t.index ["source_id", "marc_tag", "institution_id"], name: "index_sti_on_source_marc_institution"
     t.index ["source_id"], name: "index_sources_to_institutions_on_source_id"
   end
 
@@ -774,14 +775,17 @@ ActiveRecord::Schema[7.2].define(version: 2026_01_05_094416) do
     t.datetime "updated_at", precision: nil
     t.string "libpatterns"
     t.string "email"
+    t.boolean "personal_default", default: false, null: false
+    t.integer "owner_user_id"
     t.index ["email"], name: "index_workgroups_on_email"
+    t.index ["owner_user_id"], name: "index_workgroups_on_owner_user_id", unique: true
   end
 
   create_table "works", id: :integer, charset: "utf8mb3", force: :cascade do |t|
     t.integer "person_id"
     t.string "title"
     t.string "opus"
-    t.string "catalogue"
+    t.string "catalogue", collation: "utf8mb4_0900_as_cs"
     t.integer "wf_audit", default: 0
     t.integer "wf_stage", default: 0
     t.integer "wf_owner", default: 0
@@ -878,4 +882,6 @@ ActiveRecord::Schema[7.2].define(version: 2026_01_05_094416) do
     t.index ["work_a_id"], name: "index_works_to_works_on_work_a_id"
     t.index ["work_b_id"], name: "index_works_to_works_on_work_b_id"
   end
+
+  add_foreign_key "workgroups", "users", column: "owner_user_id"
 end

@@ -83,7 +83,6 @@
 //= require autocomplete_events
 //= require marc_json
 //= require jquery.blockUI
-//= require jquery.cascade
 //= require jquery.dirtyFields
 //= require jquery.maskedinput
 //= require jquery.validate
@@ -117,9 +116,12 @@
 
 //= require 'ekko-lightbox.min'
 
-
+//= require external_fetch_panel
 //= require tribute.min
 //= require tribute_load
 
 //= require jquery.highlight-within-textarea
 //= require inventory_item_sort_ujs
+//= require job_wait
+
+//= require show_incipit_renderer

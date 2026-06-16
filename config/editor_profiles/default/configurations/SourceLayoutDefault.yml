@@ -278,6 +278,7 @@ groups:
   edit_material:
     all_tags:
     - '593'
+    #- '046'
     - '260'
     - '300'
     - '590'
@@ -311,6 +312,7 @@ groups:
      "856": 8
   edit_works:
     all_tags:
+    - "931"
     - "930"
   edit_administration:
     all_tags:

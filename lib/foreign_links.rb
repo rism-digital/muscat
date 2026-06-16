@@ -169,6 +169,7 @@ module ForeignLinks
 
     # Go through all the relation items and delete the ones
     # that have no correspondence to the ones in the MARC data
+=begin
     through_relation_items.each do |r|
       found = false
       foreign_objects.each do |obj|
@@ -180,7 +181,26 @@ module ForeignLinks
         through_table.destroy(r.id) 
       end
     end
-  
+=end
+    to_delete = []
+
+    through_relation_items.each do |r|
+      found = foreign_objects.any? do |obj|
+        obj[:object].id == r.public_send("#{link_name_to}_id") &&
+          obj[:tag] == r.marc_tag &&
+          obj[:relator_code] == r.relator_code
+      end
+
+      to_delete << r unless found
+    end
+
+    to_delete.each do |r|
+      reindex_items << r
+      r.destroy
+    end
+
+    through_relation_items.reload
+
     # Now traverse the links in MARC and create just the missing ones
     foreign_objects.each do |obj_and_metadata|
       # We use fin_or_create_by with a block so the item is automatically cread

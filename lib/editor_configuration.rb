@@ -446,11 +446,13 @@ class EditorConfiguration
   end
   
   # Yields all the tags not included in the layout
-  def each_tag_not_in_layout(marc_item)
+  def each_tag_not_in_layout(marc_item, marc = nil)
+    # In some cases, we need a pre-loaded marc item
+    marc = marc_item.marc if !marc
     layout_tags
     # get the tags excluded for a particular record_type (if any)
     excluded = excluded_tags_for_record_type(marc_item)
-    marc_item.marc.each_data_tags_present do |tag|
+    marc.each_data_tags_present do |tag|
       yield tag if ((!layout_tags.include? tag) || (excluded.include? tag))
     end
   end

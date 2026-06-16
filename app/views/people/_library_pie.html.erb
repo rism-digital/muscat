@@ -1,8 +1,5 @@
-<% s = Statistics::Person.libraries([@item]) %>
-<% pie = Statistics::Spreadsheet.new(s).to_chart rescue nil  %>
-
-<% return 0 unless pie %>
-<% dta = {labels: pie.keys,
+<% if @top_siglas %>
+<% dta = {labels: @top_siglas.keys,
        datasets: [   {
       label: "Monthly",
       fillColor: "rgba(220,220,220,0.2)",
@@ -28,17 +25,11 @@
       pointStrokeColor: "#fff",
       pointHighlightFill: "#fff",
       pointHighlightStroke: "rgba(220,220,220,1)",
-      data: pie.values},  ] }
+      data: @top_siglas.values},  ] }
 %>
 <div style="margin-right: auto">
-  <canvas id="pie"/>
+  <canvas id="pie" data-chart='<%= dta.to_json %>' data-chart-type="pie"/>
 </div>
-
-<%= javascript_tag do %>
-  var data = <%= dta.to_json.html_safe %>
-  var pie =  new Chart($("#pie"), {type: 'pie', data: data});
-<% end %>
-
-
-
-
+<%else%>
+There seem to be no sources using this Person
+<%end%>

@@ -46,8 +46,6 @@
       label: records.name_titles_words
     d:
       label: records.life_dates
-    y:
-      label: records.other_life_dates
   label: records.heading_personal_name
 '370':
   fields:
@@ -114,6 +112,11 @@
     "9":
       label: general.source_citation
   label: records.source_data_found
+'675':
+  fields:
+    a:
+      label: general.source_citation
+  label: records.source_data_not_found
 '678':
   fields:
     a:

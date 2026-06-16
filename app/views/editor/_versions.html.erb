@@ -22,14 +22,16 @@
 			<th><%=(I18n.t :history_modification)%></th>
 			<th></th>
 		</tr>
-		<%- i = 0 %>
-		<%- @item.versions.reverse.each do |version| %>
+
+		<%- @item.versions.reverse.each_with_index do |version, i| %>
 			<% old_item = version.reify %>
 			<% restore_path =  send(link_function_restore, @item.id, {version_id: version.id}) %>
 			<% delete_path =  send(link_function_delete, @item.id, {version_id: version.id}) %>
 			<% old_wf_stage = old_item.wf_stage %>
 			<% old_record_type = @item.respond_to?(:record_type) ? old_item.record_type : nil %>
 			<% old_source_id = @item.respond_to?(:source_id) ? @item.source_id : nil # show the CURRENT one! %>
+
+			<% show_restore = i == 0 && version.whodunnit.present? %>
 			
 			<tr class="<%= cycle('even', 'odd') -%>" id="person_50036437">
 				<td class="col"><%= I18n.localize(version.created_at.localtime, :format => '%A %e %B %Y - %H:%M') -%></td>
@@ -54,7 +56,7 @@
 						<% model = @item.class.model_name.route_key %>
 						<a class="view_link member_link marc_versioning" data-action="preview" data-version="<%= version.id %>" href="#"><%=(I18n.t :history_view)%></a>
 						<a class="edit_link member_link marc_versioning" data-action="diff" data-version="<%= version.id %>" href="#"><%=(I18n.t :history_diff)%></a>
-						<% if current_user.has_role?(:admin) || current_user.has_role?(:editor) %>
+						<% if show_restore && (current_user.has_role?(:admin) || current_user.has_role?(:editor)) %>
 							<%= link_to("#{I18n.t :history_restore}", restore_path, method: :put, :class => "member_link",
 								data: { confirm: "#{I18n.t :history_restore_confirm}"}) %>
 						<%end%>
@@ -65,8 +67,8 @@
 					</div>
 				</td>
 			</tr>
-			<%- i += 1 %>
 		<%- end -%>
+		
 	</table>
 
 	<div id="marc_editor_historic_view" class="marc_historic_view"></div>

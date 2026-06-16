@@ -27,18 +27,6 @@ ActiveAdmin.register Workgroup do
       params.permit!
     end
     
-    def show
-      @workgroup = Workgroup.find(params[:id])
-    end
-    
-    def index
-      #@results = Workgroup.search_as_ransack(params)
-      
-      index! do |format|
-        #@workgroups = @results
-        format.html
-      end
-    end
     # redirect update failure for preserving sidebars
     def update
       update! do |success,failure|
@@ -62,7 +50,17 @@ ActiveAdmin.register Workgroup do
   
   # Solr search all fields: "_equal"
   filter :name_eq, :label => proc {I18n.t(:any_field_contains)}, :as => :string
-  
+
+    scope :all, default: true
+
+  scope "Personal defaults" do |workgroups|
+    workgroups.where(personal_default: true)
+  end
+
+  scope "Shared workgroups" do |workgroups|
+    workgroups.where(personal_default: false)
+  end
+
   index :download_links => false do
     selectable_column
     column (I18n.t :filter_id), :id  
@@ -92,11 +90,15 @@ ActiveAdmin.register Workgroup do
       row (I18n.t :filter_name) { |r| r.name }
       row (I18n.t :filter_pattern) { |r| r.libpatterns }
       row I18n.t(:connected_libraries) do |n|
-        workgroup.show_libs.html_safe
+        workgroup.show_libs(max: 100).html_safe
       end
-      
-     row :email  
+      row :personal_default
+      row :owner_user
+      row :email  
     end
+    
+    active_adnin_create_list_for(self, User, workgroup, username: "User", name: "Name", email: "Email")
+
   end
   
   sidebar :actions, :only => :show do

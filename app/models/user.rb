@@ -4,6 +4,12 @@ class User < ApplicationRecord
   has_many :sources, foreign_key: 'wf_owner'
   has_many :folders, foreign_key: 'wf_owner'
 
+  # Default workgroup for each user
+  has_one :default_workgroup, -> { where(personal_default: true) }, class_name: "Workgroup", foreign_key: :owner_user_id, dependent: :destroy
+  after_create :create_default_workgroup!
+  # We need to unlink by hand the default workgroup
+  before_destroy :unlink_default_workgroup, prepend: true
+
   rolify
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
@@ -34,6 +40,15 @@ class User < ApplicationRecord
     text :name
   end
 
+  # We need to always preserve the default workgroup
+  def workgroup_ids=(ids)
+    ids = Array(ids).reject(&:blank?).map(&:to_i)
+
+    ids << default_workgroup.id if default_workgroup.present?
+
+    super(ids.uniq)
+  end
+
   def active_for_authentication?
     super && !self.disabled?
   end
@@ -52,10 +67,10 @@ class User < ApplicationRecord
       return false
     end
     if source.child_sources.count > 0
-      libs=[]
+      libs = []
       source.child_sources.each do |so| 
         so.institutions.each do |l|
-          libs<<l
+          libs << l
         end
       end
       ((libs + source.institutions) & (self.workgroups.map {|ins| ins.get_institutions}).flatten).any?
@@ -208,5 +223,26 @@ class User < ApplicationRecord
   # In Non-marc models we can use the default
   def self.ransackable_associations(_) = reflections.keys
   def self.ransackable_attributes(_) = attribute_names - %w[token]
+
+  private
+
+  # When a user is created, a special WG for them in created too
+  # for the personal siglas
+  def create_default_workgroup!
+    wg = Workgroup.create!(
+      name: "Default for #{username.presence || email}",
+      personal_default: true,
+      owner_user: self
+    )
+
+    workgroups << wg
+  end
+
+  # We need to clean up here the default wg
+  def unlink_default_workgroup
+    return unless default_workgroup
+
+    workgroups.delete(default_workgroup)
+  end
 
 end

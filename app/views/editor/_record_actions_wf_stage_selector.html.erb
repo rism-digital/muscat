@@ -23,6 +23,10 @@
         disabled = false
     end
 
+    # Lastly, disable the menu for non editors in non sources, #1922
+    if !current_user.has_any_role?(:editor, :admin) && !@item.is_a?(Source)
+        disabled = true
+    end
 
     # unpublished shares the same enum value (0) as inprogress.
     # We keep the key in the enum so older versions can still be read,

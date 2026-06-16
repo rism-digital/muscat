@@ -10,6 +10,10 @@ const SIMPLE_RULE_MAP = {
 	"validate_031_dups": { validate_031_dups: true },
 	"validate_url": { validate_url: true },
 	"not_record_id": {not_record_id: true},
+	"validate_calendar": {"validate_calendar": true},
+	"validate_person_name": {"validate_person_name": true},
+	"validate_person_dates": {"validate_person_dates": true},
+	"validate_024": {"validate_024": true}
 }
 
 const PARAMETRIC_RULES = [
@@ -19,6 +23,34 @@ const PARAMETRIC_RULES = [
 	"must_be_different",
 	"gnd_warn_default"
 ]
+
+const RECORD_TYPES = {
+  unspecified: 0,
+  collection: 1,
+  source: 2,
+  edition_content: 3,
+  libretto_source: 4,
+  libretto_edition: 5,
+  theoretica_source: 6,
+  theoretica_edition: 7,
+  edition: 8,
+  libretto_edition_content: 9,
+  theoretica_edition_content: 10,
+  composite_volume: 11,
+  inventory: 12,
+  inventory_edition: 13
+};
+
+function isManuscript(recordType) {
+  return (
+    recordType === RECORD_TYPES.collection ||
+    recordType === RECORD_TYPES.libretto_source ||
+    recordType === RECORD_TYPES.theoretica_source ||
+    recordType === RECORD_TYPES.source || 
+	recordType === RECORD_TYPES.inventory ||
+	recordType === RECORD_TYPES.composite_volume
+  );
+}
 
 function marc_validate_has_warnings() {
 	return hasNewWarnings;
@@ -55,10 +87,12 @@ function marc_validate_show_warnings() {
 		var element = warningList[warn];
 		_marc_validate_highlight(element, "warning", "");
 		
+		var message = $(element).data('message') || I18n.t('validation.warning_message');
+
 		var label = $( "<label>" )
 		.attr( "id", element.name + "-warning" )
 		.addClass("warning")
-		.html(I18n.t("validation.warning_message"));
+		.html(message);
 		label.insertAfter( element );
 	}
 }
@@ -243,6 +277,53 @@ function marc_validate_edtf(value, element, param) {
 	return result;
 }
 
+function marc_validate_calendar(value, element, param){
+	if (value == null || value === "")
+		return true;
+
+	if (/julian|gregorian|ju|gr/i.test(value)) {
+		return false;
+	}
+
+	return true;
+}
+
+function marc_validate_person_name(value, element, param) {
+	const pattern = /^\s*[^,]+,\s*[^,]+\s*$/;
+
+	if (value != "" && !pattern.test(value)) {
+		$(element).data('message', I18n.t("validation.validate_person_name"));
+		marc_validate_add_warnings(element);
+	}
+	
+	return true;
+}
+
+const LifeDatesValidator = (() => {
+  const YEAR = String.raw`\d{1,4}`;
+  const YEAR_SUFFIX = String.raw`(?:a|p|c)?`;
+  const CENTURY = String.raw`\d{1,2}\.sc`;
+  const PART = String.raw`(?:${YEAR}${YEAR_SUFFIX}|${CENTURY})`;
+
+  const REGEX = new RegExp(
+    String.raw`^(?:${PART}(?:\*|\+)?|${PART}-${PART}|\d{1,2}\/\d{1,2})$`
+  );
+
+  function valid(value) {
+    if (value == null) return false;
+    return REGEX.test(String(value).trim());
+  }
+
+  return { valid };
+})();
+
+function marc_validate_person_dates(value, element, param) {
+	if (value === "")
+		return true;
+
+	return LifeDatesValidator.valid(value);
+}
+
 function marc_validate_not_record_id(value, element, param) {
 	const record_id = $('#id').val();
 	const isDifferent = String(record_id) !== String(value);
@@ -415,23 +496,104 @@ function marc_validate_must_be_different(value, element, param) {
 	return valid;
 }
 
+// This is the function to parse the params for required_if
+function parseRequiredIfParams(params) {
+  const allowedOptionKeys = new Set(["unless_val", "except", "only"]);
+
+  const result = {
+    dep_tag: null,
+    dep_subtag: null,
+    options: {
+      unless_val: null,
+      except: null,
+      only: null
+    },
+    has: {
+      unless_val: false,
+      except: false,
+      only: false
+    }
+  };
+
+  for (let i = 0; i < params.length; i++) {
+    const current = params[i];
+
+    if (/^\d+$/.test(current)) {
+      if (result.dep_tag === null) {
+        result.dep_tag = current;
+        result.dep_subtag = params[i + 1] ?? null;
+        i += 1;
+        continue;
+      }
+    }
+
+    if (allowedOptionKeys.has(current)) {
+      result.options[current] = params[i + 1] ?? null;
+      result.has[current] = true;
+      i += 1;
+    }
+  }
+
+  if (result.dep_tag === null || result.dep_subtag === null) {
+    throw new Error("Missing dep_tag/dep_subtag entry");
+  }
+
+  return result;
+}
+
+
+/**
+ * Validates that the current field is required depending on the presence
+ * and values of other MARC fields.
+ *
+ * Behavior:
+ * - Looks for all fields matching a given tag/subtag (dep_tag, dep_subtag).
+ * - If the current field has a value, validation always passes.
+ * - If the current field is empty:
+ *     - It is considered valid only if ALL matching dependent fields are:
+ *         - empty, or
+ *         - equal to a specified exempt value (e.g. "[s.n.]").
+ *     - If ANY matching dependent field is non-empty and not equal to the
+ *       exempt value, validation fails (the current field becomes required).
+ *
+ * Additional notes:
+ * - When validating within the same tag, the search is scoped to that tag instance;
+ *   otherwise, the entire editor is searched.
+ * - The "unless_val" parameter allows defining a special value that bypasses
+ *   the requirement (e.g. skip requirement if another field contains "[s.n.]").
+ 
+ * For example:
+ * - required_if:
+ *   "260": "b"
+ *   "unless_val": "[s.n.]"
+ *
+ * The current field is required if any 260$b subfield has a non-empty
+ * value, except when all such values are "[s.n.]". If 260$b is either
+ * empty or only contains "[s.n.]", the requirement is not enforced.
+ */
 function marc_validate_required_if(value, element, param) {
-	// Note! We can validaye just one of the required_if fields
-	var dep_tag = param[0];
-	var dep_subtag = param[1];
+	// Note! We can validate just one of the required_if fields
+
+	const params = parseRequiredIfParams(param)
+	const recordType = Number($("#record_type").val());
+
+	// Skip manuscripts if so configured	
+	if (params.has.except && params.options.except === "manuscript" && isManuscript(recordType))
+		return true;
+
+	var dep_tag = params.dep_tag;
+	var dep_subtag = params.dep_subtag;
 	
+	var current_val = (value || "").trim();
 	var valid = true;
-	var tag = $(element).data("tag");
+	var current_tag = $(element).data("tag");
+	var current_subtag = $(element).data("subfield");
 	var toplevel;
-	
-	// We need at least an occurance of def_tag
-	// tag with a valid value. This means we
-	// try to get it from the editor and see
-	
-	// There is a catch: if it is the same tag
+
+	// There is a catch: if the dependency is in the same tag
 	// as us, search inside this tag, else
 	// find the first one in the whole tree
-	if (tag == dep_tag) {
+	if (current_tag == dep_tag) {
 		toplevel = $(element).parents(".tag_toplevel_container");
 	} else {
 		toplevel = $("#marc_editor_panel");
@@ -443,23 +605,105 @@ function marc_validate_required_if(value, element, param) {
 	// in hidden tags that are entirely missing
 	// from the editing page at the moment of
 	// verification.
-	var selector;
+	var dep_selector;
 	if (dep_subtag == "control") {
-		selector = '.serialize_marc[data-tag=' + dep_tag + ']';
+		dep_selector = '.serialize_marc[data-tag="' + dep_tag + '"]';
 	} else {
-		selector = '.serialize_marc[data-tag=' + dep_tag + '][data-subfield=' + dep_subtag + ']';
+		dep_selector = '.serialize_marc[data-tag="' + dep_tag + '"][data-subfield="' + dep_subtag + '"]';
 	}
 
-	$(selector, toplevel).each(function() {
-		if ($(this).val() != "") {
-			// The value of the other field is set
-			// it makes the validated field mandatory
-			if (value.trim() == "")
-				valid = false;
+	// First check whether the dependency actually makes
+	// this field required. If no matching dependency field
+	// is filled, or if all filled dependency fields are exempt,
+	// then this field is valid even if empty.
+	var required = false;
+	$(dep_selector, toplevel).each(function() {
+		const other_val = ($(this).val() || "").trim();
+
+		if (other_val !== "") {
+			if (!(params.has.unless_val && other_val === params.options.unless_val)) {
+				required = true;
+				return false;
+			}
 		}
 	});
 
+	// If the dependency is not active, this field is not required
+	if (!required) {
+		return true;
+	}
+
+	// If this very field is filled, then we are fine
+	if (current_val !== "") {
+		return true;
+	}
+
+	// There is another catch: if we have multiple copies
+	// of the same tag/subtag, only one of them must be filled.
+	// So if one 710 is filled, the other empty 710s should
+	// not complain.
+	var same_selector;
+	if (current_subtag) {
+		same_selector = '.serialize_marc[data-tag="' + current_tag + '"][data-subfield="' + current_subtag + '"]';
+	} else {
+		same_selector = '.serialize_marc[data-tag="' + current_tag + '"]';
+	}
+
+	// .serialize_marc again lets us inspect all matching fields,
+	// including ones that may currently live in placeholders.
+	// This way "required_if" behaves like "at least one required"
+	// across repeated occurrences of the same field.
+	var has_any_filled = false;
+	$(same_selector, $("#marc_editor_panel")).each(function() {
+		const same_val = ($(this).val() || "").trim();
+
+		if (same_val !== "") {
+			has_any_filled = true;
+			return false;
+		}
+	});
+
+	valid = has_any_filled;
 	return valid;
+}
+
+function marc_validate_024(value, element, param) {
+	var $a = $(element);
+
+	// Find the surrounding repeating subfield block, then locate subfield 2
+	var $container = $a.closest(".tag_toplevel_container");
+	var $sf2 = $container.find('[data-tag="024"][data-subfield="2"]');
+
+	var aVal = $.trim($a.val() || "");
+	var sf2Val = $.trim($sf2.val() || "");
+
+	// If either is empty, no validation here
+	// let the "required" rule get mad
+	if (aVal === "") {
+		return true;
+	}
+
+	if (sf2Val === "") {
+		return true;
+	}
+
+	// $a must not begin with http
+	if (/^http/i.test(aVal)) {
+		return false;
+	}
+
+	/* Maybe in the future
+	if (sf2Val === "BNF" && !/^ark:\//i.test(aVal)) {
+		return false;
+	}
+	*/
+
+	// WKP => $a must start with Q
+	if (sf2Val === "WKP" && !/^Q/.test(aVal)) {
+		return false;
+	}
+
+	return true;
 }
 
 // #1622, the first group cannot be "Additional printed material"
@@ -503,14 +747,18 @@ function marc_editor_create_parameters(rule_name, rule_contents) {
 	//  required_if:
     //      "031": "a"
 	//      "032": "b"
+	// But other params can be passed to the validator
+	//  required_if:
+    //      "031": "a"
+	//      "unless_val": "[s.n.]"
 	// It will not work in any case as it needs a different
 	// implementation of the validator
     if (rule_contents instanceof Object) {
     	const entries = Object.entries(rule_contents);
 
         if (entries.length > 0) {
-            // Use only the first key-value pair, the others are ignored
-            rule_contents = entries[0];
+            // Flatten the array so we can have multilple values
+            rule_contents = entries.flat(1)
         } else {
 			// Let it die if the configuration in wrong+
             throw new Error(`Please check the configuration for rule ${rule_name}`);
@@ -689,19 +937,21 @@ function marc_editor_init_validation(form, validation_conf) {
 	$.validator.addMethod("presence", marc_validate_presence, I18n.t("validation.missing_message"));
 	$.validator.addMethod("mandatory", marc_validate_mandatory, I18n.t("validation.missing_message"));
 
-	$.validator.addMethod("required_if",	marc_validate_required_if,		$.validator.format(I18n.t("validation.required_if_message")));
-	$.validator.addMethod("begins_with",	marc_validate_begins_with, 		$.validator.format(I18n.t("validation.begins_with_message")));
-	$.validator.addMethod("check_group",	marc_validate_check_group,		$.validator.format(I18n.t("validation.check_group_message")));
-	$.validator.addMethod("must_contain",	marc_validate_must_contain,		$.validator.format(I18n.t("validation.must_contain_message")));
-	$.validator.addMethod("validate_588_siglum", marc_validate_588_siglum,	$.validator.format(I18n.t("validation.validate_588_siglum")));
-	$.validator.addMethod("validate_edtf",		 marc_validate_edtf,		$.validator.format(I18n.t("validation.validate_edtf")));	
-	$.validator.addMethod("validate_031_dups", marc_validate_031_duplicates,	$.validator.format(I18n.t("validation.validate_031_dups")));
-	$.validator.addMethod("must_be_different", marc_validate_must_be_different, $.validator.format(I18n.t("validation.must_be_different_message")));
-	$.validator.addMethod("not_record_id", 	   marc_validate_not_record_id,		$.validator.format(I18n.t("validation.not_record_id")));	
-
-	$.validator.addMethod("gnd_warn_default", marc_validate_gnd_warn_default,	$.validator.format(I18n.t("validation.gnd_warn_default_message")));
-
-	$.validator.addMethod("validate_url", marc_validate_url,	$.validator.format(I18n.t("validation.validate_url")));
+	$.validator.addMethod("required_if",		marc_validate_required_if,		$.validator.format(I18n.t("validation.required_if_message")));
+	$.validator.addMethod("begins_with",		marc_validate_begins_with, 		$.validator.format(I18n.t("validation.begins_with_message")));
+	$.validator.addMethod("check_group",		marc_validate_check_group,		$.validator.format(I18n.t("validation.check_group_message")));
+	$.validator.addMethod("must_contain",		marc_validate_must_contain,		$.validator.format(I18n.t("validation.must_contain_message")));
+	$.validator.addMethod("validate_588_siglum",marc_validate_588_siglum,		$.validator.format(I18n.t("validation.validate_588_siglum")));
+	$.validator.addMethod("validate_edtf",		marc_validate_edtf,				$.validator.format(I18n.t("validation.validate_edtf")));	
+	$.validator.addMethod("validate_031_dups", 	marc_validate_031_duplicates,	$.validator.format(I18n.t("validation.validate_031_dups")));
+	$.validator.addMethod("must_be_different", 	marc_validate_must_be_different,$.validator.format(I18n.t("validation.must_be_different_message")));
+	$.validator.addMethod("not_record_id", 	   	marc_validate_not_record_id,	$.validator.format(I18n.t("validation.not_record_id")));	
+	$.validator.addMethod("gnd_warn_default", 	marc_validate_gnd_warn_default,	$.validator.format(I18n.t("validation.gnd_warn_default_message")));
+	$.validator.addMethod("validate_url", 		marc_validate_url,				$.validator.format(I18n.t("validation.validate_url")));
+	$.validator.addMethod("validate_calendar", 	marc_validate_calendar,			$.validator.format(I18n.t("validation.validate_calendar")));
+	$.validator.addMethod("validate_person_name", 	marc_validate_person_name,	$.validator.format(I18n.t("validation.validate_person_name")));
+	$.validator.addMethod("validate_person_dates", 	marc_validate_person_dates,	$.validator.format(I18n.t("validation.validate_person_dates")));
+	$.validator.addMethod("validate_024", 		marc_validate_024,				$.validator.format(I18n.t("validation.validate_024")));
 
 	// New creation: this is not configurable, it is used to make sure the
 	// "confirm create new" checkbox is selected for new items

@@ -76,7 +76,7 @@ group :development do
     gem 'puma'
 end
 
-gem 'devise'
+gem 'devise', '~> 5.0'
 gem 'devise-i18n'
 #gem 'devise_saml_authenticatable', require: false
 
@@ -120,8 +120,7 @@ gem 'rails-i18n'
 
 gem 'gruff'
 
-# These need to be loaded in production too
-gem 'solr_wrapper'#, '>= 0.3'
+# Saml auth plugin
 #gem 'ruby-saml-idp'
 
 gem 'rsolr'#, '>= 1.0'
@@ -150,11 +149,10 @@ group :test do
   gem 'rspec-rails', '~> 3.5'
   gem 'factory_bot_rails'
   gem 'capybara'
-  gem 'selenium-webdriver'
+  #gem 'selenium-webdriver'
   gem 'database_cleaner'
   gem 'generator_spec'
-  # Use sqlite3 for testing db
-  gem 'sqlite3'
+  #gem 'sqlite3'
 end
 
 # This gem is used in subfield_select_codes
@@ -179,7 +177,6 @@ gem 'listen'
 # To make sure the translations are all there
 gem 'i18n-tasks', '~> 1.0.14', group: :development
 #gem 'easy_translate', group: :development
-#gem 'ruby-openai', group: :development
 
 # Uncomment this if you want to test emails in development
 #gem 'mailcatcher', '~> 0.10.0', group: :development
@@ -196,3 +193,5 @@ gem "sparql-client", "~> 3.3"
 
 # We use this to map TGN languages to 041
 gem 'iso639'
+
+#gem "ruby-openai"

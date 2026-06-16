@@ -16,12 +16,25 @@ Wirkl
 zx
 )
 
+lalalist = [
+"bn",
+"da", 
+"do", 
+"ee", 
+"gg", 
+"in",
+"tn", 
+"ub", 
+"xx", 
+"z"
+]
+
 Person.find_each do |p|
   saveme = false
   codes = []
   p.marc["400"].each do |t|
     t["j"].each do |tt|
-      if invalid.include?(tt.content.strip)
+      if !lalalist.include?(tt.content.strip)
         codes << tt.content
         tt.content = "xx"
         saveme = true
@@ -37,7 +50,7 @@ Person.find_each do |p|
   end
 
 end
-
+=begin
 Person.find_each do |p|
   saveme = false
   p.marc["400"].each do |t|
@@ -57,3 +70,4 @@ Person.find_each do |p|
   end
 
 end
+=end

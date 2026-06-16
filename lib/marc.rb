@@ -4,13 +4,15 @@
 # TODO: Add String.intern to convert all tags to symbols
 
 class Marc
-  require 'xml'
+  require 'libxml-ruby'
 
   include ApplicationHelper
   include Comparable
 
   using AggressivelyStrip
   
+  IMPORTED_MARKER = '_'
+
 ##  attr_reader :all_foreign_associations
   attr_accessor :root, :results, :suppress_scaffold_links_trigger
 
@@ -176,6 +178,11 @@ class Marc
         subtag  = $1
         content = $2
         record  = $3
+
+        if subtag == IMPORTED_MARKER
+          tag_group.imported = true
+          next
+        end
         
         content.gsub!(DOLLAR_STRING, "$")
       
@@ -219,6 +226,11 @@ class Marc
               tag_group = @root << MarcNode.new(@model, tag, nil, ind)
               field['subfields'].each do | pos |
                 pos.each_pair do |code, value|
+                  if code == IMPORTED_MARKER
+                    tag_group.imported = true
+                    next
+                  end
+
                   # Convert unicode spaces to strippable spaces
                   value = value.gsub(DOLLAR_STRING, "$").aggressively_strip.strip
                   tag_group << MarcNode.new(@model, code, value, nil)
@@ -548,7 +560,7 @@ class Marc
     if (collection)
       # wrap the record (document root) into a collection element and make the namespace not default
       record = document.root
-      collection = XML::Node.new("collection")
+      collection = LibXML::XML::Node.new("collection")
       document.root = collection
       document.root << record
       ns_name = 'marc'
@@ -585,8 +597,8 @@ class Marc
     safe_marc.root = @root.deep_copy
     safe_marc.to_external(created_at, updated_at, versions, holdings, deprecated_ids)
     
-    document = XML::Document.new()
-    document.root = XML::Node.new("record")
+    document = LibXML::XML::Document.new()
+    document.root = LibXML::XML::Node.new("record")
     document.root['type'] = "Authority" if authority
 
     for child in safe_marc.root.children
@@ -632,7 +644,7 @@ class Marc
 
     # A subtag val can also be an array for repeated sts
     subtags.each do |stag, val|
-      Array(val).compact.reject(&:empty?).reverse.each do |subval|
+      Array(val).compact.filter_map { |v| s = v&.to_s&.strip; s unless s.nil? || s.empty? }.reverse.each do |subval|
         the_t.add_at(MarcNode.new(@model, stag.to_s, subval, nil), 0)
       end
     end
@@ -724,6 +736,28 @@ class Marc
   def each_by_tag_after(tag, node, &block)
     load_source unless @loaded
     @root.each_by_tag(tag, node, &block)
+  end
+
+  def change_tag(from_tag, to_tag)
+    load_source(false) unless @loaded
+
+    from_tag = from_tag.to_s
+    to_tag = to_tag.to_s
+
+    raise ArgumentError, "Tag #{from_tag} is not configured for #{@model}" if !@marc_configuration.has_tag?(from_tag)
+    raise ArgumentError, "Tag #{to_tag} is not configured for #{@model}" if !@marc_configuration.has_tag?(to_tag)
+
+    return [] if from_tag == to_tag
+
+    changed_tags = by_tags([from_tag])
+    changed_tags.each { |marc_tag| marc_tag.change_tag(to_tag) }
+
+    changed_tags.each(&:destroy_yourself)
+    changed_tags.each do |marc_tag|
+      @root.add_at(marc_tag, get_insert_position(marc_tag.tag))
+    end
+
+    changed_tags
   end
 
   def change_authority_links(old_auth, new_auth)
@@ -842,106 +876,7 @@ class Marc
   alias inspect to_marc
   
   private
-  
-  def marc_helper_get_008_language(value)
-    # language is 35-37
-    if value.length <= 35
-      marc_get_range(value, value.length - 5, 3)
-    else
-      field = marc_get_range(value, 35, 3)
-      if field
-        field = field.to_s
-      end
-    end
-    return field
-  end
-  
-  # Get the first date from MARC 008
-  def marc_helper_get_008_date1(value)
-    # date1 is 07-10
-    field = marc_get_range(value, 7, 4)
-    if field
-      field = field.to_i
-    end
-    return field
-  end
-
-  # Get the second date from MARC 008
-  def marc_helper_get_008_date2(value)
-    # date2 is 11-14
-    field = marc_get_range(value, 11, 4)
-    if field
-      field = field.to_i
-    end
-    return field
-  end
-  
-  def marc_helper_get_008_language(value)
-    codes = Array.new
     
-    forward = {
-    	'lat' => 'Latin',
-    	'la' => 'Latin',
-
-    	'eng' => 'English',
-    	'en' => 'English',
-
-    	'ita' => 'Italian',
-    	'it' => 'Italian',
-
-    	'ger' => 'German',
-    	'ge' => 'German',
-
-    	'spa' => 'Spanish',
-    	'sp' => 'Spanish',
-
-    	'fre' => 'French',
-    	'fr' => 'French',
-
-    	'sco' => 'Scots',
-    	'sc' => 'Scots',
-
-    	'wel' => 'Welsh',
-    	'we' => 'Welsh',
-
-    	'rus' => 'Russian',
-    	'ru' => 'Russian'
-    }
-
-    reverse = {
-    	'Latin'   => 'lat',
-    	'English' => 'eng',
-    	'Italian' => 'ita',
-    	'German'  => 'ger',
-    	'Spanish' => 'spa',
-    	'French'  => 'fre',
-    	'Scots'   => 'sco',
-    	'Welsh'   => 'wel',
-    	'Russian' => 'rus'
-    }
-
-    if value =~ /^[^|]+[|]+([^|]+).+$/
-      if forward.has_key?($1)
-        codes << forward[$1]
-        codes << reverse[forward[$1]]
-      end
-    end
-
-    return codes
-  end
-  
-  # Return the string from the given start for lenght in a 008 MARC record
-  def marc_get_range(value, start, length)
-    if value.length <= start
-      return nil
-    end
-    field = value[start, length]
-    if field.match(/x+/i)
-      return nil
-    end
-    return field
-  end
-  
   def marc_create_pae_entry(conf_tag, conf_properties, marc, model)
     out = []
    
@@ -1160,4 +1095,3 @@ class Marc
 
 end
  
-

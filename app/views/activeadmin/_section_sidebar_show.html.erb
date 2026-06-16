@@ -88,8 +88,9 @@
 				:class => "muscat_icon_link muscat_icon_link_archive") %>
 			</li>
 		<%- end %>
-		<%- if (self.controller.respond_to? :export_folder) && (can? :edit, item) && item.is_a?(Folder) &&
-			item.folder_type.constantize.new.respond_to?(:marc_source) %>
+			<%- folder_model = item.folder_model if item.is_a?(Folder) %>
+			<%- if (self.controller.respond_to? :export_folder) && (can? :edit, item) && item.is_a?(Folder) &&
+				folder_model && folder_model.new.respond_to?(:marc_source) %>
 			<li class="muscat_icon_link">
 			<%= link_to("#{I18n.t :export_folder}", send("export_folder_admin_#{model}_path", item),
 				:class => "muscat_icon_link muscat_icon_link_download") %>

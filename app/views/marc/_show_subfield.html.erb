@@ -1,13 +1,13 @@
 <tr class="row">
 	<th>
 		<% if (no_label == false) -%>
-			<%= @editor_profile.get_sub_label(tag.tag, subfield.tag) %>
+			<%= editor_profile.get_sub_label(tag.tag, subfield.tag) %>
 		<%- end %>
 	</th>
 	<td>
 	<%
 		content = ""
-		if @item.marc.config.is_foreign?(tag.tag, subfield.tag)
+		if item.marc.config.is_foreign?(tag.tag, subfield.tag)
 			content = subfield.looked_up_content.to_s if subfield && subfield.looked_up_content
 			if subfield.foreign_object
 				content = link_to(content, [:admin, subfield.foreign_object])
@@ -16,7 +16,7 @@
 			content = subfield.content if subfield && subfield.content
 		end
 
-		browse_helper = @item.marc.config.get_browse_helper(tag.tag, subfield.tag)
+		browse_helper = item.marc.config.get_browse_helper(tag.tag, subfield.tag)
 		content = Anchored::Linker.auto_link(content).html_safe if content.match("(http|https)://")
 	-%>
 	<% if browse_helper -%>

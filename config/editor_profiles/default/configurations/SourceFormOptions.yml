@@ -62,6 +62,7 @@
     - - p
       - editor_partial: subfield_pae
     - - q
+      - growfield: true
     - - z
   tag_params:
     031r:
@@ -196,6 +197,12 @@
       - editor_partial: subfield_select_codes
         select_label: "Language"
         shared_codes: "language_codes_041"
+#"046": 
+#  layout: 
+#    fields: 
+#    - - k
+#      - editor_partial: subfield_edtf
+#    - - z
 "100":
   new_window: people
   new_window_field: full_name_eq
@@ -322,9 +329,15 @@
     fields:
     - - a
     - - b
+      - values:
+        - "[s.n.]"
+        editor_partial: subfield_autocomplete
     - - c
     - - e
     - - f
+      - values:
+        - "[s.n.]"
+        editor_partial: subfield_autocomplete
 "300":
   layout:
     fields:
@@ -960,7 +973,7 @@
     - - a
       - type: library
         editor_partial: subfield_secondary
-        allow_new: true
+        #allow_new: true
     - - e
       - autocomplete_extra: corporate_name
     - - b
@@ -1018,6 +1031,20 @@
       - type: work_node
         editor_partial: subfield_secondary
         allow_new: false
+"931":
+  layout:
+    fields:
+    - - "0"
+      - hidden: true
+    - - a
+      - read_only: true
+    - - "4"
+      - read_only: true
+      #- type: work
+        #editor_partial: subfield_secondary
+        #allow_new: false
+  tag_params: 
+    no_delete: true
 "980":
   layout:
     fields:

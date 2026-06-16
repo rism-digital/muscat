@@ -1,6 +1,4 @@
 <% render_panel = params[:marc_editor_dest] %>
-<%- 
-	holdings_resolved = holdings rescue holdings_resolved = false 
--%>	
 
-$('#<%= render_panel %>').html("<%= escape_javascript(render(:partial =>  "marc/show", :locals => {:holdings => holdings_resolved } )) -%>");
+$('#<%= render_panel %>').html("<%= escape_javascript(render(partial:  "marc/show", locals: {item: @item, editor_profile: @editor_profile, is_embedded: false } )) -%>");
+window.renderAllMusic && window.renderAllMusic($("#<%= j params[:marc_editor_dest] %>"));

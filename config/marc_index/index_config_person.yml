@@ -10,6 +10,7 @@ fields:
       :index_processor_helper: marc_index_make_024_person
       :type: string
     "043c":
+    "100c":
     "100d":
       :type: text 
     "100d_birthdate":

@@ -7,9 +7,42 @@ ActiveAdmin.register User do
 
   # Remove all action items
   config.clear_action_items!
-	
+	config.per_page = [10, 30, 50, 100, 1000]
+
+  order_by(:role_sort_name) do |order_clause|
+    "role_sort_name #{order_clause.order}"
+  end
 
 	controller do
+
+    def apply_sorting(chain)
+      if params[:order].to_s.match?(/\Aroles(?:\.|_)name_/)
+        params[:order] = params[:order].to_s.sub(/\Aroles(?:\.|_)name_/, "role_sort_name_")
+      end
+
+      super
+    end
+
+    def scoped_collection
+      super
+        .left_joins(:roles)
+        .select(<<~SQL.squish)
+          users.*,
+          COALESCE(
+            MIN(
+              CASE roles.name
+                WHEN 'admin' THEN 1
+                WHEN 'editor' THEN 2
+                WHEN 'cataloger' THEN 4
+                WHEN 'guest' THEN 5
+                ELSE 6
+              END
+            ),
+            0
+          ) AS role_sort_name
+        SQL
+        .group("users.id")
+    end
 
 	  def update
 	    if params[:user][:password].blank? && params[:user][:password_confirmation].blank?
@@ -25,7 +58,11 @@ ActiveAdmin.register User do
   collection_action :list, method: :post do
     params.permit!
     if params.include?(:q)
-      users = User.where("name REGEXP ?", "\\b#{params[:q]}").collect {|u| {name: u.name, id: u.name.gsub(" ", "_")}}
+      pattern = "\\b#{Regexp.escape(params[:q].to_s)}"
+
+      users = User.where(disabled: false)
+                  .where("name REGEXP ?", pattern)
+                  .map { |u| { name: u.name, id: u.name.tr(" ", "_") } }
     else
       users = []
     end
@@ -49,6 +86,37 @@ ActiveAdmin.register User do
     end
   end
 
+  # Button to add a default wg to the user
+  action_item :create_default_workgroup, only: [:show, :edit] do
+    if authorized?(:admin, User) && resource.default_workgroup.blank?
+      link_to "Create personal default Workgroup",
+              create_default_workgroup_admin_user_path(resource),
+              method: :post
+    end
+  end
+
+  # And the implementation of the above
+  member_action :create_default_workgroup, method: :post do
+    authorize! :admin, User
+
+    user = User.find(params[:id])
+
+    if user.default_workgroup.present?
+      redirect_to resource_path(user), alert: "User already has a personal default workgroup"
+      next
+    end
+
+    workgroup = Workgroup.create!(
+      name: "Default for #{user.username.presence || user.email}",
+      personal_default: true,
+      owner_user: user
+    )
+
+    user.workgroups << workgroup
+
+    redirect_to resource_path(user), notice: "Personal default workgroup created"
+  end
+
   ###########
   ## Index ##
   ###########
@@ -56,35 +124,52 @@ ActiveAdmin.register User do
   filter :username
   filter :name
   filter :email
+  filter :roles_id_in,
+       as: :select,
+       label: I18n.t(:roles),
+       collection: -> { Role.order(:name).pluck(:name, :id) }
   filter :current_sign_in_at
   filter :sign_in_count
   filter :created_at
 
-  index :download_links => false do
+  index download_links: false,
+    row_class: ->(user) do
+      return 'disabled-user' if user.disabled?
+      return 'admin-user' if user.has_role? :admin
+      return 'editor-user' if user.has_role? :editor
+      return 'guest-user' if user.has_role? :guest
+    end do
+
     selectable_column
     id_column
+    
+    column :status, sortable: :disabled do |user|
+      status_tag(
+        user.disabled? ? 'DIS' : 'ENA',
+        class: user.disabled? ? 'deleted' : 'ok'
+      )
+    end
+
+    column :active do |user|
+      user.active?
+    end
+
     column :username
     column :name
     column :email
     column I18n.t(:workgroups) do |user|
          user.get_workgroups.join(", ")
     end
-    column I18n.t(:roles) do |user|
-         user.get_roles.join(", ")
+    column I18n.t(:roles), sortable: "role_sort_name" do |user|
+      user.get_roles.join(", ")
     end
-    column :created_at
+    column :sign_in_count
+    column :current_sign_in_at
+    #column :created_at
     #column (I18n.t :filter_sources) do |user|
     #  user.sources_size_per_month(Time.now - 1.month, Time.now)
     #end
-
-    column :active do |user|
-      user.active?
-    end
-
-    column :disabled do |user|
-      user.disabled?
-    end
-
+    #
     actions
   end
   
@@ -104,8 +189,14 @@ ActiveAdmin.register User do
       row :username
       row :name
       row :email
-      row I18n.t(:workgroups) do |n|
-             user.workgroups.map(&:name).join(", ").html_safe
+      row I18n.t(:workgroups) do |user|
+        safe_join(
+          user.workgroups.map do |wg|
+            label = wg.personal_default? ? "#{wg.name} **" : wg.name
+            link_to(label, admin_workgroup_path(wg))
+          end,
+          ", ".html_safe
+        )
       end
       row I18n.t(:roles) do |user|
            user.get_roles.join(", ")
@@ -125,6 +216,10 @@ ActiveAdmin.register User do
         row :disabled
       end
       row :sign_in_count
+      row :current_sign_in_at
+      row :last_sign_in_at
+      row :current_sign_in_ip
+      row :last_sign_in_ip
       row :created_at
       row :updated_at
     end

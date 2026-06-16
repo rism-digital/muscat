@@ -33,6 +33,8 @@ module ActiveAdmin::ViewsHelper
     #  c = Source.where(id: item.referring_sources.ids).or(Source.where(id: item.holdings.pluck(:source_id)))
     if link_class == InventoryItem &&item.respond_to?("inventory_items") && item.is_a?(Source)
       c = item.inventory_items
+    elsif link_class == User && item.respond_to?("users") && item.is_a?(Workgroup)
+      c = item.users
     else
       c = item.send("referring_" + link_class.to_s.pluralize.underscore)
     end    
@@ -334,8 +336,12 @@ module ActiveAdmin::ViewsHelper
   def dashboard_get_referring_comments(limit, days = 7)
     sanitized_name = current_user.name.gsub(" ", "_")
     user_name = "@#{sanitized_name}"
+    user_name_like = "%#{ActiveRecord::Base.sanitize_sql_like(user_name)}%"
 
-    ActiveAdmin::Comment.where(("updated_at > ? AND namespace = 'admin'"), days.days.ago).where("body LIKE '%#{user_name}%'").limit(limit)
+    ActiveAdmin::Comment
+      .where(("updated_at > ? AND namespace = 'admin'"), days.days.ago)
+      .where("body LIKE ?", user_name_like)
+      .limit(limit)
   end
 
   def dashboard_get_my_comments(limit, days = 7)

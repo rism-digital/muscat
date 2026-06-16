@@ -78,7 +78,7 @@ ActiveAdmin.register Publication do
         return
       end
 
-      @editor_profile = EditorConfiguration.get_show_layout @publication
+      @show_profile = EditorConfiguration.get_show_layout @publication
       @prev_item, @next_item, @prev_page, @next_page, @nav_positions = Publication.near_items_as_ransack(params, @publication)
       
       @jobs = @publication.delayed_jobs
@@ -185,6 +185,20 @@ ActiveAdmin.register Publication do
     redirect_to resource_path(params[:id]), notice: I18n.t(:publish_job, scope: :folders, id: job.id)
   end
 
+  member_action :reown_works do
+    if !(@current_user.has_role?(:editor) || @current_user.has_role?(:admin))
+      redirect_to action: :show
+      flash[:error] = I18n.t(:unauthorized)
+      return
+    end
+
+    pub = Publication.find(params[:id])
+
+    job = Delayed::Job.enqueue(ChangeOwnerJob.new(params[:id], Publication, :referring_works, pub.wf_owner))
+    redirect_to resource_path(params[:id]), notice: I18n.t(:change_owner, scope: :folders, id: job.id)
+
+  end
+
   collection_action :work_catalogs  do
     #doc_url = 'https://docs.google.com/spreadsheets/d/1Wh45W93lUZfcf2AOb2OLn9LcIvbY7b55QgmoJ87xAc0/export?exportFormat=csv'
 
@@ -231,7 +245,7 @@ ActiveAdmin.register Publication do
 
   filter :wf_owner_with_integer, :label => proc {I18n.t(:filter_owner)}, :as => :flexdatalist, data_path: proc{list_for_filter_admin_users_path()}
 
-  filter :work_catalogue_with_integer, :label => proc{I18n.t(:work_catalogue)}, as: :select, 
+  filter :work_catalogue_with_integer, :label => proc{I18n.t(:work_catalog)}, as: :select, 
   collection: proc{Publication.work_catalogues.collect {|k,v| [I18n.t("work_catalogue_labels." + k), "work_catalogue:#{k}"]}}, :if => proc{ can?(:edit, Work) }
   
   index :download_links => false do
@@ -276,7 +290,7 @@ ActiveAdmin.register Publication do
     if @item.marc_source == nil
       render :partial => "missing"
     else
-      render :partial => "marc/show"
+      render :partial => "marc/show", locals: {item: @item, editor_profile: controller.view_assigns["show_profile"]}
     end
     
     ## Source box. Use the standard helper so it is the same everywhere
@@ -317,6 +331,10 @@ ActiveAdmin.register Publication do
 
   sidebar :statistics, :only => :show, if: proc{ item && item.work_catalogue } do
     render :partial => "publications/work_statistics", :locals => { :item => publication }
+  end
+
+  sidebar :work_actions, only: :show, if: proc{ current_user.has_any_role?(:editor, :admin) } do
+    render :partial => "publications/work_actions"
   end
 
   sidebar :folders, :only => :show do

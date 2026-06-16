@@ -97,12 +97,19 @@ class Person < ApplicationRecord
 #  has_many :referring_person_relations, class_name: "PersonRelation", foreign_key: "person_b_id"
 #  has_many :referring_people, through: :referring_person_relations, source: :person_a
   
-
   composed_of_reimplementation :marc, :class_name => "MarcPerson", :mapping => %w(marc_source to_marc)
   
 #  validates_presence_of :full_name  
   validate :field_length
   
+  # Make json attribute compatible with both MySQL and MariaDB, see
+  # https://github.com/rails/rails/issues/44997
+  attribute :identifiers, :json
+
+  scope :with_identifier, ->(code, value) {
+    where("identifiers->>? = ?", "$.#{code.to_s.downcase}", value.to_s)
+  }
+
   #include NewIds
   
   before_destroy :check_dependencies, :cleanup_comments
@@ -261,6 +268,10 @@ class Person < ApplicationRecord
       full_name
     end
 
+    sunspot_dsl.text :full_name_search, :as  => "full_name_search_text" do
+      full_name
+    end
+
     sunspot_dsl.string :label, stored: true do
       autocomplete_label(true)
     end
@@ -294,7 +305,7 @@ class Person < ApplicationRecord
       # Use the jump table directly
       source_person_relations.size + holding_person_relations.size
     end
-
+    
     sunspot_dsl.integer(:src_count_order, :stored => true) {through_associations_source_count}
     sunspot_dsl.integer(:referring_objects_order, stored: true) {through_associations_exclude_source_count}
     sunspot_dsl.integer(:total_obj_count_order, stored: true) {through_associations_total_count}
@@ -326,6 +337,10 @@ class Person < ApplicationRecord
     # varia
     self.gender, self.birth_place, self.source = marc.get_gender_birth_place_and_source
 
+    # Wikidata id, to avoid duplicates
+    self.wikidata_id = marc.get_wikidata_id
+    self.identifiers = marc.get_all_identifiers
+
     self.marc_source = self.marc.to_marc
   end
   
@@ -338,21 +353,42 @@ class Person < ApplicationRecord
     return full_name
   end
   
+  def primary_reference_types(limit = 2)
+    refs = {
+      "Sources"         => referring_sources.count,
+      "Institutions"    => referring_institutions.count,
+      "Holdings"        => referring_holdings.count,
+      "Publications"    => referring_publications.count,
+      "Works"           => referring_works.count,
+      "Inventory Items" => referring_inventory_items.count,
+      "Work Nodes"      => referring_work_nodes.count
+    }
+
+    refs
+      .reject { |_, count| count.zero? }
+      .sort_by { |_, count| -count }
+      .first(limit)
+      .map(&:first)
+      .join("/")
+  end
+
   def autocomplete_label(use_self = false)
     #1540, does this slow things up too much?
     #Since the autocomplete only gets the minimum fields
-    if use_self
-      pp = self
-    else
-      pp = Person.find(id)
-    end
+    pp = use_self ? self : Person.find(id)
 
-    pp.marc.load_source false
+    pp.marc.load_source(false)
     person_function = pp.marc.first_occurance("100", "c")
 
-    "#{full_name}" + 
-      (person_function && person_function.content && !person_function.content.empty? ? " (#{person_function.content})" : "") + 
-      (life_dates && !life_dates.empty? ? " - #{life_dates}" : "")
+    parts = [full_name]
+
+    parts << "(#{person_function.content})" if person_function&.content.present?
+    parts << "- #{life_dates}" if life_dates.present?
+
+    refs = pp.primary_reference_types
+    parts << " [#{refs}]" if refs.present?
+
+    parts.join(" ")
   end
 
   # If we define our own ransacker, we need this
@@ -373,10 +409,10 @@ class Person < ApplicationRecord
   ransacker :"551a", proc{ |v| } do |parent| parent.table[:id] end
   ransacker :"667a", proc{ |v| } do |parent| parent.table[:id] end
 	ransacker :"full_name_or_400a", proc{ |v| } do |parent| parent.table[:id] end
+  ransacker :full_name_search, proc{ |v| } do |parent| parent.table[:id] end
 
-  def self.get_viaf(str)
-    str.gsub!("\"", "")
-    Viaf::Interface.search(str, self.to_s)
+  def self.get_wikidata?
+    true
   end
 
   # rake sunspot:reindex calls indexable? to make sure this is an idexable record
@@ -392,6 +428,40 @@ class Person < ApplicationRecord
   # sure we always have a value here
   def display_name
     super.presence || self.name
+  end
+
+  def libraries_top_sigla(limit: 5)
+    sql = <<~SQL
+      WITH counts AS (
+        SELECT
+          NULLIF(TRIM(s.lib_siglum), '') AS siglum_norm,
+          COUNT(*) AS cnt
+        FROM sources_to_people ps
+        JOIN sources s ON s.id = ps.source_id
+        WHERE ps.person_id = ?
+        GROUP BY NULLIF(TRIM(s.lib_siglum), '')
+      ),
+      ranked AS (
+        SELECT
+          COALESCE(siglum_norm, 'Print') AS siglum,
+          cnt,
+          ROW_NUMBER() OVER (
+            ORDER BY cnt DESC, COALESCE(siglum_norm, 'Print')
+          ) AS rn
+        FROM counts
+      )
+      SELECT siglum, cnt
+      FROM ranked
+      WHERE rn <= ?
+      ORDER BY cnt DESC, siglum
+    SQL
+
+    sanitized = ActiveRecord::Base.send(:sanitize_sql_array, [sql, self.id, limit])
+    rows = ActiveRecord::Base.connection.select_all(sanitized).to_a
+
+    rows.each_with_object({}) do |r, h|
+      h[r["siglum"]] = r["cnt"].to_i
+    end
   end
 
 end

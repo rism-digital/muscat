@@ -224,10 +224,24 @@ dirs.keys.each do |dir|
       "format" => "text/html",
       "label" => "RISM Catalogue Record"
     }
+
+    metadata = [
+      {
+        "label": "Title",
+        "value": title
+      },
+      {
+        'label': "Relation",
+        'value': "https://rism.online/sources/#{dir}"
+      }
+    ]
+
     seed = {
         '@id' => manifest_id,
         'label' => title,
-        'related' => related
+        'description' => title,
+        'related' => related,
+        'metadata' => metadata
     }
     # Any options you add are added to the object
     manifest = IIIF::Presentation::Manifest.new(seed)

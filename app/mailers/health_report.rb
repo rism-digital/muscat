@@ -4,7 +4,7 @@ class HealthReport < ApplicationMailer
     
     zip_file = Tempfile.new("#{file_name}.zip")
   
-    Zip::File.open(zip_file.path, Zip::File::CREATE) do |zipfile|
+    Zip::File.open(zip_file.path, create: true) do |zipfile|
       zipfile.add(File.basename(file_path), file_path)
     end
   

@@ -253,7 +253,7 @@ class Source < ApplicationRecord
   def update_links
     return if self.suppress_recreate_trigger == true
 
-    allowed_relations = ["people", "standard_titles", "standard_terms", "institutions", "publications", "liturgical_feasts", "places", "holdings", "sources", "work_nodes"]
+    allowed_relations = ["people", "standard_titles", "standard_terms", "institutions", "publications", "liturgical_feasts", "places", "holdings", "sources", "work_nodes", "works"]
     recreate_links(marc, allowed_relations)
 
     # update the parent manuscript when having 773/774 relationships
@@ -583,6 +583,18 @@ class Source < ApplicationRecord
   def allow_inventory_items?
     if  (self.record_type == MarcSource::RECORD_TYPES[:inventory] ||
          self.record_type == MarcSource::RECORD_TYPES[:inventory_edition])
+      return true
+    end
+    return false
+  end
+
+  def is_manuscript?
+    if  (self.record_type == MarcSource::RECORD_TYPES[:source] ||
+         self.record_type == MarcSource::RECORD_TYPES[:collection] ||
+         self.record_type == MarcSource::RECORD_TYPES[:libretto_source] ||
+         self.record_type == MarcSource::RECORD_TYPES[:theoretica_source] || 
+         self.record_type == MarcSource::RECORD_TYPES[:inventory] || 
+         self.record_type == MarcSource::RECORD_TYPES[:composite_volume])
       return true
     end
     return false

@@ -53,7 +53,7 @@
       <% end %>
     <%end%>
 
-    <%- if @item.marc.config.multiples_allowed?(tag_name) && no_move == false -%>
+    <%- if @item.marc.config.multiples_allowed?(tag_name) && no_move == false && imported == false -%>
       <a class="abutton ui-state-default marc_editor_button_left abutton-icon-solo ui-corner-all sortable-button" href="#" title="Move"><span class="ui-icon ui-icon-arrowthick-2-n-s"></span>_</a>
     <% end %>
 
@@ -68,7 +68,7 @@
         <a class="abutton ui-state-default marc_editor_button_left abutton-icon-solo ui-corner-all" href="#" data-header-button="add-from-empty" title="Add tag"><span class="ui-icon ui-icon-plus"></span>_</a>
         <%- end -%>	
 
-        <%- if !no_delete && !empty_header -%>
+        <%- if !no_delete && !empty_header && !imported -%>
 		<a class="abutton ui-state-default marc_editor_button_left abutton-icon-solo ui-corner-all" href="#" data-header-button="delete" title="Delete"><span class="ui-icon ui-icon-trash"></span>_</a>
 	    <% end %>
 

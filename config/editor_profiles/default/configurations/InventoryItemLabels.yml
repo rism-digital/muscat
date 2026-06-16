@@ -282,26 +282,33 @@
 '930':
   fields:
     a:
-      label: records.source
+      label: records.work_node
     w:
-      label: records.identified_source
-    '4':
-      label: records.identification_status
-  label: records.identified_source
+      label: records.work_node
+  label: records.work_node
 '931':
-  fields:
-    a:
-      label: records.holding
-    w:
-      label: records.identified_holding
-  label: records.identified_holding
-'932':
   fields:
     a:
       label: records.work
     w:
       label: records.identified_work
   label: records.identified_work
+'932':
+  fields:
+    a:
+      label: records.source
+    w:
+      label: records.identified_source
+    '4':
+      label: records.identification_status
+  label: records.identified_source
+'933':
+  fields:
+    a:
+      label: records.holding
+    w:
+      label: records.identified_holding
+  label: records.identified_holding
 '981':
   fields:
     "0":
@@ -352,7 +359,7 @@ Typescript:
 Typography:
   label: records.typography
 Verified:
-  label: general.verified
+  label: records.verified
 arr:
   label: records.arranger
 art:

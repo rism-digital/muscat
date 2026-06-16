@@ -14,6 +14,7 @@ module AggressivelyStrip
   ].freeze
 
   INVISIBLE_CODES = [
+    0x000D, # CARRIAGE RETURN (\r)
     0x180E, # MONGOLIAN VOWEL SEPARATOR (deprecated but appears)
     0x200B, # ZERO WIDTH SPACE
     0x200C, # ZERO WIDTH NON-JOINER
@@ -41,7 +42,7 @@ module AggressivelyStrip
       s = dup
       s.gsub!(AggressivelyStrip::SPACE_LIKE, " ")
       s.gsub!(AggressivelyStrip::INVISIBLE, "")
-      s
+      s.strip
     end
 
     def aggressively_strip!

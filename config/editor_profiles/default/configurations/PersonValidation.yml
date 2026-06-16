@@ -3,10 +3,30 @@ client:
   "024":
     tags:
       "2": required
-      "a": required
+      "a":
+        any_of:
+          - required
+          - validate_024
   "100":
     tags:
-      "a": mandatory
+      "a": 
+        any_of:
+          - mandatory
+          - validate_person_name
+      "d":
+        any_of:
+          - validate_calendar
+          - validate_person_dates
+  "400":
+    tags:
+      "a":
+        any_of:
+          - validate_person_name
+          - required_if:
+              "400": "j"
+      "j":
+        required_if:
+          "400": "a"
   "500": 
     tags:
       "0":
@@ -27,11 +47,24 @@ client:
           "551": "0"
   "670":
     tags:
+      b:
+        required_if:
+          "670": "w"
+      "u": validate_url
       "w": required
-  "856":
+  "678":
+    tags:
+      "a": validate_calendar
+  "856": 
     tags:
       u:
         any_of:
-          - begins_with: "http"
+          - validate_url
+          #- begins_with: "http"
           - required
-      "z": required
+      z:
+        required_if:
+          "856": "u"
+      x:
+        required_if:
+          "856": "u"

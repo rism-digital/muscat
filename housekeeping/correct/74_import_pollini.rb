@@ -3,7 +3,7 @@ include REXML
 
 def add_tag(marc, tag, subtags = {})
     mc = MarcConfigCache.get_configuration("work")
-
+ap tag
     the_t = MarcNode.new("work", tag, "", mc.get_default_indicator(tag))
 
     subtags.each do |stag, val|
@@ -82,7 +82,7 @@ def process_one_file(file_name)
                 tgs[:"4"] = "oth"
             end
             
-            add_tag(new_marc, "700", tgs)
+            add_tag(new_marc, "500", tgs)
 
         else
             add_tag(new_marc, "100", {a: magic_name(name.text)})
@@ -154,14 +154,14 @@ def process_one_file(file_name)
 
     # FIXME does it catch all?
     XPath.each(doc, "/mei/meiHead/workList/work/history/eventList[@type='performances']/event/corpName") do |data|
-        add_tag(new_marc, "710", {a: data.text}) if data.text && !data.text.empty?
+        add_tag(new_marc, "510", {a: data.text}) if data.text && !data.text.empty?
     end
 
     # FIXME does it catch all?
     # "Nicolaus Lützhøft,\n                                singer"
     # "Holger Dahl,\n                                piano"
     XPath.each(doc, "/mei/meiHead/workList/work/history/eventList[@type='performances']/event/persName") do |data|
-        add_tag(new_marc, "710", {a: data.text, "4": "oth"}) if data.text && !data.text.empty?
+        add_tag(new_marc, "510", {a: data.text, "4": "oth"}) if data.text && !data.text.empty?
     end
 
     ################################################################################################

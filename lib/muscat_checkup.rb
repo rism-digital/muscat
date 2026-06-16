@@ -7,50 +7,48 @@ class MuscatCheckup
   UNKNOWN_TAG_LIMIT = 100
 
   def initialize(options = {})
-      @model = options.include?(:model) && options[:model].is_a?(Class) ? options[:model] : Source
+    @model = options[:model].is_a?(Class) ? options[:model] : Source
 
-      @parallel_jobs = options.include?(:jobs) ? options[:jobs] : 10
-      @all_items = options.include?(:limit) ? options[:limit] : @model.all.count
-      @limit = @all_items / @parallel_jobs
-      @folder = options.include?(:folder) ? options[:folder] : nil
+    @parallel_jobs = options.fetch(:jobs, 10)
+    @all_items = options.fetch(:limit, @model.count)
+    @folder = options[:folder]
 
-      @limit_unknown_tags = true
+    @debug_logger = options[:logger]
 
-      @skip_validation          = options[:skip_validation] == true
-      @skip_dates               = options[:skip_dates] == true
-      @skip_links               = options[:skip_links] == true
-      @skip_unknown_tags        = options[:skip_unknown_tags] == true
-      @skip_holdings            = options[:skip_holdings] == true
-      @skip_dead_774            = options[:skip_dead_774] == true
-      @skip_dead_773            = options[:skip_dead_773] == true
-      @skip_parent_institution  = options[:skip_parent_institution] == true
-      @skip_588_validation      = options[:skip_588_validation] == true
-      @skip_validate_work_status = options[:skip_validate_work_status] == true
-      @skip_parent_check         = options[:skip_parent_check] == true
+    @skip_validation            = options[:skip_validation] == true
+    @skip_dates                 = options[:skip_dates] == true
+    @skip_links                 = options[:skip_links] == true
+    @skip_unknown_tags          = options[:skip_unknown_tags] == true
+    @skip_holdings              = options[:skip_holdings] == true
+    @skip_dead_774              = options[:skip_dead_774] == true
+    @skip_dead_773              = options[:skip_dead_773] == true
+    @skip_parent_institution    = options[:skip_parent_institution] == true
+    @skip_588_validation        = options[:skip_588_validation] == true
+    @skip_validate_work_status  = options[:skip_validate_work_status] == true
+    @skip_parent_check          = options[:skip_parent_check] == true
+    @skip_validate_person_codes = options[:skip_validate_person_codes] == true
 
-      @debug_logger = options[:logger]
+    # These are relevant only for Sources
+    if @model != Source
+      @skip_holdings = true
+      @skip_dead_774 = true
+      @skip_dead_773 = true
+      @skip_parent_institution = true
+    end
 
-      # These are relevant only for Sources
-      @skip_holdings = true if @model != Source
-      @skip_dead_774 = true if @model != Source
-      @skip_dead_773 = true if @model != Source
-      @skip_parent_institution = true if @model != Source
+    @skip_validate_person_codes = true if @model != Person
 
-      # Generate the exclusion matcher
-      @validation_exclusions = (options.include?(:process_exclusions) && options[:process_exclusions] == true) ? ValidationExclusion.new(@model) : nil
+    @validation_exclusions =
+      if options[:process_exclusions] == true
+        ValidationExclusion.new(@model)
+      end
   end
 
-  def run_parallel()
-    begin_time = Time.now
-    
+  def validate_parallel
     String.disable_colorization true
-    
-    if @folder
-      @limit_unknown_tags = false
-      results = validate_folder
-    else
-      results = validate_items
-    end
+
+    limit_unknown_tags = !@folder
+    results = @folder ? validate_folder : validate_items
 
     # Extract and separate the errors and validations
     total_errors = {}
@@ -59,75 +57,94 @@ class MuscatCheckup
       total_errors.merge!(r[:errors])
       total_validations.merge!(r[:validations])
     end
-    
-    foreign_tag_errors, unknown_tags = postprocess_results!(total_validations)
-    return total_errors, total_validations, foreign_tag_errors, unknown_tags
-    
+        
+    filtered_validations, foreign_tag_errors, unknown_tags = postprocess_results(total_validations, limit_unknown_tags: limit_unknown_tags)
+    return total_errors, filtered_validations, foreign_tag_errors, unknown_tags
+
   end
   
   private
 
   def load_and_validate_item(s)
-    # Capture all the puts from the inner classes
-    old_stdout = $stdout
-    old_stderr = $stderr
-
     errors = {}
     validations = {}
 
-    begin
-      ## Capture STDOUT and STDERR
-      ## Only for the marc loading!
-      new_stdout = StringIO.new
-      $stdout = new_stdout
-      $stderr = new_stdout
-      
-      s.marc.load_source true
-      
-      errors[s.id] = new_stdout.string if !new_stdout.string.strip.empty?
-      if !new_stdout.string.strip.empty? && @debug_logger
-        new_stdout.string.each_line do |line|
-          next if line.strip.empty?
-          @debug_logger.error("record_error #{s.id} #{print_record_type(s)} no_tag no_subtag #{line.strip}") if @debug_logger
+    phase = :load
 
-        end
-      end
-
-      # Set back to original
-      $stdout = old_stdout
-      $stderr = old_stderr
-      new_stdout.rewind
-      
-      res = validate_record(s)
-      validations[s.id] = res if res && !res.empty?
-    rescue
-      ## Exit the capture
-      $stdout = old_stdout
-      $stderr = old_stderr
-      
-      errors[s.id] = new_stdout.string if !new_stdout.string.strip.empty?
-      #@debug_logger.error(new_stdout.string) if @debug_logger
-
-      if !new_stdout.string.strip.empty? && @debug_logger
-        new_stdout.string.each_line do |line|
-          next if line.strip.empty?
-          @debug_logger.error("record_exception #{s.id} #{print_record_type(s)} no_tag no_subtag #{line.strip}") if @debug_logger
-
-        end
-      end
-
-      new_stdout.rewind
+    result, output, exception = capture_stdout_and_stderr do
+      #s.marc.load_source(true)
+      phase = :validate
+      validate_record(s)
     end
-    return errors, validations
+
+    unless output.strip.empty?
+      errors[s.id] = output
+      log_output_lines(output, s, exception ? "record_exception_#{phase}" : "record_error")
+    end
+
+    if exception
+      append_exception(errors, s.id, exception)
+      @debug_logger.error("[#{phase}] #{exception.backtrace.first(2).join("\n")}") if @debug_logger
+      puts "[#{phase}] #{exception.backtrace.first(2).join("\n")}" # Also print the message on the stdout sink 
+    elsif result.present?
+      validations[s.id] = result
+    end
+
+    [errors, validations]
+  end
+
+  def capture_stdout_and_stderr
+    old_stdout = $stdout
+    old_stderr = $stderr
+    buffer = StringIO.new
+
+    result = nil
+    exception = nil
+
+    begin
+      $stdout = buffer
+      $stderr = buffer
+      result = yield
+    rescue => e
+      exception = e
+    ensure
+      $stdout = old_stdout
+      $stderr = old_stderr
+    end
+
+    [result, buffer.string, exception]
+  end
+
+  def append_exception(errors, id, exception)
+    backtrace = exception.backtrace.first(2).join("\n")
+
+    errors[id] ||= ""
+    errors[id] << "\n" unless errors[id].empty?
+    errors[id] << exception.message
+    errors[id] << "\n"
+    errors[id] << backtrace
+  end
+
+  def log_output_lines(output, s, prefix)
+    return if output.strip.empty?
+    return unless @debug_logger
+
+    output.each_line do |line|
+      next if line.strip.empty?
+      @debug_logger.error("#{prefix} #{s.id} #{print_record_type(s)} no_tag no_subtag #{line.strip}")
+    end
   end
 
   def validate_items
-    results = Parallel.map(0..@parallel_jobs, in_processes: @parallel_jobs) do |jobid|
+    batch_size = (@all_items.to_f / @parallel_jobs).ceil
+
+    Parallel.map(0...@parallel_jobs, in_processes: @parallel_jobs) do |jobid|
       errors = {}
       validations = {}
-      offset = @limit * jobid
 
-      @model.order(:id).limit(@limit).offset(offset).select(:id).each do |sid|
+      offset = batch_size * jobid
+=begin
+      @model.order(:id).limit(batch_size).offset(offset).select(:id).each do |sid|
         s = @model.find(sid.id)
         
         e, v = load_and_validate_item(s)
@@ -136,9 +153,19 @@ class MuscatCheckup
         
         s = nil
       end
-      {errors: errors, validations: validations}
+=end
+      ids = @model.order(:id).limit(batch_size).offset(offset).pluck(:id)
+
+      ids.each_slice(1000) do |slice|
+        @model.where(id: slice).order(:id).each do |s|
+          e, v = load_and_validate_item(s)
+          errors.merge!(e)
+          validations.merge!(v)
+        end
+      end
+
+      { errors: errors, validations: validations }
     end
-    results
   end
 
   def validate_folder
@@ -160,68 +187,83 @@ class MuscatCheckup
   end
 
   def validate_record(record)
-
-    begin
-      validator = MarcValidator.new(record, nil, false, @debug_logger, @validation_exclusions)
-      validator.validate_tags               if !@skip_validation
-      validator.validate_dates              if !@skip_dates
-      validator.validate_links              if !@skip_links
-      validator.validate_unknown_tags       if !@skip_unknown_tags
-      validator.validate_holdings           if !@skip_holdings
-      validator.validate_dead_774_links     if !@skip_dead_774
-      validator.validate_dead_773_links     if !@skip_dead_773
-      validator.validate_parent_institution if !@skip_parent_institution
-      validator.validate_588                if !@skip_588_validation
-      validator.validate_work_status        if !@skip_validate_work_status
-      validator.validate_template_harmony   if !@skip_parent_check
-      return validator.get_errors
-    rescue Exception => e
-      puts e.message
-      @debug_logger.error("validation_exception #{record.id} #{print_record_type(record)} no_tag no_subtagtag #{e.message}") if @debug_logger
-    end
-    
+    # if something is wrong, let the validator throw and it will be caught by the logger
+    validator = MarcValidator.new(record, nil, false, @debug_logger, @validation_exclusions)
+    validator.validate_tags               if !@skip_validation
+    validator.validate_dates              if !@skip_dates
+    validator.validate_links              if !@skip_links
+    validator.validate_unknown_tags       if !@skip_unknown_tags
+    validator.validate_holdings           if !@skip_holdings
+    validator.validate_dead_774_links     if !@skip_dead_774
+    validator.validate_dead_773_links     if !@skip_dead_773
+    validator.validate_parent_institution if !@skip_parent_institution
+    validator.validate_588                if !@skip_588_validation
+    validator.validate_work_status        if !@skip_validate_work_status
+    validator.validate_template_harmony   if !@skip_parent_check
+    validator.validate_person_codes       if !@skip_validate_person_codes
+    return validator.get_errors
   end
   
-  def postprocess_results!(validations)
+  def postprocess_results(validations, limit_unknown_tags: true, unknown_tag_limit: UNKNOWN_TAG_LIMIT)
     foreign_tag_errors = Set.new
     unknown_tags = {}
 
-    validations.delete_if do |id, errors|
-      errors.delete_if do |tag, subtags|
-        subtags.delete_if do |subtag, messages|
-          messages.delete_if do |message|
-            if message.include?("foreign-tag: different unresolved value:") ||
-              message.include?("foreign-tag: tag not present in unresolved")
-              # Keep the error but make the message smaller
-              foreign_tag_errors.add(tag + subtag + " " + message.gsub("foreign-tag: different unresolved value:", "old val:"))
+    filtered_validations = validations.each_with_object({}) do |(id, errors), filtered_errors|
+      kept_tags = errors.each_with_object({}) do |(tag, subtags), kept_subtags_by_tag|
+        kept_subtags = subtags.each_with_object({}) do |(subtag, messages), kept_messages_by_subtag|
+          kept_messages = messages.reject do |message|
+            if foreign_tag_message?(message)
+              foreign_tag_errors.add("#{tag}#{subtag} #{normalize_foreign_tag_message(message)}")
               true
-            elsif message.include?("Unknown tag in layout") || message.include?("mandatory") || message.include?("required")
-              key = "#{tag}-#{subtag}: #{message}"
-              if unknown_tags.key?(key)
-                unknown_tags[key][:count] = unknown_tags[key][:count] + 1
-                unknown_tags[key][:items] << id if unknown_tags[key][:items].count < UNKNOWN_TAG_LIMIT || @limit_unknown_tags == false
-              else
-                unknown_tags[key] = {count: 1, items: [id]}
-              end
+            elsif unknown_tag_message?(message)
+              add_unknown_tag(unknown_tags, id, tag, subtag, message, limit_unknown_tags: limit_unknown_tags, unknown_tag_limit: unknown_tag_limit)
               true
+            else
+              false
             end
           end
-          true if messages.length == 0
+
+          kept_messages_by_subtag[subtag] = kept_messages unless kept_messages.empty?
         end
-        true if subtags.length == 0
+
+        kept_subtags_by_tag[tag] = kept_subtags unless kept_subtags.empty?
       end
-      true if errors.length == 0
+
+      filtered_errors[id] = kept_tags unless kept_tags.empty?
     end
-    
-    [foreign_tag_errors.to_a, unknown_tags]
+
+    [filtered_validations, foreign_tag_errors.to_a, unknown_tags]
+  end
+
+  def foreign_tag_message?(message)
+    message.include?("foreign-tag: different unresolved value:") ||
+      message.include?("foreign-tag: tag not present in unresolved")
+  end
+
+  def normalize_foreign_tag_message(message)
+    message.gsub("foreign-tag: different unresolved value:", "old val:")
+  end
+
+  def unknown_tag_message?(message)
+    message.include?("Unknown tag in layout") ||
+      message.include?("mandatory") ||
+      message.include?("required")
+  end
+
+  def add_unknown_tag(unknown_tags, id, tag, subtag, message, limit_unknown_tags:, unknown_tag_limit:)
+    key = "#{tag}-#{subtag}: #{message}"
+
+    unknown_tags[key] ||= { count: 0, items: [] }
+    unknown_tags[key][:count] += 1
+
+    if !limit_unknown_tags || unknown_tags[key][:items].length < unknown_tag_limit
+      unknown_tags[key][:items] << id
+    end
   end
   
   def print_record_type(item)
-    if item.respond_to?(:get_record_type)
-      return item.get_record_type.to_s
-    else
-      return "none"
-    end
+    return "none" unless item.respond_to?(:get_record_type)
+    item.get_record_type&.to_s || "none"
   end
 
 end

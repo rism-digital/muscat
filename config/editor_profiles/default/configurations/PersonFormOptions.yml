@@ -25,6 +25,7 @@
         - "VIAF"
         - "WKP"
         - "CMO"
+        - "CORAGO"
         default: "VIAF"
         editor_partial: subfield_select
 "040":
@@ -82,8 +83,6 @@
           - referring_institutions
           - referring_publications
           - referring_works
-    - - y
-      - read_only: true
 "375": 
   layout: 
     fields: 
@@ -199,8 +198,19 @@
         editor_partial: subfield_secondary
         allow_new: false
     - - "9"
+      - growfield: tr
     - - "b"
+      - growfield: tr
     - - "u"
+"675":
+  new_window: publications
+  new_window_field: short_name_eq
+  layout: 
+    fields: 
+    - - "a"
+      - type: publication
+        editor_partial: subfield_secondary
+        allow_new: false
 "678": 
   layout: 
     fields: 
@@ -219,6 +229,7 @@
       - unrestricted:
           - person_restricted
     - - z
+      - growfield: tr
       - unrestricted:
           - person_restricted
     - - x

@@ -185,8 +185,8 @@ function render_music(music, format, target, width = 720) {
 			adjustPageHeight: 1
 		};
 		
-		this.worker.postMessage(["validatePAE", $(target).attr("id"), {options: options, music: music}])
-		this.worker.postMessage(["renderMusic", $(target).attr("id"), {options: options, music: music}])
+		worker.postMessage(["validatePAE", $(target).attr("id"), {options: options, music: music}])
+		worker.postMessage(["renderMusic", $(target).attr("id"), {options: options, music: music}])
 
 	} else {
 

@@ -74,7 +74,6 @@
 #= require marc_editor_manipulation
 #= require marc_json
 #= require jquery.blockUI
-#= require jquery.cascade
 #= require jquery.dirtyFields
 #= require jquery.flexdatalist
 #= require jquery.maskedinput
@@ -102,12 +101,13 @@
 #= require compare_versions_actions
 
 #= require gnd_interface.js
-#= require viaf_interface.js
+#= require external_fetch_panel
 #= require modification_trigger_ujs.js
 
 #= require diva/diva.min.js
 ###= require Chart.min
 #= require html2csv.js
+#= require statistics.js
 
 #=require tribute.min
 #=require tribute_load
@@ -115,3 +115,6 @@
 
 #= require jquery.highlight-within-textarea
 #= require inventory_item_sort_ujs
+#= require job_wait
+
+#= require show_incipit_renderer

@@ -197,7 +197,7 @@ class TgnClient
       ORDER BY ?level
     SPARQL
 
-    client = SPARQL::Client.new("http://vocab.getty.edu/sparql")
+    client = SPARQL::Client.new("https://vocab.getty.edu/sparql")
     results = client.query(query)
 
     # mmmmmmh?
@@ -207,7 +207,7 @@ class TgnClient
       next if r[:level]&.to_i == 0 # Skip ourselves
         
       # Skip "World"
-      next if r[:ancestor].to_s == "http://vocab.getty.edu/tgn/7029392"
+      next if r[:ancestor].to_s == "https://vocab.getty.edu/tgn/7029392"
 
       {
         id: r[:ancestor]&.to_s,
@@ -219,7 +219,7 @@ class TgnClient
     place = results[0] # this is uss
 
     country = GettyTGN::THE_STATIC_MAP.map {|k,v|
-      full_id = k.sub("tgn:", "http://vocab.getty.edu/tgn/")
+      full_id = k.sub("tgn:", "https://vocab.getty.edu/tgn/")
       {k => v} if parents_ordered.any? { |h| h[:id] == full_id }
     }.compact&.first
 
@@ -343,11 +343,12 @@ class TgnConverter
     new_marc.add_tag_with_subfields("034", d: record[:coordinates][:long],  e: record[:coordinates][:long], 
                                            f: record[:coordinates][:lat],  g: record[:coordinates][:lat])
 
-    if record[:country] != nil
-      new_marc.add_tag_with_subfields("043", "2": "rismg", c: record[:country].values.first)
-      # Country id, do we need this?
-      #new_marc.add_tag_with_subfields("043", "2": "TGN", b: record[:country].keys.first)
-    end
+    # We decided to remove completely 043
+    #if record[:country] != nil
+    #  new_marc.add_tag_with_subfields("043", "2": "rismg", c: record[:country].values.first)
+    #  # Country id, do we need this?
+    #  #new_marc.add_tag_with_subfields("043", "2": "TGN", b: record[:country].keys.first)
+    #end
 
     new_marc.add_tag_with_subfields("075", a: record[:type], b: record[:type_code])
 
@@ -358,7 +359,13 @@ class TgnConverter
     legacy_district = ""
 
     record[:hierarchy].each do |item|
-      new_marc.add_tag_with_subfields("370", "4": item[:type], c: item[:id], f: item[:label])
+      #new_marc.add_tag_with_subfields("370", "4": item[:type], c: item[:id], f: item[:label])
+
+      c = item[:type] == "nations" ? item[:label] : nil
+      f = item[:type] != "nations" ? item[:label] : nil
+      new_marc.add_tag_with_subfields("370", "2": "tgn", c: c, f: f, i: item[:type], u: item[:id])
+
+
       # Save the coutry
       legacy_country = item[:label] if item[:type] == "nations"
       legacy_district = item[:label] if DISTRICTS_KEYWORDS.any? { |kw| item[:type].include?(kw) }
@@ -381,6 +388,6 @@ class TgnConverter
       existing.add(norm) # Make sure we don't add dups
     end
 
-    return new_marc.to_marc.force_encoding("UTF-8")
+    return new_marc#.to_marc.force_encoding("UTF-8")
   end
 end

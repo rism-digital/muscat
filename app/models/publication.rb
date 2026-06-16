@@ -255,6 +255,40 @@ class Publication < ApplicationRecord
       s.marc.to_raw_text
     end
 
+    # All this stuff here is for the work_catalog view
+
+    sunspot_dsl.boolean(:wc_catalog, stored: true) do |s|
+      targets = ["Catalog of works", "Thematic catalog"]
+      Array(s.marc["240"]).any? do |t|
+        targets.include?(t["g"]&.first&.content)
+      end
+    end
+
+    sunspot_dsl.string(:wc_composer_name_order, stored: true) {|s| s.get_catalog_composer_tag_val("a")}
+    sunspot_dsl.text(:wc_composer_name) {|s| s.get_catalog_composer_tag_val("a")}
+    sunspot_dsl.string(:wc_composer_dates_order, stored: true) { |s| s.get_catalog_composer_tag_val("d")}
+    sunspot_dsl.integer(:wc_composer_id_order, stored: true) { |s| s.get_catalog_composer_tag_val("0")}
+
+    sunspot_dsl.string(:wc_catalog_url_order, stored: true) {|s| s.marc["856"].map {|t| t["u"]&.first&.content}.compact&.first}
+
+    sunspot_dsl.integer(:wc_works_count_order, stored: true) {|s| s.referring_works.count}
+    sunspot_dsl.integer(:wc_sources_count_order, stored: true) {|s| s.referring_sources.count}
+
+    sunspot_dsl.string(:wc_notes_order, stored: true) {|s| s.get_catalog_note_tags}
+    sunspot_dsl.text(:wc_notes, stored: true) {|s| s.get_catalog_note_tags}
+
+    sunspot_dsl.string(:wc_gnd_links_order, stored: true) do |s|
+      #total = s.referring_works.count
+      #with_links = s.referring_works.where("link_status > 0").count
+
+      #(total == 0 || with_links == 0) ? "none" : (with_links == total ? "all" : "some")
+      (s.works_statistics[:dnb] == 0 ) ? "none" : (s.works_statistics[:dnb] == 100 ? "all" : "some")
+    end
+
+    sunspot_dsl.string(:wc_has_incipits_order, stored: true) do |s|
+      (s.works_statistics[:incipits] == 0 ) ? "none" : (s.works_statistics[:incipits] == 100 ? "all" : "some")
+    end
+
     sunspot_dsl.integer(:src_count_order, :stored => true) {through_associations_source_count}
     sunspot_dsl.integer(:referring_objects_order, stored: true) {through_associations_exclude_source_count}
 
@@ -328,6 +362,54 @@ class Publication < ApplicationRecord
 
   def getter_function_autocomplete_label(query_row)    
     autocomplete_label(query_row)
+  end
+
+  def get_catalog_composer_tag_val(subtag)
+    cmp = get_catalog_composer_tag
+    return cmp[subtag]&.first&.content if cmp
+    return nil
+  end
+
+  def get_catalog_composer_tag
+    return @_catalog_composer_tag if defined?(@_catalog_composer_tag)
+
+    @_catalog_composer_tag = nil
+    marc["700"].each do |t|
+      t["4"].each do |tt|
+        @_catalog_composer_tag = t if tt&.content == "att"
+      end
+    end
+    return @_catalog_composer_tag
+  end
+
+  def get_catalog_note_tags
+    return @_catalog_note_tags if defined?(@_catalog_note_tags)
+
+    @_catalog_note_tags = marc["599"].map do |t|
+      t["a"]&.first&.content
+    end.compact.join("; ")
+    return @_catalog_note_tags
+  end
+
+  # This is slowwww
+  def works_statistics
+    return @works_statistics if defined?(@works_statistics)
+
+    works = referring_works.to_a
+    return @works_statistics = { incipits: 0, dnb: 0 } if works.empty?
+
+    totals = works.reduce({ incipits: 0, dnb: 0 }) do |acc, w|
+      w.marc.load_source(false)
+      acc[:incipits] += 1 if w.marc.has_incipits?
+      acc[:dnb]      += 1 if w.marc.has_link_to?("DNB")
+      acc
+    end
+
+    n = works.length
+    @works_statistics = {
+      incipits: (totals[:incipits] * 100 / n),
+      dnb:      (totals[:dnb] * 100 / n)
+    }
   end
 
   # If we define our own ransacker, we need this

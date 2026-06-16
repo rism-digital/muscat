@@ -181,6 +181,18 @@
       - :occurrences: "?"
     - - h
       - :occurrences: "?"
+#  "046":
+#    :master: k
+#    :indicator: "##"
+#    :occurrences: "?"
+#    :fields:
+#    - - k
+#      - :occurrences: "1"
+#    - - z
+#      - :occurrences: "1"
+#    - - "8"
+#      - :occurrences: "?"
+#        :no_browse: true
   "100":
     :master: "0"
     :indicator: "1#"
@@ -812,7 +824,6 @@
   "910":
     :master: "0"
     :indicator: "2#"
-    :relator_code: "4"
     :occurrences: "*"
     :fields:
     - - "0"
@@ -829,7 +840,7 @@
   "930":
     :master: "0"
     :indicator: "1#"
-    :occurrences: "?"
+    :occurrences: "*"
     :fields:
     - - "0"
       - :occurrences: "?"
@@ -840,6 +851,23 @@
       - :occurrences: "?"
         :foreign_class: ^0
         :foreign_field: title
+  "931":
+    :master: "0"
+    :indicator: "1#"
+    :relator_code: "4"
+    :occurrences: "*"
+    :fields:
+    - - "0"
+      - :occurrences: "?"
+        :foreign_class: Work
+        :foreign_field: id
+        :no_show: true
+    - - a
+      - :occurrences: "?"
+        :foreign_class: ^0
+        :foreign_field: title
+    - - "4"
+      - :occurrences: "?"
   "980":
     :master: ""
     :indicator: "##"
