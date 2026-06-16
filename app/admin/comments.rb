@@ -36,10 +36,19 @@ ActiveAdmin.register ActiveAdmin::Comment, :as => "Comment" do
       else
         index! do |format|
           a = ActiveAdmin::Comment.all
-          a = a.where("namespace = '#{params[:scope]}'") if params[:scope] && params[:scope] != "all"
-          a = a.where("body LIKE '%#{params[:q][:body_contains]}%'") if params[:q] and params[:q][:body_contains]
-          a = a.where("author_id = #{params[:q][:author_id_eq]}") if params[:q] and params[:q][:author_id_eq]
-          a = a.where("resource_type = '#{params[:q][:resource_type_eq]}'") if params[:q] and params[:q][:resource_type_eq]
+          query_params = params[:q]
+          query_params = {} unless query_params.respond_to?(:key?)
+
+          a = a.where(namespace: params[:scope]) if params[:scope] && params[:scope] != "all"
+
+          if query_params[:body_contains].present?
+            body = ActiveRecord::Base.sanitize_sql_like(query_params[:body_contains].to_s)
+            a = a.where("body LIKE ?", "%#{body}%")
+          end
+
+          a = a.where(author_id: query_params[:author_id_eq]) if query_params[:author_id_eq].present?
+          a = a.where(resource_type: query_params[:resource_type_eq]) if query_params[:resource_type_eq].present?
+
           scope = a.select(:resource_id, :resource_type).distinct
           @collection = scope.page(params[:page])
         end
@@ -48,7 +57,7 @@ ActiveAdmin.register ActiveAdmin::Comment, :as => "Comment" do
   end
 
   index as: :comment do |c|
-    scope = ActiveAdmin::Comment.where("resource_id = #{c.resource_id}", "resource_type = #{c.resource_type}")
+    scope = ActiveAdmin::Comment.where(resource_id: c.resource_id, resource_type: c.resource_type)
     comments = scope.page(1)
     table_for(comments, {:sortable =>false, :class => 'i'}) do
       column (I18n.t :filter_creation_date), :created_at
@@ -81,4 +90,3 @@ ActiveAdmin.register ActiveAdmin::Comment, :as => "Comment" do
   #       }
          
 end
-
