@@ -112,6 +112,7 @@
 //= require merge_authority.js
 //= require compare_versions_actions.js
 //= require clipboard.min.js
+//= require autogen_username
 
 //= require 'ekko-lightbox.min'
 

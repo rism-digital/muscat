@@ -6,7 +6,11 @@ class User < ApplicationRecord
 
   # Default workgroup for each user
   has_one :default_workgroup, -> { where(personal_default: true) }, class_name: "Workgroup", foreign_key: :owner_user_id, dependent: :destroy
-  after_create :create_default_workgroup!
+  
+  # If we see many users that get created using weird workshops
+  # we can uncomment this to add a new one automatically
+  # after_create :create_default_workgroup!
+  
   # We need to unlink by hand the default workgroup
   before_destroy :unlink_default_workgroup, prepend: true
 

@@ -117,6 +117,20 @@ ActiveAdmin.register User do
     redirect_to resource_path(user), notice: "Personal default workgroup created"
   end
 
+  collection_action :autogen_username, method: :get do
+    base = params[:name].to_s.parameterize(separator: "_")
+
+    username = base
+    counter = 2
+
+    while User.exists?(username: username)
+      username = "#{base}#{counter}"
+      counter += 1
+    end
+
+    render json: { username: username }
+  end
+
   ###########
   ## Index ##
   ###########

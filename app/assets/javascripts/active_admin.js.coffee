@@ -98,6 +98,7 @@
 #= require job_progress_bar
 #= require merge_authority
 #= require compare_versions_actions
+#= require autogen_username
 
 #= require gnd_interface.js
 #= require external_fetch_panel
