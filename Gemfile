@@ -177,7 +177,6 @@ gem 'listen'
 # To make sure the translations are all there
 gem 'i18n-tasks', '~> 1.0.14', group: :development
 #gem 'easy_translate', group: :development
-#gem 'ruby-openai', group: :development
 
 # Uncomment this if you want to test emails in development
 #gem 'mailcatcher', '~> 0.10.0', group: :development
