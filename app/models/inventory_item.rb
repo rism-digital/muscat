@@ -40,6 +40,10 @@ class InventoryItem < ApplicationRecord
   has_many :inventory_item_standard_term_relations
   has_many :standard_terms, through: :inventory_item_standard_term_relations
 
+  #has_and_belongs_to_many :liturgical_feasts, join_table: "inventory_items_to_liturgical_feasts"
+  has_many :inventory_item_liturgical_feast_relations
+  has_many :liturgical_feasts, through: :inventory_item_liturgical_feast_relations
+
   has_many :inventory_item_holding_relations
   has_many :holdings, through: :inventory_item_holding_relations
 
@@ -136,7 +140,7 @@ class InventoryItem < ApplicationRecord
   def update_links
     return if self.suppress_recreate_trigger == true
     
-    allowed_relations = ["sources", "holdings", "works", "work_nodes", "institutions", "publications", "people", "places", "standard_titles", "standard_terms", "inventory_items"]
+    allowed_relations = ["sources", "holdings", "works", "work_nodes", "institutions", "publications", "people", "places", "standard_titles", "standard_terms", "inventory_items", "liturgical_feasts"]
     recreate_links(marc, allowed_relations)
   end
   

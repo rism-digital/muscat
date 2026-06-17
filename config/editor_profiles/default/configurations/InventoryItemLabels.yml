@@ -180,11 +180,11 @@
     a:
       label: records.subject_heading
   label: records.subject_heading
-'675':
+'657':
   fields:
     a:
-      label: records.source_data_not_found
-  label: records.source_data_not_found
+      label: records.liturgical_festival
+  label: records.liturgical_festival
 '690':
   fields:
     a:

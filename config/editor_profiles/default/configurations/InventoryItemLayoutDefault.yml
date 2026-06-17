@@ -1,57 +1,62 @@
 --- !map:Settings 
 group_order: 
-- edit_library
 - edit_names
+- edit_library
 - edit_material
 - edit_incipits
+- edit_references
 - edit_links
 - edit_administration
 groups: 
   edit_administration: 
     all_tags: 
     - "001"
-    - "981"
     - "040"
+    - "981"
+    - "599"
+
+  edit_names:
+    all_tags: 
+    - "100"
+    - '700'
+    - '710'
 
   edit_library: 
     all_tags: 
-    - "100"
-    - "240"
     - '245'
     - '246'
-    - "650"
+    - "240"
     - "690"
-    - "691"
-    - '856'
+    - "383"
+    - "730"
+    - "650"
+    - "594"
     - "041"
-    all_tag_templates: 
-      "856": marc_show/show_link
-  edit_names:
-    all_tags: 
-    - '700'
-    - '710'
+  
+  edit_material:
+    all_tags:
+    - '593' 
+    - "300"
+    - "590"
 
   edit_incipits:
     all_tags:
     - '031'
     template: show_incipit
 
-  edit_material:
+  edit_references:
     all_tags:
-    - "300"
-    - "383"
-    - "590"
-    - "730"
     - "500"
-    - "599"
-    - '593' 
-    - "594"
-    - "786"
+    - "691"
+    - "657"
+    - "856"
+    all_tag_templates: 
+        "856": marc_show/show_link
 
   edit_links:
     all_tags:
-    - '675'
     - '773'
+    - '786'
     - "930"
     - "931"
     - "932"

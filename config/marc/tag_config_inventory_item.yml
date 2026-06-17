@@ -259,20 +259,23 @@
     - - "2"
       - :occurrences: "?"
         :no_browse: true
-  "675":
-    :master: "w"
-    :indicator: "##"
+  "657":
+    :master: "0"
+    :indicator: "#7"
     :occurrences: "*"
     :fields:
-    - - w
+    - - "0"
       - :occurrences: "?"
-        :foreign_class: Publication
+        :foreign_class: LiturgicalFeast
         :foreign_field: id
         :no_show: true
     - - a
       - :occurrences: "?"
-        :foreign_class: ^w
-        :foreign_field: short_name
+        :foreign_class: ^0
+        :foreign_field: name
+    - - "2"
+      - :occurrences: "?"
+        :no_browse: true
   "690":
     :master: "0"
     :indicator: "#7"
