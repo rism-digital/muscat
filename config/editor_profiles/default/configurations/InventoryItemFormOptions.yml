@@ -329,21 +329,29 @@
     fields: 
     - - a
       - growfield: true
+"590":
+  layout:
+    fields:
+    - - a
+      - growfield: true
+    - - b
+      - growfield: true
 "593": 
   layout: 
     fields: 
     - - a
       - values:
+        - Autograph manuscript
+        - Possible autograph manuscript
+        - Partial autograph
         - Manuscript copy
-        - Print
+        - Manuscript copy with autograph annotations
         - Print with autograph annotations
         - Print with non-autograph annotations
-        - Additional manuscript material
         editor_partial: subfield_select
     - - b
       - values:
         - "Inventory"
-        - "Notated music"
         - "Libretto"
         - "Treatise"
         - "Other"
@@ -373,6 +381,15 @@
       - type: standard_term
         editor_partial: subfield_secondary
         allow_new: true
+"675": 
+  new_window: publications
+  new_window_field: short_name_eq
+  layout: 
+    fields: 
+    - - "a"
+      - type: publication
+        allow_new: false
+        editor_partial: subfield_secondary
 "690":
   new_window: publications
   new_window_field: short_name_eq
@@ -573,25 +590,8 @@
     fields: 
     - - w
       - read_only: true
-    - - o
     - - n
     - - g
-"775":
-  new_window: inventory_items
-  layout:
-    fields:
-    - - w
-      - type: inventory_item
-        editor_partial: subfield_secondary
-        only_new_window: true
-    - - "4"
-      - editor_partial: subfield_select_codes
-        select_label: "Function"
-        codes_reference: "relator_codes"
-  tag_params: 
-    relator_codes: 
-    - led
-    - "1st"
 "786":
   layout: 
     fields: 

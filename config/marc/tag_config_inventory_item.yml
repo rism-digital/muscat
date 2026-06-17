@@ -200,6 +200,18 @@
     - - "8"
       - :occurrences: "?"
         :no_browse: true
+  "590":
+    :master: a
+    :indicator: "##"
+    :occurrences: "*"
+    :fields:
+    - - a
+      - :occurrences: "?"
+    - - b
+      - :occurrences: "?"
+    - - "8"
+      - :occurrences: "?"
+        :no_browse: true
   "593":
     :master: a
     :indicator: "##"
@@ -247,6 +259,20 @@
     - - "2"
       - :occurrences: "?"
         :no_browse: true
+  "675":
+    :master: "w"
+    :indicator: "##"
+    :occurrences: "*"
+    :fields:
+    - - w
+      - :occurrences: "?"
+        :foreign_class: Publication
+        :foreign_field: id
+        :no_show: true
+    - - a
+      - :occurrences: "?"
+        :foreign_class: ^w
+        :foreign_field: short_name
   "690":
     :master: "0"
     :indicator: "#7"
@@ -373,24 +399,10 @@
         :foreign_field: id
         :zero_padding: "14"
         :browse_helper: application_helper_link_source_id
-    - - o
-      - :occurrences: "?"
     - - n
       - :occurrences: "?"
     - - g
       - :occurrences: "?"
-  "775":
-    :master: w
-    :indicator: "##"
-    :relator_code: "4"
-    :occurrences: "?"
-    :fields:
-    - - w
-      - :occurrences: "1"
-        :foreign_class: InventoryItem
-        :foreign_field: id
-    - - "4"
-      - :occurrences: "1"
   "786":
     :master: a
     :indicator: "##"

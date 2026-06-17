@@ -145,6 +145,15 @@
     a:
       label: records.general_note
   label: records.general_note
+'590':
+  fields:
+    '8':
+      label: records.material_group
+    a:
+      label: records.parts_held
+    b:
+      label: records.extent_parts
+  label: records.parts_held_extent
 '593':
   fields:
     '8':
@@ -171,6 +180,11 @@
     a:
       label: records.subject_heading
   label: records.subject_heading
+'675':
+  fields:
+    a:
+      label: records.source_data_not_found
+  label: records.source_data_not_found
 '690':
   fields:
     a:

@@ -594,7 +594,7 @@
     - - "2"
       - :occurrences: "?"
         :no_browse: true
-        # value must be added during exportation
+        # value must be added during export
   "657":
     :master: "0"
     :indicator: "#7"
@@ -612,7 +612,21 @@
     - - "2"
       - :occurrences: "?"
         :no_browse: true
-        # value must be added during exportation
+        # value must be added during export
+  "675":
+    :master: "w"
+    :indicator: "##"
+    :occurrences: "*"
+    :fields:
+    - - w
+      - :occurrences: "?"
+        :foreign_class: Publication
+        :foreign_field: id
+        :no_show: true
+    - - a
+      - :occurrences: "?"
+        :foreign_class: ^w
+        :foreign_field: short_name
   "690":
     :master: "0"
     :indicator: "#7"
