@@ -250,7 +250,7 @@ ActiveAdmin.register InventoryItem do
 
   # Everyone gets this!
   # It has to be here so it is shown in the right position
-  sidebar :inventory_info, except: [:index] do
+  sidebar :inventory_information, except: [:index] do
     #@total_items = controller.view_assigns["total_items"]
     render("inventory_info_sidebar")
   end

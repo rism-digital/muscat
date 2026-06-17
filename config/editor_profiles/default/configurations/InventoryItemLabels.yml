@@ -105,8 +105,8 @@
 '246':
   fields:
     a:
-      label: records.reconstructed_title
-  label: records.reconstructed_title
+      label: records.variant_source_title
+  label: records.variant_source_title
 '260':
   fields:
     '8':
@@ -298,17 +298,17 @@
     a:
       label: records.source
     w:
-      label: records.identified_source
+      label: records.identified_manuscript
     '4':
       label: records.identification_status
-  label: records.identified_source
+  label: records.identified_manuscript
 '933':
   fields:
     a:
       label: records.holding
     w:
-      label: records.identified_holding
-  label: records.identified_holding
+      label: records.identitied_printed_edition
+  label: records.identitied_printed_edition
 '981':
   fields:
     "0":
