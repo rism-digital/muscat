@@ -11,11 +11,11 @@
 		end
 
     else
-		if @item.is_a?(Holding) 
+		if @item.is_a?(Holding) || @item.is_a?(InventoryItem)
 			if defined? @parent_object_id
 				cancel_path = edit_admin_source_path(@parent_object_id)
 			else
-				edit_admin_sources_path
+				cancel_path = edit_admin_sources_path
 			end
 		else
 			cancel_path = send("admin_#{models}_path")
@@ -23,6 +23,7 @@
     end
 	help_title = @editor_profile.get_label("doc_edit_functions")
 %>
+
 <ul>
 	
   <%- @editor_profile.layout_config[:marc_editor_group_links].each do |gl| -%>
