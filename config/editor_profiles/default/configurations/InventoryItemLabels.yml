@@ -173,8 +173,8 @@
 '599':
   fields:
     a:
-      label: records.local_notes_field
-  label: records.local_notes_field
+      label: records.internal_note
+  label: records.internal_note
 '650':
   fields:
     a:

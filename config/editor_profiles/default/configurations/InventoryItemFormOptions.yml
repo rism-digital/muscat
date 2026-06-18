@@ -346,12 +346,12 @@
         - Partial autograph
         - Manuscript copy
         - Manuscript copy with autograph annotations
+        - Print
         - Print with autograph annotations
         - Print with non-autograph annotations
         editor_partial: subfield_select
     - - b
       - values:
-        - "Inventory"
         - "Libretto"
         - "Treatise"
         - "Other"

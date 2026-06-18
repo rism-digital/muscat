@@ -18,6 +18,7 @@ group_exclude:
   inventory:
   - edit_incipits
   inventory_edition:
+  - edit_library
   - edit_incipits
   
 tag_exclude:
@@ -218,7 +219,6 @@ tag_exclude:
   - '541'
   - '561'
   - '563'
-  - '567'
   - '590'
   - '591'
   - '592'
@@ -227,6 +227,7 @@ tag_exclude:
   - '596'
   - '598'
   - '651'
+  - '657'
   - '773'
   - '774'
   - '775'
