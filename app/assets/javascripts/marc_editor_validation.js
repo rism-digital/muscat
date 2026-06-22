@@ -380,6 +380,12 @@ function marc_validate_presence(value, element, param, force_warn=false) {
 		validate_level = "warning";
 	}
 
+	if ($(element).data("tag") == "375") {
+		console.log(element)
+		console.log(value)
+		console.log(others)
+	}
+
 	if (value.trim() == "") {
 		// There are other values in the form
 		// it is mandatory that this field is filled
@@ -392,6 +398,7 @@ function marc_validate_presence(value, element, param, force_warn=false) {
 		}
 		else if (validate_level == "warning") {
 			marc_validate_add_warnings(element);
+			console.log("ciao")
 	    }
 		// if all the other fields are empty
 		// the form will not be serialized
