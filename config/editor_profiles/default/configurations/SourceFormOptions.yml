@@ -1113,7 +1113,7 @@
         #editor_partial: subfield_secondary
         #allow_new: false
   tag_params: 
-    no_delete: true
+    no_delete_override: true
 "980":
   layout:
     fields:
