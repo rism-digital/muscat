@@ -36,7 +36,7 @@
 
 <!-- if we are rendering the holdings box, we can render the DOs in the same box -->
 <% if is_embedded && item.digital_objects.images.size > 0 %>
-	<%= render "admin/digital_objects/digital_objects_embedded_panel" %>
+	<%= render :partial => "admin/digital_objects/digital_objects_embedded_panel", :locals => { :item => item } %>
 <% end %>
 
 <% if item.class == Source && item.holdings.count > 0 && is_embedded == false %>
