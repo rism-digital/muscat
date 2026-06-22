@@ -13,7 +13,8 @@ const SIMPLE_RULE_MAP = {
 	"validate_calendar": {"validate_calendar": true},
 	"validate_person_name": {"validate_person_name": true},
 	"validate_person_dates": {"validate_person_dates": true},
-	"validate_024": {"validate_024": true}
+	"validate_024": {"validate_024": true},
+	"handcrafted_warning": {"handcrafted_warning": true}
 }
 
 const PARAMETRIC_RULES = [
@@ -363,7 +364,7 @@ function marc_validate_588_siglum(value, element, param) {
 // This is the simplest validator
 // It checks that a value is present
 // but only in partially filled forms
-function marc_validate_presence(value, element) {
+function marc_validate_presence(value, element, param, force_warn=false) {
 	var others = false;
 		
 	// havigate up to the <li> and down to the hidden elem
@@ -375,6 +376,9 @@ function marc_validate_presence(value, element) {
 	});
 	
 	var validate_level = $(element).data("validate-level");
+	if (force_warn) {
+		validate_level = "warning";
+	}
 
 	if (value.trim() == "") {
 		// There are other values in the form
@@ -386,14 +390,13 @@ function marc_validate_presence(value, element) {
 			}
 			return false;
 		}
-		else
-			if (validate_level == "warning") {
-				marc_validate_add_warnings(element);
+		else if (validate_level == "warning") {
+			marc_validate_add_warnings(element);
 	    }
-		  return true;
 		// if all the other fields are empty
 		// the form will not be serialized
 		// so validation should pass
+		return true;
 	}
 	
 	// Value is present
@@ -706,6 +709,17 @@ function marc_validate_024(value, element, param) {
 	return true;
 }
 
+function marc_handcrafted_warning(value, element, param) {
+   // if (value == null || value.trim() === "") {
+   //     marc_validate_add_warnings(element);
+    //}
+
+	marc_validate_presence(value, element, param, true);
+
+
+    return true;
+}
+
 // #1622, the first group cannot be "Additional printed material"
 function marc_validate_check_group(value, element, param) {
 
@@ -952,6 +966,10 @@ function marc_editor_init_validation(form, validation_conf) {
 	$.validator.addMethod("validate_person_name", 	marc_validate_person_name,	$.validator.format(I18n.t("validation.validate_person_name")));
 	$.validator.addMethod("validate_person_dates", 	marc_validate_person_dates,	$.validator.format(I18n.t("validation.validate_person_dates")));
 	$.validator.addMethod("validate_024", 		marc_validate_024,				$.validator.format(I18n.t("validation.validate_024")));
+	$.validator.addMethod("handcrafted_warning", 	marc_handcrafted_warning,	$.validator.format(I18n.t("validation.handcrafted_warning")));
+
+
+	
 
 	// New creation: this is not configurable, it is used to make sure the
 	// "confirm create new" checkbox is selected for new items

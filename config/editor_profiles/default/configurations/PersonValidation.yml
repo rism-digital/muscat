@@ -17,6 +17,10 @@ client:
         any_of:
           - validate_calendar
           - validate_person_dates
+          - handcrafted_warning
+  "375": 
+    tags:
+      "a": required, warning
   "400":
     tags:
       "a":
@@ -39,6 +43,9 @@ client:
   "510": 
     tags:
       "0": required
+  "550":
+    tags:
+      a: required, warning
   "551": 
     tags:
       "0": required
@@ -54,7 +61,13 @@ client:
       "w": required
   "678":
     tags:
-      "a": validate_calendar
+      "a":
+        any_of: 
+          - validate_calendar
+          - handcrafted_warning
+  "680":
+    tags:
+      a: required, warning
   "856": 
     tags:
       u:
