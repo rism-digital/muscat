@@ -67,7 +67,9 @@ class MuscatMaintenanceJob < ApplicationJob
         end
 
         end_time = Time.now
-        message = "#{@base_model.to_s} report started at #{begin_time.to_s}, (#{end_time - begin_time} seconds run time)"
+        duration = (end_time - begin_time).to_i
+        human_readable = format("%02d:%02d:%02d", duration / 3600, (duration % 3600) / 60, duration % 60)
+        message = "#{@base_model.to_s} report started at #{begin_time.to_s}, (#{end_time - begin_time} seconds run time, or #{human_readable})"
         
         MuscatMaintenanceReport.notify(message, @base_model, saved_source_count, models, unsavable_sources).deliver_now if !@silent
         
