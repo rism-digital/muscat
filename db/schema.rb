@@ -521,18 +521,6 @@ ActiveRecord::Schema[7.2].define(version: 2026_06_17_130228) do
     t.index ["standard_term_id"], name: "index_publications_to_standard_terms_on_standard_term_id"
   end
 
-  create_table "pull_requests", charset: "utf8mb3", force: :cascade do |t|
-    t.string "item_type"
-    t.integer "item_id"
-    t.integer "wf_owner"
-    t.integer "wf_stage"
-    t.text "marc_source"
-    t.text "original_marc"
-    t.text "message"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
   create_table "roles", id: :integer, charset: "utf8mb3", force: :cascade do |t|
     t.string "name"
     t.integer "resource_id"
