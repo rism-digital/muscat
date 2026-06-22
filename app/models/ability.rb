@@ -25,6 +25,7 @@ class Ability
       can [:read, :create, :update, :destroy], [DigitalObject, DigitalObjectLink, Publication, Institution, LiturgicalFeast, Place, StandardTerm, StandardTitle, Source, Work, WorkNode, Holding]
       can [:read, :create], Person
       can :update, Person, :wf_owner => user.id
+      can :read, Workgroup
       #can [:read], Folder
 
       can :use, :gnd_editor

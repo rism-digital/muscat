@@ -139,6 +139,7 @@ ActiveAdmin.register User do
   filter :username
   filter :name
   filter :email
+  filter :username_or_name_or_email_cont, label: "Any of the above"
   filter :roles_id_in,
        as: :select,
        label: I18n.t(:roles),
