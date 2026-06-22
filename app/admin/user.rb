@@ -58,17 +58,18 @@ ActiveAdmin.register User do
   collection_action :list, method: :post do
     params.permit!
     if params.include?(:q)
-      pattern = "\\b#{Regexp.escape(params[:q].to_s)}"
+      q = params[:q].to_s.gsub(/\A[[:punct:]]+|[[:punct:]]+\z/, '')
+      pattern = "\\b#{Regexp.escape(q)}"
 
       users = User.where(disabled: false)
-                  .where("name REGEXP ?", pattern)
-                  .map { |u| { name: u.name, id: u.name.tr(" ", "_") } }
+            .where("name REGEXP ? OR username REGEXP ?", pattern, pattern)
+            .map { |u| { name: "#{u.name} <small>(#{u.username})</small>", id: u.name.tr(" ", "_") } }
     else
       users = []
     end
 
     users.reject! {|u| u[:name] == "Admin"}
-    
+
     respond_to do |format|
         format.json { render json: users  }
     end
