@@ -710,6 +710,7 @@ using AggressivelyStrip
     elsif rule == "validate_person_dates"
     elsif rule == "validate_person_name"
     elsif rule == "validate_024"
+    elsif rule == "handcrafted_warning"
     else
       puts rule.class
       puts "Unknown rule #{rule}" if rule != "mandatory"

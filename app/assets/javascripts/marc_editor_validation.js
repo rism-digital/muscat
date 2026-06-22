@@ -968,9 +968,6 @@ function marc_editor_init_validation(form, validation_conf) {
 	$.validator.addMethod("validate_024", 		marc_validate_024,				$.validator.format(I18n.t("validation.validate_024")));
 	$.validator.addMethod("handcrafted_warning", 	marc_handcrafted_warning,	$.validator.format(I18n.t("validation.handcrafted_warning")));
 
-
-	
-
 	// New creation: this is not configurable, it is used to make sure the
 	// "confirm create new" checkbox is selected for new items
 	$.validator.addMethod("new_creation", marc_validate_new_creation, "");
