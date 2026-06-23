@@ -7,6 +7,10 @@ Code in provided inline, in the future it can be moved out
 used for _tag_header partial
 
 */
+
+	if (typeof window.tag_header_new_group_open_tags === "undefined") {
+		window.tag_header_new_group_open_tags = [593, 260, 300, 590];
+	}
 	
 	function tag_header_toggle(elem) {
 		var tag_container = elem.parents(".tag_container");
@@ -152,6 +156,25 @@ used for _tag_header partial
 		update_empty_tag(tag_group);
 		return new_dt;
 	}
+
+	function tag_header_new_group_should_open(tag_group) {
+		var tag = tag_group.attr("data-tag");
+		var open_tags = window.tag_header_new_group_open_tags || [];
+
+		if (tag == undefined) {
+			return false;
+		}
+
+		tag = tag.toString();
+
+		for (var i = 0; i < open_tags.length; i++) {
+			if (open_tags[i] != undefined && open_tags[i].toString() == tag) {
+				return true;
+			}
+		}
+
+		return false;
+	}
     
 	// Create a new element when the tag_group is empty. It is necessary
 	// because in this case there is no tag_toplevel_container
@@ -215,9 +238,11 @@ used for _tag_header partial
 		
 		var new_group = placeholder.clone();
 		new_group.find(".tag_group").each(function() {
-			var new_dt = tag_header_create_from_placeholder($(this));
-			if (new_dt) {
-				new_dt.show();
+			if (tag_header_new_group_should_open($(this))) {
+				var new_dt = tag_header_create_from_placeholder($(this));
+				if (new_dt) {
+					new_dt.show();
+				}
 			}
 		});
 
