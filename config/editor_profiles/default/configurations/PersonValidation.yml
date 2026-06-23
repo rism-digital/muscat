@@ -54,6 +54,7 @@ client:
           "551": "0"
   "670":
     tags:
+      a: required, warning
       b:
         required_if:
           "670": "w"
