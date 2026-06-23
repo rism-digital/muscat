@@ -30,28 +30,24 @@
 <%- check_name = "confirmation_uniq_" + SecureRandom.hex(5)%>
 
 <% 
-# Validate on the MASTER subfield, because it can be different from the DISPLAY subfiled!
+# Validate on the MASTER subfield, because it can be different from the DISPLAY subfield!
 # NOTE Secondary subfields DO NOT SUPPORT WARNINGS.
-if @editor_validation && @editor_validation.validate_subtag?(tag_name, master, @item)
-	validate_class_master, unique_name_master = @editor_validation.get_subtag_class_name(tag_name, master)
-	name_tag_master = raw "name=\"#{unique_name_master}\""
-else
 	validate_class_master = ""
-	name_tag_master = ""
-end
-
-if @editor_validation && @editor_validation.validate_subtag?(tag_name, master, @item)
-	validate_class_subfield, name_tag_subfield = @editor_validation.get_subtag_class_name(tag_name, subfield)
-	validate_marker = "validating"
-else
 	validate_class_subfield = ""
-	name_tag_subfield = "#{tag_name}#{subfield}"
+	name_tag_master = ""
 	validate_marker = ""
-end
-name_tag_subfield = "#{tag_name}#{subfield}"
-# In the case the same subfield is used for master and display
-# Only one needs to be validated
-validate_class_subfield += "_bis" if validate_class_subfield == validate_class_master
+
+	if @editor_validation&.validate_subtag?(tag_name, master, @item)
+		validate_class_master, unique_name_master = @editor_validation.get_subtag_class_name(tag_name, master)
+		validate_class_subfield, _ = @editor_validation.get_subtag_class_name(tag_name, subfield)
+
+		name_tag_master = raw("name=\"#{unique_name_master}\"")
+		validate_marker = "validating"
+	end
+	
+	# In the case the same subfield is used for master and display
+	# Only one needs to be validated
+	validate_class_subfield += "_bis" if validate_class_subfield.present? && validate_class_subfield == validate_class_master
 %>
 
 <%
