@@ -133,15 +133,14 @@ used for _tag_header partial
 		new_dt.fadeIn('fast');
 		return new_dt;
 	}
-    
-	// Create a new element when the tag_group is empty. It is necessary
-	// because in this case there is no tag_toplevel_container
-	function tag_header_add_from_empty(elem) {
-		marc_editor_set_dirty();
-        // hide help if necessary
-		elem.parents(".tag_container").children(".tag_help_collapsable").hide();
-		var placeholder = elem.parents(".tag_group").children(".tag_placeholders_toplevel").children(".tag_placeholders");
-		var parent_dl = elem.parents(".tag_group").children(".marc_editor_tag_block");
+
+	function tag_header_create_from_placeholder(tag_group) {
+		var placeholder = tag_group.children(".tag_placeholders_toplevel").children(".tag_placeholders");
+		var parent_dl = tag_group.children(".marc_editor_tag_block");
+
+		if (placeholder.length < 1 || parent_dl.length < 1) {
+			return null;
+		}
 
 		var new_dt = placeholder.clone();
 		new_dt.toggleClass('tag_placeholders tag_toplevel_container');
@@ -150,8 +149,21 @@ used for _tag_header partial
 		tag_header_fix_validation(new_dt);
 		fix_pae_rendering_ids(new_dt);
 
-		new_dt.fadeIn('fast');
-        update_empty_tag( elem.parents(".tag_group") );
+		update_empty_tag(tag_group);
+		return new_dt;
+	}
+    
+	// Create a new element when the tag_group is empty. It is necessary
+	// because in this case there is no tag_toplevel_container
+	function tag_header_add_from_empty(elem) {
+		marc_editor_set_dirty();
+        // hide help if necessary
+		elem.parents(".tag_container").children(".tag_help_collapsable").hide();
+		var new_dt = tag_header_create_from_placeholder(elem.parents(".tag_group"));
+
+		if (new_dt) {
+			new_dt.fadeIn('fast');
+		}
 		return new_dt;
 	}
 
@@ -202,7 +214,14 @@ used for _tag_header partial
 		var toplevel_dl =  elem.parents(".tab_panel").children(".tag_group_container");
 		
 		var new_group = placeholder.clone();
-		dt = $("<dt />").append(new_group);
+		new_group.find(".tag_group").each(function() {
+			var new_dt = tag_header_create_from_placeholder($(this));
+			if (new_dt) {
+				new_dt.show();
+			}
+		});
+
+		var dt = $("<dt />").append(new_group);
 		dt.addClass("inner_group_dt");
 		dt.appendTo(toplevel_dl);
 		dt.fadeIn('fast');
@@ -288,4 +307,3 @@ used for _tag_header partial
 		jQuery('.abutton').tagHeaderButtons();
 	});
 })(jQuery);
-
