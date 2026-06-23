@@ -8,6 +8,7 @@ used for _tag_header partial
 
 */
 
+	// Default tags for groups in sources. Groups are used only in src!
 	if (typeof window.tag_header_new_group_open_tags === "undefined") {
 		window.tag_header_new_group_open_tags = [593, 260, 300, 590];
 	}
@@ -238,6 +239,8 @@ used for _tag_header partial
 		
 		var new_group = placeholder.clone();
 		new_group.find(".tag_group").each(function() {
+			// Groups are used only in source, so for the moment
+			// we use the hardcoded values
 			if (tag_header_new_group_should_open($(this))) {
 				var new_dt = tag_header_create_from_placeholder($(this));
 				if (new_dt) {
