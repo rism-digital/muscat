@@ -7,6 +7,9 @@ client:
         any_of:
           - required
           - validate_024
+  "042":
+    tags:
+      "a": mandatory
   "100":
     tags:
       "a": 
