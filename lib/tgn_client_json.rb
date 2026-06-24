@@ -60,7 +60,11 @@ class TgnClientJson
       response = http.request(request)
 
       unless response.is_a?(Net::HTTPSuccess)
-        raise RequestError, "GET #{uri} failed: #{response.code} #{response.message}"
+        if response.is_a?(Net::HTTPNotFound)
+          raise RequestError, "#{uri} is not found"
+        else
+          raise RequestError, "GET #{uri} failed: #{response.code} #{response.message}"
+        end
       end
 
       response

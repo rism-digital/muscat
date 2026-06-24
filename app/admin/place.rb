@@ -118,9 +118,13 @@ ActiveAdmin.register Place do
   collection_action :tgn_merge, method: :get do
 
     tgn_id = params.fetch(:tgn_id).gsub("tgn:", "")
-    #rec = TgnClient::pull_from_tgn(tgn_id)
-    #converted = TgnConverter::to_place_marc(rec)
-    converted = TgnClientJson.new.fetch_marc_place(tgn_id)
+    begin
+      converted = TgnClientJson.new.fetch_marc_place(tgn_id)
+    rescue TgnClientJson::RequestError => e
+      render json: { ok: false, error: e.message }, status: :unprocessable_entity
+      return
+    end
+
     is_new = (ActiveModel::Type::Boolean.new.cast(params[:new]))
 
     ps = Place.where(tgn_id: tgn_id)
