@@ -45,6 +45,7 @@ v 12.4.1
 * Update gems
 * Handle 404 in TGN import...
 * Add 933 $4 + validation
+* Make comments deletable only by their owner
 
 v 12.4
 * #1966 initial impl
