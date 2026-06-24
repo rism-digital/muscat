@@ -99,8 +99,8 @@ class Ability
         user.can_publish?(folder)
       end
       cannot [:unpublish, :reindex], :all
-      can [:read, :create, :destroy], ActiveAdmin::Comment
-      can [:update], ActiveAdmin::Comment, :author_id => user.id
+      can [:read, :create], ActiveAdmin::Comment
+      can [:update, :destroy], ActiveAdmin::Comment, :author_id => user.id
       can [:read, :create], Source
       can :update, Source, :wf_owner => user.id
       can :update, Source do |source|
