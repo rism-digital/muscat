@@ -1,6 +1,51 @@
 Muscat Changelog
 ================
 
+v 12.4.1
+* Update gems + remove unused gems
+* Remove deprecated dialogClass
+* What were we using solr_wrapper for??
+* For testing: the M?ller problem
+* Remove person_editor and junior_editor
+* Remove disabled users from the tribute
+* Avoid SQL injection in comments
+* Avoid SQL injection in folders, in particular when creating a typed folder through params
+* more sql injection protection in comments
+* Add autogen username for lazy admins like me
+* Fix #1990, change labels
+* #1991 curb down 700/710 for inventories
+* #1991 fix inventory and inventory print
+* #1991 add/remove fields from inventory item
+* #1991 make 657 links work + implement all changes in II
+* Fix #1993, add proper defaults
+* Fix #1994, inventory nav
+* #1991 more refinements
+* #1992 Set validation for Source Inventories
+* Fix DOs not showing in holding preview
+* Fix #1996, show MEI DOs too in admin#show
+* Make 931 deletble by admins
+* Fix annoying error in person validator
+* #1995 Add some validations
+* Make warnings work with subfield_select, #1995 add 375a validator
+* Remove logs
+* Make sure handcrafted_warning does not explode the logs
+* #1988 Make user matching better
+* Avoid libraries crashing on empty workgroups
+* Make workgroups readable to editors, enhance searching in wg and user
+* Set allowSpaces to hopefully fix the spacebar problem in tribute
+* #1992 make 100 mandatory for inventories
+* Clean up ugly IF section in subfield_secondaty
+* #1995 implement warnings in subfield_secondaty
+* #1992 Open 100 by default in source inventory
+* #1992 again
+* #1997 Open _all the fields_ in new groups
+* #1997 Only open default tags for Source (groups are used only in soruce)
+* Add some comments
+* #1995 make 042 mandatory
+* Update gems
+* Handle 404 in TGN import...
+* Add 933 $4 + validation
+
 v 12.4
 * #1966 initial impl
 * Switch to the new TGN JSON backend
