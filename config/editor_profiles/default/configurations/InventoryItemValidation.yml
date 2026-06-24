@@ -50,3 +50,15 @@ client:
       x:
         required_if:
           "856": "u"
+  "932":
+    tags:
+      "4": required
+      "w":
+        required_if:
+          "932": "4"
+  "933":
+    tags:
+      "4": required
+      "w":
+        required_if:
+          "932": "4"

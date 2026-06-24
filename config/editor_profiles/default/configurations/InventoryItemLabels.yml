@@ -322,6 +322,8 @@
       label: records.holding
     w:
       label: records.identitied_printed_edition
+    '4':
+      label: records.identification_status
   label: records.identitied_printed_edition
 '981':
   fields:
