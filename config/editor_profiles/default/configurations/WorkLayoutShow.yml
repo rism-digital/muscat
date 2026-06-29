@@ -49,9 +49,6 @@ groups:
     - "930"
     - "856"
     all_tag_templates:
-      "500": works/show_related_person
-      "510": marc_show/show_auto_tag 
-      "547": works/show_related_feast
       "856": marc_show/show_link
   control: 
     all_tags: 

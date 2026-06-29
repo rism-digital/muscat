@@ -38,7 +38,7 @@
 	validate_marker = ""
 	validate_level = ""
 
-	if @editor_validation&.validate_subtag?(tag_name, master, @item)
+	if @editor_validation && @editor_validation&.validate_subtag?(tag_name, master, @item)
 		validate_class_master, unique_name_master = @editor_validation.get_subtag_class_name(tag_name, master)
 		validate_class_subfield, _ = @editor_validation.get_subtag_class_name(tag_name, subfield)
 
