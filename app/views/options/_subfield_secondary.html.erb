@@ -32,17 +32,13 @@
 <% 
 # Validate on the MASTER subfield, because it can be different from the DISPLAY subfield!
 # NOTE Secondary subfields DO NOT SUPPORT WARNINGS.
-	validate_class_master = ""
-	validate_class_subfield = ""
-	name_tag_master = ""
 	validate_marker = ""
 	validate_level = ""
 
-	if @editor_validation && @editor_validation&.validate_subtag?(tag_name, master, @item)
-		validate_class_master, unique_name_master = @editor_validation.get_subtag_class_name(tag_name, master)
-		validate_class_subfield, _ = @editor_validation.get_subtag_class_name(tag_name, subfield)
+	validate_class_master, unique_name_master = EditorValidation::generate_subtag_class_and_unique_name(tag_name, master)
+	validate_class_subfield, _ = EditorValidation::generate_subtag_class_and_unique_name(tag_name, subfield)
 
-		name_tag_master = raw("name=\"#{unique_name_master}\"")
+	if @editor_validation && @editor_validation&.validate_subtag?(tag_name, master, @item)
 		validate_marker = "validating"
 		validate_level = "warning" if @editor_validation.is_warning?(tag_name, subfield)
 	end
@@ -63,7 +59,22 @@
 	end
 %>
 
-<input type="hidden" class="autocomplete_target <%=hidden_serialize%> <%=validate_class_master%>" data-tag="<%=tag_name%>" data-subfield="<%=master%>" data-field="<%=field%>" value="<%=marc_subfield_m.content %>" <%=name_tag_master%> data-allow-new="<%=allow_new%>" data-has-links-to="<%=has_links_to%>" data-preserve-foreign-value="<%=preserve_foreign_value%>" data-validate-level="<%=validate_level%>">
+<!--input type="hidden" class="autocomplete_target <%=hidden_serialize%> <%=validate_class_master%>" data-tag="<%=tag_name%>" data-subfield="<%=master%>" data-field="<%=field%>" value="<%=marc_subfield_m.content %>" <%=unique_name_master%> data-allow-new="<%=allow_new%>" data-has-links-to="<%=has_links_to%>" data-preserve-foreign-value="<%=preserve_foreign_value%>" data-validate-level="<%=validate_level%>"-->
+
+<%= hidden_field_tag(
+  unique_name_master,
+  marc_subfield_m.content,
+  class: ["autocomplete_target", hidden_serialize, validate_class_master].compact.join(" "),
+  data: {
+    tag: tag_name,
+    subfield: master,
+    field: field,
+    allow_new: allow_new,
+    has_links_to: has_links_to,
+    preserve_foreign_value: preserve_foreign_value,
+    validate_level: validate_level
+  }
+) %>
 
 <%
 options = {
