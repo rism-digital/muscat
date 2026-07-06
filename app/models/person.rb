@@ -107,7 +107,24 @@ class Person < ApplicationRecord
   attribute :identifiers, :json
 
   scope :with_identifier, ->(code, value) {
-    where("identifiers->>? = ?", "$.#{code.to_s.downcase}", value.to_s)
+    where(
+      "JSON_CONTAINS(JSON_EXTRACT(identifiers, ?), JSON_QUOTE(?))",
+      "$.#{code.to_s.downcase}",
+      value.to_s
+    )
+  }
+
+  # This is useful to get the records with two DNB idents
+  # p Person.with_duplicate_identifier(:dnb).count
+  scope :with_duplicate_identifier, ->(code) {
+    path = "$.#{code.to_s.downcase}"
+
+    where(
+      "JSON_TYPE(JSON_EXTRACT(identifiers, ?)) = 'ARRAY'
+      AND JSON_LENGTH(JSON_EXTRACT(identifiers, ?)) > 1",
+      path,
+      path
+    )
   }
 
   #include NewIds

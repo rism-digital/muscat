@@ -78,7 +78,7 @@ class MarcPerson < Marc
   end
 
   def get_all_identifiers
-    result = {}
+    result = Hash.new { |hash, key| hash[key] = [] }
 
     self["024"]&.each do |t|
       key = t["2"]&.first&.content&.downcase
@@ -86,7 +86,7 @@ class MarcPerson < Marc
 
       next unless key && value
 
-      result[key] = value
+      result[key] << value
     end
 
     result
