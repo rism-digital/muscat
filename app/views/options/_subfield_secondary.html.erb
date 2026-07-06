@@ -2,7 +2,11 @@
 <%- preserve_foreign_value = params.has_key?("preserve_foreign_value") ? params['preserve_foreign_value'] : false %>
 <%- master = has_links_to ? subfield : @item.marc.config.get_master(tag_name) %>
 <% 
-	if has_links_to == true
+	# links_to is a special case where we create an auth file but not the id
+	# so we just fill in the master subfield with the "data" field
+	# Similarly, if the the field is NOT a linked (foreign) field, we need
+	# to have the master equals to the data subfield
+	if has_links_to == true || !@item.marc.config.is_foreign?(tag_name, master)
 		marc_subfield_m = marc_subfield || MarcNode.new(@item.marc.get_model)
 	else
 		marc_subfield_m = marc_tag.fetch_first_by_tag(master) || MarcNode.new(@item.marc.get_model)
