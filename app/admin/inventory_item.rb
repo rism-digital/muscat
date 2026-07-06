@@ -170,6 +170,7 @@ ActiveAdmin.register InventoryItem do
       new_marc.root.children.insert(new_marc.get_insert_position("773"), node)
 
       @inventory_item.marc = new_marc
+      @inventory_item.copy_from_source_marc(source)
 
       @editor_profile = EditorConfiguration.get_default_layout @inventory_item
       @editor_validation = EditorValidation.get_default_validation(@inventory_item)

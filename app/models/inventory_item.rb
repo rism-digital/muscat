@@ -257,6 +257,43 @@ class InventoryItem < ApplicationRecord
     false
   end
 
+  def copy_from_source_marc(source)
+    copy_map = {
+      "100" => ["a"],
+      "240" => ["a", "m"],
+      "650" => ["a"],
+      "690" => ["a", "n"],
+      "041" => ["a"],
+      "383" => ["a"],
+      "593" => ["a", "b"],
+      "594" => ["b", "c"]
+    }
+
+    destroyed = {}
+
+    copy_map.each do |tag, subfields|
+      source.marc[tag].each do |st|
+        values = {}
+
+        subfields.each do |sf|
+          st[sf].each do |tt|
+            (values[sf.to_sym] ||= []) << tt.content
+          end
+        end
+
+        next if values.empty?
+
+        unless destroyed[tag]
+          marc[tag].each {|t| t.destroy_yourself} unless marc[tag].empty?
+          destroyed[tag] = true
+        end
+
+        marc.add_tag_with_subfields(tag, **values)
+      end
+    end
+
+  end
+
   ransacker :"786i", proc{ |v| } do |parent| parent.table[:id] end
 
 end
