@@ -146,8 +146,11 @@ ActiveAdmin.register InventoryItem do
         return
       end
       
-      @inventory_item = InventoryItem.new
-      source = Source.find(params[:source_id])
+      if params.include?(:prototype_source_id)
+        protorype_source = Source.find(params[:prototype_source_id]) rescue protorype_source = nil
+      end
+
+      @inventory_item = InventoryItem.new  
       @inventory_item.source = source
       @parent_object_id = params[:source_id]
       @parent_object_type = "Source" #hardcoded for now
@@ -170,7 +173,10 @@ ActiveAdmin.register InventoryItem do
       new_marc.root.children.insert(new_marc.get_insert_position("773"), node)
 
       @inventory_item.marc = new_marc
-      @inventory_item.copy_from_source_marc(source)
+      # If a source to copy from is provided get marc from there
+      if protorype_source
+        @inventory_item.copy_from_source_marc(protorype_source)
+      end
 
       @editor_profile = EditorConfiguration.get_default_layout @inventory_item
       @editor_validation = EditorValidation.get_default_validation(@inventory_item)

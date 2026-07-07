@@ -300,6 +300,18 @@ ActiveAdmin.register Source do
 
   end
 
+  member_action :is_inventory, method: :get do
+    authorize! :create, InventoryItem
+
+    # Let it fail here if not found
+    source = Source.find(params[:id])
+
+    render json: {
+      is_inventory: source.record_type == MarcSource::RECORD_TYPES[:inventory] || source.record_type == MarcSource::RECORD_TYPES[:inventory_edition],
+      title: source.std_title
+    }
+  end
+
   #scope :all, :default => true 
   #scope :published do |sources|
   #  sources.where(:wf_stage => 'published')
@@ -452,8 +464,12 @@ ActiveAdmin.register Source do
     render :partial => "activeadmin/section_sidebar_folder_actions", :locals => { :item => item }
   end
 
-  sidebar I18n.t(:holding_records), :only => :show , if: proc{ !resource.holdings.empty? } do
+  sidebar I18n.t(:holding_records), :only => :show, if: proc{ !resource.holdings.empty? } do
     render :partial => "holdings/holdings_sidebar_show"
+  end
+
+  sidebar :create_inventory_item_from_this_source, :only => :show, if: proc{ can? :create, InventoryItem } do
+    render :partial => "activeadmin/sidebar_new_inventory_item"
   end
 
   ##########
@@ -464,6 +480,7 @@ ActiveAdmin.register Source do
     render("editor/section_sidebar") # Calls a partial
   end
   
+
   sidebar :help, :only => [:select_new_template] do
     render :partial => "template_help"
   end
