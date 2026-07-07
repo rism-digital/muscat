@@ -451,7 +451,7 @@ ActiveAdmin.register Source do
   end
   
   # 8.0.1 #1190, make the sidebar floating only if there are no holdings
-  sidebar :actions, :class => "sidebar_tabs" , :only => :show, if: proc{ resource.holdings.empty? } do
+  sidebar :actions, :class => "sidebar_tabs" , :only => :show, if: proc{ resource.holdings.empty? && cannot?(:create, InventoryItem)} do
     render :partial => "activeadmin/section_sidebar_show", :locals => { :item => item } #@arbre_context.assigns[:item]
     render :partial => "activeadmin/section_sidebar_folder_actions", :locals => { :item => item }
   end
@@ -459,7 +459,7 @@ ActiveAdmin.register Source do
   # Same sidebar as above, but when holdings are present. This is quite a kludge since :class cannot
   # be created conditionally using a proc{ !resource.holdings.empty? }, so the whole sidebar block
   # has to be repeated with a different if: ... do
-  sidebar :actions, :only => :show, if: proc{ !resource.holdings.empty? } do
+  sidebar :actions, :only => :show, if: proc{ !resource.holdings.empty? || can?(:create, InventoryItem)} do
     render :partial => "activeadmin/section_sidebar_show", :locals => { :item => item } #@arbre_context.assigns[:item]
     render :partial => "activeadmin/section_sidebar_folder_actions", :locals => { :item => item }
   end
