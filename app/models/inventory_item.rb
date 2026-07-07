@@ -264,9 +264,10 @@ class InventoryItem < ApplicationRecord
       "650" => ["0", "a"],
       "690" => ["0", "a", "n"],
       "041" => ["a"],
-      "383" => ["a"],
+      "383" => ["b"],
       "593" => ["a", "b"],
-      "594" => ["b", "c"]
+      "594" => ["b", "c"],
+      "031" => ["a", "b", "c", "d", "e", "g", "m", "n", "o", "p", "q", "r", "s", "t", "u", "z"]
     }
 
     destroyed = {}
@@ -290,6 +291,10 @@ class InventoryItem < ApplicationRecord
 
         marc.add_tag_with_subfields(tag, **values)
       end
+    end
+
+    if source.is_a? Source
+      marc.add_tag_with_subfields("932", w: source.id, a: source.std_title, "4": "Identified")
     end
 
   end
