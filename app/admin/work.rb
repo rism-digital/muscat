@@ -107,7 +107,7 @@ ActiveAdmin.register Work do
           redirect_to admin_root_path, :flash => { :error => "#{I18n.t(:error_not_found)} (Work #{params[:id]})" }
           return
         end
-        
+
         new_marc = MarcWork.new(base_item.marc.marc_source)
         # Reset the basic fields to default values
         new_marc.reset_to_new
@@ -119,7 +119,12 @@ ActiveAdmin.register Work do
         new_marc.load_source false # this will need to be fixed
         @work.marc = new_marc
       end
-      
+
+      # This is a bit like inventories, we can use a source to scaffold a work
+      if (prototype_source = Source.find_by(id: params[:prototype_source_id]))
+        @work.copy_from_source_marc(prototype_source)
+      end
+
       @editor_profile = EditorConfiguration.get_default_layout @work
       @editor_validation = EditorValidation.get_default_validation(@work)
       # Since we have only one default template, no need to change the title

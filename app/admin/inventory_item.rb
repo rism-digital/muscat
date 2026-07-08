@@ -145,10 +145,6 @@ ActiveAdmin.register InventoryItem do
         redirect_to admin_root_path, :flash => { :error => "Could not find source #{params[:source_id]}" }
         return
       end
-      
-      if params.include?(:prototype_source_id)
-        protorype_source = Source.find(params[:prototype_source_id]) rescue protorype_source = nil
-      end
 
       @inventory_item = InventoryItem.new  
       @inventory_item.source = source
@@ -173,9 +169,10 @@ ActiveAdmin.register InventoryItem do
       new_marc.root.children.insert(new_marc.get_insert_position("773"), node)
 
       @inventory_item.marc = new_marc
+
       # If a source to copy from is provided get marc from there
-      if protorype_source
-        @inventory_item.copy_from_source_marc(protorype_source)
+      if (prototype_source = Source.find_by(id: params[:prototype_source_id]))
+        @inventory_item.copy_from_source_marc(prototype_source)
       end
 
       @editor_profile = EditorConfiguration.get_default_layout @inventory_item

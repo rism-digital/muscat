@@ -235,6 +235,95 @@ class Work < ApplicationRecord
     self.marc_source = self.marc.to_marc
   end
  
+  # Cfr the inventory items
+  # This should be moved to marc
+  def copy_from_source_marc(source)
+    copy_map = [
+      {
+        from: "100",
+        to: "100",
+        subfields: { "0" => "0", "a" => "a" }
+      },
+      {
+        from: "240",
+        to: "130",
+        subfields: { "0" => "0", "a" => "a", "m" => "m" }
+      },
+      {
+        from: "650",
+        to: "380",
+        subfields: { "0" => "0", "a" => "a" }
+      },
+      {
+        from: "690",
+        to: "690",
+        subfields: { "0" => "0", "a" => "a", "n" => "n" }
+      },
+      {
+        from: "041",
+        to: "377",
+        subfields: { "a" => "a" }
+      },
+      {
+        from: "031",
+        to: "031",
+        subfields: {
+          "a" => "a",
+          "b" => "b",
+          "c" => "c",
+          "d" => "d",
+          "e" => "e",
+          "g" => "g",
+          "m" => "m",
+          "n" => "n",
+          "o" => "o",
+          "p" => "p",
+          "q" => "q",
+          "r" => "r",
+          "s" => "s",
+          "t" => "t",
+          "u" => "u",
+          "z" => "z"
+        }
+      },
+      {
+        from: "383",
+        to: "383",
+        subfields: { "b" => "b" }
+      },
+      {
+        from: "657",
+        to: "547",
+        subfields: { "a" => "a" }
+      }
+    ]
+
+    destroyed = {}
+
+    copy_map.each do |rule|
+      source.marc[rule[:from]].each do |source_tag|
+        values = {}
+
+        rule[:subfields].each do |source_sf, dest_sf|
+          source_tag[source_sf].each do |subfield|
+            (values[dest_sf.to_sym] ||= []) << subfield.content
+          end
+        end
+
+        next if values.empty?
+
+        unless destroyed[rule[:to]]
+          marc[rule[:to]].each(&:destroy_yourself) unless marc[rule[:to]].empty?
+          destroyed[rule[:to]] = true
+        end
+
+        marc.add_tag_with_subfields(rule[:to], **values)
+      end
+    end
+
+    ## ad pub
+  end
+
   def self.get_viaf(str)
     str.gsub!("\"", "")
     Viaf::Interface.search(str, self.to_s)
