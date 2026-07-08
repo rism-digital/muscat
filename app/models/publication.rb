@@ -356,7 +356,7 @@ class Publication < ApplicationRecord
 
     infos = [aut, dat, tit].compact.join(", ")
 
-    short_name = "[no short name]" if self.short_name&.empty?
+    short_name =  self.short_name&.empty? ? "[no short name]" : self.short_name
 
     return "#{short_name} (#{query_row[:count]}): #{infos}".truncate(100)  if query_row
     return "#{short_name}: #{infos}".truncate(110)
