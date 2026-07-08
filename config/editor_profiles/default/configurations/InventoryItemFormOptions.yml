@@ -352,6 +352,7 @@
         editor_partial: subfield_select
     - - b
       - values:
+        - "Notated music"
         - "Libretto"
         - "Treatise"
         - "Other"
