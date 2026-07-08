@@ -121,8 +121,16 @@ ActiveAdmin.register Work do
       end
 
       # This is a bit like inventories, we can use a source to scaffold a work
-      if (prototype_source = Source.find_by(id: params[:prototype_source_id]))
+      # Search also for the publication to make sure nobody sneaked in an invalid
+      # id in the request
+      if (prototype_source = Source.find_by(id: params[:prototype_source_id])) &&
+          (publication = Publication.find_by(id: params[:publication_id]))
+
         @work.copy_from_source_marc(prototype_source)
+
+        # Create default 690
+        @work.marc["690"].each(&:destroy_yourself)
+        @work.marc.add_tag_with_subfields("690", "0": publication.id, a: publication.autocomplete_label)
       end
 
       @editor_profile = EditorConfiguration.get_default_layout @work

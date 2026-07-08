@@ -254,11 +254,11 @@ class Work < ApplicationRecord
         to: "380",
         subfields: { "0" => "0", "a" => "a" }
       },
-      {
-        from: "690",
-        to: "690",
-        subfields: { "0" => "0", "a" => "a", "n" => "n" }
-      },
+      #{
+      #  from: "690",
+      #  to: "690",
+      #  subfields: { "0" => "0", "a" => "a", "n" => "n" }
+      #},
       {
         from: "041",
         to: "377",
