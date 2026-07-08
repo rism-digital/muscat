@@ -489,7 +489,7 @@ ActiveAdmin.register Source do
          source_field_name: "publication_id",
          input_label: "Publication to attach this item to",
          button_label: "Create Work",
-         message_invalid: "Please select a publication"
+         message_invalid: "Please select a work catalogue publication"
        }
   end
 
