@@ -123,6 +123,6 @@
 //= require jquery.highlight-within-textarea
 //= require inventory_item_sort_ujs
 //= require job_wait
-//= require inventory_source_check
+//= require prototype_create_form
 
 //= require show_incipit_renderer

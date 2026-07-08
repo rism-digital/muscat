@@ -469,7 +469,15 @@ ActiveAdmin.register Source do
   end
 
   sidebar :create_inventory_item_from_this_source, :only => :show, if: proc{ can? :create, InventoryItem } do
-    render :partial => "activeadmin/sidebar_new_inventory_item"
+    render partial: "activeadmin/sidebar_create_from_prototype_form",
+       locals: {
+         resource: resource,
+         form_url: new_admin_inventory_item_path,
+         check_url: "/admin/sources/:id/is_inventory",
+         input_label: "Inventory Source or Edition to attach this item to",
+         button_label: "Create Inventory Item",
+         message_invalid: "Please select an inventory"
+       }
   end
 
   ##########
