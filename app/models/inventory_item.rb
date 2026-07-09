@@ -295,6 +295,7 @@ class InventoryItem < ApplicationRecord
 
     if source.is_a? Source
       marc.add_tag_with_subfields("932", w: source.id, a: source.std_title, "4": "Identified")
+      marc.add_tag_with_subfields("599", a: "Imported from #{source.id}")
     end
 
   end
