@@ -321,7 +321,7 @@ class Work < ApplicationRecord
       end
     end
 
-    ## ad pub
+    marc.add_tag_with_subfields("667", a: "Imported from #{source.id}")
   end
 
   def self.get_viaf(str)
