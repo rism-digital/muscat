@@ -481,16 +481,7 @@ ActiveAdmin.register Source do
   end
 
   sidebar :create_work_from_this_source, :only => :show, if: proc{ can? :create, Work } do
-    render partial: "activeadmin/sidebar_create_from_prototype_form",
-       locals: {
-         resource: resource,
-         form_url: new_admin_work_path,
-         check_url: is_catalogue_admin_publication_path(":id"), # :id is going to be subtituted in JS
-         source_field_name: "publication_id",
-         input_label: "Publication to attach this item to",
-         button_label: "Create Work",
-         message_invalid: "Please select a work catalogue publication"
-       }
+    render partial: "activeadmin/sidebar_create_work"
   end
 
   ##########
