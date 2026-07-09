@@ -134,6 +134,8 @@ module MarcControllerActions
         model_for_path = self.class.resource_class.to_s.underscore.downcase
         if (model_for_path == "holding") && params.include?(:parent_object_id)
             path = admin_source_path(params[:parent_object_id])
+        elsif (model_for_path == "inventory_item") && params.include?(:parent_object_id)
+          path = edit_admin_source_path(params[:parent_object_id])
         else
           link_function = "admin_#{model_for_path}_path"
           path =  send(link_function, @item.id) #admin_sources_path
