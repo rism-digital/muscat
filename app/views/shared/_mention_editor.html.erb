@@ -1,0 +1,23 @@
+<% field_name = local_assigns.fetch(:name) %>
+<% field_value = local_assigns.fetch(:value, "") %>
+<% users_url = local_assigns.fetch(:users_url) %>
+<% placeholder = local_assigns.fetch(:placeholder, "Type @ to mention a user") %>
+<% trigger = local_assigns.fetch(:trigger, "@") %>
+<% wrapper_class = local_assigns.fetch(:wrapper_class, "") %>
+<% editor_id = local_assigns.fetch(:editor_id, "#{field_name.to_s.parameterize}_mention_editor") %>
+<% hidden_id = local_assigns.fetch(:hidden_id, "#{field_name.to_s.parameterize}_mention_value") %>
+
+<div class="mention-editor <%= wrapper_class %>"
+     data-mention-field
+     data-mention-users-url="<%= users_url %>"
+     data-mention-trigger="<%= trigger %>">
+  <div class="mention-editor__hint"><%= placeholder %></div>
+  <div id="<%= editor_id %>"
+       class="mention-editor__mount"
+       data-mention-editor></div>
+  <textarea id="<%= hidden_id %>"
+            name="<%= field_name %>"
+            hidden
+            data-mention-hidden><%= h field_value %></textarea>
+</div>
+ciao

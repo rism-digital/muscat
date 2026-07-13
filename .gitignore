@@ -35,5 +35,6 @@ config/attribute-map.yml
 config/initializers/devise_saml_authenticatable.rb
 app/views/active_admin/devise/sessions/new.html.erb
 .ruby-version
+node_modules/
 
 housekeeping/work-mining
