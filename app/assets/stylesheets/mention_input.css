@@ -3,10 +3,15 @@
   margin: 0.5rem 0 1rem;
 }
 
-.mention-editor__hint {
+.mention-editor__hint,
+.mention-editor__help {
   margin: 0 0 0.35rem;
   font-size: 0.875rem;
   color: #4b5563;
+}
+
+.mention-editor__help {
+  margin: 0.4rem 0 0;
 }
 
 .mention-editor__mount {

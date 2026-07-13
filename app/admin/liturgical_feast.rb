@@ -149,7 +149,7 @@ ActiveAdmin.register LiturgicalFeast do
 
     active_admin_user_wf( self, liturgical_feast )
     active_admin_navigation_bar( self )
-    active_admin_comments if !is_selection_mode?
+    active_admin_muscat_comments(self, liturgical_feast) if !is_selection_mode?
   end
   
   sidebar :actions, :only => :show do

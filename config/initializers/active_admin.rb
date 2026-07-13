@@ -327,8 +327,8 @@ require "patches/kaminari/helpers/tag"
 ## RZ This monkey patch enables some filter labels to be translated in the Search Status
 ## sidebar.
 require 'patches/active_admin/filters/active_filter.rb'
-## RZ Add some text to the comments box, for help
-require 'patches/active_admin/comments/views/comments_ext.rb'
+## Keep the comments panel custom instead of using the ActiveAdmin default injection.
+require 'patches/active_admin/comments/show_page_helper_ext.rb'
 ## Add a Clear button when a filter is active
 require 'patches/active_admin/views/components/active_filters_sidebar_content.rb'
 

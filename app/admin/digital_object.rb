@@ -247,7 +247,7 @@ ActiveAdmin.register DigitalObject do
       row (I18n.t :filter_owner) { |r| r.user.name } if ( ad.user )
     end
     active_admin_navigation_bar( self )
-    active_admin_comments if !is_selection_mode?
+    active_admin_muscat_comments(self, digital_object) if !is_selection_mode?
   end
   
   sidebar :actions, :only => :show do

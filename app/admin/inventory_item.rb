@@ -237,7 +237,7 @@ ActiveAdmin.register InventoryItem do
     end
     active_admin_user_wf( self, inventory_item )
     active_admin_navigation_bar( self )
-    active_admin_comments if !is_selection_mode?
+    active_admin_muscat_comments(self, inventory_item) if !is_selection_mode?
   end
   
   sidebar :actions, :only => :show do

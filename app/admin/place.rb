@@ -218,7 +218,7 @@ ActiveAdmin.register Place do
 
     active_admin_user_wf( self, place )
     active_admin_navigation_bar( self )
-    active_admin_comments if !is_selection_mode?
+    active_admin_muscat_comments(self, place) if !is_selection_mode?
   end
 
   sidebar :actions, :only => :show do
