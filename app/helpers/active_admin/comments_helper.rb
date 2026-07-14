@@ -1,9 +1,6 @@
 # frozen_string_literal: true
 
 module ActiveAdmin::CommentsHelper
-  COMMENT_BODY_ALLOWED_TAGS = %w[p br strong em u s ul ol li blockquote code pre span a].freeze
-  COMMENT_BODY_ALLOWED_ATTRIBUTES = %w[class style href target rel data-mention-id data-mention-label].freeze
-
   def active_admin_muscat_comments(context, item)
     return unless authorized?(ActiveAdmin::Auth::READ, ActiveAdmin::Comment)
 
@@ -38,7 +35,15 @@ module ActiveAdmin::CommentsHelper
     context.div for: comment do
       context.div class: "active_admin_comment_meta" do
         context.h4 class: "active_admin_comment_author" do
-          comment.author ? auto_link(comment.author) : I18n.t("active_admin.comments.author_missing")
+          if comment.author
+            parts = []
+            badge = rism_staff_comment_badge(comment.author)
+            parts << badge if badge.present?
+            parts << auto_link(comment.author)
+            context.text_node safe_join(parts, " ")
+          else
+            I18n.t("active_admin.comments.author_missing")
+          end
         end
         context.span pretty_format(comment.created_at)
         if authorized?(ActiveAdmin::Auth::DESTROY, comment)
@@ -51,7 +56,7 @@ module ActiveAdmin::CommentsHelper
         end
       end
 
-      context.div sanitize(comment.body.to_s, tags: COMMENT_BODY_ALLOWED_TAGS, attributes: COMMENT_BODY_ALLOWED_ATTRIBUTES), class: "active_admin_comment_body"
+      context.div render_active_admin_comment_body(comment.body), class: "active_admin_comment_body"
     end
   end
 
@@ -69,5 +74,24 @@ module ActiveAdmin::CommentsHelper
     parts << active_admin_namespace.comments_registration_name.underscore.pluralize
     parts << "path"
     send parts.join("_")
+  end
+
+  def render_active_admin_comment_body(body)
+    normalized_body = body.to_s.gsub("\r\n", "\n").gsub("\r", "\n")
+    paragraphs = normalized_body.split(/\n{2,}/).map(&:strip).reject(&:blank?)
+    paragraphs = [""] if paragraphs.empty?
+
+    safe_join(
+      paragraphs.map do |paragraph|
+        content_tag(:p, Anchored::Linker.auto_link(h(paragraph)).html_safe)
+      end
+    )
+  end
+
+  def rism_staff_comment_badge(author)
+    return unless author.respond_to?(:has_role?)
+    return unless author.has_role?(:admin) || author.has_role?(:editor)
+
+    content_tag(:span, "RISM Staff", class: "status_tag warning")
   end
 end

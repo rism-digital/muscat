@@ -99,3 +99,18 @@
 .mention-editor__menu[data-mention-placement="above"] {
   box-shadow: 0 -8px 24px rgba(15, 23, 42, 0.14);
 }
+
+.active_admin_comment_author {
+  margin: 0;
+  font-size: 0.95rem;
+  line-height: 1.35;
+  font-weight: 400;
+}
+
+.active_admin_comment_author .status_tag.warning {
+  margin-right: 0.35rem;
+  padding: 0.1rem 0.4rem;
+  line-height: 1.2;
+  font-weight: 500;
+  vertical-align: middle;
+}
