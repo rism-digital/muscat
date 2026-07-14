@@ -62,7 +62,7 @@ ActiveAdmin.register User do
       pattern = "\\b#{Regexp.escape(q)}"
 
       users = User.where(disabled: false)
-            .where("name REGEXP ? OR username REGEXP ?", pattern, pattern)
+            .where("name REGEXP ?", pattern)
             .map { |u| { name: "#{u.name}", id: u.id } }
     else
       users = []
