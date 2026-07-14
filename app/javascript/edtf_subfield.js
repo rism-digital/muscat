@@ -5,6 +5,39 @@ defaults.level = 3
 window.edtf = edtf
 window.edtf_format = format
 
+window.muscatWidgetInitializers = window.muscatWidgetInitializers || []
+window.muscatRegisterWidgetInitializer = window.muscatRegisterWidgetInitializer || function(initializer) {
+  if (!window.muscatWidgetInitializers.includes(initializer)) {
+    window.muscatWidgetInitializers.push(initializer)
+  }
+}
+window.muscatInitializeWidgetsInBlock = window.muscatInitializeWidgetsInBlock || function(root) {
+  const scope = root || document
+
+  window.muscatWidgetInitializers.forEach((initializer) => {
+    initializer(scope)
+  })
+}
+
+function bindEdtfDelegatedKeyup() {
+  if (window.muscatEdtfDelegatedKeyupBound) {
+    return
+  }
+
+  window.muscatEdtfDelegatedKeyupBound = true
+  document.addEventListener("keyup", (event) => {
+    if (!(event.target instanceof HTMLElement)) {
+      return
+    }
+
+    if (!event.target.matches(".input-edtf")) {
+      return
+    }
+
+    updateEdtf(event.target)
+  })
+}
+
 function updateEdtf(input) {
   let parsedDate
   let defaultLocale = "en-US"
@@ -16,8 +49,9 @@ function updateEdtf(input) {
     day: "numeric",
   }
 
-  const message = document.getElementById("edtf-message")
-  const error = document.getElementById("edtf-error")
+  const container = input.closest(".edtf-subfield") || input.parentElement || document
+  const message = container.querySelector(".edtf-message")
+  const error = container.querySelector(".edtf-error")
 
   function setErrorText(text) {
     if (!error) {
@@ -67,21 +101,27 @@ function updateEdtf(input) {
   }
 }
 
-function initEdtfSubfield() {
-  const input = document.getElementById("input-edtf")
+function initEdtfSubfield(root) {
+  const scope = root || document
+  const inputs = scope.querySelectorAll(".input-edtf")
 
-  if (!input || input.dataset.edtfInitialized === "true") {
-    return
-  }
+  inputs.forEach((input) => {
+    if (input.dataset.edtfInitialized === "true") {
+      return
+    }
 
-  input.dataset.edtfInitialized = "true"
-  input.addEventListener("keyup", (event) => {
-    event.preventDefault()
+    input.dataset.edtfInitialized = "true"
+
     updateEdtf(input)
   })
-
-  updateEdtf(input)
 }
 
-document.addEventListener("DOMContentLoaded", initEdtfSubfield)
-document.addEventListener("turbo:load", initEdtfSubfield)
+bindEdtfDelegatedKeyup()
+window.muscatRegisterWidgetInitializer(initEdtfSubfield)
+
+document.addEventListener("DOMContentLoaded", () => {
+  window.muscatInitializeWidgetsInBlock(document)
+})
+document.addEventListener("turbo:load", () => {
+  window.muscatInitializeWidgetsInBlock(document)
+})
