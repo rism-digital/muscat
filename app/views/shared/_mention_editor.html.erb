@@ -6,13 +6,18 @@
 <% wrapper_class = local_assigns.fetch(:wrapper_class, "") %>
 <% show_hint = local_assigns.fetch(:show_hint, true) %>
 <% help_text = local_assigns[:help_text] %>
+<% json_field_name = local_assigns[:json_name] %>
+<% json_field_value = local_assigns[:json_value] %>
+<% output_mode = local_assigns.fetch(:output_mode, json_field_name.present? ? "text_json" : "html") %>
 <% editor_id = local_assigns.fetch(:editor_id, "#{field_name.to_s.parameterize}_mention_editor") %>
 <% hidden_id = local_assigns.fetch(:hidden_id, "#{field_name.to_s.parameterize}_mention_value") %>
+<% hidden_json_id = local_assigns.fetch(:hidden_json_id, "#{field_name.to_s.parameterize}_mention_json") if json_field_name.present? %>
 
 <div class="mention-editor <%= wrapper_class %>"
      data-mention-field
      data-mention-users-url="<%= users_url %>"
-     data-mention-trigger="<%= trigger %>">
+     data-mention-trigger="<%= trigger %>"
+     data-mention-output-mode="<%= output_mode %>">
   <% if show_hint %>
     <div class="mention-editor__hint"><%= placeholder %></div>
   <% end %>
@@ -23,6 +28,12 @@
             name="<%= field_name %>"
             hidden
             data-mention-hidden><%= h field_value %></textarea>
+  <% if json_field_name.present? %>
+    <textarea id="<%= hidden_json_id %>"
+              name="<%= json_field_name %>"
+              hidden
+              data-mention-hidden-json><%= h(json_field_value.is_a?(String) ? json_field_value : json_field_value.to_json) if json_field_value.present? %></textarea>
+  <% end %>
   <% if help_text.present? %>
     <div class="mention-editor__help"><%= help_text %></div>
   <% end %>

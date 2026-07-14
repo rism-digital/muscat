@@ -28997,6 +28997,16 @@ ${prefix}
     }
     return payload.map(normalizeUser).filter((record) => record.label.length > 0);
   }
+  function safeParseJson(value) {
+    if (!value || value.trim().length === 0) {
+      return null;
+    }
+    try {
+      return JSON.parse(value);
+    } catch (_error) {
+      return null;
+    }
+  }
   function createSuggestionMenu() {
     let props;
     let selectedIndex = 0;
@@ -29152,8 +29162,10 @@ ${prefix}
     }
     const editorMount = root.querySelector("[data-mention-editor]");
     const hiddenField = root.querySelector("[data-mention-hidden]");
+    const hiddenJsonField = root.querySelector("[data-mention-hidden-json]");
     const usersUrl = root.dataset.mentionUsersUrl;
     const trigger = root.dataset.mentionTrigger || "@";
+    const outputMode = root.dataset.mentionOutputMode || (hiddenJsonField ? "text_json" : "html");
     if (!editorMount || !hiddenField || !usersUrl) {
       return;
     }
@@ -29167,7 +29179,7 @@ ${prefix}
     );
     const editor = new Editor({
       element: editorMount,
-      content: hiddenField.value || "",
+      content: hiddenJsonField ? safeParseJson(hiddenJsonField.value) || hiddenField.value || "" : hiddenField.value || "",
       editorProps: {
         attributes: {
           class: "mention-editor__content"
@@ -29205,7 +29217,14 @@ ${prefix}
         })
       ],
       onUpdate: ({ editor: currentEditor }) => {
-        hiddenField.value = currentEditor.getHTML();
+        if (outputMode === "text_json") {
+          hiddenField.value = currentEditor.getText();
+          if (hiddenJsonField) {
+            hiddenJsonField.value = JSON.stringify(currentEditor.getJSON());
+          }
+        } else {
+          hiddenField.value = currentEditor.getHTML();
+        }
       }
     });
     root._mentionEditor = editor;

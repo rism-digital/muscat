@@ -10,10 +10,13 @@
     <%= render partial: "shared/mention_editor", locals: {
       name: "#{f.object_name}[body]",
       value: f.object.body,
+      json_name: "#{f.object_name}[body_json]",
+      json_value: f.object.body_json,
       users_url: users_url,
       show_hint: false,
       help_text: I18n.t("active_admin.comments.comments_help"),
-      wrapper_class: "active-admin-comment-editor"
+      wrapper_class: "active-admin-comment-editor",
+      output_mode: "text_json"
     } %>
   <% end %>
 

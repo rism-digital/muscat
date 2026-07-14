@@ -1,8 +1,9 @@
 ActiveAdmin.register ActiveAdmin::Comment, :as => "Comment" do
-  
   after_create do |comment|
     CommentNotifications.new_comment(comment).deliver_now
   end
+
+  permit_params :body, :body_json, :namespace, :resource_id, :resource_type, mentioned_user_ids: []
   
   # Remove all action items
   config.clear_action_items!
@@ -30,6 +31,14 @@ ActiveAdmin.register ActiveAdmin::Comment, :as => "Comment" do
   end
   
   controller do   
+    after_build do |comment|
+      apply_rich_comment_payload(comment)
+    end
+
+    before_update do |comment|
+      apply_rich_comment_payload(comment)
+    end
+
     def index
       if params[:as] and params[:as] == "table"
         index!
@@ -53,6 +62,19 @@ ActiveAdmin.register ActiveAdmin::Comment, :as => "Comment" do
           @collection = scope.page(params[:page])
         end
       end
+    end
+
+    private
+
+    def apply_rich_comment_payload(comment)
+      raw_body_json = params.dig(:active_admin_comment, :body_json)
+      source = raw_body_json.presence || comment.body_json
+      document = ActiveAdmin::Comment.new(body_json: source).body_json_document
+      return if document.blank?
+
+      comment.body_json = document
+      comment.body = comment.body_from_json
+      comment.mentioned_user_ids = comment.mentioned_user_ids_from_json
     end
   end
 
