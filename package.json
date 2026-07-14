@@ -2,14 +2,15 @@
   "name": "muscat",
   "private": true,
   "scripts": {
-    "build": "esbuild app/javascript/active_admin_mention_input.js --bundle --outfile=app/assets/builds/active_admin_mention_input.js --format=iife --target=es2017",
-    "build:watch": "esbuild app/javascript/active_admin_mention_input.js --bundle --outfile=app/assets/builds/active_admin_mention_input.js --format=iife --target=es2017 --watch"
+    "build": "esbuild app/javascript/active_admin_mention_input.js app/javascript/edtf_subfield.js --bundle --outdir=app/assets/builds --format=iife --target=es2017",
+    "build:watch": "esbuild app/javascript/active_admin_mention_input.js app/javascript/edtf_subfield.js --bundle --outdir=app/assets/builds --format=iife --target=es2017 --watch"
   },
   "dependencies": {
     "@tiptap/core": "^3.0.0",
     "@tiptap/extension-mention": "^3.0.0",
     "@tiptap/pm": "^3.0.0",
-    "@tiptap/starter-kit": "^3.0.0"
+    "@tiptap/starter-kit": "^3.0.0",
+    "edtf": "^4.7.1"
   },
   "devDependencies": {
     "esbuild": "^0.24.0"
