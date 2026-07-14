@@ -48,6 +48,19 @@
   white-space: nowrap;
 }
 
+.comment-mention {
+  display: inline;
+  padding: 0.05rem 0.2rem;
+  border-radius: 0.25rem;
+  background: #dbeafe;
+  color: #1d4ed8;
+  border: 0;
+  box-shadow: none;
+  font-weight: 400;
+  text-decoration: none;
+  white-space: nowrap;
+}
+
 .mention-editor__menu {
   position: absolute;
   z-index: 1000;
