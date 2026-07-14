@@ -11,6 +11,7 @@ The following other libraries and programs are needed
 * MySQL \> 8.0.4 or MariaDB 10.x  
 * Git  
 * Java 17+
+* npm (used for modern js modules, sorry)
 
 **NOTE** From Muscat 6.1 MySQL *8.0.4 is required* for autocomplete and comments to properly work, as the REGEX library was changed.  MariaDB 10.x, as provided by Debian 10 (Buster) also seems to work properly.
 
@@ -68,10 +69,32 @@ If you are using Debian 10 (Buster), the default MariaDB server (mariadb-server,
 ### Base packages
 
 ```
-sudo apt-get install git gcc curl zlib1g-dev libxml2-dev imagemagick libmagickcore-6.q16-dev libmagickwand-6.q16-dev openjdk-17-jre-headless make libsqlite3-dev g++ nodejs
+sudo apt-get install git gcc curl zlib1g-dev libxml2-dev imagemagick libmagickcore-6.q16-dev libmagickwand-6.q16-dev openjdk-17-jre-headless make libsqlite3-dev g++ nodejs npm
 ```
 
 ### How to break free of a proxy
+
+The new clever way. On the local machine:
+
+```
+brew install privoxy
+brew services start privoxy
+```
+
+Then connect to the remote machine
+
+```
+ssh -R 8118:localhost:8118 muscat-test
+```
+
+and on the remote machine the http proxy is on 8118
+
+```
+HTTP_PROXY=http://localhost:8118 HTTPS_PROXY=http://localhost:8118 npm install
+```
+
+
+The old way:
 
 ```
 # Run SSH on your local machine
@@ -203,9 +226,11 @@ Remember that they key must be readable from the user running apache, so check t
 chown www-data:www-data config/master.key
 ```
 
-Lastly, precompile the assets. Use the correct env
+Lastly, bundle the javascript modules and precompile the assets. Use the correct env like production!
 
 ```
+npm install
+npm run build
 bundle exec rake RAILS_ENV=production assets:precompile
 ```
 
