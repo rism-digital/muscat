@@ -182,7 +182,7 @@ ActiveAdmin.register StandardTerm do
       f.input :term, :label => (I18n.t :filter_term), input_html: {data: {trigger: triggers_from_hash({save: ["referring_sources", "referring_publications", "referring_works"]}) }}
       f.input :alternate_terms, :label => (I18n.t :filter_alternate_terms), :input_html => { :rows => 8 }
       f.input :notes, :label => (I18n.t :filter_notes)
-      f.input :wf_stage, :label => (I18n.t :filter_wf_stage), :input_html => { :disabled => !(current_user.has_any_role?(:editor, :admin)) }
+      f.input :wf_stage, :label => (I18n.t :filter_wf_stage), :selected => (f.object.new_record? ? :published : f.object.wf_stage), :input_html => { :disabled => !(current_user.has_any_role?(:editor, :admin)) }
       f.input :lock_version, :as => :hidden
     end
   end
