@@ -15,6 +15,7 @@ class Ability
       can :unpublish, :all
       can :resave, :all
       can :use, :gnd_editor
+      can :import_wikidata, Person
 
     ##########
     # Editor #
@@ -37,6 +38,7 @@ class Ability
       can :order_inventory_items, Source
       can :do_reorder_inventory_items, Source
       can :move_to, Holding
+      can :import_wikidata, Person
 
       can :manage, Folder#, :wf_owner => user.id
       can :unpublish, :all
@@ -60,7 +62,8 @@ class Ability
       can [:read, :create], [Publication, Institution, LiturgicalFeast, Person, Place, StandardTerm, StandardTitle, WorkNode, Holding]
       if user.has_role?(:person_restricted)
         # catalogers can get restriced access to the persons form
-        # the general design of the role allows extensions alike for e.g. institudions
+        # the general design of the role allows extensions alike for e.g. institutions
+        cannot :import_wikidata, Person
         can :update, Person
       end
 
