@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+require "cgi"
+
 module ActiveAdmin::CommentsHelper
   def active_admin_muscat_comments(context, item)
     return unless authorized?(ActiveAdmin::Auth::READ, ActiveAdmin::Comment)
@@ -144,7 +146,8 @@ module ActiveAdmin::CommentsHelper
   end
 
   def render_active_admin_comment_text_node(node)
-    html = h(node["text"].to_s)
+    decoded_text = CGI.unescapeHTML(node["text"].to_s)
+    html = Anchored::Linker.auto_link(h(decoded_text)).html_safe
 
     Array(node["marks"]).reduce(html) do |acc, mark|
       render_active_admin_comment_mark(acc, mark)
@@ -185,7 +188,7 @@ module ActiveAdmin::CommentsHelper
   end
 
   def render_legacy_active_admin_comment_body(body)
-    normalized_body = body.to_s.gsub("\r\n", "\n").gsub("\r", "\n")
+    normalized_body = CGI.unescapeHTML(body.to_s).gsub("\r\n", "\n").gsub("\r", "\n")
     paragraphs = normalized_body.split(/\n{2,}/).map(&:strip).reject(&:blank?)
     paragraphs = [""] if paragraphs.empty?
 
