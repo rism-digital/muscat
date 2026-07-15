@@ -29186,7 +29186,23 @@ ${prefix}
         }
       },
       extensions: [
-        index_default,
+        index_default.configure({
+          blockquote: false,
+          bold: false,
+          bulletList: false,
+          code: false,
+          codeBlock: false,
+          dropcursor: false,
+          gapcursor: false,
+          heading: false,
+          horizontalRule: false,
+          italic: false,
+          listItem: false,
+          orderedList: false,
+          strike: false,
+          underline: false,
+          link: false
+        }),
         index_default2.configure({
           HTMLAttributes: {
             class: "mention-editor__mention"

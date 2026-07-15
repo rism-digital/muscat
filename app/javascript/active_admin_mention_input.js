@@ -265,7 +265,23 @@ function initMentionField(root) {
       },
     },
     extensions: [
-      StarterKit,
+      StarterKit.configure({
+        blockquote: false,
+        bold: false,
+        bulletList: false,
+        code: false,
+        codeBlock: false,
+        dropcursor: false,
+        gapcursor: false,
+        heading: false,
+        horizontalRule: false,
+        italic: false,
+        listItem: false,
+        orderedList: false,
+        strike: false,
+        underline: false,
+        link: false,
+      }),
       Mention.configure({
         HTMLAttributes: {
           class: "mention-editor__mention",
