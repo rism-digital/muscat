@@ -209,7 +209,7 @@ ActiveAdmin.register StandardTitle do
       f.input :latin, :label => (I18n.t :menu_latin) 
       f.input :alternate_terms, :label => (I18n.t :filter_variants)
       f.input :notes, :label => (I18n.t :filter_notes) 
-      f.input :wf_stage, :label => (I18n.t :filter_wf_stage)
+      f.input :wf_stage, :label => (I18n.t :filter_wf_stage), :input_html => { :disabled => !(current_user.has_any_role?(:editor, :admin)) }
       f.input :lock_version, :as => :hidden
     end
   end
