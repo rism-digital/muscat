@@ -5,6 +5,7 @@ module ActiveAdmin
         within super do
           text_node javascript_include_tag("edtf_subfield", defer: true)
           text_node javascript_include_tag("active_admin_mention_input", defer: true)
+          text_node javascript_include_tag("diva_viewer", defer: true)
         end
       end
     end

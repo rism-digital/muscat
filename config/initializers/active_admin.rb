@@ -205,6 +205,7 @@ ActiveAdmin.setup do |config|
   #   config.register_javascript 'my_javascript.js'
   config.register_stylesheet 'jquery-ui.css'
   config.register_stylesheet 'mention_input.css'
+  config.register_stylesheet 'diva_viewer.css'
   #config.register_javascript 'marc_editor.js'
   #config.register_javascript 'marc_json.js'
   #config.register_javascript 'jquery.blockUI.js'
@@ -213,7 +214,6 @@ ActiveAdmin.setup do |config|
   #config.register_javascript 'jquery.validate.js'
 
   config.register_stylesheet 'muscat-print.css', :media => :print
-  config.register_stylesheet 'diva.min.css'
   config.register_stylesheet 'jquery.flexdatalist.css'
 
   # == CSV options
