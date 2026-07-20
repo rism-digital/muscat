@@ -107,8 +107,6 @@
 #= require html2csv.js
 #= require statistics.js
 
-#=require tribute.min
-#=require tribute_load
 #=require clipboard.min
 
 #= require jquery.highlight-within-textarea
