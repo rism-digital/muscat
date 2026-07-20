@@ -7,8 +7,10 @@
         <%= f.input :disabled %>
       <% end %>
        <%if can? :update, User %>
-         <%= f.input :username %>
-         <%= f.input :name %>
+        <%= f.input :username,
+          input_html: { id: "user_username" },
+          hint: link_to("autogen username", "#", id: "autogen_username") %>
+         <%= f.input :name, input_html: { id: "user_name" } %>
          <%= f.input :email %>
        <% end %>
       

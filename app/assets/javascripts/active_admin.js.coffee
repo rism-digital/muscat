@@ -99,6 +99,7 @@
 #= require job_progress_bar
 #= require merge_authority
 #= require compare_versions_actions
+#= require autogen_username
 
 #= require gnd_interface.js
 #= require external_fetch_panel
@@ -116,5 +117,6 @@
 #= require jquery.highlight-within-textarea
 #= require inventory_item_sort_ujs
 #= require job_wait
+#= require prototype_create_form
 
 #= require show_incipit_renderer

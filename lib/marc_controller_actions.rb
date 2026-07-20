@@ -24,9 +24,8 @@ module MarcControllerActions
         
       # This is the tricky part. Get the MARC subclass
       # e.g. MarcSource or MarcPerson
-      classname = "Marc" + model.to_s
       # Let it crash is the class is not fond
-      dyna_marc_class = Kernel.const_get(classname)
+      dyna_marc_class = "Marc#{model}".constantize
       
       new_marc = dyna_marc_class.new()
       new_marc.load_from_hash(marc_hash, user: current_user)
@@ -90,8 +89,10 @@ module MarcControllerActions
       # Change owner, if you are authorized
       if params.has_key?(:record_owner) &&
         (current_user.has_role?(:editor) || current_user.has_role?(:admin))
-        new_user = User.find(params[:record_owner]) rescue new_user = nil
-        @item.user = new_user if new_user
+
+        if (new_user = User.find_by(id: params[:record_owner]))
+          @item.user = new_user
+        end
       end
       
       if params.has_key?(:record_audit) &&
@@ -102,7 +103,6 @@ module MarcControllerActions
       if params.has_key?(:work_catalogue_status) && @item.is_a?(Publication) &&
         (can?(:edit, Work) || current_user.has_role?(:editor) || current_user.has_role?(:admin))
         @item.work_catalogue = params[:work_catalogue_status]
-        ap params[:work_catalogue_status]
       end
 
       # Set the user name to the model class variable
@@ -128,18 +128,19 @@ module MarcControllerActions
       
       # Redirect decides if we ar reloading the editor or redirecting
       # to the index page
-      redirect = params.include?(:redirect) ? params[:redirect] : false
+      redirect = ActiveModel::Type::Boolean.new.cast(params[:redirect])
+      model_for_path = self.class.resource_class.to_s.underscore.downcase
 
-      if redirect == "true"
-        model_for_path = self.class.resource_class.to_s.underscore.downcase
+      if redirect
         if (model_for_path == "holding") && params.include?(:parent_object_id)
             path = admin_source_path(params[:parent_object_id])
+        elsif (model_for_path == "inventory_item") && params.include?(:parent_object_id)
+          path = edit_admin_source_path(params[:parent_object_id])
         else
           link_function = "admin_#{model_for_path}_path"
           path =  send(link_function, @item.id) #admin_sources_path
         end
       else
-        model_for_path = self.class.resource_class.to_s.underscore.downcase
         link_function = "edit_admin_#{model_for_path}_path"
         path =  send(link_function, @item.id) #admin_edit_source_path(@item.id)
       end
@@ -163,7 +164,7 @@ module MarcControllerActions
       # This is the tricky part. Get the MARC subclass
       # e.g. MarcSource or MarcPerson
       classname = "Marc" + model.to_s
-      # Let it crash is the class is not fond
+      # Let it crash if the class is not found
       dyna_marc_class = Kernel.const_get(classname)
       
       new_marc = dyna_marc_class.new()

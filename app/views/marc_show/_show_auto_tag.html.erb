@@ -35,7 +35,13 @@ tag.for_every_child_sorted do |subfield|
     text = subfield.foreign_object&.autocomplete_label if subfield.foreign_object.is_a?(Place)
     next if text.blank?
 
-    parts << if subfield.foreign_object && (master&.tag != subfield.tag || tag.children.count == 1)
+    force_link =
+      item.is_a?(InventoryItem) &&
+      tag.tag == "773" &&
+      subfield.tag == "w"
+
+    parts << if subfield.foreign_object && 
+      (force_link || master&.tag != subfield.tag || tag.children.count == 1)
         if !linked
           link_to(text.strip, [:admin, subfield.foreign_object])
         else

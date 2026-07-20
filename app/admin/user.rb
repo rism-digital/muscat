@@ -58,17 +58,18 @@ ActiveAdmin.register User do
   collection_action :list, method: :post do
     params.permit!
     if params.include?(:q)
-      pattern = "\\b#{Regexp.escape(params[:q].to_s)}"
+      q = params[:q].to_s.gsub(/\A[[:punct:]]+|[[:punct:]]+\z/, '')
+      pattern = "\\b#{Regexp.escape(q)}"
 
       users = User.where(disabled: false)
-                  .where("name REGEXP ?", pattern)
-                  .map { |u| { name: u.name, id: u.name.tr(" ", "_") } }
+            .where("name REGEXP ? OR username REGEXP ?", pattern, pattern)
+            .map { |u| { name: "#{u.name} <small>(#{u.username})</small>", id: u.name.tr(" ", "_") } }
     else
       users = []
     end
 
     users.reject! {|u| u[:name] == "Admin"}
-    
+
     respond_to do |format|
         format.json { render json: users  }
     end
@@ -117,6 +118,20 @@ ActiveAdmin.register User do
     redirect_to resource_path(user), notice: "Personal default workgroup created"
   end
 
+  collection_action :autogen_username, method: :get do
+    base = params[:name].to_s.parameterize(separator: "_")
+
+    username = base
+    counter = 2
+
+    while User.exists?(username: username)
+      username = "#{base}#{counter}"
+      counter += 1
+    end
+
+    render json: { username: username }
+  end
+
   ###########
   ## Index ##
   ###########
@@ -124,6 +139,7 @@ ActiveAdmin.register User do
   filter :username
   filter :name
   filter :email
+  filter :username_or_name_or_email_cont, label: "Any of the above"
   filter :roles_id_in,
        as: :select,
        label: I18n.t(:roles),

@@ -25,6 +25,7 @@ class Ability
       can [:read, :create, :update, :destroy], [DigitalObject, DigitalObjectLink, Publication, Institution, LiturgicalFeast, Place, StandardTerm, StandardTitle, Source, Work, WorkNode, Holding]
       can [:read, :create], Person
       can :update, Person, :wf_owner => user.id
+      can :read, Workgroup
       #can [:read], Folder
 
       can :use, :gnd_editor
@@ -98,8 +99,8 @@ class Ability
         user.can_publish?(folder)
       end
       cannot [:unpublish, :reindex], :all
-      can [:read, :create, :destroy], ActiveAdmin::Comment
-      can [:update], ActiveAdmin::Comment, :author_id => user.id
+      can [:read, :create], ActiveAdmin::Comment
+      can [:update, :destroy], ActiveAdmin::Comment, :author_id => user.id
       can [:read, :create], Source
       can :update, Source, :wf_owner => user.id
       can :update, Source do |source|

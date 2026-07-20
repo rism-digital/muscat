@@ -16,7 +16,7 @@ class LiturgicalFeast < ApplicationRecord
   include AutoStripStrings
   include HasReferringRelations
   
-  referring_relations_for :source, :work
+  referring_relations_for :source, :work, :inventory_item
 
 =begin
   #has_and_belongs_to_many(:referring_sources, class_name: "Source", join_table: "sources_to_liturgical_feasts")

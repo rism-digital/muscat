@@ -145,9 +145,8 @@ ActiveAdmin.register InventoryItem do
         redirect_to admin_root_path, :flash => { :error => "Could not find source #{params[:source_id]}" }
         return
       end
-      
-      @inventory_item = InventoryItem.new
-      source = Source.find(params[:source_id])
+
+      @inventory_item = InventoryItem.new  
       @inventory_item.source = source
       @parent_object_id = params[:source_id]
       @parent_object_type = "Source" #hardcoded for now
@@ -170,6 +169,11 @@ ActiveAdmin.register InventoryItem do
       new_marc.root.children.insert(new_marc.get_insert_position("773"), node)
 
       @inventory_item.marc = new_marc
+
+      # If a source to copy from is provided get marc from there
+      if (prototype_source = Source.find_by(id: params[:prototype_source_id]))
+        @inventory_item.copy_from_source_marc(prototype_source)
+      end
 
       @editor_profile = EditorConfiguration.get_default_layout @inventory_item
       @editor_validation = EditorValidation.get_default_validation(@inventory_item)
@@ -250,7 +254,7 @@ ActiveAdmin.register InventoryItem do
 
   # Everyone gets this!
   # It has to be here so it is shown in the right position
-  sidebar :inventory_info, except: [:index] do
+  sidebar :inventory_information, except: [:index] do
     #@total_items = controller.view_assigns["total_items"]
     render("inventory_info_sidebar")
   end

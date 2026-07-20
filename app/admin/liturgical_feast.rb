@@ -144,6 +144,8 @@ ActiveAdmin.register LiturgicalFeast do
     end
     active_admin_embedded_source_list( self, liturgical_feast, !is_selection_mode? )
     active_adnin_create_list_for(self, Work, liturgical_feast, title: I18n.t(:filter_title), opus: I18n.t(:filter_opus), catalogue: I18n.t(:filter_catalog))
+    active_adnin_create_list_for(self, InventoryItem, liturgical_feast, title: I18n.t(:filter_title), composer: I18n.t(:filter_composer))
+
 
     active_admin_user_wf( self, liturgical_feast )
     active_admin_navigation_bar( self )
@@ -167,7 +169,7 @@ ActiveAdmin.register LiturgicalFeast do
       f.input :name, :label => (I18n.t :filter_name), input_html: {data: {trigger: triggers_from_hash({save: ["referring_sources", "referring_works"]}) }}
       f.input :alternate_terms, :label => (I18n.t :filter_alternate_terms)
       f.input :notes, :label => (I18n.t :filter_notes)
-      f.input :wf_stage, :label => (I18n.t :filter_wf_stage)
+      f.input :wf_stage, :label => (I18n.t :filter_wf_stage), :selected => (f.object.new_record? ? :published : f.object.wf_stage), :input_html => { :disabled => !(current_user.has_any_role?(:editor, :admin)) }
       f.input :lock_version, :as => :hidden
     end
   end

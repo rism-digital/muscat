@@ -16,7 +16,6 @@ de:
     other_standard_identifier: Normdatenverweise
     other_work_title: Abweichender Werktitel
     partial_title: Teiltitel
-    preferred_title: Bevorzugter Titel
     record_idn: IDN des Normdatensatzes
     reference_phrase: Verweisungsphrase
     references: Literatur
@@ -46,7 +45,7 @@ de:
     dataset_type: Datensatztyp
     subcollection_identifier: Teilbestandskennzeichen
     usage_identifier: Nutzungskennzeichen
-    authorized_form: Ansetzungsform
+    authorized_form: Ansetzungsform für ein Werk
     name: Name
     birth_and_death_dates: Lebensdaten
     birth_and_death_years: Lebensdaten
@@ -54,7 +53,7 @@ de:
     numerical_identifier: Numerische Kennzeichnung
     part_title: Teiltitel
     work_title: Werktitel
-    preferred_title: Bevorzugter Titel
+    preferred_title: Ansetzungsform für ein anonymes Werk
     language: Sprache
     language_code: Sprachencode
     form_of_work: Form des Werkes

@@ -113,6 +113,7 @@
 //= require merge_authority.js
 //= require compare_versions_actions.js
 //= require clipboard.min.js
+//= require autogen_username
 
 //= require 'ekko-lightbox.min'
 
@@ -123,5 +124,6 @@
 //= require jquery.highlight-within-textarea
 //= require inventory_item_sort_ujs
 //= require job_wait
+//= require prototype_create_form
 
 //= require show_incipit_renderer

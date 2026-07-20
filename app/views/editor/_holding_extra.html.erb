@@ -1,5 +1,5 @@
 <% if item.digital_objects.images.size > 0 %>
-    <%= render "admin/digital_objects/digital_objects_embedded_panel" %>
+    <%= render :partial => "admin/digital_objects/digital_objects_embedded_panel", :locals => { :item => item } %>
 <% end %>
 
 <div id="source_preview_for_holding">

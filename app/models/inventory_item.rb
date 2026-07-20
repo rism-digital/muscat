@@ -40,6 +40,10 @@ class InventoryItem < ApplicationRecord
   has_many :inventory_item_standard_term_relations
   has_many :standard_terms, through: :inventory_item_standard_term_relations
 
+  #has_and_belongs_to_many :liturgical_feasts, join_table: "inventory_items_to_liturgical_feasts"
+  has_many :inventory_item_liturgical_feast_relations
+  has_many :liturgical_feasts, through: :inventory_item_liturgical_feast_relations
+
   has_many :inventory_item_holding_relations
   has_many :holdings, through: :inventory_item_holding_relations
 
@@ -136,7 +140,7 @@ class InventoryItem < ApplicationRecord
   def update_links
     return if self.suppress_recreate_trigger == true
     
-    allowed_relations = ["sources", "holdings", "works", "work_nodes", "institutions", "publications", "people", "places", "standard_titles", "standard_terms", "inventory_items"]
+    allowed_relations = ["sources", "holdings", "works", "work_nodes", "institutions", "publications", "people", "places", "standard_titles", "standard_terms", "inventory_items", "liturgical_feasts"]
     recreate_links(marc, allowed_relations)
   end
   
@@ -251,6 +255,49 @@ class InventoryItem < ApplicationRecord
 
   def creatable?
     false
+  end
+
+  def copy_from_source_marc(source)
+    copy_map = {
+      "100" => ["0", "a"],
+      "240" => ["0", "a", "m"],
+      "650" => ["0", "a"],
+      "690" => ["0", "a", "n"],
+      "041" => ["a"],
+      "383" => ["b"],
+      "593" => ["a", "b"],
+      "594" => ["b", "c"],
+      "031" => ["a", "b", "c", "d", "e", "g", "m", "n", "o", "p", "q", "r", "s", "t", "u", "z"]
+    }
+
+    destroyed = {}
+
+    copy_map.each do |tag, subfields|
+      source.marc[tag].each do |st|
+        values = {}
+
+        subfields.each do |sf|
+          st[sf].each do |tt|
+            (values[sf.to_sym] ||= []) << tt.content
+          end
+        end
+
+        next if values.empty?
+
+        unless destroyed[tag]
+          marc[tag].each {|t| t.destroy_yourself} unless marc[tag].empty?
+          destroyed[tag] = true
+        end
+
+        marc.add_tag_with_subfields(tag, **values)
+      end
+    end
+
+    if source.is_a? Source
+      marc.add_tag_with_subfields("932", w: source.id, a: source.std_title, "4": "Identified")
+      marc.add_tag_with_subfields("599", a: "Imported from #{source.id}")
+    end
+
   end
 
   ransacker :"786i", proc{ |v| } do |parent| parent.table[:id] end

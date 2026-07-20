@@ -300,6 +300,18 @@ ActiveAdmin.register Source do
 
   end
 
+  member_action :is_inventory, method: :get do
+    authorize! :create, InventoryItem
+
+    # Let it fail here if not found
+    source = Source.find(params[:id])
+
+    render json: {
+      is_inventory: source.record_type == MarcSource::RECORD_TYPES[:inventory] || source.record_type == MarcSource::RECORD_TYPES[:inventory_edition],
+      title: source.std_title
+    }
+  end
+
   #scope :all, :default => true 
   #scope :published do |sources|
   #  sources.where(:wf_stage => 'published')
@@ -439,7 +451,7 @@ ActiveAdmin.register Source do
   end
   
   # 8.0.1 #1190, make the sidebar floating only if there are no holdings
-  sidebar :actions, :class => "sidebar_tabs" , :only => :show, if: proc{ resource.holdings.empty? } do
+  sidebar :actions, :class => "sidebar_tabs" , :only => :show, if: proc{ resource.holdings.empty? && cannot?(:create, InventoryItem)} do
     render :partial => "activeadmin/section_sidebar_show", :locals => { :item => item } #@arbre_context.assigns[:item]
     render :partial => "activeadmin/section_sidebar_folder_actions", :locals => { :item => item }
   end
@@ -447,13 +459,29 @@ ActiveAdmin.register Source do
   # Same sidebar as above, but when holdings are present. This is quite a kludge since :class cannot
   # be created conditionally using a proc{ !resource.holdings.empty? }, so the whole sidebar block
   # has to be repeated with a different if: ... do
-  sidebar :actions, :only => :show, if: proc{ !resource.holdings.empty? } do
+  sidebar :actions, :only => :show, if: proc{ !resource.holdings.empty? || can?(:create, InventoryItem)} do
     render :partial => "activeadmin/section_sidebar_show", :locals => { :item => item } #@arbre_context.assigns[:item]
     render :partial => "activeadmin/section_sidebar_folder_actions", :locals => { :item => item }
   end
 
-  sidebar I18n.t(:holding_records), :only => :show , if: proc{ !resource.holdings.empty? } do
+  sidebar I18n.t(:holding_records), :only => :show, if: proc{ !resource.holdings.empty? } do
     render :partial => "holdings/holdings_sidebar_show"
+  end
+
+  sidebar :create_inventory_item_from_this_source, :only => :show, if: proc{ can? :create, InventoryItem } do
+    render partial: "activeadmin/sidebar_create_from_prototype_form",
+       locals: {
+         resource: resource,
+         form_url: new_admin_inventory_item_path,
+         check_url: is_inventory_admin_source_path(":id"), # :id is going to be subtituted in JS
+         input_label: "Inventory Source or Edition to attach this item to",
+         button_label: "Create Inventory Item",
+         message_invalid: "Please select an inventory"
+       }
+  end
+
+  sidebar :create_work_from_this_source, :only => :show, if: proc{ can? :create, Work } do
+    render partial: "activeadmin/sidebar_create_work"
   end
 
   ##########
@@ -464,6 +492,7 @@ ActiveAdmin.register Source do
     render("editor/section_sidebar") # Calls a partial
   end
   
+
   sidebar :help, :only => [:select_new_template] do
     render :partial => "template_help"
   end

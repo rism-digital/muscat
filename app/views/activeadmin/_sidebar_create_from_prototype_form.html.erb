@@ -1,0 +1,39 @@
+<% form_id ||= "create-from-prototype-form" %>
+<% source_field_name ||= :source_id %>
+<% prototype_field_name ||= :prototype_source_id %>
+<% input_label ||= "Source" %>
+<% button_label ||= "Create" %>
+<% message_empty ||= "" %>
+<% message_invalid ||= "Invalid selection" %>
+
+<ul>
+  <%= form_with url: form_url,
+                method: :get,
+                local: true,
+                html: { id: form_id, class: "prototype-create-form" } do |f| %>
+
+    <%= hidden_field_tag prototype_field_name, resource.id %>
+
+    <div class="input">
+      <%= label_tag source_field_name, input_label %>
+
+      <%= text_field_tag source_field_name,
+                         "",
+                         class: "prototype-create-source-id",
+                         data: {
+                           check_url: check_url,
+                           invalid_message: message_invalid
+                         },
+                         style: "width: 100%;" %>
+
+      <p class="prototype-create-message" style="display: none;"></p>
+    </div>
+
+    <div class="actions">
+      <%= submit_tag button_label,
+                     class: "prototype-create-submit",
+                     disabled: true,
+                     style: "opacity: 0.5; cursor: not-allowed;" %>
+    </div>
+  <% end %>
+</ul>

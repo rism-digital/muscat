@@ -2,7 +2,11 @@
 <%- preserve_foreign_value = params.has_key?("preserve_foreign_value") ? params['preserve_foreign_value'] : false %>
 <%- master = has_links_to ? subfield : @item.marc.config.get_master(tag_name) %>
 <% 
-	if has_links_to == true
+	# links_to is a special case where we create an auth file but not the id
+	# so we just fill in the master subfield with the "data" field
+	# Similarly, if the the field is NOT a linked (foreign) field, we need
+	# to have the master equals to the data subfield
+	if has_links_to == true #|| !@item.marc.config.is_foreign?(tag_name, master)
 		marc_subfield_m = marc_subfield || MarcNode.new(@item.marc.get_model)
 	else
 		marc_subfield_m = marc_tag.fetch_first_by_tag(master) || MarcNode.new(@item.marc.get_model)
@@ -30,28 +34,25 @@
 <%- check_name = "confirmation_uniq_" + SecureRandom.hex(5)%>
 
 <% 
-# Validate on the MASTER subfield, because it can be different from the DISPLAY subfiled!
-# NOTE Secondary subfields DO NOT SUPPORT WARNINGS.
-if @editor_validation && @editor_validation.validate_subtag?(tag_name, master, @item)
-	validate_class_master, unique_name_master = @editor_validation.get_subtag_class_name(tag_name, master)
-	name_tag_master = raw "name=\"#{unique_name_master}\""
-else
-	validate_class_master = ""
-	name_tag_master = ""
-end
-
-if @editor_validation && @editor_validation.validate_subtag?(tag_name, master, @item)
-	validate_class_subfield, name_tag_subfield = @editor_validation.get_subtag_class_name(tag_name, subfield)
-	validate_marker = "validating"
-else
-	validate_class_subfield = ""
-	name_tag_subfield = "#{tag_name}#{subfield}"
+# Validate on the MASTER subfield, because it can be different from the DISPLAY subfield!
 	validate_marker = ""
-end
-name_tag_subfield = "#{tag_name}#{subfield}"
-# In the case the same subfield is used for master and display
-# Only one needs to be validated
-validate_class_subfield += "_bis" if validate_class_subfield == validate_class_master
+	validate_level = ""
+	unique_name_master = ""
+	validate_class_master = ""
+	validate_class_subfield = ""
+
+	if @editor_validation && @editor_validation&.validate_subtag?(tag_name, master, @item)
+		validate_class_master, unique_name_master = EditorValidation::generate_subtag_class_and_unique_name(tag_name, master)
+		validate_class_subfield, _ = EditorValidation::generate_subtag_class_and_unique_name(tag_name, subfield)
+
+		validate_marker = "validating"
+		validate_level = "warning" if @editor_validation.is_warning?(tag_name, subfield)
+		validate_master = true
+	end
+	
+	# In the case the same subfield is used for master and display
+	# Only one needs to be validated
+	validate_class_subfield += "_bis" if validate_class_subfield.present? && validate_class_subfield == validate_class_master
 %>
 
 <%
@@ -65,7 +66,22 @@ validate_class_subfield += "_bis" if validate_class_subfield == validate_class_m
 	end
 %>
 
-<input type="hidden" class="autocomplete_target <%=hidden_serialize%> <%=validate_class_master%>" data-tag="<%=tag_name%>" data-subfield="<%=master%>" data-field="<%=field%>" value="<%=marc_subfield_m.content %>" <%=name_tag_master%> data-allow-new="<%=allow_new%>" data-has-links-to="<%=has_links_to%>" data-preserve-foreign-value="<%=preserve_foreign_value%>">
+<!--input type="hidden" class="autocomplete_target <%=hidden_serialize%> <%=validate_class_master%>" data-tag="<%=tag_name%>" data-subfield="<%=master%>" data-field="<%=field%>" value="<%=marc_subfield_m.content %>" <%=unique_name_master%> data-allow-new="<%=allow_new%>" data-has-links-to="<%=has_links_to%>" data-preserve-foreign-value="<%=preserve_foreign_value%>" data-validate-level="<%=validate_level%>"-->
+
+<%= hidden_field_tag(
+  unique_name_master,
+  marc_subfield_m.content,
+  class: ["autocomplete_target", hidden_serialize, validate_class_master].compact.join(" "),
+  data: {
+    tag: tag_name,
+    subfield: master,
+    field: field,
+    allow_new: allow_new,
+    has_links_to: has_links_to,
+    preserve_foreign_value: preserve_foreign_value,
+    validate_level: validate_level
+  }
+) %>
 
 <%
 options = {
@@ -73,6 +89,7 @@ options = {
 	:class => "marc_editor_hotkey autocomplete_new_window #{validate_class_subfield} #{validate_marker}",
 	:"data-subfield"=>"#{subfield}",
 	:"data-field"=>"#{tag_name}",
+	:"data-validate-level" => validate_level,
 	:"min-length" => 1
 }
 	## When we iport data show it as if the falidation is applied

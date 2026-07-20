@@ -4,7 +4,8 @@ ActiveAdmin.register Workgroup do
 
   # Remove all action items
   config.clear_action_items!
-  
+  config.per_page = [10, 30, 50, 100, 1000]
+
   collection_action :autocomplete_workgroup_name, :method => :get
 
   # See permitted parameters documentation:
@@ -49,7 +50,8 @@ ActiveAdmin.register Workgroup do
   ###########
   
   # Solr search all fields: "_equal"
-  filter :name_eq, :label => proc {I18n.t(:any_field_contains)}, :as => :string
+  filter :name_or_email_cont, label: "Search"
+  filter :libpatterns_cont, label: "Siglums"
 
     scope :all, default: true
 

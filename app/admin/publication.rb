@@ -199,6 +199,18 @@ ActiveAdmin.register Publication do
 
   end
 
+  member_action :is_catalogue, method: :get do
+    authorize! :create, Work
+
+    # Let it fail here if not found
+    publication = Publication.find(params[:id])
+
+    render json: {
+      is_inventory: (publication.work_catalogue != :not_work_catalogue),
+      title: publication.autocomplete_label
+    }
+  end
+
   collection_action :work_catalogs  do
     #doc_url = 'https://docs.google.com/spreadsheets/d/1Wh45W93lUZfcf2AOb2OLn9LcIvbY7b55QgmoJ87xAc0/export?exportFormat=csv'
 

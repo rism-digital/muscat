@@ -75,13 +75,7 @@ class EditorValidation
     return nil if !@validation_config[tag]["tags"].has_key?(subtag)
     return @validation_config[tag]["tags"][subtag]
   end
-  
-  def get_subtag_class_name(tag, subtag)
-    class_name = "validate_#{tag}_#{subtag}"
-    unique_name = class_name + "_uniq_" + SecureRandom.hex(5)
-    return class_name, unique_name
-  end
-  
+    
   def rules
     return @validation_config
   end
@@ -124,6 +118,12 @@ class EditorValidation
       
     end
     @squeezed_profiles
+  end
+
+  def self.generate_subtag_class_and_unique_name(tag, subtag)
+    class_name = "validate_#{tag}_#{subtag}"
+    unique_name = class_name + "_uniq_" + SecureRandom.hex(5)
+    return class_name, unique_name
   end
 
 end

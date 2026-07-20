@@ -326,8 +326,8 @@ class Institution < ApplicationRecord
   def update_workgroups
     return if self.suppress_update_workgroups_trigger == true || self.siglum.blank?
     Workgroup.all.each do |wg|
-      patterns = wg.libpatterns.split(",")
-      patterns.each do |pattern|
+      patterns = wg.libpatterns&.split(",")
+      patterns&.each do |pattern|
         wg.save if Regexp.new(pattern.strip).match(self.siglum)
       end
     end

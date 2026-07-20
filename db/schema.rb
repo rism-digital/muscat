@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.2].define(version: 2026_06_09_111343) do
+ActiveRecord::Schema[7.2].define(version: 2026_06_17_130228) do
   create_table "active_admin_comments", id: :integer, charset: "utf8mb3", force: :cascade do |t|
     t.string "namespace"
     t.text "body"
@@ -268,6 +268,13 @@ ActiveRecord::Schema[7.2].define(version: 2026_06_09_111343) do
     t.string "relator_code"
   end
 
+  create_table "inventory_items_to_liturgical_feasts", charset: "utf8mb3", force: :cascade do |t|
+    t.integer "inventory_item_id"
+    t.integer "liturgical_feast_id"
+    t.string "marc_tag"
+    t.string "relator_code"
+  end
+
   create_table "inventory_items_to_people", charset: "utf8mb3", force: :cascade do |t|
     t.integer "inventory_item_id"
     t.integer "person_id"
@@ -306,7 +313,7 @@ ActiveRecord::Schema[7.2].define(version: 2026_06_09_111343) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "inventory_items_to_work_nodes", charset: "utf8mb3", force: :cascade do |t|
+  create_table "inventory_items_to_work_nodes", charset: "utf8mb4", collation: "utf8mb4_unicode_ci", force: :cascade do |t|
     t.integer "inventory_item_id"
     t.integer "work_node_id"
     t.string "marc_tag"

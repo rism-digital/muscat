@@ -356,8 +356,10 @@ class Publication < ApplicationRecord
 
     infos = [aut, dat, tit].compact.join(", ")
 
-    return "#{self.short_name} (#{query_row[:count]}): #{infos}".truncate(100)  if query_row
-    return "#{self.short_name}: #{infos}".truncate(110)
+    short_name =  self.short_name&.empty? ? "[no short name]" : self.short_name
+
+    return "#{short_name} (#{query_row[:count]}): #{infos}".truncate(100)  if query_row
+    return "#{short_name}: #{infos}".truncate(110)
   end
 
   def getter_function_autocomplete_label(query_row)    

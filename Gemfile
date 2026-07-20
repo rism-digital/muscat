@@ -175,7 +175,7 @@ gem 'passenger'
 gem 'listen'
 
 # To make sure the translations are all there
-gem 'i18n-tasks', '~> 1.0.14', group: :development
+gem 'i18n-tasks', '~> 1.1.2', group: :development
 #gem 'easy_translate', group: :development
 
 # Uncomment this if you want to test emails in development

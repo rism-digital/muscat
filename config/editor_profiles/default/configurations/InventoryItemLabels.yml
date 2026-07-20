@@ -105,8 +105,8 @@
 '246':
   fields:
     a:
-      label: records.reconstructed_title
-  label: records.reconstructed_title
+      label: records.variant_source_title
+  label: records.variant_source_title
 '260':
   fields:
     '8':
@@ -145,6 +145,15 @@
     a:
       label: records.general_note
   label: records.general_note
+'590':
+  fields:
+    '8':
+      label: records.material_group
+    a:
+      label: records.parts_held
+    b:
+      label: records.extent_parts
+  label: records.parts_held_extent
 '593':
   fields:
     '8':
@@ -164,13 +173,18 @@
 '599':
   fields:
     a:
-      label: records.local_notes_field
-  label: records.local_notes_field
+      label: records.internal_note
+  label: records.internal_note
 '650':
   fields:
     a:
       label: records.subject_heading
   label: records.subject_heading
+'657':
+  fields:
+    a:
+      label: records.liturgical_festival
+  label: records.liturgical_festival
 '690':
   fields:
     a:
@@ -298,17 +312,19 @@
     a:
       label: records.source
     w:
-      label: records.identified_source
+      label: records.identified_manuscript
     '4':
       label: records.identification_status
-  label: records.identified_source
+  label: records.identified_manuscript
 '933':
   fields:
     a:
       label: records.holding
     w:
-      label: records.identified_holding
-  label: records.identified_holding
+      label: records.identitied_printed_edition
+    '4':
+      label: records.identification_status
+  label: records.identitied_printed_edition
 '981':
   fields:
     "0":

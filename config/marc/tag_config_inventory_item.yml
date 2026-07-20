@@ -200,6 +200,18 @@
     - - "8"
       - :occurrences: "?"
         :no_browse: true
+  "590":
+    :master: a
+    :indicator: "##"
+    :occurrences: "*"
+    :fields:
+    - - a
+      - :occurrences: "?"
+    - - b
+      - :occurrences: "?"
+    - - "8"
+      - :occurrences: "?"
+        :no_browse: true
   "593":
     :master: a
     :indicator: "##"
@@ -244,6 +256,23 @@
       - :occurrences: "?"
         :foreign_class: ^0
         :foreign_field: term
+    - - "2"
+      - :occurrences: "?"
+        :no_browse: true
+  "657":
+    :master: "0"
+    :indicator: "#7"
+    :occurrences: "*"
+    :fields:
+    - - "0"
+      - :occurrences: "?"
+        :foreign_class: LiturgicalFeast
+        :foreign_field: id
+        :no_show: true
+    - - a
+      - :occurrences: "?"
+        :foreign_class: ^0
+        :foreign_field: name
     - - "2"
       - :occurrences: "?"
         :no_browse: true
@@ -373,24 +402,10 @@
         :foreign_field: id
         :zero_padding: "14"
         :browse_helper: application_helper_link_source_id
-    - - o
-      - :occurrences: "?"
     - - n
       - :occurrences: "?"
     - - g
       - :occurrences: "?"
-  "775":
-    :master: w
-    :indicator: "##"
-    :relator_code: "4"
-    :occurrences: "?"
-    :fields:
-    - - w
-      - :occurrences: "1"
-        :foreign_class: InventoryItem
-        :foreign_field: id
-    - - "4"
-      - :occurrences: "1"
   "786":
     :master: a
     :indicator: "##"
@@ -504,6 +519,8 @@
       - :occurrences: "?"
         :foreign_class: ^w
         :foreign_field: lib_siglum
+    - - "4"
+      - :occurrences: "1"
   "981":
     :master: ""
     :indicator: "##"

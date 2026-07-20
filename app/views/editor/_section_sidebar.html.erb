@@ -11,11 +11,11 @@
 		end
 
     else
-		if @item.is_a?(Holding) 
+		if @item.is_a?(Holding) || @item.is_a?(InventoryItem)
 			if defined? @parent_object_id
 				cancel_path = edit_admin_source_path(@parent_object_id)
 			else
-				edit_admin_sources_path
+				cancel_path = edit_admin_sources_path
 			end
 		else
 			cancel_path = send("admin_#{models}_path")
@@ -23,6 +23,7 @@
     end
 	help_title = @editor_profile.get_label("doc_edit_functions")
 %>
+
 <ul>
 	
   <%- @editor_profile.layout_config[:marc_editor_group_links].each do |gl| -%>
@@ -111,11 +112,17 @@
 	<li class="muscat_icon_link" id="validation_warnings" hidden>
 		<span style="color:orange"><%= I18n.t(:validation_level_warning)%></span>
 	</li>
+
 	<li class="muscat_icon_link">
 		<a data-scroll-target="action" data-action="save" href="#" class="muscat_icon_link muscat_icon_link_save"><%=(I18n.t :save_and_continue)%></a>
 	</li>
+
 	<li class="muscat_icon_link">
-		<a data-scroll-target="action" data-action="exit" href="#" class="muscat_icon_link muscat_icon_link_save_exit"><%=(I18n.t :save_and_exit)%></a>
+		<% unless @item.is_a? InventoryItem%>
+			<a data-scroll-target="action" data-action="exit" href="#" class="muscat_icon_link muscat_icon_link_save_exit"><%=(I18n.t :save_and_exit)%></a>
+		<%else%>
+			<a data-scroll-target="action" data-action="exit" href="#" class="muscat_icon_link muscat_icon_link_save_exit"><%=(I18n.t :save_and_return_to_inventory)%></a>
+		<%end%>
 	</li>
 
 	<li class="muscat_icon_link">

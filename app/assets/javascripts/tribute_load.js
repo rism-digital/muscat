@@ -14,6 +14,8 @@ var tribute_load = function () {
   var tribute = new Tribute({
     lookup: 'name',
     fillAttr: 'id',
+    // Maybe it fixes the spacebar problem?
+    allowSpaces: true,
     
     values: function (text, cb) {
       $.ajax({
