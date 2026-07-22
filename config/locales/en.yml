@@ -41,7 +41,7 @@ en:
       author_missing: Anonymous
       author_type: Author type
       body: Text
-      comments_help: Type @ to mention a specific user, who will then receive a notification by email.
+      comments_help: To mention a specific Muscat user, type @ and select their name. The name will then be highlighted in blue. The person will then receive a notification by email.
       errors:
         empty_text: Comment wasn't saved, text was empty.
       my_item_comments: Comments on my records
