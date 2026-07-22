@@ -230,7 +230,7 @@ ActiveAdmin.register User do
       if user.invited_to_sign_up?
         status_tag I18n.t("users.invitation.pending"), class: "warning"
       else
-        status_tag I18n.t("users.invitation.active"), class: "ok"
+        status_tag I18n.t("users.invitation.active"), class: "none"
       end
     end
 

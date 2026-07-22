@@ -4,15 +4,15 @@ en:
     create: Create
     created: "The user %{email} was created and activated."
     invitation:
-      active: Active
+      active: Acc
       already_accepted: This invitation has already been accepted.
       create: Create and send invitation
       help: Choose "Create and send invitation" to email a 15-day activation link, or "Create" to activate the user immediately with the password entered below.
-      pending: Invitation pending
+      pending: Pend
       resend: Resend invitation
       resent: "A new invitation was sent to %{email}."
       sent: "The user was created and an invitation was sent to %{email}."
-      status: Account status
+      status: Invitation
     password_creation_hint: The password is required for Create and ignored for Create and send invitation.
     role_required: Please select an access role (admin, editor, cataloger, or guest).
     missing_role:
