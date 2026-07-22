@@ -78,6 +78,7 @@ end
 
 gem 'devise', '~> 5.0'
 gem 'devise-i18n'
+gem 'devise_invitable', '~> 2.0'
 #gem 'devise_saml_authenticatable', require: false
 
 # paperclip for image storage
@@ -179,7 +180,7 @@ gem 'i18n-tasks', '~> 1.1.2', group: :development
 #gem 'easy_translate', group: :development
 
 # Uncomment this if you want to test emails in development
-#gem 'mailcatcher', '~> 0.10.0', group: :development
+gem 'mailcatcher', '~> 0.10.0', group: :development
 #gem "string-similarity"
 #gem "rest-client"
 
