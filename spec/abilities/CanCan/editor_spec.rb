@@ -37,6 +37,18 @@ RSpec.describe User do
       expect(ability).to be_able_to(:create, work)
     end
   end
-end
 
+  describe 'For editor abilities for users' do
+    let(:editor) { FactoryBot.create(:editor) }
+    let(:other_user) { User.new(id: editor.id + 1) }
+    subject(:ability) { Ability.new(editor) }
+
+    it "allows access only to the editor's own user" do
+      expect(ability).to be_able_to(:read, editor)
+      expect(ability).to be_able_to(:update, editor)
+      expect(ability).not_to be_able_to(:read, other_user)
+      expect(ability).not_to be_able_to(:update, other_user)
+    end
+  end
+end
 

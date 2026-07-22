@@ -22,6 +22,7 @@ class User < ApplicationRecord
 	# Invitations let administrators create accounts without choosing or sharing
 	# the cataloguer's password. Recoverable also enables self-service password resets.
   devise *([:rememberable, :trackable, :validatable, :recoverable, :invitable] + Array(RISM::AUTHENTICATION_METHODS) + [authentication_keys: [:login]])
+  after_invitation_accepted :send_activation_notification
 
   # Used by saml_authenticatable devise strategy to avoid password validation
   attr_accessor :user_create_strategy
@@ -241,6 +242,13 @@ class User < ApplicationRecord
   def self.ransackable_attributes(_) = attribute_names - %w[token]
 
   private
+
+  def send_activation_notification
+    recipients = Array(RISM::USER_ACTIVATION_NOTIFICATION_EMAILS).compact_blank
+    return if recipients.empty?
+
+    UserActivationNotification.notify(self).deliver_later
+  end
 
   # When a user is created, a special WG for them in created too
   # for the personal siglas

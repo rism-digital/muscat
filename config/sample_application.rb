@@ -128,6 +128,9 @@ module RISM
   # Insert here a set of emails for people to receive notifications
   NOTIFICATION_EMAILS = ["sample@email.com"]
 
+  # People notified when an invited user activates their account
+  USER_ACTIVATION_NOTIFICATION_EMAILS = ["sample@email.com"]
+
   # Privacy information page
   COOKIE_PRIVACY_LINK = "http://www.example.com/privacy.html?lang="
 

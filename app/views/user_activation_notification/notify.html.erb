@@ -1,0 +1,38 @@
+<h2>A Muscat user has activated their account</h2>
+
+<table cellpadding="4" cellspacing="0" border="0">
+  <tbody>
+    <tr>
+      <th align="left">Username</th>
+      <td><%= @user.username %></td>
+    </tr>
+    <tr>
+      <th align="left">Name</th>
+      <td><%= @user.name %></td>
+    </tr>
+    <tr>
+      <th align="left">Email</th>
+      <td><%= @user.email %></td>
+    </tr>
+  </tbody>
+</table>
+
+<h3>Workgroups and sigla</h3>
+
+<% if @workgroups.empty? %>
+  <p>No workgroups selected.</p>
+<% else %>
+  <% @workgroups.each do |workgroup| %>
+    <p>
+      <strong><%= workgroup[:name] %></strong><br>
+      <% if workgroup[:sigla].empty? %>
+        No sigla.
+      <% else %>
+        <%= workgroup[:sigla].join(", ") %>
+        <% if workgroup[:omitted_sigla_count].positive? %>
+          [ ... <%= workgroup[:omitted_sigla_count] %> more]
+        <% end %>
+      <% end %>
+    </p>
+  <% end %>
+<% end %>

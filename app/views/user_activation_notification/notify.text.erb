@@ -1,0 +1,15 @@
+A Muscat user has activated their account.
+
+Username: <%= @user.username %>
+Name: <%= @user.name %>
+Email: <%= @user.email %>
+
+Workgroups and sigla:
+<% if @workgroups.empty? %>
+No workgroups selected.
+<% else %>
+<% @workgroups.each do |workgroup| %>
+- <%= workgroup[:name] %>
+  <% if workgroup[:sigla].empty? %>No sigla.<% else %><%= workgroup[:sigla].join(", ") %><% if workgroup[:omitted_sigla_count].positive? %> [ ... <%= workgroup[:omitted_sigla_count] %> more]<% end %><% end %>
+<% end %>
+<% end %>
