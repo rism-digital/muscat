@@ -41,9 +41,3 @@
 
 <%= render 'notifications_help' %>
 
-<%= render partial: "shared/mention_editor", locals: {
-  name: "comment[body_html]",
-  value: "resource.body_html",
-  users_url: "/admin/users/list",
-  placeholder: "Type @ to mention a user"
-} %>
