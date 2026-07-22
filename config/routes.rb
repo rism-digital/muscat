@@ -3,7 +3,9 @@ Rails.application.routes.draw do
 	
   ##############################
   
-  devise_for :users, ActiveAdmin::Devise.config
+  active_admin_devise_config = ActiveAdmin::Devise.config.deep_dup
+  active_admin_devise_config[:controllers][:invitations] = "users/invitations"
+  devise_for :users, active_admin_devise_config
   ActiveAdmin.routes(self)
   
   # We need a post action for new in pubs to upload

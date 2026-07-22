@@ -34,6 +34,8 @@ class ApplicationController < ActionController::Base
   end
 
   def auth_user
+    return if devise_controller?
+
     redirect_to "/admin/login" unless (user_signed_in? || RISM::ANONYMOUS_NAVIGATION || request.path == "/admin/login" || (defined?(saml_user_signed_in?) && saml_user_signed_in?)) rescue nil
   end
   

@@ -10,10 +10,10 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.2].define(version: 2026_07_13_130000) do
-  create_table "active_admin_comments", id: :integer, charset: "utf8mb3", force: :cascade do |t|
+ActiveRecord::Schema[7.2].define(version: 2026_07_21_121055) do
+  create_table "active_admin_comments", id: :integer, charset: "utf8mb4", collation: "utf8mb4_unicode_ci", force: :cascade do |t|
     t.string "namespace"
-    t.text "body"
+    t.text "body", size: :medium
     t.string "resource_id", null: false
     t.string "resource_type", null: false
     t.integer "author_id"
@@ -523,6 +523,18 @@ ActiveRecord::Schema[7.2].define(version: 2026_07_13_130000) do
     t.index ["standard_term_id"], name: "index_publications_to_standard_terms_on_standard_term_id"
   end
 
+  create_table "pull_requests", charset: "utf8mb3", force: :cascade do |t|
+    t.string "item_type"
+    t.integer "item_id"
+    t.integer "wf_owner"
+    t.integer "wf_stage"
+    t.text "marc_source"
+    t.text "original_marc"
+    t.text "message"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "roles", id: :integer, charset: "utf8mb3", force: :cascade do |t|
     t.string "name"
     t.integer "resource_id"
@@ -718,7 +730,18 @@ ActiveRecord::Schema[7.2].define(version: 2026_07_13_130000) do
     t.string "username"
     t.string "notification_email"
     t.boolean "disabled", default: false, null: false
+    t.string "invitation_token"
+    t.datetime "invitation_created_at"
+    t.datetime "invitation_sent_at"
+    t.datetime "invitation_accepted_at"
+    t.integer "invitation_limit"
+    t.string "invited_by_type"
+    t.integer "invited_by_id"
+    t.integer "invitations_count", default: 0
     t.index ["email"], name: "index_users_on_email", unique: true
+    t.index ["invitation_token"], name: "index_users_on_invitation_token", unique: true
+    t.index ["invited_by_id"], name: "index_users_on_invited_by_id"
+    t.index ["invited_by_type", "invited_by_id"], name: "index_users_on_invited_by"
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
     t.index ["username"], name: "index_users_on_username", unique: true
   end

@@ -17,8 +17,9 @@ class User < ApplicationRecord
   rolify
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
-	# remove :recoverable
-  devise *([:rememberable, :trackable, :validatable] + Array(RISM::AUTHENTICATION_METHODS) + [authentication_keys: [:login]])
+	# Invitations let administrators create accounts without choosing or sharing
+	# the cataloguer's password. Recoverable also enables self-service password resets.
+  devise *([:rememberable, :trackable, :validatable, :recoverable, :invitable] + Array(RISM::AUTHENTICATION_METHODS) + [authentication_keys: [:login]])
 
   # Used by saml_authenticatable devise strategy to avoid password validation
   attr_accessor :user_create_strategy
@@ -32,7 +33,7 @@ class User < ApplicationRecord
           
   }
   
-  validate :secure_password
+  validate :secure_password, unless: :creating_invited_user?
   validates :username, presence: true, uniqueness: { case_sensitive: false }
   validates_format_of :username, with: /[\p{Letter}\s]+/u, :multiline => true
   #/^[a-zA-ZÀ-ż0-9_\.]*$/, :multiline => true
@@ -218,8 +219,13 @@ class User < ApplicationRecord
     return true
 	end
 
+  def creating_invited_user?
+    new_record? && invited_by.present?
+  end
+
   def password_required?
-    user_create_strategy != :saml_authenticatable
+    return false if user_create_strategy == :saml_authenticatable
+
     super
   end
 

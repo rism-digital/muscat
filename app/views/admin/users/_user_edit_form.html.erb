@@ -1,6 +1,9 @@
  <% action = params[:action] == "new" ? "new" : "edit" %>
  <% form_id = "#{action}_user" %>
  <%= semantic_form_for [:admin, @user], builder: ActiveAdmin::FormBuilder, :html => {:id => form_id } do |f| %>
+   <% unless @user.persisted? %>
+     <p><%= I18n.t("users.invitation.help") %></p>
+   <% end %>
    
      <%= f.inputs I18n.t(:user_details) do %>
       <% if can? :manage, User %>
@@ -14,7 +17,7 @@
          <%= f.input :email %>
        <% end %>
       
-       <% if can? :update, User %>
+       <% if @user.persisted? && can?(:update, @user) %>
          <%= f.input :password %>
          <%= f.input :password_confirmation %>
         <!-- size does not work unless there is a dummy class. Hooray! -->

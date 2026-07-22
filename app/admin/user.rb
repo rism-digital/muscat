@@ -15,6 +15,17 @@ ActiveAdmin.register User do
 
 	controller do
 
+    def create
+      attributes = permitted_params[:user].except(:password, :password_confirmation)
+      @user = User.invite!(attributes, current_user)
+
+      if @user.errors.empty? && @user.invited_to_sign_up?
+        redirect_to resource_path(@user), notice: I18n.t("users.invitation.sent", email: @user.email)
+      else
+        render :new, status: :unprocessable_entity
+      end
+    end
+
     def apply_sorting(chain)
       if params[:order].to_s.match?(/\Aroles(?:\.|_)name_/)
         params[:order] = params[:order].to_s.sub(/\Aroles(?:\.|_)name_/, "role_sort_name_")
@@ -96,6 +107,14 @@ ActiveAdmin.register User do
     end
   end
 
+  action_item :resend_invitation, only: :show do
+    if authorized?(:manage, User) && resource.invited_to_sign_up?
+      link_to I18n.t("users.invitation.resend"),
+              resend_invitation_admin_user_path(resource),
+              method: :post
+    end
+  end
+
   # And the implementation of the above
   member_action :create_default_workgroup, method: :post do
     authorize! :admin, User
@@ -116,6 +135,21 @@ ActiveAdmin.register User do
     user.workgroups << workgroup
 
     redirect_to resource_path(user), notice: "Personal default workgroup created"
+  end
+
+  member_action :resend_invitation, method: :post do
+    authorize! :manage, User
+
+    if resource.invited_to_sign_up?
+      resource.invite!(current_user)
+      if resource.errors.empty?
+        redirect_to resource_path(resource), notice: I18n.t("users.invitation.resent", email: resource.email)
+      else
+        redirect_to resource_path(resource), alert: resource.errors.full_messages.to_sentence
+      end
+    else
+      redirect_to resource_path(resource), alert: I18n.t("users.invitation.already_accepted")
+    end
   end
 
   collection_action :autogen_username, method: :get do
@@ -166,6 +200,14 @@ ActiveAdmin.register User do
       )
     end
 
+    column I18n.t("users.invitation.status") do |user|
+      if user.invited_to_sign_up?
+        status_tag I18n.t("users.invitation.pending"), class: "warning"
+      else
+        status_tag I18n.t("users.invitation.active"), class: "ok"
+      end
+    end
+
     column :active do |user|
       user.active?
     end
@@ -205,6 +247,11 @@ ActiveAdmin.register User do
       row :username
       row :name
       row :email
+      row I18n.t("users.invitation.status") do |user|
+        user.invited_to_sign_up? ? I18n.t("users.invitation.pending") : I18n.t("users.invitation.active")
+      end
+      row :invitation_sent_at if user.invitation_sent_at.present?
+      row :invitation_accepted_at if user.invitation_accepted_at.present?
       row I18n.t(:workgroups) do |user|
         safe_join(
           user.workgroups.map do |wg|

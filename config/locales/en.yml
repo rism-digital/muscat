@@ -1,5 +1,16 @@
 ---
 en:
+  users:
+    invitation:
+      active: Active
+      already_accepted: This invitation has already been accepted.
+      create: Create and send invitation
+      help: The cataloguer will receive an email valid for 15 days and choose their own password.
+      pending: Invitation pending
+      resend: Resend invitation
+      resent: "A new invitation was sent to %{email}."
+      sent: "The user was created and an invitation was sent to %{email}."
+      status: Account status
   Composer: Composer
   Date: Date
   Images: Images
