@@ -247,7 +247,7 @@ class User < ApplicationRecord
     recipients = Array(RISM::USER_ACTIVATION_NOTIFICATION_EMAILS).compact_blank
     return if recipients.empty?
 
-    UserActivationNotification.notify(self).deliver_later
+    UserActivationNotification.notify(self).deliver_now
   end
 
   # When a user is created, a special WG for them in created too
