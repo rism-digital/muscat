@@ -1,38 +1,96 @@
-<h2>A Muscat user has activated their account</h2>
+<div style="display:none;max-height:0;overflow:hidden;opacity:0;color:transparent;">
+  <%= t("user_activation_notification.preheader", name: @user.name) %>
+</div>
 
-<table cellpadding="4" cellspacing="0" border="0">
-  <tbody>
-    <tr>
-      <th align="left">Username</th>
-      <td><%= @user.username %></td>
-    </tr>
-    <tr>
-      <th align="left">Name</th>
-      <td><%= @user.name %></td>
-    </tr>
-    <tr>
-      <th align="left">Email</th>
-      <td><%= @user.email %></td>
-    </tr>
-  </tbody>
+<table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="width:100%;margin:0;padding:0;background-color:#edf1f5;">
+  <tr>
+    <td align="center" style="padding:32px 12px;">
+      <table role="presentation" width="640" cellpadding="0" cellspacing="0" border="0" style="width:100%;max-width:640px;background-color:#ffffff;border:1px solid #d8e0e8;border-radius:6px;box-shadow:0 2px 8px rgba(24,55,85,0.12);">
+        <tr>
+          <td style="padding:22px 30px;border-bottom:5px solid #225887;">
+            <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0">
+              <tr>
+                <td width="98" valign="middle" style="width:98px;padding-right:20px;">
+                  <%= image_tag attachments["rism-logo.png"].url,
+                    alt: "RISM",
+                    width: 98,
+                    style: "display:block;width:98px;height:auto;border:0;" %>
+                </td>
+                <td valign="middle" style="font-family:Arial,Helvetica,sans-serif;">
+                  <div style="font-size:12px;line-height:18px;font-weight:bold;letter-spacing:1.4px;text-transform:uppercase;color:#6b7785;"><%= t("user_activation_notification.eyebrow") %></div>
+                  <div style="margin-top:3px;font-size:24px;line-height:30px;font-weight:bold;color:#225887;"><%= t("user_activation_notification.heading") %></div>
+                </td>
+              </tr>
+            </table>
+          </td>
+        </tr>
+
+        <tr>
+          <td style="padding:28px 30px 14px;font-family:Arial,Helvetica,sans-serif;color:#273746;">
+            <p style="margin:0 0 22px;font-size:16px;line-height:25px;color:#465665;">
+              <strong style="color:#273746;"><%= @user.name %></strong> <%= t("user_activation_notification.intro") %>
+            </p>
+
+            <div style="margin-bottom:10px;font-size:12px;line-height:18px;font-weight:bold;letter-spacing:1px;text-transform:uppercase;color:#225887;"><%= t("user_activation_notification.account_details") %></div>
+            <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="width:100%;border:1px solid #dce4eb;border-radius:4px;border-collapse:separate;">
+              <tr>
+                <td width="130" style="width:130px;padding:12px 14px;background-color:#f4f7fa;border-bottom:1px solid #dce4eb;font-size:13px;font-weight:bold;color:#5b6875;font-family:Arial,Helvetica,sans-serif;"><%= t("user_activation_notification.username") %></td>
+                <td style="padding:12px 14px;border-bottom:1px solid #dce4eb;font-size:14px;color:#202c36;font-family:Arial,Helvetica,sans-serif;"><%= @user.username %></td>
+              </tr>
+              <tr>
+                <td width="130" style="width:130px;padding:12px 14px;background-color:#f4f7fa;border-bottom:1px solid #dce4eb;font-size:13px;font-weight:bold;color:#5b6875;font-family:Arial,Helvetica,sans-serif;"><%= t("user_activation_notification.name") %></td>
+                <td style="padding:12px 14px;border-bottom:1px solid #dce4eb;font-size:14px;color:#202c36;font-family:Arial,Helvetica,sans-serif;"><%= @user.name %></td>
+              </tr>
+              <tr>
+                <td width="130" style="width:130px;padding:12px 14px;background-color:#f4f7fa;font-size:13px;font-weight:bold;color:#5b6875;font-family:Arial,Helvetica,sans-serif;"><%= t("user_activation_notification.email") %></td>
+                <td style="padding:12px 14px;font-size:14px;color:#202c36;font-family:Arial,Helvetica,sans-serif;"><a href="mailto:<%= @user.email %>" style="color:#225887;text-decoration:none;"><%= @user.email %></a></td>
+              </tr>
+            </table>
+          </td>
+        </tr>
+
+        <tr>
+          <td style="padding:18px 30px 30px;font-family:Arial,Helvetica,sans-serif;color:#273746;">
+            <div style="margin-bottom:10px;font-size:12px;line-height:18px;font-weight:bold;letter-spacing:1px;text-transform:uppercase;color:#225887;"><%= t("user_activation_notification.follow_heading") %></div>
+            <div style="margin-bottom:22px;padding:14px 16px;background-color:#f4f7fa;border-left:4px solid #225887;border-radius:3px;font-size:14px;line-height:22px;color:#465665;">
+              <%= t("user_activation_notification.follow_instruction") %>
+              <div style="margin-top:8px;font-family:Consolas,Monaco,'Courier New',monospace;font-size:14px;font-weight:bold;color:#183b5b;"><%= %(follow:"#{@user.name}") %></div>
+            </div>
+
+            <div style="margin-bottom:10px;font-size:12px;line-height:18px;font-weight:bold;letter-spacing:1px;text-transform:uppercase;color:#225887;"><%= t("user_activation_notification.workgroups_heading") %></div>
+
+            <% if @workgroups.empty? %>
+              <div style="padding:16px 18px;background-color:#f7f9fb;border:1px solid #dce4eb;border-radius:4px;font-size:14px;line-height:21px;color:#657381;"><%= t("user_activation_notification.no_workgroups") %></div>
+            <% else %>
+              <% @workgroups.each do |workgroup| %>
+                <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="width:100%;margin-bottom:10px;border:1px solid #dce4eb;border-radius:4px;border-collapse:separate;">
+                  <tr>
+                    <td style="padding:11px 14px;background-color:#eaf2f8;border-bottom:1px solid #d5e2ed;font-size:15px;line-height:21px;font-weight:bold;color:#225887;font-family:Arial,Helvetica,sans-serif;"><%= workgroup[:name] %></td>
+                  </tr>
+                  <tr>
+                    <td style="padding:12px 14px;font-size:13px;line-height:21px;color:#465665;font-family:Arial,Helvetica,sans-serif;word-break:break-word;">
+                      <% if workgroup[:sigla].empty? %>
+                        <span style="color:#7b8793;"><%= t("user_activation_notification.no_sigla") %></span>
+                      <% else %>
+                        <%= workgroup[:sigla].join(", ") %>
+                        <% if workgroup[:omitted_sigla_count].positive? %>
+                          <span style="white-space:nowrap;color:#225887;font-weight:bold;"> <%= t("user_activation_notification.more", count: workgroup[:omitted_sigla_count]) %></span>
+                        <% end %>
+                      <% end %>
+                    </td>
+                  </tr>
+                </table>
+              <% end %>
+            <% end %>
+          </td>
+        </tr>
+
+        <tr>
+          <td style="padding:16px 30px;background-color:#f4f7fa;border-top:1px solid #dce4eb;font-family:Arial,Helvetica,sans-serif;font-size:12px;line-height:18px;color:#77838f;">
+            <%= t("user_activation_notification.footer") %>
+          </td>
+        </tr>
+      </table>
+    </td>
+  </tr>
 </table>
-
-<h3>Workgroups and sigla</h3>
-
-<% if @workgroups.empty? %>
-  <p>No workgroups selected.</p>
-<% else %>
-  <% @workgroups.each do |workgroup| %>
-    <p>
-      <strong><%= workgroup[:name] %></strong><br>
-      <% if workgroup[:sigla].empty? %>
-        No sigla.
-      <% else %>
-        <%= workgroup[:sigla].join(", ") %>
-        <% if workgroup[:omitted_sigla_count].positive? %>
-          [ ... <%= workgroup[:omitted_sigla_count] %> more]
-        <% end %>
-      <% end %>
-    </p>
-  <% end %>
-<% end %>

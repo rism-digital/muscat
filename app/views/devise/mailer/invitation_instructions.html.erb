@@ -1,11 +1,62 @@
-<p><%= t("devise.mailer.invitation_instructions.hello", name: @resource.name) %></p>
+<div style="display:none;max-height:0;overflow:hidden;opacity:0;color:transparent;">
+  <%= t("devise.mailer.invitation_instructions.someone_invited_you") %>
+</div>
 
-<p><%= t("devise.mailer.invitation_instructions.someone_invited_you") %></p>
+<table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="width:100%;margin:0;padding:0;background-color:#edf1f5;">
+  <tr>
+    <td align="center" style="padding:32px 12px;">
+      <table role="presentation" width="640" cellpadding="0" cellspacing="0" border="0" style="width:100%;max-width:640px;background-color:#ffffff;border:1px solid #d8e0e8;border-radius:6px;box-shadow:0 2px 8px rgba(24,55,85,0.12);">
+        <tr>
+          <td style="padding:22px 30px;border-bottom:5px solid #225887;">
+            <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0">
+              <tr>
+                <td width="98" valign="middle" style="width:98px;padding-right:20px;">
+                  <%= image_tag attachments["rism-logo.png"].url,
+                    alt: "RISM",
+                    width: 98,
+                    style: "display:block;width:98px;height:auto;border:0;" %>
+                </td>
+                <td valign="middle" style="font-family:Arial,Helvetica,sans-serif;">
+                  <div style="font-size:12px;line-height:18px;font-weight:bold;letter-spacing:1.4px;text-transform:uppercase;color:#6b7785;"><%= t("devise.mailer.invitation_instructions.eyebrow") %></div>
+                  <div style="margin-top:3px;font-size:24px;line-height:30px;font-weight:bold;color:#225887;"><%= t("devise.mailer.invitation_instructions.heading") %></div>
+                </td>
+              </tr>
+            </table>
+          </td>
+        </tr>
 
-<p><%= link_to t("devise.mailer.invitation_instructions.accept"), accept_invitation_url(@resource, invitation_token: @token) %></p>
+        <tr>
+          <td style="padding:30px;font-family:Arial,Helvetica,sans-serif;color:#273746;">
+            <p style="margin:0 0 18px;font-size:18px;line-height:27px;font-weight:bold;color:#273746;"><%= t("devise.mailer.invitation_instructions.hello", name: @resource.name) %></p>
 
-<% if @resource.invitation_due_at %>
-  <p><%= t("devise.mailer.invitation_instructions.accept_until", due_date: l(@resource.invitation_due_at, format: :'devise.mailer.invitation_instructions.accept_until_format')) %></p>
-<% end %>
+            <p style="margin:0 0 24px;font-size:15px;line-height:24px;color:#465665;"><%= t("devise.mailer.invitation_instructions.someone_invited_you") %></p>
 
-<p><%= t("devise.mailer.invitation_instructions.ignore") %></p>
+            <table role="presentation" cellpadding="0" cellspacing="0" border="0" style="margin:0 0 24px;">
+              <tr>
+                <td align="center" bgcolor="#225887" style="border-radius:4px;">
+                  <%= link_to t("devise.mailer.invitation_instructions.accept"),
+                    accept_invitation_url(@resource, invitation_token: @token),
+                    style: "display:inline-block;padding:13px 24px;font-family:Arial,Helvetica,sans-serif;font-size:15px;line-height:20px;font-weight:bold;color:#ffffff;text-decoration:none;border-radius:4px;" %>
+                </td>
+              </tr>
+            </table>
+
+            <% if @resource.invitation_due_at %>
+              <div style="margin-bottom:22px;padding:13px 15px;background-color:#eaf2f8;border-left:4px solid #225887;border-radius:3px;font-size:13px;line-height:21px;color:#405568;">
+                <%= t("devise.mailer.invitation_instructions.accept_until", due_date: l(@resource.invitation_due_at, format: :'devise.mailer.invitation_instructions.accept_until_format')) %>
+              </div>
+            <% end %>
+
+            <p style="margin:0;font-size:13px;line-height:21px;color:#77838f;"><%= t("devise.mailer.invitation_instructions.ignore") %></p>
+          </td>
+        </tr>
+
+        <tr>
+          <td style="padding:16px 30px;background-color:#f4f7fa;border-top:1px solid #dce4eb;font-family:Arial,Helvetica,sans-serif;font-size:12px;line-height:18px;color:#77838f;">
+            <%= t("devise.mailer.invitation_instructions.footer") %>
+          </td>
+        </tr>
+      </table>
+    </td>
+  </tr>
+</table>

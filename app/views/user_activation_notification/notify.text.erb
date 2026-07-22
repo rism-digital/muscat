@@ -1,15 +1,18 @@
-A Muscat user has activated their account.
+<%= t("user_activation_notification.text_heading") %>
 
-Username: <%= @user.username %>
-Name: <%= @user.name %>
-Email: <%= @user.email %>
+<%= t("user_activation_notification.username") %>: <%= @user.username %>
+<%= t("user_activation_notification.name") %>: <%= @user.name %>
+<%= t("user_activation_notification.email") %>: <%= @user.email %>
 
-Workgroups and sigla:
+<%= t("user_activation_notification.follow_instruction") %>
+<%= %(follow:"#{@user.name}") %>
+
+<%= t("user_activation_notification.workgroups_heading") %>:
 <% if @workgroups.empty? %>
-No workgroups selected.
+<%= t("user_activation_notification.no_workgroups") %>
 <% else %>
 <% @workgroups.each do |workgroup| %>
 - <%= workgroup[:name] %>
-  <% if workgroup[:sigla].empty? %>No sigla.<% else %><%= workgroup[:sigla].join(", ") %><% if workgroup[:omitted_sigla_count].positive? %> [ ... <%= workgroup[:omitted_sigla_count] %> more]<% end %><% end %>
+  <% if workgroup[:sigla].empty? %><%= t("user_activation_notification.no_sigla") %><% else %><%= workgroup[:sigla].join(", ") %><% if workgroup[:omitted_sigla_count].positive? %> <%= t("user_activation_notification.more", count: workgroup[:omitted_sigla_count]) %><% end %><% end %>
 <% end %>
 <% end %>

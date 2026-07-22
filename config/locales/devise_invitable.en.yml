@@ -25,11 +25,14 @@ en:
     mailer:
       invitation_instructions:
         subject: "Set up your Muscat account"
+        eyebrow: "Muscat account invitation"
+        heading: "You’re invited to Muscat"
         hello: "Hello %{name}"
         someone_invited_you: "A Muscat administrator created an account for you. Use the link below to choose your password and activate the account."
         accept: "Choose my password"
         accept_until: "This invitation is valid until %{due_date}."
         ignore: "If you were not expecting this invitation, you can ignore this email. The account will remain inactive until you choose a password."
+        footer: "This is an automatic invitation from Muscat."
   time:
     formats:
       devise:
