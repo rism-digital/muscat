@@ -147,6 +147,10 @@ parser = OptionParser.new do |o|
     opts[:marc] = v.split(",").map { _1.strip }.reject(&:empty?)
   end
 
+  o.on("--allow-empty", "Include records where all requested MARC fields are empty") do
+    opts[:allow_empty] = true
+  end
+
   o.on("--model NAME", "Model name to export (e.g. Institution, Source)") do |v|
     opts[:model] = v.strip
   end
@@ -266,17 +270,7 @@ items.each do |export_item|
     next if !matches_tag?(item.marc, tag, subtag, opts[:tag_filter][:value])
   end
 
-  row = table.row
-
-  row.cell(item.id.to_s)
-  row.cell("#{base_url}/#{route}/#{item.id.to_s}")
-
-  opts[:columns].each do |c| 
-    val = value_for(item, c.to_s)
-    row.cell(val)
-  end
-
-  marc_fields.each do |field| 
+  marc_values = marc_fields.map do |field|
     tag = field[:tag]
     subtag = field[:subtag]
 
@@ -288,9 +282,22 @@ items.each do |export_item|
       marc = item.marc
     end
 
-    row.cell(marc_values_for(marc, tag, subtag, base_url).join("\n"))
+    marc_values_for(marc, tag, subtag, base_url).join("\n")
   end
 
+  next if marc_fields.any? && !opts[:allow_empty] && marc_values.all?(&:blank?)
+
+  row = table.row
+
+  row.cell(item.id.to_s)
+  row.cell("#{base_url}/#{route}/#{item.id.to_s}")
+
+  opts[:columns].each do |c|
+    val = value_for(item, c.to_s)
+    row.cell(val)
+  end
+
+  marc_values.each { |value| row.cell(value) }
 end
 
 sheet.write_to file
