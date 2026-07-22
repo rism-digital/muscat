@@ -1,16 +1,26 @@
 ---
 en:
   users:
+    create: Create
+    created: "The user %{email} was created and activated."
     invitation:
       active: Active
       already_accepted: This invitation has already been accepted.
       create: Create and send invitation
-      help: The cataloguer will receive an email valid for 15 days and choose their own password.
+      help: Choose "Create and send invitation" to email a 15-day activation link, or "Create" to activate the user immediately with the password entered below.
       pending: Invitation pending
       resend: Resend invitation
       resent: "A new invitation was sent to %{email}."
       sent: "The user was created and an invitation was sent to %{email}."
       status: Account status
+    password_creation_hint: The password is required for Create and ignored for Create and send invitation.
+    role_required: Please select an access role (admin, editor, cataloger, or guest).
+    missing_role:
+      account: Account
+      heading: No role has been assigned to your account
+      message: This user has no selected role. Please contact a Muscat administrator and ask them to assign one.
+      sign_out: Sign out
+      title: Access unavailable
   Composer: Composer
   Date: Date
   Images: Images

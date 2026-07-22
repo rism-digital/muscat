@@ -1,7 +1,17 @@
 var init_sidebar_actions = function () {
     
     $('a[data-save-form]').click(function(e) {
-        form = $("#" + $(this).data("save-form"));
+        e.preventDefault();
+        var form = $("#" + $(this).data("save-form"));
+
+        var submitName = $(this).data("submit-name");
+        if (submitName) {
+            form.find('input[data-sidebar-submit]').remove();
+            var $submitInput = $('<input type="hidden" data-sidebar-submit="true" />');
+            $submitInput.attr('name', submitName);
+            $submitInput.val($(this).data("submit-value"));
+            form.append($submitInput);
+        }
         
         // Triggers work as for marc editor:
         // extract them, and pass them to the request form

@@ -16,13 +16,18 @@ ActiveAdmin.register User do
 	controller do
 
     def create
-      attributes = permitted_params[:user].except(:password, :password_confirmation)
-      @user = User.invite!(attributes, current_user)
+      @user = User.new(permitted_params[:user])
 
-      if @user.errors.empty? && @user.invited_to_sign_up?
-        redirect_to resource_path(@user), notice: I18n.t("users.invitation.sent", email: @user.email)
-      else
+      unless @user.access_role?
+        @user.errors.add(:roles, I18n.t("users.role_required"))
         render :new, status: :unprocessable_entity
+        return
+      end
+
+      if params[:creation_mode] == "password"
+        create_with_password
+      else
+        create_with_invitation
       end
     end
 
@@ -62,6 +67,27 @@ ActiveAdmin.register User do
 	    end
 	    super
 	  end
+
+    private
+
+    def create_with_invitation
+      attributes = permitted_params[:user].except(:password, :password_confirmation)
+      @user = User.invite!(attributes, current_user)
+
+      if @user.errors.empty? && @user.invited_to_sign_up?
+        redirect_to resource_path(@user), notice: I18n.t("users.invitation.sent", email: @user.email)
+      else
+        render :new, status: :unprocessable_entity
+      end
+    end
+
+    def create_with_password
+      if @user.save
+        redirect_to resource_path(@user), notice: I18n.t("users.created", email: @user.email)
+      else
+        render :new, status: :unprocessable_entity
+      end
+    end
 
 	end
 

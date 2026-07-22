@@ -1,0 +1,23 @@
+<% content_for :body_class, "missing-role-page-body" %>
+
+<main class="missing-role-page">
+  <section class="missing-role-panel" aria-labelledby="missing-role-title">
+    <h1 id="missing-role-title" class="missing-role-title">
+      Muscat <%= t("users.missing_role.title", default: "Access unavailable") %>
+    </h1>
+
+    <div class="missing-role-content">
+      <h2><%= t("users.missing_role.heading", default: "No role has been assigned to your account") %></h2>
+      <p><%= t("users.missing_role.message", default: "This user has no selected role. Please contact a Muscat administrator and ask them to assign one.") %></p>
+
+      <dl class="missing-role-account">
+        <dt><%= t("users.missing_role.account", default: "Account") %></dt>
+        <dd><%= current_user.email %></dd>
+      </dl>
+
+      <%= link_to t("users.missing_role.sign_out", default: "Sign out"),
+                  destroy_user_session_path,
+                  class: "missing-role-sign-out" %>
+    </div>
+  </section>
+</main>

@@ -1,22 +1,64 @@
-<h2><%= t "devise.invitations.edit.header" %></h2>
+<% content_for :body_class, "invitation-page-body" %>
 
-<%= form_for(resource, as: resource_name, url: invitation_path(resource_name), html: { method: :put }) do |f| %>
-  <%= render "devise/shared/error_messages", resource: resource %>
-  <%= f.hidden_field :invitation_token, readonly: true %>
+<main class="invitation-page">
+  <section class="invitation-panel" aria-labelledby="invitation-title">
+    <h1 id="invitation-title" class="invitation-title">
+      Muscat <%= t("devise.invitations.edit.header", default: "Account activation") %>
+    </h1>
 
-  <% if f.object.class.require_password_on_accepting %>
-    <div class="field">
-      <%= f.label :password %><br />
-      <%= f.password_field :password, autocomplete: "new-password", required: true, minlength: Devise.password_length.min %>
+    <div class="invitation-content">
+      <p class="invitation-intro">
+        <%= t("devise.invitations.edit.intro", default: "Choose a password to finish setting up your Muscat account.") %>
+      </p>
+
+      <%= form_for(resource, as: resource_name, url: invitation_path(resource_name), html: { method: :put, class: "invitation-form" }) do |f| %>
+        <%= render "devise/shared/error_messages", resource: resource %>
+        <%= f.hidden_field :invitation_token, readonly: true %>
+
+        <div class="invitation-row invitation-account">
+          <span class="invitation-label"><%= t("devise.invitations.edit.account", default: "Account") %></span>
+          <strong><%= resource.email %></strong>
+        </div>
+
+        <% if f.object.class.require_password_on_accepting %>
+          <div class="invitation-row invitation-field">
+            <%= f.label :password, t("devise.invitations.edit.password", default: "New password") %>
+            <%= f.password_field :password,
+              autocomplete: "new-password",
+              required: true,
+              minlength: Devise.password_length.min,
+              autofocus: true,
+              aria: { describedby: "password-requirements" } %>
+          </div>
+
+          <div class="invitation-row invitation-field">
+            <%= f.label :password_confirmation, t("devise.invitations.edit.password_confirmation", default: "Confirm password") %>
+            <%= f.password_field :password_confirmation,
+              autocomplete: "new-password",
+              required: true,
+              minlength: Devise.password_length.min %>
+          </div>
+
+          <div class="invitation-row invitation-hint-row">
+            <span></span>
+            <p id="password-requirements" class="invitation-hint">
+              <%= t(
+                "devise.invitations.edit.password_requirements",
+                default: "Use at least %{minimum} characters, including an uppercase letter, a lowercase letter, and a number.",
+                minimum: Devise.password_length.min
+              ) %>
+            </p>
+          </div>
+        <% end %>
+
+        <div class="invitation-actions">
+          <%= f.submit t("devise.invitations.edit.submit_button", default: "Activate account"), class: "invitation-submit" %>
+          <span>
+            <%= t("devise.invitations.edit.already_active", default: "Already activated?") %>
+            <%= link_to t("devise.invitations.edit.sign_in", default: "Sign in"), new_user_session_path %>
+          </span>
+        </div>
+      <% end %>
     </div>
-
-    <div class="field">
-      <%= f.label :password_confirmation %><br />
-      <%= f.password_field :password_confirmation, autocomplete: "new-password", required: true, minlength: Devise.password_length.min %>
-    </div>
-  <% end %>
-
-  <div class="actions">
-    <%= f.submit t("devise.invitations.edit.submit_button") %>
-  </div>
-<% end %>
+  </section>
+</main>

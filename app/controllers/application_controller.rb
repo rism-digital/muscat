@@ -5,7 +5,7 @@ class ApplicationController < ActionController::Base
 
   before_action :configure_permitted_parameters, if: :devise_controller?
   before_action :store_user_location!, if: :storable_location?
-  before_action :set_locale, :set_paper_trail_whodunnit, :auth_user, :prepare_exception_notifier, :test_version_warning, :test_muscat_reindexing
+  before_action :set_locale, :set_paper_trail_whodunnit, :auth_user, :ensure_user_has_role, :prepare_exception_notifier, :test_version_warning, :test_muscat_reindexing
 
   # see https://github.com/heartcombo/devise/wiki/How-To:-Redirect-back-to-current-page-after-sign-in,-sign-out,-sign-up,-update
   def storable_location?
@@ -37,6 +37,27 @@ class ApplicationController < ActionController::Base
     return if devise_controller?
 
     redirect_to "/admin/login" unless (user_signed_in? || RISM::ANONYMOUS_NAVIGATION || request.path == "/admin/login" || (defined?(saml_user_signed_in?) && saml_user_signed_in?)) rescue nil
+  end
+
+  def ensure_user_has_role
+    return unless user_signed_in?
+    return if signing_out?
+    return if current_user.access_role?
+
+    respond_to do |format|
+      format.html do
+        render template: "errors/missing_user_role", layout: "application", status: :forbidden
+      end
+      format.json do
+        render json: {
+          error: I18n.t(
+            "users.missing_role.message",
+            default: "This user has no selected role. Please contact a Muscat administrator and ask them to assign one."
+          )
+        }, status: :forbidden
+      end
+      format.any { head :forbidden }
+    end
   end
   
   def test_version_warning
@@ -92,6 +113,10 @@ class ApplicationController < ActionController::Base
   end
 
   private
+
+  def signing_out?
+    devise_controller? && controller_path == "active_admin/devise/sessions" && action_name == "destroy"
+  end
 
   def user_activity
       current_user.try :touch

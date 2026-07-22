@@ -6,7 +6,7 @@
   <%= javascript_include_tag "application" %>
   <%= csrf_meta_tags %>
 </head>
-<body>
+<body class="<%= content_for?(:body_class) ? yield(:body_class) : nil %>">
 
 <%= yield %>
 

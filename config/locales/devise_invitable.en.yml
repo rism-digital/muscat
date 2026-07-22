@@ -13,8 +13,15 @@ en:
         header: "Send invitation"
         submit_button: "Send an invitation"
       edit:
-        header: "Set your password"
-        submit_button: "Set my password"
+        account: "Account"
+        already_active: "Already activated?"
+        header: "Account activation"
+        intro: "Choose a password to finish setting up your Muscat account."
+        password: "New password"
+        password_confirmation: "Confirm password"
+        password_requirements: "Use at least %{minimum} characters, including an uppercase letter, a lowercase letter, and a number."
+        sign_in: "Sign in"
+        submit_button: "Activate account"
     mailer:
       invitation_instructions:
         subject: "Set up your Muscat account"

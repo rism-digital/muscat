@@ -1,4 +1,6 @@
 class User < ApplicationRecord
+  ACCESS_ROLES = %w[admin editor cataloger guest].freeze
+
   has_and_belongs_to_many :workgroups
 
   has_many :sources, foreign_key: 'wf_owner'
@@ -136,6 +138,10 @@ class User < ApplicationRecord
 
   def get_roles
     self.roles.map {|r| r.name}
+  end
+
+  def access_role?
+    roles.any? { |role| ACCESS_ROLES.include?(role.name) }
   end
 
   def online?

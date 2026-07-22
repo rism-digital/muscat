@@ -1,0 +1,182 @@
+@import url("https://fonts.googleapis.com/css?family=Noto+Sans+Display:400,500,700,400italic,500italic,700italic");
+
+.invitation-page-body {
+  margin: 0;
+  background: #e8e9ea;
+  color: #000;
+  font-family: "Noto Sans Display", Helvetica, Arial, sans-serif;
+  font-size: 12px;
+  font-weight: 400;
+  letter-spacing: 0.028em;
+}
+
+.invitation-page,
+.invitation-page * {
+  box-sizing: border-box;
+}
+
+.invitation-page {
+  min-height: 100vh;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  padding: 66px 20px 30px;
+}
+
+.invitation-panel {
+  width: min(100%, 500px);
+  background: #fff;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+}
+
+.invitation-title {
+  margin: 0;
+  padding: 5px 10px 4px;
+  background: #1b4e7d;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+  color: #fff;
+  font-size: 12px;
+  font-weight: 700;
+  line-height: 18px;
+}
+
+.invitation-content {
+  padding: 25px 30px 32px;
+}
+
+.invitation-intro {
+  margin: 0 0 22px;
+  color: #5e6469;
+  line-height: 1.5;
+}
+
+.invitation-row {
+  display: grid;
+  grid-template-columns: 110px minmax(0, 1fr);
+  align-items: center;
+  gap: 15px;
+  margin-bottom: 10px;
+}
+
+.invitation-label,
+.invitation-field label {
+  color: #5e6469;
+  font-weight: 700;
+}
+
+.invitation-account strong {
+  overflow-wrap: anywhere;
+  font-weight: 500;
+}
+
+.invitation-field input {
+  width: 100%;
+  padding: 8px 10px 7px;
+  background: #fff;
+  border: 1px solid #c9d0d4;
+  border-radius: 3px;
+  box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.08);
+  color: #000;
+  font: 400 11.4px "Noto Sans Display", Helvetica, Arial, sans-serif;
+  letter-spacing: 0.028em;
+}
+
+.invitation-field input:focus {
+  border-color: #8a9ba8;
+  box-shadow: 0 0 4px #99a7b3;
+  outline: none;
+}
+
+.invitation-hint-row {
+  align-items: start;
+  margin-top: -3px;
+  margin-bottom: 21px;
+}
+
+.invitation-hint {
+  margin: 0;
+  color: #777;
+  font-size: 10.5px;
+  line-height: 1.45;
+}
+
+.invitation-actions {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  margin-top: 4px;
+}
+
+.invitation-submit {
+  padding: 7px 16px 6px;
+  cursor: pointer;
+  background: #1b4e7d;
+  border: 1px solid #17436b;
+  border-radius: 4px;
+  color: #fff;
+  font: 400 12px "Noto Sans Display", Helvetica, Arial, sans-serif;
+  letter-spacing: 0.028em;
+}
+
+.invitation-submit:hover,
+.invitation-submit:focus {
+  background: #23669d;
+}
+
+.invitation-actions span {
+  color: #5e6469;
+  text-align: right;
+}
+
+.invitation-actions a {
+  color: #1b4e7d;
+  text-decoration: underline;
+}
+
+.invitation-form #error_explanation {
+  margin: 0 0 20px;
+  padding: 10px 12px;
+  background: #f7e7e7;
+  border: 1px solid #d8a0a0;
+  color: #932419;
+}
+
+.invitation-form #error_explanation h2 {
+  margin: 0 0 6px;
+  font-size: 11px;
+}
+
+.invitation-form #error_explanation ul {
+  margin: 0;
+  padding-left: 18px;
+}
+
+@media (max-width: 540px) {
+  .invitation-page {
+    padding: 20px 10px;
+  }
+
+  .invitation-content {
+    padding: 22px 20px 25px;
+  }
+
+  .invitation-row {
+    display: block;
+  }
+
+  .invitation-field label,
+  .invitation-label {
+    display: block;
+    margin-bottom: 5px;
+  }
+
+  .invitation-actions {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .invitation-actions span {
+    text-align: left;
+  }
+}
