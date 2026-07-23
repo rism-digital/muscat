@@ -45,7 +45,7 @@ RSpec.describe User, type: :model do
   it "lets the invited user choose the initial password" do
     user = User.invite!(attributes, admin)
     raw_token = user.raw_invitation_token
-    delivery = instance_double(ActionMailer::MessageDelivery, deliver_later: true)
+    delivery = instance_double(ActionMailer::MessageDelivery, deliver_now: true)
     allow(UserActivationNotification).to receive(:notify).with(user).and_return(delivery)
 
     accepted_user = User.accept_invitation!(
@@ -58,7 +58,7 @@ RSpec.describe User, type: :model do
     expect(accepted_user.invitation_accepted_at).to be_present
     expect(accepted_user).not_to be_invited_to_sign_up
     expect(accepted_user.valid_password?("CataloguerPass123")).to be(true)
-    expect(delivery).to have_received(:deliver_later)
+    expect(delivery).to have_received(:deliver_now)
   end
 
   it "rejects an invitation after 15 days" do

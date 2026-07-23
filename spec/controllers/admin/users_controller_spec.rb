@@ -24,16 +24,22 @@ RSpec.describe Admin::UsersController, type: :controller do
 
   describe "POST create" do
     it "creates a pending user and emails an invitation" do
-      expect do
-        post :create, params: { creation_mode: "invite", user: user_attributes }
-      end.to change(User, :count).by(1)
-        .and change { ActionMailer::Base.deliveries.count }.by(1)
+      I18n.with_locale(:de) do
+        expect do
+          post :create, params: { creation_mode: "invite", user: user_attributes }
+        end.to change(User, :count).by(1)
+          .and change { ActionMailer::Base.deliveries.count }.by(1)
+      end
 
       user = User.find_by!(email: "invitee@example.org")
 
       expect(user).to be_invited_to_sign_up
       expect(user.roles).to include(cataloger_role)
       expect(user.valid_password?("AdministratorPassword123")).to be_falsey
+      expect(ActionMailer::Base.deliveries.last.attachments["rism-logo.png"]).to be_inline
+      expect(ActionMailer::Base.deliveries.last.html_part.body.decoded).to include("Muscat account invitation")
+      expect(ActionMailer::Base.deliveries.last.html_part.body.decoded).to include("Choose my password")
+      expect(ActionMailer::Base.deliveries.last.subject).to eq("Set up your Muscat account")
       expect(response).to redirect_to(admin_user_path(user))
     end
 

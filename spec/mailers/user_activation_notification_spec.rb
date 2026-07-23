@@ -15,12 +15,16 @@ RSpec.describe UserActivationNotification, type: :mailer do
         workgroups: [workgroup]
       )
 
-      mail = described_class.notify(user)
+      mail = I18n.with_locale(:de) { described_class.notify(user).message }
 
       expect(mail.to).to eq(RISM::USER_ACTIVATION_NOTIFICATION_EMAILS)
       expect(mail.subject).to eq("[Muscat] User activated: cataloguer")
+      expect(mail.html_part.body.decoded).to include("A user is now active")
+      expect(mail.attachments["rism-logo.png"]).to be_inline
       expect(mail.body.encoded).to include("New Cataloguer")
       expect(mail.body.encoded).to include("cataloguer@example.org")
+      expect(mail.html_part.body.decoded).to include('follow:&quot;New Cataloguer&quot;')
+      expect(mail.text_part.body.decoded).to include('follow:"New Cataloguer"')
       expect(mail.body.encoded).to include("Switzerland")
       expect(mail.body.encoded).to include("CH-099")
       expect(mail.body.encoded).not_to include("CH-100")
