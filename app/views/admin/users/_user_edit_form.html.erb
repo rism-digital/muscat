@@ -22,13 +22,7 @@
          <%= f.input :password, required: false, hint: (@user.new_record? ? I18n.t("users.password_creation_hint") : nil) %>
          <%= f.input :password_confirmation, required: false %>
        <% end %>
-       <% if @user.persisted? && can?(:update, @user) %>
-        <!-- size does not work unless there is a dummy class. Hooray! -->
-         <%= f.input :notifications, :label => I18n.t('notifications.notifications'), :input_html => { :class => 'placeholder', :rows => 6, :style => 'width:50%'} %>
-         <%= f.input :notification_type, :label => I18n.t('notifications.cadence'), as: :select, multiple: false, :include_blank => false, collection: [:none, :every, :daily, :weekly].collect {|v| [I18n.t("notifications." + v.to_s), v == :none ? nil : v]} %>
-       <% end %>
        <% if can? :manage, User %>
-         <%= f.input :notification_email %>
          <%= f.input :workgroups,
                     as: :select,
                     multiple: true,
@@ -37,7 +31,21 @@
          <%= f.input :preference_wf_stage, as: :select, multiple: false, collection: [:inprogress, :published] %>
        <% end %>
      <% end %>
+
+     <% if @user.persisted? && can?(:update, @user) %>
+       <%= f.inputs I18n.t("notifications.notifications") do %>
+         <%= f.input :notification_type,
+                     label: I18n.t("notifications.cadence"),
+                     as: :select,
+                     multiple: false,
+                     include_blank: false,
+                     collection: [:none, :every, :daily, :weekly].collect { |value|
+                       [I18n.t("notifications.#{value}"), value == :none ? nil : value]
+                     } %>
+         <% if can? :manage, User %>
+           <%= f.input :notification_email %>
+         <% end %>
+         <%= render "admin/users/notification_rule_builder", f: f %>
+       <% end %>
+     <% end %>
 <% end %>
-
-<%= render 'notifications_help' %>
-

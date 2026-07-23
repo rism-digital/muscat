@@ -2,7 +2,7 @@ ActiveAdmin.register User do
   menu :parent => "admin_menu", :label => proc {I18n.t(:menu_users)}, :if => proc{ (can? :read, User) || current_user.has_role?(:editor)}
   
   permit_params :preference_wf_stage, :email, :password, :password_confirmation, 
-                :username, :name, :notifications, :notification_type, :notification_email, 
+                :username, :name, :notification_rules_json, :notification_type, :notification_email,
                 :disabled, workgroup_ids: [], role_ids: []
 
   # Remove all action items
@@ -110,6 +110,23 @@ ActiveAdmin.register User do
     respond_to do |format|
         format.json { render json: users  }
     end
+  end
+
+  collection_action :autocomplete_notification_user, method: :get do
+    query = params[:term].presence || params[:q].presence
+    users =
+      if query.present?
+        User.where(disabled: false)
+          .where("name LIKE ?", "%#{ActiveRecord::Base.sanitize_sql_like(query)}%")
+          .where.not(name: "Admin")
+          .order(:name)
+          .limit(20)
+          .map { |user| { label: user.name, value: user.name, id: user.id } }
+      else
+        []
+      end
+
+    render json: users
   end
 
   # And this is used by thle flexdatalist for the user selection

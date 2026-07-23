@@ -1,0 +1,63 @@
+<%
+  builder_config = NotificationRules::Configuration.to_h.merge(
+    labels: {
+      add_rule: I18n.t("notifications.rule_builder.add_rule", default: "Add rule"),
+      add_condition: I18n.t("notifications.rule_builder.add_condition", default: "Add condition"),
+      duplicate: I18n.t("notifications.rule_builder.duplicate", default: "Duplicate"),
+      remove: I18n.t("notifications.rule_builder.remove", default: "Remove"),
+      when: I18n.t("notifications.rule_builder.when", default: "When the record type is"),
+      where: I18n.t("notifications.rule_builder.where", default: "WHERE"),
+      and: I18n.t("notifications.rule_builder.and", default: "AND"),
+      or: I18n.t("notifications.rule_builder.or", default: "OR"),
+      empty: I18n.t("notifications.rule_builder.empty", default: "No notification rules yet. Add a rule to get started."),
+      rule: I18n.t("notifications.rule_builder.rule", default: "Rule"),
+      any_record: I18n.t("notifications.rule_builder.any_record", default: "Any record"),
+      exclude_own: I18n.t("notifications.rule_builder.exclude_own", default: "Do not notify me about my own changes")
+    },
+    endpoints: {
+      user: autocomplete_notification_user_admin_users_path,
+      institution: autocomplete_institution_siglum_admin_institutions_path,
+      person: autocomplete_person_full_name_admin_people_path
+    }
+  )
+%>
+
+<li class="input notification-rule-builder-input">
+  <div
+    class="notification-rule-builder"
+    data-notification-rule-builder
+    data-config="<%= builder_config.to_json %>">
+    <%= hidden_field_tag "user[notification_rules_json]", @user.notification_rules_json,
+                         data: { notification_rules_document: true } %>
+
+    <div class="notification-rule-builder__intro">
+      <p><%= I18n.t("notifications.rule_builder.help", default: "Choose what should trigger a notification.") %></p>
+      <p class="notification-rule-builder__logic"><%= I18n.t("notifications.rule_builder.logic", default: "Conditions inside a rule are joined with AND. Separate rules are alternatives (OR).") %></p>
+    </div>
+
+    <div class="notification-rule-builder__rules" data-rule-list></div>
+
+    <button type="button" class="button notification-rule-builder__add-rule" data-add-rule>
+      <%= I18n.t("notifications.rule_builder.add_rule", default: "Add rule") %>
+    </button>
+
+    <details class="notification-rule-builder__advanced">
+      <summary><%= I18n.t("notifications.rule_builder.advanced", default: "Advanced and imported rules") %></summary>
+      <p><%= I18n.t("notifications.rule_builder.advanced_help", default: "Rules the builder cannot safely convert are kept here. The preview shows the legacy rules Muscat will continue to use.") %></p>
+
+      <label for="notification_rules_legacy_lines">
+        <%= I18n.t("notifications.rule_builder.unconverted_rules", default: "Unconverted legacy rules") %>
+      </label>
+      <textarea id="notification_rules_legacy_lines" rows="4" data-legacy-lines></textarea>
+
+      <label for="notification_rules_legacy_preview">
+        <%= I18n.t("notifications.rule_builder.legacy_preview", default: "Generated legacy rules (read-only)") %>
+      </label>
+      <textarea id="notification_rules_legacy_preview" rows="6" readonly data-legacy-preview></textarea>
+    </details>
+
+    <noscript>
+      <p class="notification-rule-builder__error"><%= I18n.t("notifications.rule_builder.javascript_required", default: "JavaScript is required to edit notification rules visually.") %></p>
+    </noscript>
+  </div>
+</li>

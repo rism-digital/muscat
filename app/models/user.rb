@@ -28,6 +28,7 @@ class User < ApplicationRecord
   attr_accessor :user_create_strategy
   # Used to permit username or email login
   attr_writer :login
+  attr_writer :notification_rules_json
 
   enum :notification_type, [:every, :daily, :weekly ]
   enum :preference_wf_stage, [ :inprogress, :published, :deleted ]
@@ -42,6 +43,7 @@ class User < ApplicationRecord
   #/^[a-zA-ZÀ-ż0-9_\.]*$/, :multiline => true
   
   validates :name, presence: true
+  validate :apply_notification_rules_json, if: :notification_rules_json_assigned?
 
   searchable :auto_index => false do
     integer :id
@@ -175,6 +177,12 @@ class User < ApplicationRecord
     notifications.each_line.map {|l| l.strip}
   end
 
+  def notification_rules_json
+    return @notification_rules_json if notification_rules_json_assigned?
+
+    (notification_rules.presence || NotificationRules::LegacyImporter.call(notifications)).to_json
+  end
+
   # returns a list of users sorted by lastname with admin at first place; utf-8 chars included
   def self.sort_all_by_last_name
     res = {}
@@ -228,6 +236,23 @@ class User < ApplicationRecord
 
   def creating_invited_user?
     new_record? && invited_by.present?
+  end
+
+  private
+
+  def notification_rules_json_assigned?
+    instance_variable_defined?(:@notification_rules_json)
+  end
+
+  def apply_notification_rules_json
+    document = NotificationRules::Document.new(@notification_rules_json)
+    unless document.valid?
+      document.errors.each { |message| errors.add(:notification_rules_json, message) }
+      return
+    end
+
+    self.notification_rules = document.to_h
+    self.notifications = NotificationRules::LegacySerializer.call(document.to_h)
   end
 
   def password_required?

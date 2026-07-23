@@ -708,6 +708,26 @@ en:
     none: Notifications are disabled
     notifications: Notifications
     rules: Rules
+    rule_builder:
+      add_condition: Add condition
+      add_rule: Add rule
+      advanced: Advanced and imported rules
+      advanced_help: Rules the builder cannot safely convert are kept here. The preview shows the legacy rules Muscat will continue to use.
+      and: AND
+      any_record: Any record
+      duplicate: Duplicate
+      empty: No notification rules yet. Add a rule to get started.
+      exclude_own: Do not notify me about my own changes
+      help: Choose what should trigger a notification.
+      javascript_required: JavaScript is required to edit notification rules visually.
+      legacy_preview: Generated legacy rules (read-only)
+      logic: Conditions inside a rule are joined with AND. Separate rules are alternatives (OR).
+      or: OR
+      remove: Remove
+      rule: Rule
+      unconverted_rules: Unconverted legacy rules
+      where: WHERE
+      when: When the record type is
     weekly: Every week
   object: Object
   old_index: Old index

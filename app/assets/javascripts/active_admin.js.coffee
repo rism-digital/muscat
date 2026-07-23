@@ -98,6 +98,7 @@
 #= require merge_authority
 #= require compare_versions_actions
 #= require autogen_username
+#= require notification_rule_builder
 
 #= require gnd_interface.js
 #= require external_fetch_panel
