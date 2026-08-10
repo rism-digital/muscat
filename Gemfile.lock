@@ -193,6 +193,9 @@ GEM
     devise-i18n (1.16.0)
       devise (>= 5.0.0)
       rails-i18n
+    devise_invitable (2.0.12)
+      actionmailer (>= 5.0)
+      devise (>= 4.6)
     diff-lcs (1.6.2)
     differ (0.1.2)
     drb (2.2.3)
@@ -645,6 +648,7 @@ DEPENDENCIES
   delayed_job_active_record
   devise (~> 5.0)
   devise-i18n
+  devise_invitable (~> 2.0)
   diff-lcs
   differ
   exception_notification
