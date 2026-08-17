@@ -22,7 +22,7 @@ model = model_name.constantize
 tag = field[0, 3]
 subtag = field[3]
 
-CSV.foreach(filename, headers: true) do |row|
+CSV.foreach(filename) do |row|
   muscat_id = row[0]&.strip
   old_val = row[1]
   new_val = row[2]
