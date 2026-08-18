@@ -42,6 +42,7 @@ fr:
       author_type: Profil de l'auteur
       body: Corps
       comments_help: Tapez @ pour mentionner un utilisateur spécifique, qui recevra alors une notification par e-mail.
+      first_comment_mention_help: Veuillez mentionner un utilisateur avec @ avant d'envoyer le premier commentaire.
       errors:
         empty_text: Le commentaire n'a pas été enregistré puisque le texte était vide.
       my_item_comments: Commentaires sur mes dossiers

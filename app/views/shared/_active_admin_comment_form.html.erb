@@ -1,6 +1,7 @@
 <% resource = local_assigns.fetch(:resource) %>
 <% comment_form_url = local_assigns.fetch(:comment_form_url) %>
 <% users_url = local_assigns.fetch(:users_url, "/admin/users/list") %>
+<% first_comment = local_assigns.fetch(:first_comment, false) %>
 
 <%= semantic_form_for ActiveAdmin::Comment.new, url: comment_form_url, builder: ActiveAdmin::FormBuilder, html: { class: "active_admin_comment" } do |f| %>
   <%= f.inputs do %>
@@ -15,12 +16,16 @@
       users_url: users_url,
       show_hint: false,
       help_text: I18n.t("active_admin.comments.comments_help"),
+      mention_required: first_comment,
       wrapper_class: "active-admin-comment-editor",
       output_mode: "text_json"
     } %>
   <% end %>
 
   <%= f.actions do %>
-    <%= f.action :submit, label: I18n.t("active_admin.comments.add") %>
+    <%= f.action :submit, label: I18n.t("active_admin.comments.add"), button_html: { disabled: first_comment } %>
+    <% if first_comment %>
+      <li class="first-comment-mention-help"><%= I18n.t("active_admin.comments.first_comment_mention_help") %></li>
+    <% end %>
   <% end %>
 <% end %>

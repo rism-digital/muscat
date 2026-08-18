@@ -42,6 +42,7 @@ pl:
       author_type: Rodzaj autora
       body: Tekst
       comments_help: Wpisz @, by wspomnieć określonego użytkownika, który zostanie następnie powiadomiony e-mailem.
+      first_comment_mention_help: Przed wysłaniem pierwszego komentarza wspomnij użytkownika za pomocą @.
       errors:
         empty_text: Komentarz nie został zapisany z powodu braku tekstu.
       my_item_comments: Komentarze do moich rekordów
