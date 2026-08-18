@@ -115,8 +115,8 @@ class NotificationMatcher
         end
       end 
     elsif @object.is_a?(Work) && property == "composer"
-      return false if !@object.person
-      composer = @object.person.name
+      return false if !@object.composer
+      composer = @object.composer.name
       return wildcard_match(composer, pattern)
     elsif property == "follow"
 
