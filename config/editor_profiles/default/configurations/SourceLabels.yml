@@ -410,6 +410,8 @@
       label: records.bibliographic_reference
     n:
       label: records.number_page
+    u:
+      label: general.uri
   label: records.bibliographic_reference
 '700':
   fields:

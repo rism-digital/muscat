@@ -1,6 +1,7 @@
 <%
 subfield_a = tag.fetch_first_by_tag('a')
 subfield_n = tag.fetch_first_by_tag('n')	
+subfield_u = tag.fetch_first_by_tag('u')
 subfield_0 = tag.fetch_first_by_tag('0')	
 
 urlmatcher = '\[(.*?((?:http|https)(?::\\/{2}[\\w]+)(?:[\\/|\\.]?)(?:[^\\s"]*)))\]'
@@ -35,11 +36,15 @@ end
 
     <% end %>
 
-    <%=", " if (subfield_a && subfield_a.content) && (subfield_n && subfield_n.content)%>
+    <%=", " if (subfield_a && subfield_a.content) && ((subfield_n && subfield_n.content) || (subfield_u && subfield_u.content))%>
 		<% if show_url %>
 			<%= link_to(url, url, :target => "_blank") %>
 		<% else %>
 			<%= subfield_n.content if subfield_n && subfield_n.content%>
+		<% end %>
+		<% if subfield_u && subfield_u.content.present? %>
+			<%= ", " if subfield_n && subfield_n.content.present? %>
+			<%= link_to(subfield_u.content, subfield_u.content, target: "_blank", rel: "noopener noreferrer") %>
 		<% end %>
 	</td>
 </tr>
