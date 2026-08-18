@@ -12,6 +12,23 @@ legacy text so that the existing matcher continues to work.
 This document describes the behavior of the matcher itself. It intentionally
 documents implementation quirks as well as the intended syntax.
 
+## Canonical rule schema
+
+The canonical model names, allowed fields, special fields, exact-match fields,
+and Rails model-name normalization are defined once in:
+
+```text
+lib/notification_rule_schema.rb
+```
+
+Both `NotificationMatcher` and the visual JSON editor derive their model and
+field configuration from `NotificationRuleSchema`. Changes to supported models
+or fields should be made in the shared schema rather than copied into the
+matcher and interface configuration separately.
+
+`NotificationRules::Configuration` contains only editor-specific information,
+such as the JSON document version and visual operators.
+
 ## Rule syntax
 
 The general form of one rule is:

@@ -1,49 +1,10 @@
+require_relative "notification_rule_schema"
+
 class NotificationMatcher
 
-  ALLOWED_MODELS = [
-    "source", 
-    "work", 
-    "institution", 
-    "holding", 
-    "person",
-    "inventory_item",
-    "liturgical_feast",
-    "place",
-    "publication",
-    "standard_terms",
-    "standard_titles",
-    "work_node"
-  ]
-
-  ALLOWED_PROPERTIES = {
-    source: [:record_type, :std_title, :composer, :title, :shelf_mark, :lib_siglum, :follow, :owner],
-    work: [:title, :form, :notes, :composer, :follow, :owner],
-    institution: [:siglum, :full_name, :address, :place, :comments, :alternates, :notes, :follow, :owner],
-    person: [:full_name, :life_dates, :birth_place, :alternate_names, :alternate_dates, :display_name, :follow, :owner],
-    holding: [:lib_siglum, :shelf_mark, :follow, :owner],
-    inventory_item: [:source_id, :title, :composer, :page_info, :follow, :owner],
-    liturgical_feast: [:name, :notes, :alternate_terms, :viaf, :gnd, :follow, :owner],
-    place: [:name, :country, :district, :notes, :alternate_terms, :hierarchy, :tgn_id, :follow, :owner],
-    publication: [:short_name, :author, :title, :journal, :volume, :place, :date, :pages, :work_catalogue, :follow, :owner],
-    standard_terms: [:term, :alternate_terms, :notes, :sub_topic, :viaf, :gnd, :follow, :owner],
-    standard_titles: [:title, :notes, :alternate_terms, :sub_topic, :viaf, :gnd, :latin, :follow, :owner],
-    work_node: [:person_id, :title, :form, :notes, :composer, :ext_number, :ext_code, :follow, :owner]
-  }
-
-  SPECIAL_RULES = {
-    source: [:lib_siglum, :record_type, :shelf_mark, :follow, :owner],
-    work: [:composer, :follow, :owner],
-    institution: [:follow, :owner],
-    person: [:follow, :owner],
-    holding: [:follow, :owner],
-    inventory_item: [:follow, :owner],
-    liturgical_feast: [:follow, :owner],
-    place: [:follow, :owner],
-    publication: [:follow, :owner],
-    standard_terms: [:follow, :owner],
-    standard_titles: [:follow, :owner],
-    work_node: [:follow, :owner]
-  }
+  ALLOWED_MODELS = NotificationRuleSchema::MODELS
+  ALLOWED_PROPERTIES = NotificationRuleSchema::FIELDS
+  SPECIAL_RULES = NotificationRuleSchema::SPECIAL_FIELDS
 
   def initialize(object, user, limit_rules = nil)
     #if !object.is_a?(Source) && !object.is_a?(Work) && !object.is_a?(Institution) && !object.is_a?(Holding) && !object.is_a?(Person) 
@@ -53,6 +14,10 @@ class NotificationMatcher
     @object = object
     @user = user
     @limit_rules = limit_rules
+  end
+
+  def self.model_name_for(record_or_class)
+    NotificationRuleSchema.model_name_for(record_or_class)
   end
   
   def get_matches
@@ -64,7 +29,7 @@ class NotificationMatcher
     rules = NotificationMatcher::parse_rules(user_notifications, @limit_rules)
 
     rules.each do |model, rule_groups|
-      next if @object.class.to_s.downcase != model.downcase
+      next if NotificationMatcher.model_name_for(@object) != model
 
       # Process exclusions, for now only "matches" works
       exclude = rule_groups.flatten.find { |item| item[:property] == "exclude" }&.dig(:pattern)
@@ -334,12 +299,13 @@ class NotificationMatcher
   end
   
   def allowed?(field)
-    return ALLOWED_PROPERTIES[@object.class.to_s.downcase.to_sym].include? field.downcase.to_sym
+    model = NotificationMatcher.model_name_for(@object)
+    return NotificationRuleSchema.fields_for(model).include? field.downcase
   end
 
   def special_case?(field)
-    return false if !SPECIAL_RULES.include? @object.class.to_s.downcase.to_sym
-    return SPECIAL_RULES[@object.class.to_s.downcase.to_sym].include? field.downcase.to_sym
+    model = NotificationMatcher.model_name_for(@object)
+    return NotificationRuleSchema.special_fields_for(model).include? field.downcase
 
   end
 

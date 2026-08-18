@@ -1,3 +1,5 @@
+require "notification_rule_schema"
+
 module NotificationRules
   class Document
     MAX_RULES = 50
@@ -58,7 +60,7 @@ module NotificationRules
       end
 
       model = rule["model"].to_s
-      errors << "rule #{index + 1} has an unsupported record type" unless Configuration::MODELS_WITH_ALL.include?(model)
+      errors << "rule #{index + 1} has an unsupported record type" unless NotificationRuleSchema::MODELS_WITH_ALL.include?(model)
 
       conditions = rule["conditions"]
       unless conditions.is_a?(Array) && conditions.any?
@@ -86,9 +88,9 @@ module NotificationRules
       operator = condition["operator"].to_s
       value = condition["value"].to_s
 
-      errors << "#{label} has an unsupported field" unless Configuration.fields_for(model).include?(field)
+      errors << "#{label} has an unsupported field" unless NotificationRuleSchema.fields_for(model).include?(field)
       errors << "#{label} has an unsupported operator" unless Configuration::OPERATORS.include?(operator)
-      if Configuration::EXACT_FIELDS.include?(field) && operator != "equals"
+      if NotificationRuleSchema::EXACT_FIELDS.include?(field) && operator != "equals"
         errors << "#{label} only supports exact matching"
       end
       errors << "#{label} needs a value" if value.blank?

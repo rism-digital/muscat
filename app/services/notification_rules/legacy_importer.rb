@@ -1,3 +1,5 @@
+require "notification_rule_schema"
+
 module NotificationRules
   class LegacyImporter
     class << self
@@ -25,7 +27,7 @@ module NotificationRules
       def import_line(line)
         model, parsed_conditions = NotificationMatcher.parse_line(line)
         model = model.to_s
-        return unless Configuration::MODELS_WITH_ALL.include?(model)
+        return unless NotificationRuleSchema::MODELS_WITH_ALL.include?(model)
         return if parsed_conditions.blank?
 
         own_changes = parsed_conditions.any? do |item|
@@ -35,8 +37,8 @@ module NotificationRules
         conditions = parsed_conditions.filter_map do |item|
           field = item[:property].to_s
           next if field == "exclude"
-          return unless Configuration.fields_for(model).include?(field)
-          return if Configuration::EXACT_FIELDS.include?(field) && item[:pattern].to_s.include?("*")
+          return unless NotificationRuleSchema.fields_for(model).include?(field)
+          return if NotificationRuleSchema::EXACT_FIELDS.include?(field) && item[:pattern].to_s.include?("*")
 
           operator, value = pattern_to_operator(item[:pattern].to_s)
           {
