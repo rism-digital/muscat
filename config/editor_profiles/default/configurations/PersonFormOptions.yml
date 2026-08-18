@@ -98,7 +98,6 @@
   layout: 
     fields: 
     - - a
-    - - d
     - - j
       - editor_partial: subfield_select_codes
         select_label: "Type of Variant"

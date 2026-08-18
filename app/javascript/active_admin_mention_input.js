@@ -241,6 +241,8 @@ function initMentionField(root) {
   const usersUrl = root.dataset.mentionUsersUrl
   const trigger = root.dataset.mentionTrigger || "@"
   const outputMode = root.dataset.mentionOutputMode || (hiddenJsonField ? "text_json" : "html")
+  const mentionRequired = root.dataset.mentionRequired === "true"
+  const submitButton = hiddenField?.form?.querySelector('button[type="submit"], input[type="submit"]')
 
   if (!editorMount || !hiddenField || !usersUrl) {
     return
@@ -255,6 +257,21 @@ function initMentionField(root) {
   const pluginKey = new PluginKey(
     `mention-${editorMount.id || hiddenField.id || Math.random().toString(36).slice(2)}`
   )
+
+  const updateSubmitButton = (currentEditor) => {
+    if (!mentionRequired || !submitButton) {
+      return
+    }
+
+    let hasMention = false
+    currentEditor.state.doc.descendants((node) => {
+      if (node.type.name === "mention") {
+        hasMention = true
+        return false
+      }
+    })
+    submitButton.disabled = !hasMention
+  }
 
   const editor = new Editor({
     element: editorMount,
@@ -322,14 +339,17 @@ function initMentionField(root) {
       } else {
         hiddenField.value = currentEditor.getHTML()
       }
+      updateSubmitButton(currentEditor)
     },
   })
 
   root._mentionEditor = editor
+  updateSubmitButton(editor)
 
   hiddenField.form?.addEventListener("reset", () => {
     window.setTimeout(() => {
       editor.commands.setContent(hiddenField.value || "", false)
+      updateSubmitButton(editor)
     }, 0)
   })
 }

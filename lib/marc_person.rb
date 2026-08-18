@@ -115,7 +115,7 @@ class MarcPerson < Marc
     # Compress all 675
     list675 = by_tags("675").map {|t| t["a"]&.first&.content}.compact.join("; ")
     by_tags("675").each {|t| t.destroy_yourself}
-    self.add_tag_with_subfields("675", a: list675)
+    self.add_tag_with_subfields("675", a: list675) if !list675.empty?
 
   end
  

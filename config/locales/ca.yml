@@ -42,6 +42,7 @@ ca:
       author_type: Tipus d'autor
       body: Text
       comments_help: Teclegeu @ per esmentar un usuari específic, que rebrà la notificació per correu electrònic.
+      first_comment_mention_help: Esmenteu un usuari amb @ abans d'enviar el primer comentari.
       errors:
         empty_text: No s'ha desat el comentari perquè no hi havia text.
       my_item_comments: Comentaris als meus registres

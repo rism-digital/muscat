@@ -42,6 +42,7 @@ es:
       author_type: Tipo de autor
       body: Texto
       comments_help: Escriba @ para mencionar a un usuario específico, que recibirá una notificación por correo electrónico.
+      first_comment_mention_help: Mencione con @ a un usuario antes de enviar el primer comentario.
       errors:
         empty_text: El comentario no fue guardado debido a que no presenta texto.
       my_item_comments: Comentarios sobre mis registros

@@ -9,6 +9,7 @@
 <% json_field_name = local_assigns[:json_name] %>
 <% json_field_value = local_assigns[:json_value] %>
 <% output_mode = local_assigns.fetch(:output_mode, json_field_name.present? ? "text_json" : "html") %>
+<% mention_required = local_assigns.fetch(:mention_required, false) %>
 <% editor_id = local_assigns.fetch(:editor_id, "#{field_name.to_s.parameterize}_mention_editor") %>
 <% hidden_id = local_assigns.fetch(:hidden_id, "#{field_name.to_s.parameterize}_mention_value") %>
 <% hidden_json_id = local_assigns.fetch(:hidden_json_id, "#{field_name.to_s.parameterize}_mention_json") if json_field_name.present? %>
@@ -17,6 +18,7 @@
      data-mention-field
      data-mention-users-url="<%= users_url %>"
      data-mention-trigger="<%= trigger %>"
+     data-mention-required="<%= mention_required %>"
      data-mention-output-mode="<%= output_mode %>">
   <% if show_hint %>
     <div class="mention-editor__hint"><%= placeholder %></div>

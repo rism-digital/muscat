@@ -24,10 +24,16 @@ module ActiveAdmin::CommentsHelper
       context.text_node paginate(comments, param_name: :comments_page)
 
       if authorized?(ActiveAdmin::Auth::NEW, ActiveAdmin::Comment)
+        first_comment = !ActiveAdmin::Comment.where(
+          resource_type: ActiveAdmin::Comment.resource_type(item),
+          resource_id: item.id
+        ).exists?
+
         context.text_node render(partial: "shared/active_admin_comment_form", locals: {
           resource: item,
           comment_form_url: active_admin_muscat_comment_form_url,
-          users_url: "/admin/users/list"
+          users_url: "/admin/users/list",
+          first_comment: first_comment
         })
       end
     end

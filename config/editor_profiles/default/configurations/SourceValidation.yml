@@ -137,6 +137,7 @@ client:
   "691":
     tags:
       "0": required
+      u: validate_url
   "700": 
     tags:
       "0": required

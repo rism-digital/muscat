@@ -29156,7 +29156,7 @@ ${prefix}
     };
   }
   function initMentionField(root) {
-    var _a;
+    var _a, _b;
     if (root.dataset.mentionInitialized === "true") {
       return;
     }
@@ -29166,6 +29166,8 @@ ${prefix}
     const usersUrl = root.dataset.mentionUsersUrl;
     const trigger = root.dataset.mentionTrigger || "@";
     const outputMode = root.dataset.mentionOutputMode || (hiddenJsonField ? "text_json" : "html");
+    const mentionRequired = root.dataset.mentionRequired === "true";
+    const submitButton = (_a = hiddenField == null ? void 0 : hiddenField.form) == null ? void 0 : _a.querySelector('button[type="submit"], input[type="submit"]');
     if (!editorMount || !hiddenField || !usersUrl) {
       return;
     }
@@ -29177,6 +29179,19 @@ ${prefix}
     const pluginKey = new PluginKey(
       `mention-${editorMount.id || hiddenField.id || Math.random().toString(36).slice(2)}`
     );
+    const updateSubmitButton = (currentEditor) => {
+      if (!mentionRequired || !submitButton) {
+        return;
+      }
+      let hasMention = false;
+      currentEditor.state.doc.descendants((node) => {
+        if (node.type.name === "mention") {
+          hasMention = true;
+          return false;
+        }
+      });
+      submitButton.disabled = !hasMention;
+    };
     const editor = new Editor({
       element: editorMount,
       content: hiddenJsonField ? safeParseJson(hiddenJsonField.value) || hiddenField.value || "" : hiddenField.value || "",
@@ -29241,12 +29256,15 @@ ${prefix}
         } else {
           hiddenField.value = currentEditor.getHTML();
         }
+        updateSubmitButton(currentEditor);
       }
     });
     root._mentionEditor = editor;
-    (_a = hiddenField.form) == null ? void 0 : _a.addEventListener("reset", () => {
+    updateSubmitButton(editor);
+    (_b = hiddenField.form) == null ? void 0 : _b.addEventListener("reset", () => {
       window.setTimeout(() => {
         editor.commands.setContent(hiddenField.value || "", false);
+        updateSubmitButton(editor);
       }, 0);
     });
   }
