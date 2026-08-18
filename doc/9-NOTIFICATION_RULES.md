@@ -345,6 +345,7 @@ wildcard, the complete field value must match.
 
 | Pattern | Meaning |
 | --- | --- |
+| `*` | Any record of the selected model, even when the selected field is empty |
 | `Bach` | Exactly `Bach` |
 | `Bach*` | Starts with `Bach` |
 | `*Bach` | Ends with `Bach` |

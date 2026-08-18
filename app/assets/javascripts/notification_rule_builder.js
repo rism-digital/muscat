@@ -32,6 +32,7 @@
     this.config = JSON.parse(root.dataset.config);
     this.hidden = root.querySelector("[data-notification-rules-legacy]");
     this.list = root.querySelector("[data-rule-list]");
+    this.ruleCount = root.querySelector("[data-rule-count]");
     this.legacyLines = root.querySelector("[data-legacy-lines]");
     this.legacyPreview = root.querySelector("[data-legacy-preview]");
     this.state = this.parseLegacyRules(this.hidden.value);
@@ -131,10 +132,13 @@
       });
     }
 
+    rule._expanded = false;
     return rule;
   };
 
   NotificationRuleBuilder.prototype.operatorAndValueForPattern = function (pattern) {
+    if (pattern === "*") return { operator: "any", value: "" };
+
     var starCount = (pattern.match(/\*/g) || []).length;
     if (pattern.charAt(0) === "*" && pattern.charAt(pattern.length - 1) === "*" && starCount === 2) {
       return { operator: "contains", value: pattern.slice(1, -1) };
@@ -157,6 +161,16 @@
       self.render();
     });
 
+    this.root.querySelector("[data-expand-all]").addEventListener("click", function () {
+      self.state.rules.forEach(function (rule) { rule._expanded = true; });
+      self.render();
+    });
+
+    this.root.querySelector("[data-collapse-all]").addEventListener("click", function () {
+      self.state.rules.forEach(function (rule) { rule._expanded = false; });
+      self.render();
+    });
+
     this.legacyLines.addEventListener("input", function () {
       self.state.legacy_lines = self.legacyLines.value
         .split(/\r?\n/)
@@ -169,13 +183,16 @@
   NotificationRuleBuilder.prototype.newRule = function () {
     return {
       model: "source",
-      conditions: [{ field: "composer", operator: "equals", value: "" }]
+      conditions: [{ field: "composer", operator: "equals", value: "" }],
+      _expanded: true
     };
   };
 
   NotificationRuleBuilder.prototype.render = function () {
     var self = this;
     this.list.innerHTML = "";
+    this.ruleCount.textContent = this.state.rules.length + " " +
+      (this.state.rules.length === 1 ? this.config.labels.rule : this.config.labels.rules);
 
     if (this.state.rules.length === 0) {
       var empty = document.createElement("div");
@@ -185,12 +202,6 @@
     }
 
     this.state.rules.forEach(function (rule, ruleIndex) {
-      if (ruleIndex > 0) {
-        var separator = document.createElement("div");
-        separator.className = "notification-rule-builder__or";
-        separator.textContent = self.config.labels.or;
-        self.list.appendChild(separator);
-      }
       self.list.appendChild(self.renderRule(rule, ruleIndex));
     });
 
@@ -200,7 +211,7 @@
   NotificationRuleBuilder.prototype.renderRule = function (rule, ruleIndex) {
     var self = this;
     var card = document.createElement("section");
-    card.className = "notification-rule-card";
+    card.className = "notification-rule-card" + (rule._expanded ? "" : " notification-rule-card--collapsed");
 
     var header = document.createElement("div");
     header.className = "notification-rule-card__header";
@@ -216,23 +227,34 @@
     var summary = document.createElement("strong");
     summary.className = "notification-rule-card__summary";
     summary.textContent = this.summary(rule);
+    summary.title = summary.textContent;
 
     var actions = document.createElement("div");
     actions.className = "notification-rule-card__actions";
+    actions.appendChild(button(rule._expanded ? this.config.labels.close : this.config.labels.edit, "toggle-rule", "button button--compact"));
     actions.appendChild(button(this.config.labels.duplicate, "duplicate-rule", "button"));
     actions.appendChild(button(this.config.labels.remove, "remove-rule", "button button--danger"));
     overview.appendChild(summary);
     overview.appendChild(actions);
     card.appendChild(overview);
 
+    actions.querySelector("[data-action='toggle-rule']").addEventListener("click", function () {
+      rule._expanded = !rule._expanded;
+      self.render();
+    });
     actions.querySelector("[data-action='duplicate-rule']").addEventListener("click", function () {
-      self.state.rules.splice(ruleIndex + 1, 0, deepCopy(rule));
+      var duplicate = deepCopy(rule);
+      duplicate._expanded = true;
+      self.state.rules.splice(ruleIndex + 1, 0, duplicate);
       self.render();
     });
     actions.querySelector("[data-action='remove-rule']").addEventListener("click", function () {
       self.state.rules.splice(ruleIndex, 1);
       self.render();
     });
+
+    // Collapsed rules stay lightweight even when a user has hundreds of them.
+    if (!rule._expanded) return card;
 
     var modelRow = document.createElement("div");
     modelRow.className = "notification-rule-card__model";
@@ -257,6 +279,18 @@
       if (rule.model === "all") delete rule.exclude;
       rule.conditions.forEach(function (condition) {
         var fields = self.config.fields[rule.model] || [];
+        if (condition.operator === "any") {
+          var anyField = self.anyFieldForModel(rule.model);
+          if (anyField) {
+            condition.field = anyField;
+          } else {
+            condition.field = fields[0];
+            condition.operator = "equals";
+            condition.value = "";
+          }
+          delete condition.reference;
+          return;
+        }
         if (fields.indexOf(condition.field) === -1) {
           condition.field = fields[0];
           delete condition.reference;
@@ -275,6 +309,7 @@
     var footer = document.createElement("div");
     footer.className = "notification-rule-card__footer";
     var addCondition = button(this.config.labels.add_condition, "add-condition", "button");
+    addCondition.disabled = rule.conditions.some(function (condition) { return condition.operator === "any"; });
     footer.appendChild(addCondition);
 
     var excludeLabel = document.createElement("label");
@@ -308,8 +343,9 @@
 
   NotificationRuleBuilder.prototype.renderCondition = function (rule, condition, ruleIndex, conditionIndex, summary) {
     var self = this;
+    var isAny = condition.operator === "any";
     var row = document.createElement("div");
-    row.className = "notification-condition";
+    row.className = "notification-condition" + (isAny ? " notification-condition--any" : "");
 
     var conjunction = document.createElement("span");
     conjunction.className = "notification-condition__and";
@@ -318,15 +354,19 @@
 
     var field = document.createElement("select");
     field.className = "notification-condition__field";
-    (this.config.fields[rule.model] || []).forEach(function (name) {
+    var modelFields = this.config.fields[rule.model] || [];
+    var anyField = this.anyFieldForModel(rule.model);
+    if (anyField) field.appendChild(option("__any__", this.config.labels.any_condition));
+    modelFields.forEach(function (name) {
       field.appendChild(option(name, humanize(name)));
     });
-    field.value = condition.field;
+    field.value = isAny ? "__any__" : condition.field;
     row.appendChild(field);
 
     var operatorSelect = document.createElement("select");
     operatorSelect.className = "notification-condition__operator";
-    var availableOperators = this.config.exact_fields.indexOf(condition.field) >= 0 ? ["equals"] : this.config.operators;
+    var availableOperators = isAny ? ["any"] :
+      (this.config.exact_fields.indexOf(condition.field) >= 0 ? ["equals"] : this.config.operators);
     if (availableOperators.indexOf(condition.operator) === -1) condition.operator = availableOperators[0];
     availableOperators.forEach(function (name) {
       operatorSelect.appendChild(option(name, humanize(name)));
@@ -339,11 +379,11 @@
     value.className = "notification-condition__value";
     value.value = condition.value || "";
     value.placeholder = humanize(condition.field);
-    value.required = true;
+    value.required = !isAny;
     value.maxLength = 500;
     row.appendChild(value);
     this.validateValueInput(value);
-    this.attachAutocomplete(value, rule, condition);
+    if (!isAny) this.attachAutocomplete(value, rule, condition);
 
     var remove = button("×", "remove-condition", "notification-condition__remove");
     remove.title = this.config.labels.remove;
@@ -351,7 +391,18 @@
     row.appendChild(remove);
 
     field.addEventListener("change", function () {
+      if (field.value === "__any__") {
+        rule.conditions.splice(0, rule.conditions.length, {
+          field: self.anyFieldForModel(rule.model),
+          operator: "any",
+          value: ""
+        });
+        self.render();
+        return;
+      }
+
       condition.field = field.value;
+      if (condition.operator === "any") condition.operator = "equals";
       condition.value = "";
       delete condition.reference;
       self.render();
@@ -379,6 +430,13 @@
   NotificationRuleBuilder.prototype.validateValueInput = function (input) {
     var invalid = /[:"\r\n]/.test(input.value);
     input.setCustomValidity(invalid ? this.config.labels.invalid_value : "");
+  };
+
+  NotificationRuleBuilder.prototype.anyFieldForModel = function (model) {
+    var self = this;
+    return (this.config.fields[model] || []).find(function (field) {
+      return self.config.exact_fields.indexOf(field) === -1;
+    });
   };
 
   NotificationRuleBuilder.prototype.attachAutocomplete = function (input, rule, condition) {
@@ -420,6 +478,11 @@
   };
 
   NotificationRuleBuilder.prototype.summary = function (rule) {
+    if (rule.conditions && rule.conditions.length === 1 && rule.conditions[0].operator === "any") {
+      var anyModel = rule.model === "all" ? this.config.labels.any_record : humanize(rule.model).toLowerCase();
+      return this.config.labels.any_modified.replace("__MODEL__", anyModel);
+    }
+
     var parts = (rule.conditions || []).map(function (condition) {
       var value = condition.value ? "“" + condition.value + "”" : "…";
       return humanize(condition.field) + " " + humanize(condition.operator).toLowerCase() + " " + value;
@@ -437,6 +500,7 @@
     if (rule.model !== "all") tokens.push(rule.model);
     (rule.conditions || []).forEach(function (condition) {
       var value = condition.value || "";
+      if (condition.operator === "any") value = "*";
       if (condition.operator === "starts_with") value += "*";
       if (condition.operator === "ends_with") value = "*" + value;
       if (condition.operator === "contains") value = "*" + value + "*";

@@ -9,13 +9,19 @@
       add_condition: I18n.t("notifications.rule_builder.add_condition", default: "Add condition"),
       duplicate: I18n.t("notifications.rule_builder.duplicate", default: "Duplicate"),
       remove: I18n.t("notifications.rule_builder.remove", default: "Remove"),
+      edit: I18n.t("notifications.rule_builder.edit", default: "Edit"),
+      close: I18n.t("notifications.rule_builder.close", default: "Close"),
+      expand_all: I18n.t("notifications.rule_builder.expand_all", default: "Expand all"),
+      collapse_all: I18n.t("notifications.rule_builder.collapse_all", default: "Collapse all"),
+      rules: I18n.t("notifications.rule_builder.rules", default: "rules"),
       when: I18n.t("notifications.rule_builder.when", default: "When the record type is"),
       where: I18n.t("notifications.rule_builder.where", default: "WHERE"),
       and: I18n.t("notifications.rule_builder.and", default: "AND"),
-      or: I18n.t("notifications.rule_builder.or", default: "OR"),
       empty: I18n.t("notifications.rule_builder.empty", default: "No notification rules yet. Add a rule to get started."),
       rule: I18n.t("notifications.rule_builder.rule", default: "Rule"),
       any_record: I18n.t("notifications.rule_builder.any_record", default: "Any record"),
+      any_condition: I18n.t("notifications.rule_builder.any_condition", default: "Any modification"),
+      any_modified: I18n.t("notifications.rule_builder.any_modified", model: "__MODEL__", default: "Any __MODEL__ modified"),
       exclude_own: I18n.t("notifications.rule_builder.exclude_own", default: "Do not notify me about my own changes"),
       invalid_value: I18n.t("notifications.rule_builder.invalid_value", default: "Values cannot contain a colon or double quote.")
     },
@@ -38,6 +44,18 @@
     <div class="notification-rule-builder__intro">
       <p><%= I18n.t("notifications.rule_builder.help", default: "Choose what should trigger a notification.") %></p>
       <p class="notification-rule-builder__logic"><%= I18n.t("notifications.rule_builder.logic", default: "Conditions inside a rule are joined with AND. Separate rules are alternatives (OR).") %></p>
+    </div>
+
+    <div class="notification-rule-builder__toolbar">
+      <span class="notification-rule-builder__count" data-rule-count></span>
+      <div class="notification-rule-builder__toolbar-actions">
+        <button type="button" class="button" data-expand-all>
+          <%= I18n.t("notifications.rule_builder.expand_all", default: "Expand all") %>
+        </button>
+        <button type="button" class="button" data-collapse-all>
+          <%= I18n.t("notifications.rule_builder.collapse_all", default: "Collapse all") %>
+        </button>
+      </div>
     </div>
 
     <div class="notification-rule-builder__rules" data-rule-list></div>
