@@ -88,7 +88,9 @@ class NotificationMatcher
         property_patterns.each do |rule|
           next if !allowed?(rule[:property])
           
-          if special_case?(rule[:property])
+          if rule[:pattern] == "*"
+            partial_match << "#{rule[:property]} #{rule[:pattern]}"
+          elsif special_case?(rule[:property])
             partial_match << "#{rule[:property]} #{rule[:pattern]}" if special_match(rule[:property], rule[:pattern])
           else
             if @object.respond_to?(rule[:property])
