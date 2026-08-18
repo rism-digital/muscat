@@ -1,5 +1,9 @@
 <%
-  builder_config = NotificationRules::Configuration.to_h.merge(
+  builder_config = {
+    models: NotificationMatcher::ALLOWED_MODELS + ["all"],
+    fields: NotificationMatcher::ALLOWED_PROPERTIES,
+    operators: %w[equals starts_with ends_with contains glob],
+    exact_fields: NotificationMatcher::EXACT_PROPERTIES,
     labels: {
       add_rule: I18n.t("notifications.rule_builder.add_rule", default: "Add rule"),
       add_condition: I18n.t("notifications.rule_builder.add_condition", default: "Add condition"),
@@ -12,14 +16,15 @@
       empty: I18n.t("notifications.rule_builder.empty", default: "No notification rules yet. Add a rule to get started."),
       rule: I18n.t("notifications.rule_builder.rule", default: "Rule"),
       any_record: I18n.t("notifications.rule_builder.any_record", default: "Any record"),
-      exclude_own: I18n.t("notifications.rule_builder.exclude_own", default: "Do not notify me about my own changes")
+      exclude_own: I18n.t("notifications.rule_builder.exclude_own", default: "Do not notify me about my own changes"),
+      invalid_value: I18n.t("notifications.rule_builder.invalid_value", default: "Values cannot contain a colon or double quote.")
     },
     endpoints: {
       user: autocomplete_notification_user_admin_users_path,
       institution: autocomplete_institution_siglum_admin_institutions_path,
       person: autocomplete_person_full_name_admin_people_path
     }
-  )
+  }
 %>
 
 <li class="input notification-rule-builder-input">
@@ -27,8 +32,8 @@
     class="notification-rule-builder"
     data-notification-rule-builder
     data-config="<%= builder_config.to_json %>">
-    <%= hidden_field_tag "user[notification_rules_json]", @user.notification_rules_json,
-                         data: { notification_rules_document: true } %>
+    <%= hidden_field_tag "user[notifications]", @user.notifications,
+                         data: { notification_rules_legacy: true } %>
 
     <div class="notification-rule-builder__intro">
       <p><%= I18n.t("notifications.rule_builder.help", default: "Choose what should trigger a notification.") %></p>

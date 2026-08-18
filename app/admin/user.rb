@@ -2,7 +2,7 @@ ActiveAdmin.register User do
   menu :parent => "admin_menu", :label => proc {I18n.t(:menu_users)}, :if => proc{ (can? :read, User) || current_user.has_role?(:editor)}
   
   permit_params :preference_wf_stage, :email, :password, :password_confirmation, 
-                :username, :name, :notification_rules_json, :notification_type, :notification_email,
+                :username, :name, :notifications, :notification_type, :notification_email,
                 :disabled, workgroup_ids: [], role_ids: []
 
   # Remove all action items

@@ -30,40 +30,135 @@
   function NotificationRuleBuilder(root) {
     this.root = root;
     this.config = JSON.parse(root.dataset.config);
-    this.hidden = root.querySelector("[data-notification-rules-document]");
+    this.hidden = root.querySelector("[data-notification-rules-legacy]");
     this.list = root.querySelector("[data-rule-list]");
     this.legacyLines = root.querySelector("[data-legacy-lines]");
     this.legacyPreview = root.querySelector("[data-legacy-preview]");
-    this.document = this.parseDocument(this.hidden.value);
+    this.state = this.parseLegacyRules(this.hidden.value);
 
-    this.legacyLines.value = (this.document.legacy_lines || []).join("\n");
+    this.legacyLines.value = this.state.legacy_lines.join("\n");
     this.bind();
     this.render();
   }
 
-  NotificationRuleBuilder.prototype.parseDocument = function (value) {
-    try {
-      var parsed = JSON.parse(value);
-      if (parsed && Array.isArray(parsed.rules)) {
-        parsed.legacy_lines = Array.isArray(parsed.legacy_lines) ? parsed.legacy_lines : [];
-        return parsed;
+  NotificationRuleBuilder.prototype.parseLegacyRules = function (value) {
+    var self = this;
+    var state = { rules: [], legacy_lines: [] };
+
+    String(value || "").split(/\r?\n/).forEach(function (rawLine) {
+      var line = rawLine.trim();
+      if (!line) return;
+
+      var rule = self.parseLegacyLine(line);
+      if (rule) {
+        state.rules.push(rule);
+      } else {
+        state.legacy_lines.push(line);
       }
-    } catch (_error) {
-      // The server displays the validation error. Keep the UI usable.
+    });
+
+    return state;
+  };
+
+  NotificationRuleBuilder.prototype.parseLegacyLine = function (line) {
+    var tokens = [];
+    var tokenPattern = /([^\s:]+:"[^"]*"|[^\s]+)/g;
+    var match;
+    var lastIndex = 0;
+
+    while ((match = tokenPattern.exec(line)) !== null) {
+      if (line.slice(lastIndex, match.index).trim()) return null;
+      tokens.push(match[0]);
+      lastIndex = tokenPattern.lastIndex;
     }
-    return { version: this.config.version, rules: [], legacy_lines: [] };
+    if (line.slice(lastIndex).trim() || tokens.length === 0) return null;
+
+    var ungrouped = [];
+    var parsed = [];
+    for (var index = 0; index < tokens.length; index += 1) {
+      var token = tokens[index];
+      var colon = token.indexOf(":");
+      if (colon === -1) {
+        ungrouped.push(token);
+        continue;
+      }
+      if (colon === 0 || colon !== token.lastIndexOf(":")) return null;
+
+      var field = token.slice(0, colon);
+      var pattern = token.slice(colon + 1);
+      if (pattern.charAt(0) === "\"") {
+        if (pattern.charAt(pattern.length - 1) !== "\"") return null;
+        pattern = pattern.slice(1, -1);
+      } else if (pattern.indexOf("\"") !== -1) {
+        return null;
+      }
+      parsed.push({ field: field, pattern: pattern });
+    }
+
+    if (ungrouped.length > 1) return null;
+    var explicitModel = ungrouped[0];
+    if (explicitModel && (explicitModel === "all" || this.config.models.indexOf(explicitModel) === -1)) return null;
+
+    var nonExclusions = parsed.filter(function (item) { return item.field !== "exclude"; });
+    if (nonExclusions.length === 0) return null;
+
+    var model;
+    if (explicitModel) {
+      model = explicitModel;
+    } else if (parsed.every(function (item) { return item.field === "follow"; })) {
+      model = "all";
+    } else {
+      model = "source";
+    }
+
+    var allowedFields = this.config.fields[model] || [];
+    var rule = { model: model, conditions: [] };
+    for (var itemIndex = 0; itemIndex < parsed.length; itemIndex += 1) {
+      var item = parsed[itemIndex];
+      if (item.field === "exclude") {
+        if (item.pattern !== "mine" || rule.exclude) return null;
+        rule.exclude = { own_changes: true };
+        continue;
+      }
+      if (allowedFields.indexOf(item.field) === -1 || !item.pattern) return null;
+      if (this.config.exact_fields.indexOf(item.field) >= 0 && item.pattern.indexOf("*") !== -1) return null;
+
+      var operatorAndValue = this.operatorAndValueForPattern(item.pattern);
+      rule.conditions.push({
+        field: item.field,
+        operator: operatorAndValue.operator,
+        value: operatorAndValue.value
+      });
+    }
+
+    return rule;
+  };
+
+  NotificationRuleBuilder.prototype.operatorAndValueForPattern = function (pattern) {
+    var starCount = (pattern.match(/\*/g) || []).length;
+    if (pattern.charAt(0) === "*" && pattern.charAt(pattern.length - 1) === "*" && starCount === 2) {
+      return { operator: "contains", value: pattern.slice(1, -1) };
+    }
+    if (pattern.charAt(pattern.length - 1) === "*" && starCount === 1) {
+      return { operator: "starts_with", value: pattern.slice(0, -1) };
+    }
+    if (pattern.charAt(0) === "*" && starCount === 1) {
+      return { operator: "ends_with", value: pattern.slice(1) };
+    }
+    if (starCount > 0) return { operator: "glob", value: pattern };
+    return { operator: "equals", value: pattern };
   };
 
   NotificationRuleBuilder.prototype.bind = function () {
     var self = this;
 
     this.root.querySelector("[data-add-rule]").addEventListener("click", function () {
-      self.document.rules.push(self.newRule());
+      self.state.rules.push(self.newRule());
       self.render();
     });
 
     this.legacyLines.addEventListener("input", function () {
-      self.document.legacy_lines = self.legacyLines.value
+      self.state.legacy_lines = self.legacyLines.value
         .split(/\r?\n/)
         .map(function (line) { return line.trim(); })
         .filter(Boolean);
@@ -82,14 +177,14 @@
     var self = this;
     this.list.innerHTML = "";
 
-    if (this.document.rules.length === 0) {
+    if (this.state.rules.length === 0) {
       var empty = document.createElement("div");
       empty.className = "notification-rule-builder__empty";
       empty.textContent = this.config.labels.empty;
       this.list.appendChild(empty);
     }
 
-    this.document.rules.forEach(function (rule, ruleIndex) {
+    this.state.rules.forEach(function (rule, ruleIndex) {
       if (ruleIndex > 0) {
         var separator = document.createElement("div");
         separator.className = "notification-rule-builder__or";
@@ -131,11 +226,11 @@
     card.appendChild(overview);
 
     actions.querySelector("[data-action='duplicate-rule']").addEventListener("click", function () {
-      self.document.rules.splice(ruleIndex + 1, 0, deepCopy(rule));
+      self.state.rules.splice(ruleIndex + 1, 0, deepCopy(rule));
       self.render();
     });
     actions.querySelector("[data-action='remove-rule']").addEventListener("click", function () {
-      self.document.rules.splice(ruleIndex, 1);
+      self.state.rules.splice(ruleIndex, 1);
       self.render();
     });
 
@@ -159,6 +254,7 @@
 
     modelSelect.addEventListener("change", function () {
       rule.model = modelSelect.value;
+      if (rule.model === "all") delete rule.exclude;
       rule.conditions.forEach(function (condition) {
         var fields = self.config.fields[rule.model] || [];
         if (fields.indexOf(condition.field) === -1) {
@@ -186,6 +282,7 @@
     var excludeCheckbox = document.createElement("input");
     excludeCheckbox.type = "checkbox";
     excludeCheckbox.checked = !!(rule.exclude && rule.exclude.own_changes);
+    excludeCheckbox.disabled = rule.model === "all";
     excludeLabel.appendChild(excludeCheckbox);
     excludeLabel.appendChild(document.createTextNode(" " + (this.config.labels.exclude_own || "Do not notify me about my own changes")));
     footer.appendChild(excludeLabel);
@@ -242,7 +339,10 @@
     value.className = "notification-condition__value";
     value.value = condition.value || "";
     value.placeholder = humanize(condition.field);
+    value.required = true;
+    value.maxLength = 500;
     row.appendChild(value);
+    this.validateValueInput(value);
     this.attachAutocomplete(value, rule, condition);
 
     var remove = button("×", "remove-condition", "notification-condition__remove");
@@ -264,6 +364,7 @@
     value.addEventListener("input", function () {
       condition.value = value.value;
       delete condition.reference;
+      self.validateValueInput(value);
       self.updateSummary(summary, rule);
       self.sync();
     });
@@ -273,6 +374,11 @@
     });
 
     return row;
+  };
+
+  NotificationRuleBuilder.prototype.validateValueInput = function (input) {
+    var invalid = /[:"\r\n]/.test(input.value);
+    input.setCustomValidity(invalid ? this.config.labels.invalid_value : "");
   };
 
   NotificationRuleBuilder.prototype.attachAutocomplete = function (input, rule, condition) {
@@ -306,6 +412,7 @@
         condition.value = item.value || item.label || item.name || "";
         condition.reference = { type: endpointType, id: item.id || item.shortid };
         input.value = condition.value;
+        self.validateValueInput(input);
         self.render();
         return false;
       }
@@ -327,7 +434,7 @@
 
   NotificationRuleBuilder.prototype.legacyForRule = function (rule) {
     var tokens = [];
-    if (rule.model !== "source" && rule.model !== "all") tokens.push(rule.model);
+    if (rule.model !== "all") tokens.push(rule.model);
     (rule.conditions || []).forEach(function (condition) {
       var value = condition.value || "";
       if (condition.operator === "starts_with") value += "*";
@@ -340,12 +447,12 @@
   };
 
   NotificationRuleBuilder.prototype.sync = function () {
-    this.document.version = this.config.version;
-    this.hidden.value = JSON.stringify(this.document);
-    this.legacyPreview.value = this.document.rules
+    var legacy = this.state.rules
       .map(this.legacyForRule.bind(this))
-      .concat(this.document.legacy_lines || [])
+      .concat(this.state.legacy_lines || [])
       .join("\n");
+    this.hidden.value = legacy;
+    this.legacyPreview.value = legacy;
   };
 
   function initialize() {

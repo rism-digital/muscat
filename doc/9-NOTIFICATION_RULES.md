@@ -4,30 +4,27 @@ Muscat uses `NotificationMatcher` (`lib/notification_matcher.rb`) to decide
 whether a created or modified record should be included in a user's
 notification email.
 
-The visual notification editor stores structured rules in
-`users.notification_rules`, but the matcher currently reads the legacy text in
-`users.notifications`. When a visual rule is saved, Muscat generates the
-legacy text so that the existing matcher continues to work.
+The visual notification editor reads and writes the legacy text stored in
+`users.notifications`. It parses supported lines into visual cards in the
+browser and preserves lines it cannot safely convert in the advanced section.
+`NotificationMatcher` is the only Ruby parser and evaluates the stored text
+when notifications are generated.
 
 This document describes the behavior of the matcher itself. It intentionally
 documents implementation quirks as well as the intended syntax.
 
-## Canonical rule schema
+## Canonical rule configuration
 
 The canonical model names, allowed fields, special fields, exact-match fields,
-and Rails model-name normalization are defined once in:
+and Rails model-name normalization are defined in:
 
 ```text
-lib/notification_rule_schema.rb
+lib/notification_matcher.rb
 ```
 
-Both `NotificationMatcher` and the visual JSON editor derive their model and
-field configuration from `NotificationRuleSchema`. Changes to supported models
-or fields should be made in the shared schema rather than copied into the
-matcher and interface configuration separately.
-
-`NotificationRules::Configuration` contains only editor-specific information,
-such as the JSON document version and visual operators.
+The visual editor receives this configuration from `NotificationMatcher` when
+Rails renders the form. Changes to supported models or fields should therefore
+be made in the matcher rather than copied into a separate backend service.
 
 ## Rule syntax
 
