@@ -27,6 +27,13 @@ RSpec.describe NotificationMatcher do
   end
 
   describe "#get_matches" do
+    it "treats a single wildcard as a match even when the allowed property is empty" do
+      person = Person.new
+      user = instance_double(User, get_notifications: ["person life_dates:*"], name: "Cataloguer")
+
+      expect(described_class.new(person, user).get_matches).to eq(["life_dates *"])
+    end
+
     it "matches a canonical standard_term rule against a StandardTerm" do
       term = StandardTerm.new(term: "Motet")
       user = instance_double(User, get_notifications: ["standard_term term:Motet"], name: "Cataloguer")
