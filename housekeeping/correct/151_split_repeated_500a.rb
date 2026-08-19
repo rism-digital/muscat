@@ -61,13 +61,12 @@ error_count = 0
 tag_conditions = TAGS.map { "marc_source LIKE ?" }.join(" OR ")
 tag_patterns = TAGS.map { |tag| "%=#{tag}%" }
 
-Source.where("(#{tag_conditions})", *tag_patterns).where(id: 857003698).find_each do |source|
+Source.where("(#{tag_conditions})", *tag_patterns).find_each do |source|
   begin
-    puts source.marc
-    puts
+
     stats = split_repeated_a(source.marc, TAGS)
     next if stats.values.sum.zero?
-    puts source.marc
+    
     source.paper_trail_event = PAPER_TRAIL_NOTE
     source.save!
 
