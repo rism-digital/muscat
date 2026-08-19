@@ -62,5 +62,9 @@ class MarcInventoryItem < Marc
   def get_page_info
     return first_occurance("773", "g")&.content
   end
-  
+
+  def reset_to_new
+    first_occurance("001").content = "__TEMP__"
+  end
+
 end

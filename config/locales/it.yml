@@ -769,6 +769,7 @@ it:
   run_at: Data esecuzione
   running: In esecuzione
   save_and_continue: Salva e continua
+  save_and_return_to_inventory: Salva e torna all'inventario
   save_and_exit: Salva ed esci
   search_sources: Cerca fonti
   search_tgn: Cerca nel Getty TGN

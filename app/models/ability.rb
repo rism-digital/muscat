@@ -72,6 +72,7 @@ class Ability
         can [:read, :create], InventoryItem
         can :order_inventory_items, Source
         can :do_reorder_inventory_items, Source
+        can :duplicate, InventoryItem, :wf_owner => user.id
       end
 
       can [:read], Work

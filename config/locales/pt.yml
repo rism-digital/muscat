@@ -769,6 +769,7 @@ pt:
   run_at: Executado em
   running: Em execução
   save_and_continue: Salvar e continuar editando
+  save_and_return_to_inventory: Salvar e voltar ao inventário
   save_and_exit: Salvar e Fechar
   search_sources: Buscar fontes
   search_tgn: Pesquisar no Getty TGN

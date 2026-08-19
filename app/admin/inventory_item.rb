@@ -170,19 +170,18 @@ ActiveAdmin.register InventoryItem do
       # Are we copying over?
       if existing_title
         new_marc = MarcInventoryItem.new(existing_title.marc.marc_source)
-        # Do we need this for II?
-        #new_marc.reset_to_new
-        #new_marc.insert_duplicated_from("981", base_item.id.to_s)
+        new_marc.load_source false # this will need to be fixed
+        # This needs to happen after marc is loaded
+        new_marc.reset_to_new
+        new_marc.insert_duplicated_from("981", existing_title.id.to_s) if existing_title
       else
         # Apply the right default file
         default_file = "default.marc"
         default_file = "inventory_edition_default.marc" if source.get_record_type == :inventory_edition
 
         new_marc = MarcInventoryItem.new(File.read(ConfigFilePath.get_marc_editor_profile_path("#{Rails.root}/config/marc/#{RISM::MARC}/inventory_item/#{default_file}")))
-        
+        new_marc.load_source false
       end
-
-      new_marc.load_source false # this will need to be fixed
 
       # Add the 773 to the parent
       node = MarcNode.new("inventory_item", "773", "", "18")
@@ -211,6 +210,8 @@ ActiveAdmin.register InventoryItem do
   include MarcControllerActions
 
   member_action :duplicate, method: :get do
+    authorize! :update, resource
+
     redirect_to action: :new, existing_title: params[:id], source_id: resource.source_id
     return
   end
