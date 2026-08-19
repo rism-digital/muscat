@@ -1,6 +1,107 @@
 Muscat Changelog
 ================
 
+v 12.5
+* Add script to update random codes
+* Update gnd_work_100_de.html
+* Update gnd_work_400_de.html
+* Merge pull request #2002 from afaschon/patch-71
+* Merge pull request #2001 from afaschon/patch-70
+* Update concurrent-ruby
+* Update i18n-tasks
+* Clean up the subfield_secondary, preparation for #2005
+* Fix #2005, make sure non foreign fields are properly filled
+* First step into making short_names in publications more sane
+* Update _intro.de.md
+* Merge pull request #2007 from mayerdN4C/patch-1
+* Allow multiple identifiers for people in json
+* Fix #2003, GND mods
+* Remove dup preferred_title
+* Prototype for #1999
+* Make sure linked fields are copied over
+* #1999 actually copy the right data over from Source to Inventory
+* #1999 kludgy fix to the sidebar
+* #1999 add 031 and 933, fix validation
+* #1991 Bring back Notated music!
+* #2008 add work creation from source #1999 clean up
+* Fix again publication label
+* Create default 690 for works
+* #2008 remove publication id
+* Add "imported from" #2008
+* #1999 add internal note
+* #1998 Return to inventory
+* Small improvements to marc saving code
+* Fix the subfield_secondary make sure validate tag is only applied when validation is on
+* Add package.json + other parts to make the new @mentions work
+* Implement a working new comment @mentions
+* Move the comments stuff to the comments helper
+* Make links work, add the status tag
+* Clean up EDTF so it uses the new javascript bundler
+* Hopefully fix double compilation
+* Move docs to documentation dir
+* Update docs
+* Fix adding edtf 046
+* Update bundler
+* Parse and print rich formatted comments Do we want this? or only the @mentions?
+* Disable formatting in comments
+* Add back html emoji
+* #2009 gray out wf_status
+* Fix #2009 make published default for new records
+* #1974 Person restricted people should not import from wikidata
+* Script to sync users with the google group
+* Use Diva 7.4.0
+* Remove old tribute js files
+* remove @import "tribute"
+* Remove very old, unused JS
+* Make new password page more muscat like, make sure roles are selected!
+* Remove text @mention box change @mention text
+* Fix tag export script
+* Remove mailcatcher, don't push this
+* Nosey email for when a user activates their account
+* Make sure mails are in english, and add styling
+* Bump esbuild from 0.24.2 to 0.28.1
+* Basic notification rule builder (backend not yet implemented)
+* Monthly gem update
+* Gemfile for the invites
+* Merge pull request #2012 from rism-digital/dependabot/npm_and_yarn/esbuild-0.28.1
+* Update gnd_work_383_de.html
+* Merge pull request #2016 from afaschon/patch-72
+* Remove redundant current_user in EditorHelpController
+* Merge branch 'develop' into develop-invites-modification
+* Lots of vibes here: script to sub old/new vals in tags
+* Make the test user generation thing use a random pass
+* Update gnd_work_043_de.html
+* Update gnd_work_380_de.html
+* Update gnd_work_384_de.html
+* Update gnd_work_383_de.html
+* Update gnd_work_670_de.html
+* Merge pull request #2017 from afaschon/patch-73
+* Merge pull request #2018 from afaschon/patch-74
+* Merge pull request #2019 from afaschon/patch-75
+* Merge pull request #2020 from afaschon/patch-76
+* Lazy script to create holdings
+* Merge branch 'develop' into develop-invites-modification
+* Update gnd_work_380_de.html
+* Merge pull request #2022 from afaschon/patch-78
+* Merge pull request #2021 from afaschon/patch-77
+* Merge branch 'develop' into develop-invites-modification
+* Fix the plural forms in notifications
+* Split the configuration matcher so the conf is not duplicated
+* Fix composer match in work
+* Leave out ALL the json stuff for now
+* Make any rule really any rule
+* Make the editor smaller, implement an actual any rule
+* Fix #2015, add $u to 691
+* Fix #2013, data is fixed $u is fixed
+* Fix #2010 do not add empty 675
+* #919 make the @ in the first commend mandatory
+* 500 split script
+* Duplicate inventory item
+* Get the duplication working, add 981
+* Add advanced filtering for people
+* Give editors the ablity to dup inventories
+* Mini intrusion test script
+
 v 12.4.1
 * Update gems + remove unused gems
 * Remove deprecated dialogClass
