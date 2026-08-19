@@ -51,7 +51,8 @@
 				data: { confirm: "#{I18n.t :"active_admin.delete_confirmation"}"}) %>
 			</li>
 		<%- end %>
-		<%- if (self.controller.respond_to? :duplicate) && (can? :create, item) %>
+		<%- if self.controller.respond_to?(:duplicate) &&
+      		(item.is_a?(InventoryItem) ? can?(:update, item) : can?(:create, item)) %>
 			<li class="muscat_icon_link">
 			<%= link_to("#{I18n.t :duplicate}", send("duplicate_admin_#{model}_path", item),
 				:class => "muscat_icon_link muscat_icon_link_duplicate",

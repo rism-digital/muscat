@@ -212,6 +212,7 @@ ActiveAdmin.register Source do
   include MarcControllerActions
   
   member_action :duplicate, method: :get do
+    autorize! :update, resource
     redirect_to action: :new, :existing_title => params[:id]
     return
   end

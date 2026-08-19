@@ -146,6 +146,17 @@ ActiveAdmin.register InventoryItem do
         return
       end
 
+      existing_title = nil
+      if params[:existing_title] and !params[:existing_title].empty?
+        # Check that the record does exist...
+        begin
+          existing_title = InventoryItem.find(params[:existing_title])
+        rescue ActiveRecord::RecordNotFound
+          redirect_to admin_root_path, :flash => { :error => "#{I18n.t(:error_not_found)} (Source #{params[:id]})" }
+          return
+        end
+      end
+
       @inventory_item = InventoryItem.new  
       @inventory_item.source = source
       @parent_object_id = params[:source_id]
@@ -156,11 +167,21 @@ ActiveAdmin.register InventoryItem do
       @display_position = @inventory_item.source_order + 1
       @inventory_item.source = source
 
-      # Apply the right default file
-      default_file = "default.marc"
-      default_file = "inventory_edition_default.marc" if source.get_record_type == :inventory_edition
+      # Are we copying over?
+      if existing_title
+        new_marc = MarcInventoryItem.new(existing_title.marc.marc_source)
+        # Do we need this for II?
+        #new_marc.reset_to_new
+        #new_marc.insert_duplicated_from("981", base_item.id.to_s)
+      else
+        # Apply the right default file
+        default_file = "default.marc"
+        default_file = "inventory_edition_default.marc" if source.get_record_type == :inventory_edition
 
-      new_marc = MarcInventoryItem.new(File.read(ConfigFilePath.get_marc_editor_profile_path("#{Rails.root}/config/marc/#{RISM::MARC}/inventory_item/#{default_file}")))
+        new_marc = MarcInventoryItem.new(File.read(ConfigFilePath.get_marc_editor_profile_path("#{Rails.root}/config/marc/#{RISM::MARC}/inventory_item/#{default_file}")))
+        
+      end
+
       new_marc.load_source false # this will need to be fixed
 
       # Add the 773 to the parent
@@ -188,6 +209,11 @@ ActiveAdmin.register InventoryItem do
   # Include the folder actions
   include FolderControllerActions
   include MarcControllerActions
+
+  member_action :duplicate, method: :get do
+    redirect_to action: :new, existing_title: params[:id], source_id: resource.source_id
+    return
+  end
 
   ###########
   ## Index ##
