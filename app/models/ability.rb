@@ -31,7 +31,7 @@ class Ability
 
       can :use, :gnd_editor
 
-      can [:read, :create, :update, :destroy], InventoryItem
+      can [:read, :create, :update, :destroy, :duplicate], InventoryItem
 
       can :prepare_convert, Source
       can :convert_manuscript, Source
