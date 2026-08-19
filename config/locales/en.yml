@@ -62,8 +62,8 @@ en:
       author_missing: Anonymous
       author_type: Author type
       body: Text
-      comments_help: To mention a specific Muscat user, type @ and select their name. The name will then be highlighted in blue. The person will then receive a notification by email.
-      first_comment_mention_help: Please @mention a user before submitting the first comment.
+      comments_help: To mention a specific Muscat user, type @ and select their name. The name will be highlighted in blue. The person will then receive a notification by email. Inactive users cannot be selected.
+      first_comment_mention_help: You need to select a user before submitting the first comment.
       errors:
         empty_text: Comment wasn't saved, text was empty.
       my_item_comments: Comments on my records

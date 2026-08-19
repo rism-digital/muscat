@@ -41,8 +41,8 @@ de:
       author_missing: Unbekannt
       author_type: Autor-Typ
       body: Inhalt
-      comments_help: Geben Sie @ ein, um einen bestimmten Benutzer zu nennen, der dann eine Benachrichtigung per E-Mail erhält.
-      first_comment_mention_help: Bitte erwähnen Sie vor dem Absenden des ersten Kommentars einen Benutzer mit @.
+      comments_help: Um einen bestimmten Muscat-Benutzer zu erwähnen, gib @ ein und wähle den Namen der Person aus. Der Name wird blau hervorgehoben. Die Person erhält anschließend eine Benachrichtigung per E-Mail. Inaktive Benutzer können nicht ausgewählt werden.
+      first_comment_mention_help: Du musst einen Benutzer auswählen, bevor du den ersten Kommentar absendest.
       errors:
         empty_text: Der Kommentar wurde nicht gespeichert, da der Text fehlt.
       my_item_comments: Kommentare zu meinen Einträgen

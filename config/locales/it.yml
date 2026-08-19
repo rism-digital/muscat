@@ -41,8 +41,8 @@ it:
       author_missing: Anonimo
       author_type: Tipo di autore
       body: Contenuto
-      comments_help: Digitare @ per menzionare un utente specifico, che riceverà una notifica per email.
-      first_comment_mention_help: Prima di inviare il primo commento, menzionare un utente con @.
+      comments_help: Per menzionare un utente specifico di Muscat, digita @ e seleziona il suo nome. Il nome verrà evidenziato in blu. La persona riceverà quindi una notifica via e-mail. Gli utenti inattivi non possono essere selezionati.
+      first_comment_mention_help: Devi selezionare un utente prima di inviare il primo commento.
       errors:
         empty_text: Il commento non può essere salvato, il testo è vuoto.
       my_item_comments: Commenti nei miei record

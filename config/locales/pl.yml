@@ -41,8 +41,8 @@ pl:
       author_missing: Anonimowy
       author_type: Rodzaj autora
       body: Tekst
-      comments_help: Wpisz @, by wspomnieć określonego użytkownika, który zostanie następnie powiadomiony e-mailem.
-      first_comment_mention_help: Przed wysłaniem pierwszego komentarza wspomnij użytkownika za pomocą @.
+      comments_help: Aby wspomnieć konkretnego użytkownika Muscat, wpisz @ i wybierz jego nazwę. Nazwa zostanie podświetlona na niebiesko. Osoba ta otrzyma następnie powiadomienie e-mail. Nieaktywnych użytkowników nie można wybrać.
+      first_comment_mention_help: Musisz wybrać użytkownika przed wysłaniem pierwszego komentarza.
       errors:
         empty_text: Komentarz nie został zapisany z powodu braku tekstu.
       my_item_comments: Komentarze do moich rekordów
