@@ -401,6 +401,7 @@ it:
   filter_file_size: Grandezza file
   filter_folder_type: Tipo di cartella
   filter_full_name: Nome
+  filter_full_name_extended: Nome considerando i segni diacritici (ex. M?ller)
   filter_gender: Sesso
   filter_has_incipits: Contiene incipit
   filter_has_internal_notes: Contiene note interne

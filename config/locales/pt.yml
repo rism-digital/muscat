@@ -401,6 +401,7 @@ pt:
   filter_file_size: Tamanho do arquivo
   filter_folder_type: Tipo de Pasta
   filter_full_name: Nome
+  filter_full_name_extended: Nome considerando os sinais diacríticos (ex. M?ller)
   filter_gender: Gênero
   filter_has_incipits: Tem incipits
   filter_has_internal_notes: Tem notas internas

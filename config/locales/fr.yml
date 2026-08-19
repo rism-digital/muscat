@@ -401,6 +401,7 @@ fr:
   filter_file_size: Taille de fichier
   filter_folder_type: Type de dossier
   filter_full_name: Nom
+  filter_full_name_extended: Nom tenant compte des signes diacritiques (ex. M?ller)
   filter_gender: Genre
   filter_has_incipits: A des incipits
   filter_has_internal_notes: A des notes internes

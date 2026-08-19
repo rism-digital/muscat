@@ -401,6 +401,7 @@ ca:
   filter_file_size: Mida del fitxer
   filter_folder_type: Tipus de carpeta
   filter_full_name: Nom
+  filter_full_name_extended: Nom tenint en compte els signes diacrítics (ex. M?ller)
   filter_gender: Gènere
   filter_has_incipits: Té incipits
   filter_has_internal_notes: Té notes internes

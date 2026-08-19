@@ -419,6 +419,7 @@ en:
   filter_file_size: File size
   filter_folder_type: Folder Type
   filter_full_name: Name
+  filter_full_name_extended: Name considering diacritic (ex. M?ller)
   filter_gender: Gender
   filter_has_incipits: Has music incipits
   filter_has_internal_notes: Has internal notes

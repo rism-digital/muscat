@@ -401,6 +401,7 @@ pl:
   filter_file_size: Rozmiar pliku
   filter_folder_type: Rodzaj folderu
   filter_full_name: Nazwa
+  filter_full_name_extended: Nazwa z uwzględnieniem znaków diakrytycznych (ex. M?ller)
   filter_gender: Płeć społeczno-kulturowa
   filter_has_incipits: Ma incipity
   filter_has_internal_notes: Ma notatki wewnętrzne

@@ -401,6 +401,7 @@ de:
   filter_file_size: Dateigrösse
   filter_folder_type: Ordner-Typ
   filter_full_name: Name
+  filter_full_name_extended: Name unter Berücksichtigung diakritischer Zeichen (ex. M?ller)
   filter_gender: Geschlecht
   filter_has_incipits: Hat Incipits
   filter_has_internal_notes: Hat interne Notizen
