@@ -64,22 +64,21 @@ module ModificationNotificationHelper
     config = ITEM_CONFIG[item.class.name]
 
     unless config
-      return "#{h(item.inspect)} [created: #{item.created_at}, modified: #{item.updated_at}]"
+      return h(item.inspect)
     end
 
     details = instance_exec(item, &config[:fields])
 
     safe_join([
       link_to(item.id, [:admin, item]),
-      ", ",
-      details,
-      " [created: #{item.created_at}, modified: #{item.updated_at}]"
+      " · ",
+      details
     ])
   end
 
-  #def modification_report_groups(results)
-  #  results.to_a
-  #end
+  def modification_timestamp(timestamp)
+    timestamp ? timestamp.strftime("%Y-%m-%d %H:%M") : "—"
+  end
 
   private
 

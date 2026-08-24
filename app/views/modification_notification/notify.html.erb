@@ -1,41 +1,121 @@
-<h3 style="margin-bottom: 16px; font-family: Arial, sans-serif;">
-  Modification report for <%= @total_results %> item(s)
-</h3>
+<div style="display:none;max-height:0;overflow:hidden;opacity:0;color:transparent;">
+  <%= t("modification_notification.preheader", count: @total_results) %>
+</div>
 
-<% @results.each do |model, criterias| %>
-  <% criterias.each do |criteria, items| %>
+<table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="width:100%;margin:0;padding:0;background-color:#edf1f5;">
+  <tr>
+    <td align="center" style="padding:32px 12px;">
+      <table role="presentation" width="760" cellpadding="0" cellspacing="0" border="0" style="width:100%;max-width:760px;background-color:#ffffff;border:1px solid #d8e0e8;border-radius:6px;box-shadow:0 2px 8px rgba(24,55,85,0.12);">
+        <tr>
+          <td style="padding:22px 30px;border-bottom:5px solid #225887;">
+            <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0">
+              <tr>
+                <td width="98" valign="middle" style="width:98px;padding-right:20px;">
+                  <%= image_tag attachments["rism-logo.png"].url,
+                    alt: "RISM",
+                    width: 98,
+                    style: "display:block;width:98px;height:auto;border:0;" %>
+                </td>
+                <td valign="middle" style="font-family:Arial,Helvetica,sans-serif;">
+                  <div style="font-size:12px;line-height:18px;font-weight:bold;letter-spacing:1.4px;text-transform:uppercase;color:#6b7785;"><%= t("modification_notification.eyebrow") %></div>
+                  <div style="margin-top:3px;font-size:24px;line-height:30px;font-weight:bold;color:#225887;"><%= t("modification_notification.heading") %></div>
+                </td>
+              </tr>
+            </table>
+          </td>
+        </tr>
 
-    <!-- Section header -->
-    <div style="margin-top: 20px; margin-bottom: 8px; font-family: Arial, sans-serif;">
-      <strong>
-        <%= items.count %> <%= model.underscore.humanize.pluralize(items.count) %> matched:
-      </strong><br>
-      <code style="background:#f4f4f4; padding:2px 4px;">
-        <%= criteria %>
-      </code>
-    </div>
+        <tr>
+          <td style="padding:24px 24px 14px;font-family:Arial,Helvetica,sans-serif;color:#273746;">
+            <p style="margin:0;font-size:15px;line-height:23px;color:#465665;"><%= t("modification_notification.summary", count: @total_results) %></p>
+          </td>
+        </tr>
 
-    <!-- Items table -->
-    <table cellpadding="0" cellspacing="0" border="0" style="font-family: Arial, sans-serif; font-size: 12px; width: 100%; border-collapse: collapse;">
-      <tbody>
-        <% items.each_with_index do |item, index| %>
-          <tr>
-            <td valign="top" style="padding: 4px 6px 4px 0; width: 30px;">
-              <strong><%= index + 1 %>.</strong>
-            </td>
-            <td style="padding: 4px 0;">
-              <%= render_modification_item(item) %>
-            </td>
-          </tr>
+        <tr>
+          <td style="padding:0 24px 14px;font-family:Arial,Helvetica,sans-serif;color:#273746;">
+            <a id="modification-report-index" name="modification-report-index"></a>
+            <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="width:100%;border:1px solid #d8e0e8;border-radius:4px;border-collapse:separate;">
+              <tr>
+                <td colspan="3" style="padding:7px 10px;background-color:#f4f7fa;border-bottom:1px solid #dce4eb;font-size:11px;line-height:16px;font-weight:bold;letter-spacing:0.8px;text-transform:uppercase;color:#657381;"><%= t("modification_notification.index_heading") %></td>
+              </tr>
+              <% index_number = 0 %>
+              <% @results.each do |model, criterias| %>
+                <% criterias.each do |criteria, items| %>
+                  <% index_number += 1 %>
+                  <tr>
+                    <td width="26" align="right" valign="top" style="width:26px;padding:5px 5px;border-bottom:1px solid #e7ecf1;font-size:11px;line-height:16px;font-weight:bold;color:#7b8793;"><%= index_number %>.</td>
+                    <td valign="top" style="padding:5px 7px;border-bottom:1px solid #e7ecf1;font-size:12px;line-height:16px;word-break:break-word;">
+                      <a href="#modification-match-<%= index_number %>" style="color:#225887;text-decoration:none;font-family:Consolas,Monaco,'Courier New',monospace;"><%= criteria %></a>
+                    </td>
+                    <td width="120" align="right" valign="top" style="width:120px;padding:5px 8px;border-bottom:1px solid #e7ecf1;font-size:11px;line-height:16px;color:#52697d;white-space:nowrap;"><%= t("modification_notification.matched", count: items.count, model: model.underscore.humanize.pluralize(items.count)) %></td>
+                  </tr>
+                <% end %>
+              <% end %>
+            </table>
+          </td>
+        </tr>
+
+        <% section_number = 0 %>
+        <% @results.each do |model, criterias| %>
+          <% criterias.each do |criteria, items| %>
+            <% section_number += 1 %>
+            <tr>
+              <td style="padding:0 24px 12px;font-family:Arial,Helvetica,sans-serif;color:#273746;">
+                <a id="modification-match-<%= section_number %>" name="modification-match-<%= section_number %>"></a>
+                <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="width:100%;border:1px solid #d8e0e8;border-radius:4px;border-collapse:separate;">
+                  <tr>
+                    <td style="padding:9px 12px;background-color:#eaf2f8;border-bottom:1px solid #d5e2ed;font-size:13px;line-height:19px;font-weight:bold;color:#225887;">
+                      <%= t("modification_notification.triggered_by") %>:
+                      <code style="font-family:Consolas,Monaco,'Courier New',monospace;font-size:12px;color:#183b5b;word-break:break-word;"><%= criteria %></code>
+                    </td>
+                    <td align="right" style="padding:9px 12px;background-color:#eaf2f8;border-bottom:1px solid #d5e2ed;font-size:12px;line-height:19px;color:#52697d;">
+                      <%= t("modification_notification.matched", count: items.count, model: model.underscore.humanize.pluralize(items.count)) %>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td colspan="2" style="padding:0;">
+                      <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="width:100%;border-collapse:collapse;table-layout:fixed;">
+                        <thead>
+                          <tr>
+                            <th width="30" align="right" style="width:30px;padding:6px 6px;background-color:#f4f7fa;border-bottom:1px solid #dce4eb;font-size:10px;line-height:15px;text-transform:uppercase;color:#72808d;"><%= t("modification_notification.number") %></th>
+                            <th align="left" style="padding:6px 8px;background-color:#f4f7fa;border-bottom:1px solid #dce4eb;font-size:10px;line-height:15px;text-transform:uppercase;color:#72808d;"><%= t("modification_notification.record") %></th>
+                            <th width="105" align="left" style="width:105px;padding:6px 8px;background-color:#f4f7fa;border-bottom:1px solid #dce4eb;font-size:10px;line-height:15px;text-transform:uppercase;color:#72808d;"><%= t("modification_notification.created") %></th>
+                            <th width="105" align="left" style="width:105px;padding:6px 8px;background-color:#f4f7fa;border-bottom:1px solid #dce4eb;font-size:10px;line-height:15px;text-transform:uppercase;color:#72808d;"><%= t("modification_notification.modified") %></th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <% items.each_with_index do |item, index| %>
+                            <tr>
+                              <td align="right" valign="top" style="padding:4px 6px;border-bottom:1px solid #e7ecf1;font-size:11px;line-height:15px;font-weight:bold;color:#7b8793;"><%= index + 1 %>.</td>
+                              <td valign="top" style="padding:4px 8px;border-bottom:1px solid #e7ecf1;font-size:12px;line-height:15px;color:#34495e;word-break:break-word;"><%= render_modification_item(item) %></td>
+                              <td valign="top" style="padding:4px 8px;border-bottom:1px solid #e7ecf1;font-size:11px;line-height:15px;color:#657381;white-space:nowrap;"><%= modification_timestamp(item.created_at) %></td>
+                              <td valign="top" style="padding:4px 8px;border-bottom:1px solid #e7ecf1;font-size:11px;line-height:15px;color:#657381;white-space:nowrap;"><%= modification_timestamp(item.updated_at) %></td>
+                            </tr>
+                          <% end %>
+                        </tbody>
+                      </table>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td colspan="2" align="right" style="padding:4px 10px;background-color:#f7f9fb;font-size:10px;line-height:15px;">
+                      <a href="#modification-report-index" style="color:#657b8e;text-decoration:none;"><%= t("modification_notification.back_to_index") %> ↑</a>
+                    </td>
+                  </tr>
+                </table>
+              </td>
+            </tr>
+          <% end %>
         <% end %>
-      </tbody>
-    </table>
 
-  <% end %>
-<% end %>
-
-<% if !@time_msg.empty? %>
-<p>
-  <small><%=@time_msg%></small>
-</p>
-<% end %>
+        <tr>
+          <td style="padding:14px 24px;background-color:#f4f7fa;border-top:1px solid #dce4eb;font-family:Arial,Helvetica,sans-serif;font-size:12px;line-height:18px;color:#77838f;">
+            <%= t("modification_notification.footer") %>
+            <% if @time_msg.present? %>
+              <span style="display:block;margin-top:3px;"><%= @time_msg %></span>
+            <% end %>
+          </td>
+        </tr>
+      </table>
+    </td>
+  </tr>
+</table>
