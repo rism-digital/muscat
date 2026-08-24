@@ -92,9 +92,9 @@ class TgnClientJson
     new_marc.by_tags("370").each {|t2| t2.destroy_yourself}
 
     # Try to match the language in which the item comes
-    lang = Iso639[record[:place_lang]]&.alpha3_bibliographic
+    lang = Iso639[record["label_lang"]&.second]&.alpha3_bibliographic
 
-    new_marc.add_tag_with_subfields("151", a: record["label"], g: lang)
+    new_marc.add_tag_with_subfields("151", a: record["label_lang"].first, g: lang)
     # 024 should not be there
     new_marc.add_tag_with_subfields("024", a: record["tgn_id"], "2": "TGN")
 
@@ -157,20 +157,22 @@ $i should be the relationship name (e.g., "inhabited places"); $4 should be the 
     end
 
     # Alt names
-=begin
     existing = new_marc["451"].flat_map { |t| Array(t["a"]) }
       .map { |tt| tt&.content.to_s.strip.downcase }
       .compact
       .to_set
 
-    record[:alternate_names].each do |alt|
-      norm = alt.to_s.strip.downcase
+    record["alternate_names_languages"].each do |alt|
+      name = alt["name"]
+      norm = name.to_s.strip.downcase
       next if existing.include?(norm)
 
-      new_marc.add_tag_with_subfields("451", a: alt)
+      lang = Iso639[alt["language"]]&.alpha3_bibliographic
+
+      new_marc.add_tag_with_subfields("451", a: name, g: lang)
       existing.add(norm) # Make sure we don't add dups
     end
-=end 
+
     return new_marc
   end
 
