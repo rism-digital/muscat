@@ -53,9 +53,9 @@ ActiveAdmin.register DigitalObject do
 
     def edit
       begin
-        @digital_object = DigitalObject.find(params[:id])
+        @digital_object = DigitalObject.accessible_by(current_ability).where(id: params[:id]).first!
       rescue ActiveRecord::RecordNotFound
-        redirect_to admin_root_path, :flash => { :error => "#{I18n.t(:error_not_found)} (Digital object #{params[:id]})" }
+        redirect_to admin_root_path, :flash => { :error => I18n.t(:error_not_found) }
         return
       end
 
@@ -78,9 +78,9 @@ ActiveAdmin.register DigitalObject do
 
     def show
       begin
-        @digital_object = DigitalObject.find(params[:id])
+        @digital_object = DigitalObject.accessible_by(current_ability).where(id: params[:id]).first!
       rescue ActiveRecord::RecordNotFound
-        redirect_to admin_root_path, :flash => { :error => "#{I18n.t(:error_not_found)} (Digital object #{params[:id]})" }
+        redirect_to admin_root_path, :flash => { :error => I18n.t(:error_not_found) }
         return
       end
     end
@@ -122,8 +122,8 @@ ActiveAdmin.register DigitalObject do
         dol = DigitalObjectLink.new(object_link_type: params[:object_model], object_link_id: params[:object_id],
                                     user: current_user, digital_object_id: params[:id])
         dol.save!
-        flash[:notice] = "Item added successfully, #{params[:object_model]}: #{params[:object_id]}"
-        redirect_to resource_path(params[:id])
+        flash[:notice] = "Item added successfully"
+        redirect_to resource_path
       #rescue
       #  redirect_to resource_path(params[:id]), error: "Could not add, #{params[:object_model]}: #{params[:object_id]}"
       #end
@@ -136,10 +136,10 @@ ActiveAdmin.register DigitalObject do
   member_action :remove_item, method: :get do
 
     begin
-      dol = DigitalObjectLink.find(params[:digital_object_link_id])
+      dol = DigitalObjectLink.accessible_by(current_ability).where(id: params[:digital_object_link_id]).first!
     rescue
-      flash[:error] = "Could not find Digital Object Link #{params[:digital_object_link_id]}"
-      redirect_to resource_path(params[:id])
+      flash[:error] = "Could not find Digital Object Link"
+      redirect_to resource_path
       return
     end
     
@@ -147,11 +147,11 @@ ActiveAdmin.register DigitalObject do
       begin
         dol.delete
       rescue
-        flash[:error] = "Could not delete link #{params[:digital_object_link_id]}"
-        redirect_to resource_path(params[:id])
+        flash[:error] = "Could not delete link"
+        redirect_to resource_path
       end
       flash[:notice] = "Link deleted successfully"
-      redirect_to resource_path(params[:id])
+      redirect_to resource_path
     else
       flash[:error] = "Operation not allowed"
       redirect_to collection_path
