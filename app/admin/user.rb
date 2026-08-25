@@ -96,10 +96,11 @@ ActiveAdmin.register User do
     params.permit!
     if params.include?(:q)
       q = params[:q].to_s.gsub(/\A[[:punct:]]+|[[:punct:]]+\z/, '')
-      pattern = "\\b#{Regexp.escape(q)}"
+      # PostgreSQL uses \m for the start of a word (MySQL used \b here).
+      pattern = "\\m#{Regexp.escape(q)}"
 
       users = User.where(disabled: false)
-            .where("name REGEXP ?", pattern)
+            .where("name ~* ?", pattern)
             .map { |u| { name: "#{u.name}", id: u.id } }
     else
       users = []

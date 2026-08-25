@@ -1,0 +1,25 @@
+# Copy to config/database.yml only at PostgreSQL cutover, then configure all
+# values through the environment. Keep the MariaDB config elsewhere while a
+# rollback remains possible.
+default: &default
+  adapter: postgresql
+  encoding: unicode
+  host: <%= ENV.fetch("MUSCAT_POSTGRES_HOST", "127.0.0.1") %>
+  port: <%= ENV.fetch("MUSCAT_POSTGRES_PORT", 5432) %>
+  username: <%= ENV.fetch("MUSCAT_POSTGRES_USER", ENV.fetch("USER", "muscat")) %>
+  password: <%= ENV["MUSCAT_POSTGRES_PASSWORD"] %>
+  pool: <%= ENV.fetch("MUSCAT_DB_POOL", 32) %>
+  variables:
+    statement_timeout: <%= ENV.fetch("MUSCAT_POSTGRES_STATEMENT_TIMEOUT", 5000) %>
+
+development:
+  <<: *default
+  database: <%= ENV.fetch("MUSCAT_POSTGRES_DATABASE", "muscat_development") %>
+
+test:
+  <<: *default
+  database: <%= ENV.fetch("MUSCAT_POSTGRES_TEST_DATABASE", "muscat_test") %>
+
+production:
+  <<: *default
+  database: <%= ENV.fetch("MUSCAT_POSTGRES_DATABASE", "muscat_production") %>

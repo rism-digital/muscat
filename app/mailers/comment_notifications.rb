@@ -5,7 +5,7 @@ class CommentNotifications < ApplicationMailer
 
     [] if matches.empty?
     
-    normalized_sql = "LOWER(TRIM(REGEXP_REPLACE(REPLACE(name,'_',' '),'[^[:alnum:]_[:space:]]','')))"
+    normalized_sql = "LOWER(TRIM(REGEXP_REPLACE(REPLACE(name,'_',' '),'[^[:alnum:]_[:space:]]','','g')))"
 
     return matches.map do |name|
       # Stip all punctuation except for the _

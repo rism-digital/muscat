@@ -380,6 +380,8 @@ GEM
       rack (>= 1.6.13)
       rackup (>= 1.0.1)
       rake (>= 12.3.3)
+    pg (1.6.3-arm64-darwin)
+    pg (1.6.3-x86_64-linux)
     pkg-config (1.6.5)
     pp (0.6.4)
       prettyprint
@@ -627,6 +629,7 @@ GEM
 
 PLATFORMS
   arm64-darwin-23
+  arm64-darwin-25
   x86_64-linux
 
 DEPENDENCIES
@@ -674,6 +677,7 @@ DEPENDENCIES
   paper_trail
   parallel
   passenger
+  pg (~> 1.5)
   progress_bar
   progress_job (= 0.0.4)!
   pry

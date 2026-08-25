@@ -36,7 +36,7 @@ class Workgroup < ApplicationRecord
     pattern_list = self.libpatterns&.split(",")
     if libpatterns
       pattern_list.each do |pattern|
-        self.institutions << Institution.where("siglum REGEXP ?", pattern.gsub("*", "").strip)
+        self.institutions << Institution.where("siglum ~ ?", pattern.gsub("*", "").strip)
       end
     end
   end
@@ -53,4 +53,3 @@ class Workgroup < ApplicationRecord
   def self.ransackable_attributes(_) = attribute_names - %w[token]
 
 end
-

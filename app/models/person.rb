@@ -102,14 +102,12 @@ class Person < ApplicationRecord
 #  validates_presence_of :full_name  
   validate :field_length
   
-  # Make json attribute compatible with both MySQL and MariaDB, see
-  # https://github.com/rails/rails/issues/44997
   attribute :identifiers, :json
 
   scope :with_identifier, ->(code, value) {
     where(
-      "JSON_CONTAINS(JSON_EXTRACT(identifiers, ?), JSON_QUOTE(?))",
-      "$.#{code.to_s.downcase}",
+      "identifiers -> ? @> to_jsonb(?::text)",
+      code.to_s.downcase,
       value.to_s
     )
   }
@@ -117,13 +115,13 @@ class Person < ApplicationRecord
   # This is useful to get the records with two DNB idents
   # p Person.with_duplicate_identifier(:dnb).count
   scope :with_duplicate_identifier, ->(code) {
-    path = "$.#{code.to_s.downcase}"
+    key = code.to_s.downcase
 
     where(
-      "JSON_TYPE(JSON_EXTRACT(identifiers, ?)) = 'ARRAY'
-      AND JSON_LENGTH(JSON_EXTRACT(identifiers, ?)) > 1",
-      path,
-      path
+      "jsonb_typeof(identifiers -> ?) = 'array'
+      AND jsonb_array_length(identifiers -> ?) > 1",
+      key,
+      key
     )
   }
 
@@ -482,4 +480,3 @@ class Person < ApplicationRecord
   end
 
 end
-

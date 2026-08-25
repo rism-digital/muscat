@@ -39,15 +39,16 @@ ActiveAdmin.register Publication do
       #sanit = ActiveRecord::Base.send(:sanitize_sql_like, token)
 
       term_escaped = Regexp.escape(token)
-      search_term = "\\b#{term_escaped}.*\\b"
+      # PostgreSQL word boundaries are \m (start) and \M (end).
+      search_term = "\\m#{term_escaped}.*\\M"
 
-      query = "SELECT `publications`.`id`, `publications`.`short_name`, `publications`.`author`, `publications`.`date`, `publications`.`title`,
+      query = "SELECT publications.id, publications.short_name, publications.author, publications.date, publications.title,
       COUNT(publications.id) as count \
-      FROM `publications` \
+      FROM publications \
       JOIN sources_to_publications AS stp on publications.id = stp.publication_id \
-      WHERE (publications.short_name REGEXP (?) \
-      or publications.author REGEXP (?) \
-      or publications.title REGEXP (?) ) \
+      WHERE (publications.short_name ~* (?) \
+      or publications.author ~* (?) \
+      or publications.title ~* (?) ) \
       and (publications.short_name != '') \
       GROUP BY publications.id \
       ORDER BY COUNT(publications.id) DESC LIMIT 20"

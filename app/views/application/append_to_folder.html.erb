@@ -1,5 +1,5 @@
 <%
-	folders = Folder.where(folder_type: self.resource_class)
+	folders = Folder.where(folder_type: self.resource_class.name)
 	ids = folders.map {|f| [f.name, f.id]}.collect
 %>
 

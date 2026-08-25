@@ -37,8 +37,8 @@ ActiveAdmin.register StandardTitle do
       sanit = ActiveRecord::Base.send(:sanitize_sql_like, token) + "%"
       skip_730 = options.include?(:skip_730) && options[:skip_730] == true ? "AND sst.marc_tag != 730" : ""
 
-      query = "SELECT `standard_titles`.`id`, `standard_titles`.`title`, count(standard_titles.id) AS count \
-      FROM `standard_titles` 
+      query = "SELECT standard_titles.id, standard_titles.title, count(standard_titles.id) AS count \
+      FROM standard_titles
       JOIN sources_to_standard_titles AS sst on standard_titles.id = sst.standard_title_id \
       WHERE standard_titles.title LIKE (?) \
       #{skip_730} \

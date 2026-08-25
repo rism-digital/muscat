@@ -3,8 +3,10 @@ source 'https://rubygems.org'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 7.2'
 
-# Use mysql2 as the database for Active Record
+# mysql2 remains available only while importing the legacy MariaDB database.
+# PostgreSQL is the runtime adapter after cutover.
 gem 'mysql2'
+gem 'pg', '~> 1.5'
 
 # Use SCSS for stylesheets
 #gem 'sassc-rails' #sassc rails is deprecated...

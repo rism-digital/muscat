@@ -1,0 +1,15 @@
+# Copy this file outside the repository (or set the equivalent environment
+# variables) before running script/migrate_mysql_to_postgres. Never commit
+# production passwords.
+#
+# MUSCAT_MYSQL_HOST=127.0.0.1
+# MUSCAT_MYSQL_PORT=3306
+# MUSCAT_MYSQL_SOCKET=/tmp/mysql.sock
+# MUSCAT_MYSQL_DATABASE=muscat_prod_db
+# MUSCAT_MYSQL_USER=muscat_reader
+# MUSCAT_MYSQL_PASSWORD=...
+# MUSCAT_POSTGRES_URL=postgresql://muscat_migrator:...@127.0.0.1:5432/muscat_staging
+#
+# The importer only connects to an already-created PostgreSQL database. The
+# MariaDB account needs SELECT; the PostgreSQL account needs CREATE and DML.
+# The target database must be empty for the schema command.

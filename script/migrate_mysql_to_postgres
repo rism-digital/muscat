@@ -1,0 +1,437 @@
+#!/usr/bin/env ruby
+# frozen_string_literal: true
+
+# A one-off, restartable importer for the Muscat MariaDB -> PostgreSQL cutover.
+# It deliberately does not load Rails: both database connections are explicit so
+# the application cannot accidentally write to either side during a rehearsal.
+
+require "csv"
+require "digest"
+require "json"
+require "logger"
+require "mysql2"
+require "optparse"
+require "pg"
+require "time"
+
+class MuscatPostgresMigration
+  JSONB_COLUMNS = {
+    "people" => %w[identifiers],
+    "active_admin_comments" => %w[body_json mentioned_user_ids]
+  }.freeze
+  BATCH_SIZE = Integer(ENV.fetch("MUSCAT_MIGRATION_BATCH_SIZE", "10_000"))
+
+  def initialize(dry_run: false, logger: Logger.new($stdout))
+    @dry_run = dry_run
+    @logger = logger
+    @mysql = Mysql2::Client.new(mysql_options)
+    @postgres = PG.connect(ENV.fetch("MUSCAT_POSTGRES_URL"))
+    @tables = nil
+  end
+
+  def close
+    @mysql&.close
+    @postgres&.close
+  end
+
+  def preflight
+    unsupported = columns.group_by { |column| column["data_type"] }.keys - supported_mysql_types
+    raise "Unsupported MariaDB types: #{unsupported.join(", ")}" unless unsupported.empty?
+
+    invalid_json = JSONB_COLUMNS.flat_map do |table, names|
+      names.filter_map do |name|
+        next unless table_names.include?(table)
+
+        count = mysql_value(<<~SQL)
+          SELECT COUNT(*) FROM #{mysql_ident(table)}
+          WHERE #{mysql_ident(name)} IS NOT NULL AND JSON_VALID(#{mysql_ident(name)}) = 0
+        SQL
+        "#{table}.#{name}=#{count}" unless count.to_i.zero?
+      end
+    end
+    raise "Invalid JSON cannot be imported as jsonb: #{invalid_json.join(", ")}" if invalid_json.any?
+
+    @logger.info("Preflight passed: #{table_names.length} tables, #{columns.length} columns")
+  end
+
+  # Creates a PostgreSQL schema that matches the *current* MariaDB schema. This
+  # intentionally replaces replaying historical Rails migrations, which contain
+  # MySQL-only ALTER TABLE statements.
+  def create_schema
+    preflight
+    statements = schema_statements
+    return statements.each { |sql| @logger.info(sql) } if @dry_run
+
+    ensure_empty_target!
+
+    @postgres.transaction do |connection|
+      statements.each { |sql| connection.exec(sql) }
+    end
+    @logger.info("Created PostgreSQL schema with #{table_names.length} tables")
+  end
+
+  def import
+    preflight
+    table_names.each do |table|
+      ensure_target_table!(table)
+      ensure_target_table_empty!(table)
+      import_table(table)
+    end
+    reset_sequences
+  end
+
+  def validate
+    discrepancies = table_names.filter_map do |table|
+      source_count = mysql_value("SELECT COUNT(*) FROM #{mysql_ident(table)}").to_i
+      target_count = postgres_value("SELECT COUNT(*) FROM #{pg_ident(table)}").to_i
+      source_keys, target_keys = primary_key_summary(table)
+      source_nulls, target_nulls = null_summary(table)
+      next if source_count == target_count && source_keys == target_keys && source_nulls == target_nulls
+
+      {
+        table: table,
+        source_count: source_count,
+        target_count: target_count,
+        source_primary_key: source_keys,
+        target_primary_key: target_keys,
+        source_nulls: source_nulls,
+        target_nulls: target_nulls
+      }
+    end
+
+    report = { checked_at: Time.now.utc.iso8601, tables: table_names.length, discrepancies: discrepancies }
+    report_path = ENV["MUSCAT_MIGRATION_REPORT"]
+    File.write(report_path, JSON.pretty_generate(report)) if report_path && !@dry_run
+    raise "Validation failed:\n#{JSON.pretty_generate(discrepancies)}" if discrepancies.any?
+
+    @logger.info("Validation passed for #{table_names.length} tables")
+  end
+
+  private
+
+  def mysql_options
+    options = {
+      username: ENV.fetch("MUSCAT_MYSQL_USER"),
+      password: ENV.fetch("MUSCAT_MYSQL_PASSWORD", ""),
+      database: ENV.fetch("MUSCAT_MYSQL_DATABASE"),
+      encoding: "utf8mb4",
+      cast_booleans: false,
+      symbolize_keys: false
+    }
+    socket = ENV["MUSCAT_MYSQL_SOCKET"]
+    if socket && !socket.empty?
+      # Supplying host=127.0.0.1 forces TCP and bypasses socket-based auth.
+      options[:socket] = socket
+    else
+      options[:host] = ENV.fetch("MUSCAT_MYSQL_HOST", "127.0.0.1")
+      options[:port] = Integer(ENV.fetch("MUSCAT_MYSQL_PORT", "3306"))
+    end
+    options
+  end
+
+  def table_names
+    @tables ||= @mysql.query(<<~SQL).map { |row| row.fetch("table_name") }
+      SELECT table_name
+      FROM information_schema.tables
+      WHERE table_schema = DATABASE() AND table_type = 'BASE TABLE'
+      ORDER BY table_name
+    SQL
+  end
+
+  def columns
+    @columns ||= @mysql.query(<<~SQL).to_a
+      SELECT table_name, column_name, data_type, column_type,
+             character_maximum_length, numeric_precision, numeric_scale,
+             is_nullable, column_default, extra, ordinal_position
+      FROM information_schema.columns
+      WHERE table_schema = DATABASE()
+      ORDER BY table_name, ordinal_position
+    SQL
+  end
+
+  def columns_for(table)
+    columns.select { |column| column.fetch("table_name") == table }
+  end
+
+  def indexes_for(table)
+    @indexes ||= @mysql.query(<<~SQL).to_a.group_by { |index| index.fetch("table_name") }
+      SELECT table_name, index_name, non_unique, seq_in_index, column_name
+      FROM information_schema.statistics
+      WHERE table_schema = DATABASE()
+      ORDER BY table_name, index_name, seq_in_index
+    SQL
+    @indexes.fetch(table, [])
+  end
+
+  def primary_key_for(table)
+    indexes_for(table).select { |index| index.fetch("index_name") == "PRIMARY" }
+                      .sort_by { |index| index.fetch("seq_in_index").to_i }
+                      .map { |index| index.fetch("column_name") }
+  end
+
+  def schema_statements
+    creates = table_names.map do |table|
+      definitions = columns_for(table).map { |column| column_definition(column) }
+      primary_key = primary_key_for(table)
+      definitions << "PRIMARY KEY (#{primary_key.map { |name| pg_ident(name) }.join(", ")})" if primary_key.any?
+      "CREATE TABLE #{pg_ident(table)} (\n  #{definitions.join(",\n  ")}\n);"
+    end
+
+    indexes = table_names.flat_map do |table|
+      indexes_for(table).group_by { |index| index.fetch("index_name") }.filter_map do |name, parts|
+        next if name == "PRIMARY"
+
+        sorted = parts.sort_by { |part| part.fetch("seq_in_index").to_i }
+        unique = sorted.first.fetch("non_unique").to_i.zero? ? "UNIQUE " : ""
+        columns_sql = sorted.map { |part| pg_ident(part.fetch("column_name")) }.join(", ")
+        "CREATE #{unique}INDEX #{pg_ident(postgres_index_name(table, name))} ON #{pg_ident(table)} (#{columns_sql});"
+      end
+    end
+    creates + indexes
+  end
+
+  def column_definition(column)
+    name = pg_ident(column.fetch("column_name"))
+    type = postgres_type(column)
+    identity = column.fetch("extra", "").include?("auto_increment") ? " GENERATED BY DEFAULT AS IDENTITY" : ""
+    nullable = column.fetch("is_nullable") == "NO" ? " NOT NULL" : ""
+    default = postgres_default(column)
+    "#{name} #{type}#{identity}#{default}#{nullable}"
+  end
+
+  def postgres_type(column)
+    type = column.fetch("data_type")
+    return "jsonb" if JSONB_COLUMNS.fetch(column.fetch("table_name"), []).include?(column.fetch("column_name"))
+
+    case type
+    when "bigint", "int", "integer", "mediumint" then "bigint"
+    when "smallint" then "smallint"
+    when "tinyint"
+      column.fetch("column_type") == "tinyint(1)" ? "boolean" : "smallint"
+    when "varchar", "char"
+      length = column["character_maximum_length"]
+      length ? "character varying(#{length})" : "text"
+    when "text", "mediumtext", "longtext", "tinytext" then "text"
+    when "datetime", "timestamp" then "timestamp without time zone"
+    when "date" then "date"
+    when "time" then "time without time zone"
+    when "decimal", "numeric"
+      precision, scale = column.values_at("numeric_precision", "numeric_scale")
+      precision ? "numeric(#{precision},#{scale || 0})" : "numeric"
+    when "float" then "real"
+    when "double" then "double precision"
+    when "json" then "jsonb"
+    else raise "No PostgreSQL mapping for #{type}"
+    end
+  end
+
+  def postgres_default(column)
+    value = column["column_default"]
+    # MariaDB reports a SQL NULL default as the string "NULL" through some
+    # client versions; it must not become the literal text value 'NULL'.
+    return "" if value.nil? || value.to_s.casecmp?("NULL")
+    return " DEFAULT CURRENT_TIMESTAMP" if value.to_s.match?(/\ACURRENT_TIMESTAMP/i)
+
+    type = postgres_type(column)
+    if type == "boolean"
+      return " DEFAULT #{["1", "true", "b'1'"].include?(value.to_s.downcase) ? "true" : "false"}"
+    end
+    return " DEFAULT #{value}" if value.to_s.match?(/\A-?\d+(\.\d+)?\z/)
+
+    " DEFAULT #{pg_literal(value)}"
+  end
+
+  def import_table(table)
+    columns = columns_for(table).map { |column| column.fetch("column_name") }
+    @logger.info("Importing #{table}")
+    imported = 0
+    each_mysql_batch(table, columns) do |rows|
+      if @dry_run
+        imported += rows.length
+        next
+      end
+
+      copy_sql = "COPY #{pg_ident(table)} (#{columns.map { |name| pg_ident(name) }.join(", ")}) FROM STDIN WITH (FORMAT text)"
+      @postgres.copy_data(copy_sql) do
+        rows.each { |row| @postgres.put_copy_data(copy_row(row, columns, table)) }
+      end
+      imported += rows.length
+      @logger.info("  #{imported} rows") if (imported % (BATCH_SIZE * 10)).zero?
+    end
+    @logger.info("Imported #{imported} rows into #{table}")
+  end
+
+  def each_mysql_batch(table, names)
+    primary_key = primary_key_for(table)
+    if primary_key.length == 1
+      key = primary_key.first
+      last_value = nil
+      loop do
+        where = last_value.nil? ? "" : "WHERE #{mysql_ident(key)} > #{mysql_literal(last_value)}"
+        sql = "SELECT #{names.map { |name| mysql_ident(name) }.join(", ")} FROM #{mysql_ident(table)} #{where} ORDER BY #{mysql_ident(key)} LIMIT #{BATCH_SIZE}"
+        rows = @mysql.query(sql, cache_rows: false).to_a
+        break if rows.empty?
+
+        yield rows
+        last_value = rows.last.fetch(key)
+      end
+    else
+      offset = 0
+      loop do
+        sql = "SELECT #{names.map { |name| mysql_ident(name) }.join(", ")} FROM #{mysql_ident(table)} LIMIT #{BATCH_SIZE} OFFSET #{offset}"
+        rows = @mysql.query(sql, cache_rows: false).to_a
+        break if rows.empty?
+
+        yield rows
+        offset += rows.length
+      end
+    end
+  end
+
+  def copy_row(row, names, table)
+    names.map do |name|
+      value = row[name]
+      value = JSON.generate(value) if jsonb_column?(table, name) && !value.nil? && !value.is_a?(String)
+      copy_value(value)
+    end.join("\t") + "\n"
+  end
+
+  def copy_value(value)
+    return "\\N" if value.nil?
+
+    value.to_s.encode("UTF-8").gsub("\\") { "\\\\" }.gsub("\t", "\\t").gsub("\n", "\\n").gsub("\r", "\\r")
+  end
+
+  def primary_key_summary(table)
+    key = primary_key_for(table)
+    return [nil, nil] unless key.length == 1
+
+    column = key.first
+    source = @mysql.query("SELECT MIN(#{mysql_ident(column)}) AS min_id, MAX(#{mysql_ident(column)}) AS max_id FROM #{mysql_ident(table)}").first
+    target = @postgres.exec("SELECT MIN(#{pg_ident(column)}) AS min_id, MAX(#{pg_ident(column)}) AS max_id FROM #{pg_ident(table)}").first
+    # mysql2 returns numeric values as Integers while pg returns them as text;
+    # normalize before comparing otherwise a successful import looks divergent.
+    [
+      [source["min_id"], source["max_id"]].map { |value| value&.to_s },
+      [target["min_id"], target["max_id"]].map { |value| value&.to_s }
+    ]
+  end
+
+  def null_summary(table)
+    names = columns_for(table).map { |column| column.fetch("column_name") }
+    source_sql = names.each_with_index.map do |name, index|
+      "SUM(#{mysql_ident(name)} IS NULL) AS null_#{index}"
+    end.join(", ")
+    target_sql = names.each_with_index.map do |name, index|
+      "COUNT(*) FILTER (WHERE #{pg_ident(name)} IS NULL) AS null_#{index}"
+    end.join(", ")
+    source = @mysql.query("SELECT #{source_sql} FROM #{mysql_ident(table)}").first
+    target = @postgres.exec("SELECT #{target_sql} FROM #{pg_ident(table)}").first
+    [
+      names.each_index.map { |index| source.fetch("null_#{index}").to_i },
+      names.each_index.map { |index| target.fetch("null_#{index}").to_i }
+    ]
+  end
+
+  def reset_sequences
+    table_names.each do |table|
+      primary_key_for(table).each do |column|
+        sequence = postgres_value("SELECT pg_get_serial_sequence(#{pg_literal(table)}, #{pg_literal(column)})")
+        next unless sequence
+
+        max = postgres_value("SELECT MAX(#{pg_ident(column)}) FROM #{pg_ident(table)}")
+        next unless max
+
+        @postgres.exec("SELECT setval(#{pg_literal(sequence)}, #{max.to_i}, true)") unless @dry_run
+      end
+    end
+    @logger.info("Reset PostgreSQL sequences")
+  end
+
+  def ensure_empty_target!
+    tables = @postgres.exec(<<~SQL).map { |row| row.fetch("tablename") }
+      SELECT tablename FROM pg_tables
+      WHERE schemaname = 'public'
+    SQL
+    return if tables.empty?
+
+    raise "Target PostgreSQL database is not empty (#{tables.join(", ")}). Refusing to modify it."
+  end
+
+  def ensure_target_table!(table)
+    exists = postgres_value("SELECT to_regclass(#{pg_literal(table)})")
+    raise "Target table #{table} does not exist. Run the schema command first." unless exists
+  end
+
+  def ensure_target_table_empty!(table)
+    return if postgres_value("SELECT COUNT(*) FROM #{pg_ident(table)}").to_i.zero?
+
+    raise "Target table #{table} is not empty. Refusing to append data."
+  end
+
+  def supported_mysql_types
+    %w[bigint int integer mediumint smallint tinyint varchar char text mediumtext longtext tinytext datetime timestamp date time decimal numeric float double json]
+  end
+
+  def jsonb_column?(table, column)
+    JSONB_COLUMNS.fetch(table, []).include?(column)
+  end
+
+  def mysql_value(sql)
+    @mysql.query(sql).first.values.first
+  end
+
+  def postgres_value(sql)
+    @postgres.exec(sql).first.values.first
+  end
+
+  def mysql_ident(name)
+    "`#{name.to_s.gsub("`", "``")}`"
+  end
+
+  def pg_ident(name)
+    "\"#{name.to_s.gsub("\"", "\"\"")}\""
+  end
+
+  def mysql_literal(value)
+    "'#{@mysql.escape(value.to_s)}'"
+  end
+
+  def pg_literal(value)
+    @postgres.escape_literal(value.to_s)
+  end
+
+  def postgres_index_name(table, name)
+    candidate = "#{table}_#{name}"
+    return candidate if candidate.length <= 63
+
+    "#{candidate[0, 54]}_#{Digest::SHA256.hexdigest(candidate)[0, 8]}"
+  end
+end
+
+if $PROGRAM_NAME == __FILE__
+  options = { dry_run: false }
+  parser = OptionParser.new do |opts|
+    opts.banner = "Usage: script/migrate_mysql_to_postgres [--dry-run] preflight|schema|import|validate|all"
+    opts.on("--dry-run", "Print schema/import actions without modifying PostgreSQL") { options[:dry_run] = true }
+  end
+  parser.parse!
+  command = ARGV.shift
+  abort parser.to_s unless %w[preflight schema import validate all].include?(command)
+
+  migration = MuscatPostgresMigration.new(**options)
+  begin
+    case command
+    when "preflight" then migration.preflight
+    when "schema" then migration.create_schema
+    when "import" then migration.import
+    when "validate" then migration.validate
+    when "all"
+      migration.create_schema
+      migration.import
+      migration.validate
+    end
+  ensure
+    migration.close
+  end
+end
