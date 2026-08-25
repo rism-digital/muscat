@@ -138,6 +138,7 @@ client:
     tags:
       "0": required
       u: validate_url
+      n: required
   "700": 
     tags:
       "0": required
