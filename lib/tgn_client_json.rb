@@ -95,8 +95,8 @@ class TgnClientJson
     lang = Iso639[record["label_lang"]&.second]&.alpha3_bibliographic
 
     new_marc.add_tag_with_subfields("151", a: record["label_lang"].first, g: lang)
-    # 024 should not be there
-    new_marc.add_tag_with_subfields("024", a: record["tgn_id"], "2": "TGN")
+    # 024 could be there
+    new_marc.add_tag_with_subfields("024", a: record["tgn_id"], "2": "TGN") if !has_tgn?(new_marc, record["tgn_id"])
 
     new_marc.add_tag_with_subfields("034", d: record["lon"],  e: record["lon"], 
                                            f: record["lat"],  g: record["lat"])
@@ -177,6 +177,12 @@ $i should be the relationship name (e.g., "inhabited places"); $4 should be the 
   end
 
 
-
+private
+  def has_tgn?(marc, tgn_id)
+    marc["024"].any? do |tag|
+      tag["2"]&.any? { |subfield| subfield.content == "TGN" } &&
+        tag["a"]&.any? { |subfield| subfield.content.to_s.strip == tgn_id.to_s.strip }
+    end
+  end
   
 end
