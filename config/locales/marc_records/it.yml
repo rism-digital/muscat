@@ -50,6 +50,7 @@ it:
     celtic_other: Celtico (altro)
     chinese: Cinese
     corsican: Corso
+    central_american_indian: Indiano Centroamericano (Altro)
     cree: Cree
     creoles_pidgins_other: Lingue creole e pidgin (altre)
     croatian: Croato
@@ -552,6 +553,8 @@ it:
     identification_status: Stato dell'identificazione
     identified: Fonte identificata
     identified_holding: Esemplare identificato
+    identified_manuscript: Manoscritto identificato
+    identitied_printed_edition: Edizione a stampa identificata
     identified_source: Fonte identificata
     identified_work: Composizione identificata
     identity: Identità
