@@ -888,6 +888,8 @@ pl:
     work_catalogue_in_preparation: W przygotowaniu
     work_catalogue_partial: Częściowy
   work_catalogue_publication_warning: Aby opublikować powiązane dzieła, ustaw status katalogu dzieł na 'Częściowy', 'Kompletny' lub 'Alternatywny'.
+  workgroup_no_sigla: Brak siglów dla tej grupy roboczej
+  workgroup_sigla_hint: Najedź kursorem na link grupy roboczej, aby zobaczyć sigla bibliotek należących do tej grupy.
   workgroups: Grupy robocze
   worknode:
     one: Work node

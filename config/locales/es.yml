@@ -888,6 +888,8 @@ es:
     work_catalogue_in_preparation: En preparación
     work_catalogue_partial: Parcial
   work_catalogue_publication_warning: Para publicar las obras vinculadas, establece el estado del catálogo de obras en 'Parcial', 'Completo' o 'Alternativo'.
+  workgroup_no_sigla: No hay siglas para este grupo de trabajo
+  workgroup_sigla_hint: Pasa el cursor sobre el enlace de un grupo de trabajo para ver las siglas de las bibliotecas de ese grupo.
   workgroups: Grupos de trabajo
   worknode:
     one: Work node

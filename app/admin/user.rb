@@ -233,9 +233,11 @@ ActiveAdmin.register User do
       return 'guest-user' if user.has_role? :guest
     end do
 
+    text_node I18n.t(:workgroup_sigla_hint)
+
     selectable_column
     id_column
-    
+
     column :status, sortable: :disabled do |user|
       status_tag(
         user.disabled? ? 'DIS' : 'ENA',
@@ -259,7 +261,18 @@ ActiveAdmin.register User do
     column :name
     column :email
     column I18n.t(:workgroups) do |user|
-         user.get_workgroups.join(", ")
+      safe_join(
+        user.workgroups.map do |workgroup|
+          sigla = workgroup.show_libs(max: 10)
+
+          link_to(
+            workgroup.name,
+            admin_workgroup_path(workgroup),
+            title: sigla.presence || I18n.t(:workgroup_no_sigla)
+          )
+        end,
+        ", "
+      )
     end
     column I18n.t(:roles), sortable: "role_sort_name" do |user|
       user.get_roles.join(", ")

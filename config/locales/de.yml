@@ -888,6 +888,8 @@ de:
     work_catalogue_in_preparation: In Vorbereitung
     work_catalogue_partial: Teilweise
   work_catalogue_publication_warning: Um verknüpfte Werke zu veröffentlichen, setzen Sie den Werkkatalog-Status auf 'Teilweise', 'Vollständig' oder 'Alternativ'.
+  workgroup_no_sigla: Keine Sigel für diese Benutzergruppe
+  workgroup_sigla_hint: Bewegen Sie den Mauszeiger über einen Benutzergruppen-Link, um die Bibliothekssigel dieser Benutzergruppe anzuzeigen.
   workgroups: Benutzergruppen
   worknode:
     one: Work node
