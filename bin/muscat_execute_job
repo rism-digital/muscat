@@ -16,11 +16,13 @@ LOGFILE=$MUSCAT_ROOT/log/muscat_execute_job.log
 #RVM_CMD="/PATH_TO/.rvm/bin/rvm 3.2.2@rails7 do"
 
 if [ $# -eq 0 ]; then
-    echo "muscat_execute_job <job> <env> <param>"
+    echo "muscat_execute_job <job> <env> [param] [--telemetry]"
+    exit 1
 fi
 
 if [ -z "$1" ]; then
     echo "No job supplied"
+    exit 1
 fi
 
 JOB_NAME=$1
@@ -36,6 +38,35 @@ else
     fi
 fi
 
+shift 2
+PARAMETER=
+TELEMETRY=false
+
+while [ $# -gt 0 ]; do
+    case "$1" in
+        --telemetry)
+            TELEMETRY=true
+            ;;
+        --*)
+            echo "Unknown flag: $1"
+            exit 1
+            ;;
+        *)
+            if [ -n "$PARAMETER" ]; then
+                echo "Only one job parameter is supported"
+                exit 1
+            fi
+            PARAMETER=$1
+            ;;
+    esac
+    shift
+done
+
+if [ "$TELEMETRY" = true ] && [ "$JOB_NAME" != "MuscatCheckupReportJob" ]; then
+    echo "--telemetry is only supported by MuscatCheckupReportJob"
+    exit 1
+fi
+
 cd $MUSCAT_ROOT
 
 DATE=`date`
@@ -44,10 +75,15 @@ start=$SECONDS
 echo "Running $JOB_NAME in $RAILS_ENV mode at $DATE" >> $LOGFILE 2>&1
 echo "Start $JOB_NAME in $RAILS_ENV mode at $DATE" >> $MUSCAT_ROOT/log/"$JOB_NAME.log"
 
-if [ -z "$3" ]; then
+if [ "$TELEMETRY" = true ]; then
+    if [ -z "$PARAMETER" ]; then
+        echo "$JOB_NAME.new(telemetry: true).perform" | $RVM_CMD bundle exec rails c >> $MUSCAT_ROOT/log/"$JOB_NAME.log"
+    else
+        echo "$JOB_NAME.new($PARAMETER, telemetry: true).perform" | $RVM_CMD bundle exec rails c >> $MUSCAT_ROOT/log/"$JOB_NAME.log"
+    fi
+elif [ -z "$PARAMETER" ]; then
     echo "$JOB_NAME.new.perform" | $RVM_CMD bundle exec rails c >> $MUSCAT_ROOT/log/"$JOB_NAME.log"
 else
-    PARAMETER=$3
     echo "$JOB_NAME.new($PARAMETER).perform" | $RVM_CMD bundle exec rails c >> $MUSCAT_ROOT/log/"$JOB_NAME.log"
 fi
 

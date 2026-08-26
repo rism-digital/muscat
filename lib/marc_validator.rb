@@ -7,7 +7,7 @@ using AggressivelyStrip
 
   DEBUG = false
 
-  def initialize(object, user = nil, warnings = false, logger = nil, exclusions = nil)
+  def initialize(object, user = nil, warnings = false, logger = nil, exclusions = nil, collect_findings: false)
     @validation = EditorValidation.get_default_validation(object)
     @rules = @validation.rules
     @user = user
@@ -16,6 +16,7 @@ using AggressivelyStrip
     @editor_profile = EditorConfiguration.get_default_layout(object)
     #ap @rules
     @errors = {}
+    @findings = [] if collect_findings
     @object = object
     
     @exclusions = exclusions
@@ -583,6 +584,12 @@ using AggressivelyStrip
     @errors
   end
 
+  # Structured findings are kept alongside the historical error hash so that
+  # reporting callers do not need to parse human-readable validation messages.
+  def get_findings
+    @findings || []
+  end
+
   def current_user
     @user
   end
@@ -756,6 +763,14 @@ using AggressivelyStrip
     @errors[tag][subtag] << message
     
     log_tag = "validation_error" if !log_tag
+    if @findings
+      @findings << {
+        tag: tag,
+        subtag: subtag,
+        message: message.to_s,
+        category: log_tag
+      }
+    end
     @logger.error("#{log_tag} #{@object.id} #{print_record_type(@object)} #{tag} #{subtag} #{message}") if @logger
   end
   

@@ -14,6 +14,7 @@ class MuscatCheckup
     @folder = options[:folder]
 
     @debug_logger = options[:logger]
+    @observability = options[:observability]
 
     @skip_validation            = options[:skip_validation] == true
     @skip_dates                 = options[:skip_dates] == true
@@ -53,12 +54,19 @@ class MuscatCheckup
     # Extract and separate the errors and validations
     total_errors = {}
     total_validations = {}
+    observations = { records_scanned: 0, records_with_findings: 0, findings: Hash.new(0) } if telemetry_enabled?
     results.each do |r|
       total_errors.merge!(r[:errors])
       total_validations.merge!(r[:validations])
+      if telemetry_enabled?
+        observations[:records_scanned] += r[:records_scanned]
+        observations[:records_with_findings] += r[:records_with_findings]
+        r[:findings].each { |key, count| observations[:findings][key] += count }
+      end
     end
         
     filtered_validations, foreign_tag_errors, unknown_tags = postprocess_results(total_validations, limit_unknown_tags: limit_unknown_tags)
+    return total_errors, filtered_validations, foreign_tag_errors, unknown_tags, observations if telemetry_enabled?
     return total_errors, filtered_validations, foreign_tag_errors, unknown_tags
 
   end
@@ -68,6 +76,7 @@ class MuscatCheckup
   def load_and_validate_item(s)
     errors = {}
     validations = {}
+    findings = [] if telemetry_enabled?
 
     phase = :load
 
@@ -86,10 +95,19 @@ class MuscatCheckup
       append_exception(errors, s.id, exception)
       @debug_logger.error("[#{phase}] #{exception.backtrace.first(2).join("\n")}") if @debug_logger
       puts "[#{phase}] #{exception.backtrace.first(2).join("\n")}" # Also print the message on the stdout sink 
+    elsif result.present? && telemetry_enabled?
+      validations[s.id] = result[:errors] if result[:errors].present?
+      findings.concat(result[:findings])
     elsif result.present?
       validations[s.id] = result
     end
 
+    if telemetry_enabled? && output.strip.present?
+      findings << technical_finding(exception ? "record_exception_#{phase}" : "record_error", output.strip)
+    end
+    findings << technical_finding("record_exception_#{phase}", exception.message) if telemetry_enabled? && exception
+
+    return [errors, validations, findings] if telemetry_enabled?
     [errors, validations]
   end
 
@@ -141,6 +159,10 @@ class MuscatCheckup
     Parallel.map(0...@parallel_jobs, in_processes: @parallel_jobs) do |jobid|
       errors = {}
       validations = {}
+      records_scanned = 0 if telemetry_enabled?
+      records_with_findings = 0 if telemetry_enabled?
+      findings_by_category = Hash.new(0) if telemetry_enabled?
+      event_stream = observability_event_stream if telemetry_enabled?
 
       offset = batch_size * jobid
 =begin
@@ -158,37 +180,74 @@ class MuscatCheckup
 
       ids.each_slice(1000) do |slice|
         @model.where(id: slice).order(:id).each do |s|
-          e, v = load_and_validate_item(s)
+          result = load_and_validate_item(s)
+          e, v = result
           errors.merge!(e)
           validations.merge!(v)
+          if telemetry_enabled?
+            findings = result[2]
+            records_scanned += 1
+            record_type = print_record_type(s)
+            if findings.any?
+              event_stream.validation_message(record_id: s.id, record_type: record_type, findings: findings)
+              records_with_findings += 1
+              findings.each { |finding| findings_by_category[[record_type, finding[:category]]] += 1 }
+            end
+          end
         end
       end
 
-      { errors: errors, validations: validations }
+      if telemetry_enabled?
+        {
+          errors: errors,
+          validations: validations,
+          records_scanned: records_scanned,
+          records_with_findings: records_with_findings,
+          findings: findings_by_category
+        }
+      else
+        { errors: errors, validations: validations }
+      end
     end
   end
 
   def validate_folder
     errors = {}
     validations = {}
+    records_scanned = 0 if telemetry_enabled?
+    records_with_findings = 0 if telemetry_enabled?
+    findings_by_category = Hash.new(0) if telemetry_enabled?
+    event_stream = observability_event_stream if telemetry_enabled?
 
     @folder.folder_items.each do |fi|
       next if !fi.item
       s = fi.item
 
-      e, v = load_and_validate_item(s)
+      result = load_and_validate_item(s)
+      e, v = result
       errors.merge!(e)
       validations.merge!(v)
+      if telemetry_enabled?
+        findings = result[2]
+        records_scanned += 1
+        record_type = print_record_type(s)
+        if findings.any?
+          event_stream.validation_message(record_id: s.id, record_type: record_type, findings: findings)
+          records_with_findings += 1
+          findings.each { |finding| findings_by_category[[record_type, finding[:category]]] += 1 }
+        end
+      end
       
       s = nil
     end
       
-    [{errors: errors, validations: validations}]
+    return [{ errors: errors, validations: validations, records_scanned: records_scanned, records_with_findings: records_with_findings, findings: findings_by_category }] if telemetry_enabled?
+    [{ errors: errors, validations: validations }]
   end
 
   def validate_record(record)
     # if something is wrong, let the validator throw and it will be caught by the logger
-    validator = MarcValidator.new(record, nil, false, @debug_logger, @validation_exclusions)
+    validator = MarcValidator.new(record, nil, false, @debug_logger, @validation_exclusions, collect_findings: telemetry_enabled?)
     validator.validate_tags               if !@skip_validation
     validator.validate_dates              if !@skip_dates
     validator.validate_links              if !@skip_links
@@ -201,7 +260,8 @@ class MuscatCheckup
     validator.validate_work_status        if !@skip_validate_work_status
     validator.validate_template_harmony   if !@skip_parent_check
     validator.validate_person_codes       if !@skip_validate_person_codes
-    return validator.get_errors
+    return { errors: validator.get_errors, findings: validator.get_findings } if telemetry_enabled?
+    validator.get_errors
   end
   
   def postprocess_results(validations, limit_unknown_tags: true, unknown_tag_limit: UNKNOWN_TAG_LIMIT)
@@ -264,6 +324,19 @@ class MuscatCheckup
   def print_record_type(item)
     return "none" unless item.respond_to?(:get_record_type)
     item.get_record_type&.to_s || "none"
+  end
+
+  def technical_finding(category, message)
+    { tag: "no_tag", subtag: "no_subtag", message: message.to_s, category: category }
+  end
+
+  def observability_event_stream
+    return nil unless @observability
+    ValidationObservability::EventStream.new(**@observability)
+  end
+
+  def telemetry_enabled?
+    @observability.present?
   end
 
 end

@@ -11,3 +11,12 @@
    endscript
 }
 
+/PATH_TO/muscat/log/validation_observability.jsonl {
+    size=100M
+    missingok
+    rotate 10
+    compress
+    delaycompress
+    notifempty
+    copytruncate
+}
