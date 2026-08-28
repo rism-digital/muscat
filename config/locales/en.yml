@@ -945,6 +945,8 @@ en:
     work_catalogue_in_preparation: Eligible
     work_catalogue_partial: Partially completed
   work_catalogue_publication_warning: To publish linked works, set the work-catalog status to Partial, Complete, or Alternate.
+  workgroup_no_sigla: No siglums for this workgroup
+  workgroup_sigla_hint: Hover over a workgroup link to see its library siglas.
   work_catalogue_tags:
     not_work_catalogue: N.a.
     work_catalogue_alternate: Alternate

@@ -81,6 +81,18 @@ ActiveAdmin.register Place do
       end
     end
 
+    def show_by_tgn
+      place = Place.find_by(tgn_id: params[:tgn_id])
+
+      unless place
+        redirect_to admin_places_path,
+          flash: { error: "#{I18n.t(:error_not_found)} (TGN #{params[:tgn_id]})" }
+        return
+      end
+
+      redirect_to admin_place_path(place)
+    end
+
     def index
       @results, @hits = Place.search_as_ransack(params)
       index! do |format|

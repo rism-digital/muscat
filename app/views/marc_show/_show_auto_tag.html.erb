@@ -2,6 +2,7 @@
 marc_configuration = MarcConfigCache.get_configuration item.class.to_s.underscore
 parts = []
 master = tag.get_master_foreign_subfield
+associated_tgn_id = associated_place_tgn_id(tag)
 relators = []
 relators << item.marc.config.get_relator_code_tag(tag.tag)
 
@@ -52,6 +53,12 @@ tag.for_every_child_sorted do |subfield|
     #    "(#{subfield.foreign_object.model_name.route_key}/#{subfield.content})"
     end
     linked = true
+  elsif associated_tgn_id &&
+        %w[c f].include?(subfield.tag) &&
+        !is_selection_mode?
+    text = subfield.content&.to_s
+    next if text.blank?
+    parts << link_to(text.strip, admin_place_by_tgn_path(tgn_id: associated_tgn_id))
   elsif relators.include?(subfield.tag)
     text = subfield.content&.to_s
     next if text.blank?
@@ -82,4 +89,3 @@ tag_content += tag.content if marc_configuration.is_tagless?(tag.tag)
 		<%= tag_content %>
 	</td>
 </tr>
-

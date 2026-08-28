@@ -65,6 +65,9 @@ class Ability
         # the general design of the role allows extensions alike for e.g. institutions
         cannot :import_wikidata, Person
         can :update, Person
+      else
+        # Normal people can do this
+        can :import_wikidata, Person
       end
 
       if user.has_role?(:inventory_cataloger)

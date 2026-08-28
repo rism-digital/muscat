@@ -22,6 +22,35 @@ RSpec.describe Admin::UsersController, type: :controller do
     ActionMailer::Base.deliveries.clear
   end
 
+  describe "GET index" do
+    it "links workgroups to their show pages with a sigla tooltip" do
+      workgroup = admin.workgroups.first
+
+      get :index
+
+      link = Nokogiri::HTML(response.body).at_css(
+        %(a[href="#{admin_workgroup_path(workgroup)}"])
+      )
+
+      expect(link.text).to eq(workgroup.name)
+      expect(link["title"]).to eq(workgroup.show_libs(max: 10))
+      expect(response.body).to include(I18n.t(:workgroup_sigla_hint))
+    end
+
+    it "uses a localized tooltip when the workgroup has no sigla" do
+      workgroup = admin.workgroups.first
+      workgroup.institutions.clear
+
+      get :index
+
+      link = Nokogiri::HTML(response.body).at_css(
+        %(a[href="#{admin_workgroup_path(workgroup)}"])
+      )
+
+      expect(link["title"]).to eq(I18n.t(:workgroup_no_sigla))
+    end
+  end
+
   describe "POST create" do
     it "creates a pending user and emails an invitation" do
       I18n.with_locale(:de) do

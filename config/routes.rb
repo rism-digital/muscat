@@ -63,6 +63,8 @@ Rails.application.routes.draw do
   post 'admin/editor_help/:page', to: 'editor_help#render_page'
   post 'admin/editor_help_box/:page', to: 'editor_help#render_page_in_box'
 
+  get "admin/places/tgn/:tgn_id", to: "admin/places#show_by_tgn", as: :admin_place_by_tgn, constraints: { tgn_id: /\d+/ }
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

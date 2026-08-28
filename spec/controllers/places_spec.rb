@@ -22,4 +22,23 @@ RSpec.describe Admin::PlacesController, :type => :controller do
     end
   end
 
+  context "GET show_by_tgn" do
+    it "redirects to the matching place" do
+      place.update_column(:tgn_id, "7006660")
+
+      get :show_by_tgn, params: { tgn_id: "7006660" }
+
+      expect(response).to redirect_to(admin_place_path(place))
+    end
+
+    it "redirects to the places list when no place matches" do
+      get :show_by_tgn, params: { tgn_id: "7006660" }
+
+      expect(response).to redirect_to(admin_places_path)
+      expect(flash[:error]).to eq(
+        "#{I18n.t(:error_not_found)} (TGN 7006660)",
+      )
+    end
+  end
+
 end
