@@ -2,9 +2,21 @@ require 'stringio'
 require 'set'
 
 class MuscatCheckupResult
+  attr_reader :errors, :validations, :foreign_tag_errors, :unknown_tags, :observations
+
+  def initialize(errors:, validations:, foreign_tag_errors:, unknown_tags:, observations:)
+    @errors = errors
+    @validations = validations
+    @foreign_tag_errors = foreign_tag_errors
+    @unknown_tags = unknown_tags
+    @observations = observations
+  end
+end
+
+class RecordCheckupResult
   attr_reader :errors, :validations, :findings
 
-  def initialize(errors:, validations:, findings: [])
+  def initialize(errors:, validations:, findings:)
     @errors = errors
     @validations = validations
     @findings = findings
@@ -157,7 +169,13 @@ class MuscatCheckup
     end
         
     filtered_validations, foreign_tag_errors, unknown_tags = postprocess_results(total_validations, limit_unknown_tags: limit_unknown_tags)
-    [total_errors, filtered_validations, foreign_tag_errors, unknown_tags, observations]
+    MuscatCheckupResult.new(
+      errors: total_errors,
+      validations: filtered_validations,
+      foreign_tag_errors: foreign_tag_errors,
+      unknown_tags: unknown_tags,
+      observations: observations
+    )
 
   end
   
@@ -198,7 +216,7 @@ class MuscatCheckup
       )
     )
 
-    MuscatCheckupResult.new(
+    RecordCheckupResult.new(
       errors: errors,
       validations: validations,
       findings: findings
@@ -310,7 +328,7 @@ class MuscatCheckup
     validator.validate_work_status        if !@skip_validate_work_status
     validator.validate_template_harmony   if !@skip_parent_check
     validator.validate_person_codes       if !@skip_validate_person_codes
-    MuscatCheckupResult.new(
+    RecordCheckupResult.new(
       errors: {},
       validations: validator.get_errors,
       findings: validator.get_findings

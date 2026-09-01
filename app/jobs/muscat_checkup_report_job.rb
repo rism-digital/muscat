@@ -29,8 +29,7 @@ class MuscatCheckupReportJob < ApplicationJob
       # Run the checkup function
       checkup_options = { model: @model, logger: logger, log_path: log_path, process_exclusions: true }
       checkup_options[:observability] = stream.metadata if @telemetry
-      results = MuscatCheckup.new(checkup_options).validate_parallel
-      total_errors, total_validations, foreign_tag_errors, unknown_tags, observations = results
+      result = MuscatCheckup.new(checkup_options).validate_parallel
 
       end_time = Time.now
       duration = (end_time - begin_time).to_i
@@ -42,7 +41,7 @@ class MuscatCheckupReportJob < ApplicationJob
           stream: stream,
           started_at: begin_time,
           completed_at: end_time,
-          observations: observations
+          observations: result.observations
         )
       end
     rescue StandardError => e
@@ -56,7 +55,14 @@ class MuscatCheckupReportJob < ApplicationJob
       raise
     end
 
-    HealthReport.notify(@model.to_s, message, total_errors, total_validations, foreign_tag_errors, unknown_tags).deliver_now
+    HealthReport.notify(
+      @model.to_s,
+      message,
+      result.errors,
+      result.validations,
+      result.foreign_tag_errors,
+      result.unknown_tags
+    ).deliver_now
   end
   
 end
