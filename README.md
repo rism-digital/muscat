@@ -10,6 +10,7 @@ Muscat is a framework for cataloging music documents (handwritten and printed mu
 * [Configuration](4-CONFIG.md)
 * [MARC21 Configuration and management](5-MARC_CONFIG.md)
 * [RSPEC](6-RSPEC.md)
+* [Validation observability](doc/9-VALIDATION_OBSERVABILITY.md)
 
 ### Contributors
 

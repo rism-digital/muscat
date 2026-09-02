@@ -40,6 +40,9 @@ PATH=/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin
 00  04  *  *  sun muscat PATH_TO/muscat/bin/muscat_execute_job MuscatMaintenanceJob production
 
 # These validate records and send an email
+# Add --telemetry to an individual command only after configuring Alloy, for example:
+# 00 07 * * sun muscat PATH_TO/muscat/bin/muscat_execute_job MuscatCheckupReportJob production --telemetry
+# 00 08 * * sun muscat PATH_TO/muscat/bin/muscat_execute_job MuscatCheckupReportJob production Holding --telemetry
 00  07  *  *  sun muscat PATH_TO/muscat/bin/muscat_execute_job MuscatCheckupReportJob production
 00  08  *  *  sun muscat PATH_TO/muscat/bin/muscat_execute_job MuscatCheckupReportJob production Holding
 10  08  *  *  sun muscat PATH_TO/muscat/bin/muscat_execute_job MuscatCheckupReportJob production Work
