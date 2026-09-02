@@ -16,7 +16,7 @@ LOGFILE=$MUSCAT_ROOT/log/muscat_execute_job.log
 #RVM_CMD="/PATH_TO/.rvm/bin/rvm 3.2.2@rails7 do"
 
 if [ $# -eq 0 ]; then
-    echo "muscat_execute_job <job> <env> [param] [--telemetry]"
+    echo "muscat_execute_job <job> [env] [param] [--telemetry]"
     exit 1
 fi
 
@@ -26,19 +26,16 @@ if [ -z "$1" ]; then
 fi
 
 JOB_NAME=$1
+shift
 
-if [ -z "$2" ]; then
-    export RAILS_ENV=production
-else
-    if [ $2 == "production" ] || [ $2 == "development" ] || [ $2 == "test" ]; then
-        export RAILS_ENV=$2
-    else
-        echo "Invalid RAILS_ENV $2"
-        exit 1
-    fi
-fi
+export RAILS_ENV=production
+case "$1" in
+    production|development|test)
+        export RAILS_ENV=$1
+        shift
+        ;;
+esac
 
-shift 2
 PARAMETER=
 TELEMETRY=false
 
