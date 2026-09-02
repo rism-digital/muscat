@@ -34,8 +34,12 @@ module ActiveAdmin::ViewsHelper
     #  c = Source.where(id: item.referring_sources.ids).or(Source.where(id: item.holdings.pluck(:source_id)))
     if link_class == InventoryItem &&item.respond_to?("inventory_items") && item.is_a?(Source)
       c = item.inventory_items
-    elsif link_class == User && item.respond_to?("users") && item.is_a?(Workgroup)
-      c = item.users
+    elsif item.is_a?(Workgroup) && [Institution, User].include?(link_class)
+      c = item.public_send(link_class.to_s.pluralize.underscore)
+    elsif item.is_a?(Institution) && link_class == Workgroup
+      c = item.workgroups
+    elsif item.is_a?(Institution) && link_class == User
+      c = User.joins(:workgroups).where(workgroups: { id: item.workgroup_ids }).distinct
     else
       c = item.send("referring_" + link_class.to_s.pluralize.underscore)
     end    
@@ -50,12 +54,12 @@ module ActiveAdmin::ViewsHelper
     end
   end 
  
-  def active_adnin_create_list_for(context, model, item, *fields)
+  def active_adnin_create_list_for(context, model, item, panel_title: nil, **fields)
     controller_name = model.name.underscore.downcase.pluralize.to_sym
-    active_admin_embedded_link_list(context, item, model) do |context|
+    active_admin_embedded_link_list(context, item, model, panel_title) do |context|
       context.table_for(context.collection) do |cr|
         context.column "id", :id
-        fields.first.each do |field, label|
+        fields.each do |field, label|
           context.column label, field
         end
         if !is_selection_mode?

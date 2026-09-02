@@ -890,6 +890,8 @@ ca:
   work_catalogue_publication_warning: Per publicar les obres enllaçades, estableix l'estat del catàleg d'obres a 'Parcial', 'Complet' o 'Alternatiu'.
   workgroup_no_sigla: No hi ha cap sigla per a aquest grup de treball
   workgroup_sigla_hint: Passeu el cursor per sobre de l’enllaç d’un grup de treball per veure les sigles de les biblioteques d’aquell grup.
+  users_with_institution_permissions: Usuaris que tenen permisos per a aquesta institució
+  workgroups_with_institution_permissions: Grups de treball que tenen permisos per a aquesta institució
   workgroups: Grups de treball
   worknode:
     one: work node

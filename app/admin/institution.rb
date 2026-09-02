@@ -222,6 +222,11 @@ ActiveAdmin.register Institution do
     active_adnin_create_list_for(self, Publication, institution, short_name: I18n.t(:filter_title_short), author: I18n.t(:filter_author), title: I18n.t(:filter_title))    
     active_adnin_create_list_for(self, Work, institution, title: I18n.t(:filter_title))
 
+    if current_user.has_any_role?(:editor, :admin)
+      active_adnin_create_list_for(self, Workgroup, institution, panel_title: I18n.t(:workgroups_with_institution_permissions), name: I18n.t(:filter_name), libpatterns: I18n.t(:filter_pattern), email: I18n.t(:filter_email))
+      active_adnin_create_list_for(self, User, institution, panel_title: I18n.t(:users_with_institution_permissions), username: "User", name: "Name", email: "Email")
+    end
+
     active_admin_digital_object( self, @item ) if !is_selection_mode?
     active_admin_user_wf( self, institution )
     active_admin_navigation_bar( self )

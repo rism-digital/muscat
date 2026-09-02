@@ -890,6 +890,8 @@ fr:
   work_catalogue_publication_warning: Pour publier les œuvres liées, définissez le statut du catalogue d'œuvres sur 'Partiel', 'Complet' ou 'Alternatif'.
   workgroup_no_sigla: Aucun sigle pour ce groupe
   workgroup_sigla_hint: Survolez un lien de groupe pour voir les sigles des bibliothèques de ce groupe.
+  users_with_institution_permissions: Utilisateurs ayant des autorisations pour cette institution
+  workgroups_with_institution_permissions: Groupes de travail ayant des autorisations pour cette institution
   workgroups: Groupes
   worknode:
     one: Work node

@@ -890,6 +890,8 @@ pl:
   work_catalogue_publication_warning: Aby opublikować powiązane dzieła, ustaw status katalogu dzieł na 'Częściowy', 'Kompletny' lub 'Alternatywny'.
   workgroup_no_sigla: Brak siglów dla tej grupy roboczej
   workgroup_sigla_hint: Najedź kursorem na link grupy roboczej, aby zobaczyć sigla bibliotek należących do tej grupy.
+  users_with_institution_permissions: Użytkownicy mający uprawnienia do tej instytucji
+  workgroups_with_institution_permissions: Grupy robocze mające uprawnienia do tej instytucji
   workgroups: Grupy robocze
   worknode:
     one: Work node

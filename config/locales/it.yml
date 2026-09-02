@@ -890,6 +890,8 @@ it:
   work_catalogue_publication_warning: Per pubblicare le opere collegate, imposta lo stato del catalogo opere su 'Parziale', 'Completo' o 'Alternativo'.
   workgroup_no_sigla: Nessuna sigla per questo gruppo
   workgroup_sigla_hint: Passa il puntatore sul collegamento di un gruppo per vedere le sigle delle biblioteche di quel gruppo.
+  users_with_institution_permissions: Utenti che dispongono di autorizzazioni per questa istituzione
+  workgroups_with_institution_permissions: Gruppi di lavoro che dispongono di autorizzazioni per questa istituzione
   workgroups: Gruppi
   worknode:
     one: Work node

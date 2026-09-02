@@ -890,6 +890,8 @@ de:
   work_catalogue_publication_warning: Um verknüpfte Werke zu veröffentlichen, setzen Sie den Werkkatalog-Status auf 'Teilweise', 'Vollständig' oder 'Alternativ'.
   workgroup_no_sigla: Keine Sigel für diese Benutzergruppe
   workgroup_sigla_hint: Bewegen Sie den Mauszeiger über einen Benutzergruppen-Link, um die Bibliothekssigel dieser Benutzergruppe anzuzeigen.
+  users_with_institution_permissions: Benutzer mit Berechtigungen für diese Institution
+  workgroups_with_institution_permissions: Arbeitsgruppen mit Berechtigungen für diese Institution
   workgroups: Benutzergruppen
   worknode:
     one: Work node
