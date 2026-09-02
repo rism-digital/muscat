@@ -41,4 +41,33 @@ RSpec.describe Admin::PlacesController, :type => :controller do
     end
   end
 
+  context "TGN place preloading" do
+    it "loads matching places for unique TGN identifiers in one query" do
+      tags = ["7006660", "7006660", "7004333"].map do |id|
+        instance_double(MarcNode, tag: "370").tap do |tag|
+          allow(tag).to receive(:fetch_first_by_tag).with("2")
+            .and_return(instance_double(MarcNode, content: "tgn"))
+          allow(tag).to receive(:fetch_first_by_tag).with("u")
+            .and_return(instance_double(MarcNode, content: "https://vocab.getty.edu/tgn/#{id}"))
+        end
+      end
+      marc = instance_double(Marc)
+      allow(marc).to receive(:each_by_tag).with("370") do |&block|
+        tags.each(&block)
+      end
+      item = instance_double(Place, marc: marc)
+      matching_places = [instance_double(Place, tgn_id: "7006660")]
+
+      expect(Place).to receive(:where)
+        .with(tgn_id: ["7006660", "7004333"])
+        .once
+        .and_return(matching_places)
+
+      controller.send(:preload_tgn_places, item)
+
+      places_by_tgn_id = controller.instance_variable_get(:@places_by_tgn_id)
+      expect(places_by_tgn_id.keys).to contain_exactly("7006660")
+    end
+  end
+
 end

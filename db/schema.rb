@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.2].define(version: 2026_07_21_121055) do
+ActiveRecord::Schema[7.2].define(version: 2026_09_02_140000) do
   create_table "active_admin_comments", id: :integer, charset: "utf8mb3", force: :cascade do |t|
     t.string "namespace"
     t.text "body"
@@ -425,6 +425,7 @@ ActiveRecord::Schema[7.2].define(version: 2026_07_21_121055) do
     t.text "hierarchy"
     t.string "tgn_id"
     t.index ["name"], name: "index_places_on_name"
+    t.index ["tgn_id"], name: "index_places_on_tgn_id"
     t.index ["wf_stage"], name: "index_places_on_wf_stage"
   end
 

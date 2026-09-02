@@ -71,6 +71,7 @@ ActiveAdmin.register Place do
       end
       @show_profile = EditorConfiguration.get_show_layout @place
       @editor_validation = EditorValidation.get_default_validation(@place)
+      preload_tgn_places(@place)
       @prev_item, @next_item, @prev_page, @next_page, @nav_positions = Place.near_items_as_ransack(params, @place)
 
       @jobs = @place.delayed_jobs
@@ -115,6 +116,18 @@ ActiveAdmin.register Place do
       #To transmit correctly @item we need to have @source initialized
       @item = @place
       @editor_validation = EditorValidation.get_default_validation(@item)
+    end
+
+    private
+
+    def preload_tgn_places(place)
+      tgn_ids = []
+      place.marc.each_by_tag("370") do |tag|
+        tgn_id = helpers.associated_place_tgn_id(tag)
+        tgn_ids << tgn_id if tgn_id
+      end
+
+      @places_by_tgn_id = Place.where(tgn_id: tgn_ids.uniq).index_by(&:tgn_id)
     end
 
   end
