@@ -23,32 +23,13 @@ class RecordCheckupResult
   end
 end
 
-class TelemetryNullWorker
-  def initialize(*)
+class TelemetryWorker
+  def initialize(observability)
     @observations = {
       records_scanned: 0,
       records_with_findings: 0,
       findings: Hash.new(0)
     }
-  end
-
-  def collect_findings?
-    false
-  end
-
-  def technical_findings(output:, exception:, phase:)
-    []
-  end
-
-  def record(record, findings)
-  end
-
-  attr_reader :observations
-end
-
-class TelemetryWorker < TelemetryNullWorker
-  def initialize(observability)
-    super()
     @event_stream = ValidationObservability::EventStream.new(**observability)
   end
 
@@ -70,6 +51,8 @@ class TelemetryWorker < TelemetryNullWorker
 
     findings
   end
+
+  attr_reader :observations
 
   def record(record, findings)
     @observations[:records_scanned] += 1
@@ -109,6 +92,11 @@ class MuscatCheckup
 
   # It was 10, but now we should have exclusions
   UNKNOWN_TAG_LIMIT = 100
+  EMPTY_OBSERVATIONS = {
+    records_scanned: 0,
+    records_with_findings: 0,
+    findings: {}.freeze
+  }.freeze
 
   def initialize(options = {})
     @model = options[:model].is_a?(Class) ? options[:model] : Source
@@ -119,7 +107,7 @@ class MuscatCheckup
 
     @debug_logger = options[:logger]
     @observability = options[:observability]
-    @telemetry_worker_class = @observability.present? ? TelemetryWorker : TelemetryNullWorker
+    @telemetry_enabled = @observability.present?
 
     @skip_validation            = options[:skip_validation] == true
     @skip_dates                 = options[:skip_dates] == true
@@ -181,17 +169,16 @@ class MuscatCheckup
   
   private
 
-  def load_and_validate_item(s, telemetry)
+  def load_and_validate_item(s)
     errors = {}
     validations = {}
-    findings = []
 
     phase = :load
 
     result, output, exception = capture_stdout_and_stderr do
       #s.marc.load_source(true)
       phase = :validate
-      validate_record(s, telemetry)
+      validate_record(s)
     end
 
     unless output.strip.empty?
@@ -203,6 +190,34 @@ class MuscatCheckup
       append_exception(errors, s.id, exception)
       @debug_logger.error("[#{phase}] #{exception.backtrace.first(2).join("\n")}") if @debug_logger
       puts "[#{phase}] #{exception.backtrace.first(2).join("\n")}" # Also print the message on the stdout sink 
+    elsif result.present?
+      validations[s.id] = result
+    end
+
+    [errors, validations]
+  end
+
+  def load_and_validate_item_with_telemetry(s, telemetry)
+    errors = {}
+    validations = {}
+    findings = []
+
+    phase = :load
+
+    result, output, exception = capture_stdout_and_stderr do
+      phase = :validate
+      validate_record_with_telemetry(s, telemetry)
+    end
+
+    unless output.strip.empty?
+      errors[s.id] = output
+      log_output_lines(output, s, exception ? "record_exception_#{phase}" : "record_error")
+    end
+
+    if exception
+      append_exception(errors, s.id, exception)
+      @debug_logger.error("[#{phase}] #{exception.backtrace.first(2).join("\n")}") if @debug_logger
+      puts "[#{phase}] #{exception.backtrace.first(2).join("\n")}"
     elsif result.present?
       validations[s.id] = result.validations if result.validations.present?
       findings.concat(result.findings)
@@ -216,11 +231,7 @@ class MuscatCheckup
       )
     )
 
-    RecordCheckupResult.new(
-      errors: errors,
-      validations: validations,
-      findings: findings
-    )
+    RecordCheckupResult.new(errors: errors, validations: validations, findings: findings)
   end
 
   def capture_stdout_and_stderr
@@ -266,6 +277,37 @@ class MuscatCheckup
   end
 
   def validate_items
+    return validate_items_with_telemetry if telemetry_enabled?
+    validate_items_without_telemetry
+  end
+
+  def validate_items_without_telemetry
+    batch_size = (@all_items.to_f / @parallel_jobs).ceil
+
+    Parallel.map(0...@parallel_jobs, in_processes: @parallel_jobs) do |jobid|
+      errors = {}
+      validations = {}
+
+      offset = batch_size * jobid
+      ids = @model.order(:id).limit(batch_size).offset(offset).pluck(:id)
+
+      ids.each_slice(1000) do |slice|
+        @model.where(id: slice).order(:id).each do |s|
+          errors_for_record, validations_for_record = load_and_validate_item(s)
+          errors.merge!(errors_for_record)
+          validations.merge!(validations_for_record)
+        end
+      end
+
+      {
+        errors: errors,
+        validations: validations,
+        observations: EMPTY_OBSERVATIONS
+      }
+    end
+  end
+
+  def validate_items_with_telemetry
     batch_size = (@all_items.to_f / @parallel_jobs).ceil
 
     Parallel.map(0...@parallel_jobs, in_processes: @parallel_jobs) do |jobid|
@@ -278,7 +320,7 @@ class MuscatCheckup
 
       ids.each_slice(1000) do |slice|
         @model.where(id: slice).order(:id).each do |s|
-          result = load_and_validate_item(s, telemetry)
+          result = load_and_validate_item_with_telemetry(s, telemetry)
           errors.merge!(result.errors)
           validations.merge!(result.validations)
           telemetry.record(s, result.findings)
@@ -294,6 +336,29 @@ class MuscatCheckup
   end
 
   def validate_folder
+    return validate_folder_with_telemetry if telemetry_enabled?
+    validate_folder_without_telemetry
+  end
+
+  def validate_folder_without_telemetry
+    errors = {}
+    validations = {}
+
+    @folder.folder_items.each do |fi|
+      next if !fi.item
+      s = fi.item
+
+      errors_for_record, validations_for_record = load_and_validate_item(s)
+      errors.merge!(errors_for_record)
+      validations.merge!(validations_for_record)
+
+      s = nil
+    end
+
+    [{ errors: errors, validations: validations, observations: EMPTY_OBSERVATIONS }]
+  end
+
+  def validate_folder_with_telemetry
     errors = {}
     validations = {}
     telemetry = build_telemetry_worker
@@ -302,20 +367,35 @@ class MuscatCheckup
       next if !fi.item
       s = fi.item
 
-      result = load_and_validate_item(s, telemetry)
+      result = load_and_validate_item_with_telemetry(s, telemetry)
       errors.merge!(result.errors)
       validations.merge!(result.validations)
       telemetry.record(s, result.findings)
-      
+
       s = nil
     end
-      
+
     [{ errors: errors, validations: validations, observations: telemetry.observations }]
   end
 
-  def validate_record(record, telemetry)
+  def validate_record(record)
+    validator = MarcValidator.new(record, nil, false, @debug_logger, @validation_exclusions)
+    run_record_validations(validator)
+    validator.get_errors
+  end
+
+  def validate_record_with_telemetry(record, telemetry)
     # if something is wrong, let the validator throw and it will be caught by the logger
     validator = MarcValidator.new(record, nil, false, @debug_logger, @validation_exclusions, collect_findings: telemetry.collect_findings?)
+    run_record_validations(validator)
+    RecordCheckupResult.new(
+      errors: {},
+      validations: validator.get_errors,
+      findings: validator.get_findings
+    )
+  end
+
+  def run_record_validations(validator)
     validator.validate_tags               if !@skip_validation
     validator.validate_dates              if !@skip_dates
     validator.validate_links              if !@skip_links
@@ -328,11 +408,6 @@ class MuscatCheckup
     validator.validate_work_status        if !@skip_validate_work_status
     validator.validate_template_harmony   if !@skip_parent_check
     validator.validate_person_codes       if !@skip_validate_person_codes
-    RecordCheckupResult.new(
-      errors: {},
-      validations: validator.get_errors,
-      findings: validator.get_findings
-    )
   end
   
   def postprocess_results(validations, limit_unknown_tags: true, unknown_tag_limit: UNKNOWN_TAG_LIMIT)
@@ -398,7 +473,11 @@ class MuscatCheckup
   end
 
   def build_telemetry_worker
-    @telemetry_worker_class.new(@observability)
+    TelemetryWorker.new(@observability)
+  end
+
+  def telemetry_enabled?
+    @telemetry_enabled
   end
 
 end

@@ -43,6 +43,7 @@ RSpec.describe MuscatCheckup do
     end
     folder = Struct.new(:folder_items).new([])
 
+    expect(TelemetryWorker).not_to receive(:new)
     result = described_class.new(model: model, folder: folder).validate_parallel
 
     expect(result).to be_a(MuscatCheckupResult)
@@ -56,21 +57,21 @@ RSpec.describe MuscatCheckup do
       findings: {}
     )
   end
-end
 
-RSpec.describe TelemetryNullWorker do
-  subject(:worker) { described_class.new(nil) }
+  it "does not build a telemetry result for a normal record validation" do
+    model = Class.new do
+      def self.count
+        0
+      end
+    end
+    record = Struct.new(:id).new(42)
+    checkup = described_class.new(model: model)
+    validation = { "100" => { "a" => ["Invalid"] } }
 
-  it "implements telemetry operations without collecting anything" do
-    worker.record(double("record"), [{ category: "validation_error" }])
+    allow(checkup).to receive(:validate_record).with(record).and_return(validation)
+    expect(RecordCheckupResult).not_to receive(:new)
 
-    expect(worker).not_to be_collect_findings
-    expect(worker.technical_findings(output: "error", exception: StandardError.new("failed"), phase: :validate)).to eq([])
-    expect(worker.observations).to eq(
-      records_scanned: 0,
-      records_with_findings: 0,
-      findings: {}
-    )
+    expect(checkup.send(:load_and_validate_item, record)).to eq([{}, { 42 => validation }])
   end
 end
 
