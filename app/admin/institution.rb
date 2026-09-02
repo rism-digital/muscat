@@ -88,6 +88,19 @@ ActiveAdmin.register Institution do
 
       @institution_types = Source.get_terms("368a_sms")
 
+      if current_user.has_any_role?(:editor, :admin)
+        institution_ids = @results.map(&:id)
+        @workgroup_counts = Workgroup.joins(:institutions)
+                                     .where(institutions: { id: institution_ids })
+                                     .group("institutions.id")
+                                     .count
+        @workgroup_user_counts = User.joins(workgroups: :institutions)
+                                     .where(institutions: { id: institution_ids })
+                                     .group("institutions.id")
+                                     .distinct
+                                     .count("users.id")
+      end
+
       index! do |format|
         @institutions = @results
         format.html
@@ -165,6 +178,14 @@ ActiveAdmin.register Institution do
     column (I18n.t :filter_siglum), :siglum
     column (I18n.t :filter_location_and_name), :full_name
     column (I18n.t :filter_place), :place
+    if current_user.has_any_role?(:editor, :admin)
+      column "GRPs", class: "col-workgroups-count" do |element|
+        controller.view_assigns["workgroup_counts"].fetch(element.id, 0)
+      end
+      column "Users", class: "col-workgroup-users-count" do |element|
+        controller.view_assigns["workgroup_user_counts"].fetch(element.id, 0)
+      end
+    end
     column (I18n.t :filter_sources), :src_count_order, sortable: :src_count_order do |element|
       active_admin_stored_from_hits(controller.view_assigns["hits"], element, :src_count_order)
     end
