@@ -559,15 +559,22 @@ sudo iptables -A INPUT -p tcp --dport 8983 -j DROP
 
 In version 7.0 the crono scheduler was removed and a normal crontab plus a script is provided. The default crontab file should be linked in /etc/con.d. Edit the muscat\_crontab to set PATH\_TO to the correct muscat installation, you will need to do it by hand.
 
-On debian/ubuntu this should work:
+First, make a symlink to the `muscat_execute_job` script
 
 ```
-ln -s config/muscat_crontab /etc/cron.d
-chmod +x /etc/cron/muscat_crontab
+sudo ln -sfn "$(realpath bin/muscat_execute_job)" /usr/local/bin/muscat_execute_job
+```
+
+Then add the cron file:
+
+```
+sudo ln -s config/muscat_crontab /etc/cron.d
+sudo chmod +x /etc/cron/muscat_crontab
+sudo chown root:root config/muscat_crontab
 sudo service cron restart
 ```
 
-**NOTE** If you ever change the cron file name, it CANNOT contain dots\! Or it will silently fail.
+**NOTE** If you ever change the cron file name, it CANNOT contain dots\! Or it will silently fail. **NOTE 2** make sure the file is owned by root.
 
 ### Logrotate
 
