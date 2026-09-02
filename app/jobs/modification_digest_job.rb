@@ -45,7 +45,11 @@ class ModificationDigestJob < ApplicationJob
           SQL
           .select(<<~SQL)
             #{table}.*,
-            v.whodunnit AS last_version_author,
+              CASE
+                WHEN v.id IS NULL THEN NULL
+                WHEN v.whodunnit IS NULL THEN 'System'
+                ELSE v.whodunnit
+              END AS last_version_author,
             u.name AS current_user_name
           SQL
           .order("#{table}.updated_at DESC")
@@ -82,7 +86,6 @@ class ModificationDigestJob < ApplicationJob
     period = period.to_sym if period.is_a?(String)
     @period = period
     @period = :weekly if ![:daily, :weekly].include?(@period)
-    @days = @period == :weekly ? 7 : 1
     puts "Set #{@period} for #{@days} days"
   end
 
