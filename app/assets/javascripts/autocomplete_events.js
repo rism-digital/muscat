@@ -76,7 +76,7 @@ function bind_autocomplete_events() {
 
     // undefined means it is the first time ever we open this AC
     // closed menans at some point is was... closed
-    if (hidden.data("status") === "undefined" || hidden.data("status") === "closed") {
+    if (hidden.data("status") === undefined || hidden.data("status") === "closed") {
       hidden.data("status", "opened");
     }
     
@@ -124,9 +124,9 @@ function bind_autocomplete_events() {
           found = true;
           break;
         }
-        if (!found) {
+      }
+      if (!found) {
           hidden.data("status", "opened");
-        }
       }
     }
   });
@@ -183,7 +183,7 @@ function bind_autocomplete_events() {
         var check_tr = toplevel_li.find(".checkbox_confirmation")
         check_tr.fadeIn("fast");
 
-        check = toplevel_li.find(".creation_checkbox")
+        var check = toplevel_li.find(".creation_checkbox")
         check.data("check", true)
       }
 
