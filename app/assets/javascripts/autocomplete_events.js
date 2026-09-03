@@ -76,35 +76,31 @@ function bind_autocomplete_events() {
 
     // undefined means it is the first time ever we open this AC
     // closed menans at some point is was... closed
-    if (hidden.data("status") === "undefinded" || hidden.data("closed")) {
+    if (hidden.data("status") === "undefined" || hidden.data("status") === "closed") {
       hidden.data("status", "opened");
     }
     
     var menu = input.data("uiAutocomplete").menu
     var $items = $('li', menu.element);
-    var item;
     //var startsWith = new RegExp("^" + input.val(), "i");
 
-    for (var i = 0; i < $items.length && !item; i++) {
-      text = $items.eq(i).text();
-      if (text == input.val()) {
-        item = $items.eq(i);
-        break;
-      }
-    }
+    var matchingItem = $items.filter(function () {
+      var itemData = $(this).data("ui-autocomplete-item");
 
-    if (item) {
-      menu.focus(null, item);
+      return itemData && itemData.value === input.val();
+    }).first();
+
+    if (matchingItem.length) {
+      menu.focus(event, matchingItem);
     }
     
   });
 
   // 2) The user types and results come in. If no results are there
   // we set the "status" in the hidden to "nomatch". If there are
-  // results, we compare the very first result to the text typed in
-  // If they are the same we automatically select this value, by
-  // calling autocomplete_select. This sets the "status" value
-  // in the hidden to "selected".
+  // results, we compare them with the input text, since an exact
+  // match could be further down in the menu. If we find it, we select
+  // and highlight it in the menu. This happens in autocompleteopen
   $("#marc_editor_panel").on('autocompleteresponse', function(event, data) {
     var input = $(event.target); // Get the autocomplete id
 
@@ -119,11 +115,17 @@ function bind_autocomplete_events() {
     if (data.content.length == 0) {
       hidden.data("status", "nomatch");
     } else {
-      // if the first one is _exactly_ the same match, select it!
+      // There could be an exact match that is not the first one
+      // So we need to select it by default
+      var found = false;
       for (var i = 0; i < data.content.length; i++) {
         if (data.content[i].value == input.val()) {
           autocomplete_selct(event, {item: data.content[i]});
+          found = true;
           break;
+        }
+        if (!found) {
+          hidden.data("status", "opened");
         }
       }
     }
@@ -208,7 +210,7 @@ function bind_autocomplete_events() {
       });
     }
     // Update the data to signal closing
-    hidden.data("status", "closes");
+    hidden.data("status", "closed");
   });
 	
 }
