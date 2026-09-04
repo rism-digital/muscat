@@ -251,17 +251,31 @@ pt:
     copied: Resultados copiados para a área de transferência
   commit: Aplicar
   compare_versions:
+    build_new_rule: Criar nova regra
+    configured_rules: Regras configuradas
     date_message: Mostrar records modificados de %{date}.
     diff: Comparar
     display: Mostrar
+    empty_rule: Adicione uma regra para comparar os registos alterados.
+    exclude_own: Excluir as minhas alterações
     hide: Esconder
+    last_24_hours: Alterações nas últimas 24 horas
+    last_7_days: Alterações nos últimos 7 dias
+    model_limit: Esta versão permite apenas comparar fontes, obras e instituições.
     modified_records: Records modificados
     new_record: Novo record
     no_recent_version: O último salvamento não criou um snapshot
     no_records: Não há records para mostrar com as opções actualmente seleccionadas
     options: Opções
     rule: Regra
+    rule_already_saved: Esta regra já está configurada.
+    rule_help: Escolha quais registos alterados pretende mostrar.
+    rule_invalid: Não foi possível guardar a regra porque ela não é válida.
+    rule_prompt: Selecione uma regra configurada para mostrar ou crie uma nova.
+    rule_saved: Regra guardada.
+    save_rule: Guardar regra
     show: Espectáculo
+    show_results: Mostrar resultados
     similarity: Diferenças
     tags: Tags
     time_frame: Período de tempo
@@ -693,6 +707,28 @@ pt:
     none: Notificações estão desactivadas
     notifications: Notificações
     rules: Regras
+    rule_builder:
+      add_condition: Adicionar condição
+      add_rule: Adicionar regra
+      and: E
+      any_condition: Qualquer alteração
+      any_modified: Qualquer alteração em __MODEL__
+      close: Fechar
+      edit: Editar
+      fields:
+        follow: Seguir
+        form: Forma
+      invalid_value: Os valores não podem conter dois-pontos nem aspas duplas.
+      operators:
+        contains: contém
+        ends_with: termina em
+        equals: é igual a
+        glob: corresponde ao padrão
+        starts_with: começa por
+      remove: Remover
+      rule: Regra
+      when: Quando o tipo de registo é
+      where: ONDE
     weekly: Todas as semanas
   object: Objeto
   old_index: Índice anterior

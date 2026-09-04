@@ -12,6 +12,21 @@
   color: #4a5663;
 }
 
+.notification-rule-builder__presets {
+  margin-bottom: 12px;
+}
+
+.notification-rule-builder__presets label {
+  display: block;
+  margin-bottom: 5px;
+  font-weight: bold;
+}
+
+.notification-rule-builder__presets select {
+  width: 100%;
+  max-width: 760px;
+}
+
 .notification-rule-builder__intro p {
   margin: 0 0 5px;
 }
@@ -309,6 +324,122 @@
 .notification-rule-builder__error {
   color: #932419;
   font-weight: bold;
+}
+
+.notification-rule-builder--compact .notification-rule-builder__logic,
+.notification-rule-builder--compact .notification-rule-builder__toolbar,
+.notification-rule-builder--compact .notification-rule-card__header {
+  display: none;
+}
+
+.notification-rule-builder-input--compact {
+  padding: 0 !important;
+}
+
+.compare-versions-model-note {
+  margin: 5px 0 8px;
+  color: #67727d;
+  font-size: 12px;
+}
+
+.compare-versions-rule-prompt {
+  margin-top: 0;
+  font-size: 14px;
+  font-weight: bold;
+}
+
+.compare-versions-settings {
+  display: flex;
+  align-items: flex-end;
+  flex-wrap: wrap;
+  gap: 24px;
+  margin: 14px 0;
+}
+
+.compare-versions-settings label {
+  display: block;
+  margin-bottom: 5px;
+}
+
+.compare-versions-settings__action input {
+  margin: 0;
+}
+
+.compare-versions-settings__action {
+  display: flex;
+  gap: 8px;
+  margin-left: auto;
+}
+
+.compare-versions-save-rule-form {
+  display: none;
+}
+
+.notification-rule-builder--compact.notification-rule-builder {
+  margin-top: 6px;
+}
+
+.notification-rule-builder--compact .notification-rule-card {
+  display: block;
+}
+
+.notification-rule-builder--compact .notification-rule-card__overview {
+  align-items: flex-start;
+  flex-direction: column;
+}
+
+.notification-rule-builder--compact .notification-rule-card__actions {
+  flex-wrap: wrap;
+}
+
+.notification-rule-builder--compact .notification-rule-card__model {
+  display: block;
+}
+
+.notification-rule-builder--compact .notification-rule-card__model-title {
+  margin-bottom: 4px;
+}
+
+.notification-rule-builder--compact .notification-rule-card__model-select {
+  width: 100% !important;
+  min-width: 0;
+}
+
+.notification-rule-builder--compact .notification-condition {
+  display: flex;
+  align-items: stretch;
+  flex-direction: column;
+  padding: 6px;
+}
+
+.notification-rule-builder--compact .notification-condition > * {
+  margin: 2px 0;
+}
+
+.notification-rule-builder--compact .notification-condition__and {
+  display: block;
+  border-right: 0;
+  background: transparent;
+  text-align: left;
+}
+
+.notification-rule-builder--compact .notification-condition__remove {
+  align-self: flex-end;
+}
+
+.notification-rule-builder--compact .notification-rule-card__footer {
+  align-items: flex-start;
+  flex-direction: column;
+}
+
+.notification-rule-builder--compact .notification-rule-card__exclude {
+  align-items: flex-start;
+}
+
+.notification-rule-builder--compact .notification-rule-card--collapsed .notification-rule-card__model,
+.notification-rule-builder--compact .notification-rule-card--collapsed .notification-rule-card__conditions,
+.notification-rule-builder--compact .notification-rule-card--collapsed .notification-rule-card__footer {
+  display: none;
 }
 
 @media (max-width: 900px) {

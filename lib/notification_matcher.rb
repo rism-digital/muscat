@@ -47,15 +47,16 @@ class NotificationMatcher
   }.transform_values(&:freeze).freeze
 
   EXACT_PROPERTIES = %w[follow owner record_type].freeze
+  MAX_RULE_LENGTH = 2_000
 
-  def initialize(object, user, limit_rules = nil)
+  def initialize(object, user, rule: nil)
     #if !object.is_a?(Source) && !object.is_a?(Work) && !object.is_a?(Institution) && !object.is_a?(Holding) && !object.is_a?(Person) 
     #  raise(ArgumentError, "NotificationMatcher can be applied only to Works, Sources, Holdings, Institutions and People" )
     #end
 
     @object = object
     @user = user
-    @limit_rules = limit_rules
+    @rule = rule
   end
 
   def self.model_name_for(record_or_class)
@@ -65,11 +66,11 @@ class NotificationMatcher
   
   def get_matches
     matches = []
-    user_notifications = @user.get_notifications
+    user_notifications = @rule ? [@rule] : @user.get_notifications
     return false if !user_notifications
 ##    return false if !@object.is_a?(Source) && !@object.is_a?(Work) # This should not happen! 
 
-    rules = NotificationMatcher::parse_rules(user_notifications, @limit_rules)
+    rules = NotificationMatcher::parse_rules(user_notifications)
 
     rules.each do |model, rule_groups|
       next if NotificationMatcher.model_name_for(@object) != model
@@ -111,18 +112,38 @@ class NotificationMatcher
     matches
   end
   
-  def self.get_model_for_rule(rule_nr, user)
-    user_notifications = user.get_notifications
-    return false if !user_notifications
-    return false if rule_nr >= user_notifications.count
+  def self.get_model_for_rule(rule)
+    return false if rule.blank?
 
-    rules = parse_rules(user_notifications, rule_nr)
+    rules = parse_rules([rule])
     return nil if !rules || rules.empty?
     model = rules.keys.first
 
     return false if !ALLOWED_MODELS.include?(model)
 
     return model.classify.safe_constantize
+  end
+
+  def self.valid_rule?(rule, models: ALLOWED_MODELS)
+    rule = rule.to_s.strip
+    return false if rule.blank? || rule.length > MAX_RULE_LENGTH || rule.match?(/[\r\n]/)
+
+    model, conditions = parse_line(rule)
+    model = model.to_s
+    return false unless models.include?(model) && conditions.present?
+
+    allowed_properties = ALLOWED_PROPERTIES.fetch(model, [])
+    conditions.all? do |condition|
+      property = condition[:property].to_s
+      pattern = condition[:pattern].to_s
+
+      if property == "exclude"
+        pattern == "mine"
+      else
+        allowed_properties.include?(property) && pattern.present? &&
+          (!EXACT_PROPERTIES.include?(property) || !pattern.include?("*"))
+      end
+    end
   end
   
   private
@@ -319,11 +340,7 @@ class NotificationMatcher
     return model, rules
   end
 
-  def self.parse_rules(rule_queries, limit = nil)
-    return {} if limit && limit >= rule_queries.count
-
-    rule_queries = [rule_queries[limit]] if limit
-
+  def self.parse_rules(rule_queries)
     rules = {}
     rule_queries.each do |l|
       line = l.strip

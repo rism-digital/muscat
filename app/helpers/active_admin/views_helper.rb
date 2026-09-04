@@ -389,17 +389,19 @@ module ActiveAdmin::ViewsHelper
 
   end
 
-  def diff_find_in_interval(model, user, interval, index)
+  def diff_find_in_interval(user, interval, rule)
     results = {}
     sql_interval = interval == "week" ? 7.days.ago : 1.days.ago
-    rule_index = index != nil ? index.to_i : 0
+    rule = rule.to_s.strip
+    comparison_models = %w[source work institution]
+    return results, nil unless NotificationMatcher.valid_rule?(rule, models: comparison_models)
 
-    model = NotificationMatcher::get_model_for_rule(rule_index, user)
-    return {} if !model
+    model = NotificationMatcher.get_model_for_rule(rule)
+    return results, nil unless model
 
 
     model.where(("updated_at" + "> ?"), sql_interval).order("updated_at DESC").each do |s|
-      matcher = NotificationMatcher.new(s, user, rule_index)
+      matcher = NotificationMatcher.new(s, user, rule: rule)
       matcher.get_matches.each do |match|
         results[match] = [] if !results[match]
 

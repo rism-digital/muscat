@@ -251,17 +251,31 @@ it:
     copied: I risultati sono stati copiati negli appunti
   commit: Applica
   compare_versions:
+    build_new_rule: Crea una nuova regola
+    configured_rules: Regole configurate
     date_message: Mostra i record modificati dal %{date}.
     diff: Comparazione
     display: Mostra
+    empty_rule: Aggiungi una regola per confrontare i record modificati.
+    exclude_own: Escludi le mie modifiche
     hide: Nascondi
+    last_24_hours: Modifiche nelle ultime 24 ore
+    last_7_days: Modifiche negli ultimi 7 giorni
+    model_limit: Questa versione supporta solo il confronto di fonti, opere e istituzioni.
     modified_records: Record modificati
     new_record: Nuovo record
     no_recent_version: L'ultimo salvataggio non ha creato uno snapshot
     no_records: Non ci sono record da mostrare con le opzioni attualmente selezionate
     options: Opzioni
     rule: Regola
+    rule_already_saved: Questa regola è già configurata.
+    rule_help: Scegli quali record modificati visualizzare.
+    rule_invalid: Impossibile salvare la regola perché non è valida.
+    rule_prompt: Seleziona una regola configurata da visualizzare oppure creane una nuova.
+    rule_saved: Regola salvata.
+    save_rule: Salva regola
     show: Mostra
+    show_results: Mostra risultati
     similarity: Differenza
     tags: Tag
     time_frame: Intervallo di tempo
@@ -693,6 +707,28 @@ it:
     none: Notifiche sono disabilitate
     notifications: Notifiche
     rules: Regole
+    rule_builder:
+      add_condition: Aggiungi condizione
+      add_rule: Aggiungi regola
+      and: E
+      any_condition: Qualsiasi modifica
+      any_modified: Qualsiasi modifica a __MODEL__
+      close: Chiudi
+      edit: Modifica
+      fields:
+        follow: Segui
+        form: Forma
+      invalid_value: I valori non possono contenere due punti o virgolette doppie.
+      operators:
+        contains: contiene
+        ends_with: termina con
+        equals: è uguale a
+        glob: corrisponde al modello
+        starts_with: inizia con
+      remove: Rimuovi
+      rule: Regola
+      when: Quando il tipo di record è
+      where: DOVE
     weekly: Ogni settimana
   object: Oggetto
   old_index: Indice precedente

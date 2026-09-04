@@ -40,5 +40,44 @@ RSpec.describe NotificationMatcher do
 
       expect(described_class.new(term, user).get_matches).to eq(["term Motet"])
     end
+
+    it "can match an explicitly supplied rule without changing the user" do
+      term = StandardTerm.new(term: "Motet")
+      user = instance_double(User, get_notifications: ["standard_term term:Mass"], name: "Cataloguer")
+
+      matcher = described_class.new(term, user, rule: "standard_term term:Motet")
+
+      expect(matcher.get_matches).to eq(["term Motet"])
+    end
+  end
+
+  describe ".get_model_for_rule" do
+    it "returns the model declared by the supplied rule" do
+      expect(described_class.get_model_for_rule("standard_term term:Motet")).to eq(StandardTerm)
+    end
+
+    it "rejects a blank rule" do
+      expect(described_class.get_model_for_rule(nil)).to be(false)
+    end
+  end
+
+  describe ".valid_rule?" do
+    it "accepts a supported comparison rule" do
+      expect(described_class.valid_rule?(
+        'source composer:"Mozart"',
+        models: %w[source work institution]
+      )).to be(true)
+    end
+
+    it "rejects models outside the supplied allowlist" do
+      expect(described_class.valid_rule?(
+        'person full_name:"Mozart"',
+        models: %w[source work institution]
+      )).to be(false)
+    end
+
+    it "rejects multiple rules" do
+      expect(described_class.valid_rule?("source composer:Mozart\nsource title:Requiem")).to be(false)
+    end
   end
 end

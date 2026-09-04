@@ -251,17 +251,31 @@ pl:
     copied: Wyniki skopiowane do schowka
   commit: Zastosuj
   compare_versions:
+    build_new_rule: Utwórz nową regułę
+    configured_rules: Skonfigurowane reguły
     date_message: Wyświetlanie zmodyfikowanych rekordów z %{date}.
     diff: Porównaj
     display: Wyświetl
+    empty_rule: Dodaj regułę, aby porównać zmodyfikowane rekordy.
+    exclude_own: Wyklucz moje zmiany
     hide: ukryj
+    last_24_hours: Zmiany z ostatnich 24 godzin
+    last_7_days: Zmiany z ostatnich 7 dni
+    model_limit: Ta wersja obsługuje porównywanie tylko źródeł, utworów i instytucji.
     modified_records: Zmodyfikowane rekordy
     new_record: Nowy rekord
     no_recent_version: Ostatni zapis nie utworzył migawki
     no_records: Nie ma żadnych rekordów do pokazania przy aktualnie wybranych opcjach
     options: Opcje
     rule: Reguła
+    rule_already_saved: Ta reguła jest już skonfigurowana.
+    rule_help: Wybierz zmodyfikowane rekordy, które mają zostać wyświetlone.
+    rule_invalid: Nie można zapisać reguły, ponieważ jest nieprawidłowa.
+    rule_prompt: Wybierz skonfigurowaną regułę do wyświetlenia lub utwórz nową.
+    rule_saved: Reguła została zapisana.
+    save_rule: Zapisz regułę
     show: Pokaż
+    show_results: Pokaż wyniki
     similarity: Różnice
     tags: Tagi
     time_frame: Ramy czasowe
@@ -693,6 +707,28 @@ pl:
     none: Powiadomienia są wyłączone
     notifications: Powiadomienia
     rules: Regulamin
+    rule_builder:
+      add_condition: Dodaj warunek
+      add_rule: Dodaj regułę
+      and: ORAZ
+      any_condition: Dowolna zmiana
+      any_modified: Dowolna zmiana w __MODEL__
+      close: Zamknij
+      edit: Edytuj
+      fields:
+        follow: Obserwuj
+        form: Forma
+      invalid_value: Wartości nie mogą zawierać dwukropka ani podwójnego cudzysłowu.
+      operators:
+        contains: zawiera
+        ends_with: kończy się na
+        equals: jest równe
+        glob: pasuje do wzorca
+        starts_with: zaczyna się od
+      remove: Usuń
+      rule: Reguła
+      when: Gdy typ rekordu to
+      where: GDZIE
     weekly: Co tydzień
   object: Obiekt
   old_index: Poprzedni indeks

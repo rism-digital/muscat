@@ -251,17 +251,31 @@ fr:
     copied: Résultats copiés dans le presse-papiers
   commit: Appliquer
   compare_versions:
+    build_new_rule: Créer une nouvelle règle
+    configured_rules: Règles configurées
     date_message: Affichage des records modifiés de %{date}.
     diff: Comparaison
     display: Affichange
+    empty_rule: Ajoutez une règle pour comparer les notices modifiées.
+    exclude_own: Exclure mes propres modifications
     hide: Cacher
+    last_24_hours: Modifications des dernières 24 heures
+    last_7_days: Modifications des 7 derniers jours
+    model_limit: Cette version permet uniquement de comparer les sources, les œuvres et les institutions.
     modified_records: Records modifiés
     new_record: Nouvel record
     no_recent_version: La dernière sauvegarde n'a pas créé de snapshot
     no_records: Il n'y a aucun record à afficher avec les options sélectionnés
     options: Options
     rule: Règle
+    rule_already_saved: Cette règle est déjà configurée.
+    rule_help: Choisissez les notices modifiées à afficher.
+    rule_invalid: La règle n’a pas pu être enregistrée car elle n’est pas valide.
+    rule_prompt: Sélectionnez une règle configurée à afficher ou créez-en une nouvelle.
+    rule_saved: Règle enregistrée.
+    save_rule: Enregistrer la règle
     show: Afficher
+    show_results: Afficher les résultats
     similarity: Différences
     tags: Tags
     time_frame: Intervalle temporel
@@ -693,6 +707,28 @@ fr:
     none: Les notifications sont désactivées
     notifications: Notifications
     rules: Règles
+    rule_builder:
+      add_condition: Ajouter une condition
+      add_rule: Ajouter une règle
+      and: ET
+      any_condition: Toute modification
+      any_modified: Toute modification de __MODEL__
+      close: Fermer
+      edit: Modifier
+      fields:
+        follow: Suivre
+        form: Forme
+      invalid_value: Les valeurs ne peuvent contenir ni deux-points ni guillemets doubles.
+      operators:
+        contains: contient
+        ends_with: se termine par
+        equals: est égal à
+        glob: correspond au motif
+        starts_with: commence par
+      remove: Supprimer
+      rule: Règle
+      when: Lorsque le type de notice est
+      where: OÙ
     weekly: Chaque semaine
   object: Object
   old_index: Ancien index

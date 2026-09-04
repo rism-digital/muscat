@@ -11,6 +11,10 @@
       .replace(/\b\w/g, function (letter) { return letter.toUpperCase(); });
   }
 
+  function localized(labels, value) {
+    return (labels && labels[value]) || humanize(value);
+  }
+
   function option(value, label) {
     var element = document.createElement("option");
     element.value = value;
@@ -35,7 +39,12 @@
     this.ruleCount = root.querySelector("[data-rule-count]");
     this.legacyLines = root.querySelector("[data-legacy-lines]");
     this.legacyPreview = root.querySelector("[data-legacy-preview]");
+    this.preset = root.querySelector("[data-rule-preset]");
     this.state = this.parseLegacyRules(this.hidden.value);
+    if (this.config.single_rule) {
+      this.state.rules = this.state.rules.slice(0, 1);
+      this.state.legacy_lines = [];
+    }
 
     this.legacyLines.value = this.state.legacy_lines.join("\n");
     this.bind();
@@ -157,19 +166,26 @@
     var self = this;
 
     this.root.querySelector("[data-add-rule]").addEventListener("click", function () {
+      if (self.config.single_rule && self.state.rules.length > 0) return;
       self.state.rules.push(self.newRule());
       self.render();
     });
 
-    this.root.querySelector("[data-expand-all]").addEventListener("click", function () {
-      self.state.rules.forEach(function (rule) { rule._expanded = true; });
-      self.render();
-    });
+    var expandAll = this.root.querySelector("[data-expand-all]");
+    if (expandAll) {
+      expandAll.addEventListener("click", function () {
+        self.state.rules.forEach(function (rule) { rule._expanded = true; });
+        self.render();
+      });
+    }
 
-    this.root.querySelector("[data-collapse-all]").addEventListener("click", function () {
-      self.state.rules.forEach(function (rule) { rule._expanded = false; });
-      self.render();
-    });
+    var collapseAll = this.root.querySelector("[data-collapse-all]");
+    if (collapseAll) {
+      collapseAll.addEventListener("click", function () {
+        self.state.rules.forEach(function (rule) { rule._expanded = false; });
+        self.render();
+      });
+    }
 
     this.legacyLines.addEventListener("input", function () {
       self.state.legacy_lines = self.legacyLines.value
@@ -178,6 +194,18 @@
         .filter(Boolean);
       self.sync();
     });
+
+    if (this.preset) {
+      this.preset.addEventListener("change", function () {
+        self.state = self.parseLegacyRules(self.preset.value);
+        if (self.config.single_rule) {
+          self.state.rules = self.state.rules.slice(0, 1);
+          self.state.legacy_lines = [];
+        }
+        self.legacyLines.value = self.state.legacy_lines.join("\n");
+        self.render();
+      });
+    }
   };
 
   NotificationRuleBuilder.prototype.newRule = function () {
@@ -191,8 +219,12 @@
   NotificationRuleBuilder.prototype.render = function () {
     var self = this;
     this.list.innerHTML = "";
-    this.ruleCount.textContent = this.state.rules.length + " " +
-      (this.state.rules.length === 1 ? this.config.labels.rule : this.config.labels.rules);
+    if (this.ruleCount) {
+      this.ruleCount.textContent = this.state.rules.length + " " +
+        (this.state.rules.length === 1 ? this.config.labels.rule : this.config.labels.rules);
+    }
+    this.root.querySelector("[data-add-rule]").hidden =
+      this.config.single_rule && this.state.rules.length > 0;
 
     if (this.state.rules.length === 0) {
       var empty = document.createElement("div");
@@ -232,7 +264,9 @@
     var actions = document.createElement("div");
     actions.className = "notification-rule-card__actions";
     actions.appendChild(button(rule._expanded ? this.config.labels.close : this.config.labels.edit, "toggle-rule", "button button--compact"));
-    actions.appendChild(button(this.config.labels.duplicate, "duplicate-rule", "button"));
+    if (!this.config.single_rule) {
+      actions.appendChild(button(this.config.labels.duplicate, "duplicate-rule", "button"));
+    }
     actions.appendChild(button(this.config.labels.remove, "remove-rule", "button button--danger"));
     overview.appendChild(summary);
     overview.appendChild(actions);
@@ -242,12 +276,15 @@
       rule._expanded = !rule._expanded;
       self.render();
     });
-    actions.querySelector("[data-action='duplicate-rule']").addEventListener("click", function () {
-      var duplicate = deepCopy(rule);
-      duplicate._expanded = true;
-      self.state.rules.splice(ruleIndex + 1, 0, duplicate);
-      self.render();
-    });
+    var duplicateButton = actions.querySelector("[data-action='duplicate-rule']");
+    if (duplicateButton) {
+      duplicateButton.addEventListener("click", function () {
+        var duplicate = deepCopy(rule);
+        duplicate._expanded = true;
+        self.state.rules.splice(ruleIndex + 1, 0, duplicate);
+        self.render();
+      });
+    }
     actions.querySelector("[data-action='remove-rule']").addEventListener("click", function () {
       self.state.rules.splice(ruleIndex, 1);
       self.render();
@@ -264,7 +301,7 @@
     var modelSelect = document.createElement("select");
     modelSelect.className = "notification-rule-card__model-select";
     this.config.models.forEach(function (model) {
-      modelSelect.appendChild(option(model, model === "all" ? self.config.labels.any_record : humanize(model)));
+      modelSelect.appendChild(option(model, model === "all" ? self.config.labels.any_record : localized(self.config.model_labels, model)));
     });
     modelSelect.value = rule.model;
     var modelControl = document.createElement("div");
@@ -358,7 +395,7 @@
     var anyField = this.anyFieldForModel(rule.model);
     if (anyField) field.appendChild(option("__any__", this.config.labels.any_condition));
     modelFields.forEach(function (name) {
-      field.appendChild(option(name, humanize(name)));
+      field.appendChild(option(name, localized(self.config.field_labels, name)));
     });
     field.value = isAny ? "__any__" : condition.field;
     row.appendChild(field);
@@ -369,7 +406,7 @@
       (this.config.exact_fields.indexOf(condition.field) >= 0 ? ["equals"] : this.config.operators);
     if (availableOperators.indexOf(condition.operator) === -1) condition.operator = availableOperators[0];
     availableOperators.forEach(function (name) {
-      operatorSelect.appendChild(option(name, humanize(name)));
+      operatorSelect.appendChild(option(name, localized(self.config.operator_labels, name)));
     });
     operatorSelect.value = condition.operator;
     row.appendChild(operatorSelect);
@@ -378,7 +415,7 @@
     value.type = "text";
     value.className = "notification-condition__value";
     value.value = condition.value || "";
-    value.placeholder = humanize(condition.field);
+    value.placeholder = localized(this.config.field_labels, condition.field);
     value.required = !isAny;
     value.maxLength = 500;
     row.appendChild(value);
@@ -479,15 +516,17 @@
 
   NotificationRuleBuilder.prototype.summary = function (rule) {
     if (rule.conditions && rule.conditions.length === 1 && rule.conditions[0].operator === "any") {
-      var anyModel = rule.model === "all" ? this.config.labels.any_record : humanize(rule.model).toLowerCase();
+      var anyModel = rule.model === "all" ? this.config.labels.any_record : localized(this.config.model_labels, rule.model).toLowerCase();
       return this.config.labels.any_modified.replace("__MODEL__", anyModel);
     }
 
+    var self = this;
     var parts = (rule.conditions || []).map(function (condition) {
       var value = condition.value ? "“" + condition.value + "”" : "…";
-      return humanize(condition.field) + " " + humanize(condition.operator).toLowerCase() + " " + value;
+      return localized(self.config.field_labels, condition.field) + " " +
+        localized(self.config.operator_labels, condition.operator).toLowerCase() + " " + value;
     });
-    var model = rule.model === "all" ? this.config.labels.any_record : humanize(rule.model);
+    var model = rule.model === "all" ? this.config.labels.any_record : localized(this.config.model_labels, rule.model);
     return model + (parts.length ? " — " + parts.join(" " + this.config.labels.and.toLowerCase() + " ") : "");
   };
 
@@ -517,6 +556,12 @@
       .join("\n");
     this.hidden.value = legacy;
     this.legacyPreview.value = legacy;
+    if (this.preset) {
+      var hasPreset = Array.prototype.some.call(this.preset.options, function (item) {
+        return item.value === legacy;
+      });
+      this.preset.value = hasPreset ? legacy : "";
+    }
   };
 
   function initialize() {

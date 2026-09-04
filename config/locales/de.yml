@@ -251,17 +251,31 @@ de:
     copied: Ergebnisse in die Zwischenablage kopiert
   commit: Anwenden
   compare_versions:
+    build_new_rule: Neue Regel erstellen
+    configured_rules: Konfigurierte Regeln
     date_message: Geänderte Datensätze anzeigen von %{date}.
     diff: Vergleich
     display: Anzeige
+    empty_rule: Fügen Sie eine Regel hinzu, um geänderte Datensätze zu vergleichen.
+    exclude_own: Eigene Änderungen ausschließen
     hide: Verbergen
+    last_24_hours: Änderungen der letzten 24 Stunden
+    last_7_days: Änderungen der letzten 7 Tage
+    model_limit: Diese Version unterstützt nur Vergleiche für Quellen, Werke und Institutionen.
     modified_records: Geänderte Datensätze
     new_record: Neuer Datensatz
     no_recent_version: Die letzte Speicherung hat keinen Snapshot erstellt
     no_records: Es gibt keine Datensätze, die mit den aktuell ausgewählten Optionen angezeigt werden können
     options: Optionen
     rule: Regel
+    rule_already_saved: Diese Regel ist bereits konfiguriert.
+    rule_help: Wählen Sie aus, welche geänderten Datensätze angezeigt werden sollen.
+    rule_invalid: Die Regel konnte nicht gespeichert werden, weil sie ungültig ist.
+    rule_prompt: Wählen Sie eine konfigurierte Regel zur Anzeige aus oder erstellen Sie eine neue.
+    rule_saved: Regel gespeichert.
+    save_rule: Regel speichern
     show: Anzeigen
+    show_results: Ergebnisse anzeigen
     similarity: Unterschiede
     tags: Tags
     time_frame: Zeitrahmen
@@ -693,6 +707,28 @@ de:
     none: Benachrichtigungen sind deaktiviert
     notifications: Benachrichtigungen
     rules: Regeln
+    rule_builder:
+      add_condition: Bedingung hinzufügen
+      add_rule: Regel hinzufügen
+      and: UND
+      any_condition: Beliebige Änderung
+      any_modified: Beliebige Änderung an __MODEL__
+      close: Schließen
+      edit: Bearbeiten
+      fields:
+        follow: Folgen
+        form: Form
+      invalid_value: Werte dürfen weder einen Doppelpunkt noch doppelte Anführungszeichen enthalten.
+      operators:
+        contains: enthält
+        ends_with: endet mit
+        equals: ist gleich
+        glob: entspricht dem Muster
+        starts_with: beginnt mit
+      remove: Entfernen
+      rule: Regel
+      when: Wenn der Datensatztyp ist
+      where: WO
     weekly: Jede Woche
   object: Objekt
   old_index: Alter Index

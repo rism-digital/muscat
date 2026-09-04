@@ -269,17 +269,31 @@ en:
     copied: Results copied to clipboard
   commit: Commit
   compare_versions:
+    build_new_rule: Build a new rule
+    configured_rules: Configured rules
     date_message: Showing modified records from %{date}.
     diff: Diff
     display: Display
+    empty_rule: Add a rule to compare modified records.
+    exclude_own: Exclude my own changes
     hide: Hide
+    last_24_hours: Changes going back 24 hours
+    last_7_days: Changes going back 7 days
+    model_limit: This version supports comparisons for Sources, Works, and Institutions only.
     modified_records: Modified records
     new_record: New record
     no_recent_version: The last save did not create a snapshot
     no_records: There are no records to show with the current selected options
-    options: options
+    options: Options
     rule: Rule
+    rule_already_saved: This rule is already configured.
+    rule_help: Choose which modified records to show.
+    rule_invalid: The rule could not be saved because it is invalid.
+    rule_prompt: Select a configured rule to display or build a new one.
+    rule_saved: Rule saved.
+    save_rule: Save rule
     show: Show
+    show_results: Show results
     similarity: Difference
     tags: Tags
     time_frame: Time frame
@@ -717,14 +731,28 @@ en:
       advanced_help: Rules the builder cannot safely convert are kept here. The preview shows the legacy rules Muscat will continue to use.
       and: AND
       any_record: Any record
+      any_condition: Any modification
+      any_modified: Any __MODEL__ modified
+      close: Close
       duplicate: Duplicate
+      edit: Edit
       empty: No notification rules yet. Add a rule to get started.
       exclude_own: Do not notify me about my own changes
+      fields:
+        follow: Follow
+        form: Form
       help: Choose what should trigger a notification.
+      invalid_value: Values cannot contain a colon or double quote.
       javascript_required: JavaScript is required to edit notification rules visually.
       legacy_preview: Generated legacy rules (read-only)
       logic: Conditions inside a rule are joined with AND. Separate rules are alternatives (OR).
       or: OR
+      operators:
+        contains: contains
+        ends_with: ends with
+        equals: equals
+        glob: matches pattern
+        starts_with: starts with
       remove: Remove
       rule: Rule
       unconverted_rules: Unconverted legacy rules

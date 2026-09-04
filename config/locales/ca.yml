@@ -251,17 +251,31 @@ ca:
     copied: Resultats copiats al portapapers
   commit: Aplicar
   compare_versions:
+    build_new_rule: Crea una regla nova
+    configured_rules: Regles configurades
     date_message: Registres modificats des de %{date}.
     diff: Comparació
     display: Mostra
+    empty_rule: Afegiu una regla per comparar els registres modificats.
+    exclude_own: Exclou els meus canvis
     hide: Amaga
+    last_24_hours: Canvis de les darreres 24 hores
+    last_7_days: Canvis dels darrers 7 dies
+    model_limit: Aquesta versió només permet comparar fonts, obres i institucions.
     modified_records: Registres modificats
     new_record: Nou registre
     no_recent_version: L'últim desament no ha creat una instantània
     no_records: Amb aquestes opcions seleccionades no hi surt cap registre
     options: Opcions
     rule: Regla
+    rule_already_saved: Aquesta regla ja està configurada.
+    rule_help: Trieu quins registres modificats voleu mostrar.
+    rule_invalid: No s’ha pogut desar la regla perquè no és vàlida.
+    rule_prompt: Seleccioneu una regla configurada per mostrar-la o creeu-ne una de nova.
+    rule_saved: Regla desada.
+    save_rule: Desa la regla
     show: Mostra
+    show_results: Mostra els resultats
     similarity: Diferències
     tags: Tag
     time_frame: Període
@@ -693,6 +707,28 @@ ca:
     none: Les notifications estan desactivades
     notifications: Notificacions
     rules: Regles
+    rule_builder:
+      add_condition: Afegeix una condició
+      add_rule: Afegeix una regla
+      and: I
+      any_condition: Qualsevol modificació
+      any_modified: Qualsevol modificació de __MODEL__
+      close: Tanca
+      edit: Edita
+      fields:
+        follow: Segueix
+        form: Forma
+      invalid_value: Els valors no poden contenir dos punts ni cometes dobles.
+      operators:
+        contains: conté
+        ends_with: acaba en
+        equals: és igual a
+        glob: coincideix amb el patró
+        starts_with: comença per
+      remove: Elimina
+      rule: Regla
+      when: Quan el tipus de registre és
+      where: ON
     weekly: Cada setmana
   object: Objecte
   old_index: Índex anterior
