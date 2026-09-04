@@ -1,22 +1,13 @@
-<% if params['recordSchema'] != 'html' %>
 <?xml version="1.0" encoding="UTF-8"?>
-<% end %>
 
-<% @model = request.env["PATH_INFO"].split("/").last %>
-<% @model = "sources" if (@model == 'sru' || @model == 'muscat')  %>
-<% @sru   = Sru::Query.new(@model, params) %>
-<% @result   = @sru.result %>
-
-<% if params['operation'] == 'scan' && @result %>
-  <%= render :partial => 'scan' %>
-<% elsif params['operation']=='searchRetrieve' && !params['query'] %>
-  <%= render :partial => 'error' %>
-<% elsif !params['operation'] || !params['query'] %>
-  <%= render :partial => 'explain' %>
-<% elsif params['recordSchema']=='html' && @result %>
-  <%= render :partial => 'result_h' %>
-<% elsif !@sru.error_code && @result %>
-  <%= render :partial => 'result' %>
+<% if @sru.error_code %>
+  <%= render partial: 'error' %>
+<% elsif @sru.operation == 'explain' %>
+  <%= render partial: 'explain' %>
+<% elsif @sru.operation == 'scan' %>
+  <%= render partial: 'scan' %>
+<% elsif @sru.schema == 'html' %>
+  <%= render partial: 'result_h' %>
 <% else %>
-  <%= render :partial => 'error' %>
+  <%= render partial: 'result' %>
 <% end %>

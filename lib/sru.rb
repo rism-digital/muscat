@@ -10,108 +10,151 @@
 # This module uses an index config file in the config/sru-folder to match the Solr fields with the search parameter
 # The impleentation follows http://www.loc.gov/standards/sru/sru-1-2.html
 
+require "cql_ruby"
+
 module Sru
   class Query
-    NAMESPACE={'marc' => "http://www.loc.gov/MARC21/slim"}
-    PARAMS = ["query", :query, "maximumRecords", "operation", :operation, "version", "startRecord", 
-            "maximumTerms", "responsePosition", "scanClause", "controller", "action", "recordSchema", "x-action", "deprecatedIds"]
+    NAMESPACE = { 'marc' => "http://www.loc.gov/MARC21/slim" }.freeze
+    MODEL_CLASSES = {
+      "sources" => Source,
+      "people" => Person,
+      "institutions" => Institution,
+      "publications" => Publication,
+      "works" => WorkNode
+    }.freeze
+    OPERATIONS = %w[explain scan searchRetrieve].freeze
+    PARAMS = %w[
+      query maximumRecords operation version startRecord maximumTerms
+      responsePosition scanClause recordSchema deprecatedIds
+    ].freeze
+    MAXIMUM_QUERY_BYTES = 4_096
+    MAXIMUM_START_RECORD = 100_000
     
     attr_accessor :operation, :query, :maximumRecords, :offset, :model, :result, :error_code, :schema, :scan, :version, :deprecatedIds
 
-    def initialize(model, params = {})
+    def initialize(model, params = {}, maximum_records_limit: nil)
+      params = params.to_h.deep_stringify_keys
+      sru_config = YAML.safe_load_file(Rails.root.join("config/sru/service.config.yml"), aliases: false)
+      maximum_records_limit ||= sru_config.dig("server", "maximumRecords")
 
-      # deprecation of works sru - we need to load work_nodes content
-      model = "work_nodes" if model == "works"
+      @error_code = { code: 8, message: "Unsupported parameter" } unless (params.keys - PARAMS).empty?
+      @error_code ||= { code: 6, message: "Unsupported parameter value" } unless scalar_parameters?(params)
+      @error_code ||= { code: 6, message: "Unsupported parameter value" } unless optional_integer_parameters_valid?(params)
 
-      @version=params.fetch(:version, '1.1')
-      unless (params.keys - PARAMS).empty?
-        @error_code = {:code => 8 , :message => "Unsupported parameter"}
+      @model = MODEL_CLASSES[model.to_s]
+      @version = params.fetch("version", "1.1")
+      @operation = params.fetch("operation", "explain")
+      @query = query_for(params)
+      @maximumRecords = positive_integer(params.fetch("maximumRecords", 10))
+      @offset = positive_integer(params.fetch("startRecord", 1))
+      @schema = params.fetch("recordSchema", "marc")
+      @deprecatedIds = params.fetch("deprecatedIds", true)
+
+      @error_code ||= _check(maximum_records_limit)
+      unless sru_config["schemas"].include?(@schema)
+        @error_code ||= { code: 67, message: "Record not available in this schema" }
       end
-      @model = model.singularize.camelize.constantize rescue nil
-      # TODO class variable for caching
-      sru_config = YAML.load_file("config/sru/service.config.yml")
-      @@index_config = sru_config['index']
-      @operation=params.fetch(:operation, 'searchRetrieve')
-      @query=params.fetch(:query, '*')
-      if params[:operation] == 'scan'
-        @query=params.fetch(:scanClause)
-      end
-      if params[:operation]=='searchRetrieve' && !params[:query]
-        @error_code = {:code => 7, :message => "Mandatory parameter not supplied"}
-      end
-      @maximumRecords=params.fetch(:maximumRecords, 10).to_i rescue 10
-      if @maximumRecords.instance_of?(Integer) && @maximumRecords > sru_config['server']['maximumRecords']
-        if params['x-action']
-          # To prevent backdoor download
-          if @maximumRecords > 2000
-            @error_code = {:code => 60, :message => "Result set not created: too many matching records (code 60): MaximumRecords is limited to 2000"}
-          end
-        else
-          @error_code = {:code => 60, :message => "Result set not created: too many matching records (code 60): MaximumRecords is limited to #{sru_config['server']['maximumRecords']} records"}
-        end
-      end
-      @offset = params.fetch("startRecord", 1).to_i rescue 1
-      @error_code = self._check if !@error_code
-      @schema = params.fetch(:recordSchema, "marc")
-      @deprecatedIds = params.fetch(:deprecatedIds, true)
-      if !sru_config['schemas'].include?(@schema)
-        @error_code =  {:code => 67, :message => "Record not available in this schema"}
-      end
-      @result = self._response if !@error_code
+      @result = _response unless @error_code || operation == "explain"
     end
 
     # Returns the solr query result
     def _response
-      if !error_code
-        begin
-          q = self._to_solr(query)
-          solr_result = Sunspot.search(model) do
-            adjust_solr_params do |params|
-              params[:q] = q
-              params[:start] = (offset - 1)
-              params[:rows] = maximumRecords
-            end
-            with(:wf_stage).equal_to("published") if model==Source
-            order_by(:id, :asc)
-          end
-          return solr_result
-        rescue
-          @error_code = {:code => 10, :message => "Query syntax error"}
+      q = _to_solr(query)
+      return if error_code
+
+      Sunspot.search(model) do
+        adjust_solr_params do |params|
+          params[:q] = q
+          params[:start] = (offset - 1)
+          params[:rows] = maximumRecords
         end
-      else
-        return nil
+        with(:wf_stage).equal_to("published") if model == Source
+        order_by(:id, :asc)
       end
+    rescue CqlException
+      @error_code = { code: 10, message: "Query syntax error" }
+      nil
+    rescue StandardError => error
+      Rails.logger.error("SRU query failed error=#{error.class}")
+      @error_code = { code: 1, message: "System temporarily unavailable" }
+      nil
     end
 
     # Check if params is valid
-    def _check
-      if !self.operation
-        return {:code => 7, :message => "Mandatory parameter not supplied"}
+    def _check(maximum_records_limit)
+      return { code: 6, message: "Unsupported parameter value" } unless OPERATIONS.include?(operation)
+      return { code: 5, message: "Unsupported version" } unless version == "1.1"
+      unless maximumRecords
+        return { code: 6, message: "maximumRecords must be a positive integer" }
       end
-      if self.version != '1.1'
-        return {:code => 5, :message => "unsupported version"}
+      if maximumRecords > maximum_records_limit
+        return {
+          code: 60,
+          message: "Result set not created: MaximumRecords is limited to #{maximum_records_limit} records"
+        }
       end
-      if self.maximumRecords == 0
-        return {:code => 6, :message => "unsupported parameter value"}
+      return { code: 6, message: "startRecord must be a positive integer" } unless offset
+      if offset > MAXIMUM_START_RECORD
+        return { code: 61, message: "First record out of range" }
       end
-      if self.offset.to_i > 1999999
-        return {:code => 61, :message => "first record out of range"}
+      return { code: 235, message: "Database does not exist" } unless model
+      if operation == "searchRetrieve" && query.nil?
+        return { code: 7, message: "Mandatory parameter not supplied" }
       end
-      unless self.model
-        return {:code => 235, :message => "Database does not exist"}
+      if operation == "scan" && query.nil?
+        return { code: 7, message: "Mandatory parameter not supplied" }
       end
+      return { code: 6, message: "Unsupported parameter value" } unless query.is_a?(String)
       if query.blank?
-        return {:code => 10, :message => "Query syntax error (code 10): query is empty"}
+        return { code: 10, message: "Query syntax error (code 10): query is empty" }
       end
-      return nil
+      if query.to_s.bytesize > MAXIMUM_QUERY_BYTES
+        return { code: 10, message: "Query syntax error: query is too long" }
+      end
+
+      nil
+    end
+
+    def query_for(params)
+      case params["operation"]
+      when "scan"
+        params["scanClause"] || params["query"]
+      when "searchRetrieve"
+        params["query"]
+      else
+        params.fetch("query", "*")
+      end
+    end
+
+    def positive_integer(value)
+      return value if value.is_a?(Integer) && value.positive?
+      return unless value.is_a?(String) && value.match?(/\A[1-9]\d*\z/)
+
+      Integer(value, 10)
+    rescue ArgumentError
+      nil
+    end
+
+    def scalar_parameters?(params)
+      params.values.all? do |value|
+        value.nil? || value.is_a?(String) || value.is_a?(Numeric) || value == true || value == false
+      end
+    end
+
+    def optional_integer_parameters_valid?(params)
+      %w[maximumTerms responsePosition].all? do |name|
+        !params.key?(name) || positive_integer(params[name])
+      end
     end
 
     def _to_solr(s)
       if s=="*"
         return s
       end
-      require 'cql_ruby'
-      index_config = YAML.load_file("config/sru/service.config.yml")['index']
+      index_config = YAML.safe_load_file(
+        Rails.root.join("config/sru/service.config.yml"),
+        aliases: false
+      )["index"]
       token = CqlRuby::CqlLexer.new.tokenize(s)
       subqueries = []
       token.chunk {|e| !(e =~ /^(AND|and|OR|or|NOT|not|PROX|prox)$/) }.each {|a| subqueries << a }

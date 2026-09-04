@@ -61,3 +61,81 @@ RSpec.describe Sru::Query, solr: true do
   end
 
 end
+
+RSpec.describe Sru::Query do
+  describe "request validation" do
+    it "treats a request without an operation as explain without searching Solr" do
+      expect(Sunspot).not_to receive(:search)
+
+      query = Sru::Query.new("sources")
+
+      expect(query.operation).to eq("explain")
+      expect(query.error_code).to be_nil
+      expect(query.result).to be_nil
+    end
+
+    it "rejects non-positive and malformed maximumRecords values" do
+      ["0", "-1", "10records", ["10"]].each do |value|
+        query = Sru::Query.new(
+          "sources",
+          { query: "*", operation: "searchRetrieve", maximumRecords: value }
+        )
+
+        expect(query.error_code[:code]).to eq(6)
+        expect(query.result).to be_nil
+      end
+    end
+
+    it "enforces the configured normal record limit" do
+      query = Sru::Query.new(
+        "sources",
+        { query: "*", operation: "searchRetrieve", maximumRecords: "101" }
+      )
+
+      expect(query.error_code[:code]).to eq(60)
+      expect(query.error_code[:message]).to include("100 records")
+    end
+
+    it "allows the server-controlled export limit without x-action" do
+      query = Sru::Query.new(
+        "sources",
+        { query: "*", operation: "searchRetrieve", maximumRecords: 2_001 },
+        maximum_records_limit: 2_000
+      )
+
+      expect(query.error_code[:code]).to eq(60)
+      expect(query.error_code[:message]).to include("2000 records")
+    end
+
+    it "rejects invalid operations, deep offsets, and oversized queries" do
+      invalid_operation = Sru::Query.new("sources", { operation: "destroy", query: "*" })
+      deep_offset = Sru::Query.new(
+        "sources",
+        {
+          operation: "searchRetrieve",
+          query: "*",
+          startRecord: (Sru::Query::MAXIMUM_START_RECORD + 1).to_s
+        }
+      )
+      oversized_query = Sru::Query.new(
+        "sources",
+        {
+          operation: "searchRetrieve",
+          query: "a" * (Sru::Query::MAXIMUM_QUERY_BYTES + 1)
+        }
+      )
+
+      expect(invalid_operation.error_code[:code]).to eq(6)
+      expect(deep_offset.error_code[:code]).to eq(61)
+      expect(oversized_query.error_code[:code]).to eq(10)
+    end
+
+    it "uses an explicit model allowlist" do
+      query = Sru::Query.new("application_records", { query: "*", operation: "searchRetrieve" })
+
+      expect(query.error_code[:code]).to eq(235)
+      expect(query.model).to be_nil
+    end
+  end
+
+end

@@ -5,6 +5,14 @@
 
 <body>
 <div id="rism_export">
+<% stylesheet = if @model == 'sources'
+                  'sources2html.xsl'
+                elsif @model == 'people'
+                  'people2html.xsl'
+                else
+                  'marc2html.xsl'
+                end %>
+<% template = Nokogiri::XSLT(Rails.root.join('public/xml', stylesheet).read) %>
 <table class="srutable">
 
 <% if @model == 'sources' %>
@@ -18,7 +26,6 @@
   </tr>
   <% @result.hits.each do |hit| %>
     <% xml = Nokogiri::XML(hit.result.marc.to_xml({ holdings: true, collection: true })) %>
-    <% template =  Nokogiri::XSLT(File.read('public/xml/sources2html.xsl')) %>
     <% html_record = template.transform(xml) %>
     <%= html_record.to_s.html_safe %>
   <% end %>
@@ -33,7 +40,6 @@
 </tr>
   <% @result.hits.each do |hit| %>
     <% xml = Nokogiri::XML(hit.result.marc.to_xml({ holdings: true, collection: true })) %>
-    <% template =  Nokogiri::XSLT(File.read('public/xml/people2html.xsl')) %>
     <% html_record = template.transform(xml) %>
     <%= html_record.to_s.html_safe %>
   <% end %>
@@ -47,7 +53,6 @@
 </tr>
   <% @result.hits.each do |hit| %>
     <% xml = Nokogiri::XML(hit.result.marc.to_xml({ holdings: true, collection: true })) %>
-    <% template =  Nokogiri::XSLT(File.read('public/xml/marc2html.xsl')) %>
     <% html_record = template.transform(xml) %>
     <%= html_record.to_s.html_safe %>
   <% end %>

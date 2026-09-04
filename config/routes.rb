@@ -32,15 +32,15 @@ Rails.application.routes.draw do
   get '/pages', to: redirect(RISM::LEGACY_PAGES_URL)
   get '/pages/:name', to: redirect(RISM::LEGACY_PAGES_URL + '/pages/%{name}')
 
-  get 'sru' => 'sru#service'
-  get 'sru/sources' => 'sru#service'
+  get 'sru' => 'sru#service', defaults: { sru_model: 'sources' }
+  get 'sru/sources' => 'sru#service', defaults: { sru_model: 'sources' }
   # To have backward compatibility with the old interface
-  get 'muscat' => 'sru#service'
-  get 'sru/people' => 'sru#service'
-  get 'sru/institutions' => 'sru#service'
-  get 'sru/publications' => 'sru#service'
-  get 'sru/catalogues' => 'sru#service'
-  get 'sru/works' => 'sru#service'
+  get 'muscat' => 'sru#service', defaults: { sru_model: 'sources' }
+  get 'sru/people' => 'sru#service', defaults: { sru_model: 'people' }
+  get 'sru/institutions' => 'sru#service', defaults: { sru_model: 'institutions' }
+  get 'sru/publications' => 'sru#service', defaults: { sru_model: 'publications' }
+  get 'sru/catalogues' => 'sru#service', defaults: { sru_model: 'catalogues' }
+  get 'sru/works' => 'sru#service', defaults: { sru_model: 'works' }
 
   ##############################
   ### Routes for the GND editor implemented in the /admin/gnd_works page

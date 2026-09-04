@@ -2,8 +2,8 @@
     <zs:version>1.1</zs:version>
     <zs:echoedSearchRetrieveRequest>
       <zs:version>1.1</zs:version>
-      <zs:query><%= params['query'] %></zs:query>
-      <zs:maximumRecords>params['maximumRecords']</zs:maximumRecords>
+      <zs:query><%= @sru.query %></zs:query>
+      <zs:maximumRecords><%= @sru.maximumRecords %></zs:maximumRecords>
       <zs:recordPacking>xml</zs:recordPacking>
     </zs:echoedSearchRetrieveRequest>
     <zs:diagnostics xmlns:diag="http://www.loc.gov/zing/srw/diagnostic/">
@@ -13,4 +13,3 @@
       </diag:diagnostic>
     </zs:diagnostics>
   </zs:searchRetrieveResponse>
-
