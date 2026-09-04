@@ -28,6 +28,7 @@ v12.5.1
 * Try to avoid spaghetti in the muscat_checkup, more scripts for psmd
 * Merge pull request #2031 from rism-digital/dependabot/npm_and_yarn/tiptap/core-3.30.4
 * Make the compare versions configurable
+* Fix empty results in src
 
 v 12.5 --> the tag is incorrectly v.12.5
 * Add script to update random codes
