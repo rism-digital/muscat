@@ -12,7 +12,7 @@ class SruController < ActionController::Base
             sru   = Sru::Query.new(model, params.merge(:maximumRecords => 2000)) 
             result   = sru.result
             res = [["RISM-ID", "TITLE", "DATE", "SIGLUM", "SHELFMARK"]]
-            result.hits.each_with_index do |hit, idx|
+            result&.hits&.each_with_index do |hit, idx|
               r = hit.result
               res << [r.id, r.name, r.date_from, r.lib_siglum, r.shelf_mark]
             end

@@ -86,6 +86,7 @@ class ModificationDigestJob < ApplicationJob
     period = period.to_sym if period.is_a?(String)
     @period = period
     @period = :weekly if ![:daily, :weekly].include?(@period)
+    @days = @period == :weekly ? 7 : 1
     puts "Set #{@period} for #{@days} days"
   end
 
