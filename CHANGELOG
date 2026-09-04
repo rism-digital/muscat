@@ -1,7 +1,35 @@
 Muscat Changelog
 ================
 
-v 12.5
+v12.5.1
+* Five years after f78de52, add a MARC awesome print plugin to safely pretty print and syntax highlight marc in the console with ap.
+* Make the modification notification way more fancy
+* Make sure 024 is not duplicated when importing from TGN
+* Fix #2023, add cai
+* Update translations
+* #2025 add $n required
+* Fix wikidata perms for all users
+* #1766 Editors can delete 775
+* Add worgroup links and sigla hover in user
+* Make the autotag auto link Country names in TGN links
+* New: Add telemetry to the validation checks
+* Add sript to convert a collection to institution
+* Psmd conversion scripts
+* Fixed: the no-environment CLI invocation is broken in muscat_execute_job
+* Add boxes to show the links between users and institutions
+* Add group and user count for institutions
+* Hide TGN links when they are not in muscat
+* Merge pull request #2027 from rism-digital/add-telemetry
+* In the job executor use rails runner instead of rails console
+* Remove local edits from the crontab
+* Make sure System modifications do not fallback to ownder
+* Bump @tiptap/core from 3.27.3 to 3.30.4
+* Fix #2028, updste old and buggy code
+* Try to avoid spaghetti in the muscat_checkup, more scripts for psmd
+* Merge pull request #2031 from rism-digital/dependabot/npm_and_yarn/tiptap/core-3.30.4
+* Make the compare versions configurable
+
+v 12.5 --> the tag is incorrectly v.12.5
 * Add script to update random codes
 * Update gnd_work_100_de.html
 * Update gnd_work_400_de.html
