@@ -6,7 +6,7 @@
     "build:watch": "esbuild app/javascript/active_admin_mention_input.js app/javascript/diva_viewer.js app/javascript/edtf_subfield.js --bundle --outdir=app/assets/builds --format=iife --target=es2017 --watch"
   },
   "dependencies": {
-    "@tiptap/core": "^3.0.0",
+    "@tiptap/core": "^3.30.4",
     "@tiptap/extension-mention": "^3.0.0",
     "@tiptap/pm": "^3.0.0",
     "@tiptap/starter-kit": "^3.0.0",
