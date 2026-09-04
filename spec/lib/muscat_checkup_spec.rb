@@ -20,20 +20,6 @@ RSpec.describe MuscatCheckupResult do
   end
 end
 
-RSpec.describe RecordCheckupResult do
-  it "exposes one record's errors, validations, and findings" do
-    result = described_class.new(
-      errors: { 1 => "failed" },
-      validations: { 1 => { "100" => {} } },
-      findings: [{ category: "validation_error" }]
-    )
-
-    expect(result.errors).to eq(1 => "failed")
-    expect(result.validations).to eq(1 => { "100" => {} })
-    expect(result.findings).to eq([{ category: "validation_error" }])
-  end
-end
-
 RSpec.describe MuscatCheckup do
   it "returns a consistent result when telemetry is disabled" do
     model = Class.new do
@@ -43,6 +29,7 @@ RSpec.describe MuscatCheckup do
     end
     folder = Struct.new(:folder_items).new([])
 
+    expect(TelemetryNullWorker).to receive(:new).and_call_original
     expect(TelemetryWorker).not_to receive(:new)
     result = described_class.new(model: model, folder: folder).validate_parallel
 
@@ -58,7 +45,7 @@ RSpec.describe MuscatCheckup do
     )
   end
 
-  it "does not build a telemetry result for a normal record validation" do
+  it "does not collect findings for a normal record validation" do
     model = Class.new do
       def self.count
         0
@@ -67,11 +54,28 @@ RSpec.describe MuscatCheckup do
     record = Struct.new(:id).new(42)
     checkup = described_class.new(model: model)
     validation = { "100" => { "a" => ["Invalid"] } }
+    validator = instance_double(MarcValidator, get_errors: validation)
+    telemetry = TelemetryNullWorker.new
 
-    allow(checkup).to receive(:validate_record).with(record).and_return(validation)
-    expect(RecordCheckupResult).not_to receive(:new)
+    allow(checkup).to receive(:validate_record).and_return(validator)
+    expect(validator).not_to receive(:get_findings)
 
-    expect(checkup.send(:load_and_validate_item, record)).to eq([{}, { 42 => validation }])
+    expect(checkup.send(:load_and_validate_item, record, telemetry, false)).to eq([{}, { 42 => validation }])
+  end
+end
+
+RSpec.describe TelemetryNullWorker do
+  subject(:worker) { described_class.new(nil) }
+
+  it "implements telemetry operations without collecting anything" do
+    worker.record(double("record"), double("validator"), "error", StandardError.new("failed"), :validate)
+
+    expect(worker).not_to be_collect_findings
+    expect(worker.observations).to eq(
+      records_scanned: 0,
+      records_with_findings: 0,
+      findings: {}
+    )
   end
 end
 
@@ -100,13 +104,14 @@ RSpec.describe TelemetryWorker do
 
   it "streams findings and updates its observations" do
     findings = [{ tag: "100", subtag: "a", message: "Invalid", category: "validation_error" }]
+    validator = instance_double(MarcValidator, get_findings: findings)
     emitted_event = nil
 
     allow(event_stream).to receive(:validation_message) do |event|
       emitted_event = event
     end
 
-    worker.record(record, findings)
+    worker.record(record, validator, "", nil, :validate)
 
     expect(emitted_event).to eq(
       record_id: 42,
@@ -122,17 +127,25 @@ RSpec.describe TelemetryWorker do
   end
 
   it "counts clean records without writing an event" do
+    validator = instance_double(MarcValidator, get_findings: [])
     expect(event_stream).not_to receive(:validation_message)
 
-    worker.record(record, [])
+    worker.record(record, validator, "", nil, :validate)
 
     expect(worker.observations).to include(records_scanned: 1, records_with_findings: 0)
   end
 
   it "turns captured output and exceptions into technical findings" do
     exception = StandardError.new("validation failed")
+    emitted_event = nil
 
-    expect(worker.technical_findings(output: "diagnostic", exception: exception, phase: :validate)).to eq(
+    allow(event_stream).to receive(:validation_message) do |event|
+      emitted_event = event
+    end
+
+    worker.record(record, nil, "diagnostic", exception, :validate)
+
+    expect(emitted_event[:findings]).to eq(
       [
         {
           tag: "no_tag",
