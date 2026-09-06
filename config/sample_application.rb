@@ -205,6 +205,8 @@ module Muscat
 
     # See what was loaded
     #Rails.autoloaders.log!
+    
+    config.active_storage.draw_routes = false
 
     overrides = "#{Rails.root}/app/overrides"
     Rails.autoloaders.main.ignore(overrides)
@@ -214,6 +216,7 @@ module Muscat
         load override
       end
     end
+    
   end
 end
 
