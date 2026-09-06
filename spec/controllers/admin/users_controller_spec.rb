@@ -121,6 +121,67 @@ RSpec.describe Admin::UsersController, type: :controller do
       expect(assigns(:user).errors[:roles]).to include("Please select an access role (admin, editor, cataloger, or guest).")
       expect(ActionMailer::Base.deliveries).to be_empty
     end
+
+    it "does not allow a non-admin to create users" do
+      guest = create(
+        :guest,
+        id: 50,
+        username: "guest-user",
+        email: "guest@example.org"
+      )
+      sign_out admin
+      sign_in guest
+
+      expect do
+        post :create, params: { creation_mode: "password", user: user_attributes }
+      end.not_to change(User, :count)
+
+      expect(response).to have_http_status(:redirect)
+    end
+  end
+
+  describe "PATCH update" do
+    it "does not allow a non-admin to assign roles to themselves" do
+      editor = create(
+        :editor,
+        id: 51,
+        username: "editor-user",
+        email: "editor@example.org"
+      )
+      admin_role = admin.roles.find_by!(name: "admin")
+      sign_out admin
+      sign_in editor
+
+      patch :update, params: {
+        id: editor.id,
+        user: {
+          name: editor.name,
+          password: "",
+          password_confirmation: "",
+          role_ids: [admin_role.id]
+        }
+      }
+
+      expect(editor.reload).not_to have_role(:admin)
+      expect(editor).to have_role(:editor)
+    end
+  end
+
+  describe "GET show" do
+    it "escapes notification rules" do
+      user = create(
+        :cataloger,
+        id: 52,
+        username: "cataloger-user",
+        email: "cataloger@example.org",
+        notifications: "<script>alert('xss')</script>\na harmless rule"
+      )
+
+      get :show, params: { id: user.id }
+
+      expect(response.body).not_to include("<script>alert('xss')</script>")
+      expect(response.body).to include("&lt;script&gt;alert(&#39;xss&#39;)&lt;/script&gt;")
+    end
   end
 
   describe "POST resend_invitation" do

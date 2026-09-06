@@ -57,6 +57,9 @@ module MarcControllerActions
         end
         
       end
+
+      authorize!(@item.new_record? ? :create : :update, @item)
+
       @item.marc = new_marc
       @item.lock_version = params[:lock_version]
       

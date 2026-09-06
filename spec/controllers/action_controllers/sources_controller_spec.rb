@@ -22,6 +22,31 @@ RSpec.describe Admin::SourcesController, type: :controller do
     end
   end
 
+  describe "POST marc_editor_save" do
+    context "when the user cannot create sources" do
+      let(:user) do
+        create(
+          :guest,
+          id: 53,
+          username: "readonly-guest",
+          email: "readonly@example.org"
+        )
+      end
+
+      it "does not save the submitted MARC record" do
+        create(:standard_title)
+        create(:standard_term)
+        payload = build(:edition_json).to_h
+
+        expect do
+          post :marc_editor_save, params: payload
+        end.not_to change(Source, :count)
+
+        expect(response).to have_http_status(:redirect)
+      end
+    end
+  end
+
   describe "SHOW" do
     it "render show template" do
       get :show, params: { id: resource.id  }

@@ -1,9 +1,28 @@
 ActiveAdmin.register User do
   menu :parent => "admin_menu", :label => proc {I18n.t(:menu_users)}, :if => proc{ (can? :read, User) || current_user.has_role?(:editor)}
   
-  permit_params :preference_wf_stage, :email, :password, :password_confirmation, 
-                :username, :name, :notifications, :notification_type, :notification_email,
-                :disabled, workgroup_ids: [], role_ids: []
+  permit_params do
+    attributes = [
+      :email,
+      :password,
+      :password_confirmation,
+      :username,
+      :name,
+      :notifications,
+      :notification_type
+    ]
+
+    if current_user&.has_role?(:admin)
+      attributes.concat([
+        :preference_wf_stage,
+        :notification_email,
+        :disabled,
+        { workgroup_ids: [], role_ids: [] }
+      ])
+    end
+
+    attributes
+  end
 
   # Remove all action items
   config.clear_action_items!
@@ -16,6 +35,8 @@ ActiveAdmin.register User do
 	controller do
 
     def create
+      authorize! :create, User
+
       @user = User.new(permitted_params[:user])
 
       unless @user.access_role?
@@ -321,7 +342,12 @@ ActiveAdmin.register User do
            user.get_roles.join(", ")
       end
       row I18n.t('notifications.notifications') do |r|
-        r.notifications ? r.notifications.split(/\n+|\r+/).reject(&:empty?).join("<br>").html_safe : ""
+        if r.notifications
+          lines = r.notifications.split(/\n+|\r+/).reject(&:empty?)
+          safe_join(lines, tag.br)
+        else
+          ""
+        end
       end
       row I18n.t('notifications.cadence') do |r|
         if !r.notification_type
