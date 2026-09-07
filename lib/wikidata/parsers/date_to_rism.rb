@@ -24,6 +24,24 @@ module Wikidata
       QID_GREGORIAN = "Q1985727"
       QID_JULIAN = "Q1985786"
 
+      WIKIDATA_TIME_PRECISIONS = {
+        0 => :billion_years,
+        1 => :hundred_million_years,
+        2 => :ten_million_years,
+        3 => :million_years,
+        4 => :hundred_thousand_years,
+        5 => :ten_thousand_years,
+        6 => :millennium,
+        7 => :century,
+        8 => :decade,
+        9 => :year,
+        10 => :month,
+        11 => :day,
+        12 => :hour,
+        13 => :minute,
+        14 => :second
+      }.freeze
+
       def extract_qid(input)
         input.to_s[/Q\d+/]
       end
@@ -38,8 +56,8 @@ module Wikidata
         b = Base.best_statement(item_json, PID_DATE_OF_BIRTH)
         d = Base.best_statement(item_json, PID_DATE_OF_DEATH)
 
-        date_b, type_b = time_string_from_statement(b)
-        date_d, type_d = time_string_from_statement(d)
+        date_b, type_b, precision_b = time_string_from_statement(b)
+        date_d, type_d, precision_d = time_string_from_statement(d)
 
         return nil if date_b.nil? && date_d.nil?
         {
@@ -47,6 +65,8 @@ module Wikidata
           date_d: date_d, 
           type_b: type_b,
           type_d: type_d,
+          precision_b: precision_b,
+          precision_d: precision_d
         }
       end
 
@@ -93,7 +113,7 @@ module Wikidata
         calendar = "" if calendar_qid == QID_GREGORIAN
         calendar = :julian if calendar_qid == QID_JULIAN
 
-        return content["time"].to_s, calendar      
+        return content["time"].to_s, calendar, content["precision"]
       end
 
       # Converts a Wikidata time string into a RISM token without "*" / "+".
@@ -132,7 +152,6 @@ module Wikidata
         year = -year if sign == "-"
         month = month_i.zero? ? nil : month_i
         day   = day_i.zero? ? nil : day_i
-
         [year, month, day]
       end
     end

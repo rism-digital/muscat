@@ -116,9 +116,24 @@ module Wikidata
 
       ## Create the 678 date
       from = Date.iso8601(data.dig(:wikidata_dates, :date_b)) rescue nil
-      to = Date.iso8601(data.dig(:wikidata_dates, :date_d)) rescue nil
+      to   = Date.iso8601(data.dig(:wikidata_dates, :date_d)) rescue nil
 
-      dates = [from&.strftime('%d.%m.%Y'), to&.strftime('%d.%m.%Y')].compact.join('-')
+      format_date = ->(date, precision) {
+        next unless date
+
+        case precision.to_i
+        when 9  then date.strftime('%Y')
+        when 10 then date.strftime('%m.%Y')
+        when 11 then date.strftime('%d.%m.%Y')
+        else         date.strftime('%d.%m.%Y') # Fallback...
+        end
+      }
+
+      dates = [
+        format_date.call(from, data.dig(:wikidata_dates, :precision_b)),
+        format_date.call(to, data.dig(:wikidata_dates, :precision_d))
+      ].compact.join('-')
+
       if from || to
         from_type = data.dig(:wikidata_dates, :type_b)
         to_type = data.dig(:wikidata_dates, :type_d)
