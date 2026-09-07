@@ -130,6 +130,16 @@ RSpec.describe Sru::Query do
       expect(oversized_query.error_code[:code]).to eq(10)
     end
 
+    it "returns a syntax error for malformed CQL" do
+      query = Sru::Query.new(
+        "sources",
+        { operation: "searchRetrieve", query: "dc.id = \"1001385685\r" }
+      )
+
+      expect(query.error_code).to eq(code: 10, message: "Query syntax error")
+      expect(query.result).to be_nil
+    end
+
     it "uses an explicit model allowlist" do
       query = Sru::Query.new("application_records", { query: "*", operation: "searchRetrieve" })
 

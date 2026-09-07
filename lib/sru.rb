@@ -71,7 +71,7 @@ module Sru
         with(:wf_stage).equal_to("published") if model == Source
         order_by(:id, :asc)
       end
-    rescue CqlException
+    rescue CqlRuby::CqlException
       @error_code = { code: 10, message: "Query syntax error" }
       nil
     rescue StandardError => error
