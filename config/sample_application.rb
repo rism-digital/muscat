@@ -181,23 +181,11 @@ module Muscat
     config.load_defaults 7.2
     # Make sure belongs_to is optional by default
     config.active_record.belongs_to_required_by_default = false
-
-    # Force validation of locales, this also silences the deprecation warning
-    config.i18n.enforce_available_locales = true
-    # The default locale is :en and all translations from config/locales/*.rb,yml are auto loaded.
-    # config.i18n.load_path += Dir[Rails.root.join('my', 'locales', '*.{rb,yml}').to_s]
-    # config.i18n.default_locale = :de
-    config.i18n.load_path += Dir[ (File.join(Rails.root, "config", "locales", 'marc_records', '*.{yml}'))]
-    config.i18n.load_path += Dir[ (File.join(Rails.root, "config", "locales", 'gnd', '*.{yml}'))]
     
-    config.autoload_paths << "#{Rails.root}/lib"
-    config.eager_load_paths << Rails.root.join('lib')
-    config.eager_load_paths << "#{Rails.root}/app/models/relations"
+    config.autoload_lib(ignore: %w[assets patches generators tasks])
+    config.eager_load_paths << Rails.root.join("app/models/relations").to_s
     
-    #config.autoload_lib(ignore: %w(assets tasks generators))
-
     config.active_job.queue_adapter = :delayed_job
-
     config.active_record.yaml_column_permitted_classes = [ActiveSupport::HashWithIndifferentAccess, Time, Date, ActiveSupport::TimeWithZone, ActiveSupport::TimeZone]
     
     Paperclip::Attachment.default_options[:url] = "https://muscat.rism.info/system/:class/:attachment/:id_partition/:style/:filename"
