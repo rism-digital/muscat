@@ -129,6 +129,10 @@ module Wikidata
         new_marc.add_tag_with_subfields("678", a: "#{dates}#{extra}")
       end
 
+      if data[:description]
+        new_marc.add_tag_with_subfields("680", a: data[:description])
+      end
+
       if format == :marc
         return new_marc.to_marc.force_encoding("UTF-8")
       else
