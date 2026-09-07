@@ -717,6 +717,23 @@ using AggressivelyStrip
     elsif rule == "validate_person_dates"
     elsif rule == "validate_person_name"
     elsif rule == "validate_024"
+      if marc_subtag&.content
+        identifier = marc_subtag.content.to_s.strip
+        source = marc_tag.fetch_first_by_tag("2")&.content.to_s.strip
+
+        return if identifier.empty? || source.empty?
+
+        message_key = case source
+        when "BNF"
+          "validation.validate_024_bnf" unless identifier.start_with?("ark:/12148/cb")
+        when "WKP"
+          "validation.validate_024_wikidata" unless identifier.start_with?("Q")
+        else
+          "validation.validate_024" if identifier.match?(/\Ahttp/i)
+        end
+
+        add_error(tag, subtag, I18n.t(message_key)) if message_key
+      end
     elsif rule == "handcrafted_warning"
     else
       puts rule.class
