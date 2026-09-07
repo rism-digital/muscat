@@ -29,6 +29,13 @@ v12.5.1
 * Merge pull request #2031 from rism-digital/dependabot/npm_and_yarn/tiptap/core-3.30.4
 * Make the compare versions configurable
 * Fix empty results in src
+* Reimplement the SRU interface
+* Make devise more paranoid, hide active storage routes
+* Add some redundant server side auth checks
+* Remove redundant inits
+* Set the defaults to 7.2
+* Make the exporter script more confusing but with more options
+* More config cleaning up
 
 v 12.5 --> the tag is incorrectly v.12.5
 * Add script to update random codes
