@@ -17,6 +17,17 @@ const SIMPLE_RULE_MAP = {
 	"handcrafted_warning": {"handcrafted_warning": true}
 }
 
+const MARC_024_RULES = {
+	BNF: {
+		pattern: /^ark:\/12148\/cb/,
+		messageKey: "validation.validate_024_bnf"
+	},
+	WKP: {
+		pattern: /^Q/,
+		messageKey: "validation.validate_024_wikidata"
+	}
+}
+
 const PARAMETRIC_RULES = [
 	"required_if",
 	"begins_with",
@@ -670,43 +681,43 @@ function marc_validate_required_if(value, element, param) {
 	return valid;
 }
 
+function marc_024_source(element) {
+	return $.trim(
+		$(element)
+			.closest(".tag_toplevel_container")
+			.find('[data-tag="024"][data-subfield="2"]')
+			.val() || ""
+	);
+}
+
 function marc_validate_024(value, element, param) {
-	var $a = $(element);
-
-	// Find the surrounding repeating subfield block, then locate subfield 2
-	var $container = $a.closest(".tag_toplevel_container");
-	var $sf2 = $container.find('[data-tag="024"][data-subfield="2"]');
-
-	var aVal = $.trim($a.val() || "");
-	var sf2Val = $.trim($sf2.val() || "");
+	var aVal = $.trim(value || "");
+	var sf2Val = marc_024_source(element);
 
 	// If either is empty, no validation here
 	// let the "required" rule get mad
-	if (aVal === "") {
+	if (aVal === "" || sf2Val === "") {
 		return true;
 	}
 
-	if (sf2Val === "") {
-		return true;
+	var rule = MARC_024_RULES[sf2Val];
+	if (rule) {
+		return rule.pattern.test(aVal);
 	}
 
-	// $a must not begin with http
-	if (/^http/i.test(aVal)) {
-		return false;
+	// IDs from other sources must not begin with http
+	return !/^http/i.test(aVal);
+}
+
+function marc_validate_024_message(params, element) {
+	var sf2Val = marc_024_source(element);
+	var rule = MARC_024_RULES[sf2Val];
+
+	if (rule) {
+		return I18n.t(rule.messageKey);
 	}
 
-	/* Maybe in the future
-	if (sf2Val === "BNF" && !/^ark:\//i.test(aVal)) {
-		return false;
-	}
-	*/
-
-	// WKP => $a must start with Q
-	if (sf2Val === "WKP" && !/^Q/.test(aVal)) {
-		return false;
-	}
-
-	return true;
+	return I18n.t("validation.validate_024");
 }
 
 function marc_handcrafted_warning(value, element, param) {
@@ -965,7 +976,7 @@ function marc_editor_init_validation(form, validation_conf) {
 	$.validator.addMethod("validate_calendar", 	marc_validate_calendar,			$.validator.format(I18n.t("validation.validate_calendar")));
 	$.validator.addMethod("validate_person_name", 	marc_validate_person_name,	$.validator.format(I18n.t("validation.validate_person_name")));
 	$.validator.addMethod("validate_person_dates", 	marc_validate_person_dates,	$.validator.format(I18n.t("validation.validate_person_dates")));
-	$.validator.addMethod("validate_024", 		marc_validate_024,				$.validator.format(I18n.t("validation.validate_024")));
+	$.validator.addMethod("validate_024", 		marc_validate_024,				marc_validate_024_message);
 	$.validator.addMethod("handcrafted_warning", 	marc_handcrafted_warning,	$.validator.format(I18n.t("validation.handcrafted_warning")));
 
 	// New creation: this is not configurable, it is used to make sure the
