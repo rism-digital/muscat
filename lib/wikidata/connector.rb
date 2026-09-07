@@ -89,6 +89,9 @@ module Wikidata
       data[:identifiers].each do |type, ids|
         next if type == "rism" #wha??
         ids.each do |id|
+          if type == "BNF" && !id.start_with?("ark:/12148/cb")
+            id = "ark:/12148/cb#{id.delete_prefix("cb")}"
+          end
           new_marc.add_tag_with_subfields("024", a: id, "2": type)
         end
       end
