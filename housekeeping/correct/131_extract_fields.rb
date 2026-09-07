@@ -4,6 +4,8 @@
 # rails r housekeeping/correct/131_extract_fields.rb --columns wf_stage,record_type --marc 100a,100d,100j,852a,852e,852b,852z,852c,852d,240a,240o,240k,240r,240m,520a,561a,700a,700d,700j,7004,260c,300a,590a --export-sigla CH-ZUkao CH.ods
 # Compact version
 # rails r housekeeping/correct/131_extract_fields.rb --columns wf_stage,record_type --marc 100,852,240,520a,561a,700,260c,300a,590a --export-sigla CH-ZUkao CH-ZUkao.ods
+# Export sources whose source or holding siglum contains a value, limited by record type
+# rails r housekeeping/correct/131_extract_fields.rb --columns wf_stage,record_type --marc 100,852,240 --export-sigla-range I- --record-types 1,2 I.ods
 require "optparse"
 
 def matches_tag?(marc, tag, subtag, value)
@@ -137,7 +139,7 @@ opts = {
 }
 
 parser = OptionParser.new do |o|
-  o.banner = "Usage: [options] FILE\n\nExamples:\n  --model Institution --columns title,address,notes --marc 031a,031b,650a,651b file.out\n  ./mything --export-sigla D-B --columns title --marc 031a,852a file.out"
+  o.banner = "Usage: [options] FILE\n\nExamples:\n  --model Institution --columns title,address,notes --marc 031a,031b,650a,651b file.out\n  --export-sigla D-B --columns title --marc 031a,852a file.out\n  --export-sigla-range I- --record-types 1,2 --columns wf_stage,record_type --marc 100,852,240 file.out"
 
   o.on("--columns LIST", "Comma-separated columns (e.g. title,address,notes)") do |v|
     opts[:columns] = v.split(",").map { _1.strip }.reject(&:empty?)
@@ -157,6 +159,29 @@ parser = OptionParser.new do |o|
 
   o.on("--export-sigla SIGLUM", "Export sources and holdings referring to the institution siglum") do |v|
     opts[:export_sigla] = v.strip
+  end
+
+  o.on("--export-sigla-range TEXT", "Export sources whose source or holding siglum contains the text") do |v|
+    siglum_range = v.strip
+    raise OptionParser::InvalidArgument, "--export-sigla-range cannot be empty" if siglum_range.empty?
+
+    opts[:export_sigla_range] = siglum_range
+  end
+
+  o.on("--record-types LIST", "Comma-separated Source record types (e.g. 1,2)") do |v|
+    begin
+      opts[:record_types] = v.split(",").map { Integer(_1.strip, 10) }.uniq
+    rescue ArgumentError
+      raise OptionParser::InvalidArgument, "Invalid --record-types #{v.inspect} (expected comma-separated integers, e.g. 1,2)"
+    end
+
+    valid_record_types = MarcSource::RECORD_TYPES.values.uniq
+    invalid_record_types = opts[:record_types] - valid_record_types
+
+    if opts[:record_types].empty? || invalid_record_types.any?
+      raise OptionParser::InvalidArgument,
+        "Invalid --record-types #{v.inspect} (valid values: #{valid_record_types.sort.join(",")})"
+    end
   end
 
   o.on("--rism-online-links", "Use https://rism.online links instead of https://muscat.rism.info/admin") do
@@ -190,10 +215,20 @@ end
 parser.parse!(ARGV)
 
 file = ARGV.shift
-mode_count = [opts[:model], opts[:export_sigla]].compact.count
+mode_count = [opts[:model], opts[:export_sigla], opts[:export_sigla_range]].compact.count
 
 if mode_count != 1
-  warn "Error: specify exactly one of --model or --export-sigla\n\n#{parser}"
+  warn "Error: specify exactly one of --model, --export-sigla, or --export-sigla-range\n\n#{parser}"
+  exit 1
+end
+
+if opts[:export_sigla_range] && !opts[:record_types]&.any?
+  warn "Error: --export-sigla-range requires --record-types\n\n#{parser}"
+  exit 1
+end
+
+if opts[:record_types] && !opts[:export_sigla_range]
+  warn "Error: --record-types can only be used with --export-sigla-range\n\n#{parser}"
   exit 1
 end
 
@@ -222,6 +257,15 @@ if opts[:model]
   item_count = klass.count
   items = klass.find_each
   default_marc_config = MarcConfigCache.get_configuration(klass.name.underscore)
+  marc_config_by_tag = {}
+elsif opts[:export_sigla_range]
+  route = Source.model_name.route_key
+  export_name = opts[:export_sigla_range]
+  items = Source.by_siglum_contains(opts[:export_sigla_range])
+    .where(record_type: opts[:record_types])
+  item_count = items.count
+  items = items.find_each
+  default_marc_config = MarcConfigCache.get_configuration("source")
   marc_config_by_tag = {}
 else
   institutions = Institution.where(siglum: opts[:export_sigla]).to_a
