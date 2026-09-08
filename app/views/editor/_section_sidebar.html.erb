@@ -88,6 +88,17 @@
 			:class => "muscat_icon_link muscat_icon_link_new") %>
 	</li>
 <%end%>	
+
+<% if @item.is_a?(Source) && @item.persisted? && @item.derivable_child? && can?(:create, Source) %>
+	<li class="muscat_icon_separator"></li>
+	<li class="muscat_icon_link">
+		<%= link_to(
+			I18n.t(:derive_child_source, record_type: I18n.t("record_types.#{@item.derived_child_type}")),
+			new_admin_source_path(derived_from_source_id: @item.id),
+			:class => "muscat_icon_link muscat_icon_link_new"
+		) %>
+	</li>
+<% end %>
 	
 <%if @item.id && @item.respond_to?(:allow_inventory_items?) && @item.allow_inventory_items? && can?(:create, InventoryItem)%>
 	<li class="muscat_icon_separator"></li>
@@ -160,4 +171,3 @@
 		<a data-scroll-target="show_help" data-panel="marc_editor_help" data-help="using_functions" data-help-title="<%= help_title -%>" href="#" class="muscat_icon_link muscat_icon_link_help"><%= help_title -%></a></li>
 
 </ul>
-

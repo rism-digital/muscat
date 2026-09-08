@@ -781,6 +781,8 @@ en:
     predicates:
       with_integer: is
   recent_changes: Latest modifications
+  derive_child_source: "Add %{record_type} for this source"
+  invalid_derived_child_source: "This source cannot be used to derive a child record"
   record_actions: Record Actions
   record_audit: Record Origin
   record_label: Attribution Certainty

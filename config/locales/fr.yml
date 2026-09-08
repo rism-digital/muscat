@@ -752,6 +752,8 @@ fr:
     predicates:
       with_integer: est
   recent_changes: Dernières modifications
+  derive_child_source: "Ajouter %{record_type} pour cette source"
+  invalid_derived_child_source: "Cette source ne peut pas être utilisée pour dériver une notice enfant"
   record_actions: Actions
   record_audit: Origine du dossier
   record_label: Certitude d'attribution

@@ -752,6 +752,8 @@ pl:
     predicates:
       with_integer: jest
   recent_changes: Ostatnie modyfikacje
+  derive_child_source: "Dodaj %{record_type} dla tego źródła"
+  invalid_derived_child_source: "Tego źródła nie można użyć do utworzenia rekordu podrzędnego"
   record_actions: Działania na rekordzie
   record_audit: Pochodzenie rekordu
   record_label: Pewność przypisania

@@ -31,6 +31,13 @@
 
 class Source < ApplicationRecord
 
+  DERIVED_CHILD_TYPES = {
+    collection: :source,
+    edition: :edition_content,
+    theoretica_edition: :theoretica_edition_content,
+    libretto_edition: :libretto_edition_content
+  }.freeze
+
   # class variables for storing the user name and the event from the controller
   @last_user_save
   attr_accessor :last_user_save
@@ -568,6 +575,49 @@ class Source < ApplicationRecord
 
   def get_record_type
     MarcSource::RECORD_TYPES.key(self.record_type)
+  end
+
+  def derived_child_type
+    DERIVED_CHILD_TYPES[get_record_type]
+  end
+
+  def derivable_child?
+    derived_child_type.present?
+  end
+
+  def derive_child_marc_from(parent)
+    unless parent.is_a?(Source) && get_record_type == parent.derived_child_type
+      raise ArgumentError, "Incompatible source types for child derivation"
+    end
+
+    copy_map = {
+      "100" => ["a", "j", "0"],
+      "650" => ["a", "0"]
+    }
+    copy_map["852"] = ["a", "c", "x"] if parent.get_record_type == :collection
+
+    copy_map.each do |tag, subfields|
+      copied_tags = parent.marc[tag].filter_map do |parent_tag|
+        values = {}
+
+        subfields.each do |subfield|
+          contents = parent_tag[subfield].filter_map do |node|
+            node.content if node.content.present?
+          end
+          values[subfield.to_sym] = contents if contents.any?
+        end
+
+        values if values.any?
+      end
+
+      next if copied_tags.empty?
+
+      marc[tag].each(&:destroy_yourself)
+      copied_tags.each { |values| marc.add_tag_with_subfields(tag, **values) }
+    end
+
+    marc["773"].each(&:destroy_yourself)
+    marc.add_tag_with_subfields("773", w: parent.id.to_s)
   end
 
   def allow_holding?

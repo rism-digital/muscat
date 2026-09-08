@@ -146,13 +146,25 @@ ActiveAdmin.register Source do
     def new
       @source = Source.new
       @template_name = ""
+
+      derived_parent = nil
+      if params[:derived_from_source_id].present?
+        derived_parent = Source.find_by(id: params[:derived_from_source_id])
+
+        unless derived_parent&.derivable_child?
+          redirect_to admin_root_path, :flash => { :error => I18n.t(:invalid_derived_child_source) }
+          return
+        end
+      end
+
+      new_record_type = derived_parent&.derived_child_type || params[:new_record_type]&.to_sym
       
-      if (!params[:existing_title] || params[:existing_title].empty?) && (!params[:new_record_type] || params[:new_record_type].empty?)
+      if (!params[:existing_title] || params[:existing_title].empty?) && !new_record_type
         redirect_to action: :select_new_template 
         return
       end
 
-      if params[:existing_title] and !params[:existing_title].empty?
+      if params[:existing_title].present? && !derived_parent
         # Check that the record does exist...
         begin
           base_item = Source.find(params[:existing_title])
@@ -181,15 +193,16 @@ ActiveAdmin.register Source do
         @template_name = @source.get_record_type.to_s
       else 
         
-        default_file_name = EditorConfiguration.get_source_default_file(params[:new_record_type])
+        default_file_name = EditorConfiguration.get_source_default_file(new_record_type)
         default_file = ConfigFilePath.get_marc_editor_profile_path("#{Rails.root}/config/marc/#{RISM::MARC}/source/#{default_file_name}.marc")
      
         if File.exist?(default_file)
-          new_marc = MarcSource.new(File.read(default_file), MarcSource::RECORD_TYPES[params[:new_record_type].to_sym])
+          new_marc = MarcSource.new(File.read(default_file), MarcSource::RECORD_TYPES[new_record_type])
           new_marc.load_source false # this will need to be fixed
           @source.marc = new_marc
-          @template_name = params[:new_record_type]
-          @source.record_type = MarcSource::RECORD_TYPES[params[:new_record_type].to_sym]
+          @template_name = new_record_type.to_s
+          @source.record_type = MarcSource::RECORD_TYPES[new_record_type]
+          @source.derive_child_marc_from(derived_parent) if derived_parent
         end
       end
 

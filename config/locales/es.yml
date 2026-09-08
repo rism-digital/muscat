@@ -752,6 +752,8 @@ es:
     predicates:
       with_integer: es
   recent_changes: Modificaciones recientes
+  derive_child_source: "Añadir %{record_type} para esta fuente"
+  invalid_derived_child_source: "Esta fuente no se puede utilizar para derivar un registro hijo"
   record_actions: Acciones del registro
   record_audit: Origen del registro
   record_label: Certeza de la atribución
