@@ -1,32 +1,25 @@
 module ActiveAdmin
   module Views
     class Footer < Component
+      def build(*)
+        super id: "footer", style: "text-align: left;"
 
-      def build(namespace)
-        super :id => "footer"
-        super :style => "text-align: left;"
-         
-        tab = controller.view_assigns["tab_id_for_footer"] rescue tab = "global"
+        tab = controller.view_assigns["tab_id_for_footer"] || "global"
 
         div do
-          small "Muscat #{Date.today.year} #{Git::VERSION} (#{Git::REVISION}) |" 
-
           small do
+            text_node "Muscat #{Date.today.year} #{Git::VERSION} (#{Git::REVISION}) | "
             text_node "Tab: #{tab} "
+
             span id: "tab-debug" do
               text_node ""
             end
-          end
 
-          small " |" 
-
-          span do 
+            text_node " | "
             link_to "Impressum", "/impressum.html"
           end
-
         end
       end
-
     end
   end
 end
