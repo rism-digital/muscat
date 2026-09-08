@@ -1,27 +1,32 @@
 ActiveAdmin.register_page "doc" do
-  menu :parent => "admin_menu", :label => proc {I18n.t(:menu_marc_documentation)}
-  
+  DOCUMENTED_MODELS = {
+    "Source" => Source,
+    "Person" => Person,
+    "Institution" => Institution,
+    "Publication" => Publication,
+    "Work" => Work
+  }.freeze
+
+  menu parent: "admin_menu",
+       label: proc { I18n.t(:menu_marc_documentation) }
+
   controller do
     def index
-      params[:model] = "Source" if !params[:model]
-      @model_name = params[:model].downcase
-      klass = params[:model].classify.safe_constantize
-      @model = klass != nil ? klass.new : nil
+      @model_class =
+        DOCUMENTED_MODELS.fetch(params[:model].presence || "Source", Source)
+
+      @model_name = @model_class.model_name.element
+      @model = @model_class.new
     end
   end
-  
-  content title: proc{ I18n.t(:menu_marc_documentation) + " - " + @model.class.name } do
-    render partial: 'fields'
+
+  content title: proc {
+    "#{I18n.t(:menu_marc_documentation)} - #{@model_class.model_name.human}"
+  } do
+    render partial: "fields"
   end
-  
-  ###########
-  ## Index ##
-  ###########
-  
-  sidebar :models, :class => "sidebar_tabs", :only => [:index] do
-    # no idea why the I18n.locale is not set by set_locale in the ApplicationController
-    I18n.locale = session[:locale]
-    render("doc_sidebar") # Calls a partial
+
+  sidebar :models, class: "sidebar_tabs", only: :index do
+    render "doc_sidebar"
   end
-  
 end
