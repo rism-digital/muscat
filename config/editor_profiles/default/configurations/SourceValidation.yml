@@ -115,6 +115,9 @@ client:
         - composite_volume
     tags:
       b: required
+      c:
+        required_if:
+          "594": "b"
   "596":
     tags:
       a: required
