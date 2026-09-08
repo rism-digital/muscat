@@ -9,11 +9,15 @@ ActiveAdmin.register DigitalObject do
   # Remove all action items
   config.clear_action_items!
   
+  permit_params :description,
+                :attachment,
+                :wf_owner,
+                :lock_version,
+                :new_object_link_type,
+                :new_object_link_id
+
   controller do
-    def permitted_params
-      params.permit! #params.permit :description, :attachment
-    end
-    
+
     before_create do |item|
       item.user = current_user
     end
@@ -133,31 +137,32 @@ ActiveAdmin.register DigitalObject do
     end
   end
   
-  member_action :remove_item, method: :get do
-
+  member_action :remove_item, method: :delete do
     begin
-      dol = DigitalObjectLink.find(params[:digital_object_link_id])
-    rescue
+      digital_object = DigitalObject.find(params[:id])
+      dol = digital_object.digital_object_links.find(
+        params[:digital_object_link_id]
+      )
+    rescue ActiveRecord::RecordNotFound
       flash[:error] = "Could not find Digital Object Link #{params[:digital_object_link_id]}"
       redirect_to resource_path(params[:id])
       return
     end
-    
-    if can?(:destroy, dol)
-      begin
-        dol.delete
-      rescue
-        flash[:error] = "Could not delete link #{params[:digital_object_link_id]}"
-        redirect_to resource_path(params[:id])
-      end
-      flash[:notice] = "Link deleted successfully"
-      redirect_to resource_path(params[:id])
-    else
+
+    unless can?(:destroy, dol)
       flash[:error] = "Operation not allowed"
       redirect_to collection_path
+      return
     end
 
+    begin
+      dol.destroy!
+      flash[:notice] = "Link deleted successfully"
+    rescue ActiveRecord::RecordNotDestroyed
+      flash[:error] = "Could not delete link #{params[:digital_object_link_id]}"
+    end
 
+    redirect_to resource_path(params[:id])
   end
   
   ###########
@@ -220,9 +225,15 @@ ActiveAdmin.register DigitalObject do
             end
             column "" do |dol|
               if can?(:destroy, dol)
-              link_to I18n.t(:link_remove), 
-                {controller: :digital_objects, action: :remove_item, id: resource.id, params: {digital_object_link_id: dol.id}}, 
-                data: { confirm: I18n.t(:link_remove_confirm) }
+                link_to I18n.t(:link_remove),
+                  {
+                    controller: :digital_objects,
+                    action: :remove_item,
+                    id: resource.id,
+                    digital_object_link_id: dol.id
+                  },
+                  method: :delete,
+                  data: { confirm: I18n.t(:link_remove_confirm) }
               end
             end
           end
