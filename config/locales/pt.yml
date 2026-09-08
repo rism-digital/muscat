@@ -237,6 +237,7 @@ pt:
     required_if: Este campo é obrigatório porque outro está presente
     siglum_not_found: O siglum em um ou mais campos 588 não corresponde a nenhum registro de acervo
     validate_031_dups: 'Este número de incipit já está em uso: $b ou $c estão duplicados'
+    validate_031_sequence: A numeração dos incipits não é sequencial
     validate_588_siglum: 'Insira o siglum da biblioteca e a classificação no formato: I-Bc Q.51'
     validate_url: O URL inserido não é válido
   basic_level: Registro básico
@@ -883,6 +884,7 @@ pt:
     not_record_id: Este identificador não pode ser o mesmo que o do registo atual
     required_if_message: Este campo deve ser preenchido, pois é obrigatório na presença de {0} ${1}
     validate_031_dups: Este número de incipit já está em uso
+    validate_031_sequence: A numeração dos incipits não é sequencial
     validate_588_siglum: 'Insira o siglum da biblioteca e a classificação no formato: I-Bc Q.51'
     validate_calendar: Certifique-se de que as datas seguem o calendário correto
     validate_edtf: Validar data EDTF

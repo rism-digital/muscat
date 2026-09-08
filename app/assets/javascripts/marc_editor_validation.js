@@ -8,6 +8,7 @@ const SIMPLE_RULE_MAP = {
 	"validate_588_siglum": { validate_588_siglum: true },
 	"validate_edtf": { validate_edtf: true },
 	"validate_031_dups": { validate_031_dups: true },
+	"validate_031_sequence": { validate_031_sequence: true },
 	"validate_url": { validate_url: true },
 	"not_record_id": {not_record_id: true},
 	"validate_calendar": {"validate_calendar": true},
@@ -248,6 +249,51 @@ function marc_validate_031_duplicates(value, element, param) {
   const isDuplicate = otherTuples.includes(currentTuple);
 
   return !isDuplicate;
+}
+
+function marc_parse_031_number($scope) {
+  const values = ['a', 'b', 'c'].map(function (subfield) {
+    return $scope.find(':input[data-tag="031"][data-subfield="' + subfield + '"]')
+      .first().val()?.toString().trim() || '';
+  });
+
+  if (values.some(function (value) { return value === ''; })) {
+    return { complete: false, numbers: null };
+  }
+  if (values.some(function (value) { return !/^\d+$/.test(value); })) {
+    return { complete: true, numbers: null };
+  }
+
+  const numbers = values.map(Number);
+  return {
+    complete: true,
+    numbers: numbers.every(function (number) { return number > 0; }) ? numbers : null
+  };
+}
+
+function marc_validate_031_sequence(value, element, param) {
+  const $incipits = $('.tag_toplevel_container[data-tag="031"]');
+  const $current = $(element).closest('.tag_toplevel_container[data-tag="031"]');
+  const currentIndex = $incipits.index($current);
+  const currentNumber = marc_parse_031_number($current);
+
+  // Missing subfields are handled by the existing required/incomplete check.
+  if (!currentNumber.complete || currentIndex < 0) return true;
+  if (!currentNumber.numbers) return false;
+
+  const current = currentNumber.numbers;
+  if (currentIndex === 0) return current[0] === 1 && current[1] === 1 && current[2] === 1;
+
+  const previousNumber = marc_parse_031_number($incipits.eq(currentIndex - 1));
+  if (!previousNumber.complete || !previousNumber.numbers) return true;
+
+  const previous = previousNumber.numbers;
+
+  return (
+    (current[0] === previous[0] && current[1] === previous[1] && current[2] === previous[2] + 1) ||
+    (current[0] === previous[0] && current[1] === previous[1] + 1 && current[2] === 1) ||
+    (current[0] === previous[0] + 1 && current[1] === 1 && current[2] === 1)
+  );
 }
 
 function marc_validate_begins_with(value, element, param) {
@@ -966,6 +1012,7 @@ function marc_editor_init_validation(form, validation_conf) {
 	$.validator.addMethod("validate_588_siglum",marc_validate_588_siglum,		$.validator.format(I18n.t("validation.validate_588_siglum")));
 	$.validator.addMethod("validate_edtf",		marc_validate_edtf,				$.validator.format(I18n.t("validation.validate_edtf")));	
 	$.validator.addMethod("validate_031_dups", 	marc_validate_031_duplicates,	$.validator.format(I18n.t("validation.validate_031_dups")));
+	$.validator.addMethod("validate_031_sequence", marc_validate_031_sequence,	$.validator.format(I18n.t("validation.validate_031_sequence")));
 	$.validator.addMethod("must_be_different", 	marc_validate_must_be_different,$.validator.format(I18n.t("validation.must_be_different_message")));
 	$.validator.addMethod("not_record_id", 	   	marc_validate_not_record_id,	$.validator.format(I18n.t("validation.not_record_id")));	
 	$.validator.addMethod("gnd_warn_default", 	marc_validate_gnd_warn_default,	$.validator.format(I18n.t("validation.gnd_warn_default_message")));

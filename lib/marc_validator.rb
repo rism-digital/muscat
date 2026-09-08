@@ -676,6 +676,15 @@ using AggressivelyStrip
         rescue
           return
         end
+    elsif rule == "validate_031_sequence"
+        invalid_tags = invalid_031_sequence_tags
+        if invalid_tags.include?(marc_tag.object_id)
+          incipit_number = %w[a b c].map do |code|
+            marc_tag.fetch_first_by_tag(code)&.content.to_s.strip
+          end.join(".")
+          add_error("#{tag}-#{incipit_number}", subtag, rule)
+          puts "The current 031 does not follow the preceding incipit number #{incipit_number}" if DEBUG
+        end
     elsif rule == "validate_url"
         
         def http_url?(input)
@@ -738,6 +747,19 @@ using AggressivelyStrip
     else
       puts rule.class
       puts "Unknown rule #{rule}" if rule != "mandatory"
+    end
+  end
+
+  def invalid_031_sequence_tags
+    @invalid_031_sequence_tags ||= begin
+      incipits = @marc["031"]
+      tuples = incipits.map do |incipit|
+        %w[a b c].map { |code| incipit.fetch_first_by_tag(code)&.content }
+      end
+
+      IncipitNumbering.invalid_indexes(tuples).map do |index|
+        incipits[index].object_id
+      end
     end
   end
 

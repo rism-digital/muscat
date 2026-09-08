@@ -237,6 +237,7 @@ pl:
     required_if: To pole jest wymagane, ponieważ inne jest obecne
     siglum_not_found: Siglum w jednym lub kilku polach 588 nie odpowiada żadnemu rekordowi zasobów
     validate_031_dups: 'Ten numer incipitu jest już używany: $b lub $c są zduplikowane'
+    validate_031_sequence: Numeracja incipitów nie jest sekwencyjna
     validate_588_siglum: 'Wprowadź sygnaturę biblioteki i półkę według formatu: I-Bc Q.51'
     validate_url: Wprowadzony adres URL jest nieprawidłowy
   basic_level: Rekord podstawowy
@@ -883,6 +884,7 @@ pl:
     not_record_id: Ten identyfikator nie może być taki sam jak identyfikator bieżącego rekordu
     required_if_message: Pole obowiązkowe, ponieważ pole {0} ${1} nie jest puste
     validate_031_dups: Ten numer incipitu jest już używany
+    validate_031_sequence: Numeracja incipitów nie jest sekwencyjna
     validate_588_siglum: 'Wprowadź sygnaturę biblioteki i półkę według formatu: I-Bc Q.51'
     validate_calendar: Upewnij się, że daty są zgodne z właściwym kalendarzem
     validate_edtf: Sprawdź datę EDTF

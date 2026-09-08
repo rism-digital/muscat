@@ -14,9 +14,10 @@ client:
         #  "031": "a"
       "c":
         any_of:
-        - required_if: 
+        - required_if:
             "031": "a"
         - validate_031_dups
+        - validate_031_sequence
         #required_if:
         #  "031": "a"
   "041":

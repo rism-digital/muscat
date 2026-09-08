@@ -256,6 +256,7 @@ en:
     required_if: This field is required because another one is present
     siglum_not_found: The siglum in one or more 588 fields does not match any holding record
     validate_031_dups: 'This incipit number is already used: $b or $c are duplicated'
+    validate_031_sequence: The incipit number is not sequential
     validate_588_siglum: 'Enter the library siglum and shelfmark as in the format: I-Bc Q.51'
     validate_url: The entered URL is invalid
   basic_level: Basic record
@@ -931,6 +932,7 @@ en:
     not_record_id: This cannot be the same ID as the current record
     required_if_message: Field is mandatory because {0} ${1} is not empty
     validate_031_dups: This incipit number is already used
+    validate_031_sequence: The incipit number is not sequential
     validate_588_siglum: 'Enter the library siglum and shelfmark as in the format: I-Bc Q.51'
     validate_calendar: Please make sure the dates follow the correct calendar
     validate_edtf: Validate EDTF date

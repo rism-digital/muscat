@@ -237,6 +237,7 @@ de:
     required_if: Dieses Feld ist erforderlich, weil ein anderes vorhanden ist
     siglum_not_found: Das Siglum in einem oder mehreren 588-Feldern entspricht keinem vorhandenen Bestandsdatensatz
     validate_031_dups: 'Diese Incipit-Nummer wird bereits verwendet: $b oder $c sind doppelt vorhanden'
+    validate_031_sequence: Die Incipit-Nummerierung ist nicht fortlaufend
     validate_588_siglum: 'Geben Sie das Bibliothekssigel und die Signatur im Format ein: I-Bc Q.51'
     validate_url: Die eingegebene URL ist ungültig
   basic_level: Basiskatalog
@@ -883,6 +884,7 @@ de:
     not_record_id: Diese ID darf nicht mit der aktuellen Datensatz-ID identisch sein
     required_if_message: Dieses Feld muss ausgefüllt werden, da es obligatorisch ist in Anwesenheit von {0} ${1}
     validate_031_dups: Diese Incipit-Nummer wird bereits verwendet
+    validate_031_sequence: Die Incipit-Nummerierung ist nicht fortlaufend
     validate_588_siglum: 'Geben Sie das Bibliothekssigel und die Signatur im Format ein: I-Bc Q.51'
     validate_calendar: Bitte stellen Sie sicher, dass die Daten dem richtigen Kalender folgen
     validate_edtf: EDTF-Datum validieren

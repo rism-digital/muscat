@@ -237,6 +237,7 @@ ca:
     required_if: Aquest camp és obligatori perquè un altre és present
     siglum_not_found: El siglum en un o més camps 588 no coincideix amb cap registre de fons
     validate_031_dups: 'Aquest número d''íncipit ja s''està utilitzant: $b o $c estan duplicats'
+    validate_031_sequence: La numeració dels íncipits no és seqüencial
     validate_588_siglum: 'Introduïu el siglum de la biblioteca i la signatura seguint el format: I-Bc Q.51'
     validate_url: L'URL introduït no és vàlid
   basic_level: Registre bàsic
@@ -883,6 +884,7 @@ ca:
     not_record_id: Aquest no pot ser el mateix ID que el registre actual
     required_if_message: El camp és obligatori en presència de {0} ${1}
     validate_031_dups: Aquest número d'íncipit ja s'està utilitzant
+    validate_031_sequence: La numeració dels íncipits no és seqüencial
     validate_588_siglum: 'Introduïu el siglum de la biblioteca i la signatura seguint el format: I-Bc Q.51'
     validate_calendar: Assegureu-vos que les dates segueixen el calendari correcte
     validate_edtf: Validar la data EDTF

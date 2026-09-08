@@ -237,6 +237,7 @@ fr:
     required_if: Ce champ est requis car un autre est présent
     siglum_not_found: Le sigle dans un ou plusieurs champs 588 ne correspond à aucun enregistrement de fonds
     validate_031_dups: 'Ce numéro d''incipit est déjà utilisé : $b ou $c sont dupliqués'
+    validate_031_sequence: La numérotation des incipits n'est pas séquentielle
     validate_588_siglum: 'Entrez le sigle de la bibliothèque et la cote selon le format : I-Bc Q.51'
     validate_url: L'URL saisi n'est pas valide
   basic_level: Notice de base
@@ -883,6 +884,7 @@ fr:
     not_record_id: Cet identifiant ne peut pas être le même que celui de l’enregistrement actuel
     required_if_message: Ce champ doit être rempli car il est obligatoire en présence de {0} ${1}
     validate_031_dups: Ce numéro d'incipit est déjà utilisé
+    validate_031_sequence: La numérotation des incipits n'est pas séquentielle
     validate_588_siglum: 'Entrez le sigle de la bibliothèque et la cote selon le format : I-Bc Q.51'
     validate_calendar: Veuillez vous assurer que les dates suivent le calendrier correct
     validate_edtf: Valider la date EDTF
