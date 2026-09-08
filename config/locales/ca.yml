@@ -752,7 +752,11 @@ ca:
     predicates:
       with_integer: és
   recent_changes: Modifications recents
-  derive_child_source: "Afegeix %{record_type} per a aquesta font"
+  derive_child_sources:
+    source: Afegeix un manuscrit
+    edition_content: Afegeix un element d'edició
+    theoretica_edition_content: Afegeix un element de tractat
+    libretto_edition_content: Afegeix un element de llibret
   invalid_derived_child_source: "Aquesta font no es pot utilitzar per derivar un registre fill"
   record_actions: Accions sobre el registre
   record_audit: Origen del registre

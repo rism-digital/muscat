@@ -93,7 +93,7 @@
 	<li class="muscat_icon_separator"></li>
 	<li class="muscat_icon_link">
 		<%= link_to(
-			I18n.t(:derive_child_source, record_type: I18n.t("record_types.#{@item.derived_child_type}")),
+			I18n.t("derive_child_sources.#{@item.derived_child_type}"),
 			new_admin_source_path(derived_from_source_id: @item.id),
 			:class => "muscat_icon_link muscat_icon_link_new"
 		) %>

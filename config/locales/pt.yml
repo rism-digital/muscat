@@ -752,7 +752,11 @@ pt:
     predicates:
       with_integer: é
   recent_changes: Últimas modificações
-  derive_child_source: "Adicionar %{record_type} a esta fonte"
+  derive_child_sources:
+    source: Adicionar manuscrito
+    edition_content: Adicionar item de edição
+    theoretica_edition_content: Adicionar item de tratado
+    libretto_edition_content: Adicionar item de libreto
   invalid_derived_child_source: "Esta fonte não pode ser utilizada para derivar um registo filho"
   record_actions: Ações do Registro
   record_audit: Origem do Registro

@@ -781,7 +781,11 @@ en:
     predicates:
       with_integer: is
   recent_changes: Latest modifications
-  derive_child_source: "Add %{record_type} for this source"
+  derive_child_sources:
+    source: Add manuscript
+    edition_content: Add edition item
+    theoretica_edition_content: Add treatise item
+    libretto_edition_content: Add libretto item
   invalid_derived_child_source: "This source cannot be used to derive a child record"
   record_actions: Record Actions
   record_audit: Record Origin

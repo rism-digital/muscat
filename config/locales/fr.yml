@@ -752,7 +752,11 @@ fr:
     predicates:
       with_integer: est
   recent_changes: Dernières modifications
-  derive_child_source: "Ajouter %{record_type} pour cette source"
+  derive_child_sources:
+    source: Ajouter un manuscrit
+    edition_content: Ajouter un élément d'édition
+    theoretica_edition_content: Ajouter un élément de traité
+    libretto_edition_content: Ajouter un élément de livret
   invalid_derived_child_source: "Cette source ne peut pas être utilisée pour dériver une notice enfant"
   record_actions: Actions
   record_audit: Origine du dossier
