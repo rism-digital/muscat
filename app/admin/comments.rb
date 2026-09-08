@@ -1,6 +1,6 @@
 ActiveAdmin.register ActiveAdmin::Comment, :as => "Comment" do
   after_create do |comment|
-    CommentNotifications.new_comment(comment).deliver_now
+    CommentNotifications.new_comment(comment).deliver_later
   end
 
   permit_params :body, :body_json, :namespace, :resource_id, :resource_type, mentioned_user_ids: []
@@ -85,7 +85,7 @@ ActiveAdmin.register ActiveAdmin::Comment, :as => "Comment" do
       column (I18n.t :filter_creation_date), :created_at
       column (I18n.t :filter_author), :author
       column (I18n.t :filter_comment), :body do |comment|
-        link_to truncate(comment.body, omision: "...", length: 80), admin_comment_path(comment)
+        link_to truncate(comment.body, omission: "...", length: 80), admin_comment_path(comment)
       end
       column (I18n.t :filter_wf_stage) {|comment| status_tag(comment.namespace == "admin" ? :ok : "", label: comment.namespace)} 
       column "" do |comment|
