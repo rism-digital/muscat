@@ -4,7 +4,7 @@ module ActiveAdmin
       def build(*)
         super id: "footer", style: "text-align: left;"
 
-        tab = controller.view_assigns["tab_id_for_footer"] || "global"
+        tab = controller.view_assigns["tab_id_for_footer"] || "none"
 
         div do
           small do
@@ -16,7 +16,9 @@ module ActiveAdmin
             end
 
             text_node " | "
-            link_to "Impressum", "/impressum.html"
+            span do
+              link_to "Impressum", "/impressum.html"
+            end 
           end
         end
       end

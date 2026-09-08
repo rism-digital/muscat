@@ -333,6 +333,9 @@ require "active_admin/orm/active_record/comments/comment"
 require Rails.root.join("app/models/active_admin/comment").to_s
 ## Add a Clear button when a filter is active
 require 'patches/active_admin/views/components/active_filters_sidebar_content.rb'
+# Muscat footer
+# 
+require 'patches/active_admin/views/components/footer.rb'
 
 ActiveAdmin.before_load do |app|
   # Add our Extensions
