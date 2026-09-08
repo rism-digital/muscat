@@ -41,15 +41,18 @@ ActiveAdmin.register_page "Dashboard" do
 
     def get_news_file
       news_files = Dir.glob("#{Rails.root}/app/views/muscat_news/*.en.md")
-      names = news_files.collect{|f| File.basename(f, '.en.md') }
-      last_file = names.sort.last
-      last_file[0] = '' # strip the _, guaranteed fastest method on stackoverflow
 
-      # Not stored in the cookies.permanent, need to visualize
-      return last_file if cookies.permanent[:news_file] == nil
-      # Stored in the cookies.permanent, not visualize again
+      last_file = news_files
+        .map { |file| File.basename(file, '.en.md') }
+        .max
+
+      return nil unless last_file
+
+      last_file = last_file.delete_prefix('_')
+
+      return last_file if cookies.permanent[:news_file].nil?
       return nil if cookies.permanent[:news_file] == last_file
-      # Different file in the cookies.permanent, show it
+
       last_file
     end
 
