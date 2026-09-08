@@ -652,10 +652,10 @@ function marc_validate_required_if(value, element, param) {
 		return true;
 	}
 
-	// There is another catch: if we have multiple copies
-	// of the same tag/subtag, only one of them must be filled.
-	// So if one 710 is filled, the other empty 710s should
-	// not complain.
+	// Check whether another copy of the current field satisfies the rule.
+	// For a same-tag dependency, only copies in this tag occurrence count.
+	// For a dependency on another tag, preserve the existing "at least one
+	// required" behavior across repeated occurrences in the editor.
 	var same_selector;
 	if (current_subtag) {
 		same_selector = '.serialize_marc[data-tag="' + current_tag + '"][data-subfield="' + current_subtag + '"]';
@@ -663,12 +663,9 @@ function marc_validate_required_if(value, element, param) {
 		same_selector = '.serialize_marc[data-tag="' + current_tag + '"]';
 	}
 
-	// .serialize_marc again lets us inspect all matching fields,
-	// including ones that may currently live in placeholders.
-	// This way "required_if" behaves like "at least one required"
-	// across repeated occurrences of the same field.
+	var same_field_scope = current_tag == dep_tag ? toplevel : $("#marc_editor_panel");
 	var has_any_filled = false;
-	$(same_selector, $("#marc_editor_panel")).each(function() {
+	$(same_selector, same_field_scope).each(function() {
 		const same_val = ($(this).val() || "").trim();
 
 		if (same_val !== "") {
