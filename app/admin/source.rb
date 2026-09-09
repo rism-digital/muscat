@@ -416,17 +416,21 @@ ActiveAdmin.register Source do
       element.std_title
     end
     column (I18n.t :filter_lib_siglum), sortable: :lib_siglum do |source|
-      if source.allow_holding? && source.holdings.count == 0
+      holdings = source.holdings.to_a
+
+      if source.allow_holding? && holdings.empty?
         div style: 'text-align: center;' do
           status_tag(:deleted, label: t('no_holdings_yet'))
         end
+      elsif holdings.any?
+        ([source.lib_siglum] + holdings.map(&:lib_siglum))
+          .reject(&:blank?)
+          .sort
+          .uniq
+          .join(", ")
+          .html_safe
       else
-        if source.child_sources.count > 0
-          siglums = [source.lib_siglum] + source.child_sources.map(&:lib_siglum)
-          siglums.reject{|s| s.empty?}.sort.uniq.join(", ").html_safe
-        else
-          source.lib_siglum
-        end
+        source.lib_siglum
       end
     end
     column (I18n.t :filter_shelf_mark), :shelf_mark_shelforder, sortable: :shelf_mark_shelforder do |element|
