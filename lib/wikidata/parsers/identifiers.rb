@@ -13,6 +13,7 @@ module Wikidata
       PID_VIAF = "P214"
       PID_SBN  = "P396"
       PID_RISM = "P5504"
+      PID_NKC = "P691"
 
       def extract(item_json)
         {
@@ -21,6 +22,7 @@ module Wikidata
           "ICCU" => ids(item_json, PID_SBN),
           "LC"   => ids(item_json, PID_LC),
           "BNF"  => ids(item_json, PID_BNF),
+          "NKC"  => ids(item_json, PID_NKC),
           "rism" => ids(item_json, PID_RISM)
         }.delete_if { |_k, v| v.empty? }
       end
