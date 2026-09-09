@@ -1,0 +1,20 @@
+[Unit]
+Description=Muscat delayed_job workers
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=oneshot
+RemainAfterExit=yes
+User=muscat
+Group=muscat
+WorkingDirectory=/INSTALLATION/DIR/muscat
+Environment=RAILS_ENV=production
+ExecStart=/home/muscat/.rvm/bin/rvm 3.3.6@rails do bin/delayed_job restart --pool=reindex,triggers,folders:10 --pool=sub_reindex:10 --pool=resave --pool=export
+ExecReload=/home/muscat/.rvm/bin/rvm 3.3.6@rails do bin/delayed_job restart --pool=reindex,triggers,folders:10 --pool=sub_reindex:10 --pool=resave --pool=export
+ExecStop=/home/muscat/.rvm/bin/rvm 3.3.6@rails do bin/delayed_job stop --pool=reindex,triggers,folders:10 --pool=sub_reindex:10 --pool=resave --pool=export
+TimeoutStartSec=120
+TimeoutStopSec=120
+
+[Install]
+WantedBy=multi-user.target

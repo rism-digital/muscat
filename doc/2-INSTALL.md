@@ -364,31 +364,33 @@ Do reindex in 1 record batches, useful if reindex crashes to see in which one (v
 rake sunspot:reindex[1]
 ```
 
+## systemd services
+
+The systemd units for Passenger and DelayedJob are provided in `config/systemd/`.
+They assume Muscat runs as the `muscat` user. Before installing them, replace
+`/INSTALLATION/DIR/muscat` with the application's absolute path and make sure
+the RVM command selects the correct Ruby and gemset.
+
+Install and enable both services globally:
+
+```
+sudo cp config/systemd/*.service /etc/systemd/system/
+sudo systemctl daemon-reload
+sudo systemctl enable --now muscat.service muscat-delayed-job.service
+```
+
+After changing the application or worker configuration, restart the corresponding
+service:
+
+```
+sudo systemctl restart muscat.service
+sudo systemctl restart muscat-delayed-job.service
+```
+
 ## Passenger standalone and Nginx
 
-The recommended installation is as standalone and with Nginx as a frontend. The default gemfile includes the passenger gem.  
-It assumes Muscat was installed with the muscat user.  
-Edit `/etc/systemd/system/muscat.service` for the application startup
-
-```
-[Unit]
-Description=Muscat
-After=network-online.target
-
-[Service]
-Restart=always
-RestartSec=5
-TimeoutSec=5
-User=muscat
-Group=muscat
-WorkingDirectory=/INSTALLATION/DIR/muscat
-ExecStart=/home/muscat/.rvm/bin/rvm 3.3.6@rails do bundle exec passenger start
-
-[Install]
-WantedBy=multi-user.target
-```
-
-Change `/INSTALLATION/DIR/` to the actual installation dir. Then Edit `Passengerfile.json` for the basic configuration
+The recommended installation is as standalone and with Nginx as a frontend. The default gemfile includes the passenger gem.
+Edit `Passengerfile.json` for the basic configuration:
 
 ```
 {
@@ -404,14 +406,6 @@ To try the installation, run
 
 ```
 bundle exec passenger start
-```
-
-If passenger boots and installs all the modules correctly, it is possible to reload systemd
-
-```
-systemctl daemon-reload
-systemctl enable muscat
-systemctl start muscat
 ```
 
 Now it is possible to actually test the installation. If behind a proxy, do
@@ -578,27 +572,15 @@ sudo service cron restart
 
 ### Logrotate
 
-It is handy to rotate the logs in production, in /etc/logrotate.d:
+It is handy to rotate the logs in production, in /etc/logrotate.d, install the default conf file:
 
 ```
-/PATH_TO/muscat/log/*.log {
-    size=100M
-    missingok
-    rotate 10
-    compress
-    delaycompress
-    notifempty
-    copytruncate
-   prerotate
-       bash -c "[[ ! $1 =~ validation.log ]]"
-   endscript
-}
+sudo cp config/muscat.logrotate.sample /etc/logrotate.d/muscat
 ```
 
-This file is also in config/muscat.logrotate.sample. It can be tested:
+Make sure PATH TO points to the current muscat installation. It can be tested:
 
 ```
-
 logrotate -d /etc/logrotate.d/muscat.logrotate
 ```
 
