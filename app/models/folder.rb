@@ -34,10 +34,6 @@ class Folder < ApplicationRecord
     self.delete_date = 6.months.from_now
   end
 
-  def reset_expiration!
-    save!
-  end
-
   # Looks to see if an item is in the current folder.
   def has_item?(item)
     return folder_items.where(item_id: item.id, item_type: item.class.to_s).count != 0

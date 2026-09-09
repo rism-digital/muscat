@@ -110,7 +110,9 @@ ActiveAdmin.register Folder do
       return
     end
 
-    f.reset_expiration!
+    # Saving a folder is an explicit renewal. The before_save callback resets
+    # its expiration date even when no attributes have changed.
+    f.save
 
     redirect_to resource_path(params[:id]), notice: I18n.t(:"folders.resetted", date: f.delete_date.to_date.to_s)
   end
