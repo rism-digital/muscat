@@ -31,7 +31,11 @@ class Folder < ApplicationRecord
   before_save :update_expires
 
   def update_expires
-    self.delete_date = Time.now + 6.months
+    self.delete_date = 6.months.from_now
+  end
+
+  def reset_expiration!
+    save!
   end
 
   # Looks to see if an item is in the current folder.

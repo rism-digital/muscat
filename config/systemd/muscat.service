@@ -9,7 +9,7 @@ TimeoutSec=5
 User=muscat
 Group=muscat
 WorkingDirectory=/INSTALLATION/DIR/muscat
-ExecStart=/home/muscat/.rvm/bin/rvm 3.3.6@rails do bundle exec passenger start
+ExecStart=/home/muscat/.rvm/bin/rvm 4.0.5@rails do bundle exec passenger start
 
 [Install]
 WantedBy=multi-user.target

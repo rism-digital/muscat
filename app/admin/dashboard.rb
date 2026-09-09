@@ -97,7 +97,7 @@ ActiveAdmin.register_page "Dashboard" do
                   status_tag label_color, label: folder.delete_date.to_date.to_s
               end
               column :reset do |folder|
-                link_to("#{I18n.t :"folders.reset_expiration"}", reset_expiration_admin_folder_path(folder))
+                link_to("#{I18n.t :"folders.reset_expiration"}", reset_expiration_admin_folder_path(folder), method: :patch)
               end
             end
           end

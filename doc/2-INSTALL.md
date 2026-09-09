@@ -138,10 +138,15 @@ Install rvm following the instructions here: [https://rvm.io/rvm/install](https:
 gpg --keyserver keyserver.ubuntu.com --recv-keys 409B6B1796C275462A1703113804BB82D39DC0E3 7D2BAF1CF37B13E2069D6956105BD0E739499BDB
 \curl -sSL https://get.rvm.io | bash
 
-rvm install 3.3.6
+# or if that fails due to proxy
+command curl -sSL https://rvm.io/mpapis.asc | gpg --import -
+command curl -sSL https://rvm.io/pkuczynski.asc | gpg --import -
+#
+
+rvm install 4.0.5
 rvm gemset create rails
-rvm use 3.3.6@rails
-rvm --default use 3.3.6@rails
+rvm use 4.0.5@rails
+rvm --default use 4.0.5@rails
 
 source ~/.rvm/scripts/rvm
 ```

@@ -62,7 +62,8 @@
 		<%- if (self.controller.respond_to? :reindex) && (can? :reindex, item) %>
 			<li class="muscat_icon_link">
 			<%= link_to("#{I18n.t :reindex}", send("reindex_admin_#{model}_path", item),
-				:class => "muscat_icon_link muscat_icon_link_reindex") %>
+				:class => "muscat_icon_link muscat_icon_link_reindex",
+				:method => (:post if item.is_a?(Folder))) %>
 			</li>
 		<%- end %>
 		<%- if (self.controller.respond_to? :resave) && (can? :resave, item) %>
@@ -74,13 +75,15 @@
 		<%- if (self.controller.respond_to? :publish) && (can? :publish, item) %>
 			<li class="muscat_icon_link">
 			<%= link_to("#{I18n.t :publish}", send("publish_admin_#{model}_path", item),
-				:class => "muscat_icon_link muscat_icon_link_publish") %>
+				:class => "muscat_icon_link muscat_icon_link_publish",
+				:method => (:post if item.is_a?(Folder))) %>
 			</li>
 		<%- end %>
 		<%- if (self.controller.respond_to? :unpublish) && (can? :unpublish, item) %>
 			<li class="muscat_icon_link">
 			<%= link_to("#{I18n.t :unpublish}", send("unpublish_admin_#{model}_path", item),
-				:class => "muscat_icon_link muscat_icon_link_unpublish") %>
+				:class => "muscat_icon_link muscat_icon_link_unpublish",
+				:method => (:post if item.is_a?(Folder))) %>
 			</li>
 		<%- end %>
 		<%- if (self.controller.respond_to? :archive) && (can? :edit, item) %>
@@ -94,21 +97,21 @@
 				folder_model && folder_model.new.respond_to?(:marc_source) %>
 			<li class="muscat_icon_link">
 			<%= link_to("#{I18n.t :export_folder}", send("export_folder_admin_#{model}_path", item),
-				:class => "muscat_icon_link muscat_icon_link_download") %>
+				:class => "muscat_icon_link muscat_icon_link_download", :method => :post) %>
 			</li>
 			<%- if item.folder_type == "Source" %>
 				<li class="muscat_icon_link">
 				<%= link_to("#{I18n.t :export_folder_csv}", send("export_folder_admin_#{model}_path", item, type: :csv),
-					:class => "muscat_icon_link muscat_icon_link_download") %>
+					:class => "muscat_icon_link muscat_icon_link_download", :method => :post) %>
 				</li>
 				<%- if current_user.has_any_role?(:editor, :admin) %>
 					<li class="muscat_icon_link">
 					<%= link_to("#{I18n.t :export_folder_raw}", send("export_folder_admin_#{model}_path", item, type: :raw),
-						:class => "muscat_icon_link muscat_icon_link_download") %>
+						:class => "muscat_icon_link muscat_icon_link_download", :method => :post) %>
 					</li>
 					<li class="muscat_icon_link">
 					<%= link_to("#{I18n.t :export_folder_raw_holdings}", send("export_folder_admin_#{model}_path", item, type: :raw_holdings),
-						:class => "muscat_icon_link muscat_icon_link_download") %>
+						:class => "muscat_icon_link muscat_icon_link_download", :method => :post) %>
 					</li>
 				<%- end %>
 			<%- end %>
@@ -116,13 +119,13 @@
 		<%- if (self.controller.respond_to? :validate_folder) && (can? :edit, item)  && item.is_a?(Folder) && item.folder_type == "Source" %>
 			<li class="muscat_icon_link">
 			<%= link_to("#{I18n.t :validate_folder}", send("validate_folder_admin_#{model}_path", item),
-				:class => "muscat_icon_link muscat_icon_link_validate") %>
+				:class => "muscat_icon_link muscat_icon_link_validate", :method => :post) %>
 			</li>
 		<%- end %>
 		<%- if (can? :edit, item)  && item.is_a?(Folder) %>
-			<li class="muscat_icon_link">
+			<li class="muscat_icon_link" id="reset-expiration">
 			<%= link_to("#{I18n.t :"folders.reset_expiration"}", send("reset_expiration_admin_#{model}_path", item),
-				:class => "muscat_icon_link muscat_icon_link_expiration") %>
+				:class => "muscat_icon_link muscat_icon_link_expiration", :method => :patch) %>
 			</li>
 		<%- end %>
 	<%- else %>
