@@ -108,15 +108,14 @@ class Folder < ApplicationRecord
     new_fi.length
   end
     
-  def remove_items(items)
-    items.each do |item|
-      folder_item = folder_items.where(item_id: item)
-      folder_items.destroy(folder_item) if folder_item
-    end
-    # Folder items should be always cleaned up
-    # run a background job for that
+  def remove_items(item_ids)
+    folder_items
+      .where(item_type: folder_type, item_id: item_ids)
+      .delete_all
+      # Folder items should be always cleaned up
+      # run a background job for that
     Delayed::Job.enqueue(PurgeFolderItemsJob.new(self.id))
-  end  
+  end
 
   # https://github.com/activeadmin/activeadmin/issues/7809
   # In Non-marc models we can use the default
