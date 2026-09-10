@@ -16,4 +16,13 @@ RSpec.describe "admin folder action routing", type: :routing do
     expect(patch: path).to route_to(controller: "admin/folders", action: "reset_expiration", id: "1")
     expect(get: path).not_to be_routable
   end
+
+  %w[do_create_new_folder do_append_to_folder].each do |action|
+    it "routes #{action} through POST, not GET" do
+      path = "/admin/sources/#{action}"
+
+      expect(post: path).to route_to(controller: "admin/sources", action: action)
+      expect(get: path).not_to route_to(controller: "admin/sources", action: action)
+    end
+  end
 end

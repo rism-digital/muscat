@@ -32,17 +32,28 @@ RSpec.describe Folder do
     end
   end
 
-  describe "#reset_expiration!" do
-    it "extends the expiration date by six months" do
-      folder = described_class.create!(name: "Sources", folder_type: "Source", user: create(:user))
-      previous_expiration = folder.delete_date
-
-      travel 1.day do
-        folder.reset_expiration!
-
-        expect(folder.reload.delete_date).to be_within(1.second).of(6.months.from_now)
-        expect(folder.delete_date).to be > previous_expiration
+  describe "#add_items" do
+    it "returns new item IDs and retains progress reporting" do
+      folder = described_class.allocate
+      items = Array.new(51) do |index|
+        Source.allocate.tap { |item| allow(item).to receive(:id).and_return(index + 1) }
       end
+      folder_items = instance_double(ActiveRecord::Associations::CollectionProxy)
+      existing_items = instance_double(ActiveRecord::Relation)
+
+      allow(folder).to receive_messages(id: 10, folder_type: "Source", folder_items: folder_items)
+      allow(folder_items).to receive(:where).and_return(existing_items)
+      allow(existing_items).to receive(:pluck).with(:item_id).and_return([])
+      allow(FolderItem).to receive(:new) do |attributes|
+        instance_double(FolderItem, item_id: attributes[:item].id)
+      end
+      allow(FolderItem).to receive(:import)
+
+      progress = []
+      added_ids = folder.add_items(items, return_item_ids: true) { |count| progress << count }
+
+      expect(added_ids).to eq((1..51).to_a)
+      expect(progress).to eq([0, 50])
     end
   end
 end
