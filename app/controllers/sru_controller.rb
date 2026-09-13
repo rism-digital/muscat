@@ -30,7 +30,7 @@ class SruController < ActionController::Base
     )
     @result = @sru.result
 
-    if export_action && !@sru.error_code
+    if export_action && !@sru.error_code && @result
       export_action == "csv" ? send_csv : send_xml
     else
       render_response
@@ -105,7 +105,7 @@ class SruController < ActionController::Base
   end
 
   def render_response
-    if @sru.error_code
+    if @sru.error_code || @sru.operation == "explain"
       render template: "sru/response", layout: false, formats: [:xml], content_type: "application/xml"
     elsif @sru.schema == "html"
       render template: "sru/response", layout: false, formats: [:html]

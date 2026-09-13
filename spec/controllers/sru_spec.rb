@@ -91,4 +91,30 @@ RSpec.describe SruController, :type => :controller, solr: true do
     end
   end
 
+  context "with an export requested for explain" do
+    ["download", "csv"].each do |export_action|
+      [nil, "explain"].each do |operation|
+        it "returns explain XML for #{export_action} with #{operation || 'no operation'}" do
+          expect(Sunspot).not_to receive(:search)
+          request_params = {
+            maximumRecords: "50",
+            query: "bath.possessingInstitution=D-Dl AND creator=Heinichen*",
+            recordSchema: "html",
+            version: "1.1",
+            "x-action" => export_action
+          }
+          request_params[:operation] = operation if operation
+
+          get "service", params: request_params
+
+          document = Nokogiri::XML(response.body) { |config| config.strict }
+          expect(response).to have_http_status(:ok)
+          expect(response.media_type).to eq("application/xml")
+          expect(response.headers["Content-Disposition"]).to be_nil
+          expect(document.at_xpath("/zs:explainResponse", "zs" => "http://www.loc.gov/zing/srw/")).to be_present
+        end
+      end
+    end
+  end
+
 end
