@@ -206,11 +206,20 @@ end
 #default_file = ConfigFilePath.get_marc_editor_profile_path("#{Rails.root}/config/marc/#{RISM::MARC}/source/#{default_file_name}.marc")
 #def_marc = File.read(default_file)
 
+def migrate_child_records(source, old_marc)
+  
+  old_marc["600"].each do |t|
+    ap t
+  end
+
+end
+
 the_short_list.each do |m|
   
   ms = legacy.find(:manuscripts, m)
 
-  old = MarcSource.new(ms["source"], 8)
+  # GndWork loads ALL numbers as marc tags
+  old = MarcGndWork.new(ms["source"])
   old.load_source false
 
   new = MarcSource.new("=001 __TEMP__", 8)
@@ -226,5 +235,7 @@ the_short_list.each do |m|
 
   source.save
   puts "PSMD #{m} to #{source.id}"
+
+  migrate_child_records(source, old)
 
 end
