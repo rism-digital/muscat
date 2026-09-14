@@ -34,11 +34,11 @@ more_map = {}
 CSV.parse(data, col_sep: "\t", headers: %i[id name]).each do |r|
     mus = Institution.where(full_name: r[:name])
 
-    l = legacy.find_by(:institutions, :full_name, r[:name])
+    l = legacy.find_by(:institutions, :name, r[:name])
 
     if mus.count > 1
         ## do somethijg clever
-        puts legacy.find_by(:institutions, :full_name, r[:name])
+        puts legacy.find_by(:institutions, :name, r[:name])
         ap mus.map(&:full_name)
     elsif mus.count == 0
         puts "NO MUSCAT #{l["ext_id"]} #{l["full_name"]}"

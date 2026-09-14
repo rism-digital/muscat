@@ -2,6 +2,7 @@ require_relative 'legacy_file.rb'
 
 legacy = LegacyFile.new("housekeeping/psmd/psmd.yml")
 @people_map = YAML.load_file("housekeeping/psmd/psmd_people.yml")
+@institution_map = YAML.load_file("housekeeping/psmd/psmd_institutions.yml")
 
 the_short_list = %w[
 3710
@@ -158,7 +159,8 @@ def copy_from_source_marc(source, dest)
     {
       from: "710",
       to: "710",
-      subfields: {"a" => "a", "4" => "4" }
+      subfields: {"a" => "a", "4" => "4", "0" => "0" },
+      map: @institution_map
     }, 
   ]
 
@@ -176,7 +178,8 @@ def copy_from_source_marc(source, dest)
             if rule[:map].include?(subfield.content.to_s)
               subfield.content = rule[:map][subfield.content]
             else
-              puts "Person ID not mapped #{subfield.content}".red
+              puts "#{source_tag.tag} ID not mapped #{subfield.content}".red
+              puts source_tag
               subfield.destroy_yourself
               kill = true
             end
