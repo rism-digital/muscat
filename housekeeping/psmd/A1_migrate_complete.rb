@@ -1,7 +1,7 @@
 require_relative 'legacy_file.rb'
 
 legacy = LegacyFile.new("housekeeping/psmd/psmd.yml")
-people_map = YAML.load_file("housekeeping/psmd/psmd_people.yml")
+@people_map = YAML.load_file("housekeeping/psmd/psmd_people.yml")
 
 the_short_list = %w[
 3710
@@ -81,7 +81,8 @@ def copy_from_source_marc(source, dest)
     {
       from: "100",
       to: "100",
-      subfields: {"a" => "a", "d" => "d" }
+      subfields: {"a" => "a", "d" => "d", "0" => "0" },
+      map: @people_map
     },
     {
       from: "240",
@@ -151,7 +152,8 @@ def copy_from_source_marc(source, dest)
     {
       from: "700",
       to: "700",
-      subfields: { "a" => "a", "4" => "4" }
+      subfields: { "a" => "a", "4" => "4", "0" => "0" },
+      map: @people_map
     }, 
     {
       from: "710",
@@ -168,7 +170,19 @@ def copy_from_source_marc(source, dest)
 
       rule[:subfields].each do |source_sf, dest_sf|
         source_tag[source_sf].each do |subfield|
-          (values[dest_sf.to_sym] ||= []) << subfield.content
+          kill = false
+
+          if source_sf == "0" && rule.include?(:map)
+            if rule[:map].include?(subfield.content.to_s)
+              subfield.content = rule[:map][subfield.content]
+            else
+              puts "Person ID not mapped #{subfield.content}".red
+              subfield.destroy_yourself
+              kill = true
+            end
+          end
+
+          (values[dest_sf.to_sym] ||= []) << subfield.content if !kill
         end
       end
 
