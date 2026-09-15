@@ -20,6 +20,7 @@ spec/examples.txt
 help.sh
 .DS_Store
 system
+housekeeping/psmd/psmd.yml
 
 # Ignore encrypted secrets key file.
 config/secrets.yml.key

@@ -288,6 +288,8 @@ def migrate_child_records(legacy, source, old_marc)
     #ap person["ext_id"]
     #ap @people_map[person["ext_id"].to_s]
 
+    std_title_candidate = ""
+
     incipits.each_with_index do |incipit, i|
       pae_line = zip_get_named_file("incipits/pae/work_incipit_#{incipit["ext_id"]}.pae")
       pae = mini_parse_pae(pae_line)
@@ -301,8 +303,12 @@ def migrate_child_records(legacy, source, old_marc)
         t: extract_darms_text(incipit["notation"]),
         q: incipit["public_note"],
       )
+
+      # Use the first one for the standard title
+      std_title_candidate = extract_darms_text(incipit["notation"]) if i == 0
     end
 
+    marc.add_tag_with_subfields("240", a: std_title_candidate) if !std_title_candidate.empty?
     marc.add_tag_with_subfields("100", "0": @people_map[person["ext_id"].to_s])
     marc.add_tag_with_subfields("245", a: work["title"])
     marc.add_tag_with_subfields("773", w: source.id)
