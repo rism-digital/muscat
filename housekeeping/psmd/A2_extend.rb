@@ -11,12 +11,7 @@ copy_map = [
     to: "040",
     subfields: { "b" => "b" }
   },
-  {
-    from: "100",
-    to: "100",
-    subfields: {"a" => "a", "d" => "d", "0" => "0" },
-    map: PsmdConversion.people_map
-  },
+
   {
     from: "240",
     to: "730",
@@ -94,7 +89,7 @@ CSV.parse(File.read("housekeeping/psmd/enhance_list.tsv"), col_sep: "\t", header
   source.marc.add_tag_with_subfields("599", a: "Imported from PSMD manuscripts/#{ms["ext_id"]} (#{ms["id"]})")
   source.marc.add_tag_with_subfields("691", "0": 50006603, u: "http://printed-sacred-music.org/manuscripts/#{ms["ext_id"]}")
 
-#  source.save
+  source.save
   puts "PSMD #{r[:psmd_id]} to #{source.id}"
   
   PsmdConversion.create_holding_records(source, old, ms)
