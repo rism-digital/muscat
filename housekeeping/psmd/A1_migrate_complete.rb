@@ -3,6 +3,7 @@ require_relative 'legacy_file.rb'
 legacy = LegacyFile.new("housekeeping/psmd/psmd.yml")
 @people_map = YAML.load_file("housekeeping/psmd/psmd_people.yml")
 @institution_map = YAML.load_file("housekeeping/psmd/psmd_institutions.yml")
+@siglum_map = YAML.load_file("housekeeping/psmd/psmd_siglums.yml")
 
 the_short_list = %w[
 3710
@@ -329,6 +330,38 @@ def migrate_child_records(legacy, source, old_marc)
 
 end
 
+def create_holding_records(legacy, source, old)
+
+  old["852"].each do |t|
+    #sig = t["a"]&.first&.content
+    id = t["0"]&.first&.content
+    material_held = t["3"]&.first&.content
+    #notes = t["z"]&.first&.content
+    shelfmark = t["p"]&.first&.content
+
+    h = Holding.new
+    marc = MarcHolding.new(File.read(ConfigFilePath.get_marc_editor_profile_path("#{Rails.root}/config/marc/#{RISM::MARC}/holding/default.marc")))
+    marc.load_source false
+
+    marc.by_tags("852").each {|t| t.destroy_yourself}
+    marc.by_tags("500").each {|t| t.destroy_yourself}
+
+    muscat_id = @siglum_map[id.to_s]
+    marc.add_tag_with_subfields("852", x: muscat_id, c: shelfmark, q: material_held)
+    t["z"].each do |note|
+      marc.add_tag_with_subfields("500", a: note&.content)
+    end
+    marc.import
+
+    h.marc = marc
+    h.source = source
+    h.save
+
+    puts "Created holding #{h.id}"
+
+  end
+end
+
 
 the_short_list.each do |m|
   
@@ -353,6 +386,8 @@ the_short_list.each do |m|
 
   source.save
   puts "PSMD #{m} to #{source.id}"
+  
+  create_holding_records(legacy, source, old)
 
   migrate_child_records(legacy, source, old)
 
