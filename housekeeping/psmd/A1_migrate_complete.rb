@@ -5,6 +5,15 @@ legacy = LegacyFile.new("housekeeping/psmd/psmd.yml")
 @institution_map = YAML.load_file("housekeeping/psmd/psmd_institutions.yml")
 @siglum_map = YAML.load_file("housekeeping/psmd/psmd_siglums.yml")
 
+@publication_map = {
+  "100002" => 1457,
+  "100004" => 1272,
+  "100006" => 30028344,
+  "100003" => 3332,
+  "100007" => 41000451,
+  "400000" => 3509
+}
+
 the_short_list = %w[
 3710
 3714
@@ -144,12 +153,14 @@ def copy_from_source_marc(source, dest)
     {
       from: "690",
       to: "690",
-      subfields: {"a" => "a", "n" => "n" }
+      subfields: {"a" => "a", "n" => "n", "0" => "0" },
+      map: @publication_map
     }, 
     {
       from: "691",
       to: "691",
-      subfields: { "a" => "a", "n" => "n" }
+      subfields: { "a" => "a", "n" => "n", "0" => "0" },
+      map: @publication_map
     },
     {
       from: "700",
