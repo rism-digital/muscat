@@ -206,10 +206,30 @@ end
 #default_file = ConfigFilePath.get_marc_editor_profile_path("#{Rails.root}/config/marc/#{RISM::MARC}/source/#{default_file_name}.marc")
 #def_marc = File.read(default_file)
 
-def migrate_child_records(source, old_marc)
+def migrate_child_records(legacy, source, old_marc)
   
-  old_marc["600"].each do |t|
-    ap t
+  ids = old_marc["600"].map do |t|
+    t["0"]&.first&.content
+  end.compact
+
+  ids.each do |id|
+    work = legacy.find_by(:works, :ext_id, id.to_i)
+    incipits = legacy.where(:work_incipits, work_id: work[:id])
+
+    child = Source.new
+    child.record_type = 11
+    child.parent_source = source
+
+    marc = MarcSource.new("=001 __TEMP__", 11)
+    marc.reset_to_new
+
+    person = legacy.find_by(:people, :id, work["person_id"].to_i)
+
+    ap person["ext_id"]
+    ap @people_map[person["ext_id"].to_s]
+
+    marc.add_tag_with_subfields("240", a: work["title"])
+
   end
 
 end
@@ -226,6 +246,7 @@ the_short_list.each do |m|
   new.reset_to_new
 
   copy_from_source_marc(old, new)
+  new.add_tag_with_subfields("500", a: "Imported from PSMD #{ms[:ext_id]} (#{ms[:id]})")
   new.import
 
   source = Source.new
@@ -236,6 +257,6 @@ the_short_list.each do |m|
   source.save
   puts "PSMD #{m} to #{source.id}"
 
-  migrate_child_records(source, old)
+  migrate_child_records(legacy, source, old)
 
 end
