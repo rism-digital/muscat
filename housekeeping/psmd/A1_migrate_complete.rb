@@ -207,6 +207,65 @@ end
 #default_file = ConfigFilePath.get_marc_editor_profile_path("#{Rails.root}/config/marc/#{RISM::MARC}/source/#{default_file_name}.marc")
 #def_marc = File.read(default_file)
 
+def zip_get_named_file(filename)
+  Zip::File.open("housekeeping/psmd/incipits.zip") do |zip|
+    entry = zip.find_entry(filename)
+    return nil unless entry
+
+    entry.get_input_stream.read
+  end
+end
+
+def mini_parse_pae(data)
+  body = data.sub(/\A@data:\s*/m, "").strip
+
+  clef   = body[/%(\S+)/, 1]
+  keysig = body[/\$(\S+)/, 1]
+
+  notes = body
+    .sub(/%\S+\s*/, "")
+    .sub(/\$\S+\s*/, "")
+    .sub(/@\s*/, "")
+    .strip
+
+  {
+    clef: clef,
+    keysig: keysig,
+    notes: notes
+  }
+end
+
+def extract_darms_text(darms)
+  return "" unless darms.include?("@")
+
+  text = darms.split("@", 2).last
+  text = text.split("$", 2).first if text.include?("$")
+  text = text.split(/\d/, 2).first unless darms.split("@", 2).last.include?("$")
+
+  text.strip
+end
+
+def darms_timesig_to_pae(darms)
+  code = darms[/!M(?:C\/?|[0-9]+:[0-9]+)/]
+  return nil unless code
+
+  case code
+  when "!MC"
+    "c"
+  when "!MC/"
+    "c/"
+  when "!M3:1"
+    "3/1"
+  when "!M3:2"
+    "3/2"
+  when "!M3:4"
+    "3/4"
+  else
+    warn "Unsupported DARMS time signature: #{code}"
+    nil
+  end
+end
+
 def migrate_child_records(legacy, source, old_marc)
   
   ids = old_marc["600"].map do |t|
@@ -215,25 +274,48 @@ def migrate_child_records(legacy, source, old_marc)
 
   ids.each do |id|
     work = legacy.find_by(:works, :ext_id, id.to_i)
-    incipits = legacy.where(:work_incipits, work_id: work[:id])
+    incipits = legacy.where(:work_incipits, work_id: work["id"])
 
     child = Source.new
-    child.record_type = 11
-    child.parent_source = source
+    child.record_type = 3
+    child.source_id = source.id
 
-    marc = MarcSource.new("=001 __TEMP__", 11)
+    marc = MarcSource.new("=001 __TEMP__", 3)
     marc.reset_to_new
 
     person = legacy.find_by(:people, :id, work["person_id"].to_i)
 
-    ap person["ext_id"]
-    ap @people_map[person["ext_id"].to_s]
+    #ap person["ext_id"]
+    #ap @people_map[person["ext_id"].to_s]
 
-    marc.add_tag_with_subfields("240", a: work["title"])
+    incipits.each_with_index do |incipit, i|
+      pae_line = zip_get_named_file("incipits/pae/work_incipit_#{incipit["ext_id"]}.pae")
+      pae = mini_parse_pae(pae_line)
+      
+      marc.add_tag_with_subfields("031", 
+        a: "1", b: "1", c: i + 1, 
+        m: incipit["instrument_or_voice"], 
+        n: pae[:keysig], g: pae[:clef], p: pae[:notes],
+        # FIXME this was not translated?
+        o: darms_timesig_to_pae(incipit["notation"]),
+        t: extract_darms_text(incipit["notation"]),
+        q: incipit["public_note"],
+      )
+    end
 
+    marc.add_tag_with_subfields("100", "0": @people_map[person["ext_id"].to_s])
+    marc.add_tag_with_subfields("245", a: work["title"])
+    marc.add_tag_with_subfields("773", w: source.id)
+    marc.import
+
+    child.marc = marc
+    child.save
+
+    puts "\tCreated #{child.id}"
   end
 
 end
+
 
 the_short_list.each do |m|
   
