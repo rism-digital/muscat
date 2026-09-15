@@ -192,6 +192,11 @@ def copy_from_source_marc(source, dest)
 
       next if values.empty?
 
+      # Make sure group tags are in group 01, there were not groups in PSMD
+      if rule[:to] == "260" || rule[:to] == "300" || rule[:to] == "340"
+        values["8"] = "01"
+      end
+
       unless destroyed[rule[:to]]
         dest[rule[:to]].each(&:destroy_yourself) unless dest[rule[:to]].empty?
         destroyed[rule[:to]] = true
@@ -312,6 +317,8 @@ def migrate_child_records(legacy, source, old_marc)
     marc.add_tag_with_subfields("100", "0": @people_map[person["ext_id"].to_s])
     marc.add_tag_with_subfields("245", a: work["title"])
     marc.add_tag_with_subfields("773", w: source.id)
+    marc.add_tag_with_subfields("500", a: "Created from PSMD works/#{work["ext_id"]} in  manuscripts/#{source["ext_id"]} (#{source["id"]})")
+    marc.add_tag_with_subfields("691", "0": 50006603)
     marc.import
 
     child.marc = marc
@@ -335,7 +342,8 @@ the_short_list.each do |m|
   new.reset_to_new
 
   copy_from_source_marc(old, new)
-  new.add_tag_with_subfields("500", a: "Imported from PSMD #{ms[:ext_id]} (#{ms[:id]})")
+  new.add_tag_with_subfields("500", a: "Imported from PSMD manuscripts/#{ms["ext_id"]} (#{ms["id"]})")
+  new.add_tag_with_subfields("691", "0": 50006603)
   new.import
 
   source = Source.new
