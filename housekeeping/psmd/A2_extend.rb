@@ -97,8 +97,10 @@ CSV.parse(File.read("housekeeping/psmd/enhance_list.tsv"), col_sep: "\t", header
 #  source.save
   puts "PSMD #{r[:psmd_id]} to #{source.id}"
   
-  #PsmdConversion.create_holding_records(source, old, ms)
+  PsmdConversion.create_holding_records(source, old, ms)
 
-  #PsmdConversion.migrate_child_records(source, old, ms)
+  if source.child_sources.count == 0
+    PsmdConversion.migrate_child_records(source, old, ms)
+  end
 
 end

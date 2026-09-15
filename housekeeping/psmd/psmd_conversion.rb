@@ -69,6 +69,11 @@ end
 #def_marc = File.read(default_file)
 
 def zip_get_named_file(filename)
+  if Dir.exist?(File.join(__dir__, "incipits"))
+    path = File.join(__dir__, filename)
+    return File.exist?(path) ? File.read(path) : nil
+  end
+
   Zip::File.open(File.join(__dir__, "incipits.zip")) do |zip|
     entry = zip.find_entry(filename)
     return nil unless entry
@@ -78,6 +83,11 @@ def zip_get_named_file(filename)
 end
 
 def mini_parse_pae(data)
+  if data.nil?
+    puts "COULD NOT READ PAE or NO PAE".yellow
+    return {}
+  end
+
   body = data.sub(/\A@data:\s*/m, "").strip
 
   clef   = body[/%(\S+)/, 1]
@@ -187,12 +197,31 @@ end
 
 def create_holding_records(source, old, ms)
 
+  institution_ids = source.holdings.flat_map do |holding|
+    holding.marc["852"].flat_map { |tag| tag["x"].map { |sf| sf.content.to_s } }
+  end
+
   old["852"].each do |t|
     #sig = t["a"]&.first&.content
     id = t["0"]&.first&.content
     material_held = t["3"]&.first&.content
     #notes = t["z"]&.first&.content
     shelfmark = t["p"]&.first&.content
+
+    #ll = Institution.where(siglum: t["a"]&.first&.content).map(&:id).join(" ")
+    #puts "LIBRARY #{t["a"]&.first&.content} \"#{id}\" => #{ll}"
+
+    muscat_id = @siglum_map[id.to_s]
+
+    if !@siglum_map.include? id.to_s
+      puts "PSMD siglum #{t["a"]&.first&.content} #{id} does not exist in muscat, skip".magenta
+      next
+    end
+
+    if institution_ids.include?(muscat_id.to_s)
+      puts "PSMD Library #{muscat_id.to_s} (#{t["a"]&.first&.content}) already has a holding record in #{ms["ext_id"]}".blue
+      next
+    end
 
     h = Holding.new
     marc = MarcHolding.new(File.read(ConfigFilePath.get_marc_editor_profile_path("#{Rails.root}/config/marc/#{RISM::MARC}/holding/default.marc")))
@@ -201,7 +230,6 @@ def create_holding_records(source, old, ms)
     marc.by_tags("852").each {|t| t.destroy_yourself}
     marc.by_tags("500").each {|t| t.destroy_yourself}
 
-    muscat_id = @siglum_map[id.to_s]
     marc.add_tag_with_subfields("852", x: muscat_id, c: shelfmark, q: material_held)
     marc.add_tag_with_subfields("500", a: "Created from PSMD manuscripts/#{ms["ext_id"]} (#{ms["id"]})")
 
@@ -213,6 +241,8 @@ def create_holding_records(source, old, ms)
 
     h.marc = marc
     h.source = source
+    # Let us make duplicates
+    #institution_ids << muscat_id.to_s if h.save
     h.save
 
     puts "Created holding #{h.id}"
