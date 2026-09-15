@@ -272,7 +272,7 @@ def darms_timesig_to_pae(darms)
   end
 end
 
-def migrate_child_records(legacy, source, old_marc)
+def migrate_child_records(legacy, source, old_marc, ms)
   
   ids = old_marc["600"].map do |t|
     t["0"]&.first&.content
@@ -318,7 +318,7 @@ def migrate_child_records(legacy, source, old_marc)
     marc.add_tag_with_subfields("100", "0": @people_map[person["ext_id"].to_s])
     marc.add_tag_with_subfields("245", a: work["title"])
     marc.add_tag_with_subfields("773", w: source.id)
-    marc.add_tag_with_subfields("500", a: "Created from PSMD works/#{work["ext_id"]} in  manuscripts/#{source["ext_id"]} (#{source["id"]})")
+    marc.add_tag_with_subfields("500", a: "Created from PSMD works/#{work["ext_id"]} in  manuscripts/#{ms["ext_id"]} (#{ms["id"]})")
     marc.add_tag_with_subfields("691", "0": 50006603)
     marc.import
 
@@ -330,7 +330,7 @@ def migrate_child_records(legacy, source, old_marc)
 
 end
 
-def create_holding_records(legacy, source, old)
+def create_holding_records(legacy, source, old, ms)
 
   old["852"].each do |t|
     #sig = t["a"]&.first&.content
@@ -348,9 +348,12 @@ def create_holding_records(legacy, source, old)
 
     muscat_id = @siglum_map[id.to_s]
     marc.add_tag_with_subfields("852", x: muscat_id, c: shelfmark, q: material_held)
+    marc.add_tag_with_subfields("500", a: "Created from PSMD manuscripts/#{ms["ext_id"]} (#{ms["id"]})")
+
     t["z"].each do |note|
       marc.add_tag_with_subfields("500", a: note&.content)
     end
+
     marc.import
 
     h.marc = marc
@@ -387,8 +390,8 @@ the_short_list.each do |m|
   source.save
   puts "PSMD #{m} to #{source.id}"
   
-  create_holding_records(legacy, source, old)
+  create_holding_records(legacy, source, old, ms)
 
-  migrate_child_records(legacy, source, old)
+  migrate_child_records(legacy, source, old, ms)
 
 end
