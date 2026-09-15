@@ -178,8 +178,9 @@ def copy_from_source_marc(source, dest)
             if rule[:map].include?(subfield.content.to_s)
               subfield.content = rule[:map][subfield.content]
             else
-              puts "#{source_tag.tag} ID not mapped #{subfield.content}".red
-              puts source_tag
+              name = source_tag["a"]&.first&.content
+              puts "#{source_tag.tag} ID not mapped #{subfield.content}\t#{name}".red
+              #puts source_tag
               subfield.destroy_yourself
               kill = true
             end
