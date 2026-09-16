@@ -6,10 +6,10 @@
     "build:watch": "esbuild app/javascript/active_admin_mention_input.js app/javascript/diva_viewer.js app/javascript/edtf_subfield.js --bundle --outdir=app/assets/builds --format=iife --target=es2017 --watch"
   },
   "dependencies": {
-    "@tiptap/core": "^3.31.3",
-    "@tiptap/extension-mention": "^3.31.3",
-    "@tiptap/pm": "^3.0.0",
-    "@tiptap/starter-kit": "^3.0.0",
+    "@tiptap/core": "3.31.3",
+    "@tiptap/extension-mention": "3.31.3",
+    "@tiptap/pm": "3.31.3",
+    "@tiptap/starter-kit": "3.31.3",
     "diva.js": "7.4.0",
     "edtf": "^4.7.1",
     "openseadragon": "6.0.2"

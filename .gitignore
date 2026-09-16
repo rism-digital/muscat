@@ -21,6 +21,7 @@ help.sh
 .DS_Store
 system
 housekeeping/psmd/psmd.yml
+housekeeping/psmd/incipits
 
 # Ignore encrypted secrets key file.
 config/secrets.yml.key
