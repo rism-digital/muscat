@@ -179,6 +179,13 @@ def migrate_child_records(source, old_marc, ms)
 
     std_title_candidate = ""
 
+    if incipits.count == 0
+      warn "SKIP EMPTY WORK #{work["ext_id"]}".red
+      next
+    end
+
+
+    
     incipits.each_with_index do |incipit, i|
       pae_line = zip_get_named_file("incipits/pae/work_incipit_#{incipit["ext_id"]}.pae")
       pae = mini_parse_pae(pae_line)
