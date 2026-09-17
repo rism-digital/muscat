@@ -6,11 +6,11 @@ copy_map = [
     to: "599",
     subfields: { "a" => "a" }
   },
-  {
-    from: "040",
-    to: "040",
-    subfields: { "b" => "b" }
-  },
+  #{
+  #  from: "040",
+  #  to: "040",
+  #  subfields: { "b" => "b" }
+  #},
 
   {
     from: "240",

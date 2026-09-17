@@ -67,11 +67,11 @@ the_short_list = %w[
 ]
 
 copy_map = [
-  {
-    from: "040",
-    to: "040",
-    subfields: { "b" => "b" }
-  },
+  #{
+  #  from: "040",
+  #  to: "040",
+  #  subfields: { "b" => "b" }
+  #},
   {
     from: "100",
     to: "100",
@@ -171,8 +171,9 @@ the_short_list.each do |m|
   new.reset_to_new
 
   PsmdConversion.copy_from_source_marc(old, new, copy_map)
-  source.marc.add_tag_with_subfields("599", a: "Created from PSMD manuscripts/#{ms["ext_id"]} (#{ms["id"]})")
-  source.marc.add_tag_with_subfields("691", "0": 50006603, u: "http://printed-sacred-music.org/manuscripts/#{ms["ext_id"]}")
+  new.add_tag_with_subfields("040", b: "ita")
+  new.add_tag_with_subfields("599", a: "Created from PSMD manuscripts/#{ms["ext_id"]} (#{ms["id"]})")
+  new.add_tag_with_subfields("691", "0": 50006603, u: "http://printed-sacred-music.org/manuscripts/#{ms["ext_id"]}")
   new.import
 
   source = Source.new
