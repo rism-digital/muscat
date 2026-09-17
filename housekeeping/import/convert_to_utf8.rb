@@ -5,8 +5,8 @@ require 'iconv'
 if ARGV.length == 2
   source_file = ARGV[0]
   if File.exist?(source_file)
-    conv = Iconv.new('utf-8', 'windows-1252').iconv(open(ARGV[0]).read)
-    out = open(ARGV[1], "wb")
+    conv = Iconv.new('utf-8', 'windows-1252').iconv(File.open(ARGV[0]).read)
+    out = File.open(ARGV[1], "wb")
     out.write(conv)
     out.close
   else
