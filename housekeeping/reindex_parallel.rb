@@ -47,7 +47,7 @@ results = Parallel.map(0..@parallel_jobs - 1, in_processes: @parallel_jobs) do |
             e_count += 1
         end
         current_limit += @batch_size
-        puts "JOB #{jobid} RANGE #{offset}-#{range_end} INDEXED #{current_limit}"
+        puts "JOB #{jobid} RANGE #{offset}-#{range_end} INDEXED #{current_limit}/#{rounded_limit}"
     end
     job_run_time = Process.clock_gettime(Process::CLOCK_MONOTONIC) - job_begin_time
     puts "-JOB #{jobid} FINISHED #adios indexed:#{current_limit} oopsies:#{e_count} run time:#{human_duration(job_run_time)}"
