@@ -1,3 +1,6 @@
+parallel_jobs = 8
+max_batch_size = 5000
+
 Pathname.new(REINDEX_PIDFILE).write(Process.pid)
 
 def human_duration(seconds)
@@ -7,24 +10,32 @@ def human_duration(seconds)
     format("%02d:%02d:%02d", hours, minutes, seconds)
 end
 
-if ENV.include?('MUSCAT_PARALLEL_JOBS') && ENV['MUSCAT_PARALLEL_JOBS'].to_i > 0
-    @parallel_jobs = ENV['MUSCAT_PARALLEL_JOBS'].to_i
-else
-    @parallel_jobs = 8
-end
+@parallel_jobs = ENV.fetch('MUSCAT_PARALLEL_JOBS', parallel_jobs).to_i
+@parallel_jobs = parallel_jobs unless @parallel_jobs > 0
 
+@max_batch_size = ENV.fetch('MUSCAT_BATCH_SIZE', max_batch_size).to_i
+@max_batch_size = max_batch_size unless @max_batch_size > 0
+
+# Split the row count evenly and use OFFSET once to find each worker's first source ID.
+# Each worker then seeks from its last ID, keeping full final batches and a small intentional overlap.
 @source_count = Source.all.count
 @sources_per_chunk = @source_count / @parallel_jobs
 @remainder = @source_count - (@sources_per_chunk * @parallel_jobs)
-batch_count = [(@sources_per_chunk / 5000.0).ceil, 1].max
+batch_count = [(@sources_per_chunk.to_f / @max_batch_size).ceil, 1].max
 @batch_size = [(@sources_per_chunk.to_f / batch_count).ceil, 1].max
 
 begin_time = Time.now
-puts "Reindexing #{@source_count} sources in #{@parallel_jobs} processes with a remainder of #{@remainder} (#{@sources_per_chunk} per chunk), commit size #{@batch_size}"
+puts "Reindexing #{@source_count} sources in #{@parallel_jobs} processes with a remainder of #{@remainder} (#{@sources_per_chunk} per chunk), commit size #{@batch_size} (maximum #{@max_batch_size})"
+
+chunk_start_ids = (0...@parallel_jobs).map do |jobid|
+    Source.order(:id).offset(@sources_per_chunk * jobid).pick(:id)
+end
 
 results = Parallel.map(0..@parallel_jobs - 1, in_processes: @parallel_jobs) do |jobid|
     job_begin_time = Process.clock_gettime(Process::CLOCK_MONOTONIC)
     offset = @sources_per_chunk * jobid
+    start_id = chunk_start_ids[jobid]
+    last_id = nil
 
     limit = @sources_per_chunk
     # On the last job add the remainder
@@ -36,16 +47,23 @@ results = Parallel.map(0..@parallel_jobs - 1, in_processes: @parallel_jobs) do |
     current_limit = 0
     e_count = 0
     while current_limit < limit
-        begin
-            #Sunspot.index(Source.order(:id).limit(@batch_size).offset(offset + current_limit).select(&:force_marc_load?))
+        scope = Source.order(:id)
+        scope = if last_id
+            scope.where("id > ?", last_id)
+        else
+            scope.where("id >= ?", start_id)
+        end
+        batch = scope.limit(@batch_size).to_a
+        break if batch.empty?
 
-            batch = Source.order(:id).limit(@batch_size).offset(offset + current_limit).to_a
+        begin
             batch.each(&:prepare_marc_for_index!)
             Sunspot.index(batch)
         rescue => e
             puts "OOPS: #{e.exception}"
             e_count += 1
         end
+        last_id = batch.last.id
         current_limit += @batch_size
         puts "JOB #{jobid} RANGE #{offset}-#{range_end} INDEXED #{current_limit}/#{rounded_limit}"
     end
