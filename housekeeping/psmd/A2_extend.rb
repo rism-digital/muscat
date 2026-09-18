@@ -90,6 +90,7 @@ CSV.parse(File.read("housekeeping/psmd/enhance_list.tsv"), col_sep: "\t", header
   source.marc.add_tag_with_subfields("691", "0": 50006603, u: "http://printed-sacred-music.org/manuscripts/#{ms["ext_id"]}")
 
   source.save
+  source.reindex
   puts "PSMD #{r[:psmd_id]} to #{source.id}"
   
   PsmdConversion.create_holding_records(source, old, ms)

@@ -214,6 +214,11 @@ def migrate_child_records(source, old_marc, ms)
 
     child.marc = marc
     child.save
+    child.reindex
+    # I know it is a moxture between dumb and evil
+    # Force all the links to be pulled
+    c2 = Source.find(child.id)
+    c2.save
 
     puts "\tCreated #{child.id}"
   end

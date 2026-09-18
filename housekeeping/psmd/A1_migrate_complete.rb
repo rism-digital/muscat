@@ -182,6 +182,7 @@ the_short_list.each do |m|
   source.record_type = 8
 
   source.save
+  source.reindex
   puts "PSMD #{m} to #{source.id}"
   
   PsmdConversion.create_holding_records(source, old, ms)
