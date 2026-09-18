@@ -10,6 +10,18 @@ def human_duration(seconds)
     format("%02d:%02d:%02d", hours, minutes, seconds)
 end
 
+def duration_trend(durations)
+    return ["steady", 0.0, durations.first.to_f, durations.first.to_f] if durations.length < 2
+
+    midpoint = (durations.length / 2.0).ceil
+    first_average = durations.first(midpoint).sum.fdiv(midpoint)
+    second_half = durations.drop(midpoint)
+    second_average = second_half.sum.fdiv(second_half.length)
+    change = first_average.zero? ? 0.0 : ((second_average - first_average) / first_average) * 100
+    trend = change > 5 ? "slower" : change < -5 ? "accelerated" : "steady"
+    [trend, change, first_average, second_average]
+end
+
 @parallel_jobs = ENV.fetch('MUSCAT_PARALLEL_JOBS', parallel_jobs).to_i
 @parallel_jobs = parallel_jobs unless @parallel_jobs > 0
 
@@ -46,7 +58,9 @@ results = Parallel.map(0..@parallel_jobs - 1, in_processes: @parallel_jobs) do |
 
     current_limit = 0
     e_count = 0
+    chunk_times = []
     while current_limit < limit
+        chunk_begin_time = Process.clock_gettime(Process::CLOCK_MONOTONIC)
         scope = Source.order(:id)
         scope = if last_id
             scope.where("id > ?", last_id)
@@ -65,10 +79,14 @@ results = Parallel.map(0..@parallel_jobs - 1, in_processes: @parallel_jobs) do |
         end
         last_id = batch.last.id
         current_limit += @batch_size
-        puts "JOB #{jobid} RANGE #{offset}-#{range_end} INDEXED #{current_limit}/#{rounded_limit}"
+        chunk_run_time = Process.clock_gettime(Process::CLOCK_MONOTONIC) - chunk_begin_time
+        chunk_times << chunk_run_time
+        puts "JOB #{jobid} RANGE #{offset}-#{range_end} INDEXED #{current_limit}/#{rounded_limit} CHUNK TIME #{human_duration(chunk_run_time)}"
     end
     job_run_time = Process.clock_gettime(Process::CLOCK_MONOTONIC) - job_begin_time
-    puts "-JOB #{jobid} FINISHED #adios indexed:#{current_limit} oopsies:#{e_count} run time:#{human_duration(job_run_time)}"
+    average_chunk_time = chunk_times.empty? ? 0.0 : chunk_times.sum / chunk_times.length
+    trend, change, first_average, second_average = duration_trend(chunk_times)
+    puts "-JOB #{jobid} FINISHED #adios indexed:#{current_limit} oopsies:#{e_count} run time:#{human_duration(job_run_time)} avg chunk:#{human_duration(average_chunk_time)} trend:#{trend} (#{format('%+.1f', change)}%, first:#{human_duration(first_average)} second:#{human_duration(second_average)})"
     [current_limit, e_count]
 
 
