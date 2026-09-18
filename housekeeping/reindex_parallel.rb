@@ -8,18 +8,21 @@ end
 
 @source_count = Source.all.count
 @sources_per_chunk = @source_count / @parallel_jobs
-@reminder = @source_count - (@sources_per_chunk * @parallel_jobs)
-@batch_size = (@sources_per_chunk.to_f / (@sources_per_chunk / 5000.0).ceil()).ceil()
+@remainder = @source_count - (@sources_per_chunk * @parallel_jobs)
+batch_count = [(@sources_per_chunk / 5000.0).ceil, 1].max
+@batch_size = [(@sources_per_chunk.to_f / batch_count).ceil, 1].max
 
 begin_time = Time.now
-puts "Reindexing #{@source_count} sources in #{@parallel_jobs} processes with a reminder of #{@reminder} (#{@sources_per_chunk} per chunk), commit size #{@batch_size}"
+puts "Reindexing #{@source_count} sources in #{@parallel_jobs} processes with a remainder of #{@remainder} (#{@sources_per_chunk} per chunk), commit size #{@batch_size}"
 
 results = Parallel.map(0..@parallel_jobs - 1, in_processes: @parallel_jobs) do |jobid|
     offset = @sources_per_chunk * jobid
 
     limit = @sources_per_chunk
-    # On the last job add the reminder
-    limit += @reminder if jobid == @parallel_jobs - 1
+    # On the last job add the remainder
+    limit += @remainder if jobid == @parallel_jobs - 1
+    rounded_limit = (limit.to_f / @batch_size).ceil * @batch_size
+    range_end = offset + rounded_limit - 1
 
 
     current_limit = 0
@@ -36,7 +39,7 @@ results = Parallel.map(0..@parallel_jobs - 1, in_processes: @parallel_jobs) do |
             e_count += 1
         end
         current_limit += @batch_size
-        puts "JOB #{jobid} START@#{offset} INDEXED #{current_limit}"
+        puts "JOB #{jobid} RANGE #{offset}-#{range_end} INDEXED #{current_limit}"
     end
     puts "-JOB #{jobid} FINISHED #adios indexed:#{current_limit} oopsies:#{e_count}"
     [current_limit, e_count]
