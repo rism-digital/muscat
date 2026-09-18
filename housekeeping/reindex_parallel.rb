@@ -1,5 +1,12 @@
 Pathname.new(REINDEX_PIDFILE).write(Process.pid)
 
+def human_duration(seconds)
+    total_seconds = seconds.round
+    hours, remainder = total_seconds.divmod(3600)
+    minutes, seconds = remainder.divmod(60)
+    format("%02d:%02d:%02d", hours, minutes, seconds)
+end
+
 if ENV.include?('MUSCAT_PARALLEL_JOBS') && ENV['MUSCAT_PARALLEL_JOBS'].to_i > 0
     @parallel_jobs = ENV['MUSCAT_PARALLEL_JOBS'].to_i
 else
@@ -16,6 +23,7 @@ begin_time = Time.now
 puts "Reindexing #{@source_count} sources in #{@parallel_jobs} processes with a remainder of #{@remainder} (#{@sources_per_chunk} per chunk), commit size #{@batch_size}"
 
 results = Parallel.map(0..@parallel_jobs - 1, in_processes: @parallel_jobs) do |jobid|
+    job_begin_time = Process.clock_gettime(Process::CLOCK_MONOTONIC)
     offset = @sources_per_chunk * jobid
 
     limit = @sources_per_chunk
@@ -41,7 +49,8 @@ results = Parallel.map(0..@parallel_jobs - 1, in_processes: @parallel_jobs) do |
         current_limit += @batch_size
         puts "JOB #{jobid} RANGE #{offset}-#{range_end} INDEXED #{current_limit}"
     end
-    puts "-JOB #{jobid} FINISHED #adios indexed:#{current_limit} oopsies:#{e_count}"
+    job_run_time = Process.clock_gettime(Process::CLOCK_MONOTONIC) - job_begin_time
+    puts "-JOB #{jobid} FINISHED #adios indexed:#{current_limit} oopsies:#{e_count} run time:#{human_duration(job_run_time)}"
     [current_limit, e_count]
 
 
@@ -70,7 +79,8 @@ Sunspot.commit
 
 end_time = Time.now
 puts "Reindex started at #{begin_time.to_s}, ended at: #{end_time.to_s}"
-puts "(#{end_time - begin_time} seconds run time)"
+total_run_time = end_time - begin_time
+puts "(#{total_run_time} seconds run time = #{human_duration(total_run_time)})"
 puts "Results are: #{results.to_s}"
 
 indexed_sources = results.inject(0){|n, item| n += item[0]}
