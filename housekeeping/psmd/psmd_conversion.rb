@@ -19,6 +19,82 @@ module PsmdConversion
     "400000" => 3509
   }
 
+  @subject_map = {
+    "Antifona" => 25235,
+    "Cantata" => 25226,
+    "Hymn" => 25238,
+    "Inno" => 25238,
+    "Introit" => 25150,
+    "Madrigale" => 25257,
+    "Magnificat" => 25478,
+    "Mass" => 25133,
+    "Mass (Requiem)" => 25134,
+    "Motet" => 25240,
+    "Motet - Marian antiphon" => 3901679,
+    "Motet -- Marian antiphon" => 3901679,
+    "Mottetto" => 25240,
+    "Oratorio" => 25230,
+    "Psalm" => 3000057,
+    "Sonata" => 25213,
+    "antifona" => 25235,
+    "cantico" => 25478,
+    "canticum" => 25478,
+    "cantio sacra" => 25250,
+    "canzona da sonar" => 25358,
+    "canzona spirituale (16.-17. sec.)" => 25258,
+    "canzone da sonar" => 25358,
+    "canzone per l'Epistola" => 25358,
+    "canzone spirituale (16.-17. sec.)" => 25258,
+    "canzonetta spirituale (16.-17. sec.)" => 25315,
+    "compieta" => 3901027,
+    "concerto ecclesiastico (vocale)" => 25362,
+    "concerto sacro (17. sec.)" => 25362,
+    "dialogo" => 25330,
+    "entrata" => 25370,
+    "falsobordone" => 3900119,
+    "graduale" => 25239,
+    "improperia" => 25157,
+    "inno" => 25238,
+    "intonazione" => 25350,
+    "introito" => 25150,
+    "invitatorio" => 25489,
+    "invitatorium" => 25489,
+    "kyrie" => 25133,
+    "lamentazione" => 25241,
+    "lauda" => 3900350,
+    "lezioni di geremia" => 25241,
+    "litania" => 25137,
+    "lodi (liturgiche)" => 25145,
+    "lodi sacre (non liturgiche)" => 3900350,
+    "madrigal" => 25257,
+    "madrigale" => 25257,
+    "madrigale spirituale" => 25257,
+    "magnificat" => 25478,
+    "messa" => 25133,
+    "miserere" => 3000057,
+    "mocteto" => 25240,
+    "motet" => 25240,
+    "motetto" => 25240,
+    "mottetto" => 25240,
+    "mottetto concertato" => 25240,
+    "offertorio" => 25242,
+    "officium" => 25145,
+    "passio" => 25246,
+    "requiem" => 25134,
+    "responsorio" => 25248,
+    "responsorium" => 25248,
+    "sacrae cantiones" => 25250,
+    "salmo" => 3000057,
+    "salve regina" => 3901679,
+    "sequenza" => 25249,
+    "sinfonia" => 25215,
+    "sonata" => 25213,
+    "tantum ergo" => 3005240,
+    "te deum" => 25238,
+    "tractus" => 25156,
+    "vespro" => 25149,
+  }
+
 def copy_from_source_marc(source, dest, copy_map)
   destroyed = {}
 
@@ -239,11 +315,26 @@ def migrate_child_records(source, old_marc, ms)
       marc.add_tag_with_subfields("240", "0": st_id, a: std_title_candidate)
     end
 
+    # Try to convert the FORM to 650
+    if work["form"] && !work["form"].empty? && @subject_map.include?(work["form"])
+      marc.add_tag_with_subfields("650", "0": @subject_map[work["form"]])
+    else
+      # poach it from the parent
+      #par_650 = source.marc["650"].map do |t|
+      #  t["0"]&.first&.content
+      #end.first
+      #par_650 = source.marc["650"].first&.dig("0")&.first&.content
+      par_650 = source.marc["650"].first&.[]("0")&.first&.content
+      marc.add_tag_with_subfields("650", "0": par_650) if par_650
+    end
+
     marc.add_tag_with_subfields("100", "0": @people_map[person["ext_id"].to_s])
     marc.add_tag_with_subfields("245", a: work["title"])
     marc.add_tag_with_subfields("773", w: source.id)
-    marc.add_tag_with_subfields("500", a: "Created from PSMD works/#{work["ext_id"]} in manuscripts/#{ms["ext_id"]} (#{ms["id"]})")
-    marc.add_tag_with_subfields("691", "0": 50006603)
+    marc.add_tag_with_subfields("599", a: "Created from PSMD works/#{work["ext_id"]} in manuscripts/#{ms["ext_id"]} (#{ms["id"]})")
+    #marc.add_tag_with_subfields("691", "0": 50006603)
+    marc.add_tag_with_subfields("910", "0": 51009572)
+
     marc.import
 
     child.marc = marc
@@ -301,7 +392,6 @@ def create_holding_records(source, old, ms)
 
     marc.add_tag_with_subfields("852", x: muscat_id, c: shelfmark, q: material_held)
     #marc.add_tag_with_subfields("599", a: "Created from PSMD manuscripts/#{ms["ext_id"]} (internal id #{ms["id"]})")
-    marc.add_tag_with_subfields("910", "0": 51009572)
 
     t["z"].each do |note|
       marc.add_tag_with_subfields("500", a: note&.content)

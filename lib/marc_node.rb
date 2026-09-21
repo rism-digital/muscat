@@ -743,8 +743,17 @@ class MarcNode
   end
 
   # Shortcut for the above
+  # To get one tag:
+  # marc["650"].first&.[]("0")&.first&.content
   def [](tag)
     fetch_all_by_tag(tag)
+  end
+
+  # This is have clever stuff such as
+  # marc["650"].first&.dig("0")&.first&.content
+  def dig(tag, *rest)
+    value = self[tag]
+    rest.empty? ? value : value&.dig(*rest)
   end
 
   def destroy_yourself
