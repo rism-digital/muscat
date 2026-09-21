@@ -178,7 +178,7 @@ the_short_list.each do |m|
   new.import
 
   source = Source.new
-  source.user = User.find(74)
+  source.user = User.find(PsmdConversion::USER_ID)
   source.marc = new
   source.record_type = 8
 

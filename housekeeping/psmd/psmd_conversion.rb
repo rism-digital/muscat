@@ -5,11 +5,13 @@ module PsmdConversion
 
   attr_reader :legacy, :people_map, :institution_map, :publication_map
 
+  USER_ID = 74 #me
+
   @legacy = LegacyFile.new(File.join(__dir__, "psmd.yml"))
   @people_map = YAML.load_file(File.join(__dir__, "psmd_people.yml"))
   @institution_map = YAML.load_file(File.join(__dir__, "psmd_institutions.yml"))
   @siglum_map = YAML.load_file(File.join(__dir__, "psmd_siglums.yml"))
-
+  
   @publication_map = {
     "100002" => 1457,
     "100004" => 1272,
@@ -95,6 +97,10 @@ module PsmdConversion
     "vespro" => 25149,
   }
 
+def create_folders
+  
+end
+
 def copy_from_source_marc(source, dest, copy_map)
   destroyed = {}
 
@@ -104,21 +110,25 @@ def copy_from_source_marc(source, dest, copy_map)
 
       rule[:subfields].each do |source_sf, dest_sf|
         source_tag[source_sf].each do |subfield|
-          kill = false
+          dont_preserve = false
 
           if source_sf == "0" && rule.include?(:map)
             if rule[:map].include?(subfield.content.to_s)
               subfield.content = rule[:map][subfield.content]
             else
+              # Do not preserve unmapped values
               name = source_tag["a"]&.first&.content
               puts "#{source_tag.tag} ID not mapped #{subfield.content}\t#{name}".red
               #puts source_tag
               subfield.destroy_yourself
-              kill = true
+              dont_preserve = true
             end
           end
 
-          (values[dest_sf.to_sym] ||= []) << subfield.content if !kill
+          # Remove HTML in the original tags
+          sanitized_content = ActionView::Base.full_sanitizer.sanitize(subfield.content.to_s).tr("ſ", "s")
+
+          (values[dest_sf.to_sym] ||= []) << sanitized_content if !dont_preserve
         end
       end
 
@@ -243,7 +253,7 @@ def darms_timesig_to_pae(darms)
   end
 end
 
-def migrate_child_records(source, old_marc, ms)
+def migrate_child_records(source, old_marc, ms, folder = nil)
   
   ids = old_marc["600"].map do |t|
     t["0"]&.first&.content
@@ -338,6 +348,7 @@ def migrate_child_records(source, old_marc, ms)
     marc.import
 
     child.marc = marc
+    child.user = User.find(USER_ID)
     child.save
     child.reindex
     # I know it is a moxture between dumb and evil
@@ -346,11 +357,12 @@ def migrate_child_records(source, old_marc, ms)
     c2.save
 
     puts "\tCreated #{child.id}"
+    folder.add_item(child) if folder
   end
 
 end
 
-def create_holding_records(source, old, ms)
+def create_holding_records(source, old, ms, folder = nil)
 
   institution_ids = source.holdings.flat_map do |holding|
     holding.marc["852"].flat_map { |tag| tag["x"].map { |sf| sf.content.to_s } }
@@ -403,12 +415,14 @@ def create_holding_records(source, old, ms)
     h.source = source
     # Let us make duplicates
     #institution_ids << muscat_id.to_s if h.save
+    h.user = User.find(USER_ID)
     h.save
 
     puts "Created holding #{h.id}"
 
+    folder.add_item(h) if folder
+
   end
 end
-
 
 end

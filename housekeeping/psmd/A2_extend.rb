@@ -74,6 +74,15 @@ copy_map = [
 
 ]
 
+child_folder = Folder.new(:name => "PSMD Child records " + DateTime.now.to_s, :folder_type => "Source", wf_owner: PsmdConversion::USER_ID)
+child_folder.save
+
+holding_folder = Folder.new(:name => "PSMD Holding records " + DateTime.now.to_s, :folder_type => "Holding", wf_owner: PsmdConversion::USER_ID)
+holding_folder.save
+
+modified_sources = Folder.new(:name => "PSMD Extended sources " + DateTime.now.to_s, :folder_type => "Source", wf_owner: PsmdConversion::USER_ID)
+modified_sources.save
+
 CSV.parse(File.read("housekeeping/psmd/enhance_list.tsv"), col_sep: "\t", headers: %i[psmd_id muscat_id]).each do |r|
 
   ms = PsmdConversion.legacy.find(:manuscripts, r[:psmd_id])
@@ -93,11 +102,13 @@ CSV.parse(File.read("housekeeping/psmd/enhance_list.tsv"), col_sep: "\t", header
   source.save
   source.reindex
   puts "PSMD #{r[:psmd_id]} to #{source.id}"
+
+  modified_sources.add_item(source)
   
-  PsmdConversion.create_holding_records(source, old, ms)
+  PsmdConversion.create_holding_records(source, old, ms, holding_folder)
 
   if source.child_sources.count == 0
-    PsmdConversion.migrate_child_records(source, old, ms)
+    PsmdConversion.migrate_child_records(source, old, ms, child_folder)
   end
 
 end
