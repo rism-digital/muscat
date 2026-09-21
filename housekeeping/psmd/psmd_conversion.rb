@@ -48,6 +48,18 @@ def copy_from_source_marc(source, dest, copy_map)
 
       next if values.empty?
 
+      # Create 730s to shut muscat up
+      if rule[:to] == "730"
+        st = StandardTitle.where(title: values[:a]&.first)
+        if st.count == 0
+          st = StandardTitle.new(title: values[:a]&.first, notes: "Created from PSMD parent")
+          st.save
+          (values["0"] ||= []) << st.id
+        else
+          (values["0"] ||= []) << st.first.id
+        end
+      end
+
       # Make sure group tags are in group 01, there were not groups in PSMD
       if rule[:to] == "260" || rule[:to] == "300" || rule[:to] == "340"
         values["8"] = "01"
@@ -210,11 +222,27 @@ def migrate_child_records(source, old_marc, ms)
       std_title_candidate = work["title"]&.sub(/\A(['"])(.*)\1\z/, '\2')
     end
 
-    marc.add_tag_with_subfields("240", a: std_title_candidate) if !std_title_candidate.empty?
+    # Create the 240 by hand so we can put a "creation note"
+    # in the notes field
+    if std_title_candidate && !std_title_candidate.empty?
+      st_id = nil
+
+      st = StandardTitle.where(title: std_title_candidate)
+      if st.count == 0
+        st = StandardTitle.new(title: std_title_candidate, notes: "Created from PSMD child works/#{work["ext_id"]} in parent #{source.id}")
+        st.save
+        st_id = st.id
+      else
+        st_id = st.first.id
+      end
+
+      marc.add_tag_with_subfields("240", "0": st_id, a: std_title_candidate)
+    end
+
     marc.add_tag_with_subfields("100", "0": @people_map[person["ext_id"].to_s])
     marc.add_tag_with_subfields("245", a: work["title"])
     marc.add_tag_with_subfields("773", w: source.id)
-    marc.add_tag_with_subfields("500", a: "Created from PSMD works/#{work["ext_id"]} in  manuscripts/#{ms["ext_id"]} (#{ms["id"]})")
+    marc.add_tag_with_subfields("500", a: "Created from PSMD works/#{work["ext_id"]} in manuscripts/#{ms["ext_id"]} (#{ms["id"]})")
     marc.add_tag_with_subfields("691", "0": 50006603)
     marc.import
 
@@ -272,7 +300,8 @@ def create_holding_records(source, old, ms)
     marc.by_tags("500").each {|t| t.destroy_yourself}
 
     marc.add_tag_with_subfields("852", x: muscat_id, c: shelfmark, q: material_held)
-    marc.add_tag_with_subfields("500", a: "Created from PSMD manuscripts/#{ms["ext_id"]} (#{ms["id"]})")
+    #marc.add_tag_with_subfields("599", a: "Created from PSMD manuscripts/#{ms["ext_id"]} (internal id #{ms["id"]})")
+    marc.add_tag_with_subfields("910", "0": 51009572)
 
     t["z"].each do |note|
       marc.add_tag_with_subfields("500", a: note&.content)

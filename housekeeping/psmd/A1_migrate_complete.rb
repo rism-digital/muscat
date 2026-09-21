@@ -172,8 +172,9 @@ the_short_list.each do |m|
 
   PsmdConversion.copy_from_source_marc(old, new, copy_map)
   new.add_tag_with_subfields("040", b: "ita")
-  new.add_tag_with_subfields("500", a: "Created from PSMD manuscripts/#{ms["ext_id"]} (#{ms["id"]})")
-  new.add_tag_with_subfields("691", "0": 50006603, u: "http://printed-sacred-music.org/manuscripts/#{ms["ext_id"]}")
+  new.add_tag_with_subfields("599", a: "Created from PSMD manuscripts/#{ms["ext_id"]} (internal id #{ms["id"]})")
+  #new.add_tag_with_subfields("691", "0": 50006603, u: "http://printed-sacred-music.org/manuscripts/#{ms["ext_id"]}")
+  new.add_tag_with_subfields("910", "0": 51009572)
   new.import
 
   source = Source.new
