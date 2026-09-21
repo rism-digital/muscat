@@ -32,7 +32,6 @@ the_short_list = %w[
 1298
 2552
 3698
-3698
 3699
 3699
 3707
@@ -116,7 +115,7 @@ copy_map = [
   {
     from: "505",
     to: "505",
-    subfields: {"d" => "d" }
+    subfields: {"a" => "a" }
   }, 
   {
     from: "596",
