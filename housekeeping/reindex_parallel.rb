@@ -1,5 +1,5 @@
-parallel_jobs = 8
-max_batch_size = 5000
+parallel_jobs = 16
+max_batch_size = 100
 
 Pathname.new(REINDEX_PIDFILE).write(Process.pid)
 
