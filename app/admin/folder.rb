@@ -260,6 +260,7 @@ ActiveAdmin.register Folder do
             name = "Item Deleted" if !fitem.item
             name = fitem.item.full_name if fitem.item.respond_to? :full_name
             name = fitem.item.name if fitem.item.respond_to? :name
+            name = fitem.item.lib_siglum if fitem.item.is_a? Holding
             name
           end
           column ("Created at") {|fitem| fitem.item ? fitem.item.created_at : "n.a."}
