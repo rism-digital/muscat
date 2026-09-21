@@ -86,7 +86,7 @@ CSV.parse(File.read("housekeeping/psmd/enhance_list.tsv"), col_sep: "\t", header
 
   PsmdConversion.copy_from_source_marc(old, source.marc, copy_map)
 
-  source.marc.add_tag_with_subfields("599", a: "Merged from PSMD manuscripts/#{ms["ext_id"]} (#{ms["id"]})")
+  source.marc.add_tag_with_subfields("500", a: "Merged from PSMD manuscripts/#{ms["ext_id"]} (#{ms["id"]})")
   source.marc.add_tag_with_subfields("691", "0": 50006603, u: "http://printed-sacred-music.org/manuscripts/#{ms["ext_id"]}")
 
   source.save

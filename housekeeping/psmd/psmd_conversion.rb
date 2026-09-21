@@ -243,6 +243,11 @@ def create_holding_records(source, old, ms)
 
     muscat_id = @siglum_map[id.to_s]
 
+    if muscat_id == "delete"
+      puts "Skip #{id.to_s} #{t["a"]&.first&.content} as requested".orange
+      return
+    end
+
     if !@siglum_map.include? id.to_s
       puts "PSMD siglum #{t["a"]&.first&.content} #{id} does not exist in muscat, skip".magenta
       next
