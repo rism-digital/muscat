@@ -448,6 +448,7 @@ pl:
   filter_male: Mężczyzna
   filter_manuscript_no: Nr rękopisu
   filter_mei: MEI file
+  filter_markdown: Plik Markdown
   filter_name: Nazwa
   filter_notes: Uwagi
   filter_old_versions: Stare wersje
@@ -690,6 +691,7 @@ pl:
   new: Utwórz
   new_digital_object_image: Dołącz nowy obraz
   new_digital_object_incipit: Dołącz nowy incipit MEI
+  new_digital_object_markdown: Dołącz nowy plik Markdown
   new_holding: Dodaj egzemplarz
   new_holding_page: Nowe informacje o egzemplarzu
   new_inventory_item: Utwórz nowy element inwentarza

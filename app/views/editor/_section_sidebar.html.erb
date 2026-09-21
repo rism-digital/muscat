@@ -156,6 +156,13 @@
 			:class => "muscat_icon_link muscat_icon_link_note") %>
 		</li>
 	<% end %>
+
+	<% if @current_user.has_role?(:admin) %>
+		<li class="muscat_icon_link">
+		<%= link_to("#{I18n.t :new_digital_object_markdown}", new_admin_digital_object_path(digital_object: {new_object_link_id: @item.id, new_object_link_type: @item.class}, attachment_type: :markdown),
+			:class => "muscat_icon_link muscat_icon_link_note") %>
+		</li>
+	<% end %>
 <% end %>
 
 	<% if @item.is_a?(Source) && @item.id != nil && (@current_user.has_role?(:editor) || @current_user.has_role?(:admin)) && (@item.record_type == MarcSource::RECORD_TYPES[:collection] || @item.record_type == MarcSource::RECORD_TYPES[:source])%>

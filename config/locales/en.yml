@@ -466,6 +466,7 @@ en:
   filter_male: Male
   filter_manuscript_no: Manuscript No.
   filter_mei: MEI file
+  filter_markdown: Markdown file
   filter_name: Name
   filter_notes: Notes
   filter_old_versions: Old versions
@@ -707,6 +708,7 @@ en:
   new: Create
   new_digital_object_image: Attach a new image
   new_digital_object_incipit: Attach a new MEI incipit
+  new_digital_object_markdown: Attach a new Markdown file
   new_holding: Add holdings
   new_holding_page: New holdings information
   new_inventory_item: Create new inventory item

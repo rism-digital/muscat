@@ -448,6 +448,7 @@ ca:
   filter_male: Masculí
   filter_manuscript_no: Manuscrit número
   filter_mei: Fitxer MEI
+  filter_markdown: Fitxer Markdown
   filter_name: Nom
   filter_notes: Notes
   filter_old_versions: Versions anteriors
@@ -690,6 +691,7 @@ ca:
   new: Crea'n
   new_digital_object_image: Adjuntar-hi una imatge
   new_digital_object_incipit: Afegir-hi un altre ínciput MEI
+  new_digital_object_markdown: Adjuntar un fitxer Markdown nou
   new_holding: Afegir-hi un exemplar
   new_holding_page: Nou registre d'exemplar
   new_inventory_item: Crear un nou article d'inventari

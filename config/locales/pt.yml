@@ -448,6 +448,7 @@ pt:
   filter_male: Masculino
   filter_manuscript_no: Manuscrito número
   filter_mei: MEI file
+  filter_markdown: Ficheiro Markdown
   filter_name: Nome
   filter_notes: Notas
   filter_old_versions: Versões anteriores
@@ -690,6 +691,7 @@ pt:
   new: Criar
   new_digital_object_image: Adicionar uma nova imagem
   new_digital_object_incipit: Adicionar um novo incipit MEI
+  new_digital_object_markdown: Anexar um novo ficheiro Markdown
   new_holding: Adicionar material
   new_holding_page: Informação de novo material
   new_inventory_item: Criar novo item de inventário

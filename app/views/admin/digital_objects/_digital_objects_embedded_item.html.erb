@@ -2,7 +2,13 @@
     <th><%= I18n.t :filter_description%> </th>
     <td><%= obj.description%> </td>
 </tr>
-<tr class="row row-image">
-    <th><%=I18n.t :filter_image%></th>
-    <td><%=link_to(image_tag(obj.attachment.url(:medium)), admin_digital_object_path(obj))%></td>
+<tr class="row <%= obj.images? ? "row-image" : "row-markdown" %>">
+    <th><%= I18n.t(obj.images? ? :filter_image : :filter_markdown) %></th>
+    <td>
+        <% if obj.images? %>
+            <%= link_to(image_tag(obj.attachment.url(:medium)), admin_digital_object_path(obj)) %>
+        <% else %>
+            <%= link_to(obj.attachment_file_name, admin_digital_object_path(obj)) %>
+        <% end %>
+    </td>
 </tr>
