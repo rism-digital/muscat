@@ -304,8 +304,16 @@ ActiveAdmin.register DigitalObject do
         f.input :attachment, as: :file, :label => I18n.t(:filter_mei)
       else
         f.input :description, :label => I18n.t(:filter_description)
-        attachment_label = attachment_type == :markdown ? I18n.t(:filter_markdown) : I18n.t(:filter_image)
-        f.input :attachment, as: :file, :label => attachment_label
+        if attachment_type == :markdown
+          if current_user.has_role?(:admin)
+            f.input :attachment,
+                    as: :file,
+                    label: I18n.t(:filter_markdown),
+                    input_html: { accept: ".md,.markdown,text/markdown,text/x-markdown,application/x-markdown" }
+          end
+        else
+          f.input :attachment, as: :file, :label => I18n.t(:filter_image)
+        end
       end
 
       f.input :wf_owner, label: I18n.t(:record_owner), as: :select, multiple: false, include_blank: false, collection: User.sort_all_by_last_name if current_user.has_role?(:admin) || current_user.has_role?(:editor)

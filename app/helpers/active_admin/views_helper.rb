@@ -241,13 +241,17 @@ module ActiveAdmin::ViewsHelper
         item.digital_objects.each do |obj| 
           context.attributes_table_for obj do 
             context.row (I18n.t :filter_description) { |r| r.description } 
-            context.row (I18n.t :filter_image) { |obj| 
+            attachment_label = obj.markdown? ? :filter_markdown : (obj.incipits? ? :filter_incipit : :filter_image)
+            context.row(I18n.t(attachment_label)) { |obj|
               if obj.images?
                 link_to(image_tag(obj.attachment.url(:medium)), admin_digital_object_path(obj))
               elsif obj.incipits?
                 link_to(image_tag('/images/meilogo.png'), admin_digital_object_path(obj))
               else
-                link_to(obj.attachment_file_name, admin_digital_object_path(obj))
+                safe_join([
+                  link_to(obj.attachment_file_name, admin_digital_object_path(obj)),
+                  digital_object_markdown_preview(obj)
+                ].compact)
               end
             }
           end

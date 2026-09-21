@@ -1,12 +1,14 @@
 class DigitalObject < ApplicationRecord
+  MARKDOWN_CONTENT_TYPES = %w[text/markdown text/x-markdown application/x-markdown].freeze
+  MARKDOWN_UPLOAD_CONTENT_TYPES = (MARKDOWN_CONTENT_TYPES + ["text/plain", "application/octet-stream"]).freeze
   
   include CommentsCleanup
   include AutoStripStrings
 
   Paperclip.options[:content_type_mappings] = {
     mei: "text/xml",
-    md: ["text/markdown", "text/x-markdown", "text/plain"],
-    markdown: ["text/markdown", "text/x-markdown", "text/plain"]
+    md: MARKDOWN_CONTENT_TYPES + ["text/plain"],
+    markdown: MARKDOWN_CONTENT_TYPES + ["text/plain"]
   }
 
     # attachments
@@ -21,8 +23,8 @@ class DigitalObject < ApplicationRecord
 		
 		validates_presence_of :description
     validates_presence_of :attachment
-		validates_attachment :attachment, content_type: { content_type: ["image/jpg", "image/jpeg", "image/png", "text/xml", "application/xml", "text/markdown", "text/x-markdown", "text/plain"] }
-    validate :plain_text_attachment_is_markdown
+		validates_attachment :attachment, content_type: { content_type: ["image/jpg", "image/jpeg", "image/png", "text/xml", "application/xml"] + MARKDOWN_UPLOAD_CONTENT_TYPES }
+    validate :markdown_content_type_has_markdown_extension
   
     before_validation :set_metadata
     before_post_process :process_images_only
@@ -32,6 +34,7 @@ class DigitalObject < ApplicationRecord
     belongs_to :user, :foreign_key => "wf_owner"
 
     enum :attachment_type, { images: 0, incipits: 1, markdown: 2 }
+    scope :non_incipit_attachments, -> { where.not(attachment_type: attachment_types[:incipits]) }
     
     before_destroy :cleanup_comments
 
@@ -89,11 +92,11 @@ class DigitalObject < ApplicationRecord
 
     def is_markdown_type?
       attachment_file_name.to_s.downcase.end_with?(".md", ".markdown") &&
-        attachment_content_type.in?(["text/markdown", "text/x-markdown", "text/plain"])
+        attachment_content_type.in?(MARKDOWN_UPLOAD_CONTENT_TYPES)
     end
 
-    def plain_text_attachment_is_markdown
-      return unless attachment_content_type.in?(["text/markdown", "text/x-markdown", "text/plain"])
+    def markdown_content_type_has_markdown_extension
+      return unless attachment_content_type.in?(MARKDOWN_UPLOAD_CONTENT_TYPES)
       return if is_markdown_type?
 
       errors.add(:attachment, "must use a .md or .markdown extension")

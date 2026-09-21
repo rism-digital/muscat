@@ -1,4 +1,40 @@
 module ApplicationHelper
+  MARKDOWN_SANITIZE_TAGS = %w[
+    a blockquote br code del em h1 h2 h3 h4 h5 h6 hr img li ol p pre strong table tbody td th thead tr ul
+  ].freeze
+  MARKDOWN_SANITIZE_ATTRIBUTES = %w[alt href src title].freeze
+
+  def render_digital_object_markdown(digital_object)
+    return unless digital_object.markdown?
+
+    path = digital_object.attachment.path(:original)
+    return unless path.present? && File.file?(path)
+
+    source = File.binread(path).force_encoding(Encoding::UTF_8).scrub
+    renderer = Redcarpet::Render::HTML.new(filter_html: true, safe_links_only: true)
+    markdown = Redcarpet::Markdown.new(
+      renderer,
+      autolink: true,
+      fenced_code_blocks: true,
+      strikethrough: true,
+      tables: true
+    )
+
+    sanitize(
+      markdown.render(source),
+      tags: MARKDOWN_SANITIZE_TAGS,
+      attributes: MARKDOWN_SANITIZE_ATTRIBUTES
+    )
+  rescue Errno::EACCES, Errno::ENOENT
+    nil
+  end
+
+  def digital_object_markdown_preview(digital_object)
+    rendered_markdown = render_digital_object_markdown(digital_object)
+    return if rendered_markdown.blank?
+
+    content_tag(:div, rendered_markdown, class: "digital-object-markdown")
+  end
   
   def publication_default_autocomplete
     autocomplete_publication_short_name_admin_publications_path
