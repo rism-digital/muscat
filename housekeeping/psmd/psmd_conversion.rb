@@ -204,6 +204,12 @@ def migrate_child_records(source, old_marc, ms)
       std_title_candidate = extract_darms_text(incipit["notation"]) if i == 0
     end
 
+    # If there is not text in 031 try to use the title property
+    # Which is wonky
+    if std_title_candidate.empty?
+      std_title_candidate = work["title"]&.sub(/\A(['"])(.*)\1\z/, '\2')
+    end
+
     marc.add_tag_with_subfields("240", a: std_title_candidate) if !std_title_candidate.empty?
     marc.add_tag_with_subfields("100", "0": @people_map[person["ext_id"].to_s])
     marc.add_tag_with_subfields("245", a: work["title"])
@@ -235,7 +241,7 @@ def create_holding_records(source, old, ms)
     #sig = t["a"]&.first&.content
     id = t["0"]&.first&.content
     material_held = t["3"]&.first&.content
-    #notes = t["z"]&.first&.content
+  #notes = t["z"]&.first&.content
     shelfmark = t["p"]&.first&.content
 
     #ll = Institution.where(siglum: t["a"]&.first&.content).map(&:id).join(" ")
@@ -244,7 +250,7 @@ def create_holding_records(source, old, ms)
     muscat_id = @siglum_map[id.to_s]
 
     if muscat_id == "delete"
-      puts "Skip #{id.to_s} #{t["a"]&.first&.content} as requested".orange
+      puts "Skip #{id.to_s} #{t["a"]&.first&.content} as requested".yellow
       return
     end
 
