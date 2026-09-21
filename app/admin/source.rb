@@ -128,6 +128,7 @@ ActiveAdmin.register Source do
 
     def index
       @results, @hits = Source.search_as_ransack(params)
+      @results = SourceIndex.with_tombstones(@results, @hits)
 
       # Get the terms for 593a_filter, the "source type"
       @source_types = Source.get_terms("593a_filter_sm")
@@ -404,7 +405,7 @@ ActiveAdmin.register Source do
   filter :wf_stage_with_integer, :label => proc {I18n.t(:filter_wf_stage)}, as: :select, 
   collection: proc{[:inprogress, :published, :deleted].collect {|v| [I18n.t("wf_stage." + v.to_s), "wf_stage:#{v}"]}}
   
-  index :download_links => false do
+  index as: :source_table, :download_links => false do
     selectable_column if !is_selection_mode?
     column((I18n.t :filter_wf_stage), sortable: :wf_stage) {|i| active_admin_wf_stage_column(self, i)}
 
