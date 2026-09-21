@@ -200,6 +200,11 @@ ActiveAdmin.register DigitalObject do
           link_to(image_tag(obj.attachment.url(:medium)), admin_digital_object_path(obj))
         elsif obj.incipits?
           link_to(image_tag('/images/meilogo.png'), admin_digital_object_path(obj))
+        elsif obj.markdown?
+          link_to(
+            image_tag('/images/markdownlogo.svg', alt: I18n.t(:filter_markdown)),
+            admin_digital_object_path(obj)
+          )
         else
           link_to(obj.attachment_file_name, admin_digital_object_path(obj))
         end
