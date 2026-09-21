@@ -10,6 +10,10 @@ RSpec.describe ApplicationHelper, type: :helper do
 
           A **safe** paragraph.
 
+          ^(MO)
+
+          <u>Raw HTML is not allowed.</u>
+
           <script>alert("unsafe")</script>
 
           [unsafe link](javascript:alert("unsafe"))
@@ -22,6 +26,8 @@ RSpec.describe ApplicationHelper, type: :helper do
 
         expect(rendered).to include("<h1>Heading</h1>")
         expect(rendered).to include("<strong>safe</strong>")
+        expect(rendered).to include("<sup>MO</sup>")
+        expect(rendered).not_to include("<u>")
         expect(rendered).not_to include("<script")
         expect(rendered).not_to include('href="javascript:')
       end

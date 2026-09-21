@@ -1,4 +1,6 @@
 require_relative 'legacy_file.rb'
+require "reverse_markdown"
+require "stringio"
 
 module PsmdConversion
   extend self
@@ -97,8 +99,79 @@ module PsmdConversion
     "vespro" => 25149,
   }
 
-def create_folders
-  
+def convert_weird_characters(text)
+  text.to_s
+    .tr("ſ", "s")
+    .gsub("æ", "ae")
+    .gsub("Æ", "AE")
+    .gsub("ĉ", "c")
+    .gsub("Ĉ", "C")
+end
+
+def sanitize_weird_text(title)
+  convert_weird_characters(ActionView::Base.full_sanitizer.sanitize(title))
+end
+
+def convert_508_html_to_markdown(content)
+  html = Nokogiri::HTML.fragment(convert_weird_characters(content))
+  html.css("sup").each do |node|
+    superscript = node.text.strip
+    replacement = if superscript.length <= 20 && !superscript.match?(/[()|\r\n]/)
+      "^(#{superscript})"
+    else
+      superscript
+    end
+
+    node.replace(Nokogiri::XML::Text.new(replacement, html.document))
+  end
+
+  ReverseMarkdown.convert(
+    html.to_html,
+    github_flavored: true,
+    unknown_tags: :bypass
+  ).strip
+end
+
+def extract_508_markdown(marc)
+  marc["508"].flat_map do |tag|
+    tag["a"].filter_map do |subfield|
+      markdown = convert_508_html_to_markdown(subfield.content)
+      markdown unless markdown.empty?
+    end
+  end.join("\n\n")
+end
+
+def attach_508_markdown(marc, source, psmd_id)
+  markdown = extract_508_markdown(marc)
+  return if markdown.empty?
+
+  filename = "text.md"
+  description = psmd_id.to_s
+  user = User.find(USER_ID)
+
+  DigitalObject.transaction do
+    digital_object = source.digital_objects.find_by(
+      attachment_file_name: filename,
+      description: description
+    ) || DigitalObject.new
+    attachment = StringIO.new(markdown)
+    attachment.define_singleton_method(:original_filename) { filename }
+    attachment.define_singleton_method(:content_type) { "text/markdown" }
+
+    digital_object.description = description
+    digital_object.user = user
+    digital_object.attachment = attachment
+    digital_object.save!
+
+    DigitalObjectLink.find_or_create_by!(
+      digital_object: digital_object,
+      object_link: source
+    ) do |link|
+      link.user = user
+    end
+
+    digital_object
+  end
 end
 
 def copy_from_source_marc(source, dest, copy_map)
@@ -126,7 +199,7 @@ def copy_from_source_marc(source, dest, copy_map)
           end
 
           # Remove HTML in the original tags
-          sanitized_content = ActionView::Base.full_sanitizer.sanitize(subfield.content.to_s).tr("ſ", "s")
+          sanitized_content = sanitize_weird_text(subfield.content.to_s)
 
           (values[dest_sf.to_sym] ||= []) << sanitized_content if !dont_preserve
         end
@@ -421,6 +494,9 @@ def create_holding_records(source, old, ms, folder = nil)
     puts "Created holding #{h.id}"
 
     folder.add_item(h) if folder
+
+    h2 = Holding.find(h.id)
+    h2.save
 
   end
 end

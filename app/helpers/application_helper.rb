@@ -1,6 +1,6 @@
 module ApplicationHelper
   MARKDOWN_SANITIZE_TAGS = %w[
-    a blockquote br code del em h1 h2 h3 h4 h5 h6 hr img li ol p pre strong table tbody td th thead tr ul
+    a blockquote br code del em h1 h2 h3 h4 h5 h6 hr img li ol p pre strong sup table tbody td th thead tr ul
   ].freeze
   MARKDOWN_SANITIZE_ATTRIBUTES = %w[alt href src title].freeze
 
@@ -17,6 +17,7 @@ module ApplicationHelper
       autolink: true,
       fenced_code_blocks: true,
       strikethrough: true,
+      superscript: true,
       tables: true
     )
 

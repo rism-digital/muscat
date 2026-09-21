@@ -103,6 +103,8 @@ CSV.parse(File.read("housekeeping/psmd/enhance_list.tsv"), col_sep: "\t", header
   source.reindex
   puts "PSMD #{r[:psmd_id]} to #{source.id}"
 
+  PsmdConversion.attach_508_markdown(old, source, ms["ext_id"])
+
   modified_sources.add_item(source)
   
   PsmdConversion.create_holding_records(source, old, ms, holding_folder)

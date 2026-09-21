@@ -185,6 +185,8 @@ the_short_list.each do |m|
   source.save
   source.reindex
   puts "PSMD #{m} to #{source.id}"
+
+  PsmdConversion.attach_508_markdown(old, source, ms["ext_id"])
   
   PsmdConversion.create_holding_records(source, old, ms)
 
