@@ -211,7 +211,7 @@ def copy_from_source_marc(source, dest, copy_map)
       if rule[:to] == "730"
         st = StandardTitle.where(title: values[:a]&.first)
         if st.count == 0
-          st = StandardTitle.new(title: values[:a]&.first, notes: "Created from PSMD parent")
+          st = StandardTitle.new(title: values[:a]&.first&.truncate(254), notes: "Created from PSMD parent")
           st.save
           (values["0"] ||= []) << st.id
         else
