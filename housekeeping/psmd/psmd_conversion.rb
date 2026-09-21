@@ -431,6 +431,10 @@ def migrate_child_records(source, old_marc, ms, folder = nil)
 
     puts "\tCreated #{child.id}"
     folder.add_item(child) if folder
+
+    # Do we really need this still??
+    child = nil
+    c2 = nil
   end
 
 end
@@ -497,6 +501,9 @@ def create_holding_records(source, old, ms, folder = nil)
 
     h2 = Holding.find(h.id)
     h2.save
+
+    h = nil
+    h2 = nil
 
   end
 end

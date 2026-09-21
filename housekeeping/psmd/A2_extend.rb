@@ -113,6 +113,9 @@ CSV.parse(File.read("housekeeping/psmd/enhance_list.tsv"), col_sep: "\t", header
     PsmdConversion.migrate_child_records(source, old, ms, child_folder)
   end
 
+  # MAke the GC happy? I guess?
+  source = nil
+
 end
 
 # Removed
