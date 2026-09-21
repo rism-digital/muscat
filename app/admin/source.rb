@@ -417,6 +417,7 @@ ActiveAdmin.register Source do
     end
     column (I18n.t :filter_lib_siglum), sortable: :lib_siglum do |source|
       holdings = source.holdings.to_a
+      holdings.concat(source.parent_source.holdings.to_a) if source.parent_source
 
       if source.allow_holding? && holdings.empty?
         div style: 'text-align: center;' do
