@@ -16,7 +16,7 @@ module ActiveAdmin
           # One cell spans the entire row. Do not evaluate normal column
           # blocks: missing records cannot be selected, opened or edited.
           if @columns.one?
-            td "Source #{resource.id}: this record exists in SOLR but not in the database.",
+            td I18n.t(:solr_tombstone, id: resource.id),
               colspan: 1, class: 'solr_tombstone'
           else
             current_arbre_element.children.first.set_attribute(:colspan, @columns.size)

@@ -827,6 +827,7 @@ fr:
   show_preview: Afficher l'aperçu
   show_validate: Valider
   show_viaf: Recherche VIAF
+  solr_tombstone: "Source %{id} : cette notice existe dans SOLR, mais pas dans la base de données. C'est gênant, mais sans conséquence. Veuillez contacter l'administrateur si vous voyez ce message."
   source:
     one: source
     other: sources

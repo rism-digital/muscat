@@ -870,6 +870,7 @@ en:
   show_preview: Show preview
   show_validate: Validate
   show_viaf: VIAF Search
+  solr_tombstone: "Source %{id}: this record exists in SOLR but not in the database. This is annoying but innocuous, please contact the administrator if you see this message."
   source:
     one: source
     other: sources

@@ -827,6 +827,7 @@ ca:
   show_preview: Vista preliminar
   show_validate: Valida
   show_viaf: Cerca al VIAF
+  solr_tombstone: "Font %{id}: aquest registre existeix a SOLR però no a la base de dades. Això és molest, però inofensiu. Poseu-vos en contacte amb l'administrador si veieu aquest missatge."
   source:
     one: font
     other: fonts

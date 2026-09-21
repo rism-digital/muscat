@@ -827,6 +827,7 @@ pt:
   show_preview: Mostrar previsualização
   show_validate: Validação
   show_viaf: Busca no VIAF
+  solr_tombstone: "Fonte %{id}: este registo existe no SOLR, mas não na base de dados. Isto é incómodo, mas inofensivo. Contacte o administrador se vir esta mensagem."
   source:
     one: fonte
     other: fontes

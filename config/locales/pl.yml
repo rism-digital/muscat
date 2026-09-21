@@ -827,6 +827,7 @@ pl:
   show_preview: Pokaż podgląd
   show_validate: Zatwierdź
   show_viaf: Wyszukiwanie w VIAF
+  solr_tombstone: "Źródło %{id}: ten rekord istnieje w SOLR, ale nie w bazie danych. Jest to uciążliwe, ale nieszkodliwe. Jeśli widzisz ten komunikat, skontaktuj się z administratorem."
   source:
     one: Źródło
     other: Źródła

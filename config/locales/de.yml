@@ -827,6 +827,7 @@ de:
   show_preview: Vorschau anzeigen
   show_validate: Validierung
   show_viaf: VIAF Suche
+  solr_tombstone: "Quelle %{id}: Dieser Eintrag existiert in SOLR, aber nicht in der Datenbank. Das ist ärgerlich, aber harmlos. Bitte wenden Sie sich an den Administrator, wenn Sie diese Meldung sehen."
   source:
     one: Quelle
     other: Quellen
