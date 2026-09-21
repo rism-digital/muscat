@@ -4610,6 +4610,8 @@ siglum_map = {
   "106909" => 30004109,
   "106910" => 30004109,
   "106911" => 30004109,
+  "106841" => 30001942,
+  "106839" => 30077306
 }
 
 File.write("housekeeping/psmd/psmd_siglums.yml", siglum_map.to_yaml)
