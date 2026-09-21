@@ -56,4 +56,19 @@ RSpec.describe Folder do
       expect(progress).to eq([0, 50])
     end
   end
+
+  describe "#add_item" do
+    it "creates the join record without retaining it in the folder association" do
+      folder = described_class.allocate
+      item = Source.allocate
+
+      allow(folder).to receive_messages(id: 10, folder_type: "Source", has_item?: false)
+      allow(item).to receive(:id).and_return(42)
+
+      expect(folder).not_to receive(:folder_items)
+      expect(FolderItem).to receive(:create).with(folder_id: 10, item_id: 42, item_type: "Source")
+
+      expect(folder.add_item(item)).to eq(true)
+    end
+  end
 end

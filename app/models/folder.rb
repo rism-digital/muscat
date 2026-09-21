@@ -76,7 +76,7 @@ class Folder < ApplicationRecord
   def add_item(item)
     return false if item.class.name != folder_type
     return false if has_item? item
-    folder_items << FolderItem.create(:folder_id => id, :item => item)
+    FolderItem.create(folder_id: id, item_id: item.id, item_type: folder_type)
     return true
   end
   
