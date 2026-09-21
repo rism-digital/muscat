@@ -321,7 +321,7 @@ def darms_timesig_to_pae(darms)
   when "!M4:6"
     "6/4"
   else
-    warn "Unsupported DARMS time signature: #{code}"
+    puts "Unsupported DARMS time signature: #{code}"
     nil
   end
 end
@@ -455,7 +455,7 @@ def create_holding_records(source, old, ms, folder = nil)
 
     if muscat_id == "delete"
       puts "Skip #{id.to_s} #{t["a"]&.first&.content} as requested".yellow
-      return
+      next
     end
 
     if !@siglum_map.include? id.to_s
