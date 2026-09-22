@@ -320,6 +320,8 @@ def darms_timesig_to_pae(darms)
     "12/8"
   when "!M4:6"
     "6/4"
+  when "!M9:8"
+    "9/8"
   else
     puts "Unsupported DARMS time signature: #{code}"
     nil
