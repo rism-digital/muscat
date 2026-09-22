@@ -353,12 +353,10 @@ def migrate_child_records(source, old_marc, ms, folder = nil)
     std_title_candidate = ""
 
     if incipits.count == 0
-      warn "SKIP EMPTY WORK #{work["ext_id"]}".red
+      #warn "SKIP EMPTY WORK #{work["ext_id"]}".red
       next
     end
 
-
-    
     incipits.each_with_index do |incipit, i|
       pae_line = zip_get_named_file("incipits/pae/work_incipit_#{incipit["ext_id"]}.pae")
       pae = mini_parse_pae(pae_line)
@@ -411,6 +409,11 @@ def migrate_child_records(source, old_marc, ms, folder = nil)
       #par_650 = source.marc["650"].first&.dig("0")&.first&.content
       par_650 = source.marc["650"].first&.[]("0")&.first&.content
       marc.add_tag_with_subfields("650", "0": par_650) if par_650
+    end
+
+    if !@people_map.include? person["ext_id"].to_s
+      line = [person["full_name"], person["ext_id"], person["id"]].join("\t")
+      puts "Person not matched\t#{line}"
     end
 
     marc.add_tag_with_subfields("100", "0": @people_map[person["ext_id"].to_s])
@@ -470,7 +473,7 @@ def create_holding_records(source, old, ms, folder = nil)
     end
 
     if institution_ids.include?(muscat_id.to_s)
-      puts "PSMD Library #{muscat_id.to_s} (#{t["a"]&.first&.content}) already has a holding record in #{ms["ext_id"]}".blue
+      #puts "PSMD Library #{muscat_id.to_s} (#{t["a"]&.first&.content}) already has a holding record in #{ms["ext_id"]}".blue
       next
     end
 
