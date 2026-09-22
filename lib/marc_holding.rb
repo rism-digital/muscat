@@ -1,3 +1,5 @@
+require "uri"
+
 class MarcHolding < Marc
   def initialize(source = nil)
     super("holding", source)
@@ -56,13 +58,35 @@ class MarcHolding < Marc
   end
 
   def digital_object?
-    each_by_tag("856") do |t|
-      tgs = t.fetch_all_by_tag("x")
-      tgs.each do |node|
-        next if !node || !node.content
-        return true if node.content.start_with?("IIIF") || node.content.start_with?("Digitized")
-      end
+    digital_object_links.any?
+  end
+
+  def digital_object_links
+    links = []
+
+    each_by_tag("856") do |tag|
+      type = tag.fetch_first_by_tag("x")&.content.to_s.strip
+      next unless type.start_with?("Digitized")
+
+      url = tag.fetch_first_by_tag("u")&.content.to_s.strip
+      next unless valid_digital_object_url?(url)
+
+      description = tag.fetch_first_by_tag("z")&.content.to_s.strip
+      links << {
+        url: url,
+        description: description.empty? ? nil : description
+      }
     end
+
+    links
+  end
+
+  private
+
+  def valid_digital_object_url?(url)
+    uri = URI.parse(url)
+    uri.is_a?(URI::HTTP) && !uri.host.to_s.empty?
+  rescue URI::InvalidURIError
     false
   end
 

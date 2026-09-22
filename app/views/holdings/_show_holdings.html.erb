@@ -4,8 +4,9 @@
 
       <a style="float: right; margin-top: -4px; margin-right: -5px" class="abutton ui-state-default marc_editor_button_left abutton-icon-solo ui-corner-all" href="#" data-header-button="toggle" title="Show/Hide"><span class="ui-icon ui-icon-triangle-1-w"></span>_</a>
      <span class="holding_actions"><%= link_to(I18n.t('active_admin.edit'), edit_admin_holding_path(h.id)) if current_user.can_edit?(h) || current_user.has_any_role?(:editor, :admin) %></span>  
-      <% if h.marc.digital_object? %>
-        <span class="holding_digital"></span>  
+      <% h.marc.digital_object_links.each do |digital_object| %>
+        <% label = digital_object[:description].presence || I18n.t(:digitized_source) %>
+        <%= link_to "", digital_object[:url], class: "holding_digital", title: label, aria: { label: label }, target: "_blank", rel: "noopener noreferrer" %>
       <% end %>
 
       <% if h.digital_objects.non_incipit_attachments.exists? %>
