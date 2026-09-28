@@ -329,7 +329,8 @@ def darms_timesig_to_pae(darms)
 end
 
 def migrate_child_records(source, old_marc, ms, folder = nil)
-  
+  count = 0
+
   ids = old_marc["600"].map do |t|
     t["0"]&.first&.content
   end.compact
@@ -353,7 +354,8 @@ def migrate_child_records(source, old_marc, ms, folder = nil)
     std_title_candidate = ""
 
     if incipits.count == 0
-      #warn "SKIP EMPTY WORK #{work["ext_id"]}".red
+      # LOG Skipped empty PSMD work ID
+      #puts "SKIP EMPTY WORK #{work["ext_id"]}".red
       next
     end
 
@@ -391,8 +393,10 @@ def migrate_child_records(source, old_marc, ms, folder = nil)
         st = StandardTitle.new(title: std_title_candidate, notes: "Created from PSMD child works/#{work["ext_id"]} in parent #{source.id}")
         st.save
         st_id = st.id
+        # LOG Created new StandardTitle
       else
         st_id = st.first.id
+        # LOG Matched to standard title
       end
 
       marc.add_tag_with_subfields("240", "0": st_id, a: std_title_candidate)
@@ -434,14 +438,17 @@ def migrate_child_records(source, old_marc, ms, folder = nil)
     c2 = Source.find(child.id)
     c2.save
 
+    # LOG created child record
     puts "\tCreated #{child.id}"
     folder.add_item(child) if folder
 
     # Do we really need this still??
     child = nil
     c2 = nil
+    count += 1
   end
 
+  return count
 end
 
 def create_holding_records(source, old, ms, folder = nil)
@@ -463,16 +470,19 @@ def create_holding_records(source, old, ms, folder = nil)
     muscat_id = @siglum_map[id.to_s]
 
     if muscat_id == "delete"
+      # LOG Skip this holding as requested
       puts "Skip #{id.to_s} #{t["a"]&.first&.content} as requested".yellow
       next
     end
 
     if !@siglum_map.include? id.to_s
+      # LOG Siglum does not exist in Muscat
       puts "PSMD siglum #{t["a"]&.first&.content} #{id} does not exist in muscat, skip".magenta
       next
     end
 
     if institution_ids.include?(muscat_id.to_s)
+      # LOG This Siglum is already attached to the record, log siglum
       #puts "PSMD Library #{muscat_id.to_s} (#{t["a"]&.first&.content}) already has a holding record in #{ms["ext_id"]}".blue
       next
     end
@@ -500,6 +510,7 @@ def create_holding_records(source, old, ms, folder = nil)
     h.user = User.find(USER_ID)
     h.save
 
+    # LOG Created holding ID
     puts "Created holding #{h.id}"
 
     folder.add_item(h) if folder

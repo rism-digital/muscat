@@ -101,6 +101,7 @@ CSV.parse(File.read("housekeeping/psmd/enhance_list.tsv"), col_sep: "\t", header
 
   source.save
   source.reindex
+  # LOG Migrated PSMD id to Muscat id
   puts "PSMD #{r[:psmd_id]} to #{source.id}"
 
   PsmdConversion.attach_508_markdown(old, source, ms["ext_id"])
@@ -110,7 +111,18 @@ CSV.parse(File.read("housekeeping/psmd/enhance_list.tsv"), col_sep: "\t", header
   PsmdConversion.create_holding_records(source, old, ms, holding_folder)
 
   if source.child_sources.count == 0
-    PsmdConversion.migrate_child_records(source, old, ms, child_folder)
+    count = PsmdConversion.migrate_child_records(source, old, ms, child_folder)
+
+    if count > 0
+      rism_title = source.marc["240"].first&.[]("a")&.first&.content
+      psmd_title = source.marc["730"].first&.[]("a")&.first&.content
+      suggested_title = "#{count} #{rism_title}"
+
+      # LOG proposed standard title
+      puts ["STDTITLE", source.id, ms["ext_id"], rism_title, suggested_title, psmd_title].join("\t")
+    end
+  else
+    # LOG skipped child creation because parent has children
   end
 
   # MAke the GC happy? I guess?
