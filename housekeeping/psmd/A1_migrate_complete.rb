@@ -1,4 +1,5 @@
 require_relative 'psmd_conversion.rb'
+PsmdConversion.start_logging("A1_migrate_complete")
 
 the_short_list = %w[
 3710
@@ -158,6 +159,17 @@ copy_map = [
 the_short_list.each do |m|
   
   ms = PsmdConversion.legacy.find(:manuscripts, m)
+  PsmdConversion.set_log_context(
+    current_psmd_manuscript_ext_id: ms && ms["ext_id"],
+    current_psmd_manuscript_id: ms && ms["id"]
+  )
+  unless ms
+    PsmdConversion.log_event(
+      :missing_legacy_reference,
+      record_type: "manuscript",
+      psmd_reference_id: m
+    )
+  end
 
   # GndWork loads ALL numbers as marc tags
   old = MarcGndWork.new(ms["source"])
@@ -166,7 +178,12 @@ the_short_list.each do |m|
   new = MarcSource.new("=001 __TEMP__", 8)
   new.reset_to_new
 
-  PsmdConversion.copy_from_source_marc(old, new, copy_map)
+  PsmdConversion.copy_from_source_marc(
+    old,
+    new,
+    copy_map,
+    log_context: { psmd_manuscript_ext_id: ms["ext_id"], psmd_manuscript_id: ms["id"] }
+  )
   new.add_tag_with_subfields("040", b: "ita")
   new.add_tag_with_subfields("599", a: "Created from PSMD manuscripts/#{ms["ext_id"]} (internal id #{ms["id"]})")
   #new.add_tag_with_subfields("691", "0": 50006603, u: "http://printed-sacred-music.org/manuscripts/#{ms["ext_id"]}")
@@ -178,11 +195,25 @@ the_short_list.each do |m|
   source.marc = new
   source.record_type = 8
 
-  source.save
+  source_saved = source.save
+  PsmdConversion.update_log_context(current_muscat_source_id: source.id)
+  PsmdConversion.log_persistence_error(
+    source,
+    psmd_manuscript_ext_id: ms["ext_id"],
+    psmd_manuscript_id: ms["id"]
+  ) unless source_saved
   source.reindex
+  PsmdConversion.log_event(
+    :source_mapping,
+    action: source_saved ? "created" : "create failed",
+    psmd_input_id: m,
+    psmd_manuscript_ext_id: ms["ext_id"],
+    psmd_manuscript_id: ms["id"],
+    muscat_source_id: source.id
+  )
   puts "PSMD #{m} to #{source.id}"
 
-  PsmdConversion.attach_508_markdown(old, source, ms["ext_id"])
+  PsmdConversion.attach_508_markdown(old, source, ms["ext_id"], psmd_manuscript_id: ms["id"])
   
   PsmdConversion.create_holding_records(source, old, ms)
 
