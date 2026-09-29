@@ -36,7 +36,7 @@ ca:
       link: En podeu crear
     cancel: Cancel·lar
     comments:
-      record_banner: This record has comments (%{count})
+      record_banner: Aquest registre té comentaris (%{count})
       add: Afegeix comentari
       author: Autor
       author_missing: Anònim

@@ -36,7 +36,7 @@ pl:
       link: Utwórz jeden
     cancel: Anuluj
     comments:
-      record_banner: This record has comments (%{count})
+      record_banner: Ten rekord zawiera komentarze (%{count})
       add: Dodaj komentarz
       author: Autor
       author_missing: Anonimowy

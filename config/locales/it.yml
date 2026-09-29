@@ -36,7 +36,7 @@ it:
       link: Crea nuovo/a
     cancel: Annulla
     comments:
-      record_banner: This record has comments (%{count})
+      record_banner: Questa scheda contiene commenti (%{count})
       add: Aggiungi commento
       author: Autore
       author_missing: Anonimo

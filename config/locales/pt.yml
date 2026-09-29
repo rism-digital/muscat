@@ -36,7 +36,7 @@ pt:
       link: Criar
     cancel: Cancelar
     comments:
-      record_banner: This record has comments (%{count})
+      record_banner: Este registo tem comentários (%{count})
       add: Adicionar Comentário
       author: Autor
       author_missing: Anônimo
