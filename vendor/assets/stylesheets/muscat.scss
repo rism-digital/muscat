@@ -69,6 +69,15 @@ body.active_admin {
     max-width: 1500px;
 }
 
+body.active_admin #main_content .record-comments-banner {
+    background: #e6f1fa;
+    border-left: 4px solid #2976bd;
+    color: #1e3f5f;
+    font-weight: 600;
+    margin-bottom: 18px;
+    padding: 10px 14px;
+}
+
 #lang_menu ul {
     float: left !important;
     min-width: 50px !important;
