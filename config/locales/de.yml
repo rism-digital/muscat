@@ -875,6 +875,7 @@ de:
   validate_name_uniqness: 'Eintrag nicht gespeichert: Das Kürzel ''%{term}'' existiert bereits.'
   validates_parent_id: 'Eintrag nicht gespeichert: Übergeordneter Eintrag (773) kann nicht mit diesem Eintrag identisch sein.'
   validation:
+    validate_240m: 'Please make sure the scoring summary follows the guidelines.'
     begins_with_message: Das Feld muss mit "{0}" beginnen
     cannot_link_to_self: Das Erstellen eines Links selbst ist nicht erlaubt (%{id}).
     check_group_message: Die erste Materialgruppe kann nicht "Zusätzliches gedrucktes Material" sein.

@@ -875,6 +875,7 @@ fr:
   validate_name_uniqness: 'Titre non sauvé: le titre abrégé existe déjà (''%{term}'').'
   validates_parent_id: 'Titre non sauvé: le titre parent (773) ne peut pas être identique.'
   validation:
+    validate_240m: 'Please make sure the scoring summary follows the guidelines.'
     begins_with_message: Le champ doit commencer par "{0}"
     cannot_link_to_self: La création d'un lien en soi n'est pas autorisée (%{id}).
     check_group_message: Le premier groupe de matériel ne peut pas être "Matériel imprimé supplémentaire"

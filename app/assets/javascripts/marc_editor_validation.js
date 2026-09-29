@@ -9,6 +9,7 @@ const SIMPLE_RULE_MAP = {
 	"validate_edtf": { validate_edtf: true },
 	"validate_031_dups": { validate_031_dups: true },
 	"validate_031_sequence": { validate_031_sequence: true },
+	"validate_240m": { validate_240m: true },
 	"validate_url": { validate_url: true },
 	"not_record_id": {not_record_id: true},
 	"validate_calendar": {"validate_calendar": true},
@@ -416,6 +417,29 @@ function marc_validate_588_siglum(value, element, param) {
 		return true;
 
 	return siglumPattern.test(value);
+}
+
+function marc_validate_240m(value, element) {
+	const scoring = value == null ? "" : String(value);
+	const presenceValid = marc_validate_presence(scoring, element);
+	if (!presenceValid || scoring.trim() === "")
+		return presenceValid;
+
+	const commas = scoring.match(/,/g) || [];
+	const outsideParentheses = scoring.replace(/\([^()]*\)/g, "");
+	const lowerCaseXInParentheses = /\([^)]*x[^)]*(?:\)|$)/.test(scoring);
+	const incorrectlyCapitalizedCoro = (scoring.match(/\bcoro\b/gi) || [])
+		.some(word => word !== "Coro");
+
+	return !(
+		/(^|\S)\(/.test(scoring) ||
+		lowerCaseXInParentheses ||
+		incorrectlyCapitalizedCoro ||
+		/,(?! )/.test(scoring) ||
+		commas.length > 3 ||
+		scoring.includes("/") ||
+		/\d/.test(outsideParentheses)
+	);
 }
 
 // This is the simplest validator
@@ -1013,6 +1037,7 @@ function marc_editor_init_validation(form, validation_conf) {
 	$.validator.addMethod("validate_edtf",		marc_validate_edtf,				$.validator.format(I18n.t("validation.validate_edtf")));	
 	$.validator.addMethod("validate_031_dups", 	marc_validate_031_duplicates,	$.validator.format(I18n.t("validation.validate_031_dups")));
 	$.validator.addMethod("validate_031_sequence", marc_validate_031_sequence,	$.validator.format(I18n.t("validation.validate_031_sequence")));
+	$.validator.addMethod("validate_240m", marc_validate_240m,						I18n.t("validation.validate_240m"));
 	$.validator.addMethod("must_be_different", 	marc_validate_must_be_different,$.validator.format(I18n.t("validation.must_be_different_message")));
 	$.validator.addMethod("not_record_id", 	   	marc_validate_not_record_id,	$.validator.format(I18n.t("validation.not_record_id")));	
 	$.validator.addMethod("gnd_warn_default", 	marc_validate_gnd_warn_default,	$.validator.format(I18n.t("validation.gnd_warn_default_message")));

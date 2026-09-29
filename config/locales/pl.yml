@@ -875,6 +875,7 @@ pl:
   validate_name_uniqness: Rekord nie zapisany. Ten skrócony tytuł (‘%{term}’) już istnieje.
   validates_parent_id: Rekord nie zapisany. Rekord macierzysty (773) nie może być taki sam, jak ten.
   validation:
+    validate_240m: 'Please make sure the scoring summary follows the guidelines.'
     begins_with_message: Musi rozpoczynać się od {0}
     cannot_link_to_self: Tworzenie samego linku nie jest dozwolone (%{id}).
     check_group_message: Pierwsza grupa materiałów nie może być "Dodatkowe źródło drukowane".

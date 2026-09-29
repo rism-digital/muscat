@@ -58,7 +58,7 @@ client:
         - inventory_edition
     tags:
       "0": mandatory
-      m: required, warning
+      m: validate_240m, warning
   "245": 
     tags:
       a: mandatory

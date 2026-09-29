@@ -923,6 +923,7 @@ en:
   validate_name_uniqness: 'Record not saved: Same short title ''%{term}'' already exists.'
   validates_parent_id: 'Record not saved: Parent record (773) cannot be same as this record'
   validation:
+    validate_240m: 'Please make sure the scoring summary follows the guidelines.'
     begins_with_message: Must begin with "{0}"
     cannot_link_to_self: The record cannot link to itself (%{id}).
     check_group_message: The first material group cannot be "Additional printed material"

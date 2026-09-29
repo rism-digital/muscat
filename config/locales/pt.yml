@@ -875,6 +875,7 @@ pt:
   validate_name_uniqness: 'O registro não foi salvo: Um título abreviado igual ''%{term}'' já existe.'
   validates_parent_id: 'O registro não foi salvo: O registro principal (773) não pode ser igual a este registro'
   validation:
+    validate_240m: 'Please make sure the scoring summary follows the guidelines.'
     begins_with_message: O campo deve começar com "{0}"
     cannot_link_to_self: A criação de uma ligação em si não é permitida (%{id}).
     check_group_message: O primeiro grupo de material não pode ser "Material impresso adicional".

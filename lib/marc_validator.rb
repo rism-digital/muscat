@@ -655,6 +655,9 @@ using AggressivelyStrip
           puts "588 does not have a valid sigla #{tag} #{subtag}, #{rule}" if DEBUG
         end
       end
+    # Scoring summary formatting is validated in the JavaScript editor only.
+    elsif rule == "validate_240m, warning"
+      nil
     elsif rule == "validate_031_dups"
         ## A 031 MAY but should not have an epty a, b or c
         # if it is emmpty let it all fail and set an error
