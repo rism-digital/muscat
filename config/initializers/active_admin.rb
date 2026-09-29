@@ -329,6 +329,7 @@ require "patches/kaminari/helpers/tag"
 require 'patches/active_admin/filters/active_filter.rb'
 ## Keep the comments panel custom instead of using the ActiveAdmin default injection.
 require 'patches/active_admin/comments/show_page_helper_ext.rb'
+require 'patches/active_admin/views/pages/show_comments_banner.rb'
 require "active_admin/orm/active_record/comments/comment"
 require Rails.root.join("app/models/active_admin/comment").to_s
 ## Add a Clear button when a filter is active

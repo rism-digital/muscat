@@ -3,13 +3,20 @@
 require "cgi"
 
 module ActiveAdmin::CommentsHelper
+  def active_admin_muscat_comments_banner(context, item)
+    return if is_selection_mode? || !item&.persisted?
+    return unless authorized?(ActiveAdmin::Auth::READ, ActiveAdmin::Comment)
+
+    count = active_admin_muscat_comments_page(item).total_count
+    return if count.zero?
+
+    context.div I18n.t("active_admin.comments.record_banner", count: count), class: "record-comments-banner"
+  end
+
   def active_admin_muscat_comments(context, item)
     return unless authorized?(ActiveAdmin::Auth::READ, ActiveAdmin::Comment)
 
-    comments = ActiveAdmin::Comment.find_for_resource_in_namespace(item, active_admin_namespace.name)
-    comments = comments.includes(:author)
-    comments = active_admin_authorization.scope_collection(comments) if respond_to?(:active_admin_authorization)
-    comments = comments.page(params[:comments_page])
+    comments = active_admin_muscat_comments_page(item)
 
     context.panel I18n.t("active_admin.comments.title_content", count: comments.total_count), class: "comments" do
       if comments.any?
@@ -36,6 +43,18 @@ module ActiveAdmin::CommentsHelper
           first_comment: first_comment
         })
       end
+    end
+  end
+
+  def active_admin_muscat_comments_page(item)
+    @active_admin_muscat_comments_pages ||= {}
+    key = [active_admin_namespace.name, ActiveAdmin::Comment.resource_type(item), item.id, params[:comments_page]]
+
+    @active_admin_muscat_comments_pages[key] ||= begin
+      comments = ActiveAdmin::Comment.find_for_resource_in_namespace(item, active_admin_namespace.name)
+      comments = comments.includes(:author)
+      comments = active_admin_authorization.scope_collection(comments) if respond_to?(:active_admin_authorization)
+      comments.page(params[:comments_page])
     end
   end
 

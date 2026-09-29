@@ -36,6 +36,7 @@ de:
       link: Erstellen
     cancel: Abbrechen
     comments:
+      record_banner: This record has comments (%{count})
       add: Kommentar hinzufügen
       author: Autor
       author_missing: Unbekannt

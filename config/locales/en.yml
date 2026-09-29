@@ -57,6 +57,7 @@ en:
       link: Create one
     cancel: Cancel
     comments:
+      record_banner: This record has comments (%{count})
       add: Add comment
       author: Author
       author_missing: Anonymous
