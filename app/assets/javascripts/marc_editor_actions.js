@@ -426,26 +426,6 @@ function _marc_editor_embedded_holding(destination, rails_model, id ) {
 	});
 }
 
-function _marc_editor_summary_view(destination, rails_model, id ) {	
-	const cfg = marc_editor_config("marc_editor_panel");
-	
-	$.ajax({
-		success: function(data) {
-		},
-		data: {
-			marc_editor_dest: destination,
-			object_id: id
-		},
-		dataType: 'script',
-		timeout: 20000,
-		type: 'post',
-		url: cfg.endpoints.summary, 
-		error: function (jqXHR, textStatus, errorThrown) {
-			_generic_editor_alert("marc_editor.error_summary", jqXHR.status, textStatus, errorThrown)
-		}
-	});
-}
-
 function _marc_editor_version_diff( version_id, destination, rails_model ) {	
 	const cfg = marc_editor_config("marc_editor_panel");
 	$("#" + destination).block({message: ""});
