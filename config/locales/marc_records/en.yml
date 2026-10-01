@@ -549,6 +549,7 @@ en:
     general_note_incipits: General note for music incipit
     general_note_institution: General note
     general_note_personal: General note
+    genre: Genre
     geodata: Geographic information
     geographic_area_code: Geographic area code
     geographic_name: Geographic name

@@ -145,15 +145,6 @@
     a:
       label: records.general_note
   label: records.general_note
-'590':
-  fields:
-    '8':
-      label: records.material_group
-    a:
-      label: records.parts_held
-    b:
-      label: records.extent_parts
-  label: records.parts_held_extent
 '593':
   fields:
     '8':
@@ -169,7 +160,7 @@
       label: records.voice_instrument
     c:
       label: records.amount
-  label: records.total_scoring
+  label: records.scoring
 '599':
   fields:
     a:
@@ -178,8 +169,8 @@
 '650':
   fields:
     a:
-      label: records.subject_heading
-  label: records.subject_heading
+      label: records.genre
+  label: records.genre
 '657':
   fields:
     a:
