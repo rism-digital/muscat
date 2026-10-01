@@ -4,6 +4,168 @@
 
 module ActiveAdmin::ViewsHelper
   include ActiveAdmin::CommentsHelper
+
+  def active_admin_folder_item_table(context, folder)
+    model = folder.folder_model
+    panel_title = model.model_name.human(count: 2)
+    folder_items = folder.folder_items
+    folder_items = if model == Source
+      folder_items.includes(item: [:holdings, { parent_source: :holdings }])
+    else
+      folder_items.includes(:item)
+    end
+
+    context.panel panel_title, class: "muscat_panel" do
+      context.paginated_collection(folder_items.page(params[:src_list_page]).per(10),
+        param_name: 'src_list_page', download_links: false) do
+        context.table_for(context.collection) do
+          active_admin_folder_item_default_columns(context, model)
+          active_admin_folder_item_custom_columns(context, model)
+          active_admin_folder_item_actions(context, model)
+        end
+      end
+    end
+  end
+
+  # These defaults apply to every folderable record. Add type-specific fields below.
+  def active_admin_folder_item_default_columns(context, model)
+    if model.column_names.include?("wf_stage")
+      context.column(I18n.t(:filter_wf_stage)) do |folder_item|
+        item = folder_item.item
+        item ? active_admin_wf_stage_column(context, item) : "Item Deleted"
+      end
+    end
+
+    if model == Source
+      context.column(I18n.t(:filter_record_type_short)) do |folder_item|
+        source = folder_item.item
+        if source
+          context.status_tag(source.get_record_type.to_s,
+            label: I18n.t("record_types_codes.#{source.record_type}", locale: :en))
+        end
+      end
+    end
+
+    context.column(I18n.t(:filter_id)) do |folder_item|
+      folder_item.item ? folder_item.item.id : "n/a, was #{folder_item.item_id}"
+    end
+
+    label, attribute = active_admin_folder_item_primary_field(model)
+    context.column(active_admin_folder_item_column_label(model, label, attribute)) do |folder_item|
+      folder_item.item ? folder_item.item.public_send(attribute) : "Item Deleted"
+    end
+  end
+
+  # Customize a model's table by adding its useful index fields here.
+  def active_admin_folder_item_custom_columns(context, model)
+    fields = {
+      "Source" => [[:filter_composer, :composer], [:filter_lib_siglum, :folder_source_lib_siglum],
+        [:filter_shelf_mark, :shelf_mark]],
+      "InventoryItem" => [[:filter_composer, :composer], [:'record_types.inventory', :inventory_title]],
+      "Institution" => [[:filter_siglum, :siglum], [:filter_place, :place]],
+      "LiturgicalFeast" => [[:filter_alternate_terms, :alternate_terms]],
+      "Person" => [[:filter_life_dates, :life_dates]],
+      "Place" => [[:filter_district, :district], [:filter_country, :country], [:tgn_id, :tgn_id],
+        [:hierarchy, :hierarchy]],
+      "Publication" => [[:filter_title_short, :short_name], [:filter_author, :author],
+        [:work_catalog, :folder_work_catalogue]],
+      "StandardTerm" => [[:filter_alternate_terms, :alternate_terms]],
+      "StandardTitle" => [[:filter_variants, :alternate_terms], [:menu_latin, :latin]],
+      "User" => [[:status, :folder_user_status], [:'users.invitation.status', :folder_invitation_status],
+        [:active, :active], [:email, :email], [:workgroups, :folder_workgroups], [:roles, :get_roles],
+        [:sign_in_count, :sign_in_count], [:current_sign_in_at, :current_sign_in_at]],
+      "Work" => [["Validity", :folder_work_validity], ["Links", :folder_work_links],
+        ["Opus", :opus], ["Catalogue", :catalogue]],
+      "WorkNode" => [[:filter_composer, :composer], [:'records.standard_number_code', :ext_number],
+        [:'records.source_number_code', :ext_code]]
+    }.fetch(model.name, [])
+    fields = fields.reject { |_, attribute| attribute == :folder_work_catalogue } if model == Publication && !can?(:edit, Work)
+
+    fields.each do |label, attribute|
+      context.column(active_admin_folder_item_column_label(model, label, attribute)) do |folder_item|
+        item = folder_item.item
+        active_admin_folder_item_custom_value(context, model, item, attribute) if item
+      end
+    end
+  end
+
+  def active_admin_folder_item_actions(context, model)
+    context.column "" do |folder_item|
+      next unless folder_item.item
+
+      route = { controller: model.to_s.pluralize.underscore.downcase.to_sym,
+        id: folder_item.item.id }
+      links = [link_to("View", route.merge(action: :show))]
+      links << link_to("Edit", route.merge(action: :edit)) if can?(:edit, folder_item.item)
+      safe_join(links, " ")
+    end
+  end
+
+  def active_admin_folder_item_primary_field(model)
+    {
+      "Source" => [:filter_std_title, :std_title],
+      "InventoryItem" => [:filter_title, :title],
+      "Institution" => [:filter_location_and_name, :full_name],
+      "Holding" => [:holding_records, :formatted_title],
+      "LiturgicalFeast" => [:filter_name, :name],
+      "Person" => [:filter_full_name, :full_name],
+      "Place" => [:filter_name, :name],
+      "Publication" => [:filter_title, :title],
+      "StandardTerm" => [:filter_term, :term],
+      "StandardTitle" => [:filter_title, :title],
+      "User" => [:name, :name],
+      "Work" => [:filter_title, :title],
+      "WorkNode" => [:filter_title, :title]
+    }.fetch(model.name)
+  end
+
+  def active_admin_folder_item_column_label(model, label, attribute)
+    return label if label.is_a?(String)
+
+    I18n.t(label, default: model.human_attribute_name(attribute))
+  end
+
+  def active_admin_folder_item_custom_value(context, model, item, attribute)
+    case attribute
+    when :folder_source_lib_siglum
+      holdings = item.holdings.to_a
+      holdings.concat(item.parent_source.holdings.to_a) if item.parent_source
+
+      if item.allow_holding? && holdings.empty?
+        context.div style: "text-align: center;" do
+          context.status_tag(:deleted, label: I18n.t(:no_holdings_yet))
+        end
+      elsif holdings.any?
+        ([item.lib_siglum] + holdings.map(&:lib_siglum)).reject(&:blank?).sort.uniq.join(", ").html_safe
+      else
+        item.lib_siglum
+      end
+    when :folder_user_status
+      context.status_tag(item.disabled? ? "DIS" : "ENA", class: item.disabled? ? "deleted" : "ok")
+    when :folder_invitation_status
+      key = item.invited_to_sign_up? ? "users.invitation.pending" : "users.invitation.active"
+      context.status_tag(I18n.t(key), class: item.invited_to_sign_up? ? "warning" : "none")
+    when :folder_workgroups
+      safe_join(item.workgroups.map do |workgroup|
+        sigla = workgroup.show_libs(max: 10)
+        link_to(workgroup.name, admin_workgroup_path(workgroup),
+          title: sigla.presence || I18n.t(:workgroup_no_sigla))
+      end, ", ")
+    when :folder_work_catalogue
+      item.work_catalogue && context.status_tag(item.work_catalogue,
+        label: I18n.t("work_catalogue_tags.#{item.work_catalogue}", locale: :en))
+    when :folder_work_validity
+      if item.wf_audit.present? && item.wf_audit != "normal"
+        context.status_tag(item.wf_audit,
+          label: I18n.t("work_label_codes.#{item.wf_audit}", locale: :en))
+      end
+    when :folder_work_links
+      context.status_tag(:work_links, label: active_admin_work_status_tag_label(item.link_status),
+        class: active_admin_work_status_tag_class(item.link_status))
+    else
+      item.public_send(attribute)
+    end
+  end
   
   # This is repeated the same everywhere, so we just make one function with the contents
   def active_admin_embedded_source_list(context, item, enable_view_src = true)

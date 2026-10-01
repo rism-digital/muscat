@@ -249,31 +249,7 @@ ActiveAdmin.register Folder do
       row (I18n.t :filter_owner) {|folder| folder.user.name}
     end
     
-    panel folder.folder_type.pluralize, :class => "muscat_panel"  do
-      
-      fitems = folder.folder_items
-      
-      paginated_collection(fitems.page(params[:src_list_page]).per(10), param_name: 'src_list_page',  download_links: false) do
-        table_for(collection) do |cr|
-          column ("Name") do |fitem| 
-            name = "Unconfigured name for this model"
-            name = "Item Deleted" if !fitem.item
-            name = fitem.item.full_name if fitem.item.respond_to? :full_name
-            name = fitem.item.name if fitem.item.respond_to? :name
-            name = fitem.item.lib_siglum if fitem.item.is_a? Holding
-            name
-          end
-          column ("Created at") {|fitem| fitem.item ? fitem.item.created_at : "n.a."}
-          column ("Updated at") {|fitem| fitem.item ? fitem.item.updated_at : "n.a."}
-          column ("Id") {|fitem| fitem.item ? fitem.item.id : "n/a, was #{fitem.item_id}"}
-          column "" do |fitem|
-            if fitem.item
-              link_to "View", controller: fitem.item.class.to_s.pluralize.underscore.downcase.to_sym, action: :show, id: fitem.item.id
-            end
-          end
-        end
-      end
-    end
+    active_admin_folder_item_table(self, folder)
     
   end
   
