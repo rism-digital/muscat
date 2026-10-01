@@ -4,8 +4,11 @@ require_relative "../../lib/protypenliste"
 require "optparse"
 
 EXCLUDED_PROPERTIES = %w[shelf_mark full_name std_title].freeze
-EXCLUDED_MARC_TAGS = %w[852 856 024 690 691 931 300].freeze
-EXCLUDED_MARC_SUBFIELDS = { "031" => %w[p].freeze }.freeze
+EXCLUDED_MARC_TAGS = %w[852 856 024 690 691 931 300 500 035 588 591 700 599].freeze
+EXCLUDED_MARC_SUBFIELDS = {
+  "031" => %w[p].freeze,
+  "240" => %w[n].freeze
+}.freeze
 
 def each_marc_node(node, path = [], &block)
   current_path = path + [node.tag].compact
