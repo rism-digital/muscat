@@ -614,12 +614,6 @@
         editor_partial: subfield_secondary
   tag_params:
       relator_codes:
-      - "rdau:P60191"
-      - "rdau:P60198"
-      - "rdau:P60311"
-      - "rdau:P60195"
-      - "rdau:P60242"
-      - "rdau:P60194"
       - "rda:P00005"
 "856": 
   layout: 

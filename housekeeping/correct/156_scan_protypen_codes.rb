@@ -3,8 +3,8 @@
 require_relative "../../lib/protypenliste"
 require "optparse"
 
-EXCLUDED_PROPERTIES = %w[shelf_mark full_name std_title].freeze
-EXCLUDED_MARC_TAGS = %w[852 856 024 690 691 931 300 500 035 588 591 700 599].freeze
+EXCLUDED_PROPERTIES = %w[shelf_mark full_name std_title wikidata_id identifiers].freeze
+EXCLUDED_MARC_TAGS = %w[852 856 024 690 691 931 300 500 035 588 591 700 599 551 667].freeze
 EXCLUDED_MARC_SUBFIELDS = {
   "031" => %w[p].freeze,
   "240" => %w[n].freeze
