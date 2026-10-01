@@ -36,12 +36,14 @@ ca:
       link: En podeu crear
     cancel: Cancel·lar
     comments:
+      record_banner: Aquest registre té comentaris (%{count})
       add: Afegeix comentari
       author: Autor
       author_missing: Anònim
       author_type: Tipus d'autor
       body: Text
       comments_help: Teclegeu @ per esmentar un usuari específic, que rebrà la notificació per correu electrònic.
+      first_comment_mention_help: Esmenteu un usuari amb @ abans d'enviar el primer comentari.
       errors:
         empty_text: No s'ha desat el comentari perquè no hi havia text.
       my_item_comments: Comentaris als meus registres
@@ -236,6 +238,7 @@ ca:
     required_if: Aquest camp és obligatori perquè un altre és present
     siglum_not_found: El siglum en un o més camps 588 no coincideix amb cap registre de fons
     validate_031_dups: 'Aquest número d''íncipit ja s''està utilitzant: $b o $c estan duplicats'
+    validate_031_sequence: La numeració dels íncipits no és seqüencial
     validate_588_siglum: 'Introduïu el siglum de la biblioteca i la signatura seguint el format: I-Bc Q.51'
     validate_url: L'URL introduït no és vàlid
   basic_level: Registre bàsic
@@ -250,17 +253,31 @@ ca:
     copied: Resultats copiats al portapapers
   commit: Aplicar
   compare_versions:
+    build_new_rule: Crea una regla nova
+    configured_rules: Regles configurades
     date_message: Registres modificats des de %{date}.
     diff: Comparació
     display: Mostra
+    empty_rule: Afegiu una regla per comparar els registres modificats.
+    exclude_own: Exclou els meus canvis
     hide: Amaga
+    last_24_hours: Canvis de les darreres 24 hores
+    last_7_days: Canvis dels darrers 7 dies
+    model_limit: Aquesta versió només permet comparar fonts, obres i institucions.
     modified_records: Registres modificats
     new_record: Nou registre
     no_recent_version: L'últim desament no ha creat una instantània
     no_records: Amb aquestes opcions seleccionades no hi surt cap registre
     options: Opcions
     rule: Regla
+    rule_already_saved: Aquesta regla ja està configurada.
+    rule_help: Trieu quins registres modificats voleu mostrar.
+    rule_invalid: No s’ha pogut desar la regla perquè no és vàlida.
+    rule_prompt: Seleccioneu una regla configurada per mostrar-la o creeu-ne una de nova.
+    rule_saved: Regla desada.
+    save_rule: Desa la regla
     show: Mostra
+    show_results: Mostra els resultats
     similarity: Diferències
     tags: Tag
     time_frame: Període
@@ -400,6 +417,7 @@ ca:
   filter_file_size: Mida del fitxer
   filter_folder_type: Tipus de carpeta
   filter_full_name: Nom
+  filter_full_name_extended: Nom tenint en compte els signes diacrítics (ex. M?ller)
   filter_gender: Gènere
   filter_has_incipits: Té incipits
   filter_has_internal_notes: Té notes internes
@@ -431,6 +449,7 @@ ca:
   filter_male: Masculí
   filter_manuscript_no: Manuscrit número
   filter_mei: Fitxer MEI
+  filter_markdown: Fitxer Markdown
   filter_name: Nom
   filter_notes: Notes
   filter_old_versions: Versions anteriors
@@ -673,6 +692,7 @@ ca:
   new: Crea'n
   new_digital_object_image: Adjuntar-hi una imatge
   new_digital_object_incipit: Afegir-hi un altre ínciput MEI
+  new_digital_object_markdown: Adjuntar un fitxer Markdown nou
   new_holding: Afegir-hi un exemplar
   new_holding_page: Nou registre d'exemplar
   new_inventory_item: Crear un nou article d'inventari
@@ -691,6 +711,28 @@ ca:
     none: Les notifications estan desactivades
     notifications: Notificacions
     rules: Regles
+    rule_builder:
+      add_condition: Afegeix una condició
+      add_rule: Afegeix una regla
+      and: I
+      any_condition: Qualsevol modificació
+      any_modified: Qualsevol modificació de __MODEL__
+      close: Tanca
+      edit: Edita
+      fields:
+        follow: Segueix
+        form: Forma
+      invalid_value: Els valors no poden contenir dos punts ni cometes dobles.
+      operators:
+        contains: conté
+        ends_with: acaba en
+        equals: és igual a
+        glob: coincideix amb el patró
+        starts_with: comença per
+      remove: Elimina
+      rule: Regla
+      when: Quan el tipus de registre és
+      where: ON
     weekly: Cada setmana
   object: Objecte
   old_index: Índex anterior
@@ -714,6 +756,12 @@ ca:
     predicates:
       with_integer: és
   recent_changes: Modifications recents
+  derive_child_sources:
+    source: Afegeix un manuscrit
+    edition_content: Afegeix un element d'edició
+    theoretica_edition_content: Afegeix un element de tractat
+    libretto_edition_content: Afegeix un element de llibret
+  invalid_derived_child_source: "Aquesta font no es pot utilitzar per derivar un registre fill"
   record_actions: Accions sobre el registre
   record_audit: Origen del registre
   record_label: Certesa de l'atribució
@@ -768,6 +816,7 @@ ca:
   run_at: Executat a
   running: Executant-se
   save_and_continue: Desa i continua editant
+  save_and_return_to_inventory: Desa i torna a l'inventari
   save_and_exit: Desa i tanca
   search_sources: Cercar fonts
   search_tgn: Cercar al Getty TGN
@@ -781,6 +830,7 @@ ca:
   show_preview: Vista preliminar
   show_validate: Valida
   show_viaf: Cerca al VIAF
+  solr_tombstone: "Font %{id}: aquest registre existeix a SOLR però no a la base de dades. Això és molest, però inofensiu. Poseu-vos en contacte amb l'administrador si veieu aquest missatge."
   source:
     one: font
     other: fonts
@@ -826,6 +876,7 @@ ca:
   validate_name_uniqness: 'No s''ha desat el registre: el títol abreujat ''%{term}'' ja existeix.'
   validates_parent_id: 'No s''ha desat el registre: el registre mare (773) no pot ser el mateix que el d''aquest registre'
   validation:
+    validate_240m: 'Please make sure the scoring summary follows the guidelines.'
     begins_with_message: El camp ha de començar per "{0}"
     cannot_link_to_self: No podeu crear un enllaça al mateix registre (%{id}).
     check_group_message: El primer grup de material no pot ser "Material imprès suplementari".
@@ -838,6 +889,7 @@ ca:
     not_record_id: Aquest no pot ser el mateix ID que el registre actual
     required_if_message: El camp és obligatori en presència de {0} ${1}
     validate_031_dups: Aquest número d'íncipit ja s'està utilitzant
+    validate_031_sequence: La numeració dels íncipits no és seqüencial
     validate_588_siglum: 'Introduïu el siglum de la biblioteca i la signatura seguint el format: I-Bc Q.51'
     validate_calendar: Assegureu-vos que les dates segueixen el calendari correcte
     validate_edtf: Validar la data EDTF
@@ -885,6 +937,10 @@ ca:
     work_catalogue_in_preparation: En preparació
     work_catalogue_partial: Parcial
   work_catalogue_publication_warning: Per publicar les obres enllaçades, estableix l'estat del catàleg d'obres a 'Parcial', 'Complet' o 'Alternatiu'.
+  workgroup_no_sigla: No hi ha cap sigla per a aquest grup de treball
+  workgroup_sigla_hint: Passeu el cursor per sobre de l’enllaç d’un grup de treball per veure les sigles de les biblioteques d’aquell grup.
+  users_with_institution_permissions: Usuaris que tenen permisos per a aquesta institució
+  workgroups_with_institution_permissions: Grups de treball que tenen permisos per a aquesta institució
   workgroups: Grups de treball
   worknode:
     one: work node

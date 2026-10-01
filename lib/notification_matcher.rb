@@ -1,70 +1,79 @@
 class NotificationMatcher
 
-  ALLOWED_MODELS = [
-    "source", 
-    "work", 
-    "institution", 
-    "holding", 
-    "person",
-    "inventory_item",
-    "liturgical_feast",
-    "place",
-    "publication",
-    "standard_terms",
-    "standard_titles",
-    "work_node"
-  ]
+  ALLOWED_MODELS = %w[
+    source
+    work
+    institution
+    person
+    holding
+    inventory_item
+    liturgical_feast
+    place
+    publication
+    standard_term
+    standard_title
+    work_node
+  ].freeze
 
   ALLOWED_PROPERTIES = {
-    source: [:record_type, :std_title, :composer, :title, :shelf_mark, :lib_siglum, :follow, :owner],
-    work: [:title, :form, :notes, :composer, :follow, :owner],
-    institution: [:siglum, :full_name, :address, :place, :comments, :alternates, :notes, :follow, :owner],
-    person: [:full_name, :life_dates, :birth_place, :alternate_names, :alternate_dates, :display_name, :follow, :owner],
-    holding: [:lib_siglum, :shelf_mark, :follow, :owner],
-    inventory_item: [:source_id, :title, :composer, :page_info, :follow, :owner],
-    liturgical_feast: [:name, :notes, :alternate_terms, :viaf, :gnd, :follow, :owner],
-    place: [:name, :country, :district, :notes, :alternate_terms, :hierarchy, :tgn_id, :follow, :owner],
-    publication: [:short_name, :author, :title, :journal, :volume, :place, :date, :pages, :work_catalogue, :follow, :owner],
-    standard_terms: [:term, :alternate_terms, :notes, :sub_topic, :viaf, :gnd, :follow, :owner],
-    standard_titles: [:title, :notes, :alternate_terms, :sub_topic, :viaf, :gnd, :latin, :follow, :owner],
-    work_node: [:person_id, :title, :form, :notes, :composer, :ext_number, :ext_code, :follow, :owner]
-  }
+    "source" => %w[record_type std_title composer title shelf_mark lib_siglum follow owner],
+    "work" => %w[title form notes composer follow owner],
+    "institution" => %w[siglum full_name address place comments alternates notes follow owner],
+    "person" => %w[full_name life_dates birth_place alternate_names alternate_dates display_name follow owner],
+    "holding" => %w[lib_siglum shelf_mark follow owner],
+    "inventory_item" => %w[source_id title composer page_info follow owner],
+    "liturgical_feast" => %w[name notes alternate_terms viaf gnd follow owner],
+    "place" => %w[name country district notes alternate_terms hierarchy tgn_id follow owner],
+    "publication" => %w[short_name author title journal volume place date pages work_catalogue follow owner],
+    "standard_term" => %w[term alternate_terms notes sub_topic viaf gnd follow owner],
+    "standard_title" => %w[title notes alternate_terms sub_topic viaf gnd latin follow owner],
+    "work_node" => %w[person_id title form notes composer ext_number ext_code follow owner],
+    "all" => %w[follow]
+  }.transform_values(&:freeze).freeze
 
   SPECIAL_RULES = {
-    source: [:lib_siglum, :record_type, :shelf_mark, :follow, :owner],
-    work: [:composer, :follow, :owner],
-    institution: [:follow, :owner],
-    person: [:follow, :owner],
-    holding: [:follow, :owner],
-    inventory_item: [:follow, :owner],
-    liturgical_feast: [:follow, :owner],
-    place: [:follow, :owner],
-    publication: [:follow, :owner],
-    standard_terms: [:follow, :owner],
-    standard_titles: [:follow, :owner],
-    work_node: [:follow, :owner]
-  }
+    "source" => %w[lib_siglum record_type shelf_mark follow owner],
+    "work" => %w[composer follow owner],
+    "institution" => %w[follow owner],
+    "person" => %w[follow owner],
+    "holding" => %w[follow owner],
+    "inventory_item" => %w[follow owner],
+    "liturgical_feast" => %w[follow owner],
+    "place" => %w[follow owner],
+    "publication" => %w[follow owner],
+    "standard_term" => %w[follow owner],
+    "standard_title" => %w[follow owner],
+    "work_node" => %w[follow owner]
+  }.transform_values(&:freeze).freeze
 
-  def initialize(object, user, limit_rules = nil)
+  EXACT_PROPERTIES = %w[follow owner record_type].freeze
+  MAX_RULE_LENGTH = 2_000
+
+  def initialize(object, user, rule: nil)
     #if !object.is_a?(Source) && !object.is_a?(Work) && !object.is_a?(Institution) && !object.is_a?(Holding) && !object.is_a?(Person) 
     #  raise(ArgumentError, "NotificationMatcher can be applied only to Works, Sources, Holdings, Institutions and People" )
     #end
 
     @object = object
     @user = user
-    @limit_rules = limit_rules
+    @rule = rule
+  end
+
+  def self.model_name_for(record_or_class)
+    klass = record_or_class.is_a?(Class) ? record_or_class : record_or_class.class
+    klass.model_name.element
   end
   
   def get_matches
     matches = []
-    user_notifications = @user.get_notifications
+    user_notifications = @rule ? [@rule] : @user.get_notifications
     return false if !user_notifications
 ##    return false if !@object.is_a?(Source) && !@object.is_a?(Work) # This should not happen! 
 
-    rules = NotificationMatcher::parse_rules(user_notifications, @limit_rules)
+    rules = NotificationMatcher::parse_rules(user_notifications)
 
     rules.each do |model, rule_groups|
-      next if @object.class.to_s.downcase != model.downcase
+      next if NotificationMatcher.model_name_for(@object) != model
 
       # Process exclusions, for now only "matches" works
       exclude = rule_groups.flatten.find { |item| item[:property] == "exclude" }&.dig(:pattern)
@@ -80,7 +89,9 @@ class NotificationMatcher
         property_patterns.each do |rule|
           next if !allowed?(rule[:property])
           
-          if special_case?(rule[:property])
+          if rule[:pattern] == "*"
+            partial_match << "#{rule[:property]} #{rule[:pattern]}"
+          elsif special_case?(rule[:property])
             partial_match << "#{rule[:property]} #{rule[:pattern]}" if special_match(rule[:property], rule[:pattern])
           else
             if @object.respond_to?(rule[:property])
@@ -101,18 +112,38 @@ class NotificationMatcher
     matches
   end
   
-  def self.get_model_for_rule(rule_nr, user)
-    user_notifications = user.get_notifications
-    return false if !user_notifications
-    return false if rule_nr >= user_notifications.count
+  def self.get_model_for_rule(rule)
+    return false if rule.blank?
 
-    rules = parse_rules(user_notifications, rule_nr)
+    rules = parse_rules([rule])
     return nil if !rules || rules.empty?
     model = rules.keys.first
 
     return false if !ALLOWED_MODELS.include?(model)
 
     return model.classify.safe_constantize
+  end
+
+  def self.valid_rule?(rule, models: ALLOWED_MODELS)
+    rule = rule.to_s.strip
+    return false if rule.blank? || rule.length > MAX_RULE_LENGTH || rule.match?(/[\r\n]/)
+
+    model, conditions = parse_line(rule)
+    model = model.to_s
+    return false unless models.include?(model) && conditions.present?
+
+    allowed_properties = ALLOWED_PROPERTIES.fetch(model, [])
+    conditions.all? do |condition|
+      property = condition[:property].to_s
+      pattern = condition[:pattern].to_s
+
+      if property == "exclude"
+        pattern == "mine"
+      else
+        allowed_properties.include?(property) && pattern.present? &&
+          (!EXACT_PROPERTIES.include?(property) || !pattern.include?("*"))
+      end
+    end
   end
   
   private
@@ -150,8 +181,8 @@ class NotificationMatcher
         end
       end 
     elsif @object.is_a?(Work) && property == "composer"
-      return false if !@object.person
-      composer = @object.person.name
+      return false if !@object.composer
+      composer = @object.composer.name
       return wildcard_match(composer, pattern)
     elsif property == "follow"
 
@@ -309,11 +340,7 @@ class NotificationMatcher
     return model, rules
   end
 
-  def self.parse_rules(rule_queries, limit = nil)
-    return {} if limit && limit >= rule_queries.count
-
-    rule_queries = [rule_queries[limit]] if limit
-
+  def self.parse_rules(rule_queries)
     rules = {}
     rule_queries.each do |l|
       line = l.strip
@@ -334,12 +361,13 @@ class NotificationMatcher
   end
   
   def allowed?(field)
-    return ALLOWED_PROPERTIES[@object.class.to_s.downcase.to_sym].include? field.downcase.to_sym
+    model = NotificationMatcher.model_name_for(@object)
+    return ALLOWED_PROPERTIES.fetch(model, []).include? field.downcase
   end
 
   def special_case?(field)
-    return false if !SPECIAL_RULES.include? @object.class.to_s.downcase.to_sym
-    return SPECIAL_RULES[@object.class.to_s.downcase.to_sym].include? field.downcase.to_sym
+    model = NotificationMatcher.model_name_for(@object)
+    return SPECIAL_RULES.fetch(model, []).include? field.downcase
 
   end
 

@@ -4,6 +4,10 @@
 # rails r housekeeping/correct/131_extract_fields.rb --columns wf_stage,record_type --marc 100a,100d,100j,852a,852e,852b,852z,852c,852d,240a,240o,240k,240r,240m,520a,561a,700a,700d,700j,7004,260c,300a,590a --export-sigla CH-ZUkao CH.ods
 # Compact version
 # rails r housekeeping/correct/131_extract_fields.rb --columns wf_stage,record_type --marc 100,852,240,520a,561a,700,260c,300a,590a --export-sigla CH-ZUkao CH-ZUkao.ods
+# Export sources whose source or holding siglum contains a value, limited by record type
+# rails r housekeeping/correct/131_extract_fields.rb --columns wf_stage,record_type --marc 100,852,240 --export-sigla-range I- --record-types 1,2 I.ods
+# Export only people whose IDs are listed one per line in a text file
+# rails r housekeeping/correct/131_extract_fields.rb --model Person --ids-file person_ids.txt --marc 024a,0242 people.ods
 require "optparse"
 
 def matches_tag?(marc, tag, subtag, value)
@@ -137,7 +141,7 @@ opts = {
 }
 
 parser = OptionParser.new do |o|
-  o.banner = "Usage: [options] FILE\n\nExamples:\n  --model Institution --columns title,address,notes --marc 031a,031b,650a,651b file.out\n  ./mything --export-sigla D-B --columns title --marc 031a,852a file.out"
+  o.banner = "Usage: [options] FILE\n\nExamples:\n  --model Institution --columns title,address,notes --marc 031a,031b,650a,651b file.out\n  --model Person --ids-file person_ids.txt --marc 024a,0242 people.ods\n  --export-sigla D-B --columns title --marc 031a,852a file.out\n  --export-sigla-range I- --record-types 1,2 --columns wf_stage,record_type --marc 100,852,240 file.out"
 
   o.on("--columns LIST", "Comma-separated columns (e.g. title,address,notes)") do |v|
     opts[:columns] = v.split(",").map { _1.strip }.reject(&:empty?)
@@ -147,12 +151,43 @@ parser = OptionParser.new do |o|
     opts[:marc] = v.split(",").map { _1.strip }.reject(&:empty?)
   end
 
+  o.on("--allow-empty", "Include records where all requested MARC fields are empty") do
+    opts[:allow_empty] = true
+  end
+
   o.on("--model NAME", "Model name to export (e.g. Institution, Source)") do |v|
     opts[:model] = v.strip
   end
 
+  o.on("--ids-file FILE", "With --model, export only IDs listed one per line") do |v|
+    opts[:ids_file] = v.strip
+  end
+
   o.on("--export-sigla SIGLUM", "Export sources and holdings referring to the institution siglum") do |v|
     opts[:export_sigla] = v.strip
+  end
+
+  o.on("--export-sigla-range TEXT", "Export sources whose source or holding siglum contains the text") do |v|
+    siglum_range = v.strip
+    raise OptionParser::InvalidArgument, "--export-sigla-range cannot be empty" if siglum_range.empty?
+
+    opts[:export_sigla_range] = siglum_range
+  end
+
+  o.on("--record-types LIST", "Comma-separated Source record types (e.g. 1,2)") do |v|
+    begin
+      opts[:record_types] = v.split(",").map { Integer(_1.strip, 10) }.uniq
+    rescue ArgumentError
+      raise OptionParser::InvalidArgument, "Invalid --record-types #{v.inspect} (expected comma-separated integers, e.g. 1,2)"
+    end
+
+    valid_record_types = MarcSource::RECORD_TYPES.values.uniq
+    invalid_record_types = opts[:record_types] - valid_record_types
+
+    if opts[:record_types].empty? || invalid_record_types.any?
+      raise OptionParser::InvalidArgument,
+        "Invalid --record-types #{v.inspect} (valid values: #{valid_record_types.sort.join(",")})"
+    end
   end
 
   o.on("--rism-online-links", "Use https://rism.online links instead of https://muscat.rism.info/admin") do
@@ -186,10 +221,25 @@ end
 parser.parse!(ARGV)
 
 file = ARGV.shift
-mode_count = [opts[:model], opts[:export_sigla]].compact.count
+mode_count = [opts[:model], opts[:export_sigla], opts[:export_sigla_range]].compact.count
 
 if mode_count != 1
-  warn "Error: specify exactly one of --model or --export-sigla\n\n#{parser}"
+  warn "Error: specify exactly one of --model, --export-sigla, or --export-sigla-range\n\n#{parser}"
+  exit 1
+end
+
+if opts[:export_sigla_range] && !opts[:record_types]&.any?
+  warn "Error: --export-sigla-range requires --record-types\n\n#{parser}"
+  exit 1
+end
+
+if opts[:record_types] && !opts[:export_sigla_range]
+  warn "Error: --record-types can only be used with --export-sigla-range\n\n#{parser}"
+  exit 1
+end
+
+if opts[:ids_file] && !opts[:model]
+  warn "Error: --ids-file can only be used with --model\n\n#{parser}"
   exit 1
 end
 
@@ -215,9 +265,49 @@ if opts[:model]
 
   route = klass.model_name.route_key
   export_name = opts[:model]
-  item_count = klass.count
-  items = klass.find_each
+
+  if opts[:ids_file]
+    unless File.file?(opts[:ids_file]) && File.readable?(opts[:ids_file])
+      warn "Error: cannot read IDs file #{opts[:ids_file].inspect}"
+      exit 1
+    end
+
+    id_lines = File.readlines(opts[:ids_file], chomp: true)
+    invalid_ids = id_lines.map(&:strip).reject(&:empty?).reject { |id| id.match?(/\A\d+\z/) }
+
+    if invalid_ids.any?
+      warn "Error: invalid IDs in #{opts[:ids_file].inspect}: #{invalid_ids.uniq.join(", ")}"
+      exit 1
+    end
+
+    ids = id_lines.map(&:strip).reject(&:empty?).uniq
+
+    if ids.empty?
+      warn "Error: no IDs found in #{opts[:ids_file].inspect}"
+      exit 1
+    end
+
+    items_by_id = klass.where(id: ids).index_by { |item| item.id.to_s }
+    missing_ids = ids.reject { |id| items_by_id.key?(id) }
+    warn "Warning: IDs not found: #{missing_ids.join(", ")}" if missing_ids.any?
+
+    items = ids.map { |id| items_by_id[id] }.compact
+    item_count = items.count
+  else
+    item_count = klass.count
+    items = klass.find_each
+  end
+
   default_marc_config = MarcConfigCache.get_configuration(klass.name.underscore)
+  marc_config_by_tag = {}
+elsif opts[:export_sigla_range]
+  route = Source.model_name.route_key
+  export_name = opts[:export_sigla_range]
+  items = Source.by_siglum_contains(opts[:export_sigla_range])
+    .where(record_type: opts[:record_types])
+  item_count = items.count
+  items = items.find_each
+  default_marc_config = MarcConfigCache.get_configuration("source")
   marc_config_by_tag = {}
 else
   institutions = Institution.where(siglum: opts[:export_sigla]).to_a
@@ -266,17 +356,7 @@ items.each do |export_item|
     next if !matches_tag?(item.marc, tag, subtag, opts[:tag_filter][:value])
   end
 
-  row = table.row
-
-  row.cell(item.id.to_s)
-  row.cell("#{base_url}/#{route}/#{item.id.to_s}")
-
-  opts[:columns].each do |c| 
-    val = value_for(item, c.to_s)
-    row.cell(val)
-  end
-
-  marc_fields.each do |field| 
+  marc_values = marc_fields.map do |field|
     tag = field[:tag]
     subtag = field[:subtag]
 
@@ -288,9 +368,22 @@ items.each do |export_item|
       marc = item.marc
     end
 
-    row.cell(marc_values_for(marc, tag, subtag, base_url).join("\n"))
+    marc_values_for(marc, tag, subtag, base_url).join("\n")
   end
 
+  next if marc_fields.any? && !opts[:allow_empty] && marc_values.all?(&:blank?)
+
+  row = table.row
+
+  row.cell(item.id.to_s)
+  row.cell("#{base_url}/#{route}/#{item.id.to_s}")
+
+  opts[:columns].each do |c|
+    val = value_for(item, c.to_s)
+    row.cell(val)
+  end
+
+  marc_values.each { |value| row.cell(value) }
 end
 
 sheet.write_to file

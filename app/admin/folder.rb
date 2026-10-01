@@ -67,7 +67,7 @@ ActiveAdmin.register Folder do
     
   end
   
-  member_action :reindex, method: :get do
+  member_action :reindex, method: :post do
     job = Delayed::Job.enqueue(ReindexItemsJob.new(params[:id], Folder, :folder_items))
     redirect_to resource_path(params[:id]), notice: I18n.t(:reindex_job, scope: :folders, id: job.id)
   end
@@ -76,12 +76,12 @@ ActiveAdmin.register Folder do
   #  link_to 'Publish', publish_admin_folder_path(folder)
   #end
   
-  member_action :publish, method: :get do
+  member_action :publish, method: :post do
     job = Delayed::Job.enqueue(PublishItemsJob.new(params[:id], Folder, :folder_items, :publish))
     redirect_to resource_path(params[:id]), notice: I18n.t(:publish_job, scope: :folders, id: job.id)
   end
  
-  member_action :unpublish, method: :get do
+  member_action :unpublish, method: :post do
     job = Delayed::Job.enqueue(PublishItemsJob.new(params[:id], Folder, :folder_items, :unpublish))
     redirect_to resource_path(params[:id]), notice: I18n.t(:unpublish_job, scope: :folders, id: job.id)
   end
@@ -97,7 +97,7 @@ ActiveAdmin.register Folder do
     redirect_to resource_path(params[:id]), notice: I18n.t(:setting_catalogue_status, scope: :folders, id: job.id)
   end
 
-  member_action :reset_expiration, method: :get do
+  member_action :reset_expiration, method: :patch do
     begin
       f = Folder.find(params[:id])
     rescue
@@ -110,13 +110,15 @@ ActiveAdmin.register Folder do
       return
     end
 
+    # Saving a folder is an explicit renewal. The before_save callback resets
+    # its expiration date even when no attributes have changed.
     f.save
 
     redirect_to resource_path(params[:id]), notice: I18n.t(:"folders.resetted", date: f.delete_date.to_date.to_s)
   end
 
   ## Shows a page so the user can select the folder name
-  member_action :export_folder, :method => :get do
+  member_action :export_folder, :method => :post do
     begin
       f = Folder.find(params[:id])
     rescue
@@ -154,7 +156,7 @@ ActiveAdmin.register Folder do
     redirect_to resource_path(params[:id]), notice: I18n.t(:export_started, scope: :folders, email: current_user.email, job: job.id)
   end 
 
-  member_action :validate_folder, method: :get do
+  member_action :validate_folder, method: :post do
     begin
       f = Folder.find(params[:id])
     rescue
@@ -258,6 +260,7 @@ ActiveAdmin.register Folder do
             name = "Item Deleted" if !fitem.item
             name = fitem.item.full_name if fitem.item.respond_to? :full_name
             name = fitem.item.name if fitem.item.respond_to? :name
+            name = fitem.item.lib_siglum if fitem.item.is_a? Holding
             name
           end
           column ("Created at") {|fitem| fitem.item ? fitem.item.created_at : "n.a."}

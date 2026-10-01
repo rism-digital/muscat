@@ -14,9 +14,10 @@ client:
         #  "031": "a"
       "c":
         any_of:
-        - required_if: 
+        - required_if:
             "031": "a"
         - validate_031_dups
+        - validate_031_sequence
         #required_if:
         #  "031": "a"
   "041":
@@ -57,7 +58,7 @@ client:
         - inventory_edition
     tags:
       "0": mandatory
-      m: required, warning
+      m: validate_240m, warning
   "245": 
     tags:
       a: mandatory
@@ -115,6 +116,9 @@ client:
         - composite_volume
     tags:
       b: required
+      c:
+        required_if:
+          "594": "b"
   "596":
     tags:
       a: required
@@ -137,6 +141,8 @@ client:
   "691":
     tags:
       "0": required
+      u: validate_url
+      n: required
   "700": 
     tags:
       "0": required

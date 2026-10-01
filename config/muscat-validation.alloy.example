@@ -1,0 +1,26 @@
+// Parameterized Grafana Alloy example for scheduled Muscat validation output.
+// Replace the paths and connect the receivers to your existing remote_write and
+// Loki write components. Keep your existing host-label relabeling in place.
+
+prometheus.exporter.unix "local" {
+  // Enable/configure the textfile collector in the existing Unix exporter.
+  // Exact collector options can vary by Alloy version; set its directory to:
+  // /var/lib/node_exporter/textfile_collector
+}
+
+// Add the Unix exporter target to the existing prometheus.scrape component that
+// remote-writes to monitor.rism.digital. Muscat atomically writes:
+// /var/lib/node_exporter/textfile_collector/muscat_validation_source.prom
+// (one atomically written .prom file per checked model)
+
+loki.source.file "muscat_validation" {
+  targets = [{
+    __path__ = "/var/log/muscat/validation_observability.jsonl",
+    job      = "muscat_validation",
+  }]
+  forward_to = [loki.write.REPLACE_WITH_EXISTING.receiver]
+}
+
+// Configure Muscat with matching writable paths:
+// MUSCAT_VALIDATION_PROMETHEUS_TEXTFILE=/var/lib/node_exporter/textfile_collector/muscat_validation.prom
+// MUSCAT_VALIDATION_LOKI_LOG=/var/log/muscat/validation_observability.jsonl

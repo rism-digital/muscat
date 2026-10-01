@@ -1,0 +1,96 @@
+.missing-role-page-body {
+  margin: 0;
+  background: #e8e9ea;
+  color: #000;
+  font-family: "Noto Sans Display", Helvetica, Arial, sans-serif;
+  font-size: 12px;
+  letter-spacing: 0.028em;
+}
+
+.missing-role-page,
+.missing-role-page * {
+  box-sizing: border-box;
+}
+
+.missing-role-page {
+  min-height: 100vh;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  padding: 66px 20px 30px;
+}
+
+.missing-role-panel {
+  width: min(100%, 500px);
+  background: #fff;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+}
+
+.missing-role-title {
+  margin: 0;
+  padding: 5px 10px 4px;
+  background: #1b4e7d;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+  color: #fff;
+  font-size: 12px;
+  font-weight: 700;
+  line-height: 18px;
+}
+
+.missing-role-content {
+  padding: 28px 30px 32px;
+}
+
+.missing-role-content h2 {
+  margin: 0 0 12px;
+  color: #5e6469;
+  font-size: 15px;
+}
+
+.missing-role-content p {
+  margin: 0 0 22px;
+  color: #5e6469;
+  line-height: 1.55;
+}
+
+.missing-role-account {
+  display: grid;
+  grid-template-columns: 80px minmax(0, 1fr);
+  gap: 15px;
+  margin: 0 0 25px;
+}
+
+.missing-role-account dt {
+  color: #5e6469;
+  font-weight: 700;
+}
+
+.missing-role-account dd {
+  overflow-wrap: anywhere;
+  margin: 0;
+}
+
+.missing-role-sign-out {
+  display: inline-block;
+  padding: 7px 16px 6px;
+  background: #1b4e7d;
+  border: 1px solid #17436b;
+  border-radius: 4px;
+  color: #fff;
+  text-decoration: none;
+}
+
+.missing-role-sign-out:hover,
+.missing-role-sign-out:focus {
+  background: #23669d;
+}
+
+@media (max-width: 540px) {
+  .missing-role-page {
+    padding: 20px 10px;
+  }
+
+  .missing-role-content {
+    padding: 24px 20px 26px;
+  }
+}

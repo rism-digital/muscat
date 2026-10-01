@@ -36,12 +36,14 @@ pt:
       link: Criar
     cancel: Cancelar
     comments:
+      record_banner: Este registo tem comentários (%{count})
       add: Adicionar Comentário
       author: Autor
       author_missing: Anônimo
       author_type: Tipo de autor
       body: Texto
-      comments_help: Digite @ para mencionar um usuário específico, que então receberá uma notificação por e-mail.
+      comments_help: Para mencionar um utilizador específico do Muscat, escreva @ e selecione o respetivo nome. O nome será destacado a azul. A pessoa receberá então uma notificação por e-mail. Os utilizadores inativos não podem ser selecionados.
+      first_comment_mention_help: Tem de selecionar um utilizador antes de enviar o primeiro comentário.
       errors:
         empty_text: O comentário não foi salvo, o texto estava vazio.
       my_item_comments: Comentários sobre os meus registos
@@ -236,6 +238,7 @@ pt:
     required_if: Este campo é obrigatório porque outro está presente
     siglum_not_found: O siglum em um ou mais campos 588 não corresponde a nenhum registro de acervo
     validate_031_dups: 'Este número de incipit já está em uso: $b ou $c estão duplicados'
+    validate_031_sequence: A numeração dos incipits não é sequencial
     validate_588_siglum: 'Insira o siglum da biblioteca e a classificação no formato: I-Bc Q.51'
     validate_url: O URL inserido não é válido
   basic_level: Registro básico
@@ -250,17 +253,31 @@ pt:
     copied: Resultados copiados para a área de transferência
   commit: Aplicar
   compare_versions:
+    build_new_rule: Criar nova regra
+    configured_rules: Regras configuradas
     date_message: Mostrar records modificados de %{date}.
     diff: Comparar
     display: Mostrar
+    empty_rule: Adicione uma regra para comparar os registos alterados.
+    exclude_own: Excluir as minhas alterações
     hide: Esconder
+    last_24_hours: Alterações nas últimas 24 horas
+    last_7_days: Alterações nos últimos 7 dias
+    model_limit: Esta versão permite apenas comparar fontes, obras e instituições.
     modified_records: Records modificados
     new_record: Novo record
     no_recent_version: O último salvamento não criou um snapshot
     no_records: Não há records para mostrar com as opções actualmente seleccionadas
     options: Opções
     rule: Regra
+    rule_already_saved: Esta regra já está configurada.
+    rule_help: Escolha quais registos alterados pretende mostrar.
+    rule_invalid: Não foi possível guardar a regra porque ela não é válida.
+    rule_prompt: Selecione uma regra configurada para mostrar ou crie uma nova.
+    rule_saved: Regra guardada.
+    save_rule: Guardar regra
     show: Espectáculo
+    show_results: Mostrar resultados
     similarity: Diferenças
     tags: Tags
     time_frame: Período de tempo
@@ -400,6 +417,7 @@ pt:
   filter_file_size: Tamanho do arquivo
   filter_folder_type: Tipo de Pasta
   filter_full_name: Nome
+  filter_full_name_extended: Nome considerando os sinais diacríticos (ex. M?ller)
   filter_gender: Gênero
   filter_has_incipits: Tem incipits
   filter_has_internal_notes: Tem notas internas
@@ -431,6 +449,7 @@ pt:
   filter_male: Masculino
   filter_manuscript_no: Manuscrito número
   filter_mei: MEI file
+  filter_markdown: Ficheiro Markdown
   filter_name: Nome
   filter_notes: Notas
   filter_old_versions: Versões anteriores
@@ -673,6 +692,7 @@ pt:
   new: Criar
   new_digital_object_image: Adicionar uma nova imagem
   new_digital_object_incipit: Adicionar um novo incipit MEI
+  new_digital_object_markdown: Anexar um novo ficheiro Markdown
   new_holding: Adicionar material
   new_holding_page: Informação de novo material
   new_inventory_item: Criar novo item de inventário
@@ -691,6 +711,28 @@ pt:
     none: Notificações estão desactivadas
     notifications: Notificações
     rules: Regras
+    rule_builder:
+      add_condition: Adicionar condição
+      add_rule: Adicionar regra
+      and: E
+      any_condition: Qualquer alteração
+      any_modified: Qualquer alteração em __MODEL__
+      close: Fechar
+      edit: Editar
+      fields:
+        follow: Seguir
+        form: Forma
+      invalid_value: Os valores não podem conter dois-pontos nem aspas duplas.
+      operators:
+        contains: contém
+        ends_with: termina em
+        equals: é igual a
+        glob: corresponde ao padrão
+        starts_with: começa por
+      remove: Remover
+      rule: Regra
+      when: Quando o tipo de registo é
+      where: ONDE
     weekly: Todas as semanas
   object: Objeto
   old_index: Índice anterior
@@ -714,6 +756,12 @@ pt:
     predicates:
       with_integer: é
   recent_changes: Últimas modificações
+  derive_child_sources:
+    source: Adicionar manuscrito
+    edition_content: Adicionar item de edição
+    theoretica_edition_content: Adicionar item de tratado
+    libretto_edition_content: Adicionar item de libreto
+  invalid_derived_child_source: "Esta fonte não pode ser utilizada para derivar um registo filho"
   record_actions: Ações do Registro
   record_audit: Origem do Registro
   record_label: Certeza de atribuição
@@ -768,6 +816,7 @@ pt:
   run_at: Executado em
   running: Em execução
   save_and_continue: Salvar e continuar editando
+  save_and_return_to_inventory: Salvar e voltar ao inventário
   save_and_exit: Salvar e Fechar
   search_sources: Buscar fontes
   search_tgn: Pesquisar no Getty TGN
@@ -781,6 +830,7 @@ pt:
   show_preview: Mostrar previsualização
   show_validate: Validação
   show_viaf: Busca no VIAF
+  solr_tombstone: "Fonte %{id}: este registo existe no SOLR, mas não na base de dados. Isto é incómodo, mas inofensivo. Contacte o administrador se vir esta mensagem."
   source:
     one: fonte
     other: fontes
@@ -826,6 +876,7 @@ pt:
   validate_name_uniqness: 'O registro não foi salvo: Um título abreviado igual ''%{term}'' já existe.'
   validates_parent_id: 'O registro não foi salvo: O registro principal (773) não pode ser igual a este registro'
   validation:
+    validate_240m: 'Please make sure the scoring summary follows the guidelines.'
     begins_with_message: O campo deve começar com "{0}"
     cannot_link_to_self: A criação de uma ligação em si não é permitida (%{id}).
     check_group_message: O primeiro grupo de material não pode ser "Material impresso adicional".
@@ -838,6 +889,7 @@ pt:
     not_record_id: Este identificador não pode ser o mesmo que o do registo atual
     required_if_message: Este campo deve ser preenchido, pois é obrigatório na presença de {0} ${1}
     validate_031_dups: Este número de incipit já está em uso
+    validate_031_sequence: A numeração dos incipits não é sequencial
     validate_588_siglum: 'Insira o siglum da biblioteca e a classificação no formato: I-Bc Q.51'
     validate_calendar: Certifique-se de que as datas seguem o calendário correto
     validate_edtf: Validar data EDTF
@@ -885,6 +937,10 @@ pt:
     work_catalogue_in_preparation: Em preparação
     work_catalogue_partial: Parcial
   work_catalogue_publication_warning: Para publicar obras vinculadas, defina o status do catálogo de obras como 'Parcial', 'Completo' ou 'Alternativo'.
+  workgroup_no_sigla: Não há siglas para este grupo de trabalho
+  workgroup_sigla_hint: Passe o cursor sobre o link de um grupo de trabalho para ver as siglas das bibliotecas desse grupo.
+  users_with_institution_permissions: Utilizadores que têm permissões para esta instituição
+  workgroups_with_institution_permissions: Grupos de trabalho que têm permissões para esta instituição
   workgroups: Grupos de trabalho
   worknode:
     one: Work node

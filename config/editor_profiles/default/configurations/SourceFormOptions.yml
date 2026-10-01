@@ -680,6 +680,7 @@
         editor_partial: subfield_secondary
         allow_new: false
     - - n
+    - - u
 "700":
   new_window: people
   new_window_field: full_name_eq

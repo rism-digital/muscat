@@ -27,21 +27,9 @@
 			<a id="<%=anchor%>"></a>
 			<strong><%=description%></strong>
 			<br>
-			<div id="<%= random_string -%>"></div>
-			<script type="text/javascript">
-				$(document).ready(function() {
-					window.viewer = $('#<%= random_string -%>').diva({
-						enableAutoHeight: true,
-						enableLinkIcon: false,
-						fixedHeightGrid: false,
-						enableDownload: false,
-						enableAutoTitle: false,
-						inGrid: true,
-						objectData: "<%= subfield_u.content -%>"
-					}).data('diva');
-
-				});
-			</script>
+			<div id="<%= random_string -%>"
+				 class="muscat-diva-viewer"
+				 data-diva-manifest="<%= subfield_u.content -%>"></div>
 		</div>
 		
 	<%- end %>

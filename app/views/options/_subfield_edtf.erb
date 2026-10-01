@@ -11,11 +11,9 @@
 	tag_params = @editor_profile.options_config[tag_name]["tag_params"]
 %>
 
-<table width="100%" class="marc_editor_pae_textbox">
+<div class="edtf-subfield marc_editor_pae_textbox">
+  <input type="text" class="input-edtf subfield_entry serialize_marc marc_editor_hotkey <%=validate_class%> <%=validate_marker%>" data-tag="<%=tag_name%>" data-subfield="<%=subfield%>" spellcheck="false" value="<%= h marc_subfield.content %>" />
 
-<input id="input-edtf" type="text" class="subfield_entry serialize_marc marc_editor_hotkey <%=validate_class%> <%=validate_marker%>" data-tag="<%=tag_name%>" data-subfield="<%=subfield%>" spellcheck="false" value="<%= h marc_subfield.content %>" />
-
-<div id="edtf-message" class="edtf-message"></div>
-<div id="edtf-error" class="edtf-error"></div>
-
-</table>
+  <div class="edtf-message"></div>
+  <div class="edtf-error"></div>
+</div>

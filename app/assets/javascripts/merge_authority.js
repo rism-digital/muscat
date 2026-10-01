@@ -34,7 +34,7 @@ var merge = function () {
       buttons: {
         OK: function() {
           $.ajax({
-            type: "GET", 
+            type: "POST",
             url: location.protocol + '//' + location.host + location.pathname + "/merge",
             data: {"target": target_id, "duplicate": duplicate_id},
             dataType: "json",

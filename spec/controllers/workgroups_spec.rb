@@ -15,6 +15,21 @@ RSpec.describe Admin::WorkgroupsController, :type => :controller do
     end
   end
 
+  context "GET show" do
+    it "lists linked institutions" do
+      institution = workgroup.institutions.first
+
+      get :show, params: { id: workgroup.id }
+
+      expect(response.body).to include(institution.siglum)
+      expect(response.body).to include(institution.full_name)
+      expect(response.body).to have_css(
+        %(a[href="#{admin_institution_path(institution)}"]),
+        text: "View"
+      )
+    end
+  end
+
   context "redirect_to back" do
     it do
       patch :update, params: { :id => workgroup.id, :workgroup => { :name => nil  } }

@@ -9,9 +9,10 @@ client:
         - validate_031_dups
       "c":
         any_of:
-        - required_if: 
+        - required_if:
             "031": "a"
         - validate_031_dups
+        - validate_031_sequence
   "046":
     tags:
       "k": 
@@ -22,7 +23,10 @@ client:
   "024":
     tags:
       "2": required
-      "a": required
+      "a":
+        any_of:
+          - required
+          - validate_024
   "100":
     tags:
       "0": mandatory

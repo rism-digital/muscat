@@ -27,6 +27,7 @@ module Wikidata
         {
           qid: item_json["id"],
           label: Base.label(item_json, lang: lang),
+          description: Base.description(item_json, lang: lang),
           aliases: Base.aliases(item_json, lang: lang),
 
           family_name_qid: item_qid(item_json, PID_FAMILY_NAME),

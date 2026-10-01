@@ -6,8 +6,8 @@ production:
     path: /solr/muscat
     memory: 16G
     bind_address: 127.0.0.1
-    # read_timeout: 2
-    # open_timeout: 0.5
+    read_timeout: 15
+    open_timeout: 2
 
 development:
   solr:

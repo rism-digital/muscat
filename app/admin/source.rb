@@ -128,6 +128,7 @@ ActiveAdmin.register Source do
 
     def index
       @results, @hits = Source.search_as_ransack(params)
+      @results = SourceIndex.with_tombstones(@results, @hits)
 
       # Get the terms for 593a_filter, the "source type"
       @source_types = Source.get_terms("593a_filter_sm")
@@ -146,13 +147,25 @@ ActiveAdmin.register Source do
     def new
       @source = Source.new
       @template_name = ""
+
+      derived_parent = nil
+      if params[:derived_from_source_id].present?
+        derived_parent = Source.find_by(id: params[:derived_from_source_id])
+
+        unless derived_parent&.derivable_child?
+          redirect_to admin_root_path, :flash => { :error => I18n.t(:invalid_derived_child_source) }
+          return
+        end
+      end
+
+      new_record_type = derived_parent&.derived_child_type || params[:new_record_type]&.to_sym
       
-      if (!params[:existing_title] || params[:existing_title].empty?) && (!params[:new_record_type] || params[:new_record_type].empty?)
+      if (!params[:existing_title] || params[:existing_title].empty?) && !new_record_type
         redirect_to action: :select_new_template 
         return
       end
 
-      if params[:existing_title] and !params[:existing_title].empty?
+      if params[:existing_title].present? && !derived_parent
         # Check that the record does exist...
         begin
           base_item = Source.find(params[:existing_title])
@@ -181,15 +194,16 @@ ActiveAdmin.register Source do
         @template_name = @source.get_record_type.to_s
       else 
         
-        default_file_name = EditorConfiguration.get_source_default_file(params[:new_record_type])
+        default_file_name = EditorConfiguration.get_source_default_file(new_record_type)
         default_file = ConfigFilePath.get_marc_editor_profile_path("#{Rails.root}/config/marc/#{RISM::MARC}/source/#{default_file_name}.marc")
      
         if File.exist?(default_file)
-          new_marc = MarcSource.new(File.read(default_file), MarcSource::RECORD_TYPES[params[:new_record_type].to_sym])
+          new_marc = MarcSource.new(File.read(default_file), MarcSource::RECORD_TYPES[new_record_type])
           new_marc.load_source false # this will need to be fixed
           @source.marc = new_marc
-          @template_name = params[:new_record_type]
-          @source.record_type = MarcSource::RECORD_TYPES[params[:new_record_type].to_sym]
+          @template_name = new_record_type.to_s
+          @source.record_type = MarcSource::RECORD_TYPES[new_record_type]
+          @source.derive_child_marc_from(derived_parent) if derived_parent
         end
       end
 
@@ -391,7 +405,7 @@ ActiveAdmin.register Source do
   filter :wf_stage_with_integer, :label => proc {I18n.t(:filter_wf_stage)}, as: :select, 
   collection: proc{[:inprogress, :published, :deleted].collect {|v| [I18n.t("wf_stage." + v.to_s), "wf_stage:#{v}"]}}
   
-  index :download_links => false do
+  index as: :source_table, :download_links => false do
     selectable_column if !is_selection_mode?
     column((I18n.t :filter_wf_stage), sortable: :wf_stage) {|i| active_admin_wf_stage_column(self, i)}
 
@@ -403,17 +417,22 @@ ActiveAdmin.register Source do
       element.std_title
     end
     column (I18n.t :filter_lib_siglum), sortable: :lib_siglum do |source|
-      if source.allow_holding? && source.holdings.count == 0
+      holdings = source.holdings.to_a
+      holdings.concat(source.parent_source.holdings.to_a) if source.parent_source
+
+      if source.allow_holding? && holdings.empty?
         div style: 'text-align: center;' do
           status_tag(:deleted, label: t('no_holdings_yet'))
         end
+      elsif holdings.any?
+        ([source.lib_siglum] + holdings.map(&:lib_siglum))
+          .reject(&:blank?)
+          .sort
+          .uniq
+          .join(", ")
+          .html_safe
       else
-        if source.child_sources.count > 0
-          siglums = [source.lib_siglum] + source.child_sources.map(&:lib_siglum)
-          siglums.reject{|s| s.empty?}.sort.uniq.join(", ").html_safe
-        else
-          source.lib_siglum
-        end
+        source.lib_siglum
       end
     end
     column (I18n.t :filter_shelf_mark), :shelf_mark_shelforder, sortable: :shelf_mark_shelforder do |element|
@@ -445,7 +464,7 @@ ActiveAdmin.register Source do
     active_admin_digital_object( self, resource ) if !is_selection_mode?
     active_admin_user_wf( self, resource )
     active_admin_navigation_bar( self )
-    active_admin_comments if !is_selection_mode?
+    active_admin_muscat_comments(self, resource) if !is_selection_mode?
 
     active_adnin_create_list_for(self, InventoryItem, resource, composer: I18n.t(:filter_composer), title: I18n.t(:filter_title))
   end

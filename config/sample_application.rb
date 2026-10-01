@@ -128,6 +128,9 @@ module RISM
   # Insert here a set of emails for people to receive notifications
   NOTIFICATION_EMAILS = ["sample@email.com"]
 
+  # People notified when an invited user activates their account
+  USER_ACTIVATION_NOTIFICATION_EMAILS = ["sample@email.com"]
+
   # Privacy information page
   COOKIE_PRIVACY_LINK = "http://www.example.com/privacy.html?lang="
 
@@ -175,33 +178,22 @@ module Muscat
     # Run "rake -D time" for a list of tasks for finding time zone names. Default is UTC.
     # config.time_zone = 'Central Time (US & Canada)'
 
-    config.load_defaults 7.1
-    config.active_support.cache_format_version = 7.1
+    config.load_defaults 7.2
     # Make sure belongs_to is optional by default
     config.active_record.belongs_to_required_by_default = false
-
-    # Force validation of locales, this also silences the deprecation warning
-    config.i18n.enforce_available_locales = true
-    # The default locale is :en and all translations from config/locales/*.rb,yml are auto loaded.
-    # config.i18n.load_path += Dir[Rails.root.join('my', 'locales', '*.{rb,yml}').to_s]
-    # config.i18n.default_locale = :de
-    config.i18n.load_path += Dir[ (File.join(Rails.root, "config", "locales", 'marc_records', '*.{yml}'))]
-    config.i18n.load_path += Dir[ (File.join(Rails.root, "config", "locales", 'gnd', '*.{yml}'))]
     
-    config.autoload_paths << "#{Rails.root}/lib"
-    config.eager_load_paths << Rails.root.join('lib')
-    config.eager_load_paths << "#{Rails.root}/app/models/relations"
+    config.autoload_lib(ignore: %w[assets patches generators tasks])
+    config.eager_load_paths << Rails.root.join("app/models/relations").to_s
     
-    #config.autoload_lib(ignore: %w(assets tasks generators))
-
     config.active_job.queue_adapter = :delayed_job
-
     config.active_record.yaml_column_permitted_classes = [ActiveSupport::HashWithIndifferentAccess, Time, Date, ActiveSupport::TimeWithZone, ActiveSupport::TimeZone]
     
     Paperclip::Attachment.default_options[:url] = "https://muscat.rism.info/system/:class/:attachment/:id_partition/:style/:filename"
 
     # See what was loaded
     #Rails.autoloaders.log!
+    
+    config.active_storage.draw_routes = false
 
     overrides = "#{Rails.root}/app/overrides"
     Rails.autoloaders.main.ignore(overrides)
@@ -211,6 +203,7 @@ module Muscat
         load override
       end
     end
+    
   end
 end
 

@@ -7,7 +7,7 @@ using AggressivelyStrip
 
   DEBUG = false
 
-  def initialize(object, user = nil, warnings = false, logger = nil, exclusions = nil)
+  def initialize(object, user = nil, warnings = false, logger = nil, exclusions = nil, collect_findings: false)
     @validation = EditorValidation.get_default_validation(object)
     @rules = @validation.rules
     @user = user
@@ -16,6 +16,7 @@ using AggressivelyStrip
     @editor_profile = EditorConfiguration.get_default_layout(object)
     #ap @rules
     @errors = {}
+    @findings = [] if collect_findings
     @object = object
     
     @exclusions = exclusions
@@ -583,6 +584,12 @@ using AggressivelyStrip
     @errors
   end
 
+  # Structured findings are kept alongside the historical error hash so that
+  # reporting callers do not need to parse human-readable validation messages.
+  def get_findings
+    @findings || []
+  end
+
   def current_user
     @user
   end
@@ -648,6 +655,9 @@ using AggressivelyStrip
           puts "588 does not have a valid sigla #{tag} #{subtag}, #{rule}" if DEBUG
         end
       end
+    # Scoring summary formatting is validated in the JavaScript editor only.
+    elsif rule == "validate_240m, warning"
+      nil
     elsif rule == "validate_031_dups"
         ## A 031 MAY but should not have an epty a, b or c
         # if it is emmpty let it all fail and set an error
@@ -668,6 +678,15 @@ using AggressivelyStrip
           end
         rescue
           return
+        end
+    elsif rule == "validate_031_sequence"
+        invalid_tags = invalid_031_sequence_tags
+        if invalid_tags.include?(marc_tag.object_id)
+          incipit_number = %w[a b c].map do |code|
+            marc_tag.fetch_first_by_tag(code)&.content.to_s.strip
+          end.join(".")
+          add_error("#{tag}-#{incipit_number}", subtag, rule)
+          puts "The current 031 does not follow the preceding incipit number #{incipit_number}" if DEBUG
         end
     elsif rule == "validate_url"
         
@@ -710,10 +729,40 @@ using AggressivelyStrip
     elsif rule == "validate_person_dates"
     elsif rule == "validate_person_name"
     elsif rule == "validate_024"
+      if marc_subtag&.content
+        identifier = marc_subtag.content.to_s.strip
+        source = marc_tag.fetch_first_by_tag("2")&.content.to_s.strip
+
+        return if identifier.empty? || source.empty?
+
+        message_key = case source
+        when "BNF"
+          "validation.validate_024_bnf" unless identifier.start_with?("ark:/12148/cb")
+        when "WKP"
+          "validation.validate_024_wikidata" unless identifier.start_with?("Q")
+        else
+          "validation.validate_024" if identifier.match?(/\Ahttp/i)
+        end
+
+        add_error(tag, subtag, I18n.t(message_key)) if message_key
+      end
     elsif rule == "handcrafted_warning"
     else
       puts rule.class
       puts "Unknown rule #{rule}" if rule != "mandatory"
+    end
+  end
+
+  def invalid_031_sequence_tags
+    @invalid_031_sequence_tags ||= begin
+      incipits = @marc["031"]
+      tuples = incipits.map do |incipit|
+        %w[a b c].map { |code| incipit.fetch_first_by_tag(code)&.content }
+      end
+
+      IncipitNumbering.invalid_indexes(tuples).map do |index|
+        incipits[index].object_id
+      end
     end
   end
 
@@ -756,6 +805,14 @@ using AggressivelyStrip
     @errors[tag][subtag] << message
     
     log_tag = "validation_error" if !log_tag
+    if @findings
+      @findings << {
+        tag: tag,
+        subtag: subtag,
+        message: message.to_s,
+        category: log_tag
+      }
+    end
     @logger.error("#{log_tag} #{@object.id} #{print_record_type(@object)} #{tag} #{subtag} #{message}") if @logger
   end
   

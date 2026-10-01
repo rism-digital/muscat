@@ -204,6 +204,8 @@ ActiveAdmin.setup do |config|
   # To load a javascript file:
   #   config.register_javascript 'my_javascript.js'
   config.register_stylesheet 'jquery-ui.css'
+  config.register_stylesheet 'mention_input.css'
+  config.register_stylesheet 'diva_viewer.css'
   #config.register_javascript 'marc_editor.js'
   #config.register_javascript 'marc_json.js'
   #config.register_javascript 'jquery.blockUI.js'
@@ -212,7 +214,6 @@ ActiveAdmin.setup do |config|
   #config.register_javascript 'jquery.validate.js'
 
   config.register_stylesheet 'muscat-print.css', :media => :print
-  config.register_stylesheet 'diva.min.css'
   config.register_stylesheet 'jquery.flexdatalist.css'
 
   # == CSV options
@@ -326,10 +327,16 @@ require "patches/kaminari/helpers/tag"
 ## RZ This monkey patch enables some filter labels to be translated in the Search Status
 ## sidebar.
 require 'patches/active_admin/filters/active_filter.rb'
-## RZ Add some text to the comments box, for help
-require 'patches/active_admin/comments/views/comments_ext.rb'
+## Keep the comments panel custom instead of using the ActiveAdmin default injection.
+require 'patches/active_admin/comments/show_page_helper_ext.rb'
+require 'patches/active_admin/views/pages/show_comments_banner.rb'
+require "active_admin/orm/active_record/comments/comment"
+require Rails.root.join("app/models/active_admin/comment").to_s
 ## Add a Clear button when a filter is active
 require 'patches/active_admin/views/components/active_filters_sidebar_content.rb'
+# Muscat footer
+# 
+require 'patches/active_admin/views/components/footer.rb'
 
 ActiveAdmin.before_load do |app|
   # Add our Extensions

@@ -1,6 +1,98 @@
 require 'stringio'
 require 'set'
 
+class MuscatCheckupResult
+  attr_reader :errors, :validations, :foreign_tag_errors, :unknown_tags, :observations
+
+  def initialize(errors:, validations:, foreign_tag_errors:, unknown_tags:, observations:)
+    @errors = errors
+    @validations = validations
+    @foreign_tag_errors = foreign_tag_errors
+    @unknown_tags = unknown_tags
+    @observations = observations
+  end
+end
+
+class TelemetryNullWorker
+  EMPTY_OBSERVATIONS = {
+    records_scanned: 0,
+    records_with_findings: 0,
+    findings: {}.freeze
+  }.freeze
+
+  def initialize(_observability = nil)
+  end
+
+  def collect_findings?
+    false
+  end
+
+  def record(_record, _validator, _output, _exception, _phase)
+  end
+
+  def observations
+    EMPTY_OBSERVATIONS
+  end
+end
+
+class TelemetryWorker < TelemetryNullWorker
+  def initialize(observability)
+    @observations = {
+      records_scanned: 0,
+      records_with_findings: 0,
+      findings: Hash.new(0)
+    }
+    @event_stream = ValidationObservability::EventStream.new(**observability)
+  end
+
+  def collect_findings?
+    true
+  end
+
+  attr_reader :observations
+
+  def record(record, validator, output, exception, phase)
+    @observations[:records_scanned] += 1
+
+    findings = validator ? validator.get_findings : []
+    if output.strip.present?
+      category = exception ? "record_exception_#{phase}" : "record_error"
+      findings << technical_finding(category, output.strip)
+    end
+    findings << technical_finding("record_exception_#{phase}", exception.message) if exception
+
+    return if findings.empty?
+
+    record_type = print_record_type(record)
+    @event_stream.validation_message(
+      record_id: record.id,
+      record_type: record_type,
+      findings: findings
+    )
+
+    @observations[:records_with_findings] += 1
+    findings.each do |finding|
+      @observations[:findings][[record_type, finding[:category]]] += 1
+    end
+  end
+
+  private
+
+  def print_record_type(record)
+    return "none" unless record.respond_to?(:get_record_type)
+    record.get_record_type&.to_s || "none"
+  end
+
+  def technical_finding(category, message)
+    {
+      tag: "no_tag",
+      subtag: "no_subtag",
+      message: message.to_s,
+      category: category
+    }
+  end
+end
+
 class MuscatCheckup  
 
   # It was 10, but now we should have exclusions
@@ -14,6 +106,8 @@ class MuscatCheckup
     @folder = options[:folder]
 
     @debug_logger = options[:logger]
+    @observability = options[:observability]
+    @telemetry_worker_class = @observability.present? ? TelemetryWorker : TelemetryNullWorker
 
     @skip_validation            = options[:skip_validation] == true
     @skip_dates                 = options[:skip_dates] == true
@@ -53,28 +147,38 @@ class MuscatCheckup
     # Extract and separate the errors and validations
     total_errors = {}
     total_validations = {}
+    observations = { records_scanned: 0, records_with_findings: 0, findings: Hash.new(0) }
     results.each do |r|
       total_errors.merge!(r[:errors])
       total_validations.merge!(r[:validations])
+      observations[:records_scanned] += r[:observations][:records_scanned]
+      observations[:records_with_findings] += r[:observations][:records_with_findings]
+      r[:observations][:findings].each { |key, count| observations[:findings][key] += count }
     end
         
     filtered_validations, foreign_tag_errors, unknown_tags = postprocess_results(total_validations, limit_unknown_tags: limit_unknown_tags)
-    return total_errors, filtered_validations, foreign_tag_errors, unknown_tags
+    MuscatCheckupResult.new(
+      errors: total_errors,
+      validations: filtered_validations,
+      foreign_tag_errors: foreign_tag_errors,
+      unknown_tags: unknown_tags,
+      observations: observations
+    )
 
   end
   
   private
 
-  def load_and_validate_item(s)
+  def load_and_validate_item(s, telemetry, collect_findings)
     errors = {}
     validations = {}
 
     phase = :load
 
-    result, output, exception = capture_stdout_and_stderr do
+    validator, output, exception = capture_stdout_and_stderr do
       #s.marc.load_source(true)
       phase = :validate
-      validate_record(s)
+      validate_record(s, collect_findings)
     end
 
     unless output.strip.empty?
@@ -85,10 +189,13 @@ class MuscatCheckup
     if exception
       append_exception(errors, s.id, exception)
       @debug_logger.error("[#{phase}] #{exception.backtrace.first(2).join("\n")}") if @debug_logger
-      puts "[#{phase}] #{exception.backtrace.first(2).join("\n")}" # Also print the message on the stdout sink 
-    elsif result.present?
-      validations[s.id] = result
+      puts "[#{phase}] #{exception.backtrace.first(2).join("\n")}" # Also print the message on the stdout sink
+    elsif validator.present?
+      validation_errors = validator.get_errors
+      validations[s.id] = validation_errors if validation_errors.present?
     end
+
+    telemetry.record(s, validator, output, exception, phase)
 
     [errors, validations]
   end
@@ -141,54 +248,56 @@ class MuscatCheckup
     Parallel.map(0...@parallel_jobs, in_processes: @parallel_jobs) do |jobid|
       errors = {}
       validations = {}
+      telemetry = build_telemetry_worker
+      collect_findings = telemetry.collect_findings?
 
       offset = batch_size * jobid
-=begin
-      @model.order(:id).limit(batch_size).offset(offset).select(:id).each do |sid|
-        s = @model.find(sid.id)
-        
-        e, v = load_and_validate_item(s)
-        errors.merge!(e)
-        validations.merge!(v)
-        
-        s = nil
-      end
-=end
       ids = @model.order(:id).limit(batch_size).offset(offset).pluck(:id)
 
       ids.each_slice(1000) do |slice|
         @model.where(id: slice).order(:id).each do |s|
-          e, v = load_and_validate_item(s)
-          errors.merge!(e)
-          validations.merge!(v)
+          errors_for_record, validations_for_record = load_and_validate_item(s, telemetry, collect_findings)
+          errors.merge!(errors_for_record)
+          validations.merge!(validations_for_record)
         end
       end
 
-      { errors: errors, validations: validations }
+      {
+        errors: errors,
+        validations: validations,
+        observations: telemetry.observations
+      }
     end
   end
 
   def validate_folder
     errors = {}
     validations = {}
+    telemetry = build_telemetry_worker
+    collect_findings = telemetry.collect_findings?
 
     @folder.folder_items.each do |fi|
       next if !fi.item
       s = fi.item
 
-      e, v = load_and_validate_item(s)
-      errors.merge!(e)
-      validations.merge!(v)
-      
+      errors_for_record, validations_for_record = load_and_validate_item(s, telemetry, collect_findings)
+      errors.merge!(errors_for_record)
+      validations.merge!(validations_for_record)
+
       s = nil
     end
-      
-    [{errors: errors, validations: validations}]
+
+    [{ errors: errors, validations: validations, observations: telemetry.observations }]
   end
 
-  def validate_record(record)
+  def validate_record(record, collect_findings)
     # if something is wrong, let the validator throw and it will be caught by the logger
-    validator = MarcValidator.new(record, nil, false, @debug_logger, @validation_exclusions)
+    validator = MarcValidator.new(record, nil, false, @debug_logger, @validation_exclusions, collect_findings: collect_findings)
+    run_record_validations(validator)
+    validator
+  end
+
+  def run_record_validations(validator)
     validator.validate_tags               if !@skip_validation
     validator.validate_dates              if !@skip_dates
     validator.validate_links              if !@skip_links
@@ -201,7 +310,6 @@ class MuscatCheckup
     validator.validate_work_status        if !@skip_validate_work_status
     validator.validate_template_harmony   if !@skip_parent_check
     validator.validate_person_codes       if !@skip_validate_person_codes
-    return validator.get_errors
   end
   
   def postprocess_results(validations, limit_unknown_tags: true, unknown_tag_limit: UNKNOWN_TAG_LIMIT)
@@ -264,6 +372,10 @@ class MuscatCheckup
   def print_record_type(item)
     return "none" unless item.respond_to?(:get_record_type)
     item.get_record_type&.to_s || "none"
+  end
+
+  def build_telemetry_worker
+    @telemetry_worker_class.new(@observability)
   end
 
 end

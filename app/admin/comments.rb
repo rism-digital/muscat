@@ -1,8 +1,9 @@
 ActiveAdmin.register ActiveAdmin::Comment, :as => "Comment" do
-  
   after_create do |comment|
-    CommentNotifications.new_comment(comment).deliver_now
+    CommentNotifications.new_comment(comment).deliver_later
   end
+
+  permit_params :body, :body_json, :namespace, :resource_id, :resource_type, mentioned_user_ids: []
   
   # Remove all action items
   config.clear_action_items!
@@ -30,6 +31,14 @@ ActiveAdmin.register ActiveAdmin::Comment, :as => "Comment" do
   end
   
   controller do   
+    after_build do |comment|
+      apply_rich_comment_payload(comment)
+    end
+
+    before_update do |comment|
+      apply_rich_comment_payload(comment)
+    end
+
     def index
       if params[:as] and params[:as] == "table"
         index!
@@ -54,6 +63,19 @@ ActiveAdmin.register ActiveAdmin::Comment, :as => "Comment" do
         end
       end
     end
+
+    private
+
+    def apply_rich_comment_payload(comment)
+      raw_body_json = params.dig(:active_admin_comment, :body_json)
+      source = raw_body_json.presence || comment.body_json
+      document = ActiveAdmin::Comment.new(body_json: source).body_json_document
+      return if document.blank?
+
+      comment.body_json = document
+      comment.body = comment.body_from_json
+      comment.mentioned_user_ids = comment.mentioned_user_ids_from_json
+    end
   end
 
   index as: :comment do |c|
@@ -63,7 +85,7 @@ ActiveAdmin.register ActiveAdmin::Comment, :as => "Comment" do
       column (I18n.t :filter_creation_date), :created_at
       column (I18n.t :filter_author), :author
       column (I18n.t :filter_comment), :body do |comment|
-        link_to truncate(comment.body, omision: "...", length: 80), admin_comment_path(comment)
+        link_to truncate(comment.body, omission: "...", length: 80), admin_comment_path(comment)
       end
       column (I18n.t :filter_wf_stage) {|comment| status_tag(comment.namespace == "admin" ? :ok : "", label: comment.namespace)} 
       column "" do |comment|

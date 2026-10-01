@@ -19,5 +19,10 @@
 %>
 <ul>
 	<li class="muscat_icon_link"><a href="<%= cancel_path %>" class="muscat_icon_link muscat_icon_link_cancel"><%=(I18n.t :cancel)%></a></li>
-	<li class="muscat_icon_link"><a href="#" data-save-form="<%= save_form  %>" class="muscat_icon_link muscat_icon_link_save_exit"><%=(I18n.t :save_and_exit)%></a></li>
+	<% if item.is_a?(User) && item.new_record? %>
+		<li class="muscat_icon_link"><a href="#" data-save-form="<%= save_form %>" data-submit-name="creation_mode" data-submit-value="invite" class="muscat_icon_link muscat_icon_link_save_exit"><%= I18n.t("users.invitation.create") %></a></li>
+		<li class="muscat_icon_link"><a href="#" data-save-form="<%= save_form %>" data-submit-name="creation_mode" data-submit-value="password" class="muscat_icon_link muscat_icon_link_save_exit"><%= I18n.t("users.create") %></a></li>
+	<% else %>
+		<li class="muscat_icon_link"><a href="#" data-save-form="<%= save_form %>" class="muscat_icon_link muscat_icon_link_save_exit"><%= I18n.t(:save_and_exit) %></a></li>
+	<% end %>
 </ul>

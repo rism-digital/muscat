@@ -36,12 +36,14 @@ de:
       link: Erstellen
     cancel: Abbrechen
     comments:
+      record_banner: Dieser Datensatz hat Kommentare (%{count})
       add: Kommentar hinzufügen
       author: Autor
       author_missing: Unbekannt
       author_type: Autor-Typ
       body: Inhalt
-      comments_help: Geben Sie @ ein, um einen bestimmten Benutzer zu nennen, der dann eine Benachrichtigung per E-Mail erhält.
+      comments_help: Um einen bestimmten Muscat-Benutzer zu erwähnen, gib @ ein und wähle den Namen der Person aus. Der Name wird blau hervorgehoben. Die Person erhält anschließend eine Benachrichtigung per E-Mail. Inaktive Benutzer können nicht ausgewählt werden.
+      first_comment_mention_help: Du musst einen Benutzer auswählen, bevor du den ersten Kommentar absendest.
       errors:
         empty_text: Der Kommentar wurde nicht gespeichert, da der Text fehlt.
       my_item_comments: Kommentare zu meinen Einträgen
@@ -236,6 +238,7 @@ de:
     required_if: Dieses Feld ist erforderlich, weil ein anderes vorhanden ist
     siglum_not_found: Das Siglum in einem oder mehreren 588-Feldern entspricht keinem vorhandenen Bestandsdatensatz
     validate_031_dups: 'Diese Incipit-Nummer wird bereits verwendet: $b oder $c sind doppelt vorhanden'
+    validate_031_sequence: Die Incipit-Nummerierung ist nicht fortlaufend
     validate_588_siglum: 'Geben Sie das Bibliothekssigel und die Signatur im Format ein: I-Bc Q.51'
     validate_url: Die eingegebene URL ist ungültig
   basic_level: Basiskatalog
@@ -250,17 +253,31 @@ de:
     copied: Ergebnisse in die Zwischenablage kopiert
   commit: Anwenden
   compare_versions:
+    build_new_rule: Neue Regel erstellen
+    configured_rules: Konfigurierte Regeln
     date_message: Geänderte Datensätze anzeigen von %{date}.
     diff: Vergleich
     display: Anzeige
+    empty_rule: Fügen Sie eine Regel hinzu, um geänderte Datensätze zu vergleichen.
+    exclude_own: Eigene Änderungen ausschließen
     hide: Verbergen
+    last_24_hours: Änderungen der letzten 24 Stunden
+    last_7_days: Änderungen der letzten 7 Tage
+    model_limit: Diese Version unterstützt nur Vergleiche für Quellen, Werke und Institutionen.
     modified_records: Geänderte Datensätze
     new_record: Neuer Datensatz
     no_recent_version: Die letzte Speicherung hat keinen Snapshot erstellt
     no_records: Es gibt keine Datensätze, die mit den aktuell ausgewählten Optionen angezeigt werden können
     options: Optionen
     rule: Regel
+    rule_already_saved: Diese Regel ist bereits konfiguriert.
+    rule_help: Wählen Sie aus, welche geänderten Datensätze angezeigt werden sollen.
+    rule_invalid: Die Regel konnte nicht gespeichert werden, weil sie ungültig ist.
+    rule_prompt: Wählen Sie eine konfigurierte Regel zur Anzeige aus oder erstellen Sie eine neue.
+    rule_saved: Regel gespeichert.
+    save_rule: Regel speichern
     show: Anzeigen
+    show_results: Ergebnisse anzeigen
     similarity: Unterschiede
     tags: Tags
     time_frame: Zeitrahmen
@@ -400,6 +417,7 @@ de:
   filter_file_size: Dateigrösse
   filter_folder_type: Ordner-Typ
   filter_full_name: Name
+  filter_full_name_extended: Name unter Berücksichtigung diakritischer Zeichen (ex. M?ller)
   filter_gender: Geschlecht
   filter_has_incipits: Hat Incipits
   filter_has_internal_notes: Hat interne Notizen
@@ -431,6 +449,7 @@ de:
   filter_male: Männlich
   filter_manuscript_no: Manuskript-Nr.
   filter_mei: MEI file
+  filter_markdown: Markdown-Datei
   filter_name: Name
   filter_notes: Anmerkungen
   filter_old_versions: Alte Versionen
@@ -673,6 +692,7 @@ de:
   new: Erstellen
   new_digital_object_image: Neues Bild hinzufügen
   new_digital_object_incipit: Neues MEI-Incipit hinzufügen
+  new_digital_object_markdown: Neue Markdown-Datei hinzufügen
   new_holding: Neuer Examplareintrag
   new_holding_page: Neuer Exemplareintrag
   new_inventory_item: Neuen Inventareintrag erstellen
@@ -691,6 +711,28 @@ de:
     none: Benachrichtigungen sind deaktiviert
     notifications: Benachrichtigungen
     rules: Regeln
+    rule_builder:
+      add_condition: Bedingung hinzufügen
+      add_rule: Regel hinzufügen
+      and: UND
+      any_condition: Beliebige Änderung
+      any_modified: Beliebige Änderung an __MODEL__
+      close: Schließen
+      edit: Bearbeiten
+      fields:
+        follow: Folgen
+        form: Form
+      invalid_value: Werte dürfen weder einen Doppelpunkt noch doppelte Anführungszeichen enthalten.
+      operators:
+        contains: enthält
+        ends_with: endet mit
+        equals: ist gleich
+        glob: entspricht dem Muster
+        starts_with: beginnt mit
+      remove: Entfernen
+      rule: Regel
+      when: Wenn der Datensatztyp ist
+      where: WO
     weekly: Jede Woche
   object: Objekt
   old_index: Alter Index
@@ -714,6 +756,12 @@ de:
     predicates:
       with_integer: ist
   recent_changes: Letzte Änderungen
+  derive_child_sources:
+    source: Manuskript hinzufügen
+    edition_content: Editionseintrag hinzufügen
+    theoretica_edition_content: Traktateintrag hinzufügen
+    libretto_edition_content: Librettoeintrag hinzufügen
+  invalid_derived_child_source: "Aus dieser Quelle kann kein untergeordneter Datensatz abgeleitet werden"
   record_actions: Aktion für Eintrag
   record_audit: Vorlageform
   record_label: Gewissheit der Zuschreibung
@@ -768,6 +816,7 @@ de:
   run_at: Durchgeführt am
   running: Läuft
   save_and_continue: Speichern und weiter bearbeiten
+  save_and_return_to_inventory: Speichern und zum Inventar zurückkehren
   save_and_exit: Speichern und verlassen
   search_sources: Quellensuche
   search_tgn: Im Getty TGN suchen
@@ -781,6 +830,7 @@ de:
   show_preview: Vorschau anzeigen
   show_validate: Validierung
   show_viaf: VIAF Suche
+  solr_tombstone: "Quelle %{id}: Dieser Eintrag existiert in SOLR, aber nicht in der Datenbank. Das ist ärgerlich, aber harmlos. Bitte wenden Sie sich an den Administrator, wenn Sie diese Meldung sehen."
   source:
     one: Quelle
     other: Quellen
@@ -826,6 +876,7 @@ de:
   validate_name_uniqness: 'Eintrag nicht gespeichert: Das Kürzel ''%{term}'' existiert bereits.'
   validates_parent_id: 'Eintrag nicht gespeichert: Übergeordneter Eintrag (773) kann nicht mit diesem Eintrag identisch sein.'
   validation:
+    validate_240m: 'Please make sure the scoring summary follows the guidelines.'
     begins_with_message: Das Feld muss mit "{0}" beginnen
     cannot_link_to_self: Das Erstellen eines Links selbst ist nicht erlaubt (%{id}).
     check_group_message: Die erste Materialgruppe kann nicht "Zusätzliches gedrucktes Material" sein.
@@ -838,6 +889,7 @@ de:
     not_record_id: Diese ID darf nicht mit der aktuellen Datensatz-ID identisch sein
     required_if_message: Dieses Feld muss ausgefüllt werden, da es obligatorisch ist in Anwesenheit von {0} ${1}
     validate_031_dups: Diese Incipit-Nummer wird bereits verwendet
+    validate_031_sequence: Die Incipit-Nummerierung ist nicht fortlaufend
     validate_588_siglum: 'Geben Sie das Bibliothekssigel und die Signatur im Format ein: I-Bc Q.51'
     validate_calendar: Bitte stellen Sie sicher, dass die Daten dem richtigen Kalender folgen
     validate_edtf: EDTF-Datum validieren
@@ -885,6 +937,10 @@ de:
     work_catalogue_in_preparation: In Vorbereitung
     work_catalogue_partial: Teilweise
   work_catalogue_publication_warning: Um verknüpfte Werke zu veröffentlichen, setzen Sie den Werkkatalog-Status auf 'Teilweise', 'Vollständig' oder 'Alternativ'.
+  workgroup_no_sigla: Keine Sigel für diese Benutzergruppe
+  workgroup_sigla_hint: Bewegen Sie den Mauszeiger über einen Benutzergruppen-Link, um die Bibliothekssigel dieser Benutzergruppe anzuzeigen.
+  users_with_institution_permissions: Benutzer mit Berechtigungen für diese Institution
+  workgroups_with_institution_permissions: Arbeitsgruppen mit Berechtigungen für diese Institution
   workgroups: Benutzergruppen
   worknode:
     one: Work node

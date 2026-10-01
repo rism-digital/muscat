@@ -22,6 +22,8 @@ bos:
   label: languages.bosnian
 bul:
   label: languages.bulgarian
+cai:
+  label: languages.central_american_indian
 cat:
   label: languages.catalan
 cel:

@@ -285,6 +285,10 @@ function _marc_editor_create_new_tag(field_data) {
   parent_dl.append(new_dt);
   new_dt.show();
   new_dt.parents(".tag_group").children(".tag_empty_container").hide();
+
+  if (window.muscatInitializeWidgetsInBlock) {
+    window.muscatInitializeWidgetsInBlock(new_dt[0]);
+  }
 }
 
 

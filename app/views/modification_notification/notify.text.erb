@@ -1,0 +1,16 @@
+<%= t("modification_notification.heading") %>
+<%= t("modification_notification.summary", count: @total_results) %>
+
+<% @results.each do |model, criterias| %>
+<% criterias.each do |criteria, items| %>
+<%= t("modification_notification.triggered_by") %>: <%= criteria %> — <%= t("modification_notification.matched", count: items.count, model: model.underscore.humanize.pluralize(items.count)) %>
+
+<%= t("modification_notification.number") %> | <%= t("modification_notification.record") %> | <%= t("modification_notification.created") %> | <%= t("modification_notification.modified") %>
+<% items.each_with_index do |item, index| %>
+<%= index + 1 %>. | <%= strip_tags(render_modification_item(item)) %> | <%= modification_timestamp(item.created_at) %> | <%= modification_timestamp(item.updated_at) %>
+<% end %>
+
+<% end %>
+<% end %>
+<%= t("modification_notification.footer") %>
+<% if @time_msg.present? %><%= @time_msg %><% end %>

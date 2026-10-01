@@ -1,4 +1,6 @@
 class User < ApplicationRecord
+  ACCESS_ROLES = %w[admin editor cataloger guest].freeze
+
   has_and_belongs_to_many :workgroups
 
   has_many :sources, foreign_key: 'wf_owner'
@@ -17,8 +19,10 @@ class User < ApplicationRecord
   rolify
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
-	# remove :recoverable
-  devise *([:rememberable, :trackable, :validatable] + Array(RISM::AUTHENTICATION_METHODS) + [authentication_keys: [:login]])
+	# Invitations let administrators create accounts without choosing or sharing
+	# the cataloguer's password. Recoverable also enables self-service password resets.
+  devise *([:rememberable, :trackable, :validatable, :recoverable, :invitable] + Array(RISM::AUTHENTICATION_METHODS) + [authentication_keys: [:login]])
+  after_invitation_accepted :send_activation_notification
 
   # Used by saml_authenticatable devise strategy to avoid password validation
   attr_accessor :user_create_strategy
@@ -32,7 +36,7 @@ class User < ApplicationRecord
           
   }
   
-  validate :secure_password
+  validate :secure_password, unless: :creating_invited_user?
   validates :username, presence: true, uniqueness: { case_sensitive: false }
   validates_format_of :username, with: /[\p{Letter}\s]+/u, :multiline => true
   #/^[a-zA-ZÀ-ż0-9_\.]*$/, :multiline => true
@@ -137,6 +141,10 @@ class User < ApplicationRecord
     self.roles.map {|r| r.name}
   end
 
+  def access_role?
+    roles.any? { |role| ACCESS_ROLES.include?(role.name) }
+  end
+
   def online?
       updated_at > 10.minutes.ago
   end
@@ -218,8 +226,15 @@ class User < ApplicationRecord
     return true
 	end
 
+  def creating_invited_user?
+    new_record? && invited_by.present?
+  end
+
+  private
+
   def password_required?
-    user_create_strategy != :saml_authenticatable
+    return false if user_create_strategy == :saml_authenticatable
+
     super
   end
 
@@ -229,6 +244,13 @@ class User < ApplicationRecord
   def self.ransackable_attributes(_) = attribute_names - %w[token]
 
   private
+
+  def send_activation_notification
+    recipients = Array(RISM::USER_ACTIVATION_NOTIFICATION_EMAILS).compact_blank
+    return if recipients.empty?
+
+    UserActivationNotification.notify(self).deliver_now
+  end
 
   # When a user is created, a special WG for them in created too
   # for the personal siglas

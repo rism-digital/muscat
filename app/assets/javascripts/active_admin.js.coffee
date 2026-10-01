@@ -87,7 +87,6 @@
 #= require tag_header_events
 #= require section_sidebar_ujs
 #= require pae_incipit_render_ujs
-#= require edtf_subfield_ujs
 #= require textarea_autogrow_ujs
 #= require marc_versioning_ujs
 #= require marc_messages_ujs.js
@@ -100,18 +99,16 @@
 #= require merge_authority
 #= require compare_versions_actions
 #= require autogen_username
+#= require notification_rule_builder
 
 #= require gnd_interface.js
 #= require external_fetch_panel
 #= require modification_trigger_ujs.js
 
-#= require diva/diva.min.js
 ###= require Chart.min
 #= require html2csv.js
 #= require statistics.js
 
-#=require tribute.min
-#=require tribute_load
 #=require clipboard.min
 
 #= require jquery.highlight-within-textarea

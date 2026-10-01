@@ -31,7 +31,7 @@ class Folder < ApplicationRecord
   before_save :update_expires
 
   def update_expires
-    self.delete_date = Time.now + 6.months
+    self.delete_date = 6.months.from_now
   end
 
   # Looks to see if an item is in the current folder.
@@ -76,41 +76,46 @@ class Folder < ApplicationRecord
   def add_item(item)
     return false if item.class.name != folder_type
     return false if has_item? item
-    folder_items << FolderItem.create(:folder_id => id, :item => item)
+    FolderItem.create(folder_id: id, item_id: item.id, item_type: folder_type)
     return true
   end
   
   # Add an array of items
-  # It uses activerecord-import and does it using a single
-  # SQL IMPORT it has a dramatic improvement (on 5000 new items):
-  # Using inserts   25.113613
-  # Using Import    3.100459
-  def add_items(items)    
-    new_fi = []
-    total = items.count
-    count = 0 
-    items.each do |item|
-      return 0 if item.class.name != folder_type
-      next if has_item?(item)
-      new_fi << FolderItem.new(:folder_id => id, :item => item) 
+  # New and improved version
+  # It can receive a block for feedback
+  # f.add_items(all_items) {|nr| update_stage_progress("Adding item #{nr}", step: 50)}
+  def add_items(items)
+    items = items.to_a
+    return 0 unless items.all? { |item| item.class.name == folder_type }
 
+    items = items.uniq(&:id)
+    existing_item_ids = folder_items
+      .where(item_type: folder_type, item_id: items.map(&:id))
+      .pluck(:item_id)
+      .index_with(true)
+
+    new_fi = []
+    items.each do |item|
+      next if existing_item_ids.key?(item.id)
+
+      new_fi << FolderItem.new(folder_id: id, item: item)
+
+      count = new_fi.length - 1
       yield count if block_given? && count % 50 == 0
-      count += 1
     end
-  
+
     FolderItem.import new_fi
-    return count
+    new_fi.length
   end
     
-  def remove_items(items)
-    items.each do |item|
-      folder_item = folder_items.where(item_id: item)
-      folder_items.destroy(folder_item) if folder_item
-    end
-    # Folder items should be always cleaned up
-    # run a background job for that
+  def remove_items(item_ids)
+    folder_items
+      .where(item_type: folder_type, item_id: item_ids)
+      .delete_all
+      # Folder items should be always cleaned up
+      # run a background job for that
     Delayed::Job.enqueue(PurgeFolderItemsJob.new(self.id))
-  end  
+  end
 
   # https://github.com/activeadmin/activeadmin/issues/7809
   # In Non-marc models we can use the default

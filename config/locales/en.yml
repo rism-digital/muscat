@@ -1,5 +1,26 @@
 ---
 en:
+  users:
+    create: Create
+    created: "The user %{email} was created and activated."
+    invitation:
+      active: Acc
+      already_accepted: This invitation has already been accepted.
+      create: Create and send invitation
+      help: Choose "Create and send invitation" to email a 15-day activation link, or "Create" to activate the user immediately with the password entered below.
+      pending: Pend
+      resend: Resend invitation
+      resent: "A new invitation was sent to %{email}."
+      sent: "The user was created and an invitation was sent to %{email}."
+      status: Invitation
+    password_creation_hint: The password is required for Create and ignored for Create and send invitation.
+    role_required: Please select an access role (admin, editor, cataloger, or guest).
+    missing_role:
+      account: Account
+      heading: No role has been assigned to your account
+      message: This user has no selected role. Please contact a Muscat administrator and ask them to assign one.
+      sign_out: Sign out
+      title: Access unavailable
   Composer: Composer
   Date: Date
   Images: Images
@@ -36,12 +57,14 @@ en:
       link: Create one
     cancel: Cancel
     comments:
+      record_banner: This record has comments (%{count})
       add: Add comment
       author: Author
       author_missing: Anonymous
       author_type: Author type
       body: Text
-      comments_help: Type @ to mention a specific user, who will then receive a notification by email.
+      comments_help: To mention a specific Muscat user, type @ and select their name. The name will be highlighted in blue. The person will then receive a notification by email. Inactive users cannot be selected.
+      first_comment_mention_help: You need to select a user before submitting the first comment.
       errors:
         empty_text: Comment wasn't saved, text was empty.
       my_item_comments: Comments on my records
@@ -234,6 +257,7 @@ en:
     required_if: This field is required because another one is present
     siglum_not_found: The siglum in one or more 588 fields does not match any holding record
     validate_031_dups: 'This incipit number is already used: $b or $c are duplicated'
+    validate_031_sequence: The incipit number is not sequential
     validate_588_siglum: 'Enter the library siglum and shelfmark as in the format: I-Bc Q.51'
     validate_url: The entered URL is invalid
   basic_level: Basic record
@@ -247,17 +271,31 @@ en:
     copied: Results copied to clipboard
   commit: Commit
   compare_versions:
+    build_new_rule: Build a new rule
+    configured_rules: Configured rules
     date_message: Showing modified records from %{date}.
     diff: Diff
     display: Display
+    empty_rule: Add a rule to compare modified records.
+    exclude_own: Exclude my own changes
     hide: Hide
+    last_24_hours: Changes going back 24 hours
+    last_7_days: Changes going back 7 days
+    model_limit: This version supports comparisons for Sources, Works, and Institutions only.
     modified_records: Modified records
     new_record: New record
     no_recent_version: The last save did not create a snapshot
     no_records: There are no records to show with the current selected options
-    options: options
+    options: Options
     rule: Rule
+    rule_already_saved: This rule is already configured.
+    rule_help: Choose which modified records to show.
+    rule_invalid: The rule could not be saved because it is invalid.
+    rule_prompt: Select a configured rule to display or build a new one.
+    rule_saved: Rule saved.
+    save_rule: Save rule
     show: Show
+    show_results: Show results
     similarity: Difference
     tags: Tags
     time_frame: Time frame
@@ -397,6 +435,7 @@ en:
   filter_file_size: File size
   filter_folder_type: Folder Type
   filter_full_name: Name
+  filter_full_name_extended: Name considering diacritic (ex. M?ller)
   filter_gender: Gender
   filter_has_incipits: Has music incipits
   filter_has_internal_notes: Has internal notes
@@ -428,6 +467,7 @@ en:
   filter_male: Male
   filter_manuscript_no: Manuscript No.
   filter_mei: MEI file
+  filter_markdown: Markdown file
   filter_name: Name
   filter_notes: Notes
   filter_old_versions: Old versions
@@ -669,6 +709,7 @@ en:
   new: Create
   new_digital_object_image: Attach a new image
   new_digital_object_incipit: Attach a new MEI incipit
+  new_digital_object_markdown: Attach a new Markdown file
   new_holding: Add holdings
   new_holding_page: New holdings information
   new_inventory_item: Create new inventory item
@@ -687,6 +728,40 @@ en:
     none: Notifications are disabled
     notifications: Notifications
     rules: Rules
+    rule_builder:
+      add_condition: Add condition
+      add_rule: Add rule
+      advanced: Advanced and imported rules
+      advanced_help: Rules the builder cannot safely convert are kept here. The preview shows the legacy rules Muscat will continue to use.
+      and: AND
+      any_record: Any record
+      any_condition: Any modification
+      any_modified: Any __MODEL__ modified
+      close: Close
+      duplicate: Duplicate
+      edit: Edit
+      empty: No notification rules yet. Add a rule to get started.
+      exclude_own: Do not notify me about my own changes
+      fields:
+        follow: Follow
+        form: Form
+      help: Choose what should trigger a notification.
+      invalid_value: Values cannot contain a colon or double quote.
+      javascript_required: JavaScript is required to edit notification rules visually.
+      legacy_preview: Generated legacy rules (read-only)
+      logic: Conditions inside a rule are joined with AND. Separate rules are alternatives (OR).
+      or: OR
+      operators:
+        contains: contains
+        ends_with: ends with
+        equals: equals
+        glob: matches pattern
+        starts_with: starts with
+      remove: Remove
+      rule: Rule
+      unconverted_rules: Unconverted legacy rules
+      where: WHERE
+      when: When the record type is
     weekly: Every week
   object: Object
   old_index: Old index
@@ -710,6 +785,12 @@ en:
     predicates:
       with_integer: is
   recent_changes: Latest modifications
+  derive_child_sources:
+    source: Add manuscript
+    edition_content: Add edition item
+    theoretica_edition_content: Add treatise item
+    libretto_edition_content: Add libretto item
+  invalid_derived_child_source: "This source cannot be used to derive a child record"
   record_actions: Record Actions
   record_audit: Record Origin
   record_label: Attribution Certainty
@@ -779,6 +860,7 @@ en:
   run_at: Run At
   running: Running
   save_and_continue: Save and continue editing
+  save_and_return_to_inventory: Save and return to inventory
   save_and_exit: Save and close
   search_sources: Search Sources
   sections: Sections
@@ -791,6 +873,7 @@ en:
   show_preview: Show preview
   show_validate: Validate
   show_viaf: VIAF Search
+  solr_tombstone: "Source %{id}: this record exists in SOLR but not in the database. This is annoying but innocuous, please contact the administrator if you see this message."
   source:
     one: source
     other: sources
@@ -841,6 +924,7 @@ en:
   validate_name_uniqness: 'Record not saved: Same short title ''%{term}'' already exists.'
   validates_parent_id: 'Record not saved: Parent record (773) cannot be same as this record'
   validation:
+    validate_240m: 'Please make sure the scoring summary follows the guidelines.'
     begins_with_message: Must begin with "{0}"
     cannot_link_to_self: The record cannot link to itself (%{id}).
     check_group_message: The first material group cannot be "Additional printed material"
@@ -853,6 +937,7 @@ en:
     not_record_id: This cannot be the same ID as the current record
     required_if_message: Field is mandatory because {0} ${1} is not empty
     validate_031_dups: This incipit number is already used
+    validate_031_sequence: The incipit number is not sequential
     validate_588_siglum: 'Enter the library siglum and shelfmark as in the format: I-Bc Q.51'
     validate_calendar: Please make sure the dates follow the correct calendar
     validate_edtf: Validate EDTF date
@@ -860,7 +945,9 @@ en:
     warning_message: A value for this field should be provided
     validate_person_name: "Double-check that the name is entered in the appropriate order: usually <i>Surname, Forename</i>"
     validate_person_dates: Please make sure the dates follows the guidelines
-    validate_024: "Please make sure the ID is well formed (for BNF it must start with ark:/, for WikiData with Q) and should not be an URL."
+    validate_024: "The ID should not be a URL."
+    validate_024_bnf: "A BNF identifier must start with ark:/12148/cb."
+    validate_024_wikidata: "A Wikidata identifier must start with Q."
   validation_level_error: There are errors, please solve before saving
   validation_level_warning: There are warnings, save again to override
   view_source: View Source
@@ -901,6 +988,8 @@ en:
     work_catalogue_in_preparation: Eligible
     work_catalogue_partial: Partially completed
   work_catalogue_publication_warning: To publish linked works, set the work-catalog status to Partial, Complete, or Alternate.
+  workgroup_no_sigla: No siglums for this workgroup
+  workgroup_sigla_hint: Hover over a workgroup link to see its library siglas.
   work_catalogue_tags:
     not_work_catalogue: N.a.
     work_catalogue_alternate: Alternate
@@ -912,6 +1001,8 @@ en:
     fragment: FRG
     normal: NRM
     obsolete: OBS
+  users_with_institution_permissions: Users that have permissions for this institution
+  workgroups_with_institution_permissions: Working groups that have permissions for this institution
   workgroups: Workgroups
   worknode:
     one: work node

@@ -98,7 +98,8 @@ ActiveAdmin.register Workgroup do
       row :owner_user
       row :email  
     end
-    
+
+    active_adnin_create_list_for(self, Institution, workgroup, siglum: I18n.t(:filter_siglum), full_name: I18n.t(:filter_full_name), place: I18n.t(:filter_place))
     active_adnin_create_list_for(self, User, workgroup, username: "User", name: "Name", email: "Email")
 
   end

@@ -20,12 +20,20 @@ class FolderValidationReportJob < ApplicationJob
         begin_time = Time.now
     
         # Run the checkup function
-        total_errors, total_validations, foreign_tag_errors, unknown_tags = MuscatCheckup.new(folder: folder).validate_parallel
+        result = MuscatCheckup.new(folder: folder).validate_parallel
   
         end_time = Time.now
         message = "Source report started at #{begin_time.to_s}, (#{end_time - begin_time} seconds run time)"
       
-        FolderValidationReport.notify("Source", message, total_errors, total_validations, foreign_tag_errors, unknown_tags, user).deliver_now
+        FolderValidationReport.notify(
+            "Source",
+            message,
+            result.errors,
+            result.validations,
+            result.foreign_tag_errors,
+            result.unknown_tags,
+            user
+        ).deliver_now
       
     end
     

@@ -19,6 +19,14 @@ class CommentNotifications < ApplicationMailer
 
   end
 
+  def comment_mentioned_user_ids(comment)
+    if comment.respond_to?(:mentioned_user_ids) && comment.mentioned_user_ids.present?
+      Array(comment.mentioned_user_ids).map { |id| Integer(id) rescue nil }.compact
+    else
+      parse_comment(comment.body)
+    end
+  end
+
   def new_comment(comment)
     
     all_comments = ActiveAdmin::Comment.where(resource_type: comment.resource_type, resource_id: comment.resource_id)
@@ -33,7 +41,7 @@ class CommentNotifications < ApplicationMailer
     
     users = all_comments.map {|c| c.author_id}
     users << @resource.wf_owner
-    all_comments.each {|c| users += parse_comment(c.body)}
+    all_comments.each {|c| users += comment_mentioned_user_ids(c)}
     users = users.compact.sort.uniq # Users can be duplicated
     users -= [comment.author_id] # Don't send the comment to myself!
 

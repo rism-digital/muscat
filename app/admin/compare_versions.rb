@@ -1,4 +1,29 @@
 ActiveAdmin.register_page "Compare Versions" do
+  page_action :save_rule, method: :post do
+    rule = params[:comparison_rule].to_s.strip
+    comparison_models = %w[source work institution]
+    redirect_params = {
+      comparison_rule: rule,
+      time_frame: %w[day week].include?(params[:time_frame]) ? params[:time_frame] : :day,
+      compare_version_quantity: %w[10 20 50].include?(params[:compare_version_quantity]) ? params[:compare_version_quantity] : 20
+    }
+
+    if !NotificationMatcher.valid_rule?(rule, models: comparison_models)
+      redirect_to admin_compare_versions_path(redirect_params),
+                  alert: I18n.t("compare_versions.rule_invalid")
+    else
+      configured_rules = (current_user.get_notifications || []).reject(&:blank?)
+      if configured_rules.include?(rule)
+        message = I18n.t("compare_versions.rule_already_saved")
+      else
+        current_user.update!(notifications: (configured_rules + [rule]).join("\n"))
+        message = I18n.t("compare_versions.rule_saved")
+      end
+
+      redirect_to admin_compare_versions_path(redirect_params), notice: message
+    end
+  end
+
   controller do
     def index
       params[:compare_version_quantity] = params.include?(:compare_version_quantity) ? params[:compare_version_quantity] : 20
@@ -13,9 +38,17 @@ ActiveAdmin.register_page "Compare Versions" do
       text_node 'I18n.defaultLocale = "'.html_safe + I18n.default_locale.to_s + '";'.html_safe
       text_node 'I18n.locale = "'.html_safe + I18n.locale.to_s + '";'.html_safe
     end
-    matches, model = diff_find_in_interval(Source, current_user, params[:time_frame], params[:rule])
 
-    if matches.empty?
+    panel I18n.t("compare_versions.options") do
+      render(partial: "compare_sidebar")
+    end
+
+    matches, model = diff_find_in_interval(current_user, params[:time_frame], params[:comparison_rule])
+
+    if params[:comparison_rule].blank?
+      h3 { text_node I18n.t("compare_versions.empty_rule") }
+      next
+    elsif matches.empty?
       h3 {text_node I18n.t("compare_versions.no_records")}
       next
     end
@@ -144,13 +177,4 @@ ActiveAdmin.register_page "Compare Versions" do
     end
 
   end # content
-
-  sidebar I18n.t "compare_versions.options", :class => "sidebar_tabs", :only => [:index] do
-    #@arbre_context.assigns[:test] to get variables from content
-    # NOW USE controller.view_assigns["test"]
-
-    # no idea why the I18n.locale is not set by set_locale in the ApplicationController
-    I18n.locale = session[:locale]
-    render("compare_sidebar") # Calls a partial
-  end
 end

@@ -1,9 +1,28 @@
 ActiveAdmin.register User do
   menu :parent => "admin_menu", :label => proc {I18n.t(:menu_users)}, :if => proc{ (can? :read, User) || current_user.has_role?(:editor)}
   
-  permit_params :preference_wf_stage, :email, :password, :password_confirmation, 
-                :username, :name, :notifications, :notification_type, :notification_email, 
-                :disabled, workgroup_ids: [], role_ids: []
+  permit_params do
+    attributes = [
+      :email,
+      :password,
+      :password_confirmation,
+      :username,
+      :name,
+      :notifications,
+      :notification_type
+    ]
+
+    if current_user&.has_role?(:admin)
+      attributes.concat([
+        :preference_wf_stage,
+        :notification_email,
+        :disabled,
+        { workgroup_ids: [], role_ids: [] }
+      ])
+    end
+
+    attributes
+  end
 
   # Remove all action items
   config.clear_action_items!
@@ -14,6 +33,24 @@ ActiveAdmin.register User do
   end
 
 	controller do
+
+    def create
+      authorize! :create, User
+
+      @user = User.new(permitted_params[:user])
+
+      unless @user.access_role?
+        @user.errors.add(:roles, I18n.t("users.role_required"))
+        render :new, status: :unprocessable_entity
+        return
+      end
+
+      if params[:creation_mode] == "password"
+        create_with_password
+      else
+        create_with_invitation
+      end
+    end
 
     def apply_sorting(chain)
       if params[:order].to_s.match?(/\Aroles(?:\.|_)name_/)
@@ -52,9 +89,30 @@ ActiveAdmin.register User do
 	    super
 	  end
 
+    private
+
+    def create_with_invitation
+      attributes = permitted_params[:user].except(:password, :password_confirmation)
+      @user = User.invite!(attributes, current_user)
+
+      if @user.errors.empty? && @user.invited_to_sign_up?
+        redirect_to resource_path(@user), notice: I18n.t("users.invitation.sent", email: @user.email)
+      else
+        render :new, status: :unprocessable_entity
+      end
+    end
+
+    def create_with_password
+      if @user.save
+        redirect_to resource_path(@user), notice: I18n.t("users.created", email: @user.email)
+      else
+        render :new, status: :unprocessable_entity
+      end
+    end
+
 	end
 
-  # this is used by tribute_load.js
+  # This endpoint powers the mention user lookup.
   collection_action :list, method: :post do
     params.permit!
     if params.include?(:q)
@@ -62,8 +120,8 @@ ActiveAdmin.register User do
       pattern = "\\b#{Regexp.escape(q)}"
 
       users = User.where(disabled: false)
-            .where("name REGEXP ? OR username REGEXP ?", pattern, pattern)
-            .map { |u| { name: "#{u.name} <small>(#{u.username})</small>", id: u.name.tr(" ", "_") } }
+            .where("name REGEXP ?", pattern)
+            .map { |u| { name: "#{u.name}", id: u.id } }
     else
       users = []
     end
@@ -73,6 +131,23 @@ ActiveAdmin.register User do
     respond_to do |format|
         format.json { render json: users  }
     end
+  end
+
+  collection_action :autocomplete_notification_user, method: :get do
+    query = params[:term].presence || params[:q].presence
+    users =
+      if query.present?
+        User.where(disabled: false)
+          .where("name LIKE ?", "%#{ActiveRecord::Base.sanitize_sql_like(query)}%")
+          .where.not(name: "Admin")
+          .order(:name)
+          .limit(20)
+          .map { |user| { label: user.name, value: user.name, id: user.id } }
+      else
+        []
+      end
+
+    render json: users
   end
 
   # And this is used by thle flexdatalist for the user selection
@@ -92,6 +167,14 @@ ActiveAdmin.register User do
     if authorized?(:admin, User) && resource.default_workgroup.blank?
       link_to "Create personal default Workgroup",
               create_default_workgroup_admin_user_path(resource),
+              method: :post
+    end
+  end
+
+  action_item :resend_invitation, only: :show do
+    if authorized?(:manage, User) && resource.invited_to_sign_up?
+      link_to I18n.t("users.invitation.resend"),
+              resend_invitation_admin_user_path(resource),
               method: :post
     end
   end
@@ -116,6 +199,21 @@ ActiveAdmin.register User do
     user.workgroups << workgroup
 
     redirect_to resource_path(user), notice: "Personal default workgroup created"
+  end
+
+  member_action :resend_invitation, method: :post do
+    authorize! :manage, User
+
+    if resource.invited_to_sign_up?
+      resource.invite!(current_user)
+      if resource.errors.empty?
+        redirect_to resource_path(resource), notice: I18n.t("users.invitation.resent", email: resource.email)
+      else
+        redirect_to resource_path(resource), alert: resource.errors.full_messages.to_sentence
+      end
+    else
+      redirect_to resource_path(resource), alert: I18n.t("users.invitation.already_accepted")
+    end
   end
 
   collection_action :autogen_username, method: :get do
@@ -156,14 +254,24 @@ ActiveAdmin.register User do
       return 'guest-user' if user.has_role? :guest
     end do
 
+    text_node I18n.t(:workgroup_sigla_hint)
+
     selectable_column
     id_column
-    
+
     column :status, sortable: :disabled do |user|
       status_tag(
         user.disabled? ? 'DIS' : 'ENA',
         class: user.disabled? ? 'deleted' : 'ok'
       )
+    end
+
+    column I18n.t("users.invitation.status") do |user|
+      if user.invited_to_sign_up?
+        status_tag I18n.t("users.invitation.pending"), class: "warning"
+      else
+        status_tag I18n.t("users.invitation.active"), class: "none"
+      end
     end
 
     column :active do |user|
@@ -174,7 +282,18 @@ ActiveAdmin.register User do
     column :name
     column :email
     column I18n.t(:workgroups) do |user|
-         user.get_workgroups.join(", ")
+      safe_join(
+        user.workgroups.map do |workgroup|
+          sigla = workgroup.show_libs(max: 10)
+
+          link_to(
+            workgroup.name,
+            admin_workgroup_path(workgroup),
+            title: sigla.presence || I18n.t(:workgroup_no_sigla)
+          )
+        end,
+        ", "
+      )
     end
     column I18n.t(:roles), sortable: "role_sort_name" do |user|
       user.get_roles.join(", ")
@@ -205,6 +324,11 @@ ActiveAdmin.register User do
       row :username
       row :name
       row :email
+      row I18n.t("users.invitation.status") do |user|
+        user.invited_to_sign_up? ? I18n.t("users.invitation.pending") : I18n.t("users.invitation.active")
+      end
+      row :invitation_sent_at if user.invitation_sent_at.present?
+      row :invitation_accepted_at if user.invitation_accepted_at.present?
       row I18n.t(:workgroups) do |user|
         safe_join(
           user.workgroups.map do |wg|
@@ -218,7 +342,12 @@ ActiveAdmin.register User do
            user.get_roles.join(", ")
       end
       row I18n.t('notifications.notifications') do |r|
-        r.notifications ? r.notifications.split(/\n+|\r+/).reject(&:empty?).join("<br>").html_safe : ""
+        if r.notifications
+          lines = r.notifications.split(/\n+|\r+/).reject(&:empty?)
+          safe_join(lines, tag.br)
+        else
+          ""
+        end
       end
       row I18n.t('notifications.cadence') do |r|
         if !r.notification_type

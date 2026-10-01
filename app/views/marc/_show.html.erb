@@ -35,7 +35,7 @@
 <%end%>
 
 <!-- if we are rendering the holdings box, we can render the DOs in the same box -->
-<% if is_embedded && item.digital_objects.images.size > 0 %>
+<% if is_embedded && item.digital_objects.non_incipit_attachments.exists? %>
 	<%= render :partial => "admin/digital_objects/digital_objects_embedded_panel", :locals => { :item => item } %>
 <% end %>
 
@@ -51,5 +51,4 @@
 		:locals => { :item => item } %>
 
 <% end %>
-
 

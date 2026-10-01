@@ -119,6 +119,12 @@ used for _tag_header partial
 		})
 	}
 
+	function initialize_widgets_in_block(root) {
+		if (window.muscatInitializeWidgetsInBlock) {
+			window.muscatInitializeWidgetsInBlock(root);
+		}
+	}
+
 	// Create a new element when the tag_group already contains elements
 	function tag_header_add(elem) {
 		marc_editor_set_dirty();
@@ -134,6 +140,7 @@ used for _tag_header partial
 		// We also need to re-create the unique IDs for pae rendering
 		// as we need these as a reference for the background worker
 		fix_pae_rendering_ids(new_dt);
+		initialize_widgets_in_block(new_dt[0]);
 
 		new_dt.fadeIn('fast');
 		return new_dt;
@@ -153,6 +160,7 @@ used for _tag_header partial
 		
 		tag_header_fix_validation(new_dt);
 		fix_pae_rendering_ids(new_dt);
+		initialize_widgets_in_block(new_dt[0]);
 
 		update_empty_tag(tag_group);
 		return new_dt;

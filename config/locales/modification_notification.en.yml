@@ -1,0 +1,24 @@
+en:
+  modification_notification:
+    subject:
+      one: "Modification report: 1 match"
+      other: "Modification report: %{count} matches"
+    preheader:
+      one: "One notification match was found."
+      other: "%{count} notification matches were found."
+    eyebrow: "Muscat notification"
+    heading: "Modification report"
+    summary:
+      one: "One notification match was found."
+      other: "%{count} notification matches were found."
+    index_heading: "Jump to a match"
+    back_to_index: "Back to index"
+    matched:
+      one: "1 %{model}"
+      other: "%{count} %{model}"
+    triggered_by: "Triggered by"
+    number: "#"
+    record: "Record"
+    created: "Created"
+    modified: "Modified"
+    footer: "This is an automatic notification from Muscat."

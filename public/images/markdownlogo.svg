@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="200" height="115" viewBox="0 0 200 115" role="img" aria-labelledby="title desc">
+  <title id="title">Markdown document</title>
+  <desc id="desc">A document containing the Markdown MD symbol</desc>
+  <rect width="200" height="115" rx="12" fill="#f5f7f9"/>
+  <path d="M53 14h68l26 26v61H53z" fill="#fff" stroke="#374151" stroke-width="6" stroke-linejoin="round"/>
+  <path d="M121 14v26h26" fill="#e5e7eb" stroke="#374151" stroke-width="6" stroke-linejoin="round"/>
+  <path d="M68 77V53h8l8 10 8-10h8v24h-8V65l-8 10-8-10v12z" fill="#374151"/>
+  <path d="M119 52v15h-9l13 14 13-14h-9V52z" fill="#2563eb"/>
+</svg>

@@ -41,11 +41,17 @@ module Wikidata
         content.is_a?(Hash) ? content : nil
       end
 
-      # Labels: item_json["labels"] is a Hash of lang => string.
+      # Label: item_json["labels"] is a Hash of lang => string.
       def label(item_json, lang: "en")
         labels = item_json["labels"]
         return nil unless labels.is_a?(Hash)
         labels[lang] || labels["en"] || labels.values.first
+      end
+
+      def description(item_json, lang: "en")
+        descriptions = item_json["descriptions"]
+        return nil unless descriptions.is_a?(Hash)
+        descriptions[lang] || descriptions["en"] || descriptions.values.first
       end
 
       # Aliases: item_json["aliases"][lang] often array of strings in REST output.

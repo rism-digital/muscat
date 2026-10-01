@@ -16,10 +16,6 @@ class EditorHelpController < ApplicationController
     render :template => 'editor/show_help'  
   end
 
-  def current_user
-    @current_user ||= authenticate
-  end
-
   private
 
   def render_markdown(page)

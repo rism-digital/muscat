@@ -1,24 +1,66 @@
 <%
-  if current_user.notifications
-	  notifications = current_user.notifications.split(/\n+|\r+/).reject(&:empty?).collect.with_index {|x, i| [x, i]}
+  comparison_models = [Source, Work, Institution]
+  comparison_model_names = comparison_models.map { |model| model.model_name.element }
+  configured_rules = (current_user.get_notifications || []).select do |rule|
+    model_name, conditions = NotificationMatcher.parse_line(rule)
+    rule.present? && conditions.present? && comparison_model_names.include?(model_name.to_s)
+  end
 %>
-  <%= form_tag(admin_compare_versions_path, method: "get") do %>
 
+<%= form_tag(admin_compare_versions_path, method: "get", class: "compare-versions-options") do %>
+  <p class="compare-versions-rule-prompt">
+    <%= I18n.t("compare_versions.rule_prompt", default: "Select a configured rule to display or build a new one.") %>
+  </p>
+
+  <div>
+    <p class="compare-versions-model-note">
+      <%= I18n.t("compare_versions.model_limit", default: "This version supports comparisons for Sources, Works, and Institutions only.") %>
+    </p>
+    <%= render "admin/users/notification_rule_builder",
+               input_name: "comparison_rule",
+               value: params[:comparison_rule],
+               single_rule: true,
+               compact: false,
+               wrapper_tag: :div,
+               show_advanced: false,
+               models: %w[source work institution],
+               presets: configured_rules,
+               preset_label: I18n.t("compare_versions.configured_rules", default: "Configured rules"),
+               preset_prompt: I18n.t("compare_versions.build_new_rule", default: "Build a new rule"),
+               help_text: I18n.t("compare_versions.rule_help", default: "Choose which modified records to show."),
+               empty_text: I18n.t("compare_versions.empty_rule", default: "Add a rule to compare modified records."),
+               exclude_own_text: I18n.t("compare_versions.exclude_own", default: "Exclude my own changes") %>
+  </div>
+
+  <div class="compare-versions-settings">
     <div>
       <label class="label"><%= I18n.t("compare_versions.time_frame") %></label>
-      <%= select_tag("time_frame", options_for_select([[ "One Day", :day], ["One Week", :week]], params[:time_frame])) %>
-    </div>
-
-    <div>
-      <label class="label"><%= I18n.t("compare_versions.rule") %></label>
-      <%= select_tag("rule", options_for_select(notifications, params[:rule])) %>
+      <%= select_tag("time_frame", options_for_select([
+        [I18n.t("compare_versions.last_24_hours", default: "Changes going back 24 hours"), :day],
+        [I18n.t("compare_versions.last_7_days", default: "Changes going back 7 days"), :week]
+      ], params[:time_frame])) %>
     </div>
 
     <div>
       <label class="label"><%= I18n.t("dashboard.quantity") %></label>
       <%= select_tag("compare_version_quantity", options_for_select([[10, 10], [20, 20], [50, 50]], params[:compare_version_quantity])) %>
     </div>
-    <hr style="margin-top: 1.em; margin-bottom: .4em"/>
-    <%= submit_tag(I18n.t("dashboard.update")) %>
-  <% end %>
+
+    <div class="compare-versions-settings__action">
+      <%= submit_tag(I18n.t("compare_versions.show_results", default: "Show results")) %>
+      <%= button_tag(I18n.t("compare_versions.save_rule", default: "Save rule"),
+                     type: "submit",
+                     form: "save-comparison-rule-form",
+                     data: { save_comparison_rule: true }) %>
+    </div>
+  </div>
+<% end %>
+
+<%= form_tag(admin_compare_versions_save_rule_path,
+             method: :post,
+             id: "save-comparison-rule-form",
+             class: "compare-versions-save-rule-form") do %>
+  <%= hidden_field_tag("comparison_rule", params[:comparison_rule]) %>
+  <%= hidden_field_tag("time_frame", params[:time_frame]) %>
+  <%= hidden_field_tag("compare_version_quantity", params[:compare_version_quantity]) %>
 <% end %>

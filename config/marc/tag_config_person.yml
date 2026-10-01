@@ -109,8 +109,6 @@
     :fields:
     - - a
       - :occurrences: "?"
-    - - d
-      - :occurrences: "?"
     - - j
       - :occurrences: "?"
 # This is a linked field

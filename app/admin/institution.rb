@@ -88,6 +88,19 @@ ActiveAdmin.register Institution do
 
       @institution_types = Source.get_terms("368a_sms")
 
+      if current_user.has_any_role?(:editor, :admin)
+        institution_ids = @results.map(&:id)
+        @workgroup_counts = Workgroup.joins(:institutions)
+                                     .where(institutions: { id: institution_ids })
+                                     .group("institutions.id")
+                                     .count
+        @workgroup_user_counts = User.joins(workgroups: :institutions)
+                                     .where(institutions: { id: institution_ids })
+                                     .group("institutions.id")
+                                     .distinct
+                                     .count("users.id")
+      end
+
       index! do |format|
         @institutions = @results
         format.html
@@ -165,6 +178,14 @@ ActiveAdmin.register Institution do
     column (I18n.t :filter_siglum), :siglum
     column (I18n.t :filter_location_and_name), :full_name
     column (I18n.t :filter_place), :place
+    if current_user.has_any_role?(:editor, :admin)
+      column "GRPs", class: "col-workgroups-count" do |element|
+        controller.view_assigns["workgroup_counts"].fetch(element.id, 0)
+      end
+      column "Users", class: "col-workgroup-users-count" do |element|
+        controller.view_assigns["workgroup_user_counts"].fetch(element.id, 0)
+      end
+    end
     column (I18n.t :filter_sources), :src_count_order, sortable: :src_count_order do |element|
       active_admin_stored_from_hits(controller.view_assigns["hits"], element, :src_count_order)
     end
@@ -222,10 +243,15 @@ ActiveAdmin.register Institution do
     active_adnin_create_list_for(self, Publication, institution, short_name: I18n.t(:filter_title_short), author: I18n.t(:filter_author), title: I18n.t(:filter_title))    
     active_adnin_create_list_for(self, Work, institution, title: I18n.t(:filter_title))
 
+    if current_user.has_any_role?(:editor, :admin)
+      active_adnin_create_list_for(self, Workgroup, institution, panel_title: I18n.t(:workgroups_with_institution_permissions), name: I18n.t(:filter_name), libpatterns: I18n.t(:filter_pattern), email: I18n.t(:filter_email))
+      active_adnin_create_list_for(self, User, institution, panel_title: I18n.t(:users_with_institution_permissions), username: "User", name: "Name", email: "Email")
+    end
+
     active_admin_digital_object( self, @item ) if !is_selection_mode?
     active_admin_user_wf( self, institution )
     active_admin_navigation_bar( self )
-    active_admin_comments if !is_selection_mode?
+    active_admin_muscat_comments(self, institution) if !is_selection_mode?
   end
 
   sidebar :actions, :only => :show do

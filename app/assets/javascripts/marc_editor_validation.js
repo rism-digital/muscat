@@ -8,6 +8,8 @@ const SIMPLE_RULE_MAP = {
 	"validate_588_siglum": { validate_588_siglum: true },
 	"validate_edtf": { validate_edtf: true },
 	"validate_031_dups": { validate_031_dups: true },
+	"validate_031_sequence": { validate_031_sequence: true },
+	"validate_240m": { validate_240m: true },
 	"validate_url": { validate_url: true },
 	"not_record_id": {not_record_id: true},
 	"validate_calendar": {"validate_calendar": true},
@@ -15,6 +17,17 @@ const SIMPLE_RULE_MAP = {
 	"validate_person_dates": {"validate_person_dates": true},
 	"validate_024": {"validate_024": true},
 	"handcrafted_warning": {"handcrafted_warning": true}
+}
+
+const MARC_024_RULES = {
+	BNF: {
+		pattern: /^ark:\/12148\/cb/,
+		messageKey: "validation.validate_024_bnf"
+	},
+	WKP: {
+		pattern: /^Q/,
+		messageKey: "validation.validate_024_wikidata"
+	}
 }
 
 const PARAMETRIC_RULES = [
@@ -239,6 +252,51 @@ function marc_validate_031_duplicates(value, element, param) {
   return !isDuplicate;
 }
 
+function marc_parse_031_number($scope) {
+  const values = ['a', 'b', 'c'].map(function (subfield) {
+    return $scope.find(':input[data-tag="031"][data-subfield="' + subfield + '"]')
+      .first().val()?.toString().trim() || '';
+  });
+
+  if (values.some(function (value) { return value === ''; })) {
+    return { complete: false, numbers: null };
+  }
+  if (values.some(function (value) { return !/^\d+$/.test(value); })) {
+    return { complete: true, numbers: null };
+  }
+
+  const numbers = values.map(Number);
+  return {
+    complete: true,
+    numbers: numbers.every(function (number) { return number > 0; }) ? numbers : null
+  };
+}
+
+function marc_validate_031_sequence(value, element, param) {
+  const $incipits = $('.tag_toplevel_container[data-tag="031"]');
+  const $current = $(element).closest('.tag_toplevel_container[data-tag="031"]');
+  const currentIndex = $incipits.index($current);
+  const currentNumber = marc_parse_031_number($current);
+
+  // Missing subfields are handled by the existing required/incomplete check.
+  if (!currentNumber.complete || currentIndex < 0) return true;
+  if (!currentNumber.numbers) return false;
+
+  const current = currentNumber.numbers;
+  if (currentIndex === 0) return current[0] === 1 && current[1] === 1 && current[2] === 1;
+
+  const previousNumber = marc_parse_031_number($incipits.eq(currentIndex - 1));
+  if (!previousNumber.complete || !previousNumber.numbers) return true;
+
+  const previous = previousNumber.numbers;
+
+  return (
+    (current[0] === previous[0] && current[1] === previous[1] && current[2] === previous[2] + 1) ||
+    (current[0] === previous[0] && current[1] === previous[1] + 1 && current[2] === 1) ||
+    (current[0] === previous[0] + 1 && current[1] === 1 && current[2] === 1)
+  );
+}
+
 function marc_validate_begins_with(value, element, param) {
 	if (!value)
 		return true;
@@ -359,6 +417,29 @@ function marc_validate_588_siglum(value, element, param) {
 		return true;
 
 	return siglumPattern.test(value);
+}
+
+function marc_validate_240m(value, element) {
+	const scoring = value == null ? "" : String(value);
+	const presenceValid = marc_validate_presence(scoring, element);
+	if (!presenceValid || scoring.trim() === "")
+		return presenceValid;
+
+	const commas = scoring.match(/,/g) || [];
+	const outsideParentheses = scoring.replace(/\([^()]*\)/g, "");
+	const lowerCaseXInParentheses = /\([^)]*x[^)]*(?:\)|$)/.test(scoring);
+	const incorrectlyCapitalizedCoro = (scoring.match(/\bcoro\b/gi) || [])
+		.some(word => word !== "Coro");
+
+	return !(
+		/(^|\S)\(/.test(scoring) ||
+		lowerCaseXInParentheses ||
+		incorrectlyCapitalizedCoro ||
+		/,(?! )/.test(scoring) ||
+		commas.length > 3 ||
+		scoring.includes("/") ||
+		/\d/.test(outsideParentheses)
+	);
 }
 
 // This is the simplest validator
@@ -641,10 +722,10 @@ function marc_validate_required_if(value, element, param) {
 		return true;
 	}
 
-	// There is another catch: if we have multiple copies
-	// of the same tag/subtag, only one of them must be filled.
-	// So if one 710 is filled, the other empty 710s should
-	// not complain.
+	// Check whether another copy of the current field satisfies the rule.
+	// For a same-tag dependency, only copies in this tag occurrence count.
+	// For a dependency on another tag, preserve the existing "at least one
+	// required" behavior across repeated occurrences in the editor.
 	var same_selector;
 	if (current_subtag) {
 		same_selector = '.serialize_marc[data-tag="' + current_tag + '"][data-subfield="' + current_subtag + '"]';
@@ -652,12 +733,9 @@ function marc_validate_required_if(value, element, param) {
 		same_selector = '.serialize_marc[data-tag="' + current_tag + '"]';
 	}
 
-	// .serialize_marc again lets us inspect all matching fields,
-	// including ones that may currently live in placeholders.
-	// This way "required_if" behaves like "at least one required"
-	// across repeated occurrences of the same field.
+	var same_field_scope = current_tag == dep_tag ? toplevel : $("#marc_editor_panel");
 	var has_any_filled = false;
-	$(same_selector, $("#marc_editor_panel")).each(function() {
+	$(same_selector, same_field_scope).each(function() {
 		const same_val = ($(this).val() || "").trim();
 
 		if (same_val !== "") {
@@ -670,43 +748,43 @@ function marc_validate_required_if(value, element, param) {
 	return valid;
 }
 
+function marc_024_source(element) {
+	return $.trim(
+		$(element)
+			.closest(".tag_toplevel_container")
+			.find('[data-tag="024"][data-subfield="2"]')
+			.val() || ""
+	);
+}
+
 function marc_validate_024(value, element, param) {
-	var $a = $(element);
-
-	// Find the surrounding repeating subfield block, then locate subfield 2
-	var $container = $a.closest(".tag_toplevel_container");
-	var $sf2 = $container.find('[data-tag="024"][data-subfield="2"]');
-
-	var aVal = $.trim($a.val() || "");
-	var sf2Val = $.trim($sf2.val() || "");
+	var aVal = $.trim(value || "");
+	var sf2Val = marc_024_source(element);
 
 	// If either is empty, no validation here
 	// let the "required" rule get mad
-	if (aVal === "") {
+	if (aVal === "" || sf2Val === "") {
 		return true;
 	}
 
-	if (sf2Val === "") {
-		return true;
+	var rule = MARC_024_RULES[sf2Val];
+	if (rule) {
+		return rule.pattern.test(aVal);
 	}
 
-	// $a must not begin with http
-	if (/^http/i.test(aVal)) {
-		return false;
+	// IDs from other sources must not begin with http
+	return !/^http/i.test(aVal);
+}
+
+function marc_validate_024_message(params, element) {
+	var sf2Val = marc_024_source(element);
+	var rule = MARC_024_RULES[sf2Val];
+
+	if (rule) {
+		return I18n.t(rule.messageKey);
 	}
 
-	/* Maybe in the future
-	if (sf2Val === "BNF" && !/^ark:\//i.test(aVal)) {
-		return false;
-	}
-	*/
-
-	// WKP => $a must start with Q
-	if (sf2Val === "WKP" && !/^Q/.test(aVal)) {
-		return false;
-	}
-
-	return true;
+	return I18n.t("validation.validate_024");
 }
 
 function marc_handcrafted_warning(value, element, param) {
@@ -958,6 +1036,8 @@ function marc_editor_init_validation(form, validation_conf) {
 	$.validator.addMethod("validate_588_siglum",marc_validate_588_siglum,		$.validator.format(I18n.t("validation.validate_588_siglum")));
 	$.validator.addMethod("validate_edtf",		marc_validate_edtf,				$.validator.format(I18n.t("validation.validate_edtf")));	
 	$.validator.addMethod("validate_031_dups", 	marc_validate_031_duplicates,	$.validator.format(I18n.t("validation.validate_031_dups")));
+	$.validator.addMethod("validate_031_sequence", marc_validate_031_sequence,	$.validator.format(I18n.t("validation.validate_031_sequence")));
+	$.validator.addMethod("validate_240m", marc_validate_240m,						I18n.t("validation.validate_240m"));
 	$.validator.addMethod("must_be_different", 	marc_validate_must_be_different,$.validator.format(I18n.t("validation.must_be_different_message")));
 	$.validator.addMethod("not_record_id", 	   	marc_validate_not_record_id,	$.validator.format(I18n.t("validation.not_record_id")));	
 	$.validator.addMethod("gnd_warn_default", 	marc_validate_gnd_warn_default,	$.validator.format(I18n.t("validation.gnd_warn_default_message")));
@@ -965,7 +1045,7 @@ function marc_editor_init_validation(form, validation_conf) {
 	$.validator.addMethod("validate_calendar", 	marc_validate_calendar,			$.validator.format(I18n.t("validation.validate_calendar")));
 	$.validator.addMethod("validate_person_name", 	marc_validate_person_name,	$.validator.format(I18n.t("validation.validate_person_name")));
 	$.validator.addMethod("validate_person_dates", 	marc_validate_person_dates,	$.validator.format(I18n.t("validation.validate_person_dates")));
-	$.validator.addMethod("validate_024", 		marc_validate_024,				$.validator.format(I18n.t("validation.validate_024")));
+	$.validator.addMethod("validate_024", 		marc_validate_024,				marc_validate_024_message);
 	$.validator.addMethod("handcrafted_warning", 	marc_handcrafted_warning,	$.validator.format(I18n.t("validation.handcrafted_warning")));
 
 	// New creation: this is not configurable, it is used to make sure the

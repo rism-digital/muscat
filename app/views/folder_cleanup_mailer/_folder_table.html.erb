@@ -7,7 +7,7 @@
         <td>&nbsp;</td>
         <td><%=link_to("#{I18n.t :"active_admin.view"}", admin_folder_url(fid))%></td>
         <td>&nbsp;</td>
-        <td><%=link_to("#{I18n.t :"folders.reset_expiration"}", reset_expiration_admin_folder_url(fid))%></td>
+        <td><%=link_to("#{I18n.t :"folders.reset_expiration"}", admin_folder_url(fid, anchor: "reset-expiration"))%></td>
     </tr>
     <%end%>
 </table>

@@ -3,6 +3,7 @@
 #require 'patches/sunspot/search/paginated_collection.rb'
 
 module ActiveAdmin::ViewsHelper
+  include ActiveAdmin::CommentsHelper
   
   # This is repeated the same everywhere, so we just make one function with the contents
   def active_admin_embedded_source_list(context, item, enable_view_src = true)
@@ -33,8 +34,12 @@ module ActiveAdmin::ViewsHelper
     #  c = Source.where(id: item.referring_sources.ids).or(Source.where(id: item.holdings.pluck(:source_id)))
     if link_class == InventoryItem &&item.respond_to?("inventory_items") && item.is_a?(Source)
       c = item.inventory_items
-    elsif link_class == User && item.respond_to?("users") && item.is_a?(Workgroup)
-      c = item.users
+    elsif item.is_a?(Workgroup) && [Institution, User].include?(link_class)
+      c = item.public_send(link_class.to_s.pluralize.underscore)
+    elsif item.is_a?(Institution) && link_class == Workgroup
+      c = item.workgroups
+    elsif item.is_a?(Institution) && link_class == User
+      c = User.joins(:workgroups).where(workgroups: { id: item.workgroup_ids }).distinct
     else
       c = item.send("referring_" + link_class.to_s.pluralize.underscore)
     end    
@@ -49,12 +54,12 @@ module ActiveAdmin::ViewsHelper
     end
   end 
  
-  def active_adnin_create_list_for(context, model, item, *fields)
+  def active_adnin_create_list_for(context, model, item, panel_title: nil, **fields)
     controller_name = model.name.underscore.downcase.pluralize.to_sym
-    active_admin_embedded_link_list(context, item, model) do |context|
+    active_admin_embedded_link_list(context, item, model, panel_title) do |context|
       context.table_for(context.collection) do |cr|
         context.column "id", :id
-        fields.first.each do |field, label|
+        fields.each do |field, label|
           context.column label, field
         end
         if !is_selection_mode?
@@ -171,7 +176,7 @@ module ActiveAdmin::ViewsHelper
       end
     end
   end
-  
+
   # formats the string for the source show title
   def active_admin_source_show_title( composer, std_title, id, record_type )
     record_type = record_type ? "#{I18n.t('record_types.' + record_type.to_s)} " : ""
@@ -236,11 +241,17 @@ module ActiveAdmin::ViewsHelper
         item.digital_objects.each do |obj| 
           context.attributes_table_for obj do 
             context.row (I18n.t :filter_description) { |r| r.description } 
-            context.row (I18n.t :filter_image) { |obj| 
+            attachment_label = obj.markdown? ? :filter_markdown : (obj.incipits? ? :filter_incipit : :filter_image)
+            context.row(I18n.t(attachment_label)) { |obj|
               if obj.images?
                 link_to(image_tag(obj.attachment.url(:medium)), admin_digital_object_path(obj))
-              else
+              elsif obj.incipits?
                 link_to(image_tag('/images/meilogo.png'), admin_digital_object_path(obj))
+              else
+                safe_join([
+                  link_to(obj.attachment_file_name, admin_digital_object_path(obj)),
+                  digital_object_markdown_preview(obj)
+                ].compact)
               end
             }
           end
@@ -384,17 +395,19 @@ module ActiveAdmin::ViewsHelper
 
   end
 
-  def diff_find_in_interval(model, user, interval, index)
+  def diff_find_in_interval(user, interval, rule)
     results = {}
     sql_interval = interval == "week" ? 7.days.ago : 1.days.ago
-    rule_index = index != nil ? index.to_i : 0
+    rule = rule.to_s.strip
+    comparison_models = %w[source work institution]
+    return results, nil unless NotificationMatcher.valid_rule?(rule, models: comparison_models)
 
-    model = NotificationMatcher::get_model_for_rule(rule_index, user)
-    return {} if !model
+    model = NotificationMatcher.get_model_for_rule(rule)
+    return results, nil unless model
 
 
     model.where(("updated_at" + "> ?"), sql_interval).order("updated_at DESC").each do |s|
-      matcher = NotificationMatcher.new(s, user, rule_index)
+      matcher = NotificationMatcher.new(s, user, rule: rule)
       matcher.get_matches.each do |match|
         results[match] = [] if !results[match]
 

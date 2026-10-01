@@ -2,7 +2,11 @@
 client:
   "024":
     tags:
-      a: required
+      "2": required
+      "a":
+        any_of:
+          - required
+          - validate_024
   "094":
     tags:
       "a":

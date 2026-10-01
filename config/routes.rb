@@ -3,7 +3,9 @@ Rails.application.routes.draw do
 	
   ##############################
   
-  devise_for :users, ActiveAdmin::Devise.config
+  active_admin_devise_config = ActiveAdmin::Devise.config.deep_dup
+  active_admin_devise_config[:controllers][:invitations] = "users/invitations"
+  devise_for :users, active_admin_devise_config
   ActiveAdmin.routes(self)
   
   # We need a post action for new in pubs to upload
@@ -30,15 +32,15 @@ Rails.application.routes.draw do
   get '/pages', to: redirect(RISM::LEGACY_PAGES_URL)
   get '/pages/:name', to: redirect(RISM::LEGACY_PAGES_URL + '/pages/%{name}')
 
-  get 'sru' => 'sru#service'
-  get 'sru/sources' => 'sru#service'
+  get 'sru' => 'sru#service', defaults: { sru_model: 'sources' }
+  get 'sru/sources' => 'sru#service', defaults: { sru_model: 'sources' }
   # To have backward compatibility with the old interface
-  get 'muscat' => 'sru#service'
-  get 'sru/people' => 'sru#service'
-  get 'sru/institutions' => 'sru#service'
-  get 'sru/publications' => 'sru#service'
-  get 'sru/catalogues' => 'sru#service'
-  get 'sru/works' => 'sru#service'
+  get 'muscat' => 'sru#service', defaults: { sru_model: 'sources' }
+  get 'sru/people' => 'sru#service', defaults: { sru_model: 'people' }
+  get 'sru/institutions' => 'sru#service', defaults: { sru_model: 'institutions' }
+  get 'sru/publications' => 'sru#service', defaults: { sru_model: 'publications' }
+  get 'sru/catalogues' => 'sru#service', defaults: { sru_model: 'catalogues' }
+  get 'sru/works' => 'sru#service', defaults: { sru_model: 'works' }
 
   ##############################
   ### Routes for the GND editor implemented in the /admin/gnd_works page
@@ -68,6 +70,8 @@ Rails.application.routes.draw do
 
   post 'admin/editor_help/:page', to: 'editor_help#render_page'
   post 'admin/editor_help_box/:page', to: 'editor_help#render_page_in_box'
+
+  get "admin/places/tgn/:tgn_id", to: "admin/places#show_by_tgn", as: :admin_place_by_tgn, constraints: { tgn_id: /\d+/ }
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

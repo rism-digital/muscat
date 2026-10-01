@@ -89,18 +89,21 @@ module Wikidata
       data[:identifiers].each do |type, ids|
         next if type == "rism" #wha??
         ids.each do |id|
+          if type == "BNF" && !id.start_with?("ark:/12148/cb")
+            id = "ark:/12148/cb#{id.delete_prefix("cb")}"
+          end
           new_marc.add_tag_with_subfields("024", a: id, "2": type)
         end
       end
 
-      new_marc.by_tags("400").each {|t2| t2.destroy_yourself}  if data[:occupations].any?
+      new_marc.by_tags("400").each {|t2| t2.destroy_yourself}  if data[:aliases].any?
       data[:aliases].each do |alternate|
         new_marc.add_tag_with_subfields("400", a: alternate, j: "xx")
       end
 
       new_marc.by_tags("550").each {|t2| t2.destroy_yourself}  if data[:occupations].any?
       data[:occupations].each do |item|
-        new_marc.add_tag_with_subfields("550", a: item[:name]&.titleize)
+        new_marc.add_tag_with_subfields("550", a: item[:name]&.capitalize)
       end
 
       if data.dig(:place_of_birth, :name).present?
@@ -113,9 +116,24 @@ module Wikidata
 
       ## Create the 678 date
       from = Date.iso8601(data.dig(:wikidata_dates, :date_b)) rescue nil
-      to = Date.iso8601(data.dig(:wikidata_dates, :date_d)) rescue nil
+      to   = Date.iso8601(data.dig(:wikidata_dates, :date_d)) rescue nil
 
-      dates = [from&.strftime('%d.%m.%Y'), to&.strftime('%d.%m.%Y')].compact.join('-')
+      format_date = ->(date, precision) {
+        next unless date
+
+        case precision.to_i
+        when 9  then date.strftime('%Y')
+        when 10 then date.strftime('%m.%Y')
+        when 11 then date.strftime('%d.%m.%Y')
+        else         date.strftime('%d.%m.%Y') # Fallback...
+        end
+      }
+
+      dates = [
+        format_date.call(from, data.dig(:wikidata_dates, :precision_b)),
+        format_date.call(to, data.dig(:wikidata_dates, :precision_d))
+      ].compact.join('-')
+
       if from || to
         from_type = data.dig(:wikidata_dates, :type_b)
         to_type = data.dig(:wikidata_dates, :type_d)
@@ -124,6 +142,10 @@ module Wikidata
 
         new_marc.by_tags("678").each {|t2| t2.destroy_yourself}
         new_marc.add_tag_with_subfields("678", a: "#{dates}#{extra}")
+      end
+
+      if data[:description]
+        new_marc.add_tag_with_subfields("680", a: data[:description])
       end
 
       if format == :marc

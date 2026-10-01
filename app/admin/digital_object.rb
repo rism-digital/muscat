@@ -9,11 +9,27 @@ ActiveAdmin.register DigitalObject do
   # Remove all action items
   config.clear_action_items!
   
+  permit_params :description,
+                :attachment,
+                :wf_owner,
+                :lock_version,
+                :new_object_link_type,
+                :new_object_link_id
+
   controller do
-    def permitted_params
-      params.permit! #params.permit :description, :attachment
+
+    before_action :authorize_markdown_upload, only: [:new, :create, :update]
+
+    def authorize_markdown_upload
+      upload = params.dig(:digital_object, :attachment)
+      filename = upload.respond_to?(:original_filename) ? upload.original_filename.to_s : ""
+      markdown_requested = params[:attachment_type] == "markdown" || filename.downcase.end_with?(".md", ".markdown")
+
+      if markdown_requested && !current_user.has_role?(:admin)
+        redirect_to collection_path, flash: { error: I18n.t(:"active_admin.access_denied.message") }
+      end
     end
-    
+
     before_create do |item|
       item.user = current_user
     end
@@ -25,7 +41,11 @@ ActiveAdmin.register DigitalObject do
         redirect_to collection_path
       end
 
-      @attachment_type = params.include?(:attachment_type) && params[:attachment_type] == "incipit" ? :incipit : :image
+      @attachment_type = case params[:attachment_type]
+      when "incipit" then :incipit
+      when "markdown" then :markdown
+      else :image
+      end
 
       if @attachment_type == :incipit
         # We support only works and sources
@@ -133,31 +153,32 @@ ActiveAdmin.register DigitalObject do
     end
   end
   
-  member_action :remove_item, method: :get do
-
+  member_action :remove_item, method: :delete do
     begin
-      dol = DigitalObjectLink.find(params[:digital_object_link_id])
-    rescue
+      digital_object = DigitalObject.find(params[:id])
+      dol = digital_object.digital_object_links.find(
+        params[:digital_object_link_id]
+      )
+    rescue ActiveRecord::RecordNotFound
       flash[:error] = "Could not find Digital Object Link #{params[:digital_object_link_id]}"
       redirect_to resource_path(params[:id])
       return
     end
-    
-    if can?(:destroy, dol)
-      begin
-        dol.delete
-      rescue
-        flash[:error] = "Could not delete link #{params[:digital_object_link_id]}"
-        redirect_to resource_path(params[:id])
-      end
-      flash[:notice] = "Link deleted successfully"
-      redirect_to resource_path(params[:id])
-    else
+
+    unless can?(:destroy, dol)
       flash[:error] = "Operation not allowed"
       redirect_to collection_path
+      return
     end
 
+    begin
+      dol.destroy!
+      flash[:notice] = "Link deleted successfully"
+    rescue ActiveRecord::RecordNotDestroyed
+      flash[:error] = "Could not delete link #{params[:digital_object_link_id]}"
+    end
 
+    redirect_to resource_path(params[:id])
   end
   
   ###########
@@ -168,7 +189,7 @@ ActiveAdmin.register DigitalObject do
   filter :attachment_file_name, :label => proc {I18n.t(:filter_file_name)}
   filter :attachment_file_size, :label => proc {I18n.t(:filter_file_size)}
   filter :attachment_type, :label => proc {I18n.t(:filter_attachment_type)}, as: :select, 
-          collection: proc{{images: 0, incipits: 1}}
+          collection: proc{{images: 0, incipits: 1, markdown: 2}}
   filter :attachment_updated_at, :label => proc {I18n.t(:updated_at)}
   
   filter :wf_owner, :label => proc {I18n.t(:filter_owner)}, :as => :flexdatalist, data_path: proc{list_for_filter_admin_users_path()}
@@ -177,8 +198,15 @@ ActiveAdmin.register DigitalObject do
     div do
         if obj.images?
           link_to(image_tag(obj.attachment.url(:medium)), admin_digital_object_path(obj))
-        else
+        elsif obj.incipits?
           link_to(image_tag('/images/meilogo.png'), admin_digital_object_path(obj))
+        elsif obj.markdown?
+          link_to(
+            image_tag('/images/markdownlogo.svg', alt: I18n.t(:filter_markdown)),
+            admin_digital_object_path(obj)
+          )
+        else
+          link_to(obj.attachment_file_name, admin_digital_object_path(obj))
         end
     end
     a truncate(obj.description), :href => admin_digital_object_path(obj)
@@ -220,9 +248,15 @@ ActiveAdmin.register DigitalObject do
             end
             column "" do |dol|
               if can?(:destroy, dol)
-              link_to I18n.t(:link_remove), 
-                {controller: :digital_objects, action: :remove_item, id: resource.id, params: {digital_object_link_id: dol.id}}, 
-                data: { confirm: I18n.t(:link_remove_confirm) }
+                link_to I18n.t(:link_remove),
+                  {
+                    controller: :digital_objects,
+                    action: :remove_item,
+                    id: resource.id,
+                    digital_object_link_id: dol.id
+                  },
+                  method: :delete,
+                  data: { confirm: I18n.t(:link_remove_confirm) }
               end
             end
           end
@@ -247,13 +281,13 @@ ActiveAdmin.register DigitalObject do
       row (I18n.t :filter_owner) { |r| r.user.name } if ( ad.user )
     end
     active_admin_navigation_bar( self )
-    active_admin_comments if !is_selection_mode?
+    active_admin_muscat_comments(self, digital_object) if !is_selection_mode?
   end
   
   sidebar :actions, :only => :show do
     render :partial => "activeadmin/section_sidebar_show", :locals => { :item => digital_object }
 
-    if digital_object.images?
+    if digital_object.images? || digital_object.markdown?
       render :partial => "activeadmin/section_sidebar_do_links", :locals => { :item => digital_object }
     elsif digital_object.incipits?
       render :partial => "activeadmin/section_sidebar_do_incipits", :locals => { :item => digital_object }
@@ -268,13 +302,23 @@ ActiveAdmin.register DigitalObject do
   
   form :html => {:multipart => true} do |f|
     f.inputs do
-      is_incipit = f.object.new_record? ? controller.view_assigns["attachment_type"] == :incipit : f.object.incipits?
+      attachment_type = f.object.new_record? ? controller.view_assigns["attachment_type"] : f.object.attachment_type.to_sym
+      is_incipit = attachment_type == :incipit || attachment_type == :incipits
       if is_incipit
         f.input :description, label: I18n.t(:filter_incipit_number), as: :select, multiple: false, include_blank: false, collection: controller.view_assigns["incipits"]
         f.input :attachment, as: :file, :label => I18n.t(:filter_mei)
       else
         f.input :description, :label => I18n.t(:filter_description)
-        f.input :attachment, as: :file, :label => I18n.t(:filter_image)
+        if attachment_type == :markdown
+          if current_user.has_role?(:admin)
+            f.input :attachment,
+                    as: :file,
+                    label: I18n.t(:filter_markdown),
+                    input_html: { accept: ".md,.markdown,text/markdown,text/x-markdown,application/x-markdown" }
+          end
+        else
+          f.input :attachment, as: :file, :label => I18n.t(:filter_image)
+        end
       end
 
       f.input :wf_owner, label: I18n.t(:record_owner), as: :select, multiple: false, include_blank: false, collection: User.sort_all_by_last_name if current_user.has_role?(:admin) || current_user.has_role?(:editor)

@@ -1,10 +1,14 @@
 class DigitalObject < ApplicationRecord
+  MARKDOWN_CONTENT_TYPES = %w[text/markdown text/x-markdown application/x-markdown].freeze
+  MARKDOWN_UPLOAD_CONTENT_TYPES = (MARKDOWN_CONTENT_TYPES + ["text/plain", "application/octet-stream"]).freeze
   
   include CommentsCleanup
   include AutoStripStrings
 
   Paperclip.options[:content_type_mappings] = {
-    :mei => "text/xml"
+    mei: "text/xml",
+    md: MARKDOWN_CONTENT_TYPES + ["text/plain"],
+    markdown: MARKDOWN_CONTENT_TYPES + ["text/plain"]
   }
 
     # attachments
@@ -19,16 +23,18 @@ class DigitalObject < ApplicationRecord
 		
 		validates_presence_of :description
     validates_presence_of :attachment
-		validates_attachment :attachment, content_type: { content_type: ["image/jpg", "image/jpeg", "image/png", "text/xml", "application/xml"] }
+		validates_attachment :attachment, content_type: { content_type: ["image/jpg", "image/jpeg", "image/png", "text/xml", "application/xml"] + MARKDOWN_UPLOAD_CONTENT_TYPES }
+    validate :markdown_content_type_has_markdown_extension
   
-    before_post_process :skip_for_mei
-    after_post_process :set_metadata
+    before_validation :set_metadata
+    before_post_process :process_images_only
 
     has_many :digital_object_links, :dependent => :delete_all
     has_many :folder_items, as: :item, dependent: :destroy
     belongs_to :user, :foreign_key => "wf_owner"
 
-    enum :attachment_type, [ :images, :incipits ]
+    enum :attachment_type, { images: 0, incipits: 1, markdown: 2 }
+    scope :non_incipit_attachments, -> { where.not(attachment_type: attachment_types[:incipits]) }
     
     before_destroy :cleanup_comments
 
@@ -37,13 +43,17 @@ class DigitalObject < ApplicationRecord
     attr_accessor :new_object_link_type
     attr_accessor :new_object_link_id
 
-    def skip_for_mei
-      is_mei_type?
+    def process_images_only
+      !!is_image_type?
     end
 
     def set_metadata
       if is_mei_type?
         self.attachment_type = :incipits
+      elsif is_markdown_type?
+        self.attachment_type = :markdown
+      elsif is_image_type?
+        self.attachment_type = :images
       end
     end
 
@@ -78,6 +88,18 @@ class DigitalObject < ApplicationRecord
 
     def is_mei_type?
       attachment_content_type =~ %r(xml)
+    end
+
+    def is_markdown_type?
+      attachment_file_name.to_s.downcase.end_with?(".md", ".markdown") &&
+        attachment_content_type.in?(MARKDOWN_UPLOAD_CONTENT_TYPES)
+    end
+
+    def markdown_content_type_has_markdown_extension
+      return unless attachment_content_type.in?(MARKDOWN_UPLOAD_CONTENT_TYPES)
+      return if is_markdown_type?
+
+      errors.add(:attachment, "must use a .md or .markdown extension")
     end
 
     # By default it is ID:pae_nr

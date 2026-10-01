@@ -78,6 +78,7 @@ end
 
 gem 'devise', '~> 5.0'
 gem 'devise-i18n'
+gem 'devise_invitable', '~> 2.0'
 #gem 'devise_saml_authenticatable', require: false
 
 # paperclip for image storage
@@ -146,13 +147,13 @@ gem 'thor'
 
 group :test do
   gem "rspec"
-  gem 'rspec-rails', '~> 3.5'
+  gem 'rspec-rails', '~> 8.0'
   gem 'factory_bot_rails'
   gem 'capybara'
-  #gem 'selenium-webdriver'
+  gem 'selenium-webdriver'
   gem 'database_cleaner'
   gem 'generator_spec'
-  #gem 'sqlite3'
+  gem 'sqlite3'
 end
 
 # This gem is used in subfield_select_codes
@@ -194,4 +195,6 @@ gem "sparql-client", "~> 3.3"
 # We use this to map TGN languages to 041
 gem 'iso639'
 
+#gem "google-apis-admin_directory_v1"
+#gem "googleauth"
 #gem "ruby-openai"

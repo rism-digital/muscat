@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.2].define(version: 2026_06_17_130228) do
+ActiveRecord::Schema[7.2].define(version: 2026_09_02_140000) do
   create_table "active_admin_comments", id: :integer, charset: "utf8mb3", force: :cascade do |t|
     t.string "namespace"
     t.text "body"
@@ -20,6 +20,8 @@ ActiveRecord::Schema[7.2].define(version: 2026_06_17_130228) do
     t.string "author_type"
     t.datetime "created_at", precision: nil
     t.datetime "updated_at", precision: nil
+    t.json "body_json"
+    t.json "mentioned_user_ids"
     t.index ["author_type", "author_id"], name: "index_active_admin_comments_on_author_type_and_author_id"
     t.index ["namespace"], name: "index_active_admin_comments_on_namespace"
     t.index ["resource_type", "resource_id"], name: "index_active_admin_comments_on_resource_type_and_resource_id"
@@ -268,7 +270,7 @@ ActiveRecord::Schema[7.2].define(version: 2026_06_17_130228) do
     t.string "relator_code"
   end
 
-  create_table "inventory_items_to_liturgical_feasts", charset: "utf8mb3", force: :cascade do |t|
+  create_table "inventory_items_to_liturgical_feasts", charset: "utf8mb4", collation: "utf8mb4_unicode_ci", force: :cascade do |t|
     t.integer "inventory_item_id"
     t.integer "liturgical_feast_id"
     t.string "marc_tag"
@@ -423,6 +425,7 @@ ActiveRecord::Schema[7.2].define(version: 2026_06_17_130228) do
     t.text "hierarchy"
     t.string "tgn_id"
     t.index ["name"], name: "index_places_on_name"
+    t.index ["tgn_id"], name: "index_places_on_tgn_id"
     t.index ["wf_stage"], name: "index_places_on_wf_stage"
   end
 
@@ -716,7 +719,18 @@ ActiveRecord::Schema[7.2].define(version: 2026_06_17_130228) do
     t.string "username"
     t.string "notification_email"
     t.boolean "disabled", default: false, null: false
+    t.string "invitation_token"
+    t.datetime "invitation_created_at"
+    t.datetime "invitation_sent_at"
+    t.datetime "invitation_accepted_at"
+    t.integer "invitation_limit"
+    t.string "invited_by_type"
+    t.integer "invited_by_id"
+    t.integer "invitations_count", default: 0
     t.index ["email"], name: "index_users_on_email", unique: true
+    t.index ["invitation_token"], name: "index_users_on_invitation_token", unique: true
+    t.index ["invited_by_id"], name: "index_users_on_invited_by_id"
+    t.index ["invited_by_type", "invited_by_id"], name: "index_users_on_invited_by"
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
     t.index ["username"], name: "index_users_on_username", unique: true
   end
