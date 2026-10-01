@@ -3,7 +3,7 @@ group_order:
 - edit_transcription
 - edit_standardized_content
 - edit_material_description
-- edit_references_notes
+- edit_references
 - edit_identifications
 - edit_administration
 
@@ -30,7 +30,7 @@ groups:
     - '300'
     - "590"
   
-  edit_references_notes:
+  edit_references:
     all_tags:
     - '700' 
     - "710"

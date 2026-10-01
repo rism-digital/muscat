@@ -52,6 +52,6 @@ CSV.foreach(input_path, encoding: "bom|utf-8").with_index(1) do |row, _line_numb
     end
   else
    # existing_value = current_values.join(" || ")
-    write_tsv(input_columns + ["Not found in muscat"])
+    write_tsv(input_columns + ["Maybe corrected in muscat"])
   end
 end

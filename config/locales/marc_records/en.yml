@@ -33,6 +33,21 @@ en:
     when_to_input_new_record: When to input a new record (printed music)
     workflow: Workflow
     'yes': 'Yes'
+  inventories:
+    identifications: "Identifications"
+    inventory_item_transcription: "Transcription of item in the inventory"
+    inventory_source_link: "Link to the inventory source ($w)"
+    inventory_category_section: "Category/Section in the inventory"
+    inventory_item_number_page: "Number/page in the inventory"
+    inventory_full_transcription: "Full transcription of item"
+    inventory_variant_title: "Variant title of item"
+    inventory_guidelines: "Guidelines: Like in TOC, index"
+    inventory_incipits: "Incipits as given on item in the inventory"
+    standardized_piece_description: "Standardized description of the piece recorded in the inventory"
+    standardized_description_guidelines: "Guidelines: Encoded form of the transcription area"
+    original_source_material_description: "Material description of the original source listed in the inventory"
+    identified_printed_edition_exemplar: "Identified exemplar of the printed edition"
+    exemplar: "Exemplar"
   languages:
     albanian: Albanian
     afrikaans: Afrikaans

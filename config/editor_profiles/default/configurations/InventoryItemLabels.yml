@@ -44,7 +44,7 @@
       label: records.text_incipit
     z:
       label: records.scoring_in_movement
-  label: records.incipit
+  label: inventories.inventory_incipits
 '040':
   fields:
     a:
@@ -101,12 +101,12 @@
   fields:
     a:
       label: records.title_on_source
-  label: records.title_on_source
+  label: inventories.inventory_full_transcription
 '246':
   fields:
     a:
       label: records.variant_source_title
-  label: records.variant_source_title
+  label: inventories.inventory_variant_title
 '260':
   fields:
     '8':
@@ -251,10 +251,10 @@
     o:
       label: records.inventory
     n:
-      label: records.category_section
+      label: inventories.inventory_category_section
     g:
-      label: records.number_page
-  label: records.inventory_source
+      label: inventories.inventory_item_number_page
+  label: inventories.inventory_source_link
 '775':
   fields:
     w:
@@ -319,12 +319,12 @@
 '933':
   fields:
     a:
-      label: records.holding
+      label: inventories.exemplar
     w:
       label: records.identitied_printed_edition
     '4':
       label: records.identification_status
-  label: records.identitied_printed_edition
+  label: inventories.identified_printed_edition_exemplar
 '981':
   fields:
     "0":
@@ -510,16 +510,20 @@ dsr:
   label: records.designer
 dte:
   label: records.dedicatee
+
 edit_administration:
   label: records.administration
-edit_library:
-  label: records.library_information_relations
-edit_material:
-  label: records.material_description
-edit_names:
-  label: records.people_institutions
+edit_transcription:
+  label: inventories.inventory_item_transcription
+edit_standardized_content:
+  label: inventories.standardized_piece_description
+edit_material_description:
+  label: inventories.original_source_material_description
 edit_references:
   label: records.references_and_notes
+edit_identifications:
+  label: inventories.identifications
+
 edt:
   label: records.editor
 egr:

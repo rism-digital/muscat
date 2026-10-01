@@ -355,7 +355,7 @@
         - "Notated music"
         - "Libretto"
         - "Treatise"
-        - "Other"
+        - "Uncertain"
         editor_partial: subfield_select
 "594":
   layout:
@@ -627,6 +627,7 @@
       - "rdau:P60195"
       - "rdau:P60242"
       - "rdau:P60194"
+      - "rda:P00005"
 "856": 
   layout: 
     fields: 
