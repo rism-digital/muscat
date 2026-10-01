@@ -534,11 +534,7 @@
           composite_volume:
             - Composite
           inventory:
-            - Autograph manuscript
-            - Possible autograph manuscript
-            - Partial autograph
             - Manuscript copy
-            - Manuscript copy with autograph annotations
           inventory_edition:
             - Print
         editor_partial: subfield_select
