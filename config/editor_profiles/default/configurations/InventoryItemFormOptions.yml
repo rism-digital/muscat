@@ -614,7 +614,7 @@
         editor_partial: subfield_secondary
   tag_params:
       relator_codes:
-      - "rda:P00005"
+      - "rdau:P60190"
 "856": 
   layout: 
     fields: 
