@@ -113,11 +113,11 @@
     - - m
       - :occurrences: "+"
     - - n
-      - :occurrences: "+"
+      - :occurrences: "?"
     - - o
       - :occurrences: "?"
     - - p
-      - :occurrences: "+"
+      - :occurrences: "?"
     - - r
       - :occurrences: "?"
     - - t
@@ -152,7 +152,7 @@
   "377":  
     :master: "0"
     :indicator: "##"
-    :occurrences: "*"
+    :occurrences: "?"
     :fields:
     - - "2"
       - :occurrences: "?"
@@ -161,21 +161,16 @@
   "380":  
     :master: "0"
     :indicator: "##"
-    :occurrences: "*"
-    :fields:
-    - - a
-      - :occurrences: "+"
-  "380":  
-    :master: "0"
-    :indicator: "##"
-    :occurrences: "*"
+    :occurrences: "?"
     :fields:
     - - "0"
       - :occurrences: "?"  
     - - "2"
       - :occurrences: "+"
     - - a
-      - :occurrences: "+"
+      - :occurrences: "?"
+    - - "5"
+      - :occurrences: "?"
   "382":  
     :master: "0"
     :indicator: "##"
@@ -204,7 +199,7 @@
   "384":  
     :master: "0"
     :indicator: "1#"
-    :occurrences: "*"
+    :occurrences: "?"
     :fields:
     - - "0"
       - :occurrences: "?"  
@@ -226,9 +221,9 @@
     - - m
       - :occurrences: "+"
     - - n
-      - :occurrences: "+"
+      - :occurrences: "?"
     - - p
-      - :occurrences: "+"
+      - :occurrences: "?"
     - - r
       - :occurrences: "?"
     - - o
@@ -261,7 +256,7 @@
     - - "e"
       - :occurrences: "?"
     - - "4"
-      - :occurrences: "+"
+      - :occurrences: "?"
     - - i
       - :occurrences: "?"
     - - w
@@ -281,7 +276,7 @@
     :occurrences: "*"
     :fields:
     - - "4"
-      - :occurrences: "+"
+      - :occurrences: "?"
     - - "9"
       - :occurrences: "+"
     - - a
@@ -299,7 +294,7 @@
     - - c
       - :occurrences: "?"
     - - "4"
-      - :occurrences: "+"
+      - :occurrences: "?"
     - - "9"
       - :occurrences: "+"
   "550":  
@@ -315,7 +310,7 @@
     - - '0'
       - :occurrences: "?"
     - - '4'
-      - :occurrences: "+"
+      - :occurrences: "?"
     - - '9'
       - :occurrences: "+"
   "667":  
