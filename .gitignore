@@ -22,6 +22,8 @@ help.sh
 system
 housekeeping/psmd/psmd.yml
 housekeeping/psmd/incipits
+KURTZ
+node_modules
 
 # Ignore encrypted secrets key file.
 config/secrets.yml.key
