@@ -36,7 +36,7 @@ en:
   inventories:
     identifications: "Identifications"
     inventory_item_transcription: "Transcription of item in the inventory"
-    inventory_source_link: "Link to the inventory source ($w)"
+    inventory_source_link: "Link to the inventory source"
     inventory_category_section: "Category/Section in the inventory"
     inventory_item_number_page: "Number/page in the inventory"
     inventory_full_transcription: "Full transcription of item"
