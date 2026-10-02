@@ -225,6 +225,21 @@ pl:
   are_you_sure: Czy na pewno?
   authorization_tokens: Auth tokens
   available_templates: Dostępne szablony
+  template_selection:
+    columns:
+      manuscript: Materiały rękopiśmienne
+      printed: Materiały drukowane
+    rows:
+      notated_music: Muzyka notowana
+      librettos_song_texts: Libretta/teksty pieśni
+      treatises: Traktaty
+      inventories: Inwentarze
+      mixed: Mieszane
+    links:
+      collection_parent: Kolekcja (rekord nadrzędny)
+      collection_child: Pozycja w kolekcji (rekord podrzędny)
+      single_item: Pojedynczy obiekt
+      composite_volume: Wolumin zbiorczy
   backend_validation:
     031_incomplete: Numeracja tego 031 jest niekompletna (brakuje $a, $b lub $c)
     begin_with: To pole musi zaczynać się od prawidłowego ciągu znaków

@@ -244,6 +244,21 @@ en:
   archive_unarchive: Archive / un-archive
   authorization_tokens: Auth tokens
   available_templates: Available templates
+  template_selection:
+    columns:
+      manuscript: Manuscript materials
+      printed: Printed materials
+    rows:
+      notated_music: Notated music
+      librettos_song_texts: Librettos/Song texts
+      treatises: Treatises
+      inventories: Inventories
+      mixed: Mixed
+    links:
+      collection_parent: Collection (parent record)
+      collection_child: Item in a collection (child record)
+      single_item: Single item
+      composite_volume: Composite volume
   backend_validation:
     031_incomplete: The numbering of this 031 is incomplete ($a, $b or $c are missing)
     begin_with: This field must begin with the correct string

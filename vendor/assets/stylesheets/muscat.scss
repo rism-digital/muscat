@@ -243,6 +243,72 @@ body.active_admin {
 	}
 }
 
+.template-selection-table {
+  border-collapse: collapse;
+  table-layout: fixed;
+  width: 100%;
+
+  .template-selection-panel & th,
+  .template-selection-panel & td {
+    border: 1px solid #cbd5df;
+    padding: 18px 10px;
+    vertical-align: middle;
+  }
+
+  .template-selection-panel & thead th:not(:first-child) {
+    background: $primary-color;
+    color: #fff;
+    font-weight: bold;
+    text-align: left;
+    text-transform: none;
+  }
+
+  th:first-child {
+    background: #eaf1f7;
+    color: $primary-color;
+    font-weight: bold;
+    text-align: left;
+    text-transform: none;
+    width: 15%;
+  }
+
+  .template-selection-row {
+    height: 160px;
+  }
+
+  .template-selection-row-mixed {
+    height: 96px;
+  }
+}
+
+.template-selection-options {
+  list-style: disc;
+  margin: 0;
+  padding-left: 28px;
+
+  ul {
+    list-style: circle;
+    margin: 0;
+    padding-left: 32px;
+  }
+}
+
+.template-inventory-options {
+  list-style: none;
+  padding-left: 28px;
+
+  li::before {
+    content: "-";
+    display: inline-block;
+    margin-left: -18px;
+    width: 18px;
+  }
+}
+
+.template-selection-mixed {
+  text-align: center;
+}
+
 select[name="target_template"] { 
   width: 280px;
 }

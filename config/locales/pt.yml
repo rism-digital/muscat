@@ -225,6 +225,21 @@ pt:
   are_you_sure: Tem certeza?
   authorization_tokens: Auth tokens
   available_templates: Modelos disponíveis
+  template_selection:
+    columns:
+      manuscript: Materiais manuscritos
+      printed: Materiais impressos
+    rows:
+      notated_music: Música notada
+      librettos_song_texts: Libretos/Textos de canções
+      treatises: Tratados
+      inventories: Inventários
+      mixed: Misto
+    links:
+      collection_parent: Coleção (registro pai)
+      collection_child: Item em uma coleção (registro filho)
+      single_item: Item individual
+      composite_volume: Volume miscelâneo
   backend_validation:
     031_incomplete: A numeração deste 031 está incompleta (falta $a, $b ou $c)
     begin_with: Este campo deve começar com a string correta
