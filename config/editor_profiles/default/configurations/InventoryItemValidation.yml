@@ -11,9 +11,7 @@ client:
           "031": "a"
   "100":
     tags:
-      "0":
-        required_if:
-          "100": "j"
+      "0": mandatory
   "240":
     tags:
       "0": mandatory
