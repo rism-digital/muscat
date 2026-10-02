@@ -819,8 +819,8 @@ en:
     collection_record_libretti_printed: Collection record for printed libretti
     collection_record_threatise: Collection record for handwritten treatises
     collection_record_threatise_printed: Collection record for printed treatises
-    composite_volume: Record for a composite volume
-    composite_volumes: Composite volume
+    composite_volume: Composite volume
+    composite_volumes: Composite volumes
     edition: "Printed edition: Notated music"
     edition_content: "Printed item in a collection: Notated music"
     individual_entry: "Manuscript: Notated music"
@@ -831,7 +831,7 @@ en:
     individual_entry_threatise_printed: Individual entry in a printed treatise collection
     inventories: Inventories
     inventory: Inventory
-    inventory_edition: Printed inventory
+    inventory_edition: "Printed edition: Inventory"
     libretti_handwritten: "Manuscript: Libretto/song text"
     libretti_printed: Libretti, printed
     libretto_edition: "Printed edition: Libretto/Song text"
@@ -845,7 +845,7 @@ en:
     single_manuscript: Single music manuscript
     single_threatise: Single handwritten treatise
     single_threatise_printed: Single printed treatise
-    source: Music manuscript
+    source: "Manuscript: Notated music"
     theoretica_edition: "Printed edition: Treatise"
     theoretica_edition_content: "Printed item in a collection: Treatise"
     theoretica_source: "Manuscript: Treatise"
