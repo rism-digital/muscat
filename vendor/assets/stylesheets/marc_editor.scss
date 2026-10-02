@@ -119,9 +119,23 @@
                     * textarea {
                         font-size: 1.1em;
                     }
-                    * input.validating,
-                    * textarea.validating {
-                        background-color: lightyellow;
+                    * input,
+                    * textarea,
+                    * select {
+                        &.validating-mandatory {
+                            background-color: lightyellow;
+                        }
+                        &.validating-required {
+                            background-color: #e6f2ff;
+                        }
+                        &.validating-other {
+                            background-color: #9ae4ad;
+                        }
+                        &.validating-warning {
+                            background-color: rgb(242, 242, 233);
+                        }
+                        // validating-none deliberately has no background rule,
+                        // preserving the normal field and disabled styles.
                     }
 					
 					* input.autocomplete_extra_enabled {

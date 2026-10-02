@@ -75,6 +75,19 @@ class EditorValidation
     return nil if !@validation_config[tag]["tags"].has_key?(subtag)
     return @validation_config[tag]["tags"][subtag]
   end
+
+  def highlight_class(tag, subtag)
+    rule = get_subtag_rule(tag, subtag)
+    return "" unless rule
+
+    styles = @validation_styles ||= squeeze("ValidationStyles")
+    return styles["warning"].to_s if is_warning?(tag, subtag)
+
+    rule_names = validation_rule_names(rule)
+    # Mapping order determines the highlight when several validators apply.
+    match = styles.fetch("validators", {}).find { |name, _| rule_names.include?(name) }
+    (match ? match.last : styles["default"]).to_s
+  end
     
   def rules
     return @validation_config
@@ -124,6 +137,23 @@ class EditorValidation
     class_name = "validate_#{tag}_#{subtag}"
     unique_name = class_name + "_uniq_" + SecureRandom.hex(5)
     return class_name, unique_name
+  end
+
+  private
+
+  def validation_rule_names(rule)
+    case rule
+    when String
+      [rule.split(",").first.to_s.strip]
+    when Hash
+      rule.flat_map do |name, parameters|
+        name == "any_of" ? validation_rule_names(parameters) : [name]
+      end
+    when Array
+      rule.flat_map { |subrule| validation_rule_names(subrule) }
+    else
+      []
+    end
   end
 
 end

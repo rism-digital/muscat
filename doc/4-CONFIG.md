@@ -65,6 +65,42 @@ RISM::EDITOR_PROFILES/configurations/, the contents of the two will be merged
 together. In this way, a completely new configuration can be made, or just a
 small piece can be overridden (eg. this is handy in labels).
 
+### Validation highlight styles
+
+`config/editor_profiles/default/configurations/ValidationStyles.yml` maps client
+validator names to CSS classes used by the MARC editor. To customize the mapping,
+copy the file to `config/editor_profiles/<profile>/configurations/ValidationStyles.yml`.
+The profile-specific file replaces the default file, so retain the `default`,
+`warning`, and `validators` entries.
+
+```yaml
+default: validating-other
+warning: validating-warning
+validators:
+  required: validating-required
+  mandatory: validating-required
+  required_if: validating-required
+  validate_url: validating-none
+  handcrafted_warning: validating-warning
+```
+
+The built-in classes are `validating-required` (yellow), `validating-other`
+(light blue), `validating-warning` (light yellow), and `validating-none` (no
+background highlight). Colors are defined in `vendor/assets/stylesheets/marc_editor.scss`.
+You can also map validators to your own CSS classes and define their styles there.
+
+Warning-level rules such as `required, warning` use the `warning` class. Otherwise,
+the first matching entry in `validators` wins, including for rules combined with
+`any_of`; unmatched validators use `default`. In this example, a field with both
+`required_if` and `validate_url` stays yellow, while `validate_url` alone has no
+background highlight. To suppress all warning backgrounds, set
+`warning: validating-none`.
+
+These classes mark fields subject to validation. Error and warning borders and
+messages still appear after validation, including on fields using `validating-none`.
+Restart the application after editing the mapping because editor configurations
+are cached.
+
 ### Configuration
 
 On opening the display/edit of a Source, the EditorConfigurations are cycled:

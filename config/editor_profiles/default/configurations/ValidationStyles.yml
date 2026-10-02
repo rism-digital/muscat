@@ -1,0 +1,16 @@
+# CSS classes applied to fields with client-side validation.
+# A profile-specific ValidationStyles.yml replaces this file.
+default: validating-other
+warning: validating-warning
+
+# For combined rules (any_of), the first matching validator below wins.
+# Warning-level fields always use the warning class above.
+validators:
+  required: validating-required
+  mandatory: validating-mandatory
+  required_if: validating-required
+  handcrafted_warning: validating-warning
+
+# Assign validating-none to leave a field's background unhighlighted, e.g.:
+  validate_url: validating-none
+# Custom CSS classes can also be assigned here and defined in marc_editor.scss.
