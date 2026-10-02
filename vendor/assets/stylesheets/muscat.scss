@@ -291,26 +291,20 @@ body.active_admin {
   padding-left: 28px;
 
   ul {
-    list-style: circle;
+    list-style: disc;
     margin: 0;
     padding-left: 32px;
   }
 }
 
-.template-inventory-options {
-  list-style: none;
-  padding-left: 28px;
-
-  li::before {
-    content: "-";
-    display: inline-block;
-    margin-left: -18px;
-    width: 18px;
-  }
-}
-
 .template-selection-mixed {
   text-align: center;
+}
+
+.template-selection-mixed-options {
+  display: table;
+  margin: 0 auto;
+  text-align: left;
 }
 
 select[name="target_template"] { 

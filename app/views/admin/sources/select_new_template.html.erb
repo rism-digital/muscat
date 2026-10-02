@@ -24,7 +24,7 @@
             <% [manuscript_groups, printed_groups].each_with_index do |material_groups, column_index| %>
               <% inventory_row = row_key == "inventories" %>
               <td>
-                <ul class="template-selection-options<%= " template-inventory-options" if inventory_row %>">
+                <ul class="template-selection-options">
                   <% material_groups.each do |group_key| %>
                     <% templates.fetch(group_key, {}).each do |_label, properties| %>
                       <% if inventory_row %>
@@ -56,7 +56,9 @@
           <tr class="template-selection-row template-selection-row-mixed">
             <th scope="row"><%= I18n.t("template_selection.rows.mixed") %></th>
             <td class="template-selection-mixed" colspan="2">
-              <%= link_to I18n.t("template_selection.links.composite_volume"), new_resource_path(new_record_type: composite_volume["record_type"]) %>
+              <ul class="template-selection-options template-selection-mixed-options">
+                <li><%= link_to I18n.t("template_selection.links.composite_volume"), new_resource_path(new_record_type: composite_volume["record_type"]) %></li>
+              </ul>
             </td>
           </tr>
         <% end %>
