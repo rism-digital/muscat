@@ -263,6 +263,10 @@ body.active_admin {
     text-transform: none;
   }
 
+  .template-selection-panel & thead th:first-child {
+    background: transparent;
+  }
+
   th:first-child {
     background: #eaf1f7;
     color: $primary-color;
