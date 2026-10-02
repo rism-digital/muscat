@@ -458,6 +458,7 @@ es:
   filter_last_updated: Actualizado por última vez
   filter_lib_siglum: Sigla del repositorio
   filter_life_dates: Fechas de nacimiento y muerte
+  filter_differentiated: Diferenciado
   filter_links: Enlace
   filter_liturgical_feast: Festividad litúrgica
   filter_location_and_name: Nombre y lugar

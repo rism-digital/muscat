@@ -223,11 +223,28 @@ ActiveAdmin.register Person do
          collection: proc{Folder.where(folder_type: "Person").collect {|c| [c.name, "folder_id:#{c.id}"]}}
   filter :wf_stage_with_integer, :label => proc {I18n.t(:filter_wf_stage)}, as: :select,
     collection: proc{[:inprogress, :published, :deleted].collect {|v| [I18n.t("wf_stage." + v.to_s), "wf_stage:#{v}"]}}
+  filter :differentiated_order_with_integer, label: proc { I18n.t(:filter_differentiated) }, as: :select,
+    collection: [
+      ["DIF", "differentiated_order:DIF"],
+      ["UND", "differentiated_order:UND"],
+      ["NON", "differentiated_order:NON"]
+    ]
 
 
   index :download_links => false do
     selectable_column if !is_selection_mode?
     column((I18n.t :filter_wf_stage), sortable: :wf_stage) {|i| active_admin_wf_stage_column(self, i)}
+    column (I18n.t :filter_differentiated), sortable: :differentiated_order do |person|
+      value = active_admin_stored_from_hits(controller.view_assigns["hits"], person, :differentiated_order)
+      case value
+      when "DIF"
+        status_tag(:ok, label: "DIF")
+      when "UND"
+        status_tag(:warning, label: "UND")
+      else
+        status_tag(:none, label: "NON")
+      end
+    end
       
       #status_tag(person.wf_stage,
       #label: I18n.t('status_codes.' + (person.wf_stage != nil ? person.wf_stage : ""), locale: :en))

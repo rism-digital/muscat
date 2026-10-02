@@ -458,6 +458,7 @@ ca:
   filter_last_updated: Darrera actualització
   filter_lib_siglum: Sigla de la biblioteca
   filter_life_dates: Dates
+  filter_differentiated: Diferenciat
   filter_links: Enllaços
   filter_liturgical_feast: Festivitats litúrgiques
   filter_location_and_name: Nom i lloc

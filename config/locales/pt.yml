@@ -458,6 +458,7 @@ pt:
   filter_last_updated: Última atualização
   filter_lib_siglum: Sigla da Instituição
   filter_life_dates: Datas de nascimento e morte
+  filter_differentiated: Diferenciado
   filter_links: Links
   filter_liturgical_feast: Festa Litúrgica
   filter_location_and_name: Nome e Local

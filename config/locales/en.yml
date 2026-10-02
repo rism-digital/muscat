@@ -476,6 +476,7 @@ en:
   filter_last_updated: Last updated
   filter_lib_siglum: Library siglum
   filter_life_dates: Life dates
+  filter_differentiated: Differentiated
   filter_links: Links
   filter_liturgical_feast: Liturgical feast
   filter_location_and_name: Name and location

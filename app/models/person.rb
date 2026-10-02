@@ -299,6 +299,17 @@ class Person < ApplicationRecord
       life_dates
     end
     sunspot_dsl.text :life_dates
+
+    sunspot_dsl.string :differentiated_order, stored: true do |person|
+      case person.marc.first_occurance("042", "a")&.content
+      when "differentiated"
+        "DIF"
+      when "undifferentiated"
+        "UND"
+      else
+        "NON"
+      end
+    end
     
     sunspot_dsl.text :birth_place
     sunspot_dsl.text :source
@@ -417,6 +428,7 @@ class Person < ApplicationRecord
     reflect_on_all_associations.map { |a| a.name.to_s }
   end
 
+  ransacker :differentiated_order, proc{ |v| } do |parent| parent.table[:id] end
   ransacker :"100d", proc{ |v| } do |parent| parent.table[:id] end
   ransacker :"375a", proc{ |v| } do |parent| parent.table[:id] end
   ransacker :"550a", proc{ |v| } do |parent| parent.table[:id] end
@@ -482,4 +494,3 @@ class Person < ApplicationRecord
   end
 
 end
-
