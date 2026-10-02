@@ -1,7 +1,7 @@
 <% if @sru.error_code %>
   <%= render partial: 'error' %>
 <% elsif @sru.operation == 'explain' %>
-  <%= render partial: 'explain' %>
+  <%= render partial: 'explain', formats: [:xml] %>
 <% elsif @sru.operation == 'scan' %>
   <%= render partial: 'scan' %>
 <% elsif @sru.schema == 'html' %>
