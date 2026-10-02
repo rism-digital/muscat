@@ -44,6 +44,8 @@ client:
           - edition
           - libretto_edition
           - theoretica_edition
+          - inventory_edition
+          - inventory
     tags:
       "0": mandatory
   "240":
