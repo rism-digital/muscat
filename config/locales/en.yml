@@ -835,8 +835,8 @@ en:
     libretti_handwritten: "Manuscript: Libretto/song text"
     libretti_printed: Libretti, printed
     libretto_edition: "Printed edition: Libretto/Song text"
-    libretto_edition_content: "Printed item in a collection: Libretto/song text"
-    libretto_source: "Manuscript: Libretto/song text"
+    libretto_edition_content: "Printed item in a collection: Libretto/Song text"
+    libretto_source: "Manuscript: Libretto/Song text"
     music_manuscripts: Music manuscripts
     printed_music: Printed music editions
     single_edition: Single printed music edition
