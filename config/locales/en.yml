@@ -812,7 +812,7 @@ en:
   record_owner: Record Owner
   record_status: Record Status
   record_types:
-    collection: Music manuscript, collection parent record
+    collection: Manuscript collection
     collection_record: Collection record for a music manuscript
     collection_record_edition: Collection record for a printed music edition
     collection_record_libretti: Collection record for handwritten libretti
@@ -820,10 +820,10 @@ en:
     collection_record_threatise: Collection record for handwritten treatises
     collection_record_threatise_printed: Collection record for printed treatises
     composite_volume: Record for a composite volume
-    composite_volumes: Composite volumes
-    edition: Printed music edition, collection parent record or individual item
-    edition_content: Printed music edition, item in collection
-    individual_entry: Individual entry in a music manuscript collection
+    composite_volumes: Composite volume
+    edition: "Printed edition: Notated music"
+    edition_content: "Printed item in a collection: Notated music"
+    individual_entry: "Manuscript: Notated music"
     individual_entry_edition: Individual entry in a printed edition collection
     individual_entry_libretti: Individual entry in a handwritten libretto collection
     individual_entry_libretti_printed: Individual entry in a printed libretto collection
@@ -831,12 +831,12 @@ en:
     individual_entry_threatise_printed: Individual entry in a printed treatise collection
     inventories: Inventories
     inventory: Inventory
-    inventory_edition: Inventory edition
-    libretti_handwritten: Libretti, handwritten
+    inventory_edition: Printed inventory
+    libretti_handwritten: "Manuscript: Libretto/song text"
     libretti_printed: Libretti, printed
-    libretto_edition: Libretto, printed
-    libretto_edition_content: Printed libretto, item in collection
-    libretto_source: Libretto, handwritten
+    libretto_edition: "Printed edition: Libretto/Song text"
+    libretto_edition_content: "Printed item in a collection: Libretto/song text"
+    libretto_source: "Manuscript: Libretto/song text"
     music_manuscripts: Music manuscripts
     printed_music: Printed music editions
     single_edition: Single printed music edition
@@ -846,9 +846,9 @@ en:
     single_threatise: Single handwritten treatise
     single_threatise_printed: Single printed treatise
     source: Music manuscript
-    theoretica_edition: Treatise, printed
-    theoretica_edition_content: Printed treatise, item in collection
-    theoretica_source: Treatise, handwritten
+    theoretica_edition: "Printed edition: Treatise"
+    theoretica_edition_content: "Printed item in a collection: Treatise"
+    theoretica_source: "Manuscript: Treatise"
     threatise_handwritten: Treatises, handwritten
     threatise_printed: Treatises, printed
     unspecified: "[Unknown template]"
