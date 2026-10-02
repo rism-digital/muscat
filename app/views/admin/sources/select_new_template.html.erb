@@ -41,7 +41,7 @@
                           </ul>
                         </li>
                       <% else %>
-                        <% link_label = inventory_row ? I18n.t("record_types.inventory") : I18n.t("template_selection.links.single_item") %>
+                        <% link_label = inventory_row ? I18n.t("record_types.#{properties["record_type"]}") : I18n.t("template_selection.links.single_item") %>
                         <li><%= link_to link_label, new_resource_path(new_record_type: properties["record_type"]) %></li>
                       <% end %>
                     <% end %>
