@@ -142,10 +142,10 @@ ActiveAdmin.register Place do
 
   collection_action :tgn_merge, method: :get do
 
-    tgn_id = params.fetch(:tgn_id).gsub("tgn:", "")
     begin
+      tgn_id = TgnClientJson.normalize_place_id(params.fetch(:tgn_id))
       converted = TgnClientJson.new.fetch_marc_place(tgn_id)
-    rescue TgnClientJson::RequestError => e
+    rescue TgnClientJson::InvalidPlaceIdError, TgnClientJson::RequestError => e
       render json: { ok: false, error: e.message }, status: :unprocessable_entity
       return
     end

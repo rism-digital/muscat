@@ -6,10 +6,43 @@ require "json"
 
 class TgnClientJson
   DEFAULT_BASE_URL = "https://tgn-mirror.rism.online".freeze
+  SUPPORTED_PLACE_URL_HOSTS = %w[tgn-mirror.rism.online vocab.getty.edu].freeze
 
   class Error < StandardError; end
+  class InvalidPlaceIdError < Error; end
   class RequestError < Error; end
   class ParseError < Error; end
+
+  def self.normalize_place_id(input)
+    value = input.to_s.gsub(/[\u00a0\u202f]/, " ").strip
+    markdown_link = /\A\[[^\]]+\]\((https?:\/\/[^\s)]+)\)\z/.match(value)
+    value = markdown_link[1] if markdown_link
+    value = value.delete_prefix("<").delete_suffix(">").strip
+    value = value.sub(/\Atgn:/i, "")
+
+    return value if /\A\d+\z/.match?(value)
+
+    uri = URI.parse(value)
+    unless %w[http https].include?(uri.scheme) &&
+           SUPPORTED_PLACE_URL_HOSTS.include?(uri.host) &&
+           uri.userinfo.nil? &&
+           uri.query.nil? &&
+           uri.fragment.nil?
+      raise InvalidPlaceIdError, "Enter a TGN ID or a Getty/TGN place URL."
+    end
+
+    id_pattern = if uri.host == "tgn-mirror.rism.online"
+                   %r{\A/places/(\d+)/?\z}
+                 else
+                   %r{\A/tgn/(\d+)/?\z}
+                 end
+    place_id = id_pattern.match(uri.path)&.[](1)
+    raise InvalidPlaceIdError, "Enter a TGN ID or a Getty/TGN place URL." unless place_id
+
+    place_id
+  rescue URI::InvalidURIError
+    raise InvalidPlaceIdError, "Enter a TGN ID or a Getty/TGN place URL."
+  end
 
   attr_reader :base_url, :open_timeout, :read_timeout
 
@@ -24,6 +57,7 @@ class TgnClientJson
   # adapter.fetch_place_json(1004257)
   # => { ...parsed JSON hash... }
   def fetch_place_json(place_id)
+    place_id = self.class.normalize_place_id(place_id)
     response = get("/places/#{place_id}")
     parse_json(response.body, place_id: place_id)
   end
