@@ -830,7 +830,7 @@ en:
     individual_entry_threatise: Individual entry in a handwritten treatise collection
     individual_entry_threatise_printed: Individual entry in a printed treatise collection
     inventories: Inventories
-    inventory: Inventory
+    inventory: "Manuscript: Inventory"
     inventory_edition: "Printed edition: Inventory"
     libretti_handwritten: "Manuscript: Libretto/song text"
     libretti_printed: Libretti, printed
