@@ -226,20 +226,30 @@ pl:
   authorization_tokens: Auth tokens
   available_templates: Dostępne szablony
   template_selection:
-    columns:
-      manuscript: Materiały rękopiśmienne
-      printed: Materiały drukowane
-    rows:
-      notated_music: Muzyka notowana
-      librettos_song_texts: Libretta/teksty pieśni
-      treatises: Traktaty
-      inventories: Inwentarze
-      mixed: Mieszane
     links:
+      columns:
+        manuscript: Materiały rękopiśmienne
+        printed: Materiały drukowane
+      rows:
+        notated_music: Muzyka notowana
+        librettos_song_texts: Libretta/teksty pieśni
+        treatises: Traktaty
+        inventories: Inwentarze
+        mixed: Mieszane
       collection_parent: Kolekcja (rekord nadrzędny)
       collection_child: Pozycja w kolekcji (rekord podrzędny)
       single_item: Pojedynczy obiekt
       composite_volume: Wolumin zbiorczy
+      manuscript:
+        notated_music: Rękopis muzyczny
+        librettos_song_texts: Rękopis libretta/tekstu pieśni
+        treatises: Traktat rękopiśmienny
+        inventories: Inwentarz rękopiśmienny
+      printed:
+        notated_music: Muzyka drukowana
+        librettos_song_texts: Libretto drukowane
+        treatises: Traktat drukowany
+        inventories: Inwentarz drukowany
   backend_validation:
     031_incomplete: Numeracja tego 031 jest niekompletna (brakuje $a, $b lub $c)
     begin_with: To pole musi zaczynać się od prawidłowego ciągu znaków

@@ -226,20 +226,30 @@ fr:
   authorization_tokens: Auth tokens
   available_templates: Modèles disponibles
   template_selection:
-    columns:
-      manuscript: Matériel manuscrit
-      printed: Matériel imprimé
-    rows:
-      notated_music: Musique notée
-      librettos_song_texts: Livrets/Textes de chansons
-      treatises: Traités
-      inventories: Inventaires
-      mixed: Mixte
     links:
+      columns:
+        manuscript: Matériel manuscrit
+        printed: Matériel imprimé
+      rows:
+        notated_music: Musique notée
+        librettos_song_texts: Livrets/Textes de chansons
+        treatises: Traités
+        inventories: Inventaires
+        mixed: Mixte
       collection_parent: Collection (notice parent)
       collection_child: Élément d’une collection (notice enfant)
       single_item: Élément seul
       composite_volume: Volume composite
+      manuscript:
+        notated_music: Manuscrit musical
+        librettos_song_texts: Manuscrit de livret/texte de chanson
+        treatises: Traité manuscrit
+        inventories: Inventaire manuscrit
+      printed:
+        notated_music: Musique imprimée
+        librettos_song_texts: Livret imprimé
+        treatises: Traité imprimé
+        inventories: Inventaire imprimé
   backend_validation:
     031_incomplete: La numérotation de ce 031 est incomplète (il manque $a, $b ou $c)
     begin_with: Ce champ doit commencer par la chaîne correcte

@@ -226,20 +226,30 @@ es:
   authorization_tokens: Auth tokens
   available_templates: Plantillas disponibles
   template_selection:
-    columns:
-      manuscript: Materiales manuscritos
-      printed: Materiales impresos
-    rows:
-      notated_music: Música notada
-      librettos_song_texts: Libretos/Textos de canciones
-      treatises: Tratados
-      inventories: Inventarios
-      mixed: Mixto
     links:
+      columns:
+        manuscript: Materiales manuscritos
+        printed: Materiales impresos
+      rows:
+        notated_music: Música notada
+        librettos_song_texts: Libretos/Textos de canciones
+        treatises: Tratados
+        inventories: Inventarios
+        mixed: Mixto
       collection_parent: Colección (registro padre)
       collection_child: Elemento de una colección (registro hijo)
       single_item: Elemento individual
       composite_volume: Volumen misceláneo
+      manuscript:
+        notated_music: Manuscrito musical
+        librettos_song_texts: Manuscrito de libreto/texto de canción
+        treatises: Tratado manuscrito
+        inventories: Inventario manuscrito
+      printed:
+        notated_music: Música impresa
+        librettos_song_texts: Libreto impreso
+        treatises: Tratado impreso
+        inventories: Inventario impreso
   backend_validation:
     031_incomplete: La numeración de este 031 está incompleta (falta $a, $b o $c)
     begin_with: Este campo debe comenzar con la cadena correcta

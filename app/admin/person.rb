@@ -238,7 +238,7 @@ ActiveAdmin.register Person do
       value = active_admin_stored_from_hits(controller.view_assigns["hits"], person, :differentiated_order)
       case value
       when "DIF"
-        status_tag(:ok, label: "DIF")
+        status_tag(:dif, label: "DIF")
       when "UND"
         status_tag(:warning, label: "UND")
       else

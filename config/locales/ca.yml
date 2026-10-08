@@ -226,20 +226,30 @@ ca:
   authorization_tokens: Auth tokens
   available_templates: Platilles disponibles
   template_selection:
-    columns:
-      manuscript: Materials manuscrits
-      printed: Materials impresos
-    rows:
-      notated_music: Música notada
-      librettos_song_texts: Llibrets/Textos de cançons
-      treatises: Tractats
-      inventories: Inventaris
-      mixed: Mixt
     links:
+      columns:
+        manuscript: Materials manuscrits
+        printed: Materials impresos
+      rows:
+        notated_music: Música notada
+        librettos_song_texts: Llibrets/Textos de cançons
+        treatises: Tractats
+        inventories: Inventaris
+        mixed: Mixt
       collection_parent: Col·lecció (registre pare)
       collection_child: Element en una col·lecció (registre fill)
       single_item: Element individual
       composite_volume: Volum miscel·lani
+      manuscript:
+        notated_music: Manuscrit musical
+        librettos_song_texts: Manuscrit de llibret/text de cançó
+        treatises: Tractat manuscrit
+        inventories: Inventari manuscrit
+      printed:
+        notated_music: Música impresa
+        librettos_song_texts: Llibret imprès
+        treatises: Tractat imprès
+        inventories: Inventari imprès
   backend_validation:
     031_incomplete: La numeració d'aquest 031 és incompleta (falta $a, $b o $c)
     begin_with: Aquest camp ha de començar amb la cadena correcta

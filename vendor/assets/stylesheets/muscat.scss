@@ -102,6 +102,9 @@ body.active_admin {
     .status_tag.doubtful { background: #d74501; }
     .status_tag.fragment { background: #5a01d7; }
 
+    // in People, for diff/undiff
+    .status_tag.dif {background: #c6def5}
+
     // For Work Catalog in Publications
     .status_tag.not_work_catalogue { background: #aea5a5; }
     .status_tag.work_catalogue_in_preparation { background: #d75a01; }

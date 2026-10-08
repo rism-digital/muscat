@@ -226,20 +226,30 @@ de:
   authorization_tokens: Auth tokens
   available_templates: Verfügbare Vorlagen
   template_selection:
-    columns:
-      manuscript: Manuskriptmaterialien
-      printed: Gedruckte Materialien
-    rows:
-      notated_music: Notierte Musik
-      librettos_song_texts: Libretti/Liedtexte
-      treatises: Abhandlungen
-      inventories: Inventare
-      mixed: Gemischt
     links:
+      columns:
+        manuscript: Manuskriptmaterialien
+        printed: Gedruckte Materialien
+      rows:
+        notated_music: Notierte Musik
+        librettos_song_texts: Libretti/Liedtexte
+        treatises: Abhandlungen
+        inventories: Inventare
+        mixed: Gemischt
       collection_parent: Sammlung (übergeordneter Datensatz)
       collection_child: Eintrag in einer Sammlung (untergeordneter Datensatz)
       single_item: Einzelobjekt
       composite_volume: Sammelband
+      manuscript:
+        notated_music: Musikhandschrift
+        librettos_song_texts: Libretto-/Liedtext-Handschrift
+        treatises: Handschriftliche Abhandlung
+        inventories: Handschriftliches Inventar
+      printed:
+        notated_music: Gedruckte Musik
+        librettos_song_texts: Gedrucktes Libretto
+        treatises: Gedruckte Abhandlung
+        inventories: Gedrucktes Inventar
   backend_validation:
     031_incomplete: Die Nummerierung dieses 031 ist unvollständig ($a, $b oder $c fehlt)
     begin_with: Dieses Feld muss mit der richtigen Zeichenfolge beginnen

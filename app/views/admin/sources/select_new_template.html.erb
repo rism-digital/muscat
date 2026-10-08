@@ -12,17 +12,19 @@
       <thead>
         <tr>
           <th scope="col"></th>
-          <th scope="col"><%= I18n.t("template_selection.columns.manuscript") %></th>
-          <th scope="col"><%= I18n.t("template_selection.columns.printed") %></th>
+          <th scope="col"><%= I18n.t("template_selection.links.columns.manuscript") %></th>
+          <th scope="col"><%= I18n.t("template_selection.links.columns.printed") %></th>
         </tr>
       </thead>
       <tbody>
         <% template_rows.each do |row_key, manuscript_groups, printed_groups| %>
           <% next if row_key == "inventories" && !can?(:create, InventoryItem) %>
           <tr class="template-selection-row">
-            <th scope="row"><%= I18n.t("template_selection.rows.#{row_key}") %></th>
+            <th scope="row"><%= I18n.t("template_selection.links.rows.#{row_key}") %></th>
             <% [manuscript_groups, printed_groups].each_with_index do |material_groups, column_index| %>
               <% inventory_row = row_key == "inventories" %>
+              <% material_type = column_index.zero? ? "manuscript" : "printed" %>
+              <% material_label = I18n.t("template_selection.links.#{material_type}.#{row_key}") %>
               <td>
                 <ul class="template-selection-options">
                   <% material_groups.each do |group_key| %>
@@ -33,15 +35,15 @@
                       <% end %>
                       <% if properties["sub_type"].present? %>
                         <li>
-                          <%= link_to I18n.t("template_selection.links.collection_parent"), new_resource_path(new_record_type: properties["record_type"]) %>
+                          <%= link_to "#{material_label}: #{I18n.t('template_selection.links.collection_parent')}", new_resource_path(new_record_type: properties["record_type"]) %>
                           <ul>
                             <% properties["sub_type"].each do |_sub_label, sub_properties| %>
-                              <li><%= link_to I18n.t("template_selection.links.collection_child"), new_resource_path(new_record_type: sub_properties["record_type"]) %></li>
+                              <li><%= link_to "#{material_label}: #{I18n.t('template_selection.links.collection_child')}", new_resource_path(new_record_type: sub_properties["record_type"]) %></li>
                             <% end %>
                           </ul>
                         </li>
                       <% else %>
-                        <% link_label = inventory_row ? I18n.t("record_types.#{properties["record_type"]}") : I18n.t("template_selection.links.single_item") %>
+                        <% link_label = inventory_row ? material_label : "#{material_label}: #{I18n.t('template_selection.links.single_item')}" %>
                         <li><%= link_to link_label, new_resource_path(new_record_type: properties["record_type"]) %></li>
                       <% end %>
                     <% end %>
@@ -54,7 +56,7 @@
         <% if templates["composite_volumes"] %>
           <% composite_volume = templates["composite_volumes"].values.first %>
           <tr class="template-selection-row template-selection-row-mixed">
-            <th scope="row"><%= I18n.t("template_selection.rows.mixed") %></th>
+            <th scope="row"><%= I18n.t("template_selection.links.rows.mixed") %></th>
             <td class="template-selection-mixed" colspan="2">
               <ul class="template-selection-options template-selection-mixed-options">
                 <li><%= link_to I18n.t("template_selection.links.composite_volume"), new_resource_path(new_record_type: composite_volume["record_type"]) %></li>
