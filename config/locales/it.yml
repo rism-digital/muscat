@@ -239,7 +239,7 @@ it:
       collection_parent: Collezione (record principale)
       collection_child: Voce in una collezione (record subordinato)
       single_item: Elemento singolo
-      composite_volume: Volume miscellaneo
+      composite_volume: Volume composito
       manuscript:
         notated_music: Manoscritto musicale
         librettos_song_texts: Manoscritto di libretto/testo di canzone
