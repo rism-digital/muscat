@@ -362,6 +362,18 @@ fr:
   digital_object_add: Ajouter
   digital_object_new: Ajouter une nouvelle objet numérique
   digital_objects: Objet numériques
+  digital_object_messages:
+    attach_from_record: Les objets numériques doivent être joints depuis une notice.
+    unsupported_model: "Type de notice liée non pris en charge : %{model}."
+    linked_record_not_found: La notice liée est introuvable.
+    record_has_no_incipits: Cette notice ne contient aucun incipit.
+    not_found: "L’objet numérique %{id} est introuvable."
+    item_added: "Élément ajouté avec succès (%{object_model} : %{object_id})."
+    operation_not_allowed: Opération non autorisée.
+    link_not_found: "Le lien de l’objet numérique %{id} est introuvable."
+    link_deleted: Lien supprimé avec succès.
+    link_delete_failed: "Impossible de supprimer le lien %{id}."
+    unattached: Objet non lié.
   do_ext_link_not_avail: "(Fichiers audio non disponibles depuis cet ordinateur)"
   do_ext_res_link: 'Ressources externes:'
   do_images_title: Images

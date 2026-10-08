@@ -37,7 +37,7 @@ ActiveAdmin.register DigitalObject do
     before_action only: [:new] do |item|
 
       if !params.include?(:digital_object) || !params[:digital_object].include?(:new_object_link_id) || !params[:digital_object].include?(:new_object_link_type)
-        flash[:error] = "Images or Incipits can only by attached from objects"
+        flash[:error] = I18n.t("digital_object_messages.attach_from_record")
         redirect_to collection_path
       end
 
@@ -50,7 +50,10 @@ ActiveAdmin.register DigitalObject do
       if @attachment_type == :incipit
         # We support only works and sources
         if params[:digital_object][:new_object_link_type] != "Source" && params[:digital_object][:new_object_link_type] != "Work"
-          raise ArgumentError, "Unsupported model #{params[:digital_object][:new_object_link_type]}"
+          raise ArgumentError, I18n.t(
+            "digital_object_messages.unsupported_model",
+            model: params[:digital_object][:new_object_link_type]
+          )
         end
 
         model = Source if params[:digital_object][:new_object_link_type] == "Source"
@@ -59,12 +62,12 @@ ActiveAdmin.register DigitalObject do
         begin
           @incipits = DigitalObject.incipits_for(model, params[:digital_object][:new_object_link_id])
         rescue ActiveRecord::RecordNotFound
-          flash[:error] = "Object does not exist"
+          flash[:error] = I18n.t("digital_object_messages.linked_record_not_found")
           redirect_to collection_path
         end
 
         if @incipits.empty?
-          flash[:error] = "Object contains no incipits"
+          flash[:error] = I18n.t("digital_object_messages.record_has_no_incipits")
           redirect_to collection_path
         end
       end
@@ -75,7 +78,9 @@ ActiveAdmin.register DigitalObject do
       begin
         @digital_object = DigitalObject.find(params[:id])
       rescue ActiveRecord::RecordNotFound
-        redirect_to admin_root_path, :flash => { :error => "#{I18n.t(:error_not_found)} (Digital object #{params[:id]})" }
+        redirect_to admin_root_path, :flash => {
+          error: I18n.t("digital_object_messages.not_found", id: params[:id])
+        }
         return
       end
 
@@ -90,7 +95,7 @@ ActiveAdmin.register DigitalObject do
           model = @digital_object.digital_object_links.first.object_link_type.constantize
           @incipits = DigitalObject.incipits_for(model, @digital_object.digital_object_links.first.object_link_id)
         rescue ActiveRecord::RecordNotFound
-          flash[:error] = "Object does not exist"
+          flash[:error] = I18n.t("digital_object_messages.linked_record_not_found")
           redirect_to collection_path
         end
       end
@@ -100,7 +105,9 @@ ActiveAdmin.register DigitalObject do
       begin
         @digital_object = DigitalObject.find(params[:id])
       rescue ActiveRecord::RecordNotFound
-        redirect_to admin_root_path, :flash => { :error => "#{I18n.t(:error_not_found)} (Digital object #{params[:id]})" }
+        redirect_to admin_root_path, :flash => {
+          error: I18n.t("digital_object_messages.not_found", id: params[:id])
+        }
         return
       end
     end
@@ -142,13 +149,17 @@ ActiveAdmin.register DigitalObject do
         dol = DigitalObjectLink.new(object_link_type: params[:object_model], object_link_id: params[:object_id],
                                     user: current_user, digital_object_id: params[:id])
         dol.save!
-        flash[:notice] = "Item added successfully, #{params[:object_model]}: #{params[:object_id]}"
+        flash[:notice] = I18n.t(
+          "digital_object_messages.item_added",
+          object_model: params[:object_model],
+          object_id: params[:object_id]
+        )
         redirect_to resource_path(params[:id])
       #rescue
       #  redirect_to resource_path(params[:id]), error: "Could not add, #{params[:object_model]}: #{params[:object_id]}"
       #end
     else
-      flash[:error] = "Operation not allowed"
+      flash[:error] = I18n.t("digital_object_messages.operation_not_allowed")
       redirect_to collection_path
     end
   end
@@ -160,22 +171,28 @@ ActiveAdmin.register DigitalObject do
         params[:digital_object_link_id]
       )
     rescue ActiveRecord::RecordNotFound
-      flash[:error] = "Could not find Digital Object Link #{params[:digital_object_link_id]}"
+      flash[:error] = I18n.t(
+        "digital_object_messages.link_not_found",
+        id: params[:digital_object_link_id]
+      )
       redirect_to resource_path(params[:id])
       return
     end
 
     unless can?(:destroy, dol)
-      flash[:error] = "Operation not allowed"
+      flash[:error] = I18n.t("digital_object_messages.operation_not_allowed")
       redirect_to collection_path
       return
     end
 
     begin
       dol.destroy!
-      flash[:notice] = "Link deleted successfully"
+      flash[:notice] = I18n.t("digital_object_messages.link_deleted")
     rescue ActiveRecord::RecordNotDestroyed
-      flash[:error] = "Could not delete link #{params[:digital_object_link_id]}"
+      flash[:error] = I18n.t(
+        "digital_object_messages.link_delete_failed",
+        id: params[:digital_object_link_id]
+      )
     end
 
     redirect_to resource_path(params[:id])
@@ -237,13 +254,13 @@ ActiveAdmin.register DigitalObject do
             column I18n.t(:linked_object) do |dol|
                 dol.description
             end	
-            column "ID" do |dol|
+            column I18n.t(:filter_id) do |dol|
               if dol.object_link_id
                 # Holdings have no "show" page so the DOs are shown in the "edit" page
                 action = dol.object_link_type == "Holding" ? :edit : :show
                 link_to dol.object_link_id, controller: dol.object_link_type.pluralize.underscore.downcase.to_sym, action: action, id: dol.object_link_id
               else
-                "Object unattached"
+                I18n.t("digital_object_messages.unattached")
               end
             end
             column "" do |dol|

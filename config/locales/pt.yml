@@ -362,6 +362,18 @@ pt:
   digital_object_add: Adicionar
   digital_object_new: Adicionar um novo objecto digital
   digital_objects: Objetos Digitais
+  digital_object_messages:
+    attach_from_record: Os objetos digitais devem ser anexados a partir de um registo.
+    unsupported_model: "Tipo de registo associado não suportado: %{model}."
+    linked_record_not_found: O registo associado não foi encontrado.
+    record_has_no_incipits: Este registo não contém incipits.
+    not_found: "Objeto digital %{id} não encontrado."
+    item_added: "Item adicionado com sucesso (%{object_model}: %{object_id})."
+    operation_not_allowed: Operação não permitida.
+    link_not_found: "Não foi encontrada a ligação do objeto digital %{id}."
+    link_deleted: Ligação eliminada com sucesso.
+    link_delete_failed: "Não foi possível eliminar a ligação %{id}."
+    unattached: Objeto não associado.
   do_ext_link_not_avail: "(Audio files not available from this location)"
   do_ext_res_link: 'External resources:'
   do_images_title: Images

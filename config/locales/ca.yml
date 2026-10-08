@@ -362,6 +362,18 @@ ca:
   digital_object_add: Afegir-lo
   digital_object_new: Afegir-hi un objecte digital
   digital_objects: Objectes digitals
+  digital_object_messages:
+    attach_from_record: Els objectes digitals s’han d’adjuntar des d’un registre.
+    unsupported_model: "Tipus de registre enllaçat no admès: %{model}."
+    linked_record_not_found: No s’ha trobat el registre enllaçat.
+    record_has_no_incipits: Aquest registre no conté cap íncipit.
+    not_found: "No s’ha trobat l’objecte digital %{id}."
+    item_added: "Element afegit correctament (%{object_model}: %{object_id})."
+    operation_not_allowed: Operació no permesa.
+    link_not_found: "No s’ha trobat l’enllaç de l’objecte digital %{id}."
+    link_deleted: Enllaç suprimit correctament.
+    link_delete_failed: "No s’ha pogut suprimir l’enllaç %{id}."
+    unattached: Objecte no enllaçat.
   do_ext_link_not_avail: "(Fitxers d'àudio no accessibles des d'aquesta ubicació)"
   do_ext_res_link: 'Recursos externs:'
   do_images_title: Imatges

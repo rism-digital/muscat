@@ -380,6 +380,18 @@ en:
   digital_object_add: Add
   digital_object_new: Add a new digital object
   digital_objects: Digital objects
+  digital_object_messages:
+    attach_from_record: Attach digital objects from a record.
+    unsupported_model: "Unsupported linked record type: %{model}."
+    linked_record_not_found: The linked record could not be found.
+    record_has_no_incipits: This record contains no incipits.
+    not_found: "Digital object %{id} could not be found."
+    item_added: "Item added successfully (%{object_model}: %{object_id})."
+    operation_not_allowed: Operation not allowed.
+    link_not_found: "Digital object link %{id} could not be found."
+    link_deleted: Link deleted successfully.
+    link_delete_failed: "Could not delete link %{id}."
+    unattached: Object unattached.
   do_ext_link_not_avail: "(Audio files not available from this location)"
   do_ext_res_link: 'External resources:'
   do_images_title: Images

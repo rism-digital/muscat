@@ -362,6 +362,18 @@ pl:
   digital_object_add: Dodaj
   digital_object_new: Dodaj nowy obiektu cyfrowego
   digital_objects: Obiekty cyfrowe
+  digital_object_messages:
+    attach_from_record: Obiekty cyfrowe należy dołączać z poziomu rekordu.
+    unsupported_model: "Nieobsługiwany typ powiązanego rekordu: %{model}."
+    linked_record_not_found: Nie znaleziono powiązanego rekordu.
+    record_has_no_incipits: Ten rekord nie zawiera incipitów.
+    not_found: "Nie znaleziono obiektu cyfrowego %{id}."
+    item_added: "Element został dodany (%{object_model}: %{object_id})."
+    operation_not_allowed: Niedozwolona operacja.
+    link_not_found: "Nie znaleziono powiązania obiektu cyfrowego %{id}."
+    link_deleted: Powiązanie zostało usunięte.
+    link_delete_failed: "Nie można usunąć powiązania %{id}."
+    unattached: Obiekt niepowiązany.
   do_ext_link_not_avail: "(Pliki audio niedostępne z tej lokalizacji)"
   do_ext_res_link: 'Zasoby zewnętrzne:'
   do_images_title: Obrazy

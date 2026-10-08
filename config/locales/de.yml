@@ -362,6 +362,18 @@ de:
   digital_object_add: Hinzufügen
   digital_object_new: Neues Digitales Objekt hinzufügen
   digital_objects: Digitale Objekte
+  digital_object_messages:
+    attach_from_record: Digitale Objekte müssen von einem Datensatz aus angehängt werden.
+    unsupported_model: "Nicht unterstützter Verknüpfungstyp: %{model}."
+    linked_record_not_found: Der verknüpfte Datensatz wurde nicht gefunden.
+    record_has_no_incipits: Dieser Datensatz enthält keine Incipits.
+    not_found: "Das digitale Objekt %{id} wurde nicht gefunden."
+    item_added: "Eintrag erfolgreich hinzugefügt (%{object_model}: %{object_id})."
+    operation_not_allowed: Vorgang nicht zulässig.
+    link_not_found: "Die Verknüpfung des digitalen Objekts %{id} wurde nicht gefunden."
+    link_deleted: Verknüpfung erfolgreich gelöscht.
+    link_delete_failed: "Verknüpfung %{id} konnte nicht gelöscht werden."
+    unattached: Objekt nicht verknüpft.
   do_ext_link_not_avail: "(Audio-Dateien sind hier nicht verfügbar.)"
   do_ext_res_link: 'Externer Link:'
   do_images_title: Bilder

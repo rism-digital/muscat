@@ -362,6 +362,18 @@ it:
   digital_object_add: Aggiungi
   digital_object_new: Aggiungi un nuovo Oggetto Digitale
   digital_objects: Oggetti Digitali
+  digital_object_messages:
+    attach_from_record: Gli oggetti digitali devono essere allegati da un record.
+    unsupported_model: "Tipo di record collegato non supportato: %{model}."
+    linked_record_not_found: Il record collegato non è stato trovato.
+    record_has_no_incipits: Questo record non contiene incipit.
+    not_found: "Oggetto digitale %{id} non trovato."
+    item_added: "Elemento aggiunto con successo (%{object_model}: %{object_id})."
+    operation_not_allowed: Operazione non consentita.
+    link_not_found: "Collegamento dell’oggetto digitale %{id} non trovato."
+    link_deleted: Collegamento eliminato correttamente.
+    link_delete_failed: "Impossibile eliminare il collegamento %{id}."
+    unattached: Oggetto non collegato.
   do_ext_link_not_avail: "(File audio non disponibile da questa postazione)"
   do_ext_res_link: 'Collegamenti esterni:'
   do_images_title: Immagini
