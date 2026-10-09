@@ -25,7 +25,7 @@
               <% inventory_row = row_key == "inventories" %>
               <% material_type = column_index.zero? ? "manuscript" : "printed" %>
               <% material_label = I18n.t("template_selection.links.#{material_type}.#{row_key}") %>
-              <td>
+              <td data-column-label="<%= I18n.t("template_selection.links.columns.#{material_type}") %>">
                 <ul class="template-selection-options">
                   <% material_groups.each do |group_key| %>
                     <% templates.fetch(group_key, {}).each do |_label, properties| %>
