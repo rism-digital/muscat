@@ -16,7 +16,7 @@ else
   if src
     name = "Source: #{src.id} #{src.composer} - #{src.std_title}"
   else
-    name = "Could not find Source #{marc_subfield.content}"
+    name = "Child source #{marc_subfield.content} is not linked to this source (was it moved?)"
   end
   
 end
