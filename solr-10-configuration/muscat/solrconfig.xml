@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config>
+    <!-- Solr 10.0 ships with Lucene 10.3.1. -->
+    <luceneMatchVersion>10.3.1</luceneMatchVersion>
+
+    <!-- Keep the checked-in schema authoritative and read-only at runtime. -->
+    <schemaFactory class="ClassicIndexSchemaFactory"/>
+
+    <!-- Sunspot's search requests use /select; default components include query and facets. -->
+    <requestHandler name="/select" class="solr.SearchHandler">
+        <lst name="defaults">
+            <str name="echoParams">explicit</str>
+            <int name="rows">10</int>
+        </lst>
+    </requestHandler>
+
+    <!-- Solr 10's standard transaction log and hard/soft commit defaults. -->
+    <updateHandler class="solr.DirectUpdateHandler2">
+        <updateLog>
+            <str name="dir">${solr.ulog.dir:}</str>
+        </updateLog>
+        <autoCommit>
+            <maxTime>${solr.autoCommit.maxTime:15000}</maxTime>
+            <openSearcher>false</openSearcher>
+        </autoCommit>
+        <autoSoftCommit>
+            <maxTime>${solr.autoSoftCommit.maxTime:3000}</maxTime>
+        </autoSoftCommit>
+    </updateHandler>
+</config>

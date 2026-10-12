@@ -247,6 +247,22 @@ It should be in public/system. It can be a symlink to another place. The credent
 
 As of Muscat 7.1, external Solr 8.8 installations are now supported. This allows, for instance, the use of a Solr cluster hosted on a separate server. While the internal Solr 5.5 server remains functional, it will no longer be supported in the future due to its outdated status and compatibility issues with modern Java versions. Muscat's core is designed to work with any Solr installation; the following example outlines a sample installation procedure, which should be customized to suit individual setups.
 
+### Solr 10 configuration
+
+For Solr 10, copy the complete `solr-10-configuration/muscat` directory from the Muscat checkout into Solr's core home. With an unpacked binary distribution, the core home is `<SOLR_INSTALL_DIR>/server/solr`; with the service installation below using `-d /data/solr`, it is `/data/solr/data`:
+
+```sh
+# Unpacked binary distribution
+SOLR_INSTALL_DIR=/path/to/solr-10.0.0
+cp -R "$MUSCAT_HOME/solr-10-configuration/muscat" "$SOLR_INSTALL_DIR/server/solr/"
+
+# Service installation with -d /data/solr
+cp -R "$MUSCAT_HOME/solr-10-configuration/muscat" /data/solr/data/
+chown -R solr:solr /data/solr/data/muscat
+```
+
+Enable the ICU analyzers by setting `SOLR_MODULES=analysis-extras` in Solr's startup include file. For an unpacked binary, add it to `<SOLR_INSTALL_DIR>/bin/solr.in.sh`; for the service installation, add it to `/etc/default/solr.in.sh` (or `/etc/default/<service-name>.in.sh` if the service has a custom name). The Muscat core is standalone: when starting from a terminal, use `bin/solr start --user-managed`; for a service installation, add `--user-managed` to the generated systemd unit's `ExecStart`. Solr 10 otherwise defaults to SolrCloud mode. Use Java 21, restart Solr after changing its startup settings, and perform a full Sunspot reindex after switching to this configuration.
+
 ### Installation using a "stock" solr using included setup script
 
 **NOTE** this was tested on Linux distributions only. Grab a copy of the official distribution (8.11.4 at the time of writing) and unpack it in a suitable place. This is run as root or with sudo.
