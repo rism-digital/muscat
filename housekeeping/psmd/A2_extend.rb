@@ -177,7 +177,7 @@ CSV.parse(File.read("housekeeping/psmd/enhance_list.tsv"), col_sep: "\t", header
         psmd_manuscript_ext_id: ms["ext_id"],
         psmd_manuscript_id: ms["id"],
         holding_count: added_588.count,
-        holding_sigla: added_588.map(&:lib_siglum).compact.join("; "),
+        holding_sigla: added_588.join("; "),
         action: "Added 588 from PSMD"
       )
 
