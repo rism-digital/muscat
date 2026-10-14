@@ -170,6 +170,17 @@ CSV.parse(File.read("housekeeping/psmd/enhance_list.tsv"), col_sep: "\t", header
         source.marc.add_tag_with_subfields("588", a: siglum)
         added_588 << siglum
       end
+
+      PsmdConversion.log_event(
+        :unlisted_consulted_source,
+        muscat_source_id: source.id,
+        psmd_manuscript_ext_id: ms["ext_id"],
+        psmd_manuscript_id: ms["id"],
+        holding_count: added_588.count,
+        holding_sigla: added_588.map(&:lib_siglum).compact.join("; "),
+        action: "Added 588 from PSMD"
+      )
+
     end
   else
     holdings = source.holdings.reload.to_a
@@ -180,12 +191,12 @@ CSV.parse(File.read("housekeeping/psmd/enhance_list.tsv"), col_sep: "\t", header
       elsif !siglum.empty?
         source.marc.add_tag_with_subfields("588", a: siglum)
         added_588 << siglum
-        action = "added single holding lib_siglum to 588"
+        action = "UNICUM: added single holding lib_siglum to 588"
       else
         action = "single holding has no lib_siglum"
       end
     elsif holdings.length > 1
-      action = has_588 ? "multiple holdings; existing 588 retained" : "multiple holdings; 588 not added"
+      action = has_588 ? "NOT UNICUM; existing 588 retained" : "NOT UNICUM; 588 not added"
     end
 
     if holdings.length > 0

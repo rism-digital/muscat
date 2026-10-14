@@ -54,7 +54,7 @@ module PsmdConversion
       headers: %w[muscat_parent_source_id psmd_manuscript_ext_id psmd_manuscript_id psmd_institution_id siglum shelfmark material_held]
     },
     unlisted_consulted_source: {
-      name: "Unlisted consulted sources",
+      name: "588 copy consulted results",
       headers: %w[muscat_source_id psmd_manuscript_ext_id psmd_manuscript_id holding_count holding_sigla action]
     },
     existing_holding: {
