@@ -114,7 +114,12 @@ CSV.parse(File.read("housekeeping/psmd/enhance_list.tsv"), col_sep: "\t", header
   old = MarcGndWork.new(ms["source"])
   old.load_source false
 
-  source = Source.find(r[:muscat_id])
+  begin
+    source = Source.find(r[:muscat_id])
+  rescue ActiveRecord::RecordNotFound
+    warn "Source #{r[:muscat_id]} was deleted".red
+    next
+  end
   PsmdConversion.update_log_context(current_muscat_source_id: source.id)
 
   PsmdConversion.copy_from_source_marc(

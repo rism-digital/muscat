@@ -925,7 +925,7 @@ def create_holding_records(source, old, ms, folder = nil)
     marc.by_tags("500").each {|t| t.destroy_yourself}
 
     marc.add_tag_with_subfields("852", x: muscat_id, c: shelfmark, q: material_held)
-    #marc.add_tag_with_subfields("599", a: "Created from PSMD manuscripts/#{ms["ext_id"]} (internal id #{ms["id"]})")
+    marc.add_tag_with_subfields("599", a: "Source: Holdings added from PSMD import (November 2026)")
 
     t["z"].each do |note|
       marc.add_tag_with_subfields("500", a: note&.content)
