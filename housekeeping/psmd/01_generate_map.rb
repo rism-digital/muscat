@@ -4249,7 +4249,12 @@ people_map = {
 
 CSV.parse(lines, col_sep: "\t", headers: %i[psmd muscat]).each do |r|
 
-  s = Source.find(r[:muscat])
+  begin
+    s = Source.find(r[:muscat])
+  rescue ActiveRecord::RecordNotFound
+    warn "#{r[:muscat]} was deleted"
+    next
+  end
   psmd = legacy.find(:manuscripts, r[:psmd].to_i)
 
   old = MarcSource.new(psmd["source"], 8)
