@@ -53,6 +53,10 @@ module PsmdConversion
       name: "Unknown sigla",
       headers: %w[muscat_parent_source_id psmd_manuscript_ext_id psmd_manuscript_id psmd_institution_id siglum shelfmark material_held]
     },
+    unlisted_consulted_source: {
+      name: "Unlisted consulted sources",
+      headers: %w[muscat_source_id psmd_manuscript_ext_id psmd_manuscript_id holding_count holding_sigla action]
+    },
     existing_holding: {
       name: "Existing holdings",
       headers: %w[muscat_parent_source_id psmd_manuscript_ext_id psmd_manuscript_id muscat_institution_id siglum existing_holding_ids shelfmark]

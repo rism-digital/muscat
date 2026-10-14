@@ -87,6 +87,13 @@ modified_sources = Folder.new(:name => "PSMD Extended sources " + DateTime.now.t
 modified_sources_saved = modified_sources.save
 PsmdConversion.log_persistence_error(modified_sources) unless modified_sources_saved
 
+consulted_sigla_by_source_id = Hash.new { |hash, key| hash[key] = [] }
+CSV.foreach(File.join(__dir__, "copy_consulted_enhance.csv")) do |row|
+  muscat_id = row[0].to_s.split("/").last
+  consulted_sigla_by_source_id[muscat_id].concat(row[1].to_s.split(";").map(&:strip).reject(&:empty?))
+end
+consulted_sigla_by_source_id.each_value(&:uniq!)
+
 CSV.parse(File.read("housekeeping/psmd/enhance_list.tsv"), col_sep: "\t", headers: %i[psmd_id muscat_id]).each do |r|
 
   ms = PsmdConversion.legacy.find(:manuscripts, r[:psmd_id])
@@ -149,6 +156,56 @@ CSV.parse(File.read("housekeeping/psmd/enhance_list.tsv"), col_sep: "\t", header
   modified_sources.add_item(source)
   
   PsmdConversion.create_holding_records(source, old, ms, holding_folder)
+
+  added_588 = []
+  has_588 = !source.marc["588"].empty?
+  if consulted_sigla_by_source_id.key?(source.id.to_s)
+    unless has_588
+      consulted_sigla_by_source_id[source.id.to_s].each do |siglum|
+        source.marc.add_tag_with_subfields("588", a: siglum)
+        added_588 << siglum
+      end
+    end
+  else
+    holdings = source.holdings.reload.to_a
+    if holdings.length == 1
+      siglum = holdings.first.lib_siglum.to_s.strip
+      if has_588
+        action = "588 already exists; no siglum added"
+      elsif !siglum.empty?
+        source.marc.add_tag_with_subfields("588", a: siglum)
+        added_588 << siglum
+        action = "added single holding lib_siglum to 588"
+      else
+        action = "single holding has no lib_siglum"
+      end
+    elsif holdings.length > 1
+      action = has_588 ? "multiple holdings; existing 588 retained" : "multiple holdings; 588 not added"
+    end
+
+    if holdings.length > 0
+      PsmdConversion.log_event(
+        :unlisted_consulted_source,
+        muscat_source_id: source.id,
+        psmd_manuscript_ext_id: ms["ext_id"],
+        psmd_manuscript_id: ms["id"],
+        holding_count: holdings.length,
+        holding_sigla: holdings.map(&:lib_siglum).compact.join("; "),
+        action: action
+      )
+    end
+  end
+
+  unless added_588.empty?
+    source_saved = source.save
+    PsmdConversion.log_persistence_error(
+      source,
+      psmd_manuscript_ext_id: ms["ext_id"],
+      psmd_manuscript_id: ms["id"],
+      muscat_parent_source_id: source.id
+    ) unless source_saved
+    source.reindex
+  end
 
   existing_child_ids = source.child_sources.pluck(:id)
   if existing_child_ids.empty?
