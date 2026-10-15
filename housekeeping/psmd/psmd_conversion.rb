@@ -858,6 +858,11 @@ def create_holding_records(source, old, ms, folder = nil)
     material_held = t["3"]&.first&.content
   #notes = t["z"]&.first&.content
     shelfmark = t["p"]&.first&.content
+
+    if shelfmark == nil || shelfmark.empty?
+      shelfmark = "[no indication]"
+    end
+
     update_log_context(
       current_psmd_institution_id: id,
       current_siglum: t["a"]&.first&.content
