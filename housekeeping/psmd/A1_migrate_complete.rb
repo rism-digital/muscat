@@ -156,6 +156,18 @@ copy_map = [
   }, 
 ]
 
+source_folder = Folder.new(:name => "PSMD Created sources " + DateTime.now.to_s, :folder_type => "Source", wf_owner: PsmdConversion::USER_ID)
+source_folder_saved = source_folder.save
+PsmdConversion.log_persistence_error(source_folder) unless source_folder_saved
+
+holding_folder = Folder.new(:name => "PSMD Created holdings " + DateTime.now.to_s, :folder_type => "Holding", wf_owner: PsmdConversion::USER_ID)
+holding_folder_saved = holding_folder.save
+PsmdConversion.log_persistence_error(holding_folder) unless holding_folder_saved
+
+child_folder = Folder.new(:name => "PSMD Created child records " + DateTime.now.to_s, :folder_type => "Source", wf_owner: PsmdConversion::USER_ID)
+child_folder_saved = child_folder.save
+PsmdConversion.log_persistence_error(child_folder) unless child_folder_saved
+
 the_short_list.each do |m|
   
   ms = PsmdConversion.legacy.find(:manuscripts, m)
@@ -203,6 +215,7 @@ the_short_list.each do |m|
     psmd_manuscript_id: ms["id"]
   ) unless source_saved
   source.reindex
+  source_folder.add_item(source) if source_saved && source_folder_saved
   PsmdConversion.log_event(
     :source_mapping,
     action: source_saved ? "created" : "create failed",
@@ -215,8 +228,8 @@ the_short_list.each do |m|
 
   PsmdConversion.attach_508_markdown(old, source, ms["ext_id"], psmd_manuscript_id: ms["id"])
   
-  PsmdConversion.create_holding_records(source, old, ms)
+  PsmdConversion.create_holding_records(source, old, ms, holding_folder)
 
-  PsmdConversion.migrate_child_records(source, old, ms)
+  PsmdConversion.migrate_child_records(source, old, ms, child_folder)
 
 end
