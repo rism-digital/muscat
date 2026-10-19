@@ -303,7 +303,7 @@ def convert_weird_characters(text)
 end
 
 def sanitize_weird_text(title)
-  convert_weird_characters(ActionView::Base.full_sanitizer.sanitize(title))
+  convert_weird_characters(ActionView::Base.full_sanitizer.sanitize(title)).gsub("&amp;", "&")
 end
 
 def convert_508_html_to_markdown(content)
