@@ -1,4 +1,5 @@
 require_relative 'legacy_file.rb'
+require "cgi"
 require "reverse_markdown"
 require "stringio"
 require "fileutils"
@@ -303,7 +304,7 @@ def convert_weird_characters(text)
 end
 
 def sanitize_weird_text(title)
-  convert_weird_characters(ActionView::Base.full_sanitizer.sanitize(title)).gsub("&amp;", "&")
+  convert_weird_characters(CGI.unescapeHTML(ActionView::Base.full_sanitizer.sanitize(title)))
 end
 
 def convert_508_html_to_markdown(content)
