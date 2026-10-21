@@ -1,9 +1,28 @@
+require "json"
+
 # include the override for group_values
 # FIXME on rails 7.0, do we still need this?
 #require 'patches/sunspot/search/paginated_collection.rb'
 
 module ActiveAdmin::ViewsHelper
   include ActiveAdmin::CommentsHelper
+
+  COUNTRY_CODE_MAPPING = JSON.parse(Rails.root.join("config/country_code_mapping.json").read).freeze
+
+  def active_admin_workgroup_countries(user)
+    country_counts = Hash.new(0)
+
+    user.workgroups.flat_map(&:institutions).uniq(&:siglum).each do |institution|
+      siglum_country_code = institution.siglum.to_s.split("-", 2).first.upcase
+      country = COUNTRY_CODE_MAPPING.dig(siglum_country_code, 0)
+      country_counts[country] += 1 if country.present?
+    end
+
+    country_counts
+      .sort_by { |country, count| [-count, country] }
+      .map(&:first)
+      .join(", ")
+  end
   
   # This is repeated the same everywhere, so we just make one function with the contents
   def active_admin_embedded_source_list(context, item, enable_view_src = true)

@@ -62,6 +62,7 @@ ActiveAdmin.register User do
 
     def scoped_collection
       super
+        .preload(workgroups: :institutions)
         .left_joins(:roles)
         .select(<<~SQL.squish)
           users.*,
@@ -294,6 +295,9 @@ ActiveAdmin.register User do
         end,
         ", "
       )
+    end
+    column I18n.t(:filter_country) do |user|
+      active_admin_workgroup_countries(user)
     end
     column I18n.t(:roles), sortable: "role_sort_name" do |user|
       user.get_roles.join(", ")

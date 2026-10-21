@@ -37,10 +37,10 @@ ActiveAdmin.register_page "Statistics" do
       end
       if !@workgroup
         @att = :workgroup
-        users = User.where.not(:id => 1).joins(:workgroups).order('workgroups.name', :name)
+        users = User.where.not(:id => 1).joins(:workgroups).preload(workgroups: :institutions).order('workgroups.name', :name)
       else
         @att = :name
-        users = User.where.not(:id => 1).joins(:workgroups).where('workgroups.id' => @workgroup).order('workgroups.name', :name)
+        users = User.where.not(:id => 1).joins(:workgroups).where('workgroups.id' => @workgroup).preload(workgroups: :institutions).order('workgroups.name', :name)
       end
       stats_source = Statistics::User.sources_by_month(@from_date.beginning_of_month, @to_date, users)
       @statistic_sources = Statistics::Spreadsheet.new(stats_source)

@@ -1,4 +1,9 @@
 collection = stats.to_table :attributes => [:id, :name, :email, :workgroup], :summarize => true
+country_column_index = collection.first.index(:workgroup) + 1
+collection.first.insert(country_column_index, I18n.t(:filter_country))
+stats.objects.each_with_index do |item, index|
+  collection[index + 1].insert(country_column_index, active_admin_workgroup_countries(item.object))
+end
 random_string = SecureRandom.hex[0,4]
 time = Time.now.strftime('%Y-%m-%d')
 
