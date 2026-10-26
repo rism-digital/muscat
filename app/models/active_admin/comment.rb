@@ -5,6 +5,10 @@ require "json"
 class ActiveAdmin::Comment
   before_validation :normalize_rich_text_payload
 
+  # Make json attribute compatible with both MySQL and MariaDB
+  attribute :body_json, :json
+  attribute :mentioned_user_ids, :json
+
   def body_json_document
     case body_json
     when String
