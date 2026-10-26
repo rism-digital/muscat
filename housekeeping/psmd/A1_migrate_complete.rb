@@ -200,6 +200,15 @@ the_short_list.each do |m|
   new.add_tag_with_subfields("599", a: "Created from PSMD manuscripts/#{ms["ext_id"]} (internal id #{ms["id"]})")
   #new.add_tag_with_subfields("691", "0": 50006603, u: "http://printed-sacred-music.org/manuscripts/#{ms["ext_id"]}")
   new.add_tag_with_subfields("910", "0": 51009572)
+  new.add_tag_with_subfields("599", a: "Source: Record added from PSMD import (November 2026)")
+  new.add_tag_with_subfields("593", a: "Print", b: "Notated music")
+
+  new["730"].each do |tag|
+    next if tag["a"].empty? || tag["g"].any? { |subfield| subfield.content == "RISM" }
+
+    tag.add_at(MarcNode.new("source", "g", "RISM", nil), tag.all_children.length)
+  end
+
   new.import
 
   source = Source.new
