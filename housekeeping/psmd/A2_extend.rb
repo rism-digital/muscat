@@ -5,7 +5,7 @@ copy_map = [
   {
     from: "005",
     to: "599",
-    subfields: { "a" => "a" }
+    subfields: { "a" => "a" },
   },
   #{
   #  from: "040",
@@ -16,28 +16,33 @@ copy_map = [
   {
     from: "240",
     to: "730",
-    subfields: {"a" => "a" }
+    subfields: {"a" => "a" },
+    overwrite: true
   },
   {
     from: "245",
     to: "245",
-    subfields: {"a" => "a" }
+    subfields: {"a" => "a" },
+    overwrite: true
   }, 
 
   {
     from: "260",
     to: "260",
-    subfields: {"a" => "a", "b" => "b", "c" => "c", "e" => "e", "f" => "f" }
+    subfields: {"a" => "a", "b" => "b", "c" => "c", "e" => "e", "f" => "f" },
+    overwrite: true
   }, 
   {
     from: "300",
     to: "300",
-    subfields: {"a" => "a", "b" => "b", "c" => "c" }
+    subfields: {"a" => "a", "b" => "b", "c" => "c" },
+    overwrite: true
   }, 
   {
     from: "340",
     to: "340",
-    subfields: {"d" => "d" }
+    subfields: {"d" => "d" },
+    overwrite: true
   },
   {
     from: "500",
@@ -47,30 +52,31 @@ copy_map = [
   {
     from: "505",
     to: "505",
-    subfields: {"a" => "a" }
+    subfields: {"a" => "a" },
   }, 
 
   {
     from: "599",
     to: "599",
-    subfields: {"a" => "a" }
+    subfields: {"a" => "a" },
   }, 
   {
     from: "650",
     to: "650",
-    subfields: {"a" => "a" }
+    subfields: {"a" => "a" },
+    overwrite: true
   }, 
   {
     from: "690",
     to: "690",
     subfields: {"a" => "a", "n" => "n", "0" => "0" },
-    map: PsmdConversion.publication_map
+    map: PsmdConversion.publication_map,
   }, 
   {
     from: "691",
     to: "691",
     subfields: { "a" => "a", "n" => "n", "0" => "0" },
-    map: PsmdConversion.publication_map
+    map: PsmdConversion.publication_map,
   },
 
 ]

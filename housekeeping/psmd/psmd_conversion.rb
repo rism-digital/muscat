@@ -474,7 +474,7 @@ def copy_from_source_marc(source, dest, copy_map, log_context: {})
         values["8"] = "01"
       end
 
-      unless destroyed[rule[:to]]
+      if rule[:overwrite] && !destroyed[rule[:to]]
         dest[rule[:to]].each(&:destroy_yourself) unless dest[rule[:to]].empty?
         destroyed[rule[:to]] = true
       end
