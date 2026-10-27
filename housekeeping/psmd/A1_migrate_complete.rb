@@ -176,11 +176,7 @@ the_short_list.each do |m|
     current_psmd_manuscript_id: ms && ms["id"]
   )
   unless ms
-    PsmdConversion.log_event(
-      :missing_legacy_reference,
-      record_type: "manuscript",
-      psmd_reference_id: m
-    )
+    PsmdConversion.log_event(:missing_legacy_reference, record_type: "manuscript", psmd_reference_id: m)
   end
 
   # GndWork loads ALL numbers as marc tags
@@ -225,14 +221,7 @@ the_short_list.each do |m|
   ) unless source_saved
   source.reindex
   source_folder.add_item(source) if source_saved && source_folder_saved
-  PsmdConversion.log_event(
-    :source_mapping,
-    action: source_saved ? "created" : "create failed",
-    psmd_input_id: m,
-    psmd_manuscript_ext_id: ms["ext_id"],
-    psmd_manuscript_id: ms["id"],
-    muscat_source_id: source.id
-  )
+  PsmdConversion.log_event(:source_mapping, action: source_saved ? "created" : "create failed", psmd_input_id: m, psmd_manuscript_ext_id: ms["ext_id"], psmd_manuscript_id: ms["id"], muscat_source_id: source.id)
   puts "PSMD #{m} to #{source.id}"
 
   PsmdConversion.attach_508_markdown(old, source, ms["ext_id"], psmd_manuscript_id: ms["id"])

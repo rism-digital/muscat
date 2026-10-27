@@ -114,11 +114,7 @@ CSV.parse(File.read("housekeeping/psmd/enhance_list.tsv"), col_sep: "\t", header
     current_muscat_source_id: r[:muscat_id]
   )
   unless ms
-    PsmdConversion.log_event(
-      :missing_legacy_reference,
-      record_type: "manuscript",
-      psmd_reference_id: r[:psmd_id]
-    )
+    PsmdConversion.log_event(:missing_legacy_reference, record_type: "manuscript", psmd_reference_id: r[:psmd_id])
   end
 
   # GndWork loads ALL numbers as marc tags
@@ -143,37 +139,20 @@ CSV.parse(File.read("housekeeping/psmd/enhance_list.tsv"), col_sep: "\t", header
   end
 
   if override_command
-    PsmdConversion.log_event(
-      :marc_override,
-      muscat_source_id: source.id,
-      psmd_id: r[:psmd_id],
-      command: override_command
-    )
+    PsmdConversion.log_event(:marc_override, muscat_source_id: source.id, psmd_id: r[:psmd_id], command: override_command)
   end
 
   if override_command == "keep"
     kept_tag_codes = copy_map.select { |rule| rule[:overwrite] }.map { |rule| rule[:to] }.uniq
     kept_tag_codes.each do |tag_code|
       source.marc[tag_code].each do |tag|
-        PsmdConversion.log_event(
-          :kept_marc_tag,
-          muscat_source_id: source.id,
-          command: override_command,
-          tag: tag_code,
-          kept_value: tag.to_marc.strip
-        )
+        PsmdConversion.log_event(:kept_marc_tag, muscat_source_id: source.id, command: override_command, tag: tag_code, kept_value: tag.to_marc.strip)
       end
     end
     copy_map_for_record = copy_map.reject { |rule| rule[:overwrite] }
   elsif move_245_to_pl_kj
     source.marc["245"].each do |tag|
-      PsmdConversion.log_event(
-        :kept_marc_tag,
-        muscat_source_id: source.id,
-        command: override_command,
-        tag: "245",
-        kept_value: tag.to_marc.strip
-      )
+      PsmdConversion.log_event(:kept_marc_tag, muscat_source_id: source.id, command: override_command, tag: "245", kept_value: tag.to_marc.strip)
     end
     move_245_values = old["245"].flat_map do |tag|
       tag["a"].map { |subfield| PsmdConversion.sanitize_weird_text(subfield.content.to_s) }
@@ -212,14 +191,7 @@ CSV.parse(File.read("housekeeping/psmd/enhance_list.tsv"), col_sep: "\t", header
     muscat_parent_source_id: source.id
   ) unless source_saved
   source.reindex
-  PsmdConversion.log_event(
-    :source_mapping,
-    action: source_saved ? "extended" : "extension failed",
-    psmd_input_id: r[:psmd_id],
-    psmd_manuscript_ext_id: ms["ext_id"],
-    psmd_manuscript_id: ms["id"],
-    muscat_source_id: source.id
-  )
+  PsmdConversion.log_event(:source_mapping, action: source_saved ? "extended" : "extension failed", psmd_input_id: r[:psmd_id], psmd_manuscript_ext_id: ms["ext_id"], psmd_manuscript_id: ms["id"], muscat_source_id: source.id)
   # LOG Migrated PSMD id to Muscat id
   puts "PSMD #{r[:psmd_id]} to #{source.id}"
 
@@ -231,27 +203,13 @@ CSV.parse(File.read("housekeeping/psmd/enhance_list.tsv"), col_sep: "\t", header
 
   if move_245_to_pl_kj
     if move_245_values.empty?
-      PsmdConversion.log_event(
-        :moved_245_holding,
-        muscat_source_id: source.id,
-        command: override_command,
-        holding_id: "",
-        action: "No 245$a to move",
-        value: ""
-      )
+      PsmdConversion.log_event(:moved_245_holding, muscat_source_id: source.id, command: override_command, holding_id: "", action: "No 245$a to move", value: "")
     else
       pl_kj_holdings = source.holdings.reload.to_a.select { |holding| holding.lib_siglum == "PL-Kj" }
 
       if pl_kj_holdings.empty?
         move_245_values.uniq.each do |value|
-          PsmdConversion.log_event(
-            :moved_245_holding,
-            muscat_source_id: source.id,
-            command: override_command,
-            holding_id: "",
-            action: "PL-Kj holding not found",
-            value: value
-          )
+          PsmdConversion.log_event(:moved_245_holding, muscat_source_id: source.id, command: override_command, holding_id: "", action: "PL-Kj holding not found", value: value)
         end
       else
         pl_kj_holdings.each do |holding|
@@ -260,14 +218,7 @@ CSV.parse(File.read("housekeeping/psmd/enhance_list.tsv"), col_sep: "\t", header
 
           move_245_values.uniq.each do |value|
             if existing_500_values.include?(value)
-              PsmdConversion.log_event(
-                :moved_245_holding,
-                muscat_source_id: source.id,
-                command: override_command,
-                holding_id: holding.id,
-                action: "Already present",
-                value: value
-              )
+              PsmdConversion.log_event(:moved_245_holding, muscat_source_id: source.id, command: override_command, holding_id: holding.id, action: "Already present", value: value)
             else
               holding.marc.add_tag_with_subfields("500", a: value)
               existing_500_values << value
@@ -287,14 +238,7 @@ CSV.parse(File.read("housekeeping/psmd/enhance_list.tsv"), col_sep: "\t", header
           end
 
           added_245_values.each do |value|
-            PsmdConversion.log_event(
-              :moved_245_holding,
-              muscat_source_id: source.id,
-              command: override_command,
-              holding_id: holding.id,
-              action: holding_saved ? "Added" : "Save failed",
-              value: value
-            )
+            PsmdConversion.log_event(:moved_245_holding, muscat_source_id: source.id, command: override_command, holding_id: holding.id, action: holding_saved ? "Added" : "Save failed", value: value)
           end
         end
       end
@@ -310,16 +254,9 @@ CSV.parse(File.read("housekeeping/psmd/enhance_list.tsv"), col_sep: "\t", header
         added_588 << siglum
       end
 
-      PsmdConversion.log_event(
-        :unlisted_consulted_source,
-        muscat_source_id: source.id,
-        psmd_manuscript_ext_id: ms["ext_id"],
-        psmd_manuscript_id: ms["id"],
-        holding_count: added_588.count,
-        holding_sigla: added_588.join("; "),
-        action: "Added 588 from PSMD"
-      )
-
+      PsmdConversion.log_event(:unlisted_consulted_source, muscat_source_id: source.id, psmd_manuscript_ext_id: ms["ext_id"], psmd_manuscript_id: ms["id"], holding_count: added_588.count, holding_sigla: added_588.join("; "), action: "Added 588 from PSMD")
+    else
+      PsmdConversion.log_event(:unlisted_consulted_source, muscat_source_id: source.id, psmd_manuscript_ext_id: ms["ext_id"], psmd_manuscript_id: ms["id"], holding_count: 0, holding_sigla: "", action: "588 already present")
     end
   else
     holdings = source.holdings.reload.to_a
@@ -339,15 +276,7 @@ CSV.parse(File.read("housekeeping/psmd/enhance_list.tsv"), col_sep: "\t", header
     end
 
     if holdings.length > 0
-      PsmdConversion.log_event(
-        :unlisted_consulted_source,
-        muscat_source_id: source.id,
-        psmd_manuscript_ext_id: ms["ext_id"],
-        psmd_manuscript_id: ms["id"],
-        holding_count: holdings.length,
-        holding_sigla: holdings.map(&:lib_siglum).compact.join("; "),
-        action: action
-      )
+      PsmdConversion.log_event(:unlisted_consulted_source, muscat_source_id: source.id, psmd_manuscript_ext_id: ms["ext_id"], psmd_manuscript_id: ms["id"], holding_count: holdings.length, holding_sigla: holdings.map(&:lib_siglum).compact.join("; "), action: action)
     end
   end
 
@@ -372,28 +301,12 @@ CSV.parse(File.read("housekeeping/psmd/enhance_list.tsv"), col_sep: "\t", header
       suggested_title = "#{count} #{rism_title}"
 
       # LOG proposed standard title
-      PsmdConversion.log_event(
-        :proposed_standard_title,
-        muscat_parent_source_id: source.id,
-        psmd_manuscript_ext_id: ms["ext_id"],
-        psmd_manuscript_id: ms["id"],
-        created_child_count: count,
-        rism_title: rism_title,
-        suggested_title: suggested_title,
-        psmd_title: psmd_title
-      )
+      PsmdConversion.log_event(:proposed_standard_title, muscat_parent_source_id: source.id, psmd_manuscript_ext_id: ms["ext_id"], psmd_manuscript_id: ms["id"], created_child_count: count, rism_title: rism_title, suggested_title: suggested_title, psmd_title: psmd_title)
       puts ["STDTITLE", source.id, ms["ext_id"], rism_title, suggested_title, psmd_title].join("\t")
     end
   else
     # LOG skipped child creation because parent has children
-    PsmdConversion.log_event(
-      :skipped_children,
-      muscat_parent_source_id: source.id,
-      psmd_manuscript_ext_id: ms["ext_id"],
-      psmd_manuscript_id: ms["id"],
-      existing_child_count: existing_child_ids.length,
-      existing_child_source_ids: existing_child_ids.join(",")
-    )
+    PsmdConversion.log_event(:skipped_children, muscat_parent_source_id: source.id, psmd_manuscript_ext_id: ms["ext_id"], psmd_manuscript_id: ms["id"], existing_child_count: existing_child_ids.length, existing_child_source_ids: existing_child_ids.join(","))
   end
 
   # MAke the GC happy? I guess?

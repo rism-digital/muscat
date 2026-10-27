@@ -149,16 +149,7 @@ module PsmdConversion
   end
 
   def log_persistence_error(record, **context)
-    log_event(
-      :persistence_error,
-      model: record.class.name,
-      record_id: record.id,
-      psmd_manuscript_ext_id: context[:psmd_manuscript_ext_id],
-      psmd_manuscript_id: context[:psmd_manuscript_id],
-      psmd_work_ext_id: context[:psmd_work_ext_id],
-      muscat_parent_source_id: context[:muscat_parent_source_id],
-      validation_errors: record.errors.full_messages.join("; ")
-    )
+    log_event(:persistence_error, model: record.class.name, record_id: record.id, psmd_manuscript_ext_id: context[:psmd_manuscript_ext_id], psmd_manuscript_id: context[:psmd_manuscript_id], psmd_work_ext_id: context[:psmd_work_ext_id], muscat_parent_source_id: context[:muscat_parent_source_id], validation_errors: record.errors.full_messages.join("; "))
   end
 
   def set_log_context(**values)
@@ -356,15 +347,7 @@ def attach_508_markdown(marc, source, psmd_id, psmd_manuscript_id: nil)
   markdown = extract_508_markdown(marc)
   tag_count = marc["508"].length
   if markdown.empty?
-    log_event(
-      :markdown_attachment,
-      status: "no usable 508 Markdown",
-      muscat_source_id: source.id,
-      psmd_manuscript_ext_id: psmd_id,
-      psmd_manuscript_id: psmd_manuscript_id,
-      tag_508_count: tag_count,
-      markdown_bytes: 0
-    )
+    log_event(:markdown_attachment, status: "no usable 508 Markdown", muscat_source_id: source.id, psmd_manuscript_ext_id: psmd_id, psmd_manuscript_id: psmd_manuscript_id, tag_508_count: tag_count, markdown_bytes: 0)
     return
   end
 
@@ -396,16 +379,7 @@ def attach_508_markdown(marc, source, psmd_id, psmd_manuscript_id: nil)
     digital_object
   end
 
-  log_event(
-    :markdown_attachment,
-    status: "attached",
-    muscat_source_id: source.id,
-    psmd_manuscript_ext_id: psmd_id,
-    psmd_manuscript_id: psmd_manuscript_id,
-    tag_508_count: tag_count,
-    markdown_bytes: markdown.bytesize,
-    digital_object_id: digital_object.id
-  )
+  log_event(:markdown_attachment, status: "attached", muscat_source_id: source.id, psmd_manuscript_ext_id: psmd_id, psmd_manuscript_id: psmd_manuscript_id, tag_508_count: tag_count, markdown_bytes: markdown.bytesize, digital_object_id: digital_object.id)
 end
 
 def copy_from_source_marc(source, dest, copy_map, log_context: {})
@@ -427,14 +401,7 @@ def copy_from_source_marc(source, dest, copy_map, log_context: {})
               # Do not preserve unmapped values
               name = source_tag["a"]&.first&.content
               puts "#{source_tag.tag} ID not mapped #{subfield.content}\t#{name}".red
-              log_event(
-                :unmapped_reference,
-                psmd_manuscript_ext_id: log_context[:psmd_manuscript_ext_id],
-                psmd_manuscript_id: log_context[:psmd_manuscript_id],
-                source_tag: source_tag.tag,
-                psmd_reference_id: subfield.content,
-                name: name
-              )
+              log_event(:unmapped_reference, psmd_manuscript_ext_id: log_context[:psmd_manuscript_ext_id], psmd_manuscript_id: log_context[:psmd_manuscript_id], source_tag: source_tag.tag, psmd_reference_id: subfield.content, name: name)
               #puts source_tag
               subfield.destroy_yourself
               dont_preserve = true
@@ -457,14 +424,7 @@ def copy_from_source_marc(source, dest, copy_map, log_context: {})
           st = StandardTitle.new(title: values[:a]&.first&.truncate(254), notes: "Created from PSMD parent")
           standard_title_saved = st.save
           (values["0"] ||= []) << st.id
-          log_event(
-            :new_standard_title,
-            standard_title_id: st.id,
-            title: st.title,
-            psmd_manuscript_ext_id: log_context[:psmd_manuscript_ext_id],
-            psmd_manuscript_id: log_context[:psmd_manuscript_id],
-            muscat_parent_source_id: log_context[:muscat_source_id]
-          ) if st.persisted?
+          log_event(:new_standard_title, standard_title_id: st.id, title: st.title, psmd_manuscript_ext_id: log_context[:psmd_manuscript_ext_id], psmd_manuscript_id: log_context[:psmd_manuscript_id], muscat_parent_source_id: log_context[:muscat_source_id]) if st.persisted?
           log_persistence_error(
             st,
             psmd_manuscript_ext_id: log_context[:psmd_manuscript_ext_id],
@@ -474,15 +434,7 @@ def copy_from_source_marc(source, dest, copy_map, log_context: {})
         else
           matched_title = st.first
           (values["0"] ||= []) << matched_title.id
-          log_event(
-            :matched_standard_title,
-            standard_title_id: matched_title.id,
-            matched_title: matched_title.title,
-            candidate_title: values[:a]&.first,
-            psmd_manuscript_ext_id: log_context[:psmd_manuscript_ext_id],
-            psmd_manuscript_id: log_context[:psmd_manuscript_id],
-            muscat_parent_source_id: log_context[:muscat_source_id]
-          )
+          log_event(:matched_standard_title, standard_title_id: matched_title.id, matched_title: matched_title.title, candidate_title: values[:a]&.first, psmd_manuscript_ext_id: log_context[:psmd_manuscript_ext_id], psmd_manuscript_id: log_context[:psmd_manuscript_id], muscat_parent_source_id: log_context[:muscat_source_id])
         end
       end
 
@@ -505,14 +457,7 @@ def copy_from_source_marc(source, dest, copy_map, log_context: {})
   overwritten_values.each do |tag, old_values|
     new_values = dest[tag].map { |marc_tag| marc_tag.to_marc.strip }
     [old_values.length, new_values.length].max.times do |index|
-      log_event(
-        :overwritten_marc_tag,
-        muscat_source_id: log_context[:muscat_source_id],
-        command: log_context[:override_command],
-        tag: tag,
-        old_value: old_values[index],
-        overwritten_value: new_values[index]
-      )
+      log_event(:overwritten_marc_tag, muscat_source_id: log_context[:muscat_source_id], command: log_context[:override_command], tag: tag, old_value: old_values[index], overwritten_value: new_values[index])
     end
   end
 
@@ -628,14 +573,7 @@ def migrate_child_records(source, old_marc, ms, folder = nil)
       current_siglum: nil
     )
     unless work
-      log_event(
-        :missing_legacy_reference,
-        record_type: "work",
-        muscat_parent_source_id: source.id,
-        psmd_manuscript_ext_id: ms["ext_id"],
-        psmd_manuscript_id: ms["id"],
-        psmd_reference_id: id
-      )
+      log_event(:missing_legacy_reference, record_type: "work", muscat_parent_source_id: source.id, psmd_manuscript_ext_id: ms["ext_id"], psmd_manuscript_id: ms["id"], psmd_reference_id: id)
     end
     incipits = legacy.where(:work_incipits, work_id: work["id"])
 
@@ -648,14 +586,7 @@ def migrate_child_records(source, old_marc, ms, folder = nil)
 
     person = legacy.find_by(:people, :id, work["person_id"].to_i)
     unless person
-      log_event(
-        :missing_legacy_reference,
-        record_type: "person",
-        muscat_parent_source_id: source.id,
-        psmd_manuscript_ext_id: ms["ext_id"],
-        psmd_manuscript_id: ms["id"],
-        psmd_reference_id: work["person_id"]
-      )
+      log_event(:missing_legacy_reference, record_type: "person", muscat_parent_source_id: source.id, psmd_manuscript_ext_id: ms["ext_id"], psmd_manuscript_id: ms["id"], psmd_reference_id: work["person_id"])
     end
 
     #ap person["ext_id"]
@@ -665,15 +596,7 @@ def migrate_child_records(source, old_marc, ms, folder = nil)
 
     if incipits.count == 0
       # LOG Skipped empty PSMD work ID
-      log_event(
-        :empty_psmd_work,
-        muscat_parent_source_id: source.id,
-        psmd_manuscript_ext_id: ms["ext_id"],
-        psmd_manuscript_id: ms["id"],
-        psmd_work_ext_id: work["ext_id"],
-        psmd_work_id: work["id"],
-        psmd_work_title: work["title"]
-      )
+      log_event(:empty_psmd_work, muscat_parent_source_id: source.id, psmd_manuscript_ext_id: ms["ext_id"], psmd_manuscript_id: ms["id"], psmd_work_ext_id: work["ext_id"], psmd_work_id: work["id"], psmd_work_title: work["title"])
       next
     end
 
@@ -681,34 +604,13 @@ def migrate_child_records(source, old_marc, ms, folder = nil)
       update_log_context(current_incipit_ext_id: incipit["ext_id"])
       pae_line = zip_get_named_file("incipits/pae/work_incipit_#{incipit["ext_id"]}.pae")
       if pae_line.nil?
-        log_event(
-          :missing_pae,
-          muscat_parent_source_id: source.id,
-          psmd_manuscript_ext_id: ms["ext_id"],
-          psmd_manuscript_id: ms["id"],
-          psmd_work_ext_id: work["ext_id"],
-          psmd_work_id: work["id"],
-          psmd_incipit_ext_id: incipit["ext_id"],
-          psmd_incipit_id: incipit["id"],
-          notation: incipit["notation"]
-        )
+        log_event(:missing_pae, muscat_parent_source_id: source.id, psmd_manuscript_ext_id: ms["ext_id"], psmd_manuscript_id: ms["id"], psmd_work_ext_id: work["ext_id"], psmd_work_id: work["id"], psmd_incipit_ext_id: incipit["ext_id"], psmd_incipit_id: incipit["id"], notation: incipit["notation"])
       end
       pae = mini_parse_pae(pae_line)
       time_signature_code = incipit["notation"].to_s[/!M(?:C\/?|[0-9]+:[0-9]+)/]
       time_signature = darms_timesig_to_pae(incipit["notation"])
       if time_signature_code && time_signature.nil?
-        log_event(
-          :unsupported_timesig,
-          muscat_parent_source_id: source.id,
-          psmd_manuscript_ext_id: ms["ext_id"],
-          psmd_manuscript_id: ms["id"],
-          psmd_work_ext_id: work["ext_id"],
-          psmd_work_id: work["id"],
-          psmd_incipit_ext_id: incipit["ext_id"],
-          psmd_incipit_id: incipit["id"],
-          time_signature: time_signature_code,
-          notation: incipit["notation"]
-        )
+        log_event(:unsupported_timesig, muscat_parent_source_id: source.id, psmd_manuscript_ext_id: ms["ext_id"], psmd_manuscript_id: ms["id"], psmd_work_ext_id: work["ext_id"], psmd_work_id: work["id"], psmd_incipit_ext_id: incipit["ext_id"], psmd_incipit_id: incipit["id"], time_signature: time_signature_code, notation: incipit["notation"])
       end
       
       marc.add_tag_with_subfields("031", 
@@ -732,15 +634,7 @@ def migrate_child_records(source, old_marc, ms, folder = nil)
     end
 
     if std_title_candidate.to_s.empty?
-      log_event(
-        :missing_standard_title,
-        muscat_parent_source_id: source.id,
-        psmd_manuscript_ext_id: ms["ext_id"],
-        psmd_manuscript_id: ms["id"],
-        psmd_work_ext_id: work["ext_id"],
-        psmd_work_id: work["id"],
-        psmd_work_title: work["title"]
-      )
+      log_event(:missing_standard_title, muscat_parent_source_id: source.id, psmd_manuscript_ext_id: ms["ext_id"], psmd_manuscript_id: ms["id"], psmd_work_ext_id: work["ext_id"], psmd_work_id: work["id"], psmd_work_title: work["title"])
     end
     st_id = nil
 
@@ -753,16 +647,7 @@ def migrate_child_records(source, old_marc, ms, folder = nil)
         standard_title_saved = st.save
         st_id = st.id
         # LOG Created new StandardTitle
-        log_event(
-          :new_standard_title,
-          standard_title_id: st_id,
-          title: std_title_candidate,
-          psmd_work_ext_id: work["ext_id"],
-          psmd_work_id: work["id"],
-          psmd_manuscript_ext_id: ms["ext_id"],
-          psmd_manuscript_id: ms["id"],
-          muscat_parent_source_id: source.id
-        ) if st.persisted?
+        log_event(:new_standard_title, standard_title_id: st_id, title: std_title_candidate, psmd_work_ext_id: work["ext_id"], psmd_work_id: work["id"], psmd_manuscript_ext_id: ms["ext_id"], psmd_manuscript_id: ms["id"], muscat_parent_source_id: source.id) if st.persisted?
         log_persistence_error(
           st,
           psmd_manuscript_ext_id: ms["ext_id"],
@@ -774,17 +659,7 @@ def migrate_child_records(source, old_marc, ms, folder = nil)
         matched_title = st.first
         st_id = matched_title.id
         # LOG Matched to standard title
-        log_event(
-          :matched_standard_title,
-          standard_title_id: st_id,
-          matched_title: matched_title.title,
-          candidate_title: std_title_candidate,
-          psmd_work_ext_id: work["ext_id"],
-          psmd_work_id: work["id"],
-          psmd_manuscript_ext_id: ms["ext_id"],
-          psmd_manuscript_id: ms["id"],
-          muscat_parent_source_id: source.id
-        )
+        log_event(:matched_standard_title, standard_title_id: st_id, matched_title: matched_title.title, candidate_title: std_title_candidate, psmd_work_ext_id: work["ext_id"], psmd_work_id: work["id"], psmd_manuscript_ext_id: ms["ext_id"], psmd_manuscript_id: ms["id"], muscat_parent_source_id: source.id)
       end
 
       marc.add_tag_with_subfields("240", "0": st_id, a: std_title_candidate)
@@ -806,17 +681,7 @@ def migrate_child_records(source, old_marc, ms, folder = nil)
     if !@people_map.include? person["ext_id"].to_s
       line = [person["full_name"], person["ext_id"], person["id"]].join("\t")
       puts "Person not matched\t#{line}"
-      log_event(
-        :unmatched_person,
-        muscat_parent_source_id: source.id,
-        psmd_manuscript_ext_id: ms["ext_id"],
-        psmd_manuscript_id: ms["id"],
-        psmd_work_ext_id: work["ext_id"],
-        psmd_work_id: work["id"],
-        psmd_person_ext_id: person["ext_id"],
-        psmd_person_id: person["id"],
-        full_name: person["full_name"]
-      )
+      log_event(:unmatched_person, muscat_parent_source_id: source.id, psmd_manuscript_ext_id: ms["ext_id"], psmd_manuscript_id: ms["id"], psmd_work_ext_id: work["ext_id"], psmd_work_id: work["id"], psmd_person_ext_id: person["ext_id"], psmd_person_id: person["id"], full_name: person["full_name"])
     end
 
     marc.add_tag_with_subfields("100", "0": @people_map[person["ext_id"].to_s])
@@ -855,17 +720,7 @@ def migrate_child_records(source, old_marc, ms, folder = nil)
 
     # LOG created child record
     puts "\tCreated #{child.id}"
-    log_event(
-      :child_record,
-      child_source_id: child.id,
-      muscat_parent_source_id: source.id,
-      psmd_work_ext_id: work["ext_id"],
-      psmd_work_id: work["id"],
-      psmd_work_title: work["title"],
-      psmd_manuscript_ext_id: ms["ext_id"],
-      psmd_manuscript_id: ms["id"],
-      standard_title_id: st_id
-    )
+    log_event(:child_record, child_source_id: child.id, muscat_parent_source_id: source.id, psmd_work_ext_id: work["ext_id"], psmd_work_id: work["id"], psmd_work_title: work["title"], psmd_manuscript_ext_id: ms["ext_id"], psmd_manuscript_id: ms["id"], standard_title_id: st_id)
     folder.add_item(child) if folder
 
     # Do we really need this still??
@@ -912,49 +767,21 @@ def create_holding_records(source, old, ms, folder = nil)
     if muscat_id == "delete"
       # LOG Skip this holding as requested
       puts "Skip #{id.to_s} #{t["a"]&.first&.content} as requested".yellow
-      log_event(
-        :skipped_holding,
-        reason: "excluded by siglum map",
-        muscat_parent_source_id: source.id,
-        psmd_manuscript_ext_id: ms["ext_id"],
-        psmd_manuscript_id: ms["id"],
-        psmd_institution_id: id,
-        siglum: t["a"]&.first&.content,
-        shelfmark: shelfmark,
-        material_held: material_held
-      )
+      log_event(:skipped_holding, reason: "excluded by siglum map", muscat_parent_source_id: source.id, psmd_manuscript_ext_id: ms["ext_id"], psmd_manuscript_id: ms["id"], psmd_institution_id: id, siglum: t["a"]&.first&.content, shelfmark: shelfmark, material_held: material_held)
       next
     end
 
     if !@siglum_map.include? id.to_s
       # LOG Siglum does not exist in Muscat
       puts "PSMD siglum #{t["a"]&.first&.content} #{id} does not exist in muscat, skip".magenta
-      log_event(
-        :unknown_siglum,
-        muscat_parent_source_id: source.id,
-        psmd_manuscript_ext_id: ms["ext_id"],
-        psmd_manuscript_id: ms["id"],
-        psmd_institution_id: id,
-        siglum: t["a"]&.first&.content,
-        shelfmark: shelfmark,
-        material_held: material_held
-      )
+      log_event(:unknown_siglum, muscat_parent_source_id: source.id, psmd_manuscript_ext_id: ms["ext_id"], psmd_manuscript_id: ms["id"], psmd_institution_id: id, siglum: t["a"]&.first&.content, shelfmark: shelfmark, material_held: material_held)
       next
     end
 
     if existing_holding_ids_by_institution.key?(muscat_id.to_s)
       # LOG This Siglum is already attached to the record, log siglum
       #puts "PSMD Library #{muscat_id.to_s} (#{t["a"]&.first&.content}) already has a holding record in #{ms["ext_id"]}".blue
-      log_event(
-        :existing_holding,
-        muscat_parent_source_id: source.id,
-        psmd_manuscript_ext_id: ms["ext_id"],
-        psmd_manuscript_id: ms["id"],
-        muscat_institution_id: muscat_id,
-        siglum: t["a"]&.first&.content,
-        existing_holding_ids: existing_holding_ids_by_institution[muscat_id.to_s].join(","),
-        shelfmark: shelfmark
-      )
+      log_event(:existing_holding, muscat_parent_source_id: source.id, psmd_manuscript_ext_id: ms["ext_id"], psmd_manuscript_id: ms["id"], muscat_institution_id: muscat_id, siglum: t["a"]&.first&.content, existing_holding_ids: existing_holding_ids_by_institution[muscat_id.to_s].join(","), shelfmark: shelfmark)
       next
     end
 
@@ -989,18 +816,7 @@ def create_holding_records(source, old, ms, folder = nil)
 
     # LOG Created holding ID
     puts "Created holding #{h.id}"
-    log_event(
-      :holding_record,
-      holding_id: h.id,
-      muscat_parent_source_id: source.id,
-      psmd_manuscript_ext_id: ms["ext_id"],
-      psmd_manuscript_id: ms["id"],
-      muscat_institution_id: muscat_id,
-      psmd_institution_id: id,
-      siglum: t["a"]&.first&.content,
-      shelfmark: shelfmark,
-      material_held: material_held
-    ) if h.persisted?
+    log_event(:holding_record, holding_id: h.id, muscat_parent_source_id: source.id, psmd_manuscript_ext_id: ms["ext_id"], psmd_manuscript_id: ms["id"], muscat_institution_id: muscat_id, psmd_institution_id: id, siglum: t["a"]&.first&.content, shelfmark: shelfmark, material_held: material_held) if h.persisted?
 
     folder.add_item(h) if folder
 
