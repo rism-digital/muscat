@@ -183,7 +183,7 @@ CSV.parse(File.read("housekeeping/psmd/enhance_list.tsv"), col_sep: "\t", header
   source.marc.add_tag_with_subfields("599", a: "Record enhanced from PSMD import (November 2026)")
   source.marc.add_tag_with_subfields("910", "0": 51009572)
 
-  source.paper_trail_event = "Enhanced from Printed Sacred Music Database"
+  source.paper_trail_event = "Enhanced from Printed Sacred Music Database #{ms["ext_id"]}"
   source_saved = source.save
   PsmdConversion.log_persistence_error(
     source,
