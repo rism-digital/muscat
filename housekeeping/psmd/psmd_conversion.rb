@@ -22,6 +22,22 @@ module PsmdConversion
       name: "Source mapping",
       headers: %w[action psmd_input_id psmd_manuscript_ext_id psmd_manuscript_id muscat_source_id]
     },
+    marc_override: {
+      name: "MARC overrides",
+      headers: %w[muscat_source_id psmd_id command]
+    },
+    kept_marc_tag: {
+      name: "Kept MARC tags",
+      headers: %w[muscat_source_id command tag kept_value]
+    },
+    overwritten_marc_tag: {
+      name: "Overwritten MARC tags",
+      headers: %w[muscat_source_id command tag old_value overwritten_value]
+    },
+    moved_245_holding: {
+      name: "245 to PL-Kj holdings",
+      headers: %w[muscat_source_id command holding_id action value]
+    },
     proposed_standard_title: {
       name: "Proposed standard titles",
       headers: %w[muscat_parent_source_id psmd_manuscript_ext_id psmd_manuscript_id created_child_count rism_title suggested_title psmd_title]
@@ -394,6 +410,7 @@ end
 
 def copy_from_source_marc(source, dest, copy_map, log_context: {})
   destroyed = {}
+  overwritten_values = {}
 
   copy_map.each do |rule|
     source[rule[:from]].each do |source_tag|
@@ -475,11 +492,27 @@ def copy_from_source_marc(source, dest, copy_map, log_context: {})
       end
 
       if rule[:overwrite] && !destroyed[rule[:to]]
-        dest[rule[:to]].each(&:destroy_yourself) unless dest[rule[:to]].empty?
+        existing_tags = dest[rule[:to]]
+        overwritten_values[rule[:to]] = existing_tags.map { |tag| tag.to_marc.strip }
+        existing_tags.each(&:destroy_yourself)
         destroyed[rule[:to]] = true
       end
 
       dest.add_tag_with_subfields(rule[:to], **values)
+    end
+  end
+
+  overwritten_values.each do |tag, old_values|
+    new_values = dest[tag].map { |marc_tag| marc_tag.to_marc.strip }
+    [old_values.length, new_values.length].max.times do |index|
+      log_event(
+        :overwritten_marc_tag,
+        muscat_source_id: log_context[:muscat_source_id],
+        command: log_context[:override_command],
+        tag: tag,
+        old_value: old_values[index],
+        overwritten_value: new_values[index]
+      )
     end
   end
 

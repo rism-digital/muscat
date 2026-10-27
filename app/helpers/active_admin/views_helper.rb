@@ -14,7 +14,7 @@ module ActiveAdmin::ViewsHelper
 
     user.workgroups.flat_map(&:institutions).uniq(&:siglum).each do |institution|
       siglum_country_code = institution.siglum.to_s.split("-", 2).first.upcase
-      country = COUNTRY_CODE_MAPPING.dig(siglum_country_code, 0)
+      country = COUNTRY_CODE_MAPPING.dig(siglum_country_code, "name")
       country_counts[country] += 1 if country.present?
     end
 

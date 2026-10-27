@@ -100,6 +100,11 @@ CSV.foreach(File.join(__dir__, "copy_consulted_enhance.csv")) do |row|
 end
 consulted_sigla_by_source_id.each_value(&:uniq!)
 
+overrides_by_muscat_id = {}
+CSV.foreach(File.join(__dir__, "enhance_overrides.tsv"), col_sep: "\t", headers: true) do |row|
+  overrides_by_muscat_id[row["muscat_id"].to_s.strip] = row["Instructions"].to_s.strip
+end
+
 CSV.parse(File.read("housekeeping/psmd/enhance_list.tsv"), col_sep: "\t", headers: %i[psmd_id muscat_id]).each do |r|
 
   ms = PsmdConversion.legacy.find(:manuscripts, r[:psmd_id])
@@ -128,14 +133,63 @@ CSV.parse(File.read("housekeeping/psmd/enhance_list.tsv"), col_sep: "\t", header
   end
   PsmdConversion.update_log_context(current_muscat_source_id: source.id)
 
+  override_command = overrides_by_muscat_id[source.id.to_s]
+  move_245_to_pl_kj = override_command == "overwrite but move 245 to PL-Kj holdings (500)"
+  copy_map_for_record = copy_map
+  move_245_values = []
+
+  if override_command && !["keep", "overwrite", "overwrite but move 245 to PL-Kj holdings (500)"].include?(override_command)
+    raise "Unknown enhance override command '#{override_command}' for Muscat source #{source.id}"
+  end
+
+  if override_command
+    PsmdConversion.log_event(
+      :marc_override,
+      muscat_source_id: source.id,
+      psmd_id: r[:psmd_id],
+      command: override_command
+    )
+  end
+
+  if override_command == "keep"
+    kept_tag_codes = copy_map.select { |rule| rule[:overwrite] }.map { |rule| rule[:to] }.uniq
+    kept_tag_codes.each do |tag_code|
+      source.marc[tag_code].each do |tag|
+        PsmdConversion.log_event(
+          :kept_marc_tag,
+          muscat_source_id: source.id,
+          command: override_command,
+          tag: tag_code,
+          kept_value: tag.to_marc.strip
+        )
+      end
+    end
+    copy_map_for_record = copy_map.reject { |rule| rule[:overwrite] }
+  elsif move_245_to_pl_kj
+    source.marc["245"].each do |tag|
+      PsmdConversion.log_event(
+        :kept_marc_tag,
+        muscat_source_id: source.id,
+        command: override_command,
+        tag: "245",
+        kept_value: tag.to_marc.strip
+      )
+    end
+    move_245_values = old["245"].flat_map do |tag|
+      tag["a"].map { |subfield| PsmdConversion.sanitize_weird_text(subfield.content.to_s) }
+    end.reject(&:empty?)
+    copy_map_for_record = copy_map.reject { |rule| rule[:to] == "245" }.map { |rule| rule.merge(overwrite: true) }
+  end
+
   PsmdConversion.copy_from_source_marc(
     old,
     source.marc,
-    copy_map,
+    copy_map_for_record,
     log_context: {
       psmd_manuscript_ext_id: ms["ext_id"],
       psmd_manuscript_id: ms["id"],
-      muscat_source_id: source.id
+      muscat_source_id: source.id,
+      override_command: override_command
     }
   )
 
@@ -174,6 +228,78 @@ CSV.parse(File.read("housekeeping/psmd/enhance_list.tsv"), col_sep: "\t", header
   modified_sources.add_item(source)
   
   PsmdConversion.create_holding_records(source, old, ms, holding_folder)
+
+  if move_245_to_pl_kj
+    if move_245_values.empty?
+      PsmdConversion.log_event(
+        :moved_245_holding,
+        muscat_source_id: source.id,
+        command: override_command,
+        holding_id: "",
+        action: "No 245$a to move",
+        value: ""
+      )
+    else
+      pl_kj_holdings = source.holdings.reload.to_a.select { |holding| holding.lib_siglum == "PL-Kj" }
+
+      if pl_kj_holdings.empty?
+        move_245_values.uniq.each do |value|
+          PsmdConversion.log_event(
+            :moved_245_holding,
+            muscat_source_id: source.id,
+            command: override_command,
+            holding_id: "",
+            action: "PL-Kj holding not found",
+            value: value
+          )
+        end
+      else
+        pl_kj_holdings.each do |holding|
+          existing_500_values = holding.marc["500"].flat_map { |tag| tag["a"].map { |subfield| subfield.content.to_s } }
+          added_245_values = []
+
+          move_245_values.uniq.each do |value|
+            if existing_500_values.include?(value)
+              PsmdConversion.log_event(
+                :moved_245_holding,
+                muscat_source_id: source.id,
+                command: override_command,
+                holding_id: holding.id,
+                action: "Already present",
+                value: value
+              )
+            else
+              holding.marc.add_tag_with_subfields("500", a: value)
+              existing_500_values << value
+              added_245_values << value
+            end
+          end
+
+          holding_saved = true
+          if added_245_values.any?
+            holding_saved = holding.save
+            PsmdConversion.log_persistence_error(
+              holding,
+              psmd_manuscript_ext_id: ms["ext_id"],
+              psmd_manuscript_id: ms["id"],
+              muscat_parent_source_id: source.id
+            ) unless holding_saved
+          end
+
+          added_245_values.each do |value|
+            PsmdConversion.log_event(
+              :moved_245_holding,
+              muscat_source_id: source.id,
+              command: override_command,
+              holding_id: holding.id,
+              action: holding_saved ? "Added" : "Save failed",
+              value: value
+            )
+          end
+        end
+      end
+    end
+  end
 
   added_588 = []
   has_588 = !source.marc["588"].empty?
