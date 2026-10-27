@@ -22,6 +22,7 @@ help.sh
 system
 housekeeping/psmd/psmd.yml
 housekeeping/psmd/incipits
+housekeeping/psmd/*.ods
 KURTZ
 node_modules
 
