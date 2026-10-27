@@ -81,15 +81,15 @@ copy_map = [
 
 ]
 
-child_folder = Folder.new(:name => "PSMD Child records " + DateTime.now.to_s, :folder_type => "Source", wf_owner: PsmdConversion::USER_ID)
+child_folder = Folder.new(:name => "PSMD Child records " + DateTime.now.strftime("%Y-%m-%d"), :folder_type => "Source", wf_owner: PsmdConversion::USER_ID)
 child_folder_saved = child_folder.save
 PsmdConversion.log_persistence_error(child_folder) unless child_folder_saved
 
-holding_folder = Folder.new(:name => "PSMD Holding records " + DateTime.now.to_s, :folder_type => "Holding", wf_owner: PsmdConversion::USER_ID)
+holding_folder = Folder.new(:name => "PSMD Holding records " + DateTime.now.strftime("%Y-%m-%d"), :folder_type => "Holding", wf_owner: PsmdConversion::USER_ID)
 holding_folder_saved = holding_folder.save
 PsmdConversion.log_persistence_error(holding_folder) unless holding_folder_saved
 
-modified_sources = Folder.new(:name => "PSMD Extended sources " + DateTime.now.to_s, :folder_type => "Source", wf_owner: PsmdConversion::USER_ID)
+modified_sources = Folder.new(:name => "PSMD Extended sources " + DateTime.now.strftime("%Y-%m-%d"), :folder_type => "Source", wf_owner: PsmdConversion::USER_ID)
 modified_sources_saved = modified_sources.save
 PsmdConversion.log_persistence_error(modified_sources) unless modified_sources_saved
 

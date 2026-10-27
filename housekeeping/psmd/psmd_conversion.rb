@@ -200,9 +200,9 @@ module PsmdConversion
 
     output_path = ENV["PSMD_LOG_PATH"]
     unless output_path
-      timestamp = finished_at.strftime("%Y%m%d_%H%M%S")
+      date = finished_at.strftime("%Y%m%d")
       output_path = Rails.root.join(
-        "housekeeping", "psmd", "#{@log_script_name}_log_#{timestamp}_#{Process.pid}.ods"
+        "housekeeping", "psmd", "#{@log_script_name}_log_#{date}.ods"
       ).to_s
     end
 
