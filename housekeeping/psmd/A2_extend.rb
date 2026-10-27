@@ -132,7 +132,7 @@ CSV.parse(File.read("housekeeping/psmd/enhance_list.tsv"), col_sep: "\t", header
   override_command = overrides_by_muscat_id[source.id.to_s]
   move_245_to_pl_kj = override_command == "overwrite but move 245 to PL-Kj holdings (500)"
   copy_map_for_record = copy_map
-  move_245_values = []
+  muscat_245_values = []
 
   if override_command && !["keep", "overwrite", "overwrite but move 245 to PL-Kj holdings (500)"].include?(override_command)
     raise "Unknown enhance override command '#{override_command}' for Muscat source #{source.id}"
@@ -151,13 +151,11 @@ CSV.parse(File.read("housekeeping/psmd/enhance_list.tsv"), col_sep: "\t", header
     end
     copy_map_for_record = copy_map.reject { |rule| rule[:overwrite] }
   elsif move_245_to_pl_kj
-    source.marc["245"].each do |tag|
-      PsmdConversion.log_event(:kept_marc_tag, muscat_source_id: source.id, command: override_command, tag: "245", kept_value: tag.to_marc.strip)
-    end
-    move_245_values = old["245"].flat_map do |tag|
+    muscat_245_values = source.marc["245"].flat_map do |tag|
       tag["a"].map { |subfield| PsmdConversion.sanitize_weird_text(subfield.content.to_s) }
-    end.reject(&:empty?)
-    copy_map_for_record = copy_map.reject { |rule| rule[:to] == "245" }.map { |rule| rule.merge(overwrite: true) }
+    end
+    muscat_245_values.reject!(&:empty?)
+    copy_map_for_record = copy_map.map { |rule| rule.merge(overwrite: true) }
   end
 
   PsmdConversion.copy_from_source_marc(
@@ -203,13 +201,13 @@ CSV.parse(File.read("housekeeping/psmd/enhance_list.tsv"), col_sep: "\t", header
   PsmdConversion.create_holding_records(source, old, ms, holding_folder)
 
   if move_245_to_pl_kj
-    if move_245_values.empty?
+    if muscat_245_values.empty?
       PsmdConversion.log_event(:moved_245_holding, muscat_source_id: source.id, command: override_command, holding_id: "", action: "No 245$a to move", value: "")
     else
       pl_kj_holdings = source.holdings.reload.to_a.select { |holding| holding.lib_siglum == "PL-Kj" }
 
       if pl_kj_holdings.empty?
-        move_245_values.uniq.each do |value|
+        muscat_245_values.uniq.each do |value|
           PsmdConversion.log_event(:moved_245_holding, muscat_source_id: source.id, command: override_command, holding_id: "", action: "PL-Kj holding not found", value: value)
         end
       else
@@ -217,7 +215,7 @@ CSV.parse(File.read("housekeeping/psmd/enhance_list.tsv"), col_sep: "\t", header
           existing_500_values = holding.marc["500"].flat_map { |tag| tag["a"].map { |subfield| subfield.content.to_s } }
           added_245_values = []
 
-          move_245_values.uniq.each do |value|
+          muscat_245_values.uniq.each do |value|
             if existing_500_values.include?(value)
               PsmdConversion.log_event(:moved_245_holding, muscat_source_id: source.id, command: override_command, holding_id: holding.id, action: "Already present", value: value)
             else
