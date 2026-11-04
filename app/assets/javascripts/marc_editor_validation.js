@@ -81,25 +81,31 @@ function marc_validate_force_evaluate_warnings() {
 
 function marc_validate_add_warnings(element) {
 	hasNewWarnings = true;
-	warningList.push(element);
+	if ($.inArray(element, warningList) == -1)
+		warningList.push(element);
 }
 
 function marc_validate_hide_warnings() {
 	for (var warn in warningList) {
 		var element = warningList[warn];
-		_marc_validate_unhighlight(element, "warning", "");
-		
-		// If the element is a label and a warning label remove it
-		if ($(element).next().is("label") && $(element).next().hasClass("warning")) {
-			$(element).next().remove();
-		}
+		var target = $(element).data("warning-target");
+		if (target)
+			_marc_validate_unhighlight(target, "warning", "");
+
+		var label = $(element).data("warning-label");
+		if (label)
+			$(label).remove();
+
+		$(element).removeData("warning-target warning-label");
 	}
 }
 
 function marc_validate_show_warnings() {
 	for (var warn in warningList) {
 		var element = warningList[warn];
-		_marc_validate_highlight(element, "warning", "");
+		var target = marc_validate_warning_target(element);
+		$(element).data("warning-target", target);
+		_marc_validate_highlight(target, "warning", "");
 		
 		var message = $(element).data('message') || I18n.t('validation.warning_message');
 
@@ -107,8 +113,22 @@ function marc_validate_show_warnings() {
 		.attr( "id", element.name + "-warning" )
 		.addClass("warning")
 		.html(message);
-		label.insertAfter( element );
+		label.insertAfter(target);
+		$(element).data("warning-label", label[0]);
 	}
+}
+
+function marc_validate_warning_target(element) {
+	element = marc_editor_validate_expand_placeholder(element);
+
+	if (element.type === "hidden") {
+		var toplevel_li = $(element).parents("li");
+		var autocomplete = $("input[data-autocomplete]", toplevel_li).first();
+		if (autocomplete.length)
+			return autocomplete[0];
+	}
+
+	return element;
 }
 
 function _marc_validate_highlight( element, errorClass, validClass ) {
@@ -917,7 +937,7 @@ function marc_editor_validate_expand_placeholder(element) {
 	
 	// We are in a placeholder and there are no shown tags
 	if (placeholders.length > 0 && tags.length == 0) {
-		new_dt = tag_header_add_from_empty($(element));
+		new_dt = tag_header_add_from_empty($(element), true);
 		
 		new_elements = $("[data-subfield=" + $(element).data("subfield") + "]", new_dt);
 

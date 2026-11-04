@@ -3,8 +3,9 @@
 ////////////////////////////////////////////////////////////////////
 marc_editor_form_changed = false;
 
-function marc_editor_set_dirty() {
-	marc_validate_force_evaluate_warnings(); // Force the warnings to re-evaluate
+function marc_editor_set_dirty(preserveWarningAcknowledgement) {
+	if (!preserveWarningAcknowledgement)
+		marc_validate_force_evaluate_warnings(); // Force the warnings to re-evaluate
 	if (marc_editor_form_changed == true)
 		return;
 	

@@ -187,8 +187,8 @@ used for _tag_header partial
     
 	// Create a new element when the tag_group is empty. It is necessary
 	// because in this case there is no tag_toplevel_container
-	function tag_header_add_from_empty(elem) {
-		marc_editor_set_dirty();
+	function tag_header_add_from_empty(elem, preserveWarningAcknowledgement) {
+		marc_editor_set_dirty(preserveWarningAcknowledgement);
         // hide help if necessary
 		elem.parents(".tag_container").children(".tag_help_collapsable").hide();
 		var new_dt = tag_header_create_from_placeholder(elem.parents(".tag_group"));
