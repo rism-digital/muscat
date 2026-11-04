@@ -1,4 +1,6 @@
 --- !map:Settings
+server:
+  - validate_user_abilities
 client:
   "700": 
     tags:

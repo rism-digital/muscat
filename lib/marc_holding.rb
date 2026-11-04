@@ -16,6 +16,8 @@ class MarcHolding < Marc
     title&.strip
   end
 
+  alias get_siglum get_lib_siglum
+
   def get_shelf_mark
     m = ""
 
