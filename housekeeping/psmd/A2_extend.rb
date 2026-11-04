@@ -128,6 +128,7 @@ CSV.parse(File.read("housekeeping/psmd/enhance_list.tsv"), col_sep: "\t", header
     next
   end
   PsmdConversion.update_log_context(current_muscat_source_id: source.id)
+  PsmdConversion.attach_508_markdown(old, source, ms["ext_id"], psmd_manuscript_id: ms["id"])
 
   override_command = overrides_by_muscat_id[source.id.to_s]
   move_245_to_pl_kj = override_command == "overwrite but move 245 to PL-Kj holdings (500)"
@@ -193,8 +194,6 @@ CSV.parse(File.read("housekeeping/psmd/enhance_list.tsv"), col_sep: "\t", header
   PsmdConversion.log_event(:source_mapping, action: source_saved ? "extended" : "extension failed", psmd_input_id: r[:psmd_id], psmd_manuscript_ext_id: ms["ext_id"], psmd_manuscript_id: ms["id"], muscat_source_id: source.id)
   # LOG Migrated PSMD id to Muscat id
   puts "PSMD #{r[:psmd_id]} to #{source.id}"
-
-  PsmdConversion.attach_508_markdown(old, source, ms["ext_id"], psmd_manuscript_id: ms["id"])
 
   modified_sources.add_item(source)
   
