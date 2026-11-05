@@ -36,7 +36,7 @@ end
 					<div class="diff_new"><%= subfield_diff_content_new -%></div>
 					<div class="diff_old"><%= subfield_diff_content_old -%></div>
 				<%- else %>
-					<%= subfield.content.html_safe %>
+					<%= subfield.content %>
 				<%- end %>
 			</td>
 		</tr>
