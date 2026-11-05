@@ -448,6 +448,14 @@ map $http_upgrade $connection_upgrade {
     ''      close;
 }
 
+map "$request_method:$uri" $muscat_login_limit_key {
+    default "";
+    "POST:/admin/login"    $binary_remote_addr;
+    "POST:/admin/password" $binary_remote_addr;
+}
+
+limit_req_zone $muscat_login_limit_key zone=muscat_login:10m rate=10r/m;
+
 // Same as Passenger.json
 upstream muscat {
     server localhost:8081;
@@ -457,6 +465,9 @@ upstream muscat {
 server {
     server_name         www.muscat.com;
     root                /var/www/muscat-dir-for-nginx;
+
+    limit_req zone=muscat_login burst=5 nodelay;
+    limit_req_status 429;
 
     listen 443 ssl http2;
     listen [::]:443 ssl http2;

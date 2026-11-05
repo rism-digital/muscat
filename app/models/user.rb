@@ -21,7 +21,7 @@ class User < ApplicationRecord
   # :confirmable, :lockable, :timeoutable and :omniauthable
 	# Invitations let administrators create accounts without choosing or sharing
 	# the cataloguer's password. Recoverable also enables self-service password resets.
-  devise *([:rememberable, :trackable, :validatable, :recoverable, :invitable] + Array(RISM::AUTHENTICATION_METHODS) + [authentication_keys: [:login]])
+  devise *([:rememberable, :trackable, :validatable, :recoverable, :invitable, :lockable] + Array(RISM::AUTHENTICATION_METHODS) + [authentication_keys: [:login]])
   after_invitation_accepted :send_activation_notification
 
   # Used by saml_authenticatable devise strategy to avoid password validation
