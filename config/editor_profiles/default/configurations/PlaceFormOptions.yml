@@ -12,6 +12,7 @@
     - - "2"
       - values: 
         - "TGN"
+        - "WKP"
         default: "TGN"
         editor_partial: subfield_select
 "034": 

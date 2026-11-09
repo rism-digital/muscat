@@ -86,6 +86,19 @@ v 13
 * Make comments json attributes compatible with both MySQL and MariaDB
 * Merge pull request #2036 from fjorba/declare-comments-json-attributes
 * Try to get the PL 245 really working
+* Fix #1766, make 775 deletable by editors and admins
+* PROPERLY fix #1766
+* Try to limit holdings to the user sigla
+* Handy tool to list users that make holdings out if their institutions
+* Fix the annoying double warning when saving
+* remove some html_safe and make sure cookies are safe
+* Make repeated failed logins lock a user
+* Remove the old footer and the old analytics
+* Fix #2037
+* Fix #2038, add leaders for inventories
+* Count intems in printed inventory
+* Add 751 in Source
+* Add WKP for 024 in Places
 
 v 12.5.1
 * Five years after f78de52, add a MARC awesome print plugin to safely pretty print and syntax highlight marc in the console with ap.
