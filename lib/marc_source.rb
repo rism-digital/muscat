@@ -420,7 +420,7 @@ class MarcSource < Marc
       leader = base_leader.gsub("XX", type)
     elsif @record_type == RECORD_TYPES[:inventory_edition]
       type = "cm"
-      type = "cc" if by_tags("774").count > 0
+      type = "cc" if parent_object.inventory_items.any?
       leader = base_leader.gsub("XX", type)
     elsif @record_type == RECORD_TYPES[:libretto_edition_content]
       leader = base_leader.gsub("XX", "aa")
