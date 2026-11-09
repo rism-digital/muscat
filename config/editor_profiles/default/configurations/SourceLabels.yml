@@ -458,6 +458,13 @@
     r:
       label: records.key_or_mode
   label: records.additional_title
+'751':
+  fields:
+    a:
+      label: records.geographic_name
+    "4":
+      label: records.function
+  label: records.geographic_name
 '773':
   fields:
     w:

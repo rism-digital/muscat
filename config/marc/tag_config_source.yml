@@ -744,6 +744,23 @@
       - :occurrences: "?"
     - - r
       - :occurrences: "?"
+  "751":
+    :master: "0"
+    :indicator: "#7"
+    :occurrences: "*"
+    :fields:
+    - - "0"
+      - :occurrences: "?"
+        :foreign_class: Place
+        :foreign_field: id
+        :no_show: true
+    - - a
+      - :occurrences: "?"
+        :foreign_class: ^0
+        :foreign_field: name
+    - - "4"
+      - :occurrences: "?"
+        :no_browse: true
   "773":
     :master: w
     :indicator: "18"
