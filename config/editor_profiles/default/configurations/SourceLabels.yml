@@ -1101,7 +1101,7 @@ show_admin:
 show_content:
   label: records.content
 show_distribution:
-  label: records.distribution
+  label: records.scoring
 show_information:
   label: records.further_information
 show_instrumentation:

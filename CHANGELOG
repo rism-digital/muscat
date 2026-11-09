@@ -1,7 +1,93 @@
 Muscat Changelog
 ================
 
-v12.5.1
+v 13
+* Add 024 validation for BnF idents
+* #2011 Implement validation
+* #1974 and #2011, convert add ark:/ if missing
+* #1974 add desctiption in 680
+* #1974 properly match the case of 550
+* #1974 properly account for precision in dates
+* Fix more annoying SRU errors
+* #1969 add validation for 594 $c
+* Make sure repeated fields with required_if are properly validated
+* #767 create subs from parents
+* #767 make labels shorter
+* #1870 implement validation for incipit seq
+* Tidy Token controller
+* Make mail sending async in comments if there are errors processing them
+* Cleanup old code in Dashboard
+* Some cleanup for digital objects too
+* Update the doc controller to be a bit more modern
+* Clean up the footer
+* Bump @tiptap/core and @tiptap/extension-mention
+* Add pre-made systemd scripts, upd install doc
+* Cleanup GETs from folder, use ruby 4.0.5 in examples
+* Reset the folder expiration logic as it was before
+* Clean up and modernize folder.add_items
+* Opt. folder remove_items
+* Fix siglum display for sources, this has never worked (!!??)
+* Merge pull request #2033 from rism-digital/dependabot/npm_and_yarn/multi-0d9b95b854
+* #1974 add NKC
+* Make the GND sidebar say the truth with the save action
+* Fix more sru errors
+* Many PSMD scripts for matching and importing
+* Personal name match for PSMD
+* Small cleanup in the reindex_parallel
+* Force a reindex of all new items
+* Make the parallel reindexer use limits + base id and not offsets
+* Add more trend reporting
+* More siglum mapping
+* Optimise the reindexer. More jobs, less chiunks = faster
+* Properly display holdings in source list
+* Show orphan records that are in solr but not on the DB, useful when testing imports
+* Add .dig to MarcNode, more psmd-ing
+* Create folders with import results, make user id a var
+* Fix Holding folder view
+* Initial markdown impl
+* Wrap up the markdown DOs
+* Attach Markdown from 508 tag to PSMD
+* Add a basic Markdown logo
+* Fix 505 in new psmd records, fix duplicate
+* Try to make the folder_item creation less memory hungy
+* Make the DO link icon clickable
+* Fixes to get the specs running
+* #757 Add more warnings for 240 $m
+* Add banner to show if a record has comments
+* Add the css for the banner
+* Add localisation to comment banner
+* Script to propose fixes on 518
+* Makle sure 040 is not copied from holdings
+* Fix the layout for inventory items
+* Fix #2034 make firlds non repeatable
+* Rearrange inventory items, add more protipen madness
+* No need for $w
+* More inventoriteming
+* Fix locales and exclusions
+* Excliude inventories from 100 val
+* Remove 100 again from invs
+* Remove 691 $n from src val
+* Make the warnings more colorful
+* Make 100 in invitems mandatory
+* #1558 Make the template selection screen more pretty
+* Make the template selection even more pretty
+* #1559 adapt che texts
+* Make sure tgn places don't die on whitespace
+* #1559 More fixes
+* Fix more SRU stuff
+* Add column for diff/undif people
+* Make the selection screen switch to cards
+* New configuration for Solr 10
+* Make the not found comment more meaningful
+* Add 588 for records
+* Now some sources can be deleted
+* Add marking for holdings
+* Fix #2035, add sigla country list
+* Make comments json attributes compatible with both MySQL and MariaDB
+* Merge pull request #2036 from fjorba/declare-comments-json-attributes
+* Try to get the PL 245 really working
+
+v 12.5.1
 * Five years after f78de52, add a MARC awesome print plugin to safely pretty print and syntax highlight marc in the console with ap.
 * Make the modification notification way more fancy
 * Make sure 024 is not duplicated when importing from TGN

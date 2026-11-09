@@ -795,10 +795,7 @@ pl:
       with_integer: jest
   recent_changes: Ostatnie modyfikacje
   derive_child_sources:
-    source: Dodaj rękopis
-    edition_content: Dodaj pozycję wydania
-    theoretica_edition_content: Dodaj pozycję traktatu
-    libretto_edition_content: Dodaj pozycję libretta
+    add_child_record: Dodaj rekord podrzędny
   invalid_derived_child_source: "Tego źródła nie można użyć do utworzenia rekordu podrzędnego"
   record_actions: Działania na rekordzie
   record_audit: Pochodzenie rekordu

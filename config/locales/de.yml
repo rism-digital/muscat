@@ -795,10 +795,7 @@ de:
       with_integer: ist
   recent_changes: Letzte Änderungen
   derive_child_sources:
-    source: Manuskript hinzufügen
-    edition_content: Editionseintrag hinzufügen
-    theoretica_edition_content: Traktateintrag hinzufügen
-    libretto_edition_content: Librettoeintrag hinzufügen
+    add_child_record: Untergeordneten Datensatz hinzufügen
   invalid_derived_child_source: "Aus dieser Quelle kann kein untergeordneter Datensatz abgeleitet werden"
   record_actions: Aktion für Eintrag
   record_audit: Vorlageform
