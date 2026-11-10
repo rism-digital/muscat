@@ -267,7 +267,7 @@ function _marc_editor_send_form(form_name, rails_model, redirect) {
 					}
 				}
 
-				if (errorThrown == "Conflict") {
+				if (jqXHR.status === 409 || errorThrown === "Conflict") {
 					alert ("Error saving page: this is a stale version");
 					
 					$('.flashes').empty();
