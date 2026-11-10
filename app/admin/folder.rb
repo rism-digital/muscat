@@ -268,7 +268,12 @@ ActiveAdmin.register Folder do
           column ("Id") {|fitem| fitem.item ? fitem.item.id : "n/a, was #{fitem.item_id}"}
           column "" do |fitem|
             if fitem.item
-              link_to "View", controller: fitem.item.class.to_s.pluralize.underscore.downcase.to_sym, action: :show, id: fitem.item.id
+              model = fitem.item.class.to_s.underscore.downcase
+              links = [link_to("View", controller: model.pluralize.to_sym, action: :show, id: fitem.item.id)]
+              if can?(:edit, fitem.item)
+                links << link_to(I18n.t(:edit), send("edit_admin_#{model}_path", fitem.item))
+              end
+              safe_join(links, " | ")
             end
           end
         end
