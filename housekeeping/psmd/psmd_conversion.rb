@@ -689,7 +689,7 @@ def migrate_child_records(source, old_marc, ms, folder = nil)
     marc.add_tag_with_subfields("773", w: source.id)
     marc.add_tag_with_subfields("599", a: "Created from PSMD works/#{work["ext_id"]} in manuscripts/#{ms["ext_id"]} (#{ms["id"]})")
     marc.add_tag_with_subfields("599", a: "Source: Record added from PSMD import (November 2026)")
-    marc.add_tag_with_subfields("593", a: "Print", b: "Notated music")
+    marc.add_tag_with_subfields("593", a: "Print", b: "Notated music", "8": "01")
     #marc.add_tag_with_subfields("691", "0": 50006603)
     marc.add_tag_with_subfields("910", "0": 51009572)
 
