@@ -31,24 +31,30 @@ tag.for_every_child_sorted do |subfield|
   linked = true if is_selection_mode?
 
   if foreign
+    source_id_reference =
+      (tag.tag == "596" && subfield.tag == "c") ||
+      (tag.tag == "787" && subfield.tag == "w")
+
     text = subfield.looked_up_content&.to_s
     #text = subfield.foreign_field&.to_s
     #text = subfield.foreign_object&.name if subfield.foreign_object.respond_to? :name
     text = subfield.foreign_object&.autocomplete_label if subfield.foreign_object.is_a?(Place)
+    text = subfield.raw_content.to_s if source_id_reference && text.blank?
     next if text.blank?
 
     force_link =
-      item.is_a?(InventoryItem) &&
-      tag.tag == "773" &&
-      subfield.tag == "w"
+      source_id_reference ||
+      (item.is_a?(InventoryItem) && tag.tag == "773" && subfield.tag == "w")
 
-    parts << if subfield.foreign_object && 
-      (force_link || master&.tag != subfield.tag || tag.children.count == 1)
-        if !linked
-          link_to(text.strip, [:admin, subfield.foreign_object])
-        else
-          text
-        end
+    if subfield.foreign_object &&
+       (force_link || master&.tag != subfield.tag || tag.children.count == 1)
+      parts << if !linked
+        link_to(text.strip, [:admin, subfield.foreign_object])
+      else
+        text
+      end
+    elsif source_id_reference
+      parts << ERB::Util.h(text.strip)
     #elsif master&.tag == subfield.tag && subfield&.content
         # Pretty print the master ID
     #    "(#{subfield.foreign_object.model_name.route_key}/#{subfield.content})"
