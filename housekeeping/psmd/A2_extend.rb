@@ -314,3 +314,80 @@ end
 
 # Removed
 # 2493	990048328
+
+# These records here are not moigrated, but we keep the mapping
+
+additional_psmd_muscat_ids = {
+  "2" => %w[990000009],
+  "9" => %w[990009089],
+  "74" => %w[990046595],
+  "136" => %w[990001105 1001313411 1001313417],
+  "442" => %w[990004543],
+  "529" => %w[990005272],
+  "776" => %w[990009094],
+  "1485" => %w[990020982],
+  "1489" => %w[990020982],
+  "1502" => %w[990009979],
+  "1554" => %w[990022095],
+  "2166" => %w[990041357],
+  "2299" => %w[993104501],
+  "2424" => %w[990048261],
+  "2427" => %w[990048264],
+  "2477" => %w[990048316],
+  "2493" => %w[990048327],
+  "2742" => %w[990054391],
+  "3148" => %w[990065164],
+  "3292" => %w[990066411 1001299382],
+  "3488" => %w[990066444],
+  "3499" => %w[990064764],
+  "3509" => %w[990066336],
+  "3512" => %w[990017487],
+  "3528" => %w[993121353],
+  "3545" => %w[990021011],
+  "3562" => %w[990022474],
+  "3647" => %w[990037760],
+  "3667" => %w[990002564],
+  "3672" => %w[993104285],
+  "3766" => %w[991010218],
+  "3767" => %w[1000000270],
+  "3794" => %w[990041213],
+  "3795" => %w[990041213],
+  "3811" => %w[990000009]
+}
+
+additional_manuscripts_by_muscat_id = Hash.new { |hash, key| hash[key] = [] }
+additional_psmd_muscat_ids.each do |psmd_id, muscat_ids|
+  manuscript = PsmdConversion.legacy.find(:manuscripts, psmd_id)
+  unless manuscript
+    warn "PSMD manuscript #{psmd_id} was not found".yellow
+    next
+  end
+
+  muscat_ids.each { |muscat_id| additional_manuscripts_by_muscat_id[muscat_id] << manuscript }
+end
+
+additional_manuscripts_by_muscat_id.each do |muscat_id, manuscripts|
+  manuscripts = manuscripts.uniq { |manuscript| manuscript["id"] }
+  begin
+    source = Source.find(muscat_id)
+  rescue ActiveRecord::RecordNotFound
+    warn "Source #{muscat_id} was not found".yellow
+    manuscripts.each do |manuscript|
+      PsmdConversion.update_log_context(current_psmd_manuscript_ext_id: manuscript["ext_id"], current_psmd_manuscript_id: manuscript["id"], current_muscat_source_id: muscat_id)
+      PsmdConversion.log_event(:source_mapping, action: "source not found", psmd_input_id: manuscript["id"], psmd_manuscript_ext_id: manuscript["ext_id"], psmd_manuscript_id: manuscript["id"], muscat_source_id: muscat_id)
+    end
+    next
+  end
+
+  source.marc.add_tag_with_subfields("910", "0": 51009572)
+  manuscripts.each do |manuscript|
+    source.marc.add_tag_with_subfields("599", a: "Merged from PSMD manuscripts/#{manuscript["ext_id"]} (internal id #{manuscript["id"]})")
+  end
+  source_saved = source.save
+  PsmdConversion.log_persistence_error(source, psmd_manuscript_ext_id: manuscripts.first["ext_id"], psmd_manuscript_id: manuscripts.first["id"], muscat_parent_source_id: source.id) unless source_saved
+  source.reindex
+  manuscripts.each do |manuscript|
+    PsmdConversion.update_log_context(current_psmd_manuscript_ext_id: manuscript["ext_id"], current_psmd_manuscript_id: manuscript["id"], current_muscat_source_id: source.id)
+    PsmdConversion.log_event(:source_mapping, action: source_saved ? "tagged" : "tag update failed", psmd_input_id: manuscript["id"], psmd_manuscript_ext_id: manuscript["ext_id"], psmd_manuscript_id: manuscript["id"], muscat_source_id: source.id)
+  end
+end
