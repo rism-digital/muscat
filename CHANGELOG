@@ -99,6 +99,13 @@ v 13
 * Count intems in printed inventory
 * Add 751 in Source
 * Add WKP for 024 in Places
+* Make the stale error come back
+* Add edit to items in folders
+* Fix another forgottes 593
+* Update rails-html-sanitizer
+* Add the cool muscat 13 news
+* Fix #2040
+* Update rails
 
 v 12.5.1
 * Five years after f78de52, add a MARC awesome print plugin to safely pretty print and syntax highlight marc in the console with ap.
