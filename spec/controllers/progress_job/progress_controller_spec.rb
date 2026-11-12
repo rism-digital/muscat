@@ -13,7 +13,7 @@ RSpec.describe ProgressJob::ProgressController, type: :controller do
     )
   end
 
-  it "returns only progress data to a job manager" do
+  it "returns only progress data to a signed-in user" do
     sign_in create(:admin, workgroups: [], password: password, password_confirmation: password)
 
     get :show, params: { job_id: job.id }, format: :json
@@ -24,16 +24,18 @@ RSpec.describe ProgressJob::ProgressController, type: :controller do
       "progress_current" => 2,
       "progress_max" => 4,
       "percentage" => 50.0,
-      "last_error" => true
+      "status" => "queued"
     )
   end
 
-  it "does not expose job data to users who cannot manage jobs" do
+  it "allows signed-in non-admin users to poll progress" do
     sign_in create(:editor, workgroups: [], password: password, password_confirmation: password)
 
     get :show, params: { job_id: job.id }, format: :json
 
-    expect(response).to have_http_status(:forbidden)
+    expect(response).to have_http_status(:ok)
+    expect(response.parsed_body).not_to have_key("handler")
+    expect(response.parsed_body).not_to have_key("last_error")
   end
 
   it "reports zero percent when the maximum is zero" do
@@ -50,6 +52,12 @@ RSpec.describe ProgressJob::ProgressController, type: :controller do
 
     get :show, params: { job_id: -1 }, format: :json
 
-    expect(response.parsed_body).to eq("none")
+    expect(response.parsed_body).to eq(
+      "status" => "complete",
+      "progress_stage" => nil,
+      "progress_current" => nil,
+      "progress_max" => nil,
+      "percentage" => 100
+    )
   end
 end

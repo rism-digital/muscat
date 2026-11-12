@@ -3,25 +3,51 @@ module ProgressJob
     before_action :authenticate_user!
 
     def show
-      #return head :forbidden unless Ability.new(current_user).can?(:manage, Delayed::Job)
-
       job = Delayed::Job.find(params[:job_id])
-      percentage = if job.progress_max.to_i.positive? && job.progress_current
-        job.progress_current / job.progress_max.to_f * 100
+      render json: progress_response(job)
+    rescue ActiveRecord::RecordNotFound
+      # Delayed Job deletes successful rows, so preserve the existing finished-job behavior.
+      render json: empty_progress_response(status: "complete", percentage: 100)
+    end
+
+    private
+
+    def progress_response(job)
+      maximum = job.progress_max.to_i
+      current = job.progress_current
+      percentage = if current.nil? || current.negative?
+        nil
+      elsif maximum.positive?
+        (current / maximum.to_f * 100).clamp(0, 100)
       else
         0
       end
 
-      render json: {
+      status = if job.failed_at.present?
+        "failed"
+      elsif job.locked_at.present?
+        "running"
+      else
+        "queued"
+      end
+
+      {
+        status: status,
         progress_stage: job.progress_stage,
-        progress_current: job.progress_current,
-        progress_max: job.progress_max,
-        percentage: percentage,
-        last_error: job.last_error.present? ? true : nil
+        progress_current: current,
+        progress_max: maximum,
+        percentage: percentage
       }
-    rescue ActiveRecord::RecordNotFound
-      # Delayed Job removes completed jobs; the existing progress bar expects this value.
-      render json: "none".to_json
+    end
+
+    def empty_progress_response(status:, percentage:)
+      {
+        status: status,
+        progress_stage: nil,
+        progress_current: nil,
+        progress_max: nil,
+        percentage: percentage
+      }
     end
   end
 end
