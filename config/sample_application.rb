@@ -178,7 +178,7 @@ module Muscat
     # Run "rake -D time" for a list of tasks for finding time zone names. Default is UTC.
     # config.time_zone = 'Central Time (US & Canada)'
 
-    config.load_defaults 7.2
+    config.load_defaults 8.1
     # Make sure belongs_to is optional by default
     config.active_record.belongs_to_required_by_default = false
     

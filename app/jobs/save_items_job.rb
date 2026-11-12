@@ -1,4 +1,4 @@
-class SaveItemsJob < ProgressJob::Base
+class SaveItemsJob < Muscat::ProgressTrackingJob
   # The "save" jobs are all "unsave" in the sense that multiple copies should not
   # run at the same moment, i.e. saving the same record at the same moment
   # So it is important to start them in a dedicated "resave" queue with only 1 worker

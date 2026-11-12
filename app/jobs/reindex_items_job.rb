@@ -1,4 +1,4 @@
-class ReindexItemsJob < ProgressJob::Base
+class ReindexItemsJob < Muscat::ProgressTrackingJob
   
   # To start delayed job use a reasonable amount of workers:
   # --pool=reindex:10 --pool=sub_reindex:10

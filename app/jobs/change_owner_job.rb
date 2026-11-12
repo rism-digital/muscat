@@ -1,4 +1,4 @@
-class ChangeOwnerJob < ProgressJob::Base
+class ChangeOwnerJob < Muscat::ProgressTrackingJob
   
   def initialize(parent_obj_id, parent_obj_class, relation = :referring_works, user)
     @parent_obj_id = parent_obj_id

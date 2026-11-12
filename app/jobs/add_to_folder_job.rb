@@ -1,4 +1,4 @@
-class AddToFolderJob < ProgressJob::Base
+class AddToFolderJob < Muscat::ProgressTrackingJob
   
   def initialize(parent_id, params, model)
     @parent_id = parent_id

@@ -1,4 +1,4 @@
-class TriggerNotifyJob < ProgressJob::Base
+class TriggerNotifyJob < Muscat::ProgressTrackingJob
   
   def initialize(object)
     @object = object

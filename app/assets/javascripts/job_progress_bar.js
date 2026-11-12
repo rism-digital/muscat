@@ -59,7 +59,7 @@ jQuery(document).ready(function() {
 						stage = job.progress_stage;
 						
 						if (job.progress_current != null && job.progress_current > -1) {
-							progress = job.progress_current / job.progress_max * 100;
+							progress = job.percentage;
 							bar.css('width', progress + '%');
 							percent_span.html(truncateDecimals(progress, 1) + "%");
 							bar.removeClass('progress-bar-striped');
@@ -91,7 +91,7 @@ jQuery(document).ready(function() {
 					
 					// Always update the stage
 					if (stat) {
-						stat.html(stage);
+						stat.text(stage);
 					}
 					
 					// If there are errors
@@ -103,7 +103,7 @@ jQuery(document).ready(function() {
 						
 						stat.addClass("error");
 						if (stat) {
-							stat.html(I18n.t("jobs.error") + stage);
+							stat.text(I18n.t("jobs.error") + stage);
 						}
 						
 						if (banner) {

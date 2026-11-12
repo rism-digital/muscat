@@ -1,4 +1,4 @@
- class PublishItemsJob < ProgressJob::Base
+ class PublishItemsJob < Muscat::ProgressTrackingJob
   
   def initialize(parent_obj_id, parent_obj_class, relation = :referring_sources, action = :publish)
     @parent_obj_id = parent_obj_id

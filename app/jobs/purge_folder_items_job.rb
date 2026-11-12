@@ -1,4 +1,4 @@
-class PurgeFolderItemsJob < ProgressJob::Base
+class PurgeFolderItemsJob < Muscat::ProgressTrackingJob
   
   def initialize(parent_id = nil)
     @parent_id = parent_id

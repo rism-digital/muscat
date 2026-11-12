@@ -1,4 +1,4 @@
-class ReindexForeignRelationsJob < ProgressJob::Base
+class ReindexForeignRelationsJob < Muscat::ProgressTrackingJob
   
   def initialize(parent_id, relations)
     @parent_id = parent_id

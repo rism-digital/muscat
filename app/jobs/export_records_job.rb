@@ -6,7 +6,7 @@ require 'zip'
 # ExportRecordsJob.new(:list, {id_list: ids}).perform
 # ExportRecordsJob.new(:folder, {id: 1234, email: "test@test.com", format: :xml, model: Source}).perform
 
-class ExportRecordsJob < ProgressJob::Base
+class ExportRecordsJob < Muscat::ProgressTrackingJob
     
   MAX_PROCESSES = 10
 

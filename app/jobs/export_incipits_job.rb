@@ -1,6 +1,6 @@
 require 'digest/sha1'
 
-class ExportIncipitsJob < ProgressJob::Base
+class ExportIncipitsJob < Muscat::ProgressTrackingJob
   
   OUTFILE="#{Rails.root}/tmp/incipits.csv"
   ZIPFILE="#{Rails.root}/public/incipits.zip"

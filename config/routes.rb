@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
   root :to => redirect(RISM::ROOT_REDIRECT)
+
+  get "progress-job/:job_id", to: "progress_job/progress#show"
 	
   ##############################
   

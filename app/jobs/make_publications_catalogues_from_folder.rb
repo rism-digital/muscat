@@ -1,4 +1,4 @@
-class MakePublicationsCataloguesFromFolder < ProgressJob::Base
+class MakePublicationsCataloguesFromFolder < Muscat::ProgressTrackingJob
   
     def initialize(parent_id, status_flag)
       @parent_id = parent_id
@@ -55,4 +55,4 @@ class MakePublicationsCataloguesFromFolder < ProgressJob::Base
       'resave'
     end
   end
-  
+
