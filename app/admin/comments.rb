@@ -1,6 +1,6 @@
 ActiveAdmin.register ActiveAdmin::Comment, :as => "Comment" do
   after_create do |comment|
-    CommentNotifications.new_comment(comment).deliver_later
+    CommentNotifications.new_comment(comment).deliver_later(queue: :export)
   end
 
   permit_params :body, :body_json, :namespace, :resource_id, :resource_type, mentioned_user_ids: []
