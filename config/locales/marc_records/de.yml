@@ -978,7 +978,22 @@ de:
     work_tag_type: Markierungstyp
     year: Jahr
     years_birth_death: Geburts- und Todesdaten
+  inventories:
+    exemplar: "Exemplar"
+    identifications: "Identifikationen"
+    identified_printed_edition: "Identifizierte Druckausgabe"
+    identified_printed_edition_exemplar: "Identifiziertes Exemplar der Druckausgabe"
+    inventory_category_section: "Kategorie/Abschnitt im Inventar"
+    inventory_full_transcription: "Vollständige Transkription des Inventareintrags"
+    inventory_incipits: "Incipits wie im Inventar angegeben"
+    inventory_item_number_page: "Nummer/Seite im Inventar"
+    inventory_item_transcription: "Transkription des Inventareintrags"
+    inventory_source_link: "Verknüpfung mit der im Inventar genannten Quelle"
+    inventory_variant_title: "Abweichender Titel des Inventareintrags"
+    original_source_material_description: "Materialbeschreibung der im Inventar aufgeführten Originalquelle"
+    standardized_piece_description: "Standardisierte Beschreibung des im Inventar erfassten Stücks"
   relations:
+    P60190: "Identifizierte Druckausgabe"
     P60191: "Korrelierte Quelle"
     P60198: "Zusätzliches Material"
     P60311: "Kopiert von"

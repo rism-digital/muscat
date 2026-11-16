@@ -6,8 +6,6 @@
   label: records.rism_id_number
 01_codes_artistic:
   label: records.artistic_production
-01_modern_clefs:
-  label: records.common_clefs
 '026':
   fields:
     a:
@@ -36,8 +34,6 @@
   label: records.publisher_plate_number
 02_codes_performing:
   label: records.performance
-02_mensural_clefs:
-  label: records.mensural_clefs
 '031':
   fields:
     a:
@@ -561,26 +557,6 @@ Ascertained:
   label: records.ascertained
 Autography:
   label: records.autography
-C+1:
-  label: records.c_plus_1
-C+2:
-  label: records.c_plus_2
-C+3:
-  label: records.c_plus_3
-C+4:
-  label: records.c_plus_4
-C+5:
-  label: records.c_plus_5
-C-1:
-  label: records.c_minus_1
-C-2:
-  label: records.c_minus_2
-C-3:
-  label: records.c_minus_3
-C-4:
-  label: records.c_minus_4
-C-5:
-  label: records.c_minus_5
 Computer printout:
   label: records.computer_printout
 Conjectural:
@@ -591,50 +567,10 @@ Engraving:
   label: records.engraving
 Excerpts:
   label: records.excerpts
-F+1:
-  label: records.f_plus_1
-F+2:
-  label: records.f_plus_2
-F+3:
-  label: records.f_plus_3
-F+4:
-  label: records.f_plus_4
-F+5:
-  label: records.f_plus_5
-F-1:
-  label: records.f_minus_1
-F-2:
-  label: records.f_minus_2
-F-3:
-  label: records.f_minus_3
-F-4:
-  label: records.f_minus_4_bass
-F-5:
-  label: records.f_minus_5
 Facsimile:
   label: records.facsimile
 Fragments:
   label: records.fragments
-G+1:
-  label: records.g_plus_1
-G+2:
-  label: records.g_plus_2
-G+3:
-  label: records.g_plus_3
-G+4:
-  label: records.g_plus_4
-G+5:
-  label: records.g_plus_5
-G-1:
-  label: records.g_minus_1
-G-2:
-  label: records.g_minus_2_treble
-G-3:
-  label: records.g_minus_3
-G-4:
-  label: records.g_minus_4
-G-5:
-  label: records.g_minus_5
 "IIIF manifest (digitized source)":
   label: records.iiif_manifest
 "IIIF manifest (other)":
@@ -899,8 +835,6 @@ fmo:
   label: records.former_owner
 full:
   label: records.full
-g-2:
-  label: records.g_minus_2_octave
 ill:
   label: records.illustrator
 import:

@@ -978,7 +978,22 @@ ca:
     work_tag_type: Tipus d'etiqueta
     year: Any
     years_birth_death: Anys de naixement i mort
+  inventories:
+    exemplar: "Exemplar"
+    identifications: "Identificacions"
+    identified_printed_edition: "Edició impresa identificada"
+    identified_printed_edition_exemplar: "Exemplar de l'edició impresa identificada"
+    inventory_category_section: "Categoria/secció de l'inventari"
+    inventory_full_transcription: "Transcripció completa de l'element de l'inventari"
+    inventory_incipits: "Íncipits tal com apareixen en l'element de l'inventari"
+    inventory_item_number_page: "Número/pàgina de l'element de l'inventari"
+    inventory_item_transcription: "Transcripció de l'element de l'inventari"
+    inventory_source_link: "Enllaç a la font de l'inventari"
+    inventory_variant_title: "Títol variant de l'element de l'inventari"
+    original_source_material_description: "Descripció material de la font original consignada a l'inventari"
+    standardized_piece_description: "Descripció estandarditzada de la peça registrada a l'inventari"
   relations:
+    P60190: "Edició impresa identificada"
     P60191: "Font relacionada"
     P60198: "Material suplementari"
     P60311: "Copiat des de"
