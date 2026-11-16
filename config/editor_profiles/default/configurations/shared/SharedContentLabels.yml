@@ -1,5 +1,71 @@
 --- !map:ActiveSupport::HashWithIndifferentAccess
 
+01_modern_clefs:
+  label: records.common_clefs
+02_mensural_clefs:
+  label: records.mensural_clefs
+C+1:
+  label: records.c_plus_1
+C+2:
+  label: records.c_plus_2
+C+3:
+  label: records.c_plus_3
+C+4:
+  label: records.c_plus_4
+C+5:
+  label: records.c_plus_5
+C-1:
+  label: records.c_minus_1
+C-2:
+  label: records.c_minus_2
+C-3:
+  label: records.c_minus_3
+C-4:
+  label: records.c_minus_4
+C-5:
+  label: records.c_minus_5
+F+1:
+  label: records.f_plus_1
+F+2:
+  label: records.f_plus_2
+F+3:
+  label: records.f_plus_3
+F+4:
+  label: records.f_plus_4
+F+5:
+  label: records.f_plus_5
+F-1:
+  label: records.f_minus_1
+F-2:
+  label: records.f_minus_2
+F-3:
+  label: records.f_minus_3
+F-4:
+  label: records.f_minus_4_bass
+F-5:
+  label: records.f_minus_5
+G+1:
+  label: records.g_plus_1
+G+2:
+  label: records.g_plus_2
+G+3:
+  label: records.g_plus_3
+G+4:
+  label: records.g_plus_4
+G+5:
+  label: records.g_plus_5
+G-1:
+  label: records.g_minus_1
+G-2:
+  label: records.g_minus_2_treble
+G-3:
+  label: records.g_minus_3
+G-4:
+  label: records.g_minus_4
+G-5:
+  label: records.g_minus_5
+g-2:
+  label: records.g_minus_2_octave
 "Notated music":
   label: records.notated_music
 Libretto:

@@ -14,6 +14,8 @@ groups:
     - "245"
     - "246"
     - "031"
+    all_tag_templates: 
+      "031": marc_show/show_incipit
 
   edit_standardized_content:
     all_tags: 
