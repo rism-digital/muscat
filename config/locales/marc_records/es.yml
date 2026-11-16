@@ -978,7 +978,22 @@ es:
     work_tag_type: Tipo de etiqueta
     year: Año
     years_birth_death: Años de nacimiento y muerte
+  inventories:
+    exemplar: "Ejemplar"
+    identifications: "Identificaciones"
+    identified_printed_edition: "Edición impresa identificada"
+    identified_printed_edition_exemplar: "Ejemplar de la edición impresa identificada"
+    inventory_category_section: "Categoría/sección del inventario"
+    inventory_full_transcription: "Transcripción completa del elemento del inventario"
+    inventory_incipits: "Incipits tal como aparecen en el elemento del inventario"
+    inventory_item_number_page: "Número/página del elemento del inventario"
+    inventory_item_transcription: "Transcripción del elemento del inventario"
+    inventory_source_link: "Enlace a la fuente del inventario"
+    inventory_variant_title: "Título variante del elemento del inventario"
+    original_source_material_description: "Descripción material de la fuente original incluida en el inventario"
+    standardized_piece_description: "Descripción normalizada de la pieza registrada en el inventario"
   relations:
+    P60190: "Edición impresa identificada"
     P60191: "Fuente relacionada"
     P60198: "Material adicional"
     P60311: "Copiado de"

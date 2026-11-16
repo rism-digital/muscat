@@ -978,7 +978,22 @@ pl:
     work_tag_type: Typ tagu
     year: Rok
     years_birth_death: Rok urodzenia i śmierci
+  inventories:
+    exemplar: "Egzemplarz"
+    identifications: "Identyfikacje"
+    identified_printed_edition: "Zidentyfikowane wydanie drukowane"
+    identified_printed_edition_exemplar: "Egzemplarz zidentyfikowanego wydania drukowanego"
+    inventory_category_section: "Kategoria/sekcja w inwentarzu"
+    inventory_full_transcription: "Pełna transkrypcja elementu inwentarza"
+    inventory_incipits: "Incipity w brzmieniu podanym w elemencie inwentarza"
+    inventory_item_number_page: "Numer/strona elementu inwentarza"
+    inventory_item_transcription: "Transkrypcja elementu inwentarza"
+    inventory_source_link: "Odsyłacz do źródła inwentarza"
+    inventory_variant_title: "Wariantowy tytuł elementu inwentarza"
+    original_source_material_description: "Opis materiału oryginalnego źródła wymienionego w inwentarzu"
+    standardized_piece_description: "Ustandaryzowany opis utworu odnotowanego w inwentarzu"
   relations:
+    P60190: "Zidentyfikowane wydanie drukowane"
     P60191: "Źródło powiązane"
     P60198: "Materiał dodatkowy"
     P60311: "Skopiowane z"
