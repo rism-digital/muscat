@@ -5,8 +5,7 @@
 <div class="panel_contents">
     <%= label(:folder, :work_catalogue_status)%>
     
-    <%= form_tag send("make_catalogue_admin_folder_path", item.id), method: 'post' do %>
-    <tr>
+    <%= form_tag make_catalogue_admin_folder_path(item), method: 'post' do %>
         <%= select_tag :work_catalogue_option, options_for_select(options), {required: true} %>
         <%= hidden_field_tag :item_id, item.id %>
     <div class="buttons">

@@ -1,0 +1,54 @@
+<% unless is_selection_mode? %>
+  <% links = capture do %>
+    <% if folder_exports_available?(folder) %>
+      <li class="muscat_icon_link">
+        <%= link_to("#{I18n.t :export_folder}", export_folder_admin_folder_path(folder),
+          :class => "muscat_icon_link muscat_icon_link_download", :method => :post) %>
+      </li>
+      <%- if folder.folder_type == "Source" %>
+        <li class="muscat_icon_link">
+          <%= link_to("#{I18n.t :export_folder_csv}", export_folder_admin_folder_path(folder, type: :csv),
+            :class => "muscat_icon_link muscat_icon_link_download", :method => :post) %>
+        </li>
+        <%- if current_user.has_any_role?(:editor, :admin) %>
+          <li class="muscat_icon_link">
+            <%= link_to("#{I18n.t :export_folder_raw}", export_folder_admin_folder_path(folder, type: :raw),
+              :class => "muscat_icon_link muscat_icon_link_download", :method => :post) %>
+          </li>
+          <li class="muscat_icon_link">
+            <%= link_to("#{I18n.t :export_folder_raw_holdings}", export_folder_admin_folder_path(folder, type: :raw_holdings),
+              :class => "muscat_icon_link muscat_icon_link_download", :method => :post) %>
+          </li>
+        <%- end %>
+      <%- end %>
+    <%- end %>
+    <% if controller.respond_to?(:validate_folder) && can?(:edit, folder) && folder.folder_type == "Source" %>
+      <li class="muscat_icon_link">
+        <%= link_to("#{I18n.t :validate_folder}", validate_folder_admin_folder_path(folder),
+          :class => "muscat_icon_link muscat_icon_link_validate", :method => :post) %>
+      </li>
+    <%- end %>
+    <% if folder_bulk_marc_available?(folder) %>
+      <li class="muscat_icon_link">
+        <%= link_to "Bulk MARC Editor", bulk_marc_edit_admin_folder_path(folder), class: "muscat_icon_link muscat_icon_link_edit" %>
+      </li>
+    <% end %>
+    <% if folder_owner_change_available?(folder) %>
+      <li class="muscat_icon_link">
+        <%= link_to I18n.t("folders.change_contents_owner"), choose_owner_admin_folder_path(folder), class: "muscat_icon_link muscat_icon_link_edit" %>
+      </li>
+    <% end %>
+    <% if can?(:edit, folder) %>
+      <li class="muscat_icon_link" id="reset-expiration">
+        <%= link_to("#{I18n.t :"folders.reset_expiration"}", reset_expiration_admin_folder_path(folder),
+          :class => "muscat_icon_link muscat_icon_link_expiration", :method => :patch) %>
+      </li>
+    <%- end %>
+  <% end %>
+  <% if links.strip.present? %>
+    <ul><%= links %></ul>
+  <% end %>
+  <% if folder.folder_type == "Publication" && can?(:edit, Work) %>
+    <%= render partial: "activeadmin/section_sidebar_work_catalogue_actions", locals: { item: folder } %>
+  <% end %>
+<% end %>
