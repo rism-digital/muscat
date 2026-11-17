@@ -5,6 +5,7 @@
     <p>Add a field or subfield, or replace exact values. Matching is case-sensitive and applies to the whole value.
       Existing identical additions are skipped. Non-repeatable fields cannot receive a second value.</p>
     <%= form_tag preview_bulk_marc_edit_admin_folder_path(@folder), method: :post, class: "formtastic" do %>
+      <%= hidden_field_tag :replace_draft_id, @bulk_draft_to_replace if @bulk_draft_to_replace %>
       <fieldset class="inputs"><ol>
         <li>
           <%= label_tag :bulk_marc_tag, "Tag" %>

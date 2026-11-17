@@ -22,6 +22,7 @@ PATH=/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin
 00  20  *  *  *   muscat muscat_execute_job ModificationDigestJob production :daily
 
 # Cleanup jobs
+*/15 *  *  *  *   muscat muscat_execute_job BulkMarcPreviewCleanupJob production
 00  01  *  *  *   muscat muscat_execute_job PurgeSearchesJob production
 00  02  *  *  *   muscat muscat_execute_job FolderExpirationJob production
 00  03  *  *  *   muscat muscat_execute_job CleanIndexOrphansJob production

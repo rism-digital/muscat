@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2026_11_17_140000) do
+ActiveRecord::Schema[8.1].define(version: 2026_11_17_150000) do
   create_table "active_admin_comments", id: :integer, charset: "utf8mb3", force: :cascade do |t|
     t.string "namespace"
     t.text "body"
@@ -50,6 +50,8 @@ ActiveRecord::Schema[8.1].define(version: 2026_11_17_140000) do
     t.datetime "started_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "delayed_job_id"
+    t.index ["delayed_job_id"], name: "index_bulk_marc_edit_drafts_on_delayed_job_id"
     t.index ["expires_at"], name: "index_bulk_marc_edit_drafts_on_expires_at"
     t.index ["folder_id", "requesting_user_id"], name: "idx_on_folder_id_requesting_user_id_88cbb0c895"
   end

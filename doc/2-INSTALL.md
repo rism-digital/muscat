@@ -602,6 +602,28 @@ sudo service cron restart
 
 **NOTE** If you ever change the cron file name, it CANNOT contain dots\! Or it will silently fail. **NOTE 2** make sure the file is owned by root.
 
+The supplied crontab runs `BulkMarcPreviewCleanupJob` every 15 minutes. Unconfirmed
+bulk MARC previews expire after one hour and are deleted on the next sweep.
+Confirmed previews are retained while their jobs are queued or running, regardless
+of preview expiry. Job completion removes their drafts after success or failure;
+the sweep also removes drafts for cancelled, deleted, or failed jobs. Failed-job
+diagnostics and record version history are retained.
+
+To run this cleanup manually (including in development):
+
+```sh
+bin/rake bulk_marc:cleanup_previews
+```
+
+To list all stored previews without changing them:
+
+```sh
+bin/rake bulk_marc:list_previews
+```
+
+The tab-separated output includes draft status, folder, requesting user, linked job,
+record and sample counts, creation time, and expiry time.
+
 ### Logrotate
 
 It is handy to rotate the logs in production, in /etc/logrotate.d, install the default conf file:

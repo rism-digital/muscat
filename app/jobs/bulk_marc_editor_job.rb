@@ -25,7 +25,10 @@ class BulkMarcEditorJob < Muscat::ProgressTrackingJob
     editor = BulkMarcEditor.new(folder.folder_model)
     operations = editor.validate_operations(@operations)
     if @preview_draft_id
-      BulkMarcEditDraft.find(@preview_draft_id).start!(folder, requester, operations)
+      draft = BulkMarcEditDraft.find_by(id: @preview_draft_id)
+      raise BulkMarcEditDraft::StalePreview, "This preview is no longer available." unless draft
+
+      draft.start!(folder, requester, operations, job_id: @job&.id)
     end
     ids = folder.folder_items.where(item_type: folder.folder_type).select(:item_id)
     records = folder.folder_model.where(id: ids)
@@ -58,6 +61,13 @@ class BulkMarcEditorJob < Muscat::ProgressTrackingJob
     update_stage(summary)
     # Retain partial failures in the job monitor for review; do not retry adds.
     raise PartialFailure, "#{summary}. #{failures.join('; ')}" if failed.positive?
+  end
+
+  # Delayed Job invokes this after success or failure, including failures before
+  # record editing starts. Only delete the draft belonging to this job; a forged
+  # or duplicate payload must not remove a different job's active preview.
+  def after(job)
+    BulkMarcEditDraft.where(id: @preview_draft_id, delayed_job_id: job.id).delete_all if @preview_draft_id
   end
 
   def max_attempts
