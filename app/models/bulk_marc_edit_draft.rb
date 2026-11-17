@@ -19,63 +19,15 @@ class BulkMarcEditDraft < ApplicationRecord
     abandoned.delete_all + orphaned.delete_all
   end
 
-  def self.records_for(folder)
-    ids = folder.folder_items.where(item_type: folder.folder_type).select(:item_id)
-    folder.folder_model.where(id: ids)
-  end
-
-  def self.membership_for(folder)
-    digest = Digest::SHA256.new
-    digest << folder.folder_type
-    folder.folder_items.find_each do |item|
-      digest << "#{item.id}:#{item.item_type}:#{item.item_id};"
-    end
-    digest.hexdigest
-  end
-
-  def self.fingerprint(record)
-    Digest::SHA256.hexdigest(record.attributes.sort.to_h.to_json)
-  end
-
-  def self.configuration_for(editor)
-    Digest::SHA256.hexdigest(editor.marc_config.to_yaml + editor.editor_profile.options_config.to_yaml)
-  end
-
-  # Captures the sample before generating diffs, so later writes cannot silently
-  # turn an already rendered preview into approval for different record data.
   def self.prepare(folder, user, operations, sample_size: 10)
-    editor = BulkMarcEditor.new(folder.folder_model)
-    operations = editor.validate_operations(operations)
-    size = SAMPLE_SIZES.include?(sample_size.to_i) ? sample_size.to_i : 10
-    membership = membership_for(folder)
-    records = records_for(folder)
-    sample = records.reorder(:id).limit(size).to_a
-    draft = new(
-      folder_id: folder.id, requesting_user_id: user.id, operations: operations,
-      sample_size: size, target_count: records.count, expires_at: 1.hour.from_now,
-      membership_digest: membership, configuration_digest: configuration_for(editor),
-      sample_snapshot: sample.map { |record| { "id" => record.id, "fingerprint" => fingerprint(record) } }
-    )
-    rows = sample.map { |record| editor.preview(record, operations) }
-    draft.ensure_fresh!(folder)
-    draft.save!
-    [draft, rows]
+    BulkMarc::Preview.prepare(folder, user, operations, sample_size: sample_size)
   end
 
   def ensure_fresh!(folder)
-    editor = BulkMarcEditor.new(folder.folder_model)
-    fresh = membership_digest == self.class.membership_for(folder) &&
-      configuration_digest == self.class.configuration_for(editor) &&
-      target_count == self.class.records_for(folder).count
-    if fresh
-      records = folder.folder_model.where(id: sample_snapshot.map { |entry| entry["id"] }).index_by(&:id)
-      fresh = sample_snapshot.all? do |entry|
-        record = records[entry["id"]]
-        record && self.class.fingerprint(record) == entry["fingerprint"]
-      end
+    unless BulkMarc::Preview.fresh?(self, folder)
+      raise StalePreview, "Records or configuration changed since this preview. Refresh the preview before applying."
     end
-    raise StalePreview, "Records or configuration changed since this preview. Refresh the preview before applying." unless fresh
-  rescue BulkMarcEditor::InvalidOperation
+  rescue BulkMarc::InvalidOperation
     raise StalePreview, "The folder configuration changed. Refresh the preview before applying."
   end
 

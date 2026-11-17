@@ -71,9 +71,36 @@ RSpec.describe Admin::FoldersController, type: :controller do
     draft, = BulkMarcEditDraft.prepare(folder, actor, [operation])
     draft.update!(requesting_user_id: 999)
     expect(Delayed::Job).not_to receive(:enqueue)
-    expect do
-      post :run_bulk_marc_edit, params: { id: folder.id, draft_id: draft.id }
-    end.to raise_error(ActiveRecord::RecordNotFound)
+    post :run_bulk_marc_edit, params: { id: folder.id, draft_id: draft.id }
+    expect(response).to redirect_to(bulk_marc_edit_admin_folder_path(folder))
+    expect(flash[:alert]).to include("no longer available")
+  end
+
+  it "handles old preview tabs after cleanup" do
+    draft, = BulkMarcEditDraft.prepare(folder, actor, [operation])
+    draft.destroy!
+    expect(Delayed::Job).not_to receive(:enqueue)
+    get :bulk_marc_edit, params: { id: folder.id, draft_id: draft.id }
+    expect(response).to redirect_to(bulk_marc_edit_admin_folder_path(folder))
+    post :preview_bulk_marc_edit, params: { id: folder.id, draft_id: draft.id }
+    expect(response).to redirect_to(bulk_marc_edit_admin_folder_path(folder))
+    post :run_bulk_marc_edit, params: { id: folder.id, draft_id: draft.id }
+    expect(response).to redirect_to(bulk_marc_edit_admin_folder_path(folder))
+    expect(flash[:alert]).to include("no longer available")
+  end
+
+  it "removes the previous preview when refreshing the sample or editing the operation" do
+    draft, = BulkMarcEditDraft.prepare(folder, actor, [operation])
+    post :preview_bulk_marc_edit, params: { id: folder.id, draft_id: draft.id, sample_size: 25 }
+    expect(BulkMarcEditDraft.exists?(draft.id)).to be(false)
+    replacement = BulkMarcEditDraft.last
+    expect(replacement.sample_size).to eq(25)
+    post :preview_bulk_marc_edit, params: {
+      id: folder.id, replace_draft_id: replacement.id, operations: [operation.merge(value: "Edited")]
+    }
+    expect(BulkMarcEditDraft.exists?(replacement.id)).to be(false)
+    expect(BulkMarcEditDraft.last.operations.first["value"]).to eq("Edited")
+    expect(BulkMarcEditDraft.count).to eq(1)
   end
 
   it "rejects a folder whose contents have no MARC configuration" do

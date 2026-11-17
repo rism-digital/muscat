@@ -78,15 +78,21 @@ RSpec.describe "Bulk MARC Editor", type: :feature, js: true do
     expect(page).to have_css(".diff_table ins", text: "Preview note")
     expect(record.reload.marc_source).not_to include("Preview note")
     expect(Delayed::Job.count).to eq(0)
+    old_draft_id = BulkMarcEditDraft.last.id
     select "25", from: "Preview sample size"
     click_button "Refresh preview"
+    expect(page).to have_css("input[name='draft_id']:not([value='#{old_draft_id}'])", visible: :all)
     expect(find("#sample_size").value).to eq("25")
+    expect(BulkMarcEditDraft.exists?(old_draft_id)).to be(false)
+    expect(BulkMarcEditDraft.count).to eq(1)
     page.execute_script("window.scrollTo(0, 0)")
     page.save_screenshot("/tmp/muscat-bulk-marc-preview.png")
     click_link "Back to edit"
     expect(find("#bulk_marc_tag").value).to eq("500")
     expect(find("#bulk_marc_value").value).to eq("Preview note")
     click_button "Preview changes"
+    expect(page).to have_content("No records have been saved")
+    expect(BulkMarcEditDraft.count).to eq(1)
     accept_confirm { click_button "Apply to all 1 record" }
     expect(page).to have_content("Bulk MARC edit job started")
   end

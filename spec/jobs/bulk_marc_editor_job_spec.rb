@@ -48,4 +48,40 @@ RSpec.describe BulkMarcEditorJob, type: :job do
     expect(second.reload.marc_source).to include("Bulk note", "New short name")
     expect(job.reload.progress_stage).to include("1 changed, 0 unchanged, 1 failed")
   end
+
+  it "deletes the draft after a partial failure while retaining failed-job diagnostics" do
+    record = create(:publication, wf_owner: admin.id)
+    folder.add_item(record)
+    conflict = { action: "add", tag: "210", subfield: "a", target: "new", value: "Conflict" }
+    draft, = BulkMarcEditDraft.prepare(folder, admin, [operation, conflict])
+    job = draft.enqueue!(folder, admin)
+
+    expect(Delayed::Worker.new(quiet: true).run(job)).to be(false)
+
+    expect(BulkMarcEditDraft.exists?(draft.id)).to be(false)
+    expect(job.reload.failed_at).to be_present
+    expect(job.last_error).to include("1 failed", "not repeatable")
+    expect(record.reload.marc_source).not_to include("Bulk note")
+  end
+
+  it "deletes the draft when execution fails before processing any records" do
+    draft, = BulkMarcEditDraft.prepare(folder, admin, [operation])
+    job = draft.enqueue!(folder, admin)
+    admin.roles.clear
+
+    expect { Delayed::Job.find(job.id).invoke_job }.to raise_error(CanCan::AccessDenied)
+    expect(BulkMarcEditDraft.exists?(draft.id)).to be(false)
+  end
+
+  it "does not execute or remove a different job's preview" do
+    draft, = BulkMarcEditDraft.prepare(folder, admin, [operation])
+    actual_job = draft.enqueue!(folder, admin)
+    duplicate = Delayed::Job.enqueue(described_class.new(folder.id, [operation], admin.id, preview_draft_id: draft.id))
+
+    expect { Delayed::Job.find(duplicate.id).invoke_job }.to raise_error(BulkMarcEditDraft::StalePreview, /different job/)
+    expect(draft.reload.delayed_job_id).to eq(actual_job.id)
+    expect(draft.started_at).to be_nil
+    Delayed::Job.find(actual_job.id).invoke_job
+    expect(BulkMarcEditDraft.exists?(draft.id)).to be(false)
+  end
 end

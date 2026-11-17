@@ -74,7 +74,7 @@ RSpec.describe BulkMarcEditDraft do
     job = draft.enqueue!(folder, admin)
     Delayed::Job.find(job.id).invoke_job
     expect(record.reload.marc_source).to include("Preview note")
-    expect(draft.reload.started_at).to be_present
+    expect(described_class.exists?(draft.id)).to be(false)
     expect { Delayed::Job.find(job.id).invoke_job }.to raise_error(described_class::StalePreview)
   end
 
@@ -101,5 +101,19 @@ RSpec.describe BulkMarcEditDraft do
     _, rows = prepare
     expect(rows.first[:status]).to eq(:invalid)
     expect(rows.first[:error]).to include("not repeatable")
+  end
+
+  it "keeps the old draft when the replacement is invalid and protects confirmed drafts" do
+    draft, = prepare
+    expect do
+      draft.replace_with!(folder, admin, [operation.merge(tag: "invalid")])
+    end.to raise_error(BulkMarcEditor::InvalidOperation)
+    expect(described_class.exists?(draft.id)).to be(true)
+    expect(described_class.count).to eq(1)
+    draft.enqueue!(folder, admin)
+    expect do
+      draft.replace_with!(folder, admin, [operation])
+    end.to raise_error(described_class::StalePreview, /already been confirmed/)
+    expect(described_class.exists?(draft.id)).to be(true)
   end
 end
