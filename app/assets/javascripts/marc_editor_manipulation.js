@@ -100,6 +100,19 @@ function _marc_editor_write_value(target_block, tag, code, raw_value) {
     subfield.val(value);
     subfield.css("background-color", "#ffffb3");
 
+    // Imported authorities without a Muscat ID need the same confirmation
+    // and serialization as a new value entered through autocomplete.
+    if (raw_value === "IMPORT-NEW" && subfield.hasClass("autocomplete_target")) {
+      let entry = subfield.closest("li");
+      let validation_class = marc_editor_validate_className(tag, code);
+
+      subfield.removeClass("serialize_marc " + validation_class);
+      subfield.data("status", "closed");
+      entry.find(".autocomplete_new_window").addClass("serialize_marc new_autocomplete");
+      entry.find(".checkbox_confirmation").show();
+      entry.find(".creation_checkbox").data("check", true).prop("checked", false);
+    }
+
     // Special case for mirrored read-only widgets
     if (read_only_input.length) {
       read_only_input.val(value);
