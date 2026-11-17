@@ -1,0 +1,9 @@
+<table class="diff_table diff">
+  <% marc_diff_rows(tags, editor_profile).each_with_index do |row, index| %>
+    <tr style="background-color: <%= index.even? ? '#f0f0f0' : '#fafafa' %>">
+      <th class="diff_header"><%= row[:label] %></th>
+      <td class="diff_tag">[<%= row[:code] %>]</td>
+      <td class="diff_contents"><%= row[:html].html_safe %></td>
+    </tr>
+  <% end %>
+</table>

@@ -93,6 +93,37 @@ class BulkMarcEditor
     changed
   end
 
+  def preview(record, operations)
+    # instantiate supplies an independent MARC cache and preserves model-specific
+    # constructor attributes, without invoking save callbacks or writing anything.
+    copy = record.class.instantiate(record.attributes.deep_dup)
+    before = record.marc.deep_copy
+    changed = apply(copy, operations)
+    after = copy.marc
+    {
+      id: record.id, title: record.respond_to?(:full_name) ? record.full_name : record.try(:name),
+      status: changed ? :changed : :unchanged,
+      tags: changed ? VersionChecker.compare_marc(before, after.deep_copy, tag_names: operations.map { |operation| operation["tag"] }) : [],
+      before: before.to_marc, after: after.to_marc
+    }
+  rescue InvalidOperation => error
+    { id: record.id, title: record.try(:name), status: :invalid, error: error.message }
+  end
+
+  def operation_summary(operation)
+    field = "#{operation['tag']}#{operation['subfield'].empty? ? '' : " $#{operation['subfield']}"}"
+    if operation["action"] == "change"
+      "In #{field}, replace #{operation['old_value'].inspect} with #{operation['value'].inspect}."
+    else
+      target = case operation["target"]
+      when "new" then "a new tag"
+      when "all" then "all existing tag occurrences"
+      when "matching" then "tag occurrences where $#{operation['match_subfield']} equals #{operation['match_value'].inspect}"
+      end
+      "Add #{field} = #{operation['value'].inspect} to #{target}."
+    end
+  end
+
   private
 
   def choice_entries(values, group)

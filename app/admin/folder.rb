@@ -90,10 +90,14 @@ ActiveAdmin.register Folder do
     rescue BulkMarcEditor::InvalidOperation
       return head :unprocessable_entity
     end
+    if params[:draft_id].present?
+      draft = BulkMarcEditDraft.find_by!(id: params[:draft_id], folder_id: @folder.id, requesting_user_id: current_user.id)
+      @bulk_operation = draft.operations.first
+    end
     @page_title = "Bulk MARC Editor"
   end
 
-  member_action :run_bulk_marc_edit, method: :post do
+  member_action :preview_bulk_marc_edit, method: :post do
     return head :forbidden unless current_user.has_role?(:admin)
 
     @folder = Folder.find(params[:id])
@@ -104,25 +108,44 @@ ActiveAdmin.register Folder do
     end
 
     begin
-      submitted = params.require(:operations)
-      unless submitted.is_a?(Array) && submitted.all? { |operation| operation.is_a?(ActionController::Parameters) }
-        raise BulkMarcEditor::InvalidOperation, "Invalid operations"
+      if params[:draft_id].present?
+        previous = BulkMarcEditDraft.find_by!(id: params[:draft_id], folder_id: @folder.id, requesting_user_id: current_user.id)
+        previous.ensure_reviewable!
+        operations = previous.operations
+      else
+        submitted = params.require(:operations)
+        unless submitted.is_a?(Array) && submitted.all? { |operation| operation.is_a?(ActionController::Parameters) }
+          raise BulkMarcEditor::InvalidOperation, "Invalid operations"
+        end
+        operations = submitted.map do |operation|
+          operation.permit(:action, :tag, :subfield, :target, :value, :old_value, :match_subfield, :match_value).to_h
+        end
       end
-      operations = submitted.map do |operation|
-        operation.permit(:action, :tag, :subfield, :target, :value, :old_value, :match_subfield, :match_value).to_h
-      end
-      operations = editor.validate_operations(operations)
+      @draft, @preview_rows = BulkMarcEditDraft.prepare(@folder, current_user, operations, sample_size: params[:sample_size] || 10)
+      @bulk_editor = editor
+      @page_title = "Preview bulk MARC edit"
+    rescue BulkMarcEditDraft::StalePreview => error
+      redirect_to bulk_marc_edit_admin_folder_path(@folder, draft_id: params[:draft_id]), alert: error.message
     rescue BulkMarcEditor::InvalidOperation, ActionController::ParameterMissing => error
       @bulk_fields = editor.fields
       @bulk_operation = operations&.first || {}
       @page_title = "Bulk MARC Editor"
       flash.now[:error] = error.message
       render :bulk_marc_edit, status: :unprocessable_entity
-      return
     end
+  end
 
-    job = Delayed::Job.enqueue(BulkMarcEditorJob.new(@folder.id, operations, current_user.id))
+  member_action :run_bulk_marc_edit, method: :post do
+    return head :forbidden unless current_user.has_role?(:admin)
+
+    @folder = Folder.find(params[:id])
+    draft = BulkMarcEditDraft.find_by!(id: params.require(:draft_id), folder_id: @folder.id, requesting_user_id: current_user.id)
+    job = draft.enqueue!(@folder, current_user)
     redirect_to resource_path(@folder), notice: "Bulk MARC edit job started (id: #{job.id})"
+  rescue BulkMarcEditDraft::StalePreview => error
+    redirect_to bulk_marc_edit_admin_folder_path(@folder, draft_id: draft.id), alert: error.message
+  rescue ActionController::ParameterMissing
+    head :unprocessable_entity
   end
 
   member_action :change_owner, method: :post do

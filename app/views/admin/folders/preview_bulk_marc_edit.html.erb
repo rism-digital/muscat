@@ -1,0 +1,52 @@
+<div class="panel">
+  <h3>Preview bulk MARC edit</h3>
+  <div class="panel_contents">
+    <p><strong><%= @folder.name %></strong> — <%= @folder.folder_type %></p>
+    <% @draft.operations.each do |operation| %>
+      <p><%= @bulk_editor.operation_summary(operation) %></p>
+    <% end %>
+    <p>No records have been saved. Showing the first <%= pluralize(@preview_rows.length, "record") %> by ID,
+      out of <strong><%= pluralize(@draft.target_count, "record") %></strong> in the folder.</p>
+    <%= form_tag preview_bulk_marc_edit_admin_folder_path(@folder), method: :post do %>
+      <%= hidden_field_tag :draft_id, @draft.id %>
+      <%= label_tag :sample_size, "Preview sample size" %>
+      <%= select_tag :sample_size, options_for_select(BulkMarcEditDraft::SAMPLE_SIZES, @draft.sample_size) %>
+      <%= submit_tag "Refresh preview", data: { disable_with: "Generating preview…" } %>
+    <% end %>
+    <p>In this sample: <%= @preview_rows.count { |row| row[:status] == :changed } %> changed,
+      <%= @preview_rows.count { |row| row[:status] == :unchanged } %> unchanged,
+      <%= @preview_rows.count { |row| row[:status] == :invalid } %> cannot apply.
+      These counts describe the sample only.</p>
+    <% @preview_rows.each_with_index do |row, index| %>
+      <details <%= "open" if index.zero? %> class="bulk-marc-preview-record">
+        <summary>
+          <strong><%= row[:id] %></strong> <%= row[:title] %> —
+          <%= { changed: "Changed", unchanged: "No change", invalid: "Cannot apply" }.fetch(row[:status]) %>
+        </summary>
+        <% if row[:status] == :invalid %>
+          <p><%= row[:error] %></p>
+        <% elsif row[:status] == :unchanged %>
+          <p>The operation does not change this record.</p>
+        <% else %>
+          <%= render partial: "marc/diff_table", locals: { tags: row[:tags], editor_profile: @bulk_editor.editor_profile } %>
+        <% end %>
+        <% if row[:before] %>
+          <details>
+            <summary>Full MARC comparison</summary>
+            <h4>Before</h4><pre><%= row[:before] %></pre>
+            <h4>After</h4><pre><%= row[:after] %></pre>
+          </details>
+        <% end %>
+      </details>
+    <% end %>
+    <p><strong>Applying will process the entire folder (<%= pluralize(@draft.target_count, "record") %>), not just this sample.</strong>
+      This preview expires in one hour.</p>
+    <%= form_tag run_bulk_marc_edit_admin_folder_path(@folder), method: :post do %>
+      <%= hidden_field_tag :draft_id, @draft.id %>
+      <%= submit_tag "Apply to all #{pluralize(@draft.target_count, 'record')}", data: {
+        confirm: "Apply this operation to the entire folder (#{pluralize(@draft.target_count, 'record')})?", disable_with: "Starting…"
+      } %>
+      <%= link_to "Back to edit", bulk_marc_edit_admin_folder_path(@folder, draft_id: @draft.id) %>
+    <% end %>
+  </div>
+</div>

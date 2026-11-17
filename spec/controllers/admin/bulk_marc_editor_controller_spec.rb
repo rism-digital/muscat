@@ -20,7 +20,7 @@ RSpec.describe Admin::FoldersController, type: :controller do
     page = Nokogiri::HTML(response.body)
     fields = JSON.parse(page.at_css('[data-bulk-marc-fields]').text)
     expect(fields.map { |field| field["code"] }).to include("001", "700", "500")
-    expect(page.at_css('form[action="' + run_bulk_marc_edit_admin_folder_path(folder) + '"]')["method"]).to eq("post")
+    expect(page.at_css('form[action="' + preview_bulk_marc_edit_admin_folder_path(folder) + '"]')["method"]).to eq("post")
     expect(response.body).not_to include("<script>alert(1)</script>")
   end
 
@@ -32,8 +32,9 @@ RSpec.describe Admin::FoldersController, type: :controller do
       expect(job.instance_variable_get(:@operations)).to eq([operation.stringify_keys])
       double(id: 123)
     end
+    draft, = BulkMarcEditDraft.prepare(folder, actor, [operation])
     post :run_bulk_marc_edit, params: {
-      id: folder.id, operations: [operation], requesting_user_id: 999, model: "User"
+      id: folder.id, draft_id: draft.id, operations: [operation.merge(value: "Forged")], requesting_user_id: 999, model: "User"
     }
     expect(response).to redirect_to(admin_folder_path(folder))
   end
@@ -41,9 +42,38 @@ RSpec.describe Admin::FoldersController, type: :controller do
   it "does not enqueue invalid or malformed operations" do
     expect(Delayed::Job).not_to receive(:enqueue)
     [[], "bad", { action: "remove" }, [operation.merge(tag: "XYZ")], [operation.merge(action: "remove")]].each do |operations|
-      post :run_bulk_marc_edit, params: { id: folder.id, operations: operations }
+      post :preview_bulk_marc_edit, params: { id: folder.id, operations: operations }
       expect(response).to have_http_status(:unprocessable_entity)
     end
+  end
+
+  it "previews without enqueueing or changing records" do
+    expect(Delayed::Job).not_to receive(:enqueue)
+    expect do
+      post :preview_bulk_marc_edit, params: { id: folder.id, operations: [operation], sample_size: 100 }
+    end.to change(BulkMarcEditDraft, :count).by(1)
+    expect(response).to have_http_status(:ok)
+    expect(response.body).to include("No records have been saved", "sample only")
+    expect(BulkMarcEditDraft.last.sample_size).to eq(100)
+  end
+
+  it "requires a preview draft and accepts confirmation only once" do
+    post :run_bulk_marc_edit, params: { id: folder.id, operations: [operation] }
+    expect(response).to have_http_status(:unprocessable_entity)
+    draft, = BulkMarcEditDraft.prepare(folder, actor, [operation])
+    expect do
+      2.times { post :run_bulk_marc_edit, params: { id: folder.id, draft_id: draft.id } }
+    end.to change(Delayed::Job, :count).by(1)
+    expect(flash[:alert]).to include("already been confirmed")
+  end
+
+  it "cannot confirm another admin's draft" do
+    draft, = BulkMarcEditDraft.prepare(folder, actor, [operation])
+    draft.update!(requesting_user_id: 999)
+    expect(Delayed::Job).not_to receive(:enqueue)
+    expect do
+      post :run_bulk_marc_edit, params: { id: folder.id, draft_id: draft.id }
+    end.to raise_error(ActiveRecord::RecordNotFound)
   end
 
   it "rejects a folder whose contents have no MARC configuration" do
@@ -51,7 +81,7 @@ RSpec.describe Admin::FoldersController, type: :controller do
     expect(Delayed::Job).not_to receive(:enqueue)
     get :bulk_marc_edit, params: { id: folder.id }
     expect(response).to have_http_status(:unprocessable_entity)
-    post :run_bulk_marc_edit, params: { id: folder.id, operations: [operation] }
+    post :preview_bulk_marc_edit, params: { id: folder.id, operations: [operation] }
     expect(response).to have_http_status(:unprocessable_entity)
   end
 
@@ -64,8 +94,10 @@ RSpec.describe Admin::FoldersController, type: :controller do
         get :bulk_marc_edit, params: { id: folder.id }
         expect(response).to have_http_status(:forbidden)
         [:html, :json].each do |format|
-          post :run_bulk_marc_edit, params: { id: folder.id, operations: [operation] }, format: format
-          expect(response).to have_http_status(:forbidden)
+          [:preview_bulk_marc_edit, :run_bulk_marc_edit].each do |action|
+            post action, params: { id: folder.id, operations: [operation] }, format: format
+            expect(response).to have_http_status(:forbidden)
+          end
         end
       end
     end

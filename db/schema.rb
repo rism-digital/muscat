@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.2].define(version: 2026_11_05_120000) do
+ActiveRecord::Schema[8.1].define(version: 2026_11_17_140000) do
   create_table "active_admin_comments", id: :integer, charset: "utf8mb3", force: :cascade do |t|
     t.string "namespace"
     t.text "body"
@@ -34,6 +34,24 @@ ActiveRecord::Schema[7.2].define(version: 2026_11_05_120000) do
     t.boolean "active"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "bulk_marc_edit_drafts", charset: "utf8mb3", force: :cascade do |t|
+    t.bigint "folder_id", null: false
+    t.bigint "requesting_user_id", null: false
+    t.text "operations", null: false
+    t.text "sample_snapshot", null: false
+    t.string "membership_digest", null: false
+    t.string "configuration_digest", null: false
+    t.integer "sample_size", default: 10, null: false
+    t.integer "target_count", null: false
+    t.datetime "expires_at", null: false
+    t.datetime "confirmed_at"
+    t.datetime "started_at"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["expires_at"], name: "index_bulk_marc_edit_drafts_on_expires_at"
+    t.index ["folder_id", "requesting_user_id"], name: "idx_on_folder_id_requesting_user_id_88cbb0c895"
   end
 
   create_table "delayed_jobs", id: :integer, charset: "utf8mb3", force: :cascade do |t|

@@ -171,12 +171,23 @@ module VersionChecker
   def self.get_diff_with_next(id)
     item1, item2 = get_item_and_next(id)
     return nil if !item1 || !item2
-  
-    aligner = MarcFieldAligner.new( item1.marc.all_tags(false), item2.marc.all_tags(false) )
+
+    [compare_marc(item1.marc, item2.marc), [item1.wf_stage, item2.wf_stage]]
+  end
+
+  # Compare arbitrary MARC objects as well as persisted PaperTrail versions.
+  # Alignment annotates the second object, so callers must pass a copy when the
+  # unannotated MARC is still needed. Restrict large previews to affected tags.
+  def self.compare_marc(before, after, tag_names: nil)
+    old_tags = before.all_tags(false)
+    new_tags = after.all_tags(false)
+    if tag_names
+      old_tags = old_tags.select { |tag| tag_names.include?(tag.tag) }
+      new_tags = new_tags.select { |tag| tag_names.include?(tag.tag) }
+    end
+    aligner = MarcFieldAligner.new(old_tags, new_tags)
     alignment = aligner.get_optimal_alignment
     tags = set_tag_diff(alignment[0], alignment[1])
-
-    wf_stages = [item1.wf_stage, item2.wf_stage]
 
     # sub alignment
     tags.each do |t|
@@ -191,7 +202,7 @@ module VersionChecker
       t.children.clear
       subfields.each{ |st| t.children << st }  
     end
-    return tags, wf_stages
+    tags
   end
   
   private

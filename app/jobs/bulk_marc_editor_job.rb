@@ -1,11 +1,12 @@
 class BulkMarcEditorJob < Muscat::ProgressTrackingJob
   class PartialFailure < StandardError; end
 
-  def initialize(folder_id, operations, requesting_user_id)
+  def initialize(folder_id, operations, requesting_user_id, preview_draft_id: nil)
     super()
     @folder_id = folder_id
     @operations = operations
     @requesting_user_id = requesting_user_id
+    @preview_draft_id = preview_draft_id
   end
 
   def enqueue(job)
@@ -23,6 +24,9 @@ class BulkMarcEditorJob < Muscat::ProgressTrackingJob
     folder = Folder.find(@folder_id)
     editor = BulkMarcEditor.new(folder.folder_model)
     operations = editor.validate_operations(@operations)
+    if @preview_draft_id
+      BulkMarcEditDraft.find(@preview_draft_id).start!(folder, requester, operations)
+    end
     ids = folder.folder_items.where(item_type: folder.folder_type).select(:item_id)
     records = folder.folder_model.where(id: ids)
     update_progress_max(records.count)

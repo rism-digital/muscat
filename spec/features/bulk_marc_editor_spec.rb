@@ -15,7 +15,11 @@ RSpec.describe "Bulk MARC Editor", type: :feature, js: true do
   end
 
   def submit_operation
-    accept_confirm { click_button "Start bulk edit" }
+    jobs_before = Delayed::Job.count
+    click_button "Preview changes"
+    expect(page).to have_content("No records have been saved")
+    expect(Delayed::Job.count).to eq(jobs_before)
+    accept_confirm { find('input[value^="Apply to all"]').click }
     expect(page).to have_content("Bulk MARC edit job started")
     Delayed::Job.last.payload_object.instance_variable_get(:@operations).first
   end
@@ -54,10 +58,36 @@ RSpec.describe "Bulk MARC Editor", type: :feature, js: true do
     choose_code("bulk_marc_tag", "700")
     choose_code("bulk_marc_subfield", "4")
     choose_code("bulk_marc_value", "edt")
-    accept_confirm { click_button "Start bulk edit" }
+    click_button "Preview changes"
     expect(page).to have_content("must include its master subfield")
     expect(find("#bulk_marc_tag").value).to eq("700")
     expect(find("#bulk_marc_subfield").value).to eq("4")
     expect(find("#bulk_marc_value").value).to eq("edt")
+  end
+
+  it "shows record diffs, changes sample size, and preserves the edit when returning" do
+    folder.update!(folder_type: "Publication")
+    record = create(:publication, wf_owner: admin.id)
+    folder.add_item(record)
+    visit bulk_marc_edit_admin_folder_path(folder)
+    choose_code("bulk_marc_tag", "500")
+    choose_code("bulk_marc_subfield", "a")
+    fill_in "bulk_marc_value", with: "Preview note"
+    click_button "Preview changes"
+    expect(page).to have_content("No records have been saved")
+    expect(page).to have_css(".diff_table ins", text: "Preview note")
+    expect(record.reload.marc_source).not_to include("Preview note")
+    expect(Delayed::Job.count).to eq(0)
+    select "25", from: "Preview sample size"
+    click_button "Refresh preview"
+    expect(find("#sample_size").value).to eq("25")
+    page.execute_script("window.scrollTo(0, 0)")
+    page.save_screenshot("/tmp/muscat-bulk-marc-preview.png")
+    click_link "Back to edit"
+    expect(find("#bulk_marc_tag").value).to eq("500")
+    expect(find("#bulk_marc_value").value).to eq("Preview note")
+    click_button "Preview changes"
+    accept_confirm { click_button "Apply to all 1 record" }
+    expect(page).to have_content("Bulk MARC edit job started")
   end
 end

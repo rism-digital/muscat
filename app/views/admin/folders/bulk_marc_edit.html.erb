@@ -4,7 +4,7 @@
     <p><strong><%= @folder.name %></strong> — <%= @folder.folder_type %>, <%= @folder.content.count %> records</p>
     <p>Add a field or subfield, or replace exact values. Matching is case-sensitive and applies to the whole value.
       Existing identical additions are skipped. Non-repeatable fields cannot receive a second value.</p>
-    <%= form_tag run_bulk_marc_edit_admin_folder_path(@folder), method: :post, class: "formtastic" do %>
+    <%= form_tag preview_bulk_marc_edit_admin_folder_path(@folder), method: :post, class: "formtastic" do %>
       <fieldset class="inputs"><ol>
         <li>
           <%= label_tag :bulk_marc_tag, "Tag" %>
@@ -42,7 +42,7 @@
         </li>
       </ol></fieldset>
       <fieldset class="actions"><ol><li>
-        <%= submit_tag "Start bulk edit", data: { confirm: "Apply this MARC operation to the records in this folder?", disable_with: "Starting…" } %>
+        <%= submit_tag "Preview changes", data: { disable_with: "Generating preview…" } %>
         <%= link_to I18n.t(:cancel), admin_folder_path(@folder) %>
       </li></ol></fieldset>
     <% end %>
