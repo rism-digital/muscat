@@ -124,6 +124,10 @@
 		<%- end %>
     <% if item.is_a?(Folder) && current_user.has_role?(:admin) && item.owner_change_supported? %>
       <li class="muscat_icon_link">
+        <%= link_to "Bulk MARC Editor", bulk_marc_edit_admin_folder_path(item),
+          class: "muscat_icon_link muscat_icon_link_edit" %>
+      </li>
+      <li class="muscat_icon_link">
         <%= link_to I18n.t("folders.change_contents_owner"), choose_owner_admin_folder_path(item),
           class: "muscat_icon_link muscat_icon_link_edit" %>
       </li>

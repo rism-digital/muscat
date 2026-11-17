@@ -1,0 +1,52 @@
+<div class="panel" id="bulk-marc-editor">
+  <h3>Bulk MARC Editor</h3>
+  <div class="panel_contents">
+    <p><strong><%= @folder.name %></strong> — <%= @folder.folder_type %>, <%= @folder.content.count %> records</p>
+    <p>Add a field or subfield, or replace exact values. Matching is case-sensitive and applies to the whole value.
+      Existing identical additions are skipped. Non-repeatable fields cannot receive a second value.</p>
+    <%= form_tag run_bulk_marc_edit_admin_folder_path(@folder), method: :post, class: "formtastic" do %>
+      <fieldset class="inputs"><ol>
+        <li>
+          <%= label_tag :bulk_marc_tag, "Tag" %>
+          <%= select_tag "operations[][tag]", options_for_select([["Choose a tag…", ""]]), id: "bulk_marc_tag", required: true %>
+        </li>
+        <li>
+          <%= label_tag :bulk_marc_subfield, "Subfield" %>
+          <%= select_tag "operations[][subfield]", "", id: "bulk_marc_subfield", required: true %>
+        </li>
+        <li>
+          <%= label_tag :bulk_marc_action, "Action" %>
+          <%= select_tag "operations[][action]", options_for_select([["Add value", "add"], ["Change value", "change"]]), id: "bulk_marc_action" %>
+        </li>
+        <li data-bulk-target>
+          <%= label_tag :bulk_marc_target, "Add to" %>
+          <%= select_tag "operations[][target]", options_for_select([["Create a new tag", "new"], ["All existing occurrences", "all"], ["Matching existing occurrences", "matching"]]), id: "bulk_marc_target" %>
+          <p class="inline-hints">A new tag uses its default indicators and must include its master subfield. Existing targets never create missing tags.</p>
+        </li>
+        <li data-bulk-condition>
+          <%= label_tag :bulk_marc_match_subfield, "Where subfield" %>
+          <%= select_tag "operations[][match_subfield]", "", id: "bulk_marc_match_subfield" %>
+        </li>
+        <li data-bulk-condition>
+          <label for="bulk_marc_match_value">Equals</label>
+          <span data-bulk-value="match_value"></span>
+          <p class="inline-hints">Only the same tag occurrence containing this exact subfield/value receives the addition.</p>
+        </li>
+        <li data-bulk-old>
+          <label for="bulk_marc_old_value">Old value</label>
+          <span data-bulk-value="old_value"></span>
+        </li>
+        <li>
+          <label for="bulk_marc_value">New value</label>
+          <span data-bulk-value="value"></span>
+        </li>
+      </ol></fieldset>
+      <fieldset class="actions"><ol><li>
+        <%= submit_tag "Start bulk edit", data: { confirm: "Apply this MARC operation to the records in this folder?", disable_with: "Starting…" } %>
+        <%= link_to I18n.t(:cancel), admin_folder_path(@folder) %>
+      </li></ol></fieldset>
+    <% end %>
+  </div>
+  <script type="application/json" data-bulk-marc-fields><%= raw json_escape(@bulk_fields.to_json) %></script>
+  <script type="application/json" data-bulk-marc-operation><%= raw json_escape((@bulk_operation || {}).to_json) %></script>
+</div>

@@ -57,4 +57,6 @@ Rails.application.configure do
 
   # Log asset requests handled by Rails during tests.
   config.assets.quiet = false
+  # Exercise current source assets even when public/assets contains a previous build.
+  config.assets.resolve_with = [:environment]
 end

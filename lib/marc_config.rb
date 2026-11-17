@@ -326,6 +326,10 @@ class MarcConfig
     @tag_config.keys.sort.each { |tag| yield tag if tag.to_i > 8 }
   end
 
+  def each_tag(&block)
+    @tag_config.keys.sort.each(&block)
+  end
+
   def each_subtag( tag )
     @tag_config[tag][:fields].each { |subtag| yield subtag }
   end

@@ -81,6 +81,50 @@ ActiveAdmin.register Folder do
     @page_title = I18n.t("folders.change_contents_owner")
   end
 
+  member_action :bulk_marc_edit, method: :get do
+    return head :forbidden unless current_user.has_role?(:admin)
+
+    @folder = Folder.find(params[:id])
+    begin
+      @bulk_fields = BulkMarcEditor.new(@folder.folder_model).fields
+    rescue BulkMarcEditor::InvalidOperation
+      return head :unprocessable_entity
+    end
+    @page_title = "Bulk MARC Editor"
+  end
+
+  member_action :run_bulk_marc_edit, method: :post do
+    return head :forbidden unless current_user.has_role?(:admin)
+
+    @folder = Folder.find(params[:id])
+    begin
+      editor = BulkMarcEditor.new(@folder.folder_model)
+    rescue BulkMarcEditor::InvalidOperation
+      return head :unprocessable_entity
+    end
+
+    begin
+      submitted = params.require(:operations)
+      unless submitted.is_a?(Array) && submitted.all? { |operation| operation.is_a?(ActionController::Parameters) }
+        raise BulkMarcEditor::InvalidOperation, "Invalid operations"
+      end
+      operations = submitted.map do |operation|
+        operation.permit(:action, :tag, :subfield, :target, :value, :old_value, :match_subfield, :match_value).to_h
+      end
+      operations = editor.validate_operations(operations)
+    rescue BulkMarcEditor::InvalidOperation, ActionController::ParameterMissing => error
+      @bulk_fields = editor.fields
+      @bulk_operation = operations&.first || {}
+      @page_title = "Bulk MARC Editor"
+      flash.now[:error] = error.message
+      render :bulk_marc_edit, status: :unprocessable_entity
+      return
+    end
+
+    job = Delayed::Job.enqueue(BulkMarcEditorJob.new(@folder.id, operations, current_user.id))
+    redirect_to resource_path(@folder), notice: "Bulk MARC edit job started (id: #{job.id})"
+  end
+
   member_action :change_owner, method: :post do
     return head :forbidden unless current_user.has_role?(:admin)
 
