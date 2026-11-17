@@ -548,6 +548,13 @@ es:
     one: carpeta
     other: carpetas
   folders:
+    change_contents_owner: Cambiar propietario del contenido
+    owner_change_description: 'Seleccione el nuevo propietario de los %{count} registros en "%{name}". Esto incluye registros de otros usuarios. El propietario de la carpeta no cambia.'
+    new_owner: Nuevo propietario
+    owner_placeholder: Buscar un usuario por nombre
+    owner_change_confirm: ¿Cambiar el propietario de todos los registros de esta carpeta?
+    owner_change_started: 'Cambio de propietario iniciado (tarea: %{id})'
+    select_valid_owner: Seleccione un usuario de las sugerencias.
     added: Se han añadido %{count} ítems a la carpeta %{name}.
     added_bg: Se han añadido los ítems a la carpeta, tarea %{job} pendiente.
     change_owner: Cambiar propietario

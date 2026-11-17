@@ -1,13 +1,19 @@
 require "rails_helper"
 
 RSpec.describe "admin folder action routing", type: :routing do
-  %w[reindex publish unpublish export_folder validate_folder].each do |action|
+  %w[reindex publish unpublish export_folder validate_folder change_owner].each do |action|
     it "routes #{action} through POST, not GET" do
       path = "/admin/folders/1/#{action}"
 
       expect(post: path).to route_to(controller: "admin/folders", action: action, id: "1")
       expect(get: path).not_to be_routable
     end
+  end
+
+  it "routes the owner selection page through GET" do
+    expect(get: "/admin/folders/1/choose_owner").to route_to(
+      controller: "admin/folders", action: "choose_owner", id: "1"
+    )
   end
 
   it "routes reset_expiration through PATCH, not GET" do

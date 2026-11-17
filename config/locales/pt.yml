@@ -548,6 +548,13 @@ pt:
     one: pasta
     other: pastas
   folders:
+    change_contents_owner: Alterar proprietário do conteúdo
+    owner_change_description: 'Selecione o novo proprietário dos %{count} registos em "%{name}". Isto inclui registos de outros utilizadores. O proprietário da pasta mantém-se.'
+    new_owner: Novo proprietário
+    owner_placeholder: Procurar um utilizador pelo nome
+    owner_change_confirm: Alterar o proprietário de todos os registos desta pasta?
+    owner_change_started: 'Alteração de proprietário iniciada (tarefa: %{id})'
+    select_valid_owner: Selecione um utilizador das sugestões.
     added: Adicionados %{count}  itens na Pasta %{name}.
     added_bg: Itens adicionados à pasta, trabalho %{job} na fila.
     change_owner: Alterar proprietário

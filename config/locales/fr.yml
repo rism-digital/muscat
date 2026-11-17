@@ -548,6 +548,13 @@ fr:
     one: Dossier
     other: Dossiers
   folders:
+    change_contents_owner: Changer le propriétaire du contenu
+    owner_change_description: 'Choisissez le nouveau propriétaire des %{count} notices dans "%{name}". Cela concerne aussi les notices des autres utilisateurs. Le propriétaire du dossier reste inchangé.'
+    new_owner: Nouveau propriétaire
+    owner_placeholder: Rechercher un utilisateur par nom
+    owner_change_confirm: Changer le propriétaire de toutes les notices de ce dossier ?
+    owner_change_started: 'Changement de propriétaire lancé (tâche : %{id})'
+    select_valid_owner: Veuillez sélectionner un utilisateur parmi les suggestions.
     added: "%{count} éléments ajoutés au dossier %{name}."
     added_bg: Eléments ajoutés au dossier, tâche %{job} ajoutée à la queue.
     change_owner: Changer de propriétaire

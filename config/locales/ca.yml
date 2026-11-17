@@ -548,6 +548,13 @@ ca:
     one: carpeta
     other: carpetes
   folders:
+    change_contents_owner: Canviar el propietari del contingut
+    owner_change_description: 'Seleccioneu el nou propietari dels %{count} registres a "%{name}". Això inclou registres d’altres usuaris. El propietari de la carpeta no canvia.'
+    new_owner: Nou propietari
+    owner_placeholder: Cercar un usuari pel nom
+    owner_change_confirm: Voleu canviar el propietari de tots els registres d’aquesta carpeta?
+    owner_change_started: 'Canvi de propietari iniciat (tasca: %{id})'
+    select_valid_owner: Seleccioneu un usuari dels suggeriments.
     added: S'han afegit %{count} elements a la carpeta %{name}.
     added_bg: Elements afegits a la carpeta, tasca %{job} pendent.
     change_owner: Canviar el propietari

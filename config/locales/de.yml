@@ -548,6 +548,13 @@ de:
     one: Ordner
     other: Ordner
   folders:
+    change_contents_owner: Eigentümer des Inhalts ändern
+    owner_change_description: 'Wählen Sie den neuen Eigentümer für die %{count} Datensätze in "%{name}". Dies betrifft auch Datensätze anderer Benutzer. Der Eigentümer des Ordners bleibt unverändert.'
+    new_owner: Neuer Eigentümer
+    owner_placeholder: Benutzer nach Namen suchen
+    owner_change_confirm: Eigentümer aller Datensätze in diesem Ordner ändern?
+    owner_change_started: 'Auftrag zur Änderung des Eigentümers gestartet (ID: %{id})'
+    select_valid_owner: Bitte wählen Sie einen Benutzer aus den Vorschlägen.
     added: "%{count} Einträge zum Ordner %{name} hinzugefügt."
     added_bg: Einträge in den Ordner hinzugefügt, Auftrag %{job} in Warteschleife.
     change_owner: Eigentümer ändern

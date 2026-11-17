@@ -548,6 +548,13 @@ it:
     one: cartella
     other: cartelle
   folders:
+    change_contents_owner: Modifica il proprietario del contenuto
+    owner_change_description: 'Scegli il nuovo proprietario dei %{count} record in "%{name}". Sono inclusi anche i record di altri utenti. Il proprietario della cartella rimane invariato.'
+    new_owner: Nuovo proprietario
+    owner_placeholder: Cerca un utente per nome
+    owner_change_confirm: Modificare il proprietario di tutti i record in questa cartella?
+    owner_change_started: 'Modifica del proprietario avviata (attività: %{id})'
+    select_valid_owner: Seleziona un utente dai suggerimenti.
     added: Aggiunti %{count} elementi alla cartella %{name}.
     added_bg: Aggiunti elementi, job %{job} in coda.
     change_owner: Modifica il proprietario

@@ -26,7 +26,7 @@ RSpec.describe "Sign in", type: :feature do
     end
 
     context "with user's password" do
-      let(:password) { "P4ssword" }
+      let(:password) { "TestPassword123" }
 
       it "signs in successfully" do
         within ".flash" do

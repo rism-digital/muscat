@@ -548,6 +548,13 @@ pl:
     one: Folder
     other: Foldery
   folders:
+    change_contents_owner: Zmień właściciela zawartości
+    owner_change_description: 'Wybierz nowego właściciela %{count} rekordów w "%{name}". Dotyczy to również rekordów innych użytkowników. Właściciel folderu pozostaje bez zmian.'
+    new_owner: Nowy właściciel
+    owner_placeholder: Szukaj użytkownika według nazwy
+    owner_change_confirm: Zmienić właściciela wszystkich rekordów w tym folderze?
+    owner_change_started: 'Rozpoczęto zmianę właściciela (zadanie: %{id})'
+    select_valid_owner: Wybierz użytkownika z podpowiedzi.
     added: Do foldera %{name} dodano %{count} pozycji.
     added_bg: Pozycje dodane do foldera, zadanie %{job} zakolejkowane.
     change_owner: Zmień właściciela

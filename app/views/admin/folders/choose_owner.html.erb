@@ -1,0 +1,21 @@
+<div class="panel">
+  <h3><%= I18n.t("folders.change_contents_owner") %></h3>
+  <div class="panel_contents">
+    <p><%= I18n.t("folders.owner_change_description", count: @folder.content.count, name: @folder.name) %></p>
+    <%= form_tag change_owner_admin_folder_path(@folder), method: :post do %>
+      <p>
+        <%= label_tag :new_owner_id, I18n.t("folders.new_owner") %>
+        <%= text_field_tag :new_owner_id, nil, required: true, class: "flexdatalist",
+          placeholder: I18n.t("folders.owner_placeholder"),
+          data: { data: list_for_filter_admin_users_path(format: :json), search_in: "name",
+            visible_properties: "name", text_property: "name", value_property: "shortid",
+            selection_required: true, search_by_word: true, min_length: 0 } %>
+      </p>
+      <div class="buttons">
+        <%= submit_tag I18n.t("folders.change_contents_owner"),
+          data: { confirm: I18n.t("folders.owner_change_confirm"), disable_with: I18n.t("folders.change_contents_owner") } %>
+        <%= link_to I18n.t(:cancel), admin_folder_path(@folder) %>
+      </div>
+    <% end %>
+  </div>
+</div>

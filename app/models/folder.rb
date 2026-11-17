@@ -65,6 +65,11 @@ class Folder < ApplicationRecord
     self.class.folder_model_for(folder_type)
   end
 
+  def owner_change_supported?
+    model = folder_model
+    model && model.column_names.include?("wf_owner") && model.method_defined?(:marc)
+  end
+
   def self.folder_model_for(type)
     return nil unless FOLDERABLE_TYPES.include?(type.to_s)
 

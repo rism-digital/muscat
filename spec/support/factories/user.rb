@@ -5,8 +5,8 @@ FactoryBot.define do
     name { "Fred" }
     email { "fred@example.com" }
     username { "fred" }
-    password { "P4ssword" }
-    password_confirmation { "P4ssword" }
+    password { "TestPassword123" }
+    password_confirmation { "TestPassword123" }
     workgroups { [association(:workgroup)]  }
   end
 

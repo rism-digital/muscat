@@ -566,6 +566,13 @@ en:
     one: folder
     other: folders
   folders:
+    change_contents_owner: Change owner of contents
+    owner_change_description: 'Choose the new owner for the %{count} records in "%{name}". This changes the records, including records owned by other users. The folder owner stays the same.'
+    new_owner: New owner
+    owner_placeholder: Search for a user by name
+    owner_change_confirm: Change the owner of all records in this folder?
+    owner_change_started: 'Owner change job started (id: %{id})'
+    select_valid_owner: Please select a user from the suggestions.
     added: Added %{count} items to Folder %{name}.
     added_bg: Added items to folder, job %{job} enqueued.
     delete_now: 'The following folders were deleted:'

@@ -122,6 +122,12 @@
 				:class => "muscat_icon_link muscat_icon_link_validate", :method => :post) %>
 			</li>
 		<%- end %>
+    <% if item.is_a?(Folder) && current_user.has_role?(:admin) && item.owner_change_supported? %>
+      <li class="muscat_icon_link">
+        <%= link_to I18n.t("folders.change_contents_owner"), choose_owner_admin_folder_path(item),
+          class: "muscat_icon_link muscat_icon_link_edit" %>
+      </li>
+    <% end %>
 		<%- if (can? :edit, item)  && item.is_a?(Folder) %>
 			<li class="muscat_icon_link" id="reset-expiration">
 			<%= link_to("#{I18n.t :"folders.reset_expiration"}", send("reset_expiration_admin_#{model}_path", item),
