@@ -517,6 +517,8 @@
   fields:
     a:
       label: records.institution
+    i:
+      label: records.project_record_id
     u:
       label: records.project_url
   label: records.contributing_project

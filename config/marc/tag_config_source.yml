@@ -919,6 +919,8 @@
     :fields:
     - - "0"
       - :occurrences: "1"
+    - - i
+      - :occurrences: "1"
     - - d
       - :occurrences: "1"
   # This is not used in sources
