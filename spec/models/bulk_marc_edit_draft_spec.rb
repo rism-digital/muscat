@@ -8,7 +8,7 @@ RSpec.describe BulkMarcEditDraft do
 
   def prepare(**options)
     folder.add_item(record)
-    described_class.prepare(folder, admin, [operation], **options)
+    described_class.prepare(folder, admin, [operation], **{ modification_reason: "Correct cataloguing data" }.merge(options))
   end
 
   it "previews independent MARC without saving records, versions, or jobs" do
@@ -39,10 +39,10 @@ RSpec.describe BulkMarcEditDraft do
         marc_source: attributes_for(:publication)[:marc_source].sub("1536", id.to_s))
       folder.add_item(item)
     end
-    draft, rows = described_class.prepare(folder, admin, [operation])
+    draft, rows = described_class.prepare(folder, admin, [operation], modification_reason: "Correct cataloguing data")
     expect(draft.target_count).to eq(12)
     expect(rows.map { |row| row[:id] }).to eq((2000..2009).to_a)
-    draft, rows = described_class.prepare(folder, admin, [operation], sample_size: 100)
+    draft, rows = described_class.prepare(folder, admin, [operation], sample_size: 100, modification_reason: "Correct cataloguing data")
     expect(draft.target_count).to eq(12)
     expect(rows.length).to eq(12)
   end

@@ -8,6 +8,7 @@ RSpec.describe "Bulk MARC Editor", type: :feature, js: true do
     page.current_window.resize_to(1440, 1100)
     login_as admin, scope: :user
     visit bulk_marc_edit_admin_folder_path(folder)
+    fill_in "Modification reason", with: "Correct cataloguing data"
   end
 
   def choose_code(id, code)
@@ -18,6 +19,7 @@ RSpec.describe "Bulk MARC Editor", type: :feature, js: true do
     jobs_before = Delayed::Job.count
     click_button "Preview changes"
     expect(page).to have_content("No records have been saved")
+    expect(page).to have_content("Modification reason: Correct cataloguing data")
     expect(Delayed::Job.count).to eq(jobs_before)
     accept_confirm { find('input[value^="Apply to all"]').click }
     expect(page).to have_content("Bulk MARC edit job started")
@@ -70,11 +72,13 @@ RSpec.describe "Bulk MARC Editor", type: :feature, js: true do
     record = create(:publication, wf_owner: admin.id)
     folder.add_item(record)
     visit bulk_marc_edit_admin_folder_path(folder)
+    fill_in "Modification reason", with: "Correct cataloguing data"
     choose_code("bulk_marc_tag", "500")
     choose_code("bulk_marc_subfield", "a")
     fill_in "bulk_marc_value", with: "Preview note"
     click_button "Preview changes"
     expect(page).to have_content("No records have been saved")
+    expect(page).to have_content("Modification reason: Correct cataloguing data")
     expect(page).to have_css(".diff_table ins", text: "Preview note")
     expect(record.reload.marc_source).not_to include("Preview note")
     expect(Delayed::Job.count).to eq(0)
@@ -90,8 +94,10 @@ RSpec.describe "Bulk MARC Editor", type: :feature, js: true do
     click_link "Back to edit"
     expect(find("#bulk_marc_tag").value).to eq("500")
     expect(find("#bulk_marc_value").value).to eq("Preview note")
+    expect(find("#modification_reason").value).to eq("Correct cataloguing data")
     click_button "Preview changes"
     expect(page).to have_content("No records have been saved")
+    expect(page).to have_content("Modification reason: Correct cataloguing data")
     expect(BulkMarcEditDraft.count).to eq(1)
     accept_confirm { click_button "Apply to all 1 record" }
     expect(page).to have_content("Bulk MARC edit job started")

@@ -6,7 +6,7 @@ RSpec.describe BulkMarcPreviewCleanupJob, type: :job do
   let(:operation) { { action: "add", tag: "500", subfield: "a", target: "new", value: "Note" } }
 
   def draft
-    BulkMarcEditDraft.prepare(folder, admin, [operation]).first
+    BulkMarcEditDraft.prepare(folder, admin, [operation], modification_reason: "Correct cataloguing data").first
   end
 
   it "deletes expired unused previews and keeps recent previews" do

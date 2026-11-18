@@ -17,6 +17,7 @@ module FolderActions
           return unless draft
 
           @bulk_operation = draft.operations.first
+          @bulk_modification_reason = draft.modification_reason
           @bulk_draft_to_replace = draft.id unless draft.confirmed_at
         end
         @page_title = "Bulk MARC Editor"
@@ -36,9 +37,11 @@ module FolderActions
             previous = requested_bulk_marc_draft(@folder)
             return unless previous
 
-            previous.ensure_reviewable!
             operations = previous.operations
+            reason = previous.modification_reason
+            previous.ensure_reviewable!
           else
+            reason = params[:modification_reason]
             submitted = params.require(:operations)
             unless submitted.is_a?(Array) && submitted.all? { |operation| operation.is_a?(ActionController::Parameters) }
               raise BulkMarcEditor::InvalidOperation, "Invalid operations"
@@ -53,9 +56,9 @@ module FolderActions
           end
           size = params[:sample_size] || 10
           @draft, @preview_rows = if previous
-            previous.replace_with!(@folder, current_user, operations, sample_size: size)
+            previous.replace_with!(@folder, current_user, operations, sample_size: size, modification_reason: reason)
           else
-            BulkMarcEditDraft.prepare(@folder, current_user, operations, sample_size: size)
+            BulkMarcEditDraft.prepare(@folder, current_user, operations, sample_size: size, modification_reason: reason)
           end
           @bulk_editor = editor
           @page_title = "Preview bulk MARC edit"
@@ -64,6 +67,7 @@ module FolderActions
         rescue BulkMarcEditor::InvalidOperation, ActionController::ParameterMissing => error
           @bulk_fields = editor.fields
           @bulk_operation = operations&.first || {}
+          @bulk_modification_reason = reason if reason.is_a?(String)
           @bulk_draft_to_replace = previous&.id
           @page_title = "Bulk MARC Editor"
           flash.now[:error] = error.message
@@ -81,6 +85,8 @@ module FolderActions
         job = draft.enqueue!(@folder, current_user)
         redirect_to resource_path(@folder), notice: "Bulk MARC edit job started (id: #{job.id})"
       rescue BulkMarcEditDraft::StalePreview => error
+        redirect_to bulk_marc_edit_admin_folder_path(@folder, draft_id: draft.id), alert: error.message
+      rescue ::BulkMarc::InvalidOperation => error
         redirect_to bulk_marc_edit_admin_folder_path(@folder, draft_id: draft.id), alert: error.message
       rescue ActionController::ParameterMissing
         head :unprocessable_entity

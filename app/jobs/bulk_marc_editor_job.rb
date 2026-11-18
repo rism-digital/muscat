@@ -1,12 +1,13 @@
 class BulkMarcEditorJob < Muscat::ProgressTrackingJob
   class PartialFailure < StandardError; end
 
-  def initialize(folder_id, operations, requesting_user_id, preview_draft_id: nil)
+  def initialize(folder_id, operations, requesting_user_id, preview_draft_id: nil, modification_reason: nil)
     super()
     @folder_id = folder_id
     @operations = operations
     @requesting_user_id = requesting_user_id
     @preview_draft_id = preview_draft_id
+    @modification_reason = modification_reason
   end
 
   def enqueue(job)
@@ -28,8 +29,10 @@ class BulkMarcEditorJob < Muscat::ProgressTrackingJob
       draft = BulkMarcEditDraft.find_by(id: @preview_draft_id)
       raise BulkMarcEditDraft::StalePreview, "This preview is no longer available." unless draft
 
-      draft.start!(folder, requester, operations, job_id: @job&.id)
+      draft.start!(folder, requester, operations, job_id: @job&.id, modification_reason: @modification_reason)
     end
+    # Preserve the previous event for jobs queued before reasons were introduced.
+    reason = @modification_reason.nil? ? "Bulk MARC edit (folder #{folder.id})" : BulkMarcEditDraft.normalize_modification_reason!(@modification_reason)
     ids = folder.folder_items.where(item_type: folder.folder_type).select(:item_id)
     records = folder.folder_model.where(id: ids)
     update_progress_max(records.count)
@@ -42,7 +45,7 @@ class BulkMarcEditorJob < Muscat::ProgressTrackingJob
           record.class.transaction(requires_new: true) do
             record.lock!
             if editor.apply(record, operations)
-              record.paper_trail_event = "Bulk MARC edit (folder #{folder.id})" if record.respond_to?(:paper_trail_event=)
+              record.paper_trail_event = reason if record.respond_to?(:paper_trail_event=)
               record.save!
               changed += 1
             else

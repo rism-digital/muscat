@@ -2,6 +2,7 @@
   <h3>Preview bulk MARC edit</h3>
   <div class="panel_contents">
     <p><strong><%= @folder.name %></strong> — <%= @folder.folder_type %></p>
+    <p><strong>Modification reason:</strong> <%= @draft.modification_reason %></p>
     <% @draft.operations.each do |operation| %>
       <p><%= @bulk_editor.operation_summary(operation) %></p>
     <% end %>

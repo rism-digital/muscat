@@ -53,7 +53,7 @@ RSpec.describe BulkMarcEditorJob, type: :job do
     record = create(:publication, wf_owner: admin.id)
     folder.add_item(record)
     conflict = { action: "add", tag: "210", subfield: "a", target: "new", value: "Conflict" }
-    draft, = BulkMarcEditDraft.prepare(folder, admin, [operation, conflict])
+    draft, = BulkMarcEditDraft.prepare(folder, admin, [operation, conflict], modification_reason: "Correct cataloguing data")
     job = draft.enqueue!(folder, admin)
 
     expect(Delayed::Worker.new(quiet: true).run(job)).to be(false)
@@ -65,7 +65,7 @@ RSpec.describe BulkMarcEditorJob, type: :job do
   end
 
   it "deletes the draft when execution fails before processing any records" do
-    draft, = BulkMarcEditDraft.prepare(folder, admin, [operation])
+    draft, = BulkMarcEditDraft.prepare(folder, admin, [operation], modification_reason: "Correct cataloguing data")
     job = draft.enqueue!(folder, admin)
     admin.roles.clear
 
@@ -74,7 +74,7 @@ RSpec.describe BulkMarcEditorJob, type: :job do
   end
 
   it "does not execute or remove a different job's preview" do
-    draft, = BulkMarcEditDraft.prepare(folder, admin, [operation])
+    draft, = BulkMarcEditDraft.prepare(folder, admin, [operation], modification_reason: "Correct cataloguing data")
     actual_job = draft.enqueue!(folder, admin)
     duplicate = Delayed::Job.enqueue(described_class.new(folder.id, [operation], admin.id, preview_draft_id: draft.id))
 
@@ -83,5 +83,52 @@ RSpec.describe BulkMarcEditorJob, type: :job do
     expect(draft.started_at).to be_nil
     Delayed::Job.find(actual_job.id).invoke_job
     expect(BulkMarcEditDraft.exists?(draft.id)).to be(false)
+  end
+
+  it "uses the reviewed reason as the PaperTrail event and leaves unchanged records alone" do
+    first = create(:publication, wf_owner: admin.id)
+    second = create(:publication, id: 1537, wf_owner: admin.id,
+      marc_source: attributes_for(:publication)[:marc_source].sub("1536", "1537").gsub("NBA", "Other"))
+    folder.add_item(first)
+    folder.add_item(second)
+    versions_before = second.versions.count
+    edit = { action: "change", tag: "210", subfield: "a", old_value: "NBA", value: "Updated" }
+    draft, = BulkMarcEditDraft.prepare(folder, admin, [edit], modification_reason: "Correct the catalogue abbreviation")
+    job = draft.enqueue!(folder, admin)
+
+    Delayed::Job.find(job.id).invoke_job
+
+    expect(first.reload.versions.last.event).to eq("Correct the catalogue abbreviation")
+    expect(first.short_name).to eq("Updated")
+    expect(second.reload.versions.count).to eq(versions_before)
+    expect(second.short_name).to eq("Other")
+  end
+
+  it "rejects a reason changed after confirmation before saving any records" do
+    record = create(:publication, wf_owner: admin.id)
+    folder.add_item(record)
+    draft, = BulkMarcEditDraft.prepare(folder, admin, [operation], modification_reason: "Reviewed reason")
+    job = draft.enqueue!(folder, admin)
+    draft.update!(modification_reason: "Changed after confirmation")
+
+    expect { Delayed::Job.find(job.id).invoke_job }.to raise_error(BulkMarcEditDraft::StalePreview, /reason differs/)
+    expect(record.reload.marc_source).not_to include("Bulk note")
+  end
+
+  it "preserves execution of confirmed jobs queued before modification reasons existed" do
+    record = create(:publication, wf_owner: admin.id)
+    folder.add_item(record)
+    draft, = BulkMarcEditDraft.prepare(folder, admin, [operation], modification_reason: "Temporary fixture reason")
+    job = draft.enqueue!(folder, admin)
+    draft.update_column(:modification_reason, nil)
+    payload = job.payload_object
+    payload.remove_instance_variable(:@modification_reason)
+    job.payload_object = payload
+    job.save!
+
+    Delayed::Job.find(job.id).invoke_job
+
+    expect(record.reload.marc_source).to include("Bulk note")
+    expect(record.versions.last.event).to eq("Bulk MARC edit (folder #{folder.id})")
   end
 end

@@ -8,7 +8,8 @@ module BulkMarc
     end
 
     # Capture the sample before generating diffs, then verify it before saving the draft.
-    def self.prepare(folder, user, operations, sample_size: 10)
+    def self.prepare(folder, user, operations, sample_size: 10, modification_reason: nil)
+      reason = BulkMarcEditDraft.normalize_modification_reason!(modification_reason)
       editor = Editor.new(Configuration.new(folder.folder_model))
       preview = new(editor)
       operations = editor.validate_operations(operations)
@@ -17,7 +18,7 @@ module BulkMarc
       records = records_for(folder)
       sample = records.reorder(:id).limit(size).to_a
       draft = BulkMarcEditDraft.new(
-        folder_id: folder.id, requesting_user_id: user.id, operations: operations,
+        folder_id: folder.id, requesting_user_id: user.id, operations: operations, modification_reason: reason,
         sample_size: size, target_count: records.count, expires_at: 1.hour.from_now,
         membership_digest: membership, configuration_digest: configuration_for(editor),
         sample_snapshot: sample.map { |record| { "id" => record.id, "fingerprint" => fingerprint(record) } }

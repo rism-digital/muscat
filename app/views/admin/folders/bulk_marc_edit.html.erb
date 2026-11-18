@@ -8,6 +8,12 @@
       <%= hidden_field_tag :replace_draft_id, @bulk_draft_to_replace if @bulk_draft_to_replace %>
       <fieldset class="inputs"><ol>
         <li>
+          <%= label_tag :modification_reason, "Modification reason" %>
+          <%= text_field_tag :modification_reason, @bulk_modification_reason, required: true,
+            maxlength: BulkMarcEditDraft::MAX_REASON_LENGTH %>
+          <p class="inline-hints">Recorded in the version history of each changed record.</p>
+        </li>
+        <li>
           <%= label_tag :bulk_marc_tag, "Tag" %>
           <%= select_tag "operations[][tag]", options_for_select([["Choose a tag…", ""]]), id: "bulk_marc_tag", required: true %>
         </li>
