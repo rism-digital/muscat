@@ -291,7 +291,7 @@
     - - a
       - :occurrences: "*"
     - - b
-      - :occurrences: "*"
+      - :occurrences: "?"
     - - c
       - :occurrences: "?"
     - - "8"

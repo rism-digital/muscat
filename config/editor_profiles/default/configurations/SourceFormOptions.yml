@@ -344,7 +344,6 @@
     - - a
       - growfield: true
     - - b
-      - growfield: true
     - - c
 "340":
   layout:
