@@ -186,6 +186,7 @@ ActiveAdmin.register Institution do
         controller.view_assigns["workgroup_user_counts"].fetch(element.id, 0)
       end
     end
+    column (I18n.t :filter_owner) {|person| User.find(person.wf_owner).name rescue 0} if current_user.has_any_role?(:editor, :admin)
     column (I18n.t :filter_sources), :src_count_order, sortable: :src_count_order do |element|
       active_admin_stored_from_hits(controller.view_assigns["hits"], element, :src_count_order)
     end
