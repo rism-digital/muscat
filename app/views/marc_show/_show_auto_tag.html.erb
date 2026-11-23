@@ -74,7 +74,7 @@ tag.for_every_child_sorted do |subfield|
   else
     text = subfield.content&.to_s
     next if text.blank?
-    text = Anchored::Linker.auto_link(text).html_safe if text.match("(http|https)://")
+    text = Anchored::Linker.auto_link(h(text)).html_safe if text.match("(http|https)://")
     parts << ERB::Util.h(text)
   end
 end

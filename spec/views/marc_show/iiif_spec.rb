@@ -5,7 +5,7 @@ RSpec.describe "IIIF record display", type: :view do
   let(:url_subfield) { double(content: manifest_url) }
   let(:type_subfield) { double(content: "IIIF manifest (digitized source)") }
   let(:description_subfield) { double(content: "Digital copy") }
-  let(:tag) { double }
+  let(:tag) { double(tag: "856") }
 
   before do
     allow(tag).to receive(:fetch_first_by_tag).with("u").and_return(url_subfield)

@@ -31,7 +31,7 @@
       <% end %>
     </th>
     <td valign="top">
-      <%= content.uniq.join(", ").html_safe %>
+      <%= safe_join(content.uniq, ", ") %>
     </td>
   </tr>
 <% end %>
