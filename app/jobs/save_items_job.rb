@@ -24,6 +24,9 @@ class SaveItemsJob < Muscat::ProgressTrackingJob
   end
 
   def perform(*args)
+    reflection = @parent_obj_class.reflect_on_association(@relation.to_s)
+    raise ArgumentError, "Invalid collection relation" unless reflection&.collection?
+
     # Sometimes, the record is deleted before the job is run
     begin
       parent_obj = @parent_obj_class.send("find", @parent_obj_id.to_i)
@@ -32,7 +35,7 @@ class SaveItemsJob < Muscat::ProgressTrackingJob
       return # Just exit
     end
     
-    items = parent_obj.send(@relation)
+    items = parent_obj.association(reflection.name).reader
     
     update_progress_max(-1)
     update_stage("Look up #{@relation.to_s}")

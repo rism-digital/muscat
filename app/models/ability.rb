@@ -43,6 +43,7 @@ class Ability
       can :manage, Folder#, :wf_owner => user.id
       can :unpublish, :all
       can [:read, :create, :destroy], ActiveAdmin::Comment
+      can [:publish_works, :unpublish_works], Publication
       can :read, ActiveAdmin::Page, :name => "Dashboard"
       can :read, ActiveAdmin::Page, :name => "guidelines"
       can :read, ActiveAdmin::Page, :name => "doc"
@@ -102,6 +103,8 @@ class Ability
       end
       can [:read], Folder
       can [:manage], Folder, :wf_owner => user.id
+      # Owning a folder must not bypass the institution-domain publishing rule.
+      cannot :publish, Folder
       can [:publish], Folder do |folder|
         user.can_publish?(folder)
       end

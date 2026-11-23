@@ -3,14 +3,18 @@
 <% if ["work_catalogue_partial", "work_catalogue_complete", "work_catalogue_alternate"].include?(item.work_catalogue) %>
 
 <ul>
+    <% if authorized?(:publish_works, item) %>
     <li class="muscat_icon_link">
     <%= link_to("#{I18n.t :work_catalog_publish}", send("publish_works_admin_publication_path", item),
-        :class => "muscat_icon_link muscat_icon_link_publish") %>
+        method: :post, :class => "muscat_icon_link muscat_icon_link_publish") %>
     </li>
+    <% end %>
+    <% if authorized?(:unpublish_works, item) %>
     <li class="muscat_icon_link">
     <%= link_to("#{I18n.t :work_catalog_unpublish}", send("unpublish_works_admin_publication_path", item),
-        :class => "muscat_icon_link muscat_icon_link_unpublish") %>
+        method: :post, :class => "muscat_icon_link muscat_icon_link_unpublish") %>
     </li>
+    <% end %>
 </ul>
 
 <% else %>

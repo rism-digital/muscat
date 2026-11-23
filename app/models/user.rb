@@ -238,10 +238,11 @@ class User < ApplicationRecord
     super
   end
 
-  # https://github.com/activeadmin/activeadmin/issues/7809
-  # In Non-marc models we can use the default
-  def self.ransackable_associations(_) = reflections.keys
-  def self.ransackable_attributes(_) = attribute_names - %w[token]
+  # These lists also apply when another model searches through its user association.
+  def self.ransackable_associations(_) = %w[roles workgroups]
+  def self.ransackable_attributes(_)
+    %w[id username name email disabled current_sign_in_at last_sign_in_at sign_in_count created_at updated_at]
+  end
 
   private
 

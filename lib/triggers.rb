@@ -1,16 +1,23 @@
 module Triggers
   def execute_triggers_from_params(params, object)
-    if params[:triggers]
+    return if params[:triggers].blank?
+
+    begin
       triggers = JSON.parse(params[:triggers])
-      
-      triggers.each do |k, relations|
-        if k == "save"
-          relations.each {|model| Delayed::Job.enqueue(SaveItemsJob.new(object.id, object.class, model)) }
-        elsif k == "reindex"
-          relations.each {|model| Delayed::Job.enqueue(ReindexItemsJob.new(object.id, object.class, model)) }
-        else
-          puts "Unknown trigger #{k}"
-        end
+    rescue JSON::ParserError, TypeError
+      return
+    end
+    return unless triggers.is_a?(Hash)
+
+    configured = EditorConfiguration.get_default_layout(object)&.relation_triggers || {}
+    triggers.each do |action, relations|
+      job_class = { "save" => SaveItemsJob, "reindex" => ReindexItemsJob }[action]
+      next unless job_class && relations.is_a?(Array)
+
+      (relations & configured.fetch(action, [])).each do |relation|
+        next unless object.class.reflect_on_association(relation)&.collection?
+
+        Delayed::Job.enqueue(job_class.new(object.id, object.class, relation))
       end
     end
   end

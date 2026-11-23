@@ -175,13 +175,17 @@ ActiveAdmin.register Publication do
     return
   end
  
-  member_action :publish_works, method: :get do
-    job = Delayed::Job.enqueue(PublishItemsJob.new(params[:id], Publication, :referring_works, :publish))
+  member_action :publish_works, method: :post do
+    publication = Publication.find(params[:id])
+    authorize! :publish_works, publication
+    job = Delayed::Job.enqueue(PublishItemsJob.new(publication.id, Publication, :referring_works, :publish))
     redirect_to resource_path(params[:id]), notice: I18n.t(:publish_job, scope: :folders, id: job.id)
   end
 
-  member_action :unpublish_works, method: :get do
-    job = Delayed::Job.enqueue(PublishItemsJob.new(params[:id], Publication, :referring_works, :unpublish))
+  member_action :unpublish_works, method: :post do
+    publication = Publication.find(params[:id])
+    authorize! :unpublish_works, publication
+    job = Delayed::Job.enqueue(PublishItemsJob.new(publication.id, Publication, :referring_works, :unpublish))
     redirect_to resource_path(params[:id]), notice: I18n.t(:publish_job, scope: :folders, id: job.id)
   end
 

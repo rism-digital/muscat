@@ -280,6 +280,30 @@ class EditorConfiguration
     return options_config.include?("triggers") ? options_config["triggers"] : nil
   end
 
+  # Only field triggers defined by the server may be requested by the editor.
+  def relation_triggers
+    triggers = {}
+    options_config.each_value do |options|
+      next unless options.is_a?(Hash) && options["layout"].is_a?(Hash)
+
+      Array(options["layout"]["fields"]).each do |_field, settings|
+        next unless settings.is_a?(Hash) && settings["trigger"].is_a?(Array)
+
+        settings["trigger"].each do |trigger|
+          next unless trigger.is_a?(Hash)
+
+          trigger.each do |action, relations|
+            next unless relations.is_a?(Array)
+
+            triggers[action] ||= []
+            triggers[action] |= relations.select { |relation| relation.is_a?(String) }
+          end
+        end
+      end
+    end
+    triggers
+  end
+
   # This is used for the GND editor
   # where the MARC fields should not be ordered alphabetically
   # but must come in the order in the editor
