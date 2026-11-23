@@ -52,9 +52,17 @@ ActiveAdmin.register_page "Recently Deleted" do
         panel "MARC21" do
           if item.marc_source.present?
             begin
-              pre item.marc.to_marc_external
+              marc = item.marc.to_marc_external(
+                created_at: item.created_at, updated_at: item.updated_at,
+                holdings: false, sanitize: true
+              )
             rescue StandardError
-              pre item.marc_source
+              marc = ERB::Util.html_escape(item.marc_source)
+            end
+            formatted_marc = marc.gsub(/(=\d{3})  /, '<br><span class="marc_tag">\1</span>&nbsp;&nbsp;')
+              .gsub(/(\$.)/, '<span class="marc_subfield">\1</span>')
+            div class: "marc21" do
+              text_node formatted_marc.html_safe
             end
           else
             para "No MARC data was saved in this version."

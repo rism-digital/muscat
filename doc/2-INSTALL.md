@@ -263,6 +263,8 @@ chown -R solr:solr /data/solr/data/muscat
 
 Enable the ICU analyzers by setting `SOLR_MODULES=analysis-extras` in Solr's startup include file. For an unpacked binary, add it to `<SOLR_INSTALL_DIR>/bin/solr.in.sh`; for the service installation, add it to `/etc/default/solr.in.sh` (or `/etc/default/<service-name>.in.sh` if the service has a custom name). The Muscat core is standalone: when starting from a terminal, use `bin/solr start --user-managed`; for a service installation, add `--user-managed` to the generated systemd unit's `ExecStart`. Solr 10 otherwise defaults to SolrCloud mode. Use Java 21, restart Solr after changing its startup settings, and perform a full Sunspot reindex after switching to this configuration.
 
+Use `sudo systemctl edit --full solr` and add `--user-managed` to the start command
+
 ### Installation using a "stock" solr using included setup script
 
 **NOTE** this was tested on Linux distributions only. Grab a copy of the official distribution (8.11.4 at the time of writing) and unpack it in a suitable place. This is run as root or with sudo.
