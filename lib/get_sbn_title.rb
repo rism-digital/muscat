@@ -5,7 +5,7 @@ require "json"
 require "net/http"
 require "uri"
 
-module GetSBNTitle
+module GetSbnTitle
   ENDPOINT = "https://opac.sbn.it/o/opac-api/title"
 
   def self.call(id)
