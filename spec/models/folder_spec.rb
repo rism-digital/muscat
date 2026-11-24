@@ -16,19 +16,69 @@ RSpec.describe Folder do
     end
   end
 
-  describe "#is_published?" do
+  describe "#publication_status" do
+    let(:folder) { described_class.create!(name: "Status", folder_type: "Source", user: create(:admin)) }
+
     it "fails closed for unsupported stored folder types" do
       folder = described_class.new(name: "Bad", folder_type: "sources ON 1=1 --")
-      result = nil
 
-      expect { result = folder.is_published? }.not_to raise_error
-      expect(result).to eq(false)
+      expect(folder.publication_status).to be_nil
     end
 
-    it "treats folderable models without workflow state as published" do
+    it "has no publication status for models without workflow state" do
       folder = described_class.new(name: "Users", folder_type: "User")
 
-      expect(folder.is_published?).to eq(true)
+      expect(folder.publication_status).to be_nil
+    end
+
+    it "has no publication status for an empty folder" do
+      expect(folder.publication_status).to be_nil
+    end
+
+    { [1, 1] => :published, [0, 0] => :inprogress, [1, 0] => :mixed,
+      [1, 1, 0] => :mixed, [0, 0, 1] => :mixed, [2, 3] => nil,
+      [1, 2, 3] => :published, [0, 2, 3] => :inprogress }.each do |stages, expected|
+      it "summarizes source states #{stages.inspect} as #{expected.inspect}" do
+        stages.each_with_index do |stage, index|
+          folder.add_item(create(:source, id: index + 1, wf_stage: stage))
+        end
+
+        expect(folder.publication_status).to eq(expected)
+      end
+    end
+
+    it "ignores missing records and mismatched polymorphic types" do
+      source = create(:source, wf_stage: :published)
+      folder.add_item(source)
+      folder.folder_items.create!(item_type: "Source", item_id: 999999)
+      other = create(:source, id: 2, wf_stage: :inprogress)
+      folder.folder_items.create!(item_type: "Person", item_id: other.id)
+
+      expect(folder.publication_status).to eq(:published)
+    end
+
+    it "recognizes the legacy unpublished enum value for holdings" do
+      folder.update!(folder_type: "Holding")
+      source = create(:source)
+      folder.add_item(create(:holding, source: source, wf_stage: :unpublished))
+      expect(folder.publication_status).to eq(:inprogress)
+
+      folder.add_item(create(:holding, source: source, wf_stage: :published))
+      expect(folder.publication_status).to eq(:mixed)
+    end
+
+    it "ignores unset holding statuses" do
+      folder.update!(folder_type: "Holding")
+      folder.add_item(create(:holding, source: create(:source), wf_stage: nil))
+
+      expect(folder.publication_status).to be_nil
+    end
+
+    it "summarizes work folders" do
+      folder.update!(folder_type: "Work")
+      folder.add_item(create(:work))
+
+      expect(folder.publication_status).to eq(:published)
     end
   end
 

@@ -47,18 +47,20 @@ class Folder < ApplicationRecord
     model.where(id: folder_items.pluck(:item_id))
   end
 
-  def is_published?
+  def publication_status
     model = folder_model
-    return false unless model
-    return true unless model.column_names.include?("wf_stage")
+    return unless model && model.column_names.include?("wf_stage")
 
-    join_sql = "INNER JOIN #{model.quoted_table_name} ON #{FolderItem.quoted_table_name}.item_id = #{model.quoted_table_name}.id"
+    stages = model
+      .where(id: folder_items.where(item_type: model.name).select(:item_id))
+      .where(wf_stage: [0, 1])
+      .distinct
+      .pluck(:wf_stage)
+      .map { |stage| stage == "unpublished" ? "inprogress" : stage }
 
-    !folder_items
-      .joins(join_sql)
-      .where(item_type: model.name)
-      .where(model.table_name => { wf_stage: 0 })
-      .exists?
+    return :mixed if stages.size > 1
+
+    stages.first&.to_sym
   end
 
   def folder_model

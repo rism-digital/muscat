@@ -95,8 +95,13 @@ ActiveAdmin.register Folder do
 
   index :download_links => false do |ad|
     selectable_column
-    column (I18n.t :filter_wf_stage) {|folder| status_tag(folder.is_published?,
-      label: I18n.t('status_codes.' + (folder.is_published? ? "published" : "inprogress"), locale: :en))} 
+    column (I18n.t :filter_wf_stage) do |folder|
+      stage = folder.publication_status
+      if stage
+        status_tag(stage, label: I18n.t("status_codes.#{stage}", locale: :en),
+          class: stage == :mixed ? "warning" : nil)
+      end
+    end
     id_column
     column (I18n.t :filter_name), :name, sortable: :name
     column (I18n.t :filter_folder_type), :folder_type

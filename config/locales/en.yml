@@ -934,6 +934,7 @@ en:
     deleted: DEL
     deprecated: DEP
     inprogress: UNP
+    mixed: MIX
     published: PUB
   std_title_contains: Standardized title
   switch_language: Switch language
